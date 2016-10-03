@@ -1,0 +1,26 @@
+{
+  "name": "rcue",
+  "version": "3.10.0",
+  "authors": "Red Hat",
+  "license": "Apache-2.0",
+  "homepage": "http://rcue-uxd.itos.redhat.com/",
+  "main": [
+    "dist/css/rcue.css",
+    "dist/css/rcue-additions.css"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "Makefile",
+    "rcue.spec.in"
+  ],
+  "dependencies": {
+    "patternfly": "~3.10.0",
+    "angular": "^1.5.8",
+    "angular-patternfly": "^3.10.0"
+  },
+  "private": true
+}

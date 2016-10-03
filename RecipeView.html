@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html class="layout-pf layout-pf-fixed">
+
+<head>
+	<meta charset=“utf-8”>
+	<meta http-equiv=“X-UA-Compatible” content=“IE=edge”>
+	<meta name=“viewport” content=“width=device-width, initial-scale=1.0”>
+	<title>Red Hat Composer</title>
+	<!-- PatternFly Styles -->
+	<link rel="stylesheet" href="dist/css/rcue.min.css" />
+	<link rel="stylesheet" href="dist/css/rcue-additions.min.css" />
+	<link rel="stylesheet" href="custom.css" />
+	<!-- jQuery -->
+	<script src="node_modules/jquery/dist/jquery.js"></script>
+
+	<!-- Bootstrap JS -->
+	<script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+
+	<!-- C3, D3 - Charting Libraries -->
+	<script src="node_modules/c3/c3.min.js"></script>
+	<script src="node_modules/d3/d3.min.js"></script>
+
+	<!-- Datatables, jQuery Grid Component -->
+	<!-- Note: jquery.dataTables.js must occur in the html source before patternfly*.js.-->
+	<script src="node_modules/datatables/media/js/jquery.dataTables.js"></script>
+	<script src="node_modules/drmonty-datatables-colvis/js/dataTables.colVis.js"></script>
+	<script src="node_modules/datatables.net-colreorder/js/dataTables.colReorder.js"></script>
+
+	<!-- Patternfly Custom Componets -  Sidebar, Popovers and Datatables Customizations -->
+	<!-- Note: jquery.dataTables.js must occur in the html source before patternfly*.js.-->
+	<script src="node_modules/patternfly/dist/js/patternfly.js"></script>
+
+	<!-- Bootstrap Date Picker -->
+	<script src="node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+
+	<!-- Bootstrap Combobox -->
+	<script src="node_modules/patternfly-bootstrap-combobox/js/bootstrap-combobox.js"></script>
+
+	<!-- Bootstrap Select -->
+	<script src="node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+
+	<!-- Bootstrap Tree View -->
+	<script src="node_modules/patternfly-bootstrap-treeview/dist/bootstrap-treeview.min.js"></script>
+
+	<!-- Google Code Prettify - Syntax highlighting of code snippets -->
+	<script src="node_modules/google-code-prettify/bin/prettify.min.js"></script>
+
+	<!-- MatchHeight - Used to make sure dashboard cards are the same height -->
+	<script src="node_modules/jquery-match-height/dist/jquery.matchHeight.js"></script>
+
+<style>
+	.text-right strong {float:left;}
+</style>
+
+</head>
+<body>
+
+<div class="toast-notifications-list-pf">
+	<div class="toast-pf alert alert-info alert-dismissable">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+	    <span class="pficon pficon-close"></span>
+	  </button>
+	  <div class="pull-right toast-pf-action">
+	    <a href="#">Cancel</a>
+	  </div>
+	  <span class="pficon"><div class="spinner spinner-inverse"></div></span>
+	  <strong>Recipe Y:</strong> Creating composition.
+	</div>
+
+	<div class="toast-pf alert alert-success alert-dismissable">
+	  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+	    <span class="pficon pficon-close"></span>
+	  </button>
+		<div class="pull-right toast-pf-action">
+			<a href="#">Download (.iso)</a>
+		</div>
+	  <span class="pficon pficon-ok"></span>
+	  <strong>Recipe Y:</strong> Composition creation is complete.
+	</div>
+
+</div>
+
+
+
+<nav class="navbar navbar-pf-vertical">
+	  <div class="navbar-header">
+	    <button type="button" class="navbar-toggle">
+	      <span class="sr-only">Toggle navigation</span>
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	    </button>
+	    <a href="/" class="navbar-brand">
+	      <!-- <img class="navbar-brand-icon" src="/assets/img/logo-alt.svg" alt=""/>--><img class="navbar-brand-name" src="assets/img/RHComposer-logo-header.svg" alt="Red Hat Composer" width="156"/>
+	    </a>
+	  </div>
+	  <nav class="collapse navbar-collapse">
+	    <ul class="nav navbar-nav">
+	      <li><a href="#" target="_blank" class="nav-item-iconic nav-item-iconic-new-window"><span title="Launch" class="fa fa-external-link"></span></a></li>
+	    </ul>
+	    <ul class="nav navbar-nav navbar-right navbar-iconic">
+	      <li class="dropdown">
+	        <a class="dropdown-toggle nav-item-iconic" id="notifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+	          <span title="Notifications" class="fa pficon-flag"></span>
+	          <span class="badge">1</span>
+	        </a>
+	        <div class="dropdown-menu infotip bottom-right">
+	          <div class="arrow"></div>
+	          <ul class="list-group">
+	            <li class="list-group-item">
+	              <span class="i pficon pficon-ok"></span> Recipe Y: Composition creation is complete.
+	            </li>
+	          </ul>
+	          <div class="footer">
+	            <a>Clear Messages</a>
+	          </div>
+	        </div>
+	      </li>
+	      <li class="dropdown">
+	        <a class="dropdown-toggle nav-item-iconic" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+	          <span title="Help" class="fa pficon-help"></span>
+	          <span class="caret"></span>
+	        </a>
+	        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+	          <li><a href="#">Help</a></li>
+	          <li><a href="#">About</a></li>
+	        </ul>
+	      </li>
+	      <li class="dropdown">
+	        <a class="dropdown-toggle nav-item-iconic" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+	          <span title="Username" class="fa pficon-user"></span>
+	          <span class="caret"></span>
+	        </a>
+	        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+	          <li><a href="#">Preferences</a></li>
+	          <li><a href="#">Logout</a></li>
+	        </ul>
+	      </li>
+	    </ul>
+	  </nav>
+	</nav> <!--/.navbar-->
+
+
+<div class="nav-pf-vertical
+     nav-pf-vertical-with-sub-menus hide-nav-pf">
+  <ul class="list-group">
+    <li class="list-group-item">
+      <a>
+        <span class="fa fa-dashboard" data-toggle="tooltip" title="Dashboard"></span>
+        <span class="list-group-item-value">Dashboard</span>
+      </a>
+    </li>
+		<li class="list-group-item active">
+      <a>
+        <span class="fa fa-birthday-cake" data-toggle="tooltip" title="Recipes"></span>
+        <span class="list-group-item-value">Recipes</span>
+      </a>
+    </li>
+    <li class="list-group-item">
+      <a>
+        <span class="fa fa-shield" data-toggle="tooltip" title="Dolor"></span>
+        <span class="list-group-item-value">Dolor</span>
+      </a>
+    </li>
+    <li class="list-group-item secondary-nav-item-pf" data-target="#ipsum-secondary">
+      <a>
+        <span class="fa fa-space-shuttle" data-toggle="tooltip" title="Ipsum"></span>
+        <span class="list-group-item-value">Ipsum</span>
+      </a>
+      <div id="-secondary" class="nav-pf-secondary-nav">
+  			<div class="nav-item-pf-header">
+    			<a class="secondary-collapse-toggle-pf" data-toggle="collapse-secondary-nav"></a>
+    			<span>Ipsum</span>
+  			</div>
+  			<ul class="list-group">
+			    <li class="list-group-item active " data-target="#ipsum-intellegam-tertiary">
+			      <a>
+			        <span class="list-group-item-value">Intellegam</span>
+			      </a>
+
+			    </li>
+			    <li class="list-group-item " data-target="#ipsum-copiosae-tertiary">
+			      <a>
+			        <span class="list-group-item-value">Copiosae</span>
+			      </a>
+
+			    </li>
+			    <li class="list-group-item " data-target="#ipsum-patrioque-tertiary">
+			      <a>
+			        <span class="list-group-item-value">Patrioque</span>
+			      </a>
+
+			    </li>
+
+			  </ul>
+			</div>
+    </li>
+    <li class="list-group-item secondary-nav-item-pf" data-target="#amet-secondary">
+      <a>
+        <span class="fa fa-paper-plane" data-toggle="tooltip" title="Amet"></span>
+        <span class="list-group-item-value">Amet</span>
+      </a>
+
+      <div id="amet-secondary" class="nav-pf-secondary-nav">
+			  <div class="nav-item-pf-header">
+			    <a class="secondary-collapse-toggle-pf" data-toggle="collapse-secondary-nav"></a>
+			    <span>Amet</span>
+			  </div>
+			  <ul class="list-group">
+			    <li class="list-group-item " data-target="#amet-detracto-tertiary">
+			      <a>
+			        <span class="list-group-item-value">Detracto</span>
+
+
+
+			      </a>
+
+			    </li>
+			    <li class="list-group-item " data-target="#amet-mediocrem-tertiary">
+			      <a>
+			        <span class="list-group-item-value">Mediocrem</span>
+
+
+
+			      </a>
+
+			    </li>
+			    <li class="list-group-item " data-target="#amet-corrumpit-tertiary">
+			      <a>
+			        <span class="list-group-item-value">Corrumpit</span>
+
+
+
+			      </a>
+
+			    </li>
+
+			  </ul>
+			</div>
+    </li>
+    <li class="list-group-item">
+      <a>
+        <span class="fa fa-graduation-cap" data-toggle="tooltip" title="Adipscing"></span>
+        <span class="list-group-item-value">Adipscing</span>
+      </a>
+    </li>
+    <li class="list-group-item">
+      <a>
+        <span class="fa fa-gamepad" data-toggle="tooltip" title="Lorem"></span>
+        <span class="list-group-item-value">Lorem</span>
+      </a>
+    </li>
+  </ul>
+</div>
+<div class="container-fluid container-pf-nav-pf-vertical container-pf-nav-pf-vertical-with-sub-menus   ">
+  <div class="row">
+    <div class="col-md-12">
+			<ol class="breadcrumb">
+				<li>
+					<a href="#">Back to Recipes</a>
+				</li>
+				<li class="active">
+					<a href="#"><strong>Recipe Y</strong></a>
+				</li>
+			</ol>
+      <h1>Recipe Y</h1>
+       <!--Note: the markup semantics used to create "nested" tabs are sub-optimal in order to easily achieve a responsive layout.-->
+       <ul class="nav nav-tabs">
+        <li><a href="#">Details</a></li>
+        <li class="active"><a href="#">Components</a></li>
+      </ul>
+      <!-- <ul class="nav nav-tabs nav-tabs-pf">
+        <li class="active"><a href="#">Secondary Tab One</a></li>
+        <li><a href="#">Secondary Tab Two</a></li>
+        <li><a href="#">Secondary Tab Three</a></li>
+        <li><a href="#">Secondary Tab Four</a></li>
+        <li><a href="#">Secondary Tab Five</a></li>
+      </ul> -->
+			<div class="row toolbar-pf">
+          <div class="col-sm-12">
+            <form class="toolbar-pf-actions">
+              <div class="form-group toolbar-pf-filter">
+                <label class="sr-only" for="filter">Name</label>
+                <div class="input-group">
+                  <div class="input-group-btn">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Name <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Name</a></li>
+                      <li><a href="#">Version</a></li>
+                      <li><a href="#">Release</a></li>
+											<li><a href="#">Lifecycle</a></li>
+											<li><a href="#">Support Level</a></li>
+                    </ul>
+                  </div><!-- /btn-group -->
+                  <input type="text" class="form-control" id="filter" placeholder="Filter By Name...">
+                </div><!-- /input-group -->
+              </div>
+              <div class="form-group">
+                <div class="dropdown btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Name <span class="caret"></span></button>
+                  <ul class="dropdown-menu">
+										<li><a href="#">Type</a></li>
+										<li><a href="#">Name</a></li>
+										<li><a href="#">Version</a></li>
+										<li><a href="#">Release</a></li>
+										<li><a href="#">Lifecycle</a></li>
+										<li><a href="#">Support Level</a></li>
+                  </ul>
+                </div>
+                <button class="btn btn-link" type="button">
+                  <span class="fa fa-sort-alpha-asc"></span>
+                </button>
+              </div>
+              <div class="form-group">
+                <button class="btn btn-default" type="button" onclick="window.location.href='/EditRecipe.html'">Edit Recipe</button>
+                <button class="btn btn-default" type="button">Create Composition</button>
+                <div class="dropdown btn-group  dropdown-kebab-pf">
+								  <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+								    <span class="fa fa-ellipsis-v"></span>
+								  </button>
+								  <ul class="dropdown-menu " aria-labelledby="dropdownKebab">
+								    <li><a href="#">Export Recipe</a></li>
+								  </ul>
+								</div>
+
+              </div>
+              <div class="toolbar-pf-action-right">
+                <div class="form-group toolbar-pf-find">
+                  <button class="btn btn-link btn-find" type="button">
+                    <span class="fa fa-search"></span>
+                  </button>
+                  <div class="find-pf-dropdown-container">
+                    <input type="text" class="form-control" id="find" placeholder="Find By Keyword...">
+                    <div class="find-pf-buttons">
+                      <span class="find-pf-nums">1 of 3</span>
+                      <button class="btn btn-link" type="button">
+                        <span class="fa fa-angle-up"></span>
+                      </button>
+                      <button class="btn btn-link" type="button">
+                        <span class="fa fa-angle-down"></span>
+                      </button>
+                      <button class="btn btn-link btn-find-close" type="button">
+                        <span class="pficon pficon-close"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group toolbar-pf-view-selector">
+                  <button class="btn btn-link" title="Table View"><i class="fa fa-th"></i></button>
+                  <button class="btn btn-link " title="Tree View"><i class="pficon pficon-topology"></i></button>
+                  <button class="btn btn-link active" title="List View"><i class="fa fa-th-list"></i></button>
+                </div>
+              </div>
+            </form>
+            <div class="row toolbar-pf-results toolbar-pf-results-none">
+              <div class="col-sm-12" style="display:none;">
+                <h5>40 Results</h5>
+                <p>Active filters:</p>
+                <ul class="list-inline">
+                  <li>
+                    <span class="label label-info">
+                      Name: nameofthething
+                      <a href="#"><span class="pficon pficon-close"></span></a>
+                    </span>
+                  </li>
+                  <li>
+                    <span class="label label-info">
+                      Version: 3
+                      <a href="#"><span class="pficon pficon-close"></span></a>
+                    </span>
+                  </li>
+                  <li>
+                    <span class="label label-info">
+                      Lifecycle: 5
+                      <a href="#"><span class="pficon pficon-close"></span></a>
+                    </span>
+                  </li>
+                </ul>
+                <p><a href="#">Clear All Filters</a></p>
+              </div><!-- /col -->
+            </div><!-- /row -->
+          </div><!-- /col -->
+      </div>
+			<script>
+				(function($) {
+					$(document).ready(function() {
+							// Upon clicking the find button, show the find dropdown content
+							$(".btn-find").click(function () {
+								$(".find-pf-dropdown-container").toggle();
+							});
+							// Upon clicking the find close button, hide the find dropdown content
+							$(".btn-find-close").click(function () {
+								$(".find-pf-dropdown-container").hide();
+							});
+
+						});
+					})(jQuery);
+			</script>
+
+			<div class="list-group list-view-pf list-view-pf-view">
+
+			  <div class="list-group-item">
+			    <div class="list-view-pf-checkbox">
+			      <input type="checkbox">
+			    </div>
+					<div class="list-view-pf-actions">
+			      <!-- <button class="btn btn-default">Action</button> -->
+			      <div class="dropdown pull-right dropdown-kebab-pf">
+						  <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight9" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						    <span class="fa fa-ellipsis-v"></span>
+						  </button>
+						  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight9">
+								<li><a href="#">View</a></li>
+						    <li><a href="#">Update</a></li>
+						    <li role="separator" class="divider"></li>
+						    <li><a href="#">Remove</a></li>
+						  </ul>
+						</div>
+
+			    </div>
+			    <div class="list-view-pf-main-info">
+			      <div class="list-view-pf-left">
+			        <span class="fa fa-cube list-view-pf-icon-sm" title="Module"></span>
+			      </div>
+			      <div class="list-view-pf-body">
+			        <div class="list-view-pf-description">
+			          <div class="list-group-item-heading">
+			            <a href="#" >Module One</a>
+			          </div>
+			          <div class="list-group-item-text">
+			            Module description lorem ipsum dolor sit amet.
+			          </div>
+			        </div>
+							<div class="list-view-pf-additional-info">
+			          <div class="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
+			            Version <strong>3</strong>
+			          </div>
+			          <div class="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
+			            Lifecycle<strong>5 Years</strong>
+			          </div>
+								<!-- <div class="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
+			            Install Profile<strong>Default</strong>
+			          </div> -->
+								<div class="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked" data-toggle="popover" data-html="true" title="Dependencies" data-content="Module Three" data-close="true">
+			            Dependencies<strong>1</strong>
+			          </div>
+			        </div>
+			      </div>
+			    </div>
+			  </div>
+				<!-- end list-group-item -->
+				<div class="list-group-item">
+			    <div class="list-view-pf-checkbox">
+			      <input type="checkbox">
+			    </div>
+					<div class="list-view-pf-actions">
+			      <!-- <button class="btn btn-default">Action</button> -->
+			      <div class="dropdown pull-right dropdown-kebab-pf">
+						  <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight9" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						    <span class="fa fa-ellipsis-v"></span>
+						  </button>
+						  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight9">
+						    <li><a href="#">View</a></li>
+						    <li><a href="#">Update</a></li>
+						    <li role="separator" class="divider"></li>
+						    <li><a href="#">Remove</a></li>
+						  </ul>
+						</div>
+
+			    </div>
+					<div class="list-view-pf-main-info">
+			      <div class="list-view-pf-left">
+			        <span class="fa fa-cubes list-view-pf-icon-sm" title="Module Stack"></span>
+			      </div>
+			      <div class="list-view-pf-body">
+			        <div class="list-view-pf-description">
+			          <div class="list-group-item-heading">
+			            <a href="#" >Module Stack Two</a>
+			          </div>
+			          <div class="list-group-item-text">
+			            Module description lorem ipsum dolor sit amet.
+			          </div>
+			        </div>
+							<div class="list-view-pf-additional-info">
+			          <div class="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
+			            Version <strong>3</strong>
+			          </div>
+			          <div class="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
+			            Lifecycle<strong>5 Years</strong>
+			          </div>
+								<!-- <div class="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
+			            Install Profile<strong>Default</strong>
+			          </div> -->
+								<div class="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked" data-toggle="popover" data-html="true" title="Dependencies" data-content="Module Three<br>Module Four" data-close="true">
+			            Dependencies<strong>2</strong>
+			          </div>
+			        </div>
+			      </div>
+			    </div>
+			  </div>
+				<!-- end list-group-item -->
+				<div class="list-group-item">
+					<div class="list-view-pf-checkbox">
+						<input type="checkbox">
+					</div>
+					<div class="list-view-pf-actions">
+						<!-- <button class="btn btn-default">Action</button> -->
+						<div class="dropdown pull-right dropdown-kebab-pf">
+							<button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight9" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+								<span class="fa fa-ellipsis-v"></span>
+							</button>
+							<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight9">
+								<li><a href="#">View</a></li>
+						    <li><a href="#">Update</a></li>
+						    <li role="separator" class="divider"></li>
+						    <li><a href="#">Remove</a></li>
+							</ul>
+						</div>
+
+					</div>
+					<div class="list-view-pf-main-info">
+						<div class="list-view-pf-left">
+							<span class="fa fa-sticky-note-o list-view-pf-icon-sm" title="RPM"></span>
+						</div>
+						<div class="list-view-pf-body">
+							<div class="list-view-pf-description">
+								<div class="list-group-item-heading">
+									<a href="#" >RPM Three</a>
+								</div>
+								<div class="list-group-item-text">
+									Module description lorem ipsum dolor sit amet.
+								</div>
+							</div>
+							<div class="list-view-pf-additional-info">
+								<div class="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
+									Version <strong>3</strong>
+								</div>
+								<div class="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
+									Lifecycle<strong>5 Years</strong>
+								</div>
+								<!-- <div class="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
+									Install Profile<strong>Default</strong>
+								</div> -->
+								<div class="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
+									Dependencies<strong>0</strong>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- end list-group-item -->
+				<div class="list-group-item">
+			    <div class="list-view-pf-checkbox">
+			      <input type="checkbox">
+			    </div>
+					<div class="list-view-pf-actions">
+			      <!-- <button class="btn btn-default">Action</button> -->
+			      <div class="dropdown pull-right dropdown-kebab-pf">
+						  <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight9" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						    <span class="fa fa-ellipsis-v"></span>
+						  </button>
+						  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight9">
+								<li><a href="#">View</a></li>
+						    <li><a href="#">Update</a></li>
+						    <li role="separator" class="divider"></li>
+						    <li><a href="#">Remove</a></li>
+						  </ul>
+						</div>
+
+			    </div>
+			    <div class="list-view-pf-main-info">
+			      <div class="list-view-pf-left">
+			        <span class="fa fa-cube list-view-pf-icon-sm" title="Module"></span>
+			      </div>
+			      <div class="list-view-pf-body">
+			        <div class="list-view-pf-description">
+			          <div class="list-group-item-heading">
+			            <a href="#" >Module Three</a>
+			          </div>
+			          <div class="list-group-item-text">
+			            Module description lorem ipsum dolor sit amet.
+			          </div>
+			        </div>
+							<div class="list-view-pf-additional-info">
+			          <div class="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
+			            Version <strong>3</strong>
+			          </div>
+			          <div class="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
+			            Lifecycle<strong>5 Years</strong>
+			          </div>
+								<!-- <div class="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
+			            Install Profile<strong>Default</strong>
+			          </div> -->
+								<div class="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
+			            Dependencies<strong>0</strong>
+			          </div>
+								<div class="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
+									<span class="label label-default">Dependency</span>
+								</div>
+			        </div>
+			      </div>
+			    </div>
+			  </div>
+				<!-- end list-group-item -->
+				<div class="list-group-item-simple-expand">
+					<div class="list-group-item">
+						<!-- <div class="list-view-pf-expand">
+			        <span class="fa fa-angle-right"></span>
+			      </div> -->
+						<div class="list-view-pf-checkbox">
+				      <input type="checkbox">
+				    </div>
+						<div class="list-view-pf-actions">
+				      <!-- <button class="btn btn-default">Action</button> -->
+				      <div class="dropdown pull-right dropdown-kebab-pf">
+							  <button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight9" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							    <span class="fa fa-ellipsis-v"></span>
+							  </button>
+							  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight9">
+									<li><a href="#">View</a></li>
+							    <li><a href="#">Update</a></li>
+							    <li role="separator" class="divider"></li>
+							    <li><a href="#">Remove</a></li>
+							  </ul>
+							</div>
+
+				    </div>
+				    <div class="list-view-pf-main-info">
+				      <div class="list-view-pf-left">
+				        <span class="fa fa-cube list-view-pf-icon-sm" title="Module"></span>
+				      </div>
+				      <div class="list-view-pf-body">
+				        <div class="list-view-pf-description">
+				          <div class="list-group-item-heading">
+				            <a href="#" >Module Four</a>
+				          </div>
+				          <div class="list-group-item-text">
+				            Module description lorem ipsum dolor sit amet.
+				          </div>
+				        </div>
+								<div class="list-view-pf-additional-info">
+				          <div class="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
+				            Version <strong>3</strong>
+				          </div>
+				          <div class="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
+				            Lifecycle<strong>5 Years</strong>
+				          </div>
+									<!-- <div class="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
+				            Install Profile<strong>Default</strong>
+				          </div> -->
+									<div class="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
+				            Dependencies<strong>0</strong>
+				          </div>
+									<div class="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
+										<span class="label label-default">Dependency</span>
+									</div>
+				        </div>
+				      </div>
+				    </div>
+				  </div>
+					<!-- <div class="list-view-pf-expand-container container-fluid hidden">
+			      <div class="list-view-pf-expand-close">
+			        <span class="fa fa-times"></span>
+			      </div>
+			      <div class="col-md-3">
+			        <div class="list-view-pf-expand-chart">
+			        	<div id="utilizationDonutChart1" class="example-donut-chart-utilization"></div>
+			        </div>
+			      </div>
+			      <div class="col-md-9">
+			        <ul class="list-view-pf-expand-info">
+			          <li>
+			            <strong>Host Name</strong>
+			            <span>Hostceph1</span>
+			          </li>
+			          <li>
+			            <strong>Device Path</strong>
+			            <span>/dev/disk/pci-0000.05:00-sas-0.2-part1</span>
+			          </li>
+			          <li>
+			            <strong>Time</strong>
+			            <span>January 15, 2016 10:45:11 AM</span>
+			          </li>
+			          <li>
+			            <strong>Severity</strong>
+			            <span>Warning</span>
+			          </li>
+			          <li>
+			            <strong>Cluster</strong>
+			            <span>Cluster 1</span>
+			          </li>
+			          <li>
+			            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+			            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+			            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+			            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			          </li>
+			        </ul>
+			      </div>
+			      <div class="clearfix"></div>
+			    </div> -->
+				</div>
+				<!-- end list-group-item -->
+			</div>
+			<!-- end list view -->
+		</div>
+	</div>
+</div>
+</body>
+<script>
+  $(document).ready(function() {
+    // matchHeight the contents of each .card-pf and then the .card-pf itself
+    $(".row-cards-pf > [class*='col'] > .card-pf .card-pf-title").matchHeight();
+    $(".row-cards-pf > [class*='col'] > .card-pf > .card-pf-body").matchHeight();
+    $(".row-cards-pf > [class*='col'] > .card-pf > .card-pf-footer").matchHeight();
+    $(".row-cards-pf > [class*='col'] > .card-pf").matchHeight();
+
+    // Initialize the vertical navigation
+    $().setupVerticalNavigation(true);
+
+		// Initialize Popovers
+		$('[data-toggle="popover"]').popover();
+
+  });
+</script>
+
+
+</html>
