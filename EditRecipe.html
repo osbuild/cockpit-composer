@@ -1113,19 +1113,9 @@
           <div class="form-group">
             <label class="col-sm-3 control-label" for="textInput-modal-markup">Composition Type</label>
             <div class="col-sm-9">
-              <select>
-								<option>Installable ISO, full</option>
-								<option>Installable ISO, boot-only</option>
-								<option>Kickstart File</option>
-								<option>Virtual Guest Image, VMWare/ESX</option>
-								<option>Virtual Guest Image, Microsoft Hyper V</option>
-								<option>Virtual Guest Image, KVM</option>
-								<option>Container</option>
-								<option>Cloud image, Amazon Machine Image</option>
-								<option>Cloud image, Azure</option>
-								<option>Cloud image, Google Compute Engine</option>
-								<option>RPM-OStree Server-Side</option>
-							</select>
+              <select id="cmpsr-composition-types">
+              <!-- populated from the composer API -->
+              </select>
 						</div>
           </div>
           <div class="form-group">
@@ -1197,7 +1187,16 @@
 			}, 1500);
 		});
 
+    // Initialize the composition type options
+    $.getJSON('/api/v0/compose/types', function(data) {
+      $.each(data, function(type, enabled) {
+          var disabled = "";
+          if (!enabled) {
+              disabled = " disabled ";
+          }
 
+          $("#cmpsr-composition-types").append("<option value="+type+disabled+">"+type+"</option>");
+    })});
   });
 </script>
 
