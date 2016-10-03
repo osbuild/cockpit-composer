@@ -53,7 +53,8 @@
 	<script src="node_modules/drmonty-datatables-colvis/js/dataTables.colVis.js"></script>
 	<script src="node_modules/datatables.net-colreorder/js/dataTables.colReorder.js"></script>
 
-	<script src="EditRecipe.js"></script>
+  <script src="composer-api.js"></script>
+  <script src="EditRecipe.js"></script>
 
 <style>
 	.text-right strong {float:left;}
@@ -708,7 +709,7 @@
 		});
 
     // Initialize the composition type options
-    $.getJSON('/api/v0/compose/types', function(data) {
+    $.getJSON(composer_api_host+'/api/v0/compose/types', function(data) {
       $.each(data, function(type, enabled) {
           var disabled = "";
           if (!enabled) {
