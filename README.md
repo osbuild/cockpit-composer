@@ -1,6 +1,6 @@
 # composer-UI
 
-This repository is created with the purpose of comparing UIs based on react and angular, and testing the ability to connect the UI to the backend api.
+This repository is created with the purpose of mocking up the UI, comparing UIs creating using react vs angular, and testing the ability to connect the UI to the backend api. **This is not intended to be the set of files that will be the final UI.**
 
 * Files using React:
   * Recipes.html - this file includes both the page that lists recipes and the page that lists components in a recipe (view-mode, not edit). The react js is included in a script tag in this file.
