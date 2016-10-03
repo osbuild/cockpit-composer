@@ -48,6 +48,7 @@
 	<!-- MatchHeight - Used to make sure dashboard cards are the same height -->
 	<script src="node_modules/jquery-match-height/dist/jquery.matchHeight.js"></script>
 
+  <script src="composer-api.js"></script>
 <style>
 	.text-right strong {float:left;}
 </style>
@@ -1188,7 +1189,7 @@
 		});
 
     // Initialize the composition type options
-    $.getJSON('/api/v0/compose/types', function(data) {
+    $.getJSON(composer_api_host+'/api/v0/compose/types', function(data) {
       $.each(data, function(type, enabled) {
           var disabled = "";
           if (!enabled) {
