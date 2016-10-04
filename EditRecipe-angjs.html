@@ -90,7 +90,7 @@
 		    <span class="pficon pficon-close"></span>
 		  </button>
 			<div class="pull-right toast-pf-action">
-				<a href="#">Download (.iso)</a>
+				<a href="#" id="cmpsr-download-link">Download (.iso)</a>
 			</div>
 		  <span class="pficon pficon-ok"></span>
 		  <strong>Recipe Y:</strong> Composition creation is complete.
@@ -700,12 +700,46 @@
 
 		// Create Composition
 		$("#cmpsr-modal-crt-compos .btn-primary").click(function() {
+                        var modlist = $('.list-view-pf-view').find("[data-item='name']").toArray().map(m => m.text);
+                        var compose_type = $('#cmpsr-composition-types')[0].value;
+
+                        var composePollStatus = function(statusURL) {
+                          $.get(composer_api_host+statusURL,
+                                function(data) {
+                                  if (data['status'] == "compose running") {
+                                    setTimeout(composePollStatus, 1000, statusURL);
+                                  } else if (data['status'] == "compose finished") {
+                                    composeDone(composer_api_host + data['image']);
+                                  } else {
+                                    composeError();
+                                  }
+                                });
+                        };
+
+                        var composeError = function() {
+                          // do something nicer here I guess
+                          alert("Compose error");
+                          $("#cmpsr-toast-process-compos").addClass("hidden");
+                        };
+
+                        var composeDone = function(imageURL) {
+                          $("#cmpsr-download-link")[0].href = imageURL;
+                          $("#cmpsr-toast-process-compos").addClass("hidden");
+                          $("#cmpsr-toast-success-compos").removeClass("hidden");
+                        };
+
 			$('#cmpsr-modal-crt-compos').modal('hide');
 			$("#cmpsr-toast-process-compos").removeClass("hidden");
-			setTimeout(function(){
-				$("#cmpsr-toast-process-compos").addClass("hidden");
-				$("#cmpsr-toast-success-compos").removeClass("hidden");
-			}, 1500);
+
+                        // do post() the long way so we know if it fails
+                        $.ajax({
+                          type:     "POST",
+                          url:      composer_api_host+"/api/v0/compose",
+                          data:     { "module[]": modlist,
+                                      "type":     compose_type },
+                          success:  function(data, status, xhr) { composePollStatus(xhr.getResponseHeader('Location')); },
+                          error:    function(xhr, status, error) { composeError(); }
+                        });
 		});
 
     // Initialize the composition type options
