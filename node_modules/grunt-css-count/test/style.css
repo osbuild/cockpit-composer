@@ -1,0 +1,57 @@
+* {
+  padding: 0;
+}
+a b i {count: 1}
+div   * {
+  padding: 5px;
+}
+
+.class-1 {
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+.class-3 .class-3 .class-3,
+
+.class-3  .class-3  .class-3,
+
+.class-3   .class-3   .class-3 {
+  padding: 5px;
+}
+
+.class-4 .class-4 .class-4 .class-4 {
+  padding: 5px;
+}
+.class-4 ~ .class-4 > .class-4 + .class-4 {
+  padding: 5px;
+  width: 100%;
+}
+.class-1,
+.class-1,
+.class-1,
+.class-1 {
+  padding: 5px;
+  width: 100%;
+}
+
+div:nth-of-type(3) * ul:last-child li:nth-of-type(odd) * a {
+  font-weight: bold;
+}
+
+@media screen and (min-width: 480px) {
+  .class-1 {
+    background-color: blue;
+  }
+  #id-2 > .class-2,
+  #id-2 .class-2 {
+    margin: 10px;
+    padding: 10px;
+  }
+}
+
+@font-face {
+  font-family: 'Font';
+  src: url('../font.eot?') format('eot'), url('../font.woff') format('woff'), url('../font.ttf') format('truetype');
+  font-weight: normal;
+}

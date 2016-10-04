@@ -44,9 +44,9 @@ module.exports = function (grunt) {
       main: {
         files: [
           // copy Bootstrap font files
-          {expand: true, cwd: 'node_modules/bootstrap/dist/fonts/', src: ['*'], dest: 'dist/fonts/'},
+          {expand: true, cwd: 'node_modules/patternfly/node_modules/bootstrap/dist/fonts/', src: ['*'], dest: 'dist/fonts/'},
           // copy Font Awesome font files
-          {expand: true, cwd: 'node_modules/font-awesome/fonts/', src: ['*'], dest: 'dist/fonts/'},
+          {expand: true, cwd: 'node_modules/patternfly/node_modules/font-awesome/fonts/', src: ['*'], dest: 'dist/fonts/'},
           // copy PatternFly font files
           {expand: true, cwd: 'node_modules/patternfly/dist/fonts/', src: ['**'], dest: 'dist/fonts/'},
           // copy PatternFly less files
@@ -95,10 +95,7 @@ module.exports = function (grunt) {
           "dist/css/rcue.css": "less/rcue.less"
         },
         options: {
-          paths: [
-            "less/",
-            "node_modules/"
-          ],
+          paths: ["less/"],
           sourceMap: true,
           outputSourceFiles: true,
           sourceMapFilename: 'dist/css/rcue.css.map',
@@ -110,10 +107,7 @@ module.exports = function (grunt) {
           "dist/css/rcue-additions.css": "less/rcue-additions.less"
         },
         options: {
-          paths: [
-            "less/",
-            "node_modules/"
-          ],
+          paths: ["less/"],
           sourceMap: true,
           outputSourceFiles: true,
           sourceMapFilename: 'dist/css/rcue-additions.css.map',
@@ -131,7 +125,7 @@ module.exports = function (grunt) {
         tasks: ['jekyll']
       },
       less: {
-        files: ['less/*.less', 'node_modules/patternfly/dist/less/*.less'],
+        files: ['less/*.less', 'node_modules/patternfly/less/*.less'],
         tasks: ['less'],
       },
       css: {

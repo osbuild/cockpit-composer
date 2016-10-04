@@ -76,11 +76,6 @@ clean()
   if [ -d components ]; then
     rm -rf components
   fi
-
-  # shrinkwrap
-  if [ -s $SHRINKWRAP_JSON ]; then
-    rm -f $SHRINKWRAP_JSON
-  fi
 }
 
 # Install dependencies
@@ -143,6 +138,11 @@ shrinkwrap()
 {
   echo "*** Shrink wrapping $SHRINKWRAP_JSON"
   cd $PTNFLY_DIR
+
+  # shrinkwrap
+  if [ -s $SHRINKWRAP_JSON ]; then
+    rm -f $SHRINKWRAP_JSON
+  fi
 
   npm shrinkwrap
   check $? "npm shrinkwrap failure"
