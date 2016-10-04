@@ -63,7 +63,7 @@ angular.module('recipe', ['patternfly', 'patternfly.views', 'patternfly.notifica
       };
       fetchModules();
       function fetchModules(){
-        $http.get("http://10.18.25.161/api/v0/module/list")
+        $http.get(composer_api_host+"/api/v0/module/list")
         .then(function(response){ $scope.items = response.data.modules; });
       }
 
