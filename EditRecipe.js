@@ -53,57 +53,11 @@ angular.module('recipe', ['patternfly', 'patternfly.views', 'patternfly.notifica
        };
 
 // gets module metadata for list of available components
-      //  fetchModuleList();
-      //  function fetchModuleList(){
-      //    $http.get(composer_api_host+"/api/v0/module/list")
-      //    .then(function(response){ $scope.items = response.data.modules; });
-      //  }
-
-
-       $scope.items = [
-         {
-           name: "fm-group:rpm-development-tools",
-           summary: "These tools include core development tools such rpmbuild.",
-           version: "24",
-           release: "2",
-           requires: "0"
-         },
-         {
-           name: "fm-group:kde-education",
-           summary: "KDE Educational applications",
-           version: "24",
-           release: "1",
-           requires: ""
-         },
-         {
-           name: "fm-group:xfce-desktop",
-           summary: "A lightweight desktop environment that works well on low end machines.",
-           version: "24",
-           release: "1",
-           requires: "0"
-         },
-         {
-           name: "fm-group:server-cfg",
-           summary: "This group contains all of Red Hat's custom server configuration tools.",
-           version: "24",
-           release: "2",
-           requires: "0"
-         },
-         {
-           name: "fm-group:virtualization-headless",
-           summary: "These packages provide a headless virtualization environment.",
-           version: "24",
-           release: "2",
-           requires: "0"
-         },
-         {
-           name: "fm-group:legacy-software-development",
-           summary: "These packages provide compatibility with previous releases.",
-           version: "24",
-           release: "1",
-           requires: "0"
-         },
-       ]
+      fetchModuleList();
+      function fetchModuleList(){
+        $http.get(composer_api_host+"/api/v0/module/list")
+        .then(function(response){ $scope.items = response.data.modules; });
+      }
      }
 ]).controller( 'ToastNotificationListDemoCtrl', function( $scope, $rootScope, Notifications ) {
     $scope.message = 'Default Message.';
