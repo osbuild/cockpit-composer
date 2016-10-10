@@ -21,6 +21,7 @@
     "patternfly": "~3.10.0",
     "patternfly-bootstrap-combobox": "^1.1.7",
     "patternfly-bootstrap-treeview": "^2.1.0",
+    "tomljs": "^0.1.3",
     "webpack": "^1.13.2"
   },
   "devDependencies": {
