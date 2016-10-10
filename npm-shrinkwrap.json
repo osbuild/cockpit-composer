@@ -69,10 +69,20 @@
       "from": "https://registry.npmjs.org/drmonty-datatables-colvis/-/drmonty-datatables-colvis-1.1.2.tgz",
       "resolved": "https://registry.npmjs.org/drmonty-datatables-colvis/-/drmonty-datatables-colvis-1.1.2.tgz"
     },
+    "google-code-prettify": {
+      "version": "1.0.5",
+      "from": "google-code-prettify@latest",
+      "resolved": "https://registry.npmjs.org/google-code-prettify/-/google-code-prettify-1.0.5.tgz"
+    },
     "jquery": {
       "version": "3.1.1",
       "from": "https://registry.npmjs.org/jquery/-/jquery-3.1.1.tgz",
       "resolved": "https://registry.npmjs.org/jquery/-/jquery-3.1.1.tgz"
+    },
+    "jquery-match-height": {
+      "version": "0.7.0",
+      "from": "jquery-match-height@latest",
+      "resolved": "https://registry.npmjs.org/jquery-match-height/-/jquery-match-height-0.7.0.tgz"
     },
     "lodash": {
       "version": "4.16.3",
