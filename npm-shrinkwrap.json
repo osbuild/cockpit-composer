@@ -272,6 +272,11 @@
       "from": "https://registry.npmjs.org/patternfly-bootstrap-treeview/-/patternfly-bootstrap-treeview-2.1.0.tgz",
       "resolved": "https://registry.npmjs.org/patternfly-bootstrap-treeview/-/patternfly-bootstrap-treeview-2.1.0.tgz"
     },
+    "tomljs": {
+      "version": "0.1.3",
+      "from": "tomljs@latest",
+      "resolved": "https://registry.npmjs.org/tomljs/-/tomljs-0.1.3.tgz"
+    },
     "webpack": {
       "version": "1.13.2",
       "from": "https://registry.npmjs.org/webpack/-/webpack-1.13.2.tgz",
