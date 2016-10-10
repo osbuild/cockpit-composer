@@ -53,6 +53,11 @@
   <script src="components/react/react-dom.js"></script>
   <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
 
+  <!-- tomljs -->
+  <script src="node_modules/tomljs/index.js"></script>
+
+  <script src="composer-api.js"></script>
+
 <style>
 	.text-right strong {float:left;}
 </style>
@@ -292,25 +297,48 @@ var COMPONENTS = [
 
 ];
 
-var RECIPELIST = {
-  recipes: [
-    {
-      name: "Recipe X",
-      version: "1",
-      test: "2",
-      dev: "0",
-      prod: "1"
-    },
-    {
-      name: "Recipe Y",
-      version: "3",
-      test: "4",
-      dev: "2",
-      prod: "1"
-    }
-  ],
-  selectedRecipe: null
+var RECIPELIST = {};
+RECIPELIST.recipes = [];
+
+var fetchRecipeList = function() {
+  $.ajax({
+    url: composer_api_host+"/api/v0/recipe/list",
+    dataType: 'json',
+    cache: false,
+    success: fetchRecipes
+  });
 };
+var fetchRecipes = function(recipeList) {
+  for (var i=0; i < recipeList.recipes.length; i++) {
+    $.ajax({
+      url: composer_api_host+"/api/v0/recipe/" + recipeList.recipes[i],
+      dataType: "json",
+      cache: false,
+      success: parseRecipe
+    });
+  }
+};
+var parseRecipe = function(recipeData) {
+  for (var recipeName in recipeData) {
+    // strip the quotes out of the name
+    var name = recipeName;
+    if (name.startsWith('"')) {
+      name = name.substr(1);
+    }
+    if (name.endsWith('"')) {
+      name = name.substr(0, name.length-1);
+    }
+
+    var recipe = {
+      "name":     name,
+      "modules":  recipeData[recipeName].modules
+    };
+
+    RECIPELIST.recipes.push(recipe);
+    onChange();
+  }
+}
+fetchRecipeList();
 
 var onBacktoRecipes = function () {
     RECIPELIST.selectedRecipe = null;
