@@ -242,63 +242,7 @@
 
 <script type="text/babel">
 
-
-// type will be used to determine what icon displays
-// these values will be replaced by data retrieved via api call
-var COMPONENTS = [
-  {
-    type: "module",
-    name: "fm-group:rpm-development-tools",
-    summary: "These tools include core development tools such rpmbuild.",
-    version: "24",
-    release: "2",
-    requires: "0"
-  },
-  {
-    type: "module",
-    name: "fm-group:kde-education",
-    summary: "KDE Educational applications",
-    version: "24",
-    release: "1",
-    requires: "2"
-  },
-  {
-    type: "module",
-    name: "fm-group:xfce-desktop",
-    summary: "A lightweight desktop environment that works well on low end machines.",
-    version: "24",
-    release: "1",
-    requires: "0"
-  },
-  {
-    type: "module",
-    name: "fm-group:server-cfg",
-    summary: "This group contains all of Red Hat's custom server configuration tools.",
-    version: "24",
-    release: "2",
-    requires: "0"
-  },
-  {
-    type: "module",
-    name: "fm-group:virtualization-headless",
-    summary: "These packages provide a headless virtualization environment.",
-    version: "24",
-    release: "2",
-    requires: "0"
-  },
-  {
-    type: "module",
-    name: "fm-group:legacy-software-development",
-    summary: "These packages provide compatibility with previous releases.",
-    version: "24",
-    release: "1",
-    requires: "0"
-  }
-
-];
-
-var RECIPELIST = {};
-RECIPELIST.recipes = [];
+var RECIPELIST = {selectedRecipe: null, recipes: []};
 
 var fetchRecipeList = function() {
   $.ajax({
@@ -314,13 +258,17 @@ var fetchRecipes = function(recipeList) {
       url: composer_api_host+"/api/v0/recipe/" + recipeList.recipes[i],
       dataType: "json",
       cache: false,
+      recipeName: recipeList.recipes[i],
       success: parseRecipe
     });
   }
 };
 var parseRecipe = function(recipeData) {
+  // Parse the TOML data
+  recipeData = toml(recipeData[this.recipeName]);
+
   for (var recipeName in recipeData) {
-    // strip the quotes out of the name
+    // strip the quotes out of the name because tomljs doesn't
     var name = recipeName;
     if (name.startsWith('"')) {
       name = name.substr(1);
@@ -329,9 +277,30 @@ var parseRecipe = function(recipeData) {
       name = name.substr(0, name.length-1);
     }
 
+    // For each recipe, create an initial object, and fill in the rest via the API
+    var module_list = recipeData[recipeName].modules.map(function(modname) {
+      var modobj = {
+        "type": "module",
+        "name": modname
+      };
+
+      $.ajax({
+        url: composer_api_host+"/api/v0/module/list/" + modname,
+        dataType: "json",
+        cache: false,
+        success: function(moduleData) {
+          modobj.version = moduleData.modules[0].version;
+          modobj.release = moduleData.modules[0].release;
+          modobj.summary = moduleData.modules[0].summary;
+        }
+      });
+
+      return modobj;
+    });
+
     var recipe = {
       "name":     name,
-      "modules":  recipeData[recipeName].modules
+      "modules":  module_list
     };
 
     RECIPELIST.recipes.push(recipe);
@@ -347,7 +316,8 @@ var onBacktoRecipes = function () {
 
 var onSelectRecipe = function (event) {
     var target = event.currentTarget;
-    RECIPELIST.selectedRecipe = $(target).html();
+    var recipeName = $(target).html()
+    RECIPELIST.selectedRecipe = RECIPELIST.recipes.filter(r => r.name == recipeName)[0];
     onChange();
 };
 
@@ -738,7 +708,7 @@ var RecipeApp = React.createClass({
       );
     } else {
       return (
-        <FilterableComponentList components={COMPONENTS} selectedRecipe={selectedRecipe} onBacktoRecipes={onBacktoRecipes} />
+        <FilterableComponentList components={selectedRecipe.modules} selectedRecipe={selectedRecipe.name} onBacktoRecipes={onBacktoRecipes} />
       );
     }
   }
