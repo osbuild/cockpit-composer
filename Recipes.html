@@ -267,18 +267,11 @@ var parseRecipe = function(recipeData) {
   // Parse the TOML data
   recipeData = toml(recipeData[this.recipeName]);
 
-  for (var recipeName in recipeData) {
-    // strip the quotes out of the name because tomljs doesn't
-    var name = recipeName;
-    if (name.startsWith('"')) {
-      name = name.substr(1);
-    }
-    if (name.endsWith('"')) {
-      name = name.substr(0, name.length-1);
-    }
+  for (var tableName in recipeData) {
+    var recipeName = recipeData[tableName].name;
 
     // For each recipe, create an initial object, and fill in the rest via the API
-    var module_list = recipeData[recipeName].modules.map(function(modname) {
+    var module_list = recipeData[tableName].modules.map(function(modname) {
       var modobj = {
         "type": "module",
         "name": modname
@@ -299,7 +292,7 @@ var parseRecipe = function(recipeData) {
     });
 
     var recipe = {
-      "name":     name,
+      "name":     recipeName,
       "modules":  module_list
     };
 
