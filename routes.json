@@ -1,0 +1,50 @@
+[
+  {
+    "path": "/",
+    "page": "./pages/home",
+    "chunk": "main"
+  },
+  {
+    "path": "/home",
+    "page": "./pages/home",
+    "chunk": "main"
+  },
+  {
+    "path": "/stages",
+    "page": "./pages/stages",
+    "chunk": "main"
+  },
+  {
+    "path": "/error",
+    "page": "./pages/error",
+    "chunk": "main"
+  },
+  {
+    "path": "/apps",
+    "page": "./pages/apps"
+  },
+  {
+    "path": "/users",
+    "page": "./pages/users"
+  },
+  {
+    "path": "/environments",
+    "page": "./pages/environments"
+  },
+  {
+    "path": "/recipes",
+    "page": "./pages/recipes"
+  },
+  {
+    "path": "/recipe",
+    "page": "./pages/recipe"
+  },
+  {
+    "path": "/edit",
+    "page": "./pages/recipeEdit"
+  },
+  {
+    "path": "/create",
+    "page": "./pages/recipeCreate"
+  }
+]

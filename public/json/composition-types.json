@@ -1,0 +1,50 @@
+[
+  {
+    "type": "fs-image",
+    "enabled": false
+  },
+  {
+    "type": "ami",
+    "enabled": false
+  },
+  {
+    "type": "disk-image",
+    "enabled": false
+  },
+  {
+    "type": "vagrant",
+    "enabled": false
+  },
+  {
+    "type": "vmdk",
+    "enabled": false
+  },
+  {
+    "type": "vhdx",
+    "enabled": false
+  },
+  {
+    "type": "iso",
+    "enabled": true
+  },
+  {
+    "type": "oci",
+    "enabled": false
+  },
+  {
+    "type": "qcow2",
+    "enabled": false
+  },
+  {
+    "type": "live-ostree",
+    "enabled": false
+  },
+  {
+    "type": "tar",
+    "enabled": false
+  },
+  {
+    "type": "live-pxe",
+    "enabled": false
+  }
+]

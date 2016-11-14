@@ -1,130 +1,154 @@
-# composer-UI
+# Patternfly React Starter
 
-This repository is created with the purpose of mocking up the UI, comparing UIs creating using react vs angular, and testing the ability to connect the UI to the backend api. **This is not intended to be the set of files that will be the final UI.**
+A Patternfly + React starter kit based on [**React Static Boilerplate**](https://github.com/kriasoft/react-static-boilerplate).
 
-* Files using React:
-  * Recipes.html - this file includes both the page that lists recipes and the page that lists components in a recipe (view-mode, not edit). The react js is included in a script tag in this file.
-* Files using Angular:
-  * EditRecipe-angjs.html - this is the Edit page of a recipe
-  * EditRecipe.js - this includes the angular js
+**Demo**: https://patternfly-react-starter.firebaseapp.com/ &nbsp;|&nbsp; **View** [docs](./docs) &nbsp;|&nbsp; **Follow us** on
+[Gitter](https://gitter.im/patternfly/patternfly), [Twitter](https://twitter.com/patternfly_des), and [Slack](https://patternfly.slack.com) &nbsp;|&nbsp;
 
-The following is the readme of the original repository that I based this repository on.
+![Image of PatternFly](https://raw.githubusercontent.com/priley86/patternfly-react-starter/master/icons/patternfly-orb.png)
+![Image of Loves](https://raw.githubusercontent.com/priley86/patternfly-react-starter/master/icons/icon-heart.png)
+![Image of React](https://raw.githubusercontent.com/priley86/patternfly-react-starter/master/icons/react.png)
 
-# [Red Hat Common User Experience (RCUE)](http://rcue-uxd.itos.redhat.com/) reference implementation
+### Features
+&nbsp; &nbsp; ✓ Includes [Patternfly](http://www.patternfly.org/) CSS & some React implementations of Patternfly components<br>
+&nbsp; &nbsp; ✓ Modern JavaScript syntax ([ES2015](http://babeljs.io/docs/learn-es2015/)+) via [Babel](http://babeljs.io/), modern CSS syntax via [PostCSS](https://github.com/postcss/postcss)<br>
+&nbsp; &nbsp; ✓ Component-based UI architecture via [React](http://facebook.github.io/react/), [Webpack](https://webpack.github.io/) and [CSS Modules](https://github.com/css-modules/css-modules)<br>
+&nbsp; &nbsp; ✓ Application state management /w time-travel debugging via [Redux](http://redux.js.org/) (see [`main.js`](main.js), [`core/store.js`](core/store.js))<br>
+&nbsp; &nbsp; ✓ Routing and navigation via [`path-to-regexp`](https://github.com/pillarjs/path-to-regexp) and [`history`](https://github.com/mjackson/history) (see [`main.js`](main.js), [`core/router.js`](core/router.js), [`utils/routes-loader.js`](utils/routes-loader.js))<br>
+&nbsp; &nbsp; ✓ [Code-splitting](https://github.com/webpack/docs/wiki/code-splitting) and async chunk loading via [Webpack](https://webpack.github.io/) and [ES6 System.import()](http://www.2ality.com/2014/09/es6-modules-final.html)<br>
+&nbsp; &nbsp; ✓ Hot Module Replacement ([HMR](https://webpack.github.io/docs/hot-module-replacement.html)) /w [React Hot Loader](http://gaearon.github.io/react-hot-loader/)<br>
+&nbsp; &nbsp; ✓ Cross-device testing with [Browsersync](https://browsersync.io/) (see [`run.js#start`](run.js))<br>
+&nbsp; &nbsp; ✓ **24/7** community support on [Gitter](https://gitter.im/kriasoft/react-static-boilerplate); customization requests on [Codementor](https://www.codementor.io/koistya)<br>
 
-The [Red Hat Common User Experience (RCUE)](http://rcue-uxd.itos.redhat.com/) project was created to promote design commonality across all of Red Hat’s Enterprise product offerings.
+**Learn** to [React.js and ES6](#learn-reactjs-and-es6)
 
-This reference implementation of RCUE is based on [PatternFly](https://www.patternfly.org/) and [Bootstrap v3](http://getbootstrap.com/).  Think of RCUE as a "skinned" version of Bootstrap with additional components and customizations.  For information on how to quickly get started using RCUE, see the [Quick Start Guide](QUICKSTART.md).
+### Directory Layout
 
-## Dependencies
-
-RCUE includes a number of dependencies that are not committed to this repository.  To add them, see "Install NPM Dependencies".  And make sure you keep them updated (see "Keeping NPM Depedencies Updated").
-
-## Development
-
-Development setup requires nodejs and Ruby. If you do not already have nodejs, npm, and Ruby installed on your system, see https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager and https://www.ruby-lang.org/en/downloads.
-
-### Install NPM Dependencies
-
-The development includes the use of a number of helpful tasks. In order to setup your development environment to allow running of these tasks, you need to install the local nodejs packages declared in `package.json`. To do this run:
-
-    npm install
-
-This will install all necessary development packages into `node_modules/`. At this point, the gruntjs tasks are available for use such as starting a local development server or building the master CSS file.
-
-Additionally you may need to install the grunt command line utility.  To do this run:
-
-    npm install -g grunt-cli
-
-Test pages are generated using [Jekyll](http://jekyllrb.com/).  After ensuring Ruby is installed and available, run:
-
-    gem install jekyll
-
-#### Keeping NPM Dependencies Updated
-
-Anytime you pull a new version of RCUE, make sure you also run
-
-    npm update
-
-so you get the latest version of the components specified in package.json.
-
-### Live Reload Server
-
-A local development server can be quickly fired up by using the Gruntjs server task:
-
-    grunt server
-
-This local static asset server (i.e., [http://localhost:9001](http://localhost:9001)) has the advantage of having livereload integration. Thus, if you start the Gruntjs server, any changes you make to `.html` or `.less` files will be automatically reloaded into your browser and the changes reflected almost immediately. This has the obvious benefit of not having to refresh your browser and still be able to see the changes as you add or remove them from your development files.
-
-### Coding Style
-
-* Indentation
-    * Use spaces (not tabs)
-    * Indentation size is 2 spaces
-* Filenames
-    * All filenames will use a lowercase-hyphenated naming convention (e.g., single-select-dropdown.less)
-* LESSCSS
-    * CSS class names use lowercase-hyphenated naming convention (e.g., .navbar-nav)
-    * Alphabetize rules by selector
-    * Alphabetize properties by declaration
-    * Define or override variables centrally in less/variables.less
-    * Define or override mixins centrally in less/mixins.less
-
-## Build
-
-### CSS
-
-In development, styling is written and managed through multiple lesscss files. In order to generate a CSS file of all styling, run the build Gruntjs task:
-
-    grunt build
-
-This task will compile and minify the lesscss files into a single CSS file located at `dist/css/rcue.min.css`.
-
-## Tests
-
-The `tests/` directory contains HTML pages with component and pattern examples in order to facilitate development.  Please consult the official documentation (see below) for full details on how to use RCUE.
-
-The HTML pages in `tests/` are generated using Jekyll.  Do *not* edit these files directly.  Changes to the test source files (`components/patternfly/tests-src/`) should be made upstream in PatternFly.
-
-## Release
-
-To release a new version version of RCUE, edit `bower.json` and `package.json`.
-
-Update the version listed in `bower.json` by editing the file and changing the line:
-
-```
-"version": "<new_version>"
+```shell
+.
+├── /components/                # Shared or generic UI components
+│   ├── /CardView/              # CardView component
+│   ├── /Layout/                # Website layout component
+│   ├── /Link  /                # Link component to be used insted of <a>
+│   └── /...                    # etc.
+├── /core/                      # Core framework
+│   ├── /history.js             # Handles client-side navigation
+│   ├── /router.js              # Handles routing and data fetching
+│   └── /store.js               # Application state manager (Redux)
+├── /node_modules/              # 3rd-party libraries and utilities
+├── /pages/                     # React components for web pages
+│   ├── /app/                   # App page
+│   ├── /error/                 # Error page
+│   ├── /home/                  # Home page
+│   └── /...                    # etc.
+├── /public/                    # Static files such as favicon.ico etc.
+│   ├── /dist/                  # The folder for compiled output
+│   ├── favicon.ico             # Application icon to be displayed in bookmarks
+│   ├── robots.txt              # Instructions for search engine crawlers
+│   └── /...                    # etc.
+├── /test/                      # Unit and integration tests
+├── /utils/                     # Utility and helper classes
+│── main.js                     # React application entry point
+│── package.json                # The list of project dependencies and NPM scripts
+│── routes.json                 # This list of application routes
+│── run.js                      # Build automation script, e.g. `node run build`
+└── webpack.config.js           # Bundling and optimization settings for Webpack
 ```
 
-Update the version listed in `package.json` by editing the file and changing the line:
 
-```
-"version": "<new_version>"
-```
+### Getting Started
 
-Commit the version bump:
+**Step 1**. Make sure that you have [Node.js](https://nodejs.org/) v6 or newer installed on your
+machine.
 
-```
-git commit -a -m "Version bump to <new_version>"
-```
+**Step 2**. Clone this repository or use [Yeoman
+generator](https://github.com/kriasoft/react-static-boilerplate/tree/generator-react-static) to
+bootstrap your project:
 
-Tag and push upstream (assuming you have commit access):
-
-```
-git tag <new_version>
-git push && git push --tags
+```shell
+$ git clone -o upstream -b master --single-branch \
+      https://github.com/priley86/patternfly-react-starter.git MyApp
+$ cd MyApp
+$ npm install                   # Install project dependencies listed in package.json
 ```
 
-## Documentation
+<p align="center">——— or ———</p>
 
-See [http://rcue-uxd.itos.redhat.com/](http://rcue-uxd.itos.redhat.com/), [https://www.patternfly.org/](https://www.patternfly.org/), and [http://getbootstrap.com/](http://getbootstrap.com/).
+```shell
+$ npm install -g yo
+$ npm install -g generator-react-static
+$ mkdir MyApp
+$ cd MyApp
+$ yo react-static
+```
 
-### Browser and Device Support
+**Step 3**. Compile and launch your app by running:
 
-Since RCUE is based on PatternFly, and PatternFly is based on Bootstrap, RCUE supports [the same browsers as Bootstrap](http://getbootstrap.com/getting-started/#support) **excluding Internet Explorer 8**, plus the latest version of [Firefox for Linux](https://support.mozilla.org/en-US/kb/install-firefox-linux).
+```shell
+$ node run                      # Same as `npm start` or `node run start`
+```
 
-*Important:*  starting with the v2.0.0 release, **RCUE no longer supports Internet Explorer 8**.
+You can also test your app in release (production) mode by running `node run start --release` or
+with HMR and React Hot Loader disabled by running `node run start --no-hmr`. The app should become
+available at [http://localhost:3000/](http://localhost:3000/).
 
-## License
+If needed, install a later version of node (e.g. v6.9.0) and switch to that version (e.g. `$ nvm use 6.9.0`). This might require that you install nvm first.
 
-Modifications to Bootstrap are copyright 2013 Red Hat, Inc. and licensed under the [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0.html).
+
+### How to Test
+
+The unit tests are powered by [chai](http://chaijs.com/) and [mocha](http://mochajs.org/).
+
+```shell
+$ npm run lint                  # Check JavaScript and CSS code for potential issues
+$ npm run test                  # Run unit tests. Or, `npm run test:watch`
+```
+
+### How to Deploy
+
+Update `publish` script in the [`run.js`](run.js) file with your full Firebase project name as found
+in your [Firebase console](https://console.firebase.google.com/). Note that this may have an
+additional identifier suffix than the shorter name you've provided. Then run:
+
+```shell
+$ node run publish              # Build and publish the website to Firebase, same as `npm run publish`
+```
+
+The first time you publish, you will be prompted to authenticate with Google and generate an
+authentication token in order for the publish script to continue.
+
+![publish](https://koistya.github.io/files/react-static-boilerplate-publish.gif)
+
+If you need just to build the project without publishing it, run:
+
+```shell
+$ node run build                # Or, `node run build --release` for production build
+```
+
+
+
+### Learn React.js and ES6
+
+:mortar_board: &nbsp; **[React.js Training Program](http://www.reactjsprogram.com/?asdf=36750_q0pu0tfa)** by Tyler McGinnis<br>
+:mortar_board: &nbsp; **[React for Beginners](https://reactforbeginners.com/friend/konstantin)** and **[ES6 Training Course](https://es6.io/friend/konstantin)** by Wes Bos<br>
+:green_book: &nbsp; **[React: Up & Running: Building Web Applications](http://amzn.to/2bBgqhl)** by Stoyan Stefanov (Aug, 2016)<br>
+:green_book: &nbsp; **[Getting Started with React](http://amzn.to/2bmwP5V)** by Doel Sengupta and Manu Singhal (Apr, 2016)<br>
+:green_book: &nbsp; **[You Don't Know JS: ES6 & Beyond](http://amzn.to/2bBfVnp)** by Kyle Simpson (Dec, 2015)<br>
+
+
+### Related Projects
+
+* [React App SDK](https://github.com/kriasoft/react-app) — Create React apps with just a single dev dependency and zero configuration
+* [React Starter Kit](https://github.com/kriasoft/react-starter-kit) — Isomorphic web app boilerplate (Node.js, React, GraphQL, Webpack, CSS Modules)
+* [ASP.NET Core Starter Kit](https://github.com/kriasoft/aspnet-starter-kit) — Cross-platform single-page application boilerplate (ASP.NET Core, React, Redux)
+* [Babel Starter Kit](https://github.com/kriasoft/babel-starter-kit) — JavaScript library boilerplate (ES2015, Babel, Rollup, Mocha, Chai, Sinon, Rewire)
+* [Universal Router](https://github.com/kriasoft/universal-router) — Isomorphic router for web and single-page applications (SPA)
+* [History](https://github.com/mjackson/history) — HTML5 History API wrapper library that handle navigation in single-page apps
+
+
+### License
+
+This source code is licensed under the MIT license found in the [LICENSE.txt](https://github.com/priley86/patternfly-react-starter/blob/master/LICENSE.txt) file.
+
+---
+Made with ♥ by the Patternfly [team](https://github.com/patternfly/patternfly/graphs/contributors)

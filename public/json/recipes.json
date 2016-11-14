@@ -1,0 +1,10 @@
+[
+  {
+    "name": "Low latency",
+    "description": "Optimized for low latency"
+  },
+  {
+    "name": "Storage",
+    "description": "Optimized for storage"
+  }
+]

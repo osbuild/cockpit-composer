@@ -1,0 +1,129 @@
+
+.navbar-brand {line-height: 35px;} /* without an icon in the masthead, the logo sits too high relative to other elements */
+.toolbar-pf-results-none {border: none;}
+.toolbar-pf-results-none > div { display: none;}
+[data-toggle] {cursor: pointer;}
+.list-view-pf-additional-info-item .label {margin: .5em 0;}
+/*label {margin-right:5px;} this causes issues in popup dialogs */
+
+/* sidebar toolbar */
+.toolbar-pf-actions {min-height: 28px;}
+.sidebar-pf .toolbar-pf-actions .toolbar-pf-filter {width:auto;}
+
+.card-pf-body .dl-horizontal dd {
+  margin-left: 50%;
+}
+.card-pf-body .dl-horizontal dt {
+  width: 45%;
+}
+/*.card-view-pf {
+  margin: 0 -10px;
+}*/
+.card-view-pf .card {
+  border: 1px solid transparent;
+  height: auto;
+  margin: 0 10px 10px;
+  width: auto;
+  text-align: left;
+  float: none;
+}
+.card-pf-title {
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+/*sidebar list view*/
+
+.cmpsr-list-view-viewskinny, .cmpsr-recipe-inputs .alert {
+  margin-left: -5px;
+  margin-right: -5px;
+}
+
+.cmpsr-recipe-inputs .alert {
+  position: relative;
+  top: 15px;
+}
+
+.cmpsr-list-view-viewskinny.list-view-pf .list-group-item {
+  padding: 0 10px;
+}
+
+.cmpsr-list-view-viewskinny.list-view-pf .list-view-pf-left {
+  padding-right: 10px;
+}
+
+.cmpsr-list-view-viewskinny .list-view-pf-main-info {
+  align-items: flex-start;
+}
+.cmpsr-list-view-viewskinny.list-view-pf .list-view-pf-description {
+  display: block;
+}
+.cmpsr-list-view-viewskinny.list-view-pf .list-group-item-heading,
+.cmpsr-list-view-viewskinny.list-view-pf .list-group-item-text {
+  float: none;
+  width: auto;
+}
+
+.cmpsr-recipe-inputs .toolbar-pf-results h5,
+.cmpsr-recipe-inputs .toolbar-pf-results p,
+.cmpsr-recipe-inputs .toolbar-pf-results ul {
+  line-height:26.67px;
+}
+
+
+.cmpsr-recipe-inputs-pagination {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+.cmpsr-recipe-inputs-pagination .pagination {
+  float: right;
+  margin-bottom: 5px;
+  vertical-align: bottom;
+}
+
+.toolbar-pf-results .list-inline {
+  margin-bottom: 5px;
+}
+
+.cmpsr-recipe-inputs .popover-content {
+  white-space: nowrap;
+}
+
+
+/*List View*/
+.blank-slate-pf {margin-top:30px;}
+
+@media (min-width: 992px) {
+  .list-view-pf .list-group-item-heading {
+      flex: 1 0 calc(40% - 20px);
+      float: left;
+      font-size: 12px;
+      margin: 0 20px 0 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: calc(40% - 20px);
+  }
+  .list-view-pf .list-group-item-text {
+      flex: 1 0 auto;
+      float: left;
+      margin: 0 40px 0 0;
+      width: calc(60% - 40px);
+  }
+}
+
+/* Nested list view */
+.list-group-item .list-group {
+  margin:0;
+}
+
+
+/*Component details view*/
+.cmpsr-compon-details .close {float:none;}
+.cmpsr-compon-details .form-horizontal {
+  margin: 15px 0;
+}
+.cmpsr-compon-details .blank-slate-pf {
+  margin-top: 0;
+  padding: 0;
+}
