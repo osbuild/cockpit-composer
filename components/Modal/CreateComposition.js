@@ -27,7 +27,7 @@ class CreateComposition extends React.Component {
 		let that = this;
 		fetch(constants.get_comptypes_url).then(r => r.json())
 			.then(data => {
-				that.setState({comptypes : data})
+				that.setState({comptypes : data.types})
 			})
 			.catch(e => console.log("Booo"));
 	}
