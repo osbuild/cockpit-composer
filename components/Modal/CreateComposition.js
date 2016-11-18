@@ -69,7 +69,7 @@ class CreateComposition extends React.Component {
                     <select>
                       {this.state.comptypes.map((type,i) =>
 
-                        <option>{type.type}</option>
+                        <option>{type.name}</option>
 
                       )}
                     </select>
