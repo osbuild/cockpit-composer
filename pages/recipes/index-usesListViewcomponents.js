@@ -47,10 +47,18 @@ class RecipesPage extends React.Component {
   }
 
   getRecipes() {
-    let that = this;
     fetch(constants.get_recipes_url).then(r => r.json())
-      .then(data => {
-        that.setState({recipes : data})
+      .then(listdata => {
+        for (var i in data.recipes) {
+            fetch("/api/v0/recipe/" + listdata.recipes[i])
+                .then(r => r.json())
+                .then(recipedata => {
+                    // data returned is of form {"<recipe name>": {<recipe>}}, just return recipe
+                    this.setState(
+                        { recipes: this.state.recipes.concat(recipedata[listdata.recipes[i]]) }
+                    );
+                });
+            }
       })
       .catch(e => console.log("Booo"));
   }

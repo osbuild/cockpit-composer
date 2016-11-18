@@ -16,7 +16,7 @@ class RecipePage extends React.Component {
 
   componentWillMount() {
     this.getRecipe();
-		this.getInputs();
+    this.getInputs();
   }
 
   getRecipe() {
@@ -27,11 +27,17 @@ class RecipePage extends React.Component {
       })
       .catch(e => console.log("Booo"));
   }
-	getInputs() {
+
+  getInputs() {
     let that = this;
     fetch(constants.get_components_url).then(r => r.json())
       .then(data => {
-        that.setState({inputcomponents : data})
+        // add type: module to each one, save the list
+        that.setState({inputcomponents : data.modules.map(m => {
+                                            m.type = "module";
+                                            return m;
+                                         })
+                      });
       })
       .catch(e => console.log("Booo"));
   }
