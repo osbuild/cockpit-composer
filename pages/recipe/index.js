@@ -40,7 +40,7 @@ class RecipePage extends React.Component {
           <div className="col-sm-12">
             <form className="toolbar-pf-actions">
               <div className="form-group toolbar-pf-filter">
-                <label className="sr-only" for="filter">Name</label>
+                <label className="sr-only" htmlFor="filter">Name</label>
                 <div className="input-group">
                   <div className="input-group-btn">
                     <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Name<span className="caret"></span></button>

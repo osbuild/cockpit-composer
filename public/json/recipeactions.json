@@ -1,0 +1,29 @@
+[
+	  {
+	    "label": "Edit Recipe",
+	    "type": "button",
+	    "inlistview": true,
+      "action":
+	  },
+    {
+	    "label": "Create Composition",
+	    "type": "button",
+	    "inlistview": true
+	  }
+    ,
+    {
+	    "label": "Update All Components",
+	    "type": "menu",
+	    "inlistview": false
+	  },
+    {
+	    "label": "Export Recipe",
+	    "type": "menu",
+	    "inlistview": true
+	  },
+    {
+	    "label": "Delete Recipe",
+	    "type": "button",
+	    "inlistview": true
+	  }
+  ]

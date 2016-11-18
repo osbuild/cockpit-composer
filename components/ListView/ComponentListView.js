@@ -1,4 +1,6 @@
 import React, { PropTypes } from 'react';
+import ComponentTypeIcons from '../../components/ListView/ComponentTypeIcons';
+import ListItemLabel from '../../components/ListView/ListItemLabel';
 
 class ComponentListView extends React.Component {
 
@@ -61,13 +63,13 @@ class ComponentListView extends React.Component {
                     <li><a href="#">View</a></li>
                     <li><a href="#">Update</a></li>
                     <li role="separator" className="divider"></li>
-                    <li><a href="#">Remove</a></li>
+                    <li><a href="#" onClick={(e) => this.props.handleRemoveComponent(e, component)}>Remove</a></li>
                   </ul>
                 </div>
               </div>
               <div className="list-view-pf-main-info">
-                <div className="list-view-pf-left">
-                  <span className="fa fa-cube list-view-pf-icon-sm"></span>
+                <div className="list-view-pf-left" data-item="type">
+                  <ComponentTypeIcons componentType={ component.type } />
                 </div>
                 <div className="list-view-pf-body">
                   <div className="list-view-pf-description">
@@ -91,6 +93,7 @@ class ComponentListView extends React.Component {
                     <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
     			            Dependencies <strong>{ component.requires }</strong>
     			          </div>
+                    <ListItemLabel isdependency={component.dependency} />
     			        </div>
                 </div>
               </div>

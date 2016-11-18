@@ -96,13 +96,13 @@ class WizardView extends React.Component {
                   <div className="wizard-pf-contents hidden">
                     <form className="form-horizontal">
                       <div className="form-group required">
-                        <label className="col-sm-2 control-label" htmlFor="textInput-markup">Name</label>
+                        <label className="col-sm-2 control-label" htmlhtmlFor="textInput-markup">Name</label>
                         <div className="col-sm-10">
                           <input type="text" data-id="textInput-markup" className="form-control"/>
                         </div>
                       </div>
                       <div className="form-group">
-                        <label className="col-sm-2 control-label" htmlFor="descriptionInput-markup">Description (Optional)</label>
+                        <label className="col-sm-2 control-label" htmlhtmlFor="descriptionInput-markup">Description (Optional)</label>
                         <div className="col-sm-10">
                           <textarea data-id="descriptionInput-markup" className="form-control" rows="2"></textarea>
                         </div>
@@ -112,13 +112,13 @@ class WizardView extends React.Component {
                   <div className="wizard-pf-contents hidden">
                     <form className="form-horizontal">
                       <div className="form-group required">
-                        <label className="col-sm-2 control-label" htmlFor="lorem">Lorem ipsum</label>
+                        <label className="col-sm-2 control-label" htmlhtmlFor="lorem">Lorem ipsum</label>
                         <div className="col-sm-10">
                           <input type="text" id="lorem" className="form-control"/>
                         </div>
                       </div>
                       <div className="form-group">
-                        <label className="col-sm-2 control-label" htmlFor="dolor">Dolor (Optional)</label>
+                        <label className="col-sm-2 control-label" htmlhtmlFor="dolor">Dolor (Optional)</label>
                         <div className="col-sm-10">
                           <textarea id="dolor" className="form-control" rows="2"></textarea>
                         </div>
@@ -128,13 +128,13 @@ class WizardView extends React.Component {
                   <div className="wizard-pf-contents hidden">
                     <form className="form-horizontal">
                       <div className="form-group required">
-                        <label className="col-sm-2 control-label" htmlFor="aliquam">Aliquam</label>
+                        <label className="col-sm-2 control-label" htmlhtmlFor="aliquam">Aliquam</label>
                         <div className="col-sm-10">
                           <input type="text" id="aliquam" className="form-control"/>
                         </div>
                       </div>
                       <div className="form-group">
-                        <label className="col-sm-2 control-label" htmlFor="fermentum">Fermentum</label>
+                        <label className="col-sm-2 control-label" htmlhtmlFor="fermentum">Fermentum</label>
                         <div className="col-sm-10">
                           <textarea id="fermentum" className="form-control" rows="2"></textarea>
                         </div>
@@ -144,13 +144,13 @@ class WizardView extends React.Component {
                   <div className="wizard-pf-contents hidden">
                     <form className="form-horizontal">
                       <div className="form-group required">
-                        <label className="col-sm-2 control-label" htmlFor="consectetur">Consectetur</label>
+                        <label className="col-sm-2 control-label" htmlhtmlFor="consectetur">Consectetur</label>
                         <div className="col-sm-10">
                           <input type="text" id="consectetur" className="form-control"/>
                         </div>
                       </div>
                       <div className="form-group">
-                        <label className="col-sm-2 control-label" htmlFor="adipiscing">Adipiscing</label>
+                        <label className="col-sm-2 control-label" htmlhtmlFor="adipiscing">Adipiscing</label>
                         <div className="col-sm-10">
                           <textarea id="adipiscing" className="form-control" rows="2"></textarea>
                         </div>

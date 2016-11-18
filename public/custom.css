@@ -34,14 +34,18 @@
 
 /*sidebar list view*/
 
-.cmpsr-list-view-viewskinny, .cmpsr-recipe-inputs .alert {
+.cmpsr-list-view-viewskinny, #cmpsr-recipe-inputs .alert {
   margin-left: -5px;
   margin-right: -5px;
 }
 
-.cmpsr-recipe-inputs .alert {
+#cmpsr-recipe-inputs .alert {
   position: relative;
   top: 15px;
+}
+
+#compsr-inputs a[disabled] {
+  display: none;
 }
 
 .cmpsr-list-view-viewskinny.list-view-pf .list-group-item {
@@ -64,9 +68,9 @@
   width: auto;
 }
 
-.cmpsr-recipe-inputs .toolbar-pf-results h5,
-.cmpsr-recipe-inputs .toolbar-pf-results p,
-.cmpsr-recipe-inputs .toolbar-pf-results ul {
+#cmpsr-recipe-inputs .toolbar-pf-results h5,
+#cmpsr-recipe-inputs .toolbar-pf-results p,
+#cmpsr-recipe-inputs .toolbar-pf-results ul {
   line-height:26.67px;
 }
 
@@ -85,7 +89,7 @@
   margin-bottom: 5px;
 }
 
-.cmpsr-recipe-inputs .popover-content {
+#cmpsr-recipe-inputs .popover-content {
   white-space: nowrap;
 }
 

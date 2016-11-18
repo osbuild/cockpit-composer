@@ -1,64 +1,76 @@
 import React, { PropTypes } from 'react';
+import ComponentTypeIcons from '../../components/ListView/ComponentTypeIcons';
+
 
 class ComponentInputs extends React.Component {
 
   componentDidMount() {
-    this.bindExpand();
+    this.bindPopover();
+    this.bindViewDetails();
+
   }
 
   componentDidUpdate() {
     this.unbind();
-    this.bindExpand();
+    this.bindPopover();
+
   }
 
   componentWillUnmount(){
     this.unbind();
   }
 
-  bindExpand() {
-    // click the list-view heading then expand a row
-    $(".list-group-item-header").click(function(event){
-      if(!$(event.target).is("button, a, input, .fa-ellipsis-v")){
-        $(this).find(".fa-angle-right").toggleClass("fa-angle-down")
-          .end().parent().toggleClass("list-view-pf-expand-active")
-          .find(".list-group-item-container").toggleClass("hidden");
+  bindPopover() {
+    // click input to view popover
+    $("#cmpsr-recipe-inputs").on('click', '.list-group-item', function(event) {
+      if(!$(event.target).is("a, a>span")){
+        if($(this).is('[aria-describedby]')) {
+          $(this).popover('destroy');
+        } else {
+          $("#cmpsr-recipe-inputs .list-group-item").popover('destroy');
+          $(this).popover('show');
+        }
       }
     });
-
-    // click the close button, hide the expand row and remove the active status
-    $(".list-group-item-container .close").on("click", function (){
-      $(this).parent().addClass("hidden")
-        .parent().removeClass("list-view-pf-expand-active")
-        .find(".fa-angle-right").removeClass("fa-angle-down");
+  }
+  bindViewDetails() {
+    // click View Details link in popover
+    $("#cmpsr-recipe-inputs").on('click', '.popover-content a', function(event) {
+      var selectedPopover = $(this).parents('.popover').attr('id');
+			$(this).parents('.popover').popover('destroy');
+      var link = $('[aria-describedby="' + selectedPopover + '"] .list-group-item-heading a');
+      link.triggerHandler("click");
+      // this does not work
     });
   }
-
   unbind() {
-    $(".list-group-item-header").off('click');
-    $(".list-group-item-container .close").off('click');
+    $("#cmpsr-recipe-inputs").off('click');
   }
 
+
+
   render() {
-    const { components } = this.props; // eslint-disable-line no-use-before-define
+    const { components } = this.props;
 
     return (
 
       <div id="compsr-inputs" className="list-group list-view-pf list-view-pf-view cmpsr-list-view-viewskinny">
         {components.map((component,i) =>
-          <div className="list-group-item">
+          <div key={i} className="list-group-item" data-html="true" title=""
+              data-content={"Version <strong data-item='version'>" + component.version + "</strong><br />Release <strong data-item='release'>" + component.release + "</strong><br />Dependencies <strong data-item='requires'>" + component.requires + "</strong><br /><a href='#'>View Details</a>"}>
             <div className="list-view-pf-actions">
-              <a href="#" className="add pull-right" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add Component">
+              <a href="#" disabled={ component.inRecipe } className="add pull-right" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add Component" onClick={(e) => this.props.handleAddComponent(e, component)}>
                 <span className="pficon pficon-add-circle-o"></span>
               </a>
             </div>
             <div className="list-view-pf-main-info">
               <div className="list-view-pf-left" data-item="type">
-                <span className="fa fa-cube list-view-pf-icon-sm" title="Module"></span>
+                <ComponentTypeIcons componentType={ component.type } />
               </div>
               <div className="list-view-pf-body">
                 <div className="list-view-pf-description">
                   <div className="list-group-item-heading">
-                    <a href="#" data-item="name">{ component.name }</a>
+                    <a href="#" data-item="name" onClick={(e) => this.props.handleComponentDetails(e, component)}>{ component.inRecipe } { component.name }</a>
                   </div>
                   <div className="list-group-item-text" data-item="summary">{ component.summary }</div>
                 </div>
