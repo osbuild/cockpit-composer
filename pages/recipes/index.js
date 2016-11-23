@@ -40,7 +40,7 @@ class RecipesPage extends React.Component {
           <div className="col-sm-12">
             <form className="toolbar-pf-actions">
               <div className="form-group toolbar-pf-filter">
-                <label className="sr-only" for="filter">Name</label>
+                <label className="sr-only" htmlFor="filter">Name</label>
                 <div className="input-group">
                   <div className="input-group-btn">
                     <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Name<span className="caret"></span></button>
@@ -109,7 +109,7 @@ class RecipesPage extends React.Component {
           </div>
         </div>
         <RecipeListView recipes={ this.state.recipes } />
-        <div className="modal fade" id="cmpsr-modal-crt-recipe" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div className="modal fade" id="cmpsr-modal-crt-recipe" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-header">
@@ -121,17 +121,17 @@ class RecipesPage extends React.Component {
               <div className="modal-body">
                 <form className="form-horizontal">
                   <div className="form-group">
-                    <label className="col-sm-3 control-label" for="textInput-modal-markup">Name</label>
+                    <label className="col-sm-3 control-label" htmlFor="textInput-modal-markup">Name</label>
                     <div className="col-sm-9">
                       <input type="text" id="textInput-modal-markup" className="form-control" /></div>
                   </div>
                   <div className="form-group">
-                    <label className="col-sm-3 control-label" for="textInput2-modal-markup">Description</label>
+                    <label className="col-sm-3 control-label" htmlFor="textInput2-modal-markup">Description</label>
                     <div className="col-sm-9">
                       <input type="text" id="textInput2-modal-markup" className="form-control" /></div>
                   </div>
                   <div className="form-group">
-                    <label className="col-sm-3 control-label" for="textInput3-modal-markup">Other options will display here</label>
+                    <label className="col-sm-3 control-label" htmlFor="textInput3-modal-markup">Other options will display here</label>
                     <div className="col-sm-9">
                       <input type="text" id="textInput3-modal-markup" className="form-control" />
                     </div>

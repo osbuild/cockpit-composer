@@ -3,46 +3,162 @@ import Link from '../../components/Link';
 import Layout from '../../components/Layout';
 import ComponentListView from '../../components/ListView/ComponentListView';
 import ComponentInputs from '../../components/ListView/ComponentInputs';
+import ComponentDetailsView from '../../components/ListView/ComponentDetailsView';
 import CreateComposition from '../../components/Modal/CreateComposition';
+import EmptyState from '../../components/EmptyState/EmptyState';
 import constants from '../../core/constants';
 
-class RecipePage extends React.Component {
+class EditRecipePage extends React.Component {
 
-  state = { recipecomponents: [], inputcomponents: [] };
+  state = { selectedComponent: "", recipecomponents: [], inputcomponents: [] };
 
   componentDidMount() {
     document.title = 'Composer | Recipe';
   }
 
   componentWillMount() {
-    this.getRecipe();
-    this.getInputs();
+    Promise.all([this.getRecipe(), this.getInputs()]).then((data) => {
+      this.setState({recipecomponents : data[0]});
+      this.setState({inputcomponents : data[1]});
+      this.updateInputs();
+
+    }).catch(console.log('Boo'));
+    // this.getRecipe();
+
+  }
+
+  componentDidUpdate() {
+    this.showEmptyState();
+    this.showComponentDetails();
   }
 
   getRecipe() {
-    let that = this;
-    fetch(constants.get_recipe_url).then(r => r.json())
-      .then(data => {
-        that.setState({recipecomponents : data})
-      })
-      .catch(e => console.log("Booo"));
+    let p = new Promise((resolve, reject) => {
+      fetch(constants.get_recipe_url).then(r => r.json())
+        .then(data => {
+          this.setState({recipecomponents : data});
+          resolve(data);
+        })
+        .catch(e => {
+          console.log("Booo");
+          reject();
+          }
+        );
+    });
+    return p;
   }
 
-  getInputs() {
-    let that = this;
-    fetch(constants.get_components_url).then(r => r.json())
-      .then(data => {
-        // add type: module to each one, save the list
-        that.setState({inputcomponents : data.modules.map(m => {
-                                            m.type = "module";
-                                            return m;
-                                         })
-                      });
-      })
-      .catch(e => console.log("Booo"));
+
+  getInputs(){
+    let p = new Promise((resolve, reject) => {
+      fetch(constants.get_components_url).then(r => r.json())
+        .then(data => {
+          // add type: module to each one, save the list
+          this.setState({inputcomponents : data.modules.map(m => {
+                                              m.type = "module";
+                                              return m;
+                                           })
+                        })
+                        resolve(data);
+        })
+        .catch(e => {
+          console.log("Booo");
+          reject();
+          }
+        );
+    });
+    return p;
+  }
+
+  updateInputs() {
+    // this adds a property to the original data set of inputs, that indicates whether the input is in the recipe or not
+    // for each object in recipecomponents, get indexOf value in inputcomponents, add a property to the matching inputcomponent "inRecipe = true"
+    // this should run once on did mount, and then individually per added/removed component
+    let inputs = this.state.inputcomponents;
+    let recipeLength = this.state.recipecomponents.length;
+    for (var i = 0; i < recipeLength; i++) {
+      let component = this.state.recipecomponents[i];
+      let index = inputs.map(function(e) {return e.name}).indexOf(component.name);
+      if (index >= 0) {
+          inputs[index].inRecipe = true;
+      }
+    }
+    this.setState({inputcomponents: inputs});
+
+  }
+
+  showEmptyState() {
+    if (this.state.recipecomponents.length == 0) {
+      $(".blank-slate-pf").removeClass("hidden");
+      $("#cmpsr-recipe-list").addClass("hidden");
+    } else {
+      $("#cmpsr-recipe-list").removeClass("hidden");
+      $(".blank-slate-pf").addClass("hidden");
+    }
+  }
+
+  showComponentDetails() {
+    if (this.state.selectedComponent != "") {
+      $("#cmpsr-recipe-details").removeClass("hidden");
+      $("#cmpsr-recipe-list").addClass("hidden");
+    } else {
+      $("#cmpsr-recipe-list").removeClass("hidden");
+      $("#cmpsr-recipe-details").addClass("hidden");
+    }
+  }
+
+  clearInputAlert() {
+    $("#cmpsr-recipe-inputs .alert").remove();
+  }
+
+  handleAddComponent = (event, component) => {
+    // the user clicked Add in the sidebar to add the component to the recipe
+    component.inRecipe = true;
+    this.setState({
+      recipecomponents: this.state.recipecomponents.concat([component])
+    });
+    this.clearInputAlert();
+  };
+
+  handleRemoveComponent = (event, component) => {
+    // the user clicked Remove for a component in the recipe component list
+    // update the list of components
+    let inputs = this.state.inputcomponents;
+    let input = inputs.map(function(e) {return e.name}).indexOf(component.name);
+    inputs[input].inRecipe = false;
+    this.setState({inputcomponents: inputs});
+    // update the list of recipe components
+    let index = this.state.recipecomponents.indexOf(component);
+    let count = this.state.recipecomponents.length;
+    if (index == 0) {
+      this.setState({
+        recipecomponents: this.state.recipecomponents.slice(index + 1, count)
+      });
+    } else if (index + 1 == count) {
+      this.setState({
+        recipecomponents: this.state.recipecomponents.slice(0, index)
+      });
+    } else {
+      let slice1 = this.state.recipecomponents.slice(0, index);
+      let slice2 = this.state.recipecomponents.slice(index + 1, count);
+      this.setState({
+        recipecomponents: slice1.concat(slice2)
+      });
+    }
+  };
+
+  handleComponentDetails = (event, component) => {
+    // the user selected a component in the sidebar to view more details on the right
+    this.setState({selectedComponent: component});
+  };
+
+  closeComponentDetails = (event) => {
+    // the user clicked Close while viewing component details, to return to the list of components in the recipe
+    this.setState({selectedComponent: ""});
   }
 
   render() {
+
     return (
       <Layout className="container-fluid container-pf-nav-pf-vertical">
 
@@ -59,7 +175,7 @@ class RecipePage extends React.Component {
 		          <div className="col-sm-12">
 		            <form className="toolbar-pf-actions">
 		              <div className="form-group toolbar-pf-filter">
-		                <label className="sr-only" for="filter">Name</label>
+		                <label className="sr-only" htmlFor="filter">Name</label>
 		                <div className="input-group">
 		                  <div className="input-group-btn">
 		                    <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Name<span className="caret"></span></button>
@@ -126,15 +242,19 @@ class RecipePage extends React.Component {
 		            </div>
 		          </div>
 		        </div>
-		        <ComponentListView components={ this.state.recipecomponents } />
+            <EmptyState title={"Add Recipe Components"} message={"Browse or search for components, then add them to the recipe."} />
+		        <ComponentListView components={ this.state.recipecomponents } handleRemoveComponent={this.handleRemoveComponent.bind(this)} />
 					</div>
-					<div className="col-sm-5 col-md-4 col-sm-pull-7 col-md-pull-8 sidebar-pf sidebar-pf-left cmpsr-recipe-inputs">
+          <div className="col-sm-7 col-md-8 col-sm-push-5 col-md-push-4 hidden" id="cmpsr-recipe-details">
+            <ComponentDetailsView component={ this.state.selectedComponent } closeComponentDetails={this.closeComponentDetails.bind(this)} />
+          </div>
+					<div className="col-sm-5 col-md-4 col-sm-pull-7 col-md-pull-8 sidebar-pf sidebar-pf-left" id="cmpsr-recipe-inputs">
 
 						<div className="row toolbar-pf">
 							<div className="col-sm-12">
 								<form className="toolbar-pf-actions">
 									<div className="form-group toolbar-pf-filter">
-										<label className="sr-only" for="filter">Name</label>
+										<label className="sr-only" htmlFor="filter">Name</label>
 										<div className="input-group">
 											<div className="input-group-btn">
 												<button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Name <span className="caret"></span></button>
@@ -217,15 +337,16 @@ class RecipePage extends React.Component {
 						  <strong>Select components</strong> in this list to add to the recipe.
 						</div>
 
-						<ComponentInputs components={ this.state.inputcomponents } />
+						<ComponentInputs components={ this.state.inputcomponents } recipecomponents={this.state.recipecomponents} handleComponentDetails={this.handleComponentDetails.bind(this)} handleAddComponent={this.handleAddComponent.bind(this)} />
 					</div>
 				</div>
 				<CreateComposition />
 
       </Layout>
+
     );
   }
 
 }
 
-export default RecipePage;
+export default EditRecipePage;

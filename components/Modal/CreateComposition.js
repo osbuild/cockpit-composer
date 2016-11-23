@@ -52,7 +52,7 @@ class CreateComposition extends React.Component {
   render() {
 
     return (
-      <div className="modal fade" id="cmpsr-modal-crt-compos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div className="modal fade" id="cmpsr-modal-crt-compos" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
@@ -64,24 +64,30 @@ class CreateComposition extends React.Component {
             <div className="modal-body">
               <form className="form-horizontal">
                 <div className="form-group">
-                  <label className="col-sm-3 control-label" for="textInput-modal-markup">Composition Type</label>
+                  <label className="col-sm-3 control-label" htmlFor="textInput-modal-markup">Composition Type</label>
                   <div className="col-sm-9">
                     <select>
                       {this.state.comptypes.map((type,i) =>
-
-                        <option>{type.name}</option>
-
+                        <option key={i} disabled={!type.enabled}>{type.name}</option>
                       )}
                     </select>
                   </div>
                 </div>
+                <p>test</p>
+                {this.state.comptypes.map(function(type,i) {
+                   if (type.enabled == true) {
+                    return <a key={i} href="#">{type.type}</a>;
+                  } else {
+                    return <p key={i}>{type.type}</p>;
+                  }
+                }.bind(this))}
                 <div className="form-group">
-                  <label className="col-sm-3 control-label" for="textInput2-modal-markup">Field Two</label>
+                  <label className="col-sm-3 control-label" htmlFor="textInput2-modal-markup">Field Two</label>
                   <div className="col-sm-9">
                     <input type="text" id="textInput2-modal-markup" className="form-control" /></div>
                 </div>
                 <div className="form-group">
-                  <label className="col-sm-3 control-label" for="textInput3-modal-markup">Field Three</label>
+                  <label className="col-sm-3 control-label" htmlFor="textInput3-modal-markup">Field Three</label>
                   <div className="col-sm-9">
                     <input type="text" id="textInput3-modal-markup" className="form-control" />
                   </div>
