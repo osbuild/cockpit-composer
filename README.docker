@@ -1,0 +1,14 @@
+Creating and Running the composer-UI Docker image
+=================================================
+
+Build the image with:
+
+docker build -t bcl/composer .
+
+Run the image, passing an API URL, with:
+
+docker run -it --rm -e API_URL=http://192.168.102.4:4444 bcl/composer
+
+If the API_URL isn't passed to the run command it defaults to using
+http://localhost:4000
+

@@ -2,8 +2,6 @@
   Application Constants
  */
 
-const composer_api_host = "";
-
 const constants = {
   get_apps_url : 'json/apps.json',
   get_projects_url: 'json/projects.json',
