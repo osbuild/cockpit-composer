@@ -2,7 +2,7 @@
 FROM fedora:24
 MAINTAINER Brian C. Lane <bcl@redhat.com>
 
-RUN dnf install -y dnf-plugins-core gnupg tar git sudo curl file gcc-c++ gcc gdb glibc-devel openssl-devel make xz sqlite-devel openssl-devel
+RUN dnf install -y dnf-plugins-core gnupg tar git sudo curl file gcc-c++ gcc gdb glibc-devel openssl-devel make xz sqlite-devel openssl-devel nginx
 
 RUN echo 'PATH=/usr/local/bin/:$PATH' >> /etc/bashrc
 
@@ -38,6 +38,8 @@ ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 EXPOSE 3000
 
 ## Do the things more likely to change below here. ##
+
+COPY ./docker/nginx.conf /etc/nginx/
 
 # Update node dependencies only if they have changed
 COPY ./package.json /composer-UI/package.json
