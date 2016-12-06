@@ -2,8 +2,7 @@
 	  {
 	    "label": "Edit Recipe",
 	    "type": "button",
-	    "inlistview": true,
-      "action":
+	    "inlistview": true
 	  },
     {
 	    "label": "Create Composition",
