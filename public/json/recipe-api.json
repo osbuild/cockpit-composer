@@ -1,0 +1,16 @@
+[
+  { "id": "example",
+    "example":
+    { 
+      "description": "A stunning example",
+      "modules": [
+        { "name": "fm-httpd", "version": "23.*" },
+        { "name": "fm-php", "version":"11.6.*" }
+      ],
+      "name": "example",
+      "packages": [
+        { "name":"tmux", "version":"2.2" }
+      ]
+    }
+  }
+]

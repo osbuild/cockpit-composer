@@ -1,2 +1,2 @@
-var composer_api_host="";
+var composer_api_host="http://localhost:3000";
 
