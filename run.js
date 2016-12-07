@@ -56,6 +56,15 @@ tasks.set('html', () => {
         jsondb[f.substring(0, f.length - 5)] = jsondata;
       }
   }
+
+  // add in list properties
+  // there's probably a better way to do this
+  var recipelist = [];
+  for (var i in jsondb["recipe-api"]) {
+    recipelist.push(jsondb["recipe-api"][i].id);
+  }
+  jsondb["recipe-api"].push({"id": "recipes", "recipes": recipelist});
+
   jsonfile.writeFileSync('db.json', jsondb);
 });
 
@@ -125,9 +134,16 @@ tasks.set('start', () => {
           // start the JSON server
           var server = jsonServer.create();
           var router = jsonServer.router('db.json');
+          var rewriter = jsonServer.rewriter(jsonfile.readFileSync('json-routes.json'));
           var defaults = jsonServer.defaults({logger: false, readOnly: false, noCors: false, noGzip: false});
+
           server.use(defaults);
+
+          // NB: the first 'use's get checked first for how to resolve a URL. Since rewriter
+          // overrides the stuff from the JSON file itself (router), rewriter has to go first
+          server.use(rewriter);
           server.use(router);
+
           server.listen(3000, 'localhost');
       }).then(() => new Promise(resolve => {
     const bs = require('browser-sync').create();

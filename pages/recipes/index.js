@@ -20,7 +20,7 @@ class RecipesPage extends React.Component {
     fetch(constants.get_recipes_url).then(r => r.json())
       .then(listdata => {
         for (var i in listdata.recipes) {
-            fetch("/api/v0/recipe/" + listdata.recipes[i])
+            fetch(get_recipe_api_url + listdata.recipes[i])
                 .then(r => r.json())
                 .then(recipedata => {
                       // data returned is of form {"<recipe name>": {<recipe>}}, just return recipe

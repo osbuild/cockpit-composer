@@ -1,0 +1,52 @@
+{
+  "types": [
+    {
+      "enabled": true,
+      "name": "iso"
+    },
+    {
+      "enabled": false,
+      "name": "disk-image"
+    },
+    {
+      "enabled": false,
+      "name": "fs-image"
+    },
+    {
+      "enabled": false,
+      "name": "ami"
+    },
+    {
+      "enabled": false,
+      "name": "tar"
+    },
+    {
+      "enabled": false,
+      "name": "live-pxe"
+    },
+    {
+      "enabled": false,
+      "name": "live-ostree"
+    },
+    {
+      "enabled": false,
+      "name": "oci"
+    },
+    {
+      "enabled": false,
+      "name": "vagrant"
+    },
+    {
+      "enabled": false,
+      "name": "qcow2"
+    },
+    {
+      "enabled": false,
+      "name": "vmdk"
+    },
+    {
+      "enabled": false,
+      "name": "vhdx"
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "modules": [
+    {
+      "group_type": "rpm",
+      "name": "389-ds-base"
+    },
+    {
+      "group_type": "rpm",
+      "name": "389-ds-base-libs"
+    },
+    {
+      "group_type": "rpm",
+      "name": "ElectricFence"
+    },
+    {
+      "group_type": "rpm",
+      "name": "ElectricFence"
+    },
+    {
+      "group_type": "rpm",
+      "name": "GConf2"
+    },
+    {
+      "group_type": "rpm",
+      "name": "GConf2"
+    },
+    {
+      "group_type": "rpm",
+      "name": "GeoIP"
+    },
+    {
+      "group_type": "rpm",
+      "name": "GeoIP"
+    },
+    {
+      "group_type": "rpm",
+      "name": "ImageMagick"
+    },
+    {
+      "group_type": "rpm",
+      "name": "ImageMagick"
+    },
+    {
+      "group_type": "rpm",
+      "name": "ImageMagick-c++"
+    },
+    {
+      "group_type": "rpm",
+      "name": "ImageMagick-c++"
+    },
+    {
+      "group_type": "rpm",
+      "name": "ImageMagick-perl"
+    },
+    {
+      "group_type": "rpm",
+      "name": "LibRaw"
+    },
+    {
+      "group_type": "rpm",
+      "name": "LibRaw"
+    },
+    {
+      "group_type": "rpm",
+      "name": "ModemManager"
+    },
+    {
+      "group_type": "rpm",
+      "name": "ModemManager-glib"
+    },
+    {
+      "group_type": "rpm",
+      "name": "ModemManager-glib"
+    },
+    {
+      "group_type": "rpm",
+      "name": "MySQL-python"
+    },
+    {
+      "group_type": "rpm",
+      "name": "NetworkManager"
+    }
+  ]
+}
