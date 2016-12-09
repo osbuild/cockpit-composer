@@ -12,6 +12,7 @@
     "fastclick": "^1.0.6",
     "history": "^3.0.0",
     "jquery": "^3.1.1",
+    "jquery-match-height": "^0.7.0",
     "json-server": "^0.9.2",
     "jsonfile": "^2.4.0",
     "patternfly": "^3.12.0",
