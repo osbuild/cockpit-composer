@@ -18,8 +18,8 @@ class EditRecipePage extends React.Component {
 
   componentWillMount() {
     Promise.all([this.getRecipe(), this.getInputs()]).then((data) => {
-      this.setState({recipecomponents : data[0]});
-      this.setState({inputcomponents : data[1]});
+      this.setState({recipecomponents : data[0].recipe});
+      this.setState({inputcomponents : data[1].modules});
       this.updateInputs();
 
     }).catch(e => console.log('Error in EditRecipe promise: ' + e));
