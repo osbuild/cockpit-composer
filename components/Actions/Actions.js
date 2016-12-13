@@ -21,7 +21,7 @@ class Actions extends React.Component {
 			.then(data => {
 				that.setState({actions : data})
 			})
-			.catch(e => console.log("Booo"));
+			.catch(e => console.log("Error getting recipe actions: " + e));
 	}
 
 

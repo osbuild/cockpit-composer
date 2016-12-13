@@ -23,7 +23,7 @@ class RecipePage extends React.Component {
       .then(data => {
         that.setState({"components" : data.recipe})
       })
-      .catch(e => console.log("Booo: " + e));
+      .catch(e => console.log("Error fetching recipes: " + e));
   }
 
   render() {

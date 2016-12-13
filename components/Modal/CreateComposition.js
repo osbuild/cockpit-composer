@@ -29,7 +29,7 @@ class CreateComposition extends React.Component {
 			.then(data => {
 				that.setState({comptypes : data.types})
 			})
-			.catch(e => console.log("Booo"));
+			.catch(e => console.log("Error getting component types: " + e));
 	}
 
   bindCreateCompos() {
