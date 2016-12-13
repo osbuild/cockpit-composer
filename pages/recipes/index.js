@@ -20,10 +20,11 @@ class RecipesPage extends React.Component {
     fetch(constants.get_recipes_url).then(r => r.json())
       .then(listdata => {
         for (var i in listdata.recipes) {
-            fetch(constants.get_recipe_api_url + listdata.recipes[i])
+            let recipeName = listdata.recipes[i];
+            fetch(constants.get_recipe_api_url + recipeName)
                 .then(r => r.json())
                 .then(recipedata => {
-                      this.setState({ recipes: this.state.recipes.concat(recipedata[listdata.recipes[i]]) });
+                      this.setState({ recipes: this.state.recipes.concat(recipedata[recipeName]) });
                 });
         }
       })
