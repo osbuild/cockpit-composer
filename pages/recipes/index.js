@@ -23,15 +23,7 @@ class RecipesPage extends React.Component {
             fetch(constants.get_recipe_api_url + listdata.recipes[i])
                 .then(r => r.json())
                 .then(recipedata => {
-                      // data returned is of form {"<recipe name>": {<recipe>}}, just return recipe
-                      // Cannot use i or listdata in here, iterate the keys instead
-                      for (var key in recipedata) {
-                          if (recipedata.hasOwnProperty(key)) {
-                              this.setState(
-                                  { recipes: this.state.recipes.concat(recipedata[key]) }
-                              );
-                          }
-                     }
+                      this.setState({ recipes: this.state.recipes.concat(recipedata[listdata.recipes[i]]) });
                 });
         }
       })
