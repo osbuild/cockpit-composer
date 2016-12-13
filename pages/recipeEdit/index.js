@@ -36,11 +36,11 @@ class EditRecipePage extends React.Component {
     let p = new Promise((resolve, reject) => {
       fetch(constants.get_recipe_url).then(r => r.json())
         .then(data => {
-          this.setState({recipecomponents : data});
+          this.setState({recipecomponents : data.recipe});
           resolve(data);
         })
         .catch(e => {
-          console.log("Booo");
+          console.log("Failed to fetch recipe during edit: " + e);
           reject();
           }
         );
@@ -62,7 +62,7 @@ class EditRecipePage extends React.Component {
                         resolve(data);
         })
         .catch(e => {
-          console.log("Booo");
+          console.log("Failed to get inputs during recipe edit: " + e);
           reject();
           }
         );
