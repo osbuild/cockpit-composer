@@ -60,7 +60,7 @@ class RecipesPage extends React.Component {
                 });
             }
       })
-      .catch(e => console.log("Booo"));
+      .catch(e => console.log("Error getting recipe list: " + e));
   }
 
   render() {

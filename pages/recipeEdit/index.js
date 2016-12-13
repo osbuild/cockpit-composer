@@ -22,7 +22,7 @@ class EditRecipePage extends React.Component {
       this.setState({inputcomponents : data[1]});
       this.updateInputs();
 
-    }).catch(console.log('Boo'));
+    }).catch(e => console.log('Error in EditRecipe promise: ' + e));
     // this.getRecipe();
 
   }

@@ -21,7 +21,7 @@ class HomePage extends React.Component {
       .then(data => {
         that.setState({projects : data})
       })
-      .catch(e => console.log("Booo"));
+      .catch(e => console.log("Error getting projects: " + e));
   }
 
   render() {

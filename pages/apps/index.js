@@ -21,7 +21,7 @@ class AppsPage extends React.Component {
       .then(data => {
         that.setState({apps : data})
       })
-      .catch(e => console.log("Booo"));
+      .catch(e => console.log("Error getting apps: " + e));
   }
 
   render() {
