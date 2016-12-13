@@ -49,9 +49,9 @@ class RecipePage extends React.Component {
     let that = this;
     fetch(constants.get_recipe_url).then(r => r.json())
       .then(data => {
-        that.setState({components : data})
+        that.setState({components : data.recipe})
       })
-      .catch(e => console.log("Booo"));
+      .catch(e => console.log("Failed to get recipe during recipe create: " + e));
   }
 
   render() {
