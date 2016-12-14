@@ -12,5 +12,15 @@
         { "name":"tmux", "version":"2.2" }
       ]
     }
+  },
+  { "id": "other",
+    "other": {
+        "description": "Another amazing recipe",
+        "modules": [
+            { "name": "fm-php", "version": "11.6.*"}
+        ],
+        "name": "other",
+        "packages": [ { "name": "pv", "version": "1.6.0" } ]
+    }
   }
 ]
