@@ -73,14 +73,6 @@ class CreateComposition extends React.Component {
                     </select>
                   </div>
                 </div>
-                <p>test</p>
-                {this.state.comptypes.map(function(type,i) {
-                   if (type.enabled == true) {
-                    return <a key={i} href="#">{type.type}</a>;
-                  } else {
-                    return <p key={i}>{type.type}</p>;
-                  }
-                }.bind(this))}
                 <div className="form-group">
                   <label className="col-sm-3 control-label" htmlFor="textInput2-modal-markup">Field Two</label>
                   <div className="col-sm-9">

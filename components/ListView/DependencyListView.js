@@ -79,6 +79,9 @@ class ComponentListView extends React.Component {
                       <div className="list-group-item-text">
                         { component.summary }
                       </div>
+                      <div className="cmpsr-dependency-flag">
+                        <span className="pficon pficon-warning-triangle-o"></span>
+                      </div>
                     </div>
                     <div className="list-view-pf-additional-info">
                       <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
@@ -158,6 +161,21 @@ class ComponentListView extends React.Component {
                           <div className="list-view-pf-body">
                             <div className="list-view-pf-description">
                               <a href="#">View More</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <strong>Required By (1)</strong>
+                    <div className="list-group list-view-pf list-view-pf-view cmpsr-list-view-viewskinny">
+                      <div className="list-group-item">
+                        <div className="list-view-pf-main-info">
+                          <div className="list-view-pf-left" data-item="type">
+                            <span className="fa fa-cube list-view-pf-icon-sm" title="Module"></span>
+                          </div>
+                          <div className="list-view-pf-body">
+                            <div className="list-view-pf-description">
+                              <a href="#" data-item="name">fm-group:rpm-development-tools</a>
                             </div>
                           </div>
                         </div>
