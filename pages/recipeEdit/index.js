@@ -126,8 +126,11 @@ class EditRecipePage extends React.Component {
   handleAddComponent = (event, component) => {
     // the user clicked Add in the sidebar to add the component to the recipe
     component.inRecipe = true;
+    let recipecomponents = this.state.recipecomponents.slice(0);
+    let newcomponent = [component];
+    let updatedrecipecomponents = recipecomponents.concat(newcomponent);
     this.setState({
-      recipecomponents: this.state.recipecomponents.concat([component])
+      recipecomponents: updatedrecipecomponents
     });
     this.clearInputAlert();
   };

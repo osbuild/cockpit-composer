@@ -10,7 +10,7 @@ class ComponentSummaryList extends React.Component {
         <div className="list-group list-view-pf list-view-pf-view cmpsr-list-view-viewskinny">
           {dependencyList.map((component,i) =>
             <div key={i} className="list-group-item" data-html="true" title=""
-                data-content={"Version <strong data-item='version'>" + component.version + "</strong><br />Release <strong data-item='release'>" + component.release + "</strong><br />Dependencies <strong data-item='requires'>" + component.requires + "</strong><br /><a href='#'>View Details</a>"}>
+                data-content={"Version <strong data-item='version'>" + component.version + "</strong><br />Release <strong data-item='release'>" + component.release + "</strong><br />Dependencies <strong data-item='requires'>3</strong><br /><a href='#'>View Details</a>"}>
               <div className="list-view-pf-main-info">
                 <div className="list-view-pf-left" data-item="type">
                   <ComponentTypeIcons componentType={ component.type } />

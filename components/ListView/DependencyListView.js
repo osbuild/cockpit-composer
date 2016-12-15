@@ -94,7 +94,7 @@ class ComponentListView extends React.Component {
                         Lifecycle<strong>01/15/2017</strong>
                       </div>
                       <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
-                        Dependencies <strong>{ component.requires }</strong>
+                        Dependencies <strong>3</strong>
                       </div>
                       <ListItemLabel isdependency={component.dependency} />
                     </div>

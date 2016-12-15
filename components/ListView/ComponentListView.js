@@ -43,7 +43,7 @@ class ComponentListView extends React.Component {
 
   render() {
     const { components } = this.props; // eslint-disable-line no-use-before-define
-
+    this.components = this.components || [];
     return (
 
         <div className="list-group list-view-pf list-view-pf-view">
@@ -91,7 +91,7 @@ class ComponentListView extends React.Component {
                         Lifecycle<strong>01/15/2017</strong>
                       </div>
                       <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
-                        Dependencies <strong>{ component.requires }</strong>
+                        Dependencies <strong>2</strong>
                       </div>
                       <ListItemLabel isdependency={component.dependency} />
                     </div>

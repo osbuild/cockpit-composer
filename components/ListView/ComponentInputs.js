@@ -56,7 +56,7 @@ class ComponentInputs extends React.Component {
       <div id="compsr-inputs" className="list-group list-view-pf list-view-pf-view cmpsr-list-view-viewskinny">
         {components.map((component,i) =>
           <div key={i} className="list-group-item" data-html="true" title=""
-              data-content={"Version <strong data-item='version'>" + component.version + "</strong><br />Release <strong data-item='release'>" + component.release + "</strong><br />Dependencies <strong data-item='requires'>" + component.requires + "</strong><br /><a href='#'>View Details</a>"}>
+              data-content={"Version <strong data-item='version'>" + component.version + "</strong><br />Release <strong data-item='release'>" + component.release + "</strong><br />Dependencies <strong data-item='requires'>3</strong><br /><a href='#'>View Details</a>"}>
             <div className="list-view-pf-actions">
               <a href="#" disabled={ component.inRecipe } className="add pull-right" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add Component" onClick={(e) => this.props.handleAddComponent(e, component)}>
                 <span className="pficon pficon-add-circle-o"></span>
