@@ -6,6 +6,22 @@
 .list-view-pf-additional-info-item .label {margin: .5em 0;}
 /*label {margin-right:5px;} this causes issues in popup dialogs */
 
+
+.cmpsr-edit-actions {
+  float: right;
+  padding: 8px 0 8px 15px;
+}
+.cmpsr-title-summary {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  margin-top: 20px;
+}
+ .cmpsr-title-summary__item {
+   margin-right: 10px;
+   margin-top: 0;
+ }
+
 /* sidebar toolbar */
 .toolbar-pf-actions {min-height: 28px;}
 .sidebar-pf .toolbar-pf-actions .toolbar-pf-filter {width:auto;}
@@ -99,27 +115,61 @@
 
 @media (min-width: 992px) {
   .list-view-pf .list-group-item-heading {
-      flex: 1 0 calc(40% - 20px);
-      float: left;
+      flex: 1 1 calc(40% - 20px);
+      float: none;
       font-size: 12px;
       margin: 0 20px 0 0;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      width: calc(40% - 20px);
+      width: auto;
   }
   .list-view-pf .list-group-item-text {
-      flex: 1 0 auto;
-      float: left;
+      flex: 1 1 calc(60% - 40px);
+      float: none;
       margin: 0 40px 0 0;
-      width: calc(60% - 40px);
+      width: auto;
   }
+}
+.cmpsr-dependency-flag {
+  margin-right: 20px;
 }
 
 /* Nested list view */
-.list-group-item .list-group {
-  margin:0;
+.cmpsr-summary-listview .list-group {
+  margin: 0;
 }
+.cmpsr-summary-listview strong {
+  display: block;
+  margin-top: 15px;
+}
+.cmpsr-summary-listview strong:first-child {
+  margin-top: 0;
+}
+.cmpsr-summary-listview .list-view-pf-main-info {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.cmpsr-summary-listview .list-view-pf-left .fa.list-view-pf-icon-sm {
+  border: none;
+  height: auto;
+  width: auto;
+  line-height: inherit;
+  font-size: 1.2em;
+}
+.cmpsr-summary-listview .list-view-pf-left .fa.list-view-pf-icon-sm:before {
+  line-height: normal;
+}
+
+
+/* Recipe Contents Accordion */
+.panel-body .list-view-pf-view {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.panel-body .toolbar-pf { margin: -15px -15px 15px; }
+.panel-body .toolbar-pf-actions {min-height:auto;}
+.panel-body .form-group {padding-left: 0; padding-right:0; border:none;}
 
 
 /*Component details view*/
@@ -130,4 +180,9 @@
 .cmpsr-compon-details .blank-slate-pf {
   margin-top: 0;
   padding: 0;
+}
+
+/*Component details*/
+#cmpsr-recipe-details {
+  border-top: 1px solid #d1d1d1;
 }

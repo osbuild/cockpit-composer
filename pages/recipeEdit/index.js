@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import Link from '../../components/Link';
 import Layout from '../../components/Layout';
+import RecipeContents from '../../components/ListView/RecipeContents';
 import ComponentListView from '../../components/ListView/ComponentListView';
 import ComponentInputs from '../../components/ListView/ComponentInputs';
 import ComponentDetailsView from '../../components/ListView/ComponentDetailsView';
@@ -10,18 +11,18 @@ import constants from '../../core/constants';
 
 class EditRecipePage extends React.Component {
 
-  state = { selectedComponent: "", recipecomponents: [], inputcomponents: [] };
+  state = { selectedComponent: "", selectedComponentIndex: "", recipecomponents: [], inputcomponents: [], recipedependencies: [] };
 
   componentDidMount() {
     document.title = 'Composer | Recipe';
   }
 
   componentWillMount() {
+    this.getDependencies();
     Promise.all([this.getRecipe(), this.getInputs()]).then((data) => {
       this.setState({recipecomponents : data[0].recipe});
       this.setState({inputcomponents : data[1].modules});
       this.updateInputs();
-
     }).catch(e => console.log('Error in EditRecipe promise: ' + e));
     // this.getRecipe();
 
@@ -69,6 +70,14 @@ class EditRecipePage extends React.Component {
     });
     return p;
   }
+  getDependencies() {
+    let that = this;
+    fetch(constants.get_dependencies_url).then(r => r.json())
+      .then(data => {
+        that.setState({recipedependencies : data})
+      })
+      .catch(e => console.log("no dependencies"));
+  }
 
   updateInputs() {
     // this adds a property to the original data set of inputs, that indicates whether the input is in the recipe or not
@@ -89,18 +98,21 @@ class EditRecipePage extends React.Component {
 
   showEmptyState() {
     if (this.state.recipecomponents.length == 0) {
-      $(".blank-slate-pf").removeClass("hidden");
-      $("#cmpsr-recipe-list").addClass("hidden");
+      $("#cmpsr-recipe-list .blank-slate-pf").removeClass("hidden");
+      $("#cmpsr-recipe-contents").addClass("hidden");
     } else {
-      $("#cmpsr-recipe-list").removeClass("hidden");
-      $(".blank-slate-pf").addClass("hidden");
+      $("#cmpsr-recipe-contents").removeClass("hidden");
+      $("#cmpsr-recipe-list .blank-slate-pf").addClass("hidden");
     }
   }
 
   showComponentDetails() {
+    $("#compsr-inputs .list-group-item").removeClass("active");
     if (this.state.selectedComponent != "") {
       $("#cmpsr-recipe-details").removeClass("hidden");
       $("#cmpsr-recipe-list").addClass("hidden");
+      $("#compsr-inputs .list-group-item").eq(this.state.selectedComponentIndex).addClass("active");
+      //find component in list and add active class
     } else {
       $("#cmpsr-recipe-list").removeClass("hidden");
       $("#cmpsr-recipe-details").addClass("hidden");
@@ -114,8 +126,11 @@ class EditRecipePage extends React.Component {
   handleAddComponent = (event, component) => {
     // the user clicked Add in the sidebar to add the component to the recipe
     component.inRecipe = true;
+    let recipecomponents = this.state.recipecomponents.slice(0);
+    let newcomponent = [component];
+    let updatedrecipecomponents = recipecomponents.concat(newcomponent);
     this.setState({
-      recipecomponents: this.state.recipecomponents.concat([component])
+      recipecomponents: updatedrecipecomponents
     });
     this.clearInputAlert();
   };
@@ -147,9 +162,13 @@ class EditRecipePage extends React.Component {
     }
   };
 
+
+
   handleComponentDetails = (event, component) => {
     // the user selected a component in the sidebar to view more details on the right
     this.setState({selectedComponent: component});
+    let compIndex = this.state.inputcomponents.indexOf(component)
+    this.setState({selectedComponentIndex: compIndex});
   };
 
   closeComponentDetails = (event) => {
@@ -161,14 +180,18 @@ class EditRecipePage extends React.Component {
 
     return (
       <Layout className="container-fluid container-pf-nav-pf-vertical">
-
+        <div className="cmpsr-edit-actions">
+          <button className="btn btn-primary" type="button">Save</button> <button className="btn btn-default" type="button">Cancel</button>
+        </div>
 				<ol className="breadcrumb">
 					<li><Link to="/recipes">Back to Recipes</Link></li>
 					<li><Link to="/recipe">Low Latency</Link></li>
 					<li className="active"><strong>Edit Recipe</strong></li>
 				</ol>
-
-				<div className="row">
+        <div className="cmpsr-title-summary">
+          <h1 className="cmpsr-title-summary__item">Low Latency</h1><p className="cmpsr-title-summary__item">Version 3</p>
+        </div>
+        <div className="row">
 					<div className="col-sm-7 col-md-8 col-sm-push-5 col-md-push-4" id="cmpsr-recipe-list">
 
 						<div className="row toolbar-pf">
@@ -243,7 +266,7 @@ class EditRecipePage extends React.Component {
 		          </div>
 		        </div>
             <EmptyState title={"Add Recipe Components"} message={"Browse or search for components, then add them to the recipe."} />
-		        <ComponentListView components={ this.state.recipecomponents } handleRemoveComponent={this.handleRemoveComponent.bind(this)} />
+		        <RecipeContents components={ this.state.recipecomponents } dependencies={ this.state.recipecomponents } handleRemoveComponent={this.handleRemoveComponent.bind(this)} />
 					</div>
           <div className="col-sm-7 col-md-8 col-sm-push-5 col-md-push-4 hidden" id="cmpsr-recipe-details">
             <ComponentDetailsView component={ this.state.selectedComponent } closeComponentDetails={this.closeComponentDetails.bind(this)} />
@@ -271,28 +294,10 @@ class EditRecipePage extends React.Component {
 										</div>
 									</div>
 									<div className="toolbar-pf-action-right">
-										<div className="form-group toolbar-pf-find">
-											<button className="btn btn-link btn-find" type="button">
-												<span className="fa fa-search"></span>
-											</button>
+										<div className="form-group toolbar-pf-settings">
 											<button className="btn btn-link btn-settings" type="button" data-toggle="modal" data-target="#cmpsr-recipe-inputs-settings">
 												<span className="pf-icon pficon-settings"></span>
 											</button>
-											<div className="find-pf-dropdown-container">
-												<input type="text" className="form-control" id="find" placeholder="Find By Keyword..." />
-												<div className="find-pf-buttons">
-													<span className="find-pf-nums">1 of 3</span>
-													<button className="btn btn-link" type="button">
-														<span className="fa fa-angle-up"></span>
-													</button>
-													<button className="btn btn-link" type="button">
-														<span className="fa fa-angle-down"></span>
-													</button>
-													<button className="btn btn-link btn-find-close" type="button">
-														<span className="pficon pficon-close"></span>
-													</button>
-												</div>
-											</div>
 										</div>
 									</div>
 								</form>
@@ -300,29 +305,7 @@ class EditRecipePage extends React.Component {
 								<div className="row toolbar-pf-results" data-results="1">
 									<div className="col-sm-12">
 										<div className="cmpsr-recipe-inputs-pagination">
-											<strong>1 - 50</strong> of 1000+ Results
-											<ul className="pagination">
-												<li className="disabled">
-													<a href="#">
-														<span className="i fa fa-angle-double-left"></span>
-													</a>
-												</li>
-												<li className="disabled">
-													<a href="#">
-														<span className="i fa fa-angle-left"></span>
-													</a>
-												</li>
-												<li>
-													<a href="#">
-														<span className="i fa fa-angle-right"></span>
-													</a>
-												</li>
-												<li>
-													<a href="#">
-														<span className="i fa fa-angle-double-right"></span>
-													</a>
-												</li>
-											</ul>
+											2,345 Available Components
 										</div>
 									</div>
 								</div>

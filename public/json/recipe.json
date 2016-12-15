@@ -24,7 +24,7 @@
 			"version": "15",
 			"release": "2",
 			"requires": "0",
-			"dependency": true
+			"dependency": false
 		}
  ]
 }
