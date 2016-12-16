@@ -19,7 +19,7 @@ class ComponentDetailsView extends React.Component {
     return (
       <div className="cmpsr-compon-details">
     		<h1>
-    			<span data-item="name"><ComponentTypeIcons componentType={ component.type } /> {component.name}</span>
+    			<span data-item="name"><ComponentTypeIcons componentType={ component.group_type } /> {component.name}</span>
     			<div className="pull-right">
     				<ul className="list-inline">
     					<li>

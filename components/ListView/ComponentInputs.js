@@ -64,7 +64,7 @@ class ComponentInputs extends React.Component {
             </div>
             <div className="list-view-pf-main-info">
               <div className="list-view-pf-left" data-item="type">
-                <ComponentTypeIcons componentType={ component.type } />
+                <ComponentTypeIcons componentType={ component.group_type } />
               </div>
               <div className="list-view-pf-body">
                 <div className="list-view-pf-description">
