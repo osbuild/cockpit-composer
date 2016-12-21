@@ -69,7 +69,7 @@ class ComponentListView extends React.Component {
                 </div>
                 <div className="list-view-pf-main-info">
                   <div className="list-view-pf-left" data-item="type">
-                    <ComponentTypeIcons componentType={ component.type } />
+                    <ComponentTypeIcons componentType={ component.group_type } />
                   </div>
                   <div className="list-view-pf-body">
                     <div className="list-view-pf-description">
@@ -93,7 +93,6 @@ class ComponentListView extends React.Component {
                       <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
                         Dependencies <strong>2</strong>
                       </div>
-                      <ListItemLabel isdependency={component.dependency} />
                     </div>
                   </div>
                 </div>
