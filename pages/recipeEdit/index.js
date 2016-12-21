@@ -138,28 +138,26 @@ class EditRecipePage extends React.Component {
   handleRemoveComponent = (event, component) => {
     // the user clicked Remove for a component in the recipe component list
     // update the list of components
-    let inputs = this.state.inputcomponents;
+    let inputs = this.state.inputcomponents.slice(0);
     let input = inputs.map(function(e) {return e.name}).indexOf(component.name);
-    inputs[input].inRecipe = false;
-    this.setState({inputcomponents: inputs});
+    if (input > -1) {
+      inputs[input].inRecipe = false;
+      this.setState({inputcomponents: inputs});
+    }
     // update the list of recipe components
     let index = this.state.recipecomponents.indexOf(component);
     let count = this.state.recipecomponents.length;
+    let updatedrecipecomponents = this.state.recipecomponents.slice(0);
     if (index == 0) {
-      this.setState({
-        recipecomponents: this.state.recipecomponents.slice(index + 1, count)
-      });
+      updatedrecipecomponents =  this.state.recipecomponents.slice(index + 1, count);
     } else if (index + 1 == count) {
-      this.setState({
-        recipecomponents: this.state.recipecomponents.slice(0, index)
-      });
+      updatedrecipecomponents = this.state.recipecomponents.slice(0, index);
     } else {
       let slice1 = this.state.recipecomponents.slice(0, index);
       let slice2 = this.state.recipecomponents.slice(index + 1, count);
-      this.setState({
-        recipecomponents: slice1.concat(slice2)
-      });
+      updatedrecipecomponents = slice1.concat(slice2);
     }
+    this.setState({recipecomponents: updatedrecipecomponents});
   };
 
 
