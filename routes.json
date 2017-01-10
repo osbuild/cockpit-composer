@@ -42,9 +42,5 @@
   {
     "path": "/edit",
     "page": "./pages/recipeEdit"
-  },
-  {
-    "path": "/create",
-    "page": "./pages/recipeCreate"
   }
 ]
