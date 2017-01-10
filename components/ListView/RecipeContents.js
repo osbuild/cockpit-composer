@@ -1,31 +1,7 @@
 import React, { PropTypes } from 'react';
-import ComponentTypeIcons from '../../components/ListView/ComponentTypeIcons';
-import ComponentListView from '../../components/ListView/ComponentListView';
-import DependencyListView from '../../components/ListView/DependencyListView';
-import ComponentSummaryList from '../../components/ListView/ComponentSummaryList';
-import ListItemLabel from '../../components/ListView/ListItemLabel';
+import ListViewExpand from '../../components/ListView/ListViewExpand';
 
 class RecipeContents extends React.Component {
-
-  componentWillMount() {
-  }
-
-  componentDidUpdate() {
-
-  }
-
-  componentWillUnmount(){
-
-  }
-
-  bindExpand() {
-
-  }
-
-  unbind() {
-
-  }
-
 
   render() {
     const { components } = this.props;
@@ -38,15 +14,13 @@ class RecipeContents extends React.Component {
           <div className="panel-heading">
             <h4 className="panel-title">
               <a data-toggle="collapse" href="#collapseOne" data-parent="#cmpsr-recipe-contents">
-                Selected Components (3)
+                Selected Components ({components.length})
               </a>
             </h4>
           </div>
           <div id="collapseOne" className="panel-collapse collapse in">
             <div className="panel-body">
-
-              <ComponentListView components={ components } handleRemoveComponent={handleRemoveComponent} />
-
+              <ListViewExpand id="cmpsr-recipe-components" listItems={ components } handleRemoveComponent={handleRemoveComponent} />
             </div>
           </div>
         </div>
@@ -64,7 +38,7 @@ class RecipeContents extends React.Component {
                 <div className="col-sm-12">
                   <form className="toolbar-pf-actions">
                     <div className="form-group">
-                      <span className="text-muted">Show:</span> First Level Dependencies (1) <span className="text-muted">|</span> <a>All Dependencies (28)</a>
+                      <span className="text-muted">Show:</span> First Level Dependencies ({dependencies.length}) <span className="text-muted">|</span> <a>All Dependencies (28)</a>
                     </div>
                   </form>
                 </div>
@@ -73,7 +47,7 @@ class RecipeContents extends React.Component {
                 <span className="pficon pficon-warning-triangle-o"></span>
                 One or more dependencies have multiple variations that could be used. A default variation was automatically selected. Click a flagged dependency to see other options available.
               </div>
-              <DependencyListView components={ dependencies } handleRemoveComponent={handleRemoveComponent} />
+              <ListViewExpand id="cmpsr-recipe-dependencies" listItems={ dependencies } handleRemoveComponent={handleRemoveComponent} isDependency />
             </div>
           </div>
         </div>

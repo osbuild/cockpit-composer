@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
 import Link from '../../components/Link';
 import Layout from '../../components/Layout';
-import ComponentListView from '../../components/ListView/ComponentListView';
+import ListViewExpand from '../../components/ListView/ListViewExpand';
 import CreateComposition from '../../components/Modal/CreateComposition';
+import EmptyState from '../../components/EmptyState/EmptyState';
 import constants from '../../core/constants';
 
 class RecipePage extends React.Component {
@@ -105,7 +106,11 @@ class RecipePage extends React.Component {
             </div>
           </div>
         </div>
-        <ComponentListView components={ this.state.components } />
+        { this.state.components.length == 0 &&
+        <EmptyState title={"Empty Recipe"} message={"Edit the recipe to add components."} />
+        ||
+        <ListViewExpand id="cmpsr-recipe-components" listItems={ this.state.components } />
+        }
 				<CreateComposition types={this.state.comptypes} />
       </Layout>
     );

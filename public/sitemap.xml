@@ -30,7 +30,4 @@
   <url>
     <loc>https://patternfly-react-starter.firebaseapp.com/edit</loc>
   </url>
-  <url>
-    <loc>https://patternfly-react-starter.firebaseapp.com/create</loc>
-  </url>
 </urlset>
