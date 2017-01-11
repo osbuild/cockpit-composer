@@ -31,9 +31,9 @@ class RecipePage extends React.Component {
     return (
       <Layout className="container-fluid container-pf-nav-pf-vertical">
 
-				<ol className="breadcrumb"><li><Link to="/recipes">Back to Recipes</Link></li><li className="active"><strong>Low Latency</strong></li></ol>
+				<ol className="breadcrumb"><li><Link to="/recipes">Back to Recipes</Link></li><li className="active"><strong>{ this.props.route.params.recipe }</strong></li></ol>
 
-				<h1>Low Latency</h1>
+				<h1>{ this.props.route.params.recipe }</h1>
 
 				<ul className="nav nav-tabs"><li><a href="#">Details</a></li><li className="active"><a href="#">Components</a></li><li><a href="#">Compositions</a></li></ul>
 
@@ -64,7 +64,7 @@ class RecipePage extends React.Component {
                 <button className="btn btn-link" type="button"><span className="fa fa-sort-alpha-asc"></span></button>
               </div>
               <div className="form-group">
-                <Link to="/edit"><button className="btn btn-default" type="button">Edit Recipe</button></Link>&nbsp;
+                <Link to={"/edit/" + this.props.route.params.recipe }><button className="btn btn-default" type="button">Edit Recipe</button></Link>&nbsp;
 								<button className="btn btn-default" id="cmpsr-btn-crt-compos" data-toggle="modal" data-target="#cmpsr-modal-crt-compos" type="button">Create Composition</button>
                 <div className="dropdown btn-group  dropdown-kebab-pf">
                   <button className="btn btn-link dropdown-toggle" type="button" id="dropdownKebab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span className="fa fa-ellipsis-v"></span></button>
@@ -107,7 +107,9 @@ class RecipePage extends React.Component {
           </div>
         </div>
         { this.state.components.length == 0 &&
-        <EmptyState title={"Empty Recipe"} message={"Edit the recipe to add components."} />
+        <EmptyState title={"Empty Recipe"} message={"There are no components listed in the recipe. Edit the recipe to add components."} >
+          <Link to={"/edit/" + this.props.route.params.recipe }><button className="btn btn-default btn-primary" type="button">Edit Recipe</button></Link>
+        </EmptyState>
         ||
         <ListViewExpand id="cmpsr-recipe-components" listItems={ this.state.components } />
         }

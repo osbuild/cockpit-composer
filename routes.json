@@ -36,11 +36,11 @@
     "page": "./pages/recipes"
   },
   {
-    "path": "/recipe",
+    "path": "/recipe/:recipe",
     "page": "./pages/recipe"
   },
   {
-    "path": "/edit",
+    "path": "/edit/:recipe",
     "page": "./pages/recipeEdit"
   }
 ]

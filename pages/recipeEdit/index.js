@@ -19,7 +19,8 @@ class EditRecipePage extends React.Component {
   componentWillMount() {
     this.getDependencies();
     Promise.all([this.getRecipe(), this.getInputs()]).then((data) => {
-      this.setState({recipecomponents : data[0].recipe});
+      // if state is set in getRecipe(), then why is it set here?
+      this.setState({recipecomponents : data[0][this.props.route.params.recipe]['modules']});
       this.setState({inputcomponents : data[1].modules});
       this.updateInputs();
     }).catch(e => console.log('Error in EditRecipe promise: ' + e));
@@ -30,10 +31,13 @@ class EditRecipePage extends React.Component {
   }
 
   getRecipe() {
+    let recipeName = this.props.route.params.recipe;
     let p = new Promise((resolve, reject) => {
-      fetch(constants.get_recipe_url).then(r => r.json())
+      //fetch(constants.get_recipe_url).then(r => r.json())
+      fetch(constants.get_recipe_api_url + recipeName)
+        .then(r => r.json())
         .then(data => {
-          this.setState({recipecomponents : data.recipe});
+          this.setState({recipecomponents : data[recipeName]['modules']});
           resolve(data);
         })
         .catch(e => {
@@ -165,11 +169,11 @@ class EditRecipePage extends React.Component {
         </div>
 				<ol className="breadcrumb">
 					<li><Link to="/recipes">Back to Recipes</Link></li>
-					<li><Link to="/recipe">Low Latency</Link></li>
+					<li><Link to={"/recipe/" + this.props.route.params.recipe }>{this.props.route.params.recipe}</Link></li>
 					<li className="active"><strong>Edit Recipe</strong></li>
 				</ol>
         <div className="cmpsr-title-summary">
-          <h1 className="cmpsr-title-summary__item">Low Latency</h1><p className="cmpsr-title-summary__item">Version 3<span className="text-muted">, Total Disk Space: 1,234 KB</span></p>
+          <h1 className="cmpsr-title-summary__item">{ this.props.route.params.recipe }</h1><p className="cmpsr-title-summary__item">Version 3<span className="text-muted">, Total Disk Space: 1,234 KB</span></p>
         </div>
         <div className="row">
 					<div className="col-sm-7 col-md-8 col-sm-push-5 col-md-push-4" id="cmpsr-recipe-list">

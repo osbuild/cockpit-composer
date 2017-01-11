@@ -55,7 +55,7 @@ class RecipeListView extends React.Component {
               <div className="list-view-pf-checkbox">
                 <input type="checkbox" />
               </div>
-              <div className="list-view-pf-actions"><Link to="/edit"><button className="btn btn-default" type="button">Edit Recipe</button></Link><button className="btn btn-default">Create Composition</button><div className="dropdown pull-right dropdown-kebab-pf"><button className="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight9" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span className="fa fa-ellipsis-v"></span></button><ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight9"><li><a href="#">Export</a></li><li><a href="#">Delete</a></li></ul></div></div>
+              <div className="list-view-pf-actions"><Link to={"/edit/" + recipe.name }><button className="btn btn-default" type="button">Edit Recipe</button></Link><button className="btn btn-default">Create Composition</button><div className="dropdown pull-right dropdown-kebab-pf"><button className="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight9" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span className="fa fa-ellipsis-v"></span></button><ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight9"><li><a href="#">Export</a></li><li><a href="#">Delete</a></li></ul></div></div>
               <div className="list-view-pf-main-info">
                 <div className="list-view-pf-left">
                   <span className="fa fa-cube list-view-pf-icon-sm"></span>
@@ -63,7 +63,7 @@ class RecipeListView extends React.Component {
                 <div className="list-view-pf-body">
                   <div className="list-view-pf-description">
                     <div className="list-group-item-heading">
-                      <Link to="/recipe">{ recipe.name }</Link>
+                      <Link to={"/recipe/" + recipe.name }>{ recipe.name }</Link>
                     </div>
                     <div className="list-group-item-text">
                       { recipe.description }
