@@ -11,7 +11,7 @@ class EmptyState extends React.Component {
               <h1>{ this.props.title }</h1>
               <p>{ this.props.message }</p>
               <p>Learn more about this <a href="#">on the documentation</a>.</p>
-              { this.props.actions }
+              { this.props.children }
             </div>
 
     );

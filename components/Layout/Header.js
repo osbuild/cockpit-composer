@@ -12,7 +12,7 @@ function Header() {
           <span className="icon-bar"></span>
         </button>
         <a href="/" className="navbar-brand">
-          <img className="navbar-brand-name" src="RHComposer-logo-header.svg" alt="Red Hat Composer" width="156" />
+          <img className="navbar-brand-name" src="/RHComposer-logo-header.svg" alt="Red Hat Composer" width="156" />
         </a>
       </div>
       <nav className="collapse navbar-collapse">
