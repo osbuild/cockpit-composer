@@ -8,7 +8,7 @@ class ListViewExpand extends React.Component {
     return (
         <div id={this.props.id} className="list-group list-view-pf list-view-pf-view">
           {listItems.map((listItem,i) =>
-            <ListItemExpand listItemParent={this.props.id} isDependency={this.props.isDependency} listItem={listItem} key={i} handleRemoveComponent={this.props.handleRemoveComponent} />
+            <ListItemExpand listItemParent={this.props.id} isDependency={this.props.isDependency} listItem={listItem} key={i} handleRemoveComponent={this.props.handleRemoveComponent} handleComponentDetails={this.props.handleComponentDetails} />
           )}
         </div>
     )

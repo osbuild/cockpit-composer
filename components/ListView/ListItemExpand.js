@@ -32,11 +32,10 @@ class ListItemExpand extends React.Component {
 
   render() {
     const { listItem } = this.props;
-    const { key } = this.props; // is this correct?
 
     return (
 
-            <div data-name={ listItem.name } className={"list-group-item " + (this.state.expanded ? 'list-view-pf-expand-active' : '')} key={key}>
+            <div data-name={ listItem.name } className={"list-group-item " + (this.state.expanded ? 'list-view-pf-expand-active' : '')}>
               <div className="list-group-item-header" onClick={(e) => this.handleExpandComponent(e)}>
                 <div className="list-view-pf-expand">
                   <span className={"fa fa-angle-right " + (this.state.expanded ? 'fa-angle-down' : 'fa-angle-right')}></span>
@@ -62,7 +61,7 @@ class ListItemExpand extends React.Component {
                   <div className="list-view-pf-body">
                     <div className="list-view-pf-description">
                       <div className="list-group-item-heading">
-                        { listItem.name }
+                        <a href="#" data-item="name" onClick={(e) => this.props.handleComponentDetails(e, listItem, "selected")}>{ listItem.name }</a>
                       </div>
                       <div className="list-group-item-text">
                         { listItem.summary }

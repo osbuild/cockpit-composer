@@ -10,7 +10,7 @@ import constants from '../../core/constants';
 
 class EditRecipePage extends React.Component {
 
-  state = { selectedComponent: "", selectedComponentIndex: "", recipecomponents: [], inputcomponents: [], recipedependencies: [] };
+  state = { selectedComponent: "", selectedComponentStatus: "", recipecomponents: [], inputcomponents: [], recipedependencies: [] };
 
   componentDidMount() {
     document.title = 'Composer | Recipe';
@@ -24,10 +24,6 @@ class EditRecipePage extends React.Component {
       this.setState({inputcomponents : data[1].modules});
       this.updateInputs();
     }).catch(e => console.log('Error in EditRecipe promise: ' + e));
-  }
-
-  componentDidUpdate() {
-    this.showComponentDetails();
   }
 
   getRecipe() {
@@ -48,7 +44,6 @@ class EditRecipePage extends React.Component {
     });
     return p;
   }
-
 
   getInputs(){
     let p = new Promise((resolve, reject) => {
@@ -96,30 +91,26 @@ class EditRecipePage extends React.Component {
 
   }
 
-  showComponentDetails() {
-    $("#compsr-inputs .list-group-item").removeClass("active");
-    if (this.state.selectedComponent != "") {
-      $("#cmpsr-recipe-details").removeClass("hidden");
-      $("#cmpsr-recipe-list").addClass("hidden");
-      $("#compsr-inputs .list-group-item").eq(this.state.selectedComponentIndex).addClass("active");
-      //find component in list and add active class
-    } else {
-      $("#cmpsr-recipe-list").removeClass("hidden");
-      $("#cmpsr-recipe-details").addClass("hidden");
-    }
-  }
-
   clearInputAlert() {
     $("#cmpsr-recipe-inputs .alert").remove();
   }
 
-  handleAddComponent = (event, component) => {
+  handleAddComponent = (event, component, version) => {
     // the user clicked Add in the sidebar to add the component to the recipe
+    // NOTE: how inputcomponents are getting updated may need to be refactored
+    // to explicitly use this.setState after setting .inRecipe = true
     let newcomponent = component;
     newcomponent.inRecipe = true;
+    if (version != "") {
+        newcomponent.version = version;
+    }
     let recipecomponents = this.state.recipecomponents.slice(0);
     let updatedrecipecomponents = recipecomponents.concat(newcomponent);
     this.setState({recipecomponents: updatedrecipecomponents});
+    let inputs = this.removeInputActive();
+    this.setState({inputcomponents: inputs});
+    this.setState({selectedComponent: ""});
+    this.setState({selectedComponentStatus: ""});
     this.clearInputAlert();
   };
 
@@ -148,16 +139,37 @@ class EditRecipePage extends React.Component {
     this.setState({recipecomponents: updatedrecipecomponents});
   };
 
-  handleComponentDetails = (event, component) => {
+  handleComponentDetails = (event, component, status) => {
     // the user selected a component in the sidebar to view more details on the right
-    this.setState({selectedComponent: component});
-    let compIndex = this.state.inputcomponents.indexOf(component)
-    this.setState({selectedComponentIndex: compIndex});
+    // remove the active state from the current selected component
+    let inputs = this.removeInputActive();
+    if (component != this.state.selectedComponent) {
+      // if the user did not clicked on the current selected component:
+      // set state for selected component and recipe status
+      this.setState({selectedComponent: component});
+      this.setState({selectedComponentStatus: status});
+      // if the status is available, find the selected component in the list of inputs
+      // and set active to true so that it is highlighted
+      let compIndex = inputs.indexOf(component)
+      if (compIndex >= 0 && status == "available") {
+        inputs[compIndex].active = true;
+      }
+      this.setState({inputcomponents: inputs});
+    } else {
+      // if the user clicked on the current selected component:
+      this.setState({selectedComponent: ""});
+      this.setState({selectedComponentStatus: ""});
+    }
   };
 
-  closeComponentDetails = (event) => {
-    // the user clicked Close while viewing component details, to return to the list of components in the recipe
-    this.setState({selectedComponent: ""});
+  removeInputActive() {
+    // remove the active state from list of inputs
+    let inputs = this.state.inputcomponents.slice(0);
+    let index = inputs.indexOf(this.state.selectedComponent)
+    if (index >= 0) {
+      inputs[index].active = false;
+    }
+    return inputs;
   }
 
   render() {
@@ -176,8 +188,9 @@ class EditRecipePage extends React.Component {
           <h1 className="cmpsr-title-summary__item">{ this.props.route.params.recipe }</h1><p className="cmpsr-title-summary__item">Version 3<span className="text-muted">, Total Disk Space: 1,234 KB</span></p>
         </div>
         <div className="row">
-					<div className="col-sm-7 col-md-8 col-sm-push-5 col-md-push-4" id="cmpsr-recipe-list">
 
+          { this.state.selectedComponent == "" &&
+          <div className="col-sm-7 col-md-8 col-sm-push-5 col-md-push-4" id="cmpsr-recipe-list">
 						<div className="row toolbar-pf">
 		          <div className="col-sm-12">
 		            <form className="toolbar-pf-actions">
@@ -252,13 +265,16 @@ class EditRecipePage extends React.Component {
             { this.state.recipecomponents.length == 0 &&
             <EmptyState title={"Add Recipe Components"} message={"Browse or search for components, then add them to the recipe."} />
             ||
-            <RecipeContents components={ this.state.recipecomponents } dependencies={ this.state.recipecomponents } handleRemoveComponent={this.handleRemoveComponent.bind(this)} />
+            <RecipeContents components={ this.state.recipecomponents } dependencies={ this.state.recipecomponents } handleRemoveComponent={this.handleRemoveComponent.bind(this)} handleComponentDetails={this.handleComponentDetails.bind(this)} />
             }
 					</div>
-          <div className="col-sm-7 col-md-8 col-sm-push-5 col-md-push-4 hidden" id="cmpsr-recipe-details">
-            <ComponentDetailsView component={ this.state.selectedComponent } closeComponentDetails={this.closeComponentDetails.bind(this)} />
+          ||
+          <div className="col-sm-7 col-md-8 col-sm-push-5 col-md-push-4" id="cmpsr-recipe-details">
+            <ComponentDetailsView component={ this.state.selectedComponent } status={ this.state.selectedComponentStatus } handleComponentDetails={this.handleComponentDetails.bind(this)} handleAddComponent={this.handleAddComponent.bind(this)} />
           </div>
-					<div className="col-sm-5 col-md-4 col-sm-pull-7 col-md-pull-8 sidebar-pf sidebar-pf-left" id="cmpsr-recipe-inputs">
+          }
+
+          <div className="col-sm-5 col-md-4 col-sm-pull-7 col-md-pull-8 sidebar-pf sidebar-pf-left" id="cmpsr-recipe-inputs">
 
 						<div className="row toolbar-pf">
 							<div className="col-sm-12">
@@ -307,7 +323,7 @@ class EditRecipePage extends React.Component {
 						  <strong>Select components</strong> in this list to add to the recipe.
 						</div>
 
-						<ComponentInputs components={ this.state.inputcomponents } recipecomponents={this.state.recipecomponents} handleComponentDetails={this.handleComponentDetails.bind(this)} handleAddComponent={this.handleAddComponent.bind(this)} />
+						<ComponentInputs components={ this.state.inputcomponents } handleComponentDetails={this.handleComponentDetails.bind(this)} handleAddComponent={this.handleAddComponent.bind(this)} />
 					</div>
 				</div>
 				<CreateComposition />
