@@ -10,7 +10,7 @@ import constants from '../../core/constants';
 
 class EditRecipePage extends React.Component {
 
-  state = { selectedComponent: "", selectedComponentStatus: "", recipecomponents: [], inputcomponents: [], recipedependencies: [] };
+  state = { selectedComponent: "", selectedComponentStatus: "", selectedComponentParents: [], recipecomponents: [], inputcomponents: [], recipedependencies: [] };
 
   componentDidMount() {
     document.title = 'Composer | Recipe';
@@ -116,8 +116,16 @@ class EditRecipePage extends React.Component {
 
   handleRemoveComponent = (event, component) => {
     // the user clicked Remove for a component in the recipe component list
+    // or the component details view
+    let inputs = [];
+    // if the removed component was visible in the details view:
+    if (component == this.state.selectedComponent) {
+      inputs = this.removeInputActive();
+      this.hideComponentDetails();
+    } else {
+      inputs = this.state.inputcomponents.slice(0);
+    }
     // update the list of components to include the Add button for the removed component
-    let inputs = this.state.inputcomponents.slice(0);
     let input = inputs.map(function(e) {return e.name}).indexOf(component.name);
     if (input > -1) {
       inputs[input].inRecipe = false;
@@ -137,9 +145,12 @@ class EditRecipePage extends React.Component {
       updatedrecipecomponents = slice1.concat(slice2);
     }
     this.setState({recipecomponents: updatedrecipecomponents});
+
+
+
   };
 
-  handleComponentDetails = (event, component, status) => {
+  handleComponentDetails = (event, component, parent) => {
     // the user selected a component in the sidebar to view more details on the right
     // remove the active state from the current selected component
     let inputs = this.removeInputActive();
@@ -147,20 +158,63 @@ class EditRecipePage extends React.Component {
       // if the user did not clicked on the current selected component:
       // set state for selected component and recipe status
       this.setState({selectedComponent: component});
-      this.setState({selectedComponentStatus: status});
-      // if the status is available, find the selected component in the list of inputs
-      // and set active to true so that it is highlighted
+
+      // if the selected component is in the list of inputs
+      // then set active to true so that it is highlighted
       let compIndex = inputs.indexOf(component)
-      if (compIndex >= 0 && status == "available") {
+      if (compIndex >= 0) {
         inputs[compIndex].active = true;
       }
       this.setState({inputcomponents: inputs});
+
+      // update the breadcrumb
+      let parents = this.state.selectedComponentParents.slice(0);
+      let updatedParents = [];
+      let breadcrumbIndex = parents.indexOf(component);
+      //check if the selected component is a breadcrumb node
+      // if it is in the breadcrumb, then the breadcrumb path should be updated
+      if ( breadcrumbIndex == 0) {
+        // if the user clicks the first node in the breadcrumb, it is removed.
+        updatedParents = [];
+      } else if ( breadcrumbIndex >= 1) {
+        // if the user clicks any other node in the breadcrumb, then the array
+        // is truncated to show only the parents of the selected component
+        updatedParents = parents.slice(0, breadcrumbIndex);
+      } else if (parent != undefined) {
+      // otherwise, update the list of parents if a parent is provided
+        updatedParents = parents.concat(parent);
+      }
+      this.setState({selectedComponentParents: updatedParents});
+
+      // set status
+      // status could be: available, selected, available-child, selected-child
+      // (selected and selected-child may or may not be merged depending on what actions are available)
+      // if the component is in the recipe and has no parent, it's available
+      if ( component.inRecipe == true ) {
+          this.setState({selectedComponentStatus: "selected"});
+      } else {
+        if ( parent == undefined ) {
+          this.setState({selectedComponentStatus: "available"});
+        } else {
+          if ( updatedParents[0].inRecipe == true ) {
+            this.setState({selectedComponentStatus: "selected-child"});
+          } else {
+            this.setState({selectedComponentStatus: "available-child"});
+          }
+        }
+      }
+
     } else {
       // if the user clicked on the current selected component:
-      this.setState({selectedComponent: ""});
-      this.setState({selectedComponentStatus: ""});
+      this.hideComponentDetails();
     }
   };
+
+  hideComponentDetails() {
+    this.setState({selectedComponent: ""});
+    this.setState({selectedComponentStatus: ""});
+    this.setState({selectedComponentParents: []});
+  }
 
   removeInputActive() {
     // remove the active state from list of inputs
@@ -270,7 +324,13 @@ class EditRecipePage extends React.Component {
 					</div>
           ||
           <div className="col-sm-7 col-md-8 col-sm-push-5 col-md-push-4" id="cmpsr-recipe-details">
-            <ComponentDetailsView component={ this.state.selectedComponent } status={ this.state.selectedComponentStatus } handleComponentDetails={this.handleComponentDetails.bind(this)} handleAddComponent={this.handleAddComponent.bind(this)} />
+            <ComponentDetailsView
+              component={ this.state.selectedComponent }
+              componentParents={ this.state.selectedComponentParents }
+              status={ this.state.selectedComponentStatus }
+              handleComponentDetails={this.handleComponentDetails.bind(this)}
+              handleAddComponent={this.handleAddComponent.bind(this)}
+              handleRemoveComponent={this.handleRemoveComponent.bind(this)} />
           </div>
           }
 

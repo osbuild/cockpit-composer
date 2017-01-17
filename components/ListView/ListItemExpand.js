@@ -43,17 +43,19 @@ class ListItemExpand extends React.Component {
                 <div className="list-view-pf-checkbox">
                   <input type="checkbox" />
                 </div>
+                {this.props.noEditComponent != true &&
                 <div className="list-view-pf-actions">
                   <div className="dropdown pull-right dropdown-kebab-pf">
                     <button className="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight9" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span className="fa fa-ellipsis-v"></span></button>
                     <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight9">
-                      <li><a href="#">View</a></li>
-                      <li><a href="#">Update</a></li>
+                      <li><a href="#" onClick={(e) => this.props.handleComponentDetails(e, listItem, this.props.componentDetailsParent)}>View</a></li>
+                      <li><a href="#">Edit</a></li>
                       <li role="separator" className="divider"></li>
                       <li><a href="#" onClick={(e) => this.props.handleRemoveComponent(e, listItem)}>Remove</a></li>
                     </ul>
                   </div>
                 </div>
+                }
                 <div className="list-view-pf-main-info">
                   <div className="list-view-pf-left" data-item="type">
                     <ComponentTypeIcons componentType={ listItem.group_type } />
@@ -61,7 +63,7 @@ class ListItemExpand extends React.Component {
                   <div className="list-view-pf-body">
                     <div className="list-view-pf-description">
                       <div className="list-group-item-heading">
-                        <a href="#" data-item="name" onClick={(e) => this.props.handleComponentDetails(e, listItem, "selected")}>{ listItem.name }</a>
+                        <a href="#" data-item="name" onClick={(e) => this.props.handleComponentDetails(e, listItem, this.props.componentDetailsParent)}>{ listItem.name }</a>
                       </div>
                       <div className="list-group-item-text">
                         { listItem.summary }
@@ -81,7 +83,7 @@ class ListItemExpand extends React.Component {
                         Lifecycle<strong>01/15/2017</strong>
                       </div>
                       <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
-                        Dependencies <strong>3</strong>
+                        Dependencies <strong>2</strong>
                       </div>
                     </div>
                   </div>
@@ -99,12 +101,21 @@ class ListItemExpand extends React.Component {
                       <dd>{ listItem.version }</dd>
                       <dt>Release</dt>
                       <dd>{ listItem.release }</dd>
+                      <dt>Architecture</dt>
+                      <dd>x86_64</dd>
+                      <dt>Install Size</dt>
+                      <dd>2 MB (5 MB with Dependencies)</dd>
+                      <dt>URL</dt>
+                      <dd>http:&#47;&#47;www.{listItem.name}.com</dd>
+                      <dt>Packager</dt>
+                      <dd>Red Hat</dd>
+                      <dt>Product Family</dt>
+                      <dd>???</dd>
                       <dt>Lifecycle</dt>
                       <dd>01/15/2017</dd>
                       <dt>Support Level</dt>
-                      <dd>Basic</dd>
-                      <dt>Dependencies</dt>
-                      <dd>2</dd>
+                      <dd>Standard</dd>
+
                     </dl>
                     <strong>Errata</strong>
                     <ul>
@@ -115,9 +126,9 @@ class ListItemExpand extends React.Component {
                       <li><a>RHBA-2016:1641 RHEL Atomic OSTree Update 7.2.6-1</a></li>
                     </ul>
                   </div>
-                  <div className="col-md-6 cmpsr-summary-listview">
-                    { listItem.group_type != "rpm" && <div>
-                      <strong>Child Components (4)</strong>
+                  <div className="col-md-6">
+                    { listItem.group_type != "rpm" && <div className="cmpsr-summary-listview">
+                      <p><strong>Child Components</strong> (4)</p>
                       <div className="list-group list-view-pf list-view-pf-view cmpsr-list-view-viewskinny">
                         <div className="list-group-item">
                           <div className="list-view-pf-main-info">
@@ -154,8 +165,8 @@ class ListItemExpand extends React.Component {
                         </div>
                       </div>
                     </div> }
-                    {this.props.isDependency && <div>
-                      <strong>Required By (1)</strong>
+                    {this.props.isDependency && <div className="cmpsr-summary-listview">
+                      <p><strong>Required By</strong> (1)</p>
                       <div className="list-group list-view-pf list-view-pf-view cmpsr-list-view-viewskinny">
                         <div className="list-group-item">
                           <div className="list-view-pf-main-info">
@@ -171,34 +182,35 @@ class ListItemExpand extends React.Component {
                         </div>
                       </div>
                     </div> }
-                    <strong>Dependencies (2)</strong>
-                    <div className="list-group list-view-pf list-view-pf-view cmpsr-list-view-viewskinny">
-                      <div className="list-group-item">
-                        <div className="list-view-pf-main-info">
-                          <div className="list-view-pf-left" data-item="type">
-                            <span className="fa fa-cube list-view-pf-icon-sm" title="Module"></span>
-                          </div>
-                          <div className="list-view-pf-body">
-                            <div className="list-view-pf-description">
-                              <a href="#" data-item="name">fm-group:rpm-development-tools</a>
+                    <div className="cmpsr-summary-listview">
+                      <p><strong>Dependencies</strong> (2 First Level, 6 Total)</p>
+                      <div className="list-group list-view-pf list-view-pf-view cmpsr-list-view-viewskinny">
+                        <div className="list-group-item">
+                          <div className="list-view-pf-main-info">
+                            <div className="list-view-pf-left" data-item="type">
+                              <span className="fa fa-cube list-view-pf-icon-sm" title="Module"></span>
+                            </div>
+                            <div className="list-view-pf-body">
+                              <div className="list-view-pf-description">
+                                <a href="#" data-item="name">fm-group:rpm-development-tools</a>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <div className="list-group-item">
-                        <div className="list-view-pf-main-info">
-                          <div className="list-view-pf-left" data-item="type">
-                            <span className="fa fa-cube list-view-pf-icon-sm" title="Module"></span>
-                          </div>
-                          <div className="list-view-pf-body">
-                            <div className="list-view-pf-description">
-                              <a href="#" data-item="name">fm-group:rpm-development-tools</a>
+                        <div className="list-group-item">
+                          <div className="list-view-pf-main-info">
+                            <div className="list-view-pf-left" data-item="type">
+                              <span className="fa fa-cube list-view-pf-icon-sm" title="Module"></span>
+                            </div>
+                            <div className="list-view-pf-body">
+                              <div className="list-view-pf-description">
+                                <a href="#" data-item="name">fm-group:rpm-development-tools</a>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-
                   </div>
                 </div>
               </div>

@@ -77,7 +77,7 @@ class ComponentInputs extends React.Component {
               <div className="list-view-pf-body">
                 <div className="list-view-pf-description">
                   <div className="list-group-item-heading">
-                    <a href="#" data-item="name" onClick={(e) => this.props.handleComponentDetails(e, component, "available")}>{ component.name }</a>
+                    <a href="#" data-item="name" onClick={(e) => this.props.handleComponentDetails(e, component)}>{ component.name }</a>
                   </div>
                   <div className="list-group-item-text" data-item="summary">{ component.summary }</div>
                 </div>

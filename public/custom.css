@@ -139,11 +139,10 @@
 .cmpsr-summary-listview .list-group {
   margin: 0;
 }
-.cmpsr-summary-listview strong {
-  display: block;
+.cmpsr-summary-listview{
   margin-top: 15px;
 }
-.cmpsr-summary-listview strong:first-child {
+.cmpsr-summary-listview:first-child {
   margin-top: 0;
 }
 .cmpsr-summary-listview .list-view-pf-main-info {
