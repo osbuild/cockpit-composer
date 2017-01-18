@@ -1,6 +1,0 @@
-{
-    "/api/v0/recipe/list":  "/recipe-api/recipes",
-    "/api/v0/recipe/:name": "/recipe-api/:name",
-    "/api/v0/module/list":  "/module-list",
-    "/api/v0/compose/types": "/compose-types"
-}

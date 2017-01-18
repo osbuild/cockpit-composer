@@ -4,9 +4,6 @@ const fs = require('fs');
 const del = require('del');
 const ejs = require('ejs');
 const webpack = require('webpack');
-const path = require('path');
-const jsonServer = require('json-server');
-const jsonfile = require('jsonfile');
 
 // TODO: Update configuration settings
 const config = {
@@ -41,31 +38,6 @@ tasks.set('html', () => {
   const render = ejs.compile(template, { filename: './public/index.ejs' });
   const output = render({ debug: webpackConfig.debug, bundle: assets.main.js, config });
   fs.writeFileSync('./public/index.html', output, 'utf8');
-
-  // Generate the data to be used by the JSON server:
-  // combine all the JSON files in public/json into a single JSON file
-  // use jsonfile to save a couple lines of parsing/serializing
-  const jsondir = 'public/json';
-
-  var jsondb = {}
-  var jsonfiles = fs.readdirSync(jsondir);
-  for (var i in jsonfiles) {
-    var f = jsonfiles[i];
-      if (f.endsWith('.json')) {
-        var jsondata = jsonfile.readFileSync(path.join(jsondir, f));
-        jsondb[f.substring(0, f.length - 5)] = jsondata;
-      }
-  }
-
-  // add in list properties
-  // there's probably a better way to do this
-  var recipelist = [];
-  for (var i in jsondb["recipe-api"]) {
-    recipelist.push(jsondb["recipe-api"][i].id);
-  }
-  jsondb["recipe-api"].push({"id": "recipes", "recipes": recipelist});
-
-  jsonfile.writeFileSync('db.json', jsondb);
 });
 
 //
@@ -130,22 +102,7 @@ tasks.set('publish', () => {
 tasks.set('start', () => {
   let count = 0;
   global.HMR = !process.argv.includes('--no-hmr'); // Hot Module Replacement (HMR)
-  return run('clean').then(() => {
-          // start the JSON server
-          var server = jsonServer.create();
-          var router = jsonServer.router('db.json');
-          var rewriter = jsonServer.rewriter(jsonfile.readFileSync('json-routes.json'));
-          var defaults = jsonServer.defaults({logger: false, readOnly: false, noCors: false, noGzip: false});
-
-          server.use(defaults);
-
-          // NB: the first 'use's get checked first for how to resolve a URL. Since rewriter
-          // overrides the stuff from the JSON file itself (router), rewriter has to go first
-          server.use(rewriter);
-          server.use(router);
-
-          server.listen(3000, 'localhost');
-      }).then(() => new Promise(resolve => {
+  return run('clean').then(() => new Promise(resolve => {
     const bs = require('browser-sync').create();
     const webpackConfig = require('./webpack.config');
     const compiler = webpack(webpackConfig);
