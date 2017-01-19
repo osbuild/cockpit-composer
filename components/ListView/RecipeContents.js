@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import ListViewExpand from '../../components/ListView/ListViewExpand';
+import DependencyListView from '../../components/ListView/DependencyListView';
 
 class RecipeContents extends React.Component {
 
@@ -7,6 +8,8 @@ class RecipeContents extends React.Component {
     const { components } = this.props;
     const { dependencies } = this.props;
     const { handleRemoveComponent } = this.props;
+    const { handleComponentDetails } = this.props;
+
 
     return (
       <div className="panel-group row" id="cmpsr-recipe-contents">
@@ -20,7 +23,7 @@ class RecipeContents extends React.Component {
           </div>
           <div id="collapseOne" className="panel-collapse collapse in">
             <div className="panel-body">
-              <ListViewExpand id="cmpsr-recipe-components" listItems={ components } handleRemoveComponent={handleRemoveComponent} />
+              <ListViewExpand id="cmpsr-recipe-components" listItems={ components } handleRemoveComponent={handleRemoveComponent} handleComponentDetails={handleComponentDetails} />
             </div>
           </div>
         </div>
@@ -34,26 +37,11 @@ class RecipeContents extends React.Component {
           </div>
           <div id="collapseTwo" className="panel-collapse collapse">
             <div className="panel-body">
-              <div className="row toolbar-pf">
-                <div className="col-sm-12">
-                  <form className="toolbar-pf-actions">
-                    <div className="form-group">
-                      <span className="text-muted">Show:</span> First Level Dependencies ({dependencies.length}) <span className="text-muted">|</span> <a>All Dependencies (28)</a>
-                    </div>
-                  </form>
-                </div>
-              </div>
-              <div className="alert alert-warning alert-dismissable">
-                <span className="pficon pficon-warning-triangle-o"></span>
-                One or more dependencies have multiple variations that could be used. A default variation was automatically selected. Click a flagged dependency to see other options available.
-              </div>
-              <ListViewExpand id="cmpsr-recipe-dependencies" listItems={ dependencies } handleRemoveComponent={handleRemoveComponent} isDependency />
+              <DependencyListView id="cmpsr-recipe-dependencies" listItems= { dependencies } handleRemoveComponent={handleRemoveComponent} handleComponentDetails={handleComponentDetails} />
             </div>
           </div>
         </div>
       </div>
-
-
 
     )
   }
