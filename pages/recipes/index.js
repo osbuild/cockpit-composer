@@ -17,14 +17,21 @@ class RecipesPage extends React.Component {
   }
 
   getRecipes() {
-    fetch(constants.get_recipes_url).then(r => r.json())
+    // The /recipes/list response looks like:
+    // {"recipes":["example","http-server","nfs-server"],"offset":0,"limit":20}
+    console.log("BCL was here #1");
+    fetch(constants.get_recipes_list).then(r => r.json())
       .then(listdata => {
         for (var i in listdata.recipes) {
             let recipeName = listdata.recipes[i];
-            fetch(constants.get_recipe_api_url + recipeName)
+            // Recipe info looks like:
+            // {"recipes":[{"name":"http-server","description":"An example http server",
+            // "modules":[{"name":"fm-httpd","version":"23.*"},{"name":"fm-php","version":"11.6.*"}]
+            // ,"packages":[{"name":"tmux","version":"2.2"}]}],"offset":0,"limit":20}
+            fetch(constants.get_recipes_info + recipeName)
                 .then(r => r.json())
                 .then(recipedata => {
-                      this.setState({ recipes: this.state.recipes.concat(recipedata[recipeName]) });
+                      this.setState({ recipes: this.state.recipes.concat(recipedata.recipes[0]) });
                 });
         }
       })

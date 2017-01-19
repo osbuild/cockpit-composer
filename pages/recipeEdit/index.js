@@ -30,10 +30,10 @@ class EditRecipePage extends React.Component {
     let recipeName = this.props.route.params.recipe;
     let p = new Promise((resolve, reject) => {
       //fetch(constants.get_recipe_url).then(r => r.json())
-      fetch(constants.get_recipe_api_url + recipeName)
+      fetch(constants.get_recipes_info + recipeName)
         .then(r => r.json())
         .then(data => {
-          this.setState({recipecomponents : data[recipeName]['modules']});
+          this.setState({recipecomponents : data.recipes[0]['modules']});
           resolve(data);
         })
         .catch(e => {
@@ -47,7 +47,9 @@ class EditRecipePage extends React.Component {
 
   getInputs(){
     let p = new Promise((resolve, reject) => {
-      fetch(constants.get_components_url).then(r => r.json())
+    // /modules/list looks like:
+    // {"modules":[{"name":"389-ds-base","group_type":"rpm"},{"name":"389-ds-base-libs","group_type":"rpm"}, ...]}
+    fetch(constants.get_modules_list).then(r => r.json())
         .then(data => {
           // add type: module to each one, save the list
           this.setState({inputcomponents : data.modules.map(m => {

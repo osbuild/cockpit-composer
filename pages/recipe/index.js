@@ -19,10 +19,11 @@ class RecipePage extends React.Component {
   }
 
   getRecipe() {
+    let recipeName = this.props.route.params.recipe;
     let that = this;
-    fetch(constants.get_recipe_url).then(r => r.json())
+    fetch(constants.get_recipes_info + recipeName).then(r => r.json())
       .then(data => {
-        that.setState({"components" : data.recipe})
+        that.setState({"components" : data.recipes})
       })
       .catch(e => console.log("Error fetching recipes: " + e));
   }
