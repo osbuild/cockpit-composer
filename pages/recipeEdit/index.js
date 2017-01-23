@@ -91,29 +91,16 @@ class EditRecipePage extends React.Component {
   }
 
   updateInputs() {
-    // NEEDS TO BE TESTED WITH MOCK DATA
-    // BUT MOCK DATA ISN'T WORKING
-    // this adds a property to the original data set of inputs, that indicates whether the input is in the recipe or not
-    // for each object in recipeComponents, get indexOf value in inputComponents, add a property to the matching inputcomponent "inRecipe = true"
-    // this should run once on did mount, and then individually per added/removed component
+    // add a property to the original set of inputs, that indicates whether the input is in the recipe or not
     let inputs = this.state.inputComponents;
     let selected = this.state.recipeComponents;
-    //let recipeLength = this.state.recipeComponents.length;
     selected.map(component => {
       let index = inputs.map(input => {return input.name}).indexOf(component.name);
       if (index >= 0) {
           inputs[index].inRecipe = true;
       }
     });
-    // for (var i = 0; i < recipeLength; i++) {
-    //   let component = this.state.recipeComponents[i];
-    //   let index = inputs.map(function(e) {return e.name}).indexOf(component.name);
-    //   if (index >= 0) {
-    //       inputs[index].inRecipe = true;
-    //   }
-    // }
     this.setState({inputComponents: inputs});
-
   }
 
   clearInputAlert() {
