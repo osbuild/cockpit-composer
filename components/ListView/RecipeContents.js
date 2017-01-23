@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import ListViewExpand from '../../components/ListView/ListViewExpand';
+import ListItemExpand from '../../components/ListView/ListItemExpand';
 import DependencyListView from '../../components/ListView/DependencyListView';
 
 class RecipeContents extends React.Component {
@@ -23,7 +24,14 @@ class RecipeContents extends React.Component {
           </div>
           <div id="collapseOne" className="panel-collapse collapse in">
             <div className="panel-body">
-              <ListViewExpand id="cmpsr-recipe-components" listItems={ components } handleRemoveComponent={handleRemoveComponent} handleComponentDetails={handleComponentDetails} />
+              <ListViewExpand id="cmpsr-recipe-components" >
+                {components.map((listItem,i) =>
+                  <ListItemExpand listItemParent="cmpsr-recipe-components" listItem={listItem} key={i}
+                    handleRemoveComponent={handleRemoveComponent}
+                    handleComponentDetails={handleComponentDetails}
+                    noEditComponent={ this.props.noEditComponent } />
+                )}
+              </ListViewExpand>
             </div>
           </div>
         </div>
@@ -37,7 +45,11 @@ class RecipeContents extends React.Component {
           </div>
           <div id="collapseTwo" className="panel-collapse collapse">
             <div className="panel-body">
-              <DependencyListView id="cmpsr-recipe-dependencies" listItems= { dependencies } handleRemoveComponent={handleRemoveComponent} handleComponentDetails={handleComponentDetails} />
+              <DependencyListView id="cmpsr-recipe-dependencies"
+                listItems= { dependencies }
+                handleRemoveComponent={handleRemoveComponent}
+                handleComponentDetails={handleComponentDetails}
+                noEditComponent={ this.props.noEditComponent } />
             </div>
           </div>
         </div>

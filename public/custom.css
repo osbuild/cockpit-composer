@@ -6,9 +6,11 @@
 .list-view-pf-additional-info-item .label {margin: .5em 0;}
 /*label {margin-right:5px;} this causes issues in popup dialogs */
 
+.tab-container {
+  padding: 15px 0;
+}
 
 .cmpsr-edit-actions {
-  float: right;
   padding: 8px 0 8px 15px;
 }
 .cmpsr-title-summary {
