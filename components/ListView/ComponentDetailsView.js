@@ -8,40 +8,29 @@ import DependencyListView from '../../components/ListView/DependencyListView';
 
 class ComponentDetailsView extends React.Component {
 
-  state = { selectedVersion: "", activeTab: "Details",
+  state = { selectedVersion: "", activeTab: "Details", parents: [],
     dependencies: [
       {
-        "summary": "These tools include core development tools such rpmbuild.",
+        "summary": "This group is a collection of tools for various hardware specific utilities.",
         "version": "24",
         "release": "2",
-        "url": "up-@rpm-development-tools",
+        "url": "up-@hardware-support",
         "requires": {
           "fm-group:core": "None"
         },
         "group_type": "rpm",
-        "name": "fm-group:rpm-development-tools"
+        "name": "fm-group:hardware-support"
       },
       {
-        "summary": "KDE Educational applications",
+        "summary": "Common set of utilities that extend the minimal installation.",
         "version": "24",
         "release": "1",
-        "url": "@kde-education",
+        "url": "@standard",
         "requires": {
           "fm-group:core": "None"
         },
         "group_type": "rpm",
-        "name": "fm-group:kde-education"
-      },
-      {
-        "summary": "A lightweight desktop environment that works well on low end machines.",
-        "version": "24",
-        "release": "1",
-        "url": "@xfce-desktop",
-        "requires": {
-          "fm-group:core": "None"
-        },
-        "group_type": "rpm",
-        "name": "fm-group:xfce-desktop"
+        "name": "fm-group:standard"
       }
     ]
   }
@@ -52,7 +41,12 @@ class ComponentDetailsView extends React.Component {
 
   componentDidUpdate() {
     this.initializeBootstrapElements();
+
   }
+
+  componentWillReceiveProps(newProps) {
+    this.updateBreadcrumb(newProps);
+   }
 
   initializeBootstrapElements() {
     // Initialize Boostrap-select
@@ -71,21 +65,42 @@ class ComponentDetailsView extends React.Component {
     }
   }
 
+  updateBreadcrumb(newProps) {
+    // update the breadcrumb
+    let parents = this.state.parents.slice(0);
+    let updatedParents = [];
+    let breadcrumbIndex = parents.indexOf(newProps.component);
+    //check if the selected component is a breadcrumb node
+    // if it is in the breadcrumb, then the breadcrumb path should be updated
+    if ( breadcrumbIndex == 0) {
+      // if the user clicks the first node in the breadcrumb, it is removed.
+      updatedParents = [];
+    } else if ( breadcrumbIndex >= 1) {
+      // if the user clicks any other node in the breadcrumb, then the array
+      // is truncated to show only the parents of the selected component
+      updatedParents = parents.slice(0, breadcrumbIndex);
+    } else if (newProps.componentParent != undefined) {
+    // otherwise, update the list of parents if a parent is provided
+      updatedParents = parents.concat(newProps.componentParent);
+    }
+    this.setState({parents: updatedParents});
+  }
+
   render() {
-    const { component, componentParents } = this.props; // eslint-disable-line no-use-before-define
+    const { component } = this.props; // eslint-disable-line no-use-before-define
 
     return (
       <div className="cmpsr-compon-details">
-        { componentParents.length > 0 &&
+        { this.state.parents.length > 0 &&
         <ol className="breadcrumb">
-          {componentParents.map((parent,i) =>
-            <li key={i} className={i}><a href="#" onClick={(e) => this.props.handleComponentDetails(e, parent, componentParents[i-1])}>{parent.name}</a></li>
+          {this.state.parents.map((parent,i) =>
+            <li key={i} className={i}><a href="#" onClick={(e) => this.props.handleComponentDetails(e, parent, this.state.parents[i-1])}>{parent.name}</a></li>
           )}
           <li></li>
         </ol>
         }
-    		<h1>
-    			<span data-item="name"><ComponentTypeIcons componentType={ component.group_type } /> {component.name}</span>
+    		<h2>
+    			<span data-item="name"><ComponentTypeIcons componentType={ component.ui_type } /> {component.name} </span>
     			<div className="pull-right">
     				<ul className="list-inline">
               { this.props.status == "available" &&
@@ -110,7 +125,7 @@ class ComponentDetailsView extends React.Component {
     					</li>
     				</ul>
     			</div>
-    		</h1>
+    		</h2>
 
         { this.props.status == "available" &&
     		<div className="blank-slate-pf">
@@ -146,7 +161,7 @@ class ComponentDetailsView extends React.Component {
             <p>{component.description}</p>
             <dl className="dl-horizontal">
               <dt>Type</dt>
-              <dd>{component.group_type}</dd>
+              <dd>{component.ui_type}</dd>
               <dt>Version</dt>
               <dd>{this.state.selectedVersion == "" && component.version || this.state.selectedVersion} { this.props.status == "selected" && <a href="#">Update</a>}</dd>
               <dt>Release</dt>
@@ -167,6 +182,11 @@ class ComponentDetailsView extends React.Component {
               <dd>Standard</dd>
             </dl>
           </Tab>
+          { component.ui_type == "Module" &&
+          <Tab tabTitle="Components" active={this.state.activeTab == 'Components'}>
+            <p>Components</p>
+          </Tab>
+          }
           <Tab tabTitle="Dependencies" active={this.state.activeTab == 'Dependencies'}>
             <DependencyListView id="cmpsr-component-dependencies"
               listItems= { this.state.dependencies }
@@ -174,11 +194,6 @@ class ComponentDetailsView extends React.Component {
               handleComponentDetails={ this.props.handleComponentDetails }
               componentDetailsParent={ component } />
           </Tab>
-          { component.group_type == "module" &&
-          <Tab tabTitle="Components" active={this.state.activeTab == 'Components'}>
-            <p>Components</p>
-          </Tab>
-          }
           <Tab tabTitle="Errata" active={this.state.activeTab == 'Errata'}>
             <p>Errata</p>
           </Tab>

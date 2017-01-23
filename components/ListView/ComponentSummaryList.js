@@ -13,7 +13,7 @@ class ComponentSummaryList extends React.Component {
                 data-content={"Version <strong data-item='version'>" + component.version + "</strong><br />Release <strong data-item='release'>" + component.release + "</strong><br />Dependencies <strong data-item='requires'>3</strong><br /><a href='#'>View Details</a>"}>
               <div className="list-view-pf-main-info">
                 <div className="list-view-pf-left" data-item="type">
-                  <ComponentTypeIcons componentType={ component.type } />
+                  <ComponentTypeIcons componentType={ component.ui_type } />
                 </div>
                 <div className="list-view-pf-body">
                   <div className="list-view-pf-description">

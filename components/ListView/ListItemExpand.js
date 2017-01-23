@@ -58,7 +58,7 @@ class ListItemExpand extends React.Component {
                 }
                 <div className="list-view-pf-main-info">
                   <div className="list-view-pf-left" data-item="type">
-                    <ComponentTypeIcons componentType={ listItem.group_type } />
+                    <ComponentTypeIcons componentType={ listItem.ui_type } />
                   </div>
                   <div className="list-view-pf-body">
                     <div className="list-view-pf-description">
@@ -78,9 +78,6 @@ class ListItemExpand extends React.Component {
                       </div>
                       <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
                         Release <strong>{ listItem.release }</strong>
-                      </div>
-                      <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
-                        Lifecycle<strong>01/15/2017</strong>
                       </div>
                       <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
                         Dependencies <strong>2</strong>
@@ -121,13 +118,10 @@ class ListItemExpand extends React.Component {
                     <ul>
                       <li><a>RHBA-2016:1641 RHEL Atomic OSTree Update 7.2.6-1</a></li>
                       <li><a>RHBA-2016:1641 RHEL Atomic OSTree Update 7.2.6-1</a></li>
-                      <li><a>RHBA-2016:1641 RHEL Atomic OSTree Update 7.2.6-1</a></li>
-                      <li><a>RHBA-2016:1641 RHEL Atomic OSTree Update 7.2.6-1</a></li>
-                      <li><a>RHBA-2016:1641 RHEL Atomic OSTree Update 7.2.6-1</a></li>
                     </ul>
                   </div>
                   <div className="col-md-6">
-                    { listItem.group_type != "rpm" && <div className="cmpsr-summary-listview">
+                    { listItem.ui_type != "RPM" && <div className="cmpsr-summary-listview">
                       <p><strong>Child Components</strong> (4)</p>
                       <div className="list-group list-view-pf list-view-pf-view cmpsr-list-view-viewskinny">
                         <div className="list-group-item">
@@ -149,7 +143,7 @@ class ListItemExpand extends React.Component {
                             </div>
                             <div className="list-view-pf-body">
                               <div className="list-view-pf-description">
-                                <a href="#" data-item="name">fm-group:rpm-development-tools</a>
+                                <a href="#" data-item="name">fm-group:hardware-support</a>
                               </div>
                             </div>
                           </div>
@@ -192,7 +186,7 @@ class ListItemExpand extends React.Component {
                             </div>
                             <div className="list-view-pf-body">
                               <div className="list-view-pf-description">
-                                <a href="#" data-item="name">fm-group:rpm-development-tools</a>
+                                <a href="#" data-item="name">fm-group:hardware-support</a>
                               </div>
                             </div>
                           </div>
@@ -204,7 +198,7 @@ class ListItemExpand extends React.Component {
                             </div>
                             <div className="list-view-pf-body">
                               <div className="list-view-pf-description">
-                                <a href="#" data-item="name">fm-group:rpm-development-tools</a>
+                                <a href="#" data-item="name">fm-group:standard</a>
                               </div>
                             </div>
                           </div>
