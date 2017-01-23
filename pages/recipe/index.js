@@ -28,30 +28,10 @@ class RecipePage extends React.Component {
     fetch(constants.get_recipes_info + recipeName).then(r => r.json())
       .then(data => {
         that.setState({"recipe" : data.recipes});
-        that.setState({"components" : this.setComponentType(data.recipes[0])});
+        that.setState({"components" : constants.setComponentType(data.recipes[0])});
       })
       .catch(e => console.log("Error fetching recipes: " + e));
 
-  }
-
-  setComponentType(data) {
-    // get the list of modules in recipe, set their type to modules
-    // get the list of packages, set their type to rpm
-    let modules = [];
-    if (data['modules'] != undefined) {
-      modules = data['modules'].slice(0);
-      modules.map(i => {
-        i.type = "Module";
-      });
-    }
-    let rpms = [];
-    if (data['packages'] != undefined) {
-      rpms = data['packages'].slice(0);
-      rpms.map(i => {
-        i.type = "RPM";
-      });
-    }
-    return modules.concat(rpms);
   }
 
   handleTabChanged(e){

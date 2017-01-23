@@ -20,8 +20,8 @@ class EditRecipePage extends React.Component {
   componentWillMount() {
     this.getDependencies();
     Promise.all([this.getRecipe(), this.getInputs()]).then((data) => {
-      this.setState({recipeComponents : this.setComponentType(data[0]['recipes'][0], true)});
-      this.setState({inputComponents : this.setComponentType(data[1])});
+      this.setState({recipeComponents : constants.setComponentType(data[0]['recipes'][0], true)});
+      this.setState({inputComponents : constants.setComponentType(data[1])});
       this.updateInputs();
     }).catch(e => console.log('Error in EditRecipe promise: ' + e));
   }
@@ -66,28 +66,6 @@ class EditRecipePage extends React.Component {
         that.setState({recipedependencies : data})
       })
       .catch(e => console.log("no dependencies"));
-  }
-
-  setComponentType(data, inRecipe) {
-    // get the list of modules in recipe, set their type to modules
-    // get the list of packages, set their type to rpm
-    let modules = [];
-    if (data['modules'] != undefined) {
-      modules = data['modules'].slice(0);
-      modules.map(i => {
-        i.type = "Module";
-        i.inRecipe = inRecipe;
-      });
-    }
-    let rpms = [];
-    if (data['packages'] != undefined) {
-      rpms = data['packages'].slice(0);
-      rpms.map(i => {
-        i.type = "RPM";
-        i.inRecipe = inRecipe;
-      });
-    }
-    return modules.concat(rpms);
   }
 
   updateInputs() {

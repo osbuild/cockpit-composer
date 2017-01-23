@@ -58,7 +58,7 @@ class ListItemExpand extends React.Component {
                 }
                 <div className="list-view-pf-main-info">
                   <div className="list-view-pf-left" data-item="type">
-                    <ComponentTypeIcons componentType={ listItem.type } />
+                    <ComponentTypeIcons componentType={ listItem.ui_type } />
                   </div>
                   <div className="list-view-pf-body">
                     <div className="list-view-pf-description">
@@ -121,7 +121,7 @@ class ListItemExpand extends React.Component {
                     </ul>
                   </div>
                   <div className="col-md-6">
-                    { listItem.type != "RPM" && <div className="cmpsr-summary-listview">
+                    { listItem.ui_type != "RPM" && <div className="cmpsr-summary-listview">
                       <p><strong>Child Components</strong> (4)</p>
                       <div className="list-group list-view-pf list-view-pf-view cmpsr-list-view-viewskinny">
                         <div className="list-group-item">

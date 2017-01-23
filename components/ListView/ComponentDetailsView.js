@@ -100,7 +100,7 @@ class ComponentDetailsView extends React.Component {
         </ol>
         }
     		<h2>
-    			<span data-item="name"><ComponentTypeIcons componentType={ component.type } /> {component.name} </span>
+    			<span data-item="name"><ComponentTypeIcons componentType={ component.ui_type } /> {component.name} </span>
     			<div className="pull-right">
     				<ul className="list-inline">
               { this.props.status == "available" &&
@@ -161,7 +161,7 @@ class ComponentDetailsView extends React.Component {
             <p>{component.description}</p>
             <dl className="dl-horizontal">
               <dt>Type</dt>
-              <dd>{component.type}</dd>
+              <dd>{component.ui_type}</dd>
               <dt>Version</dt>
               <dd>{this.state.selectedVersion == "" && component.version || this.state.selectedVersion} { this.props.status == "selected" && <a href="#">Update</a>}</dd>
               <dt>Release</dt>
@@ -182,7 +182,7 @@ class ComponentDetailsView extends React.Component {
               <dd>Standard</dd>
             </dl>
           </Tab>
-          { component.type == "Module" &&
+          { component.ui_type == "Module" &&
           <Tab tabTitle="Components" active={this.state.activeTab == 'Components'}>
             <p>Components</p>
           </Tab>
