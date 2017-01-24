@@ -31,18 +31,18 @@ class EditRecipePage extends React.Component {
     // create list of components that are modules
     let modules = [];
     components.map(i => {
-      if (i.type == "Module") {
+      if (i.ui_type == "Module") {
         delete i.inRecipe;
-        delete i.type;
+        delete i.ui_type;
         modules.push(i);
       }
     });
     // create list of components that are RPMs
     let rpms = [];
     components.map(i => {
-      if (i.type == "RPM") {
+      if (i.ui_type == "RPM") {
         delete i.inRecipe;
-        delete i.type;
+        delete i.ui_type;
         rpms.push(i);
       }
     });
