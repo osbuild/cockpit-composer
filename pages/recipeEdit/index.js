@@ -27,7 +27,7 @@ class EditRecipePage extends React.Component {
   }
 
   handleSaveRecipe() {
-    let components = this.state.recipeComponents.slice(0);
+    let components = JSON.parse(JSON.stringify(this.state.recipeComponents));
     // create list of components that are modules
     let modules = [];
     components.map(i => {
@@ -119,8 +119,8 @@ class EditRecipePage extends React.Component {
           console.log("Failed to filter inputs during recipe edit: " + e);
           }
         );
+      event.preventDefault();
     }
-    return false;
   }
   handleClearFilters() {
     this.setState({filteredComponents : []});
