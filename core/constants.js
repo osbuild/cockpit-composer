@@ -13,6 +13,7 @@ const constants = {
   get_recipes_info: composer_api_host + "/api/v0/recipes/info/",
   get_modules_list: composer_api_host + "/api/v0/modules/list",
   get_compose_types: composer_api_host + "/api/v0/compose/types",
+  post_recipes_new: composer_api_host + "/api/v0/recipes/new",
 
   setComponentType: function(data, inRecipe) {
     // get the list of modules in recipe, set their type to modules
