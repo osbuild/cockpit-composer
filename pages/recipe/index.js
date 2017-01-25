@@ -12,26 +12,53 @@ import constants from '../../core/constants';
 
 class RecipePage extends React.Component {
 
-  state = { recipe: [], components: [], activeTab: "Components", selectedComponent: "", selectedComponentStatus: "view", selectedComponentParent: "" };
+  state = { recipe: [], components: [], dependencies: [], activeTab: "Components", selectedComponent: "", selectedComponentStatus: "view", selectedComponentParent: "" };
 
   componentDidMount() {
     document.title = 'Composer | Recipe';
   }
 
   componentWillMount() {
-    this.getRecipe();
+    Promise.all([this.getRecipe()]).then((data) => {
+      this.setState({"recipe" : data[0].recipes[0]});
+      this.setState({"components" : constants.setComponentType(data[0].recipes[0])});
+      this.getDependencies();
+    }).catch(e => console.log('Error in Recipe promise: ' + e));
   }
 
   getRecipe() {
     let recipeName = this.props.route.params.recipe;
-    let that = this;
-    fetch(constants.get_recipes_info + recipeName).then(r => r.json())
-      .then(data => {
-        that.setState({"recipe" : data.recipes[0]});
-        that.setState({"components" : constants.setComponentType(data.recipes[0])});
-      })
-      .catch(e => console.log("Error fetching recipes: " + e));
+    let p = new Promise((resolve, reject) => {
+      fetch(constants.get_recipes_info + recipeName)
+        .then(r => r.json())
+        .then(data => {
+          resolve(data);
+        })
+        .catch(e => {
+          console.log("Error fetching recipes: " + e);
+          reject();
+          }
+        );
+    });
+    return p;
+  }
 
+  getDependencies() {
+    let components = this.state.components.slice(0);
+    let componentNames = "";
+    components.map(component => {
+      componentNames = componentNames + component.name + ",";
+    })
+    // get list of component names, then fetch the dependencies for those components, then combine the projects into a single array
+    fetch(constants.get_dependencies_list + componentNames).then(r => r.json())
+      .then(data => {
+        let dependencies = [];
+        data.modules.map(i => {
+          dependencies = dependencies.concat(i.projects);
+        });
+        this.setState({dependencies: dependencies});
+      })
+      .catch(e => console.log("no dependencies"));
   }
 
   handleTabChanged(e){
@@ -150,7 +177,7 @@ class RecipePage extends React.Component {
               </EmptyState>
               ||
               <RecipeContents components={ this.state.components }
-                dependencies={ this.state.components }
+                dependencies={ this.state.dependencies }
                 noEditComponent
                 handleComponentDetails={this.handleComponentDetails.bind(this)} />
               }
