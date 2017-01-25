@@ -27,7 +27,7 @@ class RecipePage extends React.Component {
     let that = this;
     fetch(constants.get_recipes_info + recipeName).then(r => r.json())
       .then(data => {
-        that.setState({"recipe" : data.recipes});
+        that.setState({"recipe" : data.recipes[0]});
         that.setState({"components" : constants.setComponentType(data.recipes[0])});
       })
       .catch(e => console.log("Error fetching recipes: " + e));
@@ -59,9 +59,9 @@ class RecipePage extends React.Component {
             <div className="tab-container">
               <dl className="dl-horizontal mt-">
                 <dt>Name</dt>
-                <dd></dd>
+                <dd>{this.state.recipe.name}</dd>
                 <dt>Description</dt>
-                <dd></dd>
+                <dd>{this.state.recipe.description}</dd>
                 <dt>Version</dt>
                 <dd>3</dd>
                 <dt>Last modified by</dt>

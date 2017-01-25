@@ -137,19 +137,15 @@ class EditRecipePage extends React.Component {
       componentNames = componentNames + component.name + ",";
     })
     // get list of component names, then fetch the dependencies for those components, then combine the projects into a single array
-
-    // components.map(component => {
-      fetch(constants.get_dependencies_list + componentNames).then(r => r.json())
-        .then(data => {
-          let dependencies = [];
-          data.modules.map(i => {
-            dependencies = dependencies.concat(i.projects);
-          });
-          this.setState({recipeDependencies: dependencies});
-        })
-        .catch(e => console.log("no dependencies"));
-    // });
-
+    fetch(constants.get_dependencies_list + componentNames).then(r => r.json())
+      .then(data => {
+        let dependencies = [];
+        data.modules.map(i => {
+          dependencies = dependencies.concat(i.projects);
+        });
+        this.setState({recipeDependencies: dependencies});
+      })
+      .catch(e => console.log("no dependencies"));
   }
 
   updateInputs() {

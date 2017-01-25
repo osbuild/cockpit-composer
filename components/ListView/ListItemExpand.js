@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import ComponentTypeIcons from '../../components/ListView/ComponentTypeIcons';
+import ComponentSummaryList from '../../components/ListView/ComponentSummaryList';
 import ListItemLabel from '../../components/ListView/ListItemLabel';
 
 class ListItemExpand extends React.Component {
@@ -176,35 +177,7 @@ class ListItemExpand extends React.Component {
                         </div>
                       </div>
                     </div> }
-                    <div className="cmpsr-summary-listview">
-                      <p><strong>Dependencies</strong> (2 First Level, 6 Total)</p>
-                      <div className="list-group list-view-pf list-view-pf-view cmpsr-list-view-viewskinny">
-                        <div className="list-group-item">
-                          <div className="list-view-pf-main-info">
-                            <div className="list-view-pf-left" data-item="type">
-                              <span className="fa fa-cube list-view-pf-icon-sm" title="Module"></span>
-                            </div>
-                            <div className="list-view-pf-body">
-                              <div className="list-view-pf-description">
-                                <a href="#" data-item="name">fm-group:hardware-support</a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="list-group-item">
-                          <div className="list-view-pf-main-info">
-                            <div className="list-view-pf-left" data-item="type">
-                              <span className="fa fa-cube list-view-pf-icon-sm" title="Module"></span>
-                            </div>
-                            <div className="list-view-pf-body">
-                              <div className="list-view-pf-description">
-                                <a href="#" data-item="name">fm-group:standard</a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <ComponentSummaryList component={listItem.name} />
                   </div>
                 </div>
               </div>
