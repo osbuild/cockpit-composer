@@ -24,7 +24,6 @@ class ComponentDetailsView extends React.Component {
 
   componentDidUpdate() {
     this.initializeBootstrapElements();
-    this.getDependencies();
   }
 
   componentWillReceiveProps(newProps) {
