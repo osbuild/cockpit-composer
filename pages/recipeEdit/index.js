@@ -11,7 +11,7 @@ import constants from '../../core/constants';
 
 class EditRecipePage extends React.Component {
 
-  state = { selectedComponent: "", selectedComponentStatus: "", selectedComponentParent: "", recipeComponents: [], inputComponents: [], recipedependencies: [] };
+  state = { selectedComponent: "", selectedComponentStatus: "", selectedComponentParent: "", recipeDescription: "", recipeComponents: [], inputComponents: [], inputFilters: [], filteredComponents: [], recipedependencies: [] };
 
   componentDidMount() {
     document.title = 'Composer | Recipe';
@@ -26,12 +26,50 @@ class EditRecipePage extends React.Component {
     }).catch(e => console.log('Error in EditRecipe promise: ' + e));
   }
 
+  handleSaveRecipe() {
+    let components = JSON.parse(JSON.stringify(this.state.recipeComponents));
+    // create list of components that are modules
+    let modules = [];
+    components.map(i => {
+      if (i.ui_type == "Module") {
+        delete i.inRecipe;
+        delete i.ui_type;
+        modules.push(i);
+      }
+    });
+    // create list of components that are RPMs
+    let rpms = [];
+    components.map(i => {
+      if (i.ui_type == "RPM") {
+        delete i.inRecipe;
+        delete i.ui_type;
+        rpms.push(i);
+      }
+    });
+    // create recipe and post it
+    let recipe = {
+      "name": this.props.route.params.recipe,
+      "description": this.state.recipeDescription,
+      "modules": modules,
+      "packages": rpms
+    };
+    fetch(constants.post_recipes_new, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(recipe)
+    });
+
+  }
+
   getRecipe() {
     let recipeName = this.props.route.params.recipe;
     let p = new Promise((resolve, reject) => {
       fetch(constants.get_recipes_info + recipeName)
         .then(r => r.json())
         .then(data => {
+          this.setState({recipeDescription: data['recipes'][0]['description']});
           resolve(data);
         })
         .catch(e => {
@@ -47,7 +85,7 @@ class EditRecipePage extends React.Component {
     let p = new Promise((resolve, reject) => {
     // /modules/list looks like:
     // {"modules":[{"name":"389-ds-base","group_type":"rpm"},{"name":"389-ds-base-libs","group_type":"rpm"}, ...]}
-    fetch(constants.get_modules_list).then(r => r.json())
+      fetch(constants.get_modules_list).then(r => r.json())
         .then(data => {
           resolve(data);
         })
@@ -59,6 +97,37 @@ class EditRecipePage extends React.Component {
     });
     return p;
   }
+  // FILTERING INPUTS IS JUST POC and needs to be refactored and generalized for all filter controls
+  // this only allows filtering by name, but will need to be modified when multiple filters can be applied
+  // filtering is case-sensitive
+  // NEED TO HANDLE CASE where user hits Enter when value = ""
+  getFilteredInputs(event) {
+    if (event.which == 13 || event.keyCode == 13) {
+      let filter = [{
+        "field": "name",
+        "value": event.target.value
+      }];
+      fetch(constants.get_modules_list+ "/*" + filter[0].value + "*").then(r => r.json())
+        .then(data => {
+          this.setState({filteredComponents : constants.setComponentType(data)});
+          this.setState({inputFilters : filter});
+          // when multiple filters can be applied besides just name, then this
+          // value needs to check if a filter for this field is already applied (if we replace the existing filter, anyway);
+          // also need to add to array, not replace it
+        })
+        .catch(e => {
+          console.log("Failed to filter inputs during recipe edit: " + e);
+          }
+        );
+      event.preventDefault();
+    }
+  }
+  handleClearFilters() {
+    this.setState({filteredComponents : []});
+    this.setState({inputFilters : []});
+    $('#cmpsr-recipe-input-filter').val("");
+  }
+
   getDependencies() {
     let that = this;
     fetch(constants.get_dependencies_url).then(r => r.json())
@@ -209,7 +278,7 @@ class EditRecipePage extends React.Component {
         <div className="cmpsr-edit-actions pull-right">
           <ul className="list-inline">
             <li>
-              <button className="btn btn-primary" type="button">Save</button>
+              <button className="btn btn-primary" type="button" onClick={(e) => this.handleSaveRecipe(e)}>Save</button>
             </li>
             <li>
               <button className="btn btn-default" type="button">Discard Changes</button>
@@ -253,7 +322,7 @@ class EditRecipePage extends React.Component {
 							<div className="col-sm-12">
 								<form className="toolbar-pf-actions">
 									<div className="form-group toolbar-pf-filter">
-										<label className="sr-only" htmlFor="filter">Name</label>
+										<label className="sr-only" htmlFor="cmpsr-recipe-input-filter">Name</label>
 										<div className="input-group">
 											<div className="input-group-btn">
 												<button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Name <span className="caret"></span></button>
@@ -266,7 +335,7 @@ class EditRecipePage extends React.Component {
 													<li><a href="#">Support Level</a></li>
 												</ul>
 											</div>
-											<input type="text" className="form-control" id="filter" placeholder="Filter By Name..." />
+											<input type="text" className="form-control" id="cmpsr-recipe-input-filter" placeholder="Filter By Name..." onKeyPress={(e) => this.getFilteredInputs(e)} />
 										</div>
 									</div>
 									<div className="toolbar-pf-action-right">
@@ -281,8 +350,25 @@ class EditRecipePage extends React.Component {
 								<div className="row toolbar-pf-results" data-results="1">
 									<div className="col-sm-12">
 										<div className="cmpsr-recipe-inputs-pagination">
-											2,345 Available Components
+                      { this.state.inputFilters.length == 0 &&
+                      <span>2,345 Available Components</span>
+                      ||
+											<span>{ this.state.filteredComponents.length } Results of 2,345 Available Components</span>
+                      }
 										</div>
+                    { this.state.inputFilters.length > 0 &&
+                    <ul className="list-inline">
+    									<li>
+    										<span className="label label-info">
+    											Name: { this.state.inputFilters[0].value }
+    											<a href="#" onClick={(e) => this.handleClearFilters(e)}><span className="pficon pficon-close"></span></a>
+    										</span>
+    									</li>
+    									<li>
+    										<a href="#" onClick={(e) => this.handleClearFilters(e)}>Clear All Filters</a>
+    									</li>
+    								</ul>
+                    }
 									</div>
 								</div>
 							</div>
@@ -296,7 +382,7 @@ class EditRecipePage extends React.Component {
 						  <strong>Select components</strong> in this list to add to the recipe.
 						</div>
 
-						<ComponentInputs components={ this.state.inputComponents } handleComponentDetails={this.handleComponentDetails.bind(this)} handleAddComponent={this.handleAddComponent.bind(this)} />
+						<ComponentInputs components={ this.state.inputFilters.length == 0 && this.state.inputComponents || this.state.filteredComponents } handleComponentDetails={this.handleComponentDetails.bind(this)} handleAddComponent={this.handleAddComponent.bind(this)} />
 					</div>
 				</div>
 				<CreateComposition />

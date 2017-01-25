@@ -18,7 +18,7 @@ class ComponentDetailsView extends React.Component {
         "requires": {
           "fm-group:core": "None"
         },
-        "group_type": "rpm",
+        "ui_type": "RPM",
         "name": "fm-group:hardware-support"
       },
       {
@@ -29,7 +29,7 @@ class ComponentDetailsView extends React.Component {
         "requires": {
           "fm-group:core": "None"
         },
-        "group_type": "rpm",
+        "ui_type": "RPM",
         "name": "fm-group:standard"
       }
     ]
