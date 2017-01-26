@@ -3,36 +3,19 @@ import ComponentTypeIcons from '../../components/ListView/ComponentTypeIcons';
 import Tabs from '../../components/Tabs/Tabs'
 import Tab from '../../components/Tabs/Tab';
 import DependencyListView from '../../components/ListView/DependencyListView';
+import constants from '../../core/constants';
+
 
 
 
 class ComponentDetailsView extends React.Component {
 
-  state = { selectedVersion: "", activeTab: "Details", parents: [],
-    dependencies: [
-      {
-        "summary": "This group is a collection of tools for various hardware specific utilities.",
-        "version": "24",
-        "release": "2",
-        "url": "up-@hardware-support",
-        "requires": {
-          "fm-group:core": "None"
-        },
-        "ui_type": "RPM",
-        "name": "fm-group:hardware-support"
-      },
-      {
-        "summary": "Common set of utilities that extend the minimal installation.",
-        "version": "24",
-        "release": "1",
-        "url": "@standard",
-        "requires": {
-          "fm-group:core": "None"
-        },
-        "ui_type": "RPM",
-        "name": "fm-group:standard"
-      }
-    ]
+  state = { selectedVersion: "", activeTab: "Details", parents: [], dependencies: [], componentData: ""}
+
+  componentWillMount() {
+    this.getDependencies();
+    this.getMetadata();
+
   }
 
   componentDidMount() {
@@ -41,7 +24,6 @@ class ComponentDetailsView extends React.Component {
 
   componentDidUpdate() {
     this.initializeBootstrapElements();
-
   }
 
   componentWillReceiveProps(newProps) {
@@ -53,6 +35,25 @@ class ComponentDetailsView extends React.Component {
     $('.selectpicker').selectpicker();
     // Initialize Boostrap-tooltip
     $('[data-toggle="tooltip"]').tooltip()
+  }
+
+  getDependencies() {
+    fetch(constants.get_dependencies_list + this.props.component.name).then(r => r.json())
+      .then(data => {
+        let dependencies = [];
+        data.modules.map(i => {
+          dependencies = dependencies.concat(i.projects);
+        });
+        this.setState({dependencies: dependencies});
+      })
+      .catch(e => console.log("no dependencies"));
+  }
+  getMetadata() {
+    fetch(constants.get_module_info + this.props.component.name).then(r => r.json())
+    .then(data => {
+      this.setState({componentData: data});
+    })
+    .catch(e => console.log("no metadata"));
   }
 
   handleVersionSelect = (event) => {

@@ -11,18 +11,20 @@ import constants from '../../core/constants';
 
 class EditRecipePage extends React.Component {
 
-  state = { selectedComponent: "", selectedComponentStatus: "", selectedComponentParent: "", recipeDescription: "", recipeComponents: [], inputComponents: [], inputFilters: [], filteredComponents: [], recipedependencies: [] };
+  state = { selectedComponent: "", selectedComponentStatus: "", selectedComponentParent: "", recipeDescription: "", recipeComponents: [], recipeDependencies: [], inputComponents: [], inputFilters: [], filteredComponents: [] };
 
   componentDidMount() {
     document.title = 'Composer | Recipe';
   }
 
   componentWillMount() {
-    this.getDependencies();
     Promise.all([this.getRecipe(), this.getInputs()]).then((data) => {
+      // create array of recipe components, then get dependencies for that array, then set state
+      // separate function for dependencies from setComponentType
       this.setState({recipeComponents : constants.setComponentType(data[0]['recipes'][0], true)});
       this.setState({inputComponents : constants.setComponentType(data[1])});
       this.updateInputs();
+      this.getDependencies();
     }).catch(e => console.log('Error in EditRecipe promise: ' + e));
   }
 
@@ -129,10 +131,19 @@ class EditRecipePage extends React.Component {
   }
 
   getDependencies() {
-    let that = this;
-    fetch(constants.get_dependencies_url).then(r => r.json())
+    let components = this.state.recipeComponents.slice(0);
+    let componentNames = "";
+    components.map(component => {
+      componentNames = componentNames + component.name + ",";
+    })
+    // get list of component names, then fetch the dependencies for those components, then combine the projects into a single array
+    fetch(constants.get_dependencies_list + componentNames).then(r => r.json())
       .then(data => {
-        that.setState({recipedependencies : data})
+        let dependencies = [];
+        data.modules.map(i => {
+          dependencies = dependencies.concat(i.projects);
+        });
+        this.setState({recipeDependencies: dependencies});
       })
       .catch(e => console.log("no dependencies"));
   }
@@ -301,7 +312,7 @@ class EditRecipePage extends React.Component {
             { this.state.recipeComponents.length == 0 &&
             <EmptyState title={"Add Recipe Components"} message={"Browse or search for components, then add them to the recipe."} />
             ||
-            <RecipeContents components={ this.state.recipeComponents } dependencies={ this.state.recipeComponents } handleRemoveComponent={this.handleRemoveComponent.bind(this)} handleComponentDetails={this.handleComponentDetails.bind(this)} />
+            <RecipeContents components={ this.state.recipeComponents } dependencies={ this.state.recipeDependencies } handleRemoveComponent={this.handleRemoveComponent.bind(this)} handleComponentDetails={this.handleComponentDetails.bind(this)} />
             }
 					</div>
           ||
