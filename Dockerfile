@@ -1,8 +1,7 @@
 # A Fedora 24 BDCS API Container
-FROM fedora:24
+FROM weld/fedora:24
 MAINTAINER Brian C. Lane <bcl@redhat.com>
-
-RUN dnf install -y dnf-plugins-core gnupg tar git sudo curl file gcc-c++ gcc gdb glibc-devel openssl-devel make xz sqlite-devel openssl-devel nginx
+RUN dnf install -y nginx
 
 RUN echo 'PATH=/usr/local/bin/:$PATH' >> /etc/bashrc
 

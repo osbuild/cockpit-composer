@@ -5,15 +5,19 @@ This docker container builds the composer-UI application using node, then
 serves it up on port 3000 of the container using nginx. nginx handles
 proxying requests for /api/ to the docker api container.
 
-Build the image with:
+The docker image depends on a base image, named weld/fedora:24, which needs
+have been previously built. If it is not available it can be built from
+the composer-deployment repository by running `make weld-f24`.
 
-docker build -t bcl/composer .
+Build the composer UI image with:
 
-Run the image, passing an API URL, with:
+docker build -t weld/composer .
 
-docker run -it --rm bcl/composer
+Run the image, using the default API url, with:
+
+docker run -it --rm weld/composer
 
 If the API is hosted on a different server that URL needs to be passed to the
 container:
 
-docker run -it --rm -e API_URL=http://192.168.102.4:4000 bcl/composer
+docker run -it --rm -e API_URL=http://192.168.102.4:4000 weld/composer
