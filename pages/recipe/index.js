@@ -19,46 +19,28 @@ class RecipePage extends React.Component {
   }
 
   componentWillMount() {
-    Promise.all([this.getRecipe()]).then((data) => {
-      this.setState({"recipe" : data[0].recipes[0]});
-      this.setState({"components" : constants.setComponentType(data[0].recipes[0])});
-      this.getDependencies();
-    }).catch(e => console.log('Error in Recipe promise: ' + e));
+    this.getRecipe(this.props.route.params.recipe);
   }
 
-  getRecipe() {
-    let recipeName = this.props.route.params.recipe;
-    let p = new Promise((resolve, reject) => {
-      fetch(constants.get_recipes_info + recipeName)
-        .then(r => r.json())
-        .then(data => {
-          resolve(data);
-        })
-        .catch(e => {
-          console.log("Error fetching recipes: " + e);
-          reject();
-          }
-        );
-    });
-    return p;
-  }
-
-  getDependencies() {
-    let components = this.state.components.slice(0);
-    let componentNames = "";
-    components.map(component => {
-      componentNames = componentNames + component.name + ",";
-    })
-    // get list of component names, then fetch the dependencies for those components, then combine the projects into a single array
-    fetch(constants.get_dependencies_list + componentNames).then(r => r.json())
+  // Get the recipe details, and its dependencies
+  // Object layout is:
+  // {recipes: [{recipe: RECIPE, modules: MODULES}, ...]}
+  // Where MODULES is a modules/info/ object {name: "", projects: [{...
+  getRecipe(recipeName) {
+      fetch(constants.get_recipes_deps + recipeName)
+      .then(r => r.json())
       .then(data => {
-        let dependencies = [];
-        data.modules.map(i => {
-          dependencies = dependencies.concat(i.projects);
-        });
-        this.setState({dependencies: dependencies});
+          this.setState({"recipe" : data.recipes[0]});
+          this.setState({"components" : constants.setComponentType(data.recipes[0])});
+          let dependencies = [];
+          data.recipes[0].modules.map(i => {
+              dependencies = dependencies.concat(i.projects);
+          });
+          this.setState({dependencies: dependencies});
       })
-      .catch(e => console.log("no dependencies"));
+      .catch(e => {
+          console.log("Error fetching recipes: " + e);
+      });
   }
 
   handleTabChanged(e){

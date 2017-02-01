@@ -19,7 +19,6 @@ class RecipesPage extends React.Component {
   getRecipes() {
     // The /recipes/list response looks like:
     // {"recipes":["example","http-server","nfs-server"],"offset":0,"limit":20}
-    console.log("BCL was here #1");
     fetch(constants.get_recipes_list).then(r => r.json())
       .then(listdata => {
         for (var i in listdata.recipes) {
