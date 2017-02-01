@@ -11,23 +11,50 @@ import constants from '../../core/constants';
 
 class EditRecipePage extends React.Component {
 
-  state = { selectedComponent: "", selectedComponentStatus: "", selectedComponentParent: "", recipeDescription: "", recipeComponents: [], recipeDependencies: [], inputComponents: [], inputFilters: [], filteredComponents: [] };
+  state = { recipe: [],
+            recipeComponents: [], recipeDependencies: [],
+            inputComponents: [], inputFilters: [], filteredComponents: [],
+            selectedComponent: "", selectedComponentStatus: "", selectedComponentParent: "",
+          };
 
   componentDidMount() {
     document.title = 'Composer | Recipe';
   }
 
   componentWillMount() {
-    Promise.all([this.getRecipe(), this.getInputs()]).then((data) => {
-      // create array of recipe components, then get dependencies for that array, then set state
-      // separate function for dependencies from setComponentType
-      this.setState({recipeComponents : constants.setComponentType(data[0]['recipes'][0], true)});
-      this.setState({inputComponents : constants.setComponentType(data[1])});
-      this.updateInputs();
-      this.getDependencies();
-    }).catch(e => console.log('Error in EditRecipe promise: ' + e));
+      Promise.all([this.getRecipe(this.props.route.params.recipe), this.getInputs()]).then(() => {
+          // Recipes and available components both need to be updated before running this
+          this.updateInputs();
+      }).catch(e => console.log('Error in EditRecipe promise: ' + e));
   }
 
+  // Get the recipe details, and its dependencies
+  // Object layout is:
+  // {recipes: [{recipe: RECIPE, modules: MODULES}, ...]}
+  // Where MODULES is a modules/info/ object {name: "", projects: [{...
+  getRecipe(recipeName) {
+      let p = new Promise((resolve, reject) => {
+          fetch(constants.get_recipes_deps + recipeName)
+          .then(r => r.json())
+          .then(data => {
+              this.setState({recipe : data.recipes[0]});
+              this.setState({recipeComponents : constants.setComponentType(data.recipes[0], true)});
+              let dependencies = [];
+              data.recipes[0].modules.map(i => {
+                  dependencies = dependencies.concat(i.projects);
+              });
+              this.setState({recipeDependencies: dependencies});
+              resolve();
+          })
+          .catch(e => {
+              console.log("Error fetching recipes: " + e);
+              reject();
+          });
+    });
+    return p;
+  }
+
+  // TODO Use the original recipe in this.recipe instead of building it from components
   handleSaveRecipe() {
     let components = JSON.parse(JSON.stringify(this.state.recipeComponents));
     // create list of components that are modules
@@ -51,7 +78,7 @@ class EditRecipePage extends React.Component {
     // create recipe and post it
     let recipe = {
       "name": this.props.route.params.recipe,
-      "description": this.state.recipeDescription,
+      "description": this.state.recipe.description,
       "modules": modules,
       "packages": rpms
     };
@@ -65,40 +92,38 @@ class EditRecipePage extends React.Component {
 
   }
 
-  getRecipe() {
-    let recipeName = this.props.route.params.recipe;
-    let p = new Promise((resolve, reject) => {
-      fetch(constants.get_recipes_info + recipeName)
-        .then(r => r.json())
-        .then(data => {
-          this.setState({recipeDescription: data['recipes'][0]['description']});
-          resolve(data);
-        })
-        .catch(e => {
-          console.log("Failed to fetch recipe during edit: " + e);
-          reject();
-          }
-        );
-    });
-    return p;
+  getInputs(){
+      let p = new Promise((resolve, reject) => {
+          // /modules/list looks like:
+          // {"modules":[{"name":"389-ds-base","group_type":"rpm"},{"name":"389-ds-base-libs","group_type":"rpm"}, ...]}
+          fetch(constants.get_modules_list)
+          .then(r => r.json())
+          .then(data => {
+              this.setState({inputComponents : constants.setComponentType(data)});
+              resolve();
+          })
+          .catch(e => {
+              console.log("Failed to get inputs during recipe edit: " + e);
+              reject();
+          });
+      });
+      return p;
   }
 
-  getInputs(){
-    let p = new Promise((resolve, reject) => {
-    // /modules/list looks like:
-    // {"modules":[{"name":"389-ds-base","group_type":"rpm"},{"name":"389-ds-base-libs","group_type":"rpm"}, ...]}
-      fetch(constants.get_modules_list).then(r => r.json())
-        .then(data => {
-          resolve(data);
-        })
-        .catch(e => {
-          console.log("Failed to get inputs during recipe edit: " + e);
-          reject();
-          }
-        );
+  updateInputs() {
+    // add a property to the original set of inputs, that indicates whether the input is in the recipe or not
+    let inputs = this.state.inputComponents;
+    let selected = this.state.recipeComponents;
+    selected.map(component => {
+      let index = inputs.map(input => {return input.name}).indexOf(component.name);
+      if (index >= 0) {
+          inputs[index].inRecipe = true;
+      }
     });
-    return p;
+    this.setState({inputComponents: inputs});
   }
+
+
   // FILTERING INPUTS IS JUST POC and needs to be refactored and generalized for all filter controls
   // this only allows filtering by name, but will need to be modified when multiple filters can be applied
   // filtering is case-sensitive
@@ -128,37 +153,6 @@ class EditRecipePage extends React.Component {
     this.setState({filteredComponents : []});
     this.setState({inputFilters : []});
     $('#cmpsr-recipe-input-filter').val("");
-  }
-
-  getDependencies() {
-    let components = this.state.recipeComponents.slice(0);
-    let componentNames = "";
-    components.map(component => {
-      componentNames = componentNames + component.name + ",";
-    })
-    // get list of component names, then fetch the dependencies for those components, then combine the projects into a single array
-    fetch(constants.get_dependencies_list + componentNames).then(r => r.json())
-      .then(data => {
-        let dependencies = [];
-        data.modules.map(i => {
-          dependencies = dependencies.concat(i.projects);
-        });
-        this.setState({recipeDependencies: dependencies});
-      })
-      .catch(e => console.log("no dependencies"));
-  }
-
-  updateInputs() {
-    // add a property to the original set of inputs, that indicates whether the input is in the recipe or not
-    let inputs = this.state.inputComponents;
-    let selected = this.state.recipeComponents;
-    selected.map(component => {
-      let index = inputs.map(input => {return input.name}).indexOf(component.name);
-      if (index >= 0) {
-          inputs[index].inRecipe = true;
-      }
-    });
-    this.setState({inputComponents: inputs});
   }
 
   clearInputAlert() {

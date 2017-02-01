@@ -30,8 +30,8 @@ class RecipePage extends React.Component {
       fetch(constants.get_recipes_deps + recipeName)
       .then(r => r.json())
       .then(data => {
-          this.setState({"recipe" : data.recipes[0]});
-          this.setState({"components" : constants.setComponentType(data.recipes[0])});
+          this.setState({recipe: data.recipes[0]});
+          this.setState({components: constants.setComponentType(data.recipes[0])});
           let dependencies = [];
           data.recipes[0].modules.map(i => {
               dependencies = dependencies.concat(i.projects);
