@@ -33,7 +33,10 @@ class ListItemExpand extends React.Component {
 
   render() {
     const { listItem } = this.props;
-
+    let dependencyCount = 0;
+    if (listItem.projects !== undefined) {
+      dependencyCount = listItem.projects.length;
+    }
     return (
 
             <div data-name={ listItem.name } className={"list-group-item " + (this.state.expanded ? 'list-view-pf-expand-active' : '')}>
@@ -44,7 +47,7 @@ class ListItemExpand extends React.Component {
                 <div className="list-view-pf-checkbox">
                   <input type="checkbox" />
                 </div>
-                {this.props.noEditComponent != true &&
+                {this.props.noEditComponent !== true &&
                 <div className="list-view-pf-actions">
                   <div className="dropdown pull-right dropdown-kebab-pf">
                     <button className="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight9" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span className="fa fa-ellipsis-v"></span></button>
@@ -81,7 +84,7 @@ class ListItemExpand extends React.Component {
                         Release <strong>{ listItem.release }</strong>
                       </div>
                       <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
-                        Dependencies <strong>2</strong>
+                        Dependencies <strong>{ dependencyCount }</strong>
                       </div>
                     </div>
                   </div>
@@ -94,17 +97,21 @@ class ListItemExpand extends React.Component {
                 </div>
                 <div className="row">
                   <div className="col-md-6">
-                    <dl className="dl-horizontal">
+                    <dl className="dl-horizontal clearfix">
                       <dt>Version</dt>
-                      <dd>{ listItem.version }</dd>
+                      <dd>{ listItem.version ? listItem.version : <span>&nbsp;</span> }</dd>
                       <dt>Release</dt>
-                      <dd>{ listItem.release }</dd>
+                      <dd>{ listItem.release ? listItem.release : <span>&nbsp;</span> }</dd>
                       <dt>Architecture</dt>
                       <dd>x86_64</dd>
                       <dt>Install Size</dt>
                       <dd>2 MB (5 MB with Dependencies)</dd>
                       <dt>URL</dt>
-                      <dd>http:&#47;&#47;www.{listItem.name}.com</dd>
+                      {listItem.homepage != null &&
+                      <dd><a target="_blank" href={listItem.homepage}>{listItem.homepage}</a></dd>
+                      ||
+                      <dd>&nbsp;</dd>
+                      }
                       <dt>Packager</dt>
                       <dd>Red Hat</dd>
                       <dt>Product Family</dt>
@@ -122,7 +129,7 @@ class ListItemExpand extends React.Component {
                     </ul>
                   </div>
                   <div className="col-md-6">
-                    { listItem.ui_type != "RPM" && <div className="cmpsr-summary-listview">
+                    { listItem.ui_type !== "RPM" && <div className="cmpsr-summary-listview hidden">
                       <p><strong>Child Components</strong> (4)</p>
                       <div className="list-group list-view-pf list-view-pf-view cmpsr-list-view-viewskinny">
                         <div className="list-group-item">
@@ -170,14 +177,16 @@ class ListItemExpand extends React.Component {
                             </div>
                             <div className="list-view-pf-body">
                               <div className="list-view-pf-description">
-                                <a href="#" data-item="name">fm-group:rpm-development-tools</a>
+                                <a href="#" data-item="name">{listItem.requiredBy}</a>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div> }
-                    <ComponentSummaryList component={listItem.name} />
+                    {dependencyCount > 0 &&
+                    <ComponentSummaryList listItems={listItem.projects} />
+                    }
                   </div>
                 </div>
               </div>

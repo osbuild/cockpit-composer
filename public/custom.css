@@ -136,6 +136,10 @@
 .cmpsr-dependency-flag {
   margin-right: 20px;
 }
+.list-group-item-container dd {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 /* Nested list view */
 .cmpsr-summary-listview .list-group {
@@ -184,6 +188,6 @@
 }
 
 /*Component details*/
-#cmpsr-recipe-details {
+#cmpsr-recipe-details-edit {
   border-top: 1px solid #d1d1d1;
 }
