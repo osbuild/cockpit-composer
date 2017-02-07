@@ -10,11 +10,10 @@ import constants from '../../core/constants';
 
 class ComponentDetailsView extends React.Component {
 
-  state = { selectedVersion: "", activeTab: "Details", parents: [], dependencies: [], componentData: ""}
+  state = { selectedVersion: "", activeTab: "Details", parents: [], dependencies: [], componentData: {}}
 
   componentWillMount() {
-    this.getDependencies();
-    this.getMetadata();
+    this.getMetadata(this.props.component);
 
   }
 
@@ -28,6 +27,8 @@ class ComponentDetailsView extends React.Component {
 
   componentWillReceiveProps(newProps) {
     this.updateBreadcrumb(newProps);
+    this.getMetadata(newProps.component);
+    this.setState({activeTab: "Details"});
    }
 
   initializeBootstrapElements() {
@@ -37,23 +38,40 @@ class ComponentDetailsView extends React.Component {
     $('[data-toggle="tooltip"]').tooltip()
   }
 
-  getDependencies() {
-    fetch(constants.get_dependencies_list + this.props.component.name).then(r => r.json())
-      .then(data => {
-        let dependencies = [];
-        data.modules.map(i => {
-          dependencies = dependencies.concat(i.projects);
+  getMetadata(component) {
+    // get component metadata and list of dependencies
+    Promise.all([constants.getDependencies(component.name), constants.getMetadata(component.name)]).then((data) => {
+      let metadata = data[1].projects[0];
+      metadata.ui_type = component.ui_type;
+      metadata.version = data[1].projects[0].builds[0].source.version;
+      metadata.release = data[1].projects[0].builds[0].release;
+      metadata.arch = data[1].projects[0].builds[0].arch;
+      this.setState({componentData: metadata});
+      let dependencies = data[0].modules[0].projects;
+      // for each dependency, set the requiredBy value to the parent component
+      // and set the ui_type to match the parent component
+      // NOTE: requiredBy should ultimately show any component that requires
+      // the dependency, not just the current one; and ui_type cannot be assumed
+      // to be the same as the parent component, so this is temporary
+      dependencies.map(i => {
+        i.requiredBy = component.name;
+        i.ui_type = component.ui_type;
+      });
+      let dependencyNames = "";
+      dependencies.map(i => {
+        dependencyNames = dependencyNames === "" ? i.name : dependencyNames + "," + i.name;
+      });
+      // get metadata for each dependency
+      Promise.all([constants.getMetadata(dependencyNames)]).then((data) => {
+        data[0].projects.map(i => {
+          let index = dependencies.map(dependency => {return dependency.name}).indexOf(i.name);
+          dependencies[index].version = i.builds[0].source.version;
+          dependencies[index].release = i.builds[0].release;
+          dependencies[index].arch = i.builds[0].arch;
         });
-        this.setState({dependencies: dependencies});
-      })
-      .catch(e => console.log("no dependencies"));
-  }
-  getMetadata() {
-    fetch(constants.get_module_info + this.props.component.name).then(r => r.json())
-    .then(data => {
-      this.setState({componentData: data});
-    })
-    .catch(e => console.log("no metadata"));
+        this.setState({dependencies : dependencies});
+      }).catch(e => console.log('Error getting dependency metadata: ' + e));
+    }).catch(e => console.log('Error getting dependencies and metadata: ' + e));
   }
 
   handleVersionSelect = (event) => {
@@ -88,9 +106,11 @@ class ComponentDetailsView extends React.Component {
   }
 
   render() {
-    const { component } = this.props; // eslint-disable-line no-use-before-define
+    const { component } = this.props;
 
     return (
+
+
       <div className="cmpsr-compon-details">
         { this.state.parents.length > 0 &&
         <ol className="breadcrumb">
@@ -139,8 +159,8 @@ class ComponentDetailsView extends React.Component {
             <div className="form-group">
               <label className="col-sm-3 col-md-2 control-label" htmlFor="cmpsr-compon-details-version-select">Version</label>
               <div className="col-sm-8 col-md-9">
-                <select id="cmpsr-compon-details-version-select" className="selectpicker form-control" onChange={(e) => this.handleVersionSelect(e)} value={this.state.selectedVersion == "" && component.version || this.state.selectedVersion}>
-                  <option>{component.version}</option>
+                <select id="cmpsr-compon-details-version-select" className="selectpicker form-control" onChange={(e) => this.handleVersionSelect(e)} value={this.state.selectedVersion == "" && this.state.componentData.version || this.state.selectedVersion}>
+                  <option>{this.state.componentData.version}</option>
                   <option>3.0</option>
                   <option>2.5</option>
                   <option>2.0</option>
@@ -163,22 +183,22 @@ class ComponentDetailsView extends React.Component {
 
         <Tabs key="pf-tabs" ref="pfTabs" tabChanged={this.handleTabChanged.bind(this)}>
           <Tab tabTitle="Details" active={this.state.activeTab == 'Details'}>
-            <h3 data-item="summary">{component.summary}</h3>
-            <p>{component.description}</p>
+            <h3 data-item="summary">{this.state.componentData.summary}</h3>
+            <p>{this.state.componentData.description}</p>
             <dl className="dl-horizontal">
               <dt>Type</dt>
               <dd>{component.ui_type}</dd>
               <dt>Version</dt>
-              <dd>{this.state.selectedVersion == "" && component.version || this.state.selectedVersion} { this.props.status == "selected" && <a href="#">Update</a>}</dd>
+              <dd>{this.state.selectedVersion == "" && this.state.componentData.version || this.state.selectedVersion} { this.props.status == "selected" && <a href="#">Update</a>}</dd>
               <dt>Release</dt>
-              <dd>{ component.release ? component.release : <span>&nbsp;</span> }</dd>
+              <dd>{ this.state.componentData.release ? this.state.componentData.release : <span>&nbsp;</span> }</dd>
               <dt>Architecture</dt>
-              <dd>x86_64</dd>
+              <dd>{ this.state.componentData.arch }</dd>
               <dt>Install Size</dt>
               <dd>2 MB (5 MB with Dependencies)</dd>
               <dt>URL</dt>
-              {component.homepage != null &&
-              <dd><a target="_blank" href={component.homepage}>{component.homepage}</a></dd>
+              {this.state.componentData.homepage != null &&
+              <dd><a target="_blank" href={this.state.componentData.homepage}>{this.state.componentData.homepage}</a></dd>
               ||
               <dd>&nbsp;</dd>
               }
@@ -192,11 +212,9 @@ class ComponentDetailsView extends React.Component {
               <dd>Standard</dd>
             </dl>
           </Tab>
-          { component.ui_type == "Module" &&
           <Tab tabTitle="Components" active={this.state.activeTab == 'Components'}>
             <p>Components</p>
           </Tab>
-          }
           <Tab tabTitle="Dependencies" active={this.state.activeTab == 'Dependencies'}>
             <DependencyListView id="cmpsr-component-dependencies"
               listItems= { this.state.dependencies }
@@ -211,6 +229,7 @@ class ComponentDetailsView extends React.Component {
 
 
     	</div>
+
     )
   }
 }

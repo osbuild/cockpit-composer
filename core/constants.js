@@ -18,6 +18,8 @@ const constants = {
   get_compose_types: composer_api_host + "/api/v0/compose/types",
   post_recipes_new: composer_api_host + "/api/v0/recipes/new",
 
+
+  // common functions
   setComponentType: function(data, inRecipe) {
     // get the list of modules in recipe, set their type to modules
     // get the list of packages, set their type to rpm
@@ -38,8 +40,36 @@ const constants = {
       });
     }
     return modules.concat(rpms);
+  },
+  getMetadata: function(componentName) {
+    let p = new Promise((resolve, reject) => {
+        fetch(constants.get_module_info + componentName)
+        .then(r => r.json())
+        .then(function(data){
+          resolve(data);
+        })
+        .catch(e => {
+            console.log("Failed to get module info: " + e);
+        });
+    });
+    return p;
+  },
+  getDependencies: function(componentName) {
+    let p = new Promise((resolve, reject) => {
+        fetch(constants.get_dependencies_list + componentName)
+        .then(r => r.json())
+        .then(function(data){
+          resolve(data);
+        })
+        .catch(e => {
+            console.log("Failed to get module info: " + e);
+        });
+    });
+    return p;
   }
 
 };
+
+
 
 export default constants;

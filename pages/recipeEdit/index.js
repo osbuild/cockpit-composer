@@ -25,6 +25,9 @@ class EditRecipePage extends React.Component {
       Promise.all([this.getRecipe(this.props.route.params.recipe), this.getInputs()]).then(() => {
           // Recipes and available components both need to be updated before running this
           this.updateInputs();
+          let components = this.state.recipeComponents.slice(0);
+          let dependencies = this.state.recipeDependencies.slice(0);
+          this.getMetadata(components, dependencies);
       }).catch(e => console.log('Error in EditRecipe promise: ' + e));
   }
 
@@ -39,17 +42,7 @@ class EditRecipePage extends React.Component {
           .then(data => {
               this.setState({recipe : data.recipes[0]});
               this.setState({recipeComponents : constants.setComponentType(data.recipes[0], true)});
-              let dependencies = [];
-              data.recipes[0].modules.map(i => {
-                  // include value for requiredBy for each dependency
-                  let component = i.name;
-                  if (i.projects.length > 0) {
-                    i.projects.map(i => {
-                      i.requiredBy = component;
-                    });
-                  }
-                  dependencies = dependencies.concat(i.projects);
-              });
+              let dependencies = this.updateDependencyList(data.recipes[0].modules);
               this.setState({recipeDependencies: dependencies});
               resolve();
           })
@@ -130,7 +123,33 @@ class EditRecipePage extends React.Component {
     this.setState({inputComponents: inputs});
   }
 
+  getMetadata(components, dependencies) {
+    let componentNames = "";
+    components.map(i => {
+      componentNames = componentNames === "" ? i.name : componentNames + "," + i.name;
+    });
+    let dependencyNames = "";
+    dependencies.map(i => {
+      dependencyNames = dependencyNames === "" ? i.name : dependencyNames + "," + i.name;
+    });
+    Promise.all([constants.getMetadata(componentNames), constants.getMetadata(dependencyNames)]).then((data) => {
+      data[0].projects.map(i => {
+        let index = components.map(component => {return component.name}).indexOf(i.name);
+        components[index].version = i.builds[0].source.version;
+        components[index].release = i.builds[0].release;
+        components[index].arch = i.builds[0].arch;
+      });
+      data[1].projects.map(i => {
+        let index = dependencies.map(dependency => {return dependency.name}).indexOf(i.name);
+        dependencies[index].version = i.builds[0].source.version;
+        dependencies[index].release = i.builds[0].release;
+        dependencies[index].arch = i.builds[0].arch;
+      });
 
+      this.setState({recipeComponents: components});
+      this.setState({recipeDependencies: dependencies});
+    }).catch(e => console.log('Error getting component metadata: ' + e));
+  }
   // FILTERING INPUTS IS JUST POC and needs to be refactored and generalized for all filter controls
   // this only allows filtering by name, but will need to be modified when multiple filters can be applied
   // filtering is case-sensitive
@@ -168,20 +187,35 @@ class EditRecipePage extends React.Component {
 
   handleAddComponent = (event, component, version) => {
     // the user clicked Add in the sidebar to add the component to the recipe
-    // NOTE: how inputComponents are getting updated may need to be refactored
-    // to explicitly use this.setState after setting .inRecipe = true
-    let newcomponent = component;
-    newcomponent.inRecipe = true;
-    if (version != "") {
-        newcomponent.version = version;
-    }
-    let recipeComponents = this.state.recipeComponents.slice(0);
-    let updatedRecipeComponents = recipeComponents.concat(newcomponent);
-    this.setState({recipeComponents: updatedRecipeComponents});
+    let newcomponentName = component.name;
+    // get metadata for the component
+    Promise.all([constants.getDependencies(newcomponentName), constants.getMetadata(newcomponentName)]).then((data) => {
+      let newcomponent = data[1].projects[0];
+      newcomponent.projects = data[0].modules[0].projects;
+      newcomponent.inRecipe = true;
+      newcomponent.ui_type = component.ui_type;
+      newcomponent.version = data[1].projects[0].builds[0].source.version;
+      newcomponent.release = data[1].projects[0].builds[0].release;
+      newcomponent.arch = data[1].projects[0].builds[0].arch;
+      // if the user selected a version in the details view
+      if (version != "") {
+          newcomponent.version = version;
+      }
+      let recipeComponents = this.state.recipeComponents.slice(0);
+      let updatedRecipeComponents = recipeComponents.concat(newcomponent);
+      this.setState({recipeComponents: updatedRecipeComponents});
+      let dependencies = this.updateDependencyList(data[0].modules);
+      this.setState({recipeDependencies: dependencies});
+
+    }).catch(e => console.log('Error adding module to recipe: ' + e));
+    // if an input is selected, deselect it
     let inputs = this.removeInputActive();
+    // set inRecipe to true for the input component as well
+    inputs[inputs.indexOf(component)].inRecipe = true;
     this.setState({inputComponents: inputs});
     this.setState({selectedComponent: ""});
     this.setState({selectedComponentStatus: ""});
+    // remove the inline message above the list of inputs
     this.clearInputAlert();
   };
 
@@ -271,6 +305,23 @@ class EditRecipePage extends React.Component {
     this.setState({selectedComponent: ""});
     this.setState({selectedComponentStatus: ""});
     this.setState({selectedComponentParent: ""});
+  }
+
+  updateDependencyList(data) {
+    let dependencies = this.state.recipeDependencies.slice(0);
+    data.map(i => {
+        // include value for requiredBy for each dependency
+        let component = i;
+        if (i.projects.length > 0) {
+          i.projects.map(i => {
+            i.requiredBy = component.name;
+            i.inRecipe = true;
+            i.ui_type = component.ui_type;
+          });
+        }
+        dependencies = dependencies.concat(i.projects);
+    });
+    return dependencies;
   }
 
   removeInputActive() {
