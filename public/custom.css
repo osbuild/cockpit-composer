@@ -168,6 +168,13 @@
 
 
 /* Recipe Contents Accordion */
+
+#cmpsr-recipe-contents {
+    margin: 20px 0;
+}
+#cmpsr-recipe-list-edit #cmpsr-recipe-contents {
+  margin: -1px -21px;
+}
 .panel-body .list-view-pf-view {
   margin-top: 0;
   margin-bottom: 0;
@@ -190,4 +197,7 @@
 /*Component details*/
 #cmpsr-recipe-details-edit {
   border-top: 1px solid #d1d1d1;
+}
+#cmpsr-recipe-details {
+  padding: 10px 35px;
 }

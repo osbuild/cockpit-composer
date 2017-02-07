@@ -13,7 +13,7 @@ class RecipeContents extends React.Component {
 
 
     return (
-      <div className="panel-group row" id="cmpsr-recipe-contents">
+      <div className="panel-group" id="cmpsr-recipe-contents">
         <div className="panel panel-default">
           <div className="panel-heading">
             <h4 className="panel-title">
