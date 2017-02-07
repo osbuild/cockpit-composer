@@ -4,29 +4,29 @@ import constants from '../../core/constants';
 
 class ComponentSummaryList extends React.Component {
 
-  state = { dependencies: []}
+  // state = { dependencies: []}
 
-  componentWillMount() {
-    this.getDependencies();
-  }
-  getDependencies() {
-    fetch(constants.get_dependencies_list + this.props.component).then(r => r.json())
-      .then(data => {
-        let dependencies = [];
-        data.modules.map(i => {
-          dependencies = dependencies.concat(i.projects);
-        });
-        this.setState({dependencies: dependencies});
-      })
-      .catch(e => console.log("no dependencies"));
-  }
+  // componentWillMount() {
+  //   this.getDependencies();
+  // }
+  // getDependencies() {
+  //   fetch(constants.get_dependencies_list + this.props.component).then(r => r.json())
+  //     .then(data => {
+  //       let dependencies = [];
+  //       data.modules.map(i => {
+  //         dependencies = dependencies.concat(i.projects);
+  //       });
+  //       this.setState({dependencies: dependencies});
+  //     })
+  //     .catch(e => console.log("no dependencies"));
+  // }
 
   render() {
       return (
         <div className="cmpsr-summary-listview">
-          <p><strong>Dependencies</strong> ({this.state.dependencies.length} First Level, n Total)</p>
+          <p><strong>Dependencies</strong> ({this.props.listItems.length} First Level, n Total)</p>
           <div className="list-group list-view-pf list-view-pf-view cmpsr-list-view-viewskinny">
-            {this.state.dependencies.map((dependency, i) =>
+            {this.props.listItems.map((listItem, i) =>
               <div className="list-group-item" key={i}>
                 <div className="list-view-pf-main-info">
                   <div className="list-view-pf-left" data-item="type">
@@ -34,7 +34,7 @@ class ComponentSummaryList extends React.Component {
                   </div>
                   <div className="list-view-pf-body">
                     <div className="list-view-pf-description">
-                      <a href="#" data-item="name">{dependency.name}</a>
+                      <a href="#" data-item="name">{listItem.name}</a>
                     </div>
                   </div>
                 </div>

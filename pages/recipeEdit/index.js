@@ -41,6 +41,13 @@ class EditRecipePage extends React.Component {
               this.setState({recipeComponents : constants.setComponentType(data.recipes[0], true)});
               let dependencies = [];
               data.recipes[0].modules.map(i => {
+                  // include value for requiredBy for each dependency
+                  let component = i.name;
+                  if (i.projects.length > 0) {
+                    i.projects.map(i => {
+                      i.requiredBy = component;
+                    });
+                  }
                   dependencies = dependencies.concat(i.projects);
               });
               this.setState({recipeDependencies: dependencies});
@@ -301,7 +308,7 @@ class EditRecipePage extends React.Component {
         <div className="row">
 
           { this.state.selectedComponent == "" &&
-          <div className="col-sm-7 col-md-8 col-sm-push-5 col-md-push-4" id="cmpsr-recipe-list">
+          <div className="col-sm-7 col-md-8 col-sm-push-5 col-md-push-4" id="cmpsr-recipe-list-edit">
 						<Toolbar />
             { this.state.recipeComponents.length == 0 &&
             <EmptyState title={"Add Recipe Components"} message={"Browse or search for components, then add them to the recipe."} />
@@ -310,8 +317,9 @@ class EditRecipePage extends React.Component {
             }
 					</div>
           ||
-          <div className="col-sm-7 col-md-8 col-sm-push-5 col-md-push-4" id="cmpsr-recipe-details">
+          <div className="col-sm-7 col-md-8 col-sm-push-5 col-md-push-4" id="cmpsr-recipe-details-edit">
             <ComponentDetailsView
+              parent={ this.props.route.params.recipe }
               component={ this.state.selectedComponent }
               componentParent={ this.state.selectedComponentParent }
               status={ this.state.selectedComponentStatus }

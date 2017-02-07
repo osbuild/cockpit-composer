@@ -166,13 +166,17 @@ class ComponentDetailsView extends React.Component {
               <dt>Version</dt>
               <dd>{this.state.selectedVersion == "" && component.version || this.state.selectedVersion} { this.props.status == "selected" && <a href="#">Update</a>}</dd>
               <dt>Release</dt>
-              <dd>{component.release}</dd>
+              <dd>{ component.release ? component.release : <span>&nbsp;</span> }</dd>
               <dt>Architecture</dt>
               <dd>x86_64</dd>
               <dt>Install Size</dt>
               <dd>2 MB (5 MB with Dependencies)</dd>
               <dt>URL</dt>
-              <dd>http:&#47;&#47;www.{component.name}.com</dd>
+              {component.homepage != null &&
+              <dd><a target="_blank" href={component.homepage}>{component.homepage}</a></dd>
+              ||
+              <dd>&nbsp;</dd>
+              }
               <dt>Packager</dt>
               <dd>Red Hat</dd>
               <dt>Product Family</dt>
