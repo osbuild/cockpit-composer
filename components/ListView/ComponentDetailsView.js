@@ -94,13 +94,18 @@ class ComponentDetailsView extends React.Component {
       <div className="cmpsr-compon-details">
         { this.state.parents.length > 0 &&
         <ol className="breadcrumb">
+          <li><a href="#" onClick={(e) => this.props.handleComponentDetails(e, "")}>Back to {this.props.parent}</a></li>
           {this.state.parents.map((parent,i) =>
-            <li key={i} className={i}><a href="#" onClick={(e) => this.props.handleComponentDetails(e, parent, this.state.parents[i-1])}>{parent.name}</a></li>
+          <li key={i}><a href="#" onClick={(e) => this.props.handleComponentDetails(e, parent, this.state.parents[i-1])}>{parent.name}</a></li>
           )}
           <li></li>
         </ol>
+        ||
+        <ol className="breadcrumb">
+          <li><a href="#" onClick={(e) => this.props.handleComponentDetails(e, "")}>Back to {this.props.parent}</a></li>
+        </ol>
         }
-    		<h2>
+    		<h3>
     			<span data-item="name"><ComponentTypeIcons componentType={ component.ui_type } /> {component.name} </span>
     			<div className="pull-right">
     				<ul className="list-inline">
@@ -126,7 +131,7 @@ class ComponentDetailsView extends React.Component {
     					</li>
     				</ul>
     			</div>
-    		</h2>
+    		</h3>
 
         { this.props.status == "available" &&
     		<div className="blank-slate-pf">

@@ -66,20 +66,21 @@ class RecipesPage extends React.Component {
                 </div>
                 <button className="btn btn-link" type="button"><span className="fa fa-sort-alpha-asc"></span></button>
               </div>
-              <div className="form-group">
-                <button className="btn btn-default" type="button" data-toggle="modal" data-target="#cmpsr-modal-crt-recipe">Create Recipe</button>
-                <div className="dropdown btn-group  dropdown-kebab-pf">
-                  <button className="btn btn-link dropdown-toggle" type="button" id="dropdownKebab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span className="fa fa-ellipsis-v"></span></button>
-                  <ul className="dropdown-menu " aria-labelledby="dropdownKebab">
-                    <li><a href="#">Import Recipe</a></li>
-                    <li role="separator" className="divider"></li>
-                    <li><a href="#">Create Compositions</a></li>
-                    <li><a href="#">Export Selected Recipes</a></li>
-                    <li><a href="#">Delete Selected Recipes</a></li>
-                  </ul>
-                </div>
-              </div>
+
               <div className="toolbar-pf-action-right">
+                <div className="form-group">
+                  <button className="btn btn-default" type="button" data-toggle="modal" data-target="#cmpsr-modal-crt-recipe">Create Recipe</button>
+                  <div className="dropdown btn-group  dropdown-kebab-pf">
+                    <button className="btn btn-link dropdown-toggle" type="button" id="dropdownKebab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span className="fa fa-ellipsis-v"></span></button>
+                    <ul className="dropdown-menu " aria-labelledby="dropdownKebab">
+                      <li><a href="#">Import Recipe</a></li>
+                      <li role="separator" className="divider"></li>
+                      <li><a href="#">Create Compositions</a></li>
+                      <li><a href="#">Export Selected Recipes</a></li>
+                      <li><a href="#">Delete Selected Recipes</a></li>
+                    </ul>
+                  </div>
+                </div>
                 <div className="form-group toolbar-pf-find">
                   <button className="btn btn-link btn-find" type="button"><span className="fa fa-search"></span></button>
                   <div className="find-pf-dropdown-container"><input type="text" className="form-control" id="find" placeholder="Find By Keyword..." />
@@ -90,11 +91,6 @@ class RecipesPage extends React.Component {
                       <button className="btn btn-link btn-find-close" type="button"><span className="pficon pficon-close"></span></button>
                     </div>
                   </div>
-                </div>
-                <div className="form-group toolbar-pf-view-selector">
-                  <button className="btn btn-link" title="Table View"><i className="fa fa-th"></i></button>
-                  <button className="btn btn-link " title="Tree View"><i className="pficon pficon-topology"></i></button>
-                  <button className="btn btn-link active" title="List View"><i className="fa fa-th-list"></i></button>
                 </div>
               </div>
             </form>
