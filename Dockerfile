@@ -41,9 +41,9 @@ EXPOSE 3000
 COPY ./docker/nginx.conf /etc/nginx/
 
 # Update node dependencies only if they have changed
-COPY ./package.json /composer-UI/package.json
-RUN cd /composer-UI/ && npm install
+COPY ./package.json /welder/package.json
+RUN cd /welder/ && npm install
 
 # Copy the rest of the UI files over and compile them
-COPY . /composer-UI/
-RUN cd /composer-UI/ && node run build
+COPY . /welder/
+RUN cd /welder/ && node run build
