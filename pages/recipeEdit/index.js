@@ -18,7 +18,7 @@ class EditRecipePage extends React.Component {
           };
 
   componentDidMount() {
-    document.title = 'Composer | Recipe';
+    document.title = 'Welder | Recipe';
   }
 
   componentWillMount() {
