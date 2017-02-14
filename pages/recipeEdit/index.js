@@ -40,8 +40,8 @@ class EditRecipePage extends React.Component {
           fetch(constants.get_recipes_deps + recipeName)
           .then(r => r.json())
           .then(data => {
-              this.setState({recipe : data.recipes[0]});
-              this.setState({recipeComponents : constants.setComponentType(data.recipes[0], true)});
+              this.setState({recipe : data.recipes[0].recipe});
+              this.setState({recipeComponents : constants.setComponentType(data.recipes[0].recipe, true)});
               let dependencies = this.updateDependencyList(data.recipes[0].modules);
               this.setState({recipeDependencies: dependencies});
               resolve();
@@ -89,7 +89,6 @@ class EditRecipePage extends React.Component {
       },
       body: JSON.stringify(recipe)
     });
-
   }
 
   getInputs(){
