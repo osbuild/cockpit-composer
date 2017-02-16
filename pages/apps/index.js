@@ -8,7 +8,7 @@ class AppsPage extends React.Component {
   state = { apps: [] };
 
   componentDidMount() {
-    document.title = 'Composer | Recipes';
+    document.title = 'Welder | Recipes';
   }
 
   componentWillMount() {

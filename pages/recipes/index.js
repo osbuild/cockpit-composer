@@ -9,7 +9,7 @@ class RecipesPage extends React.Component {
   state = { recipes: [] };
 
   componentDidMount() {
-    document.title = 'Composer | Recipes';
+    document.title = 'Welder | Recipes';
   }
 
   componentWillMount() {

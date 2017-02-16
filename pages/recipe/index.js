@@ -15,7 +15,7 @@ class RecipePage extends React.Component {
   state = { recipe: [], components: [], dependencies: [], activeTab: "Components", selectedComponent: "", selectedComponentStatus: "view", selectedComponentParent: "" };
 
   componentDidMount() {
-    document.title = 'Composer | Recipe';
+    document.title = 'Welder | Recipe';
   }
 
   componentWillMount() {

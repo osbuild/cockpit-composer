@@ -8,7 +8,7 @@ class HomePage extends React.Component {
   state = { projects: [] };
 
   componentDidMount() {
-    document.title = 'Composer | Home';
+    document.title = 'Welder | Home';
   }
 
   componentWillMount() {

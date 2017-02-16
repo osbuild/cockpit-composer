@@ -1,23 +1,23 @@
-Creating and Running the composer-UI Docker image
+Creating and Running the welder-web Docker image
 =================================================
 
-This docker container builds the composer-UI application using node, then
+This docker container builds the Welder web application using node, then
 serves it up on port 3000 of the container using nginx. nginx handles
 proxying requests for /api/ to the docker api container.
 
 The docker image depends on a base image, named weld/fedora:24, which needs
 have been previously built. If it is not available it can be built from
-the composer-deployment repository by running `make weld-f24`.
+the welder-deployment repository by running `make weld-f24`.
 
-Build the composer UI image with:
+Build the welder-web image with:
 
-docker build -t weld/composer .
+docker build -t welder/web .
 
 Run the image, using the default API url, with:
 
-docker run -it --rm weld/composer
+docker run -it --rm welder/web
 
 If the API is hosted on a different server that URL needs to be passed to the
 container:
 
-docker run -it --rm -e API_URL=http://192.168.102.4:4000 weld/composer
+docker run -it --rm -e API_URL=http://192.168.102.4:4000 welder/web
