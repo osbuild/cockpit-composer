@@ -35,7 +35,7 @@ const config = {
     //css entries
     // '!!style!css!patternfly/dist/css/patternfly.css',
     // '!!style!css!patternfly/dist/css/patternfly-additions.css',
-    
+
     //js entries
     'jquery-match-height/dist/jquery.matchHeight.js',
     /* The main entry point of your JavaScript application */
@@ -96,6 +96,7 @@ const config = {
           path.resolve(__dirname, './actions'),
           path.resolve(__dirname, './components'),
           path.resolve(__dirname, './core'),
+          path.resolve(__dirname, './data'),
           path.resolve(__dirname, './pages'),
           path.resolve(__dirname, './main.js'),
         ],

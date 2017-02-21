@@ -4,6 +4,8 @@ import Tabs from '../../components/Tabs/Tabs'
 import Tab from '../../components/Tabs/Tab';
 import DependencyListView from '../../components/ListView/DependencyListView';
 import constants from '../../core/constants';
+import MetadataApi from '../../data/MetadataApi';
+
 
 
 
@@ -14,7 +16,6 @@ class ComponentDetailsView extends React.Component {
 
   componentWillMount() {
     this.getMetadata(this.props.component);
-
   }
 
   componentDidMount() {
@@ -39,39 +40,13 @@ class ComponentDetailsView extends React.Component {
   }
 
   getMetadata(component) {
-    // get component metadata and list of dependencies
-    Promise.all([constants.getDependencies(component.name), constants.getMetadata(component.name)]).then((data) => {
-      let metadata = data[1].projects[0];
-      metadata.ui_type = component.ui_type;
-      metadata.version = data[1].projects[0].builds[0].source.version;
-      metadata.release = data[1].projects[0].builds[0].release;
-      metadata.arch = data[1].projects[0].builds[0].arch;
-      this.setState({componentData: metadata});
-      let dependencies = data[0].modules[0].projects;
-      // for each dependency, set the requiredBy value to the parent component
-      // and set the ui_type to match the parent component
-      // NOTE: requiredBy should ultimately show any component that requires
-      // the dependency, not just the current one; and ui_type cannot be assumed
-      // to be the same as the parent component, so this is temporary
-      dependencies.map(i => {
-        i.requiredBy = component.name;
-        i.ui_type = component.ui_type;
-      });
-      let dependencyNames = "";
-      dependencies.map(i => {
-        dependencyNames = dependencyNames === "" ? i.name : dependencyNames + "," + i.name;
-      });
-      // get metadata for each dependency
-      Promise.all([constants.getMetadata(dependencyNames)]).then((data) => {
-        data[0].projects.map(i => {
-          let index = dependencies.map(dependency => {return dependency.name}).indexOf(i.name);
-          dependencies[index].version = i.builds[0].source.version;
-          dependencies[index].release = i.builds[0].release;
-          dependencies[index].arch = i.builds[0].arch;
-        });
-        this.setState({dependencies : dependencies});
-      }).catch(e => console.log('Error getting dependency metadata: ' + e));
-    }).catch(e => console.log('Error getting dependencies and metadata: ' + e));
+    Promise.all([
+        MetadataApi.getMetadataComponent(component)
+    ]).then((data) => {
+      this.setState({componentData: data[0][0]});
+      this.setState({dependencies : data[0][1]});
+      this.setState({selectedVersion: ""}); // this needs to be handled differently, eventually the default version should be passed in via props
+    }).catch(e => console.log('Error getting component metadata: ' + e));
   }
 
   handleVersionSelect = (event) => {
@@ -159,7 +134,7 @@ class ComponentDetailsView extends React.Component {
             <div className="form-group">
               <label className="col-sm-3 col-md-2 control-label" htmlFor="cmpsr-compon-details-version-select">Version</label>
               <div className="col-sm-8 col-md-9">
-                <select id="cmpsr-compon-details-version-select" className="selectpicker form-control" onChange={(e) => this.handleVersionSelect(e)} value={this.state.selectedVersion == "" && this.state.componentData.version || this.state.selectedVersion}>
+                <select id="cmpsr-compon-details-version-select" className="selectpicker form-control" onChange={(e) => this.handleVersionSelect(e)} value={this.state.selectedVersion !== "" && this.state.selectedVersion || this.state.componentData.version}>
                   <option>{this.state.componentData.version}</option>
                   <option>3.0</option>
                   <option>2.5</option>
@@ -189,7 +164,7 @@ class ComponentDetailsView extends React.Component {
               <dt>Type</dt>
               <dd>{component.ui_type}</dd>
               <dt>Version</dt>
-              <dd>{this.state.selectedVersion == "" && this.state.componentData.version || this.state.selectedVersion} { this.props.status == "selected" && <a href="#">Update</a>}</dd>
+              <dd>{this.state.selectedVersion !== "" && this.state.selectedVersion || this.state.componentData.version } { this.props.status == "selected" && <a href="#">Update</a>}</dd>
               <dt>Release</dt>
               <dd>{ this.state.componentData.release ? this.state.componentData.release : <span>&nbsp;</span> }</dd>
               <dt>Architecture</dt>

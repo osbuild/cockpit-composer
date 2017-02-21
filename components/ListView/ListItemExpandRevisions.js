@@ -3,7 +3,7 @@ import ComponentTypeIcons from '../../components/ListView/ComponentTypeIcons';
 import ComponentSummaryList from '../../components/ListView/ComponentSummaryList';
 import ListItemLabel from '../../components/ListView/ListItemLabel';
 
-class ListItemExpand extends React.Component {
+class ListItemExpandRevisions extends React.Component {
 
   state = { expanded: false }
 
@@ -39,52 +39,55 @@ class ListItemExpand extends React.Component {
     }
     return (
 
-            <div data-name={ listItem.name } className={"list-group-item " + (this.state.expanded ? 'list-view-pf-expand-active' : '')}>
+            <div className={"list-group-item " + (this.state.expanded ? 'list-view-pf-expand-active' : '')}>
               <div className="list-group-item-header" onClick={(e) => this.handleExpandComponent(e)}>
                 <div className="list-view-pf-expand">
                   <span className={"fa fa-angle-right " + (this.state.expanded ? 'fa-angle-down' : 'fa-angle-right')}></span>
                 </div>
-                <div className="list-view-pf-checkbox">
-                  <input type="checkbox" />
-                </div>
-                {this.props.noEditComponent !== true &&
+
                 <div className="list-view-pf-actions">
                   <div className="dropdown pull-right dropdown-kebab-pf">
                     <button className="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight9" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span className="fa fa-ellipsis-v"></span></button>
                     <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight9">
-                      <li><a href="#" onClick={(e) => this.props.handleComponentDetails(e, listItem, this.props.componentDetailsParent)}>View</a></li>
-                      <li><a href="#">Edit</a></li>
+                      <li><a href="#">View Recipe</a></li>
+                      { listItem.active === "true" &&
+                      <li><a href="#">Edit Recipe</a></li>
+                      ||
+                      <li><a href="#">Restore and Edit</a></li>
+                      }
+                      { listItem.active === "true" &&
+                      <li><a href="#">Preserve Revision</a></li>
+                      ||
+                      <li><a href="#">Restore Revision</a></li>
+                      }
+                      <li><a href="#">Save Revision as New Recipe</a></li>
                       <li role="separator" className="divider"></li>
-                      <li><a href="#" onClick={(e) => this.props.handleRemoveComponent(e, listItem)}>Remove</a></li>
+                      <li><a href="#">Create Composition</a></li>
+                      <li role="separator" className="divider"></li>
+                      <li><a href="#">Archive</a></li>
                     </ul>
                   </div>
                 </div>
-                }
+
                 <div className="list-view-pf-main-info">
-                  <div className="list-view-pf-left" data-item="type">
-                    <ComponentTypeIcons componentType={ listItem.ui_type } />
-                  </div>
                   <div className="list-view-pf-body">
                     <div className="list-view-pf-description">
                       <div className="list-group-item-heading">
-                        <a href="#" data-item="name" onClick={(e) => this.props.handleComponentDetails(e, listItem, this.props.componentDetailsParent)}>{ listItem.name }</a>
+                        <a href="#" data-item="name">Revision { listItem.number }{ listItem.active === "true" && <span>, Current Revision</span>}</a>
                       </div>
                       <div className="list-group-item-text">
-                        { listItem.summary }
-                      </div>
-                      <div className="cmpsr-dependency-flag">
-                        <span className="pficon pficon-warning-triangle-o"></span>
+                        Based on { listItem.basedOn }
                       </div>
                     </div>
                     <div className="list-view-pf-additional-info">
                       <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
-                        Version <strong>{ listItem.version }</strong>
+                        Compositions <strong>{ listItem.compositions }</strong>
                       </div>
                       <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
-                        Release <strong>{ listItem.release }</strong>
+                        Components <strong>{ listItem.components }</strong>
                       </div>
                       <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
-                        Dependencies <strong>{ dependencyCount }</strong>
+                        Install Size <strong>{ listItem.size }</strong>
                       </div>
                     </div>
                   </div>
@@ -95,106 +98,106 @@ class ListItemExpand extends React.Component {
                 <div className="close hidden">
                   <span className="pficon pficon-close"></span>
                 </div>
+
                 <div className="row">
                   <div className="col-md-6">
-                    <dl className="dl-horizontal clearfix">
-                      <dt>Version</dt>
-                      <dd>{ listItem.version ? listItem.version : <span>&nbsp;</span> }</dd>
-                      <dt>Release</dt>
-                      <dd>{ listItem.release ? listItem.release : <span>&nbsp;</span> }</dd>
-                      <dt>Architecture</dt>
-                      <dd>{ listItem.arch }</dd>
-                      <dt>Install Size</dt>
-                      <dd>2 MB (5 MB with Dependencies)</dd>
-                      <dt>URL</dt>
-                      {listItem.homepage != null &&
-                      <dd><a target="_blank" href={listItem.homepage}>{listItem.homepage}</a></dd>
-                      ||
-                      <dd>&nbsp;</dd>
-                      }
-                      <dt>Packager</dt>
-                      <dd>Red Hat</dd>
-                      <dt>Product Family</dt>
-                      <dd>???</dd>
-                      <dt>Lifecycle</dt>
-                      <dd>01/15/2017</dd>
-                      <dt>Support Level</dt>
-                      <dd>Standard</dd>
+                    <div className="cmpsr-summary-listview">
+                      <p><strong>Compositions</strong> ({listItem.compositions})</p>
+                      { listItem.compositions !== "0" &&
+                      <div className="list-group list-view-pf list-view-pf-view cmpsr-list-view-viewskinny">
+                        <div className="list-group-item">
+                          <div className="list-view-pf-main-info">
+                            <div className="list-view-pf-left" data-item="type">
+                              <span className="pf pficon-image list-view-pf-icon-sm" aria-hidden="true"></span>
+                            </div>
+                            <div className="list-view-pf-body">
+                              <div className="list-view-pf-description">
+                                <a href="#">Composition 1 (iso)</a> <span className="text-muted">created 1/15/17, last exported 2/15/17</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
 
-                    </dl>
-                    <strong>Errata</strong>
-                    <ul>
-                      <li><a>RHBA-2016:1641 RHEL Atomic OSTree Update 7.2.6-1</a></li>
-                      <li><a>RHBA-2016:1641 RHEL Atomic OSTree Update 7.2.6-1</a></li>
-                    </ul>
+                      </div>
+                      }
+                    </div>
                   </div>
+
                   <div className="col-md-6">
-                    { listItem.ui_type !== "RPM" && <div className="cmpsr-summary-listview hidden">
-                      <p><strong>Child Components</strong> (4)</p>
+                    <div className="cmpsr-summary-listview">
+                      <p><strong>Change Log</strong></p>
                       <div className="list-group list-view-pf list-view-pf-view cmpsr-list-view-viewskinny">
+                        { listItem.compositions !== "0" &&
                         <div className="list-group-item">
                           <div className="list-view-pf-main-info">
-                            <div className="list-view-pf-left" data-item="type">
-                              <span className="fa fa-cube list-view-pf-icon-sm" title="Module"></span>
-                            </div>
                             <div className="list-view-pf-body">
                               <div className="list-view-pf-description">
-                                <a href="#" data-item="name">fm-group:rpm-development-tools</a>
+                                <a href="#">Composition exported</a> <span className="text-muted">2/15/17 by Brian Johnson</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        }
+                        { listItem.compositions !== "0" &&
+                        <div className="list-group-item">
+                          <div className="list-view-pf-main-info">
+                            <div className="list-view-pf-body">
+                              <div className="list-view-pf-description">
+                                <a href="#">Composition created</a> <span className="text-muted">1/15/17 by Brian Johnson</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        }
+                        <div className="list-group-item">
+                          <div className="list-view-pf-main-info">
+                            <div className="list-view-pf-body">
+                              <div className="list-view-pf-description">
+                                <a href="#">Recipe modified</a> <span className="text-muted">12/15/16 by Brian Johnson</span>
                               </div>
                             </div>
                           </div>
                         </div>
                         <div className="list-group-item">
                           <div className="list-view-pf-main-info">
-                            <div className="list-view-pf-left" data-item="type">
-                              <span className="fa fa-cube list-view-pf-icon-sm" title="Module"></span>
-                            </div>
                             <div className="list-view-pf-body">
                               <div className="list-view-pf-description">
-                                <a href="#" data-item="name">fm-group:hardware-support</a>
+                                <a href="#">Revision created</a> <span className="text-muted">12/15/16 by Brian Johnson</span>
                               </div>
                             </div>
                           </div>
                         </div>
-                        <div className="list-group-item">
+                        <div className="list-group-item hidden">
                           <div className="list-view-pf-main-info">
                             <div className="list-view-pf-body">
                               <div className="list-view-pf-description">
-                                <a href="#">View More</a>
+                                <a href="#" data-item="name">1 component added, 2 components removed by Brian Johnson</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="list-group-item hidden">
+                          <div className="list-view-pf-main-info">
+                            <div className="list-view-pf-body">
+                              <div className="list-view-pf-description">
+                                <a href="#" data-item="name">4 components added by swilliams</a>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div> }
-                    {this.props.isDependency && <div className="cmpsr-summary-listview">
-                      <p><strong>Required By</strong> (1)</p>
-                      <div className="list-group list-view-pf list-view-pf-view cmpsr-list-view-viewskinny">
-                        <div className="list-group-item">
-                          <div className="list-view-pf-main-info">
-                            <div className="list-view-pf-left" data-item="type">
-                              <ComponentTypeIcons componentType={ listItem.ui_type } />
-                            </div>
-                            <div className="list-view-pf-body">
-                              <div className="list-view-pf-description">
-                                <a href="#" data-item="name">{listItem.requiredBy}</a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div> }
-                    {dependencyCount > 0 &&
-                    <ComponentSummaryList listItems={listItem.projects} />
-                    }
+                    </div>
                   </div>
+
                 </div>
+
               </div>
             </div>
 
     )
   }
-
+// "Exported 2 times" and creation date, last export date in list item for Compositions
+// change log could just be actions, dates, and people for now
 }
 
-export default ListItemExpand;
+export default ListItemExpandRevisions;
