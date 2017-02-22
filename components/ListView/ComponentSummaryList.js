@@ -30,7 +30,7 @@ class ComponentSummaryList extends React.Component {
               <div className="list-group-item" key={i}>
                 <div className="list-view-pf-main-info">
                   <div className="list-view-pf-left" data-item="type">
-                    <span className="fa fa-cube list-view-pf-icon-sm" title="Module"></span>
+                    <ComponentTypeIcons componentType={ listItem.ui_type } />
                   </div>
                   <div className="list-view-pf-body">
                     <div className="list-view-pf-description">

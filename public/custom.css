@@ -24,6 +24,15 @@
    margin-top: 0;
  }
 
+/* toolbar */
+
+.toolbar-pf-actions .toolbar-pf-filter.form-group {
+  padding-left: 20px;
+}
+.toolbar-pf-actions .form-group:first-child {
+  padding-left: 0;
+}
+
 /* sidebar toolbar */
 .toolbar-pf-actions {min-height: 28px;}
 .sidebar-pf .toolbar-pf-actions .toolbar-pf-filter {width:auto;}

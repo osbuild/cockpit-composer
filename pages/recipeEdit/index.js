@@ -8,10 +8,13 @@ import CreateComposition from '../../components/Modal/CreateComposition';
 import EmptyState from '../../components/EmptyState/EmptyState';
 import Toolbar from '../../components/Toolbar/Toolbar';
 import constants from '../../core/constants';
+import RecipeApi from '../../data/RecipeApi';
+import MetadataApi from '../../data/MetadataApi';
+
 
 class EditRecipePage extends React.Component {
 
-  state = { recipe: [],
+  state = { recipe: {},
             recipeComponents: [], recipeDependencies: [],
             inputComponents: [], inputFilters: [], filteredComponents: [],
             selectedComponent: "", selectedComponentStatus: "", selectedComponentParent: "",
@@ -22,85 +25,43 @@ class EditRecipePage extends React.Component {
   }
 
   componentWillMount() {
-      Promise.all([this.getRecipe(this.props.route.params.recipe), this.getInputs()]).then(() => {
+    // get recipe, get inputs; then update inputs
+      Promise.all([RecipeApi.getRecipe(this.props.route.params.recipe), this.getInputs()]).then((data) => {
+          let recipe = {
+            "name": data[0].name,
+            "description" : data[0].description
+          };
+          this.setState({recipe: recipe});
+          this.setState({recipeComponents: data[0].components});
+          this.setState({recipeDependencies: data[0].dependencies});
           // Recipes and available components both need to be updated before running this
-          this.updateInputs();
-          let components = this.state.recipeComponents.slice(0);
-          let dependencies = this.state.recipeDependencies.slice(0);
-          this.getMetadata(components, dependencies);
+          this.updateInputs(data[1]);
       }).catch(e => console.log('Error in EditRecipe promise: ' + e));
   }
 
-  // Get the recipe details, and its dependencies
-  // Object layout is:
-  // {recipes: [{recipe: RECIPE, modules: MODULES}, ...]}
-  // Where MODULES is a modules/info/ object {name: "", projects: [{...
-  getRecipe(recipeName) {
-      let p = new Promise((resolve, reject) => {
-          fetch(constants.get_recipes_deps + recipeName)
-          .then(r => r.json())
-          .then(data => {
-              this.setState({recipe : data.recipes[0]});
-              this.setState({recipeComponents : constants.setComponentType(data.recipes[0], true)});
-              let dependencies = this.updateDependencyList(data.recipes[0].modules);
-              this.setState({recipeDependencies: dependencies});
-              resolve();
-          })
-          .catch(e => {
-              console.log("Error fetching recipes: " + e);
-              reject();
-          });
-    });
-    return p;
-  }
-
-  // TODO Use the original recipe in this.recipe instead of building it from components
-  handleSaveRecipe() {
-    let components = JSON.parse(JSON.stringify(this.state.recipeComponents));
-    // create list of components that are modules
-    let modules = [];
-    components.map(i => {
-      if (i.ui_type == "Module") {
-        delete i.inRecipe;
-        delete i.ui_type;
-        modules.push(i);
-      }
-    });
-    // create list of components that are RPMs
-    let rpms = [];
-    components.map(i => {
-      if (i.ui_type == "RPM") {
-        delete i.inRecipe;
-        delete i.ui_type;
-        rpms.push(i);
-      }
-    });
-    // create recipe and post it
-    let recipe = {
-      "name": this.props.route.params.recipe,
-      "description": this.state.recipe.description,
-      "modules": modules,
-      "packages": rpms
-    };
-    fetch(constants.post_recipes_new, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(recipe)
-    });
-
-  }
-
-  getInputs(){
+  getInputs(filter){
+    // for now, this gets full metadata and dependencies of list that's returned
+    // but ideally the returned list would provide only what's needed to display
+    // in the list and the popover, then the remaining data would be fetched on
+    // Add or View Details
+    filter = (filter === undefined) ? "" : filter;
       let p = new Promise((resolve, reject) => {
           // /modules/list looks like:
           // {"modules":[{"name":"389-ds-base","group_type":"rpm"},{"name":"389-ds-base-libs","group_type":"rpm"}, ...]}
-          fetch(constants.get_modules_list)
+          fetch(constants.get_modules_list + filter)
           .then(r => r.json())
           .then(data => {
-              this.setState({inputComponents : constants.setComponentType(data)});
-              resolve();
+              let components = data.modules
+              let componentNames = MetadataApi.getNames(components);
+              Promise.all([
+                  MetadataApi.getData(constants.get_module_info + componentNames),
+                  MetadataApi.getData(constants.get_dependencies_list + componentNames)
+              ]).then((data) => {
+                components = MetadataApi.updateComponentMetadata(components, data[0], true);
+                components = MetadataApi.updateComponentDependencies(components, data[1]);
+                components.map(i => {i.ui_type = "RPM"}) // this is being set arbitrarily for now
+                resolve(components);
+              }).catch(e => console.log('Error getting recipe metadata: ' + e));
           })
           .catch(e => {
               console.log("Failed to get inputs during recipe edit: " + e);
@@ -108,11 +69,11 @@ class EditRecipePage extends React.Component {
           });
       });
       return p;
-  }
+  };
 
-  updateInputs() {
-    // add a property to the original set of inputs, that indicates whether the input is in the recipe or not
-    let inputs = this.state.inputComponents;
+  updateInputs(inputs) {
+    // add a property to the original set of inputs, that indicates whether the
+    // input is in the recipe or not
     let selected = this.state.recipeComponents;
     selected.map(component => {
       let index = inputs.map(input => {return input.name}).indexOf(component.name);
@@ -121,60 +82,23 @@ class EditRecipePage extends React.Component {
       }
     });
     this.setState({inputComponents: inputs});
-  }
+  };
 
-  getMetadata(components, dependencies) {
-    let componentNames = "";
-    components.map(i => {
-      componentNames = componentNames === "" ? i.name : componentNames + "," + i.name;
-    });
-    let dependencyNames = "";
-    dependencies.map(i => {
-      dependencyNames = dependencyNames === "" ? i.name : dependencyNames + "," + i.name;
-    });
-    Promise.all([constants.getMetadata(componentNames), constants.getMetadata(dependencyNames)]).then((data) => {
-      data[0].projects.map(i => {
-        let index = components.map(component => {return component.name}).indexOf(i.name);
-        components[index].version = i.builds[0].source.version;
-        components[index].release = i.builds[0].release;
-        components[index].arch = i.builds[0].arch;
-      });
-      data[1].projects.map(i => {
-        let index = dependencies.map(dependency => {return dependency.name}).indexOf(i.name);
-        dependencies[index].version = i.builds[0].source.version;
-        dependencies[index].release = i.builds[0].release;
-        dependencies[index].arch = i.builds[0].arch;
-      });
-
-      this.setState({recipeComponents: components});
-      this.setState({recipeDependencies: dependencies});
-    }).catch(e => console.log('Error getting component metadata: ' + e));
-  }
-  // FILTERING INPUTS IS JUST POC and needs to be refactored and generalized for all filter controls
-  // this only allows filtering by name, but will need to be modified when multiple filters can be applied
-  // filtering is case-sensitive
-  // NEED TO HANDLE CASE where user hits Enter when value = ""
   getFilteredInputs(event) {
     if (event.which == 13 || event.keyCode == 13) {
       let filter = [{
         "field": "name",
         "value": event.target.value
       }];
-      fetch(constants.get_modules_list+ "/*" + filter[0].value + "*").then(r => r.json())
-        .then(data => {
-          this.setState({filteredComponents : constants.setComponentType(data)});
-          this.setState({inputFilters : filter});
-          // when multiple filters can be applied besides just name, then this
-          // value needs to check if a filter for this field is already applied (if we replace the existing filter, anyway);
-          // also need to add to array, not replace it
-        })
-        .catch(e => {
-          console.log("Failed to filter inputs during recipe edit: " + e);
-          }
-        );
+      Promise.all([this.getInputs("/*" + filter[0].value + "*")]).then((data) => {
+        this.setState({filteredComponents : data[0]});
+        this.setState({inputFilters : filter});
+        // this.updateInputs(data[0]); TODO this should be used and refactored to work with any state value
+      }).catch(e => console.log('Failed to filter inputs during recipe edit: ' + e));
       event.preventDefault();
     }
   }
+
   handleClearFilters() {
     this.setState({filteredComponents : []});
     this.setState({inputFilters : []});
@@ -187,31 +111,25 @@ class EditRecipePage extends React.Component {
 
   handleAddComponent = (event, component, version) => {
     // the user clicked Add in the sidebar to add the component to the recipe
-    let newcomponentName = component.name;
-    // get metadata for the component
-    Promise.all([constants.getDependencies(newcomponentName), constants.getMetadata(newcomponentName)]).then((data) => {
-      let newcomponent = data[1].projects[0];
-      newcomponent.projects = data[0].modules[0].projects;
-      newcomponent.inRecipe = true;
-      newcomponent.ui_type = component.ui_type;
-      newcomponent.version = data[1].projects[0].builds[0].source.version;
-      newcomponent.release = data[1].projects[0].builds[0].release;
-      newcomponent.arch = data[1].projects[0].builds[0].arch;
-      // if the user selected a version in the details view
-      if (version != "") {
-          newcomponent.version = version;
-      }
-      let recipeComponents = this.state.recipeComponents.slice(0);
-      let updatedRecipeComponents = recipeComponents.concat(newcomponent);
-      this.setState({recipeComponents: updatedRecipeComponents});
-      let dependencies = this.updateDependencyList(data[0].modules);
-      this.setState({recipeDependencies: dependencies});
 
-    }).catch(e => console.log('Error adding module to recipe: ' + e));
+    // get metadata and dependencies for the component
+    Promise.all([
+        MetadataApi.getMetadataComponent(component, version)
+    ]).then((data) => {
+      let recipeComponents = this.state.recipeComponents.slice(0);
+      let updatedRecipeComponents = recipeComponents.concat(data[0][0]);
+      this.setState({recipeComponents: updatedRecipeComponents});
+      let recipeDependencies = this.state.recipeDependencies;
+      this.setState({recipeDependencies: recipeDependencies.concat(data[0][1])});
+      RecipeApi.updateRecipe(data[0][0], "add");
+    }).catch(e => console.log('Error getting component metadata: ' + e));
+
     // if an input is selected, deselect it
     let inputs = this.removeInputActive();
     // set inRecipe to true for the input component as well
+    // TODO this does not work for filtered inputs
     inputs[inputs.indexOf(component)].inRecipe = true;
+    // TODO if inputs also lists dependencies, should these be indicated as included?
     this.setState({inputComponents: inputs});
     this.setState({selectedComponent: ""});
     this.setState({selectedComponentStatus: ""});
@@ -307,23 +225,6 @@ class EditRecipePage extends React.Component {
     this.setState({selectedComponentParent: ""});
   }
 
-  updateDependencyList(data) {
-    let dependencies = this.state.recipeDependencies.slice(0);
-    data.map(i => {
-        // include value for requiredBy for each dependency
-        let component = i;
-        if (i.projects.length > 0) {
-          i.projects.map(i => {
-            i.requiredBy = component.name;
-            i.inRecipe = true;
-            i.ui_type = component.ui_type;
-          });
-        }
-        dependencies = dependencies.concat(i.projects);
-    });
-    return dependencies;
-  }
-
   removeInputActive() {
     // remove the active state from list of inputs
     let inputs = this.state.inputComponents.slice(0);
@@ -341,7 +242,7 @@ class EditRecipePage extends React.Component {
         <div className="cmpsr-edit-actions pull-right">
           <ul className="list-inline">
             <li>
-              <button className="btn btn-primary" type="button" onClick={(e) => this.handleSaveRecipe(e)}>Save</button>
+              <button className="btn btn-primary" type="button" onClick={(e) => RecipeApi.handleSaveRecipe(e)}>Save</button>
             </li>
             <li>
               <button className="btn btn-default" type="button">Discard Changes</button>
@@ -354,18 +255,16 @@ class EditRecipePage extends React.Component {
 					<li className="active"><strong>Edit Recipe</strong></li>
 				</ol>
         <div className="cmpsr-title-summary">
-          <h1 className="cmpsr-title-summary__item">{ this.props.route.params.recipe }</h1><p className="cmpsr-title-summary__item">Version 3<span className="text-muted">, Total Disk Space: 1,234 KB</span></p>
+          <h1 className="cmpsr-title-summary__item">{ this.props.route.params.recipe }</h1><p className="cmpsr-title-summary__item">Revision 3<span className="text-muted">, Total Disk Space: 1,234 KB</span></p>
         </div>
         <div className="row">
 
           { this.state.selectedComponent == "" &&
           <div className="col-sm-7 col-md-8 col-sm-push-5 col-md-push-4" id="cmpsr-recipe-list-edit">
 						<Toolbar />
-            { this.state.recipeComponents.length == 0 &&
-            <EmptyState title={"Add Recipe Components"} message={"Browse or search for components, then add them to the recipe."} />
-            ||
+
             <RecipeContents components={ this.state.recipeComponents } dependencies={ this.state.recipeDependencies } handleRemoveComponent={this.handleRemoveComponent.bind(this)} handleComponentDetails={this.handleComponentDetails.bind(this)} />
-            }
+
 					</div>
           ||
           <div className="col-sm-7 col-md-8 col-sm-push-5 col-md-push-4" id="cmpsr-recipe-details-edit">
