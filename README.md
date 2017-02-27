@@ -58,8 +58,15 @@ A Patternfly + React starter kit based on [**React Static Boilerplate**](https:/
 
 ### Getting Started
 
-**Step 1**. Make sure that you have [Node.js](https://nodejs.org/) v6 or newer installed on your
-machine.
+**Step 1**. Make sure that you have [Node.js](https://nodejs.org/) v6.9.1 or newer installed on your
+machine. For example:
+```shell
+nvm install 6.9.1
+```
+Or if it's installed, make sure you're using it:
+```shell
+nvm use 6.9.1
+```
 
 **Step 2**. Clone this repository or use [Yeoman
 generator](https://github.com/kriasoft/react-static-boilerplate/tree/generator-react-static) to
