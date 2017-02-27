@@ -92,6 +92,7 @@ $ yo react-static
 **Step 3**. Compile and launch your app by running:
 
 ```shell
+$ node run build
 $ node run                      # Same as `npm start` or `node run start`
 ```
 
