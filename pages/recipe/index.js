@@ -1,8 +1,7 @@
 import React, { PropTypes } from 'react';
 import Link from '../../components/Link';
 import Layout from '../../components/Layout';
-import Tabs from '../../components/Tabs/Tabs'
-import Tab from '../../components/Tabs/Tab';
+import { Tab, Tabs } from 'react-patternfly-shims';
 import RecipeContents from '../../components/ListView/RecipeContents';
 import ComponentDetailsView from '../../components/ListView/ComponentDetailsView';
 import CreateComposition from '../../components/Modal/CreateComposition';

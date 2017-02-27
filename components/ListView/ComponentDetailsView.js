@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import ComponentTypeIcons from '../../components/ListView/ComponentTypeIcons';
-import Tabs from '../../components/Tabs/Tabs'
-import Tab from '../../components/Tabs/Tab';
+import { Tab, Tabs } from 'react-patternfly-shims';
 import DependencyListView from '../../components/ListView/DependencyListView';
 import constants from '../../core/constants';
 import MetadataApi from '../../data/MetadataApi';

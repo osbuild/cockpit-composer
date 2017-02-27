@@ -1,10 +1,8 @@
 /* eslint-disable no-console, global-require */
-
 const fs = require('fs');
 const del = require('del');
 const ejs = require('ejs');
 const webpack = require('webpack');
-
 // TODO: Update configuration settings
 const config = {
   title: 'Patternfly React Starter',        // Your website title
@@ -12,9 +10,7 @@ const config = {
   project: 'patternfly-react-starter',      // Firebase project. See README.md -> How to Deploy
   trackingID: 'UA-XXXXX-Y',                 // Google Analytics Site's ID
 };
-
 const tasks = new Map(); // The collection of automation tasks ('clean', 'build', 'publish', etc.)
-
 function run(task) {
   const start = new Date();
   console.log(`Starting '${task}'...`);
@@ -22,12 +18,10 @@ function run(task) {
     console.log(`Finished '${task}' after ${new Date().getTime() - start.getTime()}ms`);
   }, err => console.error(err.stack));
 }
-
 //
 // Clean up the output directory
 // -----------------------------------------------------------------------------
 tasks.set('clean', () => del(['public/dist/*', '!public/dist/.git'], { dot: true }));
-
 //
 // Copy ./index.html into the /public folder
 // -----------------------------------------------------------------------------
@@ -39,7 +33,6 @@ tasks.set('html', () => {
   const output = render({ debug: webpackConfig.debug, bundle: assets.main.js, config });
   fs.writeFileSync('./public/index.html', output, 'utf8');
 });
-
 //
 // Generate sitemap.xml
 // -----------------------------------------------------------------------------
@@ -52,7 +45,6 @@ tasks.set('sitemap', () => {
   const output = render({ config, urls });
   fs.writeFileSync('public/sitemap.xml', output, 'utf8');
 });
-
 //
 // Bundle JavaScript, CSS and image files with Webpack
 // -----------------------------------------------------------------------------
@@ -69,7 +61,6 @@ tasks.set('bundle', () => {
     });
   });
 });
-
 //
 // Build website into a distributable format
 // -----------------------------------------------------------------------------
@@ -81,7 +72,6 @@ tasks.set('build', () => {
     .then(() => run('html'))
     .then(() => run('sitemap'));
 });
-
 //
 // Build and publish the website
 // -----------------------------------------------------------------------------
@@ -95,7 +85,6 @@ tasks.set('publish', () => {
     }))
     .then(() => { setTimeout(() => process.exit()); });
 });
-
 //
 // Build website and launch it in a browser for testing (default)
 // -----------------------------------------------------------------------------
@@ -119,7 +108,6 @@ tasks.set('start', () => {
       const render = ejs.compile(template, { filename: './public/index.ejs' });
       const output = render({ debug: true, bundle: `/dist/${bundle}`, config });
       fs.writeFileSync('./public/index.html', output, 'utf8');
-
       // Launch Browsersync after the initial bundling is complete
       // For more information visit https://browsersync.io/docs/options
       if (++count === 1) {
@@ -139,6 +127,5 @@ tasks.set('start', () => {
     });
   }));
 });
-
 // Execute the specified task or default one. E.g.: node run build
 run(/^\w/.test(process.argv[2] || '') ? process.argv[2] : 'start' /* default */);
