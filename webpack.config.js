@@ -7,14 +7,11 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE.txt file in the root directory of this source tree.
  */
-
 /* eslint-disable global-require */
-
 const path = require('path');
 const webpack = require('webpack');
 const AssetsPlugin = require('assets-webpack-plugin');
 const pkg = require('./package.json');
-
 const isDebug = global.DEBUG === false ? false : !process.argv.includes('--release');
 const isVerbose = process.argv.includes('--verbose') || process.argv.includes('-v');
 const useHMR = !!global.HMR; // Hot Module Replacement (HMR)
@@ -22,26 +19,24 @@ const babelConfig = Object.assign({}, pkg.babel, {
   babelrc: false,
   cacheDirectory: useHMR,
 });
-
 // Webpack configuration (main.js => public/dist/main.{hash}.js)
 // http://webpack.github.io/docs/configuration.html
 const config = {
-
   // The base directory for resolving the entry option
   context: __dirname,
-
   // The entry point for the bundle
   entry: [
     //css entries
     // '!!style!css!patternfly/dist/css/patternfly.css',
     // '!!style!css!patternfly/dist/css/patternfly-additions.css',
+    '!!style!css!patternfly-webcomponents/dist/css/patternfly-webcomponents.css',
 
     //js entries
+    'patternfly-webcomponents/dist/js/patternfly.js',
     'jquery-match-height/dist/jquery.matchHeight.js',
     /* The main entry point of your JavaScript application */
     './main.js'
   ],
-
   // Options affecting the output of the compilation
   output: {
     path: path.resolve(__dirname, './public/dist'),
@@ -50,14 +45,11 @@ const config = {
     chunkFilename: isDebug ? '[id].js?[chunkhash]' : '[id].[chunkhash].js',
     sourcePrefix: '  ',
   },
-
   // Switch loaders to debug or release mode
   debug: isDebug,
-
   // Developer tool to enhance debugging, source maps
   // http://webpack.github.io/docs/configuration.html#devtool
   devtool: isDebug ? 'source-map' : false,
-
   // What information should be printed to the console
   stats: {
     colors: true,
@@ -70,7 +62,6 @@ const config = {
     cached: isVerbose,
     cachedAssets: isVerbose,
   },
-
   // The list of plugins for Webpack compiler
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
@@ -86,7 +77,6 @@ const config = {
       prettyPrint: true,
     }),
   ],
-
   // Options affecting the normal modules
   module: {
     loaders: [
@@ -96,9 +86,9 @@ const config = {
           path.resolve(__dirname, './actions'),
           path.resolve(__dirname, './components'),
           path.resolve(__dirname, './core'),
-          path.resolve(__dirname, './data'),
           path.resolve(__dirname, './pages'),
-          path.resolve(__dirname, './main.js'),
+          path.resolve(__dirname, './data'),
+          path.resolve(__dirname, './main.js')
         ],
         loader: `babel-loader?${JSON.stringify(babelConfig)}`,
       },
@@ -148,7 +138,6 @@ const config = {
       },
     ],
   },
-
   // The list of plugins for PostCSS
   // https://github.com/postcss/postcss
   postcss(bundler) {
@@ -197,16 +186,13 @@ const config = {
       require('autoprefixer')(),
     ];
   },
-
 };
-
 // Optimize the bundle in release (production) mode
 if (!isDebug) {
   config.plugins.push(new webpack.optimize.DedupePlugin());
   config.plugins.push(new webpack.optimize.UglifyJsPlugin({ compress: { warnings: isVerbose } }));
   config.plugins.push(new webpack.optimize.AggressiveMergingPlugin());
 }
-
 // Hot Module Replacement (HMR) + React Hot Reload
 if (isDebug && useHMR) {
   babelConfig.plugins.unshift('react-hot-loader/babel');
@@ -214,5 +200,4 @@ if (isDebug && useHMR) {
   config.plugins.push(new webpack.HotModuleReplacementPlugin());
   config.plugins.push(new webpack.NoErrorsPlugin());
 }
-
 module.exports = config;
