@@ -26,7 +26,8 @@ class EditRecipePage extends React.Component {
 
   componentWillMount() {
     // get recipe, get inputs; then update inputs
-      Promise.all([RecipeApi.getRecipe(this.props.route.params.recipe), this.getInputs()]).then((data) => {
+      let recipeName = this.props.route.params.recipe.replace(/\s/g , "-");
+      Promise.all([RecipeApi.getRecipe(recipeName), this.getInputs()]).then((data) => {
           let recipe = {
             "name": data[0].name,
             "description" : data[0].description
@@ -236,13 +237,14 @@ class EditRecipePage extends React.Component {
   }
 
   render() {
+    const recipeDisplayName = this.props.route.params.recipe;
 
     return (
       <Layout className="container-fluid container-pf-nav-pf-vertical">
         <div className="cmpsr-edit-actions pull-right">
           <ul className="list-inline">
             <li>
-              <button className="btn btn-primary" type="button" onClick={(e) => RecipeApi.handleSaveRecipe(e)}>Save</button>
+              <button className="btn btn-primary" type="button" onClick={(e) => RecipeApi.handleSaveRecipe()}>Save</button>
             </li>
             <li>
               <button className="btn btn-default" type="button">Discard Changes</button>
@@ -251,25 +253,30 @@ class EditRecipePage extends React.Component {
         </div>
 				<ol className="breadcrumb">
 					<li><Link to="/recipes">Back to Recipes</Link></li>
-					<li><Link to={"/recipe/" + this.props.route.params.recipe }>{this.props.route.params.recipe}</Link></li>
+					<li><Link to={"/recipe/" + recipeDisplayName }>{recipeDisplayName}</Link></li>
 					<li className="active"><strong>Edit Recipe</strong></li>
 				</ol>
         <div className="cmpsr-title-summary">
-          <h1 className="cmpsr-title-summary__item">{ this.props.route.params.recipe }</h1><p className="cmpsr-title-summary__item">Revision 3<span className="text-muted">, Total Disk Space: 1,234 KB</span></p>
+          <h1 className="cmpsr-title-summary__item">{ recipeDisplayName }</h1><p className="cmpsr-title-summary__item">Revision 3<span className="text-muted">, Total Disk Space: 1,234 KB</span></p>
         </div>
         <div className="row">
 
           { this.state.selectedComponent == "" &&
           <div className="col-sm-7 col-md-8 col-sm-push-5 col-md-push-4" id="cmpsr-recipe-list-edit">
 						<Toolbar />
-
-            <RecipeContents components={ this.state.recipeComponents } dependencies={ this.state.recipeDependencies } handleRemoveComponent={this.handleRemoveComponent.bind(this)} handleComponentDetails={this.handleComponentDetails.bind(this)} />
-
+            { this.state.recipeComponents.length == 0 &&
+            <EmptyState title={"Add Recipe Components"} message={"Browse or search for components, then add them to the recipe."} >
+            </EmptyState>
+            ||
+            <RecipeContents components={ this.state.recipeComponents }
+              dependencies={ this.state.recipeDependencies }
+              handleRemoveComponent={this.handleRemoveComponent.bind(this)} handleComponentDetails={this.handleComponentDetails.bind(this)} />
+            }
 					</div>
           ||
           <div className="col-sm-7 col-md-8 col-sm-push-5 col-md-push-4" id="cmpsr-recipe-details-edit">
             <ComponentDetailsView
-              parent={ this.props.route.params.recipe }
+              parent={ recipeDisplayName }
               component={ this.state.selectedComponent }
               componentParent={ this.state.selectedComponentParent }
               status={ this.state.selectedComponentStatus }

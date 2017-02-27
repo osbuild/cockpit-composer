@@ -41,7 +41,8 @@ class RecipePage extends React.Component {
   }
 
   componentWillMount() {
-    Promise.all([RecipeApi.getRecipe(this.props.route.params.recipe)]).then((data) => {
+    let recipeName = this.props.route.params.recipe.replace(/\s/g , "-");
+    Promise.all([RecipeApi.getRecipe(recipeName)]).then((data) => {
         let recipe = {
           "name": data[0].name,
           "description" : data[0].description

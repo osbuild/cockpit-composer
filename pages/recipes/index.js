@@ -2,7 +2,9 @@ import React, { PropTypes } from 'react';
 import Link from '../../components/Link';
 import Layout from '../../components/Layout';
 import RecipeListView from '../../components/ListView/RecipeListView';
+import CreateRecipe from '../../components/Modal/CreateRecipe';
 import constants from '../../core/constants';
+
 
 class RecipesPage extends React.Component {
 
@@ -36,6 +38,7 @@ class RecipesPage extends React.Component {
       })
       .catch(e => console.log("Error getting recipes: " + e));
   }
+
 
   render() {
     return (
@@ -109,42 +112,8 @@ class RecipesPage extends React.Component {
           </div>
         </div>
         <RecipeListView recipes={ this.state.recipes } />
-        <div className="modal fade" id="cmpsr-modal-crt-recipe" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div className="modal-dialog">
-            <div className="modal-content">
-              <div className="modal-header">
-                <button type="button" className="close" data-dismiss="modal" aria-hidden="true">
-                  <span className="pficon pficon-close"></span>
-                </button>
-                <h4 className="modal-title" id="myModalLabel">Create Recipe</h4>
-              </div>
-              <div className="modal-body">
-                <form className="form-horizontal">
-                  <div className="form-group">
-                    <label className="col-sm-3 control-label" htmlFor="textInput-modal-markup">Name</label>
-                    <div className="col-sm-9">
-                      <input type="text" id="textInput-modal-markup" className="form-control" /></div>
-                  </div>
-                  <div className="form-group">
-                    <label className="col-sm-3 control-label" htmlFor="textInput2-modal-markup">Description</label>
-                    <div className="col-sm-9">
-                      <input type="text" id="textInput2-modal-markup" className="form-control" /></div>
-                  </div>
-                  <div className="form-group">
-                    <label className="col-sm-3 control-label" htmlFor="textInput3-modal-markup">Other options will display here</label>
-                    <div className="col-sm-9">
-                      <input type="text" id="textInput3-modal-markup" className="form-control" />
-                    </div>
-                  </div>
-                </form>
-              </div>
-              <div className="modal-footer">
-                <button type="button" className="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="button" className="btn btn-primary">Save</button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <CreateRecipe />
+
       </Layout>
     );
   }
