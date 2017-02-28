@@ -62,7 +62,7 @@ class MetadataApi {
             dependencies = this.updateComponentDependencies(dependencies, data[1]);
              // arbitrarily setting ui_type based on requiredBy component for now
             dependencies.map(i => {
-              if (i.projects.length > 0 ){
+              if (i.projects !== undefined && i.projects.length > 0 ){
                 i.projects.map(i => { i.ui_type = component.ui_type });
               }
             });

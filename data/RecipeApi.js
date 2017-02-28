@@ -1,5 +1,7 @@
 import constants from '../core/constants';
 import MetadataApi from '../data/MetadataApi';
+import history from '../core/history';
+
 
 
 class RecipeApi {
@@ -44,36 +46,48 @@ class RecipeApi {
                 data.recipes[0].recipe.components = components;
                 data.recipes[0].recipe.dependencies = dependencies;
                 let recipe = data.recipes[0];
-                let componentNames = MetadataApi.getNames(components);
-                if (dependencies.length === 0) {
-                  // get metadata for the components only
-                  Promise.all([
-                      MetadataApi.getData(constants.get_module_info + componentNames)
-                  ]).then((data) => {
-                    recipe.recipe.components = MetadataApi.updateComponentMetadata(recipe.recipe.components, data[0], false);
-                    this.recipe = recipe.recipe;
-                    resolve(recipe.recipe);
-                  }).catch(e => console.log('Error getting recipe metadata: ' + e));
+                if (components.length > 0) {
+                  let componentNames = MetadataApi.getNames(components);
+                  if (dependencies.length === 0) {
+                    // get metadata for the components only
+                    Promise.all([
+                        MetadataApi.getData(constants.get_module_info + componentNames)
+                    ]).then((data) => {
+                      recipe.recipe.components = MetadataApi.updateComponentMetadata(recipe.recipe.components, data[0], false);
+                      this.recipe = recipe.recipe;
+                      resolve(recipe.recipe);
+                    }).catch(e => console.log('Error getting recipe metadata: ' + e));
+                  } else {
+                    // get metadata for the components
+                    // get metadata for the dependencies
+                    // gets dependencies for dependencies
+                    let dependencyNames = MetadataApi.getNames(dependencies);
+                    Promise.all([
+                        MetadataApi.getData(constants.get_module_info + componentNames),
+                        MetadataApi.getData(constants.get_module_info + dependencyNames),
+                        MetadataApi.getData(constants.get_dependencies_list + dependencyNames)
+                    ]).then((data) => {
+                      recipe.recipe.components = MetadataApi.updateComponentMetadata(recipe.recipe.components, data[0], false);
+                      recipe.recipe.dependencies = MetadataApi.updateComponentMetadata(recipe.recipe.dependencies, data[1], true);
+                      recipe.recipe.dependencies = MetadataApi.updateComponentDependencies(recipe.recipe.dependencies, data[2]);
+                      // arbitrarily setting ui_type for dependency dependencies based on requiredBy component for now
+                      recipe.recipe.dependencies.map(i => {
+                        if (i.projects !== undefined && i.projects.length > 0 ){
+                          let requiredBy = i;
+                          i.projects.map(i => { i.ui_type = requiredBy.ui_type });
+                        }
+                      });
+                      this.recipe = recipe.recipe;
+                      resolve(recipe.recipe);
+                    }).catch(e => console.log('Error getting recipe metadata: ' + e));
+                  }
                 } else {
-                  // get metadata for the components
-                  // get metadata for the dependencies
-                  // gets dependencies for dependencies
-                  let dependencyNames = MetadataApi.getNames(dependencies);
-                  Promise.all([
-                      MetadataApi.getData(constants.get_module_info + componentNames),
-                      MetadataApi.getData(constants.get_module_info + dependencyNames),
-                      MetadataApi.getData(constants.get_dependencies_list + dependencyNames)
-                  ]).then((data) => {
-                    recipe.recipe.components = MetadataApi.updateComponentMetadata(recipe.recipe.components, data[0], false);
-                    recipe.recipe.dependencies = MetadataApi.updateComponentMetadata(recipe.recipe.dependencies, data[1], true);
-                    recipe.recipe.dependencies = MetadataApi.updateComponentDependencies(recipe.recipe.dependencies, data[2]);
-                    this.recipe = recipe.recipe;
-                    resolve(recipe.recipe);
-                  }).catch(e => console.log('Error getting recipe metadata: ' + e));
+                  this.recipe = recipe.recipe;
+                  resolve(recipe.recipe);
                 }
             })
             .catch(e => {
-                console.log("Error fetching recipes: " + e);
+                console.log("Error fetching recipe: " + e);
                 reject();
             });
           }
@@ -113,7 +127,12 @@ class RecipeApi {
 
   }
 
-  handleSaveRecipe() {
+  handleCreateRecipe(e, recipe) {
+    this.postRecipe(recipe).then(() => {
+      window.location.href = history.createHref("/edit/" + recipe.name);
+    }).catch((e) => { console.log("Error creating recipe: " + e)});
+  }
+  handleSaveRecipe(e) {
     // create recipe and post it
     let recipe = {
       "name": this.recipe.name,
@@ -121,14 +140,19 @@ class RecipeApi {
       "modules": this.recipe.modules,
       "packages": this.recipe.packages
     };
-    fetch(constants.post_recipes_new, {
+    this.postRecipe(recipe).then(() => {
+      console.log("Recipe was saved.")
+    }).catch((e) => { console.log("Error saving recipe: " + e)});
+  }
+
+  postRecipe(recipe) {
+    return fetch(constants.post_recipes_new, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(recipe)
     });
-
   }
 
 }
