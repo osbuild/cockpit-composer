@@ -141,37 +141,29 @@ class EditRecipePage extends React.Component {
   handleRemoveComponent = (event, component) => {
     // the user clicked Remove for a component in the recipe component list
     // or the component details view
+
+    // update the recipe object (the one that's used during save)
+    RecipeApi.updateRecipe(component, "remove");
+    // if the removed component was visible in the details view then close the
+    // details view and deselect it in the list of inputs
     let inputs = [];
-    // if the removed component was visible in the details view:
     if (component == this.state.selectedComponent) {
       inputs = this.removeInputActive();
       this.hideComponentDetails();
     } else {
       inputs = this.state.inputComponents.slice(0);
     }
-    // update the list of components to include the Add button for the removed component
-    let input = inputs.map(function(e) {return e.name}).indexOf(component.name);
-    if (input > -1) {
-      inputs[input].inRecipe = false;
+    // update the list of available components to include the Add button for the
+    // removed component
+    let inputIndex = inputs.map(i => i.name).indexOf(component.name);
+    if (inputIndex > -1) {
+      inputs[inputIndex].inRecipe = false;
       this.setState({inputComponents: inputs});
     }
     // update the list of recipe components to not include the removed component
-    let index = this.state.recipeComponents.indexOf(component);
-    let count = this.state.recipeComponents.length;
     let updatedRecipeComponents = this.state.recipeComponents.slice(0);
-    if (index == 0) {
-      updatedRecipeComponents =  this.state.recipeComponents.slice(index + 1, count);
-    } else if (index + 1 == count) {
-      updatedRecipeComponents = this.state.recipeComponents.slice(0, index);
-    } else {
-      let slice1 = this.state.recipeComponents.slice(0, index);
-      let slice2 = this.state.recipeComponents.slice(index + 1, count);
-      updatedRecipeComponents = slice1.concat(slice2);
-    }
+    updatedRecipeComponents = updatedRecipeComponents.filter(obj => (obj !== component));
     this.setState({recipeComponents: updatedRecipeComponents});
-
-
-
   };
 
   handleComponentDetails = (event, component, parent) => {
