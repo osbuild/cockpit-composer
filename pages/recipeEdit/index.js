@@ -98,7 +98,6 @@ class EditRecipePage extends React.Component {
         let inputs = this.updateInputs(data[0]);
         this.setState({filteredComponents : inputs});
         this.setState({inputFilters : filter});
-        // this.updateInputs(data[0]); TODO this should be used and refactored to work with any state value
       }).catch(e => console.log('Failed to filter inputs during recipe edit: ' + e));
       event.preventDefault();
     }
