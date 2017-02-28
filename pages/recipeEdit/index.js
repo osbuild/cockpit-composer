@@ -36,7 +36,9 @@ class EditRecipePage extends React.Component {
           this.setState({recipeComponents: data[0].components});
           this.setState({recipeDependencies: data[0].dependencies});
           // Recipes and available components both need to be updated before running this
-          this.updateInputs(data[1]);
+          let inputs = this.updateInputs(data[1]);
+          this.setState({inputComponents: inputs});
+
       }).catch(e => console.log('Error in EditRecipe promise: ' + e));
   }
 
@@ -82,7 +84,8 @@ class EditRecipePage extends React.Component {
           inputs[index].inRecipe = true;
       }
     });
-    this.setState({inputComponents: inputs});
+    // this.setState({inputComponents: inputs});
+    return inputs;
   };
 
   getFilteredInputs(event) {
@@ -92,7 +95,8 @@ class EditRecipePage extends React.Component {
         "value": event.target.value
       }];
       Promise.all([this.getInputs("/*" + filter[0].value + "*")]).then((data) => {
-        this.setState({filteredComponents : data[0]});
+        let inputs = this.updateInputs(data[0]);
+        this.setState({filteredComponents : inputs});
         this.setState({inputFilters : filter});
         // this.updateInputs(data[0]); TODO this should be used and refactored to work with any state value
       }).catch(e => console.log('Failed to filter inputs during recipe edit: ' + e));
@@ -127,9 +131,22 @@ class EditRecipePage extends React.Component {
 
     // if an input is selected, deselect it
     let inputs = this.removeInputActive();
-    // set inRecipe to true for the input component as well
-    // TODO this does not work for filtered inputs
-    inputs[inputs.indexOf(component)].inRecipe = true;
+
+    // set inRecipe to true for the input component
+    // in the list of available inputs
+    let inputIndex = inputs.map(i => i.name).indexOf(component.name);
+    if (inputIndex > -1) {
+      inputs[inputIndex].inRecipe = true;
+    }
+    // and also the list of filtered inputs
+    if (this.state.filteredComponents.length > 0) {
+      let filteredComponents = this.state.filteredComponents;
+      let filteredIndex = filteredComponents.map(i => i.name).indexOf(component.name);
+      if (filteredIndex > -1) {
+        filteredComponents[filteredIndex].inRecipe = true;
+        this.setState({filteredComponents: filteredComponents});
+      }
+    }
     // TODO if inputs also lists dependencies, should these be indicated as included?
     this.setState({inputComponents: inputs});
     this.setState({selectedComponent: ""});
