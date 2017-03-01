@@ -210,3 +210,14 @@
 #cmpsr-recipe-details {
   padding: 10px 35px;
 }
+
+
+/* Recipe details page */
+
+.list-view-pf .list-group-item__separator, .list-view-pf .list-group-item__separator:hover {
+  background-color: #f7f7f7;
+}
+.list-view-pf .list-group-item__separator .list-view-pf-main-info {
+  padding-top: 0;
+  padding-bottom: 0;
+}

@@ -2,6 +2,8 @@ import React, { PropTypes } from 'react';
 import ComponentTypeIcons from '../../components/ListView/ComponentTypeIcons';
 import ComponentSummaryList from '../../components/ListView/ComponentSummaryList';
 import ListItemLabel from '../../components/ListView/ListItemLabel';
+import Link from '../../components/Link';
+
 
 class ListItemExpandRevisions extends React.Component {
 
@@ -33,10 +35,11 @@ class ListItemExpandRevisions extends React.Component {
 
   render() {
     const { listItem } = this.props;
-    let dependencyCount = 0;
-    if (listItem.projects !== undefined) {
-      dependencyCount = listItem.projects.length;
-    }
+    const comments = this.props.comments.filter(obj => obj.revision == listItem.number);
+    const changelog = this.props.changelog.filter(obj => obj.revision == listItem.number);
+    const compositions = this.props.compositions.filter(obj => obj.revision == listItem.number);
+    console.log(comments);
+
     return (
 
             <div className={"list-group-item " + (this.state.expanded ? 'list-view-pf-expand-active' : '')}>
@@ -46,17 +49,18 @@ class ListItemExpandRevisions extends React.Component {
                 </div>
 
                 <div className="list-view-pf-actions">
+                  { listItem.active === true &&
+                  <Link to={"/edit/" + this.props.recipe } className="btn btn-default">Edit Recipe</Link>
+                  ||
+                  <button className="btn btn-default" type="button">Restore and Edit</button>
+                  }
+                  <button className="btn btn-default" id="cmpsr-btn-crt-compos" data-toggle="modal" data-target="#cmpsr-modal-crt-compos" type="button">Create Composition</button>
                   <div className="dropdown pull-right dropdown-kebab-pf">
                     <button className="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight9" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span className="fa fa-ellipsis-v"></span></button>
                     <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight9">
                       <li><a href="#">View Recipe</a></li>
-                      { listItem.active === "true" &&
-                      <li><a href="#">Edit Recipe</a></li>
-                      ||
-                      <li><a href="#">Restore and Edit</a></li>
-                      }
-                      { listItem.active === "true" &&
-                      <li><a href="#">Preserve Revision</a></li>
+                      { listItem.active === true &&
+                      <li><a href="#">Clone Revision</a></li>
                       ||
                       <li><a href="#">Restore Revision</a></li>
                       }
@@ -73,7 +77,7 @@ class ListItemExpandRevisions extends React.Component {
                   <div className="list-view-pf-body">
                     <div className="list-view-pf-description">
                       <div className="list-group-item-heading">
-                        <a href="#" data-item="name">Revision { listItem.number }{ listItem.active === "true" && <span>, Current Revision</span>}</a>
+                        <a href="#" data-item="name">Revision { listItem.number }</a>
                       </div>
                       <div className="list-group-item-text">
                         Based on { listItem.basedOn }
@@ -103,89 +107,69 @@ class ListItemExpandRevisions extends React.Component {
                   <div className="col-md-6">
                     <div className="cmpsr-summary-listview">
                       <p><strong>Compositions</strong> ({listItem.compositions})</p>
-                      { listItem.compositions !== "0" &&
-                      <div className="list-group list-view-pf list-view-pf-view cmpsr-list-view-viewskinny">
-                        <div className="list-group-item">
-                          <div className="list-view-pf-main-info">
-                            <div className="list-view-pf-left" data-item="type">
-                              <span className="pf pficon-image list-view-pf-icon-sm" aria-hidden="true"></span>
-                            </div>
-                            <div className="list-view-pf-body">
-                              <div className="list-view-pf-description">
-                                <a href="#">Composition 1 (iso)</a> <span className="text-muted">created 1/15/17, last exported 2/15/17</span>
+                      { compositions.map((composition, i) =>
+                        <div className="list-group list-view-pf list-view-pf-view cmpsr-list-view-viewskinny">
+                          <div className="list-group-item">
+                            <div className="list-view-pf-main-info">
+                              <div className="list-view-pf-left" data-item="type">
+                                <span className="pf pficon-image list-view-pf-icon-sm" aria-hidden="true"></span>
+                              </div>
+                              <div className="list-view-pf-body">
+                                <div className="list-view-pf-description">
+                                  <a href="#">Composition {composition.number} ({composition.type})</a> <span className="text-muted">created {composition.date_created}, last exported {composition.date_exported}</span>
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
-
+                      )}
+                    </div>
+                    <div className="cmpsr-summary-listview hidden">
+                      <p><strong>Comments</strong></p>
+                      <div className="input-group">
+                        <input type="text" className="form-control" />
+                        <span className="input-group-btn">
+                          <button className="btn btn-default" type="button">Post Comment</button>
+                        </span>
                       </div>
-                      }
+                      { comments.map((comment, i) =>
+                        <div className="list-group list-view-pf list-view-pf-view cmpsr-list-view-viewskinny">
+                          <div className="list-group-item">
+                            <div className="list-view-pf-main-info">
+                              <div className="list-view-pf-left" data-item="type">
+                                <span className="fa fa-comment-o list-view-pf-icon-sm" aria-hidden="true"></span>
+                              </div>
+                              <div className="list-view-pf-body">
+                                <div className="list-view-pf-description">
+                                  <p className="text-muted pull-right">{comment.user}, {comment.date}</p>
+                                  <p>{comment.comment}</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                      )}
                     </div>
                   </div>
 
                   <div className="col-md-6">
                     <div className="cmpsr-summary-listview">
                       <p><strong>Change Log</strong></p>
-                      <div className="list-group list-view-pf list-view-pf-view cmpsr-list-view-viewskinny">
-                        { listItem.compositions !== "0" &&
-                        <div className="list-group-item">
-                          <div className="list-view-pf-main-info">
+                      { changelog.map((change, i) =>
+                        <div className="list-group list-view-pf list-view-pf-view cmpsr-list-view-viewskinny">
+                          <div className="list-group-item">
+                            <div className="list-view-pf-main-info">
                             <div className="list-view-pf-body">
                               <div className="list-view-pf-description">
-                                <a href="#">Composition exported</a> <span className="text-muted">2/15/17 by Brian Johnson</span>
+                                <a href="#">{change.action}</a> <span className="text-muted">{change.date} by {change.user}</span>
                               </div>
                             </div>
-                          </div>
-                        </div>
-                        }
-                        { listItem.compositions !== "0" &&
-                        <div className="list-group-item">
-                          <div className="list-view-pf-main-info">
-                            <div className="list-view-pf-body">
-                              <div className="list-view-pf-description">
-                                <a href="#">Composition created</a> <span className="text-muted">1/15/17 by Brian Johnson</span>
-                              </div>
                             </div>
                           </div>
+
                         </div>
-                        }
-                        <div className="list-group-item">
-                          <div className="list-view-pf-main-info">
-                            <div className="list-view-pf-body">
-                              <div className="list-view-pf-description">
-                                <a href="#">Recipe modified</a> <span className="text-muted">12/15/16 by Brian Johnson</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="list-group-item">
-                          <div className="list-view-pf-main-info">
-                            <div className="list-view-pf-body">
-                              <div className="list-view-pf-description">
-                                <a href="#">Revision created</a> <span className="text-muted">12/15/16 by Brian Johnson</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="list-group-item hidden">
-                          <div className="list-view-pf-main-info">
-                            <div className="list-view-pf-body">
-                              <div className="list-view-pf-description">
-                                <a href="#" data-item="name">1 component added, 2 components removed by Brian Johnson</a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="list-group-item hidden">
-                          <div className="list-view-pf-main-info">
-                            <div className="list-view-pf-body">
-                              <div className="list-view-pf-description">
-                                <a href="#" data-item="name">4 components added by swilliams</a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      )}
                     </div>
                   </div>
 
