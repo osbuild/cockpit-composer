@@ -124,7 +124,7 @@ class ListItemExpandRevisions extends React.Component {
                         </div>
                       )}
                     </div>
-                    <div className="cmpsr-summary-listview">
+                    <div className="cmpsr-summary-listview hidden">
                       <p><strong>Comments</strong></p>
                       <div className="input-group">
                         <input type="text" className="form-control" />

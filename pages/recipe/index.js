@@ -209,16 +209,6 @@ class RecipePage extends React.Component {
             <div className="row toolbar-pf">
               <div className="col-sm-12">
                 <form className="toolbar-pf-actions">
-                  <div className="form-group">
-                    <div className="dropdown btn-group">
-                      <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Revision 3<span className="caret"></span></button>
-                      <ul className="dropdown-menu">
-                        <li><a href="#">Revision 3</a></li>
-                        <li><a href="#">Revision 2</a></li>
-                        <li><a href="#">Revision 1</a></li>
-                      </ul>
-                    </div>
-                  </div>
                   <div className="toolbar-pf-action-right">
                     <div className="form-group">
                     <Link to={"/edit/" + this.props.route.params.recipe } className="btn btn-default">Edit Recipe</Link>
