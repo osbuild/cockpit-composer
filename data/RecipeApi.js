@@ -60,7 +60,7 @@ class RecipeApi {
                   } else {
                     // get metadata for the components
                     // get metadata for the dependencies
-                    // gets dependencies for dependencies
+                    // get dependencies for dependencies
                     let dependencyNames = MetadataApi.getNames(dependencies);
                     Promise.all([
                         MetadataApi.getData(constants.get_module_info + componentNames),
@@ -82,6 +82,7 @@ class RecipeApi {
                     }).catch(e => console.log('Error getting recipe metadata: ' + e));
                   }
                 } else {
+                  // there are no components, just a recipe name and description
                   this.recipe = recipe.recipe;
                   resolve(recipe.recipe);
                 }
@@ -110,21 +111,26 @@ class RecipeApi {
   }
 
 // update Recipe on Add or Remove component
-// TODO include functionality for Remove action
   updateRecipe(component, action) {
+    let recipeComponent = {
+      "name" : component.name,
+      "version" : component.version
+    };
     // action is add or remove, and maybe update
-    if (action = "add") {
-      let newComponent = {
-        "name" : component.name,
-        "version" : component.version
-      };
+    if (action === "add") {
       if (component.ui_type === "Module") {
-        this.recipe.modules.push(newComponent);
+        this.recipe.modules.push(recipeComponent);
       } else if (component.ui_type === "RPM") {
-        this.recipe.packages.push(newComponent);
+        this.recipe.packages.push(recipeComponent);
       }
     }
-
+    if (action === "remove") {
+      if (component.ui_type === "Module") {
+        this.recipe.modules = this.recipe.modules.filter((obj) => (obj.name !== recipeComponent.name && obj.version !== recipeComponent.version));
+      } else if (component.ui_type === "RPM") {
+        this.recipe.packages = this.recipe.packages.filter((obj) => (obj.name !== recipeComponent.name && obj.version !== recipeComponent.version));
+      }
+    }
   }
 
   handleCreateRecipe(e, recipe) {
