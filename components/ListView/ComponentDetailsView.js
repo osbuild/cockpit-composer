@@ -11,10 +11,10 @@ import MetadataApi from '../../data/MetadataApi';
 
 class ComponentDetailsView extends React.Component {
 
-  state = { selectedVersion: "", activeTab: "Details", parents: [], dependencies: [], componentData: {}}
+  state = { selectedBuildIndex:0, availableBuilds: [], activeTab: "Details", parents: [], dependencies: [], componentData: {}, editSelected: false}
 
   componentWillMount() {
-    this.getMetadata(this.props.component);
+    this.getMetadata(this.props.component, this.props.status);
   }
 
   componentDidMount() {
@@ -27,8 +27,10 @@ class ComponentDetailsView extends React.Component {
 
   componentWillReceiveProps(newProps) {
     this.updateBreadcrumb(newProps);
-    this.getMetadata(newProps.component);
+    this.getMetadata(newProps.component, newProps.status);
     this.setState({activeTab: "Details"});
+    // this needs to be updated when Edit in the li is enabled, in that case, status can be "editSelected"
+    this.setState({editSelected: false});
    }
 
   initializeBootstrapElements() {
@@ -38,18 +40,60 @@ class ComponentDetailsView extends React.Component {
     $('[data-toggle="tooltip"]').tooltip()
   }
 
-  getMetadata(component) {
+  getMetadata(component, status) {
+    // when getting metadata, get all builds if component is from list of available inputs
+    let build = (status === "available") ? "all" : "";
+    // if the user clicks a component listed in the inputs and it's in the recipe,
+    // then use the version and release that's selected for the recipe component
+    let selectedComponent = Object.assign({}, component);
+    if (selectedComponent.active === true && selectedComponent.inRecipe === true) {
+      selectedComponent.version = component.version_selected;
+      selectedComponent.release = component.release_selected;
+    }
     Promise.all([
-        MetadataApi.getMetadataComponent(component)
+        MetadataApi.getMetadataComponent(selectedComponent, build)
     ]).then((data) => {
       this.setState({componentData: data[0][0]});
       this.setState({dependencies : data[0][1]});
-      this.setState({selectedVersion: ""}); // this needs to be handled differently, eventually the default version should be passed in via props
+      if (status === "available") {
+        // when status === "available" a form displays with a menu for selecting a specific version
+        // availableBuilds is an array listing each option
+        // TODO - include other metadata that's defined in builds
+        let availableBuilds = data[0][2].map(i => ({"version":i.source.version, "release":i.release}));
+        this.setState({availableBuilds: availableBuilds});
+      } else {
+        this.setState({availableBuilds: []});
+      }
+      this.setState({ selectedBuildIndex:0 });
     }).catch(e => console.log('Error getting component metadata: ' + e));
   }
 
+  handleEdit = (event) => {
+    // user clicked Edit for the selected component
+    let component = this.state.componentData;
+    // get available builds and set default value
+    Promise.all([
+      MetadataApi.getAvailableBuilds(component)
+    ]).then((data) => {
+      let availableBuilds = data[0].map(i => ({"version":i.source.version, "release":i.release}));
+      this.setState({availableBuilds: availableBuilds});
+      // filter available builds by component data to find object in array, then get index of that object
+      let selectedBuild = availableBuilds.filter((obj) => (obj.version === component.version && obj.release === component.release))[0];
+      let index = availableBuilds.indexOf(selectedBuild);
+      this.setState({ selectedBuildIndex:index });
+    }).catch(e => console.log('Error getting component metadata: ' + e));
+    // display the form
+    this.setState({editSelected: true});
+  }
+
   handleVersionSelect = (event) => {
-    this.setState({selectedVersion: event.target.value});
+    this.setState({selectedBuildIndex: event.target.value});
+    let builds = this.state.availableBuilds;
+    let componentData = this.state.componentData;
+    componentData.version = builds[event.target.value].version;
+    componentData.release = builds[event.target.value].release;
+    // TODO any data that we display that's defined in builds should be added here
+    this.setState({componentData: componentData});
   }
 
   handleTabChanged(e){
@@ -103,17 +147,22 @@ class ComponentDetailsView extends React.Component {
     			<span data-item="name"><ComponentTypeIcons componentType={ component.ui_type } /> {component.name} </span>
     			<div className="pull-right">
     				<ul className="list-inline">
-              { this.props.status == "available" &&
+              { this.props.status === "available" &&
     					<li>
-    						<button className="btn btn-primary add" type="button" onClick={(e) => this.props.handleAddComponent(e, component, this.state.selectedVersion)}>Add</button>
+    						<button className="btn btn-primary add" type="button" onClick={(e) => this.props.handleAddComponent(e, "details", this.state.componentData, this.state.dependencies)}>Add</button>
     					</li>
               }
-              { component.inRecipe == true &&
+              { (this.props.status === "selected" && this.state.editSelected === false) &&
               <li>
-    						<button className="btn btn-primary" type="button">Edit</button>
+    						<button className="btn btn-primary" type="button" onClick={(e) => this.handleEdit(e)}>Edit</button>
     					</li>
               }
-              { component.inRecipe == true &&
+              { (this.props.status === "selected" && this.state.editSelected === true) &&
+              <li>
+    						<button className="btn btn-primary" type="button" onClick={(e) => this.props.handleUpdateComponent(e, this.state.componentData)}>Save Updates</button>
+    					</li>
+              }
+              { this.props.status === "selected" &&
               <li>
     						<button className="btn btn-default" type="button" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove from Recipe"  onClick={(e) => this.props.handleRemoveComponent(e, component)}>Remove</button>
     					</li>
@@ -127,25 +176,23 @@ class ComponentDetailsView extends React.Component {
     			</div>
     		</h3>
 
-        { this.props.status == "available" &&
+        { (this.props.status === "available" || this.state.editSelected === true ) &&
     		<div className="blank-slate-pf">
     			<form className="form-horizontal">
             <div className="form-group">
-              <label className="col-sm-3 col-md-2 control-label" htmlFor="cmpsr-compon-details-version-select">Version</label>
+              <label className="col-sm-3 col-md-2 control-label" htmlFor="cmpsr-compon-details-version-select">Version Release</label>
               <div className="col-sm-8 col-md-9">
-                <select id="cmpsr-compon-details-version-select" className="selectpicker form-control" onChange={(e) => this.handleVersionSelect(e)} value={this.state.selectedVersion !== "" && this.state.selectedVersion || this.state.componentData.version}>
-                  <option>{this.state.componentData.version}</option>
-                  <option>3.0</option>
-                  <option>2.5</option>
-                  <option>2.0</option>
-                  <option>1.0</option>
+                <select id="cmpsr-compon-details-version-select" className="form-control" value={this.state.selectedBuildIndex} onChange={(e) => this.handleVersionSelect(e)}>
+                  { this.state.availableBuilds.map((build, i) =>
+                    <option key={i} value={i}>{build.version}-{build.release}</option>
+                  )}
                 </select>
               </div>
     				</div>
-            <div className="form-group">
+            <div className="form-group hidden">
               <label className="col-sm-3 col-md-2 control-label" htmlFor="cmpsr-compon-details-instprof-select">Install Profile</label>
               <div className="col-sm-8 col-md-9">
-                <select id="cmpsr-compon-details-instprof-select" className="selectpicker form-control">
+                <select id="cmpsr-compon-details-instprof-select" className="form-control">
                   <option>Default</option>
                   <option>Debug</option>
                 </select>
@@ -163,15 +210,15 @@ class ComponentDetailsView extends React.Component {
               <dt>Type</dt>
               <dd>{component.ui_type}</dd>
               <dt>Version</dt>
-              <dd>{this.state.selectedVersion !== "" && this.state.selectedVersion || this.state.componentData.version } { this.props.status == "selected" && <a href="#">Update</a>}</dd>
+              <dd>{this.state.componentData.version } { (this.props.status === "selected" && this.state.editSelected === false) && <a href="#" onClick={(e) => this.handleEdit(e)}>Update</a>}</dd>
               <dt>Release</dt>
-              <dd>{ this.state.componentData.release ? this.state.componentData.release : <span>&nbsp;</span> }</dd>
+              <dd>{ this.state.componentData.release }</dd>
               <dt>Architecture</dt>
               <dd>{ this.state.componentData.arch }</dd>
               <dt>Install Size</dt>
               <dd>2 MB (5 MB with Dependencies)</dd>
               <dt>URL</dt>
-              {this.state.componentData.homepage != null &&
+              {this.state.componentData.homepage !== null &&
               <dd><a target="_blank" href={this.state.componentData.homepage}>{this.state.componentData.homepage}</a></dd>
               ||
               <dd>&nbsp;</dd>
@@ -186,17 +233,17 @@ class ComponentDetailsView extends React.Component {
               <dd>Standard</dd>
             </dl>
           </Tab>
-          <Tab tabTitle="Components" active={this.state.activeTab == 'Components'}>
+          <Tab tabTitle="Components" active={this.state.activeTab === 'Components'}>
             <p>Components</p>
           </Tab>
-          <Tab tabTitle="Dependencies" active={this.state.activeTab == 'Dependencies'}>
+          <Tab tabTitle="Dependencies" active={this.state.activeTab === 'Dependencies'}>
             <DependencyListView id="cmpsr-component-dependencies"
               listItems= { this.state.dependencies }
               noEditComponent
               handleComponentDetails={ this.props.handleComponentDetails }
               componentDetailsParent={ component } />
           </Tab>
-          <Tab tabTitle="Errata" active={this.state.activeTab == 'Errata'}>
+          <Tab tabTitle="Errata" active={this.state.activeTab === 'Errata'}>
             <p>Errata</p>
           </Tab>
         </Tabs>

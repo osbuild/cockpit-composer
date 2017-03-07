@@ -55,6 +55,8 @@ class ComponentInputs extends React.Component {
     $('[data-toggle="tooltip"]').tooltip()
   }
 
+// TODO add the following after 'requires' after resolving issue where duplicate list items are included for multiple builds
+//" + component.projects.length + "
 
   render() {
     const { components } = this.props;
@@ -64,9 +66,9 @@ class ComponentInputs extends React.Component {
       <div id="compsr-inputs" className="list-group list-view-pf list-view-pf-view cmpsr-list-view-viewskinny">
         {components.map((component,i) =>
           <div key={i} className={"list-group-item " + (component.active ? 'active' : '')} data-html="true" title=""
-              data-content={"Version <strong data-item='version'>" + component.version + "</strong><br />Release <strong data-item='release'>" + component.release + "</strong><br />Dependencies <strong data-item='requires'>3</strong><br />" + (component.active ? '<a href="#">Hide Details</a>' : '<a href="#">View Details</a>')}>
+              data-content={"Version <strong data-item='version'>" + component.version + "</strong><br />Release <strong data-item='release'>" + component.release + "</strong><br />Dependencies <strong data-item='requires'></strong><br />" + (component.active ? '<a href="#">Hide Details</a>' : '<a href="#">View Details</a>')}>
             <div className="list-view-pf-actions">
-              <a href="#" disabled={ component.inRecipe } className="add pull-right" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add Component" onClick={(e) => this.props.handleAddComponent(e, component, "")}>
+              <a href="#" disabled={ component.inRecipe } className="add pull-right" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add Component" onClick={(e) => this.props.handleAddComponent(e, "input", component, [])}>
                 <span className="pficon pficon-add-circle-o"></span>
               </a>
             </div>

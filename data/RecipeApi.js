@@ -124,6 +124,15 @@ class RecipeApi {
         this.recipe.packages.push(recipeComponent);
       }
     }
+    if (action === "edit") {
+      if (component.ui_type === "Module") {
+        let updatedComponent = this.recipe.modules.filter((obj) => (obj.name === recipeComponent.name))[0];
+        updatedComponent = Object.assign(updatedComponent, recipeComponent);
+      } else if (component.ui_type === "RPM") {
+        let updatedComponent = this.recipe.packages.filter((obj) => (obj.name === recipeComponent.name))[0];
+        updatedComponent = Object.assign(updatedComponent, recipeComponent);
+      }
+    }
     if (action === "remove") {
       if (component.ui_type === "Module") {
         this.recipe.modules = this.recipe.modules.filter((obj) => (obj.name !== recipeComponent.name && obj.version !== recipeComponent.version));
