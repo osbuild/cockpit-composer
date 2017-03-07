@@ -36,7 +36,7 @@ class EditRecipePage extends React.Component {
           this.setState({recipeComponents: data[0].components});
           this.setState({recipeDependencies: data[0].dependencies});
           // Recipes and available components both need to be updated before running this
-          let inputs = this.updateInputs(data[1]);
+          let inputs = this.updateInputComponentData(data[1]);
           this.setState({inputComponents: inputs});
 
       }).catch(e => console.log('Error in EditRecipe promise: ' + e));
@@ -72,21 +72,25 @@ class EditRecipePage extends React.Component {
           });
       });
       return p;
-  };
+  }
 
-  updateInputs(inputs) {
-    // add a property to the original set of inputs, that indicates whether the
-    // input is in the recipe or not
-    let selected = this.state.recipeComponents;
-    selected.map(component => {
-      let index = inputs.map(input => {return input.name}).indexOf(component.name);
+  updateInputComponentData(inputs, componentData) {
+    // updates the input component data to match the recipe component data
+    // where componentData represents either a single recipe component
+    // or the entire set of recipe components
+    if (componentData === undefined) {
+      componentData = this.state.recipeComponents;
+    }
+    componentData.map(component => {
+      let index = inputs.map(input => input.name).indexOf(component.name);
       if (index >= 0) {
           inputs[index].inRecipe = true;
+          inputs[index].version_selected = component.version;
+          inputs[index].release_selected = component.release;
       }
     });
-    // this.setState({inputComponents: inputs});
     return inputs;
-  };
+  }
 
   getFilteredInputs(event) {
     if (event.which == 13 || event.keyCode == 13) {
@@ -95,7 +99,7 @@ class EditRecipePage extends React.Component {
         "value": event.target.value
       }];
       Promise.all([this.getInputs("/*" + filter[0].value + "*")]).then((data) => {
-        let inputs = this.updateInputs(data[0]);
+        let inputs = this.updateInputComponentData(data[0]);
         this.setState({filteredComponents : inputs});
         this.setState({inputFilters : filter});
       }).catch(e => console.log('Failed to filter inputs during recipe edit: ' + e));
@@ -113,92 +117,144 @@ class EditRecipePage extends React.Component {
     $("#cmpsr-recipe-inputs .alert").remove();
   }
 
-  handleAddComponent = (event, component, version) => {
-    // the user clicked Add in the sidebar to add the component to the recipe
+  addRecipeComponent(componentData) {
+    // component data is [[{component}, [{dependency},{}]]]
+    let recipeComponents = this.state.recipeComponents.slice(0);
+    let updatedRecipeComponents = recipeComponents.concat(componentData[0][0]);
+    this.setState({recipeComponents: updatedRecipeComponents});
+    let recipeDependencies = this.state.recipeDependencies;
+    this.setState({recipeDependencies: recipeDependencies.concat(componentData[0][1])});
+    RecipeApi.updateRecipe(componentData[0][0], "add");
 
-    // get metadata and dependencies for the component
-    Promise.all([
-        MetadataApi.getMetadataComponent(component, version)
-    ]).then((data) => {
-      let recipeComponents = this.state.recipeComponents.slice(0);
-      let updatedRecipeComponents = recipeComponents.concat(data[0][0]);
-      this.setState({recipeComponents: updatedRecipeComponents});
-      let recipeDependencies = this.state.recipeDependencies;
-      this.setState({recipeDependencies: recipeDependencies.concat(data[0][1])});
-      RecipeApi.updateRecipe(data[0][0], "add");
-    }).catch(e => console.log('Error getting component metadata: ' + e));
+  }
 
-    // if an input is selected, deselect it
-    let inputs = this.removeInputActive();
-
-    // set inRecipe to true for the input component
-    // in the list of available inputs
-    let inputIndex = inputs.map(i => i.name).indexOf(component.name);
-    if (inputIndex > -1) {
-      inputs[inputIndex].inRecipe = true;
+  handleAddComponent = (event, source, component, dependencies) => {
+    // the user clicked Add in the sidebar, e.g. source === "input"
+    // or the user clicked Add in the details view
+    component.inRecipe = true;
+    if (source === "input") {
+      //get metadata for default build
+      Promise.all([
+          MetadataApi.getMetadataComponent(component, "")
+      ]).then((data) => {
+        this.addRecipeComponent(data);
+      }).catch(e => console.log('Error getting component metadata: ' + e));
+    } else {
+      // if source is the details view, then metadata is already known and passed with component
+      let data = [[component, dependencies]];
+      this.addRecipeComponent(data);
     }
-    // and also the list of filtered inputs
-    if (this.state.filteredComponents.length > 0) {
-      let filteredComponents = this.state.filteredComponents;
-      let filteredIndex = filteredComponents.map(i => i.name).indexOf(component.name);
-      if (filteredIndex > -1) {
-        filteredComponents[filteredIndex].inRecipe = true;
-        this.setState({filteredComponents: filteredComponents});
-      }
-    }
-    // TODO if inputs also lists dependencies, should these be indicated as included?
-    this.setState({inputComponents: inputs});
+    // update input component data to match the recipe component data
+    this.updateInputComponentsOnChange(component);
+    // TODO if inputs also lists dependencies, should these be indicated as included in the list of available components?
     this.setState({selectedComponent: ""});
     this.setState({selectedComponentStatus: ""});
     // remove the inline message above the list of inputs
     this.clearInputAlert();
-  };
+  }
+
+  handleUpdateComponent = (event, component) => {
+    // the user clicked Edit in the details view and saved updates to the component version
+    let recipe = this.state.recipeComponents;
+    // find component in recipe components
+    let selectedComponent = recipe.filter((obj) => (obj.name === component.name))[0];
+    // update recipe component with saved updates
+    selectedComponent = Object.assign(selectedComponent, component);
+    this.setState({recipeComponents: recipe});
+    this.hideComponentDetails();
+    // update input component with saved Updates
+    this.updateInputComponentsOnChange(component);
+    // update the recipe object that's used during save
+    RecipeApi.updateRecipe(selectedComponent, "edit");
+
+  }
 
   handleRemoveComponent = (event, component) => {
     // the user clicked Remove for a component in the recipe component list
     // or the component details view
-
-    // update the recipe object (the one that's used during save)
+    // update the recipe object that's used during save
     RecipeApi.updateRecipe(component, "remove");
-    // if the removed component was visible in the details view then close the
-    // details view and deselect it in the list of inputs
-    let inputs = [];
-    if (component == this.state.selectedComponent) {
-      inputs = this.removeInputActive();
-      this.hideComponentDetails();
-    } else {
-      inputs = this.state.inputComponents.slice(0);
-    }
-    // update the list of available components to include the Add button for the
-    // removed component
-    let inputIndex = inputs.map(i => i.name).indexOf(component.name);
-    if (inputIndex > -1) {
-      inputs[inputIndex].inRecipe = false;
-      this.setState({inputComponents: inputs});
-    }
+    // hide the details view
+    this.hideComponentDetails();
+    // update input component data
+    this.updateInputComponentsOnChange(component, "remove");
     // update the list of recipe components to not include the removed component
     let updatedRecipeComponents = this.state.recipeComponents.slice(0);
     updatedRecipeComponents = updatedRecipeComponents.filter(obj => (obj !== component));
     this.setState({recipeComponents: updatedRecipeComponents});
-  };
+  }
+
+  updateInputComponentsOnChange(component, remove) {
+    let inputs = this.state.inputComponents.slice(0);
+    inputs = this.removeInputActive(inputs);
+    let filteredComponents = this.state.filteredComponents.slice(0);
+    if (filteredComponents.length > 0) {
+      filteredComponents  = this.removeInputActive(filteredComponents);
+    }
+    if (remove === "remove") {
+      // set inRecipe to false for the selected component
+      // in the list of available inputs
+      inputs = this.removeRecipeComponent(component, inputs);
+      this.setState({inputComponents: inputs});
+      // and also the list of filtered inputs
+      if (filteredComponents.length > 0) {
+        filteredComponents = this.removeRecipeComponent(component, filteredComponents);
+        this.setState({filteredComponents: filteredComponents});
+      }
+    } else {
+      // set inRecipe to true for the selected component
+      // in the list of available inputs
+      inputs = this.updateInputComponentData(inputs, [component]);
+      this.setState({inputComponents: inputs});
+      // and also the list of filtered inputs
+      if (filteredComponents.length > 0) {
+        filteredComponents = this.updateInputComponentData(filteredComponents, [component]);
+        this.setState({filteredComponents: filteredComponents});
+      }
+    }
+  }
+
+  removeRecipeComponent(component, inputs){
+    let index = inputs.map(input => input.name).indexOf(component.name);
+    if (index >= 0) {
+        inputs[index].inRecipe = false;
+        delete inputs[index].version_selected;
+        delete inputs[index].release_selected;
+    }
+    return inputs;
+  }
 
   handleComponentDetails = (event, component, parent) => {
     // the user selected a component in the sidebar to view more details on the right
     // remove the active state from the current selected component
-    let inputs = this.removeInputActive();
-    if (component != this.state.selectedComponent) {
-      // if the user did not clicked on the current selected component:
+    let inputs = this.state.inputComponents.slice(0);
+    inputs = this.removeInputActive(inputs);
+    // and from the filtered components
+    let filteredComponents = [];
+    if (this.state.filteredComponents.length > 0) {
+      filteredComponents = this.state.filteredComponents;
+      filteredComponents  = this.removeInputActive(filteredComponents);
+    }
+
+    if (component !== this.state.selectedComponent) {
+      // if the user did not click on the current selected component:
       // set state for selected component
       this.setState({selectedComponent: component});
       this.setState({selectedComponentParent: parent});
       // if the selected component is in the list of inputs
       // then set active to true so that it is highlighted
-      let compIndex = inputs.indexOf(component)
+      let compIndex = inputs.map(input => input.name).indexOf(component.name);
       if (compIndex >= 0) {
         inputs[compIndex].active = true;
       }
       this.setState({inputComponents: inputs});
-
+      if (filteredComponents.length > 0) {
+        let filteredIndex = filteredComponents.map(input => input.name).indexOf(component.name);
+        if (filteredIndex >= 0) {
+          filteredComponents[filteredIndex].active = true;
+        }
+        this.setState({filteredComponents: filteredComponents});
+      }
       // set selectedComponentStatus
       // if parent is not defined (i.e. I clicked a component in the input list
       // or component list, or I clicked the first component in the breadcrumb)
@@ -224,6 +280,8 @@ class EditRecipePage extends React.Component {
 
     } else {
       // if the user clicked on the current selected component:
+      this.setState({inputComponents: inputs});
+      this.setState({filteredComponents: filteredComponents});
       this.hideComponentDetails();
     }
   };
@@ -234,12 +292,13 @@ class EditRecipePage extends React.Component {
     this.setState({selectedComponentParent: ""});
   }
 
-  removeInputActive() {
-    // remove the active state from list of inputs
-    let inputs = this.state.inputComponents.slice(0);
-    let index = inputs.indexOf(this.state.selectedComponent)
-    if (index >= 0) {
-      inputs[index].active = false;
+  removeInputActive(inputs) {
+    if (this.state.selectedComponent !== "") {
+      // remove the active state from list of inputs
+      let index = inputs.map(input => input.name).indexOf(this.state.selectedComponent.name);
+      if (index >= 0) {
+        inputs[index].active = false;
+      }
     }
     return inputs;
   }
@@ -290,6 +349,7 @@ class EditRecipePage extends React.Component {
               status={ this.state.selectedComponentStatus }
               handleComponentDetails={this.handleComponentDetails.bind(this)}
               handleAddComponent={this.handleAddComponent.bind(this)}
+              handleUpdateComponent={this.handleUpdateComponent.bind(this)}
               handleRemoveComponent={this.handleRemoveComponent.bind(this)} />
           </div>
           }
