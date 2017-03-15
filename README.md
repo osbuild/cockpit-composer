@@ -1,5 +1,7 @@
 # Patternfly React Starter
 
+[![Build Status](https://travis-ci.org/weldr/welder-web.svg?branch=master)](https://travis-ci.org/weldr/welder-web)
+
 A Patternfly + React starter kit based on [**React Static Boilerplate**](https://github.com/kriasoft/react-static-boilerplate).
 
 **Demo**: https://patternfly-react-starter.firebaseapp.com/ &nbsp;|&nbsp; **View** [docs](./docs) &nbsp;|&nbsp; **Follow us** on
