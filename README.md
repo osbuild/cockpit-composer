@@ -68,25 +68,12 @@ Or if it's installed, make sure you're using it:
 nvm use 6.9.1
 ```
 
-**Step 2**. Clone this repository or use [Yeoman
-generator](https://github.com/kriasoft/react-static-boilerplate/tree/generator-react-static) to
-bootstrap your project:
+**Step 2**. Clone this repository and install its dependencies:
 
 ```shell
-$ git clone -o upstream -b master --single-branch \
-      https://github.com/priley86/patternfly-react-starter.git MyApp
-$ cd MyApp
+$ git clone -o upstream -b master --single-branch https://github.com/weldr/welder-web
+$ cd welder-web/
 $ npm install                   # Install project dependencies listed in package.json
-```
-
-<p align="center">——— or ———</p>
-
-```shell
-$ npm install -g yo
-$ npm install -g generator-react-static
-$ mkdir MyApp
-$ cd MyApp
-$ yo react-static
 ```
 
 **Step 3**. Compile and launch your app by running:
