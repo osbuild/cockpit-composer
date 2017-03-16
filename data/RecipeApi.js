@@ -26,7 +26,8 @@ class RecipeApi {
             .then(data => {
                 // bdcs-api v0.3.0 includes module (component) and dependency NEVRAs
                 let dependencies = data.recipes[0].dependencies;
-                let components = data.recipes[0].modules;
+                // XXX Tag the objects all as Modules for now
+                let components = this.makeRecipeComponents(data.recipes[0].modules, "Module");
                 let recipe = data.recipes[0].recipe;
                 if (components.length > 0) {
                   let componentNames = MetadataApi.getNames(components);
@@ -71,17 +72,13 @@ class RecipeApi {
     }
   }
 
-  makeRecipeComponent(component, data, ui_type) {
-    // takes a component object of known type, merges it with the matching
-    // object in the modules array, and adds a few more properties to the
-    // component object and component's array of dependency objects
-    let modules = JSON.parse(JSON.stringify(data));
-    let index = modules.map(i => {return i.name}).indexOf(component.name);
-    let newComponent = Object.assign({}, component, modules[index]);
-    newComponent.ui_type = ui_type;
-    newComponent.inRecipe = true;
-    newComponent.projects = MetadataApi.updateRecipeDependencies(newComponent);
-    return newComponent;
+  // Add .inRecipe = true and .ui_type to each of the components
+  makeRecipeComponents(components, ui_type) {
+    return components.map(i => {
+        i.inRecipe = true;
+        i.ui_type = ui_type;
+        return i;
+    });
   }
 
 // update Recipe on Add or Remove component
