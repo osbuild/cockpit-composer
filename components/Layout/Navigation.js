@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from '../Link';
 import history from '../../core/history';
-// todo: eslint reports these as unused but without them the
-// entire app will produce an error when loaded in the browser
+/*eslint no-unused-vars: ["error", { "varsIgnorePattern": "Pf*" }]*/
+// without these imports the entire app will produce an error when loaded
 import PfBreakpoints from './PfBreakpoints';
 import PfVerticalNavigation from './PfVerticalNavigation';
 
