@@ -50,6 +50,8 @@ class MetadataApi {
     //    then build = ""
 
     // get metadata and dependencies for the component
+    // bdcs-api v0.3.0 /modules/info looks like:
+    // {"modules":[{"name":NAME, ..., "dependencies":[NEVRA, ...]}, ...]}
     let p = new Promise((resolve, reject) => {
       Promise.all([
         this.getData(constants.get_projects_info + component.name),
@@ -58,45 +60,36 @@ class MetadataApi {
         let componentData = data[1].modules[0];
         componentData.inRecipe = component.inRecipe;
         componentData.ui_type = component.ui_type;
-        componentData.version = component.version;
-        componentData.release = component.release;
-        // get arch value based on the version/release of the component
-        let compBuild = data[0].projects[0].builds.filter((obj) => (obj.source.version === component.version && obj.release === component.release))[0];
-        componentData.arch = compBuild.arch;
+
+        // The component's depsolved version may be in .dependencies
+        let compNEVRA = componentData.dependencies.filter((obj) => obj.name === component.name);
+        if (compNEVRA.length > 0) {
+            compNEVRA = compNEVRA[0];
+        } else {
+            // Missing deps, construct a NEVRA from the build data
+            let firstBuild = data[0].projects[0].builds[0];
+            compNEVRA = {
+                name: component.name,
+                version: firstBuild.source.version,
+                release: firstBuild.release,
+                arch: firstBuild.arch,
+                epoch: firstBuild.epoch
+            };
+        }
+
+        componentData.version = compNEVRA.version;
+        componentData.release = compNEVRA.release;
+        componentData.arch = compNEVRA.arch;
 
         // if the user clicked View Details for an available component
         // then get the list of available builds
-        let builds = (build === "all") ? data[0].projects[0].builds : [];
-
-        // get metadata and dependencies for the dependencies
-        let dependencies = this.updateRecipeDependencies(componentData);
-        if (dependencies.length === 0) {
-          let metadata = (build === "all") ? [componentData, [], builds] : [componentData, []];
-          resolve(metadata);
-        } else {
-          let dependencyNames = this.getNames(dependencies);
-          Promise.all([
-              this.getData(constants.get_projects_info + dependencyNames),
-              this.getData(constants.get_modules_info + dependencyNames)
-            ]).then((data) => {
-            dependencies = this.updateComponentMetadata(dependencies, data[0], true);
-            dependencies = this.updateComponentDependencies(dependencies, data[1]);
-             // arbitrarily setting ui_type based on requiredBy component for now
-            dependencies.map(i => {
-              if (i.projects !== undefined && i.projects.length > 0 ){
-                i.projects.map(i => { i.ui_type = component.ui_type });
-              }
-            });
-            let metadata = (build === "all") ? [componentData, dependencies, builds] : [componentData, dependencies];
-            resolve(metadata);
-
-          }).catch(e => console.log('Error getting component dependencies metadata: ' + e));
-        }
-        }).catch(e => {
-          console.log("Error getting component: " + e);
+        let metadata = (build === "all") ? [componentData, data[0].projects[0].builds] : [componentData, []];
+        resolve(metadata);
+      }).catch(e => {
+          console.log("getMetadataComponent: Error getting component: " + e);
           reject();
-        });
       });
+    });
     return p;
   }
 

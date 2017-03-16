@@ -182,12 +182,13 @@ class EditRecipePage extends React.Component {
   }
 
   addRecipeComponent(componentData) {
+    console.log("addRecipeComponent: " + componentData);
     // component data is [[{component}, [{dependency},{}]]]
     let recipeComponents = this.state.recipeComponents.slice(0);
     let updatedRecipeComponents = recipeComponents.concat(componentData[0][0]);
     this.setState({recipeComponents: updatedRecipeComponents});
     let recipeDependencies = this.state.recipeDependencies;
-    this.setState({recipeDependencies: recipeDependencies.concat(componentData[0][1])});
+    this.setState({recipeDependencies: recipeDependencies.concat(componentData[0][0].dependencies)});
     RecipeApi.updateRecipe(componentData[0][0], "add");
 
   }
@@ -202,7 +203,7 @@ class EditRecipePage extends React.Component {
           MetadataApi.getMetadataComponent(component, "")
       ]).then((data) => {
         this.addRecipeComponent(data);
-      }).catch(e => console.log('Error getting component metadata: ' + e));
+      }).catch(e => console.log('handleAddComponent: Error getting component metadata: ' + e));
     } else {
       // if source is the details view, then metadata is already known and passed with component
       let data = [[component, dependencies]];

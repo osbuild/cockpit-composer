@@ -39,7 +39,7 @@ class RecipeApi {
                       recipe.dependencies = [];
                       this.recipe = recipe;
                       resolve(recipe);
-                    }).catch(e => console.log('Error getting component metadata: ' + e));
+                    }).catch(e => console.log('getRecipe: Error getting component metadata: ' + e));
                   } else {
                     // get metadata for the components
                     // get metadata for the dependencies
@@ -53,7 +53,7 @@ class RecipeApi {
                       recipe.dependencies = MetadataApi.updateComponentMetadata(dependencies, data[1]);
                       this.recipe = recipe;
                       resolve(recipe);
-                    }).catch(e => console.log('Error getting component and dependency metadata: ' + e));
+                    }).catch(e => console.log('getRecipe: Error getting component and dependency metadata: ' + e));
                   }
                 } else {
                   // there are no components, just a recipe name and description

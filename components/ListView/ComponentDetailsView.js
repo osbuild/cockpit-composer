@@ -52,19 +52,19 @@ class ComponentDetailsView extends React.Component {
       MetadataApi.getMetadataComponent(selectedComponent, build),
     ]).then((data) => {
       this.setState({ componentData: data[0][0] });
-      this.setState({ dependencies: data[0][1] });
+      this.setState({ dependencies: data[0][0].dependencies });
       if (status === 'available') {
         // when status === "available" a form displays with a menu for selecting a specific version
         // availableBuilds is an array listing each option
         // TODO - include other metadata that's defined in builds
-        const availableBuilds = data[0][2].map(
+        const availableBuilds = data[0][1].map(
             i => ({ version: i.source.version, release: i.release }));
         this.setState({ availableBuilds });
       } else {
         this.setState({ availableBuilds: [] });
       }
       this.setState({ selectedBuildIndex: 0 });
-    }).catch(e => console.log(`Error getting component metadata: ${e}`));
+    }).catch(e => console.log(`getMetadata: Error getting component metadata: ${e}`));
   }
 
   initializeBootstrapElements() {
@@ -89,7 +89,7 @@ class ComponentDetailsView extends React.Component {
         (obj) => (obj.version === component.version && obj.release === component.release))[0];
       const index = availableBuilds.indexOf(selectedBuild);
       this.setState({ selectedBuildIndex: index });
-    }).catch(e => console.log(`Error getting component metadata: ${e}`));
+    }).catch(e => console.log(`handleEdit: Error getting component metadata: ${e}`));
     // display the form
     this.setState({ editSelected: true });
   }
