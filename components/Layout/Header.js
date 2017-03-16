@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from '../Link';
 
 function Header() {
   return (
@@ -17,11 +16,21 @@ function Header() {
       </div>
       <nav className="collapse navbar-collapse">
         <ul className="nav navbar-nav">
-          <li><a href="#" target="_blank" className="nav-item-iconic nav-item-iconic-new-window"><span title="Launch" className="fa fa-external-link"></span></a></li>
+          <li>
+            <a href="#" target="_blank" className="nav-item-iconic nav-item-iconic-new-window">
+              <span title="Launch" className="fa fa-external-link"></span>
+            </a>
+          </li>
         </ul>
         <ul className="nav navbar-nav navbar-right navbar-iconic">
           <li className="dropdown">
-            <a className="dropdown-toggle nav-item-iconic" id="notifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <a
+              className="dropdown-toggle nav-item-iconic"
+              id="notifications"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="true"
+            >
               <span title="Notifications" className="fa pficon-flag"></span>
               <span className="badge">2</span>
             </a>
@@ -41,7 +50,13 @@ function Header() {
             </div>
           </li>
           <li className="dropdown">
-            <a className="dropdown-toggle nav-item-iconic" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <a
+              className="dropdown-toggle nav-item-iconic"
+              id="dropdownMenu1"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="true"
+            >
               <span title="Help" className="fa pficon-help"></span>
               <span className="caret"></span>
             </a>
@@ -51,7 +66,13 @@ function Header() {
             </ul>
           </li>
           <li className="dropdown">
-            <a className="dropdown-toggle nav-item-iconic" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <a
+              className="dropdown-toggle nav-item-iconic"
+              id="dropdownMenu2"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="true"
+            >
               <span title="Username" className="fa pficon-user"></span>
               <span className="caret"></span>
             </a>

@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import Link from '../../components/Link';
 
 class RecipeListView extends React.Component {
@@ -12,31 +12,38 @@ class RecipeListView extends React.Component {
     this.bindExpand();
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     this.unbind();
   }
 
   bindExpand() {
     // click the list-view heading then expand a row
-    $(".list-group-item-header").click(function(event){
-      if(!$(event.target).is("button, a, input, .fa-ellipsis-v")){
-        $(this).find(".fa-angle-right").toggleClass("fa-angle-down")
-          .end().parent().toggleClass("list-view-pf-expand-active")
-          .find(".list-group-item-container").toggleClass("hidden");
+    $('.list-group-item-header').click(function (event) {
+      if (!$(event.target).is('button, a, input, .fa-ellipsis-v')) {
+        $(this).find('.fa-angle-right')
+          .toggleClass('fa-angle-down')
+          .end()
+          .parent()
+          .toggleClass('list-view-pf-expand-active')
+          .find('.list-group-item-container')
+          .toggleClass('hidden');
       }
     });
 
     // click the close button, hide the expand row and remove the active status
-    $(".list-group-item-container .close").on("click", function (){
-      $(this).parent().addClass("hidden")
-        .parent().removeClass("list-view-pf-expand-active")
-        .find(".fa-angle-right").removeClass("fa-angle-down");
+    $('.list-group-item-container .close').on('click', function () {
+      $(this).parent()
+        .addClass('hidden')
+        .parent()
+        .removeClass('list-view-pf-expand-active')
+        .find('.fa-angle-right')
+        .removeClass('fa-angle-down');
     });
   }
 
   unbind() {
-    $(".list-group-item-header").off('click');
-    $(".list-group-item-container .close").off('click');
+    $('.list-group-item-header').off('click');
+    $('.list-group-item-container .close').off('click');
   }
 
   render() {
@@ -46,7 +53,7 @@ class RecipeListView extends React.Component {
 
       <div className="list-group list-view-pf list-view-pf-view">
 
-        {recipes.map((recipe,i) =>
+        {recipes.map((recipe, i) =>
           <div className="list-group-item" key={i}>
             <div className="list-group-item-header">
               <div className="list-view-pf-expand">
@@ -55,7 +62,29 @@ class RecipeListView extends React.Component {
               <div className="list-view-pf-checkbox">
                 <input type="checkbox" />
               </div>
-              <div className="list-view-pf-actions"><Link to={"/edit/" + recipe.name }><button className="btn btn-default" type="button">Edit Recipe</button></Link><button className="btn btn-default">Create Composition</button><div className="dropdown pull-right dropdown-kebab-pf"><button className="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight9" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span className="fa fa-ellipsis-v"></span></button><ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight9"><li><a href="#">Export</a></li><li><a href="#">Delete</a></li></ul></div></div>
+              <div className="list-view-pf-actions">
+                <Link to={`/edit/${recipe.name}`}>
+                  <button className="btn btn-default" type="button">Edit Recipe</button>
+                </Link>
+                <button className="btn btn-default">Create Composition</button>
+                <div className="dropdown pull-right dropdown-kebab-pf">
+                  <button
+                    className="btn btn-link dropdown-toggle"
+                    type="button"
+                    id="dropdownKebabRight9"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="true"
+                  ><span className="fa fa-ellipsis-v"></span></button>
+                  <ul
+                    className="dropdown-menu dropdown-menu-right"
+                    aria-labelledby="dropdownKebabRight9"
+                  >
+                    <li><a href="#">Export</a></li>
+                    <li><a href="#">Delete</a></li>
+                  </ul>
+                </div>
+              </div>
               <div className="list-view-pf-main-info">
                 <div className="list-view-pf-left">
                   <span className="fa fa-cube list-view-pf-icon-sm"></span>
@@ -63,10 +92,10 @@ class RecipeListView extends React.Component {
                 <div className="list-view-pf-body">
                   <div className="list-view-pf-description">
                     <div className="list-group-item-heading">
-                      <Link to={"/recipe/" + recipe.name }>{ recipe.name }</Link>
+                      <Link to={`/recipe/${recipe.name}`}>{recipe.name}</Link>
                     </div>
                     <div className="list-group-item-text">
-                      { recipe.description }
+                      {recipe.description}
                     </div>
                   </div>
                   <div className="list-view-pf-additional-info">
@@ -95,10 +124,20 @@ class RecipeListView extends React.Component {
                         <button className="btn btn-default">View Recipe</button>
                         <button className="btn btn-default">Download</button>
                         <div className="dropdown pull-right dropdown-kebab-pf">
-                          <button className="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight12" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                          <button
+                            className="btn btn-link dropdown-toggle"
+                            type="button"
+                            id="dropdownKebabRight12"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="true"
+                          >
                             <span className="fa fa-ellipsis-v"></span>
                           </button>
-                          <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight12">
+                          <ul
+                            className="dropdown-menu dropdown-menu-right"
+                            aria-labelledby="dropdownKebabRight12"
+                          >
                             <li><a href="#">Action</a></li>
                             <li><a href="#">Another action</a></li>
                             <li><a href="#">Something else here</a></li>
@@ -131,7 +170,7 @@ class RecipeListView extends React.Component {
           </div>
         )}
       </div>
-    )
+    );
   }
 
 }

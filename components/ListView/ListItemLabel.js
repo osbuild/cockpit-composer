@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 
 class ListItemLabel extends React.Component {
 
@@ -6,15 +6,19 @@ class ListItemLabel extends React.Component {
     const { isdependency } = this.props;
 
     let dependency = null;
-    if (isdependency == true) {
-      dependency = <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked"><span className="label label-default">Dependency</span></div>;
+    if (isdependency === true) {
+      dependency = (<div
+        className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked"
+      >
+        <span className="label label-default">Dependency</span>
+      </div>);
     }
 
     return (
       <span>
         {dependency}
       </span>
-    )
+    );
   }
 
 }

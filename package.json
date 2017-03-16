@@ -101,7 +101,10 @@
   },
   "eslintConfig": {
     "parser": "babel-eslint",
-    "extends": "airbnb"
+    "extends": "airbnb",
+    "env": {
+      "jquery": true
+    }
   },
   "stylelint": {
     "extends": "stylelint-config-standard",
