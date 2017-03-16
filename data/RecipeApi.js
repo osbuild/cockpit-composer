@@ -6,85 +6,59 @@ import history from '../core/history';
 
 class RecipeApi {
   constructor() {
-    this.recipe = {};
+    this.recipe = undefined;
   }
 
   // Get the recipe details, and its dependencies
   // Object layout is:
-  // {recipes: [{recipe: RECIPE, modules: MODULES}, ...]}
-  // Where MODULES is a modules/info/ object {name: "", projects: [{...
+  // {recipes: [{recipe: RECIPE, modules: NEVRA, dependencies: NEVRA}, ...]}
+  // Where RECIPE is a recipe object
+  // NEVRA is a list of name, epoch, version, release, arch objects.
+  // "modules" are the specific versions for the recipe's modules and packages
+  // "dependencies" are all the things that are required to satisfy the recipe
   getRecipe(recipeName) {
-      if (this.recipe.recipe !== undefined) {
+      if (this.recipe !== undefined && this.recipe.name == recipeName) {
         return Promise.resolve(this.recipe);
       } else {
         let p = new Promise((resolve, reject) => {
             fetch(constants.get_recipes_deps + recipeName)
             .then(r => r.json())
             .then(data => {
-              // update data so that it includes a list of components and a list of dependencies
-                let components = [];
-                if (data.recipes[0].recipe.modules.length > 0) {
-                  data.recipes[0].recipe.modules.map(i => {
-                    let component = this.makeRecipeComponent(i, data.recipes[0].modules, "Module");
-                    components.push(component);
-                  })
-                }
-                if (data.recipes[0].recipe.packages.length > 0) {
-                  data.recipes[0].recipe.packages.map(i => {
-                    let component = this.makeRecipeComponent(i, data.recipes[0].modules, "RPM");
-                    components.push(component);
-                  })
-                }
-
-                let dependencies = [];
-                // list of dependencies is pulled from list from components
-                components.map(i => {
-                  if (i.projects.length > 0) {
-                    dependencies = dependencies.concat(i.projects);
-                  }
-                });
-                data.recipes[0].recipe.components = components;
-                data.recipes[0].recipe.dependencies = dependencies;
-                let recipe = data.recipes[0];
+                // bdcs-api v0.3.0 includes module (component) and dependency NEVRAs
+                let dependencies = data.recipes[0].dependencies;
+                let components = data.recipes[0].modules;
+                let recipe = data.recipes[0].recipe;
                 if (components.length > 0) {
                   let componentNames = MetadataApi.getNames(components);
                   if (dependencies.length === 0) {
                     // get metadata for the components only
                     Promise.all([
-                        MetadataApi.getData(constants.get_module_info + componentNames)
+                        MetadataApi.getData(constants.get_projects_info + componentNames)
                     ]).then((data) => {
-                      recipe.recipe.components = MetadataApi.updateComponentMetadata(recipe.recipe.components, data[0], false);
-                      this.recipe = recipe.recipe;
-                      resolve(recipe.recipe);
-                    }).catch(e => console.log('Error getting recipe metadata: ' + e));
+                      recipe.components = MetadataApi.updateComponentMetadata(components, data[0]);
+                      recipe.dependencies = [];
+                      this.recipe = recipe;
+                      resolve(recipe);
+                    }).catch(e => console.log('Error getting component metadata: ' + e));
                   } else {
                     // get metadata for the components
                     // get metadata for the dependencies
                     // get dependencies for dependencies
                     let dependencyNames = MetadataApi.getNames(dependencies);
                     Promise.all([
-                        MetadataApi.getData(constants.get_module_info + componentNames),
-                        MetadataApi.getData(constants.get_module_info + dependencyNames),
-                        MetadataApi.getData(constants.get_dependencies_list + dependencyNames)
+                        MetadataApi.getData(constants.get_projects_info + componentNames),
+                        MetadataApi.getData(constants.get_projects_info + dependencyNames)
                     ]).then((data) => {
-                      recipe.recipe.components = MetadataApi.updateComponentMetadata(recipe.recipe.components, data[0], false);
-                      recipe.recipe.dependencies = MetadataApi.updateComponentMetadata(recipe.recipe.dependencies, data[1], true);
-                      recipe.recipe.dependencies = MetadataApi.updateComponentDependencies(recipe.recipe.dependencies, data[2]);
-                      // arbitrarily setting ui_type for dependency dependencies based on requiredBy component for now
-                      recipe.recipe.dependencies.map(i => {
-                        if (i.projects !== undefined && i.projects.length > 0 ){
-                          let requiredBy = i;
-                          i.projects.map(i => { i.ui_type = requiredBy.ui_type });
-                        }
-                      });
-                      this.recipe = recipe.recipe;
-                      resolve(recipe.recipe);
-                    }).catch(e => console.log('Error getting recipe metadata: ' + e));
+                      recipe.components = MetadataApi.updateComponentMetadata(components, data[0]);
+                      recipe.dependencies = MetadataApi.updateComponentMetadata(dependencies, data[1]);
+                      this.recipe = recipe;
+                      resolve(recipe);
+                    }).catch(e => console.log('Error getting component and dependency metadata: ' + e));
                   }
                 } else {
                   // there are no components, just a recipe name and description
-                  this.recipe = recipe.recipe;
-                  resolve(recipe.recipe);
+                  this.recipe = recipe;
+                  resolve(recipe);
                 }
             })
             .catch(e => {

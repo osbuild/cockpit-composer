@@ -29,7 +29,7 @@ class MetadataApi {
     // a list of available builds are returned for displaying in the edit form
     let p = new Promise((resolve, reject) => {
       Promise.all([
-        this.getData(constants.get_module_info + component.name),
+        this.getData(constants.get_projects_info + component.name),
       ]).then((data) => {
         let builds = data[0].projects[0].builds;
         resolve(builds);
@@ -52,8 +52,8 @@ class MetadataApi {
     // get metadata and dependencies for the component
     let p = new Promise((resolve, reject) => {
       Promise.all([
-        this.getData(constants.get_module_info + component.name),
-        this.getData(constants.get_dependencies_list + component.name)
+        this.getData(constants.get_projects_info + component.name),
+        this.getData(constants.get_modules_info + component.name)
       ]).then((data) => {
         let componentData = data[1].modules[0];
         componentData.inRecipe = component.inRecipe;
@@ -76,8 +76,8 @@ class MetadataApi {
         } else {
           let dependencyNames = this.getNames(dependencies);
           Promise.all([
-              this.getData(constants.get_module_info + dependencyNames),
-              this.getData(constants.get_dependencies_list + dependencyNames)
+              this.getData(constants.get_projects_info + dependencyNames),
+              this.getData(constants.get_modules_info + dependencyNames)
             ]).then((data) => {
             dependencies = this.updateComponentMetadata(dependencies, data[0], true);
             dependencies = this.updateComponentDependencies(dependencies, data[1]);
@@ -100,15 +100,12 @@ class MetadataApi {
     return p;
   }
 
-  updateComponentMetadata(components, data, getVersion) {
+  updateComponentMetadata(components, data) {
     // for the list of components, add the data for additional metadata and return
     // getVersion = false when the version number is already known as in a recipe component
     // TODO - getVersion will most likely become obsolete when the api is refactored
     data.projects.map(i => {
       let index = components.map(component => {return component.name}).indexOf(i.name);
-      if (getVersion) {components[index].version = i.builds[0].source.version;}
-      components[index].release = i.builds[0].release;
-      components[index].arch = i.builds[0].arch;
       components[index].summary = i.summary;
     });
     return components;

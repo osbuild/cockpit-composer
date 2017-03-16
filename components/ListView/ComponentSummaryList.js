@@ -9,7 +9,7 @@ class ComponentSummaryList extends React.Component {
   //   this.getDependencies();
   // }
   // getDependencies() {
-  //   fetch(constants.get_dependencies_list + this.props.component).then(r => r.json())
+  //   fetch(constants.get_modules_info + this.props.component).then(r => r.json())
   //     .then(data => {
   //       let dependencies = [];
   //       data.modules.map(i => {

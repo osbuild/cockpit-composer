@@ -14,8 +14,8 @@ const constants = {
   get_recipes_info: `${welderApiHost}/api/v0/recipes/info/`,
   get_recipes_deps: `${welderApiHost}/api/v0/recipes/depsolve/`,
   get_modules_list: `${welderApiHost}/api/v0/modules/list`,
-  get_module_info: `${welderApiHost}/api/v0/projects/info/`,
-  get_dependencies_list: `${welderApiHost}/api/v0/modules/info/`,
+  get_projects_info: `${welderApiHost}/api/v0/projects/info/`,
+  get_modules_info: `${welderApiHost}/api/v0/modules/info/`,
   get_compose_types: `${welderApiHost}/api/v0/compose/types`,
   post_recipes_new: `${welderApiHost}/api/v0/recipes/new`,
 
