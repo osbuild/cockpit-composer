@@ -1,14 +1,13 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 
 class ListViewExpand extends React.Component {
 
   render() {
-
     return (
-        <div id={this.props.id} className="list-group list-view-pf list-view-pf-view">
-          { this.props.children }
-        </div>
-    )
+      <div id={this.props.id} className="list-group list-view-pf list-view-pf-view">
+        {this.props.children}
+      </div>
+    );
   }
 }
 
