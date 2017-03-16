@@ -1,17 +1,83 @@
-# Patternfly React Starter
+# Welder Web
 
 [![Build Status](https://travis-ci.org/weldr/welder-web.svg?branch=master)](https://travis-ci.org/weldr/welder-web)
 
-A Patternfly + React starter kit based on [**React Static Boilerplate**](https://github.com/kriasoft/react-static-boilerplate).
+The web interface for Welder!
 
-**Demo**: https://patternfly-react-starter.firebaseapp.com/ &nbsp;|&nbsp; **View** [docs](./docs) &nbsp;|&nbsp; **Follow us** on
-[Gitter](https://gitter.im/patternfly/patternfly), [Twitter](https://twitter.com/patternfly_des), and [Slack](https://patternfly.slack.com) &nbsp;|&nbsp;
 
-![Image of PatternFly](https://raw.githubusercontent.com/priley86/patternfly-react-starter/master/icons/patternfly-orb.png)
-![Image of Loves](https://raw.githubusercontent.com/priley86/patternfly-react-starter/master/icons/icon-heart.png)
-![Image of React](https://raw.githubusercontent.com/priley86/patternfly-react-starter/master/icons/react.png)
+### Getting Started
 
-### Features
+**Step 1**. Make sure that you have [Node.js](https://nodejs.org/) v6.9.1 or newer installed on your
+machine. For example:
+```shell
+nvm install 6.9.1
+```
+Or if it's installed, make sure you're using it:
+```shell
+nvm use 6.9.1
+```
+
+**Step 2**. Clone this repository and install its dependencies:
+
+```shell
+$ git clone -o upstream -b master --single-branch https://github.com/weldr/welder-web
+$ cd welder-web/
+$ npm install                   # Install project dependencies listed in package.json
+```
+
+**Step 3**. Compile and launch your app by running:
+
+```shell
+$ node run build
+$ node run                      # Same as `npm start` or `node run start`
+```
+
+You can also test your app in release (production) mode by running `node run start --release` or
+with HMR and React Hot Loader disabled by running `node run start --no-hmr`. The app should become
+available at [http://localhost:3000/](http://localhost:3000/).
+
+
+### How to Test
+
+The unit tests are powered by [chai](http://chaijs.com/) and [mocha](http://mochajs.org/).
+
+```shell
+$ npm run lint                  # Check JavaScript and CSS code for potential issues
+$ npm run test                  # Run unit tests. Or, `npm run test:watch`
+```
+
+### How to Deploy
+
+Update `publish` script in the [`run.js`](run.js) file with your full Firebase project name as found
+in your [Firebase console](https://console.firebase.google.com/). Note that this may have an
+additional identifier suffix than the shorter name you've provided. Then run:
+
+```shell
+$ node run publish              # Build and publish the website to Firebase, same as `npm run publish`
+```
+
+The first time you publish, you will be prompted to authenticate with Google and generate an
+authentication token in order for the publish script to continue.
+
+![publish](https://koistya.github.io/files/react-static-boilerplate-publish.gif)
+
+If you need just to build the project without publishing it, run:
+
+```shell
+$ node run build                # Or, `node run build --release` for production build
+```
+
+### Building a Docker image
+
+To build the Welder web application as a Docker image see
+[`README.docker`](README.docker)
+
+### License
+
+This source code is licensed under the MIT license found in the [`LICENSE.txt`](LICENSE.txt) file.
+
+### Application internals
+
 &nbsp; &nbsp; ✓ Includes [Patternfly](http://www.patternfly.org/) CSS & some React implementations of Patternfly components<br>
 &nbsp; &nbsp; ✓ Modern JavaScript syntax ([ES2015](http://babeljs.io/docs/learn-es2015/)+) via [Babel](http://babeljs.io/), modern CSS syntax via [PostCSS](https://github.com/postcss/postcss)<br>
 &nbsp; &nbsp; ✓ Component-based UI architecture via [React](http://facebook.github.io/react/), [Webpack](https://webpack.github.io/) and [CSS Modules](https://github.com/css-modules/css-modules)<br>
@@ -20,9 +86,6 @@ A Patternfly + React starter kit based on [**React Static Boilerplate**](https:/
 &nbsp; &nbsp; ✓ [Code-splitting](https://github.com/webpack/docs/wiki/code-splitting) and async chunk loading via [Webpack](https://webpack.github.io/) and [ES6 System.import()](http://www.2ality.com/2014/09/es6-modules-final.html)<br>
 &nbsp; &nbsp; ✓ Hot Module Replacement ([HMR](https://webpack.github.io/docs/hot-module-replacement.html)) /w [React Hot Loader](http://gaearon.github.io/react-hot-loader/)<br>
 &nbsp; &nbsp; ✓ Cross-device testing with [Browsersync](https://browsersync.io/) (see [`run.js#start`](run.js))<br>
-&nbsp; &nbsp; ✓ **24/7** community support on [Gitter](https://gitter.im/kriasoft/react-static-boilerplate); customization requests on [Codementor](https://www.codementor.io/koistya)<br>
-
-**Learn** to [React.js and ES6](#learn-reactjs-and-es6)
 
 ### Directory Layout
 
@@ -57,95 +120,5 @@ A Patternfly + React starter kit based on [**React Static Boilerplate**](https:/
 └── webpack.config.js           # Bundling and optimization settings for Webpack
 ```
 
-
-### Getting Started
-
-**Step 1**. Make sure that you have [Node.js](https://nodejs.org/) v6.9.1 or newer installed on your
-machine. For example:
-```shell
-nvm install 6.9.1
-```
-Or if it's installed, make sure you're using it:
-```shell
-nvm use 6.9.1
-```
-
-**Step 2**. Clone this repository and install its dependencies:
-
-```shell
-$ git clone -o upstream -b master --single-branch https://github.com/weldr/welder-web
-$ cd welder-web/
-$ npm install                   # Install project dependencies listed in package.json
-```
-
-**Step 3**. Compile and launch your app by running:
-
-```shell
-$ node run build
-$ node run                      # Same as `npm start` or `node run start`
-```
-
-You can also test your app in release (production) mode by running `node run start --release` or
-with HMR and React Hot Loader disabled by running `node run start --no-hmr`. The app should become
-available at [http://localhost:3000/](http://localhost:3000/).
-
-If needed, install a later version of node (e.g. v6.9.0) and switch to that version (e.g. `$ nvm use 6.9.0`). This might require that you install nvm first.
-
-
-### How to Test
-
-The unit tests are powered by [chai](http://chaijs.com/) and [mocha](http://mochajs.org/).
-
-```shell
-$ npm run lint                  # Check JavaScript and CSS code for potential issues
-$ npm run test                  # Run unit tests. Or, `npm run test:watch`
-```
-
-### How to Deploy
-
-Update `publish` script in the [`run.js`](run.js) file with your full Firebase project name as found
-in your [Firebase console](https://console.firebase.google.com/). Note that this may have an
-additional identifier suffix than the shorter name you've provided. Then run:
-
-```shell
-$ node run publish              # Build and publish the website to Firebase, same as `npm run publish`
-```
-
-The first time you publish, you will be prompted to authenticate with Google and generate an
-authentication token in order for the publish script to continue.
-
-![publish](https://koistya.github.io/files/react-static-boilerplate-publish.gif)
-
-If you need just to build the project without publishing it, run:
-
-```shell
-$ node run build                # Or, `node run build --release` for production build
-```
-
-
-
-### Learn React.js and ES6
-
-:mortar_board: &nbsp; **[React.js Training Program](http://www.reactjsprogram.com/?asdf=36750_q0pu0tfa)** by Tyler McGinnis<br>
-:mortar_board: &nbsp; **[React for Beginners](https://reactforbeginners.com/friend/konstantin)** and **[ES6 Training Course](https://es6.io/friend/konstantin)** by Wes Bos<br>
-:green_book: &nbsp; **[React: Up & Running: Building Web Applications](http://amzn.to/2bBgqhl)** by Stoyan Stefanov (Aug, 2016)<br>
-:green_book: &nbsp; **[Getting Started with React](http://amzn.to/2bmwP5V)** by Doel Sengupta and Manu Singhal (Apr, 2016)<br>
-:green_book: &nbsp; **[You Don't Know JS: ES6 & Beyond](http://amzn.to/2bBfVnp)** by Kyle Simpson (Dec, 2015)<br>
-
-
-### Related Projects
-
-* [React App SDK](https://github.com/kriasoft/react-app) — Create React apps with just a single dev dependency and zero configuration
-* [React Starter Kit](https://github.com/kriasoft/react-starter-kit) — Isomorphic web app boilerplate (Node.js, React, GraphQL, Webpack, CSS Modules)
-* [ASP.NET Core Starter Kit](https://github.com/kriasoft/aspnet-starter-kit) — Cross-platform single-page application boilerplate (ASP.NET Core, React, Redux)
-* [Babel Starter Kit](https://github.com/kriasoft/babel-starter-kit) — JavaScript library boilerplate (ES2015, Babel, Rollup, Mocha, Chai, Sinon, Rewire)
-* [Universal Router](https://github.com/kriasoft/universal-router) — Isomorphic router for web and single-page applications (SPA)
-* [History](https://github.com/mjackson/history) — HTML5 History API wrapper library that handle navigation in single-page apps
-
-
-### License
-
-This source code is licensed under the MIT license found in the [LICENSE.txt](https://github.com/priley86/patternfly-react-starter/blob/master/LICENSE.txt) file.
-
 ---
-Made with ♥ by the Patternfly [team](https://github.com/patternfly/patternfly/graphs/contributors)
+Made with ♥ by the Welder [team](https://github.com/orgs/weldr/people) and its contributors
