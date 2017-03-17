@@ -6,6 +6,7 @@ import ComponentInputs from '../../components/ListView/ComponentInputs';
 import ComponentDetailsView from '../../components/ListView/ComponentDetailsView';
 import CreateComposition from '../../components/Modal/CreateComposition';
 import EmptyState from '../../components/EmptyState/EmptyState';
+import Pagination from '../../components/Pagination/Pagination';
 import Toolbar from '../../components/Toolbar/Toolbar';
 import constants from '../../core/constants';
 import RecipeApi from '../../data/RecipeApi';
@@ -14,11 +15,13 @@ import MetadataApi from '../../data/MetadataApi';
 
 class EditRecipePage extends React.Component {
 
-  state = { recipe: {},
-            recipeComponents: [], recipeDependencies: [],
-            inputComponents: [], inputFilters: [], filteredComponents: [],
-            selectedComponent: "", selectedComponentStatus: "", selectedComponentParent: "",
-          };
+  state = {
+    recipe: {},
+    recipeComponents: [], recipeDependencies: [],
+    inputComponents: [[]], inputFilters: [], filteredComponents: [[]],
+    selectedComponent: '', selectedComponentStatus: '', selectedComponentParent: '',
+    selectedInputPage: 0, inputPageSize: 50, totalInputs: 0, totalFilteredInputs: 0,
+  };
 
   componentDidMount() {
     document.title = 'Welder | Recipe';
@@ -26,35 +29,42 @@ class EditRecipePage extends React.Component {
 
   componentWillMount() {
     // get recipe, get inputs; then update inputs
-      let recipeName = this.props.route.params.recipe.replace(/\s/g , "-");
-      Promise.all([RecipeApi.getRecipe(recipeName), this.getInputs()]).then((data) => {
-          let recipe = {
-            "name": data[0].name,
-            "description" : data[0].description
-          };
-          this.setState({recipe: recipe});
-          this.setState({recipeComponents: data[0].components});
-          this.setState({recipeDependencies: data[0].dependencies});
-          // Recipes and available components both need to be updated before running this
-          let inputs = this.updateInputComponentData(data[1]);
-          this.setState({inputComponents: inputs});
+    const recipeName = this.props.route.params.recipe.replace(/\s/g, '-');
+    Promise.all([RecipeApi.getRecipe(recipeName), this.getInputs('', 0)]).then((data) => {
+        const recipe = {
+          "name": data[0].name,
+          "description" : data[0].description
+        };
+        this.setState({recipe: recipe});
+        this.setState({recipeComponents: data[0].components});
+        this.setState({recipeDependencies: data[0].dependencies});
+        // Recipes and available components both need to be updated before running this
+        this.setState({totalInputs: data[1][1]});
+        let inputs = [this.updateInputComponentData(data[1][0])];
+        let totalPages = Math.ceil((this.state.totalInputs / this.state.inputPageSize) - 1)
+        for (let i = 1; i <= totalPages; i++) {
+          inputs.push([]);
+        }
+        this.setState({inputComponents: inputs});
 
-      }).catch(e => console.log('Error in EditRecipe promise: ' + e));
+    }).catch(e => console.log('Error in EditRecipe promise: ' + e));
   }
 
-  getInputs(filter){
+  getInputs(filter, page){
     // for now, this gets full metadata and dependencies of list that's returned
     // but ideally the returned list would provide only what's needed to display
     // in the list and the popover, then the remaining data would be fetched on
     // Add or View Details
-    filter = (filter === undefined) ? "" : filter;
+    filter = (filter === undefined) ? '' : filter;
+    page = page * this.state.inputPageSize;
       let p = new Promise((resolve, reject) => {
           // /modules/list looks like:
           // {"modules":[{"name":"389-ds-base","group_type":"rpm"},{"name":"389-ds-base-libs","group_type":"rpm"}, ...]}
-          fetch(constants.get_modules_list + filter)
+          fetch(constants.get_modules_list + filter + "?limit=" + this.state.inputPageSize + "&offset=" + page)
           .then(r => r.json())
           .then(data => {
-              let components = data.modules
+              let total = data.total;
+              let components = data.modules;
               let componentNames = MetadataApi.getNames(components);
               Promise.all([
                   MetadataApi.getData(constants.get_module_info + componentNames),
@@ -63,7 +73,7 @@ class EditRecipePage extends React.Component {
                 components = MetadataApi.updateComponentMetadata(components, data[0], true);
                 components = MetadataApi.updateComponentDependencies(components, data[1]);
                 components.map(i => {i.ui_type = "RPM"}) // this is being set arbitrarily for now
-                resolve(components);
+                resolve([components, total]);
               }).catch(e => console.log('Error getting recipe metadata: ' + e));
           })
           .catch(e => {
@@ -93,24 +103,77 @@ class EditRecipePage extends React.Component {
   }
 
   getFilteredInputs(event) {
-    if (event.which == 13 || event.keyCode == 13) {
+    if (event.which === 13 || event.keyCode === 13) {
       let filter = [{
         "field": "name",
         "value": event.target.value
       }];
-      Promise.all([this.getInputs("/*" + filter[0].value + "*")]).then((data) => {
-        let inputs = this.updateInputComponentData(data[0]);
+      Promise.all([this.getInputs("/*" + filter[0].value + "*", 0)]).then((data) => {
+        let inputs = [this.updateInputComponentData(data[0][0])];
+        let totalPages = Math.ceil((data[0][1] / this.state.inputPageSize) - 1);
+        for (let i = 1; i <= totalPages; i++) {
+          inputs.push([]);
+        }
         this.setState({filteredComponents : inputs});
         this.setState({inputFilters : filter});
+        this.setState({selectedInputPage : 0});
+        this.setState({totalFilteredInputs: data[0][1]});
       }).catch(e => console.log('Failed to filter inputs during recipe edit: ' + e));
+      // TODO handle the case where no results are returned
+      $('#cmpsr-recipe-input-filter').blur();
       event.preventDefault();
     }
   }
 
   handleClearFilters() {
+    this.setState({selectedInputPage : 0});
+    this.setState({lastFilteredPage: ''});
     this.setState({filteredComponents : []});
     this.setState({inputFilters : []});
-    $('#cmpsr-recipe-input-filter').val("");
+    $('#cmpsr-recipe-input-filter').val('');
+  }
+
+  handlePagination = (event) => {
+    // the event target knows what page to get
+    // the event target can either be the paging buttons on the page input
+    let page;
+    if (event.currentTarget.localName === "a") {
+      page = parseFloat(event.currentTarget.getAttribute("data-page"));
+    } else {
+      if (event.which === 13 || event.keyCode === 13) {
+        page = parseFloat(event.currentTarget.value) - 1;
+        event.preventDefault();
+      } else {
+        return; // don't continue if keypress was not the Enter key
+      }
+    }
+    // if the data already exists, just update the selected page number and
+    // the DOM will automatically reload
+    this.setState({selectedInputPage : page});
+    let currentInputs = []
+    let filter = ''
+    // check if filters are set to determine current input set
+    if (this.state.inputFilters.length === 0) {
+      currentInputs = [this.state.inputComponents.slice(0), "inputComponents"]
+    } else {
+      currentInputs = [this.state.filteredComponents.slice(0), "filteredComponents"]
+      filter = "/*" + this.state.inputFilters[0].value + "*";
+    }
+    // then check if the current input set has the requested page
+    if (currentInputs[0][page].length === 0) {
+      Promise.all([this.getInputs(filter, page)]).then((data) => {
+        let inputs = this.updateInputComponentData(data[0][0]);
+        currentInputs[0][page] = inputs;
+        switch (currentInputs[1]) {
+          case 'inputComponents':
+            this.setState({inputComponents : currentInputs[0]});
+            break;
+          case 'filteredComponents':
+            this.setState({filteredComponents : currentInputs[0]});
+            break;
+        }
+      }).catch(e => console.log('Failed to load requested page of available components: ' + e));
+    }
   }
 
   clearInputAlert() {
@@ -384,29 +447,27 @@ class EditRecipePage extends React.Component {
 										</div>
 									</div>
 								</form>
-
-								<div className="row toolbar-pf-results" data-results="1">
+								<div className="row toolbar-pf-results">
 									<div className="col-sm-12">
-										<div className="cmpsr-recipe-inputs-pagination">
-                      { this.state.inputFilters.length == 0 &&
-                      <span>2,345 Available Components</span>
-                      ||
-											<span>{ this.state.filteredComponents.length } Results of 2,345 Available Components</span>
-                      }
-										</div>
                     { this.state.inputFilters.length > 0 &&
                     <ul className="list-inline">
-    									<li>
-    										<span className="label label-info">
-    											Name: { this.state.inputFilters[0].value }
-    											<a href="#" onClick={(e) => this.handleClearFilters(e)}><span className="pficon pficon-close"></span></a>
-    										</span>
-    									</li>
-    									<li>
-    										<a href="#" onClick={(e) => this.handleClearFilters(e)}>Clear All Filters</a>
-    									</li>
-    								</ul>
+                      <li>
+                        <span className="label label-info">
+                          Name: { this.state.inputFilters[0].value }
+                          <a href="#" onClick={(e) => this.handleClearFilters(e)}><span className="pficon pficon-close"></span></a>
+                        </span>
+                      </li>
+                      <li>
+                        <a href="#" onClick={(e) => this.handleClearFilters(e)}>Clear All Filters</a>
+                      </li>
+                    </ul>
                     }
+                    <Pagination cssClass="cmpsr-recipe-inputs-pagination"
+                      currentPage={this.state.selectedInputPage}
+                      totalItems={this.state.inputFilters.length === 0 && this.state.totalInputs || this.state.totalFilteredInputs}
+                      pageSize={this.state.inputPageSize}
+                      handlePagination={this.handlePagination.bind(this)} />
+
 									</div>
 								</div>
 							</div>
@@ -419,8 +480,7 @@ class EditRecipePage extends React.Component {
 						  <span className="pficon pficon-info"></span>
 						  <strong>Select components</strong> in this list to add to the recipe.
 						</div>
-
-						<ComponentInputs components={ this.state.inputFilters.length == 0 && this.state.inputComponents || this.state.filteredComponents } handleComponentDetails={this.handleComponentDetails.bind(this)} handleAddComponent={this.handleAddComponent.bind(this)} />
+            <ComponentInputs components={this.state.inputFilters.length === 0 && this.state.inputComponents[this.state.selectedInputPage] || this.state.filteredComponents[this.state.selectedInputPage]} handleComponentDetails={this.handleComponentDetails.bind(this)} handleAddComponent={this.handleAddComponent.bind(this)} />
 					</div>
 				</div>
 				<CreateComposition />

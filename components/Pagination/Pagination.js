@@ -1,0 +1,127 @@
+import React from 'react';
+
+class Pagination extends React.Component {
+
+  state = { pageValue: '' }
+
+  componentWillMount() {
+    this.setState({ pageValue: this.props.currentPage });
+  }
+
+  componentWillReceiveProps(newProps) {
+    this.setState({ pageValue: newProps.currentPage });
+    // If the input has focus when the page value is updated, then select the
+    // text
+    if (this.refs.paginationPage === document.activeElement) {
+      this.refs.paginationPage.select();
+    }
+  }
+
+  handleBlur = (event) => {
+    // if the user exits the field when the value != the current page
+    // then reset the page value
+    // if (this.state.pageValue !== this.props.currentPage) {
+      this.setState({ pageValue: this.props.currentPage });
+    // }
+  }
+
+  handleChange = (event) => {
+    // check if value is a number, if not or if <= 0, then set to ''
+    let page;
+    if (!isNaN(event.target.value) && event.target.value > 0) {
+      page = event.target.value - 1;
+    } else {
+      page = '';
+    }
+    // only update the value if the value is within the range or is '' (in case
+    // the user is clearing the value to type a new one)
+    if (!(page > Math.ceil((this.props.totalItems / this.props.pageSize) - 1)) || page === '') {
+      this.setState({ pageValue: page });
+    } else {
+      event.target.select();
+    }
+  }
+  // current page and total pages start count at 0. Anywhere these values
+  // display in the UI, then + 1 must be included.
+
+  render() {
+    const { cssClass, currentPage, totalItems, pageSize } = this.props;
+    const totalPages = Math.ceil((totalItems / pageSize) - 1);
+    let pageInput = null;
+    if (this.state.pageValue !== '') {
+      pageInput = (
+        <input
+          className="pagination-pf-page"
+          ref="paginationPage"
+          type="text" value={this.state.pageValue + 1}
+          id="cmpsr-recipe-inputs-page"
+          aria-label="Current Page"
+          onClick={() => { this.refs.paginationPage.select(); }}
+          onChange={this.handleChange}
+          onKeyPress={(e) => this.props.handlePagination(e)}
+          onBlur={this.handleBlur}
+        />
+      );
+    } else {
+      pageInput = (
+        <input
+          className="pagination-pf-page"
+          ref="paginationPage"
+          type="text" value=""
+          id="cmpsr-recipe-inputs-page"
+          aria-label="Current Page"
+          onClick={() => { this.refs.paginationPage.select(); }}
+          onChange={this.handleChange}
+          onBlur={this.handleBlur}
+        />
+      );
+    }
+
+    return (
+      <div className={`${cssClass}  content-view-pf-pagination`}>
+        <span>
+          <span className="pagination-pf-items-current">
+            {(currentPage + 1) * pageSize - pageSize + 1}
+            <span> - </span>
+            {currentPage === totalPages && totalItems || (currentPage + 1) * pageSize}
+          </span> of {totalItems}
+        </span>
+
+        <ul className="pagination pagination-pf-back">
+          <li className={currentPage === 0 && 'disabled'}>
+            <a
+              href="#"
+              data-page={currentPage === 0 && '0' || currentPage - 1}
+              onClick={(e) => this.props.handlePagination(e)}
+            >
+              <span className="i fa fa-angle-left"></span>
+            </a>
+          </li>
+        </ul>
+        {pageInput}
+        <span>of <span className="pagination-pf-pages">{totalPages + 1}</span></span>
+        <ul className="pagination pagination-pf-forward">
+          <li className={currentPage === totalPages && 'disabled'}>
+            <a
+              href="#"
+              data-page={currentPage === totalPages && totalPages || currentPage + 1}
+              onClick={(e) => this.props.handlePagination(e)}
+            >
+              <span className="i fa fa-angle-right"></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    );
+  }
+}
+
+Pagination.propTypes = {
+  currentPage: React.PropTypes.number,
+  cssClass: React.PropTypes.string,
+  totalItems: React.PropTypes.number,
+  pageSize: React.PropTypes.number,
+  handlePagination: React.PropTypes.func,
+};
+
+export default Pagination;

@@ -33,6 +33,25 @@
   padding-left: 0;
 }
 
+/* pagination */
+
+.toolbar-pf-results .content-view-pf-pagination {
+  margin-bottom: 5px;
+  margin-top: 5px;
+  background-color: transparent;
+  border: none;
+  justify-content: flex-end;
+  align-items: baseline;
+}
+.toolbar-pf-results .pagination {
+  align-self: center;
+}
+
+.toolbar-pf-results .pagination-pf-page,
+.toolbar-pf-results .pagination.pagination-pf-forward {
+  margin-left: 5px;
+}
+
 /* sidebar toolbar */
 .toolbar-pf-actions {min-height: 28px;}
 .sidebar-pf .toolbar-pf-actions .toolbar-pf-filter {width:auto;}
@@ -99,17 +118,6 @@
 #cmpsr-recipe-inputs .toolbar-pf-results p,
 #cmpsr-recipe-inputs .toolbar-pf-results ul {
   line-height:26.67px;
-}
-
-
-.cmpsr-recipe-inputs-pagination {
-  margin-bottom: 5px;
-  margin-top: 5px;
-}
-.cmpsr-recipe-inputs-pagination .pagination {
-  float: right;
-  margin-bottom: 5px;
-  vertical-align: bottom;
 }
 
 .toolbar-pf-results .list-inline {
