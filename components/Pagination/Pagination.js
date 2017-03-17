@@ -76,6 +76,50 @@ class Pagination extends React.Component {
         />
       );
     }
+    let previousPage = null;
+    if (currentPage === 0) {
+      previousPage = (
+        <li className="disabled">
+          <a>
+            <span className="i fa fa-angle-left"></span>
+          </a>
+        </li>
+      );
+    } else {
+      previousPage = (
+        <li>
+          <a
+            href="#"
+            data-page={currentPage - 1}
+            onClick={(e) => this.props.handlePagination(e)}
+          >
+            <span className="i fa fa-angle-left"></span>
+          </a>
+        </li>
+      );
+    }
+    let nextPage = null;
+    if (currentPage === totalPages) {
+      nextPage = (
+        <li className="disabled">
+          <a>
+            <span className="i fa fa-angle-right"></span>
+          </a>
+        </li>
+      );
+    } else {
+      nextPage = (
+        <li>
+          <a
+            href="#"
+            data-page={currentPage + 1}
+            onClick={(e) => this.props.handlePagination(e)}
+          >
+            <span className="i fa fa-angle-right"></span>
+          </a>
+        </li>
+      );
+    }
 
     return (
       <div className={`${cssClass}  content-view-pf-pagination`}>
@@ -86,30 +130,13 @@ class Pagination extends React.Component {
             {currentPage === totalPages && totalItems || (currentPage + 1) * pageSize}
           </span> of {totalItems}
         </span>
-
         <ul className="pagination pagination-pf-back">
-          <li className={currentPage === 0 && 'disabled'}>
-            <a
-              href="#"
-              data-page={currentPage === 0 && '0' || currentPage - 1}
-              onClick={(e) => this.props.handlePagination(e)}
-            >
-              <span className="i fa fa-angle-left"></span>
-            </a>
-          </li>
+          {previousPage}
         </ul>
         {pageInput}
         <span>of <span className="pagination-pf-pages">{totalPages + 1}</span></span>
         <ul className="pagination pagination-pf-forward">
-          <li className={currentPage === totalPages && 'disabled'}>
-            <a
-              href="#"
-              data-page={currentPage === totalPages && totalPages || currentPage + 1}
-              onClick={(e) => this.props.handlePagination(e)}
-            >
-              <span className="i fa fa-angle-right"></span>
-            </a>
-          </li>
+          {nextPage}
         </ul>
       </div>
     );

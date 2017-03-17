@@ -114,10 +114,10 @@ class EditRecipePage extends React.Component {
         for (let i = 1; i <= totalPages; i++) {
           inputs.push([]);
         }
-        this.setState({filteredComponents : inputs});
-        this.setState({inputFilters : filter});
-        this.setState({selectedInputPage : 0});
+        this.setState({selectedInputPage: 0});
         this.setState({totalFilteredInputs: data[0][1]});
+        this.setState({filteredComponents: inputs});
+        this.setState({inputFilters: filter});
       }).catch(e => console.log('Failed to filter inputs during recipe edit: ' + e));
       // TODO handle the case where no results are returned
       $('#cmpsr-recipe-input-filter').blur();
@@ -126,10 +126,10 @@ class EditRecipePage extends React.Component {
   }
 
   handleClearFilters() {
-    this.setState({selectedInputPage : 0});
-    this.setState({lastFilteredPage: ''});
-    this.setState({filteredComponents : []});
-    this.setState({inputFilters : []});
+    this.setState({selectedInputPage: 0});
+    this.setState({totalFilteredInputs: 0});
+    this.setState({filteredComponents: []});
+    this.setState({inputFilters: []});
     $('#cmpsr-recipe-input-filter').val('');
   }
 
@@ -137,6 +137,7 @@ class EditRecipePage extends React.Component {
     // the event target knows what page to get
     // the event target can either be the paging buttons on the page input
     let page;
+
     if (event.currentTarget.localName === "a") {
       page = parseFloat(event.currentTarget.getAttribute("data-page"));
     } else {
@@ -149,7 +150,7 @@ class EditRecipePage extends React.Component {
     }
     // if the data already exists, just update the selected page number and
     // the DOM will automatically reload
-    this.setState({selectedInputPage : page});
+    this.setState({selectedInputPage: page});
     let currentInputs = []
     let filter = ''
     // check if filters are set to determine current input set
@@ -166,10 +167,10 @@ class EditRecipePage extends React.Component {
         currentInputs[0][page] = inputs;
         switch (currentInputs[1]) {
           case 'inputComponents':
-            this.setState({inputComponents : currentInputs[0]});
+            this.setState({inputComponents: currentInputs[0]});
             break;
           case 'filteredComponents':
-            this.setState({filteredComponents : currentInputs[0]});
+            this.setState({filteredComponents: currentInputs[0]});
             break;
         }
       }).catch(e => console.log('Failed to load requested page of available components: ' + e));
