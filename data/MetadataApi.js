@@ -57,6 +57,11 @@ class MetadataApi {
         this.getData(constants.get_projects_info + component.name),
         this.getData(constants.get_modules_info + component.name)
       ]).then((data) => {
+        if ((data[0].projects.length == 0) || (data[1].modules.length == 0)) {
+            console.log("Error fetching metadata for " + component.name);
+            return;
+        }
+
         let componentData = data[1].modules[0];
         componentData.inRecipe = component.inRecipe;
         componentData.ui_type = component.ui_type;
