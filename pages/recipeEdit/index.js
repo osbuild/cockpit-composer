@@ -67,12 +67,12 @@ class EditRecipePage extends React.Component {
               let components = data.modules;
               let componentNames = MetadataApi.getNames(components);
               Promise.all([
-                  MetadataApi.getData(constants.get_projects_info + componentNames),
-                  MetadataApi.getData(constants.get_modules_info + componentNames)
+                  MetadataApi.getData(constants.get_projects_info + componentNames)
               ]).then((data) => {
-                components = MetadataApi.updateComponentMetadata(components, data[0], true);
-                components = MetadataApi.updateComponentDependencies(components, data[1]);
-                components.map(i => {i.ui_type = "RPM"}) // this is being set arbitrarily for now
+                components = data[0].projects.map(i => {
+                    i.ui_type = "RPM";  // this is being set arbitrarily for now
+                    return i;
+                });
                 resolve([components, total]);
               }).catch(e => console.log('Error getting recipe metadata: ' + e));
           })
