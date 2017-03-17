@@ -17,12 +17,10 @@ class Pagination extends React.Component {
     }
   }
 
-  handleBlur = (event) => {
+  handleBlur = () => {
     // if the user exits the field when the value != the current page
     // then reset the page value
-    // if (this.state.pageValue !== this.props.currentPage) {
-      this.setState({ pageValue: this.props.currentPage });
-    // }
+    this.setState({ pageValue: this.props.currentPage });
   }
 
   handleChange = (event) => {
