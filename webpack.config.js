@@ -26,16 +26,16 @@ const config = {
   context: __dirname,
   // The entry point for the bundle
   entry: [
-    //css entries
+    // css entries
     // '!!style!css!patternfly/dist/css/patternfly.css',
     // '!!style!css!patternfly/dist/css/patternfly-additions.css',
     '!!style!css!patternfly-webcomponents/dist/css/patternfly-webcomponents.css',
 
-    //js entries
+    // js entries
     'patternfly-webcomponents/dist/js/patternfly.js',
     'jquery-match-height/dist/jquery.matchHeight.js',
     /* The main entry point of your JavaScript application */
-    './main.js'
+    './main.js',
   ],
   // Options affecting the output of the compilation
   output: {
@@ -88,7 +88,7 @@ const config = {
           path.resolve(__dirname, './core'),
           path.resolve(__dirname, './pages'),
           path.resolve(__dirname, './data'),
-          path.resolve(__dirname, './main.js')
+          path.resolve(__dirname, './main.js'),
         ],
         loader: `babel-loader?${JSON.stringify(babelConfig)}`,
       },

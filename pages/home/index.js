@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import Layout from '../../components/Layout';
 import ProjectListView from '../../components/ListView/ProjectListView';
 import constants from '../../core/constants';
@@ -7,27 +7,27 @@ class HomePage extends React.Component {
 
   state = { projects: [] };
 
-  componentDidMount() {
-    document.title = 'Welder | Home';
-  }
-
   componentWillMount() {
     this.getProjects();
   }
 
+  componentDidMount() {
+    document.title = 'Welder | Home';
+  }
+
   getProjects() {
-    let that = this;
+    const that = this;
     fetch(constants.get_projects_url).then(r => r.json())
       .then(data => {
-        that.setState({projects : data})
+        that.setState({ projects: data });
       })
-      .catch(e => console.log("Error getting projects: " + e));
+      .catch(e => console.log(`Error getting projects: ${e}`));
   }
 
   render() {
     return (
       <Layout className="container-fluid container-pf-nav-pf-vertical">
-        <ProjectListView projects={ this.state.projects }/>
+        <ProjectListView projects={this.state.projects} />
       </Layout>
     );
   }
