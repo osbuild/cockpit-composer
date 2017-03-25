@@ -1,8 +1,7 @@
 import constants from '../core/constants';
 import MetadataApi from '../data/MetadataApi';
 import history from '../core/history';
-
-
+import utils from '../core/utils';
 
 class RecipeApi {
   constructor() {
@@ -21,8 +20,7 @@ class RecipeApi {
         return Promise.resolve(this.recipe);
       } else {
         let p = new Promise((resolve, reject) => {
-            fetch(constants.get_recipes_deps + recipeName)
-            .then(r => r.json())
+            utils.apiFetch(constants.get_recipes_deps + recipeName)
             .then(data => {
                 // bdcs-api v0.3.0 includes module (component) and dependency NEVRAs
                 let dependencies = data.recipes[0].dependencies;
@@ -114,8 +112,8 @@ class RecipeApi {
   }
 
   handleCreateRecipe(e, recipe) {
-    this.postRecipe(recipe).then(() => {
-      window.location.href = history.createHref("/edit/" + recipe.name);
+    return this.postRecipe(recipe).then(() => {
+      window.location.hash = history.createHref("/edit/" + recipe.name);
     }).catch((e) => { console.log("Error creating recipe: " + e)});
   }
   handleSaveRecipe(e) {
@@ -132,13 +130,13 @@ class RecipeApi {
   }
 
   postRecipe(recipe) {
-    return fetch(constants.post_recipes_new, {
+    return utils.apiFetch(constants.post_recipes_new, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(recipe)
-    });
+    }, true);
   }
 
 }

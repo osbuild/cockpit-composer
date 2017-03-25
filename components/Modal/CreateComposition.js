@@ -1,5 +1,6 @@
 import React from 'react';
 import constants from '../../core/constants';
+import utils from '../../core/utils';
 
 class CreateComposition extends React.Component {
 
@@ -25,7 +26,7 @@ class CreateComposition extends React.Component {
 
   getComptypes() {
     const that = this;
-    fetch(constants.get_compose_types).then(r => r.json())
+    utils.apiFetch(constants.get_compose_types)
       .then(data => {
         that.setState({ comptypes: data.types });
       })

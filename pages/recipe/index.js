@@ -182,12 +182,16 @@ class RecipePage extends React.Component {
     if (this.state.activeTab !== e.detail) {
       this.setState({ activeTab: e.detail });
     }
+    e.preventDefault();
+    e.stopPropagation();
   }
 
   handleComponentDetails = (event, component, parent) => {
     // the user selected a component to view more details
     this.setState({ selectedComponent: component });
     this.setState({ selectedComponentParent: parent });
+    event.preventDefault();
+    event.stopPropagation();
   };
 
   render() {

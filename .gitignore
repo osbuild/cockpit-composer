@@ -1,4 +1,4 @@
 node_modules
 public/index.html
-public/dist/assets.json
+public/dist
 db.json

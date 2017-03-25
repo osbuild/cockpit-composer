@@ -1,3 +1,7 @@
+div.hidden-nav .nav-pf-vertical { top: 0; }
+div.hidden-nav .nav-pf-secondary-nav { top: 0; }
+div.hidden-nav { margin-top: -60px; }
+div.hidden-nav .navbar-pf-vertical { display: none; }
 
 .navbar-brand {line-height: 35px;} /* without an icon in the masthead, the logo sits too high relative to other elements */
 .toolbar-pf-results-none {border: none;}
