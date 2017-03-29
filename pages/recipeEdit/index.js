@@ -11,7 +11,7 @@ import Toolbar from '../../components/Toolbar/Toolbar';
 import constants from '../../core/constants';
 import RecipeApi from '../../data/RecipeApi';
 import MetadataApi from '../../data/MetadataApi';
-
+import utils from '../../core/utils';
 
 class EditRecipePage extends React.Component {
 
@@ -60,8 +60,7 @@ class EditRecipePage extends React.Component {
       let p = new Promise((resolve, reject) => {
           // /modules/list looks like:
           // {"modules":[{"name":"389-ds-base","group_type":"rpm"},{"name":"389-ds-base-libs","group_type":"rpm"}, ...]}
-          fetch(constants.get_modules_list + filter + "?limit=" + this.state.inputPageSize + "&offset=" + page)
-          .then(r => r.json())
+          utils.apiFetch(constants.get_modules_list + filter + "?limit=" + this.state.inputPageSize + "&offset=" + page)
           .then(data => {
               let total = data.total;
               let components = data.modules;
@@ -125,18 +124,23 @@ class EditRecipePage extends React.Component {
     }
   }
 
-  handleClearFilters() {
+  handleClearFilters(event) {
     this.setState({selectedInputPage: 0});
     this.setState({totalFilteredInputs: 0});
     this.setState({filteredComponents: []});
     this.setState({inputFilters: []});
     $('#cmpsr-recipe-input-filter').val('');
+    event.preventDefault();
+    event.stopPropagation();
   }
 
   handlePagination = (event) => {
     // the event target knows what page to get
     // the event target can either be the paging buttons on the page input
     let page;
+
+    event.preventDefault();
+    event.stopPropagation();
 
     if (event.currentTarget.localName === "a") {
       page = parseFloat(event.currentTarget.getAttribute("data-page"));
@@ -216,6 +220,8 @@ class EditRecipePage extends React.Component {
     this.setState({selectedComponentStatus: ""});
     // remove the inline message above the list of inputs
     this.clearInputAlert();
+    event.preventDefault();
+    event.stopPropagation();
   }
 
   handleUpdateComponent = (event, component) => {
@@ -231,7 +237,8 @@ class EditRecipePage extends React.Component {
     this.updateInputComponentsOnChange(component);
     // update the recipe object that's used during save
     RecipeApi.updateRecipe(selectedComponent, "edit");
-
+    event.preventDefault();
+    event.stopPropagation();
   }
 
   handleRemoveComponent = (event, component) => {
@@ -247,6 +254,8 @@ class EditRecipePage extends React.Component {
     let updatedRecipeComponents = this.state.recipeComponents.slice(0);
     updatedRecipeComponents = updatedRecipeComponents.filter(obj => (obj !== component));
     this.setState({recipeComponents: updatedRecipeComponents});
+    event.preventDefault();
+    event.stopPropagation();
   }
 
   updateInputComponentsOnChange(component, remove) {
@@ -349,6 +358,8 @@ class EditRecipePage extends React.Component {
       this.setState({filteredComponents: filteredComponents});
       this.hideComponentDetails();
     }
+    event.preventDefault();
+    event.stopPropagation();
   };
 
   hideComponentDetails() {

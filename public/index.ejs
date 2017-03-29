@@ -9,27 +9,21 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/patternfly/3.21.0/css/patternfly.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/patternfly/3.21.0/css/patternfly-additions.min.css">
-    <link rel="stylesheet" href="/custom.css">
+    <link rel="stylesheet" href="./custom.css">
 
 
     <!-- js dependencies -->
     <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="../base1/cockpit.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.0/jquery.matchHeight-min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.23/MutationObserver.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.23/CustomElements.min.js"></script>
-    <script src="/js/config.js"></script>
+    <script src="./js/config.js"></script>
   </head>
   <body>
     <div id="main"></div>
-    <script src="<%= bundle %>"></script>
-    <%_ if (!debug && config.trackingID) { _%>
-    <script>
-      window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
-      ga('create','<%= config.trackingID %>','auto');ga('send','pageview')
-    </script>
-    <script src="https://www.google-analytics.com/analytics.js" async defer></script>
-    <%_ } _%>
+    <script src=".<%= bundle %>"></script>
   </body>
 </html>

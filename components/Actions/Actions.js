@@ -1,5 +1,6 @@
 import React from 'react';
 import constants from '../../core/constants';
+import utils from '../../core/utils';
 
 class Actions extends React.Component {
 
@@ -17,7 +18,7 @@ class Actions extends React.Component {
 
   getComptypes() {
     const that = this;
-    fetch(constants.get_recipeactions_url).then(r => r.json())
+    utils.apiFetch(constants.get_recipeactions_url)
       .then(data => {
         that.setState({ actions: data });
       })

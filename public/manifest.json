@@ -1,0 +1,14 @@
+{
+    "version": "135",
+    "requires": {
+	"cockpit": "134"
+    },
+
+    "dashboard": {
+        "index": {
+            "label": "Welder",
+            "order": 8
+        }
+    },
+    "content-security-policy": "default-src 'self' code.jquery.com maxcdn.bootstrapcdn.com  cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval'"
+}

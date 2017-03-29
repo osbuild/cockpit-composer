@@ -22,6 +22,8 @@ const babelConfig = Object.assign({}, pkg.babel, {
 // Webpack configuration (main.js => public/dist/main.{hash}.js)
 // http://webpack.github.io/docs/configuration.html
 const config = {
+  externals: { "cockpit": "cockpit" },
+
   // The base directory for resolving the entry option
   context: __dirname,
   // The entry point for the bundle
@@ -64,7 +66,9 @@ const config = {
   },
   // The list of plugins for Webpack compiler
   plugins: [
-    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.optimize.LimitChunkCountPlugin({
+        maxChunks: 1
+    }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': isDebug ? '"development"' : '"production"',
       __DEV__: isDebug,
@@ -187,6 +191,7 @@ const config = {
     ];
   },
 };
+
 // Optimize the bundle in release (production) mode
 if (!isDebug) {
   config.plugins.push(new webpack.optimize.DedupePlugin());

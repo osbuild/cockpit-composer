@@ -17,7 +17,7 @@ class UsersPage extends React.Component {
 
   getUsers() {
     const that = this;
-    fetch(constants.get_users_url).then(r => r.json())
+    fetch(constants.get_users_url, { credentials: 'same-origin' }).then(r => r.json())
       .then(data => {
         that.setState({ users: data });
       })

@@ -1,11 +1,11 @@
 import constants from '../core/constants';
+import utils from '../core/utils';
 
 class MetadataApi {
 
   getData(api) {
     let p = new Promise((resolve, reject) => {
-        fetch(api)
-        .then(r => r.json())
+        utils.apiFetch(api)
         .then(data => {
           resolve(data);
         })

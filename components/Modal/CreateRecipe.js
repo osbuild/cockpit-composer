@@ -163,6 +163,7 @@ class CreateRecipe extends React.Component {
                 <button
                   type="button"
                   className="btn btn-primary"
+                  data-dismiss="modal"
                   onClick={(e) => RecipeApi.handleCreateRecipe(e, this.state.recipe)}
                 >Save</button>
               }

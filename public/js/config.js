@@ -1,2 +1,3 @@
-var welderApiHost="http://localhost:4000";
-
+var welderApiHost="localhost";
+var welderApiPort=4000;
+var welderApiScheme="http";

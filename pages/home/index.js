@@ -17,7 +17,7 @@ class HomePage extends React.Component {
 
   getProjects() {
     const that = this;
-    fetch(constants.get_projects_url).then(r => r.json())
+    fetch(constants.get_projects_url, { credentials: 'same-origin' }).then(r => r.json())
       .then(data => {
         that.setState({ projects: data });
       })

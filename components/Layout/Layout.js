@@ -3,6 +3,7 @@ import cx from 'classnames';
 import Header from './Header';
 import Navigation from './Navigation';
 import s from './Layout.css';
+import utils from '../../core/utils';
 
 class Layout extends React.Component {
 
@@ -10,9 +11,14 @@ class Layout extends React.Component {
     className: PropTypes.string,
   };
 
+  headerClass() {
+    if (utils.inCockpit)
+        return "hidden-nav";
+  }
+
   render() {
     return (
-      <div>
+      <div className={ this.headerClass() }>
         <Header />
         <Navigation />
         <div className="toast-notifications-list-pf">

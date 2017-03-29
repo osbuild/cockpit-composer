@@ -17,7 +17,7 @@ class AppsPage extends React.Component {
 
   getApps() {
     const that = this;
-    fetch(constants.get_apps_url).then(r => r.json())
+    fetch(constants.get_apps_url, { credentials: 'same-origin' }).then(r => r.json())
       .then(data => {
         that.setState({ apps: data });
       })

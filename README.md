@@ -120,5 +120,25 @@ This source code is licensed under the MIT license found in the [`LICENSE.txt`](
 └── webpack.config.js           # Bundling and optimization settings for Webpack
 ```
 
+### Cockpit Package
+
+This project can also be used through cockpit as a cockpit package.
+
+```
+npm install && node run build
+mkdir -p ~/.local/share/cockpit
+ln -s /path/to/welder-web/public ~/.local/share/cockpit/welder-web
+```
+
+Then you if you log into cockpit as the user that owns ```~```, you can use the app from cockpit.
+
+To keep this working all code should follow the following rules.
+
+ * All urls in the html and javascript need to use relative paths.
+ * All requests to the API should be made using ```utils.apiFetch```. Any non API ```fetch``` requests
+   must use ```credentials: 'same-origin'``` so that cookies are included with those ajax requests.
+ * Use hashes for navigation within the SPA so that cockpit can keep the top level location display
+   up to date.
+
 ---
 Made with ♥ by the Welder [team](https://github.com/orgs/weldr/people) and its contributors

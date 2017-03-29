@@ -3,7 +3,7 @@ import Layout from '../../components/Layout';
 import RecipeListView from '../../components/ListView/RecipeListView';
 import CreateRecipe from '../../components/Modal/CreateRecipe';
 import constants from '../../core/constants';
-
+import utils from '../../core/utils';
 
 class RecipesPage extends React.Component {
 
@@ -20,7 +20,7 @@ class RecipesPage extends React.Component {
   getRecipes() {
     // The /recipes/list response looks like:
     // {"recipes":["example","http-server","nfs-server"],"offset":0,"limit":20}
-    fetch(constants.get_recipes_list).then(r => r.json())
+    utils.apiFetch(constants.get_recipes_list)
       .then(listdata => {
         for (const i in listdata.recipes) {
           const recipeName = listdata.recipes[i];
@@ -28,11 +28,10 @@ class RecipesPage extends React.Component {
             // {"recipes":[{"name":"http-server","description":"An example http server",
             // "modules":[{"name":"fm-httpd","version":"23.*"},{"name":"fm-php","version":"11.6.*"}]
             // ,"packages":[{"name":"tmux","version":"2.2"}]}],"offset":0,"limit":20}
-          fetch(constants.get_recipes_info + recipeName)
-                .then(r => r.json())
-                .then(recipedata => {
-                  this.setState({ recipes: this.state.recipes.concat(recipedata.recipes[0]) });
-                });
+          utils.apiFetch(constants.get_recipes_info + recipeName)
+              .then(recipedata => {
+                this.setState({ recipes: this.state.recipes.concat(recipedata.recipes[0]) });
+              });
         }
       })
       .catch(e => console.log(`Error getting recipes: ${e}`));
