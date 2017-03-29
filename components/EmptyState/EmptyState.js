@@ -9,7 +9,6 @@ class EmptyState extends React.Component {
         {this.props.icon}
         <h1>{this.props.title}</h1>
         <p>{this.props.message}</p>
-        <p>Learn more about this <a href="#">on the documentation</a>.</p>
         {this.props.children}
       </div>
     );

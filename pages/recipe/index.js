@@ -8,6 +8,7 @@ import CreateComposition from '../../components/Modal/CreateComposition';
 import EmptyState from '../../components/EmptyState/EmptyState';
 import ListViewExpand from '../../components/ListView/ListViewExpand';
 import ListItemExpandRevisions from '../../components/ListView/ListItemExpandRevisions';
+import ListItemCompositions from '../../components/ListView/ListItemCompositions';
 import RecipeApi from '../../data/RecipeApi';
 
 
@@ -72,17 +73,17 @@ class RecipePage extends React.Component {
         date_created: '2/06/17',
         date_exported: '2/06/17',
         user: 'Brian Johnson',
-        number: '2',
         type: 'iso',
         revision: '3',
+        size: '2,345 KB',
       },
       {
         date_created: '1/17/17',
         date_exported: '1/17/17',
         user: 'Brian Johnson',
-        number: '1',
         type: 'iso',
         revision: '2',
+        size: '1,234 KB',
       },
     ],
     changelog: [
@@ -203,7 +204,9 @@ class RecipePage extends React.Component {
         <div className="cmpsr-title-summary">
           <h1 className="cmpsr-title-summary__item">{this.props.route.params.recipe}</h1>
           <p className="cmpsr-title-summary__item">Current Revision: 3
-            <span className="text-muted">, {this.state.recipe.description}</span>
+            {this.state.recipe.description &&
+              <span className="text-muted">, {this.state.recipe.description}</span>
+            }
           </p>
         </div>
         <Tabs key="pf-tabs" ref="pfTabs" tabChanged={this.handleTabChanged.bind(this)}>
@@ -317,9 +320,9 @@ class RecipePage extends React.Component {
                       <button className="btn btn-default" type="button">Post Comment</button>
                     </span>
                   </div>
-                  {this.state.comments.map((comment, i) =>
-                    <div className="list-group list-view-pf list-view-pf-view cmpsr-list-view-viewskinny">
-                      <div className="list-group-item">
+                  <div className="list-group list-view-pf list-view-pf-view cmpsr-list-view-viewskinny">
+                    {this.state.comments.map((comment, i) =>
+                      <div className="list-group-item" key={i}>
                         <div className="list-view-pf-main-info">
                           <div className="list-view-pf-left" data-item="type">
                             <span
@@ -338,9 +341,8 @@ class RecipePage extends React.Component {
                           </div>
                         </div>
                       </div>
-
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -510,7 +512,7 @@ class RecipePage extends React.Component {
                   />
                 }
               </div>
-              ||
+            ||
               <div className="col-sm-12" id="cmpsr-recipe-details">
                 <ComponentDetailsView
                   parent={this.props.route.params.recipe}
@@ -539,6 +541,7 @@ class RecipePage extends React.Component {
                           aria-expanded="false"
                         ><span className="fa fa-ellipsis-v"></span></button>
                         <ul className="dropdown-menu " aria-labelledby="dropdownKebab">
+
                           <li><a href="#">Export Recipe</a></li>
                         </ul>
                       </div>
@@ -639,10 +642,60 @@ class RecipePage extends React.Component {
                 />
               )}
             </ListViewExpand>
-
           </Tab>
-          <Tab tabTitle="Compositions" active={this.state.activeTab === 'Compositions'}>
-            <p>Compositions</p>
+          <Tab tabTitle="Compositions" active={this.state.activeTab == 'Compositions'}>
+            <div className="row toolbar-pf">
+              <div className="col-sm-12">
+                <form className="toolbar-pf-actions">
+                  <div className="toolbar-pf-action-right">
+                    <div className="form-group">
+                      <Link to={`/edit/${this.props.route.params.recipe}`} className="btn btn-default">Edit Recipe</Link>
+                      <button className="btn btn-default" id="cmpsr-btn-crt-compos" data-toggle="modal" data-target="#cmpsr-modal-crt-compos" type="button">Create Composition</button>
+                      <div className="dropdown btn-group  dropdown-kebab-pf">
+                        <button className="btn btn-link dropdown-toggle" type="button" id="dropdownKebab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span className="fa fa-ellipsis-v"></span></button>
+                        <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
+                          <li><a href="#">Export Recipe</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div className="form-group toolbar-pf-find">
+                      <button className="btn btn-link btn-find" type="button"><span className="fa fa-search"></span></button>
+                      <div className="find-pf-dropdown-container"><input type="text" className="form-control" id="find" placeholder="Find By Keyword..." />
+                        <div className="find-pf-buttons">
+                          <span className="find-pf-nums">1 of 3</span>
+                          <button className="btn btn-link" type="button"><span className="fa fa-angle-up"></span></button>
+                          <button className="btn btn-link" type="button"><span className="fa fa-angle-down"></span></button>
+                          <button className="btn btn-link btn-find-close" type="button"><span className="pficon pficon-close"></span></button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <div className="row toolbar-pf-results toolbar-pf-results-none">
+                  <div className="col-sm-12">
+                    <h5>40 Results</h5>
+                    <p>Active filters: </p>
+                    <ul className="list-inline">
+                      <li><span className="label label-info">Name: nameofthething<a href="#"><span className="pficon pficon-close"></span></a></span></li>
+                      <li><span className="label label-info">Version: 3<a href="#"><span className="pficon pficon-close"></span></a></span></li>
+                      <li><span className="label label-info">Lifecycle: 5<a href="#"><span className="pficon pficon-close"></span></a></span></li>
+                    </ul>
+                    <p><a href="#">Clear All Filters</a></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {this.state.compositions.length == 0 &&
+              <EmptyState title={'No Compositions'} message={'No compositions have been created from this recipe.'} >
+                <button className="btn btn-default" id="cmpsr-btn-crt-compos" data-toggle="modal" data-target="#cmpsr-modal-crt-compos" type="button">Create Composition</button>
+              </EmptyState>
+            ||
+              <ListViewExpand id="cmpsr-recipe-compositions" >
+                {this.state.compositions.map((composition, i) =>
+                  <ListItemCompositions listItemParent="cmpsr-recipe-compositions" recipe={this.props.route.params.recipe} listItem={composition} key={i} />
+                )}
+              </ListViewExpand>
+            }
           </Tab>
           <Tab tabTitle="Errata" active={this.state.activeTab === 'Errata'}>
             <p>Errata</p>
