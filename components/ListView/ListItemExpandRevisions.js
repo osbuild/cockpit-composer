@@ -35,13 +35,14 @@ class ListItemExpandRevisions extends React.Component {
     const comments = this.props.comments.filter(obj => obj.revision === listItem.number);
     const changelog = this.props.changelog.filter(obj => obj.revision === listItem.number);
     const compositions = this.props.compositions.filter(obj => obj.revision === listItem.number);
-    console.log(comments);
 
     return (
       <div className={`list-group-item ${this.state.expanded ? 'list-view-pf-expand-active' : ''}`}>
         <div className="list-group-item-header" onClick={(e) => this.handleExpandComponent(e)}>
           <div className="list-view-pf-expand">
-            <span className={`fa fa-angle-right ${this.state.expanded ? 'fa-angle-down' : 'fa-angle-right'}`}></span>
+            <span
+              className={`fa ${this.state.expanded ? 'fa-angle-down' : 'fa-angle-right'}`}
+            ></span>
           </div>
 
           <div className="list-view-pf-actions">
@@ -96,13 +97,22 @@ class ListItemExpandRevisions extends React.Component {
                 </div>
               </div>
               <div className="list-view-pf-additional-info">
-                <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
+                <div
+                  className="list-view-pf-additional-info-item
+                    list-view-pf-additional-info-item-stacked"
+                >
                   Compositions <strong>{listItem.compositions}</strong>
                 </div>
-                <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
+                <div
+                  className="list-view-pf-additional-info-item
+                  list-view-pf-additional-info-item-stacked"
+                >
                   Components <strong>{listItem.components}</strong>
                 </div>
-                <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
+                <div
+                  className="list-view-pf-additional-info-item
+                  list-view-pf-additional-info-item-stacked"
+                >
                   Install Size <strong>{listItem.size}</strong>
                 </div>
               </div>
@@ -110,7 +120,12 @@ class ListItemExpandRevisions extends React.Component {
           </div>
         </div>
 
-        <div className={`list-group-item-container container-fluid ${this.state.expanded ? '' : 'hidden'}`}>
+        <div
+          className={
+            `list-group-item-container container-fluid
+            ${this.state.expanded ? '' : 'hidden'}`
+          }
+        >
           <div className="close hidden">
             <span className="pficon pficon-close"></span>
           </div>
@@ -119,9 +134,11 @@ class ListItemExpandRevisions extends React.Component {
             <div className="col-md-6">
               <div className="cmpsr-summary-listview">
                 <p><strong>Compositions</strong> ({listItem.compositions})</p>
-                {compositions.map((composition, i) =>
-                  <div className="list-group list-view-pf list-view-pf-view cmpsr-list-view-viewskinny">
-                    <div className="list-group-item">
+                <div
+                  className="list-group list-view-pf list-view-pf-view cmpsr-list-view-viewskinny"
+                >
+                  {compositions.map((composition, i) =>
+                    <div className="list-group-item" key={i}>
                       <div className="list-view-pf-main-info">
                         <div className="list-view-pf-left" data-item="type">
                           <span className="pf pficon-image list-view-pf-icon-sm" aria-hidden="true">
@@ -129,17 +146,19 @@ class ListItemExpandRevisions extends React.Component {
                         </div>
                         <div className="list-view-pf-body">
                           <div className="list-view-pf-description">
-                            <a href="#">Composition {composition.number} ({composition.type})</a>
-                            <span className="text-muted">
-                              created {composition.date_created},
-                              last exported {composition.date_exported}
+                            <a href="#">
+                              {this.props.recipe}-rev{composition.revision}-{composition.type}
+                            </a>
+                            <span className="text-muted pull-right">
+                              Last Exported {composition.date_exported},
+                              Created {composition.date_created}
                             </span>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
               <div className="cmpsr-summary-listview hidden">
                 <p><strong>Comments</strong></p>
@@ -149,9 +168,11 @@ class ListItemExpandRevisions extends React.Component {
                     <button className="btn btn-default" type="button">Post Comment</button>
                   </span>
                 </div>
-                {comments.map((comment, i) =>
-                  <div className="list-group list-view-pf list-view-pf-view cmpsr-list-view-viewskinny">
-                    <div className="list-group-item">
+                <div
+                  className="list-group list-view-pf list-view-pf-view cmpsr-list-view-viewskinny"
+                >
+                  {comments.map((comment, i) =>
+                    <div className="list-group-item" key={i}>
                       <div className="list-view-pf-main-info">
                         <div className="list-view-pf-left" data-item="type">
                           <span className="fa fa-comment-o list-view-pf-icon-sm" aria-hidden="true">
@@ -165,30 +186,32 @@ class ListItemExpandRevisions extends React.Component {
                         </div>
                       </div>
                     </div>
-
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
             </div>
 
             <div className="col-md-6">
               <div className="cmpsr-summary-listview">
                 <p><strong>Change Log</strong></p>
-                {changelog.map((change, i) =>
-                  <div className="list-group list-view-pf list-view-pf-view cmpsr-list-view-viewskinny">
-                    <div className="list-group-item">
+                <div
+                  className="list-group list-view-pf list-view-pf-view cmpsr-list-view-viewskinny"
+                >
+                  {changelog.map((change, i) =>
+                    <div className="list-group-item" key={i}>
                       <div className="list-view-pf-main-info">
-                      <div className="list-view-pf-body">
-                        <div className="list-view-pf-description">
-                          <a href="#">{change.action}</a>
-                          <span className="text-muted">{change.date} by {change.user}</span>
+                        <div className="list-view-pf-body">
+                          <div className="list-view-pf-description">
+                            <a href="#">{change.action}</a>
+                            <span
+                              className="text-muted pull-right"
+                            >{change.date} by {change.user}</span>
+                          </div>
                         </div>
                       </div>
-                      </div>
                     </div>
-
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
             </div>
 
@@ -199,8 +222,15 @@ class ListItemExpandRevisions extends React.Component {
 
     );
   }
-// "Exported 2 times" and creation date, last export date in list item for Compositions
-// change log could just be actions, dates, and people for now
 }
+
+ListItemExpandRevisions.propTypes = {
+  listItem: React.PropTypes.object,
+  listItemParent: React.PropTypes.string,
+  comments: React.PropTypes.array,
+  changelog: React.PropTypes.array,
+  compositions: React.PropTypes.array,
+  recipe: React.PropTypes.string,
+};
 
 export default ListItemExpandRevisions;
