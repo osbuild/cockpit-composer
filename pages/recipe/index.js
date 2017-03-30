@@ -14,7 +14,14 @@ import RecipeApi from '../../data/RecipeApi';
 
 class RecipePage extends React.Component {
 
-  state = { recipe: {}, components: [], dependencies: [], activeTab: 'Components', selectedComponent: '', selectedComponentStatus: 'view', selectedComponentParent: '',
+  state = {
+    recipe: {},
+    components: [],
+    dependencies: [],
+    activeTab: 'Components',
+    selectedComponent: '',
+    selectedComponentStatus: 'view',
+    selectedComponentParent: '',
     revisions: [
       {
         number: '3',
@@ -643,29 +650,59 @@ class RecipePage extends React.Component {
               )}
             </ListViewExpand>
           </Tab>
-          <Tab tabTitle="Compositions" active={this.state.activeTab == 'Compositions'}>
+          <Tab tabTitle="Compositions" active={this.state.activeTab === 'Compositions'}>
             <div className="row toolbar-pf">
               <div className="col-sm-12">
                 <form className="toolbar-pf-actions">
                   <div className="toolbar-pf-action-right">
                     <div className="form-group">
-                      <Link to={`/edit/${this.props.route.params.recipe}`} className="btn btn-default">Edit Recipe</Link>
-                      <button className="btn btn-default" id="cmpsr-btn-crt-compos" data-toggle="modal" data-target="#cmpsr-modal-crt-compos" type="button">Create Composition</button>
+                      <Link
+                        to={`/edit/${this.props.route.params.recipe}`}
+                        className="btn btn-default"
+                      >Edit Recipe</Link>
+                      <button
+                        className="btn btn-default"
+                        id="cmpsr-btn-crt-compos"
+                        data-toggle="modal"
+                        data-target="#cmpsr-modal-crt-compos"
+                        type="button"
+                      >Create Composition</button>
                       <div className="dropdown btn-group  dropdown-kebab-pf">
-                        <button className="btn btn-link dropdown-toggle" type="button" id="dropdownKebab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span className="fa fa-ellipsis-v"></span></button>
-                        <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
+                        <button
+                          className="btn btn-link dropdown-toggle"
+                          type="button"
+                          id="dropdownKebab"
+                          data-toggle="dropdown"
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                        ><span className="fa fa-ellipsis-v"></span></button>
+                        <ul className="dropdown-menu " aria-labelledby="dropdownKebab">
                           <li><a href="#">Export Recipe</a></li>
                         </ul>
                       </div>
                     </div>
                     <div className="form-group toolbar-pf-find">
-                      <button className="btn btn-link btn-find" type="button"><span className="fa fa-search"></span></button>
-                      <div className="find-pf-dropdown-container"><input type="text" className="form-control" id="find" placeholder="Find By Keyword..." />
+                      <button className="btn btn-link btn-find" type="button">
+                        <span className="fa fa-search"></span>
+                      </button>
+                      <div className="find-pf-dropdown-container">
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="find"
+                          placeholder="Find By Keyword..."
+                        />
                         <div className="find-pf-buttons">
                           <span className="find-pf-nums">1 of 3</span>
-                          <button className="btn btn-link" type="button"><span className="fa fa-angle-up"></span></button>
-                          <button className="btn btn-link" type="button"><span className="fa fa-angle-down"></span></button>
-                          <button className="btn btn-link btn-find-close" type="button"><span className="pficon pficon-close"></span></button>
+                          <button className="btn btn-link" type="button">
+                            <span className="fa fa-angle-up"></span>
+                          </button>
+                          <button className="btn btn-link" type="button">
+                            <span className="fa fa-angle-down"></span>
+                          </button>
+                          <button className="btn btn-link btn-find-close" type="button">
+                            <span className="pficon pficon-close"></span>
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -676,23 +713,51 @@ class RecipePage extends React.Component {
                     <h5>40 Results</h5>
                     <p>Active filters: </p>
                     <ul className="list-inline">
-                      <li><span className="label label-info">Name: nameofthething<a href="#"><span className="pficon pficon-close"></span></a></span></li>
-                      <li><span className="label label-info">Version: 3<a href="#"><span className="pficon pficon-close"></span></a></span></li>
-                      <li><span className="label label-info">Lifecycle: 5<a href="#"><span className="pficon pficon-close"></span></a></span></li>
+                      <li>
+                        <span className="label label-info">Name: nameofthething
+                          <a href="#"><span className="pficon pficon-close"></span></a>
+                        </span>
+                      </li>
+                      <li>
+                        <span className="label label-info">Version: 3
+                          <a href="#"><span className="pficon pficon-close"></span></a>
+                        </span>
+                      </li>
+                      <li>
+                        <span className="label label-info">Lifecycle: 5
+                          <a href="#"><span className="pficon pficon-close"></span></a>
+                        </span>
+                      </li>
                     </ul>
                     <p><a href="#">Clear All Filters</a></p>
                   </div>
                 </div>
               </div>
             </div>
-            {this.state.compositions.length == 0 &&
-              <EmptyState title={'No Compositions'} message={'No compositions have been created from this recipe.'} >
-                <button className="btn btn-default" id="cmpsr-btn-crt-compos" data-toggle="modal" data-target="#cmpsr-modal-crt-compos" type="button">Create Composition</button>
+            {this.state.compositions.length === 0 &&
+              <EmptyState
+                title={'No Compositions'}
+                message={'No compositions have been created from this recipe.'}
+              >
+                <button
+                  className="btn btn-default"
+                  id="cmpsr-btn-crt-compos"
+                  data-toggle="modal"
+                  data-target="#cmpsr-modal-crt-compos"
+                  type="button"
+                >
+                  Create Composition
+                </button>
               </EmptyState>
             ||
               <ListViewExpand id="cmpsr-recipe-compositions" >
                 {this.state.compositions.map((composition, i) =>
-                  <ListItemCompositions listItemParent="cmpsr-recipe-compositions" recipe={this.props.route.params.recipe} listItem={composition} key={i} />
+                  <ListItemCompositions
+                    listItemParent="cmpsr-recipe-compositions"
+                    recipe={this.props.route.params.recipe}
+                    listItem={composition}
+                    key={i}
+                  />
                 )}
               </ListViewExpand>
             }
@@ -709,5 +774,9 @@ class RecipePage extends React.Component {
   }
 
 }
+
+RecipePage.propTypes = {
+  route: React.PropTypes.object,
+};
 
 export default RecipePage;
