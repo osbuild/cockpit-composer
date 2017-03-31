@@ -34,6 +34,7 @@ RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-
 
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+CMD nginx -g "daemon off;"
 EXPOSE 3000
 
 ## Do the things more likely to change below here. ##

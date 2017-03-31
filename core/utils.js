@@ -38,6 +38,11 @@ function cockpitFetch(url, options, skipDecode) {
 }
 
 function createUrl(url) {
+  // API is hosted on the same URL as the UI
+  if (welderApiRelative == true) {
+      return url;
+  }
+
   const parser = document.createElement('a');
   parser.href = url;
   parser.scheme = welderApiScheme;
