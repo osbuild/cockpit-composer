@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-class EmptyState extends React.Component {
+class EmptyState extends React.PureComponent {
 
   render() {
     return (
@@ -9,12 +9,18 @@ class EmptyState extends React.Component {
         {this.props.icon}
         <h1>{this.props.title}</h1>
         <p>{this.props.message}</p>
-        <p>Learn more about this <a href="#">on the documentation</a>.</p>
         {this.props.children}
       </div>
     );
   }
 
 }
+
+EmptyState.propTypes = {
+  icon: React.PropTypes.string,
+  title: React.PropTypes.string,
+  message: React.PropTypes.string,
+  children: React.PropTypes.node,
+};
 
 export default EmptyState;
