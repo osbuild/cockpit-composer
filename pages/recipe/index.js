@@ -175,16 +175,18 @@ class RecipePage extends React.Component {
       this.setState({ dependencies: data[0].dependencies });
     }).catch(e => console.log(`Error in EditRecipe promise: ${e}`));
   }
-
-  componentDidMount() {
-    document.title = 'Welder | Recipe';
-  }
-
   // Get the recipe details, and its dependencies
   // Object layout is:
   // {recipes: [{recipe: RECIPE, modules: MODULES}, ...]}
   // Where MODULES is a modules/info/ object {name: "", projects: [{...
 
+  componentDidMount() {
+    document.title = 'Welder | Recipe';
+  }
+
+  setNotifications = () => {
+    this.refs.layout.setNotifications();
+  }
 
   handleTabChanged(e) {
     if (this.state.activeTab !== e.detail) {
@@ -206,8 +208,10 @@ class RecipePage extends React.Component {
     const activeRevision = this.state.revisions.filter((obj) => obj.active === true)[0];
     const pastRevisions = this.state.revisions.filter((obj) => obj.active === false);
     return (
-      <Layout className="container-fluid container-pf-nav-pf-vertical">
-
+      <Layout
+        className="container-fluid container-pf-nav-pf-vertical"
+        ref="layout"
+      >
         <ol className="breadcrumb">
           <li><Link to="/recipes">Back to Recipes</Link></li>
           <li className="active"><strong>{this.props.route.params.recipe}</strong></li>
@@ -770,8 +774,6 @@ class RecipePage extends React.Component {
             <p>Errata</p>
           </Tab>
         </Tabs>
-
-
         <CreateComposition types={this.state.comptypes} />
       </Layout>
     );

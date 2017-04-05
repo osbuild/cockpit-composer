@@ -23,10 +23,6 @@ class EditRecipePage extends React.Component {
     selectedInputPage: 0, inputPageSize: 50, totalInputs: 0, totalFilteredInputs: 0,
   };
 
-  componentDidMount() {
-    document.title = 'Welder | Recipe';
-  }
-
   componentWillMount() {
     // get recipe, get inputs; then update inputs
     const recipeName = this.props.route.params.recipe.replace(/\s/g, '-');
@@ -48,6 +44,14 @@ class EditRecipePage extends React.Component {
         this.setState({inputComponents: inputs});
 
     }).catch(e => console.log('Error in EditRecipe promise: ' + e));
+  }
+
+  componentDidMount() {
+    document.title = 'Welder | Recipe';
+  }
+
+  setNotifications = () => {
+    this.refs.layout.setNotifications();
   }
 
   getInputs(filter, page){
@@ -383,7 +387,10 @@ class EditRecipePage extends React.Component {
     const recipeDisplayName = this.props.route.params.recipe;
 
     return (
-      <Layout className="container-fluid container-pf-nav-pf-vertical">
+      <Layout
+        className="container-fluid container-pf-nav-pf-vertical"
+        ref="layout"
+      >
         <div className="cmpsr-edit-actions pull-right">
           <ul className="list-inline">
             <li>
