@@ -13,6 +13,10 @@ import RecipeApi from '../../data/RecipeApi';
 
 
 class RecipePage extends React.Component {
+  constructor() {
+    super();
+    this.setNotifications = this.setNotifications.bind(this);
+  }
 
   state = {
     recipe: {},
@@ -774,7 +778,10 @@ class RecipePage extends React.Component {
             <p>Errata</p>
           </Tab>
         </Tabs>
-        <CreateComposition types={this.state.comptypes} />
+        <CreateComposition
+          recipe={this.state.recipe.name}
+          setNotifications={this.setNotifications}
+        />
       </Layout>
     );
   }
