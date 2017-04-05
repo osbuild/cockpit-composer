@@ -42,6 +42,8 @@ class Notification extends React.PureComponent {
   }
 
   handleClose = (e, id) => {
+    e.preventDefault();
+    e.stopPropagation();
     NotificationsApi.closeNotification(id);
     this.props.setNotifications();
   }

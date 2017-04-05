@@ -14,6 +14,10 @@ import MetadataApi from '../../data/MetadataApi';
 import utils from '../../core/utils';
 
 class EditRecipePage extends React.Component {
+  constructor() {
+    super();
+    this.setNotifications = this.setNotifications.bind(this);
+  }
 
   state = {
     recipe: {},
@@ -503,7 +507,10 @@ class EditRecipePage extends React.Component {
             <ComponentInputs components={this.state.inputFilters.length === 0 && this.state.inputComponents[this.state.selectedInputPage] || this.state.filteredComponents[this.state.selectedInputPage]} handleComponentDetails={this.handleComponentDetails.bind(this)} handleAddComponent={this.handleAddComponent.bind(this)} />
 					</div>
 				</div>
-				<CreateComposition />
+        <CreateComposition
+          recipe={this.state.recipe.name}
+          setNotifications={this.setNotifications}
+        />
 
       </Layout>
 
