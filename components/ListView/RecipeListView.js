@@ -207,7 +207,7 @@ class RecipeListView extends React.Component {
 }
 
 RecipeListView.propTypes = {
-  recipes: React.PropTypes.object,
+  recipes: React.PropTypes.array,
   setNotifications: React.PropTypes.func,
 };
 
