@@ -29,13 +29,12 @@ class Layout extends React.Component {
   }
 
   headerClass() {
-    if (utils.inCockpit)
-        return "hidden-nav";
+    if (utils.inCockpit) { return 'hidden-nav'; }
   }
 
   render() {
     return (
-      <div className={ this.headerClass() }>
+      <div className={this.headerClass()}>
         <Header />
         <Navigation />
         {this.state.notifications &&

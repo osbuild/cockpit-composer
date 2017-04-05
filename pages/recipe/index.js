@@ -16,6 +16,8 @@ class RecipePage extends React.Component {
   constructor() {
     super();
     this.setNotifications = this.setNotifications.bind(this);
+    this.handleTabChanged = this.handleTabChanged.bind(this);
+    this.handleComponentDetails = this.handleComponentDetails.bind(this);
   }
 
   state = {
@@ -228,7 +230,7 @@ class RecipePage extends React.Component {
             }
           </p>
         </div>
-        <Tabs key="pf-tabs" ref="pfTabs" tabChanged={this.handleTabChanged.bind(this)}>
+        <Tabs key="pf-tabs" ref="pfTabs" tabChanged={this.handleTabChanged}>
           <Tab tabTitle="Details" active={this.state.activeTab === 'Details'}>
             <div className="row toolbar-pf">
               <div className="col-sm-12">
@@ -527,7 +529,7 @@ class RecipePage extends React.Component {
                     components={this.state.components}
                     dependencies={this.state.dependencies}
                     noEditComponent
-                    handleComponentDetails={this.handleComponentDetails.bind(this)}
+                    handleComponentDetails={this.handleComponentDetails}
                   />
                 }
               </div>
@@ -538,7 +540,7 @@ class RecipePage extends React.Component {
                   component={this.state.selectedComponent}
                   componentParent={this.state.selectedComponentParent}
                   status={this.state.selectedComponentStatus}
-                  handleComponentDetails={this.handleComponentDetails.bind(this)}
+                  handleComponentDetails={this.handleComponentDetails}
                 />
               </div>
             }
