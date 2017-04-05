@@ -6,6 +6,10 @@ import constants from '../../core/constants';
 import utils from '../../core/utils';
 
 class RecipesPage extends React.Component {
+  constructor() {
+    super();
+    this.setNotifications = this.setNotifications.bind(this);
+  }
 
   state = { recipes: [] };
 
@@ -15,6 +19,10 @@ class RecipesPage extends React.Component {
 
   componentDidMount() {
     document.title = 'Welder | Recipes';
+  }
+
+  setNotifications = () => {
+    this.refs.layout.setNotifications();
   }
 
   getRecipes() {
@@ -40,7 +48,10 @@ class RecipesPage extends React.Component {
 
   render() {
     return (
-      <Layout className="container-fluid container-pf-nav-pf-vertical">
+      <Layout
+        className="container-fluid container-pf-nav-pf-vertical"
+        ref="layout"
+      >
         <div className="row toolbar-pf">
           <div className="col-sm-12">
             <form className="toolbar-pf-actions">
@@ -166,9 +177,8 @@ class RecipesPage extends React.Component {
             </div>
           </div>
         </div>
-        <RecipeListView recipes={this.state.recipes} />
+        <RecipeListView recipes={this.state.recipes} setNotifications={this.setNotifications} />
         <CreateRecipe />
-
       </Layout>
     );
   }

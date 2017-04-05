@@ -1,7 +1,9 @@
 import React from 'react';
 import Link from '../../components/Link';
+import CreateComposition from '../../components/Modal/CreateComposition';
 
 class RecipeListView extends React.Component {
+  state = { recipe: '' };
 
   componentDidMount() {
     this.bindExpand();
@@ -46,6 +48,11 @@ class RecipeListView extends React.Component {
     $('.list-group-item-container .close').off('click');
   }
 
+  handleCreateCompos = (recipe) => {
+    this.setState({ recipe });
+    $('#cmpsr-modal-crt-compos').modal('show');
+  }
+
   render() {
     const { recipes } = this.props; // eslint-disable-line no-use-before-define
 
@@ -66,7 +73,12 @@ class RecipeListView extends React.Component {
                 <Link to={`/edit/${recipe.name}`}>
                   <button className="btn btn-default" type="button">Edit Recipe</button>
                 </Link>
-                <button className="btn btn-default">Create Composition</button>
+                <button
+                  className="btn btn-default"
+                  onClick={() => this.handleCreateCompos(recipe.name)}
+                >
+                  Create Composition
+                </button>
                 <div className="dropdown pull-right dropdown-kebab-pf">
                   <button
                     className="btn btn-link dropdown-toggle"
@@ -99,10 +111,25 @@ class RecipeListView extends React.Component {
                     </div>
                   </div>
                   <div className="list-view-pf-additional-info">
-                    <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">Version<strong>1</strong></div>
-                    <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">Test<strong>2</strong></div>
-                    <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">Development<strong>0</strong></div>
-                    <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">Production<strong>1</strong></div>
+                    <div
+                      className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked"
+                    >
+                      Version<strong>1</strong>
+                    </div>
+                    <div
+                      className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked"
+                    >
+                      Test<strong>2</strong></div>
+                    <div
+                      className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked"
+                    >
+                      Development<strong>0</strong>
+                    </div>
+                    <div
+                      className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked"
+                    >
+                      Production<strong>1</strong>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -169,10 +196,19 @@ class RecipeListView extends React.Component {
             </div>
           </div>
         )}
+        <CreateComposition
+          recipe={this.state.recipe}
+          setNotifications={this.props.setNotifications}
+        />
       </div>
     );
   }
 
 }
+
+RecipeListView.propTypes = {
+  recipes: React.PropTypes.object,
+  setNotifications: React.PropTypes.func,
+};
 
 export default RecipeListView;
