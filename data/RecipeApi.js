@@ -23,7 +23,7 @@ class RecipeApi {
             utils.apiFetch(constants.get_recipes_deps + recipeName)
             .then(data => {
                 // bdcs-api v0.3.0 includes module (component) and dependency NEVRAs
-                let dependencies = data.recipes[0].dependencies;
+                const dependencies = data.recipes[0].dependencies ? data.recipes[0].dependencies : [];
                 // XXX Tag the objects all as Modules for now
                 let components = this.makeRecipeComponents(data.recipes[0].modules, "Module");
                 let recipe = data.recipes[0].recipe;

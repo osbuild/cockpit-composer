@@ -28,7 +28,7 @@ class NotificationsApi {
     } else if (message === 'created') {
       notification.type = 'success';
       notification.message = <span><strong>{recipe}:</strong> Composition creation is complete.</span>;
-      notification.action = <a href="#">Download (.iso)</a>;
+      // notification.action = <a href="#void">Download (.iso)</a>;
       notification.kebab = [
         <a href="#" id="cmpsr-bom-link">Export Recipe (.bom)</a>,
       ];
