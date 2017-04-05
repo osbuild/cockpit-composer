@@ -49,6 +49,14 @@ class CreateComposition extends React.Component {
                 <div className="form-group">
                   <label
                     className="col-sm-3 control-label"
+                  >Recipe</label>
+                  <div className="col-sm-9">
+                    <p className="form-control-static">{this.props.recipe}</p>
+                  </div>
+                </div>
+                <div className="form-group">
+                  <label
+                    className="col-sm-3 control-label"
                     htmlFor="textInput-modal-markup"
                   >Composition Type</label>
                   <div className="col-sm-9">
@@ -84,5 +92,10 @@ class CreateComposition extends React.Component {
   }
 
 }
+
+CreateComposition.propTypes = {
+  recipe: React.PropTypes.string,
+  setNotifications: React.PropTypes.func,
+};
 
 export default CreateComposition;
