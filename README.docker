@@ -5,9 +5,9 @@ This docker container builds the Welder web application using node, then
 serves it up on port 3000 of the container using nginx. nginx handles
 proxying requests for /api/ to the docker api container.
 
-The docker image depends on a base image, named weld/fedora:24, which needs
+The docker image depends on a base image, named weld/fedora:25, which needs
 have been previously built. If it is not available it can be built from
-the welder-deployment repository by running `make weld-f24`.
+the welder-deployment repository by running `make weld-f25`.
 
 Build the welder-web image with:
 

@@ -1,5 +1,5 @@
-# A Fedora 24 BDCS API Container
-FROM weld/fedora:24
+# A Fedora 25 BDCS API Container
+FROM weld/fedora:25
 MAINTAINER Brian C. Lane <bcl@redhat.com>
 RUN dnf install -y nginx
 
