@@ -13,7 +13,7 @@ class Notification extends React.PureComponent {
       this.timeouts.push(setTimeout(() => {
         this.props.setNotifications();
       }, 2600));
-      // setTimeout is only temporary, and included to simulate what will happen 
+      // setTimeout is only temporary, and included to simulate what will happen
       // when the user creates a composition (i.e. display process message
       // then success notification); this should be updated
       // when composition creation is fully implemented
@@ -32,13 +32,17 @@ class Notification extends React.PureComponent {
     this.timeouts.forEach(clearTimeout);
   }
 
-  setFade(fade) {
+  setFade = (fade) => {
     if (fade === true) {
       this.timeouts.push(setTimeout(() => {
         NotificationsApi.closeNotification(this.props.id);
         this.props.setNotifications();
       }, 8000));
     }
+  }
+
+  stopFade = () => {
+    this.clearTimeouts();
   }
 
   handleClose = (e, id) => {
@@ -66,6 +70,8 @@ class Notification extends React.PureComponent {
         className={`toast-pf alert ${modifier} ${notification.dismiss && 'alert-dismissable'}`}
         id={`cmpsr-toast-${this.props.id}`}
         ref="notification"
+        onMouseOver={() => this.stopFade()}
+        onMouseOut={() => this.setFade(notification.fade)}
       >
         {notification.dismiss &&
           <button
