@@ -17,6 +17,7 @@ class EditRecipePage extends React.Component {
   constructor() {
     super();
     this.setNotifications = this.setNotifications.bind(this);
+    this.handleSave = this.handleSave.bind(this);
   }
 
   state = {
@@ -32,8 +33,9 @@ class EditRecipePage extends React.Component {
     const recipeName = this.props.route.params.recipe.replace(/\s/g, '-');
     Promise.all([RecipeApi.getRecipe(recipeName), this.getInputs('', 0)]).then((data) => {
         const recipe = {
-          "name": data[0].name,
-          "description" : data[0].description
+          'name': data[0].name,
+          'description': data[0].description,
+          'version': data[0].version
         };
         this.setState({recipe: recipe});
         this.setState({recipeComponents: data[0].components});
@@ -191,6 +193,22 @@ class EditRecipePage extends React.Component {
 
   clearInputAlert() {
     $("#cmpsr-recipe-inputs .alert").remove();
+  }
+
+  handleSave = () => {
+    // first post recipe
+    Promise.all([RecipeApi.handleSaveRecipe()]).then(() => {
+      // then after recipe is posted, reload recipe details
+      // to get details that were updated during save (i.e. version)
+      Promise.all([RecipeApi.reloadRecipeDetails()]).then((data) => {
+        const recipe = {
+          name: data[0].name,
+          description: data[0].description,
+          version: data[0].version,
+        };
+        this.setState({ recipe });
+      }).catch(e => console.log(`Error in reload recipe details: ${e}`));
+    }).catch(e => console.log(`Error in recipe save: ${e}`));
   }
 
   addRecipeComponent(componentData) {
@@ -398,7 +416,7 @@ class EditRecipePage extends React.Component {
         <div className="cmpsr-edit-actions pull-right">
           <ul className="list-inline">
             <li>
-              <button className="btn btn-primary" type="button" onClick={(e) => RecipeApi.handleSaveRecipe()}>Save</button>
+              <button className="btn btn-primary" type="button" onClick={(e) => this.handleSave(e)}>Save</button>
             </li>
             <li>
               <button className="btn btn-default" type="button">Discard Changes</button>
@@ -411,7 +429,11 @@ class EditRecipePage extends React.Component {
 					<li className="active"><strong>Edit Recipe</strong></li>
 				</ol>
         <div className="cmpsr-title-summary">
-          <h1 className="cmpsr-title-summary__item">{ recipeDisplayName }</h1><p className="cmpsr-title-summary__item">Revision 3<span className="text-muted">, Total Disk Space: 1,234 KB</span></p>
+          <h1 className="cmpsr-title-summary__item">{recipeDisplayName}</h1>
+          <p className="cmpsr-title-summary__item">
+            Revision {this.state.recipe.version}
+            <span className="text-muted">, Total Disk Space: 1,234 KB</span>
+          </p>
         </div>
         <div className="row">
 
