@@ -1,27 +1,14 @@
 import React from 'react';
 import constants from '../../core/constants';
 import utils from '../../core/utils';
+import NotificationsApi from '../../data/NotificationsApi';
 
 class CreateComposition extends React.Component {
 
   state = { comptypes: [] };
 
-
   componentWillMount() {
     this.getComptypes();
-  }
-
-  componentDidMount() {
-    this.bindCreateCompos();
-  }
-
-  componentDidUpdate() {
-    this.unbind();
-    this.bindCreateCompos();
-  }
-
-  componentWillUnmount() {
-    this.unbind();
   }
 
   getComptypes() {
@@ -33,22 +20,11 @@ class CreateComposition extends React.Component {
       .catch(e => console.log(`Error getting component types: ${e}`));
   }
 
-  bindCreateCompos() {
-    // click the list-view heading then expand a row
-    $('#cmpsr-modal-crt-compos .btn-primary').click((event) => {
-      $('#cmpsr-modal-crt-compos').modal('hide');
-      $('#cmpsr-toast-process-compos').removeClass('hidden');
-      setTimeout(() => {
-        $('#cmpsr-toast-process-compos').addClass('hidden');
-        $('#cmpsr-toast-success-compos').removeClass('hidden');
-      }, 1500);
-    });
+  handleCreateCompos = () => {
+    $('#cmpsr-modal-crt-compos').modal('hide');
+    NotificationsApi.displayNotification(this.props.recipe, 'creating');
+    this.props.setNotifications();
   }
-
-  unbind() {
-    $('#cmpsr-modal-crt-compos .btn-primary').off('click');
-  }
-
 
   render() {
     return (
@@ -73,10 +49,18 @@ class CreateComposition extends React.Component {
                 <div className="form-group">
                   <label
                     className="col-sm-3 control-label"
+                  >Recipe</label>
+                  <div className="col-sm-9">
+                    <p className="form-control-static">{this.props.recipe}</p>
+                  </div>
+                </div>
+                <div className="form-group">
+                  <label
+                    className="col-sm-3 control-label"
                     htmlFor="textInput-modal-markup"
                   >Composition Type</label>
                   <div className="col-sm-9">
-                    <select>
+                    <select className="form-control">
                       {this.state.comptypes.map((type, i) =>
                         <option key={i} disabled={!type.enabled}>{type.name}</option>
                       )}
@@ -87,25 +71,19 @@ class CreateComposition extends React.Component {
                   <label
                     className="col-sm-3 control-label"
                     htmlFor="textInput2-modal-markup"
-                  >Field Two</label>
+                  >Architecture</label>
                   <div className="col-sm-9">
-                    <input type="text" id="textInput2-modal-markup" className="form-control" />
-                  </div>
-                </div>
-                <div className="form-group">
-                  <label
-                    className="col-sm-3 control-label"
-                    htmlFor="textInput3-modal-markup"
-                  >Field Three</label>
-                  <div className="col-sm-9">
-                    <input type="text" id="textInput3-modal-markup" className="form-control" />
+                    <select className="form-control">
+                      <option>i686</option>
+                      <option>x86_64</option>
+                    </select>
                   </div>
                 </div>
               </form>
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-default" data-dismiss="modal">Cancel</button>
-              <button type="button" className="btn btn-primary">OK</button>
+              <button type="button" className="btn btn-primary" onClick={() => this.handleCreateCompos()}>OK</button>
             </div>
           </div>
         </div>
@@ -114,5 +92,10 @@ class CreateComposition extends React.Component {
   }
 
 }
+
+CreateComposition.propTypes = {
+  recipe: React.PropTypes.string,
+  setNotifications: React.PropTypes.func,
+};
 
 export default CreateComposition;

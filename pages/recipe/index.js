@@ -13,6 +13,12 @@ import RecipeApi from '../../data/RecipeApi';
 
 
 class RecipePage extends React.Component {
+  constructor() {
+    super();
+    this.setNotifications = this.setNotifications.bind(this);
+    this.handleTabChanged = this.handleTabChanged.bind(this);
+    this.handleComponentDetails = this.handleComponentDetails.bind(this);
+  }
 
   state = {
     recipe: {},
@@ -175,16 +181,18 @@ class RecipePage extends React.Component {
       this.setState({ dependencies: data[0].dependencies });
     }).catch(e => console.log(`Error in EditRecipe promise: ${e}`));
   }
-
-  componentDidMount() {
-    document.title = 'Welder | Recipe';
-  }
-
   // Get the recipe details, and its dependencies
   // Object layout is:
   // {recipes: [{recipe: RECIPE, modules: MODULES}, ...]}
   // Where MODULES is a modules/info/ object {name: "", projects: [{...
 
+  componentDidMount() {
+    document.title = 'Welder | Recipe';
+  }
+
+  setNotifications = () => {
+    this.refs.layout.setNotifications();
+  }
 
   handleTabChanged(e) {
     if (this.state.activeTab !== e.detail) {
@@ -206,8 +214,10 @@ class RecipePage extends React.Component {
     const activeRevision = this.state.revisions.filter((obj) => obj.active === true)[0];
     const pastRevisions = this.state.revisions.filter((obj) => obj.active === false);
     return (
-      <Layout className="container-fluid container-pf-nav-pf-vertical">
-
+      <Layout
+        className="container-fluid container-pf-nav-pf-vertical"
+        ref="layout"
+      >
         <ol className="breadcrumb">
           <li><Link to="/recipes">Back to Recipes</Link></li>
           <li className="active"><strong>{this.props.route.params.recipe}</strong></li>
@@ -220,7 +230,7 @@ class RecipePage extends React.Component {
             }
           </p>
         </div>
-        <Tabs key="pf-tabs" ref="pfTabs" tabChanged={this.handleTabChanged.bind(this)}>
+        <Tabs key="pf-tabs" ref="pfTabs" tabChanged={this.handleTabChanged}>
           <Tab tabTitle="Details" active={this.state.activeTab === 'Details'}>
             <div className="row toolbar-pf">
               <div className="col-sm-12">
@@ -519,7 +529,7 @@ class RecipePage extends React.Component {
                     components={this.state.components}
                     dependencies={this.state.dependencies}
                     noEditComponent
-                    handleComponentDetails={this.handleComponentDetails.bind(this)}
+                    handleComponentDetails={this.handleComponentDetails}
                   />
                 }
               </div>
@@ -530,7 +540,7 @@ class RecipePage extends React.Component {
                   component={this.state.selectedComponent}
                   componentParent={this.state.selectedComponentParent}
                   status={this.state.selectedComponentStatus}
-                  handleComponentDetails={this.handleComponentDetails.bind(this)}
+                  handleComponentDetails={this.handleComponentDetails}
                 />
               </div>
             }
@@ -770,9 +780,10 @@ class RecipePage extends React.Component {
             <p>Errata</p>
           </Tab>
         </Tabs>
-
-
-        <CreateComposition types={this.state.comptypes} />
+        <CreateComposition
+          recipe={this.state.recipe.name}
+          setNotifications={this.setNotifications}
+        />
       </Layout>
     );
   }

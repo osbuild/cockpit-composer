@@ -14,6 +14,10 @@ import MetadataApi from '../../data/MetadataApi';
 import utils from '../../core/utils';
 
 class EditRecipePage extends React.Component {
+  constructor() {
+    super();
+    this.setNotifications = this.setNotifications.bind(this);
+  }
 
   state = {
     recipe: {},
@@ -22,10 +26,6 @@ class EditRecipePage extends React.Component {
     selectedComponent: '', selectedComponentStatus: '', selectedComponentParent: '',
     selectedInputPage: 0, inputPageSize: 50, totalInputs: 0, totalFilteredInputs: 0,
   };
-
-  componentDidMount() {
-    document.title = 'Welder | Recipe';
-  }
 
   componentWillMount() {
     // get recipe, get inputs; then update inputs
@@ -48,6 +48,14 @@ class EditRecipePage extends React.Component {
         this.setState({inputComponents: inputs});
 
     }).catch(e => console.log('Error in EditRecipe promise: ' + e));
+  }
+
+  componentDidMount() {
+    document.title = 'Welder | Recipe';
+  }
+
+  setNotifications = () => {
+    this.refs.layout.setNotifications();
   }
 
   getInputs(filter, page){
@@ -383,7 +391,10 @@ class EditRecipePage extends React.Component {
     const recipeDisplayName = this.props.route.params.recipe;
 
     return (
-      <Layout className="container-fluid container-pf-nav-pf-vertical">
+      <Layout
+        className="container-fluid container-pf-nav-pf-vertical"
+        ref="layout"
+      >
         <div className="cmpsr-edit-actions pull-right">
           <ul className="list-inline">
             <li>
@@ -496,7 +507,10 @@ class EditRecipePage extends React.Component {
             <ComponentInputs components={this.state.inputFilters.length === 0 && this.state.inputComponents[this.state.selectedInputPage] || this.state.filteredComponents[this.state.selectedInputPage]} handleComponentDetails={this.handleComponentDetails.bind(this)} handleAddComponent={this.handleAddComponent.bind(this)} />
 					</div>
 				</div>
-				<CreateComposition />
+        <CreateComposition
+          recipe={this.state.recipe.name}
+          setNotifications={this.setNotifications}
+        />
 
       </Layout>
 
