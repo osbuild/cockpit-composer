@@ -74,7 +74,6 @@ class CreateComposition extends React.Component {
                   >Architecture</label>
                   <div className="col-sm-9">
                     <select className="form-control">
-                      <option>i686</option>
                       <option>x86_64</option>
                     </select>
                   </div>
@@ -83,7 +82,7 @@ class CreateComposition extends React.Component {
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-default" data-dismiss="modal">Cancel</button>
-              <button type="button" className="btn btn-primary" onClick={() => this.handleCreateCompos()}>OK</button>
+              <button type="button" className="btn btn-primary" onClick={() => this.handleCreateCompos()}>Create</button>
             </div>
           </div>
         </div>
