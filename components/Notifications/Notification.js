@@ -63,6 +63,15 @@ class Notification extends React.PureComponent {
     } else if (notification.type === 'process') {
       icon = <span className="pficon"><div className="spinner spinner-inverse"></div></span>;
       modifier = 'alert-info';
+    } else if (notification.type === 'info') {
+      icon = <span className="pficon pficon-info"></span>;
+      modifier = 'alert-info';
+    } else if (notification.type === 'warning') {
+      icon = <span className="pficon pficon-warning-triangle-o"></span>;
+      modifier = 'alert-warning';
+    } else if (notification.type === 'error') {
+      icon = <span className="pficon pficon-error-circle-o"></span>;
+      modifier = 'alert-danger';
     }
 
     return (
