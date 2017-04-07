@@ -1,5 +1,6 @@
 import constants from '../core/constants';
 import MetadataApi from '../data/MetadataApi';
+import NotificationsApi from '../data/NotificationsApi';
 import history from '../core/history';
 import utils from '../core/utils';
 
@@ -113,30 +114,63 @@ class RecipeApi {
 
   handleCreateRecipe(e, recipe) {
     return this.postRecipe(recipe).then(() => {
-      window.location.hash = history.createHref("/edit/" + recipe.name);
-    }).catch((e) => { console.log("Error creating recipe: " + e)});
+      window.location.hash = history.createHref(`/edit/${recipe.name}`);
+    }).catch((e) => { console.log(`Error creating recipe: ${e}`); });
   }
-  handleSaveRecipe(e) {
+  handleSaveRecipe() {
+    // clear existing notifications then display the saving notification
+    NotificationsApi.closeNotification(undefined, 'saved');
+    NotificationsApi.closeNotification(undefined, 'saving');
+    NotificationsApi.displayNotification(this.recipe.name, 'saving');
     // create recipe and post it
-    let recipe = {
-      "name": this.recipe.name,
-      "description": this.recipe.description,
-      "modules": this.recipe.modules,
-      "packages": this.recipe.packages
+    const recipe = {
+      name: this.recipe.name,
+      description: this.recipe.description,
+      version: this.recipe.version,
+      modules: this.recipe.modules,
+      packages: this.recipe.packages,
     };
-    this.postRecipe(recipe).then(() => {
-      console.log("Recipe was saved.")
-    }).catch((e) => { console.log("Error saving recipe: " + e)});
+    const p = new Promise((resolve, reject) => {
+      this.postRecipe(recipe)
+      .then(() => {
+        NotificationsApi.closeNotification(undefined, 'saving');
+        NotificationsApi.displayNotification(this.recipe.name, 'saved');
+        resolve();
+      }).catch(e => {
+        console.log(`Error saving recipe: ${e}`);
+        NotificationsApi.displayNotification(this.recipe.name, 'saveFailed');
+        reject();
+      });
+    });
+    return p;
   }
 
   postRecipe(recipe) {
     return utils.apiFetch(constants.post_recipes_new, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(recipe)
+      body: JSON.stringify(recipe),
     }, true);
+  }
+
+  reloadRecipeDetails() {
+    // retrieve recipe details that were updated during save (i.e. version)
+    // and reload details in UI
+    const p = new Promise((resolve, reject) => {
+      utils.apiFetch(constants.get_recipes_deps + this.recipe.name.replace(/\s/g, '-'))
+      .then(data => {
+        const recipe = data.recipes[0].recipe;
+        this.recipe.version = recipe.version;
+        resolve(recipe);
+      })
+      .catch(e => {
+        console.log(`Error fetching recipe details: ${e}`);
+        reject();
+      });
+    });
+    return p;
   }
 
 }
