@@ -18,7 +18,7 @@ class RecipesPage extends React.Component {
   }
 
   componentDidMount() {
-    document.title = 'Welder | Recipes';
+    document.title = 'Recipes';
   }
 
   setNotifications = () => {

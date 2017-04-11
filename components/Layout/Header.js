@@ -10,9 +10,6 @@ function Header() {
           <span className="icon-bar"></span>
           <span className="icon-bar"></span>
         </button>
-        <a href="/" className="navbar-brand">
-          <img className="navbar-brand-name" src="/logo-header.svg" alt="Welder" width="156" />
-        </a>
       </div>
       <nav className="collapse navbar-collapse">
         <ul className="nav navbar-nav">

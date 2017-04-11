@@ -53,7 +53,7 @@ class EditRecipePage extends React.Component {
   }
 
   componentDidMount() {
-    document.title = 'Welder | Recipe';
+    document.title = 'Recipe';
   }
 
   setNotifications = () => {

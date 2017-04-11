@@ -187,7 +187,7 @@ class RecipePage extends React.Component {
   // Where MODULES is a modules/info/ object {name: "", projects: [{...
 
   componentDidMount() {
-    document.title = 'Welder | Recipe';
+    document.title = 'Recipe';
   }
 
   setNotifications = () => {
