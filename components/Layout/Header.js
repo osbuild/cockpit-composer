@@ -12,39 +12,14 @@ function Header() {
         </button>
       </div>
       <nav className="collapse navbar-collapse">
-        <ul className="nav navbar-nav">
-          <li>
-            <a href="#" target="_blank" className="nav-item-iconic nav-item-iconic-new-window">
-              <span title="Launch" className="fa fa-external-link"></span>
-            </a>
-          </li>
-        </ul>
         <ul className="nav navbar-nav navbar-right navbar-iconic">
           <li className="dropdown">
             <a
-              className="dropdown-toggle nav-item-iconic"
+              className="nav-item-iconic"
               id="notifications"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="true"
             >
-              <span title="Notifications" className="fa pficon-flag"></span>
-              <span className="badge">2</span>
+              <span className="fa fa-bell-o" title="No new notifications"></span>
             </a>
-            <div className="dropdown-menu infotip bottom-right">
-              <div className="arrow"></div>
-              <ul className="list-group">
-                <li className="list-group-item">
-                  <span className="i pficon pficon-info"></span> Modified Datasources ExampleDS
-                </li>
-                <li className="list-group-item">
-                  <span className="i pficon pficon-info"></span> Error: System Failure
-                </li>
-              </ul>
-              <div className="footer">
-                <a>Clear Messages</a>
-              </div>
-            </div>
           </li>
           <li className="dropdown">
             <a
