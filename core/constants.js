@@ -5,8 +5,6 @@
 
 const constants = {
   // These are placeholders
-  get_apps_url : './json/apps.json',
-  get_projects_url: './json/projects.json',
   get_users_url: './json/users.json',
 
   // BDCS API paths

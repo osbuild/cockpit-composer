@@ -20,42 +20,14 @@ class Navigation extends React.Component {
       <div className="nav-pf-vertical">
         <ul className="list-group">
           <li
-            className={'list-group-item secondary-nav-item-pf' +
-              (homeRoutes.indexOf(location.pathname) >= 0 ? ' active' : '')
+            className={'list-group-item ' +
+              (location.pathname === '/home' || location.pathname === '/' ? ' active' : '')
             }
-            data-target="#ipsum-secondary"
           >
-            <a>
+            <Link to="/home">
               <span className="fa fa-dashboard" data-toggle="tooltip"></span>
               <span className="list-group-item-value">Overview</span>
-            </a>
-            <div id="-secondary" className="nav-pf-secondary-nav">
-              <div className="nav-item-pf-header">
-                <a className="secondary-collapse-toggle-pf" data-toggle="collapse-secondary-nav">
-                </a>
-                <span>Overview</span>
-              </div>
-              <ul className="list-group">
-                <li
-                  className={'list-group-item ' +
-                    (location.pathname === '/home' || location.pathname === '/' ? ' active' : '')
-                  }
-                >
-                  <Link to="/home">
-                    <span className="list-group-item-value">Projects</span>
-                  </Link>
-                </li>
-                <li
-                  className={'list-group-item ' +
-                    (location.pathname === '/stages' ? ' active' : '')
-                  }
-                >
-                  <Link to="/stages">
-                    <span className="list-group-item-value">Stages</span>
-                  </Link>
-                </li>
-              </ul>
-            </div>
+            </Link>
           </li>
           <li className={'list-group-item' + (location.pathname === '/recipes' ? ' active' : '')}>
             <Link to="/recipes">
@@ -67,17 +39,6 @@ class Navigation extends React.Component {
             <Link to="/users">
               <span className="fa fa-space-shuttle" data-toggle="tooltip" title="Ipsum"></span>
               <span className="list-group-item-value">Users</span>
-            </Link>
-
-          </li>
-          <li
-            className={'list-group-item' +
-              (location.pathname === '/environments' ? ' active' : '')
-            }
-          >
-            <Link to="/environments">
-              <span className="fa fa-paper-plane" data-toggle="tooltip" title="Amet"></span>
-              <span className="list-group-item-value">Environments</span>
             </Link>
           </li>
         </ul>
