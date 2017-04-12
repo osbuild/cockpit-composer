@@ -12,7 +12,7 @@ class UsersPage extends React.Component {
   }
 
   componentDidMount() {
-    document.title = 'Patternfly React Boiler | Users';
+    document.title = 'Users';
   }
 
   getUsers() {
