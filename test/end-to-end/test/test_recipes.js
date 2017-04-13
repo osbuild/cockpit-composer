@@ -125,7 +125,8 @@ describe('Recipes Page', function () {
         // Create Composition button selector
         const btnCreateCompos = RecipesPage.btnCreateCompos(pageConfig.recipe.simple.name);
 
-        it('should pop up Create Composition window by clicking Create Compostion button', (done) => {
+        it('should pop up Create Composition window by clicking Create Compostion button'
+        , (done) => {
           // Highlight the expected result
           const expected = createComposPage.varCreateCompos;
 
