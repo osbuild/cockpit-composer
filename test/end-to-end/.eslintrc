@@ -1,0 +1,16 @@
+{
+  "globals": {
+    "document": true
+  },
+  "extends": "airbnb",
+  "env": {
+    "mocha": true
+  },
+  "plugins": [
+    "mocha"
+  ],
+  "rules": {
+    "func-names": ["error", "never"],
+    "mocha/no-exclusive-tests": "error"
+  }
+}

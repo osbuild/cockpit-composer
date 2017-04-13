@@ -1,0 +1,21 @@
+{
+    "root": "http://localhost:3000/",
+    "api": {
+        "uri": "http://localhost:4000/",
+        "test": "api/v0/test",
+        "newRecipe": "api/v0/recipes/new",
+        "deleteRecipe": "api/v0/recipes/delete/"
+    },
+    "recipe": {
+        "simple": {
+            "name": "automation",
+            "description": "UI automation recipe",
+            "modules": [],
+            "packages": []
+        }
+    },
+    "composition": {
+        "type": "kickstart",
+        "arch": "x86_64"
+    }
+}

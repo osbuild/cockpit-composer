@@ -1,0 +1,21 @@
+{
+  "name": "end-to-end",
+  "version": "0.0.0",
+  "description": "weldr-web end-to-end automation test",
+  "scripts": {
+    "test": "mocha -R xunit -O output=result.xml"
+  },
+  "dependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-mocha": "^4.9.0",
+    "eslint-plugin-react": "^6.10.3",
+    "mocha": "^3.2.0",
+    "nightmare": "^2.10.0",
+    "request": "^2.81.0",
+    "request-promise-native": "^1.0.3"
+  }
+}
