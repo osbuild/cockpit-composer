@@ -1,9 +1,10 @@
 {
-  "name": "end-to-end",
+  "name": "weldr-web-end-to-end-tests",
   "version": "0.0.0",
   "description": "weldr-web end-to-end automation test",
   "scripts": {
-    "test": "mocha -R xunit -O output=result.xml"
+    "xunittest": "mocha -R xunit -O output=result.xml",
+    "test": "mocha"
   },
   "dependencies": {
     "chai": "^3.5.0",
