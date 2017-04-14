@@ -39,12 +39,18 @@ available at [http://localhost:3000/](http://localhost:3000/).
 
 ### How to Test
 
+#### Unit Test
+
 The unit tests are powered by [chai](http://chaijs.com/) and [mocha](http://mochajs.org/).
 
 ```shell
 $ npm run lint                  # Check JavaScript and CSS code for potential issues
 $ npm run test                  # Run unit tests. Or, `npm run test:watch`
 ```
+
+#### End-to-End Test
+
+[End-to-End Test Running Guide](test/end-to-end/README.md).
 
 ### How to Deploy
 
