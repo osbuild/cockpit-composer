@@ -212,7 +212,6 @@ class EditRecipePage extends React.Component {
   }
 
   addRecipeComponent(componentData) {
-    console.log("addRecipeComponent: " + componentData);
     // component data is [[{component}, [{dependency},{}]]]
     let recipeComponents = this.state.recipeComponents.slice(0);
     let updatedRecipeComponents = recipeComponents.concat(componentData[0][0]);
@@ -220,7 +219,6 @@ class EditRecipePage extends React.Component {
     let recipeDependencies = this.state.recipeDependencies;
     this.setState({recipeDependencies: recipeDependencies.concat(componentData[0][0].dependencies)});
     RecipeApi.updateRecipe(componentData[0][0], "add");
-
   }
 
   handleAddComponent = (event, source, component, dependencies) => {
@@ -271,11 +269,11 @@ class EditRecipePage extends React.Component {
     // the user clicked Remove for a component in the recipe component list
     // or the component details view
     // update the recipe object that's used during save
-    RecipeApi.updateRecipe(component, "remove");
+    RecipeApi.updateRecipe(component, 'remove');
     // hide the details view
     this.hideComponentDetails();
     // update input component data
-    this.updateInputComponentsOnChange(component, "remove");
+    this.updateInputComponentsOnChange(component, 'remove');
     // update the list of recipe components to not include the removed component
     let updatedRecipeComponents = this.state.recipeComponents.slice(0);
     updatedRecipeComponents = updatedRecipeComponents.filter(obj => (obj !== component));
@@ -288,38 +286,46 @@ class EditRecipePage extends React.Component {
     let inputs = this.state.inputComponents.slice(0);
     inputs = this.removeInputActive(inputs);
     let filteredComponents = this.state.filteredComponents.slice(0);
-    if (filteredComponents.length > 0) {
+    if (this.state.inputFilters.length > 0) {
       filteredComponents  = this.removeInputActive(filteredComponents);
     }
-    if (remove === "remove") {
+    if (remove === 'remove') {
       // set inRecipe to false for the selected component
       // in the list of available inputs
       inputs = this.removeRecipeComponent(component, inputs);
       this.setState({inputComponents: inputs});
       // and also the list of filtered inputs
-      if (filteredComponents.length > 0) {
+      if (this.state.inputFilters.length > 0) {
         filteredComponents = this.removeRecipeComponent(component, filteredComponents);
         this.setState({filteredComponents: filteredComponents});
       }
     } else {
       // set inRecipe to true for the selected component
       // in the list of available inputs
-      inputs = this.updateInputComponentData(inputs, [component]);
-      this.setState({inputComponents: inputs});
+      let [page, index] = this.findInput(component, inputs);
+      if (index >= 0) {
+        // the page where the component is listed might not be defined (e.g.
+        // the user filtered to find a component)
+        inputs[page] = this.updateInputComponentData(inputs[page], [component]);
+        this.setState({inputComponents: inputs});
+      }
       // and also the list of filtered inputs
-      if (filteredComponents.length > 0) {
-        filteredComponents = this.updateInputComponentData(filteredComponents, [component]);
+      if (this.state.inputFilters.length > 0) {
+        let page = this.findInput(component, filteredComponents)[0];
+        filteredComponents[page] = this.updateInputComponentData(filteredComponents[page], [component]);
         this.setState({filteredComponents: filteredComponents});
       }
     }
   }
 
   removeRecipeComponent(component, inputs){
-    let index = inputs.map(input => input.name).indexOf(component.name);
+    let [page, index] = this.findInput(component, inputs);
+    // get page and index of component; if component is included in the array
+    // of inputs, then update metadata for the input component
     if (index >= 0) {
-        inputs[index].inRecipe = false;
-        delete inputs[index].version_selected;
-        delete inputs[index].release_selected;
+        inputs[page][index].inRecipe = false;
+        delete inputs[page][index].version_selected;
+        delete inputs[page][index].release_selected;
     }
     return inputs;
   }
@@ -331,7 +337,7 @@ class EditRecipePage extends React.Component {
     inputs = this.removeInputActive(inputs);
     // and from the filtered components
     let filteredComponents = [];
-    if (this.state.filteredComponents.length > 0) {
+    if (this.state.inputFilters.length > 0) {
       filteredComponents = this.state.filteredComponents;
       filteredComponents  = this.removeInputActive(filteredComponents);
     }
@@ -343,15 +349,15 @@ class EditRecipePage extends React.Component {
       this.setState({selectedComponentParent: parent});
       // if the selected component is in the list of inputs
       // then set active to true so that it is highlighted
-      let compIndex = inputs.map(input => input.name).indexOf(component.name);
-      if (compIndex >= 0) {
-        inputs[compIndex].active = true;
+      let [page, index] = this.findInput(component, inputs);
+      if (index >= 0) {
+        inputs[page][index].active = true;
       }
       this.setState({inputComponents: inputs});
-      if (filteredComponents.length > 0) {
-        let filteredIndex = filteredComponents.map(input => input.name).indexOf(component.name);
-        if (filteredIndex >= 0) {
-          filteredComponents[filteredIndex].active = true;
+      if (this.state.inputFilters.length > 0) {
+        let [page, index] = this.findInput(component, filteredComponents);
+        if (index >= 0) {
+          filteredComponents[page][index].active = true;
         }
         this.setState({filteredComponents: filteredComponents});
       }
@@ -397,12 +403,25 @@ class EditRecipePage extends React.Component {
   removeInputActive(inputs) {
     if (this.state.selectedComponent !== "") {
       // remove the active state from list of inputs
-      let index = inputs.map(input => input.name).indexOf(this.state.selectedComponent.name);
+      let [page, index] = this.findInput(this.state.selectedComponent, inputs);
       if (index >= 0) {
-        inputs[index].active = false;
+        inputs[page][index].active = false;
       }
     }
     return inputs;
+  }
+
+  findInput(component, inputs) {
+    let page;
+    let index = -1;
+    for (page = 0; page < inputs.length; page ++) {
+      // get the index of the component, and the index of the page
+      index = inputs[page].map(input => input.name).indexOf(component.name);
+      if (index >= 0) {
+        break;
+      }
+    }
+    return ([page, index]);
   }
 
   render() {
