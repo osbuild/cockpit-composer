@@ -6,7 +6,7 @@ import RecipeContents from '../../components/ListView/RecipeContents';
 import ComponentDetailsView from '../../components/ListView/ComponentDetailsView';
 import CreateComposition from '../../components/Modal/CreateComposition';
 import EmptyState from '../../components/EmptyState/EmptyState';
-import ListViewExpand from '../../components/ListView/ListViewExpand';
+import ListView from '../../components/ListView/ListView';
 import ListItemExpandRevisions from '../../components/ListView/ListItemExpandRevisions';
 import ListItemCompositions from '../../components/ListView/ListItemCompositions';
 import RecipeApi from '../../data/RecipeApi';
@@ -620,7 +620,7 @@ class RecipePage extends React.Component {
                 </div>
               </div>
             </div>
-            <ListViewExpand id="cmpsr-recipe-revisions" >
+            <ListView id="cmpsr-recipe-revisions" >
               <div className="list-group-item list-group-item__separator">
                 <div className="list-view-pf-main-info">
                   <div className="list-view-pf-body">
@@ -662,7 +662,7 @@ class RecipePage extends React.Component {
                   key={i}
                 />
               )}
-            </ListViewExpand>
+            </ListView>
           </Tab>
           <Tab tabTitle="Compositions" active={this.state.activeTab === 'Compositions'}>
             <div className="row toolbar-pf">
@@ -764,7 +764,7 @@ class RecipePage extends React.Component {
                 </button>
               </EmptyState>
             ||
-              <ListViewExpand id="cmpsr-recipe-compositions" >
+              <ListView id="cmpsr-recipe-compositions" >
                 {this.state.compositions.map((composition, i) =>
                   <ListItemCompositions
                     listItemParent="cmpsr-recipe-compositions"
@@ -773,7 +773,7 @@ class RecipePage extends React.Component {
                     key={i}
                   />
                 )}
-              </ListViewExpand>
+              </ListView>
             }
           </Tab>
           <Tab tabTitle="Errata" active={this.state.activeTab === 'Errata'}>

@@ -2,7 +2,7 @@ import React from 'react';
 import ComponentTypeIcons from '../../components/ListView/ComponentTypeIcons';
 import ComponentSummaryList from '../../components/ListView/ComponentSummaryList';
 
-class ListItemExpand extends React.Component {
+class ListItemComponents extends React.Component {
 
   state = { expanded: false }
 
@@ -32,7 +32,7 @@ class ListItemExpand extends React.Component {
 
   render() {
     const { listItem } = this.props;
-    let dependencyCount = 0;
+    let dependencyCount = '---';
     if (listItem.projects !== undefined) {
       dependencyCount = listItem.projects.length;
     }
@@ -200,7 +200,7 @@ class ListItemExpand extends React.Component {
                       </div>
                       <div className="list-view-pf-body">
                         <div className="list-view-pf-description">
-                          <a href="#" data-item="name">{listItem.requiredBy}</a>
+                          <a href="#" data-item="name">{listItem.requiredBy}---</a>
                         </div>
                       </div>
                     </div>
@@ -220,4 +220,4 @@ class ListItemExpand extends React.Component {
 
 }
 
-export default ListItemExpand;
+export default ListItemComponents;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-class ListViewExpand extends React.Component {
+class ListView extends React.Component {
 
   render() {
     return (
@@ -11,4 +11,4 @@ class ListViewExpand extends React.Component {
   }
 }
 
-export default ListViewExpand;
+export default ListView;

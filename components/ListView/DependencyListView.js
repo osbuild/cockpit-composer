@@ -1,6 +1,6 @@
 import React from 'react';
-import ListViewExpand from '../../components/ListView/ListViewExpand';
-import ListItemExpand from '../../components/ListView/ListItemExpand';
+import ListView from '../../components/ListView/ListView';
+import ListItemComponents from '../../components/ListView/ListItemComponents';
 
 
 class DependencyListView extends React.Component {
@@ -26,9 +26,9 @@ class DependencyListView extends React.Component {
           A default variation was automatically selected.
           Click a flagged dependency to see other options available.
         </div>
-        <ListViewExpand id={this.props.id} >
+        <ListView id={this.props.id} >
           {this.props.listItems.map((listItem, i) =>
-            <ListItemExpand
+            <ListItemComponents
               listItemParent={this.props.id}
               isDependency
               listItem={listItem}
@@ -39,7 +39,7 @@ class DependencyListView extends React.Component {
               componentDetailsParent={this.props.componentDetailsParent}
             />
           )}
-        </ListViewExpand>
+        </ListView>
       </div>
 
     );
