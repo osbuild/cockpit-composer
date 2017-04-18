@@ -3,7 +3,7 @@ import ListView from '../../components/ListView/ListView';
 import ListItemComponents from '../../components/ListView/ListItemComponents';
 
 
-class DependencyListView extends React.Component {
+class DependencyListView extends React.PureComponent {
 
   render() {
     return (
@@ -12,10 +12,10 @@ class DependencyListView extends React.Component {
           <div className="col-sm-12">
             <form className="toolbar-pf-actions">
               <div className="form-group">
-                <span className="text-muted">Show:</span>
+                <span className="text-muted">Show: </span>
                 First Level ({this.props.listItems.length})
-                <span className="text-muted">|</span>
-                <a>Total (28)</a>
+                <span className="text-muted"> | </span>
+                <a>Total (---)</a>
               </div>
             </form>
           </div>
@@ -46,5 +46,14 @@ class DependencyListView extends React.Component {
   }
 
 }
+
+DependencyListView.propTypes = {
+  id: React.PropTypes.string,
+  listItems: React.PropTypes.array,
+  noEditComponent: React.PropTypes.bool,
+  handleComponentDetails: React.PropTypes.func,
+  handleRemoveComponent: React.PropTypes.func,
+  componentDetailsParent: React.PropTypes.object,
+};
 
 export default DependencyListView;
