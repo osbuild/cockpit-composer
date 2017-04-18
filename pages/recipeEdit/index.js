@@ -364,21 +364,26 @@ class EditRecipePage extends React.Component {
       // set selectedComponentStatus
       // if parent is not defined (i.e. I clicked a component in the input list
       // or component list, or I clicked the first component in the breadcrumb)
-      if ( parent == undefined || parent == "" ) {
-        // and component is in the recipe, then set state to selected
-        if ( component.inRecipe == true ) {
-          this.setState({selectedComponentStatus: "selected"});
+      if ( parent == undefined || parent == '' ) {
+        // and component is selected by the user to be in the recipe,
+        // then set state to selected
+        if ( component.user_selected == true ) {
+          this.setState({selectedComponentStatus: 'selected'});
+        // and component is automatically pulled into the recipe as a dependency,
+        // then set state to selected-child
+        } else if ( component.inRecipe == true ) {
+          this.setState({selectedComponentStatus: 'selected-child'});
         // and component is not in the recipe, then set state to available
         } else {
-          this.setState({selectedComponentStatus: "available"});
+          this.setState({selectedComponentStatus: 'available'});
         }
       } else { // if parent is defined (i.e. I clicked a component listed in the details view)
         // and state is selected, then state should be selected-child
-        if (this.state.selectedComponentStatus == "selected") {
-          this.setState({selectedComponentStatus: "selected-child"});
+        if (this.state.selectedComponentStatus == 'selected') {
+          this.setState({selectedComponentStatus: 'selected-child'});
         // and state is available, then state should be available-child
-        } else if (this.state.selectedComponentStatus == "available") {
-          this.setState({selectedComponentStatus: "available-child"});
+        } else if (this.state.selectedComponentStatus == 'available') {
+          this.setState({selectedComponentStatus: 'available-child'});
         }
         // if parent is defined
         // and state is selected-child or available-child, then state should be unchanged

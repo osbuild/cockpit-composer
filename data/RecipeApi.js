@@ -72,10 +72,11 @@ class RecipeApi {
   }
 
   // Add .inRecipe = true and .ui_type to each of the components
-  makeRecipeComponents(components, ui_type) {
+  makeRecipeComponents(components, ui_type, user_selected) {
     return components.map(i => {
         i.inRecipe = true;
         i.ui_type = ui_type;
+        i.user_selected = user_selected;
         return i;
     });
   }
