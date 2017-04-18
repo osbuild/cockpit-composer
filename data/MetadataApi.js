@@ -98,21 +98,24 @@ class MetadataApi {
     return p;
   }
 
-  updateComponentMetadata(components, data) {
-    // for the list of components, add the data for additional metadata and return
-    // getVersion = false when the version number is already known as in a recipe component
-    // TODO - getVersion will most likely become obsolete when the api is refactored
+  updateInputMetadata(components, data) {
+    // for the list of inputs, add the data for additional metadata and return
     data.projects.map(i => {
       let index = components.map(component => {return component.name}).indexOf(i.name);
       components[index].summary = i.summary;
+      components[index].version = i.builds[0].source.version;
+      components[index].release = i.builds[0].release;
     });
     return components;
   }
 
-  updateComponentDependencies (components, data) {
-    data.modules.map(i => {
+  updateComponentMetadata(components, data) {
+    // for the list of components, add the data for additional metadata and return
+    // TODO - create a list of architectures based on the component version-release
+    data.projects.map(i => {
       let index = components.map(component => {return component.name}).indexOf(i.name);
-      components[index].projects = i.projects;
+      components[index].summary = i.summary;
+      components[index].homepage = i.homepage;
     });
     return components;
   }

@@ -24,9 +24,11 @@ class RecipeApi {
             utils.apiFetch(constants.get_recipes_deps + recipeName)
             .then(data => {
                 // bdcs-api v0.3.0 includes module (component) and dependency NEVRAs
-                const dependencies = data.recipes[0].dependencies ? data.recipes[0].dependencies : [];
+                const dependencies = data.recipes[0].dependencies ?
+                  this.makeRecipeComponents(data.recipes[0].dependencies, "RPM") :
+                  [];
                 // XXX Tag the objects all as Modules for now
-                let components = this.makeRecipeComponents(data.recipes[0].modules, "Module");
+                let components = this.makeRecipeComponents(data.recipes[0].modules, "RPM", true);
                 let recipe = data.recipes[0].recipe;
                 if (components.length > 0) {
                   let componentNames = MetadataApi.getNames(components);
@@ -57,6 +59,8 @@ class RecipeApi {
                   }
                 } else {
                   // there are no components, just a recipe name and description
+                  recipe.components = [];
+                  recipe.dependencies = [];
                   this.recipe = recipe;
                   resolve(recipe);
                 }
