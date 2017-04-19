@@ -147,15 +147,15 @@ class EditRecipePage extends React.Component {
     // the event target can either be the paging buttons on the page input
     let page;
 
-    event.preventDefault();
-    event.stopPropagation();
-
     if (event.currentTarget.localName === "a") {
       page = parseFloat(event.currentTarget.getAttribute("data-page"));
+      event.preventDefault();
+      event.stopPropagation();
     } else {
       if (event.which === 13 || event.keyCode === 13) {
         page = parseFloat(event.currentTarget.value) - 1;
         event.preventDefault();
+        event.stopPropagation();
       } else {
         return; // don't continue if keypress was not the Enter key
       }
