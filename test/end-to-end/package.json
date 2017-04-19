@@ -4,19 +4,22 @@
   "description": "weldr-web end-to-end automation test",
   "scripts": {
     "xunittest": "mocha -R xunit -O output=result.xml",
-    "test": "mocha"
+    "test": "mocha",
+    "citest": "mocha -R xunit -O output=/result/result.xml"
   },
   "dependencies": {
     "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "nightmare": "^2.10.0",
+    "request": "^2.81.0",
+    "request-promise-native": "^1.0.3"
+  },
+  "devDependencies": {
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-mocha": "^4.9.0",
-    "eslint-plugin-react": "^6.10.3",
-    "mocha": "^3.2.0",
-    "nightmare": "^2.10.0",
-    "request": "^2.81.0",
-    "request-promise-native": "^1.0.3"
+    "eslint-plugin-react": "^6.10.3"
   }
 }
