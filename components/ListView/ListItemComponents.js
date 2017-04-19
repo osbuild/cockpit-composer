@@ -214,11 +214,10 @@ class ListItemComponents extends React.Component {
                   <div className="list-group-item">
                     <div className="list-view-pf-main-info">
                       <div className="list-view-pf-left" data-item="type">
-                        <ComponentTypeIcons componentType={listItem.ui_type} />
                       </div>
                       <div className="list-view-pf-body">
                         <div className="list-view-pf-description">
-                          <a href="#" data-item="name">{listItem.requiredBy}---</a>
+                          <a href="#" data-item="name">---</a>
                         </div>
                       </div>
                     </div>
