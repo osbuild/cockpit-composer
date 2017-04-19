@@ -1,10 +1,12 @@
 import React from 'react';
 import ComponentTypeIcons from '../../components/ListView/ComponentTypeIcons';
 import ComponentSummaryList from '../../components/ListView/ComponentSummaryList';
+import MetadataApi from '../../data/MetadataApi';
+import constants from '../../core/constants';
 
-class ListItemExpand extends React.Component {
+class ListItemComponents extends React.Component {
 
-  state = { expanded: false }
+  state = { expanded: false, dependencies: [], showAllDeps: false }
 
   componentWillReceiveProps(newProps) {
     // compare old value to new value, and if this component is getting new data,
@@ -22,20 +24,35 @@ class ListItemExpand extends React.Component {
     }
   }
 
+  getDependencies(component) {
+    const p = new Promise((resolve, reject) => {
+      Promise.all([
+        MetadataApi.getData(constants.get_modules_info + component.name),
+      ]).then((data) => {
+        const dependencies = data[0].modules[0].dependencies;
+        this.setState({ dependencies });
+        resolve();
+      }).catch(e => {
+        console.log(`getDependencies: Error getting dependencies: ${e}`);
+        reject();
+      });
+    });
+    return p;
+  }
+
   handleExpandComponent = (event) => {
     // the user clicked a list item in the recipe contents area to expand or collapse
     if (!$(event.target).is('button, a, input, .fa-ellipsis-v')) {
       const expandState = !this.state.expanded;
       this.setState({ expanded: expandState });
+      if (expandState === true && this.state.dependencies.length === 0) {
+        this.getDependencies(this.props.listItem);
+      }
     }
   }
 
   render() {
     const { listItem } = this.props;
-    let dependencyCount = 0;
-    if (listItem.projects !== undefined) {
-      dependencyCount = listItem.projects.length;
-    }
     return (
       <div data-name={listItem.name} className={`list-group-item ${this.state.expanded ? 'list-view-pf-expand-active' : ''}`}>
         <div className="list-group-item-header" onClick={(e) => this.handleExpandComponent(e)}>
@@ -96,7 +113,7 @@ class ListItemExpand extends React.Component {
                 <div className="list-group-item-text">
                   {listItem.summary}
                 </div>
-                <div className="cmpsr-dependency-flag">
+                <div className="cmpsr-dependency-flag hidden">
                   <span className="pficon pficon-warning-triangle-o"></span>
                 </div>
               </div>
@@ -108,7 +125,8 @@ class ListItemExpand extends React.Component {
                   Release <strong>{listItem.release}</strong>
                 </div>
                 <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
-                  Dependencies <strong>{dependencyCount}</strong>
+                  Dependencies
+                  <strong>{`${(this.state.dependencies.length > 0) ? this.state.dependencies.length : '---'}`}</strong>
                 </div>
               </div>
             </div>
@@ -127,7 +145,7 @@ class ListItemExpand extends React.Component {
                 <dt>Release</dt>
                 <dd>{listItem.release ? listItem.release : <span>&nbsp;</span>}</dd>
                 <dt>Architecture</dt>
-                <dd>{listItem.arch}</dd>
+                <dd>---</dd>
                 <dt>Install Size</dt>
                 <dd>2 MB (5 MB with Dependencies)</dd>
                 <dt>URL</dt>
@@ -139,7 +157,7 @@ class ListItemExpand extends React.Component {
                 <dt>Packager</dt>
                 <dd>Red Hat</dd>
                 <dt>Product Family</dt>
-                <dd>???</dd>
+                <dd>---</dd>
                 <dt>Lifecycle</dt>
                 <dd>01/15/2017</dd>
                 <dt>Support Level</dt>
@@ -196,19 +214,18 @@ class ListItemExpand extends React.Component {
                   <div className="list-group-item">
                     <div className="list-view-pf-main-info">
                       <div className="list-view-pf-left" data-item="type">
-                        <ComponentTypeIcons componentType={listItem.ui_type} />
                       </div>
                       <div className="list-view-pf-body">
                         <div className="list-view-pf-description">
-                          <a href="#" data-item="name">{listItem.requiredBy}</a>
+                          <a href="#" data-item="name">---</a>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>}
-              {dependencyCount > 0 &&
-                <ComponentSummaryList listItems={listItem.projects} />
+              {this.state.dependencies.length > 0 &&
+                <ComponentSummaryList listItems={this.state.dependencies} />
               }
             </div>
           </div>
@@ -220,4 +237,14 @@ class ListItemExpand extends React.Component {
 
 }
 
-export default ListItemExpand;
+ListItemComponents.propTypes = {
+  listItem: React.PropTypes.object,
+  listItemParent: React.PropTypes.string,
+  componentDetailsParent: React.PropTypes.object,
+  handleComponentDetails: React.PropTypes.func,
+  handleRemoveComponent: React.PropTypes.func,
+  noEditComponent: React.PropTypes.bool,
+  isDependency: React.PropTypes.bool,
+};
+
+export default ListItemComponents;

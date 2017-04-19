@@ -74,7 +74,7 @@ class ComponentDetailsView extends React.Component {
     $('[data-toggle="tooltip"]').tooltip();
   }
 
-  handleEdit = (event) => {
+  handleEdit = () => {
     // user clicked Edit for the selected component
     const component = this.state.componentData;
     // get available builds and set default value
@@ -188,7 +188,7 @@ class ComponentDetailsView extends React.Component {
                   <button
                     className="btn btn-primary"
                     type="button"
-                    onClick={(e) => this.handleEdit(e)}
+                    onClick={() => this.handleEdit()}
                   >Edit</button>
                 </li>
               }
@@ -268,7 +268,7 @@ class ComponentDetailsView extends React.Component {
           </div>
         }
 
-        <Tabs key="pf-tabs" ref="pfTabs" tabChanged={this.handleTabChanged.bind(this)}>
+        <Tabs key="pf-tabs" ref="pfTabs" tabChanged={(e) => this.handleTabChanged(e)}>
           <Tab tabTitle="Details" active={this.state.activeTab === 'Details'}>
             <h3 data-item="summary">{this.state.componentData.summary}</h3>
             <p>{this.state.componentData.description}</p>
@@ -286,7 +286,7 @@ class ComponentDetailsView extends React.Component {
               <dt>Release</dt>
               <dd>{this.state.componentData.release}</dd>
               <dt>Architecture</dt>
-              <dd>{this.state.componentData.arch}</dd>
+              <dd>---</dd>
               <dt>Install Size</dt>
               <dd>2 MB (5 MB with Dependencies)</dd>
               <dt>URL</dt>
@@ -302,16 +302,18 @@ class ComponentDetailsView extends React.Component {
               <dt>Packager</dt>
               <dd>Red Hat</dd>
               <dt>Product Family</dt>
-              <dd>???</dd>
+              <dd>---</dd>
               <dt>Lifecycle</dt>
               <dd>01/15/2017</dd>
               <dt>Support Level</dt>
               <dd>Standard</dd>
             </dl>
           </Tab>
-          <Tab tabTitle="Components" active={this.state.activeTab === 'Components'}>
-            <p>Components</p>
-          </Tab>
+          {this.state.componentData.components &&
+            <Tab tabTitle="Components" active={this.state.activeTab === 'Components'}>
+              <p>Components</p>
+            </Tab>
+          }
           <Tab tabTitle="Dependencies" active={this.state.activeTab === 'Dependencies'}>
             <DependencyListView
               id="cmpsr-component-dependencies"
@@ -332,5 +334,15 @@ class ComponentDetailsView extends React.Component {
     );
   }
 }
+
+ComponentDetailsView.propTypes = {
+  component: React.PropTypes.object,
+  status: React.PropTypes.string,
+  parent: React.PropTypes.string,
+  handleComponentDetails: React.PropTypes.func,
+  handleRemoveComponent: React.PropTypes.func,
+  handleAddComponent: React.PropTypes.func,
+  handleUpdateComponent: React.PropTypes.func,
+};
 
 export default ComponentDetailsView;

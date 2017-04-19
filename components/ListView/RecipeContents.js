@@ -1,6 +1,6 @@
 import React from 'react';
-import ListViewExpand from '../../components/ListView/ListViewExpand';
-import ListItemExpand from '../../components/ListView/ListItemExpand';
+import ListView from '../../components/ListView/ListView';
+import ListItemComponents from '../../components/ListView/ListItemComponents';
 import DependencyListView from '../../components/ListView/DependencyListView';
 
 class RecipeContents extends React.Component {
@@ -24,9 +24,9 @@ class RecipeContents extends React.Component {
           </div>
           <div id="collapseOne" className="panel-collapse collapse in">
             <div className="panel-body">
-              <ListViewExpand id="cmpsr-recipe-components" >
+              <ListView id="cmpsr-recipe-components" >
                 {components.map((listItem, i) =>
-                  <ListItemExpand
+                  <ListItemComponents
                     listItemParent="cmpsr-recipe-components"
                     listItem={listItem}
                     key={i}
@@ -35,7 +35,7 @@ class RecipeContents extends React.Component {
                     noEditComponent={this.props.noEditComponent}
                   />
                 )}
-              </ListViewExpand>
+              </ListView>
             </div>
           </div>
         </div>

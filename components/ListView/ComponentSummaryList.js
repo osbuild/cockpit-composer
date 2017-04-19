@@ -3,29 +3,29 @@ import ComponentTypeIcons from '../../components/ListView/ComponentTypeIcons';
 
 class ComponentSummaryList extends React.Component {
 
-  // state = { dependencies: []}
+  state = { showAll: false }
 
-  // componentWillMount() {
-  //   this.getDependencies();
-  // }
-  // getDependencies() {
-  //   fetch(constants.get_modules_info + this.props.component).then(r => r.json())
-  //     .then(data => {
-  //       let dependencies = [];
-  //       data.modules.map(i => {
-  //         dependencies = dependencies.concat(i.projects);
-  //       });
-  //       this.setState({dependencies: dependencies});
-  //     })
-  //     .catch(e => console.log("no dependencies"));
-  // }
+  handleShowAll = (event) => {
+    // the user clicked a list item in the recipe contents area to expand or collapse
+    const showState = !this.state.showAll;
+    this.setState({ showAll: showState });
+    event.preventDefault();
+    event.stopPropagation();
+  }
 
   render() {
+    const listItems = this.state.showAll ? this.props.listItems : this.props.listItems.slice(0, 5);
     return (
       <div className="cmpsr-summary-listview">
-        <p><strong>Dependencies</strong> ({this.props.listItems.length} First Level, n Total)</p>
+        <p>
+          <strong>Dependencies</strong>
+          <span> ({this.props.listItems.length} First Level, --- Total) </span>
+          <a href="#" className="pull-right" onClick={(e) => this.handleShowAll(e)}>
+            {`${this.state.showAll ? 'Show Less' : 'Show All'}`}
+          </a>
+        </p>
         <div className="list-group list-view-pf list-view-pf-view cmpsr-list-view-viewskinny">
-          {this.props.listItems.map((listItem, i) =>
+          {listItems.map((listItem, i) =>
             <div className="list-group-item" key={i}>
               <div className="list-view-pf-main-info">
                 <div className="list-view-pf-left" data-item="type">
@@ -44,5 +44,9 @@ class ComponentSummaryList extends React.Component {
     );
   }
 }
+
+ComponentSummaryList.propTypes = {
+  listItems: React.PropTypes.array,
+};
 
 export default ComponentSummaryList;

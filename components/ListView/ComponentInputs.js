@@ -47,6 +47,8 @@ class ComponentInputs extends React.Component {
       const link = $(`[aria-describedby="${selectedPopover}"] .list-group-item-heading a`);
       $(link)[0].click();
       $(this).parents('.popover').popover('destroy');
+      event.preventDefault();
+      event.stopPropagation();
     });
   }
 
@@ -77,7 +79,6 @@ class ComponentInputs extends React.Component {
             data-content={
               `Version <strong data-item='version'>${component.version}</strong><br />
                 Release <strong data-item='release'>${component.release}</strong><br />
-                Dependencies <strong data-item='requires'></strong><br />
                 ${component.active ?
                   '<a href="#">Hide Details</a>' : '<a href="#">View Details</a>'}`}
           >
@@ -122,5 +123,11 @@ class ComponentInputs extends React.Component {
   }
 
 }
+
+ComponentInputs.propTypes = {
+  components: React.PropTypes.array,
+  handleComponentDetails: React.PropTypes.func,
+  handleAddComponent: React.PropTypes.func,
+};
 
 export default ComponentInputs;
