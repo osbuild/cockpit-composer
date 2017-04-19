@@ -5,20 +5,22 @@ The end-to-end automation test for Welder! It is performed on the application le
 
 ## How To Test
 
+### Running end-to-end test directly on the host
+
 The end-to-end tests are powered by [nightmare](http://nightmarejs.org/), 
 [chai](http://chaijs.com/), [mocha](http://mochajs.org/) and [request-promise-native](https://github.com/request/request-promise-native)
 
-### Requirement
+#### Requirement
 
 1. Have both bdcs-api-rs and welder-web running on localhost.
 
 2. Use "real" API, not mock API.
 
-### Test Case Location
+#### Test Case Location
 
 All test cases are placed in *test/end-to-end/test* directory.
 
-### Test Running Command
+#### Test Running Command
 
 ```shell
 $ cd test/end-to-end
@@ -26,6 +28,26 @@ $ npm install                                   # Install end-to-end dependencie
 $ npm run test                                  # Run end-to-end test
 $ npm run xunittest                             # Run end-to-end test with xunit xml result output
 ```
+
+### Running end-to-end test in Docker
+
+The end-to-end test docker image is an executable image, which starts container, runs test, and exits.
+
+The docker image depends on a base image, named weld/fedora:25, which needs have been previously built. 
+If it is not available it can be built from the welder-deployment repository by running `make weld-f25`.
+
+Build end-to-end test docker image by running:
+
+`sudo docker build -t weld/end-to-end:latest .`
+
+The end-to-end test needs both bdcs-api-rs and welder-web docker running. Build them from welder-deployment 
+repository by running `make build` and `make import-metadata`. Run them by running `sudo docker-compose -p welder up -d`.
+
+Run end-to-end test like this:
+
+`sudo docker run --rm --name welder_end_to_end --network welder_default -v test-result-volume:/result weld/end-to-end:latest xvfb-run -a -s '-screen 0 1024x768x24' npm run citest`
+
+XUnit XML format result will be generated at */var/lib/docker/volumes/test-result-volume/_data/result.xml*
 
 ## Directory Layout
 
