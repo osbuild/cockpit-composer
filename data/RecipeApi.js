@@ -17,107 +17,133 @@ class RecipeApi {
   // "modules" are the specific versions for the recipe's modules and packages
   // "dependencies" are all the things that are required to satisfy the recipe
   getRecipe(recipeName) {
-      if (this.recipe !== undefined && this.recipe.name == recipeName) {
-        return Promise.resolve(this.recipe);
-      } else {
-        let p = new Promise((resolve, reject) => {
-            utils.apiFetch(constants.get_recipes_deps + recipeName)
+    if (this.recipe !== undefined && this.recipe.name === recipeName) {
+      return Promise.resolve(this.recipe);
+    }
+    const p = new Promise((resolve, reject) => {
+      utils.apiFetch(constants.get_recipes_deps + recipeName)
             .then(data => {
-                // bdcs-api v0.3.0 includes module (component) and dependency NEVRAs
-                const dependencies = data.recipes[0].dependencies ?
-                  this.makeRecipeComponents(data.recipes[0].dependencies, "RPM") :
+              // bdcs-api v0.3.0 includes module (component) and dependency NEVRAs
+              // tagging all dependencies a "RPM" for now
+              const dependencies = data.recipes[0].dependencies ?
+                  this.makeRecipeDependencies(data.recipes[0].dependencies, 'RPM') :
                   [];
-                // XXX Tag the objects all as Modules for now
-                let components = this.makeRecipeComponents(data.recipes[0].modules, "RPM", true);
-                let recipe = data.recipes[0].recipe;
-                if (components.length > 0) {
-                  let componentNames = MetadataApi.getNames(components);
-                  if (dependencies.length === 0) {
+              // Tag objects as Module if modules and RPM if packages, for now
+              const components = this.makeRecipeComponents(data.recipes[0]);
+              const recipe = data.recipes[0].recipe;
+              if (components.length > 0) {
+                const componentNames = MetadataApi.getNames(components);
+                if (dependencies.length === 0) {
                     // get metadata for the components only
-                    Promise.all([
-                        MetadataApi.getData(constants.get_projects_info + componentNames)
-                    ]).then((data) => {
-                      recipe.components = MetadataApi.updateComponentMetadata(components, data[0]);
-                      recipe.dependencies = [];
-                      this.recipe = recipe;
-                      resolve(recipe);
-                    }).catch(e => console.log('getRecipe: Error getting component metadata: ' + e));
-                  } else {
+                  Promise.all([
+                    MetadataApi.getData(constants.get_projects_info + componentNames),
+                  ]).then((compData) => {
+                    recipe.components = MetadataApi.updateComponentMetadata(components, compData[0]);
+                    recipe.dependencies = [];
+                    this.recipe = recipe;
+                    resolve(recipe);
+                  }).catch(e => console.log(`getRecipe: Error getting component metadata: ${e}`));
+                } else {
                     // get metadata for the components
                     // get metadata for the dependencies
                     // get dependencies for dependencies
-                    let dependencyNames = MetadataApi.getNames(dependencies);
-                    Promise.all([
-                        MetadataApi.getData(constants.get_projects_info + componentNames),
-                        MetadataApi.getData(constants.get_projects_info + dependencyNames)
-                    ]).then((data) => {
-                      recipe.components = MetadataApi.updateComponentMetadata(components, data[0]);
-                      recipe.dependencies = MetadataApi.updateComponentMetadata(dependencies, data[1]);
-                      this.recipe = recipe;
-                      resolve(recipe);
-                    }).catch(e => console.log('getRecipe: Error getting component and dependency metadata: ' + e));
-                  }
-                } else {
-                  // there are no components, just a recipe name and description
-                  recipe.components = [];
-                  recipe.dependencies = [];
-                  this.recipe = recipe;
-                  resolve(recipe);
+                  const dependencyNames = MetadataApi.getNames(dependencies);
+                  Promise.all([
+                    MetadataApi.getData(constants.get_projects_info + componentNames),
+                    MetadataApi.getData(constants.get_projects_info + dependencyNames),
+                  ]).then((compData) => {
+                    recipe.components = MetadataApi.updateComponentMetadata(components, compData[0]);
+                    recipe.dependencies = MetadataApi.updateComponentMetadata(dependencies, compData[1]);
+                    this.recipe = recipe;
+                    resolve(recipe);
+                  }).catch(e => console.log(`getRecipe: Error getting component and dependency metadata: ${e}`));
                 }
+              } else {
+                  // there are no components, just a recipe name and description
+                recipe.components = [];
+                recipe.dependencies = [];
+                this.recipe = recipe;
+                resolve(recipe);
+              }
             })
             .catch(e => {
-                console.log("Error fetching recipe: " + e);
-                reject();
+              console.log(`Error fetching recipe: ${e}`);
+              reject();
             });
-          }
-      );
-      return p;
     }
+      );
+    return p;
   }
 
-  // Add .inRecipe = true and .ui_type to each of the components
-  makeRecipeComponents(components, ui_type, user_selected) {
+  // set additional metadata for each of the components
+  makeRecipeComponents(data) {
+    let components = data.modules;
+    components = this.setType(components, data.recipe.modules, 'Module');
+    components = this.setType(components, data.recipe.packages, 'RPM');
+    components.map(i => {
+      i.inRecipe = true;
+      i.user_selected = true;
+      return i;
+    });
+    return components;
+  }
+
+  setType(components, array, type) {
+    for (const i of array) {
+      // find the array object within components; set ui_type and version for component
+      const component = components.find(x => x.name === i.name);
+      component.ui_type = type;
+      component.version = i.version;
+    }
+    return components;
+  }
+
+  // set additional metadata for each of the dependencies
+  makeRecipeDependencies(components, ui_type) {
     return components.map(i => {
-        i.inRecipe = true;
-        i.ui_type = ui_type;
-        i.user_selected = user_selected;
-        return i;
+      i.inRecipe = true;
+      i.ui_type = ui_type;
+      return i;
     });
   }
 
 // update Recipe on Add or Remove component
   updateRecipe(component, action) {
-    let recipeComponent = {
-      "name" : component.name,
-      "version" : component.version
+    const recipeComponent = {
+      name: component.name,
+      version: component.version,
     };
     // action is add or remove, and maybe update
-    if (action === "add") {
-      if (component.ui_type === "Module") {
+    if (action === 'add') {
+      if (component.ui_type === 'Module') {
         this.recipe.modules.push(recipeComponent);
-      } else if (component.ui_type === "RPM") {
+      } else if (component.ui_type === 'RPM') {
         this.recipe.packages.push(recipeComponent);
       }
     }
-    if (action === "edit") {
-      if (component.ui_type === "Module") {
+    if (action === 'edit') {
+      if (component.ui_type === 'Module') {
         let updatedComponent = this.recipe.modules.filter((obj) => (obj.name === recipeComponent.name))[0];
         updatedComponent = Object.assign(updatedComponent, recipeComponent);
-      } else if (component.ui_type === "RPM") {
+      } else if (component.ui_type === 'RPM') {
         let updatedComponent = this.recipe.packages.filter((obj) => (obj.name === recipeComponent.name))[0];
         updatedComponent = Object.assign(updatedComponent, recipeComponent);
       }
     }
-    if (action === "remove") {
-      if (component.ui_type === "Module") {
-        this.recipe.modules = this.recipe.modules.filter((obj) => (obj.name !== recipeComponent.name && obj.version !== recipeComponent.version));
-      } else if (component.ui_type === "RPM") {
-        this.recipe.packages = this.recipe.packages.filter((obj) => (obj.name !== recipeComponent.name && obj.version !== recipeComponent.version));
+    if (action === 'remove') {
+      if (component.ui_type === 'Module') {
+        this.recipe.modules = this.recipe.modules.filter(
+          (obj) => (!(obj.name === recipeComponent.name && obj.version === recipeComponent.version))
+        );
+      } else if (component.ui_type === 'RPM') {
+        this.recipe.packages = this.recipe.packages.filter(
+          (obj) => (!(obj.name === recipeComponent.name && obj.version === recipeComponent.version))
+        );
       }
     }
   }
 
-  handleCreateRecipe(e, recipe) {
+  handleCreateRecipe(event, recipe) {
     return this.postRecipe(recipe).then(() => {
       window.location.hash = history.createHref(`/edit/${recipe.name}`);
     }).catch((e) => { console.log(`Error creating recipe: ${e}`); });
