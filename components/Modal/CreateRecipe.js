@@ -4,7 +4,7 @@ import RecipeApi from '../../data/RecipeApi';
 
 class CreateRecipe extends React.Component {
 
-  state = { showErrorName: false, inlineError: false,
+  state = { showErrorName: false, inlineError: false, checkErrors: true,
     recipe: {
       name: '',
       description: '',
@@ -48,32 +48,35 @@ class CreateRecipe extends React.Component {
         this.setState({ showErrorName: true });
         this.showInlineError();
       } else {
+        $('#cmpsr-modal-crt-compos').modal('hide');
         RecipeApi.handleCreateRecipe(event, this.state.recipe);
       }
     }
   }
 
-  handleErrorName(event) {
-    if (this.state.recipe.name === '') {
-      setTimeout(() => {
-        this.setState({ showErrorName: true });
-      }, 200); // don't change state immediately so that user has time to finish clicking Save,
-               // if that's how onBlur is triggered
-    }
+  errorChecking(state) {
+    this.setState({checkErrors: state});
   }
 
-  showNameError() {
-    this.setState({ showErrorName: true });
+  dismissErrors(e) {
+    this.setState({ inlineError: false });
+    this.setState({ showErrorName: false });
+  }
+
+  handleErrorName(event) {
+    if (this.state.recipe.name === '' && this.state.checkErrors) {
+      setTimeout(() => {
+        this.setState({ showErrorName: true });
+      }, 400); // don't change state immediately so that user has time to finish clicking Save,
+               // if that's how onBlur is triggered
+    }
   }
 
   showInlineError() {
     this.setState({ inlineError: true });
   }
 
-  dismissErrors() {
-    this.setState({ inlineError: false });
-    this.setState({ showErrorName: false });
-  }
+
 
   render() {
     return (
@@ -93,6 +96,8 @@ class CreateRecipe extends React.Component {
                 className="close"
                 data-dismiss="modal"
                 aria-hidden="true"
+                onMouseEnter={() => this.errorChecking(false)}
+                onMouseLeave={() => this.errorChecking(true)}
                 onClick={(e) => this.dismissErrors(e)}
               >
                 <span className="pficon pficon-close"></span>
@@ -151,6 +156,8 @@ class CreateRecipe extends React.Component {
                 type="button"
                 className="btn btn-default"
                 data-dismiss="modal"
+                onMouseEnter={() => this.errorChecking(false)}
+                onMouseLeave={() => this.errorChecking(true)}
                 onClick={(e) => this.dismissErrors(e)}
               >Cancel</button>
               {this.state.recipe.name === '' &&
@@ -163,7 +170,6 @@ class CreateRecipe extends React.Component {
                 <button
                   type="button"
                   className="btn btn-primary"
-                  data-dismiss="modal"
                   onClick={(e) => RecipeApi.handleCreateRecipe(e, this.state.recipe)}
                 >Save</button>
               }
