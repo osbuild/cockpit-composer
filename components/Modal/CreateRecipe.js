@@ -48,10 +48,14 @@ class CreateRecipe extends React.Component {
         this.setState({ showErrorName: true });
         this.showInlineError();
       } else {
-        $('#cmpsr-modal-crt-compos').modal('hide');
-        RecipeApi.handleCreateRecipe(event, this.state.recipe);
+        this.handleCreateRecipe(event, this.state.recipe);
       }
     }
+  }
+
+  handleCreateRecipe(event, recipe) {
+    $('#cmpsr-modal-crt-recipe').modal('hide');
+    RecipeApi.handleCreateRecipe(event, recipe);
   }
 
   errorChecking(state) {
@@ -170,7 +174,7 @@ class CreateRecipe extends React.Component {
                 <button
                   type="button"
                   className="btn btn-primary"
-                  onClick={(e) => RecipeApi.handleCreateRecipe(e, this.state.recipe)}
+                  onClick={(e) => this.handleCreateRecipe(e, this.state.recipe)}
                 >Save</button>
               }
             </div>
