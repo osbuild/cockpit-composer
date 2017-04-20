@@ -204,6 +204,13 @@ class RecipeApi {
     return p;
   }
 
+  deleteRecipe(recipes) {
+    ///api/v0/recipes/delete/<recipe>
+    return utils.apiFetch(constants.delete_recipe + recipes, {
+      method: 'DELETE',
+    }, true);
+  }
+
 }
 
 export default new RecipeApi();

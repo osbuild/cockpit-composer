@@ -16,6 +16,7 @@ const constants = {
   get_modules_info: '/api/v0/modules/info/',
   get_compose_types: '/api/v0/compose/types',
   post_recipes_new: '/api/v0/recipes/new',
+  delete_recipe: '/api/v0/recipes/delete/',
 
 };
 
