@@ -5,48 +5,48 @@ import CreateComposition from '../../components/Modal/CreateComposition';
 class RecipeListView extends React.Component {
   state = { recipe: '' };
 
-  componentDidMount() {
-    this.bindExpand();
-  }
+  // componentDidMount() {
+  //   this.bindExpand();
+  // }
+  //
+  // componentDidUpdate() {
+  //   this.unbind();
+  //   this.bindExpand();
+  // }
+  //
+  // componentWillUnmount() {
+  //   this.unbind();
+  // }
 
-  componentDidUpdate() {
-    this.unbind();
-    this.bindExpand();
-  }
-
-  componentWillUnmount() {
-    this.unbind();
-  }
-
-  bindExpand() {
-    // click the list-view heading then expand a row
-    $('.list-group-item-header').click(function (event) {
-      if (!$(event.target).is('button, a, input, .fa-ellipsis-v')) {
-        $(this).find('.fa-angle-right')
-          .toggleClass('fa-angle-down')
-          .end()
-          .parent()
-          .toggleClass('list-view-pf-expand-active')
-          .find('.list-group-item-container')
-          .toggleClass('hidden');
-      }
-    });
-
-    // click the close button, hide the expand row and remove the active status
-    $('.list-group-item-container .close').on('click', function () {
-      $(this).parent()
-        .addClass('hidden')
-        .parent()
-        .removeClass('list-view-pf-expand-active')
-        .find('.fa-angle-right')
-        .removeClass('fa-angle-down');
-    });
-  }
-
-  unbind() {
-    $('.list-group-item-header').off('click');
-    $('.list-group-item-container .close').off('click');
-  }
+  // bindExpand() {
+  //   // click the list-view heading then expand a row
+  //   $('.list-group-item-header').click(function (event) {
+  //     if (!$(event.target).is('button, a, input, .fa-ellipsis-v')) {
+  //       $(this).find('.fa-angle-right')
+  //         .toggleClass('fa-angle-down')
+  //         .end()
+  //         .parent()
+  //         .toggleClass('list-view-pf-expand-active')
+  //         .find('.list-group-item-container')
+  //         .toggleClass('hidden');
+  //     }
+  //   });
+  //
+  //   // click the close button, hide the expand row and remove the active status
+  //   $('.list-group-item-container .close').on('click', function () {
+  //     $(this).parent()
+  //       .addClass('hidden')
+  //       .parent()
+  //       .removeClass('list-view-pf-expand-active')
+  //       .find('.fa-angle-right')
+  //       .removeClass('fa-angle-down');
+  //   });
+  // }
+  //
+  // unbind() {
+  //   $('.list-group-item-header').off('click');
+  //   $('.list-group-item-container .close').off('click');
+  // }
 
   handleCreateCompos = (recipe) => {
     this.setState({ recipe });
@@ -63,7 +63,7 @@ class RecipeListView extends React.Component {
         {recipes.map((recipe, i) =>
           <div className="list-group-item" key={i}>
             <div className="list-group-item-header">
-              <div className="list-view-pf-expand">
+              <div className="list-view-pf-expand hidden">
                 <span className="fa fa-angle-right"></span>
               </div>
               <div className="list-view-pf-checkbox">
@@ -114,19 +114,19 @@ class RecipeListView extends React.Component {
                     <div
                       className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked"
                     >
-                      Version<strong>1</strong>
+                      Revision<strong>{recipe.version ? recipe.version : '0.0.0'}</strong>
                     </div>
                     <div
-                      className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked"
+                      className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked hidden"
                     >
                       Test<strong>2</strong></div>
                     <div
-                      className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked"
+                      className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked hidden"
                     >
                       Development<strong>0</strong>
                     </div>
                     <div
-                      className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked"
+                      className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked hidden"
                     >
                       Production<strong>1</strong>
                     </div>
