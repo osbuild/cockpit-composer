@@ -176,6 +176,26 @@ class RecipeApi {
     return p;
   }
 
+  handleEditDescription(description) {
+    const recipe = {
+      name: this.recipe.name,
+      description: description,
+      version: this.recipe.version,
+      modules: this.recipe.modules,
+      packages: this.recipe.packages,
+    };
+    const p = new Promise((resolve, reject) => {
+      this.postRecipe(recipe)
+      .then(() => {
+        resolve();
+      }).catch(e => {
+        console.log(`Error updating recipe description: ${e}`);
+        reject();
+      });
+    });
+    return p;
+  }
+
   postRecipe(recipe) {
     return utils.apiFetch(constants.post_recipes_new, {
       method: 'POST',

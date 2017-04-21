@@ -28,6 +28,8 @@ class RecipePage extends React.Component {
     selectedComponent: '',
     selectedComponentStatus: 'view',
     selectedComponentParent: '',
+    inlineEditDescription: false,
+    inlineEditDescriptionValue: '',
     revisions: [
       {
         number: '3',
@@ -210,6 +212,25 @@ class RecipePage extends React.Component {
     event.stopPropagation();
   };
 
+  handleEditDescription = (action) => {
+    const state = !this.state.inlineEditDescription;
+    this.setState({inlineEditDescription: state});
+    if (state === true) {
+      this.setState({inlineEditDescriptionValue: this.state.recipe.description});
+    } else if (action === 'save') {
+      let recipe = this.state.recipe;
+      recipe.description = this.state.inlineEditDescriptionValue;
+      this.setState({recipe: recipe});
+      RecipeApi.handleEditDescription(recipe.description);
+    } else if (action === 'cancel') {
+
+    }
+  }
+
+  handleChangeDescription(event) {
+    this.setState({inlineEditDescriptionValue: event.target.value});
+  }
+
   render() {
     const activeRevision = this.state.revisions.filter((obj) => obj.active === true)[0];
     const pastRevisions = this.state.revisions.filter((obj) => obj.active === false);
@@ -321,7 +342,28 @@ class RecipePage extends React.Component {
                   <dt>Name</dt>
                   <dd>{this.state.recipe.name}</dd>
                   <dt>Description</dt>
-                  <dd>{this.state.recipe.description}</dd>
+                  {this.state.inlineEditDescription &&
+                    <dd>
+                      <div className="input-group">
+                        <input type="text" className="form-control" value={this.state.inlineEditDescriptionValue} onChange={(e) => this.handleChangeDescription(e)} />
+                        <span className="input-group-btn">
+                          <button className="btn btn-link" type="button" onClick={() => this.handleEditDescription('save')}>
+                            <span className="fa fa-check"></span>
+                          </button>
+                          <button className="btn btn-link" type="button" onClick={() => this.handleEditDescription('cancel')}>
+                            <span className="pficon pficon-close"></span>
+                          </button>
+                        </span>
+                      </div>
+                    </dd>
+                    ||
+                    <dd onClick={() => this.handleEditDescription()}>
+                      {this.state.recipe.description}
+                      <button className="btn btn-link" type="button">
+                        <span className="pficon pficon-edit"></span>
+                      </button>
+                    </dd>
+                  }
                   <dt>Revision</dt>
                   <dd>3</dd>
                   <dt>Install size</dt>
