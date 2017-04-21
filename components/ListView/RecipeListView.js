@@ -116,7 +116,7 @@ class RecipeListView extends React.Component {
                     <div
                       className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked"
                     >
-                      Revision<strong>{recipe.version ? recipe.version : '0.0.0'}</strong>
+                      Revision<strong>3</strong>
                     </div>
                     <div
                       className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked hidden"
