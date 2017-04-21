@@ -94,8 +94,6 @@ class RecipeListView extends React.Component {
                   >
                     <li><a >Export</a></li>
                     <li><a href="#" onClick={(e) => this.props.handleDelete(e, recipe.id)}>Archive</a></li>
-                    <li><a >Export</a></li>
-                    <li><a >Delete</a></li>
                   </ul>
                 </div>
               </div>

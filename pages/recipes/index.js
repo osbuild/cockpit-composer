@@ -91,8 +91,8 @@ class RecipesPage extends React.Component {
                       aria-expanded="false"
                     >Name<span className="caret"></span></button>
                     <ul className="dropdown-menu">
-                      <li><a href="#">Name</a></li>
-                      <li><a href="#">Version</a></li>
+                      <li><a >Name</a></li>
+                      <li><a >Version</a></li>
                     </ul>
                   </div>
                   <input
@@ -113,8 +113,8 @@ class RecipesPage extends React.Component {
                     aria-expanded="false"
                   >Name<span className="caret"></span></button>
                   <ul className="dropdown-menu">
-                    <li><a href="#">Name</a></li>
-                    <li><a href="#">Version</a></li>
+                    <li><a >Name</a></li>
+                    <li><a >Version</a></li>
                   </ul>
                 </div>
                 <button className="btn btn-link" type="button">
@@ -140,11 +140,11 @@ class RecipesPage extends React.Component {
                       aria-expanded="false"
                     ><span className="fa fa-ellipsis-v"></span></button>
                     <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
-                      <li><a href="#">Import Recipe</a></li>
+                      <li><a >Import Recipe</a></li>
                       <li role="separator" className="divider"></li>
-                      <li><a href="#">Create Compositions</a></li>
-                      <li><a href="#">Export Selected Recipes</a></li>
-                      <li className="hidden"><a href="#">Archive Selected Recipes</a></li>
+                      <li><a >Create Compositions</a></li>
+                      <li><a >Export Selected Recipes</a></li>
+                      <li className="hidden"><a >Archive Selected Recipes</a></li>
                     </ul>
                   </div>
                 </div>
@@ -182,21 +182,21 @@ class RecipesPage extends React.Component {
                 <ul className="list-inline">
                   <li>
                     <span className="label label-info">Name: nameofthething
-                      <a href="#"><span className="pficon pficon-close"></span></a>
+                      <a ><span className="pficon pficon-close"></span></a>
                     </span>
                   </li>
                   <li>
                     <span className="label label-info">Version: 3
-                      <a href="#"><span className="pficon pficon-close"></span></a>
+                      <a ><span className="pficon pficon-close"></span></a>
                     </span>
                   </li>
                   <li>
                     <span className="label label-info">Lifecycle: 5
-                      <a href="#"><span className="pficon pficon-close"></span></a>
+                      <a ><span className="pficon pficon-close"></span></a>
                     </span>
                   </li>
                 </ul>
-                <p><a href="#">Clear All Filters</a></p>
+                <p><a >Clear All Filters</a></p>
               </div>
             </div>
           </div>
