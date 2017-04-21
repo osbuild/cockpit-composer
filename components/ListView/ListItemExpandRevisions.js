@@ -41,7 +41,7 @@ class ListItemExpandRevisions extends React.Component {
         <div className="list-group-item-header" onClick={(e) => this.handleExpandComponent(e)}>
           <div className="list-view-pf-expand">
             <span
-              className={`fa ${this.state.expanded ? 'fa-angle-down' : 'fa-angle-right'}`}
+              className={`fa ${this.state.expanded ? 'fa-angle-right fa-angle-down' : 'fa-angle-right'}`}
             ></span>
           </div>
 
