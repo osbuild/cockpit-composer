@@ -71,17 +71,17 @@ class ListItemExpandRevisions extends React.Component {
                 className="dropdown-menu dropdown-menu-right"
                 aria-labelledby="dropdownKebabRight9"
               >
-                <li><a href="#">View Recipe</a></li>
+                <li><a >View Recipe</a></li>
                 {listItem.active === true &&
-                  <li><a href="#">Clone Revision</a></li>
+                  <li><a >Clone Revision</a></li>
                   ||
-                  <li><a href="#">Restore Revision</a></li>
+                  <li><a >Restore Revision</a></li>
                 }
-                <li><a href="#">Save Revision as New Recipe</a></li>
+                <li><a >Save Revision as New Recipe</a></li>
                 <li role="separator" className="divider"></li>
-                <li><a href="#">Create Composition</a></li>
+                <li><a >Create Composition</a></li>
                 <li role="separator" className="divider"></li>
-                <li><a href="#">Archive</a></li>
+                <li><a >Archive</a></li>
               </ul>
             </div>
           </div>
@@ -90,7 +90,7 @@ class ListItemExpandRevisions extends React.Component {
             <div className="list-view-pf-body">
               <div className="list-view-pf-description">
                 <div className="list-group-item-heading">
-                  <a href="#" data-item="name">Revision {listItem.number}</a>
+                  <a  data-item="name">Revision {listItem.number}</a>
                 </div>
                 <div className="list-group-item-text">
                   Based on {listItem.basedOn}
@@ -146,7 +146,7 @@ class ListItemExpandRevisions extends React.Component {
                         </div>
                         <div className="list-view-pf-body">
                           <div className="list-view-pf-description">
-                            <a href="#">
+                            <a >
                               {this.props.recipe}-rev{composition.revision}-{composition.type}
                             </a>
                             <span className="text-muted pull-right">
@@ -202,7 +202,7 @@ class ListItemExpandRevisions extends React.Component {
                       <div className="list-view-pf-main-info">
                         <div className="list-view-pf-body">
                           <div className="list-view-pf-description">
-                            <a href="#">{change.action}</a>
+                            <a >{change.action}</a>
                             <span
                               className="text-muted pull-right"
                             >{change.date} by {change.user}</span>

@@ -33,7 +33,7 @@ class ComponentSummaryList extends React.Component {
                 </div>
                 <div className="list-view-pf-body">
                   <div className="list-view-pf-description">
-                    <a href="#" data-item="name">{listItem.name}</a>
+                    <a data-item="name">{listItem.name}</a>
                   </div>
                 </div>
               </div>

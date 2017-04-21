@@ -278,8 +278,8 @@ class RecipePage extends React.Component {
                           aria-haspopup="true"
                           aria-expanded="false"
                         ><span className="fa fa-ellipsis-v"></span></button>
-                        <ul className="dropdown-menu " aria-labelledby="dropdownKebab">
-                          <li><a href="#">Export Recipe</a></li>
+                        <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
+                          <li><a>Export Recipe</a></li>
                         </ul>
                       </div>
                     </div>
@@ -317,21 +317,21 @@ class RecipePage extends React.Component {
                     <ul className="list-inline">
                       <li>
                         <span className="label label-info">Name: nameofthething
-                          <a href="#"><span className="pficon pficon-close"></span></a>
+                          <a ><span className="pficon pficon-close"></span></a>
                         </span>
                       </li>
                       <li>
                         <span className="label label-info">Version: 3
-                          <a href="#"><span className="pficon pficon-close"></span></a>
+                          <a ><span className="pficon pficon-close"></span></a>
                         </span>
                       </li>
                       <li>
                         <span className="label label-info">Lifecycle: 5
-                          <a href="#"><span className="pficon pficon-close"></span></a>
+                          <a ><span className="pficon pficon-close"></span></a>
                         </span>
                       </li>
                     </ul>
-                    <p><a href="#">Clear All Filters</a></p>
+                    <p><a >Clear All Filters</a></p>
                   </div>
                 </div>
               </div>
@@ -427,9 +427,9 @@ class RecipePage extends React.Component {
                             aria-expanded="false"
                           >Revision 3<span className="caret"></span></button>
                           <ul className="dropdown-menu">
-                            <li><a href="#">Revision 3</a></li>
-                            <li><a href="#">Revision 2</a></li>
-                            <li><a href="#">Revision 1</a></li>
+                            <li><a >Revision 3</a></li>
+                            <li><a >Revision 2</a></li>
+                            <li><a >Revision 1</a></li>
                           </ul>
                         </div>
                       </div>
@@ -445,8 +445,8 @@ class RecipePage extends React.Component {
                               aria-expanded="false"
                             >Name<span className="caret"></span></button>
                             <ul className="dropdown-menu">
-                              <li><a href="#">Name</a></li>
-                              <li><a href="#">Version</a></li>
+                              <li><a >Name</a></li>
+                              <li><a >Version</a></li>
                             </ul>
                           </div>
                           <input
@@ -467,8 +467,8 @@ class RecipePage extends React.Component {
                             aria-expanded="false"
                           >Name<span className="caret"></span></button>
                           <ul className="dropdown-menu">
-                            <li><a href="#">Name</a></li>
-                            <li><a href="#">Version</a></li>
+                            <li><a >Name</a></li>
+                            <li><a >Version</a></li>
                           </ul>
                         </div>
                         <button className="btn btn-link" type="button">
@@ -497,8 +497,8 @@ class RecipePage extends React.Component {
                               aria-haspopup="true"
                               aria-expanded="false"
                             ><span className="fa fa-ellipsis-v"></span></button>
-                            <ul className="dropdown-menu " aria-labelledby="dropdownKebab">
-                              <li><a href="#">Export Recipe</a></li>
+                            <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
+                              <li><a >Export Recipe</a></li>
                             </ul>
                           </div>
                         </div>
@@ -536,21 +536,21 @@ class RecipePage extends React.Component {
                         <ul className="list-inline">
                           <li>
                             <span className="label label-info">Name: nameofthething
-                              <a href="#"><span className="pficon pficon-close"></span></a>
+                              <a ><span className="pficon pficon-close"></span></a>
                             </span>
                           </li>
                           <li>
                             <span className="label label-info">Version: 3
-                              <a href="#"><span className="pficon pficon-close"></span></a>
+                              <a ><span className="pficon pficon-close"></span></a>
                             </span>
                           </li>
                           <li>
                             <span className="label label-info">Lifecycle: 5
-                              <a href="#"><span className="pficon pficon-close"></span></a>
+                              <a ><span className="pficon pficon-close"></span></a>
                             </span>
                           </li>
                         </ul>
-                        <p><a href="#">Clear All Filters</a></p>
+                        <p><a >Clear All Filters</a></p>
                       </div>
                     </div>
                   </div>
@@ -603,9 +603,9 @@ class RecipePage extends React.Component {
                           aria-haspopup="true"
                           aria-expanded="false"
                         ><span className="fa fa-ellipsis-v"></span></button>
-                        <ul className="dropdown-menu " aria-labelledby="dropdownKebab">
+                        <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
 
-                          <li><a href="#">Export Recipe</a></li>
+                          <li><a >Export Recipe</a></li>
                         </ul>
                       </div>
                     </div>
@@ -643,21 +643,21 @@ class RecipePage extends React.Component {
                     <ul className="list-inline">
                       <li>
                         <span className="label label-info">Name: nameofthething
-                          <a href="#"><span className="pficon pficon-close"></span></a>
+                          <a ><span className="pficon pficon-close"></span></a>
                         </span>
                       </li>
                       <li>
                         <span className="label label-info">Version: 3
-                          <a href="#"><span className="pficon pficon-close"></span></a>
+                          <a ><span className="pficon pficon-close"></span></a>
                         </span>
                       </li>
                       <li>
                         <span className="label label-info">Lifecycle: 5
-                          <a href="#"><span className="pficon pficon-close"></span></a>
+                          <a ><span className="pficon pficon-close"></span></a>
                         </span>
                       </li>
                     </ul>
-                    <p><a href="#">Clear All Filters</a></p>
+                    <p><a >Clear All Filters</a></p>
                   </div>
                 </div>
               </div>
@@ -732,8 +732,8 @@ class RecipePage extends React.Component {
                           aria-haspopup="true"
                           aria-expanded="false"
                         ><span className="fa fa-ellipsis-v"></span></button>
-                        <ul className="dropdown-menu " aria-labelledby="dropdownKebab">
-                          <li><a href="#">Export Recipe</a></li>
+                        <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
+                          <li><a >Export Recipe</a></li>
                         </ul>
                       </div>
                     </div>
@@ -771,21 +771,21 @@ class RecipePage extends React.Component {
                     <ul className="list-inline">
                       <li>
                         <span className="label label-info">Name: nameofthething
-                          <a href="#"><span className="pficon pficon-close"></span></a>
+                          <a ><span className="pficon pficon-close"></span></a>
                         </span>
                       </li>
                       <li>
                         <span className="label label-info">Version: 3
-                          <a href="#"><span className="pficon pficon-close"></span></a>
+                          <a ><span className="pficon pficon-close"></span></a>
                         </span>
                       </li>
                       <li>
                         <span className="label label-info">Lifecycle: 5
-                          <a href="#"><span className="pficon pficon-close"></span></a>
+                          <a ><span className="pficon pficon-close"></span></a>
                         </span>
                       </li>
                     </ul>
-                    <p><a href="#">Clear All Filters</a></p>
+                    <p><a >Clear All Filters</a></p>
                   </div>
                 </div>
               </div>

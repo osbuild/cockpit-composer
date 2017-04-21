@@ -36,8 +36,8 @@ function Header() {
               <span className="caret"></span>
             </a>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <li><a href="#">Help</a></li>
-              <li><a href="#">About</a></li>
+              <li><a >Help</a></li>
+              <li><a >About</a></li>
             </ul>
           </li>
           <li className="dropdown">
@@ -52,8 +52,8 @@ function Header() {
               <span className="caret"></span>
             </a>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenu2">
-              <li><a href="#">Preferences</a></li>
-              <li><a href="#">Logout</a></li>
+              <li><a >Preferences</a></li>
+              <li><a >Logout</a></li>
             </ul>
           </li>
         </ul>

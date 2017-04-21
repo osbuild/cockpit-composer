@@ -82,7 +82,8 @@ class ComponentDetailsView extends React.Component {
     $('[data-toggle="tooltip"]').tooltip();
   }
 
-  handleEdit = () => {
+  handleEdit = (event) => {
+    event.preventDefault();
     // user clicked Edit for the selected component
     const component = this.state.componentData;
     // get available builds and set default value
@@ -292,8 +293,7 @@ class ComponentDetailsView extends React.Component {
               <dd>{component.ui_type}</dd>
               <dt>Version</dt>
               <dd>
-                {this.state.componentData.version}
-                {(this.props.status === 'selected' &&
+                {this.state.componentData.version} {(this.props.status === 'selected' &&
                   this.state.editSelected === false) &&
                   <a href="#" onClick={(e) => this.handleEdit(e)}>Update</a>
                 }
