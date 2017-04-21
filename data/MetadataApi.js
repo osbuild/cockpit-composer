@@ -64,6 +64,7 @@ class MetadataApi {
 
         let componentData = data[1].modules[0];
         componentData.inRecipe = component.inRecipe;
+        componentData.user_selected = component.user_selected;
         componentData.ui_type = component.ui_type;
 
         // The component's depsolved version may be in .dependencies
