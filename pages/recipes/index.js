@@ -51,10 +51,22 @@ class RecipesPage extends React.Component {
   handleDelete = (event, recipe) => {
     event.preventDefault();
     event.stopPropagation();
-    // delete the recipe
-    RecipeApi.deleteRecipe(recipe);
-    // get recipes again
-    this.getRecipes();
+    const p = new Promise((resolve, reject) => {
+      RecipeApi.deleteRecipe(recipe)
+      .then(() => {
+        // find the recipe in recipes and remove it
+        let recipes = this.state.recipes;
+        recipes = recipes.filter(
+          (obj) => (obj.id !== recipe)
+        );
+        this.setState({recipes: recipes});
+        resolve();
+      }).catch(e => {
+        console.log(`Error deleting recipe: ${e}`);
+        reject();
+      });
+    });
+    return p;
   }
 
 
@@ -132,7 +144,7 @@ class RecipesPage extends React.Component {
                       <li role="separator" className="divider"></li>
                       <li><a href="#">Create Compositions</a></li>
                       <li><a href="#">Export Selected Recipes</a></li>
-                      <li><a href="#">Archive Selected Recipes</a></li>
+                      <li className="hidden"><a href="#">Archive Selected Recipes</a></li>
                     </ul>
                   </div>
                 </div>
