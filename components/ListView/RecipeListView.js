@@ -93,7 +93,7 @@ class RecipeListView extends React.Component {
                     aria-labelledby="dropdownKebabRight9"
                   >
                     <li><a href="#">Export</a></li>
-                    <li><a href="#">Delete</a></li>
+                    <li><a href="#" onClick={(e) => this.props.handleDelete(e, recipe.id)}>Archive</a></li>
                   </ul>
                 </div>
               </div>

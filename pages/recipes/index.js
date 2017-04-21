@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from '../../components/Layout';
 import RecipeListView from '../../components/ListView/RecipeListView';
 import CreateRecipe from '../../components/Modal/CreateRecipe';
+import RecipeApi from '../../data/RecipeApi';
 import constants from '../../core/constants';
 import utils from '../../core/utils';
 
@@ -38,11 +39,34 @@ class RecipesPage extends React.Component {
             // ,"packages":[{"name":"tmux","version":"2.2"}]}],"offset":0,"limit":20}
           utils.apiFetch(constants.get_recipes_info + recipeName)
               .then(recipedata => {
-                this.setState({ recipes: this.state.recipes.concat(recipedata.recipes[0]) });
+                let recipe = recipedata.recipes[0];
+                recipe.id = recipeName;
+                this.setState({ recipes: this.state.recipes.concat(recipe) });
               });
         }
       })
       .catch(e => console.log(`Error getting recipes: ${e}`));
+  }
+
+  handleDelete = (event, recipe) => {
+    event.preventDefault();
+    event.stopPropagation();
+    const p = new Promise((resolve, reject) => {
+      RecipeApi.deleteRecipe(recipe)
+      .then(() => {
+        // find the recipe in recipes and remove it
+        let recipes = this.state.recipes;
+        recipes = recipes.filter(
+          (obj) => (obj.id !== recipe)
+        );
+        this.setState({recipes: recipes});
+        resolve();
+      }).catch(e => {
+        console.log(`Error deleting recipe: ${e}`);
+        reject();
+      });
+    });
+    return p;
   }
 
 
@@ -115,12 +139,12 @@ class RecipesPage extends React.Component {
                       aria-haspopup="true"
                       aria-expanded="false"
                     ><span className="fa fa-ellipsis-v"></span></button>
-                    <ul className="dropdown-menu " aria-labelledby="dropdownKebab">
+                    <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
                       <li><a href="#">Import Recipe</a></li>
                       <li role="separator" className="divider"></li>
                       <li><a href="#">Create Compositions</a></li>
                       <li><a href="#">Export Selected Recipes</a></li>
-                      <li><a href="#">Delete Selected Recipes</a></li>
+                      <li className="hidden"><a href="#">Archive Selected Recipes</a></li>
                     </ul>
                   </div>
                 </div>
@@ -177,7 +201,7 @@ class RecipesPage extends React.Component {
             </div>
           </div>
         </div>
-        <RecipeListView recipes={this.state.recipes} setNotifications={this.setNotifications} />
+        <RecipeListView recipes={this.state.recipes} handleDelete={this.handleDelete} setNotifications={this.setNotifications} />
         <CreateRecipe />
       </Layout>
     );
