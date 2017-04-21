@@ -102,6 +102,7 @@ class EditRecipePage extends React.Component {
       let index = inputs.map(input => input.name).indexOf(component.name);
       if (index >= 0) {
           inputs[index].inRecipe = true;
+          inputs[index].user_selected = true;
           inputs[index].version_selected = component.version;
           inputs[index].release_selected = component.release;
       }
@@ -223,7 +224,9 @@ class EditRecipePage extends React.Component {
     // the user clicked Add in the sidebar, e.g. source === "input"
     // or the user clicked Add in the details view
     component.inRecipe = true;
+    component.user_selected = true;
     if (source === "input") {
+      $(event.currentTarget).tooltip('hide');
       //get metadata for default build
       Promise.all([
           MetadataApi.getMetadataComponent(component, "")
@@ -322,13 +325,14 @@ class EditRecipePage extends React.Component {
     // of inputs, then update metadata for the input component
     if (index >= 0) {
         inputs[page][index].inRecipe = false;
+        inputs[page][index].user_selected = false;
         delete inputs[page][index].version_selected;
         delete inputs[page][index].release_selected;
     }
     return inputs;
   }
 
-  handleComponentDetails = (event, component, parent) => {
+  handleComponentDetails = (event, component, parent, mode) => {
     // the user selected a component in the sidebar to view more details on the right
     // remove the active state from the current selected component
     let inputs = this.state.inputComponents.slice(0);
@@ -360,27 +364,31 @@ class EditRecipePage extends React.Component {
         this.setState({filteredComponents: filteredComponents});
       }
       // set selectedComponentStatus
-      // if parent is not defined (i.e. I clicked a component in the input list
-      // or component list, or I clicked the first component in the breadcrumb)
-      if ( parent == undefined || parent == '' ) {
-        // and component is selected by the user to be in the recipe,
-        // then set state to selected
+      if (mode === 'edit') {
+        // if I clicked Edit in list item kebab
+        this.setState({selectedComponentStatus: 'editSelected'});
+      } else if ( parent == undefined || parent == '' ) {
+        // if parent is not defined (i.e. I clicked a component in the input list
+        // or component list, or I clicked the first component in the breadcrumb)
         if ( component.user_selected == true ) {
+          // and component is selected by the user to be in the recipe,
+          // then set state to selected
           this.setState({selectedComponentStatus: 'selected'});
-        // and component is automatically pulled into the recipe as a dependency,
-        // then set state to selected-child
         } else if ( component.inRecipe == true ) {
+          // and component is automatically pulled into the recipe as a dependency,
+          // then set state to selected-child
           this.setState({selectedComponentStatus: 'selected-child'});
-        // and component is not in the recipe, then set state to available
         } else {
+          // and component is not in the recipe, then set state to available
           this.setState({selectedComponentStatus: 'available'});
         }
-      } else { // if parent is defined (i.e. I clicked a component listed in the details view)
-        // and state is selected, then state should be selected-child
+      } else {
+        // if parent is defined (i.e. I clicked a component listed in the details view)
         if (this.state.selectedComponentStatus == 'selected') {
+          // and state is selected, then state should be selected-child
           this.setState({selectedComponentStatus: 'selected-child'});
-        // and state is available, then state should be available-child
         } else if (this.state.selectedComponentStatus == 'available') {
+          // and state is available, then state should be available-child
           this.setState({selectedComponentStatus: 'available-child'});
         }
         // if parent is defined

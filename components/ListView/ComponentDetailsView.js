@@ -31,7 +31,9 @@ class ComponentDetailsView extends React.Component {
     this.setState({ activeTab: 'Details' });
     // this needs to be updated when Edit in the li is enabled,
     // in that case, status can be "editSelected"
-    this.setState({ editSelected: false });
+    if (newProps.status !== 'editSelected') {
+      this.setState({ editSelected: false });
+    }
   }
 
   componentDidUpdate() {
@@ -53,13 +55,19 @@ class ComponentDetailsView extends React.Component {
     ]).then((data) => {
       this.setState({ componentData: data[0][0] });
       this.setState({ dependencies: data[0][0].dependencies });
-      if (status === 'available') {
+      if (this.props.status === 'editSelected') {
+        this.handleEdit();
+      }
+      if (status === 'available' || this.props.status === 'editSelected') {
         // when status === "available" a form displays with a menu for selecting a specific version
         // availableBuilds is an array listing each option
         // TODO - include other metadata that's defined in builds
         const availableBuilds = data[0][1].map(
             i => ({ version: i.source.version, release: i.release }));
         this.setState({ availableBuilds });
+        if (this.props.status === 'editSelected') {
+          this.setBuildIndex(availableBuilds, data[0][0]);
+        }
       } else {
         this.setState({ availableBuilds: [] });
       }
@@ -83,15 +91,19 @@ class ComponentDetailsView extends React.Component {
     ]).then((data) => {
       const availableBuilds = data[0].map(i => ({ version: i.source.version, release: i.release }));
       this.setState({ availableBuilds });
-      // filter available builds by component data to find object in array,
-      // then get index of that object
-      const selectedBuild = availableBuilds.filter(
-        (obj) => (obj.version === component.version && obj.release === component.release))[0];
-      const index = availableBuilds.indexOf(selectedBuild);
-      this.setState({ selectedBuildIndex: index });
+      this.setBuildIndex(availableBuilds, component);
     }).catch(e => console.log(`handleEdit: Error getting component metadata: ${e}`));
     // display the form
     this.setState({ editSelected: true });
+  }
+
+  setBuildIndex(availableBuilds, component) {
+    // filter available builds by component data to find object in array,
+    // then get index of that object
+    const selectedBuild = availableBuilds.filter(
+      (obj) => (obj.version === component.version && obj.release === component.release))[0];
+    const index = availableBuilds.indexOf(selectedBuild);
+    this.setState({ selectedBuildIndex: index });
   }
 
   handleVersionSelect = (event) => {
@@ -192,7 +204,8 @@ class ComponentDetailsView extends React.Component {
                   >Edit</button>
                 </li>
               }
-              {(this.props.status === 'selected' && this.state.editSelected === true) &&
+              {((this.props.status === 'selected' && this.state.editSelected === true) ||
+                (this.props.status === 'editSelected')) &&
                 <li>
                   <button
                     className="btn btn-primary"
@@ -231,7 +244,9 @@ class ComponentDetailsView extends React.Component {
           </div>
         </h3>
 
-        {(this.props.status === 'available' || this.state.editSelected === true) &&
+        {(this.props.status === 'available' ||
+          this.state.editSelected === true ||
+          this.props.status === 'editSelected') &&
           <div className="blank-slate-pf">
             <form className="form-horizontal">
               <div className="form-group">

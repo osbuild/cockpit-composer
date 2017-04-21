@@ -84,7 +84,13 @@ class ListItemComponents extends React.Component {
                         e, listItem, this.props.componentDetailsParent)}
                     >View</a>
                   </li>
-                  <li><a href="#">Edit</a></li>
+                  <li>
+                    <a
+                      href="#"
+                      onClick={(e) => this.props.handleComponentDetails(
+                        e, listItem, this.props.componentDetailsParent, 'edit')}
+                    >Edit</a>
+                  </li>
                   <li role="separator" className="divider"></li>
                   <li>
                     <a
