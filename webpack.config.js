@@ -10,6 +10,7 @@
 /* eslint-disable global-require */
 const path = require('path');
 const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const AssetsPlugin = require('assets-webpack-plugin');
 const pkg = require('./package.json');
 const isDebug = global.DEBUG === false ? false : !process.argv.includes('--release');
@@ -80,6 +81,25 @@ const config = {
       filename: 'assets.json',
       prettyPrint: true,
     }),
+
+    //copy patternfly assets
+    new CopyWebpackPlugin([
+        {
+            from: { glob: './node_modules/patternfly/dist/img/*.*'},
+            to: '../img',
+            flatten: true
+        },
+        {
+            from: { glob: './node_modules/patternfly/dist/fonts/*.*'},
+            to: '../fonts',
+            flatten: true
+        },
+        {
+            from: { glob: './node_modules/patternfly/dist/css/*.*'},
+            to: '../css',
+            flatten: true
+        }
+    ]),
   ],
   // Options affecting the normal modules
   module: {

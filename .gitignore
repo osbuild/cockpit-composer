@@ -1,4 +1,7 @@
 node_modules
 public/index.html
 public/dist
+public/css
+public/fonts
+public/img
 db.json
