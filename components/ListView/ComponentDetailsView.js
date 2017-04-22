@@ -83,7 +83,9 @@ class ComponentDetailsView extends React.Component {
   }
 
   handleEdit = (event) => {
-    event.preventDefault();
+    if (event) {
+      event.preventDefault();
+    }
     // user clicked Edit for the selected component
     const component = this.state.componentData;
     // get available builds and set default value
@@ -201,7 +203,7 @@ class ComponentDetailsView extends React.Component {
                   <button
                     className="btn btn-primary"
                     type="button"
-                    onClick={() => this.handleEdit()}
+                    onClick={(e) => this.handleEdit(e)}
                   >Edit</button>
                 </li>
               }
@@ -215,7 +217,7 @@ class ComponentDetailsView extends React.Component {
                   >Save Updates</button>
                 </li>
               }
-              {this.props.status === 'selected' &&
+              {(this.props.status === 'selected' || this.props.status === 'editSelected') &&
                 <li>
                   <button
                     className="btn btn-default"
