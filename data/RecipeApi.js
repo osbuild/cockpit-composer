@@ -149,10 +149,6 @@ class RecipeApi {
     }).catch((e) => { console.log(`Error creating recipe: ${e}`); });
   }
   handleSaveRecipe() {
-    // clear existing notifications then display the saving notification
-    NotificationsApi.closeNotification(undefined, 'saved');
-    NotificationsApi.closeNotification(undefined, 'saving');
-    NotificationsApi.displayNotification(this.recipe.name, 'saving');
     // create recipe and post it
     const recipe = {
       name: this.recipe.name,
