@@ -173,6 +173,9 @@ class RecipeApi {
   }
 
   handleEditDescription(description) {
+    // update cached recipe data
+    this.recipe.description = description;
+    // create recipe variable to post updates
     const recipe = {
       name: this.recipe.name,
       description: description,
