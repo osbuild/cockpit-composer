@@ -23,11 +23,11 @@ class ListItemCompositions extends React.PureComponent {
                 className="dropdown-menu dropdown-menu-right"
                 aria-labelledby="dropdownKebabRight9"
               >
-                <li><a href="#">View Recipe Components</a></li>
-                <li><a href="#">View Recipe Manifest</a></li>
-                <li><a href="#">Export Recipe</a></li>
+                <li><a >View Recipe Components</a></li>
+                <li><a >View Recipe Manifest</a></li>
+                <li><a >Export Recipe</a></li>
                 <li role="separator" className="divider"></li>
-                <li><a href="#">Archive</a></li>
+                <li><a >Archive</a></li>
               </ul>
             </div>
           </div>
@@ -36,7 +36,7 @@ class ListItemCompositions extends React.PureComponent {
             <div className="list-view-pf-body">
               <div className="list-view-pf-description">
                 <div className="list-group-item-heading">
-                  <a href="#" data-item="name">
+                  <a  data-item="name">
                     {this.props.recipe}-rev{listItem.revision}-{listItem.type}
                   </a>
                 </div>

@@ -92,7 +92,7 @@ class RecipeListView extends React.Component {
                     className="dropdown-menu dropdown-menu-right"
                     aria-labelledby="dropdownKebabRight9"
                   >
-                    <li><a href="#">Export</a></li>
+                    <li><a >Export</a></li>
                     <li><a href="#" onClick={(e) => this.props.handleDelete(e, recipe.id)}>Archive</a></li>
                   </ul>
                 </div>
@@ -114,7 +114,7 @@ class RecipeListView extends React.Component {
                     <div
                       className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked"
                     >
-                      Revision<strong>{recipe.version ? recipe.version : '0.0.0'}</strong>
+                      Revision<strong>3</strong>
                     </div>
                     <div
                       className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked hidden"
@@ -165,11 +165,11 @@ class RecipeListView extends React.Component {
                             className="dropdown-menu dropdown-menu-right"
                             aria-labelledby="dropdownKebabRight12"
                           >
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
+                            <li><a >Action</a></li>
+                            <li><a >Another action</a></li>
+                            <li><a >Something else here</a></li>
                             <li role="separator" className="divider"></li>
-                            <li><a href="#">Separated link</a></li>
+                            <li><a >Separated link</a></li>
                           </ul>
                         </div>
                       </div>
