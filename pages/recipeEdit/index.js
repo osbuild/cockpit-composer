@@ -11,6 +11,7 @@ import Toolbar from '../../components/Toolbar/Toolbar';
 import constants from '../../core/constants';
 import RecipeApi from '../../data/RecipeApi';
 import MetadataApi from '../../data/MetadataApi';
+import NotificationsApi from '../../data/NotificationsApi';
 import utils from '../../core/utils';
 
 class EditRecipePage extends React.Component {
@@ -195,7 +196,13 @@ class EditRecipePage extends React.Component {
   }
 
   handleSave = () => {
-    // first post recipe
+    // clear existing notifications
+    NotificationsApi.closeNotification(undefined, 'saved');
+    NotificationsApi.closeNotification(undefined, 'saving');
+    // display the saving notification
+    NotificationsApi.displayNotification(this.state.recipe.name, 'saving');
+    this.setNotifications();
+    // post recipe (includes 'saved' notification)
     Promise.all([RecipeApi.handleSaveRecipe()]).then(() => {
       // then after recipe is posted, reload recipe details
       // to get details that were updated during save (i.e. version)
@@ -461,7 +468,7 @@ class EditRecipePage extends React.Component {
         <div className="cmpsr-title-summary">
           <h1 className="cmpsr-title-summary__item">{recipeDisplayName}</h1>
           <p className="cmpsr-title-summary__item">
-            Revision 3 <span className="hidden">{this.state.recipe.version}</span>
+            Revision 3<span className="hidden">{this.state.recipe.version}</span>
             <span className="text-muted">, Total Disk Space: 1,234 KB</span>
           </p>
         </div>
