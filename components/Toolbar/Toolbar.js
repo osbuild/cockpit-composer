@@ -69,7 +69,7 @@ class Toolbar extends React.Component {
                     aria-haspopup="true"
                     aria-expanded="false"
                   ><span className="fa fa-ellipsis-v"></span></button>
-                  <ul className="dropdown-menu " aria-labelledby="dropdownKebab">
+                  <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
                     <li><a >Export Recipe</a></li>
                     <li role="separator" className="divider"></li>
                     <li><a >Update Selected Components</a></li>
