@@ -215,6 +215,11 @@ div.hidden-nav .navbar-pf-vertical { display: none; }
   padding: 0;
 }
 
+.list-group-item-container .cmpsr-list-view-viewskinny {
+   max-height: 300px;
+   overflow: auto;
+ }
+
 /*Component details*/
 #cmpsr-recipe-details-edit {
   border-top: 1px solid #d1d1d1;

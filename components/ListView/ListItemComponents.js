@@ -223,7 +223,7 @@ class ListItemComponents extends React.Component {
                       </div>
                       <div className="list-view-pf-body">
                         <div className="list-view-pf-description">
-                          <a href="#" data-item="name">---</a>
+                          <a data-item="name">---</a>
                         </div>
                       </div>
                     </div>
