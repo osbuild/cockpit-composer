@@ -25,7 +25,7 @@ class ListItemCompositions extends React.PureComponent {
               >
                 <li><a >View Recipe Components</a></li>
                 <li><a >View Recipe Manifest</a></li>
-                <li><a >Export Recipe</a></li>
+                <li><a >Export</a></li>
                 <li role="separator" className="divider"></li>
                 <li><a >Archive</a></li>
               </ul>

@@ -279,7 +279,7 @@ class RecipePage extends React.Component {
                           aria-expanded="false"
                         ><span className="fa fa-ellipsis-v"></span></button>
                         <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
-                          <li><a>Export Recipe</a></li>
+                          <li><a>Export</a></li>
                         </ul>
                       </div>
                     </div>
@@ -498,7 +498,7 @@ class RecipePage extends React.Component {
                               aria-expanded="false"
                             ><span className="fa fa-ellipsis-v"></span></button>
                             <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
-                              <li><a >Export Recipe</a></li>
+                              <li><a >Export</a></li>
                             </ul>
                           </div>
                         </div>
@@ -593,22 +593,6 @@ class RecipePage extends React.Component {
               <div className="col-sm-12">
                 <form className="toolbar-pf-actions">
                   <div className="toolbar-pf-action-right">
-                    <div className="form-group">
-                      <div className="dropdown btn-group  dropdown-kebab-pf">
-                        <button
-                          className="btn btn-link dropdown-toggle"
-                          type="button"
-                          id="dropdownKebab"
-                          data-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                        ><span className="fa fa-ellipsis-v"></span></button>
-                        <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
-
-                          <li><a >Export Recipe</a></li>
-                        </ul>
-                      </div>
-                    </div>
                     <div className="form-group toolbar-pf-find">
                       <button className="btn btn-link btn-find" type="button">
                         <span className="fa fa-search"></span>
@@ -733,7 +717,7 @@ class RecipePage extends React.Component {
                           aria-expanded="false"
                         ><span className="fa fa-ellipsis-v"></span></button>
                         <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
-                          <li><a >Export Recipe</a></li>
+                          <li><a >Export</a></li>
                         </ul>
                       </div>
                     </div>

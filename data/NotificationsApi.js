@@ -57,9 +57,10 @@ class NotificationsApi {
           // this link will need to be implemented when the build process
           // is implemented; this function will need to be extended to handle
           // defining this link
-          kebab: [
-            <a href="#" id="cmpsr-bom-link">Export Recipe (.bom)</a>,
-          ],
+          // kebab: [
+          //   <a href="#" >Export Recipe (.bom)</a>,
+          // ],
+          // this kebab may be needed when the build process is implemented
           fade: true,
         };
         break;
