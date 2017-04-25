@@ -72,14 +72,14 @@ class ListItemExpandRevisions extends React.Component {
                 aria-labelledby="dropdownKebabRight9"
               >
                 <li><a >View Recipe</a></li>
+                <li><a >Export</a></li>
+                <li role="separator" className="divider"></li>
                 {listItem.active === true &&
                   <li><a >Clone Revision</a></li>
                   ||
                   <li><a >Restore Revision</a></li>
                 }
                 <li><a >Save Revision as New Recipe</a></li>
-                <li role="separator" className="divider"></li>
-                <li><a >Create Composition</a></li>
                 <li role="separator" className="divider"></li>
                 <li><a >Archive</a></li>
               </ul>
