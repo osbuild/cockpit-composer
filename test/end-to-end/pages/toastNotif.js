@@ -20,7 +20,13 @@ module.exports = class TostaNotifPage extends MainPage {
     // Working and Complete status label
     this.varStatusCreating = `${this.varRecipeName} Creating composition.`;
     this.varStatusComplete = `${this.varRecipeName} Composition creation is complete.`;
+
+    // Notification label
     this.labelStatus = '#cmpsr-toast-0 span + span';
+
+    // Recipe saving and saved status label
+    this.varStatusSaving = `${this.varRecipeName} Saving recipe.`;
+    this.varStatusSaved = `${this.varRecipeName} Recipe is saved.`;
 
     // Cancel link
     this.linkCancel = '#cmpsr-toast-0 .toast-pf-action a';

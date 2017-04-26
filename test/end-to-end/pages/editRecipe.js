@@ -20,6 +20,9 @@ module.exports = class EditRecipePage extends MainPage {
     // Create Composition button
     this.varCreateCompos = 'Create Composition';
     this.btnCreateCompos = 'button[data-target="#cmpsr-modal-crt-compos"]';
+
+    // Save button
+    this.btnSave = '.cmpsr-edit-actions .btn-primary';
   }
 
   get url() {
