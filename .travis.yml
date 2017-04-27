@@ -1,3 +1,7 @@
+sudo: required
+dist: trusty
+services:
+  - docker
 language: node_js
 node_js:
   - "6"
@@ -10,8 +14,9 @@ before_install:
 env:
   - COMMAND=lint
   - COMMAND=test
+  - COMMAND=end-to-end-test
 script:
-  - npm run "$COMMAND"
+  - make "$COMMAND"
 notifications:
   email:
     on_failure: change
