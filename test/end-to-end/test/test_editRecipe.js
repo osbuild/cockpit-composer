@@ -36,7 +36,7 @@ describe('Edit Recipe Page', function () {
         const nightmare = new Nightmare();
         nightmare
           .goto(editRecipePage.url)
-          .wait(editRecipePage.labelEditRecipe)
+          .wait(editRecipePage.linkRecipeName)
           .then(() => nightmare
             .evaluate(page => document.querySelector(page.linkRecipeName).innerText
               , editRecipePage))
@@ -61,7 +61,7 @@ describe('Edit Recipe Page', function () {
         const nightmare = new Nightmare();
         nightmare
           .goto(editRecipePage.url)
-          .wait(editRecipePage.labelEditRecipe)
+          .wait(editRecipePage.labelRecipeTitle)
           .evaluate(page => document.querySelector(page.labelRecipeTitle).innerText
             , editRecipePage)
           .end()
@@ -77,7 +77,7 @@ describe('Edit Recipe Page', function () {
         const nightmare = new Nightmare();
         nightmare
           .goto(editRecipePage.url)
-          .wait(editRecipePage.labelEditRecipe)
+          .wait(editRecipePage.btnCreateCompos)
           .evaluate(page => document.querySelector(page.btnCreateCompos).innerText
             , editRecipePage)
           .end()
@@ -98,7 +98,9 @@ describe('Edit Recipe Page', function () {
         const nightmare = new Nightmare();
         nightmare
           .goto(editRecipePage.url)
+          .wait(editRecipePage.btnCreateCompos)
           .click(editRecipePage.btnCreateCompos)
+          .wait(createComposPage.labelCreateCompos)
           .evaluate(page => document.querySelector(page.labelCreateCompos).innerText
             , createComposPage)
           .end()
@@ -117,11 +119,14 @@ describe('Edit Recipe Page', function () {
         const nightmare = new Nightmare();
         nightmare
           .goto(editRecipePage.url)
+          .wait(editRecipePage.btnCreateCompos)
           .click(editRecipePage.btnCreateCompos)
+          .wait(createComposPage.btnCreate)
           .select(createComposPage.selectComposType, createComposPage.composType)
           .select(createComposPage.selectComposArch, createComposPage.composArch)
           .click(createComposPage.btnCreate)
           .wait(toastNotifPage.iconCreating)
+          .wait(toastNotifPage.labelStatus)
           .then(() => nightmare
             .evaluate(page => document.querySelector(page.labelStatus).innerText
             , toastNotifPage))
@@ -130,6 +135,7 @@ describe('Edit Recipe Page', function () {
           })
           .then(() => nightmare
             .wait(toastNotifPage.iconComplete)
+            .wait(toastNotifPage.labelStatus)
             .evaluate(page => document.querySelector(page.labelStatus).innerText
             , toastNotifPage)
             .end())

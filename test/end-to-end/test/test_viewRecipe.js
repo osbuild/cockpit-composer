@@ -35,6 +35,7 @@ describe('View Recipe Page', function () {
         const nightmare = new Nightmare();
         nightmare
           .goto(viewRecipePage.url)
+          .wait(viewRecipePage.labelRecipeName)
           .evaluate(page => document.querySelector(page.labelRecipeName).innerText
             , viewRecipePage)
           .end()
@@ -52,6 +53,7 @@ describe('View Recipe Page', function () {
         const nightmare = new Nightmare();
         nightmare
           .goto(viewRecipePage.url)
+          .wait(viewRecipePage.labelRecipeTitle)
           .evaluate(page => document.querySelector(page.labelRecipeTitle).innerText
             , viewRecipePage)
           .end()
@@ -67,6 +69,7 @@ describe('View Recipe Page', function () {
         const nightmare = new Nightmare();
         nightmare
           .goto(viewRecipePage.url)
+          .wait(viewRecipePage.btnCreateCompos)
           .evaluate(page => document.querySelector(page.btnCreateCompos).innerText
             , viewRecipePage)
           .end()
@@ -87,6 +90,7 @@ describe('View Recipe Page', function () {
         const nightmare = new Nightmare();
         nightmare
           .goto(viewRecipePage.url)
+          .wait(viewRecipePage.btnCreateCompos)
           .click(viewRecipePage.btnCreateCompos)
           .evaluate(page => document.querySelector(page.labelCreateCompos).innerText
             , createComposPage)
@@ -106,11 +110,14 @@ describe('View Recipe Page', function () {
         const nightmare = new Nightmare();
         nightmare
           .goto(viewRecipePage.url)
+          .wait(viewRecipePage.btnCreateCompos)
           .click(viewRecipePage.btnCreateCompos)
+          .wait(createComposPage.btnCreate)
           .select(createComposPage.selectComposType, createComposPage.composType)
           .select(createComposPage.selectComposArch, createComposPage.composArch)
           .click(createComposPage.btnCreate)
           .wait(toastNotifPage.iconCreating)
+          .wait(toastNotifPage.labelStatus)
           .then(() => nightmare
             .evaluate(page => document.querySelector(page.labelStatus).innerText
             , toastNotifPage))
@@ -119,6 +126,7 @@ describe('View Recipe Page', function () {
           })
           .then(() => nightmare
             .wait(toastNotifPage.iconComplete)
+            .wait(toastNotifPage.labelStatus)
             .evaluate(page => document.querySelector(page.labelStatus).innerText
             , toastNotifPage)
             .end())

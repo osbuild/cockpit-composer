@@ -43,7 +43,7 @@ describe('Recipes Page', function () {
         const nightmare = new Nightmare();
         nightmare
           .goto(recipesPage.url)
-          // .wait('.container-pf-nav-pf-vertical')
+          .wait(recipesPage.btnCreateRecipe)
           .evaluate(page => document.querySelector(page.btnCreateRecipe).innerText
             , recipesPage)
           .end()
@@ -62,8 +62,9 @@ describe('Recipes Page', function () {
         const nightmare = new Nightmare();
         nightmare
           .goto(recipesPage.url)
+          .wait(recipesPage.btnCreateRecipe)
           .click(recipesPage.btnCreateRecipe)
-          // .wait(createRecipePage.labelCreateRecipe)
+          .wait(createRecipePage.labelCreateRecipe)
           .evaluate(page => document.querySelector(page.labelCreateRecipe).innerText
             , createRecipePage)
           .end()
@@ -97,6 +98,7 @@ describe('Recipes Page', function () {
           const nightmare = new Nightmare();
           nightmare
             .goto(recipesPage.url)
+            .wait(recipeNameSelector)
             .evaluate(selector => document.querySelector(selector).innerText
               , recipeNameSelector)
             .end()
@@ -108,6 +110,7 @@ describe('Recipes Page', function () {
         it('should have correct recipe description on list after new recipe added', (done) => {
           new Nightmare()
           .goto(recipesPage.url)
+          .wait(recipesPage.labelRecipeDescr)
           .evaluate(page => [...document.querySelectorAll(page.labelRecipeDescr)]
             .map(x => x.innerText), recipesPage)
           .end()
@@ -133,7 +136,9 @@ describe('Recipes Page', function () {
           const nightmare = new Nightmare();
           nightmare
             .goto(recipesPage.url)
+            .wait(btnCreateCompos)
             .click(btnCreateCompos)
+            .wait(createComposPage.labelCreateCompos)
             .evaluate(page => document.querySelector(page.labelCreateCompos).innerText
               , createComposPage)
             .end()
@@ -152,11 +157,14 @@ describe('Recipes Page', function () {
           const nightmare = new Nightmare();
           nightmare
             .goto(recipesPage.url)
+            .wait(btnCreateCompos)
             .click(btnCreateCompos)
+            .wait(createComposPage.btnCreate)
             .select(createComposPage.selectComposType, createComposPage.composType)
             .select(createComposPage.selectComposArch, createComposPage.composArch)
             .click(createComposPage.btnCreate)
             .wait(toastNotifPage.iconCreating)
+            .wait(toastNotifPage.labelStatus)
             .then(() => nightmare
               .evaluate(page => document.querySelector(page.labelStatus).innerText
               , toastNotifPage))
@@ -165,6 +173,7 @@ describe('Recipes Page', function () {
             })
             .then(() => nightmare
               .wait(toastNotifPage.iconComplete)
+              .wait(toastNotifPage.labelStatus)
               .evaluate(page => document.querySelector(page.labelStatus).innerText
               , toastNotifPage)
               .end())
