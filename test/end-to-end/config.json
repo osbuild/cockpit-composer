@@ -14,8 +14,25 @@
             "packages": []
         }
     },
+    "__comment_composition": "// Default composition settings for Create Composition UI testing",
     "composition": {
-        "type": "kickstart",
+        "type": "ostree",
+        "arch": "x86_64"
+    },
+    "iso_composition" : {
+        "type": "iso",
+        "arch": "x86_64"
+    },
+    "ami_composition" : {
+        "type": "ami",
+        "arch": "x86_64"
+    },
+    "qcow2_composition" : {
+        "type": "qcow2",
+        "arch": "x86_64"
+    },
+    "vhdx_composition" : {
+        "type": "vhdx",
         "arch": "x86_64"
     }
 }

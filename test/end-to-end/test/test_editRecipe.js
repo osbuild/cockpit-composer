@@ -159,6 +159,7 @@ describe('Edit Recipe Page', function () {
           .wait(editRecipePage.btnSave)
           .click(editRecipePage.btnSave)
           .wait(toastNotifPage.iconCreating)
+          .wait(toastNotifPage.labelStatus)
           .then(() => nightmare
             .evaluate(page => document.querySelector(page.labelStatus).innerText
             , toastNotifPage))
@@ -167,6 +168,7 @@ describe('Edit Recipe Page', function () {
           })
           .then(() => nightmare
             .wait(toastNotifPage.iconComplete)
+            .wait(toastNotifPage.labelStatus)
             .evaluate(page => document.querySelector(page.labelStatus).innerText
             , toastNotifPage)
             .end())
