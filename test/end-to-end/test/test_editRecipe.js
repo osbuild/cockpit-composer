@@ -145,5 +145,36 @@ describe('Edit Recipe Page', function () {
           });
       });
     });
+    context('Save Recipe Test', () => {
+      it('should have toast notification pop up when Save button cliecked', (done) => {
+        const toastNotifPage = new ToastNotifPage(pageConfig.recipe.simple.name);
+
+        // Highlight the expected result
+        const expectedSaving = toastNotifPage.varStatusSaving;
+        const expectedSaved = toastNotifPage.varStatusSaved;
+
+        const nightmare = new Nightmare();
+        nightmare
+          .goto(editRecipePage.url)
+          .wait(editRecipePage.btnSave)
+          .click(editRecipePage.btnSave)
+          .wait(toastNotifPage.iconCreating)
+          .then(() => nightmare
+            .evaluate(page => document.querySelector(page.labelStatus).innerText
+            , toastNotifPage))
+          .then((element) => {
+            expect(element).to.equal(expectedSaving);
+          })
+          .then(() => nightmare
+            .wait(toastNotifPage.iconComplete)
+            .evaluate(page => document.querySelector(page.labelStatus).innerText
+            , toastNotifPage)
+            .end())
+          .then((element) => {
+            expect(element).to.equal(expectedSaved);
+            done();
+          });
+      });
+    });
   });
 });
