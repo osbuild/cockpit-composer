@@ -27,9 +27,11 @@ describe('Create Recipe Page', function () {
         const nightmare = new Nightmare();
         nightmare
           .goto(recipesPage.url)
+          .wait(recipesPage.btnCreateRecipe)
           .click(recipesPage.btnCreateRecipe)
-          .wait(createRecipePage.labelCreateRecipe)
+          .wait(createRecipePage.btnSave)
           .click(createRecipePage.btnSave)
+          .wait(createRecipePage.labelAlertInfo)
           .evaluate(page => document.querySelector(page.labelAlertInfo).innerText
             , createRecipePage)
           .end()
@@ -54,8 +56,9 @@ describe('Create Recipe Page', function () {
         const nightmare = new Nightmare();
         nightmare
           .goto(recipesPage.url)
+          .wait(recipesPage.btnCreateRecipe)
           .click(recipesPage.btnCreateRecipe)
-          .wait(createRecipePage.labelCreateRecipe)
+          .wait(createRecipePage.inputDescription)
           .wait(1000)
           .insert(createRecipePage.inputName, createRecipePage.varRecName)
           .insert(createRecipePage.inputDescription, createRecipePage.varRecDesc)
