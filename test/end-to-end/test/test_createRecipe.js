@@ -19,8 +19,8 @@ describe('Create Recipe Page', function () {
     , pageConfig.recipe.simple.description);
 
   describe('Input Data Validation Test', () => {
-    context('Required Field Missing', () => {
-      it('should show alert message when create recipe without name', (done) => {
+    context('Required Field Missing #acceptance', () => {
+      it('should show alert message when create recipe without name @create-recipe-page', (done) => {
         // Highlight the expected result
         const expected = createRecipePage.varAlertInfo;
 
@@ -41,7 +41,7 @@ describe('Create Recipe Page', function () {
           });
       });
     });
-    context('Simple Valid Input Test', () => {
+    context('Simple Valid Input Test #acceptance', () => {
       const editRecipePage = new EditRecipePage(pageConfig.recipe.simple.name);
 
       // Delete created recipe after each creation case
@@ -49,7 +49,7 @@ describe('Create Recipe Page', function () {
         apiCall.deleteRecipe(editRecipePage.recipeName, done);
       });
 
-      it('should switch to Edit Recipe page - recipe creation success', (done) => {
+      it('should switch to Edit Recipe page - recipe creation success @create-recipe-page', (done) => {
         // Highlight the expected result
         const expected = editRecipePage.url;
 

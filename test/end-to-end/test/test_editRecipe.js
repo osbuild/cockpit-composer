@@ -27,8 +27,8 @@ describe('Edit Recipe Page', function () {
       apiCall.deleteRecipe(pageConfig.recipe.simple.name, done);
     });
 
-    context('Menu Nav Bar Check', () => {
-      it('should show a recipe name with a correct link address', (done) => {
+    context('Menu Nav Bar Check #acceptance', () => {
+      it('should show a recipe name with a correct link address @edit-recipe-page', (done) => {
         // Highlight the expected result
         const expectedRecipeName = editRecipePage.recipeName;
         const expectedViewRecipeLinke = editRecipePage.varLinkToViewRec;
@@ -53,8 +53,8 @@ describe('Edit Recipe Page', function () {
           });
       });
     });
-    context('Title Bar Check', () => {
-      it('should show a recipe name title', (done) => {
+    context('Title Bar Check #acceptance', () => {
+      it('should show a recipe name title @edit-recipe-page', (done) => {
         // Highlight the expected result
         const expected = editRecipePage.recipeName;
 
@@ -70,7 +70,7 @@ describe('Edit Recipe Page', function () {
             done();
           });
       });
-      it('should have Create Composition button', (done) => {
+      it('should have Create Composition button @edit-recipe-page', (done) => {
         // Highlight the expected result
         const expected = editRecipePage.varCreateCompos;
 
@@ -87,11 +87,11 @@ describe('Edit Recipe Page', function () {
           });
       });
     });
-    context('Create Composition Test', () => {
+    context('Create Composition Test #acceptance', () => {
       const createComposPage = new CreateComposPage(pageConfig.composition.type
         , pageConfig.composition.arch);
 
-      it('should pop up Create Composition window by clicking Create Compostion button', (done) => {
+      it('should pop up Create Composition window by clicking Create Compostion button @edit-recipe-page', (done) => {
         // Highlight the expected result
         const expected = createComposPage.varCreateCompos;
 
@@ -109,7 +109,7 @@ describe('Edit Recipe Page', function () {
             done();
           });
       });
-      it('should have toast notification pop up when new composition added', (done) => {
+      it('should have toast notification pop up when new composition added @edit-recipe-page', (done) => {
         const toastNotifPage = new ToastNotifPage(pageConfig.recipe.simple.name);
 
         // Highlight the expected result
@@ -145,12 +145,11 @@ describe('Edit Recipe Page', function () {
           });
       });
     });
-    context('Save Recipe Test', () => {
-      it('should have toast notification pop up when Save button cliecked', (done) => {
+    context('Save Recipe Test #acceptance', () => {
+      it('should have toast notification pop up when Save button cliecked @edit-recipe-page', (done) => {
         const toastNotifPage = new ToastNotifPage(pageConfig.recipe.simple.name);
 
         // Highlight the expected result
-        const expectedSaving = toastNotifPage.varStatusSaving;
         const expectedSaved = toastNotifPage.varStatusSaved;
 
         const nightmare = new Nightmare();
@@ -158,20 +157,11 @@ describe('Edit Recipe Page', function () {
           .goto(editRecipePage.url)
           .wait(editRecipePage.btnSave)
           .click(editRecipePage.btnSave)
-          .wait(toastNotifPage.iconCreating)
+          .wait(toastNotifPage.iconComplete)
           .wait(toastNotifPage.labelStatus)
-          .then(() => nightmare
-            .evaluate(page => document.querySelector(page.labelStatus).innerText
-            , toastNotifPage))
-          .then((element) => {
-            expect(element).to.equal(expectedSaving);
-          })
-          .then(() => nightmare
-            .wait(toastNotifPage.iconComplete)
-            .wait(toastNotifPage.labelStatus)
-            .evaluate(page => document.querySelector(page.labelStatus).innerText
-            , toastNotifPage)
-            .end())
+          .evaluate(page => document.querySelector(page.labelStatus).innerText
+          , toastNotifPage)
+          .end()
           .then((element) => {
             expect(element).to.equal(expectedSaved);
             done();
