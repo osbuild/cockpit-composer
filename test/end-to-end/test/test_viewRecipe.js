@@ -27,8 +27,8 @@ describe('View Recipe Page', function () {
       apiCall.deleteRecipe(pageConfig.recipe.simple.name, done);
     });
 
-    context('Menu Nav Bar Check', () => {
-      it('should show a recipe name', (done) => {
+    context('Menu Nav Bar Check #acceptance', () => {
+      it('should show a recipe name @view-recipe-page', (done) => {
         // Highlight the expected result
         const expected = viewRecipePage.recipeName;
 
@@ -45,8 +45,8 @@ describe('View Recipe Page', function () {
           });
       });
     });
-    context('Title Bar Check', () => {
-      it('should show a recipe name title', (done) => {
+    context('Title Bar Check #acceptance', () => {
+      it('should show a recipe name title @view-recipe-page', (done) => {
         // Highlight the expected result
         const expected = viewRecipePage.recipeName;
 
@@ -62,7 +62,7 @@ describe('View Recipe Page', function () {
             done();
           });
       });
-      it('should have Create Composition button', (done) => {
+      it('should have Create Composition button @view-recipe-page', (done) => {
         // Highlight the expected result
         const expected = viewRecipePage.varCreateCompos;
 
@@ -79,11 +79,11 @@ describe('View Recipe Page', function () {
           });
       });
     });
-    context('Create Composition Test', () => {
+    context('Create Composition Test #acceptance', () => {
       const createComposPage = new CreateComposPage(pageConfig.composition.type
         , pageConfig.composition.arch);
 
-      it('should pop up Create Composition window by clicking Create Compostion button', (done) => {
+      it('should pop up Create Composition window by clicking Create Compostion button @view-recipe-page', (done) => {
         // Highlight the expected result
         const expected = createComposPage.varCreateCompos;
 
@@ -100,7 +100,7 @@ describe('View Recipe Page', function () {
             done();
           });
       });
-      it('should have toast notification pop up when new composition added', (done) => {
+      it('should have toast notification pop up when new composition added @view-recipe-page', (done) => {
         const toastNotifPage = new ToastNotifPage(pageConfig.recipe.simple.name);
 
         // Highlight the expected result

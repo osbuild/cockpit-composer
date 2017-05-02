@@ -17,26 +17,28 @@ describe('Recipes Page', function () {
 
   const recipesPage = new RecipesPage();
 
-  describe('Title Check', () => {
-    it('should be Recipes', (done) => {
-      // Highlight the expected result
-      const expected = recipesPage.title;
+  describe('Page Info Check', () => {
+    context('Title Check #acceptance', () => {
+      it('should be Recipes @recipes-page', (done) => {
+        // Highlight the expected result
+        const expected = recipesPage.title;
 
-      const nightmare = new Nightmare();
-      nightmare
-        .goto(recipesPage.url)
-        .title()
-        .end()
-        .then((element) => {
-          expect(element).to.equal(expected);
-          done();
-        });
+        const nightmare = new Nightmare();
+        nightmare
+          .goto(recipesPage.url)
+          .title()
+          .end()
+          .then((element) => {
+            expect(element).to.equal(expected);
+            done();
+          });
+      });
     });
   });
 
   describe('Tool Bar', () => {
-    context('Create Recipe Test', () => {
-      it('should have the Create Recipe button on the Recipes page', (done) => {
+    context('Create Recipe Test #acceptance', () => {
+      it('should have the Create Recipe button on the Recipes page @recipes-page', (done) => {
         // Highlight the expected result
         const expected = recipesPage.varCreateRecipe;
 
@@ -52,7 +54,7 @@ describe('Recipes Page', function () {
             done();
           });
       });
-      it('should pop up Create Recipe window when click Create Recipe button', (done) => {
+      it('should pop up Create Recipe window when click Create Recipe button @recipes-page', (done) => {
         const createRecipePage = new CreateRecipePage(pageConfig.recipe.simple.name
           , pageConfig.recipe.simple.description);
 
@@ -88,8 +90,8 @@ describe('Recipes Page', function () {
         apiCall.deleteRecipe(pageConfig.recipe.simple.name, done);
       });
 
-      context('Recipe Content Check', () => {
-        it('should have correct recipe name on list after new recipe added', (done) => {
+      context('Recipe Content Check #acceptance', () => {
+        it('should have correct recipe name on list after new recipe added @recipes-page', (done) => {
           // Highlight the expected result
           const expected = pageConfig.recipe.simple.name;
 
@@ -107,7 +109,7 @@ describe('Recipes Page', function () {
               done();
             });
         });
-        it('should have correct recipe description on list after new recipe added', (done) => {
+        it('should have correct recipe description on list after new recipe added @recipes-page', (done) => {
           new Nightmare()
           .goto(recipesPage.url)
           .wait(recipesPage.labelRecipeDescr)
@@ -121,14 +123,14 @@ describe('Recipes Page', function () {
         });
       });
 
-      context('Create Composition Test', () => {
+      context('Create Composition Test #acceptance', () => {
         const createComposPage = new CreateComposPage(pageConfig.composition.type
           , pageConfig.composition.arch);
 
         // Create Composition button selector
         const btnCreateCompos = RecipesPage.btnCreateCompos(pageConfig.recipe.simple.name);
 
-        it('should pop up Create Composition window by clicking Create Compostion button'
+        it('should pop up Create Composition window by clicking Create Compostion button @recipes-page'
         , (done) => {
           // Highlight the expected result
           const expected = createComposPage.varCreateCompos;
@@ -147,7 +149,7 @@ describe('Recipes Page', function () {
               done();
             });
         });
-        it('should have toast notification pop up when new composition added', (done) => {
+        it('should have toast notification pop up when new composition added @recipes-page', (done) => {
           const toastNotifPage = new ToastNotifPage(pageConfig.recipe.simple.name);
 
           // Highlight the expected result

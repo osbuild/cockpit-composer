@@ -29,6 +29,13 @@ $ npm run test                                  # Run end-to-end test
 $ npm run xunittest                             # Run end-to-end test with xunit xml result output
 ```
 
+```shell
+$ mocha --grep=#acceptance                                 # Run acceptance case only
+$ mocha --grep=@create-recipe-page                         # Run create recipe page related case only
+$ mocha --grep=#acceptance.+@create-recipe-page            # Run acceptance case in create recipe page cases
+$ mocha --grep="@create-recipe-page|@edit-recipe-page"     # Run create recipe and edit recipe pages cases
+```
+
 ### Running end-to-end test in Docker
 
 The end-to-end test docker image is an executable image, which starts container, runs test, and exits.
@@ -105,18 +112,18 @@ describe('View Recipe Page', function () {                // Which page does thi
     after((done) => {                                     // Scenario de-provision, like apply a snapshot
     });
 
-    context('Menu Nav Bar Check', () => {                 // Element or elements to be test
-      it('should show a recipe name', (done) => {         // Expected result description
+    context('Menu Nav Bar Check #acceptance', () => {     // Test content and test type
+      it('should show a recipe name @view-recipe-page', (done) => {    // Case description and case ID
         
         const expected = "Expected Result";               // Highlight the expected result at the top level 
                                                           // of each case block. Explicit is always better!
       });
     });
-    context('Title Bar Check', () => {
-      it('should show a recipe name title', (done) => {
+    context('Title Bar Check #acceptance', () => {
+      it('should show a recipe name title @view-recipe-page', (done) => {
 
       });
-      it('should have Create Composition button', (done) => {
+      it('should have Create Composition button @view-recipe-page', (done) => {
 
       });
     });
