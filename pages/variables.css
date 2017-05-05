@@ -1,11 +1,10 @@
 :root {
-
   /*
    * Colors
    * ======================================================================== */
 
-  --color-gray: #72767B;
-  --color-light-blue: #39A5DC;
+  --color-gray: #72767b;
+  --color-light-blue: #39a5dc;
 
   /*
    * Media queries breakpoints
