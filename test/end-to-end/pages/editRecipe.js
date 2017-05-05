@@ -23,6 +23,9 @@ module.exports = class EditRecipePage extends MainPage {
 
     // Save button
     this.btnSave = '.cmpsr-edit-actions .btn-primary';
+
+    // component count inside the pagination control
+    this.totalComponentCount = '.cmpsr-recipe-inputs-pagination span';
   }
 
   get url() {
