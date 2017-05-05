@@ -61,7 +61,7 @@ function resolve(routes, context) {
           Object.keys(params).forEach((k) => {
             url = url.replace(`${k}`, params[k]);
           });
-          return fetch(url, { method: method, credentials: 'same-origin' }).then(resp => resp.json());
+          return fetch(url, { method, credentials: 'same-origin' }).then(resp => resp.json());
         }),
       ]).then(([Page, ...data]) => {
         const props = keys.reduce((result, key, i) => ({ ...result, [key]: data[i] }), {});

@@ -75,6 +75,15 @@ class ComponentDetailsView extends React.Component {
     }).catch(e => console.log(`getMetadata: Error getting component metadata: ${e}`));
   }
 
+  setBuildIndex(availableBuilds, component) {
+    // filter available builds by component data to find object in array,
+    // then get index of that object
+    const selectedBuild = availableBuilds.filter(
+      (obj) => (obj.version === component.version && obj.release === component.release))[0];
+    const index = availableBuilds.indexOf(selectedBuild);
+    this.setState({ selectedBuildIndex: index });
+  }
+
   initializeBootstrapElements() {
     // Initialize Boostrap-select
     $('.selectpicker').selectpicker();
@@ -98,15 +107,6 @@ class ComponentDetailsView extends React.Component {
     }).catch(e => console.log(`handleEdit: Error getting component metadata: ${e}`));
     // display the form
     this.setState({ editSelected: true });
-  }
-
-  setBuildIndex(availableBuilds, component) {
-    // filter available builds by component data to find object in array,
-    // then get index of that object
-    const selectedBuild = availableBuilds.filter(
-      (obj) => (obj.version === component.version && obj.release === component.release))[0];
-    const index = availableBuilds.indexOf(selectedBuild);
-    this.setState({ selectedBuildIndex: index });
   }
 
   handleVersionSelect = (event) => {

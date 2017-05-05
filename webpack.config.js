@@ -23,7 +23,7 @@ const babelConfig = Object.assign({}, pkg.babel, {
 // Webpack configuration (main.js => public/dist/main.{hash}.js)
 // http://webpack.github.io/docs/configuration.html
 const config = {
-  externals: { "cockpit": "cockpit" },
+  externals: { cockpit: 'cockpit' },
 
   // The base directory for resolving the entry option
   context: __dirname,
@@ -68,7 +68,7 @@ const config = {
   // The list of plugins for Webpack compiler
   plugins: [
     new webpack.optimize.LimitChunkCountPlugin({
-        maxChunks: 1
+      maxChunks: 1,
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': isDebug ? '"development"' : '"production"',
@@ -82,23 +82,23 @@ const config = {
       prettyPrint: true,
     }),
 
-    //copy patternfly assets
+    // copy patternfly assets
     new CopyWebpackPlugin([
-        {
-            from: { glob: './node_modules/patternfly/dist/img/*.*'},
-            to: '../img',
-            flatten: true
-        },
-        {
-            from: { glob: './node_modules/patternfly/dist/fonts/*.*'},
-            to: '../fonts',
-            flatten: true
-        },
-        {
-            from: { glob: './node_modules/patternfly/dist/css/*.*'},
-            to: '../css',
-            flatten: true
-        }
+      {
+        from: { glob: './node_modules/patternfly/dist/img/*.*' },
+        to: '../img',
+        flatten: true,
+      },
+      {
+        from: { glob: './node_modules/patternfly/dist/fonts/*.*' },
+        to: '../fonts',
+        flatten: true,
+      },
+      {
+        from: { glob: './node_modules/patternfly/dist/css/*.*' },
+        to: '../css',
+        flatten: true,
+      },
     ]),
   ],
   // Options affecting the normal modules

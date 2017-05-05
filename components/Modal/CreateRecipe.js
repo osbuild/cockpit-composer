@@ -59,15 +59,15 @@ class CreateRecipe extends React.Component {
   }
 
   errorChecking(state) {
-    this.setState({checkErrors: state});
+    this.setState({ checkErrors: state });
   }
 
-  dismissErrors(e) {
+  dismissErrors() {
     this.setState({ inlineError: false });
     this.setState({ showErrorName: false });
   }
 
-  handleErrorName(event) {
+  handleErrorName() {
     if (this.state.recipe.name === '' && this.state.checkErrors) {
       setTimeout(() => {
         this.setState({ showErrorName: true });
@@ -79,8 +79,6 @@ class CreateRecipe extends React.Component {
   showInlineError() {
     this.setState({ inlineError: true });
   }
-
-
 
   render() {
     return (

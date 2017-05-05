@@ -214,21 +214,21 @@ class RecipePage extends React.Component {
 
   handleEditDescription = (action) => {
     const state = !this.state.inlineEditDescription;
-    this.setState({inlineEditDescription: state});
+    this.setState({ inlineEditDescription: state });
     if (state === true) {
-      this.setState({inlineEditDescriptionValue: this.state.recipe.description});
+      this.setState({ inlineEditDescriptionValue: this.state.recipe.description });
     } else if (action === 'save') {
-      let recipe = this.state.recipe;
+      const recipe = this.state.recipe;
       recipe.description = this.state.inlineEditDescriptionValue;
-      this.setState({recipe: recipe});
+      this.setState({ recipe });
       RecipeApi.handleEditDescription(recipe.description);
     } else if (action === 'cancel') {
-
+      // cancel action
     }
   }
 
   handleChangeDescription(event) {
-    this.setState({inlineEditDescriptionValue: event.target.value});
+    this.setState({ inlineEditDescriptionValue: event.target.value });
   }
 
   render() {
@@ -345,7 +345,11 @@ class RecipePage extends React.Component {
                   {this.state.inlineEditDescription &&
                     <dd>
                       <div className="input-group">
-                        <input type="text" className="form-control" value={this.state.inlineEditDescriptionValue} onChange={(e) => this.handleChangeDescription(e)} />
+                        <input
+                          type="text" className="form-control"
+                          value={this.state.inlineEditDescriptionValue}
+                          onChange={(e) => this.handleChangeDescription(e)}
+                        />
                         <span className="input-group-btn">
                           <button className="btn btn-link" type="button" onClick={() => this.handleEditDescription('save')}>
                             <span className="fa fa-check"></span>

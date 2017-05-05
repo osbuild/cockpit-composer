@@ -7,7 +7,7 @@ class CardView extends React.Component {
     this.matchHeight();
 
     // Card Single Select
-    $('.card-pf-view-single-select').click(function () {
+    $('.card-pf-view-single-select').click(() => {
       if ($(this).hasClass('active')) {
         $(this).removeClass('active');
       } else {

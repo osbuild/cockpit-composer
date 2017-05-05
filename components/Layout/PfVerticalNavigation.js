@@ -2,7 +2,7 @@
 // Must have navbar-toggle in navbar-pf-vertical for expand/collapse
 (($ => {
   $.fn.setupVerticalNavigation = handleItemSelections => {
-    const navElement = $('.nav-pf-vertical');
+    let navElement = $('.nav-pf-vertical');
     const bodyContentElement = $('.container-pf-nav-pf-vertical');
     const toggleNavBarButton = $('.navbar-toggle');
     let explicitCollapse = false;
@@ -212,7 +212,7 @@
     };
 
     const bindMenuBehavior = () => {
-      toggleNavBarButton.on('click', e => {
+      toggleNavBarButton.on('click', () => {
         enableTransitions();
 
         if (inMobileState()) {
@@ -250,7 +250,7 @@
 
         // Set main nav active item on click or show secondary nav if it has a secondary nav bar
         // and we are in the mobile state
-        $primaryItem.on('click.pf.secondarynav.data-api', function (event) {
+        $primaryItem.on('click.pf.secondarynav.data-api', () => {
           const $this = $(this);
           let $secondaryItem;
           let tertiaryItem;
@@ -288,9 +288,9 @@
           const $secondaryItem = $(secondaryItem);
           // Set secondary nav active item on click or show tertiary nav
           // if it has a tertiary nav bar and we are in the mobile state
-          $secondaryItem.on('click.pf.secondarynav.data-api', function (event) {
+          $secondaryItem.on('click.pf.secondarynav.data-api', (event) => {
             const $this = $(this);
-            let tertiaryItem;
+            // let tertiaryItem;
             if (!$this.hasClass('tertiary-nav-item-pf')) {
               if (inMobileState()) {
                 updateMobileMenu();
@@ -306,8 +306,8 @@
               updateMobileMenu($this, $primaryItem);
               event.stopImmediatePropagation();
             } else if (handleSelection) {
-              tertiaryItem = $secondaryItem.find(
-                '.nav-pf-tertiary-nav > .list-group > .list-group-item')[0];
+              // tertiaryItem = $secondaryItem.find(
+              //   '.nav-pf-tertiary-nav > .list-group > .list-group-item')[0];
               event.stopImmediatePropagation();
             }
           });
@@ -339,7 +339,7 @@
         $secondaryItem.on(
           'click.pf.secondarynav.data-api',
           '[data-toggle="collapse-secondary-nav"]',
-          function (e) {
+          (e) => {
             const $this = $(this);
             if (inMobileState()) {
               updateMobileMenu();
@@ -369,7 +369,7 @@
           $primaryItem.on(
             'click.pf.tertiarynav.data-api',
             '[data-toggle="collapse-tertiary-nav"]',
-            function (e) {
+            (e) => {
               const $this = $(this);
               if (inMobileState()) {
                 updateMobileMenu($secondaryItem);
@@ -397,7 +397,7 @@
       });
 
       // Show secondary nav bar on hover of secondary nav items
-      $(document).on('mouseenter.pf.tertiarynav.data-api', '.secondary-nav-item-pf', function (e) {
+      $(document).on('mouseenter.pf.tertiarynav.data-api', '.secondary-nav-item-pf', () => {
         const $this = $(this);
         if (!inMobileState()) {
           if ($this[0].navUnHoverTimeout !== undefined) {
@@ -406,7 +406,7 @@
           } else if ($this[0].navHoverTimeout === undefined) {
             $this[0].navHoverTimeout = setTimeout(() => {
               // PF modified: ensure we get a new reference after a rerender
-              const navElement = $('.nav-pf-vertical');
+              navElement = $('.nav-pf-vertical');
               navElement.addClass('hover-secondary-nav-pf');
               $this.addClass('is-hover');
               $this[0].navHoverTimeout = undefined;
@@ -415,7 +415,7 @@
         }
       });
 
-      $(document).on('mouseleave.pf.tertiarynav.data-api', '.secondary-nav-item-pf', function (e) {
+      $(document).on('mouseleave.pf.tertiarynav.data-api', '.secondary-nav-item-pf', () => {
         const $this = $(this);
         if ($this[0].navHoverTimeout !== undefined) {
           clearTimeout($this[0].navHoverTimeout);
@@ -423,7 +423,7 @@
         } else if ($this[0].navUnHoverTimeout === undefined) {
           $this[0].navUnHoverTimeout = setTimeout(() => {
             // PF modified: ensure we get a new reference after a rerender
-            const navElement = $('.nav-pf-vertical');
+            navElement = $('.nav-pf-vertical');
             if (navElement.find('.secondary-nav-item-pf.is-hover').length <= 1) {
               navElement.removeClass('hover-secondary-nav-pf');
             }
@@ -434,7 +434,7 @@
       });
 
       // Show tertiary nav bar on hover of secondary nav items
-      $(document).on('mouseover.pf.tertiarynav.data-api', '.tertiary-nav-item-pf', function (e) {
+      $(document).on('mouseover.pf.tertiarynav.data-api', '.tertiary-nav-item-pf', () => {
         const $this = $(this);
         if (!inMobileState()) {
           if ($this[0].navUnHoverTimeout !== undefined) {
@@ -443,7 +443,7 @@
           } else if ($this[0].navHoverTimeout === undefined) {
             $this[0].navHoverTimeout = setTimeout(() => {
               // PF modified: ensure we get a new reference after a rerender
-              const navElement = $('.nav-pf-vertical');
+              navElement = $('.nav-pf-vertical');
               navElement.addClass('hover-tertiary-nav-pf');
               $this.addClass('is-hover');
               $this[0].navHoverTimeout = undefined;
@@ -451,7 +451,7 @@
           }
         }
       });
-      $(document).on('mouseout.pf.tertiarynav.data-api', '.tertiary-nav-item-pf', function (e) {
+      $(document).on('mouseout.pf.tertiarynav.data-api', '.tertiary-nav-item-pf', () => {
         const $this = $(this);
         if ($this[0].navHoverTimeout !== undefined) {
           clearTimeout($this[0].navHoverTimeout);
@@ -459,7 +459,7 @@
         } else if ($this[0].navUnHoverTimeout === undefined) {
           $this[0].navUnHoverTimeout = setTimeout(() => {
             // PF modified: ensure we get a new reference after a rerender
-            const navElement = $('.nav-pf-vertical');
+            navElement = $('.nav-pf-vertical');
             if (navElement.find('.tertiary-nav-item-pf.is-hover').length <= 1) {
               navElement.removeClass('hover-tertiary-nav-pf');
             }
@@ -508,12 +508,10 @@
       };
       $('.nav-pf-vertical [data-toggle="tooltip"]').tooltip(tooltipOptions);
 
-      $('.nav-pf-vertical').on('show.bs.tooltip', function (e) {
-        return $(this).hasClass('collapsed');
-      });
+      $('.nav-pf-vertical').on('show.bs.tooltip', () => $(this).hasClass('collapsed'));
     };
 
-    const init = handleItemSelections => {
+    const init = () => {
       // Set correct state on load
       checkNavState();
 

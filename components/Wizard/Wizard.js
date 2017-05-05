@@ -2,13 +2,6 @@ class Wizard {
 
   constructor(id) {
     const self = this;
-    let modal;
-    let tabs;
-    let tabCount;
-    let tabLast;
-    let currentGroup;
-    let currentTab;
-    let contents;
 
     // update which tab group is active
     this.updateTabGroup = () => {
@@ -33,7 +26,9 @@ class Wizard {
       // setting focus to first form field in active contents
       setTimeout(() => {
         // this does not account for disabled or read-only inputs
-        $('.wizard-pf-contents:not(.hidden) form input, .wizard-pf-contents:not(.hidden) form textarea, .wizard-pf-contents:not(.hidden) form select').first().focus();
+        $('.wizard-pf-contents:not(.hidden) form input,'
+          + ' .wizard-pf-contents:not(.hidden) form textarea,'
+          + ' .wizard-pf-contents:not(.hidden) form select').first().focus();
       }, 100);
     };
 
@@ -65,7 +60,7 @@ class Wizard {
 
     // when the user clicks a step, then the tab group for that step is displayed
     this.tabGroupSelect = () => {
-      $(`${self.modal} .wizard-pf-step>a`).click(function () {
+      $(`${self.modal} .wizard-pf-step>a`).click(() => {
         // remove active class active tabgroup and add active class to the
         // clicked tab group (but don't remove the active class from current tab)
         self.currentGroup = $(this).parent().data('tabgroup');
@@ -73,9 +68,11 @@ class Wizard {
         // update value for currentTab -- if a tab is already marked as active
         // for the new tab group, use that, otherwise set it to the first tab
         // in the tab group
-        self.currentTab = $(`${self.modal} .list-group[data-tabgroup='${self.currentGroup}'] .list-group-item.active`).data('tab');
+        self.currentTab = $(`${self.modal} .list-group[data-tabgroup='${self.currentGroup}']
+          .list-group-item.active`).data('tab');
         if (self.currentTab === undefined) {
-          self.currentTab = $(`${self.modal} .list-group[data-tabgroup='${self.currentGroup}'] .list-group-item:first-child`).data('tab');
+          self.currentTab = $(`${self.modal} .list-group[data-tabgroup='${self.currentGroup}']
+            .list-group-item:first-child`).data('tab');
           // apply active class to new current tab and associated contents
           self.updateActiveTab();
         } else {
@@ -89,7 +86,7 @@ class Wizard {
 
     // when the user clicks a tab, then the tab contents are displayed
     this.tabSelect = () => {
-      $(`${self.modal} .wizard-pf-sidebar .list-group-item>a`).click(function () {
+      $(`${self.modal} .wizard-pf-sidebar .list-group-item>a`).click(() => {
         // update value of currentTab to new active tab
         self.currentTab = $(this).parent().data('tab');
         // remove active class from active tab in current active tab group (i.e.
@@ -220,7 +217,7 @@ class Wizard {
       $(`${self.modal} .wizard-pf-main`).css('margin-left', sidebarwidth);
     };
 
-    this.init = (id) => {
+    this.init = () => {
       // get id of open modal
       self.modal = id;
       // open modal
@@ -229,20 +226,18 @@ class Wizard {
       // (while steps and sidebar are hidden and loading message displays)
       this.updateWizardLayout();
       // assign data attribute to all tabs
-      $(`${self.modal} .wizard-pf-sidebar .list-group-item`).each(function () {
+      $(`${self.modal} .wizard-pf-sidebar .list-group-item`).each(() => {
         // set the first digit (i.e. n.0) equal to the index of the parent tab group
         // set the second digit (i.e. 0.n) equal to the index of the tab within the tab group
         $(this).attr('data-tab', ($(this).parent().index() + 1 + ($(this).index() / 10 + 0.1)));
       });
       // assign data attribute to all tabgroups
-      $(`${self.modal} .wizard-pf-sidebar .list-group`).each(function () {
+      $(`${self.modal} .wizard-pf-sidebar .list-group`).each(() => {
         // set the value equal to the index of the tab group
         $(this).attr('data-tabgroup', ($(this).index() + 1));
       });
       // create array of all tabs, using the data attribute, and determine the last tab
-      self.tabs = $(`${self.modal} .wizard-pf-sidebar .list-group-item`).map(function () {
-        return $(this).data('tab');
-      }
+      self.tabs = $(`${self.modal} .wizard-pf-sidebar .list-group-item`).map(() => $(this).data('tab')
       );
       self.tabCount = self.tabs.length;
       self.tabSummary = self.tabs[self.tabCount - 2]; // second to last tab displays summary
