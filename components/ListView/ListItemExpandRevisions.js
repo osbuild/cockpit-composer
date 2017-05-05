@@ -90,7 +90,7 @@ class ListItemExpandRevisions extends React.Component {
             <div className="list-view-pf-body">
               <div className="list-view-pf-description">
                 <div className="list-group-item-heading">
-                  <a  data-item="name">Revision {listItem.number}</a>
+                  <a data-item="name">Revision {listItem.number}</a>
                 </div>
                 <div className="list-group-item-text">
                   Based on {listItem.basedOn}
@@ -98,20 +98,17 @@ class ListItemExpandRevisions extends React.Component {
               </div>
               <div className="list-view-pf-additional-info">
                 <div
-                  className="list-view-pf-additional-info-item
-                    list-view-pf-additional-info-item-stacked"
+                  className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked"
                 >
                   Compositions <strong>{listItem.compositions}</strong>
                 </div>
                 <div
-                  className="list-view-pf-additional-info-item
-                  list-view-pf-additional-info-item-stacked"
+                  className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked"
                 >
                   Components <strong>{listItem.components}</strong>
                 </div>
                 <div
-                  className="list-view-pf-additional-info-item
-                  list-view-pf-additional-info-item-stacked"
+                  className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked"
                 >
                   Install Size <strong>{listItem.size}</strong>
                 </div>

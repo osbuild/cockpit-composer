@@ -4,22 +4,22 @@ import utils from '../core/utils';
 class MetadataApi {
 
   getData(api) {
-    let p = new Promise((resolve, reject) => {
-        utils.apiFetch(api)
+    const p = new Promise((resolve) => {
+      utils.apiFetch(api)
         .then(data => {
           resolve(data);
         })
         .catch(e => {
-            console.log("Failed to get " + api + e);
+          console.log(`Failed to get ${api}${e}`);
         });
     });
     return p;
   }
 
   getNames(components) {
-    let names = "";
+    let names = '';
     components.map(i => {
-      names = names === "" ? i.name : names + "," + i.name;
+      names = names === '' ? i.name : `${names},${i.name}`;
     });
     return names;
   }
@@ -27,15 +27,15 @@ class MetadataApi {
   getAvailableBuilds(component) {
     // the user clicked Edit when viewing details of a Recipe component
     // a list of available builds are returned for displaying in the edit form
-    let p = new Promise((resolve, reject) => {
+    const p = new Promise((resolve, reject) => {
       Promise.all([
         this.getData(constants.get_projects_info + component.name),
       ]).then((data) => {
-        let builds = data[0].projects[0].builds;
+        const builds = data[0].projects[0].builds;
         resolve(builds);
       })
       .catch(e => {
-        console.log("Error getting component builds: " + e);
+        console.log(`Error getting component builds: ${e}`);
         reject();
       });
     });
@@ -52,35 +52,35 @@ class MetadataApi {
     // get metadata and dependencies for the component
     // bdcs-api v0.3.0 /modules/info looks like:
     // {"modules":[{"name":NAME, ..., "dependencies":[NEVRA, ...]}, ...]}
-    let p = new Promise((resolve, reject) => {
+    const p = new Promise((resolve, reject) => {
       Promise.all([
         this.getData(constants.get_projects_info + component.name),
-        this.getData(constants.get_modules_info + component.name)
+        this.getData(constants.get_modules_info + component.name),
       ]).then((data) => {
-        if ((data[0].projects.length == 0) || (data[1].modules.length == 0)) {
-            console.log("Error fetching metadata for " + component.name);
-            return;
+        if ((data[0].projects.length === 0) || (data[1].modules.length === 0)) {
+          console.log(`Error fetching metadata for ${component.name}`);
+          return;
         }
 
-        let componentData = data[1].modules[0];
+        const componentData = data[1].modules[0];
         componentData.inRecipe = component.inRecipe;
         componentData.user_selected = component.user_selected;
-        componentData.ui_type = component.ui_type;
+        componentData.uiType = component.uiType;
 
         // The component's depsolved version may be in .dependencies
         let compNEVRA = componentData.dependencies.filter((obj) => obj.name === component.name);
         if (compNEVRA.length > 0) {
-            compNEVRA = compNEVRA[0];
+          compNEVRA = compNEVRA[0];
         } else {
             // Missing deps, construct a NEVRA from the build data
-            let firstBuild = data[0].projects[0].builds[0];
-            compNEVRA = {
-                name: component.name,
-                version: firstBuild.source.version,
-                release: firstBuild.release,
-                arch: firstBuild.arch,
-                epoch: firstBuild.epoch
-            };
+          const firstBuild = data[0].projects[0].builds[0];
+          compNEVRA = {
+            name: component.name,
+            version: firstBuild.source.version,
+            release: firstBuild.release,
+            arch: firstBuild.arch,
+            epoch: firstBuild.epoch,
+          };
         }
 
         componentData.version = compNEVRA.version;
@@ -89,11 +89,11 @@ class MetadataApi {
 
         // if the user clicked View Details for an available component
         // then get the list of available builds
-        let metadata = (build === "all") ? [componentData, data[0].projects[0].builds] : [componentData, []];
+        const metadata = (build === 'all') ? [componentData, data[0].projects[0].builds] : [componentData, []];
         resolve(metadata);
       }).catch(e => {
-          console.log("getMetadataComponent: Error getting component: " + e);
-          reject();
+        console.log(`getMetadataComponent: Error getting component: ${e}`);
+        reject();
       });
     });
     return p;
@@ -102,7 +102,7 @@ class MetadataApi {
   updateInputMetadata(components, data) {
     // for the list of inputs, add the data for additional metadata and return
     data.projects.map(i => {
-      let index = components.map(component => {return component.name}).indexOf(i.name);
+      const index = components.map(component => component.name).indexOf(i.name);
       components[index].summary = i.summary;
       components[index].version = i.builds[0].source.version;
       components[index].release = i.builds[0].release;
@@ -114,7 +114,7 @@ class MetadataApi {
     // for the list of components, add the data for additional metadata and return
     // TODO - create a list of architectures based on the component version-release
     data.projects.map(i => {
-      let index = components.map(component => {return component.name}).indexOf(i.name);
+      const index = components.map(component => component.name).indexOf(i.name);
       components[index].summary = i.summary;
       components[index].homepage = i.homepage;
     });
@@ -126,9 +126,9 @@ class MetadataApi {
       component.projects.map(i => {
         i.requiredBy = component.name;
         i.inRecipe = true;
-        i.ui_type = component.ui_type;
+        i.uiType = component.uiType;
       });
-    };
+    }
     return component.projects;
   }
 

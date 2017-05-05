@@ -58,7 +58,7 @@ tasks.set('build', () => {
   return Promise.resolve()
     .then(() => run('clean'))
     .then(() => run('bundle'))
-    .then(() => run('html'))
+    .then(() => run('html'));
 });
 //
 // Build and publish the website

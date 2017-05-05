@@ -31,7 +31,7 @@ class RecipesPage extends React.Component {
     // {"recipes":["example","http-server","nfs-server"],"offset":0,"limit":20}
     utils.apiFetch(constants.get_recipes_list)
       .then(listdata => {
-        for (const i in listdata.recipes) {
+        for (const i of listdata.recipes) {
           const recipeName = listdata.recipes[i];
             // Recipe info looks like:
             // {"recipes":[{"name":"http-server","description":"An example http server",
@@ -39,7 +39,7 @@ class RecipesPage extends React.Component {
             // ,"packages":[{"name":"tmux","version":"2.2"}]}],"offset":0,"limit":20}
           utils.apiFetch(constants.get_recipes_info + recipeName)
               .then(recipedata => {
-                let recipe = recipedata.recipes[0];
+                const recipe = recipedata.recipes[0];
                 recipe.id = recipeName;
                 this.setState({ recipes: this.state.recipes.concat(recipe) });
               });
@@ -59,7 +59,7 @@ class RecipesPage extends React.Component {
         recipes = recipes.filter(
           (obj) => (obj.id !== recipe)
         );
-        this.setState({recipes: recipes});
+        this.setState({ recipes });
         resolve();
       }).catch(e => {
         console.log(`Error deleting recipe: ${e}`);

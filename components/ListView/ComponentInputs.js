@@ -24,7 +24,7 @@ class ComponentInputs extends React.Component {
 
   bindPopover() {
     // click input to view popover
-    $('#cmpsr-recipe-inputs').on('click', '.list-group-item', function (event) {
+    $('#cmpsr-recipe-inputs').on('click', '.list-group-item', (event) => {
       if (!$(event.target).is('a, a>span')) {
         if ($(this).is('[aria-describedby]')) {
           $(this).popover('destroy');
@@ -42,7 +42,7 @@ class ComponentInputs extends React.Component {
 
   bindViewDetails() {
     // click View Details link in popover
-    $('#cmpsr-recipe-inputs').on('click', '.popover-content a', function (event) {
+    $('#cmpsr-recipe-inputs').on('click', '.popover-content a', (event) => {
       const selectedPopover = $(this).parents('.popover').attr('id');
       const link = $(`[aria-describedby="${selectedPopover}"] .list-group-item-heading a`);
       $(link)[0].click();

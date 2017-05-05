@@ -36,7 +36,7 @@ class ListItemCompositions extends React.PureComponent {
             <div className="list-view-pf-body">
               <div className="list-view-pf-description">
                 <div className="list-group-item-heading">
-                  <a  data-item="name">
+                  <a data-item="name">
                     {this.props.recipe}-rev{listItem.revision}-{listItem.type}
                   </a>
                 </div>
@@ -46,20 +46,17 @@ class ListItemCompositions extends React.PureComponent {
               </div>
               <div className="list-view-pf-additional-info">
                 <div
-                  className="list-view-pf-additional-info-item
-                  list-view-pf-additional-info-item-stacked"
+                  className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked"
                 >
                   Type <strong>{listItem.type}</strong>
                 </div>
                 <div
-                  className="list-view-pf-additional-info-item
-                  list-view-pf-additional-info-item-stacked"
+                  className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked"
                 >
                   Date Created <strong>{listItem.date_created}</strong>
                 </div>
                 <div
-                  className="list-view-pf-additional-info-item
-                  list-view-pf-additional-info-item-stacked"
+                  className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked"
                 >
                   Install Size <strong>{listItem.size}</strong>
                 </div>

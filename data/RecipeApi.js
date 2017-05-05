@@ -82,7 +82,7 @@ class RecipeApi {
     components = this.setType(components, data.recipe.packages, 'RPM');
     components.map(i => {
       i.inRecipe = true;
-      i.user_selected = true;
+      i.userSelected = true;
       return i;
     });
     return components;
@@ -90,19 +90,19 @@ class RecipeApi {
 
   setType(components, array, type) {
     for (const i of array) {
-      // find the array object within components; set ui_type and version for component
+      // find the array object within components; set uiType and version for component
       const component = components.find(x => x.name === i.name);
-      component.ui_type = type;
+      component.uiType = type;
       component.version = i.version;
     }
     return components;
   }
 
   // set additional metadata for each of the dependencies
-  makeRecipeDependencies(components, ui_type) {
+  makeRecipeDependencies(components, uiType) {
     return components.map(i => {
       i.inRecipe = true;
-      i.ui_type = ui_type;
+      i.uiType = uiType;
       return i;
     });
   }
@@ -115,27 +115,27 @@ class RecipeApi {
     };
     // action is add or remove, and maybe update
     if (action === 'add') {
-      if (component.ui_type === 'Module') {
+      if (component.uiType === 'Module') {
         this.recipe.modules.push(recipeComponent);
-      } else if (component.ui_type === 'RPM') {
+      } else if (component.uiType === 'RPM') {
         this.recipe.packages.push(recipeComponent);
       }
     }
     if (action === 'edit') {
-      if (component.ui_type === 'Module') {
+      if (component.uiType === 'Module') {
         let updatedComponent = this.recipe.modules.filter((obj) => (obj.name === recipeComponent.name))[0];
         updatedComponent = Object.assign(updatedComponent, recipeComponent);
-      } else if (component.ui_type === 'RPM') {
+      } else if (component.uiType === 'RPM') {
         let updatedComponent = this.recipe.packages.filter((obj) => (obj.name === recipeComponent.name))[0];
         updatedComponent = Object.assign(updatedComponent, recipeComponent);
       }
     }
     if (action === 'remove') {
-      if (component.ui_type === 'Module') {
+      if (component.uiType === 'Module') {
         this.recipe.modules = this.recipe.modules.filter(
           (obj) => (!(obj.name === recipeComponent.name && obj.version === recipeComponent.version))
         );
-      } else if (component.ui_type === 'RPM') {
+      } else if (component.uiType === 'RPM') {
         this.recipe.packages = this.recipe.packages.filter(
           (obj) => (!(obj.name === recipeComponent.name && obj.version === recipeComponent.version))
         );
@@ -178,7 +178,7 @@ class RecipeApi {
     // create recipe variable to post updates
     const recipe = {
       name: this.recipe.name,
-      description: description,
+      description,
       version: this.recipe.version,
       modules: this.recipe.modules,
       packages: this.recipe.packages,
@@ -224,7 +224,7 @@ class RecipeApi {
   }
 
   deleteRecipe(recipes) {
-    ///api/v0/recipes/delete/<recipe>
+    // /api/v0/recipes/delete/<recipe>
     return utils.apiFetch(constants.delete_recipe + recipes, {
       method: 'DELETE',
     }, true);

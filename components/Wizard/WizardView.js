@@ -1,5 +1,5 @@
 import React from 'react';
-import Wizard from './Wizard';
+// import Wizard from './Wizard';
 
 class WizardView extends React.Component {
 
@@ -7,9 +7,9 @@ class WizardView extends React.Component {
     handleClose: React.PropTypes.func,
   };
 
-  componentDidMount() {
-    const wizard = new Wizard('#complete');
-  }
+  // componentDidMount() {
+  //   const wizard = new Wizard('#complete');
+  // }
 
   handleClose = (event) => {
     this.props.handleClose(event);
@@ -196,11 +196,21 @@ class WizardView extends React.Component {
                     <div className="wizard-pf-review-steps">
                       <ul className="list-group">
                         <li className="list-group-item">
-                          <a onClick={function (e) { $(this).toggleClass('collapsed'); $('#reviewStep1').toggleClass('collapse'); }}>First Step</a>
+                          <a
+                            onClick={() => {
+                              $(this).toggleClass('collapsed');
+                              $('#reviewStep1').toggleClass('collapse');
+                            }}
+                          >First Step</a>
                           <div id="reviewStep1" className="wizard-pf-review-substeps">
                             <ul className="list-group">
                               <li className="list-group-item">
-                                <a onClick={function (e) { $(this).toggleClass('collapsed'); $('#reviewStep1Substep1').toggleClass('collapse'); }}>
+                                <a
+                                  onClick={() => {
+                                    $(this).toggleClass('collapsed');
+                                    $('#reviewStep1Substep1').toggleClass('collapse');
+                                  }}
+                                >
                                   <span className="wizard-pf-substep-number">1A.</span>
                                   <span className="wizard-pf-substep-title">Details</span>
                                 </a>
@@ -224,7 +234,12 @@ class WizardView extends React.Component {
                                 </div>
                               </li>
                               <li className="list-group-item">
-                                <a onClick={function (e) { $(this).toggleClass('collapsed'); $('#reviewStep1Substep2').toggleClass('collapse'); }}>
+                                <a
+                                  onClick={() => {
+                                    $(this).toggleClass('collapsed');
+                                    $('#reviewStep1Substep2').toggleClass('collapse');
+                                  }}
+                                >
                                   <span className="wizard-pf-substep-number">1B.</span>
                                   <span className="wizard-pf-substep-title">Settings</span>
                                 </a>
@@ -241,11 +256,21 @@ class WizardView extends React.Component {
                           </div>
                         </li>
                         <li className="list-group-item">
-                          <a onClick={function (e) { $(this).toggleClass('collapsed'); $('#reviewStep2').toggleClass('collapse'); }}>Second Step</a>
+                          <a
+                            onClick={() => {
+                              $(this).toggleClass('collapsed');
+                              $('#reviewStep2').toggleClass('collapse');
+                            }}
+                          >Second Step</a>
                           <div id="reviewStep2" className="wizard-pf-review-substeps">
                             <ul className="list-group">
                               <li className="list-group-item">
-                                <a onClick={function (e) { $(this).toggleClass('collapsed'); $('#reviewStep2Substep1').toggleClass('collapse'); }}>
+                                <a
+                                  onClick={() => {
+                                    $(this).toggleClass('collapsed');
+                                    $('#reviewStep2Substep1').toggleClass('collapse');
+                                  }}
+                                >
                                   <span className="wizard-pf-substep-number">2A.</span>
                                   <span className="wizard-pf-substep-title">Details</span>
                                 </a>
@@ -269,7 +294,12 @@ class WizardView extends React.Component {
                                 </div>
                               </li>
                               <li className="list-group-item">
-                                <a onClick={function (e) { $(this).toggleClass('collapsed'); $('#reviewStep2Substep2').toggleClass('collapse'); }}>
+                                <a
+                                  onClick={() => {
+                                    $(this).toggleClass('collapsed');
+                                    $('#reviewStep2Substep2').toggleClass('collapse');
+                                  }}
+                                >
                                   <span className="wizard-pf-substep-number">2B.</span>
                                   <span className="wizard-pf-substep-title">Settings</span>
                                 </a>

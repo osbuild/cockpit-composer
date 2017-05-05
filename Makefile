@@ -1,5 +1,8 @@
-lint:
-	npm run lint
+eslint:
+	npm run eslint
+
+stylelint:
+	npm run stylelint
 
 test:
 	npm run test

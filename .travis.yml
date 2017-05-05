@@ -12,7 +12,8 @@ before_install:
   - npm install
   - node run build
 env:
-  - COMMAND=lint
+  - COMMAND=eslint
+  - COMMAND=stylelint
   - COMMAND=test
   - COMMAND=end-to-end-test
 script:

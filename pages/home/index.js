@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from '../../components/Layout';
-import constants from '../../core/constants';
+// import constants from '../../core/constants';
 
 class HomePage extends React.Component {
 
