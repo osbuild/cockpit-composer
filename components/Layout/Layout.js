@@ -4,7 +4,6 @@ import Header from './Header';
 import Navigation from './Navigation';
 import Notification from '../../components/Notifications/Notification';
 import NotificationsApi from '../../data/NotificationsApi';
-import s from './Layout.css';
 import utils from '../../core/utils';
 
 class Layout extends React.Component {
@@ -49,7 +48,7 @@ class Layout extends React.Component {
             )}
           </div>
         }
-        <div className={cx(s.content, this.props.className)}>
+        <div className={this.props.className}>
           {this.props.children}
         </div>
       </div>
