@@ -22,5 +22,6 @@ end-to-end-test:
 	sudo docker-compose -f welder-deployment/docker-compose.yml -p welder up -d
 
 	sudo docker run --rm --name welder_end_to_end --network welder_default \
-	    -v test-result-volume:/result weld/end-to-end:latest \
+	    -v test-result-volume:/result -v bdcs-mddb-volume:/mddb -e MDDB='/mddb/metadata.db' \
+	    weld/end-to-end:latest \
 	    xvfb-run -a -s '-screen 0 1024x768x24' npm run test
