@@ -45,9 +45,9 @@ function createUrl(url) {
 }
 
 function apiFetch(url, options, skipDecode) {
-  url = createUrl(url);
+  const fullUrl = createUrl(url);
   return new Promise((resolve) => {
-    fetch(url, options)
+    fetch(fullUrl, options)
       .then((r) => {
         if (skipDecode) { resolve(r); } else { resolve(r.json()); }
       });
@@ -56,7 +56,7 @@ function apiFetch(url, options, skipDecode) {
 
 const module = { apiFetch };
 if (window.location.href.indexOf('cockpit') > -1) {
-  cockpit = require('cockpit');
+  cockpit = require('cockpit'); // eslint-disable-line global-require, import/no-unresolved
   module.apiFetch = cockpitFetch;
   module.inCockpit = true;
 }

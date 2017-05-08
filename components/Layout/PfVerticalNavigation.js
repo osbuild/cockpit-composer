@@ -252,8 +252,8 @@
         // and we are in the mobile state
         $primaryItem.on('click.pf.secondarynav.data-api', () => {
           const $this = $(this);
-          let $secondaryItem;
-          let tertiaryItem;
+          // let $secondaryItem;
+          // let tertiaryItem;
 
           if (!$this.hasClass('secondary-nav-item-pf')) {
             hideSecondaryMenu();
@@ -268,12 +268,12 @@
           } else if (inMobileState()) {
             updateMobileMenu($this);
           } else if (handleSelection) {
-            $secondaryItem = $($primaryItem.find(
-                '.nav-pf-secondary-nav > .list-group > .list-group-item')[0]);
-            if ($secondaryItem.hasClass('tertiary-nav-item-pf')) {
-              tertiaryItem = $secondaryItem.find(
-                '.nav-pf-tertiary-nav > .list-group > .list-group-item')[0];
-            }
+            // $secondaryItem = $($primaryItem.find(
+            //    '.nav-pf-secondary-nav > .list-group > .list-group-item')[0]);
+            // if ($secondaryItem.hasClass('tertiary-nav-item-pf')) {
+            //  tertiaryItem = $secondaryItem.find(
+            //    '.nav-pf-tertiary-nav > .list-group > .list-group-item')[0];
+            // }
             // PF Core modified: display the secondary menu if a primary was clicked and
             // halt the event
             updateSecondaryMenuDisplayAfterSelection();
@@ -284,7 +284,7 @@
 
         $primaryItem.find(
           '.nav-pf-secondary-nav > .list-group > .list-group-item'
-        ).each((index, secondaryItem) => {
+        ).each((idx, secondaryItem) => {
           const $secondaryItem = $(secondaryItem);
           // Set secondary nav active item on click or show tertiary nav
           // if it has a tertiary nav bar and we are in the mobile state
@@ -314,7 +314,7 @@
 
           $secondaryItem.find(
             '.nav-pf-tertiary-nav > .list-group > .list-group-item'
-          ).each((index, tertiaryItem) => {
+          ).each((ind, tertiaryItem) => {
             const $tertiaryItem = $(tertiaryItem);
             // Set tertiary nav active item on click
             $tertiaryItem.on('click.pf.secondarynav.data-api', event => {
@@ -363,7 +363,7 @@
           }
         );
 
-        $secondaryItem.find('.tertiary-nav-item-pf').each((index, primaryItem) => {
+        $secondaryItem.find('.tertiary-nav-item-pf').each((idx, primaryItem) => {
           const $primaryItem = $(primaryItem);
           // Collapse the tertiary nav bar when the toggle is clicked
           $primaryItem.on(
