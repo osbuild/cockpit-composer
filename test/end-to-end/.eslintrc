@@ -11,6 +11,7 @@
   ],
   "rules": {
     "func-names": ["error", "never"],
-    "mocha/no-exclusive-tests": "error"
+    "mocha/no-exclusive-tests": "error",
+    "import/no-unresolved": ["error", { "ignore": ['nightmare'] }]
   }
 }
