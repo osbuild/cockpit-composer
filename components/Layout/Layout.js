@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import cx from 'classnames';
 import Header from './Header';
 import Navigation from './Navigation';
 import Notification from '../../components/Notifications/Notification';
@@ -29,6 +28,7 @@ class Layout extends React.Component {
 
   headerClass() {
     if (utils.inCockpit) { return 'hidden-nav'; }
+    return '';
   }
 
   render() {
