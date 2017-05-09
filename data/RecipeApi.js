@@ -82,7 +82,7 @@ class RecipeApi {
     components = this.setType(components, data.recipe.packages, 'RPM');
     components.map(i => {
       i.inRecipe = true;
-      i.userSelected = true;
+      i.user_selected = true;
       return i;
     });
     return components;
@@ -90,9 +90,9 @@ class RecipeApi {
 
   setType(components, array, type) {
     for (const i of array) {
-      // find the array object within components; set uiType and version for component
+      // find the array object within components; set ui_type and version for component
       const component = components.find(x => x.name === i.name);
-      component.uiType = type;
+      component.ui_type = type;
       component.version = i.version;
     }
     return components;
@@ -102,7 +102,7 @@ class RecipeApi {
   makeRecipeDependencies(components, uiType) {
     return components.map(i => {
       i.inRecipe = true;
-      i.uiType = uiType;
+      i.ui_type = uiType;
       return i;
     });
   }
@@ -115,27 +115,27 @@ class RecipeApi {
     };
     // action is add or remove, and maybe update
     if (action === 'add') {
-      if (component.uiType === 'Module') {
+      if (component.ui_type === 'Module') {
         this.recipe.modules.push(recipeComponent);
-      } else if (component.uiType === 'RPM') {
+      } else if (component.ui_type === 'RPM') {
         this.recipe.packages.push(recipeComponent);
       }
     }
     if (action === 'edit') {
-      if (component.uiType === 'Module') {
+      if (component.ui_type === 'Module') {
         let updatedComponent = this.recipe.modules.filter((obj) => (obj.name === recipeComponent.name))[0];
         updatedComponent = Object.assign(updatedComponent, recipeComponent);
-      } else if (component.uiType === 'RPM') {
+      } else if (component.ui_type === 'RPM') {
         let updatedComponent = this.recipe.packages.filter((obj) => (obj.name === recipeComponent.name))[0];
         updatedComponent = Object.assign(updatedComponent, recipeComponent);
       }
     }
     if (action === 'remove') {
-      if (component.uiType === 'Module') {
+      if (component.ui_type === 'Module') {
         this.recipe.modules = this.recipe.modules.filter(
           (obj) => (!(obj.name === recipeComponent.name && obj.version === recipeComponent.version))
         );
-      } else if (component.uiType === 'RPM') {
+      } else if (component.ui_type === 'RPM') {
         this.recipe.packages = this.recipe.packages.filter(
           (obj) => (!(obj.name === recipeComponent.name && obj.version === recipeComponent.version))
         );
