@@ -65,7 +65,7 @@ class MetadataApi {
         const componentData = data[1].modules[0];
         componentData.inRecipe = component.inRecipe;
         componentData.user_selected = component.user_selected;
-        componentData.uiType = component.uiType;
+        componentData.ui_type = component.ui_type;
 
         // The component's depsolved version may be in .dependencies
         let compNEVRA = componentData.dependencies.filter((obj) => obj.name === component.name);
@@ -126,7 +126,7 @@ class MetadataApi {
       component.projects.map(i => {
         i.requiredBy = component.name;
         i.inRecipe = true;
-        i.uiType = component.uiType;
+        i.ui_type = component.ui_type;
       });
     }
     return component.projects;

@@ -32,7 +32,7 @@ class RecipesPage extends React.Component {
     utils.apiFetch(constants.get_recipes_list)
       .then(listdata => {
         for (const i of listdata.recipes) {
-          const recipeName = listdata.recipes[i];
+          const recipeName = i;
             // Recipe info looks like:
             // {"recipes":[{"name":"http-server","description":"An example http server",
             // "modules":[{"name":"fm-httpd","version":"23.*"},{"name":"fm-php","version":"11.6.*"}]
