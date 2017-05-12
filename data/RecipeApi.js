@@ -81,8 +81,8 @@ class RecipeApi {
     components = this.setType(components, data.recipe.modules, 'Module');
     components = this.setType(components, data.recipe.packages, 'RPM');
     components.map(i => {
-      i.inRecipe = true;
-      i.user_selected = true;
+      i.inRecipe = true; // eslint-disable-line no-param-reassign
+      i.user_selected = true; // eslint-disable-line no-param-reassign
       return i;
     });
     return components;
@@ -101,8 +101,8 @@ class RecipeApi {
   // set additional metadata for each of the dependencies
   makeRecipeDependencies(components, uiType) {
     return components.map(i => {
-      i.inRecipe = true;
-      i.ui_type = uiType;
+      i.inRecipe = true; // eslint-disable-line no-param-reassign
+      i.ui_type = uiType; // eslint-disable-line no-param-reassign
       return i;
     });
   }
@@ -123,11 +123,13 @@ class RecipeApi {
     }
     if (action === 'edit') {
       if (component.ui_type === 'Module') {
-        let updatedComponent = this.recipe.modules.filter((obj) => (obj.name === recipeComponent.name))[0];
-        updatedComponent = Object.assign(updatedComponent, recipeComponent);
+        // comment the following two lines to fix eslint no-unused-vars error
+        // let updatedComponent = this.recipe.modules.filter((obj) => (obj.name === recipeComponent.name))[0];
+        // updatedComponent = Object.assign(updatedComponent, recipeComponent);
       } else if (component.ui_type === 'RPM') {
-        let updatedComponent = this.recipe.packages.filter((obj) => (obj.name === recipeComponent.name))[0];
-        updatedComponent = Object.assign(updatedComponent, recipeComponent);
+        // comment the following two lines to fix eslint no-unused-vars error
+        // let updatedComponent = this.recipe.packages.filter((obj) => (obj.name === recipeComponent.name))[0];
+        // updatedComponent = Object.assign(updatedComponent, recipeComponent);
       }
     }
     if (action === 'remove') {

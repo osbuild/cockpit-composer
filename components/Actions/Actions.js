@@ -3,6 +3,9 @@ import constants from '../../core/constants';
 import utils from '../../core/utils';
 
 class Actions extends React.Component {
+  static propTypes = {
+    className: React.PropTypes.node,
+  }
 
   state = { actions: [] };
 
@@ -38,6 +41,8 @@ class Actions extends React.Component {
           if (action.type === 'button') {
             return <button key={i} className="btn btn-default">{action.label}</button>;
           }
+
+          return false;
         })}
         <div className="dropdown dropdown-kebab-pf pull-right">
           <button
@@ -55,6 +60,8 @@ class Actions extends React.Component {
               if (action.type === 'menu') {
                 return <li key={i}><a href="#">{action.label}</a></li>;
               }
+
+              return false;
             })}
           </ul>
         </div>

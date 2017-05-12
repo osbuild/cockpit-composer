@@ -6,6 +6,7 @@ class Link extends React.Component {
   static propTypes = {
     to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
     onClick: PropTypes.func,
+    children: PropTypes.node,
   };
 
   handleClick = (event) => {

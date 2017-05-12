@@ -15,6 +15,10 @@ import NotificationsApi from '../../data/NotificationsApi';
 import utils from '../../core/utils';
 
 class EditRecipePage extends React.Component {
+  static propTypes = {
+    route: React.PropTypes.node,
+  }
+
   constructor() {
     super();
     this.setNotifications = this.setNotifications.bind(this);
@@ -65,8 +69,8 @@ class EditRecipePage extends React.Component {
     // but ideally the returned list would provide only what's needed to display
     // in the list and the popover, then the remaining data would be fetched on
     // Add or View Details
-    filter = (filter === undefined) ? '' : filter;
-    page = page * this.state.inputPageSize;
+    filter = (filter === undefined) ? '' : filter; // eslint-disable-line no-param-reassign
+    page = page * this.state.inputPageSize; // eslint-disable-line no-param-reassign
     const p = new Promise((resolve, reject) => {
         // /modules/list looks like:
         // {"modules":[{"name":"389-ds-base","group_type":"rpm"},{"name":"389-ds-base-libs","group_type":"rpm"}, ...]}
@@ -79,7 +83,7 @@ class EditRecipePage extends React.Component {
             MetadataApi.getData(constants.get_projects_info + componentNames),
           ]).then((result) => {
             components = MetadataApi.updateInputMetadata(components, result[0], true);
-            components.map(i => { i.ui_type = 'RPM'; }); // this is being set arbitrarily for now
+            components.map(i => { i.ui_type = 'RPM'; return i; }); // eslint-disable-line no-param-reassign
             resolve([components, total]);
           }).catch(e => console.log(`Error getting recipe metadata: ${e}`));
         })
@@ -89,25 +93,6 @@ class EditRecipePage extends React.Component {
         });
     });
     return p;
-  }
-
-  updateInputComponentData(inputs, componentData) {
-    // updates the input component data to match the recipe component data
-    // where componentData represents either a single recipe component
-    // or the entire set of recipe components
-    if (componentData === undefined) {
-      componentData = this.state.recipeComponents;
-    }
-    componentData.map(component => {
-      const index = inputs.map(input => input.name).indexOf(component.name);
-      if (index >= 0) {
-        inputs[index].inRecipe = true;
-        inputs[index].user_selected = true;
-        inputs[index].version_selected = component.version;
-        inputs[index].release_selected = component.release;
-      }
-    });
-    return inputs;
   }
 
   getFilteredInputs(event) {
@@ -131,6 +116,28 @@ class EditRecipePage extends React.Component {
       $('#cmpsr-recipe-input-filter').blur();
       event.preventDefault();
     }
+  }
+
+  updateInputComponentData(inputs, componentData) {
+    // updates the input component data to match the recipe component data
+    // where componentData represents either a single recipe component
+    // or the entire set of recipe components
+    if (componentData === undefined) {
+      componentData = this.state.recipeComponents; // eslint-disable-line no-param-reassign
+    }
+    componentData.map(component => {
+      const index = inputs.map(input => input.name).indexOf(component.name);
+      if (index >= 0) {
+        inputs[index].inRecipe = true; // eslint-disable-line no-param-reassign
+        inputs[index].user_selected = true; // eslint-disable-line no-param-reassign
+        inputs[index].version_selected = component.version; // eslint-disable-line no-param-reassign
+        inputs[index].release_selected = component.release; // eslint-disable-line no-param-reassign
+        return true;
+      }
+
+      return false;
+    });
+    return inputs;
   }
 
   handleClearFilters(event) {
@@ -231,8 +238,8 @@ class EditRecipePage extends React.Component {
   handleAddComponent = (event, source, component, dependencies) => {
     // the user clicked Add in the sidebar, e.g. source === "input"
     // or the user clicked Add in the details view
-    component.inRecipe = true;
-    component.user_selected = true;
+    component.inRecipe = true; // eslint-disable-line no-param-reassign
+    component.user_selected = true; // eslint-disable-line no-param-reassign
     if (source === 'input') {
       $(event.currentTarget).tooltip('hide');
       // get metadata for default build
@@ -334,10 +341,10 @@ class EditRecipePage extends React.Component {
     // get page and index of component; if component is included in the array
     // of inputs, then update metadata for the input component
     if (index >= 0) {
-      inputs[page][index].inRecipe = false;
-      inputs[page][index].user_selected = false;
-      delete inputs[page][index].version_selected;
-      delete inputs[page][index].release_selected;
+      inputs[page][index].inRecipe = false; // eslint-disable-line no-param-reassign
+      inputs[page][index].user_selected = false; // eslint-disable-line no-param-reassign
+      delete inputs[page][index].version_selected; // eslint-disable-line no-param-reassign
+      delete inputs[page][index].release_selected; // eslint-disable-line no-param-reassign
     }
     return inputs;
   }
@@ -425,7 +432,7 @@ class EditRecipePage extends React.Component {
       // remove the active state from list of inputs
       const [page, index] = this.findInput(this.state.selectedComponent, inputs);
       if (index >= 0) {
-        inputs[page][index].active = false;
+        inputs[page][index].active = false; // eslint-disable-line no-param-reassign
       }
     }
     return inputs;

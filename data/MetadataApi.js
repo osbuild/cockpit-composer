@@ -20,6 +20,7 @@ class MetadataApi {
     let names = '';
     components.map(i => {
       names = names === '' ? i.name : `${names},${i.name}`;
+      return i;
     });
     return names;
   }
@@ -103,9 +104,10 @@ class MetadataApi {
     // for the list of inputs, add the data for additional metadata and return
     data.projects.map(i => {
       const index = components.map(component => component.name).indexOf(i.name);
-      components[index].summary = i.summary;
-      components[index].version = i.builds[0].source.version;
-      components[index].release = i.builds[0].release;
+      components[index].summary = i.summary; // eslint-disable-line no-param-reassign
+      components[index].version = i.builds[0].source.version; // eslint-disable-line no-param-reassign
+      components[index].release = i.builds[0].release; // eslint-disable-line no-param-reassign
+      return i;
     });
     return components;
   }
@@ -115,8 +117,9 @@ class MetadataApi {
     // TODO - create a list of architectures based on the component version-release
     data.projects.map(i => {
       const index = components.map(component => component.name).indexOf(i.name);
-      components[index].summary = i.summary;
-      components[index].homepage = i.homepage;
+      components[index].summary = i.summary; // eslint-disable-line no-param-reassign
+      components[index].homepage = i.homepage; // eslint-disable-line no-param-reassign
+      return i;
     });
     return components;
   }
@@ -124,9 +127,10 @@ class MetadataApi {
   updateRecipeDependencies(component) {
     if (component.projects.length > 0) {
       component.projects.map(i => {
-        i.requiredBy = component.name;
-        i.inRecipe = true;
-        i.ui_type = component.ui_type;
+        i.requiredBy = component.name; // eslint-disable-line no-param-reassign
+        i.inRecipe = true; // eslint-disable-line no-param-reassign
+        i.ui_type = component.ui_type; // eslint-disable-line no-param-reassign
+        return i;
       });
     }
     return component.projects;
