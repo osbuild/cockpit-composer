@@ -1,14 +1,14 @@
 import React from 'react';
 
-class ListView extends React.Component {
+const ListView = (props) => (
+  <div id={props.id} className="list-group list-view-pf list-view-pf-view">
+    {props.children}
+  </div>
+);
 
-  render() {
-    return (
-      <div id={this.props.id} className="list-group list-view-pf list-view-pf-view">
-        {this.props.children}
-      </div>
-    );
-  }
-}
+ListView.propTypes = {
+  id: React.PropTypes.string,
+  children: React.PropTypes.node,
+};
 
 export default ListView;

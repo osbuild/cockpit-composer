@@ -3,6 +3,10 @@ import Link from '../../components/Link';
 import CreateComposition from '../../components/Modal/CreateComposition';
 
 class RecipeListView extends React.Component {
+  static propTypes = {
+    handleDelete: React.PropTypes.func,
+  }
+
   state = { recipe: '' };
 
   // componentDidMount() {

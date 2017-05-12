@@ -1,7 +1,7 @@
 // Util: PatternFly Vertical Navigation broken apart and converted to ES6 :)
 // Must have navbar-toggle in navbar-pf-vertical for expand/collapse
 (($ => {
-  $.fn.setupVerticalNavigation = handleItemSelections => {
+  $.fn.setupVerticalNavigation = handleItemSelections => { // eslint-disable-line no-param-reassign
     let navElement = $('.nav-pf-vertical');
     const bodyContentElement = $('.container-pf-nav-pf-vertical');
     const toggleNavBarButton = $('.navbar-toggle');

@@ -1,3 +1,8 @@
+/* global somefunction welderApiHost:true */
+/* global somefunction welderApiScheme:true */
+/* global somefunction welderApiPort:true */
+/* global somefunction welderApiRelative:true */
+
 let cockpit;
 let cockpitHttp;
 
@@ -14,11 +19,11 @@ function setupCockpitHttp() {
 }
 
 function cockpitFetch(url, options, skipDecode) {
-  if (!options) { options = {}; }
-  if (!options.method) { options.method = 'GET'; }
-  if (!options.body) { options.body = ''; }
+  if (!options) { options = {}; } // eslint-disable-line no-param-reassign
+  if (!options.method) { options.method = 'GET'; } // eslint-disable-line no-param-reassign
+  if (!options.body) { options.body = ''; } // eslint-disable-line no-param-reassign
 
-  options.path = url;
+  options.path = url; // eslint-disable-line no-param-reassign
 
   if (!cockpitHttp) { setupCockpitHttp(); }
 

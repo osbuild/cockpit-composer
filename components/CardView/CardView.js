@@ -1,6 +1,9 @@
 import React from 'react';
 
 class CardView extends React.Component {
+  static propTypes = {
+    users: React.PropTypes.array,
+  }
 
   componentDidMount() {
     // run matchHeight jquery plugin
