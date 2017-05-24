@@ -5,6 +5,7 @@ import RecipeContents from '../../components/ListView/RecipeContents';
 import ComponentInputs from '../../components/ListView/ComponentInputs';
 import ComponentDetailsView from '../../components/ListView/ComponentDetailsView';
 import CreateComposition from '../../components/Modal/CreateComposition';
+import ExportRecipe from '../../components/Modal/ExportRecipe';
 import EmptyState from '../../components/EmptyState/EmptyState';
 import Pagination from '../../components/Pagination/Pagination';
 import Toolbar from '../../components/Toolbar/Toolbar';
@@ -31,6 +32,7 @@ class EditRecipePage extends React.Component {
     inputComponents: [[]], inputFilters: [], filteredComponents: [[]],
     selectedComponent: '', selectedComponentStatus: '', selectedComponentParent: '',
     selectedInputPage: 0, inputPageSize: 50, totalInputs: 0, totalFilteredInputs: 0,
+    modalExport: false,
   };
 
   componentWillMount() {
@@ -451,6 +453,16 @@ class EditRecipePage extends React.Component {
     return ([page, index]);
   }
 
+  // handle show/hide of modal dialogs
+  handleHideModalExport = () => {
+    this.setState({ modalExport: false });
+  }
+  handleShowModalExport = (e) => {
+    this.setState({ modalExport: true });
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
   render() {
     const recipeDisplayName = this.props.route.params.recipe;
 
@@ -485,7 +497,7 @@ class EditRecipePage extends React.Component {
 
           {this.state.selectedComponent === '' &&
             <div className="col-sm-7 col-md-8 col-sm-push-5 col-md-push-4" id="cmpsr-recipe-list-edit">
-              <Toolbar />
+              <Toolbar handleShowModalExport={this.handleShowModalExport} />
             {this.state.recipeComponents.length === 0 &&
               <EmptyState
                 title={'Add Recipe Components'}
@@ -612,6 +624,14 @@ class EditRecipePage extends React.Component {
           recipe={this.state.recipe.name}
           setNotifications={this.setNotifications}
         />
+        {this.state.modalExport ?
+          <ExportRecipe
+            recipe={this.state.recipe.name}
+            contents={this.state.recipeDependencies}
+            handleHideModalExport={this.handleHideModalExport}
+          /> :
+          null
+        }
 
       </Layout>
 

@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from '../../components/Layout';
 import RecipeListView from '../../components/ListView/RecipeListView';
 import CreateRecipe from '../../components/Modal/CreateRecipe';
+import ExportRecipe from '../../components/Modal/ExportRecipe';
 import RecipeApi from '../../data/RecipeApi';
 import constants from '../../core/constants';
 import utils from '../../core/utils';
@@ -12,7 +13,7 @@ class RecipesPage extends React.Component {
     this.setNotifications = this.setNotifications.bind(this);
   }
 
-  state = { recipes: [] };
+  state = { recipes: [], modalRecipe: '', modalRecipeContents: [] };
 
   componentWillMount() {
     this.getRecipes();
@@ -69,6 +70,29 @@ class RecipesPage extends React.Component {
     return p;
   }
 
+  // handle show/hide of modal dialogs
+  handleHideModalExport = () => {
+    this.setState({ modalExport: false });
+    this.setState({ modalRecipe: '' });
+    this.setState({ modalRecipeContents: [] });
+  }
+  handleShowModalExport = (e, recipe) => {
+    // This implementation of the dialog only provides a text option, and it's
+    // automatically selected. Eventually, the following code should move to a 
+    // separate function that is called when the user selects the text option
+
+    // display the dialog, a spinner will display while contents are undefined
+    this.setState({ modalRecipe: recipe });
+    this.setState({ modalRecipeContents: undefined });
+    this.setState({ modalExport: true });
+    // run depsolving against recipe to get contents for dialog
+    const recipeName = recipe.replace(/\s/g, '-');
+    Promise.all([RecipeApi.getRecipe(recipeName)]).then((data) => {
+      this.setState({ modalRecipeContents: data[0].dependencies });
+    }).catch(e => console.log(`Error in EditRecipe promise: ${e}`));
+    e.preventDefault();
+    e.stopPropagation();
+  }
 
   render() {
     return (
@@ -201,8 +225,16 @@ class RecipesPage extends React.Component {
             </div>
           </div>
         </div>
-        <RecipeListView recipes={this.state.recipes} handleDelete={this.handleDelete} setNotifications={this.setNotifications} />
+        <RecipeListView recipes={this.state.recipes} handleDelete={this.handleDelete} setNotifications={this.setNotifications} handleShowModalExport={this.handleShowModalExport} />
         <CreateRecipe />
+        { this.state.modalExport ?
+          <ExportRecipe
+            recipe={this.state.modalRecipe}
+            contents={this.state.modalRecipeContents}
+            handleHideModalExport={this.handleHideModalExport}
+          /> :
+          null
+        }
       </Layout>
     );
   }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Toolbar = () => (
+const Toolbar = (props) => (
 
   <div className="row toolbar-pf">
     <div className="col-sm-12">
@@ -67,7 +67,7 @@ const Toolbar = () => (
                 aria-expanded="false"
               ><span className="fa fa-ellipsis-v"></span></button>
               <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
-                <li><a >Export</a></li>
+                <li><a href="#" onClick={(e) => props.handleShowModalExport(e)}>Export</a></li>
                 <li role="separator" className="divider"></li>
                 <li><a >Update Selected Components</a></li>
                 <li><a >Remove Selected Components</a></li>
@@ -128,5 +128,9 @@ const Toolbar = () => (
     </div>
   </div>
 );
+
+Toolbar.propTypes = {
+  handleShowModalExport: React.PropTypes.func,
+};
 
 export default Toolbar;
