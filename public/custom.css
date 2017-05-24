@@ -8,7 +8,12 @@ div.hidden-nav .navbar-pf-vertical { display: none; }
 .toolbar-pf-results-none > div { display: none;}
 [data-toggle] {cursor: pointer;}
 .list-view-pf-additional-info-item .label {margin: .5em 0;}
-/*label {margin-right:5px;} this causes issues in popup dialogs */
+
+/* This is added for the export dialog so that the contents have higher contrast */
+textarea.form-control[readonly] {
+  background-color: inherit;
+  color: inherit;
+}
 
 .tab-container {
   padding: 15px 0;

@@ -72,7 +72,7 @@ class ListItemExpandRevisions extends React.Component {
                 aria-labelledby="dropdownKebabRight9"
               >
                 <li><a >View Recipe</a></li>
-                <li><a >Export</a></li>
+                <li><a href="#" onClick={(e) => this.props.handleShowModalExport(e)}>Export</a></li>
                 <li role="separator" className="divider"></li>
                 {listItem.active === true &&
                   <li><a >Clone Revision</a></li>
@@ -228,6 +228,7 @@ ListItemExpandRevisions.propTypes = {
   changelog: React.PropTypes.array,
   compositions: React.PropTypes.array,
   recipe: React.PropTypes.string,
+  handleShowModalExport: React.PropTypes.func,
 };
 
 export default ListItemExpandRevisions;

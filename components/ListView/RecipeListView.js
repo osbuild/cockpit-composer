@@ -9,6 +9,7 @@ class RecipeListView extends React.Component {
 
   state = { recipe: '' };
 
+  // The following enables the expand/collapse interaction
   // componentDidMount() {
   //   this.bindExpand();
   // }
@@ -96,7 +97,7 @@ class RecipeListView extends React.Component {
                     className="dropdown-menu dropdown-menu-right"
                     aria-labelledby="dropdownKebabRight9"
                   >
-                    <li><a >Export</a></li>
+                    <li><a href="#" onClick={(e) => this.props.handleShowModalExport(e, recipe.name)}>Export</a></li>
                     <li><a href="#" onClick={(e) => this.props.handleDelete(e, recipe.id)}>Archive</a></li>
                   </ul>
                 </div>
@@ -213,6 +214,7 @@ class RecipeListView extends React.Component {
 RecipeListView.propTypes = {
   recipes: React.PropTypes.array,
   setNotifications: React.PropTypes.func,
+  handleShowModalExport: React.PropTypes.func,
 };
 
 export default RecipeListView;

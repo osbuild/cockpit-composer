@@ -5,6 +5,7 @@ import { Tab, Tabs } from 'react-patternfly-shims';
 import RecipeContents from '../../components/ListView/RecipeContents';
 import ComponentDetailsView from '../../components/ListView/ComponentDetailsView';
 import CreateComposition from '../../components/Modal/CreateComposition';
+import ExportRecipe from '../../components/Modal/ExportRecipe';
 import EmptyState from '../../components/EmptyState/EmptyState';
 import ListView from '../../components/ListView/ListView';
 import ListItemExpandRevisions from '../../components/ListView/ListItemExpandRevisions';
@@ -30,6 +31,7 @@ class RecipePage extends React.Component {
     selectedComponentParent: '',
     inlineEditDescription: false,
     inlineEditDescriptionValue: '',
+    modalExport: false,
     revisions: [
       {
         number: '3',
@@ -231,6 +233,15 @@ class RecipePage extends React.Component {
     this.setState({ inlineEditDescriptionValue: event.target.value });
   }
 
+  // handle show/hide of modal dialogs
+  handleHideModalExport = () => {
+    this.setState({ modalExport: false });
+  }
+  handleShowModalExport = (e) => {
+    this.setState({ modalExport: true });
+    e.preventDefault();
+    e.stopPropagation();
+  }
   render() {
     const activeRevision = this.state.revisions.filter((obj) => obj.active === true)[0];
     const pastRevisions = this.state.revisions.filter((obj) => obj.active === false);
@@ -279,7 +290,7 @@ class RecipePage extends React.Component {
                           aria-expanded="false"
                         ><span className="fa fa-ellipsis-v"></span></button>
                         <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
-                          <li><a>Export</a></li>
+                          <li><a href="#" onClick={(e) => this.handleShowModalExport(e)}>Export</a></li>
                         </ul>
                       </div>
                     </div>
@@ -502,7 +513,7 @@ class RecipePage extends React.Component {
                               aria-expanded="false"
                             ><span className="fa fa-ellipsis-v"></span></button>
                             <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
-                              <li><a >Export</a></li>
+                              <li><a href="#" onClick={(e) => this.handleShowModalExport(e)}>Export</a></li>
                             </ul>
                           </div>
                         </div>
@@ -669,6 +680,7 @@ class RecipePage extends React.Component {
                 changelog={this.state.changelog}
                 compositions={this.state.compositions}
                 listItem={activeRevision}
+                handleShowModalExport={this.handleShowModalExport}
               />
               <div className="list-group-item list-group-item__separator">
                 <div className="list-view-pf-main-info">
@@ -689,6 +701,7 @@ class RecipePage extends React.Component {
                   changelog={this.state.changelog}
                   compositions={this.state.compositions}
                   listItem={revision}
+                  handleShowModalExport={this.handleShowModalExport}
                   key={i}
                 />
               )}
@@ -706,10 +719,8 @@ class RecipePage extends React.Component {
                       >Edit Recipe</Link>
                       <button
                         className="btn btn-default"
-                        id="cmpsr-btn-crt-compos"
-                        data-toggle="modal"
-                        data-target="#cmpsr-modal-crt-compos"
                         type="button"
+                        onClick={(e) => this.handleShowModalCreateComp(e)}
                       >Create Composition</button>
                       <div className="dropdown btn-group  dropdown-kebab-pf">
                         <button
@@ -721,7 +732,7 @@ class RecipePage extends React.Component {
                           aria-expanded="false"
                         ><span className="fa fa-ellipsis-v"></span></button>
                         <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
-                          <li><a >Export</a></li>
+                          <li><a href="#" onClick={(e) => this.handleShowModalExport(e)}>Export</a></li>
                         </ul>
                       </div>
                     </div>
@@ -785,13 +796,9 @@ class RecipePage extends React.Component {
               >
                 <button
                   className="btn btn-default"
-                  id="cmpsr-btn-crt-compos"
-                  data-toggle="modal"
-                  data-target="#cmpsr-modal-crt-compos"
                   type="button"
-                >
-                  Create Composition
-                </button>
+                  onClick={(e) => this.handleShowModalCreateComp(e)}
+                >Create Composition</button>
               </EmptyState>
             ||
               <ListView id="cmpsr-recipe-compositions" >
@@ -810,10 +817,22 @@ class RecipePage extends React.Component {
             <p>Errata</p>
           </Tab>
         </Tabs>
-        <CreateComposition
-          recipe={this.state.recipe.name}
-          setNotifications={this.setNotifications}
-        />
+        {this.state.modalCreateComp ?
+          <CreateComposition
+            recipe={this.state.recipe.name}
+            setNotifications={this.setNotifications}
+            handleHideModalCreateComp={this.handleHideModalCreateComp}
+          /> :
+          null
+        }
+        {this.state.modalExport ?
+          <ExportRecipe
+            recipe={this.state.recipe.name}
+            contents={this.state.dependencies}
+            handleHideModalExport={this.handleHideModalExport}
+          /> :
+          null
+        }
       </Layout>
     );
   }
