@@ -3,12 +3,12 @@ import React from 'react';
 class ExportRecipe extends React.Component {
 
   componentDidMount(){
-    $(this.refs.modal).modal('show');
-    $(this.refs.modal).on('hidden.bs.modal', this.props.handleHideModalExport);
+    $(this.modal).modal('show');
+    $(this.modal).on('hidden.bs.modal', this.props.handleHideModalExport);
   }
 
   handleCopy(){
-    this.refs.recipe_contents_text.select();
+    this.recipe_contents_text.select();
     document.execCommand('copy');
   }
 
@@ -17,7 +17,7 @@ class ExportRecipe extends React.Component {
       <div
         className="modal fade"
         id="cmpsr-modal-export"
-        ref="modal"
+        ref={(c) => { this.modal = c; }}
         tabIndex="-1"
         role="dialog"
         aria-labelledby="myModalLabel"
@@ -66,7 +66,7 @@ class ExportRecipe extends React.Component {
                       <textarea
                         readOnly
                         id="textInput2-modal-markup"
-                        ref="recipe_contents_text"
+                        ref={(c) => { this.recipe_contents_text = c; }}
                         className="form-control"
                         rows="10"
                         value={this.props.contents.map(comp => {

@@ -719,8 +719,10 @@ class RecipePage extends React.Component {
                       >Edit Recipe</Link>
                       <button
                         className="btn btn-default"
+                        id="cmpsr-btn-crt-compos"
+                        data-toggle="modal"
+                        data-target="#cmpsr-modal-crt-compos"
                         type="button"
-                        onClick={(e) => this.handleShowModalCreateComp(e)}
                       >Create Composition</button>
                       <div className="dropdown btn-group  dropdown-kebab-pf">
                         <button
@@ -796,8 +798,10 @@ class RecipePage extends React.Component {
               >
                 <button
                   className="btn btn-default"
+                  id="cmpsr-btn-crt-compos"
+                  data-toggle="modal"
+                  data-target="#cmpsr-modal-crt-compos"
                   type="button"
-                  onClick={(e) => this.handleShowModalCreateComp(e)}
                 >Create Composition</button>
               </EmptyState>
             ||
@@ -817,14 +821,10 @@ class RecipePage extends React.Component {
             <p>Errata</p>
           </Tab>
         </Tabs>
-        {this.state.modalCreateComp ?
-          <CreateComposition
-            recipe={this.state.recipe.name}
-            setNotifications={this.setNotifications}
-            handleHideModalCreateComp={this.handleHideModalCreateComp}
-          /> :
-          null
-        }
+        <CreateComposition
+          recipe={this.state.recipe.name}
+          setNotifications={this.setNotifications}
+        />
         {this.state.modalExport ?
           <ExportRecipe
             recipe={this.state.recipe.name}
