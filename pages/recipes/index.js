@@ -78,7 +78,7 @@ class RecipesPage extends React.Component {
   }
   handleShowModalExport = (e, recipe) => {
     // This implementation of the dialog only provides a text option, and it's
-    // automatically selected. Eventually, the following code should move to a 
+    // automatically selected. Eventually, the following code should move to a
     // separate function that is called when the user selects the text option
 
     // display the dialog, a spinner will display while contents are undefined
@@ -89,7 +89,7 @@ class RecipesPage extends React.Component {
     const recipeName = recipe.replace(/\s/g, '-');
     Promise.all([RecipeApi.getRecipe(recipeName)]).then((data) => {
       this.setState({ modalRecipeContents: data[0].dependencies });
-    }).catch(e => console.log(`Error in EditRecipe promise: ${e}`));
+    }).catch(err => console.log(`Error in EditRecipe promise: ${err}`));
     e.preventDefault();
     e.stopPropagation();
   }
@@ -225,9 +225,14 @@ class RecipesPage extends React.Component {
             </div>
           </div>
         </div>
-        <RecipeListView recipes={this.state.recipes} handleDelete={this.handleDelete} setNotifications={this.setNotifications} handleShowModalExport={this.handleShowModalExport} />
+        <RecipeListView
+          recipes={this.state.recipes}
+          handleDelete={this.handleDelete}
+          setNotifications={this.setNotifications}
+          handleShowModalExport={this.handleShowModalExport}
+        />
         <CreateRecipe />
-        { this.state.modalExport ?
+        {this.state.modalExport ?
           <ExportRecipe
             recipe={this.state.modalRecipe}
             contents={this.state.modalRecipeContents}

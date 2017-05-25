@@ -2,12 +2,12 @@ import React from 'react';
 
 class ExportRecipe extends React.Component {
 
-  componentDidMount(){
+  componentDidMount() {
     $(this.modal).modal('show');
     $(this.modal).on('hidden.bs.modal', this.props.handleHideModalExport);
   }
 
-  handleCopy(){
+  handleCopy() {
     this.recipe_contents_text.select();
     document.execCommand('copy');
   }
@@ -61,7 +61,7 @@ class ExportRecipe extends React.Component {
                     className="col-sm-3 control-label"
                     htmlFor="textInput2-modal-markup"
                   >Contents</label>
-                  { this.props.contents &&
+                  {this.props.contents &&
                     <div className="col-sm-9">
                       <textarea
                         readOnly
@@ -69,9 +69,9 @@ class ExportRecipe extends React.Component {
                         ref={(c) => { this.recipe_contents_text = c; }}
                         className="form-control"
                         rows="10"
-                        value={this.props.contents.map(comp => {
-                            return (comp.name + '-' + comp.version + '-' + comp.release)
-                          }).join('\n')}
+                        value={this.props.contents.map((comp) => (
+                          `${comp.name}-${comp.version}-${comp.release}`
+                        )).join('\n')}
                       />
                       <p>{this.props.contents.length} total components</p>
                     </div>
