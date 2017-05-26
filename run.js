@@ -54,7 +54,20 @@ tasks.set('bundle', () => {
 // Build website into a distributable format
 // -----------------------------------------------------------------------------
 tasks.set('build', () => {
+  const exec = require('child_process').exec;
   global.DEBUG = process.argv.includes('--debug') || false;
+
+  // Get the build information from git and write it to ./core/build-version.json
+  exec('git describe --always',
+    function (error, stdout, stderr) {
+      var build_version = { "build-version": stdout.trim() };
+      if (error !== null) {
+        build_version["build-version"] = "UNKNOWN";
+      }
+      output = JSON.stringify(build_version);
+      fs.writeFileSync('./core/build-version.json', output, 'utf8');
+  });
+
   return Promise.resolve()
     .then(() => run('clean'))
     .then(() => run('bundle'))

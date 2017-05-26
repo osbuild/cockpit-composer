@@ -5,3 +5,4 @@ public/css
 public/fonts
 public/img
 db.json
+core/build-version.json
