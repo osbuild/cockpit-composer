@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Link from '../../components/Link';
 import Layout from '../../components/Layout';
 import RecipeContents from '../../components/ListView/RecipeContents';
@@ -16,10 +17,6 @@ import NotificationsApi from '../../data/NotificationsApi';
 import utils from '../../core/utils';
 
 class EditRecipePage extends React.Component {
-  static propTypes = {
-    route: React.PropTypes.node,
-  }
-
   constructor() {
     super();
     this.setNotifications = this.setNotifications.bind(this);
@@ -639,5 +636,9 @@ class EditRecipePage extends React.Component {
   }
 
 }
+
+EditRecipePage.propTypes = {
+  route: PropTypes.object,
+};
 
 export default EditRecipePage;

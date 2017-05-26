@@ -1,11 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import constants from '../../core/constants';
 import utils from '../../core/utils';
 
 class Actions extends React.Component {
-  static propTypes = {
-    className: React.PropTypes.node,
-  }
 
   state = { actions: [] };
 
@@ -69,5 +67,9 @@ class Actions extends React.Component {
     );
   }
 }
+
+Actions.propTypes = {
+  className: PropTypes.node,
+};
 
 export default Actions;

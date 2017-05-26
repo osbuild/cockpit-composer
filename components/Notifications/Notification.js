@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import NotificationsApi from '../../data/NotificationsApi';
 
 class Notification extends React.PureComponent {
@@ -134,7 +135,7 @@ class Notification extends React.PureComponent {
 }
 
 Notification.propTypes = {
-  notification: React.PropTypes.object,
+  notification: PropTypes.object,
 };
 
 export default Notification;

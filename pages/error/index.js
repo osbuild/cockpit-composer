@@ -1,14 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import history from '../../core/history';
 import Link from '../../components/Link';
 import s from './styles.css';
 
 class ErrorPage extends React.Component {
-
-  static propTypes = {
-    error: React.PropTypes.object,
-  };
-
   componentDidMount() {
     document.title = this.props.error && this.props.error.status === 404 ?
       'Page Not Found' : 'Error';
@@ -46,5 +42,9 @@ class ErrorPage extends React.Component {
   }
 
 }
+
+ErrorPage.propTypes = {
+  error: PropTypes.object,
+};
 
 export default ErrorPage;

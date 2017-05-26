@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ComponentTypeIcons from '../../components/ListView/ComponentTypeIcons';
 
 class ComponentSummaryList extends React.Component {
@@ -46,7 +47,7 @@ class ComponentSummaryList extends React.Component {
 }
 
 ComponentSummaryList.propTypes = {
-  listItems: React.PropTypes.array,
+  listItems: PropTypes.array,
 };
 
 export default ComponentSummaryList;

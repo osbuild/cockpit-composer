@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ComponentTypeIcons from '../../components/ListView/ComponentTypeIcons';
 import ComponentSummaryList from '../../components/ListView/ComponentSummaryList';
 import MetadataApi from '../../data/MetadataApi';
@@ -244,13 +245,13 @@ class ListItemComponents extends React.Component {
 }
 
 ListItemComponents.propTypes = {
-  listItem: React.PropTypes.object,
-  listItemParent: React.PropTypes.string,
-  componentDetailsParent: React.PropTypes.object,
-  handleComponentDetails: React.PropTypes.func,
-  handleRemoveComponent: React.PropTypes.func,
-  noEditComponent: React.PropTypes.bool,
-  isDependency: React.PropTypes.bool,
+  listItem: PropTypes.object,
+  listItemParent: PropTypes.string,
+  componentDetailsParent: PropTypes.object,
+  handleComponentDetails: PropTypes.func,
+  handleRemoveComponent: PropTypes.func,
+  noEditComponent: PropTypes.bool,
+  isDependency: PropTypes.bool,
 };
 
 export default ListItemComponents;

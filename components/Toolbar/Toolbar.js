@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Toolbar = (props) => (
 
@@ -130,7 +131,7 @@ const Toolbar = (props) => (
 );
 
 Toolbar.propTypes = {
-  handleShowModalExport: React.PropTypes.func,
+  handleShowModalExport: PropTypes.func,
 };
 
 export default Toolbar;

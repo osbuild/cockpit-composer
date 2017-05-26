@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ComponentTypeIcons from '../../components/ListView/ComponentTypeIcons';
 import { Tab, Tabs } from 'react-patternfly-shims';
 import DependencyListView from '../../components/ListView/DependencyListView';
@@ -353,13 +354,13 @@ class ComponentDetailsView extends React.Component {
 }
 
 ComponentDetailsView.propTypes = {
-  component: React.PropTypes.object,
-  status: React.PropTypes.string,
-  parent: React.PropTypes.string,
-  handleComponentDetails: React.PropTypes.func,
-  handleRemoveComponent: React.PropTypes.func,
-  handleAddComponent: React.PropTypes.func,
-  handleUpdateComponent: React.PropTypes.func,
+  component: PropTypes.object,
+  status: PropTypes.string,
+  parent: PropTypes.string,
+  handleComponentDetails: PropTypes.func,
+  handleRemoveComponent: PropTypes.func,
+  handleAddComponent: PropTypes.func,
+  handleUpdateComponent: PropTypes.func,
 };
 
 export default ComponentDetailsView;
