@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class ExportRecipe extends React.Component {
 
@@ -99,9 +100,9 @@ class ExportRecipe extends React.Component {
 }
 
 ExportRecipe.propTypes = {
-  recipe: React.PropTypes.string,
-  contents: React.PropTypes.array,
-  handleHideModalExport: React.PropTypes.func,
+  recipe: PropTypes.string,
+  contents: PropTypes.array,
+  handleHideModalExport: PropTypes.func,
 };
 
 export default ExportRecipe;

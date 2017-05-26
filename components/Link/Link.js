@@ -1,14 +1,8 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import history from '../../core/history';
 
 class Link extends React.Component {
-
-  static propTypes = {
-    to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
-    onClick: PropTypes.func,
-    children: PropTypes.node,
-  };
-
   handleClick = (event) => {
     if (this.props.onClick) {
       this.props.onClick(event);
@@ -46,5 +40,11 @@ class Link extends React.Component {
   }
 
 }
+
+Link.propTypes = {
+  to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  onClick: PropTypes.func,
+  children: PropTypes.node,
+};
 
 export default Link;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Link from '../../components/Link';
 
 
@@ -222,13 +223,13 @@ class ListItemExpandRevisions extends React.Component {
 }
 
 ListItemExpandRevisions.propTypes = {
-  listItem: React.PropTypes.object,
-  listItemParent: React.PropTypes.string,
-  comments: React.PropTypes.array,
-  changelog: React.PropTypes.array,
-  compositions: React.PropTypes.array,
-  recipe: React.PropTypes.string,
-  handleShowModalExport: React.PropTypes.func,
+  listItem: PropTypes.object,
+  listItemParent: PropTypes.string,
+  comments: PropTypes.array,
+  changelog: PropTypes.array,
+  compositions: PropTypes.array,
+  recipe: PropTypes.string,
+  handleShowModalExport: PropTypes.func,
 };
 
 export default ListItemExpandRevisions;

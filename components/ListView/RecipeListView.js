@@ -1,12 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Link from '../../components/Link';
 import CreateComposition from '../../components/Modal/CreateComposition';
 
 class RecipeListView extends React.Component {
-  static propTypes = {
-    handleDelete: React.PropTypes.func,
-  }
-
   state = { recipe: '' };
 
   // The following enables the expand/collapse interaction
@@ -212,9 +209,10 @@ class RecipeListView extends React.Component {
 }
 
 RecipeListView.propTypes = {
-  recipes: React.PropTypes.array,
-  setNotifications: React.PropTypes.func,
-  handleShowModalExport: React.PropTypes.func,
+  handleDelete: PropTypes.func,
+  recipes: PropTypes.array,
+  setNotifications: PropTypes.func,
+  handleShowModalExport: PropTypes.func,
 };
 
 export default RecipeListView;

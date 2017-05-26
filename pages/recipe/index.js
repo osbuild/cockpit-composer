@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Link from '../../components/Link';
 import Layout from '../../components/Layout';
 import { Tab, Tabs } from 'react-patternfly-shims';
@@ -840,7 +841,7 @@ class RecipePage extends React.Component {
 }
 
 RecipePage.propTypes = {
-  route: React.PropTypes.object,
+  route: PropTypes.object,
 };
 
 export default RecipePage;

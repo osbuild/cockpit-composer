@@ -1,10 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class CardView extends React.Component {
-  static propTypes = {
-    users: React.PropTypes.array,
-  }
-
   componentDidMount() {
     // run matchHeight jquery plugin
     this.matchHeight();
@@ -63,5 +60,9 @@ class CardView extends React.Component {
     );
   }
 }
+
+CardView.propTypes = {
+  users: PropTypes.array,
+};
 
 export default CardView;

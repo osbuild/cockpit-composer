@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const ListItemLabel = (props) => {
   let dependency = null;
@@ -18,7 +19,7 @@ const ListItemLabel = (props) => {
 };
 
 ListItemLabel.propTypes = {
-  isdependency: React.PropTypes.bool,
+  isdependency: PropTypes.bool,
 };
 
 export default ListItemLabel;

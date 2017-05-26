@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ListView from '../../components/ListView/ListView';
 import ListItemComponents from '../../components/ListView/ListItemComponents';
 
@@ -48,12 +49,12 @@ class DependencyListView extends React.PureComponent {
 }
 
 DependencyListView.propTypes = {
-  id: React.PropTypes.string,
-  listItems: React.PropTypes.array,
-  noEditComponent: React.PropTypes.bool,
-  handleComponentDetails: React.PropTypes.func,
-  handleRemoveComponent: React.PropTypes.func,
-  componentDetailsParent: React.PropTypes.object,
+  id: PropTypes.string,
+  listItems: PropTypes.array,
+  noEditComponent: PropTypes.bool,
+  handleComponentDetails: PropTypes.func,
+  handleRemoveComponent: PropTypes.func,
+  componentDetailsParent: PropTypes.object,
 };
 
 export default DependencyListView;

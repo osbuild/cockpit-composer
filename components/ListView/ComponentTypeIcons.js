@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const ComponentTypeIcons = (props) => {
   let icon = null;
@@ -18,7 +19,7 @@ const ComponentTypeIcons = (props) => {
 };
 
 ComponentTypeIcons.propTypes = {
-  componentType: React.PropTypes.string,
+  componentType: PropTypes.string,
 };
 
 export default ComponentTypeIcons;

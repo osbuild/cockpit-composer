@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ListView from '../../components/ListView/ListView';
 import ListItemComponents from '../../components/ListView/ListItemComponents';
 import DependencyListView from '../../components/ListView/DependencyListView';
@@ -59,11 +60,11 @@ const RecipeContents = (props) => (
 );
 
 RecipeContents.propTypes = {
-  components: React.PropTypes.array,
-  dependencies: React.PropTypes.array,
-  handleComponentDetails: React.PropTypes.func,
-  handleRemoveComponent: React.PropTypes.func,
-  noEditComponent: React.PropTypes.bool,
+  components: PropTypes.array,
+  dependencies: PropTypes.array,
+  handleComponentDetails: PropTypes.func,
+  handleRemoveComponent: PropTypes.func,
+  noEditComponent: PropTypes.bool,
 };
 
 export default RecipeContents;

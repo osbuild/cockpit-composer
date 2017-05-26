@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const ListView = (props) => (
   <div id={props.id} className="list-group list-view-pf list-view-pf-view">
@@ -7,8 +8,8 @@ const ListView = (props) => (
 );
 
 ListView.propTypes = {
-  id: React.PropTypes.string,
-  children: React.PropTypes.node,
+  id: PropTypes.string,
+  children: PropTypes.node,
 };
 
 export default ListView;

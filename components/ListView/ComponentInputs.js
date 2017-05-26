@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ComponentTypeIcons from '../../components/ListView/ComponentTypeIcons';
 
 
@@ -125,9 +126,9 @@ class ComponentInputs extends React.Component {
 }
 
 ComponentInputs.propTypes = {
-  components: React.PropTypes.array,
-  handleComponentDetails: React.PropTypes.func,
-  handleAddComponent: React.PropTypes.func,
+  components: PropTypes.array,
+  handleComponentDetails: PropTypes.func,
+  handleAddComponent: PropTypes.func,
 };
 
 export default ComponentInputs;

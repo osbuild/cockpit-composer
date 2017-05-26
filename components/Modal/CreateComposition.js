@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import constants from '../../core/constants';
 import utils from '../../core/utils';
 import NotificationsApi from '../../data/NotificationsApi';
@@ -93,8 +94,8 @@ class CreateComposition extends React.Component {
 }
 
 CreateComposition.propTypes = {
-  recipe: React.PropTypes.string,
-  setNotifications: React.PropTypes.func,
+  recipe: PropTypes.string,
+  setNotifications: PropTypes.func,
 };
 
 export default CreateComposition;

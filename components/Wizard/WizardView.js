@@ -1,11 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 // import Wizard from './Wizard';
 
 class WizardView extends React.Component {
-
-  static propTypes = {
-    handleClose: React.PropTypes.func,
-  };
 
   // componentDidMount() {
   //   const wizard = new Wizard('#complete');
@@ -376,5 +373,9 @@ class WizardView extends React.Component {
     );
   }
 }
+
+WizardView.propTypes = {
+  handleClose: PropTypes.func,
+};
 
 export default WizardView;

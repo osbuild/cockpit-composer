@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 
 class EmptyState extends React.PureComponent {
@@ -17,10 +18,10 @@ class EmptyState extends React.PureComponent {
 }
 
 EmptyState.propTypes = {
-  icon: React.PropTypes.string,
-  title: React.PropTypes.string,
-  message: React.PropTypes.string,
-  children: React.PropTypes.node,
+  icon: PropTypes.string,
+  title: PropTypes.string,
+  message: PropTypes.string,
+  children: PropTypes.node,
 };
 
 export default EmptyState;

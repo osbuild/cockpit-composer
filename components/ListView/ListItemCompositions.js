@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class ListItemCompositions extends React.PureComponent {
 
@@ -72,7 +73,7 @@ class ListItemCompositions extends React.PureComponent {
 }
 
 ListItemCompositions.propTypes = {
-  listItem: React.PropTypes.object,
+  listItem: PropTypes.object,
 };
 
 export default ListItemCompositions;

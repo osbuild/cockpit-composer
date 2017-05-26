@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Header from './Header';
 import Navigation from './Navigation';
 import Notification from '../../components/Notifications/Notification';
@@ -6,11 +7,6 @@ import NotificationsApi from '../../data/NotificationsApi';
 import utils from '../../core/utils';
 
 class Layout extends React.Component {
-
-  static propTypes = {
-    className: PropTypes.string,
-  };
-
   constructor() {
     super();
     this.setNotifications = this.setNotifications.bind(this);
@@ -57,8 +53,9 @@ class Layout extends React.Component {
 }
 
 Layout.propTypes = {
-  notifications: React.PropTypes.array,
-  children: React.PropTypes.node,
+  className: PropTypes.string,
+  notifications: PropTypes.array,
+  children: PropTypes.node,
 };
 
 export default Layout;
