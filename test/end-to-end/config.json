@@ -4,35 +4,28 @@
         "uri": "http://localhost:4000/",
         "test": "api/v0/test",
         "newRecipe": "api/v0/recipes/new",
-        "deleteRecipe": "api/v0/recipes/delete/"
+        "deleteRecipe": "api/v0/recipes/delete/",
+        "moduleInfo": "api/v0/modules/info/"
     },
     "recipe": {
         "simple": {
             "name": "automation",
             "description": "UI automation recipe",
             "modules": [],
-            "packages": []
+            "packages": [{"name": "xz", "version": "5.1.2"}, {"name": "whois", "version": "5.1.1"}]
         }
     },
-    "__comment_composition": "// Default composition settings for Create Composition UI testing",
+    "__commentComposition": "// Composition type and architechture on Create Composition Page",
     "composition": {
-        "type": "ostree",
-        "arch": "x86_64"
+        "ostree": "ostree",
+        "iso": "iso",
+        "ami": "ami",
+        "qcow2": "qcow2",
+        "vhdx": "vhdx",
+        "x86_64": "x86_64"
     },
-    "iso_composition" : {
-        "type": "iso",
-        "arch": "x86_64"
-    },
-    "ami_composition" : {
-        "type": "ami",
-        "arch": "x86_64"
-    },
-    "qcow2_composition" : {
-        "type": "qcow2",
-        "arch": "x86_64"
-    },
-    "vhdx_composition" : {
-        "type": "vhdx",
-        "arch": "x86_64"
+    "__commentRecipeExport": "// Manifest type of Recipe Export File on Export Recipe Page",
+    "manifestType": {
+        "Text": "Text"
     }
 }
