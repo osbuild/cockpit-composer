@@ -73,4 +73,19 @@ module.exports = {
       .then(() => { done(); })
       .catch((error) => { done(error); });
   },
+
+  // Get module info
+  moduleInfo: (moduleName, callback, done) => {
+    const options = {
+      method: 'GET',
+      uri: `${pageConfig.api.uri}${pageConfig.api.moduleInfo}${moduleName}`,
+      json: true,
+    };
+
+    request(options)
+      .then((resp) => {
+        callback(resp.modules);
+      })
+      .catch((error) => { done(error); });
+  },
 };
