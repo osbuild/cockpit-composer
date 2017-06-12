@@ -4,10 +4,20 @@ const EditRecipePage = require('../pages/editRecipe');
 const apiCall = require('../utils/apiCall');
 const pageConfig = require('../config');
 const sqlite3 = require('sqlite3').verbose();
+const fs = require('fs');
 
 describe('Imported Content Sanity Testing', function () {
   this.timeout(15000);
-  const db = new sqlite3.Database(process.env.MDDB || 'metadata.db');
+  let db;
+
+  before((done) => {
+    // Check exist of metadata.db file first
+    fs.access(process.env.MDDB || 'metadata.db', (error) => {
+      if (error) return done(error);
+      db = new sqlite3.Database(process.env.MDDB || 'metadata.db');
+      return done();
+    });
+  });
 
   before((done) => {
     // Check BDCS API and Web service first
@@ -33,6 +43,7 @@ describe('Imported Content Sanity Testing', function () {
       const nightmare = new Nightmare();
       nightmare
         .goto(editRecipePage.url)
+        .wait(1000) // Have to wait for a while to make total count loaded
         .wait(editRecipePage.totalComponentCount)
         .then(() => nightmare
           .evaluate(page => document.querySelector(page.totalComponentCount).innerText
