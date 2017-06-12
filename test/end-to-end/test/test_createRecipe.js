@@ -29,6 +29,8 @@ describe('Create Recipe Page', function () {
           .goto(recipesPage.url)
           .wait(recipesPage.btnCreateRecipe)
           .click(recipesPage.btnCreateRecipe)
+          .wait(page => document.querySelector(page.dialogRootElement).style.display === 'block'
+            , createRecipePage)
           .wait(createRecipePage.btnSave)
           .click(createRecipePage.btnSave)
           .wait(createRecipePage.labelAlertInfo)
@@ -51,23 +53,22 @@ describe('Create Recipe Page', function () {
 
       it('should switch to Edit Recipe page - recipe creation success @create-recipe-page', (done) => {
         // Highlight the expected result
-        const expected = editRecipePage.url;
 
         const nightmare = new Nightmare();
         nightmare
           .goto(recipesPage.url)
           .wait(recipesPage.btnCreateRecipe)
           .click(recipesPage.btnCreateRecipe)
-          .wait(createRecipePage.inputDescription)
-          .wait(1000)
+          .wait(page => document.querySelector(page.dialogRootElement).style.display === 'block'
+            , createRecipePage)
           .insert(createRecipePage.inputName, createRecipePage.varRecName)
           .insert(createRecipePage.inputDescription, createRecipePage.varRecDesc)
           .click(createRecipePage.btnSave)
-          .wait(editRecipePage.labelEditRecipe)
-          .url()
+          .wait(editRecipePage.componentListItemRootElement)
+          .exists(editRecipePage.componentListItemRootElement)
           .end()
           .then((element) => {
-            expect(element).to.equal(expected);
+            expect(element).to.be.true; // eslint-disable-line no-unused-expressions
             done();
           });
       });

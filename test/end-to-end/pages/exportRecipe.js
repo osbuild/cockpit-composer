@@ -5,9 +5,11 @@ module.exports = class exportRecipePage extends MainPage {
   constructor() {
     super('Export Recipe');
 
+// ---- Root element selector ---- //
     // Root Element for this Dialog Page
-    this.rootElement = '#cmpsr-modal-export';
+    this.rootElement = 'div[id="cmpsr-modal-export"]';
 
+// ---- Page element selector ---- //
     // Modal Title
     this.varExportTitle = 'Export Recipe';
     this.labelExportTitle = `${this.rootElement} h4[id="myModalLabel"]`;
@@ -27,6 +29,7 @@ module.exports = class exportRecipePage extends MainPage {
     // Total components number label
     this.labelTotalComponents = `${this.textAreaContent} + p`;
     this.varTotalComponents = 'total components';
+    this.varEmptyTotalComponents = '0 total components';
 
     // Copy and Close button
     this.btnCopy = `${this.rootElement} .modal-footer button[class="btn btn-primary"]`;

@@ -16,6 +16,7 @@ module.exports = class TostaNotifPage extends MainPage {
     // Recipe Name label
     this.labelRecipeName = '#cmpsr-toast-0 span strong';
     this.varRecipeName = `${this.notifFor}:`;
+    this.varEmptyName = ':';
 
     // Working and Complete status label
     this.varStatusCreating = `${this.varRecipeName} Creating composition.`;
