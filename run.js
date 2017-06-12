@@ -59,14 +59,14 @@ tasks.set('build', () => {
 
   // Get the build information from git and write it to ./core/build-version.json
   exec('git describe --always',
-    function (error, stdout, stderr) {
-      var build_version = { "build-version": stdout.trim() };
+    (error, stdout) => {
+      const buildVersion = { 'build-version': stdout.trim() };
       if (error !== null) {
-        build_version["build-version"] = "UNKNOWN";
+        buildVersion['build-version'] = 'UNKNOWN';
       }
-      output = JSON.stringify(build_version);
+      const output = JSON.stringify(buildVersion);
       fs.writeFileSync('./core/build-version.json', output, 'utf8');
-  });
+    });
 
   return Promise.resolve()
     .then(() => run('clean'))
