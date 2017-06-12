@@ -21,6 +21,9 @@ module.exports = class EditRecipePage extends MainPage {
     // Recipe list edit root element
     this.recipeListEditRootElement = 'div[class="row"] div[id="cmpsr-recipe-list-edit"]';
 
+    // Component list item root element
+    this.componentListItemRootElement = `${this.recipeInputRootElement} div[id="compsr-inputs"] div[class="list-group-item "]`;
+
 // ---- Page element selector ---- //
     // Edit Recipe label
     this.varEditRecipe = 'Edit Recipe';

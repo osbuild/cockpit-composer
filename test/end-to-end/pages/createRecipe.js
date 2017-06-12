@@ -7,23 +7,28 @@ module.exports = class CreateRecipePage extends MainPage {
     this.varRecName = name;
     this.varRecDesc = desc;
 
+// ---- Root element selector ---- //
+    // Create Recipe dialog root selector
+    this.dialogRootElement = 'div[id="cmpsr-modal-crt-recipe"]';
+
+// ---- Page element selector ---- //
     // Close button
-    this.btnClose = '.modal-header .close';
+    this.btnClose = `${this.dialogRootElement} .modal-header .close`;
 
     // Create Recipe label
     this.varCreateRecipe = 'Create Recipe';
-    this.labelCreateRecipe = '#cmpsr-modal-crt-recipe #myModalLabel';
+    this.labelCreateRecipe = `${this.dialogRootElement} #myModalLabel`;
 
     // Recipe Name and Description Input
-    this.inputName = '#cmpsr-modal-crt-recipe #textInput-modal-markup';
-    this.inputDescription = '#cmpsr-modal-crt-recipe #textInput2-modal-markup';
+    this.inputName = `${this.dialogRootElement} #textInput-modal-markup`;
+    this.inputDescription = `${this.dialogRootElement} #textInput2-modal-markup`;
 
     // Save and Cancel button
-    this.btnSave = '#cmpsr-modal-crt-recipe .modal-footer .btn-primary';
-    this.btnCancel = '.modal-footer .btn-default';
+    this.btnSave = `${this.dialogRootElement} .modal-footer .btn-primary`;
+    this.btnCancel = `${this.dialogRootElement} .modal-footer .btn-default`;
 
     // Alert label
     this.varAlertInfo = 'Required information is missing.';
-    this.labelAlertInfo = '#cmpsr-modal-crt-recipe .alert-danger strong';
+    this.labelAlertInfo = `${this.dialogRootElement} .alert-danger strong`;
   }
 };

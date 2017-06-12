@@ -37,6 +37,7 @@ describe('Edit Recipe Page', function () {
         const nightmare = new Nightmare();
         nightmare
           .goto(editRecipePage.url)
+          .wait(editRecipePage.componentListItemRootElement)
           .wait(editRecipePage.linkRecipeName)
           .then(() => nightmare
             .evaluate(page => document.querySelector(page.linkRecipeName).innerText
@@ -62,6 +63,7 @@ describe('Edit Recipe Page', function () {
         const nightmare = new Nightmare();
         nightmare
           .goto(editRecipePage.url)
+          .wait(editRecipePage.componentListItemRootElement)
           .wait(editRecipePage.labelRecipeTitle)
           .evaluate(page => document.querySelector(page.labelRecipeTitle).innerText
             , editRecipePage)
@@ -78,6 +80,7 @@ describe('Edit Recipe Page', function () {
         const nightmare = new Nightmare();
         nightmare
           .goto(editRecipePage.url)
+          .wait(editRecipePage.componentListItemRootElement)
           .wait(editRecipePage.btnCreateCompos)
           .evaluate(page => document.querySelector(page.btnCreateCompos).innerText
             , editRecipePage)
@@ -99,8 +102,11 @@ describe('Edit Recipe Page', function () {
         const nightmare = new Nightmare();
         nightmare
           .goto(editRecipePage.url)
+          .wait(editRecipePage.componentListItemRootElement)
           .wait(editRecipePage.btnCreateCompos)
           .click(editRecipePage.btnCreateCompos)
+          .wait(page => document.querySelector(page.dialogRootElement).style.display === 'block'
+            , createComposPage)
           .wait(createComposPage.labelCreateCompos)
           .evaluate(page => document.querySelector(page.labelCreateCompos).innerText
             , createComposPage)
@@ -120,14 +126,19 @@ describe('Edit Recipe Page', function () {
         const nightmare = new Nightmare();
         nightmare
           .goto(editRecipePage.url)
+          .wait(editRecipePage.componentListItemRootElement)
           .wait(editRecipePage.btnCreateCompos)
           .click(editRecipePage.btnCreateCompos)
-          .wait(createComposPage.btnCreate)
+          .wait(page => document.querySelector(page.dialogRootElement).style.display === 'block'
+            , createComposPage)
           .select(createComposPage.selectComposType, createComposPage.composType)
           .select(createComposPage.selectComposArch, createComposPage.composArch)
           .click(createComposPage.btnCreate)
           .wait(toastNotifPage.iconCreating)
-          .wait(toastNotifPage.labelStatus)
+          .wait((page) => {
+            const recipeName = document.querySelector(page.labelRecipeName).innerText;
+            return recipeName !== page.varEmptyName && recipeName.includes(page.varEmptyName);
+          }, toastNotifPage)
           .then(() => nightmare
             .evaluate(page => document.querySelector(page.labelStatus).innerText
             , toastNotifPage))
@@ -136,7 +147,10 @@ describe('Edit Recipe Page', function () {
           })
           .then(() => nightmare
             .wait(toastNotifPage.iconComplete)
-            .wait(toastNotifPage.labelStatus)
+            .wait((page) => {
+              const recipeName = document.querySelector(page.labelRecipeName).innerText;
+              return recipeName !== page.varEmptyName && recipeName.includes(page.varEmptyName);
+            }, toastNotifPage)
             .evaluate(page => document.querySelector(page.labelStatus).innerText
             , toastNotifPage)
             .end())
@@ -151,18 +165,35 @@ describe('Edit Recipe Page', function () {
         const toastNotifPage = new ToastNotifPage(pageConfig.recipe.simple.name);
 
         // Highlight the expected result
+        const expectedSaving = toastNotifPage.varStatusSaving;
         const expectedSaved = toastNotifPage.varStatusSaved;
 
         const nightmare = new Nightmare();
         nightmare
           .goto(editRecipePage.url)
+          .wait(editRecipePage.componentListItemRootElement)
           .wait(editRecipePage.btnSave)
           .click(editRecipePage.btnSave)
-          .wait(toastNotifPage.iconComplete)
-          .wait(toastNotifPage.labelStatus)
-          .evaluate(page => document.querySelector(page.labelStatus).innerText
-          , toastNotifPage)
-          .end()
+          .wait(toastNotifPage.iconCreating)
+          .wait((page) => {
+            const recipeName = document.querySelector(page.labelRecipeName).innerText;
+            return recipeName !== page.varEmptyName && recipeName.includes(page.varEmptyName);
+          }, toastNotifPage)
+          .then(() => nightmare
+            .evaluate(page => document.querySelector(page.labelStatus).innerText
+            , toastNotifPage))
+          .then((element) => {
+            expect(element).to.equal(expectedSaving);
+          })
+          .then(() => nightmare
+            .wait(toastNotifPage.iconComplete)
+            .wait((page) => {
+              const recipeName = document.querySelector(page.labelRecipeName).innerText;
+              return recipeName !== page.varEmptyName && recipeName.includes(page.varEmptyName);
+            }, toastNotifPage)
+            .evaluate(page => document.querySelector(page.labelStatus).innerText
+            , toastNotifPage)
+            .end())
           .then((element) => {
             expect(element).to.equal(expectedSaved);
             done();
@@ -183,6 +214,7 @@ describe('Edit Recipe Page', function () {
         const nightmare = new Nightmare();
         nightmare
           .goto(editRecipePage.url)
+          .wait(editRecipePage.componentListItemRootElement)
           .wait(btnMoreAction)
           .click(btnMoreAction)
           .wait(menuActionExport)
@@ -201,10 +233,13 @@ describe('Edit Recipe Page', function () {
         const nightmare = new Nightmare();
         nightmare
           .goto(editRecipePage.url)
+          .wait(editRecipePage.componentListItemRootElement)
           .wait(btnMoreAction)
           .click(btnMoreAction)
           .wait(menuActionExport)
           .click(menuActionExport)
+          .wait(page => document.querySelector(page.rootElement).style.display === 'block'
+            , exportRecipePage)
           .wait(exportRecipePage.labelExportTitle)
           .evaluate(page => document.querySelector(page.labelExportTitle).innerText
             , exportRecipePage)
@@ -219,7 +254,8 @@ describe('Edit Recipe Page', function () {
         const packNames = `${pageConfig.recipe.simple.packages[0].name},${pageConfig.recipe.simple.packages[1].name}`;
 
         function callback(packs) {
-          const depList = packs.map(pack => pack.dependencies.map(module => `${module.name}-${module.version}-${module.release}`));
+          const depList = packs.map(
+            pack => pack.dependencies.map(module => `${module.name}-${module.version}-${module.release}`));
           const depCompSet = new Set(depList.reduce((acc, val) => [...acc, ...val]));
 
           // Highlight the expected result
@@ -229,11 +265,13 @@ describe('Edit Recipe Page', function () {
           const nightmare = new Nightmare();
           nightmare
             .goto(editRecipePage.url)
+            .wait(editRecipePage.componentListItemRootElement)
             .wait(btnMoreAction)
             .click(btnMoreAction)
             .wait(menuActionExport)
             .click(menuActionExport)
-            .wait(exportRecipePage.labelTotalComponents)
+            .wait(page => document.querySelector(page.rootElement).style.display === 'block'
+              , exportRecipePage)
             .evaluate(page => document.querySelector(page.labelTotalComponents).innerText
               , exportRecipePage)
             .then((element) => {
@@ -258,17 +296,18 @@ describe('Edit Recipe Page', function () {
         const nightmare = new Nightmare();
         nightmare
           .goto(editRecipePage.url)
+          .wait(editRecipePage.componentListItemRootElement)
           .wait(btnMoreAction)
           .click(btnMoreAction)
           .wait(menuActionExport)
           .click(menuActionExport)
-          .wait(exportRecipePage.textAreaContent)
+          .wait(page => document.querySelector(page.rootElement).style.display === 'block'
+              , exportRecipePage)
           .evaluate(page => document.querySelector(page.textAreaContent).value
             , exportRecipePage)
           .then((element) => { expected = element; })
           .then(() => nightmare
             .wait(exportRecipePage.btnCopy)
-            .wait(1000)
             .click(exportRecipePage.btnCopy)
             .evaluate(() => {
               // create div element for pasting into

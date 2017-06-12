@@ -43,8 +43,7 @@ describe('Imported Content Sanity Testing', function () {
       const nightmare = new Nightmare();
       nightmare
         .goto(editRecipePage.url)
-        .wait(1000) // Have to wait for a while to make total count loaded
-        .wait(editRecipePage.totalComponentCount)
+        .wait(editRecipePage.componentListItemRootElement) // list item and total number are rendered at the same time
         .then(() => nightmare
           .evaluate(page => document.querySelector(page.totalComponentCount).innerText
             , editRecipePage))
