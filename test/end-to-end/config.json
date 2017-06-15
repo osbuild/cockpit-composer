@@ -16,14 +16,13 @@
         }
     },
     "__commentComposition": "// Composition type and architechture on Create Composition Page",
-    "composition": {
-        "ostree": "ostree",
-        "iso": "iso",
-        "ami": "ami",
-        "qcow2": "qcow2",
-        "vhdx": "vhdx",
-        "x86_64": "x86_64"
-    },
+    "composition": [
+        {"type": "ostree", "arch": "x86_64"},
+        {"type": "iso", "arch": "x86_64"},
+        {"type": "ami", "arch": "x86_64"},
+        {"type": "qcow2", "arch": "x86_64"},
+        {"type": "vhdx", "arch": "x86_64"}
+    ],
     "__commentRecipeExport": "// Manifest type of Recipe Export File on Export Recipe Page",
     "manifestType": {
         "Text": "Text"
