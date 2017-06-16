@@ -129,7 +129,7 @@ describe('Recipes Page', function () {
         });
       });
 
-      compositions.forEach(function (composition) {
+      compositions.forEach((composition) => {
         context(`Create Composition Test For ${composition.type} #acceptance`, () => {
           const createComposPage = new CreateComposPage(composition.type
             , composition.arch);
