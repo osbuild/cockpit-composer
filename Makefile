@@ -4,8 +4,8 @@ eslint:
 stylelint:
 	npm run stylelint
 
-test:
-	npm run test
+unit-test:
+	npm run test:cov
 
 end-to-end-test:
 	git clone https://github.com/weldr/welder-deployment

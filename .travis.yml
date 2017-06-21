@@ -14,10 +14,12 @@ before_install:
 env:
   - COMMAND=eslint
   - COMMAND=stylelint
-  - COMMAND=test
+  - COMMAND=unit-test
   - COMMAND=end-to-end-test
 script:
   - make "$COMMAND"
+after_success:
+  - if [ "$COMMAND" == "unit-test" ]; then npm install coveralls && cat ./coverage/lcov.info | coveralls; fi
 notifications:
   email:
     on_failure: change

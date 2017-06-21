@@ -1,6 +1,7 @@
 # Welder Web
 
 [![Build Status](https://travis-ci.org/weldr/welder-web.svg?branch=master)](https://travis-ci.org/weldr/welder-web)
+[![Coverage Status](https://coveralls.io/repos/github/weldr/welder-web/badge.svg?branch=master)](https://coveralls.io/github/weldr/welder-web?branch=master)
 
 The web interface for Welder!
 
@@ -41,7 +42,7 @@ available at [http://localhost:3000/](http://localhost:3000/).
 
 #### Unit Test
 
-The unit tests are powered by [chai](http://chaijs.com/) and [mocha](http://mochajs.org/).
+The unit tests are powered by [Jest](https://facebook.github.io/jest/), [Enzyme](http://airbnb.io/enzyme/) and [Sinon.JS](http://sinonjs.org/)
 
 ```shell
 $ npm run lint                  # Check JavaScript and CSS code for potential issues
