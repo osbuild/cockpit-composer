@@ -1,16 +1,16 @@
 const Nightmare = require('nightmare');
-const expect = require('chai').expect;
 const RecipesPage = require('../pages/recipes');
 const CreateRecipePage = require('../pages/createRecipe');
 const EditRecipePage = require('../pages/editRecipe');
 const apiCall = require('../utils/apiCall');
 const pageConfig = require('../config');
 
-describe('Create Recipe Page', function () {
-  this.timeout(15000);
+describe('Create Recipe Page', () => {
+  // Set case running timeout
+  const timeout = 15000;
 
   // Check BDCS API and Web service first
-  before((done) => {
+  beforeAll((done) => {
     apiCall.serviceCheck(done);
   });
 
@@ -19,8 +19,8 @@ describe('Create Recipe Page', function () {
     , pageConfig.recipe.simple.description);
 
   describe('Input Data Validation Test', () => {
-    context('Required Field Missing #acceptance', () => {
-      it('should show alert message when create recipe without name @create-recipe-page', (done) => {
+    describe('Required Field Missing #acceptance', () => {
+      test('should show alert message when create recipe without name @create-recipe-page', (done) => {
         // Highlight the expected result
         const expected = createRecipePage.varAlertInfo;
 
@@ -38,12 +38,12 @@ describe('Create Recipe Page', function () {
             , createRecipePage)
           .end()
           .then((element) => {
-            expect(element).to.equal(expected);
+            expect(element).toBe(expected);
             done();
           });
-      });
+      }, timeout);
     });
-    context('Simple Valid Input Test #acceptance', () => {
+    describe('Simple Valid Input Test #acceptance', () => {
       const editRecipePage = new EditRecipePage(pageConfig.recipe.simple.name);
 
       // Delete created recipe after each creation case
@@ -51,7 +51,7 @@ describe('Create Recipe Page', function () {
         apiCall.deleteRecipe(editRecipePage.recipeName, done);
       });
 
-      it('should switch to Edit Recipe page - recipe creation success @create-recipe-page', (done) => {
+      test('should switch to Edit Recipe page - recipe creation success @create-recipe-page', (done) => {
         // Highlight the expected result
 
         const nightmare = new Nightmare();
@@ -68,10 +68,10 @@ describe('Create Recipe Page', function () {
           .exists(editRecipePage.componentListItemRootElement)
           .end()
           .then((element) => {
-            expect(element).to.be.true; // eslint-disable-line no-unused-expressions
+            expect(element).toBe(true); // eslint-disable-line no-unused-expressions
             done();
           });
-      });
+      }, timeout);
     });
   });
 });
