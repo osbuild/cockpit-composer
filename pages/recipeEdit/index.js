@@ -7,6 +7,7 @@ import ComponentInputs from '../../components/ListView/ComponentInputs';
 import ComponentDetailsView from '../../components/ListView/ComponentDetailsView';
 import CreateComposition from '../../components/Modal/CreateComposition';
 import ExportRecipe from '../../components/Modal/ExportRecipe';
+import PendingChanges from '../../components/Modal/PendingChanges';
 import EmptyState from '../../components/EmptyState/EmptyState';
 import Pagination from '../../components/Pagination/Pagination';
 import Toolbar from '../../components/Toolbar/Toolbar';
@@ -29,7 +30,7 @@ class EditRecipePage extends React.Component {
     inputComponents: [[]], inputFilters: [], filteredComponents: [[]],
     selectedComponent: '', selectedComponentStatus: '', selectedComponentParent: '',
     selectedInputPage: 0, inputPageSize: 50, totalInputs: 0, totalFilteredInputs: 0,
-    modalExport: false,
+    modal: null,
   };
 
   componentWillMount() {
@@ -451,11 +452,21 @@ class EditRecipePage extends React.Component {
   }
 
   // handle show/hide of modal dialogs
-  handleHideModalExport = () => {
-    this.setState({ modalExport: false });
+  handleHideModal = () => {
+    this.setState({ modal: null });
   }
-  handleShowModalExport = (e) => {
-    this.setState({ modalExport: true });
+  handleShowModal = (e, modalType) => {
+    switch (modalType) {
+      case 'modalPendingChanges':
+        this.setState({ modal: 'modalPendingChanges' });
+        break;
+      case 'modalExport':
+        this.setState({ modal: 'modalExport' });
+        break;
+      default:
+        this.setState({ modal: null });
+        break;
+    }
     e.preventDefault();
     e.stopPropagation();
   }
@@ -470,6 +481,12 @@ class EditRecipePage extends React.Component {
       >
         <div className="cmpsr-edit-actions pull-right">
           <ul className="list-inline">
+            <li className="text-muted">
+              3 changes
+            </li>
+            <li>
+              <a onClick={(e) => this.handleShowModal(e, 'modalPendingChanges')}>View and Comment</a>
+            </li>
             <li>
               <button className="btn btn-primary" type="button" onClick={(e) => this.handleSave(e)}>Save</button>
             </li>
@@ -494,7 +511,7 @@ class EditRecipePage extends React.Component {
 
           {this.state.selectedComponent === '' &&
             <div className="col-sm-7 col-md-8 col-sm-push-5 col-md-push-4" id="cmpsr-recipe-list-edit">
-              <Toolbar handleShowModalExport={this.handleShowModalExport} />
+              <Toolbar handleShowModal={this.handleShowModal} />
             {this.state.recipeComponents.length === 0 &&
               <EmptyState
                 title={'Add Recipe Components'}
@@ -621,11 +638,19 @@ class EditRecipePage extends React.Component {
           recipe={this.state.recipe.name}
           setNotifications={this.setNotifications}
         />
-        {this.state.modalExport ?
+        {this.state.modal === 'modalExport' ?
           <ExportRecipe
             recipe={this.state.recipe.name}
             contents={this.state.recipeDependencies}
-            handleHideModalExport={this.handleHideModalExport}
+            handleHideModal={this.handleHideModal}
+          /> :
+          null
+        }
+        {this.state.modal === 'modalPendingChanges' ?
+          <PendingChanges
+            recipe={this.state.recipe.name}
+            contents={this.state.recipeDependencies}
+            handleHideModal={this.handleHideModal}
           /> :
           null
         }

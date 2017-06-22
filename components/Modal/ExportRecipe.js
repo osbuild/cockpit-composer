@@ -5,7 +5,7 @@ class ExportRecipe extends React.Component {
 
   componentDidMount() {
     $(this.modal).modal('show');
-    $(this.modal).on('hidden.bs.modal', this.props.handleHideModalExport);
+    $(this.modal).on('hidden.bs.modal', this.props.handleHideModal);
   }
 
   handleCopy() {
@@ -102,7 +102,7 @@ class ExportRecipe extends React.Component {
 ExportRecipe.propTypes = {
   recipe: PropTypes.string,
   contents: PropTypes.array,
-  handleHideModalExport: PropTypes.func,
+  handleHideModal: PropTypes.func,
 };
 
 export default ExportRecipe;
