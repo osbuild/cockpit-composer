@@ -78,18 +78,18 @@ class PendingChanges extends React.Component {
                     <li className="list-group-item">
                       {componentUpdated.componentNew && componentUpdated.componentOld &&
                         <div className="row">
-                          <div className="col-sm-3"><strong>Updated</strong></div>
+                          <div className="col-sm-3">Pending Changes<span className="text-muted"> (most recent first)</span></div>
                           <div className="col-sm-9">from <strong>{componentUpdated.componentOld}</strong> to <strong>
                             {componentUpdated.componentNew}</strong></div>
                         </div>
                       } {componentUpdated.componentNew && !componentUpdated.componentOld &&
                         <div className="row">
-                          <div className="col-sm-3"><strong>Added</strong></div>
+                          <div className="col-sm-3">Added</div>
                           <div className="col-sm-9"><strong>{componentUpdated.componentNew}</strong></div>
                         </div>
                       } {componentUpdated.componentOld && !componentUpdated.componentNew &&
                         <div className="row">
-                          <div className="col-sm-3"><strong>Removed</strong></div>
+                          <div className="col-sm-3">Removed</div>
                           <div className="col-sm-9"><strong>{componentUpdated.componentOld}</strong></div>
                         </div>
                       }

@@ -485,7 +485,7 @@ class EditRecipePage extends React.Component {
               3 changes
             </li>
             <li>
-              <a onClick={(e) => this.handleShowModal(e, 'modalPendingChanges')}>View and Comment</a>
+              <a href="#" onClick={(e) => this.handleShowModal(e, 'modalPendingChanges')}>View and Comment</a>
             </li>
             <li>
               <button className="btn btn-primary" type="button" onClick={(e) => this.handleSave(e)}>Save</button>
