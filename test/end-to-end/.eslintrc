@@ -2,16 +2,18 @@
   "globals": {
     "document": true
   },
-  "extends": "airbnb",
+  "extends": [
+    "airbnb",
+    "plugin:jest/recommended"
+  ],
   "env": {
-    "mocha": true
+    "jest": true
   },
   "plugins": [
-    "mocha"
+    "jest"
   ],
   "rules": {
     "func-names": ["error", "never"],
-    "mocha/no-exclusive-tests": "error",
     "import/no-unresolved": ["error", { "ignore": ["nightmare'"] }],
     "max-len": ["error", 130]
   }

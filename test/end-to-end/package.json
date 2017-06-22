@@ -3,13 +3,10 @@
   "version": "0.0.0",
   "description": "weldr-web end-to-end automation test",
   "scripts": {
-    "xunittest": "mocha -R xunit -O output=result.xml",
-    "test": "mocha",
-    "citest": "mocha -R xunit -O output=/result/result.xml"
+    "test": "jest --runInBand"
   },
   "dependencies": {
-    "chai": "^3.5.0",
-    "mocha": "^3.2.0",
+    "jest": "^20.0.4",
     "nightmare": "^2.10.0",
     "request": "^2.81.0",
     "request-promise-native": "^1.0.3",
@@ -19,8 +16,13 @@
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^4.0.0",
-    "eslint-plugin-mocha": "^4.9.0",
-    "eslint-plugin-react": "^6.10.3"
+    "eslint-plugin-jest": "^20.0.3",
+    "eslint-plugin-jsx-a11y": "^5.0.3",
+    "eslint-plugin-react": "^7.1.0"
+  },
+  "jest": {
+    "testMatch": [
+      "**/test_*.js"
+    ]
   }
 }

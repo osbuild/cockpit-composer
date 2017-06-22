@@ -1,5 +1,4 @@
 const Nightmare = require('nightmare');
-const expect = require('chai').expect;
 const EditRecipePage = require('../pages/editRecipe');
 const CreateComposPage = require('../pages/createCompos');
 const ToastNotifPage = require('../pages/toastNotif');
@@ -7,11 +6,12 @@ const ExportRecipePage = require('../pages/exportRecipe');
 const apiCall = require('../utils/apiCall');
 const pageConfig = require('../config');
 
-describe('Edit Recipe Page', function () {
-  this.timeout(15000);
+describe('Edit Recipe Page', () => {
+  // Set case running timeout
+  const timeout = 15000;
 
   // Check BDCS API and Web service first
-  before((done) => {
+  beforeAll((done) => {
     apiCall.serviceCheck(done);
   });
 
@@ -22,17 +22,17 @@ describe('Edit Recipe Page', function () {
     const editRecipePage = new EditRecipePage(pageConfig.recipe.simple.name);
 
     // Create a new recipe before the first test run in this suite
-    before((done) => {
+    beforeAll((done) => {
       apiCall.newRecipe(pageConfig.recipe.simple, done);
     });
 
     // Delete added recipe after all tests completed in this sute
-    after((done) => {
+    afterAll((done) => {
       apiCall.deleteRecipe(pageConfig.recipe.simple.name, done);
     });
 
-    context('Menu Nav Bar Check #acceptance', () => {
-      it('should show a recipe name with a correct link address @edit-recipe-page', (done) => {
+    describe('Menu Nav Bar Check #acceptance', () => {
+      test('should show a recipe name with a correct link address @edit-recipe-page', (done) => {
         // Highlight the expected result
         const expectedRecipeName = editRecipePage.recipeName;
         const expectedViewRecipeLinke = editRecipePage.varLinkToViewRec;
@@ -46,20 +46,20 @@ describe('Edit Recipe Page', function () {
             .evaluate(page => document.querySelector(page.linkRecipeName).innerText
               , editRecipePage))
           .then((element) => {
-            expect(element).to.equal(expectedRecipeName);
+            expect(element).toBe(expectedRecipeName);
           })
           .then(() => nightmare
             .evaluate(page => document.querySelector(page.linkRecipeName).href
               , editRecipePage)
             .end())
           .then((element) => {
-            expect(element).to.equal(expectedViewRecipeLinke);
+            expect(element).toBe(expectedViewRecipeLinke);
             done();
           });
-      });
+      }, timeout);
     });
-    context('Title Bar Check #acceptance', () => {
-      it('should show a recipe name title @edit-recipe-page', (done) => {
+    describe('Title Bar Check #acceptance', () => {
+      test('should show a recipe name title @edit-recipe-page', (done) => {
         // Highlight the expected result
         const expected = editRecipePage.recipeName;
 
@@ -72,11 +72,11 @@ describe('Edit Recipe Page', function () {
             , editRecipePage)
           .end()
           .then((element) => {
-            expect(element).to.equal(expected);
+            expect(element).toBe(expected);
             done();
           });
-      });
-      it('should have Create Composition button @edit-recipe-page', (done) => {
+      }, timeout);
+      test('should have Create Composition button @edit-recipe-page', (done) => {
         // Highlight the expected result
         const expected = editRecipePage.varCreateCompos;
 
@@ -89,18 +89,18 @@ describe('Edit Recipe Page', function () {
             , editRecipePage)
           .end()
           .then((element) => {
-            expect(element).to.equal(expected);
+            expect(element).toBe(expected);
             done();
           });
-      });
+      }, timeout);
     });
     compositions.forEach((composition) => {
-      context(`Create Composition Test For ${composition.type} #acceptance`, () => {
+      describe(`Create Composition Test For ${composition.type} #acceptance`, () => {
         const createComposPage = new CreateComposPage(composition.type
           , composition.arch);
 
 
-        it('should pop up Create Composition window by clicking Create Compostion button @edit-recipe-page', (done) => {
+        test('should pop up Create Composition window by clicking Create Compostion button @edit-recipe-page', (done) => {
           // Highlight the expected result
           const expected = createComposPage.varCreateCompos;
 
@@ -117,11 +117,11 @@ describe('Edit Recipe Page', function () {
               , createComposPage)
             .end()
             .then((element) => {
-              expect(element).to.equal(expected);
+              expect(element).toBe(expected);
               done();
             });
-        });
-        it('should have toast notification pop up when new composition added @edit-recipe-page', (done) => {
+        }, timeout);
+        test('should have toast notification pop up when new composition added @edit-recipe-page', (done) => {
           const toastNotifPage = new ToastNotifPage(pageConfig.recipe.simple.name);
 
           // Highlight the expected result
@@ -148,7 +148,7 @@ describe('Edit Recipe Page', function () {
               .evaluate(page => document.querySelector(page.labelStatus).innerText
               , toastNotifPage))
             .then((element) => {
-              expect(element).to.equal(expectedCreating);
+              expect(element).toBe(expectedCreating);
             })
             .then(() => nightmare
               .wait(toastNotifPage.iconComplete)
@@ -160,60 +160,20 @@ describe('Edit Recipe Page', function () {
               , toastNotifPage)
               .end())
             .then((element) => {
-              expect(element).to.equal(expectedComplete);
+              expect(element).toBe(expectedComplete);
               done();
             });
-        });
+        }, timeout);
       });
     });
-    context('Save Recipe Test #acceptance', () => {
-      it('should have toast notification pop up when Save button cliecked @edit-recipe-page', (done) => {
-        const toastNotifPage = new ToastNotifPage(pageConfig.recipe.simple.name);
-
-        // Highlight the expected result
-        const expectedSaving = toastNotifPage.varStatusSaving;
-        const expectedSaved = toastNotifPage.varStatusSaved;
-
-        const nightmare = new Nightmare();
-        nightmare
-          .goto(editRecipePage.url)
-          .wait(editRecipePage.componentListItemRootElement)
-          .wait(editRecipePage.btnSave)
-          .click(editRecipePage.btnSave)
-          .wait(toastNotifPage.iconCreating)
-          .wait((page) => {
-            const recipeName = document.querySelector(page.labelRecipeName).innerText;
-            return recipeName !== page.varEmptyName && recipeName.includes(page.varEmptyName);
-          }, toastNotifPage)
-          .then(() => nightmare
-            .evaluate(page => document.querySelector(page.labelStatus).innerText
-            , toastNotifPage))
-          .then((element) => {
-            expect(element).to.equal(expectedSaving);
-          })
-          .then(() => nightmare
-            .wait(toastNotifPage.iconComplete)
-            .wait((page) => {
-              const recipeName = document.querySelector(page.labelRecipeName).innerText;
-              return recipeName !== page.varEmptyName && recipeName.includes(page.varEmptyName);
-            }, toastNotifPage)
-            .evaluate(page => document.querySelector(page.labelStatus).innerText
-            , toastNotifPage)
-            .end())
-          .then((element) => {
-            expect(element).to.equal(expectedSaved);
-            done();
-          });
-      });
-    });
-    context('Export Recipe To Manifest Test #acceptance', () => {
+    describe('Export Recipe To Manifest Test #acceptance', () => {
       const exportRecipePage = new ExportRecipePage();
 
       // More action button
       const btnMoreAction = editRecipePage.btnMore;
       const menuActionExport = editRecipePage.menuActionExport;
 
-      it('should pop up dropdown-menu by clicking ":" button', (done) => {
+      test('should pop up dropdown-menu by clicking ":" button', (done) => {
         // Highlight the expected result
         const expected = editRecipePage.moreActionList.Export;
 
@@ -228,11 +188,11 @@ describe('Edit Recipe Page', function () {
             , menuActionExport)
           .end()
           .then((element) => {
-            expect(element).to.equal(expected);
+            expect(element).toBe(expected);
             done();
           });
-      });
-      it('should pop up Export Recipe window by clicking "Export"', (done) => {
+      }, timeout);
+      test('should pop up Export Recipe window by clicking "Export"', (done) => {
         // Highlight the expected result
         const expected = exportRecipePage.varExportTitle;
 
@@ -251,11 +211,11 @@ describe('Edit Recipe Page', function () {
             , exportRecipePage)
           .end()
           .then((element) => {
-            expect(element).to.equal(expected);
+            expect(element).toBe(expected);
             done();
           });
-      });
-      it('should show the correct dependence packages and total numbers of dependencies', (done) => {
+      }, timeout);
+      test('should show the correct dependence packages and total numbers of dependencies', (done) => {
         // Convert package name into a string
         const packNames = `${pageConfig.recipe.simple.packages[0].name},${pageConfig.recipe.simple.packages[1].name}`;
 
@@ -281,21 +241,21 @@ describe('Edit Recipe Page', function () {
             .evaluate(page => document.querySelector(page.labelTotalComponents).innerText
               , exportRecipePage)
             .then((element) => {
-              expect(element).to.equal(expectedNumber);
+              expect(element).toBe(expectedNumber);
             })
             .then(() => nightmare
               .evaluate(page => document.querySelector(page.textAreaContent).value
                 , exportRecipePage)
               .end())
             .then((element) => {
-              expect(element).to.equal(expectedContent);
+              expect(element).toBe(expectedContent);
               done();
             });
         }
 
         apiCall.moduleInfo(packNames, callback, done);
-      });
-      it('should copy and paste correct components', (done) => {
+      }, timeout);
+      test('should copy and paste correct components', (done) => {
         // expected result should be the content in textarea
         let expected = '';
 
@@ -354,10 +314,50 @@ describe('Edit Recipe Page', function () {
             .end())
           .then((element) => {
             // remove the last "\n" from paste result with trim()
-            expect(element.trim()).to.equal(expected);
+            expect(element.trim()).toBe(expected);
             done();
           });
-      });
+      }, timeout);
+    });
+    describe('Save Recipe Test #acceptance', () => {
+      test('should have toast notification pop up when Save button cliecked @edit-recipe-page', (done) => {
+        const toastNotifPage = new ToastNotifPage(pageConfig.recipe.simple.name);
+
+        // Highlight the expected result
+        const expectedSaving = toastNotifPage.varStatusSaving;
+        const expectedSaved = toastNotifPage.varStatusSaved;
+
+        const nightmare = new Nightmare();
+        nightmare
+          .goto(editRecipePage.url)
+          .wait(editRecipePage.componentListItemRootElement)
+          .wait(editRecipePage.btnSave)
+          .click(editRecipePage.btnSave)
+          .wait(toastNotifPage.iconCreating)
+          .wait((page) => {
+            const recipeName = document.querySelector(page.labelRecipeName).innerText;
+            return recipeName !== page.varEmptyName && recipeName.includes(page.varEmptyName);
+          }, toastNotifPage)
+          .then(() => nightmare
+            .evaluate(page => document.querySelector(page.labelStatus).innerText
+            , toastNotifPage))
+          .then((element) => {
+            expect(element).toBe(expectedSaving);
+          })
+          .then(() => nightmare
+            .wait(toastNotifPage.iconComplete)
+            .wait((page) => {
+              const recipeName = document.querySelector(page.labelRecipeName).innerText;
+              return recipeName !== page.varEmptyName && recipeName.includes(page.varEmptyName);
+            }, toastNotifPage)
+            .evaluate(page => document.querySelector(page.labelStatus).innerText
+            , toastNotifPage)
+            .end())
+          .then((element) => {
+            expect(element).toBe(expectedSaved);
+            done();
+          });
+      }, timeout);
     });
   });
 });
