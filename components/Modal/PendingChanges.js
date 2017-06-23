@@ -72,13 +72,13 @@ class PendingChanges extends React.Component {
                   <span className="pficon pficon-info"></span>
                   Only changes to selected components are shown. <a href="#" className="alert-link">View all changes.</a>
                 </div>
-                <strong>Pending Changes</strong>
+                <strong>Pending Changes</strong><span className="text-muted"> (most recent first)</span>
                 <ul className="list-group">
                   {this.state.componentUpdates.map((componentUpdated) => (
                     <li className="list-group-item">
                       {componentUpdated.componentNew && componentUpdated.componentOld &&
                         <div className="row">
-                          <div className="col-sm-3">Updated<span className="text-muted"> (most recent first)</span></div>
+                          <div className="col-sm-3">Updated</div>
                           <div className="col-sm-9">from <strong>{componentUpdated.componentOld}</strong> to <strong>
                             {componentUpdated.componentNew}</strong></div>
                         </div>
