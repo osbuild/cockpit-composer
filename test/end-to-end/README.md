@@ -8,7 +8,7 @@ The end-to-end automation test for Welder! It is performed on the application le
 ### Running end-to-end test directly on the host
 
 The end-to-end tests are powered by [nightmare](http://nightmarejs.org/), 
-[chai](http://chaijs.com/), [mocha](http://mochajs.org/) and [request-promise-native](https://github.com/request/request-promise-native)
+[Jest](https://facebook.github.io/jest/) and [request-promise-native](https://github.com/request/request-promise-native)
 
 #### Requirement
 
@@ -26,14 +26,13 @@ All test cases are placed in *test/end-to-end/test* directory.
 $ cd test/end-to-end
 $ npm install                                   # Install end-to-end dependencies
 $ npm run test                                  # Run end-to-end test
-$ npm run xunittest                             # Run end-to-end test with xunit xml result output
 ```
 
 ```shell
-$ mocha --grep=#acceptance                                 # Run acceptance case only
-$ mocha --grep=@create-recipe-page                         # Run create recipe page related case only
-$ mocha --grep=#acceptance.+@create-recipe-page            # Run acceptance case in create recipe page cases
-$ mocha --grep="@create-recipe-page|@edit-recipe-page"     # Run create recipe and edit recipe pages cases
+$ jest -i -t "#acceptance"                               # Run acceptance case only
+$ jest -i -t "@create-recipe-page"                       # Run create recipe page related case only
+$ jest -i -t "#acceptance.+@create-recipe-page"          # Run acceptance case in create recipe page cases
+$ jest -i -t "@create-recipe-page|@edit-recipe-page"     # Run create recipe and edit recipe pages cases
 ```
 
 ### Running end-to-end test in Docker
@@ -52,9 +51,7 @@ repository by running `make build` and `make import-metadata`. Run them by runni
 
 Run end-to-end test like this:
 
-`sudo docker run --rm --name welder_end_to_end --network welder_default -v test-result-volume:/result weld/end-to-end:latest xvfb-run -a -s '-screen 0 1024x768x24' npm run citest`
-
-XUnit XML format result will be generated at */var/lib/docker/volumes/test-result-volume/_data/result.xml*
+`sudo docker run --rm --name welder_end_to_end --network welder_default -v `pwd`/welder-deployment/mddb:/mddb -e MDDB='/mddb/metadata.db' weld/end-to-end:latest xvfb-run -a -s '-screen 0 1024x768x24' npm run test`
 
 ## Directory Layout
 
@@ -78,7 +75,6 @@ XUnit XML format result will be generated at */var/lib/docker/volumes/test-resul
 ## Page Class
 
 ```javascript
-// Create Composition page class
 const MainPage = require('./main');                           // Import top level class
 
 module.exports = class CreateComposPage extends MainPage {    // Inherint from top level class
@@ -97,35 +93,36 @@ module.exports = class CreateComposPage extends MainPage {    // Inherint from t
 ## Test Suite and Case Layout
 
 ```javascript
-describe('View Recipe Page', function () {                // Which page does this suite test
-  this.timeout(15000);                                    // Timeout setting for this suite (ms)
+describe('View Recipe Page', function () {             // Which page does this suite test
+  // Set case running timeout
+  const timeout = 15000;                               // Timeout setting for this suite (ms)
 
-  before((done) => {                                      // Check BDCS API and Web service avaliable first,
-    apiCall.serviceCheck(done);                           // end-to-end test depends on BDCS API and Web.
+  beforeAll((done) => {                                // Check BDCS API and Web service avaliable first,
+    apiCall.serviceCheck(done);
   });                                                                   
 
   describe('Single Word Recipe Name Scenario', () => {    // Group suite or case into a scenario
     
-    before((done) => {                                    // Scenario provision
+    beforeAll((done) => {                                 // Scenario provision
     });
 
-    after((done) => {                                     // Scenario de-provision, like apply a snapshot
+    afterAll((done) => {                                  // Scenario de-provision, like apply a snapshot
     });
 
-    context('Menu Nav Bar Check #acceptance', () => {     // Test content and test type
-      it('should show a recipe name @view-recipe-page', (done) => {    // Case description and case ID
+    describe('Menu Nav Bar Check #acceptance', () => {     // Test content and test type
+      test('should show a recipe name @view-recipe-page', (done) => {    // Case description and case ID
         
-        const expected = "Expected Result";               // Highlight the expected result at the top level 
-                                                          // of each case block. Explicit is always better!
-      });
+        const expected = "Expected Result";         // Highlight the expected result at the top level 
+                                                    // of each case block. Explicit is always better!
+      }, timeout);
     });
-    context('Title Bar Check #acceptance', () => {
-      it('should show a recipe name title @view-recipe-page', (done) => {
+    describe('Title Bar Check #acceptance', () => {
+      test('should show a recipe name title @view-recipe-page', (done) => {
 
-      });
-      it('should have Create Composition button @view-recipe-page', (done) => {
+      }, timeout);
+      test('should have Create Composition button @view-recipe-page', (done) => {
 
-      });
+      }, timeout);
     });
   });
 });
