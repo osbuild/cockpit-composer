@@ -68,7 +68,7 @@ const Toolbar = (props) => (
                 aria-expanded="false"
               ><span className="fa fa-ellipsis-v"></span></button>
               <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
-                <li><a href="#" onClick={(e) => props.handleShowModalExport(e)}>Export</a></li>
+                <li><a href="#" onClick={(e) => props.handleShowModal(e, 'modalExport')}>Export</a></li>
                 <li role="separator" className="divider"></li>
                 <li><a >Update Selected Components</a></li>
                 <li><a >Remove Selected Components</a></li>
@@ -131,7 +131,7 @@ const Toolbar = (props) => (
 );
 
 Toolbar.propTypes = {
-  handleShowModalExport: PropTypes.func,
+  handleShowModal: PropTypes.func,
 };
 
 export default Toolbar;
