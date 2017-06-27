@@ -1,10 +1,12 @@
 import React from 'react';
 import RecipeApi from '../../data/RecipeApi';
+import constants from '../../core/constants';
+import utils from '../../core/utils';
 
 
 class CreateRecipe extends React.Component {
 
-  state = { showErrorName: false, inlineError: false, checkErrors: true,
+  state = { showErrorName: false, showErrorDuplicate: false, inlineError: false, checkErrors: true,
     recipe: {
       name: '',
       description: '',
@@ -40,16 +42,20 @@ class CreateRecipe extends React.Component {
     const o = Object.assign({}, this.state.recipe);
     o[prop] = e.target.value;
     this.setState({ recipe: o });
+    this.dismissErrors();
+    this.handleErrors();
   };
 
   handleEnterKey(event) {
     if (event.which === 13 || event.keyCode === 13) {
-      if (this.state.recipe.name === '') {
-        this.setState({ showErrorName: true });
-        this.showInlineError();
-      } else {
-        this.handleCreateRecipe(event, this.state.recipe);
-      }
+      this.handleErrors();
+      setTimeout(() => {
+        if (this.state.showErrorName || this.state.showErrorDuplicate) {
+          this.showInlineError();
+        } else {
+          this.handleCreateRecipe(event, this.state.recipe);
+        }
+      }, 400);
     }
   }
 
@@ -65,6 +71,25 @@ class CreateRecipe extends React.Component {
   dismissErrors() {
     this.setState({ inlineError: false });
     this.setState({ showErrorName: false });
+    this.setState({ showErrorDuplicate: false });
+  }
+
+  handleErrors() {
+    this.handleErrorDuplicate();
+    this.handleErrorName();
+  }
+
+  handleErrorDuplicate() {
+    utils.apiFetch(constants.get_recipes_list)
+      .then(listdata => {
+        for (const listedName of listdata.recipes) {
+          // regex to replace a space with a '-'
+          const ourName = this.state.recipe.name.replace(/\s+/g, '-');
+          if (listedName === ourName) {
+            this.setState({ showErrorDuplicate: true });
+          }
+        }
+      });
   }
 
   handleErrorName() {
@@ -107,17 +132,27 @@ class CreateRecipe extends React.Component {
               <h4 className="modal-title" id="myModalLabel">Create Recipe</h4>
             </div>
             <div className="modal-body">
-              {this.state.inlineError === true &&
+              {(this.state.inlineError && this.state.showErrorName) ?
                 <div className="alert alert-danger">
                   <span className="pficon pficon-error-circle-o"></span>
-                  <strong>Required information is missing.</strong>.
+                  <strong>Required information is missing.</strong>
                 </div>
+                :
+                <div></div>
+              }
+              {(this.state.inlineError && this.state.showErrorDuplicate) ?
+                <div className="alert alert-danger">
+                  <span className="pficon pficon-error-circle-o"></span>
+                  <strong>Specify a new recipe name.</strong>
+                </div>
+                :
+                <div></div>
               }
               <form className="form-horizontal" onKeyPress={(e) => this.handleEnterKey(e)}>
                 <p className="fields-status-pf">
                   The fields marked with <span className="required-pf">*</span> are required.
                 </p>
-                <div className={`form-group ${this.state.showErrorName ? 'has-error' : ''}`}>
+                <div className={`form-group ${(this.state.showErrorName || this.state.showErrorDuplicate) ? 'has-error' : ''}`}>
                   <label
                     className="col-sm-3 control-label required-pf"
                     htmlFor="textInput-modal-markup"
@@ -129,10 +164,13 @@ class CreateRecipe extends React.Component {
                       className="form-control"
                       value={this.state.recipe.name}
                       onChange={(e) => this.handleChange(e, 'name')}
-                      onBlur={(e) => this.handleErrorName(e)}
+                      onBlur={(e) => this.handleErrors(e)}
                     />
                     {this.state.showErrorName === true &&
                       <span className="help-block">A recipe name is required.</span>
+                    }
+                    {this.state.showErrorDuplicate === true &&
+                      <span className="help-block">The name "{this.state.recipe.name}" already exists.</span>
                     }
                   </div>
                 </div>
@@ -162,7 +200,7 @@ class CreateRecipe extends React.Component {
                 onMouseLeave={() => this.errorChecking(true)}
                 onClick={(e) => this.dismissErrors(e)}
               >Cancel</button>
-              {this.state.recipe.name === '' &&
+              {(this.state.recipe.name === '' || this.state.showErrorDuplicate) &&
                 <button
                   type="button"
                   className="btn btn-primary"

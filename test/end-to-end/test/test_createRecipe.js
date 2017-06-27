@@ -22,7 +22,7 @@ describe('Create Recipe Page', () => {
     describe('Required Field Missing #acceptance', () => {
       test('should show alert message when create recipe without name @create-recipe-page', (done) => {
         // Highlight the expected result
-        const expected = createRecipePage.varAlertInfo;
+        const expected = createRecipePage.varAlertMissingInfo;
 
         const nightmare = new Nightmare();
         nightmare
@@ -31,6 +31,40 @@ describe('Create Recipe Page', () => {
           .click(recipesPage.btnCreateRecipe)
           .wait(page => document.querySelector(page.dialogRootElement).style.display === 'block'
             , createRecipePage)
+          .insert(createRecipePage.inputName, createRecipePage.varEmptyName)
+          .wait(createRecipePage.btnSave)
+          .click(createRecipePage.btnSave)
+          .wait(createRecipePage.labelAlertInfo)
+          .evaluate(page => document.querySelector(page.labelAlertInfo).innerText
+            , createRecipePage)
+          .end()
+          .then((element) => {
+            expect(element).toBe(expected);
+            done();
+          });
+      }, timeout);
+    });
+    describe('Duplicate Recipe Name #acceptance', () => {
+      beforeAll((done) => {
+        apiCall.newRecipe(pageConfig.recipe.simple, done);
+      });
+
+      afterAll((done) => {
+        apiCall.deleteRecipe(pageConfig.recipe.simple.name, done);
+      });
+
+      test('should show alert message when create recipe with a duplicate name @create-recipe-page', (done) => {
+        // Highlight the expected result
+        const expected = createRecipePage.varAlertDuplicateInfo;
+
+        const nightmare = new Nightmare();
+        nightmare
+          .goto(recipesPage.url)
+          .wait(recipesPage.btnCreateRecipe)
+          .click(recipesPage.btnCreateRecipe)
+          .wait(page => document.querySelector(page.dialogRootElement).style.display === 'block'
+            , createRecipePage)
+          .insert(createRecipePage.inputName, createRecipePage.varRecName)
           .wait(createRecipePage.btnSave)
           .click(createRecipePage.btnSave)
           .wait(createRecipePage.labelAlertInfo)
