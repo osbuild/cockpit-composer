@@ -42,20 +42,21 @@ class CreateRecipe extends React.Component {
     const o = Object.assign({}, this.state.recipe);
     o[prop] = e.target.value;
     this.setState({ recipe: o });
-    this.dismissErrors();
-    this.handleErrors();
+    if (prop === 'name') {
+      this.dismissErrors();
+      this.handleErrors(e.target.value);
+    }
   };
 
   handleEnterKey(event) {
     if (event.which === 13 || event.keyCode === 13) {
-      this.handleErrors();
       setTimeout(() => {
         if (this.state.showErrorName || this.state.showErrorDuplicate) {
           this.showInlineError();
         } else {
           this.handleCreateRecipe(event, this.state.recipe);
         }
-      }, 400);
+      }, 10);
     }
   }
 
@@ -74,30 +75,24 @@ class CreateRecipe extends React.Component {
     this.setState({ showErrorDuplicate: false });
   }
 
-  handleErrors() {
-    this.handleErrorDuplicate();
-    this.handleErrorName();
+  handleErrors(recipeName) {
+    this.handleErrorDuplicate(recipeName);
+    this.handleErrorName(recipeName);
   }
 
-  handleErrorDuplicate() {
+  handleErrorDuplicate(recipeName) {
     utils.apiFetch(constants.get_recipes_list)
       .then(listdata => {
-        for (const listedName of listdata.recipes) {
-          // regex to replace a space with a '-'
-          const ourName = this.state.recipe.name.replace(/\s+/g, '-');
-          if (listedName === ourName) {
-            this.setState({ showErrorDuplicate: true });
-          }
+        const nameNoSpaces = recipeName.replace(/\s+/g, '-');
+        if (listdata.recipes.includes(nameNoSpaces)) {
+          this.setState({ showErrorDuplicate: true });
         }
       });
   }
 
-  handleErrorName() {
-    if (this.state.recipe.name === '' && this.state.checkErrors) {
-      setTimeout(() => {
-        this.setState({ showErrorName: true });
-      }, 400); // don't change state immediately so that user has time to finish clicking Save,
-               // if that's how onBlur is triggered
+  handleErrorName(recipeName) {
+    if (recipeName === '' && this.state.checkErrors) {
+      this.setState({ showErrorName: true });
     }
   }
 
@@ -132,21 +127,17 @@ class CreateRecipe extends React.Component {
               <h4 className="modal-title" id="myModalLabel">Create Recipe</h4>
             </div>
             <div className="modal-body">
-              {(this.state.inlineError && this.state.showErrorName) ?
+              {(this.state.inlineError && this.state.showErrorName) &&
                 <div className="alert alert-danger">
                   <span className="pficon pficon-error-circle-o"></span>
                   <strong>Required information is missing.</strong>
                 </div>
-                :
-                <div></div>
               }
-              {(this.state.inlineError && this.state.showErrorDuplicate) ?
+              {(this.state.inlineError && this.state.showErrorDuplicate) &&
                 <div className="alert alert-danger">
                   <span className="pficon pficon-error-circle-o"></span>
                   <strong>Specify a new recipe name.</strong>
                 </div>
-                :
-                <div></div>
               }
               <form className="form-horizontal" onKeyPress={(e) => this.handleEnterKey(e)}>
                 <p className="fields-status-pf">
@@ -164,12 +155,12 @@ class CreateRecipe extends React.Component {
                       className="form-control"
                       value={this.state.recipe.name}
                       onChange={(e) => this.handleChange(e, 'name')}
-                      onBlur={(e) => this.handleErrors(e)}
+                      onBlur={(e) => this.handleErrors(e.target.value)}
                     />
-                    {this.state.showErrorName === true &&
+                    {this.state.showErrorName &&
                       <span className="help-block">A recipe name is required.</span>
                     }
-                    {this.state.showErrorDuplicate === true &&
+                    {this.state.showErrorDuplicate &&
                       <span className="help-block">The name "{this.state.recipe.name}" already exists.</span>
                     }
                   </div>
