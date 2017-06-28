@@ -64,7 +64,7 @@ describe('Create Recipe Page', () => {
           .click(recipesPage.btnCreateRecipe)
           .wait(page => document.querySelector(page.dialogRootElement).style.display === 'block'
             , createRecipePage)
-          .insert(createRecipePage.inputName, pageConfig.recipe.simple.name)
+          .type(createRecipePage.inputName, pageConfig.recipe.simple.name)
           .wait(createRecipePage.btnSave)
           .click(createRecipePage.btnSave)
           .wait(createRecipePage.labelAlertInfo)
