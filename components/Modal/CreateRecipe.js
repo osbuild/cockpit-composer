@@ -50,13 +50,14 @@ class CreateRecipe extends React.Component {
 
   handleEnterKey(event) {
     if (event.which === 13 || event.keyCode === 13) {
+      this.handleErrors(this.state.recipe.name);
       setTimeout(() => {
         if (this.state.showErrorName || this.state.showErrorDuplicate) {
           this.showInlineError();
         } else {
           this.handleCreateRecipe(event, this.state.recipe);
         }
-      }, 10);
+      }, 100);
     }
   }
 
@@ -154,6 +155,7 @@ class CreateRecipe extends React.Component {
                       id="textInput-modal-markup"
                       className="form-control"
                       value={this.state.recipe.name}
+                      onFocus={(e) => { this.dismissErrors(); this.handleErrorDuplicate(e.target.value); }}
                       onChange={(e) => this.handleChange(e, 'name')}
                       onBlur={(e) => this.handleErrors(e.target.value)}
                     />
