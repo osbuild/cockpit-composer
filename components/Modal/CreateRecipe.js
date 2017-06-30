@@ -44,7 +44,7 @@ class CreateRecipe extends React.Component {
     this.setState({ recipe: o });
     if (prop === 'name') {
       this.dismissErrors();
-      this.handleErrors(e.target.value);
+      this.handleErrorDuplicate(e.target.value);
     }
   };
 
