@@ -5,6 +5,7 @@ module.exports = class CreateRecipePage extends MainPage {
   constructor(name, desc) {
     super('Create Recipe');
     this.varRecName = name;
+    this.varEmptyName = '';
     this.varRecDesc = desc;
 
 // ---- Root element selector ---- //
@@ -28,7 +29,8 @@ module.exports = class CreateRecipePage extends MainPage {
     this.btnCancel = `${this.dialogRootElement} .modal-footer .btn-default`;
 
     // Alert label
-    this.varAlertInfo = 'Required information is missing.';
+    this.varAlertMissingInfo = 'Required information is missing.';
+    this.varAlertDuplicateInfo = 'Specify a new recipe name.';
     this.labelAlertInfo = `${this.dialogRootElement} .alert-danger strong`;
   }
 };
