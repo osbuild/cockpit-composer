@@ -93,7 +93,9 @@ class CreateRecipe extends React.Component {
 
   handleErrorName(recipeName) {
     if (recipeName === '' && this.state.checkErrors) {
-      this.setState({ showErrorName: true });
+      setTimeout(() => {
+        this.setState({ showErrorName: true });
+      }, 200);
     }
   }
 
