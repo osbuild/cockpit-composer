@@ -1,11 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Layout from '../../components/Layout';
 import RecipeListView from '../../components/ListView/RecipeListView';
 import CreateRecipe from '../../components/Modal/CreateRecipe';
 import ExportRecipe from '../../components/Modal/ExportRecipe';
-import RecipeApi from '../../data/RecipeApi';
-import constants from '../../core/constants';
-import utils from '../../core/utils';
+import { connect } from 'react-redux';
+import {
+  setModalRecipeName,
+  setModalRecipeContents,
+  setModalRecipeVisible,
+  fetchingModalRecipeContents,
+} from '../../core/actions/modals';
+import { fetchingRecipes, deletingRecipe } from '../../core/actions/recipes';
 
 class RecipesPage extends React.Component {
   constructor() {
@@ -13,10 +19,8 @@ class RecipesPage extends React.Component {
     this.setNotifications = this.setNotifications.bind(this);
   }
 
-  state = { recipes: [], modalRecipe: '', modalRecipeContents: [] };
-
   componentWillMount() {
-    this.getRecipes();
+    this.props.fetchingRecipes();
   }
 
   componentDidMount() {
@@ -27,54 +31,17 @@ class RecipesPage extends React.Component {
     this.refs.layout.setNotifications();
   }
 
-  getRecipes() {
-    // The /recipes/list response looks like:
-    // {"recipes":["example","http-server","nfs-server"],"offset":0,"limit":20}
-    utils.apiFetch(constants.get_recipes_list)
-      .then(listdata => {
-        for (const i of listdata.recipes) {
-          const recipeName = i;
-            // Recipe info looks like:
-            // {"recipes":[{"name":"http-server","description":"An example http server",
-            // "modules":[{"name":"fm-httpd","version":"23.*"},{"name":"fm-php","version":"11.6.*"}]
-            // ,"packages":[{"name":"tmux","version":"2.2"}]}],"offset":0,"limit":20}
-          utils.apiFetch(constants.get_recipes_info + recipeName)
-              .then(recipedata => {
-                const recipe = recipedata.recipes[0];
-                recipe.id = recipeName;
-                this.setState({ recipes: this.state.recipes.concat(recipe) });
-              });
-        }
-      })
-      .catch(e => console.log(`Error getting recipes: ${e}`));
-  }
-
   handleDelete = (event, recipe) => {
     event.preventDefault();
     event.stopPropagation();
-    const p = new Promise((resolve, reject) => {
-      RecipeApi.deleteRecipe(recipe)
-      .then(() => {
-        // find the recipe in recipes and remove it
-        let recipes = this.state.recipes;
-        recipes = recipes.filter(
-          (obj) => (obj.id !== recipe)
-        );
-        this.setState({ recipes });
-        resolve();
-      }).catch(e => {
-        console.log(`Error deleting recipe: ${e}`);
-        reject();
-      });
-    });
-    return p;
+    this.props.deletingRecipe(recipe);
   }
 
   // handle show/hide of modal dialogs
   handleHideModalExport = () => {
-    this.setState({ modalExport: false });
-    this.setState({ modalRecipe: '' });
-    this.setState({ modalRecipeContents: [] });
+    this.props.setModalRecipeVisible(false);
+    this.props.setModalRecipeName('');
+    this.props.setModalRecipeContents([]);
   }
   handleShowModalExport = (e, recipe) => {
     // This implementation of the dialog only provides a text option, and it's
@@ -82,19 +49,18 @@ class RecipesPage extends React.Component {
     // separate function that is called when the user selects the text option
 
     // display the dialog, a spinner will display while contents are undefined
-    this.setState({ modalRecipe: recipe });
-    this.setState({ modalRecipeContents: undefined });
-    this.setState({ modalExport: true });
-    // run depsolving against recipe to get contents for dialog
+    this.props.setModalRecipeName(recipe);
+    this.props.setModalRecipeContents(undefined);
     const recipeName = recipe.replace(/\s/g, '-');
-    Promise.all([RecipeApi.getRecipe(recipeName)]).then((data) => {
-      this.setState({ modalRecipeContents: data[0].dependencies });
-    }).catch(err => console.log(`Error in EditRecipe promise: ${err}`));
+    // run depsolving against recipe to get contents for dialog
+    this.props.fetchingModalRecipeContents(recipeName);
+    this.props.setModalRecipeVisible(true);
     e.preventDefault();
     e.stopPropagation();
   }
 
   render() {
+    const { recipes, modalRecipeName, modalVisible, modalRecipeContents } = this.props;
     return (
       <Layout
         className="container-fluid container-pf-nav-pf-vertical"
@@ -226,24 +192,67 @@ class RecipesPage extends React.Component {
           </div>
         </div>
         <RecipeListView
-          recipes={this.state.recipes}
+          recipes={recipes}
           handleDelete={this.handleDelete}
           setNotifications={this.setNotifications}
           handleShowModalExport={this.handleShowModalExport}
         />
-        <CreateRecipe />
-        {this.state.modalExport ?
+        <CreateRecipe
+          recipeNames={this.props.recipes.map(recipe => recipe.id)}
+        />
+        {modalVisible ?
           <ExportRecipe
-            recipe={this.state.modalRecipe}
-            contents={this.state.modalRecipeContents}
-            handleHideModalExport={this.handleHideModalExport}
+            recipe={modalRecipeName}
+            contents={modalRecipeContents}
+            handleHideModal={this.handleHideModalExport}
           /> :
           null
         }
       </Layout>
     );
   }
-
 }
 
-export default RecipesPage;
+RecipesPage.propTypes = {
+  fetchingRecipes: PropTypes.func,
+  deletingRecipe: PropTypes.func,
+  setModalRecipeVisible: PropTypes.func,
+  setModalRecipeName: PropTypes.func,
+  setModalRecipeContents: PropTypes.func,
+  fetchingModalRecipeContents: PropTypes.func,
+  recipes: PropTypes.array,
+  modalRecipeName: PropTypes.string,
+  modalVisible: PropTypes.bool,
+  modalRecipeContents: PropTypes.array,
+};
+
+const mapStateToProps = (state) => ({
+  modalRecipeName: state.modalExportRecipe.name,
+  modalRecipeContents: state.modalExportRecipe.contents,
+  modalVisible: state.modalExportRecipe.visible,
+  recipes: state.recipes,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setModalRecipeName: modalRecipeName => {
+    dispatch(setModalRecipeName(modalRecipeName));
+  },
+  setModalRecipeContents: modalRecipeContents => {
+    dispatch(setModalRecipeContents(modalRecipeContents));
+  },
+  setModalRecipeVisible: modalVisible => {
+    dispatch(setModalRecipeVisible(modalVisible));
+  },
+  fetchingModalRecipeContents: modalRecipeName => {
+    dispatch(fetchingModalRecipeContents(modalRecipeName));
+  },
+  fetchingRecipes: () => {
+    dispatch(fetchingRecipes());
+  },
+  deletingRecipe: (recipe) => {
+    dispatch(deletingRecipe(recipe));
+  },
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(RecipesPage);
