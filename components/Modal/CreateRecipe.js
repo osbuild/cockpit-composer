@@ -57,7 +57,7 @@ class CreateRecipe extends React.Component {
         } else {
           this.handleCreateRecipe(event, this.state.recipe);
         }
-      }, 100);
+      }, 300);
     }
   }
 
