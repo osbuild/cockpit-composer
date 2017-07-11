@@ -22,6 +22,7 @@ module.exports = class CreateRecipePage extends MainPage {
 
     // Recipe Name and Description Input
     this.inputName = `${this.dialogRootElement} #textInput-modal-markup`;
+    this.inputNameEleId = 'textInput-modal-markup';
     this.inputDescription = `${this.dialogRootElement} #textInput2-modal-markup`;
 
     // Save and Cancel button
@@ -32,5 +33,9 @@ module.exports = class CreateRecipePage extends MainPage {
     this.varAlertMissingInfo = 'Required information is missing.';
     this.varAlertDuplicateInfo = 'Specify a new recipe name.';
     this.labelAlertInfo = `${this.dialogRootElement} .alert-danger strong`;
+
+    // Help-block error message
+    this.varHelpBlockMsg = 'A recipe name is required.';
+    this.spanHelpBlockMsg = `${this.dialogRootElement} span[class="help-block"]`;
   }
 };

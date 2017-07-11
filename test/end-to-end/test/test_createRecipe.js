@@ -20,22 +20,82 @@ describe('Create Recipe Page', () => {
 
   describe('Input Data Validation Test', () => {
     describe('Required Field Missing #acceptance', () => {
-      test('should show alert message when create recipe without name @create-recipe-page', (done) => {
+      test('should show alert message by clicking Save button when create recipe without name @create-recipe-page', (done) => {
         // Highlight the expected result
-        const expected = createRecipePage.varAlertMissingInfo;
+        const expectedAlertInfo = createRecipePage.varAlertInfo;
+        const expectedHelpBlockMsg = createRecipePage.varHelpBlockMsg;
 
         const nightmare = new Nightmare();
         nightmare
           .goto(recipesPage.url)
           .wait(recipesPage.btnCreateRecipe)
           .click(recipesPage.btnCreateRecipe)
-          .wait(page => document.querySelector(page.dialogRootElement).style.display === 'block'
+          .wait(page => document.activeElement.id === page.inputNameEleId
             , createRecipePage)
           .insert(createRecipePage.inputName, createRecipePage.varEmptyName)
           .wait(createRecipePage.btnSave)
           .click(createRecipePage.btnSave)
           .wait(createRecipePage.labelAlertInfo)
           .evaluate(page => document.querySelector(page.labelAlertInfo).innerText
+            , createRecipePage)
+          .then((element) => {
+            expect(element).toBe(expectedAlertInfo);
+          })
+          .then(() => nightmare
+            .wait(createRecipePage.spanHelpBlockMsg)
+            .evaluate(page => document.querySelector(page.spanHelpBlockMsg).innerText
+              , createRecipePage)
+            .end())
+          .then((element) => {
+            expect(element).toBe(expectedHelpBlockMsg);
+            done();
+          });
+      }, timeout);
+      test('should show alert message by clicking Enter key when create recipe without name @create-recipe-page', (done) => {
+        // Highlight the expected result
+        const expectedAlertInfo = createRecipePage.varAlertInfo;
+        const expectedHelpBlockMsg = createRecipePage.varHelpBlockMsg;
+
+        const nightmare = new Nightmare();
+        nightmare
+          .goto(recipesPage.url)
+          .wait(recipesPage.btnCreateRecipe)
+          .click(recipesPage.btnCreateRecipe)
+          .wait(page => document.activeElement.id === page.inputNameEleId
+            , createRecipePage)
+          .wait(createRecipePage.btnSave)
+          .type('body', '\u000d')
+          .wait(createRecipePage.labelAlertInfo)
+          .evaluate(page => document.querySelector(page.labelAlertInfo).innerText
+            , createRecipePage)
+          .then((element) => {
+            expect(element).toBe(expectedAlertInfo);
+          })
+          .then(() => nightmare
+            .wait(createRecipePage.spanHelpBlockMsg)
+            .evaluate(page => document.querySelector(page.spanHelpBlockMsg).innerText
+              , createRecipePage)
+            .end())
+          .then((element) => {
+            expect(element).toBe(expectedHelpBlockMsg);
+            done();
+          });
+      }, timeout);
+      test('should show alert message by changing focus to description input @create-recipe-page', (done) => {
+        // Highlight the expected result
+        const expected = createRecipePage.varHelpBlockMsg;
+
+        const nightmare = new Nightmare();
+        nightmare
+          .goto(recipesPage.url)
+          .wait(recipesPage.btnCreateRecipe)
+          .click(recipesPage.btnCreateRecipe)
+          .wait(page => document.activeElement.id === page.inputNameEleId
+            , createRecipePage)
+          .evaluate(page => document.querySelector(page.inputDescription).focus()
+            , createRecipePage)
+          .wait(createRecipePage.spanHelpBlockMsg)
+          .evaluate(page => document.querySelector(page.spanHelpBlockMsg).innerText
             , createRecipePage)
           .end()
           .then((element) => {
@@ -53,8 +113,6 @@ describe('Create Recipe Page', () => {
       });
 
       test('should switch to Edit Recipe page - recipe creation success @create-recipe-page', (done) => {
-        // Highlight the expected result
-
         const nightmare = new Nightmare();
         nightmare
           .goto(recipesPage.url)
@@ -69,7 +127,7 @@ describe('Create Recipe Page', () => {
           .exists(editRecipePage.componentListItemRootElement)
           .end()
           .then((element) => {
-            expect(element).toBe(true); // eslint-disable-line no-unused-expressions
+            expect(element).toBe(true);
             done();
           });
       }, timeout);
