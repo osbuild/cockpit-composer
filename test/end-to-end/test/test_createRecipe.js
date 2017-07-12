@@ -32,7 +32,6 @@ describe('Create Recipe Page', () => {
           .click(recipesPage.btnCreateRecipe)
           .wait(page => document.activeElement.id === page.inputNameEleId
             , createRecipePage)
-          .insert(createRecipePage.inputName, createRecipePage.varEmptyName)
           .wait(createRecipePage.btnSave)
           .click(createRecipePage.btnSave)
           .wait(createRecipePage.labelAlertInfo)
