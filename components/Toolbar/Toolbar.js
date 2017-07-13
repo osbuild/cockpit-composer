@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Toolbar = (props) => (
-
+const Toolbar = props => (
   <div className="row toolbar-pf">
     <div className="col-sm-12">
       <form className="toolbar-pf-actions">
@@ -16,18 +15,15 @@ const Toolbar = (props) => (
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
-              >Name<span className="caret"></span></button>
+              >
+                Name<span className="caret" />
+              </button>
               <ul className="dropdown-menu">
-                <li><a >Name</a></li>
-                <li><a >Version</a></li>
+                <li><a>Name</a></li>
+                <li><a>Version</a></li>
               </ul>
             </div>
-            <input
-              type="text"
-              className="form-control"
-              id="filter"
-              placeholder="Filter By Name..."
-            />
+            <input type="text" className="form-control" id="filter" placeholder="Filter By Name..." />
           </div>
         </div>
         <div className="form-group">
@@ -38,14 +34,16 @@ const Toolbar = (props) => (
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
-            >Name<span className="caret"></span></button>
+            >
+              Name<span className="caret" />
+            </button>
             <ul className="dropdown-menu">
-              <li><a >Name</a></li>
-              <li><a >Version</a></li>
+              <li><a>Name</a></li>
+              <li><a>Version</a></li>
             </ul>
           </div>
           <button className="btn btn-link" type="button">
-            <span className="fa fa-sort-alpha-asc"></span>
+            <span className="fa fa-sort-alpha-asc" />
           </button>
         </div>
 
@@ -57,7 +55,9 @@ const Toolbar = (props) => (
               data-toggle="modal"
               data-target="#cmpsr-modal-crt-compos"
               type="button"
-            >Create Composition</button>
+            >
+              Create Composition
+            </button>
             <div className="dropdown btn-group  dropdown-kebab-pf">
               <button
                 className="btn btn-link dropdown-toggle"
@@ -66,66 +66,40 @@ const Toolbar = (props) => (
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
-              ><span className="fa fa-ellipsis-v"></span></button>
+              >
+                <span className="fa fa-ellipsis-v" />
+              </button>
               <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
-                <li><a href="#" onClick={(e) => props.handleShowModal(e, 'modalExport')}>Export</a></li>
-                <li role="separator" className="divider"></li>
-                <li><a >Update Selected Components</a></li>
-                <li><a >Remove Selected Components</a></li>
+                <li><a href="#" onClick={e => props.handleShowModal(e, 'modalExport')}>Export</a></li>
+                <li role="separator" className="divider" />
+                <li><a>Update Selected Components</a></li>
+                <li><a>Remove Selected Components</a></li>
               </ul>
             </div>
           </div>
           <div className="form-group toolbar-pf-find">
             <button className="btn btn-link btn-find" type="button">
-              <span className="fa fa-search"></span>
+              <span className="fa fa-search" />
             </button>
             <div className="find-pf-dropdown-container">
-              <input
-                type="text"
-                className="form-control"
-                id="find"
-                placeholder="Find By Keyword..."
-              />
+              <input type="text" className="form-control" id="find" placeholder="Find By Keyword..." />
               <div className="find-pf-buttons">
                 <span className="find-pf-nums">1 of 3</span>
                 <button className="btn btn-link" type="button">
-                  <span className="fa fa-angle-up"></span>
+                  <span className="fa fa-angle-up" />
                 </button>
                 <button className="btn btn-link" type="button">
-                  <span className="fa fa-angle-down"></span>
+                  <span className="fa fa-angle-down" />
                 </button>
                 <button className="btn btn-link btn-find-close" type="button">
-                  <span className="pficon pficon-close"></span>
+                  <span className="pficon pficon-close" />
                 </button>
               </div>
             </div>
           </div>
         </div>
       </form>
-      <div className="row toolbar-pf-results toolbar-pf-results-none">
-        <div className="col-sm-12">
-          <h5>40 Results</h5>
-          <p>Active filters: </p>
-          <ul className="list-inline">
-            <li>
-              <span className="label label-info">Name: nameofthething
-                <a ><span className="pficon pficon-close"></span></a>
-              </span>
-            </li>
-            <li>
-              <span className="label label-info">Version: 3
-                <a ><span className="pficon pficon-close"></span></a>
-              </span>
-            </li>
-            <li>
-              <span className="label label-info">Lifecycle: 5
-                <a ><span className="pficon pficon-close"></span></a>
-              </span>
-            </li>
-          </ul>
-          <p><a >Clear All Filters</a></p>
-        </div>
-      </div>
+
     </div>
   </div>
 );

@@ -3,32 +3,18 @@ import PropTypes from 'prop-types';
 import ListView from '../../components/ListView/ListView';
 import ListItemComponents from '../../components/ListView/ListItemComponents';
 
-
 class DependencyListView extends React.PureComponent {
-
   render() {
     return (
       <div>
-        <div className="row toolbar-pf">
-          <div className="col-sm-12">
-            <form className="toolbar-pf-actions">
-              <div className="form-group">
-                <span className="text-muted">Show: </span>
-                First Level ({this.props.listItems.length})
-                <span className="text-muted"> | </span>
-                <a>Total (---)</a>
-              </div>
-            </form>
-          </div>
-        </div>
         <div className="alert alert-warning alert-dismissable hidden">
-          <span className="pficon pficon-warning-triangle-o"></span>
+          <span className="pficon pficon-warning-triangle-o" />
           One or more dependencies have multiple variations that could be used.
           A default variation was automatically selected.
           Click a flagged dependency to see other options available.
         </div>
-        <ListView id={this.props.id} >
-          {this.props.listItems.map((listItem, i) =>
+        <ListView className={this.props.className} stacked>
+          {this.props.listItems.map((listItem, i) => (
             <ListItemComponents
               listItemParent={this.props.id}
               isDependency
@@ -39,13 +25,11 @@ class DependencyListView extends React.PureComponent {
               handleComponentDetails={this.props.handleComponentDetails}
               componentDetailsParent={this.props.componentDetailsParent}
             />
-          )}
+          ))}
         </ListView>
       </div>
-
     );
   }
-
 }
 
 DependencyListView.propTypes = {

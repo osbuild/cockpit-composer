@@ -5,9 +5,7 @@ import { Tab, Tabs } from 'react-patternfly-shims';
 import DependencyListView from '../../components/ListView/DependencyListView';
 import MetadataApi from '../../data/MetadataApi';
 
-
 class ComponentDetailsView extends React.Component {
-
   state = {
     selectedBuildIndex: 0,
     availableBuilds: [],
@@ -16,7 +14,7 @@ class ComponentDetailsView extends React.Component {
     dependencies: [],
     componentData: {},
     editSelected: false,
-  }
+  };
 
   componentWillMount() {
     this.getMetadata(this.props.component, this.props.status);
@@ -43,7 +41,7 @@ class ComponentDetailsView extends React.Component {
 
   getMetadata(component, status) {
     // when getting metadata, get all builds if component is from list of available inputs
-    const build = (status === 'available') ? 'all' : '';
+    const build = status === 'available' ? 'all' : '';
     // if the user clicks a component listed in the inputs and it's in the recipe,
     // then use the version and release that's selected for the recipe component
     const selectedComponent = Object.assign({}, component);
@@ -51,36 +49,36 @@ class ComponentDetailsView extends React.Component {
       selectedComponent.version = component.version_selected;
       selectedComponent.release = component.release_selected;
     }
-    Promise.all([
-      MetadataApi.getMetadataComponent(selectedComponent, build),
-    ]).then((data) => {
-      this.setState({ componentData: data[0][0] });
-      this.setState({ dependencies: data[0][0].dependencies });
-      if (this.props.status === 'editSelected') {
-        this.handleEdit();
-      }
-      if (status === 'available' || this.props.status === 'editSelected') {
-        // when status === "available" a form displays with a menu for selecting a specific version
-        // availableBuilds is an array listing each option
-        // TODO - include other metadata that's defined in builds
-        const availableBuilds = data[0][1].map(
-            i => ({ version: i.source.version, release: i.release }));
-        this.setState({ availableBuilds });
+    Promise.all([MetadataApi.getMetadataComponent(selectedComponent, build)])
+      .then(data => {
+        this.setState({ componentData: data[0][0] });
+        this.setState({ dependencies: data[0][0].dependencies });
         if (this.props.status === 'editSelected') {
-          this.setBuildIndex(availableBuilds, data[0][0]);
+          this.handleEdit();
         }
-      } else {
-        this.setState({ availableBuilds: [] });
-      }
-      this.setState({ selectedBuildIndex: 0 });
-    }).catch(e => console.log(`getMetadata: Error getting component metadata: ${e}`));
+        if (status === 'available' || this.props.status === 'editSelected') {
+          // when status === "available" a form displays with a menu for selecting a specific version
+          // availableBuilds is an array listing each option
+          // TODO - include other metadata that's defined in builds
+          const availableBuilds = data[0][1].map(i => ({ version: i.source.version, release: i.release }));
+          this.setState({ availableBuilds });
+          if (this.props.status === 'editSelected') {
+            this.setBuildIndex(availableBuilds, data[0][0]);
+          }
+        } else {
+          this.setState({ availableBuilds: [] });
+        }
+        this.setState({ selectedBuildIndex: 0 });
+      })
+      .catch(e => console.log(`getMetadata: Error getting component metadata: ${e}`));
   }
 
   setBuildIndex(availableBuilds, component) {
     // filter available builds by component data to find object in array,
     // then get index of that object
     const selectedBuild = availableBuilds.filter(
-      (obj) => (obj.version === component.version && obj.release === component.release))[0];
+      obj => obj.version === component.version && obj.release === component.release
+    )[0];
     const index = availableBuilds.indexOf(selectedBuild);
     this.setState({ selectedBuildIndex: index });
   }
@@ -92,25 +90,25 @@ class ComponentDetailsView extends React.Component {
     $('[data-toggle="tooltip"]').tooltip();
   }
 
-  handleEdit = (event) => {
+  handleEdit = event => {
     if (event) {
       event.preventDefault();
     }
     // user clicked Edit for the selected component
     const component = this.state.componentData;
     // get available builds and set default value
-    Promise.all([
-      MetadataApi.getAvailableBuilds(component),
-    ]).then((data) => {
-      const availableBuilds = data[0].map(i => ({ version: i.source.version, release: i.release }));
-      this.setState({ availableBuilds });
-      this.setBuildIndex(availableBuilds, component);
-    }).catch(e => console.log(`handleEdit: Error getting component metadata: ${e}`));
+    Promise.all([MetadataApi.getAvailableBuilds(component)])
+      .then(data => {
+        const availableBuilds = data[0].map(i => ({ version: i.source.version, release: i.release }));
+        this.setState({ availableBuilds });
+        this.setBuildIndex(availableBuilds, component);
+      })
+      .catch(e => console.log(`handleEdit: Error getting component metadata: ${e}`));
     // display the form
     this.setState({ editSelected: true });
-  }
+  };
 
-  handleVersionSelect = (event) => {
+  handleVersionSelect = event => {
     this.setState({ selectedBuildIndex: event.target.value });
     const builds = this.state.availableBuilds;
     const componentData = this.state.componentData;
@@ -118,7 +116,7 @@ class ComponentDetailsView extends React.Component {
     componentData.release = builds[event.target.value].release;
     // TODO any data that we display that's defined in builds should be added here
     this.setState({ componentData });
-  }
+  };
 
   handleTabChanged(e) {
     if (this.state.activeTab !== e.detail) {
@@ -141,7 +139,7 @@ class ComponentDetailsView extends React.Component {
       // is truncated to show only the parents of the selected component
       updatedParents = parents.slice(0, breadcrumbIndex);
     } else if (newProps.componentParent !== undefined) {
-    // otherwise, update the list of parents if a parent is provided
+      // otherwise, update the list of parents if a parent is provided
       updatedParents = parents.concat(newProps.componentParent);
     }
     this.setState({ parents: updatedParents });
@@ -151,41 +149,31 @@ class ComponentDetailsView extends React.Component {
     const { component } = this.props;
 
     return (
-
-
       <div className="cmpsr-compon-details">
-        {this.state.parents.length > 0 &&
+        {(this.state.parents.length > 0 &&
           <ol className="breadcrumb">
             <li>
-              <a
-                href="#"
-                onClick={(e) => this.props.handleComponentDetails(e, '')}
-              >Back to {this.props.parent}</a>
+              <a href="#" onClick={e => this.props.handleComponentDetails(e, '')}>Back to {this.props.parent}</a>
             </li>
-            {this.state.parents.map((parent, i) =>
+            {this.state.parents.map((parent, i) => (
               <li key={i}>
-                <a
-                  href="#"
-                  onClick={(e) => this.props.handleComponentDetails(
-                    e, parent, this.state.parents[i - 1])}
-                >{parent.name}</a>
+                <a href="#" onClick={e => this.props.handleComponentDetails(e, parent, this.state.parents[i - 1])}>
+                  {parent.name}
+                </a>
               </li>
-            )}
-            <li></li>
-          </ol>
-          ||
+            ))}
+            <li />
+          </ol>) ||
           <ol className="breadcrumb">
             <li>
-              <a
-                href="#"
-                onClick={(e) => this.props.handleComponentDetails(e, '')}
-              >Back to {this.props.parent}</a>
+              <a href="#" onClick={e => this.props.handleComponentDetails(e, '')}>Back to {this.props.parent}</a>
             </li>
-          </ol>
-        }
+          </ol>}
         <h3>
           <span data-item="name">
-            <ComponentTypeIcons componentType={component.ui_type} /> {component.name}
+            <ComponentTypeIcons componentType={component.ui_type} compDetails componentInRecipe={component.inRecipe} />
+            {' '}
+            {component.name}
           </span>
           <div className="pull-right">
             <ul className="list-inline">
@@ -194,30 +182,26 @@ class ComponentDetailsView extends React.Component {
                   <button
                     className="btn btn-primary add"
                     type="button"
-                    onClick={(e) => this.props.handleAddComponent(
-                        e, 'details', this.state.componentData, this.state.dependencies)}
-                  >Add</button>
-                </li>
-              }
-              {(this.props.status === 'selected' && this.state.editSelected === false) &&
+                    onClick={e => this.props.handleAddComponent(e, 'details', this.state.componentData, this.state.dependencies)}
+                  >
+                    Add
+                  </button>
+                </li>}
+              {this.props.status === 'selected' &&
+                this.state.editSelected === false &&
+                <li>
+                  <button className="btn btn-primary" type="button" onClick={e => this.handleEdit(e)}>Edit</button>
+                </li>}
+              {((this.props.status === 'selected' && this.state.editSelected === true) || this.props.status === 'editSelected') &&
                 <li>
                   <button
                     className="btn btn-primary"
                     type="button"
-                    onClick={(e) => this.handleEdit(e)}
-                  >Edit</button>
-                </li>
-              }
-              {((this.props.status === 'selected' && this.state.editSelected === true) ||
-                (this.props.status === 'editSelected')) &&
-                <li>
-                  <button
-                    className="btn btn-primary"
-                    type="button"
-                    onClick={(e) => this.props.handleUpdateComponent(e, this.state.componentData)}
-                  >Save Updates</button>
-                </li>
-              }
+                    onClick={e => this.props.handleUpdateComponent(e, this.state.componentData)}
+                  >
+                    Save Updates
+                  </button>
+                </li>}
               {(this.props.status === 'selected' || this.props.status === 'editSelected') &&
                 <li>
                   <button
@@ -227,10 +211,11 @@ class ComponentDetailsView extends React.Component {
                     data-placement="top"
                     title=""
                     data-original-title="Remove from Recipe"
-                    onClick={(e) => this.props.handleRemoveComponent(e, component)}
-                  >Remove</button>
-                </li>
-              }
+                    onClick={e => this.props.handleRemoveComponent(e, component)}
+                  >
+                    Remove
+                  </button>
+                </li>}
               <li>
                 <button
                   type="button"
@@ -239,43 +224,39 @@ class ComponentDetailsView extends React.Component {
                   data-placement="top"
                   title=""
                   data-original-title="Hide Details"
-                  onClick={(e) => this.props.handleComponentDetails(e, '')}
+                  onClick={e => this.props.handleComponentDetails(e, '')}
                 >
-                  <span className="pficon pficon-close"></span>
+                  <span className="pficon pficon-close" />
                 </button>
               </li>
             </ul>
           </div>
         </h3>
 
-        {(this.props.status === 'available' ||
-          this.state.editSelected === true ||
-          this.props.status === 'editSelected') &&
+        {(this.props.status === 'available' || this.state.editSelected === true || this.props.status === 'editSelected') &&
           <div className="blank-slate-pf">
             <form className="form-horizontal">
               <div className="form-group">
-                <label
-                  className="col-sm-3 col-md-2 control-label"
-                  htmlFor="cmpsr-compon-details-version-select"
-                >Version Release</label>
+                <label className="col-sm-3 col-md-2 control-label" htmlFor="cmpsr-compon-details-version-select">
+                  Version Release
+                </label>
                 <div className="col-sm-8 col-md-9">
                   <select
                     id="cmpsr-compon-details-version-select"
                     className="form-control"
                     value={this.state.selectedBuildIndex}
-                    onChange={(e) => this.handleVersionSelect(e)}
+                    onChange={e => this.handleVersionSelect(e)}
                   >
-                    {this.state.availableBuilds.map((build, i) =>
+                    {this.state.availableBuilds.map((build, i) => (
                       <option key={i} value={i}>{build.version}-{build.release}</option>
-                    )}
+                    ))}
                   </select>
                 </div>
               </div>
               <div className="form-group hidden">
-                <label
-                  className="col-sm-3 col-md-2 control-label"
-                  htmlFor="cmpsr-compon-details-instprof-select"
-                >Install Profile</label>
+                <label className="col-sm-3 col-md-2 control-label" htmlFor="cmpsr-compon-details-instprof-select">
+                  Install Profile
+                </label>
                 <div className="col-sm-8 col-md-9">
                   <select id="cmpsr-compon-details-instprof-select" className="form-control">
                     <option>Default</option>
@@ -284,71 +265,66 @@ class ComponentDetailsView extends React.Component {
                 </div>
               </div>
             </form>
-          </div>
-        }
-
-        <Tabs key="pf-tabs" ref="pfTabs" tabChanged={(e) => this.handleTabChanged(e)}>
-          <Tab tabTitle="Details" active={this.state.activeTab === 'Details'}>
-            <h3 data-item="summary">{this.state.componentData.summary}</h3>
-            <p>{this.state.componentData.description}</p>
-            <dl className="dl-horizontal">
-              <dt>Type</dt>
-              <dd>{component.ui_type}</dd>
-              <dt>Version</dt>
-              <dd>
-                {this.state.componentData.version} {(this.props.status === 'selected' &&
-                  this.state.editSelected === false) &&
-                  <a href="#" onClick={(e) => this.handleEdit(e)}>Update</a>
-                }
-              </dd>
-              <dt>Release</dt>
-              <dd>{this.state.componentData.release}</dd>
-              <dt>Architecture</dt>
-              <dd>---</dd>
-              <dt>Install Size</dt>
-              <dd>2 MB (5 MB with Dependencies)</dd>
-              <dt>URL</dt>
-              {this.state.componentData.homepage !== null &&
+          </div>}
+        <div className="nav-tabs-pf">
+          <Tabs key="pf-tabs" ref="pfTabs" tabChanged={e => this.handleTabChanged(e)}>
+            <Tab tabTitle="Details" active={this.state.activeTab === 'Details'}>
+              <h3 data-item="summary">{this.state.componentData.summary}</h3>
+              <p>{this.state.componentData.description}</p>
+              <dl className="dl-horizontal">
+                <dt>Type</dt>
+                <dd>{component.ui_type}</dd>
+                <dt>Version</dt>
                 <dd>
-                  <a target="_blank" href={this.state.componentData.homepage}>
-                    {this.state.componentData.homepage}
-                  </a>
+                  {this.state.componentData.version}
+                  {' '}
+                  {this.props.status === 'selected' &&
+                    this.state.editSelected === false &&
+                    <a href="#" onClick={e => this.handleEdit(e)}>Update</a>}
                 </dd>
-                ||
-                <dd>&nbsp;</dd>
-              }
-              <dt>Packager</dt>
-              <dd>Red Hat</dd>
-              <dt>Product Family</dt>
-              <dd>---</dd>
-              <dt>Lifecycle</dt>
-              <dd>01/15/2017</dd>
-              <dt>Support Level</dt>
-              <dd>Standard</dd>
-            </dl>
-          </Tab>
-          {this.state.componentData.components &&
-            <Tab tabTitle="Components" active={this.state.activeTab === 'Components'}>
-              <p>Components</p>
+                <dt>Release</dt>
+                <dd>{this.state.componentData.release}</dd>
+                <dt>Architecture</dt>
+                <dd>---</dd>
+                <dt>Install Size</dt>
+                <dd>2 MB (5 MB with Dependencies)</dd>
+                <dt>URL</dt>
+                {(this.state.componentData.homepage !== null &&
+                  <dd>
+                    <a target="_blank" href={this.state.componentData.homepage}>
+                      {this.state.componentData.homepage}
+                    </a>
+                  </dd>) ||
+                  <dd>&nbsp;</dd>}
+                <dt>Packager</dt>
+                <dd>Red Hat</dd>
+                <dt>Product Family</dt>
+                <dd>---</dd>
+                <dt>Lifecycle</dt>
+                <dd>01/15/2017</dd>
+                <dt>Support Level</dt>
+                <dd>Standard</dd>
+              </dl>
             </Tab>
-          }
-          <Tab tabTitle="Dependencies" active={this.state.activeTab === 'Dependencies'}>
-            <DependencyListView
-              id="cmpsr-component-dependencies"
-              listItems={this.state.dependencies}
-              noEditComponent
-              handleComponentDetails={this.props.handleComponentDetails}
-              componentDetailsParent={component}
-            />
-          </Tab>
-          <Tab tabTitle="Errata" active={this.state.activeTab === 'Errata'}>
-            <p>Errata</p>
-          </Tab>
-        </Tabs>
-
-
+            {this.state.componentData.components &&
+              <Tab tabTitle="Components" active={this.state.activeTab === 'Components'}>
+                <p>Components</p>
+              </Tab>}
+            <Tab tabTitle="Dependencies" active={this.state.activeTab === 'Dependencies'}>
+              <DependencyListView
+                id="cmpsr-component-dependencies"
+                listItems={this.state.dependencies}
+                noEditComponent
+                handleComponentDetails={this.props.handleComponentDetails}
+                componentDetailsParent={component}
+              />
+            </Tab>
+            <Tab tabTitle="Errata" active={this.state.activeTab === 'Errata'}>
+              <p>Errata</p>
+            </Tab>
+          </Tabs>
+        </div>
       </div>
-
     );
   }
 }

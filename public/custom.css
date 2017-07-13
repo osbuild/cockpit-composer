@@ -1,49 +1,28 @@
-div.hidden-nav .nav-pf-vertical { top: 0; }
-div.hidden-nav .nav-pf-secondary-nav { top: 0; }
-div.hidden-nav { margin-top: -60px; }
-div.hidden-nav .navbar-pf-vertical { display: none; }
 
-.navbar-brand {line-height: 35px;} /* without an icon in the masthead, the logo sits too high relative to other elements */
-.toolbar-pf-results-none {border: none;}
-.toolbar-pf-results-none > div { display: none;}
-[data-toggle] {cursor: pointer;}
-.list-view-pf-additional-info-item .label {margin: .5em 0;}
-
+[data-toggle] {
+  cursor: pointer;
+}
 /* This is added for the export dialog so that the contents have higher contrast */
 textarea.form-control[readonly] {
   background-color: inherit;
   color: inherit;
 }
 
-.tab-container {
-  padding: 15px 0;
-}
-
-.cmpsr-edit-actions {
+/* Recipe Edit page header */
+.cmpsr-header__actions {
   padding: 8px 0 8px 15px;
 }
-.cmpsr-title-summary {
+.cmpsr-header__title {
   display: flex;
-  flex-direction: row;
   align-items: baseline;
   margin-top: 20px;
 }
- .cmpsr-title-summary__item {
-   margin-right: 10px;
-   margin-top: 0;
- }
-
-/* toolbar */
-
-.toolbar-pf-actions .toolbar-pf-filter.form-group {
-  padding-left: 20px;
-}
-.toolbar-pf-actions .form-group:first-child {
-  padding-left: 0;
+.cmpsr-header__title__item {
+  margin-right: 10px;
+  margin-top: 0;
 }
 
 /* pagination */
-
 .toolbar-pf-results .content-view-pf-pagination {
   margin-bottom: 5px;
   margin-top: 5px;
@@ -55,191 +34,262 @@ textarea.form-control[readonly] {
 .toolbar-pf-results .pagination {
   align-self: center;
 }
-
 .toolbar-pf-results .pagination-pf-page,
 .toolbar-pf-results .pagination.pagination-pf-forward {
   margin-left: 5px;
 }
 
-/* sidebar toolbar */
-.toolbar-pf-actions {min-height: 28px;}
-.sidebar-pf .toolbar-pf-actions .toolbar-pf-filter {width:auto;}
-
-.card-pf-body .dl-horizontal dd {
-  margin-left: 50%;
+/* toolbar */
+.toolbar-pf {
+  background-color: transparent;
 }
-.card-pf-body .dl-horizontal dt {
-  width: 45%;
+.sidebar-pf .toolbar-pf {
+  background-color: #fff;
 }
-/*.card-view-pf {
-  margin: 0 -10px;
-}*/
-.card-view-pf .card {
-  border: 1px solid transparent;
-  height: auto;
-  margin: 0 10px 10px;
+.toolbar-pf-actions .toolbar-pf-filter.form-group {
+  padding-left: 20px;
+}
+.toolbar-pf-actions .form-group:first-child {
+  padding-left: 0;
+}
+/* sidebar */
+.sidebar-pf .toolbar-pf-actions .toolbar-pf-filter {
   width: auto;
-  text-align: left;
-  float: none;
 }
-.card-pf-title {
+.sidebar-pf {
+  padding: 0;
+}
+.sidebar-pf .toolbar-pf {
+  margin: 0 -20px;
+  padding-top: 14px;
+}
+.sidebar-pf .panel {
+  margin: 0;
+}
+.sidebar-pf .panel-heading {
+  padding: 10px 15px;
+}
+.sidebar-pf .panel-title {
   font-size: 14px;
-  margin: 10px 0;
 }
-
+.sidebar-pf .panel-body {
+  padding: 0 20px;
+}
 /*sidebar list view*/
-
-.cmpsr-list-view-viewskinny, #cmpsr-recipe-inputs .alert {
-  margin-left: -5px;
-  margin-right: -5px;
+.cmpsr-recipe__inputs .list-pf {
+  margin-top: 20px;
 }
-
-#cmpsr-recipe-inputs .alert {
+.cmpsr-recipe__inputs .alert {
   position: relative;
-  top: 15px;
+  top: 10px;
 }
 
-#compsr-inputs a[disabled] {
-  display: none;
+/* Recipe contents Tabs */
+.cmpsr-recipe--edit {
+  padding: 0;
+}
+.cmpsr-recipe--edit .panel-default {
+  border-left: none;
+}
+.cmpsr-recipe--edit .panel-heading {
+  margin-bottom: -10px;
 }
 
-.cmpsr-list-view-viewskinny.list-view-pf .list-group-item {
-  padding: 0 10px;
-}
-
-.cmpsr-list-view-viewskinny.list-view-pf .list-view-pf-left {
-  padding-right: 10px;
-}
-
-.cmpsr-list-view-viewskinny .list-view-pf-main-info {
-  align-items: flex-start;
-}
-.cmpsr-list-view-viewskinny.list-view-pf .list-view-pf-description {
+/*.cmpsr-list-pf*/
+.cmpsr-list-pf .list-pf-expansion .list-pf-container {
   display: block;
+} /* remove and switch to flexbox for expanded contents */
+.cmpsr-list-pf .list-pf-main-content {
+  flex-basis: 100%;
 }
-.cmpsr-list-view-viewskinny.list-view-pf .list-group-item-heading,
-.cmpsr-list-view-viewskinny.list-view-pf .list-group-item-text {
-  float: none;
-  width: auto;
+.cmpsr-list-pf .list-pf-additional-content {
+  flex-basis: 100%;
+  flex-shrink: 0;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
 }
-
-#cmpsr-recipe-inputs .toolbar-pf-results h5,
-#cmpsr-recipe-inputs .toolbar-pf-results p,
-#cmpsr-recipe-inputs .toolbar-pf-results ul {
-  line-height:26.67px;
+.cmpsr-list-pf .list-view-pf-additional-info-item {
+  flex-basis: 50%;
 }
-
-.toolbar-pf-results .list-inline {
-  margin-bottom: 5px;
-}
-
-#cmpsr-recipe-inputs .popover-content {
-  white-space: nowrap;
-}
-
-
-/*List View*/
-.blank-slate-pf {margin-top:30px;}
-
 @media (min-width: 992px) {
-  .list-view-pf .list-group-item-heading {
-      flex: 1 1 calc(40% - 20px);
-      float: none;
-      font-size: 12px;
-      margin: 0 20px 0 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      width: auto;
+  .cmpsr-list-pf .list-pf-main-content {
+    flex-basis: 50%;
   }
-  .list-view-pf .list-group-item-text {
-      flex: 1 1 calc(60% - 40px);
-      float: none;
-      margin: 0 40px 0 0;
-      width: auto;
+  .cmpsr-list-pf .list-pf-additional-content {
+    flex-basis: 50%;
+    justify-content: space-around;
   }
 }
-.cmpsr-dependency-flag {
-  margin-right: 20px;
+
+/* Expanded list item contents (i.e. component summary) */
+.list-pf-container .list-pf {
+  max-height: 300px;
+  overflow: auto;
 }
-.list-group-item-container dd {
+.list-pf-container dd {
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* Nested list view */
-.cmpsr-summary-listview .list-group {
-  margin: 0;
+/*Component details*/
+.pf-icon-small {
+    font-size: 1.7rem;
+    height: 30px;
+    line-height: 30px;
+    width: 30px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
 }
-.cmpsr-summary-listview{
-  margin-top: 15px;
+.cmpsr-recipe__details .close {
+  float: none;
 }
-.cmpsr-summary-listview:first-child {
-  margin-top: 0;
-}
-.cmpsr-summary-listview .list-view-pf-main-info {
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-.cmpsr-summary-listview .list-view-pf-left .fa.list-view-pf-icon-sm {
-  border: none;
-  height: auto;
-  width: auto;
-  line-height: inherit;
-  font-size: 1.2em;
-}
-.cmpsr-summary-listview .list-view-pf-left .fa.list-view-pf-icon-sm:before {
-  line-height: normal;
-}
-
-
-/* Recipe Contents Accordion */
-
-#cmpsr-recipe-contents {
-    margin: 20px 0;
-}
-#cmpsr-recipe-list-edit #cmpsr-recipe-contents {
-  margin: -1px -21px;
-}
-.panel-body .list-view-pf-view {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-.panel-body .toolbar-pf { margin: -15px -15px 15px; }
-.panel-body .toolbar-pf-actions {min-height:auto;}
-.panel-body .form-group {padding-left: 0; padding-right:0; border:none;}
-
-
-/*Component details view*/
-.cmpsr-compon-details .close {float:none;}
-.cmpsr-compon-details .form-horizontal {
+.cmpsr-recipe__details .form-horizontal {
   margin: 15px 0;
 }
-.cmpsr-compon-details .blank-slate-pf {
+.cmpsr-recipe__details .blank-slate-pf {
   margin-top: 0;
   padding: 0;
 }
-
-.list-group-item-container .cmpsr-list-view-viewskinny {
-   max-height: 300px;
-   overflow: auto;
- }
-
-/*Component details*/
-#cmpsr-recipe-details-edit {
+.cmpsr-recipe__details--edit {
   border-top: 1px solid #d1d1d1;
 }
-#cmpsr-recipe-details {
+.cmpsr-recipe__details--view {
   padding: 10px 35px;
 }
-
-
 /* Recipe details page */
-
-.list-view-pf .list-group-item__separator, .list-view-pf .list-group-item__separator:hover {
+.list-pf .list-group-item__separator,
+.list-pf .list-group-item__separator:hover {
   background-color: #f7f7f7;
 }
-.list-view-pf .list-group-item__separator .list-view-pf-main-info {
+.list-pf .list-group-item__separator .list-pf-container {
   padding-top: 0;
   padding-bottom: 0;
 }
+
+/* compacted list view */
+/* used in sidebar and expanded list items */
+.cmpsr-list-pf__compacted {
+  margin-bottom: 20px;
+}
+.cmpsr-list-pf__compacted .list-pf-item {
+  background: #fff;
+}
+.cmpsr-list-pf__compacted .list-pf-item:hover {
+  background: #f5f5f5;
+}
+.cmpsr-list-pf__compacted .list-pf-container {
+  padding: 7px 10px;
+}
+.list-pf-container .cmpsr-list-pf__compacted .list-pf-container {
+  border-top-width: 0;
+}
+.list-pf-icon-bordered-dotted {
+  border-style: dotted;
+}
+
+/* tab contents */
+.tab-container {
+    padding: 20px 0;
+}
+
+/* ------------------------------- */
+/* modifications to patternfly css */
+
+/* masthead */
+/* without an icon in the masthead, the logo sits too high relative to other elements */
+.navbar-brand {
+  line-height: 35px;
+}
+
+/* empty state */
+.blank-slate-pf {
+  margin-top: 30px;
+}
+
+/* list-pf */
+/* current styles do not have a fixed width for the right/down arrows which
+   causes the contents to shift right a few pixels on expansion */
+
+.list-pf-chevron .fa {
+  width: 22px;
+  text-align: center;
+}
+.list-pf-title .text-muted {
+  font-weight: normal;
+}
+
+/* nav-tabs-pf */
+/* current tabs component cannot be updated to include the .nav-tabs-pf class
+   so the pf styles are added and modified so that the component can be modified
+   by wrapping it with .nav-tabs-pf */
+
+ .nav-tabs-pf .nav-tabs > li {
+   margin-bottom: 0;
+ }
+ .nav-tabs-pf .nav-tabs > li.active > a:before {
+   background: #0088ce;
+   bottom: -1px;
+   content: "";
+   display: block;
+   height: 2px;
+   left: 15px;
+   position: absolute;
+   right: 15px;
+ }
+ .nav-tabs-pf .nav-tabs > li.active > a,
+ .nav-tabs-pf .nav-tabs > li.active > a:active,
+ .nav-tabs-pf .nav-tabs > li.active > a:focus,
+ .nav-tabs-pf .nav-tabs > li.active > a:hover {
+   background-color: transparent;
+   border: 0 !important;
+   color: #0088ce;
+ }
+ .nav-tabs-pf .nav-tabs > li.active > a:before,
+ .nav-tabs-pf .nav-tabs > li.active > a:active:before,
+ .nav-tabs-pf .nav-tabs > li.active > a:focus:before,
+ .nav-tabs-pf .nav-tabs > li.active > a:hover:before {
+   background: #0088ce;
+ }
+ .nav-tabs-pf .nav-tabs > li:first-child > a {
+   padding-left: 0;
+ }
+ .nav-tabs-pf .nav-tabs > li:first-child > a:before {
+   left: 0 !important;
+ }
+ .nav-tabs-pf .nav-tabs > li > a {
+   border: 0;
+   line-height: 1;
+   margin-right: 0;
+   padding-bottom: 10px;
+   padding-top: 10px;
+ }
+ .nav-tabs-pf .nav-tabs > li > a:active:before,
+ .nav-tabs-pf .nav-tabs > li > a:focus:before,
+ .nav-tabs-pf .nav-tabs > li > a:hover:before {
+   background: #bbb;
+   bottom: -1px;
+   content: "";
+   display: block;
+   height: 2px;
+   left: 15px;
+   position: absolute;
+   right: 15px;
+ }
+ .nav-tabs-pf .nav-tabs > li > .dropdown-menu {
+   left: 15px;
+   margin-top: 1px;
+ }
+ .nav-tabs-pf .nav-tabs > li > .dropdown-menu.pull-right {
+   left: auto;
+   right: 15px;
+ }
+ .nav-tabs-pf .nav-tabs .open > a,
+ .nav-tabs-pf .nav-tabs .open > a:hover,
+ .nav-tabs-pf .nav-tabs .open > a:focus {
+   background-color: transparent;
+ }
+
+ .nav-tabs .badge {
+   display: inline;
+ }
