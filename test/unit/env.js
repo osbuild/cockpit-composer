@@ -4,6 +4,8 @@ global.$ = global.jQuery = jQuery;
 require('bootstrap');
 global.welderApiHost = 'localhost';
 global.welderApiScheme = 'HTTP';
+global.welderApiRelative = false;
+global.welderApiPort = 4000;
 
 // <mockLocalStorage>
 const localStorageMock = (() => {
