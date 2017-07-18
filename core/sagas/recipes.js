@@ -34,7 +34,6 @@ function* deleteRecipe(action) {
   }
 }
 
-
 export default function* () {
   yield takeLatest(FETCHING_RECIPES, fetchRecipes);
   yield takeEvery(DELETING_RECIPE, deleteRecipe);
