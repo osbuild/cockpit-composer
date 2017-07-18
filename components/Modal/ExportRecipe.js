@@ -5,7 +5,6 @@ class ExportRecipe extends React.Component {
 
   componentDidMount() {
     $(this.modal).modal('show');
-    console.log(this.props.contents);
     $(this.modal).on('hidden.bs.modal', this.props.handleHideModal);
   }
 

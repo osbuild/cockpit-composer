@@ -11,13 +11,8 @@ export function fetchUsersApi() {
 
 export function fetchModalRecipeContentsApi(modalRecipeName) {
   const modalRecipeContents = Promise.all([RecipeApi.getRecipe(modalRecipeName)])
-    .then(data => {
-      console.log('in fetch');
-      console.log(data);
-      return data[0].dependencies;
-    })
-  .catch(err => console.log(`Error in fetchModalRecipeContents promise: ${err}`));
-  console.log(modalRecipeName);
+    .then(data => data[0].dependencies)
+    .catch(err => console.log(`Error in fetchModalRecipeContents promise: ${err}`));
   return modalRecipeContents;
 }
 
