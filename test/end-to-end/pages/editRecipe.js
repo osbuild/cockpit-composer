@@ -10,20 +10,19 @@ module.exports = class EditRecipePage extends MainPage {
     // Navigation bar root element
     this.navBarRootElement = 'ol[class="breadcrumb"]';
     // Edit action bar root element
-    this.editActionBarRootElement = 'div[class="cmpsr-edit-actions pull-right"]';
+    this.editActionBarRootElement = 'div[class="cmpsr-header__actions pull-right"]';
 
     // Title bar root element
-    this.titleBarRootElement = 'div[class="cmpsr-title-summary"]';
+    this.titleBarRootElement = 'div[class="cmpsr-header__title"]';
 
     // Recipe inputs root element
-    this.recipeInputRootElement = 'div[class="row"] div[id="cmpsr-recipe-inputs"]';
+    this.recipeInputRootElement = 'div[class="row"] .cmpsr-recipe__inputs';
 
     // Recipe list edit root element
-    this.recipeListEditRootElement = 'div[class="row"] div[id="cmpsr-recipe-list-edit"]';
+    this.recipeListEditRootElement = 'div[class="row"] .cmpsr-recipe--edit';
 
     // Component list item root element
-    this.componentListItemRootElement = `${this.recipeInputRootElement} div[id="compsr-inputs"] div[class="list-group-item "]`;
-
+    this.componentListItemRootElement = `${this.recipeInputRootElement} .cmpsr-list-pf__compacted .list-pf-item`;
 // ---- Page element selector ---- //
     // Edit Recipe label
     this.varEditRecipe = 'Edit Recipe';
@@ -34,7 +33,7 @@ module.exports = class EditRecipePage extends MainPage {
     this.linkRecipeName = `${this.navBarRootElement}  li + li a`;
 
     // Recipe Title label
-    this.labelRecipeTitle = `${this.titleBarRootElement} h1[class="cmpsr-title-summary__item"]`;
+    this.labelRecipeTitle = `${this.titleBarRootElement} h1[class="cmpsr-header__title__item"]`;
 
     // Create Composition button
     this.varCreateCompos = 'Create Composition';
@@ -50,7 +49,7 @@ module.exports = class EditRecipePage extends MainPage {
     this.btnSave = `${this.editActionBarRootElement} ul li button[class="btn btn-primary"]`;
 
     // component count inside the pagination control
-    this.totalComponentCount = `${this.recipeInputRootElement} .cmpsr-recipe-inputs-pagination span`;
+    this.totalComponentCount = `${this.recipeInputRootElement} .cmpsr-recipe__inputs__pagination span`;
 
     // More Action dropdown menu list
     this.moreActionList = {
