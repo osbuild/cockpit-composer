@@ -13,7 +13,9 @@ end-to-end-test:
 
 	sudo docker build -f ./test/end-to-end/Dockerfile -t weld/end-to-end:latest ./test/end-to-end/
 
+	git clone ../welder-web welder-deployment/welder-web
 	make -C welder-deployment/ repos
+	
 	if [ ! -d ./welder-deployment/mddb ]; then \
 		mkdir ./welder-deployment/mddb; \
 	fi; \
