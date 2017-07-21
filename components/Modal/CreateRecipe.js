@@ -1,7 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import RecipeApi from '../../data/RecipeApi';
-import constants from '../../core/constants';
-import utils from '../../core/utils';
 
 
 class CreateRecipe extends React.Component {
@@ -82,13 +81,10 @@ class CreateRecipe extends React.Component {
   }
 
   handleErrorDuplicate(recipeName) {
-    utils.apiFetch(constants.get_recipes_list)
-      .then(listdata => {
-        const nameNoSpaces = recipeName.replace(/\s+/g, '-');
-        if (listdata.recipes.includes(nameNoSpaces)) {
-          this.setState({ showErrorDuplicate: true });
-        }
-      });
+    const nameNoSpaces = recipeName.replace(/\s+/g, '-');
+    if (this.props.recipeNames.includes(nameNoSpaces)) {
+      this.setState({ showErrorDuplicate: true });
+    }
   }
 
   handleErrorName(recipeName) {
@@ -214,7 +210,11 @@ class CreateRecipe extends React.Component {
       </div>
     );
   }
-
 }
+
+CreateRecipe.propTypes = {
+  recipeNames: PropTypes.array,
+};
+
 
 export default CreateRecipe;
