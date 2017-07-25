@@ -37,7 +37,6 @@ class ComponentInputs extends React.Component {
         this.hideTooltip('parent');
       }
       $(event.currentTarget).tooltip('show');
-      console.log('show', event.currentTarget);
     });
   }
 
@@ -54,9 +53,7 @@ class ComponentInputs extends React.Component {
       this.hideTooltip(event.currentTarget);
       if ($(event.currentTarget).parent('.list-pf-actions').length) {
         $(event.currentTarget).parents('.list-pf-container').tooltip('show');
-        console.log('show parent of action');
       }
-      console.log('hide', event.currentTarget);
     });
   }
 
