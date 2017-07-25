@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { spy } from 'sinon';
 import Home from '../../pages/home/index';
 
 describe('<Home />', () => {
@@ -14,11 +13,11 @@ describe('<Home />', () => {
   });
 
   test('calls componentDidMount() lifecycle method', () => {
-    const componentDidMountSpy = spy(Home.prototype, 'componentDidMount');
+    const componentDidMountSpy = jest.spyOn(Home.prototype, 'componentDidMount');
     mount(<Home />);
 
-    expect(componentDidMountSpy.calledOnce).toBe(true);
+    expect(componentDidMountSpy).toHaveBeenCalledTimes(1);
 
-    componentDidMountSpy.restore();
+    componentDidMountSpy.mockRestore();
   });
 });

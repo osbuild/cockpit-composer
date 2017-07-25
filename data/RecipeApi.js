@@ -70,8 +70,7 @@ class RecipeApi {
               console.log(`Error fetching recipe: ${e}`);
               reject();
             });
-    }
-      );
+    });
     return p;
   }
 

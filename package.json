@@ -18,8 +18,10 @@
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
     "react-patternfly-shims": "0.0.2",
-    "react-redux": "^4.4.5",
-    "redux": "^3.5.2",
+    "react-redux": "^5.0.5",
+    "redux": "^3.6.0",
+    "redux-promise": "^0.5.3",
+    "redux-saga": "^0.15.3",
     "webcomponentsjs": "^1.0.2",
     "whatwg-fetch": "^1.0.0"
   },
@@ -50,11 +52,13 @@
     "eslint-plugin-jest": "^20.0.3",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^5.2.2",
+    "eslint-plugin-redux-saga": "^0.4.0",
+    "faker": "^4.1.0",
     "file-loader": "^0.9.0",
     "firebase-tools": "^3.0.4",
     "front-matter": "^2.1.0",
     "highlight.js": "^9.5.0",
-    "jest": "^16.0.0",
+    "jest": "^20.0.4",
     "jquery": "^3.2.1",
     "json-loader": "^0.5.4",
     "markdown-it": "^7.0.0",
@@ -77,7 +81,6 @@
     "react-addons-test-utils": "^15.4.1",
     "react-hot-loader": "^3.0.0-beta.2",
     "s3": "^4.4.0",
-    "sinon": "^2.3.4",
     "style-loader": "^0.13.1",
     "stylelint": "^7.0.3",
     "stylelint-config-standard": "^11.0.0",
@@ -89,7 +92,7 @@
   "jest": {
     "testRegex": "(/test/unit/.*\\.spec.js)$",
     "setupFiles": [
-      "test/unit/env.js"
+      "<rootDir>/test/unit/env.js"
     ],
     "collectCoverageFrom": [
       "**/*.js"

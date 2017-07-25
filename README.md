@@ -42,7 +42,7 @@ available at [http://localhost:3000/](http://localhost:3000/).
 
 #### Unit Test
 
-The unit tests are powered by [Jest](https://facebook.github.io/jest/), [Enzyme](http://airbnb.io/enzyme/) and [Sinon.JS](http://sinonjs.org/)
+The unit tests are powered by [Jest](https://facebook.github.io/jest/) and [Enzyme](http://airbnb.io/enzyme/)
 
 ```shell
 $ npm run lint                  # Check JavaScript and CSS code for potential issues

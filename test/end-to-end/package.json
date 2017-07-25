@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "weldr-web end-to-end automation test",
   "scripts": {
-    "test": "jest --runInBand"
+    "test": "jest --runInBand --forceExit"
   },
   "dependencies": {
     "jest": "^20.0.4",

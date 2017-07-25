@@ -1,35 +1,27 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Layout from '../../components/Layout';
 import CardView from '../../components/CardView/CardView';
-import constants from '../../core/constants';
+import { connect } from 'react-redux';
+import { fetchingUsers } from '../../core/actions/users';
 
 class UsersPage extends React.Component {
 
-  state = { users: [] };
-
   componentWillMount() {
-    this.getUsers();
+    this.props.fetchingUsers();
   }
 
   componentDidMount() {
     document.title = 'Users';
   }
 
-  getUsers() {
-    const that = this;
-    fetch(constants.get_users_url, { credentials: 'same-origin' }).then(r => r.json())
-      .then(data => {
-        that.setState({ users: data });
-      })
-      .catch(e => console.log(e));
-  }
-
   render() {
-    if (this.state.users.length) {
+    const { users } = this.props;
+    if (users.length) {
       return (
         <Layout>
           <div className="container-fluid container-pf-nav-pf-vertical container-cards-pf">
-            <CardView users={this.state.users} />
+            <CardView users={users} />
           </div>
         </Layout>
       );
@@ -41,7 +33,21 @@ class UsersPage extends React.Component {
       </Layout>
     );
   }
-
 }
 
-export default UsersPage;
+UsersPage.propTypes = {
+  fetchingUsers: PropTypes.func,
+  users: PropTypes.array,
+};
+
+const mapStateToProps = (state) => ({
+  users: state.users,
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchingUsers: () => {
+    dispatch(fetchingUsers());
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(UsersPage);
