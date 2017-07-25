@@ -424,9 +424,3 @@ textarea.form-control[readonly] {
  .nav-tabs .badge {
    display: inline;
  }
-
- /* bs tooltip fixed positioning */
- .cmpsr-list-inputs .list-pf-actions .tooltip {
-   /*left: auto !important;*/
-   /*right: 0px;*/
- }
