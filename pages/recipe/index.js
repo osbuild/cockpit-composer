@@ -249,17 +249,19 @@ class RecipePage extends React.Component {
     const pastRevisions = this.state.revisions.filter(obj => obj.active === false);
     return (
       <Layout className="container-fluid container-pf-nav-pf-vertical" ref="layout">
-        <ol className="breadcrumb">
-          <li><Link to="/recipes">Back to Recipes</Link></li>
-          <li className="active"><strong>{this.props.route.params.recipe}</strong></li>
-        </ol>
-        <div className="cmpsr-header__title">
-          <h1 className="cmpsr-header__title__item">{this.props.route.params.recipe}</h1>
-          <p className="cmpsr-header__title__item">
-            Current Revision: 3
-            {this.state.recipe.description && <span className="text-muted">, {this.state.recipe.description}</span>}
-          </p>
-        </div>
+        <header className="cmpsr-header">
+          <ol className="breadcrumb">
+            <li><Link to="/recipes">Back to Recipes</Link></li>
+            <li className="active"><strong>{this.props.route.params.recipe}</strong></li>
+          </ol>
+          <div className="cmpsr-title">
+            <h1 className="cmpsr-title__item">{this.props.route.params.recipe}</h1>
+            <p className="cmpsr-title__item">
+              Current Revision: 3
+              {this.state.recipe.description && <span className="text-muted">, {this.state.recipe.description}</span>}
+            </p>
+          </div>
+        </header>
         <Tabs key="pf-tabs" ref="pfTabs" tabChanged={this.handleTabChanged}>
           <Tab tabTitle="Details" active={this.state.activeTab === 'Details'}>
             <div className="row toolbar-pf">
@@ -373,14 +375,14 @@ class RecipePage extends React.Component {
                         <div className="list-pf-container">
                           <div className="list-pf-content list-pf-content-flex ">
                             <div className="list-pf-left">
-                              <span className="pf-icon pficon-user list-pf-icon-small text-muted" aria-hidden="true" />
+                              <span className="fa fa-comment-o list-pf-icon-small text-muted" aria-hidden="true" />
                             </div>
                             <div className="list-pf-content-wrapper">
                               <div className="list-pf-main-content">
                                 <div className="list-pf-title ">
-                                  {comment.user}
+                                  Revision {comment.revision}, {comment.date}
                                   <span className="text-muted pull-right">
-                                    Revision {comment.revision}, {comment.date}
+                                    {comment.user}
                                   </span>
                                 </div>
                                 <div className="list-pf-description ">
@@ -533,7 +535,8 @@ class RecipePage extends React.Component {
                       handleComponentDetails={this.handleComponentDetails}
                     />}
                 </div>) ||
-                <div className="col-sm-12">
+                <div className="col-sm-12 cmpsr-component-details--view">
+                  <h3 className="cmpsr-panel__title cmpsr-panel__title--main">Component Details</h3>
                   <ComponentDetailsView
                     parent={this.props.route.params.recipe}
                     component={this.state.selectedComponent}

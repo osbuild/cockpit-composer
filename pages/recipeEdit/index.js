@@ -501,180 +501,160 @@ class EditRecipePage extends React.Component {
 
     return (
       <Layout
-        className="container-fluid container-pf-nav-pf-vertical"
+        className="container-pf-nav-pf-vertical cmpsr-grid__wrapper"
         ref={c => {
           this.layout = c;
         }}
       >
-        <div className="cmpsr-header__actions pull-right">
-          <ul className="list-inline">
-            <li className="text-muted">
-              3 changes
-            </li>
-            <li>
-              <a href="#" onClick={e => this.handleShowModal(e, 'modalPendingChanges')}>View and Comment</a>
-            </li>
-            <li>
-              <button className="btn btn-primary" type="button" onClick={e => this.handleSave(e)}>Save</button>
-            </li>
-            <li>
-              <button className="btn btn-default" type="button">Discard Changes</button>
-            </li>
-          </ul>
-        </div>
-        <ol className="breadcrumb">
-          <li><Link to="/recipes">Back to Recipes</Link></li>
-          <li><Link to={`/recipe/${recipeDisplayName}`}>{recipeDisplayName}</Link></li>
-          <li className="active"><strong>Edit Recipe</strong></li>
-        </ol>
-        <div className="cmpsr-header__title">
-          <h1 className="cmpsr-header__title__item">{recipeDisplayName}</h1>
-          <p className="cmpsr-header__title__item">
-            Revision 3<span className="hidden">{this.state.recipe.version}</span>
-            <span className="text-muted">, Total Disk Space: 1,234 KB</span>
-          </p>
-        </div>
-        <div className="row">
-
-          {(this.state.selectedComponent === '' &&
-            <div className="col-sm-7 col-md-8 col-sm-push-5 col-md-push-4 cmpsr-recipe--edit">
-              <div className="panel panel-default">
-                <div className="panel-heading">
-                  <h3 className="panel-title">Recipe Components</h3>
-                </div>
-                <div className="panel-body">
-                  <Toolbar handleShowModal={this.handleShowModal} />
-                  {(this.state.recipeComponents.length === 0 &&
-                    <EmptyState
-                      title={'Add Recipe Components'}
-                      message={'Browse or search for components, then add them to the recipe.'}
-                    />) ||
-                    <RecipeContents
-                      components={this.state.recipeComponents}
-                      dependencies={this.state.recipeDependencies}
-                      handleRemoveComponent={this.handleRemoveComponent}
-                      handleComponentDetails={this.handleComponentDetails}
-                    />}
-                </div>
-              </div>
-            </div>) ||
-            <div className="col-sm-7 col-md-8 col-sm-push-5 col-md-push-4 cmpsr-recipe__details cmpsr-recipe__details--edit">
-              <ComponentDetailsView
-                parent={recipeDisplayName}
-                component={this.state.selectedComponent}
-                componentParent={this.state.selectedComponentParent}
-                status={this.state.selectedComponentStatus}
-                handleComponentDetails={this.handleComponentDetails}
-                handleAddComponent={this.handleAddComponent}
-                handleUpdateComponent={this.handleUpdateComponent}
+        <header className="cmpsr-header">
+          <ol className="breadcrumb">
+            <li><Link to="/recipes">Back to Recipes</Link></li>
+            <li><Link to={`/recipe/${recipeDisplayName}`}>{recipeDisplayName}</Link></li>
+            <li className="active"><strong>Edit Recipe</strong></li>
+          </ol>
+          <div className="cmpsr-header__actions">
+            <ul className="list-inline">
+              <li className="text-muted">
+                3 changes
+              </li>
+              <li>
+                <a href="#" onClick={e => this.handleShowModal(e, 'modalPendingChanges')}>View and Comment</a>
+              </li>
+              <li>
+                <button className="btn btn-primary" type="button" onClick={e => this.handleSave(e)}>Save</button>
+              </li>
+              <li>
+                <button className="btn btn-default" type="button">Discard Changes</button>
+              </li>
+            </ul>
+          </div>
+          <div className="cmpsr-title">
+            <h1 className="cmpsr-title__item">{recipeDisplayName}</h1>
+            <p className="cmpsr-title__item">
+              Revision 3<span className="hidden">{this.state.recipe.version}</span>
+              <span className="text-muted">, Total Disk Space: 1,234 KB</span>
+            </p>
+          </div>
+        </header>
+        {(this.state.selectedComponent === '' &&
+          <h3 className="cmpsr-panel__title cmpsr-panel__title--main">Recipe Components</h3>) ||
+          <h3 className="cmpsr-panel__title cmpsr-panel__title--main">Component Details</h3>}
+        {(this.state.selectedComponent === '' &&
+          <div className="cmpsr-panel__body cmpsr-panel__body--main">
+            <Toolbar handleShowModal={this.handleShowModal} />
+            {(this.state.recipeComponents.length === 0 &&
+              <EmptyState
+                title={'Add Recipe Components'}
+                message={'Browse or search for components, then add them to the recipe.'}
+              />) ||
+              <RecipeContents
+                components={this.state.recipeComponents}
+                dependencies={this.state.recipeDependencies}
                 handleRemoveComponent={this.handleRemoveComponent}
-              />
-            </div>}
+                handleComponentDetails={this.handleComponentDetails}
+              />}
+          </div>) ||
+          <ComponentDetailsView
+            parent={recipeDisplayName}
+            component={this.state.selectedComponent}
+            componentParent={this.state.selectedComponentParent}
+            status={this.state.selectedComponentStatus}
+            handleComponentDetails={this.handleComponentDetails}
+            handleAddComponent={this.handleAddComponent}
+            handleUpdateComponent={this.handleUpdateComponent}
+            handleRemoveComponent={this.handleRemoveComponent}
+          />}
 
-          <div className="col-sm-5 col-md-4 col-sm-pull-7 col-md-pull-8 sidebar-pf cmpsr-recipe__inputs">
+        <h3 className="cmpsr-panel__title cmpsr-panel__title--sidebar">Available Components</h3>
+        <div className="cmpsr-panel__body cmpsr-panel__body--sidebar">
 
-            <div className="panel panel-default">
-              <div className="panel-heading">
-                <h3 className="panel-title">Available Components</h3>
-              </div>
-              <div className="panel-body">
-
-                <div className="row toolbar-pf">
-                  <div className="col-sm-12">
-                    <form className="toolbar-pf-actions">
-                      <div className="form-group toolbar-pf-filter">
-                        <label className="sr-only" htmlFor="cmpsr-recipe-input-filter">Name</label>
-                        <div className="input-group">
-                          <div className="input-group-btn">
-                            <button
-                              type="button"
-                              className="btn btn-default dropdown-toggle"
-                              data-toggle="dropdown"
-                              aria-haspopup="true"
-                              aria-expanded="false"
-                            >
-                              Name <span className="caret" />
-                            </button>
-                            <ul className="dropdown-menu">
-                              <li><a href="#">Type</a></li>
-                              <li><a href="#">Name</a></li>
-                              <li><a href="#">Version</a></li>
-                              <li><a href="#">Release</a></li>
-                              <li><a href="#">Lifecycle</a></li>
-                              <li><a href="#">Support Level</a></li>
-                            </ul>
-                          </div>
-                          <input
-                            type="text"
-                            className="form-control"
-                            id="cmpsr-recipe-input-filter"
-                            placeholder="Filter By Name..."
-                            onKeyPress={e => this.getFilteredInputs(e)}
-                          />
-                        </div>
-                      </div>
-                      <div className="toolbar-pf-action-right">
-                        <div className="form-group toolbar-pf-settings">
-                          <button
-                            className="btn btn-link btn-settings"
-                            type="button"
-                            data-toggle="modal"
-                            data-target="#cmpsr-recipe-inputs-settings"
-                          >
-                            <span className="pf-icon pficon-settings" />
-                          </button>
-                        </div>
-                      </div>
-                    </form>
-                    <div className="row toolbar-pf-results">
-                      <div className="col-sm-12">
-                        {this.state.inputFilters.length > 0 &&
-                          <ul className="list-inline">
-                            <li>
-                              <span className="label label-info">
-                                Name: {this.state.inputFilters[0].value}
-                                <a href="#" onClick={e => this.handleClearFilters(e)}>
-                                  <span className="pficon pficon-close" />
-                                </a>
-                              </span>
-                            </li>
-                            <li>
-                              <a href="#" onClick={e => this.handleClearFilters(e)}>Clear All Filters</a>
-                            </li>
-                          </ul>}
-                        <Pagination
-                          cssClass="cmpsr-recipe__inputs__pagination"
-                          currentPage={this.state.selectedInputPage}
-                          totalItems={
-                            (this.state.inputFilters.length === 0 && this.state.totalInputs) || this.state.totalFilteredInputs
-                          }
-                          pageSize={this.state.inputPageSize}
-                          handlePagination={this.handlePagination}
-                        />
-                      </div>
-                    </div>
+          <div className="toolbar-pf">
+            <form className="toolbar-pf-actions">
+              <div className="form-group toolbar-pf-filter">
+                <label className="sr-only" htmlFor="cmpsr-recipe-input-filter">Name</label>
+                <div className="input-group">
+                  <div className="input-group-btn">
+                    <button
+                      type="button"
+                      className="btn btn-default dropdown-toggle"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      Name <span className="caret" />
+                    </button>
+                    <ul className="dropdown-menu">
+                      <li><a href="#">Type</a></li>
+                      <li><a href="#">Name</a></li>
+                      <li><a href="#">Version</a></li>
+                      <li><a href="#">Release</a></li>
+                      <li><a href="#">Lifecycle</a></li>
+                      <li><a href="#">Support Level</a></li>
+                    </ul>
                   </div>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="cmpsr-recipe-input-filter"
+                    placeholder="Filter By Name..."
+                    onKeyPress={e => this.getFilteredInputs(e)}
+                  />
                 </div>
-
-                <div className="alert alert-info alert-dismissable">
-                  <button type="button" className="close" data-dismiss="alert" aria-hidden="true">
-                    <span className="pficon pficon-close" />
-                  </button>
-                  <span className="pficon pficon-info" />
-                  <strong>Select components</strong> in this list to add to the recipe.
-                </div>
-                <ComponentInputs
-                  components={
-                    (this.state.inputFilters.length === 0 && this.state.inputComponents[this.state.selectedInputPage]) ||
-                      this.state.filteredComponents[this.state.selectedInputPage]
-                  }
-                  handleComponentDetails={this.handleComponentDetails}
-                  handleAddComponent={this.handleAddComponent}
-                  handleRemoveComponent={this.handleRemoveComponent}
-                />
               </div>
+              <div className="toolbar-pf-action-right">
+                <div className="form-group toolbar-pf-settings">
+                  <button
+                    className="btn btn-link btn-settings"
+                    type="button"
+                    data-toggle="modal"
+                    data-target="#cmpsr-recipe-inputs-settings"
+                  >
+                    <span className="pf-icon pficon-settings" />
+                  </button>
+                </div>
+              </div>
+            </form>
+            <div className="toolbar-pf-results">
+              {this.state.inputFilters.length > 0 &&
+                <ul className="list-inline">
+                  <li>
+                    <span className="label label-info">
+                      Name: {this.state.inputFilters[0].value}
+                      <a href="#" onClick={e => this.handleClearFilters(e)}>
+                        <span className="pficon pficon-close" />
+                      </a>
+                    </span>
+                  </li>
+                  <li>
+                    <a href="#" onClick={e => this.handleClearFilters(e)}>Clear All Filters</a>
+                  </li>
+                </ul>}
+              <Pagination
+                cssClass="cmpsr-recipe__inputs__pagination"
+                currentPage={this.state.selectedInputPage}
+                totalItems={(this.state.inputFilters.length === 0 && this.state.totalInputs) || this.state.totalFilteredInputs}
+                pageSize={this.state.inputPageSize}
+                handlePagination={this.handlePagination}
+              />
             </div>
           </div>
+
+          <div className="alert alert-info alert-dismissable">
+            <button type="button" className="close" data-dismiss="alert" aria-hidden="true">
+              <span className="pficon pficon-close" />
+            </button>
+            <span className="pficon pficon-info" />
+            <strong>Select components</strong> in this list to add to the recipe.
+          </div>
+          <ComponentInputs
+            components={
+              (this.state.inputFilters.length === 0 && this.state.inputComponents[this.state.selectedInputPage]) ||
+                this.state.filteredComponents[this.state.selectedInputPage]
+            }
+            handleComponentDetails={this.handleComponentDetails}
+            handleAddComponent={this.handleAddComponent}
+            handleRemoveComponent={this.handleRemoveComponent}
+          />
         </div>
         <CreateComposition recipe={this.state.recipe.name} setNotifications={this.setNotifications} />
         {this.state.modal === 'modalExport'

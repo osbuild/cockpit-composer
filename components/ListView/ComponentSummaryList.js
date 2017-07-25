@@ -19,7 +19,7 @@ class ComponentSummaryList extends React.Component {
       <div className="cmpsr-summary-listview">
         <p>
           <strong>Dependencies</strong>
-          <span> ({this.props.listItems.length} First Level, --- Total) </span>
+          <span className="badge">{this.props.listItems.length}</span>
           <a href="#" className="pull-right" onClick={e => this.handleShowAll(e)}>
             {`${this.state.showAll ? 'Show Less' : 'Show All'}`}
           </a>

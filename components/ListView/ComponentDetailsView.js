@@ -149,33 +149,28 @@ class ComponentDetailsView extends React.Component {
     const { component } = this.props;
 
     return (
-      <div className="cmpsr-compon-details">
-        {(this.state.parents.length > 0 &&
-          <ol className="breadcrumb">
-            <li>
-              <a href="#" onClick={e => this.props.handleComponentDetails(e, '')}>Back to {this.props.parent}</a>
-            </li>
-            {this.state.parents.map((parent, i) => (
-              <li key={i}>
-                <a href="#" onClick={e => this.props.handleComponentDetails(e, parent, this.state.parents[i - 1])}>
-                  {parent.name}
-                </a>
+      <div className="cmpsr-panel__body cmpsr-panel__body--main">
+        <div className="cmpsr-header">
+          {(this.state.parents.length > 0 &&
+            <ol className="breadcrumb">
+              <li>
+                <a href="#" onClick={e => this.props.handleComponentDetails(e, '')}>Back to {this.props.parent}</a>
               </li>
-            ))}
-            <li />
-          </ol>) ||
-          <ol className="breadcrumb">
-            <li>
-              <a href="#" onClick={e => this.props.handleComponentDetails(e, '')}>Back to {this.props.parent}</a>
-            </li>
-          </ol>}
-        <h3>
-          <span data-item="name">
-            <ComponentTypeIcons componentType={component.ui_type} compDetails componentInRecipe={component.inRecipe} />
-            {' '}
-            {component.name}
-          </span>
-          <div className="pull-right">
+              {this.state.parents.map((parent, i) => (
+                <li key={i}>
+                  <a href="#" onClick={e => this.props.handleComponentDetails(e, parent, this.state.parents[i - 1])}>
+                    {parent.name}
+                  </a>
+                </li>
+              ))}
+              <li />
+            </ol>) ||
+            <ol className="breadcrumb">
+              <li>
+                <a href="#" onClick={e => this.props.handleComponentDetails(e, '')}>Back to {this.props.parent}</a>
+              </li>
+            </ol>}
+          <div className="cmpsr-header__actions">
             <ul className="list-inline">
               {this.props.status === 'available' &&
                 <li>
@@ -208,7 +203,7 @@ class ComponentDetailsView extends React.Component {
                     className="btn btn-default"
                     type="button"
                     data-toggle="tooltip"
-                    data-placement="top"
+                    data-placement="bottom"
                     title=""
                     data-original-title="Remove from Recipe"
                     onClick={e => this.props.handleRemoveComponent(e, component)}
@@ -221,7 +216,7 @@ class ComponentDetailsView extends React.Component {
                   type="button"
                   className="close"
                   data-toggle="tooltip"
-                  data-placement="top"
+                  data-placement="bottom"
                   title=""
                   data-original-title="Hide Details"
                   onClick={e => this.props.handleComponentDetails(e, '')}
@@ -231,18 +226,25 @@ class ComponentDetailsView extends React.Component {
               </li>
             </ul>
           </div>
-        </h3>
-
+          <h3 className="cmpsr-title">
+            <span>
+              <ComponentTypeIcons componentType={component.ui_type} compDetails componentInRecipe={component.inRecipe} />
+              {' '}
+              {component.name}
+            </span>
+          </h3>
+        </div>
         {(this.props.status === 'available' || this.state.editSelected === true || this.props.status === 'editSelected') &&
-          <div className="blank-slate-pf">
+          <div className="cmpsr-component-details__form">
+            <h4>Component Options</h4>
             <form className="form-horizontal">
               <div className="form-group">
-                <label className="col-sm-3 col-md-2 control-label" htmlFor="cmpsr-compon-details-version-select">
+                <label className="col-sm-3 col-md-2 control-label" htmlFor="cmpsr-compon__version-select">
                   Version Release
                 </label>
                 <div className="col-sm-8 col-md-9">
                   <select
-                    id="cmpsr-compon-details-version-select"
+                    id="cmpsr-compon__version-select"
                     className="form-control"
                     value={this.state.selectedBuildIndex}
                     onChange={e => this.handleVersionSelect(e)}
@@ -254,11 +256,11 @@ class ComponentDetailsView extends React.Component {
                 </div>
               </div>
               <div className="form-group hidden">
-                <label className="col-sm-3 col-md-2 control-label" htmlFor="cmpsr-compon-details-instprof-select">
+                <label className="col-sm-3 col-md-2 control-label" htmlFor="cmpsr-compon__instprof-select">
                   Install Profile
                 </label>
                 <div className="col-sm-8 col-md-9">
-                  <select id="cmpsr-compon-details-instprof-select" className="form-control">
+                  <select id="cmpsr-compon__instprof-select" className="form-control">
                     <option>Default</option>
                     <option>Debug</option>
                   </select>
@@ -269,7 +271,7 @@ class ComponentDetailsView extends React.Component {
         <div className="nav-tabs-pf">
           <Tabs key="pf-tabs" ref="pfTabs" tabChanged={e => this.handleTabChanged(e)}>
             <Tab tabTitle="Details" active={this.state.activeTab === 'Details'}>
-              <h3 data-item="summary">{this.state.componentData.summary}</h3>
+              <h4 className="cmpsr-title">{this.state.componentData.summary}</h4>
               <p>{this.state.componentData.description}</p>
               <dl className="dl-horizontal">
                 <dt>Type</dt>

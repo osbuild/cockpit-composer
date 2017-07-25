@@ -90,7 +90,7 @@ class ComponentInputs extends React.Component {
               tabIndex="0"
               data-toggle="tooltip"
               data-trigger="manual"
-              data-placement="right"
+              data-placement="top"
               title=""
               data-original-title={component.active ? 'Hide Details' : 'Show Details and More Options'}
               onClick={e => this.props.handleComponentDetails(e, component)}
@@ -109,10 +109,11 @@ class ComponentInputs extends React.Component {
                   {(component.inRecipe === true &&
                     <a
                       href="#"
+                      className="btn btn-link"
                       data-toggle="tooltip"
                       data-trigger="manual"
                       data-html="true"
-                      data-placement="right"
+                      data-placement="top"
                       title=""
                       data-original-title="Remove Component from Recipe"
                       onClick={e => this.props.handleRemoveComponent(e, component)}
@@ -121,10 +122,11 @@ class ComponentInputs extends React.Component {
                     </a>) ||
                     <a
                       href="#"
+                      className="btn btn-link"
                       data-toggle="tooltip"
                       data-trigger="manual"
                       data-html="true"
-                      data-placement="right"
+                      data-placement="top"
                       title=""
                       data-original-title={`Add Component<br />
                             Version&nbsp;<strong>${component.version}</strong>
