@@ -2,133 +2,152 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ComponentTypeIcons from '../../components/ListView/ComponentTypeIcons';
 
-
 class ComponentInputs extends React.Component {
-
   componentDidMount() {
-    this.bindPopover();
-    this.bindViewDetails();
     this.initializeBootstrapElements();
+    this.bindTooltipShow();
+    this.bindHideTooltip();
+    this.bindTooltipMouseleave();
   }
 
   componentDidUpdate() {
     this.unbind();
-    this.bindPopover();
-    this.bindViewDetails();
     this.initializeBootstrapElements();
-    $('#cmpsr-recipe-inputs .list-group-item').popover('destroy');
+    this.bindTooltipShow();
+    this.bindHideTooltip();
+    this.bindTooltipMouseleave();
+    this.hideTooltip('all');
   }
 
   componentWillUnmount() {
     this.unbind();
+    this.hideTooltip('all');
   }
 
-  bindPopover() {
-    // click input to view popover
-    $('#cmpsr-recipe-inputs').on('click', '.list-group-item', (event) => {
-      if (!$(event.target).is('a, a>span')) {
-        if ($(this).is('[aria-describedby]')) {
-          $(this).popover('destroy');
-        } else {
-          $('#cmpsr-recipe-inputs .list-group-item').popover('destroy');
-          $(this).popover('show');
-        }
+  bindTooltipShow() {
+    $('.cmpsr-list-inputs').off().on('mouseenter focus', '[data-toggle="tooltip"]', event => {
+      // prevent li tooltip from flashing when focus moves to the <a>
+      event.stopPropagation();
+      // hide tooltip for other list items
+      if ($(event.currentTarget).hasClass('list-pf-container')) {
+        $('.list-pf-container[data-toggle="tooltip"]').not(event.target).tooltip('hide');
+      }
+      // hide tooltip for component list item if hovering over an action
+      if ($(event.currentTarget).parent('.list-pf-actions').length) {
+        this.hideTooltip('parent');
+      }
+      $(event.currentTarget).tooltip('show');
+    });
+  }
+
+  bindHideTooltip() {
+    $('.cmpsr-list-inputs').on('blur mousedown', '[data-toggle="tooltip"]', event => {
+      // prevent focus event so that tooltip doesn't display again on click
+      event.preventDefault();
+      this.hideTooltip(event.currentTarget);
+    });
+  }
+
+  bindTooltipMouseleave() {
+    $('.cmpsr-list-inputs').on('mouseleave', '[data-toggle="tooltip"]', event => {
+      this.hideTooltip(event.currentTarget);
+      if ($(event.currentTarget).parent('.list-pf-actions').length) {
+        $(event.currentTarget).parents('.list-pf-container').tooltip('show');
       }
     });
   }
 
   unbind() {
-    $('#cmpsr-recipe-inputs').off('click');
+    $('.list-pf-actions').off('mouseenter focus mouseleave blur mousedown');
   }
 
-  bindViewDetails() {
-    // click View Details link in popover
-    $('#cmpsr-recipe-inputs').on('click', '.popover-content a', (event) => {
-      const selectedPopover = $(this).parents('.popover').attr('id');
-      const link = $(`[aria-describedby="${selectedPopover}"] .list-group-item-heading a`);
-      $(link)[0].click();
-      $(this).parents('.popover').popover('destroy');
-      event.preventDefault();
-      event.stopPropagation();
-    });
+  hideTooltip(target) {
+    if (target === 'all') {
+      $('.cmpsr-list-inputs [data-toggle="tooltip"][aria-describedby]').tooltip('hide');
+    } else if (target === 'parent') {
+      $('.list-pf-container[data-toggle="tooltip"][aria-describedby]').tooltip('hide');
+    } else {
+      $(target).tooltip('hide');
+    }
   }
 
   initializeBootstrapElements() {
     // Initialize Boostrap-tooltip
-    $('[data-toggle="tooltip"]').tooltip();
+    $('[data-toggle="tooltip"]').tooltip({
+      trigger: 'manual',
+    });
   }
-
-// TODO add the following after 'requires' after resolving issue where
-// duplicate list items are included for multiple builds
-// " + component.projects.length + "
 
   render() {
     const { components } = this.props;
 
     return (
-
-      <div
-        id="compsr-inputs"
-        className="list-group list-view-pf list-view-pf-view cmpsr-list-view-viewskinny"
-      >
-        {components.map((component, i) =>
-          <div
-            key={i}
-            className={`list-group-item ${component.active ? 'active' : ''}`}
-            data-html="true"
-            title=""
-            data-content={
-              `Version <strong data-item='version'>${component.version}</strong><br />
-                Release <strong data-item='release'>${component.release}</strong><br />
-                ${component.active ?
-                  '<a href="#">Hide Details</a>' : '<a href="#">View Details</a>'}`}
-          >
-            <div className="list-view-pf-actions">
-              <a
-                href="#"
-                disabled={component.inRecipe}
-                className="add pull-right"
-                data-toggle="tooltip"
-                data-placement="top"
-                title=""
-                data-original-title="Add Component"
-                onClick={(e) => this.props.handleAddComponent(e, 'input', component, [])}
-              >
-                <span className="pficon pficon-add-circle-o"></span>
-              </a>
-            </div>
-            <div className="list-view-pf-main-info">
-              <div className="list-view-pf-left" data-item="type">
-                <ComponentTypeIcons componentType={component.ui_type} />
-              </div>
-              <div className="list-view-pf-body">
-                <div className="list-view-pf-description">
-                  <div className="list-group-item-heading">
+      <div className="list-pf cmpsr-list-inputs cmpsr-list-pf__compacted list-pf-stacked">
+        {components.map((component, i) => (
+          <div key={i} className={`list-pf-item ${component.active ? 'active' : ''}`}>
+            <div
+              className="list-pf-container"
+              tabIndex="0"
+              data-toggle="tooltip"
+              data-trigger="manual"
+              data-placement="right"
+              title=""
+              data-original-title={component.active ? 'Hide Details' : 'Show Details and More Options'}
+              onClick={e => this.props.handleComponentDetails(e, component)}
+            >
+              <div className="list-pf-content list-pf-content-flex ">
+                <div className="list-pf-left">
+                  <ComponentTypeIcons componentType={component.ui_type} componentInRecipe={component.inRecipe} />
+                </div>
+                <div className="list-pf-content-wrapper">
+                  <div className="list-pf-main-content">
+                    <div className="list-pf-title ">{component.name}</div>
+                    <div className="list-pf-description ">{component.summary}</div>
+                  </div>
+                </div>
+                <div className="list-pf-actions">
+                  {(component.inRecipe === true &&
                     <a
                       href="#"
-                      data-item="name"
-                      onClick={(e) => this.props.handleComponentDetails(e, component)}
-                    >{component.name}</a>
-                  </div>
-                  <div
-                    className="list-group-item-text"
-                    data-item="summary"
-                  >{component.summary}</div>
+                      data-toggle="tooltip"
+                      data-trigger="manual"
+                      data-html="true"
+                      data-placement="right"
+                      title=""
+                      data-original-title="Remove Component from Recipe"
+                      onClick={e => this.props.handleRemoveComponent(e, component)}
+                    >
+                      <span className="fa fa-minus" />
+                    </a>) ||
+                    <a
+                      href="#"
+                      data-toggle="tooltip"
+                      data-trigger="manual"
+                      data-html="true"
+                      data-placement="right"
+                      title=""
+                      data-original-title={`Add Component<br />
+                            Version&nbsp;<strong>${component.version}</strong>
+                            Release&nbsp;<strong>${component.release}</strong>`}
+                      onClick={e => this.props.handleAddComponent(e, 'input', component, [])}
+                    >
+                      <span className="fa fa-plus" />
+                    </a>}
                 </div>
               </div>
             </div>
           </div>
-        )}
+        ))}
       </div>
     );
   }
-
 }
 
 ComponentInputs.propTypes = {
   components: PropTypes.array,
   handleComponentDetails: PropTypes.func,
   handleAddComponent: PropTypes.func,
+  handleRemoveComponent: PropTypes.func,
 };
 
 export default ComponentInputs;

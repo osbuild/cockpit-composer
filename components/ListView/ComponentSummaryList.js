@@ -3,16 +3,15 @@ import PropTypes from 'prop-types';
 import ComponentTypeIcons from '../../components/ListView/ComponentTypeIcons';
 
 class ComponentSummaryList extends React.Component {
+  state = { showAll: false };
 
-  state = { showAll: false }
-
-  handleShowAll = (event) => {
+  handleShowAll = event => {
     // the user clicked a list item in the recipe contents area to expand or collapse
     const showState = !this.state.showAll;
     this.setState({ showAll: showState });
     event.preventDefault();
     event.stopPropagation();
-  }
+  };
 
   render() {
     const listItems = this.state.showAll ? this.props.listItems : this.props.listItems.slice(0, 5);
@@ -21,25 +20,33 @@ class ComponentSummaryList extends React.Component {
         <p>
           <strong>Dependencies</strong>
           <span> ({this.props.listItems.length} First Level, --- Total) </span>
-          <a href="#" className="pull-right" onClick={(e) => this.handleShowAll(e)}>
+          <a href="#" className="pull-right" onClick={e => this.handleShowAll(e)}>
             {`${this.state.showAll ? 'Show Less' : 'Show All'}`}
           </a>
         </p>
-        <div className="list-group list-view-pf list-view-pf-view cmpsr-list-view-viewskinny">
-          {listItems.map((listItem, i) =>
-            <div className="list-group-item" key={i}>
-              <div className="list-view-pf-main-info">
-                <div className="list-view-pf-left" data-item="type">
-                  <ComponentTypeIcons componentType={listItem.ui_type} />
-                </div>
-                <div className="list-view-pf-body">
-                  <div className="list-view-pf-description">
-                    <a data-item="name">{listItem.name}</a>
+        <div className="list-pf cmpsr-list-pf__compacted">
+          {listItems.map((listItem, i) => (
+            <div className="list-pf-item" key={i}>
+              <div className="list-pf-container">
+                <div className="list-pf-content list-pf-content-flex ">
+                  <div className="list-pf-left">
+                    <ComponentTypeIcons
+                      componentType={listItem.ui_type}
+                      componentInRecipe
+                      isDependency={this.props.isDependency}
+                    />
+                  </div>
+                  <div className="list-pf-content-wrapper">
+                    <div className="list-pf-main-content">
+                      <div className="list-pf-description ">
+                        <a>{listItem.name}</a>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          )}
+          ))}
         </div>
       </div>
     );
@@ -48,6 +55,7 @@ class ComponentSummaryList extends React.Component {
 
 ComponentSummaryList.propTypes = {
   listItems: PropTypes.array,
+  isDependency: PropTypes.bool,
 };
 
 export default ComponentSummaryList;
