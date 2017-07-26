@@ -18,8 +18,7 @@ end-to-end-test:
 		mkdir ./welder-deployment/mddb; \
 	fi; \
 	sudo docker-compose -f welder-deployment/docker-compose.yml build
-	wget https://s3.amazonaws.com/atodorov/metadata_centos7.db.gz -O welder-deployment/mddb/metadata.db.gz
-	gunzip ./welder-deployment/mddb/metadata.db.gz
+	wget https://s3.amazonaws.com/weldr/metadata.db -O welder-deployment/mddb/metadata.db
 	sudo docker-compose -f welder-deployment/docker-compose.yml -p welder up -d
 
 	sudo docker run --rm --name welder_end_to_end --network welder_default \
