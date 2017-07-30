@@ -1,5 +1,5 @@
 # A Fedora 25 End-To-End Automation Test Container
-FROM weld/fedora:25
+FROM welder/fedora:latest
 MAINTAINER Xiaofeng Wang <xiaofwan@redhat.com>
 
 # Install xvfb to simulate framebuffer for nightmare.js
