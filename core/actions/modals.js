@@ -1,39 +1,39 @@
-export const SET_MODAL_RECIPE_NAME = 'SET_MODAL_RECIPE_NAME';
-export function setModalRecipeName(modalRecipeName) {
+export const SET_EXPORT_MODAL_RECIPE_NAME = 'SET_EXPORT_MODAL_RECIPE_NAME';
+export function setExportModalRecipeName(recipeName) {
   return {
-    type: SET_MODAL_RECIPE_NAME,
+    type: SET_EXPORT_MODAL_RECIPE_NAME,
     payload: {
-      modalRecipeName,
+      recipeName,
     },
   };
 }
 
-export const SET_MODAL_RECIPE_VISIBLE = 'SET_MODAL_RECIPE_VISIBLE';
-export function setModalRecipeVisible(modalRecipeVisible) {
+export const SET_EXPORT_MODAL_VISIBLE = 'SET_EXPORT_MODAL_VISIBLE';
+export function setExportModalVisible(visible) {
   return {
-    type: SET_MODAL_RECIPE_VISIBLE,
+    type: SET_EXPORT_MODAL_VISIBLE,
     payload: {
-      modalRecipeVisible,
+      visible,
     },
   };
 }
 
-export const SET_MODAL_RECIPE_CONTENTS = 'SET_MODAL_RECIPE_CONTENTS';
-export function setModalRecipeContents(modalRecipeContents) {
+export const SET_EXPORT_MODAL_RECIPE_CONTENTS = 'SET_EXPORT_MODAL_RECIPE_CONTENTS';
+export function setExportModalRecipeContents(recipeContents) {
   return {
-    type: SET_MODAL_RECIPE_CONTENTS,
+    type: SET_EXPORT_MODAL_RECIPE_CONTENTS,
     payload: {
-      modalRecipeContents,
+      recipeContents,
     },
   };
 }
 
-export const FETCHING_MODAL_RECIPE_CONTENTS = 'FETCHING_MODAL_RECIPE_CONTENTS';
-export function fetchingModalRecipeContents(modalRecipeName) {
+export const FETCHING_EXPORT_MODAL_RECIPE_CONTENTS = 'FETCHING_EXPORT_MODAL_RECIPE_CONTENTS';
+export function fetchingExportModalRecipeContents(recipeName) {
   return {
-    type: FETCHING_MODAL_RECIPE_CONTENTS,
+    type: FETCHING_EXPORT_MODAL_RECIPE_CONTENTS,
     payload: {
-      modalRecipeName,
+      recipeName,
     },
   };
 }

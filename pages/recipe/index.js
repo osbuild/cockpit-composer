@@ -11,7 +11,15 @@ import EmptyState from '../../components/EmptyState/EmptyState';
 import ListView from '../../components/ListView/ListView';
 import ListItemRevisions from '../../components/ListView/ListItemRevisions';
 import ListItemCompositions from '../../components/ListView/ListItemCompositions';
-import RecipeApi from '../../data/RecipeApi';
+import { connect } from 'react-redux';
+import { fetchingRecipeContents, setRecipeDescription } from '../../core/actions/recipes';
+import { setExportModalVisible } from '../../core/actions/modals';
+import { makeGetRecipeById } from '../../core/selectors';
+import {
+  setEditDescriptionVisible, setEditDescriptionValue,
+  setSelectedComponent, setSelectedComponentStatus, setSelectedComponentParent,
+  setActiveTab,
+} from '../../core/actions/recipePage';
 
 class RecipePage extends React.Component {
   constructor() {
@@ -22,16 +30,6 @@ class RecipePage extends React.Component {
   }
 
   state = {
-    recipe: {},
-    components: [],
-    dependencies: [],
-    activeTab: 'Components',
-    selectedComponent: '',
-    selectedComponentStatus: 'view',
-    selectedComponentParent: '',
-    inlineEditDescription: false,
-    inlineEditDescriptionValue: '',
-    modalExport: false,
     revisions: [
       {
         number: '3',
@@ -174,18 +172,15 @@ class RecipePage extends React.Component {
   };
 
   componentWillMount() {
-    const recipeName = this.props.route.params.recipe.replace(/\s/g, '-');
-    Promise.all([RecipeApi.getRecipe(recipeName)])
-      .then(data => {
-        const recipe = {
-          name: data[0].name,
-          description: data[0].description,
-        };
-        this.setState({ recipe });
-        this.setState({ components: data[0].components });
-        this.setState({ dependencies: data[0].dependencies });
-      })
-      .catch(e => console.log(`Error in EditRecipe promise: ${e}`));
+    if (this.props.rehydrated) {
+      this.props.fetchingRecipeContents(this.props.route.params.recipe.replace(/\s/g, '-'));
+    }
+    this.props.setActiveTab('Components');
+    this.props.setEditDescriptionVisible(false);
+    this.props.setSelectedComponent('');
+    this.props.setSelectedComponentParent('');
+    this.props.setSelectedComponentStatus('view');
+    this.props.setExportModalVisible(false);
   }
   // Get the recipe details, and its dependencies
   // Object layout is:
@@ -198,11 +193,11 @@ class RecipePage extends React.Component {
 
   setNotifications = () => {
     this.refs.layout.setNotifications();
-  };
+  }
 
   handleTabChanged(e) {
-    if (this.state.activeTab !== e.detail) {
-      this.setState({ activeTab: e.detail });
+    if (this.props.recipePage.activeTab !== e.detail) {
+      this.props.setActiveTab(e.detail);
     }
     e.preventDefault();
     e.stopPropagation();
@@ -210,43 +205,49 @@ class RecipePage extends React.Component {
 
   handleComponentDetails = (event, component, parent) => {
     // the user selected a component to view more details
-    this.setState({ selectedComponent: component });
-    this.setState({ selectedComponentParent: parent });
+    this.props.setSelectedComponent(component);
+    this.props.setSelectedComponentParent(parent);
     event.preventDefault();
     event.stopPropagation();
   };
 
-  handleEditDescription = action => {
-    const state = !this.state.inlineEditDescription;
-    this.setState({ inlineEditDescription: state });
-    if (state === true) {
-      this.setState({ inlineEditDescriptionValue: this.state.recipe.description });
+  handleEditDescription = (action) => {
+    const state = !this.props.recipePage.editDescriptionVisible;
+    this.props.setEditDescriptionVisible(state);
+    if (state) {
+      this.props.setEditDescriptionValue(this.props.recipe.description);
     } else if (action === 'save') {
-      const recipe = this.state.recipe;
-      recipe.description = this.state.inlineEditDescriptionValue;
-      this.setState({ recipe });
-      RecipeApi.handleEditDescription(recipe.description);
+      this.props.setRecipeDescription(this.props.recipe, this.props.recipePage.editDescriptionValue);
     } else if (action === 'cancel') {
       // cancel action
     }
-  };
+  }
 
   handleChangeDescription(event) {
-    this.setState({ inlineEditDescriptionValue: event.target.value });
+    this.props.setEditDescriptionValue(event.target.value);
   }
 
   // handle show/hide of modal dialogs
   handleHideModalExport = () => {
-    this.setState({ modalExport: false });
-  };
-  handleShowModalExport = e => {
-    this.setState({ modalExport: true });
+    this.props.setExportModalVisible(false);
+  }
+  handleShowModalExport = (e) => {
+    this.props.setExportModalVisible(true);
     e.preventDefault();
     e.stopPropagation();
-  };
+  }
   render() {
-    const activeRevision = this.state.revisions.filter(obj => obj.active === true)[0];
-    const pastRevisions = this.state.revisions.filter(obj => obj.active === false);
+    if (!this.props.rehydrated) {
+      return <div></div>;
+    }
+    const { recipe, exportModalVisible } = this.props;
+    const {
+      editDescriptionValue, editDescriptionVisible, activeTab,
+      selectedComponent, selectedComponentParent, selectedComponentStatus,
+    } = this.props.recipePage;
+
+    const activeRevision = this.state.revisions.filter((obj) => obj.active === true)[0];
+    const pastRevisions = this.state.revisions.filter((obj) => obj.active === false);
     return (
       <Layout className="container-fluid container-pf-nav-pf-vertical" ref="layout">
         <header className="cmpsr-header">
@@ -258,12 +259,12 @@ class RecipePage extends React.Component {
             <h1 className="cmpsr-title__item">{this.props.route.params.recipe}</h1>
             <p className="cmpsr-title__item">
               Current Revision: 3
-              {this.state.recipe.description && <span className="text-muted">, {this.state.recipe.description}</span>}
+              {recipe.description && <span className="text-muted">, {recipe.description}</span>}
             </p>
           </div>
         </header>
         <Tabs key="pf-tabs" ref="pfTabs" tabChanged={this.handleTabChanged}>
-          <Tab tabTitle="Details" active={this.state.activeTab === 'Details'}>
+          <Tab tabTitle="Details" active={activeTab === 'Details'}>
             <div className="row toolbar-pf">
               <div className="col-sm-12">
                 <form className="toolbar-pf-actions">
@@ -323,15 +324,15 @@ class RecipePage extends React.Component {
               <div className="col-md-6">
                 <dl className="dl-horizontal mt-">
                   <dt>Name</dt>
-                  <dd>{this.state.recipe.name}</dd>
+                  <dd>{recipe.name}</dd>
                   <dt>Description</dt>
-                  {(this.state.inlineEditDescription &&
+                  {(editDescriptionVisible &&
                     <dd>
                       <div className="input-group">
                         <input
                           type="text"
                           className="form-control"
-                          value={this.state.inlineEditDescriptionValue}
+                          value={editDescriptionValue}
                           onChange={e => this.handleChangeDescription(e)}
                         />
                         <span className="input-group-btn">
@@ -345,7 +346,7 @@ class RecipePage extends React.Component {
                       </div>
                     </dd>) ||
                     <dd onClick={() => this.handleEditDescription()}>
-                      {this.state.recipe.description}
+                      {recipe.description}
                       <button className="btn btn-link" type="button">
                         <span className="pficon pficon-edit" />
                       </button>
@@ -399,9 +400,9 @@ class RecipePage extends React.Component {
               </div>
             </div>
           </Tab>
-          <Tab tabTitle="Components" active={this.state.activeTab === 'Components'}>
+          <Tab tabTitle="Components" active={activeTab === 'Components'}>
             <div className="row">
-              {(this.state.selectedComponent === '' &&
+              {(selectedComponent === '' &&
                 <div className="col-sm-12">
                   <div className="row toolbar-pf">
                     <div className="col-sm-12">
@@ -517,7 +518,7 @@ class RecipePage extends React.Component {
                       </form>
                     </div>
                   </div>
-                  {(this.state.components.length === 0 &&
+                  {(recipe.components === undefined || recipe.components.length === 0) &&
                     <EmptyState
                       title={'Empty Recipe'}
                       message={'There are no components listed in the recipe. Edit the recipe to add components.'}
@@ -527,10 +528,10 @@ class RecipePage extends React.Component {
                           Edit Recipe
                         </button>
                       </Link>
-                    </EmptyState>) ||
+                    </EmptyState> ||
                     <RecipeContents
-                      components={this.state.components}
-                      dependencies={this.state.dependencies}
+                      components={recipe.components}
+                      dependencies={recipe.dependencies}
                       noEditComponent
                       handleComponentDetails={this.handleComponentDetails}
                     />}
@@ -539,15 +540,15 @@ class RecipePage extends React.Component {
                   <h3 className="cmpsr-panel__title cmpsr-panel__title--main">Component Details</h3>
                   <ComponentDetailsView
                     parent={this.props.route.params.recipe}
-                    component={this.state.selectedComponent}
-                    componentParent={this.state.selectedComponentParent}
-                    status={this.state.selectedComponentStatus}
+                    component={selectedComponent}
+                    componentParent={selectedComponentParent}
+                    status={selectedComponentStatus}
                     handleComponentDetails={this.handleComponentDetails}
                   />
                 </div>}
             </div>
           </Tab>
-          <Tab tabTitle="Revisions" active={this.state.activeTab === 'Revisions'}>
+          <Tab tabTitle="Revisions" active={activeTab === 'Revisions'}>
             <div className="row toolbar-pf">
               <div className="col-sm-12">
                 <form className="toolbar-pf-actions">
@@ -616,7 +617,7 @@ class RecipePage extends React.Component {
               </ListView>
             </div>
           </Tab>
-          <Tab tabTitle="Compositions" active={this.state.activeTab === 'Compositions'}>
+          <Tab tabTitle="Compositions" active={activeTab === 'Compositions'}>
             <div className="row toolbar-pf">
               <div className="col-sm-12">
                 <form className="toolbar-pf-actions">
@@ -697,16 +698,16 @@ class RecipePage extends React.Component {
                 </ListView>}
             </div>
           </Tab>
-          <Tab tabTitle="Errata" active={this.state.activeTab === 'Errata'}>
+          <Tab tabTitle="Errata" active={activeTab === 'Errata'}>
             <p>Errata</p>
           </Tab>
         </Tabs>
-        <CreateComposition recipe={this.state.recipe.name} setNotifications={this.setNotifications} />
-        {this.state.modalExport
+        <CreateComposition recipe={recipe.name} setNotifications={this.setNotifications} />
+        {exportModalVisible
           ? <ExportRecipe
-            recipe={this.state.recipe.name}
-            contents={this.state.dependencies}
-            handleHideModalExport={this.handleHideModalExport}
+            recipe={recipe.name}
+            contents={recipe.dependencies}
+            handleHideModal={this.handleHideModalExport}
           />
           : null}
       </Layout>
@@ -716,6 +717,70 @@ class RecipePage extends React.Component {
 
 RecipePage.propTypes = {
   route: PropTypes.object,
+  rehydrated: PropTypes.bool,
+  fetchingRecipeContents: PropTypes.func,
+  recipe: PropTypes.object,
+  setActiveTab: PropTypes.func,
+  setEditDescriptionValue: PropTypes.func,
+  setEditDescriptionVisible: PropTypes.func,
+  setSelectedComponent: PropTypes.func,
+  setSelectedComponentParent: PropTypes.func,
+  setSelectedComponentStatus: PropTypes.func,
+  setExportModalVisible: PropTypes.func,
+  recipePage: PropTypes.object,
+  setRecipeDescription: PropTypes.func,
+  exportModalVisible: PropTypes.bool,
 };
 
-export default RecipePage;
+const makeMapStateToProps = () => {
+  const getRecipeById = makeGetRecipeById();
+  const mapStateToProps = (state, props) => {
+    if (getRecipeById(state, props.route.params.recipe.replace(/\s/g, '-')) !== undefined) {
+      return {
+        rehydrated: state.rehydrated,
+        recipe: getRecipeById(state, props.route.params.recipe.replace(/\s/g, '-')),
+        recipePage: state.recipePage,
+        exportModalVisible: state.exportModal.visible,
+      };
+    }
+    return {
+      rehydrated: state.rehydrated,
+      recipe: {},
+      recipePage: state.recipePage,
+      exportModalVisible: state.exportModal.visible,
+    };
+  };
+  return mapStateToProps;
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchingRecipeContents: recipeId => {
+    dispatch(fetchingRecipeContents(recipeId));
+  },
+  setRecipeDescription: (recipe, description) => {
+    dispatch(setRecipeDescription(recipe, description));
+  },
+  setEditDescriptionValue: (value) => {
+    dispatch(setEditDescriptionValue(value));
+  },
+  setEditDescriptionVisible: (visible) => {
+    dispatch(setEditDescriptionVisible(visible));
+  },
+  setActiveTab: (activeTab) => {
+    dispatch(setActiveTab(activeTab));
+  },
+  setSelectedComponent: (component) => {
+    dispatch(setSelectedComponent(component));
+  },
+  setSelectedComponentParent: (componentParent) => {
+    dispatch(setSelectedComponentParent(componentParent));
+  },
+  setSelectedComponentStatus: (componentStatus) => {
+    dispatch(setSelectedComponentStatus(componentStatus));
+  },
+  setExportModalVisible: (visible) => {
+    dispatch(setExportModalVisible(visible));
+  },
+});
+
+export default connect(makeMapStateToProps, mapDispatchToProps)(RecipePage);
