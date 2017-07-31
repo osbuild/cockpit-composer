@@ -20,7 +20,7 @@ class RecipeListView extends React.Component {
   //   this.unbind();
   // }
 
-  // bindExpand() {
+  //   bindExpand() {
   //   // click the list-view heading then expand a row
   //   $('.list-group-item-header').click(function (event) {
   //     if (!$(event.target).is('button, a, input, .fa-ellipsis-v')) {
@@ -56,10 +56,8 @@ class RecipeListView extends React.Component {
   }
 
   render() {
-    const { recipes } = this.props; // eslint-disable-line no-use-before-define
-
+    const { recipes, compositionTypes } = this.props; // eslint-disable-line no-use-before-define
     return (
-
       <div className="list-group list-view-pf list-view-pf-view">
 
         {recipes.map((recipe, i) =>
@@ -198,10 +196,13 @@ class RecipeListView extends React.Component {
             </div>
           </div>
         )}
+      {compositionTypes !== undefined &&
         <CreateComposition
+          compositionTypes={compositionTypes}
           recipe={this.state.recipe}
           setNotifications={this.props.setNotifications}
         />
+      }
       </div>
     );
   }
@@ -213,6 +214,7 @@ RecipeListView.propTypes = {
   recipes: PropTypes.array,
   setNotifications: PropTypes.func,
   handleShowModalExport: PropTypes.func,
+  compositionTypes: PropTypes.array,
 };
 
 export default RecipeListView;

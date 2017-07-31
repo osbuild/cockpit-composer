@@ -1,18 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import RecipeApi from '../../data/RecipeApi';
-
+import { connect } from 'react-redux';
+import {
+  setModalCreateRecipeErrorNameVisible, setModalCreateRecipeErrorDuplicateVisible,
+  setModalCreateRecipeErrorInline, setModalCreateRecipeCheckErrors, setModalCreateRecipeRecipe,
+} from '../../core/actions/modals';
+import { creatingRecipeSucceeded } from '../../core/actions/recipes';
 
 class CreateRecipe extends React.Component {
-
-  state = { showErrorName: false, showErrorDuplicate: false, inlineError: false, checkErrors: true,
-    recipe: {
-      name: '',
-      description: '',
-      modules: [],
-      packages: [],
-    },
-  };
 
   componentDidMount() {
     this.bindAutofocus();
@@ -24,6 +20,13 @@ class CreateRecipe extends React.Component {
   }
 
   componentWillUnmount() {
+    const initialRecipe = {
+      name: '',
+      description: '',
+      modules: [],
+      packages: [],
+    };
+    this.props.setModalCreateRecipeRecipe(initialRecipe);
     this.unbind();
   }
 
@@ -38,9 +41,9 @@ class CreateRecipe extends React.Component {
   }
 
   handleChange = (e, prop) => {
-    const o = Object.assign({}, this.state.recipe);
+    const o = Object.assign({}, this.props.createRecipe.recipe);
     o[prop] = e.target.value;
-    this.setState({ recipe: o });
+    this.props.setModalCreateRecipeRecipe(o);
     if (prop === 'name') {
       this.dismissErrors();
       this.handleErrorDuplicate(e.target.value);
@@ -49,12 +52,12 @@ class CreateRecipe extends React.Component {
 
   handleEnterKey(event) {
     if (event.which === 13 || event.keyCode === 13) {
-      this.handleErrors(this.state.recipe.name);
+      this.handleErrors(this.props.createRecipe.recipe.name);
       setTimeout(() => {
-        if (this.state.showErrorName || this.state.showErrorDuplicate) {
+        if (this.props.createRecipe.errorNameVisible || this.props.createRecipe.errorDuplicateVisible) {
           this.showInlineError();
         } else {
-          this.handleCreateRecipe(event, this.state.recipe);
+          this.handleCreateRecipe(event, this.props.createRecipe.recipe);
         }
       }, 300);
     }
@@ -63,16 +66,19 @@ class CreateRecipe extends React.Component {
   handleCreateRecipe(event, recipe) {
     $('#cmpsr-modal-crt-recipe').modal('hide');
     RecipeApi.handleCreateRecipe(event, recipe);
+    const updatedRecipe = recipe;
+    updatedRecipe.id = updatedRecipe.name.replace(/\s/g, '-');
+    this.props.creatingRecipeSucceeded(updatedRecipe);
   }
 
   errorChecking(state) {
-    this.setState({ checkErrors: state });
+    this.props.setModalCreateRecipeCheckErrors(state);
   }
 
   dismissErrors() {
-    this.setState({ inlineError: false });
-    this.setState({ showErrorName: false });
-    this.setState({ showErrorDuplicate: false });
+    this.props.setModalCreateRecipeErrorInline(false);
+    this.props.setModalCreateRecipeErrorNameVisible(false);
+    this.props.setModalCreateRecipeErrorDuplicateVisible(false);
   }
 
   handleErrors(recipeName) {
@@ -83,23 +89,24 @@ class CreateRecipe extends React.Component {
   handleErrorDuplicate(recipeName) {
     const nameNoSpaces = recipeName.replace(/\s+/g, '-');
     if (this.props.recipeNames.includes(nameNoSpaces)) {
-      this.setState({ showErrorDuplicate: true });
+      this.props.setModalCreateRecipeErrorDuplicateVisible(true);
     }
   }
 
   handleErrorName(recipeName) {
-    if (recipeName === '' && this.state.checkErrors) {
+    if (recipeName === '' && this.props.createRecipe.checkErrors) {
       setTimeout(() => {
-        this.setState({ showErrorName: true });
+        this.props.setModalCreateRecipeErrorNameVisible(true);
       }, 200);
     }
   }
 
   showInlineError() {
-    this.setState({ inlineError: true });
+    this.props.setModalCreateRecipeErrorInline(true);
   }
 
   render() {
+    const { createRecipe } = this.props;
     return (
       <div
         className="modal fade"
@@ -126,13 +133,13 @@ class CreateRecipe extends React.Component {
               <h4 className="modal-title" id="myModalLabel">Create Recipe</h4>
             </div>
             <div className="modal-body">
-              {(this.state.inlineError && this.state.showErrorName) &&
+              {(createRecipe.errorInline && createRecipe.errorNameVisible) &&
                 <div className="alert alert-danger">
                   <span className="pficon pficon-error-circle-o"></span>
                   <strong>Required information is missing.</strong>
                 </div>
               }
-              {(this.state.inlineError && this.state.showErrorDuplicate) &&
+              {(createRecipe.errorInline && createRecipe.errorDuplicateVisible) &&
                 <div className="alert alert-danger">
                   <span className="pficon pficon-error-circle-o"></span>
                   <strong>Specify a new recipe name.</strong>
@@ -142,7 +149,10 @@ class CreateRecipe extends React.Component {
                 <p className="fields-status-pf">
                   The fields marked with <span className="required-pf">*</span> are required.
                 </p>
-                <div className={`form-group ${(this.state.showErrorName || this.state.showErrorDuplicate) ? 'has-error' : ''}`}>
+                <div
+                  className={`form-group ${(createRecipe.errorNameVisible || createRecipe.errorDuplicateVisible)
+                    ? 'has-error' : ''}`}
+                >
                   <label
                     className="col-sm-3 control-label required-pf"
                     htmlFor="textInput-modal-markup"
@@ -152,16 +162,16 @@ class CreateRecipe extends React.Component {
                       type="text"
                       id="textInput-modal-markup"
                       className="form-control"
-                      value={this.state.recipe.name}
+                      value={createRecipe.recipe.name}
                       onFocus={(e) => { this.dismissErrors(); this.handleErrorDuplicate(e.target.value); }}
                       onChange={(e) => this.handleChange(e, 'name')}
                       onBlur={(e) => this.handleErrors(e.target.value)}
                     />
-                    {this.state.showErrorName &&
+                    {createRecipe.errorNameVisible &&
                       <span className="help-block">A recipe name is required.</span>
                     }
-                    {this.state.showErrorDuplicate &&
-                      <span className="help-block">The name "{this.state.recipe.name}" already exists.</span>
+                    {createRecipe.errorDuplicateVisible &&
+                      <span className="help-block">The name "{createRecipe.recipe.name}" already exists.</span>
                     }
                   </div>
                 </div>
@@ -175,7 +185,7 @@ class CreateRecipe extends React.Component {
                       type="text"
                       id="textInput2-modal-markup"
                       className="form-control"
-                      value={this.state.recipe.description}
+                      value={createRecipe.recipe.description}
                       onChange={(e) => this.handleChange(e, 'description')}
                     />
                   </div>
@@ -191,7 +201,7 @@ class CreateRecipe extends React.Component {
                 onMouseLeave={() => this.errorChecking(true)}
                 onClick={(e) => this.dismissErrors(e)}
               >Cancel</button>
-              {(this.state.recipe.name === '' || this.state.showErrorDuplicate) &&
+              {(createRecipe.recipe.name === '' || createRecipe.errorDuplicateVisible) &&
                 <button
                   type="button"
                   className="btn btn-primary"
@@ -201,7 +211,7 @@ class CreateRecipe extends React.Component {
                 <button
                   type="button"
                   className="btn btn-primary"
-                  onClick={(e) => this.handleCreateRecipe(e, this.state.recipe)}
+                  onClick={(e) => { this.handleCreateRecipe(e, createRecipe.recipe); }}
                 >Save</button>
               }
             </div>
@@ -214,7 +224,39 @@ class CreateRecipe extends React.Component {
 
 CreateRecipe.propTypes = {
   recipeNames: PropTypes.array,
+  setModalCreateRecipeErrorNameVisible: PropTypes.func,
+  setModalCreateRecipeErrorDuplicateVisible: PropTypes.func,
+  setModalCreateRecipeErrorInline: PropTypes.func,
+  setModalCreateRecipeCheckErrors: PropTypes.func,
+  setModalCreateRecipeRecipe: PropTypes.func,
+  createRecipe: PropTypes.object,
+  creatingRecipeSucceeded: PropTypes.func,
 };
 
+const mapStateToProps = state => ({
+  createRecipe: state.modals.createRecipe,
+});
 
-export default CreateRecipe;
+
+const mapDispatchToProps = dispatch => ({
+  setModalCreateRecipeErrorNameVisible: nameErrorVisible => {
+    dispatch(setModalCreateRecipeErrorNameVisible(nameErrorVisible));
+  },
+  setModalCreateRecipeErrorDuplicateVisible: duplicateErrorVisible => {
+    dispatch(setModalCreateRecipeErrorDuplicateVisible(duplicateErrorVisible));
+  },
+  setModalCreateRecipeErrorInline: inlineError => {
+    dispatch(setModalCreateRecipeErrorInline(inlineError));
+  },
+  setModalCreateRecipeCheckErrors: checkErrors => {
+    dispatch(setModalCreateRecipeCheckErrors(checkErrors));
+  },
+  setModalCreateRecipeRecipe: recipe => {
+    dispatch(setModalCreateRecipeRecipe(recipe));
+  },
+  creatingRecipeSucceeded: (recipe) => {
+    dispatch(creatingRecipeSucceeded(recipe));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateRecipe);

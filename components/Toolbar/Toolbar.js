@@ -69,7 +69,7 @@ const Toolbar = props => (
               <span className="fa fa-ellipsis-v" />
             </button>
             <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
-              <li><a href="#" onClick={e => props.handleShowModal(e, 'modalExport')}>Export</a></li>
+              <li><a href="#" onClick={e => props.handleShowModal(e, 'modalExportRecipe')}>Export</a></li>
               <li role="separator" className="divider" />
               <li><a>Update Selected Components</a></li>
               <li><a>Remove Selected Components</a></li>

@@ -1,32 +1,66 @@
-import { call, put, takeEvery, takeLatest, all } from 'redux-saga/effects';
-import { fetchRecipeInfoApi, fetchRecipeNamesApi, deleteRecipeApi } from '../apiCalls';
-
+import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
 import {
-   FETCHING_RECIPES, fetchingRecipesSucceeded,
-   DELETING_RECIPE, deletingRecipeSucceeded,
-   recipesFailure,
+  fetchRecipeInfoApi, fetchRecipeNamesApi, fetchRecipeContentsApi,
+  deleteRecipeApi, setRecipeDescriptionApi,
+  createRecipeApi,
+} from '../apiCalls';
+import {
+  FETCHING_RECIPE, fetchingRecipeSucceeded,
+  fetchingRecipesSucceeded,
+  FETCHING_RECIPE_CONTENTS, fetchingRecipeContentsSucceeded,
+  SET_RECIPE_DESCRIPTION,
+  CREATING_RECIPE, creatingRecipeSucceeded,
+  DELETING_RECIPE, deletingRecipeSucceeded,
+  recipesFailure,
 } from '../actions/recipes';
+
+function* fetchRecipe(action) {
+  const { recipeId } = action.payload;
+  const response = yield call(fetchRecipeInfoApi, recipeId);
+  yield put(fetchingRecipeSucceeded(response));
+}
+
+function* fetchRecipesFromName(recipeName) {
+  const response = yield call(fetchRecipeInfoApi, recipeName);
+  yield put(fetchingRecipesSucceeded(response));
+}
 
 function* fetchRecipes() {
   try {
     const recipeNames = yield call(fetchRecipeNamesApi);
-    const responses = yield all(recipeNames.map(recipeName => call(fetchRecipeInfoApi, recipeName)));
-    yield all(responses.map(response => {
-      if (response != null) {
-        return put(fetchingRecipesSucceeded(response));
-      }
-      return null;
-    }));
+    yield* recipeNames.map(recipeName => fetchRecipesFromName(recipeName));
   } catch (error) {
     console.log('errorloadRecipesSaga');
     yield put(recipesFailure(error));
   }
 }
 
+function* fetchRecipeContents(action) {
+  try {
+    const { recipeId } = action.payload;
+    const response = yield call(fetchRecipeContentsApi, recipeId);
+    yield put(fetchingRecipeContentsSucceeded(response));
+  } catch (error) {
+    console.log('Error in fetchRecipeContentsSaga');
+    yield put(recipesFailure(error));
+  }
+}
+
+
+function* setRecipeDescription(action) {
+  try {
+    const { recipe, description } = action.payload;
+    yield call(setRecipeDescriptionApi, recipe, description);
+  } catch (error) {
+    console.log('Error in setRecipeDescription');
+    yield put(recipesFailure(error));
+  }
+}
+
 function* deleteRecipe(action) {
   try {
-    const { recipe } = action.payload;
-    const response = yield call(deleteRecipeApi, recipe);
+    const { recipeId } = action.payload;
+    const response = yield call(deleteRecipeApi, recipeId);
     yield put(deletingRecipeSucceeded(response));
   } catch (error) {
     console.log('errorDeleteRecipesSaga');
@@ -34,7 +68,22 @@ function* deleteRecipe(action) {
   }
 }
 
+function* createRecipe(action) {
+  try {
+    const { events, recipe } = action.payload;
+    yield call(createRecipeApi, events, recipe);
+    yield put(creatingRecipeSucceeded(recipe));
+  } catch (error) {
+    console.log('errorCreateRecipeSaga');
+    yield put(recipesFailure(error));
+  }
+}
+
 export default function* () {
-  yield takeLatest(FETCHING_RECIPES, fetchRecipes);
+  yield takeEvery(CREATING_RECIPE, createRecipe);
+  yield takeEvery(FETCHING_RECIPE, fetchRecipe);
+  yield* fetchRecipes();
+  yield takeEvery(FETCHING_RECIPE_CONTENTS, fetchRecipeContents);
+  yield takeLatest(SET_RECIPE_DESCRIPTION, setRecipeDescription);
   yield takeEvery(DELETING_RECIPE, deleteRecipe);
 }
