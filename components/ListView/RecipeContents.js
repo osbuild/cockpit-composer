@@ -13,18 +13,7 @@ class RecipeContents extends React.Component {
 
   state = {
     activeTab: 'Components',
-    depsTabTitle: 'Dependencies',
   };
-
-  componentWillReceiveProps(newProps) {
-    if (newProps.dependencies.length > 0) {
-      this.setState({ depsTabTitle: `Dependencies <span class="badge">${newProps.dependencies.length}</span>` });
-    } else {
-      this.setState({ depsTabTitle: 'Dependencies' });
-    }
-  }
-  // Not sure why this doesn't work. The Virtual DOM seems to be updated but the actual DOM is not
-  // Maybe this is due to using a web component instead of react component for tabs
 
   handleTabChanged(e) {
     if (this.state.activeTab !== e.detail) {
@@ -46,10 +35,7 @@ class RecipeContents extends React.Component {
           }}
           tabChanged={this.handleTabChanged}
         >
-          <Tab
-            tabTitle={`Selected Components <span class="badge">${components.length}</span>`}
-            active={this.state.activeTab === 'Selected'}
-          >
+          <Tab tabTitle="Selected Components" active={this.state.activeTab === 'Selected'}>
             <ListView className="cmpsr-recipe__components" stacked>
               {components.map((listItem, i) => (
                 <ListItemComponents
@@ -63,7 +49,7 @@ class RecipeContents extends React.Component {
               ))}
             </ListView>
           </Tab>
-          <Tab tabTitle={this.state.depsTabTitle} active={this.state.activeTab === 'Dependencies'}>
+          <Tab tabTitle="Dependencies" active={this.state.activeTab === 'Dependencies'}>
             <DependencyListView
               className="cmpsr-recipe__dependencies"
               listItems={dependencies}
