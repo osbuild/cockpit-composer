@@ -10,16 +10,16 @@ module.exports = class EditRecipePage extends MainPage {
     // Navigation bar root element
     this.navBarRootElement = 'ol[class="breadcrumb"]';
     // Edit action bar root element
-    this.editActionBarRootElement = 'div[class="cmpsr-header__actions pull-right"]';
+    this.editActionBarRootElement = 'div[class="cmpsr-header__actions"]';
 
     // Title bar root element
-    this.titleBarRootElement = 'div[class="cmpsr-header__title"]';
+    this.titleBarRootElement = 'div[class="cmpsr-title"]';
 
     // Recipe inputs root element
-    this.recipeInputRootElement = 'div[class="row"] .cmpsr-recipe__inputs';
+    this.recipeInputRootElement = '.cmpsr-panel__body--sidebar';
 
     // Recipe list edit root element
-    this.recipeListEditRootElement = 'div[class="row"] .cmpsr-recipe--edit';
+    this.recipeListEditRootElement = '.cmpsr-panel__body--main';
 
     // Component list item root element
     this.componentListItemRootElement = `${this.recipeInputRootElement} .cmpsr-list-pf__compacted .list-pf-item`;
@@ -33,7 +33,7 @@ module.exports = class EditRecipePage extends MainPage {
     this.linkRecipeName = `${this.navBarRootElement}  li + li a`;
 
     // Recipe Title label
-    this.labelRecipeTitle = `${this.titleBarRootElement} h1[class="cmpsr-header__title__item"]`;
+    this.labelRecipeTitle = `${this.titleBarRootElement} h1[class="cmpsr-title__item"]`;
 
     // Create Composition button
     this.varCreateCompos = 'Create Composition';

@@ -11,7 +11,7 @@ module.exports = class ViewRecipePage extends MainPage {
     this.navRootElement = 'ol[class="breadcrumb"]';
 
     // Title bar root element
-    this.titleRootElement = 'div[class="cmpsr-header__title"]';
+    this.titleRootElement = 'div[class="cmpsr-title"]';
 
     // Tab root element
     this.tabRootElement = 'pf-tabs';
@@ -39,7 +39,7 @@ module.exports = class ViewRecipePage extends MainPage {
     this.labelRecipeName = `${this.navRootElement} li strong`;
 
     // Title-bar: Recipe Title label
-    this.labelRecipeTitle = `${this.titleRootElement} h1[class="cmpsr-header__title__item"]`;
+    this.labelRecipeTitle = `${this.titleRootElement} h1[class="cmpsr-title__item"]`;
 
     // Create Composition button
     this.varCreateCompos = 'Create Composition';

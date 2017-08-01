@@ -269,6 +269,7 @@ describe('Edit Recipe Page', () => {
           .click(menuActionExport)
           .wait(page => document.querySelector(page.rootElement).style.display === 'block'
               , exportRecipePage)
+          .wait(exportRecipePage.textAreaContent)
           .evaluate(page => document.querySelector(page.textAreaContent).value
             , exportRecipePage)
           .then((element) => { expected = element; })
