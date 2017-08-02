@@ -35,8 +35,9 @@ const config = {
     '!!style!css!patternfly-webcomponents/dist/css/patternfly-webcomponents.css',
 
     // js entries
-    'patternfly-webcomponents/dist/js/patternfly.js',
     'jquery-match-height/dist/jquery.matchHeight.js',
+    '@webcomponents/webcomponentsjs/webcomponents-lite.js',
+    '@webcomponents/custom-elements/src/native-shim.js',
     /* The main entry point of your JavaScript application */
     './main.js',
   ],
@@ -120,33 +121,21 @@ const config = {
         test: /\.css/,
         loaders: [
           'style-loader',
-          `css-loader?${JSON.stringify({
-            sourceMap: isDebug,
-            // CSS Modules https://github.com/css-modules/css-modules
-            modules: true,
-            localIdentName: isDebug ? '[name]_[local]_[hash:base64:3]' : '[hash:base64:4]',
-            // CSS Nano http://cssnano.co/options/
-            minimize: !isDebug,
-          })}`,
+          `css-loader?${JSON.stringify({ sourceMap: isDebug, // CSS Modules https://github.com/css-modules/css-modules
+            modules: true, localIdentName: isDebug ? '[name]_[local]_[hash:base64:3]' : '[hash:base64:4]', // CSS Nano http://cssnano.co/options/
+            minimize: !isDebug })}`,
           'postcss-loader',
         ],
       },
       {
         test: /\.json$/,
-        exclude: [
-          path.resolve(__dirname, './routes.json'),
-        ],
+        exclude: [path.resolve(__dirname, './routes.json')],
         loader: 'json-loader',
       },
       {
         test: /\.json$/,
-        include: [
-          path.resolve(__dirname, './routes.json'),
-        ],
-        loaders: [
-          `babel-loader?${JSON.stringify(babelConfig)}`,
-          path.resolve(__dirname, './utils/routes-loader.js'),
-        ],
+        include: [path.resolve(__dirname, './routes.json')],
+        loaders: [`babel-loader?${JSON.stringify(babelConfig)}`, path.resolve(__dirname, './utils/routes-loader.js')],
       },
       {
         test: /\.md$/,

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Tab, Tabs } from 'react-patternfly-shims';
+import Tabs from '../../components/Tabs/Tabs';
+import Tab from '../../components/Tabs/Tab';
 import ListView from '../../components/ListView/ListView';
 import ListItemComponents from '../../components/ListView/ListItemComponents';
 import DependencyListView from '../../components/ListView/DependencyListView';
