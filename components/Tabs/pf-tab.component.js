@@ -21,9 +21,9 @@ export class PfTab extends HTMLElement {
    * Called every time the element is inserted into the DOM
    */
   connectedCallback() {
-    this._tabTitle = this.getAttribute('tab-title');
+    this.pf_tabTitle = this.getAttribute('tab-title');
 
-    this.appendChild(this._template.content);
+    this.appendChild(this.pf_template.content);
   }
 
   /*
@@ -52,8 +52,8 @@ export class PfTab extends HTMLElement {
    */
   constructor() {
     super();
-    this._template = document.createElement('template');
-    this._template.innerHTML = tmpl;
+    this.pf_template = document.createElement('template');
+    this.pf_template.innerHTML = tmpl;
   }
 
   /**
@@ -62,7 +62,7 @@ export class PfTab extends HTMLElement {
    * @returns {string} The tab-title
    */
   get tabTitle() {
-    return this._tabTitle;
+    return this.pf_tabTitle;
   }
 
   /**
@@ -71,8 +71,8 @@ export class PfTab extends HTMLElement {
    * @param {string} value The tab tab-title
    */
   set tabTitle(value) {
-    if (this._tabTitle !== value) {
-      this._tabTitle = value;
+    if (this.pf_tabTitle !== value) {
+      this.pf_tabTitle = value;
       this.setAttribute('tab-title', value);
     }
   }
@@ -83,7 +83,7 @@ export class PfTab extends HTMLElement {
    * @returns {boolean} True if tab is active
    */
   get active() {
-    return this._active;
+    return this.pf_active;
   }
 
   /**
@@ -92,8 +92,8 @@ export class PfTab extends HTMLElement {
    * @param {boolean} value True to set tab active
    */
   set active(value) {
-    if (this._active !== value) {
-      this._active = value;
+    if (this.pf_active !== value) {
+      this.pf_active = value;
       this.setAttribute('active', value);
     }
   }

@@ -1,6 +1,6 @@
 import { default as tabTemplate } from './pf-tab.template';
 import { default as tabsTemplate } from './pf-tabs.template';
-import PfTab from './pf-tab.component';
+import './pf-tab.component';
 
 /**
  * <b>&lt;pf-tabs&gt;</b> element for Patternfly Web Components
@@ -21,24 +21,24 @@ export class PfTabs extends HTMLElement {
    * Called every time the element is inserted into the DOM
    */
   connectedCallback() {
-    if (!this._initialized) {
-      this.insertBefore(this._tabsTemplate.content, this.firstChild);
+    if (!this.pf_initialized) {
+      this.insertBefore(this.pf_tabsTemplate.content, this.firstChild);
 
-      this._makeTabsFromPfTab();
+      this.pfMakeTabsFromPfTab();
 
       this.querySelector('ul').addEventListener('click', this);
 
       // Add the ul class if specified
-      this.querySelector('ul').className = this.attributes["data-classname"]
-        ? this.attributes["data-classname"].value
+      this.querySelector('ul').className = this.attributes['data-classname']
+        ? this.attributes['data-classname'].value
         : 'nav nav-tabs';
 
       if (!this.mutationObserver) {
-        this.mutationObserver = new MutationObserver(this._handleMutations.bind(this));
+        this.mutationObserver = new MutationObserver(this.pfHandleMutations.bind(this));
         this.mutationObserver.observe(this, { childList: true, attributes: true });
       }
     }
-    this._initialized = true;
+    this.pf_initialized = true;
   }
 
   /*
@@ -69,8 +69,8 @@ export class PfTabs extends HTMLElement {
    */
   constructor() {
     super();
-    this._tabsTemplate = document.createElement('template');
-    this._tabsTemplate.innerHTML = tabsTemplate;
+    this.pf_tabsTemplate = document.createElement('template');
+    this.pf_tabsTemplate.innerHTML = tabsTemplate;
 
     this.selected = null;
     this.tabMap = new Map();
@@ -93,7 +93,7 @@ export class PfTabs extends HTMLElement {
   handleEvent(event) {
     if (event.target.tagName === 'A') {
       event.preventDefault();
-      this._setTabStatus(event.target.parentNode);
+      this.pfSetTabStatus(event.target.parentNode);
     }
   }
 
@@ -103,7 +103,7 @@ export class PfTabs extends HTMLElement {
    * @param mutations
    * @private
    */
-  _handleMutations(mutations) {
+  pfHandleMutations(mutations) {
     const self = this;
     const handlers = [];
     mutations.forEach(mutationRecord => {
@@ -136,18 +136,18 @@ export class PfTabs extends HTMLElement {
 
           if (action === 'add') {
             // add tab
-            tab = self._makeTab(pfTab);
+            tab = self.pfMakeTab(pfTab);
             self.tabMap.set(tab, pfTab);
             self.panelMap.set(pfTab, tab);
 
             // if active, deactivate others
             if (pfTab.attributes.active) {
               self.tabMap.forEach((value, key) => {
-                const fn = tab === key ? self._makeActive : self._makeInactive;
+                const fn = tab === key ? self.pfMakeActive : self.pfMakeInactive;
                 fn.call(self, key);
               });
             } else {
-              self._makeInactive(tab);
+              self.pfMakeInactive(tab);
             }
             ul.appendChild(tab);
           } else {
@@ -161,7 +161,7 @@ export class PfTabs extends HTMLElement {
             // we removed the active tab, make the last one active
             if (pfTab.attributes.active) {
               const last = ul.querySelector('li:last-child');
-              self._setTabStatus(last);
+              self.pfSetTabStatus(last);
             }
           }
         });
@@ -192,7 +192,7 @@ export class PfTabs extends HTMLElement {
     this.tabMap.forEach((value, key) => {
       const tabtitle = value.attributes.tabtitle ? value.attributes.tabtitle.value : value.tabtitle;
       if (tabtitle === tabTitle) {
-        this._setTabStatus(key);
+        this.pfSetTabStatus(key);
       }
     });
   }
@@ -202,24 +202,26 @@ export class PfTabs extends HTMLElement {
    *
    * @private
    */
-  _makeTabsFromPfTab() {
+  /* eslint-disable no-param-reassign*/
+  pfMakeTabsFromPfTab() {
     const ul = this.querySelector('ul');
     if (this.children && this.children.length) {
       const pfTabs = [].slice.call(this.children).filter(node => node.nodeName === 'PF-TAB');
       [].forEach.call(pfTabs, (pfTab, idx) => {
-        const tab = this._makeTab(pfTab);
+        const tab = this.pfMakeTab(pfTab);
         ul.appendChild(tab);
         this.tabMap.set(tab, pfTab);
         this.panelMap.set(pfTab, tab);
 
         if (idx === 0) {
-          this._makeActive(tab);
+          this.pfMakeActive(tab);
         } else {
           pfTab.style.display = 'none';
         }
       });
     }
   }
+  /* eslint-enable no-param-reassign*/
 
   /**
    * Helper function to create a new tab element from given tab
@@ -228,7 +230,7 @@ export class PfTabs extends HTMLElement {
    * @returns {PfTab} A new PfTab element
    * @private
    */
-  _makeTab(pfTab) {
+  pfMakeTab(pfTab) {
     const frag = document.createElement('template');
     frag.innerHTML = tabTemplate;
     const tab = frag.content.firstElementChild;
@@ -245,7 +247,7 @@ export class PfTabs extends HTMLElement {
    * @param tab A PfTab element
    * @private
    */
-  _makeActive(tab) {
+  pfMakeActive(tab) {
     tab.classList.add('active');
     const pfTab = this.tabMap.get(tab);
     const naturalDisplay = this.displayMap.get(pfTab);
@@ -259,7 +261,7 @@ export class PfTabs extends HTMLElement {
    * @param tab A PfTab element
    * @private
    */
-  _makeInactive(tab) {
+  pfMakeInactive(tab) {
     tab.classList.remove('active');
     const pfTab = this.tabMap.get(tab);
     pfTab.style.display = 'none';
@@ -273,7 +275,7 @@ export class PfTabs extends HTMLElement {
    * @param {string} tabtitle the tab title
    * @private
    */
-  _setTabStatus(active) {
+  pfSetTabStatus(active) {
     if (active === this.selected) {
       return;
     }
@@ -285,7 +287,7 @@ export class PfTabs extends HTMLElement {
       if (active === tab) {
         activeTabTitle = tab.querySelector('a').text;
       }
-      const fn = active === tab ? this._makeActive : this._makeInactive;
+      const fn = active === tab ? this.pfMakeActive : this.pfMakeInactive;
       fn.call(this, tab);
     });
 

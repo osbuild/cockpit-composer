@@ -1,5 +1,6 @@
-import React, { PropTypes } from 'react';
-import pfTabs from './pf-tabs.component';
+import React from 'react';
+import PropTypes from 'prop-types';
+import './pf-tabs.component';
 
 /**
  * React <b>Tabs</b> Component for Patternfly Web Components
@@ -18,10 +19,6 @@ import pfTabs from './pf-tabs.component';
 class Tabs extends React.Component {
   state = {};
 
-  static propTypes = {
-    tabChanged: React.PropTypes.func,
-  };
-
   componentDidUpdate() {
     this.refs.pfTabs.addEventListener('tabChanged', e => {
       if (this.props.tabChanged) {
@@ -38,5 +35,11 @@ class Tabs extends React.Component {
     );
   }
 }
+
+Tabs.propTypes = {
+  tabChanged: PropTypes.func,
+  classnames: PropTypes.string,
+  children: PropTypes.node,
+};
 
 export default Tabs;
