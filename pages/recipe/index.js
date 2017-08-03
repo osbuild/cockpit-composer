@@ -175,7 +175,7 @@ class RecipePage extends React.Component {
     if (this.props.rehydrated) {
       this.props.fetchingRecipeContents(this.props.route.params.recipe.replace(/\s/g, '-'));
     }
-    this.props.setActiveTab('Components');
+    this.props.setActiveTab('Details');
     this.props.setEditDescriptionVisible(false);
     this.props.setSelectedComponent('');
     this.props.setSelectedComponentParent('');
@@ -746,7 +746,7 @@ const makeMapStateToProps = () => {
     return {
       rehydrated: state.rehydrated,
       recipe: {},
-      recipePage: state.recipePage,
+      recipePage: {},
       exportModalVisible: state.exportModal.visible,
     };
   };

@@ -23,8 +23,7 @@ const store = createStore(
   ),
 );
 sagaMiddleware.run(rootSaga);
-persistStore(store, { whitelist: ['recipes', 'recipePage'] }, () => {
-  this.setState({ rehydrated: true });
-});
+
+persistStore(store, { whitelist: ['recipes', 'recipePage'] });
 
 export default store;
