@@ -1,3 +1,38 @@
+all:
+	NODE_ENV=$(NODE_ENV) npm run build
+
+install: all
+	mkdir -p /usr/share/cockpit/welder-web
+	cp -r public/* /usr/share/cockpit/welder-web
+
+dist-gzip: NODE_ENV=production
+dist-gzip: all
+	mkdir -p _install/usr/share/cockpit
+	cp -r public/ _install/usr/share/cockpit/welder-web
+	cp welder-web.spec _install/
+	tar -C _install/ -czf welder-web.tar.gz .
+	rm -rf _install
+
+srpm: dist-gzip
+	rpmbuild -bs \
+	  --define "_sourcedir `pwd`" \
+	  --define "_srcrpmdir `pwd`" \
+	  welder-web.spec
+
+rpm: dist-gzip
+	mkdir -p "`pwd`/output"
+	mkdir -p "`pwd`/rpmbuild"
+	rpmbuild -bb \
+	  --define "_sourcedir `pwd`" \
+	  --define "_specdir `pwd`" \
+	  --define "_builddir `pwd`/rpmbuild" \
+	  --define "_srcrpmdir `pwd`" \
+	  --define "_rpmdir `pwd`/output" \
+	  --define "_buildrootdir `pwd`/build" \
+	  welder-web.spec
+	find `pwd`/output -name '*.rpm' -printf '%f\n' -exec mv {} . \;
+	rm -r "`pwd`/rpmbuild"
+
 eslint:
 	npm run eslint
 
