@@ -9,18 +9,45 @@ cache:
   directories:
   - node_modules # NPM packages
 before_install:
-  - npm install
-  - node run build
+  - |
+        if [ "$COMMAND" == "end-to-end-test" ]; then
+            sudo docker pull welder/web-nodejs:latest
+            sudo docker pull welder/web:latest
+            sudo docker pull welder/web-e2e-tests:latest
+        else
+            npm install
+        fi
+
 env:
-  - COMMAND=eslint
-  - COMMAND=stylelint
-  - COMMAND=unit-test
-  - COMMAND=end-to-end-test
+  global:
+    secure: "Q9X11ehcl4YE0ylxDGk8NgVeO7nIpqWiI9am2GA6JVXcxeYYcLf3NHGe1JiLwFQ/xSq4KJrY0IgpivkVrPwTOojpR/tRG5QNDR/IJzN/6PV0IAWkHjPDKZexCQmy4IoPFib/cWqxo46V/JZ+gzs/TJugkl5/QpTcGlCr+d7VkuA80Bj0nlQO5GevYVgYMCrN6u6cKNOWtNQ0gppxHrpsLo36MpHqHbNbv236GPGsV4K2qpiqvvO5ogD+LCv5xoKEZK0ext4FNrrZFq6XEYdy9uUaUbSFfoG+HXESXbIt0L7krQDT/PkKI0X4nM91eYl5mS63+HVue7vLiijS5h9+YCa8HblMIiAiyrR3lPPH0Hx4FVSrQfkvtoXMBs3nRt7keu2FG370a7WoaQ71Q2jHrI9cfYzRwa/Mok73eF/oeN32hPlPDD679hWOZYqbSksSTikCLIgwJpEgIfaHgEYXFmL2JFXk0HbgIciA+C9fE0rfaUbmARtWYq8c+b52aIxAHEV9zYy3JeARrYxk7s3jQgS/LZIw4rfso+bQIvEMUDWt8MnvKaecY1E7XjOpW1kuk8gVjZbHm6oHKl2IndZA9KNpXjT2ew8d3SB69l2lswUYu4mTdywNEUt6nIaQtROiiftUKYThAbibIEIrq7GxQSOYMUPbvUYsZO5rkVssJps="
+  matrix:
+    - COMMAND=eslint
+    - COMMAND=stylelint
+    - COMMAND=unit-test
+    - COMMAND=end-to-end-test
 script:
   - make "$COMMAND"
 after_success:
   - if [ "$COMMAND" == "unit-test" ]; then npm install coveralls && cat ./coverage/lcov.info | coveralls; fi
+  - |
+        if [ "$COMMAND" == "end-to-end-test" ] && [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+            # tag the current builds with the build number
+            # if nothing has been changed the push will detect that
+            # and the new tag will appear on Docker Hub without anything being
+            # actually uploaded
+            sudo docker tag welder/web-nodejs:latest welder/web-nodejs:$TRAVIS_BUILD_NUMBER
+            sudo docker tag welder/web:latest welder/web:$TRAVIS_BUILD_NUMBER
+            sudo docker tag welder/web-e2e-tests:latest welder/web-e2e-tests:$TRAVIS_BUILD_NUMBER
+
+            docker login -u atodorov -p $DOCKER_PASSWORD
+
+            docker push welder/web-nodejs
+            docker push welder/web
+            docker push welder/web-e2e-tests
+        fi
+
 notifications:
   email:
     on_failure: change
-    on_success: change
+    on_success: never
