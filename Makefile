@@ -8,6 +8,8 @@ unit-test:
 	npm run test:cov
 
 end-to-end-test:
+	sudo docker build -f Dockerfile.nodejs --cache-from welder/web-nodejs:latest -t welder/web-nodejs:latest .
+
 	sudo docker network create welder
 	sudo docker build -t weld/web:latest .
 	sudo docker build -f ./test/end-to-end/Dockerfile -t weld/end-to-end:latest ./test/end-to-end/
