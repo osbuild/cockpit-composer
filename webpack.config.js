@@ -36,8 +36,6 @@ const config = {
 
     // js entries
     'jquery-match-height/dist/jquery.matchHeight.js',
-    '@webcomponents/webcomponentsjs/webcomponents-lite.js',
-    '@webcomponents/custom-elements/src/native-shim.js',
     /* The main entry point of your JavaScript application */
     './main.js',
   ],
@@ -98,6 +96,20 @@ const config = {
       {
         from: { glob: './node_modules/patternfly/dist/css/*.*' },
         to: '../css',
+        flatten: true,
+      },
+      {
+        from: {
+          glob: 'node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js',
+        },
+        to: '../dist',
+        flatten: true,
+      },
+      {
+        from: {
+          glob: 'node_modules/@webcomponents/custom-elements/src/native-shim.js',
+        },
+        to: '../dist',
         flatten: true,
       },
     ]),
