@@ -1,0 +1,5 @@
+test
+metadata.db
+.travis.yml
+Makefile
+node_modules
