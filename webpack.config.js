@@ -101,6 +101,10 @@ const config = {
         flatten: true,
       },
     ]),
+
+    // for console log error related to webcomponents
+    // https://github.com/webcomponents/webcomponentsjs/issues/794
+    new webpack.IgnorePlugin(/vertx/),
   ],
   // Options affecting the normal modules
   module: {
