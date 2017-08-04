@@ -3,8 +3,6 @@ FROM welder/web-nodejs:latest
 MAINTAINER Brian C. Lane <bcl@redhat.com>
 RUN dnf install -y nginx
 
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD nginx -g "daemon off;"
 EXPOSE 3000
 
@@ -19,3 +17,6 @@ RUN cd /welder/ && npm install
 # Copy the rest of the UI files over and compile them
 COPY . /welder/
 RUN cd /welder/ && node run build
+
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
