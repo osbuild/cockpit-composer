@@ -152,5 +152,14 @@ To keep this working all code should follow the following rules.
  * Use hashes for navigation within the SPA so that cockpit can keep the top level location display
    up to date.
 
+
+### Package as an RPM/SRPM
+
+This project can be packaged as either a noarch rpm or an srpm.
+
+```shell
+$ make rpm                # Or, `make srpm`
+```
+
 ---
 Made with ♥ by the Welder [team](https://github.com/orgs/weldr/people) and its contributors
