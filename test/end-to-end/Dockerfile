@@ -8,8 +8,6 @@ RUN dnf --setopt=deltarpm=0 --verbose install -y xorg-x11-server-Xvfb which libX
 clang dbus-devel gtk2-devel libnotify-devel libgnome-keyring-devel xorg-x11-server-utils \
 libcap-devel cups-devel libXtst-devel alsa-lib-devel libXrandr-devel GConf2-devel nss-devel
 
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["xvfb-run", "-a", "-s", "-screen 0 1024x768x24", "npm", "run", "test"]
 
 ## Do the things more likely to change below here. ##
@@ -23,3 +21,6 @@ RUN cd /end2end/ && npm install --only=production
 
 # Copy the rest of the UI files over and compile them
 COPY . /end2end/
+
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
