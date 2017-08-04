@@ -5,21 +5,39 @@ services:
 language: node_js
 node_js:
   - "6"
+env:
+  global:
+    - secure: NaGi05Fc5Wb/k34kaevbG42/4dGSO/KZas+CZTypeU9BdwCC5DX32nr+vxpDzLUwXjJe1eOItn+cusgeXJmVPSTSfP++mkj+gs6Q3WzN0GBxTuBVKsd2AisWtJWCeiOKBOUpeDeaqGtay7yA4jOhvGhqwU1tp3Gnwq7RotJJtwmFTwarLGGSfHgPoJn6Pd3upAgjSq7+cb8dzZkyI2iEdIIqUWjohzlAXvVkq+UabuHvt6xN+9R0xZB7hdjYDAEp2lgOi48p1wY+tCJyLM9Nj6T2V/sqNmyuWMepYVU5MQM9puoyVUsO2blHn7WHIzwhHACm9R70B7tLzlur1V2PtzbvY6rct34T+SZ0UBeJPlgjh5rM4yKXUXchKAL75mgf+ndi4GI/RqWo7m0bz29kinL7cg7+/8on4SPxOLYy9aXIKyFqSSwqeNQqT5L4RRRNcxSlI8i/7l8WH4KfVg3JKC45fv5sFYao1qwRHCb1uFAAHwedS5BlkazyHVEjPb8XTtXne8WkeIfMSaj1aF6IuMrZqPC+oQ3qNheQ6iNF2twCsIgUXq393r4DvrCDhuD/oFoU5VnsTbW/GUhTsJ/NVPXmlv1rvzhamdv0CiY/ct6qmzJTi3o70gT5n9mFZ8CmD939OJ3TrL5sN+q1janwdnN8skZhRRhMyMLcND8lZ2Q=
+  matrix:
+    - COMMAND=eslint
+    - COMMAND=stylelint
+    - COMMAND=build-test
+    - COMMAND=unit-test
+    - COMMAND=end-to-end-test
 cache:
   directories:
   - node_modules # NPM packages
 before_install:
-  - npm install
-  - node run build
-env:
-  - COMMAND=eslint
-  - COMMAND=stylelint
-  - COMMAND=unit-test
-  - COMMAND=end-to-end-test
+  - if [ "$COMMAND" == "end-to-end-test" ]; then make e2e-before-install; fi
+install:
+  - |
+      if [ "$COMMAND" != "end-to-end-test" ]; then
+        npm install
+      else
+        make e2e-install
+      fi
 script:
   - make "$COMMAND"
 after_success:
   - if [ "$COMMAND" == "unit-test" ]; then npm install coveralls && cat ./coverage/lcov.info | coveralls; fi
+  - |
+      if [ "$COMMAND" == "end-to-end-test" ]; then
+        # if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+          docker login -u atodorov -p $DOCKER_PASSWORD
+          docker push welder/welder-web
+          docker push welder/end-to-end
+        # fi
+      fi
 notifications:
   email:
     on_failure: change
