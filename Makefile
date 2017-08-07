@@ -14,7 +14,7 @@ end-to-end-test:
 	sudo docker build --cache-from welder/web:latest -t welder/web:latest .
 	sudo docker build -f ./test/end-to-end/Dockerfile --cache-from welder/web-e2e-tests:latest -t welder/web-e2e-tests:latest ./test/end-to-end/
 
-	wget https://s3.amazonaws.com/weldr/metadata.db
+	wget --progress=dot:giga https://s3.amazonaws.com/weldr/metadata.db
 	sudo docker run -d --name api --restart=always -p 4000:4000 -v bdcs-recipes-volume:/bdcs-recipes -v `pwd`:/mddb --network welder --security-opt label=disable welder/bdcs-api-rs:latest
 	sudo docker run -d --name web --restart=always -p 80:3000 --network welder welder/web:latest
 
