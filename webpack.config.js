@@ -15,11 +15,18 @@ const AssetsPlugin = require('assets-webpack-plugin');
 const pkg = require('./package.json');
 const isDebug = global.DEBUG === false ? false : !process.argv.includes('--release');
 const isVerbose = process.argv.includes('--verbose') || process.argv.includes('-v');
+const enableCoverage = process.argv.includes('--with-coverage');
 const useHMR = !!global.HMR; // Hot Module Replacement (HMR)
 const babelConfig = Object.assign({}, pkg.babel, {
   babelrc: false,
   cacheDirectory: useHMR,
 });
+// if coverage needs to be enabled
+// NOTE: use this only when running e2e tests
+// because double instrumentation breaks coverage from unit tests
+if (enableCoverage) {
+  babelConfig.plugins.push('istanbul');
+}
 // Webpack configuration (main.js => public/dist/main.{hash}.js)
 // http://webpack.github.io/docs/configuration.html
 const config = {
