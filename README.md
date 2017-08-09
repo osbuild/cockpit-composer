@@ -37,6 +37,12 @@ You can also test your app in release (production) mode by running `node run sta
 with HMR and React Hot Loader disabled by running `node run start --no-hmr`. The app should become
 available at [http://localhost:3000/](http://localhost:3000/).
 
+You can also enable code instrumentation with istanbul by specifying
+`node run build --with-coverage` or `node run --with-coverage`. This is needed if you want to
+collect code coverage from end-to-end tests. Don't use `--with-coverage` when running the unit tests.
+`jest` provides its own instrumentation and it will break if we do double instrumentation.
+Disabled by default!
+
 
 ### How to Test
 
