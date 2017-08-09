@@ -31,7 +31,7 @@ describe('Imported Content Sanity Testing', () => {
   });
 
   afterAll((done) => {
-    // Delete added recipe after all tests completed in this sute
+    // Delete added recipe after all tests completed in this suite
     apiCall.deleteRecipe(pageConfig.recipe.simple.name, done);
     // Close connection with sqlite db
     db.close();
@@ -47,13 +47,12 @@ describe('Imported Content Sanity Testing', () => {
       nightmare
         .goto(editRecipePage.url)
         .wait(editRecipePage.componentListItemRootElement) // list item and total number are rendered at the same time
-        .then(() => nightmare
-          .evaluate(page => document.querySelector(page.totalComponentCount).innerText
-            , editRecipePage)
-          .end())
+        .evaluate(page => document.querySelector(page.totalComponentCount).innerText, editRecipePage)
         .then((element) => {
           expect(element).toBe(expectedText);
-          done();
+
+          // note eval() can't be called from within another function
+          eval(fs.readFileSync('utils/coverage.js').toString());
         });
     });
   }, timeout);

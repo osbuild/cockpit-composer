@@ -6,6 +6,7 @@ const ToastNotifPage = require('../pages/toastNotif');
 const ExportRecipePage = require('../pages/exportRecipe');
 const apiCall = require('../utils/apiCall');
 const pageConfig = require('../config');
+const fs = require('fs');
 
 describe('Recipes Page', () => {
   // Set case running timeout
@@ -28,10 +29,10 @@ describe('Recipes Page', () => {
         nightmare
           .goto(recipesPage.url)
           .title()
-          .end()
           .then((element) => {
             expect(element).toBe(expected);
-            done();
+
+            eval(fs.readFileSync('utils/coverage.js').toString());
           });
       }, timeout);
     });
@@ -49,10 +50,10 @@ describe('Recipes Page', () => {
           .wait(recipesPage.btnCreateRecipe)
           .evaluate(page => document.querySelector(page.btnCreateRecipe).innerText
             , recipesPage)
-          .end()
           .then((element) => {
             expect(element).toBe(expected);
-            done();
+
+            eval(fs.readFileSync('utils/coverage.js').toString());
           });
       }, timeout);
       test('should pop up Create Recipe window when click Create Recipe button @recipes-page', (done) => {
@@ -72,10 +73,10 @@ describe('Recipes Page', () => {
           .wait(createRecipePage.labelCreateRecipe)
           .evaluate(page => document.querySelector(page.labelCreateRecipe).innerText
             , createRecipePage)
-          .end()
           .then((element) => {
             expect(element).toBe(expected);
-            done();
+
+            eval(fs.readFileSync('utils/coverage.js').toString());
           });
       }, timeout);
     });
@@ -109,10 +110,10 @@ describe('Recipes Page', () => {
             .wait(recipeNameSelector)
             .evaluate(selector => document.querySelector(selector).innerText
               , recipeNameSelector)
-            .end()
             .then((element) => {
               expect(element).toBe(expected);
-              done();
+
+              eval(fs.readFileSync('utils/coverage.js').toString());
             });
         }, timeout);
         test('should have correct recipe description on list after new recipe added @recipes-page', (done) => {
@@ -125,10 +126,10 @@ describe('Recipes Page', () => {
             .wait(recipesPage.labelRecipeDescr)
             .evaluate(page => Array.prototype.slice.call(document.querySelectorAll(page.labelRecipeDescr)).map(x => x.innerText)
               , recipesPage)
-            .end()
             .then((element) => {
               expect(element).toContain(expected);
-              done();
+
+              eval(fs.readFileSync('utils/coverage.js').toString());
             });
         }, timeout);
       });
@@ -156,10 +157,10 @@ describe('Recipes Page', () => {
               .wait(createComposPage.labelCreateCompos)
               .evaluate(page => document.querySelector(page.labelCreateCompos).innerText
                 , createComposPage)
-              .end()
               .then((element) => {
                 expect(element).toBe(expected);
-                done();
+
+                eval(fs.readFileSync('utils/coverage.js').toString());
               });
           }, timeout);
           test('should have toast notification pop up when new composition added @recipes-page', (done) => {
@@ -197,11 +198,11 @@ describe('Recipes Page', () => {
                   return recipeName !== page.varEmptyName && recipeName.includes(page.varEmptyName);
                 }, toastNotifPage)
                 .evaluate(page => document.querySelector(page.labelStatus).innerText
-                , toastNotifPage)
-                .end())
+                , toastNotifPage))
               .then((element) => {
                 expect(element).toBe(expectedComplete);
-                done();
+
+                eval(fs.readFileSync('utils/coverage.js').toString());
               });
           }, timeout);
         });
@@ -225,10 +226,10 @@ describe('Recipes Page', () => {
             .wait(menuActionExport)
             .evaluate(element => document.querySelector(element).innerText
               , menuActionExport)
-            .end()
             .then((element) => {
               expect(element).toBe(expected);
-              done();
+
+              eval(fs.readFileSync('utils/coverage.js').toString());
             });
         }, timeout);
         test('should pop up Export Recipe window by clicking "Export"', (done) => {
@@ -247,10 +248,10 @@ describe('Recipes Page', () => {
             .wait(exportRecipePage.labelExportTitle)
             .evaluate(page => document.querySelector(page.labelExportTitle).innerText
               , exportRecipePage)
-            .end()
             .then((element) => {
               expect(element).toBe(expected);
-              done();
+
+              eval(fs.readFileSync('utils/coverage.js').toString());
             });
         }, timeout);
         test('should show the correct dependence packages and total numbers of dependencies', (done) => {
@@ -283,11 +284,11 @@ describe('Recipes Page', () => {
               })
               .then(() => nightmare
                 .evaluate(page => document.querySelector(page.textAreaContent).value
-                  , exportRecipePage)
-                .end())
+                  , exportRecipePage))
               .then((element) => {
                 expect(element).toBe(expectedContent);
-                done();
+
+                eval(fs.readFileSync('utils/coverage.js').toString());
               });
           }
 
@@ -348,12 +349,12 @@ describe('Recipes Page', () => {
 
                 // return the text
                 return clipboardText;
-              })
-              .end())
+              }))
             .then((element) => {
               // remove the last "\n" from paste result with trim()
               expect(element.trim()).toBe(expected);
-              done();
+
+              eval(fs.readFileSync('utils/coverage.js').toString());
             });
         }, timeout);
       });
