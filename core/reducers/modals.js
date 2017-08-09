@@ -1,27 +1,27 @@
 import {
-  SET_MODAL_RECIPE_NAME, SET_MODAL_RECIPE_CONTENTS, SET_MODAL_RECIPE_VISIBLE,
+  SET_EXPORT_MODAL_RECIPE_NAME, SET_EXPORT_MODAL_RECIPE_CONTENTS, SET_EXPORT_MODAL_VISIBLE,
 } from '../actions/modals';
 
-const modalExportRecipe = (state = [], action) => {
+const exportModal = (state = [], action) => {
   switch (action.type) {
-    case SET_MODAL_RECIPE_NAME:
+    case SET_EXPORT_MODAL_RECIPE_NAME:
       return {
         ...state,
-        name: action.payload.modalRecipeName,
+        name: action.payload.recipeName,
       };
-    case SET_MODAL_RECIPE_CONTENTS:
+    case SET_EXPORT_MODAL_RECIPE_CONTENTS:
       return {
         ...state,
-        contents: action.payload.modalRecipeContents,
+        contents: action.payload.recipeContents,
       };
-    case SET_MODAL_RECIPE_VISIBLE:
+    case SET_EXPORT_MODAL_VISIBLE:
       return {
         ...state,
-        visible: action.payload.modalRecipeVisible,
+        visible: action.payload.visible,
       };
     default:
       return state;
   }
 };
 
-export default modalExportRecipe;
+export default exportModal;

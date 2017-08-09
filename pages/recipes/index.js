@@ -5,13 +5,11 @@ import RecipeListView from '../../components/ListView/RecipeListView';
 import CreateRecipe from '../../components/Modal/CreateRecipe';
 import ExportRecipe from '../../components/Modal/ExportRecipe';
 import { connect } from 'react-redux';
-import {
-  setModalRecipeName,
-  setModalRecipeContents,
-  setModalRecipeVisible,
-  fetchingModalRecipeContents,
-} from '../../core/actions/modals';
 import { fetchingRecipes, deletingRecipe } from '../../core/actions/recipes';
+import {
+  setExportModalRecipeName, setExportModalRecipeContents, setExportModalVisible,
+  fetchingExportModalRecipeContents,
+} from '../../core/actions/modals';
 
 class RecipesPage extends React.Component {
   constructor() {
@@ -39,9 +37,9 @@ class RecipesPage extends React.Component {
 
   // handle show/hide of modal dialogs
   handleHideModalExport = () => {
-    this.props.setModalRecipeVisible(false);
-    this.props.setModalRecipeName('');
-    this.props.setModalRecipeContents([]);
+    this.props.setExportModalVisible(false);
+    this.props.setExportModalRecipeName('');
+    this.props.setExportModalRecipeContents([]);
   };
   handleShowModalExport = (e, recipe) => {
     // This implementation of the dialog only provides a text option, and it's
@@ -49,12 +47,12 @@ class RecipesPage extends React.Component {
     // separate function that is called when the user selects the text option
 
     // display the dialog, a spinner will display while contents are undefined
-    this.props.setModalRecipeName(recipe);
-    this.props.setModalRecipeContents(undefined);
+    this.props.setExportModalRecipeName(recipe);
+    this.props.setExportModalRecipeContents(undefined);
     const recipeName = recipe.replace(/\s/g, '-');
     // run depsolving against recipe to get contents for dialog
-    this.props.fetchingModalRecipeContents(recipeName);
-    this.props.setModalRecipeVisible(true);
+    this.props.fetchingExportModalRecipeContents(recipeName);
+    this.props.setExportModalVisible(true);
     e.preventDefault();
     e.stopPropagation();
   };
@@ -175,10 +173,10 @@ class RecipesPage extends React.Component {
 RecipesPage.propTypes = {
   fetchingRecipes: PropTypes.func,
   deletingRecipe: PropTypes.func,
-  setModalRecipeVisible: PropTypes.func,
-  setModalRecipeName: PropTypes.func,
-  setModalRecipeContents: PropTypes.func,
-  fetchingModalRecipeContents: PropTypes.func,
+  setExportModalVisible: PropTypes.func,
+  setExportModalRecipeName: PropTypes.func,
+  setExportModalRecipeContents: PropTypes.func,
+  fetchingExportModalRecipeContents: PropTypes.func,
   recipes: PropTypes.array,
   modalRecipeName: PropTypes.string,
   modalVisible: PropTypes.bool,
@@ -186,24 +184,24 @@ RecipesPage.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  modalRecipeName: state.modalExportRecipe.name,
-  modalRecipeContents: state.modalExportRecipe.contents,
-  modalVisible: state.modalExportRecipe.visible,
+  modalRecipeName: state.exportModal.name,
+  modalRecipeContents: state.exportModal.contents,
+  modalVisible: state.exportModal.visible,
   recipes: state.recipes,
 });
 
 const mapDispatchToProps = dispatch => ({
-  setModalRecipeName: modalRecipeName => {
-    dispatch(setModalRecipeName(modalRecipeName));
+  setExportModalRecipeName: modalRecipeName => {
+    dispatch(setExportModalRecipeName(modalRecipeName));
   },
-  setModalRecipeContents: modalRecipeContents => {
-    dispatch(setModalRecipeContents(modalRecipeContents));
+  setExportModalRecipeContents: modalRecipeContents => {
+    dispatch(setExportModalRecipeContents(modalRecipeContents));
   },
-  setModalRecipeVisible: modalVisible => {
-    dispatch(setModalRecipeVisible(modalVisible));
+  setExportModalVisible: modalVisible => {
+    dispatch(setExportModalVisible(modalVisible));
   },
-  fetchingModalRecipeContents: modalRecipeName => {
-    dispatch(fetchingModalRecipeContents(modalRecipeName));
+  fetchingExportModalRecipeContents: modalRecipeName => {
+    dispatch(fetchingExportModalRecipeContents(modalRecipeName));
   },
   fetchingRecipes: () => {
     dispatch(fetchingRecipes());
