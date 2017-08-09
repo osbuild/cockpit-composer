@@ -4,6 +4,8 @@ const CreateRecipePage = require('../pages/createRecipe');
 const EditRecipePage = require('../pages/editRecipe');
 const apiCall = require('../utils/apiCall');
 const pageConfig = require('../config');
+const fs = require('fs');
+
 
 describe('Create Recipe Page', () => {
   // Set case running timeout
@@ -43,11 +45,11 @@ describe('Create Recipe Page', () => {
           .then(() => nightmare
             .wait(createRecipePage.spanHelpBlockMsg)
             .evaluate(page => document.querySelector(page.spanHelpBlockMsg).innerText
-              , createRecipePage)
-            .end())
+              , createRecipePage))
           .then((element) => {
             expect(element).toBe(expectedHelpBlockMsg);
-            done();
+
+            eval(fs.readFileSync('utils/coverage.js').toString());
           });
       }, timeout);
       test('should show alert message by clicking Enter key when create recipe without name @create-recipe-page', (done) => {
@@ -73,11 +75,11 @@ describe('Create Recipe Page', () => {
           .then(() => nightmare
             .wait(createRecipePage.spanHelpBlockMsg)
             .evaluate(page => document.querySelector(page.spanHelpBlockMsg).innerText
-              , createRecipePage)
-            .end())
+              , createRecipePage))
           .then((element) => {
             expect(element).toBe(expectedHelpBlockMsg);
-            done();
+
+            eval(fs.readFileSync('utils/coverage.js').toString());
           });
       }, timeout);
       test('should show alert message by changing focus to description input @create-recipe-page', (done) => {
@@ -96,10 +98,10 @@ describe('Create Recipe Page', () => {
           .wait(createRecipePage.spanHelpBlockMsg)
           .evaluate(page => document.querySelector(page.spanHelpBlockMsg).innerText
             , createRecipePage)
-          .end()
           .then((element) => {
             expect(element).toBe(expected);
-            done();
+
+            eval(fs.readFileSync('utils/coverage.js').toString());
           });
       }, timeout);
     });
@@ -124,10 +126,10 @@ describe('Create Recipe Page', () => {
           .click(createRecipePage.btnSave)
           .wait(editRecipePage.componentListItemRootElement)
           .exists(editRecipePage.componentListItemRootElement)
-          .end()
           .then((element) => {
             expect(element).toBe(true);
-            done();
+
+            eval(fs.readFileSync('utils/coverage.js').toString());
           });
       }, timeout);
     });
