@@ -1,4 +1,3 @@
-// gets picked up by recipes saga
 export const FETCHING_INPUTS = 'FETCHING_INPUTS';
 export const fetchingInputs = (filter, selectedInputPage, pageSize, componentData) => ({
   type: FETCHING_INPUTS,
