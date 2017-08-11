@@ -10,6 +10,9 @@ EXPOSE 3000
 
 COPY ./docker/nginx.conf /etc/nginx/
 
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+
 # Update node dependencies only if they have changed
 COPY ./package.json /welder/package.json
 RUN cd /welder/ && npm install
@@ -17,6 +20,3 @@ RUN cd /welder/ && npm install
 # Copy the rest of the UI files over and compile them
 COPY . /welder/
 RUN cd /welder/ && node run build
-
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

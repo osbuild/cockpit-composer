@@ -12,9 +12,6 @@ CMD ["xvfb-run", "-a", "-s", "-screen 0 1024x768x24", "npm", "run", "test"]
 
 ## Do the things more likely to change below here. ##
 
-# Volumes for xUnit result file.
-VOLUME /result
-
 # Update node dependencies only if they have changed
 COPY ./package.json /end2end/package.json
 RUN cd /end2end/ && npm install --only=production
