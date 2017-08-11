@@ -1,7 +1,7 @@
 # Welder Web
 
 [![Build Status](https://travis-ci.org/weldr/welder-web.svg?branch=master)](https://travis-ci.org/weldr/welder-web)
-[![Coverage Status](https://coveralls.io/repos/github/weldr/welder-web/badge.svg?branch=master)](https://coveralls.io/github/weldr/welder-web?branch=master)
+[![codecov](https://codecov.io/gh/weldr/welder-web/branch/master/graph/badge.svg)](https://codecov.io/gh/weldr/welder-web)
 
 The web interface for Welder!
 
