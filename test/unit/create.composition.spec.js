@@ -44,6 +44,7 @@ describe('CreateComposition', () => {
 
   beforeEach(() => {
     props = {
+      compositionTypes: typeList,
       recipe: undefined,
       setNotifications: undefined,
     };
@@ -85,32 +86,9 @@ describe('CreateComposition', () => {
     });
   });
 
-  describe('lifecyle test', () => {
-    test('calls componentWillMount() lifecycle method', () => {
-      const componentWillMountSpy = jest.spyOn(CreateComposition.prototype, 'componentWillMount');
-      createComposition();
-
-      expect(componentWillMountSpy).toHaveBeenCalledTimes(1);
-
-      componentWillMountSpy.mockRestore();
-    });
-  });
-
-  describe('class property function test', () => {
-    test('calls getComptypes() method', () => {
-      const getComptypesSpy = jest.spyOn(CreateComposition.prototype, 'getComptypes');
-      createComposition();
-
-      expect(getComptypesSpy).toHaveBeenCalledTimes(1);
-
-      getComptypesSpy.mockRestore();
-    });
-  });
-
   describe('state test', () => {
     test('should have a correct type render', () => {
       const wrapper = createComposition();
-      wrapper.setState({ comptypes: typeList });
       const renderedType = wrapper.find('label[htmlFor="textInput-modal-markup"] + div select option');
 
       expect(renderedType).toHaveLength(13);

@@ -33,7 +33,7 @@ describe('Edit Recipe Page', () => {
     });
 
     describe('Menu Nav Bar Check #acceptance', () => {
-      test('@jacob should show a recipe name with a correct link address @edit-recipe-page', (done) => {
+      test('should show a recipe name with a correct link address @edit-recipe-page', (done) => {
         // Highlight the expected result
         const expectedRecipeName = editRecipePage.recipeName;
         const expectedViewRecipeLinke = editRecipePage.varLinkToViewRec;
@@ -60,7 +60,7 @@ describe('Edit Recipe Page', () => {
       }, timeout);
     });
     describe('Title Bar Check #acceptance', () => {
-      test('@jacob should show a recipe name title @edit-recipe-page', (done) => {
+      test('should show a recipe name title @edit-recipe-page', (done) => {
         // Highlight the expected result
         const expected = editRecipePage.recipeName;
 
@@ -77,7 +77,7 @@ describe('Edit Recipe Page', () => {
             eval(fs.readFileSync('utils/coverage.js').toString());
           });
       }, timeout);
-      test('@jacob should have Create Composition button @edit-recipe-page', (done) => {
+      test('should have Create Composition button @edit-recipe-page', (done) => {
         // Highlight the expected result
         const expected = editRecipePage.varCreateCompos;
 
@@ -101,7 +101,7 @@ describe('Edit Recipe Page', () => {
           , composition.arch);
 
 
-        test('@jacob should pop up Create Composition window by clicking Create Compostion button @edit-recipe-page', (done) => {
+        test('should pop up Create Composition window by clicking Create Compostion button @edit-recipe-page', (done) => {
           // Highlight the expected result
           const expected = createComposPage.varCreateCompos;
 
@@ -122,7 +122,7 @@ describe('Edit Recipe Page', () => {
               eval(fs.readFileSync('utils/coverage.js').toString());
             });
         }, timeout);
-        test('@jacob should have toast notification pop up when new composition added @edit-recipe-page', (done) => {
+        test('should have toast notification pop up when new composition added @edit-recipe-page', (done) => {
           const toastNotifPage = new ToastNotifPage(pageConfig.recipe.simple.name);
 
           // Highlight the expected result
@@ -174,7 +174,7 @@ describe('Edit Recipe Page', () => {
       const btnMoreAction = editRecipePage.btnMore;
       const menuActionExport = editRecipePage.menuActionExport;
 
-      test('@jacob should pop up dropdown-menu by clicking ":" button', (done) => {
+      test('should pop up dropdown-menu by clicking ":" button', (done) => {
         // Highlight the expected result
         const expected = editRecipePage.moreActionList.Export;
 
@@ -192,7 +192,7 @@ describe('Edit Recipe Page', () => {
             eval(fs.readFileSync('utils/coverage.js').toString());
           });
       }, timeout);
-      test('@jacob should pop up Export Recipe window by clicking "Export"', (done) => {
+      test('should pop up Export Recipe window by clicking "Export"', (done) => {
         // Highlight the expected result
         const expected = exportRecipePage.varExportTitle;
 
@@ -215,7 +215,7 @@ describe('Edit Recipe Page', () => {
             eval(fs.readFileSync('utils/coverage.js').toString());
           });
       }, timeout);
-      test('@jacob should show the correct dependence packages and total numbers of dependencies', (done) => {
+      test('should show the correct dependence packages and total numbers of dependencies', (done) => {
         // Convert package name into a string
         const packNames = `${pageConfig.recipe.simple.packages[0].name},${pageConfig.recipe.simple.packages[1].name}`;
 
@@ -255,7 +255,7 @@ describe('Edit Recipe Page', () => {
 
         apiCall.moduleInfo(packNames, callback, done);
       }, timeout);
-      test('@jacob should copy and paste correct components', (done) => {
+      test('should copy and paste correct components', (done) => {
         // expected result should be the content in textarea
         let expected = '';
 
@@ -321,7 +321,7 @@ describe('Edit Recipe Page', () => {
       }, timeout);
     });
     describe('Save Recipe Test #acceptance', () => {
-      test('@jacob should have toast notification pop up when Save button cliecked @edit-recipe-page', (done) => {
+      test('should have toast notification pop up when Save button cliecked @edit-recipe-page', (done) => {
         const toastNotifPage = new ToastNotifPage(pageConfig.recipe.simple.name);
 
         // Highlight the expected result
