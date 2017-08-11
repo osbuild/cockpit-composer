@@ -10,7 +10,7 @@ cache:
   - node_modules # NPM packages
 before_install:
   - |
-        npm install coveralls
+        npm install codecov
         npm install nyc
 
         if [ "$COMMAND" == "end-to-end-test" ]; then
@@ -33,12 +33,11 @@ env:
 script:
   - make "$COMMAND"
 after_success:
-  - if [ "$COMMAND" == "unit-test" ]; then cat ./coverage/lcov.info | coveralls; fi
+  - if [ "$COMMAND" == "unit-test" ]; then cat ./coverage/lcov.info | codecov; fi
   - |
         if [ "$COMMAND" == "end-to-end-test" ]; then
             nyc report
-            nyc report --reporter=lcov
-            cat ./coverage/lcov.info | coveralls
+            nyc report --reporter=lcov | codecov
         fi
 
         if [ "$COMMAND" == "end-to-end-test" ] && [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
