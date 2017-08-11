@@ -36,11 +36,12 @@ const recipes = (state = [], action) => {
         ...state.filter(recipe => recipe.id !== action.payload.recipe.id),
         action.payload.recipe,
       ];
+    // The following reducers filter the recipe out of the state and add the new version if
+    // the recipe contains component data or is not found in the state
     case FETCHING_RECIPES_SUCCEEDED:
-      return [
-        ...state.filter(recipe => recipe.id !== action.payload.recipes.id),
-        action.payload.recipes,
-      ];
+      return action.payload.recipe.components !== undefined || !state.some(recipe => recipe.id === action.payload.recipe.id)
+        ? [...state.filter(recipe => recipe.id !== action.payload.recipe.id), action.payload.recipe]
+        : state;
     case FETCHING_RECIPE_SUCCEEDED:
       return [
         ...state.filter(recipe => recipe.id !== action.payload.recipe.id),

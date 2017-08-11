@@ -82,8 +82,8 @@ function* createRecipe(action) {
 export default function* () {
   yield takeEvery(CREATING_RECIPE, createRecipe);
   yield takeEvery(FETCHING_RECIPE, fetchRecipe);
-  yield* fetchRecipes();
-  yield takeEvery(FETCHING_RECIPE_CONTENTS, fetchRecipeContents);
+  yield takeLatest(FETCHING_RECIPE_CONTENTS, fetchRecipeContents);
   yield takeLatest(SET_RECIPE_DESCRIPTION, setRecipeDescription);
   yield takeEvery(DELETING_RECIPE, deleteRecipe);
+  yield* fetchRecipes();
 }

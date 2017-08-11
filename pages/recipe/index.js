@@ -235,6 +235,7 @@ class RecipePage extends React.Component {
   }
   render() {
     if (!this.props.rehydrated) {
+      this.props.fetchingRecipeContents(this.props.route.params.recipe.replace(/\s/g, '-'));
       return <div></div>;
     }
 

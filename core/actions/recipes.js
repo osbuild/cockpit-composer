@@ -37,10 +37,10 @@ export const fetchingRecipes = () => ({
 });
 
 export const FETCHING_RECIPES_SUCCEEDED = 'FETCHING_RECIPES_SUCCEEDED';
-export const fetchingRecipesSucceeded = (recipes) => ({
+export const fetchingRecipesSucceeded = (recipe) => ({
   type: FETCHING_RECIPES_SUCCEEDED,
   payload: {
-    recipes,
+    recipe,
   },
 });
 
