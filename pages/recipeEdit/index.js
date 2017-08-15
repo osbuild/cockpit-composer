@@ -36,19 +36,19 @@ class EditRecipePage extends React.Component {
   componentWillMount() {
     // get recipe, get inputs; then update inputs
     if (this.props.rehydrated) {
-      const filter = {
-        field: 'name',
-        value: '',
-      };
       if (this.props.recipe.id !== undefined) {
         this.props.fetchingRecipeContents(this.props.recipe.id);
       }
-      this.props.fetchingInputs(filter, 0, 50, this.props.recipe.components);
-      this.props.setSelectedInputPage(0);
-      this.props.setSelectedInput('');
-      this.props.setSelectedInputParent('');
-      this.props.setSelectedInputStatus('');
     }
+    const filter = {
+      field: 'name',
+      value: '',
+    };
+    this.props.fetchingInputs(filter, 0, 50, this.props.recipe.components);
+    this.props.setSelectedInputPage(0);
+    this.props.setSelectedInput('');
+    this.props.setSelectedInputParent('');
+    this.props.setSelectedInputStatus('');
   }
 
   componentDidMount() {
@@ -548,7 +548,7 @@ class EditRecipePage extends React.Component {
       {createComposition.compositionTypes !== undefined &&
         <CreateComposition
           recipe={recipe.name}
-          compositsetNotifications={this.setNotifications}
+          setNotifications={this.setNotifications}
           compositionTypes={createComposition.compositionTypes}
         />
       }
