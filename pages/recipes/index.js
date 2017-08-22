@@ -5,13 +5,10 @@ import RecipeListView from '../../components/ListView/RecipeListView';
 import CreateRecipe from '../../components/Modal/CreateRecipe';
 import ExportRecipe from '../../components/Modal/ExportRecipe';
 import { connect } from 'react-redux';
-import {
-  setModalRecipeName,
-  setModalRecipeContents,
-  setModalRecipeVisible,
-  fetchingModalRecipeContents,
-} from '../../core/actions/modals';
 import { fetchingRecipes, deletingRecipe } from '../../core/actions/recipes';
+import {
+  setModalExportRecipeName, setModalExportRecipeContents, setModalExportRecipeVisible, fetchingModalExportRecipeContents,
+} from '../../core/actions/modals';
 
 class RecipesPage extends React.Component {
   constructor() {
@@ -20,7 +17,7 @@ class RecipesPage extends React.Component {
   }
 
   componentWillMount() {
-    this.props.fetchingRecipes();
+    // this.props.fetchingRecipes();
   }
 
   componentDidMount() {
@@ -39,9 +36,9 @@ class RecipesPage extends React.Component {
 
   // handle show/hide of modal dialogs
   handleHideModalExport = () => {
-    this.props.setModalRecipeVisible(false);
-    this.props.setModalRecipeName('');
-    this.props.setModalRecipeContents([]);
+    this.props.setModalExportRecipeVisible(false);
+    this.props.setModalExportRecipeName('');
+    this.props.setModalExportRecipeContents([]);
   };
   handleShowModalExport = (e, recipe) => {
     // This implementation of the dialog only provides a text option, and it's
@@ -49,18 +46,18 @@ class RecipesPage extends React.Component {
     // separate function that is called when the user selects the text option
 
     // display the dialog, a spinner will display while contents are undefined
-    this.props.setModalRecipeName(recipe);
-    this.props.setModalRecipeContents(undefined);
+    this.props.setModalExportRecipeName(recipe);
+    this.props.setModalExportRecipeContents(undefined);
     const recipeName = recipe.replace(/\s/g, '-');
     // run depsolving against recipe to get contents for dialog
-    this.props.fetchingModalRecipeContents(recipeName);
-    this.props.setModalRecipeVisible(true);
+    this.props.fetchingModalExportRecipeContents(recipeName);
+    this.props.setModalExportRecipeVisible(true);
     e.preventDefault();
     e.stopPropagation();
   };
 
   render() {
-    const { recipes, modalRecipeName, modalVisible, modalRecipeContents } = this.props;
+    const { recipes, exportRecipe, createComposition } = this.props;
     return (
       <Layout className="container-fluid container-pf-nav-pf-vertical" ref="layout">
         <div className="row toolbar-pf">
@@ -157,15 +154,22 @@ class RecipesPage extends React.Component {
             </form>
           </div>
         </div>
+      {createComposition.compositionTypes !== undefined &&
         <RecipeListView
           recipes={recipes}
+          compositionTypes={createComposition.compositionTypes}
           handleDelete={this.handleDelete}
           setNotifications={this.setNotifications}
           handleShowModalExport={this.handleShowModalExport}
         />
+      }
         <CreateRecipe recipeNames={this.props.recipes.map(recipe => recipe.id)} />
-        {modalVisible
-          ? <ExportRecipe recipe={modalRecipeName} contents={modalRecipeContents} handleHideModal={this.handleHideModalExport} />
+        {(exportRecipe !== undefined && exportRecipe.visible)
+          ? <ExportRecipe
+            recipe={exportRecipe.name}
+            contents={exportRecipe.contents}
+            handleHideModal={this.handleHideModalExport}
+          />
           : null}
       </Layout>
     );
@@ -175,38 +179,36 @@ class RecipesPage extends React.Component {
 RecipesPage.propTypes = {
   fetchingRecipes: PropTypes.func,
   deletingRecipe: PropTypes.func,
-  setModalRecipeVisible: PropTypes.func,
-  setModalRecipeName: PropTypes.func,
-  setModalRecipeContents: PropTypes.func,
-  fetchingModalRecipeContents: PropTypes.func,
+  setModalExportRecipeVisible: PropTypes.func,
+  setModalExportRecipeName: PropTypes.func,
+  setModalExportRecipeContents: PropTypes.func,
+  fetchingModalExportRecipeContents: PropTypes.func,
   recipes: PropTypes.array,
-  modalRecipeName: PropTypes.string,
-  modalVisible: PropTypes.bool,
-  modalRecipeContents: PropTypes.array,
+  exportRecipe: PropTypes.object,
+  createComposition: PropTypes.object,
 };
 
 const mapStateToProps = state => ({
-  modalRecipeName: state.modalExportRecipe.name,
-  modalRecipeContents: state.modalExportRecipe.contents,
-  modalVisible: state.modalExportRecipe.visible,
+  exportRecipe: state.modals.exportRecipe,
+  createComposition: state.modals.createComposition,
   recipes: state.recipes,
 });
 
 const mapDispatchToProps = dispatch => ({
-  setModalRecipeName: modalRecipeName => {
-    dispatch(setModalRecipeName(modalRecipeName));
-  },
-  setModalRecipeContents: modalRecipeContents => {
-    dispatch(setModalRecipeContents(modalRecipeContents));
-  },
-  setModalRecipeVisible: modalVisible => {
-    dispatch(setModalRecipeVisible(modalVisible));
-  },
-  fetchingModalRecipeContents: modalRecipeName => {
-    dispatch(fetchingModalRecipeContents(modalRecipeName));
+  fetchingModalExportRecipeContents: modalRecipeName => {
+    dispatch(fetchingModalExportRecipeContents(modalRecipeName));
   },
   fetchingRecipes: () => {
     dispatch(fetchingRecipes());
+  },
+  setModalExportRecipeName: modalRecipeName => {
+    dispatch(setModalExportRecipeName(modalRecipeName));
+  },
+  setModalExportRecipeContents: modalRecipeContents => {
+    dispatch(setModalExportRecipeContents(modalRecipeContents));
+  },
+  setModalExportRecipeVisible: modalVisible => {
+    dispatch(setModalExportRecipeVisible(modalVisible));
   },
   deletingRecipe: recipe => {
     dispatch(deletingRecipe(recipe));

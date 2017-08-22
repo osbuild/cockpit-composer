@@ -17,9 +17,6 @@ class RecipeApi {
   // "modules" are the specific versions for the recipe's modules and packages
   // "dependencies" are all the things that are required to satisfy the recipe
   getRecipe(recipeName) {
-    if (this.recipe !== undefined && this.recipe.name === recipeName) {
-      return Promise.resolve(this.recipe);
-    }
     const p = new Promise((resolve, reject) => {
       utils.apiFetch(constants.get_recipes_deps + recipeName)
             .then(data => {

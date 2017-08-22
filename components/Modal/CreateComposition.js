@@ -1,25 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import constants from '../../core/constants';
-import utils from '../../core/utils';
 import NotificationsApi from '../../data/NotificationsApi';
 
 class CreateComposition extends React.Component {
-
-  state = { comptypes: [] };
-
-  componentWillMount() {
-    this.getComptypes();
-  }
-
-  getComptypes() {
-    const that = this;
-    utils.apiFetch(constants.get_compose_types)
-      .then(data => {
-        that.setState({ comptypes: data.types });
-      })
-      .catch(e => console.log(`Error getting component types: ${e}`));
-  }
 
   handleCreateCompos = () => {
     $('#cmpsr-modal-crt-compos').modal('hide');
@@ -62,7 +45,7 @@ class CreateComposition extends React.Component {
                   >Composition Type</label>
                   <div className="col-sm-9">
                     <select className="form-control">
-                      {this.state.comptypes.map((type, i) =>
+                      {this.props.compositionTypes !== undefined && this.props.compositionTypes.map((type, i) =>
                         <option key={i} disabled={!type.enabled}>{type.name}</option>
                       )}
                     </select>
@@ -90,12 +73,12 @@ class CreateComposition extends React.Component {
       </div>
     );
   }
-
 }
 
 CreateComposition.propTypes = {
   recipe: PropTypes.string,
   setNotifications: PropTypes.func,
+  compositionTypes: PropTypes.array,
 };
 
 export default CreateComposition;
