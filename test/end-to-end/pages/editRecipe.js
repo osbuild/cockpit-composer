@@ -1,5 +1,6 @@
 // Edit Recipe page object
 const MainPage = require('./main');
+const pageConfig = require('../config');
 
 module.exports = class EditRecipePage extends MainPage {
   constructor(recipeName) {
@@ -30,6 +31,9 @@ module.exports = class EditRecipePage extends MainPage {
 
     // Recipe Name link
     this.varLinkToViewRec = `${this.mailUrl}#/recipe/${this.recipeName}`;
+    if (pageConfig.root.includes('9090')) {
+      this.varLinkToViewRec = `${this.mailUrl.slice(0, -6)}cockpit/@localhost/welder/index.html#/recipe/${this.recipeName}`;
+    }
     this.linkRecipeName = `${this.navBarRootElement}  li + li a`;
 
     // Recipe Title label

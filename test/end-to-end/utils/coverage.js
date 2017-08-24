@@ -7,9 +7,13 @@
 // collects coverage from the tested page,
 // calls nightmare.end() and calls done()
 // executed via eval() as a last step of every test!
-
 nightmare
-  .evaluate(() => window.__coverage__)
+  .evaluate(() => {
+    if (window.location.href.includes('9090')) {
+      return window.top.document.querySelector('.container-frame').contentWindow.__coverage__;
+    }
+    return window.__coverage__;
+  })
   .end()
   .then((cov) => {
     const strCoverage = JSON.stringify(cov);

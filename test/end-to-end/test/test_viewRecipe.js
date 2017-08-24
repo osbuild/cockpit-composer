@@ -1,13 +1,16 @@
 const Nightmare = require('nightmare');
+require('nightmare-iframe-manager')(Nightmare);
 const ViewRecipePage = require('../pages/viewRecipe');
 const CreateComposPage = require('../pages/createCompos');
 const ToastNotifPage = require('../pages/toastNotif');
 const ExportRecipePage = require('../pages/exportRecipe');
 const apiCall = require('../utils/apiCall');
+const helper = require('../utils/helper');
 const pageConfig = require('../config');
 const fs = require('fs');
 
 describe('View Recipe Page', () => {
+  let nightmare;
   // Set case running timeout
   const timeout = 15000;
 
@@ -16,11 +19,17 @@ describe('View Recipe Page', () => {
     apiCall.serviceCheck(done);
   });
 
+  const viewRecipePage = new ViewRecipePage(pageConfig.recipe.simple.name);
+
+  // Switch to welder-web iframe if welder-web is integrated with Cockpit.
+  // Cockpit web service is listening on TCP port 9090.
+  beforeEach(() => {
+    helper.gotoURL(nightmare = new Nightmare(), viewRecipePage);
+  });
+
   describe('Single Word Recipe Name Scenario', () => {
     // Array of composition types and architechtures
     const compositions = pageConfig.composition;
-
-    const viewRecipePage = new ViewRecipePage(pageConfig.recipe.simple.name);
 
     // Create a new recipe before the first test run in this suite
     beforeAll((done) => {
@@ -37,9 +46,7 @@ describe('View Recipe Page', () => {
         // Highlight the expected result
         const expected = viewRecipePage.recipeName;
 
-        const nightmare = new Nightmare();
         nightmare
-          .goto(viewRecipePage.url)
           .wait(viewRecipePage.labelRecipeName)
           .evaluate(page => document.querySelector(page.labelRecipeName).innerText
             , viewRecipePage)
@@ -55,9 +62,7 @@ describe('View Recipe Page', () => {
         // Highlight the expected result
         const expected = viewRecipePage.recipeName;
 
-        const nightmare = new Nightmare();
         nightmare
-          .goto(viewRecipePage.url)
           .wait(viewRecipePage.labelRecipeTitle)
           .evaluate(page => document.querySelector(page.labelRecipeTitle).innerText
             , viewRecipePage)
@@ -71,9 +76,7 @@ describe('View Recipe Page', () => {
         // Highlight the expected result
         const expected = viewRecipePage.varCreateCompos;
 
-        const nightmare = new Nightmare();
         nightmare
-          .goto(viewRecipePage.url)
           .wait(viewRecipePage.btnCreateCompos)
           .evaluate(page => document.querySelector(page.btnCreateCompos).innerText
             , viewRecipePage)
@@ -93,9 +96,7 @@ describe('View Recipe Page', () => {
           // Highlight the expected result
           const expected = createComposPage.varCreateCompos;
 
-          const nightmare = new Nightmare();
           nightmare
-            .goto(viewRecipePage.url)
             .wait(viewRecipePage.btnCreateCompos)
             .click(viewRecipePage.btnCreateCompos)
             .wait(page => document.querySelector(page.dialogRootElement).style.display === 'block'
@@ -115,9 +116,7 @@ describe('View Recipe Page', () => {
           const expectedCreating = toastNotifPage.varStatusCreating;
           const expectedComplete = toastNotifPage.varStatusComplete;
 
-          const nightmare = new Nightmare();
           nightmare
-            .goto(viewRecipePage.url)
             .wait(viewRecipePage.btnCreateCompos)
             .click(viewRecipePage.btnCreateCompos)
             .wait(page => document.querySelector(page.dialogRootElement).style.display === 'block'
@@ -165,9 +164,7 @@ describe('View Recipe Page', () => {
         // Highlight the expected result
         const expected = viewRecipePage.toolBarMoreActionList.Export;
 
-        const nightmare = new Nightmare();
         nightmare
-          .goto(viewRecipePage.url)
           .wait(tabComponents)
           .click(tabComponents)
           .wait(btnMoreAction)
@@ -185,9 +182,7 @@ describe('View Recipe Page', () => {
         // Highlight the expected result
         const expected = exportRecipePage.varExportTitle;
 
-        const nightmare = new Nightmare();
         nightmare
-          .goto(viewRecipePage.url)
           .wait(tabComponents)
           .click(tabComponents)
           .wait(btnMoreAction)
@@ -218,9 +213,7 @@ describe('View Recipe Page', () => {
           const expectedNumber = `${[...depCompSet].length} ${exportRecipePage.varTotalComponents}`;
           const expectedContent = [...depCompSet].sort().join('\n');
 
-          const nightmare = new Nightmare();
           nightmare
-            .goto(viewRecipePage.url)
             .wait(tabComponents)
             .click(tabComponents)
             .wait(btnMoreAction)
@@ -251,9 +244,7 @@ describe('View Recipe Page', () => {
         // expected result should be the content in textarea
         let expected = '';
 
-        const nightmare = new Nightmare();
         nightmare
-          .goto(viewRecipePage.url)
           .wait(tabComponents)
           .click(tabComponents)
           .wait(btnMoreAction)
@@ -326,9 +317,7 @@ describe('View Recipe Page', () => {
         // Highlight the expected result
         const expected = viewRecipePage.toolBarMoreActionList.Export;
 
-        const nightmare = new Nightmare();
         nightmare
-          .goto(viewRecipePage.url)
           .wait(tabComponents)
           .click(tabComponents)
           .wait(btnMoreAction)
@@ -346,9 +335,7 @@ describe('View Recipe Page', () => {
         // Highlight the expected result
         const expected = exportRecipePage.varExportTitle;
 
-        const nightmare = new Nightmare();
         nightmare
-          .goto(viewRecipePage.url)
           .wait(tabComponents)
           .click(tabComponents)
           .wait(btnMoreAction)
@@ -379,9 +366,7 @@ describe('View Recipe Page', () => {
           const expectedNumber = `${[...depCompSet].length} ${exportRecipePage.varTotalComponents}`;
           const expectedContent = [...depCompSet].sort().join('\n');
 
-          const nightmare = new Nightmare();
           nightmare
-            .goto(viewRecipePage.url)
             .wait(tabComponents)
             .click(tabComponents)
             .wait(btnMoreAction)
@@ -412,9 +397,7 @@ describe('View Recipe Page', () => {
         // expected result should be the content in textarea
         let expected = '';
 
-        const nightmare = new Nightmare();
         nightmare
-          .goto(viewRecipePage.url)
           .wait(tabComponents)
           .click(tabComponents)
           .wait(btnMoreAction)
@@ -487,9 +470,7 @@ describe('View Recipe Page', () => {
         // Highlight the expected result
         const expected = viewRecipePage.toolBarMoreActionList.Export;
 
-        const nightmare = new Nightmare();
         nightmare
-          .goto(viewRecipePage.url)
           .wait(tabComponents)
           .click(tabComponents)
           .wait(btnMoreAction)
@@ -507,9 +488,7 @@ describe('View Recipe Page', () => {
         // Highlight the expected result
         const expected = exportRecipePage.varExportTitle;
 
-        const nightmare = new Nightmare();
         nightmare
-          .goto(viewRecipePage.url)
           .wait(tabComponents)
           .click(tabComponents)
           .wait(btnMoreAction)
@@ -540,9 +519,7 @@ describe('View Recipe Page', () => {
           const expectedNumber = `${[...depCompSet].length} ${exportRecipePage.varTotalComponents}`;
           const expectedContent = [...depCompSet].sort().join('\n');
 
-          const nightmare = new Nightmare();
           nightmare
-            .goto(viewRecipePage.url)
             .wait(tabComponents)
             .click(tabComponents)
             .wait(btnMoreAction)
@@ -573,9 +550,7 @@ describe('View Recipe Page', () => {
         // expected result should be the content in textarea
         let expected = '';
 
-        const nightmare = new Nightmare();
         nightmare
-          .goto(viewRecipePage.url)
           .wait(tabComponents)
           .click(tabComponents)
           .wait(btnMoreAction)
