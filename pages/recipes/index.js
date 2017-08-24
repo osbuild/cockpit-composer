@@ -9,6 +9,8 @@ import { fetchingRecipes, deletingRecipe } from '../../core/actions/recipes';
 import {
   setModalExportRecipeName, setModalExportRecipeContents, setModalExportRecipeVisible, fetchingModalExportRecipeContents,
 } from '../../core/actions/modals';
+import { recipesSortSetKey, recipesSortSetValue } from '../../core/actions/sort';
+import { makeGetSortedRecipes } from '../../core/selectors';
 
 class RecipesPage extends React.Component {
   constructor() {
@@ -17,7 +19,6 @@ class RecipesPage extends React.Component {
   }
 
   componentWillMount() {
-    // this.props.fetchingRecipes();
   }
 
   componentDidMount() {
@@ -40,6 +41,7 @@ class RecipesPage extends React.Component {
     this.props.setModalExportRecipeName('');
     this.props.setModalExportRecipeContents([]);
   };
+
   handleShowModalExport = (e, recipe) => {
     // This implementation of the dialog only provides a text option, and it's
     // automatically selected. Eventually, the following code should move to a
@@ -57,7 +59,7 @@ class RecipesPage extends React.Component {
   };
 
   render() {
-    const { recipes, exportRecipe, createComposition } = this.props;
+    const { recipes, exportRecipe, createComposition, recipeSortKey, recipeSortValue } = this.props;
     return (
       <Layout className="container-fluid container-pf-nav-pf-vertical" ref="layout">
         <div className="row toolbar-pf">
@@ -100,9 +102,16 @@ class RecipesPage extends React.Component {
                     <li><a>Version</a></li>
                   </ul>
                 </div>
-                <button className="btn btn-link" type="button">
+              {recipeSortKey === 'name' && recipeSortValue === 'DESC' &&
+                <button className="btn btn-link" type="button" onClick={() => this.props.recipesSortSetValue('ASC')}>
                   <span className="fa fa-sort-alpha-asc" />
                 </button>
+              ||
+              recipeSortKey === 'name' && recipeSortValue === 'ASC' &&
+                <button className="btn btn-link" type="button" onClick={() => this.props.recipesSortSetValue('DESC')}>
+                  <span className="fa fa-sort-alpha-desc" />
+                </button>
+              }
               </div>
 
               <div className="toolbar-pf-action-right">
@@ -186,13 +195,35 @@ RecipesPage.propTypes = {
   recipes: PropTypes.array,
   exportRecipe: PropTypes.object,
   createComposition: PropTypes.object,
+  recipeSortKey: PropTypes.string,
+  recipeSortValue: PropTypes.string,
+  recipesSortSetKey: PropTypes.func,
+  recipesSortSetValue: PropTypes.func,
 };
 
-const mapStateToProps = state => ({
-  exportRecipe: state.modals.exportRecipe,
-  createComposition: state.modals.createComposition,
-  recipes: state.recipes,
-});
+const makeMapStateToProps = () => {
+  const getSortedRecipes = makeGetSortedRecipes();
+  const mapStateToProps = (state) => {
+    if (getSortedRecipes(state) !== undefined) {
+      return {
+        exportRecipe: state.modals.exportRecipe,
+        createComposition: state.modals.createComposition,
+        recipes: getSortedRecipes(state),
+        recipeSortKey: state.sort.recipes.key,
+        recipeSortValue: state.sort.recipes.value,
+      };
+    }
+    return {
+      exportRecipe: state.modals.exportRecipe,
+      createComposition: state.modals.createComposition,
+      recipes: {},
+      recipeSortKey: state.sort.recipes.key,
+      recipeSortValue: state.sort.recipes.value,
+    };
+  };
+
+  return mapStateToProps;
+};
 
 const mapDispatchToProps = dispatch => ({
   fetchingModalExportRecipeContents: modalRecipeName => {
@@ -213,6 +244,12 @@ const mapDispatchToProps = dispatch => ({
   deletingRecipe: recipe => {
     dispatch(deletingRecipe(recipe));
   },
+  recipesSortSetKey: key => {
+    dispatch(recipesSortSetKey(key));
+  },
+  recipesSortSetValue: value => {
+    dispatch(recipesSortSetValue(value));
+  },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(RecipesPage);
+export default connect(makeMapStateToProps, mapDispatchToProps)(RecipesPage);

@@ -50,6 +50,20 @@ const initialState = {
       },
     },
   },
+  sort: {
+    recipes: {
+      key: 'name',
+      value: 'ASC',
+    },
+    components: {
+      key: 'name',
+      value: 'ASC',
+    },
+    dependencies: {
+      key: 'name',
+      value: 'ASC',
+    },
+  },
 };
 
 const store = createStore(
