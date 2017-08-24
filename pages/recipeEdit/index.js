@@ -24,7 +24,10 @@ import {
   setSelectedInput, setSelectedInputStatus, setSelectedInputParent, deleteFilter,
 } from '../../core/actions/inputs';
 import { setModalActive } from '../../core/actions/modals';
-import { makeGetRecipeById } from '../../core/selectors';
+import {
+  componentsSortSetKey, componentsSortSetValue, dependenciesSortSetKey, dependenciesSortSetValue,
+} from '../../core/actions/sort';
+import { makeGetRecipeById, makeGetSortedComponents, makeGetSortedDependencies } from '../../core/selectors';
 
 class EditRecipePage extends React.Component {
   constructor() {
@@ -386,7 +389,9 @@ class EditRecipePage extends React.Component {
       return <div></div>;
     }
     const recipeDisplayName = this.props.route.params.recipe;
-    const { recipe, inputs, createComposition, modalActive } = this.props;
+    const {
+      recipe, components, dependencies, inputs, createComposition, modalActive, componentsSortKey, componentsSortValue,
+    } = this.props;
 
     return (
       <Layout
@@ -430,15 +435,23 @@ class EditRecipePage extends React.Component {
           <h3 className="cmpsr-panel__title cmpsr-panel__title--main">Component Details</h3>}
         {(inputs.selectedInput !== undefined && inputs.selectedInput.component === '' &&
           <div className="cmpsr-panel__body cmpsr-panel__body--main">
-            <Toolbar handleShowModal={this.handleShowModal} />
-            {((recipe.components === undefined || recipe.components.length === 0) &&
+          {componentsSortKey !== undefined && componentsSortValue !== undefined &&
+            <Toolbar
+              handleShowModal={this.handleShowModal}
+              componentsSortKey={componentsSortKey}
+              componentsSortValue={componentsSortValue}
+              componentsSortSetValue={this.props.componentsSortSetValue}
+              dependenciesSortSetValue={this.props.dependenciesSortSetValue}
+            />
+          }
+            {((components === undefined || components.length === 0) &&
               <EmptyState
                 title={'Add Recipe Components'}
                 message={'Browse or search for components, then add them to the recipe.'}
               />) ||
               <RecipeContents
-                components={recipe.components}
-                dependencies={recipe.dependencies}
+                components={components}
+                dependencies={dependencies}
                 handleRemoveComponent={this.handleRemoveComponent}
                 handleComponentDetails={this.handleComponentDetails}
               />}
@@ -555,14 +568,14 @@ class EditRecipePage extends React.Component {
         {modalActive === 'modalExportRecipe'
           ? <ExportRecipe
             recipe={recipe.name}
-            contents={recipe.dependencies}
+            contents={dependencies}
             handleHideModal={this.handleHideModal}
           />
           : null}
         {modalActive === 'modalPendingChanges'
           ? <PendingChanges
             recipe={recipe.name}
-            contents={recipe.dependencies}
+            contents={dependencies}
             handleHideModal={this.handleHideModal}
           />
           : null}
@@ -598,15 +611,28 @@ EditRecipePage.propTypes = {
   setRecipeComponents: PropTypes.func,
   setRecipeDependencies: PropTypes.func,
   setModalActive: PropTypes.func,
+  dependenciesSortSetValue: PropTypes.func,
+  componentsSortSetValue: PropTypes.func,
+  components: PropTypes.array,
+  dependencies: PropTypes.array,
+  componentsSortKey: PropTypes.string,
+  componentsSortValue: PropTypes.string,
 };
 
 const makeMapStateToProps = () => {
   const getRecipeById = makeGetRecipeById();
+  const getSortedComponents = makeGetSortedComponents();
+  const getSortedDependencies = makeGetSortedDependencies();
   const mapStateToProps = (state, props) => {
     if (getRecipeById(state, props.route.params.recipe.replace(/\s/g, '-')) !== undefined) {
+      const fetchedRecipe = getRecipeById(state, props.route.params.recipe.replace(/\s/g, '-'));
       return {
         rehydrated: state.rehydrated,
-        recipe: getRecipeById(state, props.route.params.recipe.replace(/\s/g, '-')),
+        recipe: fetchedRecipe,
+        components: getSortedComponents(state, fetchedRecipe),
+        dependencies: getSortedDependencies(state, fetchedRecipe),
+        componentsSortKey: state.sort.components.key,
+        componentsSortValue: state.sort.components.value,
         createComposition: state.modals.createComposition,
         inputs: state.inputs,
         selectedInput: state.inputs.selectedInput,
@@ -616,6 +642,10 @@ const makeMapStateToProps = () => {
     return {
       rehydrated: state.rehydrated,
       recipe: {},
+      components: {},
+      dependencies: {},
+      componentsSortKey: state.sort.components.key,
+      componentsSortValue: state.sort.components.value,
       createComposition: state.modals.createComposition,
       inputs: state.inputs,
       selectedInput: state.inputs.selectedInput,
@@ -679,6 +709,18 @@ const mapDispatchToProps = (dispatch) => ({
   },
   setModalActive: (modalActive) => {
     dispatch(setModalActive(modalActive));
+  },
+  componentsSortSetKey: key => {
+    dispatch(componentsSortSetKey(key));
+  },
+  componentsSortSetValue: value => {
+    dispatch(componentsSortSetValue(value));
+  },
+  dependenciesSortSetKey: key => {
+    dispatch(dependenciesSortSetKey(key));
+  },
+  dependenciesSortSetValue: value => {
+    dispatch(dependenciesSortSetValue(value));
   },
 });
 

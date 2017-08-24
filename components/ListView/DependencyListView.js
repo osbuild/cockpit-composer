@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import ListView from '../../components/ListView/ListView';
 import ListItemComponents from '../../components/ListView/ListItemComponents';
 
-class DependencyListView extends React.PureComponent {
+class DependencyListView extends React.Component {
+  componentWillMount() {}
+
   render() {
     return (
       <div>
@@ -39,6 +41,7 @@ DependencyListView.propTypes = {
   handleComponentDetails: PropTypes.func,
   handleRemoveComponent: PropTypes.func,
   componentDetailsParent: PropTypes.object,
+  className: PropTypes.string,
 };
 
 export default DependencyListView;

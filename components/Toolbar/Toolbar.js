@@ -41,9 +41,30 @@ const Toolbar = props => (
             <li><a>Version</a></li>
           </ul>
         </div>
-        <button className="btn btn-link" type="button">
-          <span className="fa fa-sort-alpha-asc" />
-        </button>
+        {props.componentsSortKey === 'name' && props.componentsSortValue === 'DESC' &&
+          <button
+            className="btn btn-link"
+            type="button"
+            onClick={() => {
+              props.componentsSortSetValue('ASC');
+              props.dependenciesSortSetValue('ASC');
+            }}
+          >
+            <span className="fa fa-sort-alpha-asc" />
+          </button>
+        ||
+        props.componentsSortKey === 'name' && props.componentsSortValue === 'ASC' &&
+          <button
+            className="btn btn-link"
+            type="button"
+            onClick={() => {
+              props.componentsSortSetValue('DESC');
+              props.dependenciesSortSetValue('DESC');
+            }}
+          >
+            <span className="fa fa-sort-alpha-desc" />
+          </button>
+        }
       </div>
 
       <div className="toolbar-pf-action-right">

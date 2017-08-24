@@ -15,12 +15,15 @@ import ListItemCompositions from '../../components/ListView/ListItemCompositions
 import { connect } from 'react-redux';
 import { fetchingRecipeContents, setRecipeDescription } from '../../core/actions/recipes';
 import { setModalExportRecipeVisible } from '../../core/actions/modals';
-import { makeGetRecipeById } from '../../core/selectors';
 import {
   setEditDescriptionVisible, setEditDescriptionValue,
   setSelectedComponent, setSelectedComponentStatus, setSelectedComponentParent,
   setActiveTab,
 } from '../../core/actions/recipePage';
+import {
+  componentsSortSetKey, componentsSortSetValue, dependenciesSortSetKey, dependenciesSortSetValue,
+} from '../../core/actions/sort';
+import { makeGetRecipeById, makeGetSortedComponents, makeGetSortedDependencies } from '../../core/selectors';
 
 class RecipePage extends React.Component {
   constructor() {
@@ -239,7 +242,10 @@ class RecipePage extends React.Component {
       return <div></div>;
     }
 
-    const { recipe, exportModalVisible, compositionTypes } = this.props;
+    const {
+      recipe, exportModalVisible, compositionTypes, components, dependencies,
+    } = this.props;
+
     const {
       editDescriptionValue, editDescriptionVisible, activeTab,
       selectedComponent, selectedComponentParent, selectedComponentStatus,
@@ -461,9 +467,30 @@ class RecipePage extends React.Component {
                               <li><a>Version</a></li>
                             </ul>
                           </div>
-                          <button className="btn btn-link" type="button">
-                            <span className="fa fa-sort-alpha-asc" />
-                          </button>
+                          {this.props.componentsSortKey === 'name' && this.props.componentsSortValue === 'DESC' &&
+                            <button
+                              className="btn btn-link"
+                              type="button"
+                              onClick={() => {
+                                this.props.componentsSortSetValue('ASC');
+                                this.props.dependenciesSortSetValue('ASC');
+                              }}
+                            >
+                              <span className="fa fa-sort-alpha-asc" />
+                            </button>
+                          ||
+                          this.props.componentsSortKey === 'name' && this.props.componentsSortValue === 'ASC' &&
+                            <button
+                              className="btn btn-link"
+                              type="button"
+                              onClick={() => {
+                                this.props.componentsSortSetValue('DESC');
+                                this.props.dependenciesSortSetValue('DESC');
+                              }}
+                            >
+                              <span className="fa fa-sort-alpha-desc" />
+                            </button>
+                          }
                         </div>
                         <div className="toolbar-pf-action-right">
                           <div className="form-group">
@@ -517,7 +544,7 @@ class RecipePage extends React.Component {
                       </form>
                     </div>
                   </div>
-                  {(recipe.components === undefined || recipe.components.length === 0) &&
+                  {(components === undefined || components.length === 0) &&
                     <EmptyState
                       title={'Empty Recipe'}
                       message={'There are no components listed in the recipe. Edit the recipe to add components.'}
@@ -529,8 +556,8 @@ class RecipePage extends React.Component {
                       </Link>
                     </EmptyState> ||
                     <RecipeContents
-                      components={recipe.components}
-                      dependencies={recipe.dependencies}
+                      components={components}
+                      dependencies={dependencies}
                       noEditComponent
                       handleComponentDetails={this.handleComponentDetails}
                     />}
@@ -730,26 +757,45 @@ RecipePage.propTypes = {
   setRecipeDescription: PropTypes.func,
   exportModalVisible: PropTypes.bool,
   compositionTypes: PropTypes.array,
+  dependenciesSortSetKey: PropTypes.func,
+  dependenciesSortSetValue: PropTypes.func,
+  componentsSortSetKey: PropTypes.func,
+  componentsSortSetValue: PropTypes.func,
+  components: PropTypes.array,
+  dependencies: PropTypes.array,
+  componentsSortKey: PropTypes.string,
+  componentsSortValue: PropTypes.string,
 };
 
 const makeMapStateToProps = () => {
   const getRecipeById = makeGetRecipeById();
+  const getSortedComponents = makeGetSortedComponents();
+  const getSortedDependencies = makeGetSortedDependencies();
   const mapStateToProps = (state, props) => {
     if (getRecipeById(state, props.route.params.recipe.replace(/\s/g, '-')) !== undefined) {
+      const fetchedRecipe = getRecipeById(state, props.route.params.recipe.replace(/\s/g, '-'));
       return {
         rehydrated: state.rehydrated,
-        recipe: getRecipeById(state, props.route.params.recipe.replace(/\s/g, '-')),
+        recipe: fetchedRecipe,
+        components: getSortedComponents(state, fetchedRecipe),
+        dependencies: getSortedDependencies(state, fetchedRecipe),
         recipePage: state.recipePage,
         exportModalVisible: state.modals.exportRecipe.visible,
         compositionTypes: state.modals.createComposition.compositionTypes,
+        componentsSortKey: state.sort.components.key,
+        componentsSortValue: state.sort.components.value,
       };
     }
     return {
       rehydrated: state.rehydrated,
       recipe: {},
+      components: {},
+      dependencies: {},
       recipePage: state.recipePage,
       exportModalVisible: state.modals.exportRecipe.visible,
       compositionTypes: state.modals.createComposition.compositionTypes,
+      componentsSortKey: state.sort.components.key,
+      componentsSortValue: state.sort.components.value,
     };
   };
   return mapStateToProps;
@@ -782,6 +828,18 @@ const mapDispatchToProps = (dispatch) => ({
   },
   setModalExportRecipeVisible: (visible) => {
     dispatch(setModalExportRecipeVisible(visible));
+  },
+  componentsSortSetKey: key => {
+    dispatch(componentsSortSetKey(key));
+  },
+  componentsSortSetValue: value => {
+    dispatch(componentsSortSetValue(value));
+  },
+  dependenciesSortSetKey: key => {
+    dispatch(dependenciesSortSetKey(key));
+  },
+  dependenciesSortSetValue: value => {
+    dispatch(dependenciesSortSetValue(value));
   },
 });
 
