@@ -1,13 +1,16 @@
 const Nightmare = require('nightmare');
+require('nightmare-iframe-manager')(Nightmare);
 const RecipesPage = require('../pages/recipes');
 const CreateRecipePage = require('../pages/createRecipe');
 const EditRecipePage = require('../pages/editRecipe');
 const apiCall = require('../utils/apiCall');
+const helper = require('../utils/helper');
 const pageConfig = require('../config');
 const fs = require('fs');
 
 
 describe('Create Recipe Page', () => {
+  let nightmare;
   // Set case running timeout
   const timeout = 15000;
 
@@ -20,6 +23,12 @@ describe('Create Recipe Page', () => {
   const createRecipePage = new CreateRecipePage(pageConfig.recipe.simple.name
     , pageConfig.recipe.simple.description);
 
+// Switch to welder-web iframe if welder-web is integrated with Cockpit.
+// Cockpit web service is listening on TCP port 9090.
+  beforeEach(() => {
+    helper.gotoURL(nightmare = new Nightmare(), recipesPage);
+  });
+
   describe('Input Data Validation Test', () => {
     describe('Required Field Missing #acceptance', () => {
       test('should show alert message by clicking Save button when create recipe without name @create-recipe-page', (done) => {
@@ -27,9 +36,7 @@ describe('Create Recipe Page', () => {
         const expectedAlertInfo = createRecipePage.varAlertInfo;
         const expectedHelpBlockMsg = createRecipePage.varHelpBlockMsg;
 
-        const nightmare = new Nightmare();
         nightmare
-          .goto(recipesPage.url)
           .wait(recipesPage.btnCreateRecipe)
           .click(recipesPage.btnCreateRecipe)
           .wait(page => document.activeElement.id === page.inputNameEleId
@@ -57,9 +64,7 @@ describe('Create Recipe Page', () => {
         const expectedAlertInfo = createRecipePage.varAlertInfo;
         const expectedHelpBlockMsg = createRecipePage.varHelpBlockMsg;
 
-        const nightmare = new Nightmare();
         nightmare
-          .goto(recipesPage.url)
           .wait(recipesPage.btnCreateRecipe)
           .click(recipesPage.btnCreateRecipe)
           .wait(page => document.activeElement.id === page.inputNameEleId
@@ -86,9 +91,7 @@ describe('Create Recipe Page', () => {
         // Highlight the expected result
         const expected = createRecipePage.varHelpBlockMsg;
 
-        const nightmare = new Nightmare();
         nightmare
-          .goto(recipesPage.url)
           .wait(recipesPage.btnCreateRecipe)
           .click(recipesPage.btnCreateRecipe)
           .wait(page => document.activeElement.id === page.inputNameEleId
@@ -114,9 +117,7 @@ describe('Create Recipe Page', () => {
       });
 
       test('should switch to Edit Recipe page - recipe creation success @create-recipe-page', (done) => {
-        const nightmare = new Nightmare();
         nightmare
-          .goto(recipesPage.url)
           .wait(recipesPage.btnCreateRecipe)
           .click(recipesPage.btnCreateRecipe)
           .wait(page => document.querySelector(page.dialogRootElement).style.display === 'block'
