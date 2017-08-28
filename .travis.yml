@@ -37,7 +37,7 @@ after_success:
   - |
         if [ "$COMMAND" == "end-to-end-test" ]; then
             nyc report
-            nyc report --reporter=lcov | codecov
+            nyc report --reporter=lcov && codecov
         fi
 
         if [ "$COMMAND" == "end-to-end-test" ] && [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
