@@ -642,8 +642,8 @@ const makeMapStateToProps = () => {
     return {
       rehydrated: state.rehydrated,
       recipe: {},
-      components: {},
-      dependencies: {},
+      components: [],
+      dependencies: [],
       componentsSortKey: state.sort.components.key,
       componentsSortValue: state.sort.components.value,
       createComposition: state.modals.createComposition,
