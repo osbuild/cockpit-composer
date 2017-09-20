@@ -53,15 +53,15 @@ const initialState = {
   sort: {
     recipes: {
       key: 'name',
-      value: 'ASC',
+      value: 'DESC',
     },
     components: {
       key: 'name',
-      value: 'ASC',
+      value: 'DESC',
     },
     dependencies: {
       key: 'name',
-      value: 'ASC',
+      value: 'DESC',
     },
   },
 };
