@@ -30,7 +30,7 @@ if (enableCoverage) {
 // Webpack configuration (main.js => public/dist/main.{hash}.js)
 // http://webpack.github.io/docs/configuration.html
 const config = {
-  externals: { cockpit: 'cockpit' },
+  externals: { cockpit: 'cockpit', jQuery: 'jquery' },
 
   // The base directory for resolving the entry option
   context: __dirname,
@@ -116,6 +116,16 @@ const config = {
         from: {
           glob: 'node_modules/@webcomponents/custom-elements/src/native-shim.js',
         },
+        to: '../dist',
+        flatten: true,
+      },
+      {
+        from: { glob: './node_modules/jquery/dist/jquery.min.js' },
+        to: '../dist',
+        flatten: true,
+      },
+      {
+        from: { glob: './node_modules/jquery-match-height/dist/jquery.matchHeight-min.js' },
         to: '../dist',
         flatten: true,
       },
