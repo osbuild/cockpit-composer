@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
 import states from './states';
-import users from './users';
 import recipes from './recipes';
 import recipePage from './recipePage';
 import inputs from './inputs';
@@ -9,7 +8,6 @@ import rehydrated from './rehydrated';
 
 const rootReducer = combineReducers({
   states,
-  users,
   recipes,
   recipePage,
   inputs,

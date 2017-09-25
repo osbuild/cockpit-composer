@@ -4,9 +4,6 @@
  */
 
 const constants = {
-  // These are placeholders
-  get_users_url: './json/users.json',
-
   // BDCS API paths
   get_recipes_list: '/api/v0/recipes/list',
   get_recipes_info: '/api/v0/recipes/info/',
