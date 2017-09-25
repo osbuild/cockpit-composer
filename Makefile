@@ -48,7 +48,7 @@ metadata.db:
 shared: metadata.db
 	sudo docker build -f Dockerfile.nodejs --cache-from welder/web-nodejs:latest -t welder/web-nodejs:latest .
 	sudo docker build -f ./test/end-to-end/Dockerfile --cache-from welder/web-e2e-tests:latest -t welder/web-e2e-tests:latest ./test/end-to-end/
-	sudo docker network create welder
+	sudo docker network inspect welder >/dev/null 2>&1 || sudo docker network create welder
 	sudo docker run -d --name api --restart=always -p 4000:4000 -v bdcs-recipes-volume:/bdcs-recipes -v `pwd`:/mddb --network welder --security-opt label=disable welder/bdcs-api-rs:latest
 
 end-to-end-test: shared
