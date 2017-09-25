@@ -49,6 +49,7 @@ shared: metadata.db
 	sudo docker build -f Dockerfile.nodejs --cache-from welder/web-nodejs:latest -t welder/web-nodejs:latest .
 	sudo docker build -f ./test/end-to-end/Dockerfile --cache-from welder/web-e2e-tests:latest -t welder/web-e2e-tests:latest ./test/end-to-end/
 	sudo docker network inspect welder >/dev/null 2>&1 || sudo docker network create welder
+	sudo docker ps --quiet --all --filter 'ancestor=welder/bdcs-api-rs' | sudo xargs --no-run-if-empty docker rm -f
 	sudo docker run -d --name api --restart=always -p 4000:4000 -v bdcs-recipes-volume:/bdcs-recipes -v `pwd`:/mddb --network welder --security-opt label=disable welder/bdcs-api-rs:latest
 
 end-to-end-test: shared
@@ -60,6 +61,7 @@ end-to-end-test: shared
 	    -v `pwd`/.nyc_output/:/tmp -v `pwd`:/mddb -e MDDB='/mddb/metadata.db' \
 	    welder/web-e2e-tests:latest \
 	    xvfb-run -a -s '-screen 0 1024x768x24' npm run test -- --verbose
+	sudo docker ps --quiet --all --filter 'ancestor=welder/web-with-coverage' | sudo xargs --no-run-if-empty docker rm -f
 
 cockpit-test: shared
 	sudo docker build -f Dockerfile.cockpit --cache-from welder/web-cockpit:latest -t welder/web-cockpit:latest .
@@ -70,3 +72,4 @@ cockpit-test: shared
 	    -e COCKPIT_TEST=1\
 	    welder/web-e2e-tests:latest \
 	    xvfb-run -a -s '-screen 0 1024x768x24' npm run test -- --verbose
+	sudo docker ps --quiet --all --filter 'ancestor=welder/web-cockpit' | sudo xargs --no-run-if-empty docker rm -f
