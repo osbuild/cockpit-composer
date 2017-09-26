@@ -15,10 +15,6 @@
     "chunk": "main"
   },
   {
-    "path": "/users",
-    "page": "./pages/users"
-  },
-  {
     "path": "/recipes",
     "page": "./pages/recipes"
   },

@@ -50,18 +50,6 @@ class Navigation extends React.Component {
               <span className="list-group-item-value">Recipes</span>
             </Link>
           </li>
-          <li className={`list-group-item${location.pathname === '/users' ? ' active' : ''}`}>
-            <Link to="/users">
-              <span
-                className="fa fa-space-shuttle"
-                data-toggle="tooltip"
-                title="Users"
-                onClick={(e) => this.handleNavClick(e)}
-              >
-              </span>
-              <span className="list-group-item-value">Users</span>
-            </Link>
-          </li>
         </ul>
       </div>
     );

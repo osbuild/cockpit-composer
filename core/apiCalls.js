@@ -1,17 +1,10 @@
 import constants from './constants';
-import fetch from 'isomorphic-fetch';
 import RecipeApi from '../data/RecipeApi';
 import MetadataApi from '../data/MetadataApi';
 import utils from './utils';
 
 export function createRecipeApi(events, recipe) {
   RecipeApi.handleCreateRecipe(events, recipe);
-}
-
-export function fetchUsersApi() {
-  const data = fetch(constants.get_users_url, { credentials: 'same-origin' })
-    .then(response => response.json());
-  return data;
 }
 
 export function fetchRecipeContentsApi(recipeName) {
