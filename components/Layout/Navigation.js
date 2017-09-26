@@ -22,23 +22,7 @@ class Navigation extends React.Component {
     return (
       <div className="nav-pf-vertical">
         <ul className="list-group">
-          <li
-            className={`list-group-item ${
-              location.pathname === '/home' || location.pathname === '/' ? ' active' : ''}`
-            }
-          >
-            <Link to="/home">
-              <span
-                className="fa fa-dashboard"
-                data-toggle="tooltip"
-                title="Overview"
-                onClick={(e) => this.handleNavClick(e)}
-              >
-              </span>
-              <span className="list-group-item-value">Overview</span>
-            </Link>
-          </li>
-          <li className={`list-group-item${location.pathname === '/recipes' ? ' active' : ''}`}>
+          <li className={`list-group-item${location.pathname === '/' || location.pathname === '/recipes' ? ' active' : ''}`}>
             <Link to="/recipes">
               <span
                 className="fa fa-shield"

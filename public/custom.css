@@ -338,6 +338,12 @@ textarea.form-control[readonly] {
   margin-top: 30px;
 }
 
+/* restrict text width and center */
+.blank-slate-pf dl {
+  max-width: 66rem;
+  margin: auto;
+}
+
 /* list-pf */
 /* current styles do not have a fixed width for the right/down arrows which
    causes the contents to shift right a few pixels on expansion */

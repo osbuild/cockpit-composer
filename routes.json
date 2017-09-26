@@ -1,12 +1,7 @@
 [
   {
     "path": "/",
-    "page": "./pages/home",
-    "chunk": "main"
-  },
-  {
-    "path": "/home",
-    "page": "./pages/home",
+    "page": "./pages/recipes",
     "chunk": "main"
   },
   {

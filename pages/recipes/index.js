@@ -4,6 +4,7 @@ import Layout from '../../components/Layout';
 import RecipeListView from '../../components/ListView/RecipeListView';
 import CreateRecipe from '../../components/Modal/CreateRecipe';
 import ExportRecipe from '../../components/Modal/ExportRecipe';
+import EmptyState from '../../components/EmptyState/EmptyState';
 import { connect } from 'react-redux';
 import { fetchingRecipes, deletingRecipe } from '../../core/actions/recipes';
 import {
@@ -163,6 +164,21 @@ class RecipesPage extends React.Component {
             </form>
           </div>
         </div>
+      {recipes.length === 0 &&
+        <EmptyState
+          title="Construct and maintain &ldquo;gold images&rdquo; across a variety of deployment platforms"
+          message="Create your first recipe with the &ldquo;Create Recipe&rdquo; button above."
+        >
+          <dl className="dl-horizontal">
+            <dt>Recipe</dt>
+            <dd>Lists the contents that will be included in the gold image
+            when it is generated.</dd>
+            <dt>Composition</dt>
+            <dd>The gold image itself, which can be produced in a
+            variety of output formats.</dd>
+          </dl>
+        </EmptyState>
+      }
       {createComposition.compositionTypes !== undefined &&
         <RecipeListView
           recipes={recipes}
