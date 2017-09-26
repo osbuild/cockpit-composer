@@ -77,7 +77,19 @@ tasks.set('build', () => {
 // Build and publish the website
 // -----------------------------------------------------------------------------
 tasks.set('publish', () => {
-  const firebase = require('firebase-tools');
+  /* firebase is huge, and not required for development, so install on demand */
+  let firebase;
+  try {
+    firebase = require('firebase-tools');  // eslint-disable-line import/no-unresolved
+  } catch (err) {
+    if (err.code === 'MODULE_NOT_FOUND') {
+      const execSync = require('child_process').execSync;
+      execSync('npm install --no-save firebase-tools', { stdio: ['pipe', 'inherit', 'inherit'] });
+      firebase = require('firebase-tools');  // eslint-disable-line import/no-unresolved
+    } else {
+      throw err;
+    }
+  }
   return run('build')
     .then(() => firebase.login({ nonInteractive: false }))
     .then(() => firebase.deploy({
