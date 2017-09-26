@@ -10,5 +10,5 @@
             "order": 30
         }
     },
-    "content-security-policy": "default-src 'self' code.jquery.com maxcdn.bootstrapcdn.com  cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval'"
+    "content-security-policy": "default-src 'self' code.jquery.com maxcdn.bootstrapcdn.com  cdnjs.cloudflare.com 'unsafe-inline'"
 }
