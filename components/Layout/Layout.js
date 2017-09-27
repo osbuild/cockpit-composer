@@ -29,7 +29,7 @@ class Layout extends React.Component {
   render() {
     return (
       <div className={this.headerClass()}>
-        <Header />
+        {! utils.inCockpit && <Header />}
         {this.state.notifications &&
           <div className="toast-notifications-list-pf">
             {this.state.notifications.map((notification, i) =>
