@@ -120,7 +120,7 @@
   },
   "eslintConfig": {
     "parser": "babel-eslint",
-    "extends": "airbnb",
+    "extends": ["airbnb", "eslint:recommended"],
     "rules": {
       "max-len": [
         "error",

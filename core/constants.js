@@ -1,4 +1,3 @@
-/* global welderApiHost */
 /* *
   Application Constants
  */
