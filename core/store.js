@@ -71,8 +71,8 @@ const store = createStore(
   initialState,
   composeEnhancers(
     applyMiddleware(sagaMiddleware),
-    autoRehydrate(),
-  ),
+    autoRehydrate()
+  )
 );
 sagaMiddleware.run(rootSaga);
 

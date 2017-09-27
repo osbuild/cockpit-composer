@@ -1,7 +1,7 @@
 /* global somefunction welderApiHost:true */
 /* global somefunction welderApiScheme:true */
 /* global somefunction welderApiPort:true */
-/* global somefunction welderApiRelative:true */
+/* global somefunction welderApiRelative:true */ // eslint-disable-line no-unused-vars
 
 let cockpit;
 let cockpitHttp;
