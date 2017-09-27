@@ -4,6 +4,7 @@ import {
   SET_MODAL_CREATE_RECIPE_ERROR_NAME_VISIBLE, SET_MODAL_CREATE_RECIPE_ERROR_DUPLICATE_VISIBLE,
   SET_MODAL_CREATE_RECIPE_ERROR_INLINE, SET_MODAL_CREATE_RECIPE_CHECK_ERRORS, SET_MODAL_CREATE_RECIPE_RECIPE,
   FETCHING_MODAL_CREATE_COMPOSTION_TYPES_SUCCESS,
+  APPEND_MODAL_PENDING_CHANGES_COMPONENT_UPDATES,
 } from '../actions/modals';
 
 const modalCreateRecipe = (state = [], action) => {
@@ -72,6 +73,19 @@ const modalExportRecipe = (state = [], action) => {
   }
 };
 
+const modalPendingChanges = (state = [], action) => {
+  switch (action.type) {
+    case APPEND_MODAL_PENDING_CHANGES_COMPONENT_UPDATES:
+      return Object.assign(
+        {}, state,
+        state.pendingChanges.componentUpdates.push(action.payload.componentUpdate),
+      );
+    default:
+      return state;
+  }
+};
+
+
 const modals = (state = [], action) => {
   switch (action.type) {
     case SET_MODAL_ACTIVE:
@@ -94,6 +108,8 @@ const modals = (state = [], action) => {
       return modalExportRecipe(state, action);
     case SET_MODAL_EXPORT_RECIPE_VISIBLE:
       return modalExportRecipe(state, action);
+    case APPEND_MODAL_PENDING_CHANGES_COMPONENT_UPDATES:
+      return modalPendingChanges(state, action);
     default:
       return state;
   }

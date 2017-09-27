@@ -153,7 +153,7 @@ class RecipesPage extends React.Component {
           handleShowModalExport={this.handleShowModalExport}
         />
       }
-        <CreateRecipe recipeNames={this.props.recipes.map(recipe => recipe.id)} />
+        <CreateRecipe recipeNames={recipes.map(recipe => recipe.id)} />
         {(exportRecipe !== undefined && exportRecipe.visible)
           ? <ExportRecipe
             recipe={exportRecipe.name}
@@ -205,6 +205,7 @@ const makeMapStateToProps = () => {
 
   return mapStateToProps;
 };
+
 
 const mapDispatchToProps = dispatch => ({
   fetchingModalExportRecipeContents: modalRecipeName => {

@@ -107,3 +107,13 @@ export function fetchingModalExportRecipeContents(recipeName) {
     },
   };
 }
+
+export const APPEND_MODAL_PENDING_CHANGES_COMPONENT_UPDATES = 'APPEND_MODAL_PENDING_CHANGES_COMPONENT_UPDATES';
+export function appendModalPendingChangesComponentUpdates(componentUpdate) {
+  return {
+    type: APPEND_MODAL_PENDING_CHANGES_COMPONENT_UPDATES,
+    payload: {
+      componentUpdate
+    },
+  };
+}

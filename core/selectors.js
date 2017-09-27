@@ -1,7 +1,27 @@
 import { createSelector } from 'reselect';
 
+const getPastLength = (state) => {
+  const pastLength = state.recipes.past.length;
+  return pastLength;
+};
+
+export const makeGetPastLength = () => createSelector(
+  [getPastLength],
+  (pastLength) => pastLength
+);
+
+const getFutureLength = (state) => {
+  const futureLength = state.recipes.future.length;
+  return futureLength;
+};
+
+export const makeGetFutureLength = () => createSelector(
+  [getFutureLength],
+  (futureLength) => futureLength
+);
+
 const getRecipeById = (state, recipeId) => {
-  const recipeById = state.recipes.find(recipe => recipe.id === recipeId);
+  const recipeById = state.recipes.present.find(recipe => recipe.id === recipeId);
   return recipeById;
 };
 
@@ -52,7 +72,7 @@ export const makeGetSortedDependencies = () => createSelector(
 );
 
 const getSortedRecipes = (state) => {
-  const sortedRecipes = state.recipes;
+  const sortedRecipes = state.recipes.present;
   const key = state.sort.recipes.key;
   const value = state.sort.recipes.value;
   sortedRecipes.sort((a, b) => {

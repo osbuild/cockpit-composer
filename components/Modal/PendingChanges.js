@@ -1,17 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 class PendingChanges extends React.Component {
   constructor() {
     super();
-    // dummy data
-    this.state = {
-      componentUpdates: [
-        { componentOld: null, componentNew: 'rsync-3.0-17.317' },
-        { componentOld: 'httpd-2.3-45.el7', componentNew: 'httpd-2.4-45.el7' },
-        { componentOld: 'basesystem-10.0-7.el7', componentNew: null },
-      ],
-    };
   }
 
   componentDidMount() {
@@ -76,8 +69,8 @@ class PendingChanges extends React.Component {
                 </div>
                 <strong>Pending Changes</strong><span className="text-muted"> (most recent first)</span>
                 <ul className="list-group">
-                  {this.state.componentUpdates.map((componentUpdated) => (
-                    <li className="list-group-item">
+                  {this.props.componentUpdates.map((componentUpdated) => (
+                    <li className="list-group-item" key={componentUpdated.componentNew}>
                       {componentUpdated.componentNew && componentUpdated.componentOld &&
                         <div className="row">
                           <div className="col-sm-3">Updated</div>
@@ -120,6 +113,12 @@ PendingChanges.propTypes = {
   recipe: PropTypes.string,
   contents: PropTypes.array,
   handleHideModal: PropTypes.func,
+  componentUpdates: PropTypes.array,
 };
 
-export default PendingChanges;
+
+const mapStateToProps = state => ({
+  componentUpdates: state.modals.pendingChanges.componentUpdates,
+});
+
+export default connect(mapStateToProps)(PendingChanges);

@@ -18,16 +18,19 @@ import { connect } from 'react-redux';
 import {
   fetchingRecipeContents, setRecipe, setRecipeComponents, setRecipeDependencies, savingRecipe,
   addRecipeComponent, removeRecipeComponent, fetchingRecipe, fetchingRecipes,
+  undo, redo,
 } from '../../core/actions/recipes';
 import {
   fetchingInputs, setInputComponents, setFilteredInputComponents, setSelectedInputPage,
   setSelectedInput, setSelectedInputStatus, setSelectedInputParent, deleteFilter,
 } from '../../core/actions/inputs';
-import { setModalActive } from '../../core/actions/modals';
+import { setModalActive, appendModalPendingChangesComponentUpdates } from '../../core/actions/modals';
 import {
   componentsSortSetKey, componentsSortSetValue, dependenciesSortSetKey, dependenciesSortSetValue,
 } from '../../core/actions/sort';
-import { makeGetRecipeById, makeGetSortedComponents, makeGetSortedDependencies } from '../../core/selectors';
+import {
+  makeGetRecipeById, makeGetSortedComponents, makeGetSortedDependencies, makeGetFutureLength, makeGetPastLength
+} from '../../core/selectors';
 
 class EditRecipePage extends React.Component {
   constructor() {
@@ -41,6 +44,7 @@ class EditRecipePage extends React.Component {
     this.handleComponentDetails = this.handleComponentDetails.bind(this);
     this.handleHideModal = this.handleHideModal.bind(this);
     this.handleShowModal = this.handleShowModal.bind(this);
+    this.handleHistory = this.handleHistory.bind(this);
   }
 
   componentWillMount() {
@@ -50,11 +54,6 @@ class EditRecipePage extends React.Component {
         this.props.fetchingRecipeContents(this.props.recipe.id);
       }
     }
-    const filter = {
-      field: 'name',
-      value: '',
-    };
-    this.props.fetchingInputs(filter, 0, 50, this.props.recipe.components);
     this.props.setSelectedInputPage(0);
     this.props.setSelectedInput('');
     this.props.setSelectedInputParent('');
@@ -176,6 +175,10 @@ class EditRecipePage extends React.Component {
     const recipeComponents = this.props.recipe.components.slice(0);
     const updatedRecipeComponents = recipeComponents.concat(componentData[0][0]);
     this.props.setRecipeComponents(this.props.recipe, updatedRecipeComponents);
+    this.props.appendModalPendingChangesComponentUpdates({
+      componentOld: null,
+      componentNew: componentData[0][0].name + '-' +componentData[0][0].version + '-' + componentData[0][0].release
+    });
 
     const recipeDependencies = this.props.recipe.dependencies;
     const updatedRecipeDependencies = recipeDependencies.concat(componentData[0][0].dependencies);
@@ -222,7 +225,6 @@ class EditRecipePage extends React.Component {
     // let selectedComponent = this.props.recipe.components.filter((obj) => (obj.name === component.name));
     // // update recipe component with saved updates
     // selectedComponent = Object.assign(selectedComponent, component);
-    // TODO setRecipeComponents
     this.hideComponentDetails();
     // update input component with saved Updates
     this.updateInputComponentsOnChange(component);
@@ -242,6 +244,10 @@ class EditRecipePage extends React.Component {
     this.updateInputComponentsOnChange(component, 'remove');
     // update the list of recipe components to not include the removed component
     this.props.removeRecipeComponent(this.props.recipe, component);
+    this.props.appendModalPendingChangesComponentUpdates({
+      componentOld: component.name + '-' + component.version + '-' + component.release,
+      componentNew: null,
+    });
     event.preventDefault();
     event.stopPropagation();
   }
@@ -377,6 +383,7 @@ class EditRecipePage extends React.Component {
   handleShowModal(e, modalType) {
     switch (modalType) {
       case 'modalPendingChanges':
+        // this.getComponentUpdates();
         this.props.setModalActive('modalPendingChanges');
         break;
       case 'modalExportRecipe':
@@ -390,14 +397,39 @@ class EditRecipePage extends React.Component {
     e.stopPropagation();
   }
 
+  handleHistory() {
+    setTimeout(() => {
+      this.props.fetchingInputs(
+        this.props.inputs.inputFilters,
+        this.props.inputs.selectedInputPage,
+        this.props.inputs.pageSize,
+        this.props.recipe.components
+      );
+    }, 50);
+  }
+  // undo() {
+  //   this.props.undo();
+  //   this.props.fetchingInputs(this.props.filter, 0, 50, this.props.recipe.components);
+  // }
+  //
+  // redo() {
+  //   this.props.redo();
+  //   this.props.fetchingInputs(this.props.filter, 0, 50, this.props.recipe.components);
+  // }
+
   render() {
     if (!this.props.rehydrated) {
       this.props.fetchingRecipeContents(this.props.route.params.recipe.replace(/\s/g, '-'));
       return <div></div>;
     }
+    if (this.props.inputs.inputComponents === undefined && this.props.recipe.components !== undefined) {
+      this.props.fetchingInputs(this.props.inputs.inputFilters, 0, 50, this.props.recipe.components);
+    }
     const recipeDisplayName = this.props.route.params.recipe;
     const {
-      recipe, components, dependencies, inputs, createComposition, modalActive, componentsSortKey, componentsSortValue,
+      recipe, components, dependencies,
+      inputs, createComposition, modalActive, componentsSortKey, componentsSortValue,
+      pastLength, futureLength,
     } = this.props;
 
     return (
@@ -414,10 +446,13 @@ class EditRecipePage extends React.Component {
             <li className="active"><strong>Edit Recipe</strong></li>
           </ol>
           <div className="cmpsr-header__actions">
+          {pastLength > 0 &&
             <ul className="list-inline">
-              <li className="text-muted">
-                3 changes
-              </li>
+            {pastLength !== 1 &&
+              <li className="text-muted"> {pastLength} changes</li>
+            ||
+              <li className="text-muted"> 1 change</li>
+            }
               <li>
                 <a href="#" onClick={e => this.handleShowModal(e, 'modalPendingChanges')}>View and Comment</a>
               </li>
@@ -428,6 +463,16 @@ class EditRecipePage extends React.Component {
                 <button className="btn btn-default" type="button">Discard Changes</button>
               </li>
             </ul>
+          ||
+            <ul className="list-inline">
+              <li>
+                <button className="btn btn-primary disabled" type="button" onClick={this.handleSave}>Save</button>
+              </li>
+              <li>
+                <button className="btn btn-default disabled" type="button">Discard Changes</button>
+              </li>
+            </ul>
+          }
           </div>
           <div className="cmpsr-title">
             <h1 className="cmpsr-title__item">{recipeDisplayName}</h1>
@@ -449,6 +494,11 @@ class EditRecipePage extends React.Component {
               componentsSortValue={componentsSortValue}
               componentsSortSetValue={this.props.componentsSortSetValue}
               dependenciesSortSetValue={this.props.dependenciesSortSetValue}
+              undo={this.props.undo}
+              redo={this.props.redo}
+              handleHistory={this.handleHistory}
+              pastLength={pastLength}
+              futureLength={futureLength}
             />
           }
             {((components === undefined || components.length === 0) &&
@@ -624,12 +674,19 @@ EditRecipePage.propTypes = {
   dependencies: PropTypes.array,
   componentsSortKey: PropTypes.string,
   componentsSortValue: PropTypes.string,
+  appendModalPendingChangesComponentUpdates: PropTypes.func,
+  pastLength: PropTypes.number,
+  futureLength: PropTypes.number,
+  undo: PropTypes.func,
+  redo: PropTypes.func,
 };
 
 const makeMapStateToProps = () => {
   const getRecipeById = makeGetRecipeById();
   const getSortedComponents = makeGetSortedComponents();
   const getSortedDependencies = makeGetSortedDependencies();
+  const getPastLength = makeGetPastLength();
+  const getFutureLength = makeGetFutureLength();
   const mapStateToProps = (state, props) => {
     if (getRecipeById(state, props.route.params.recipe.replace(/\s/g, '-')) !== undefined) {
       const fetchedRecipe = getRecipeById(state, props.route.params.recipe.replace(/\s/g, '-'));
@@ -644,6 +701,8 @@ const makeMapStateToProps = () => {
         inputs: state.inputs,
         selectedInput: state.inputs.selectedInput,
         modalActive: state.modals.modalActive,
+        pastLength: getPastLength(state),
+        futureLength: getFutureLength(state),
       };
     }
     return {
@@ -657,6 +716,8 @@ const makeMapStateToProps = () => {
       inputs: state.inputs,
       selectedInput: state.inputs.selectedInput,
       modalActive: state.modals.modalActive,
+      pastLength: 0,
+      futureLength: 0,
     };
   };
   return mapStateToProps;
@@ -729,6 +790,15 @@ const mapDispatchToProps = (dispatch) => ({
   dependenciesSortSetValue: value => {
     dispatch(dependenciesSortSetValue(value));
   },
+  appendModalPendingChangesComponentUpdates: componentUpdate => {
+    dispatch(appendModalPendingChangesComponentUpdates(componentUpdate));
+  },
+  undo: () => {
+    dispatch(undo());
+  },
+  redo: () => {
+    dispatch(redo());
+  }
 });
 
 export default connect(makeMapStateToProps, mapDispatchToProps)(EditRecipePage);
