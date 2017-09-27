@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Header from './Header';
-import Navigation from './Navigation';
 import Notification from '../../components/Notifications/Notification';
 import NotificationsApi from '../../data/NotificationsApi';
 import utils from '../../core/utils';
@@ -31,7 +30,6 @@ class Layout extends React.Component {
     return (
       <div className={this.headerClass()}>
         <Header />
-        <Navigation />
         {this.state.notifications &&
           <div className="toast-notifications-list-pf">
             {this.state.notifications.map((notification, i) =>
