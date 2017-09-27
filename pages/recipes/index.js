@@ -62,7 +62,7 @@ class RecipesPage extends React.Component {
   render() {
     const { recipes, exportRecipe, createComposition, recipeSortKey, recipeSortValue } = this.props;
     return (
-      <Layout className="container-fluid container-pf-nav-pf-vertical" ref="layout">
+      <Layout className="container-fluid" ref="layout">
         <div className="row toolbar-pf">
           <div className="col-sm-12">
             <form className="toolbar-pf-actions">

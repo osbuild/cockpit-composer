@@ -254,7 +254,7 @@ class RecipePage extends React.Component {
     const activeRevision = this.state.revisions.filter((obj) => obj.active === true)[0];
     const pastRevisions = this.state.revisions.filter((obj) => obj.active === false);
     return (
-      <Layout className="container-fluid container-pf-nav-pf-vertical" ref="layout">
+      <Layout className="container-fluid" ref="layout">
         <header className="cmpsr-header">
           <ol className="breadcrumb">
             <li><Link to="/recipes">Back to Recipes</Link></li>

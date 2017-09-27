@@ -395,7 +395,7 @@ class EditRecipePage extends React.Component {
 
     return (
       <Layout
-        className="container-pf-nav-pf-vertical cmpsr-grid__wrapper"
+        className="cmpsr-grid__wrapper"
         ref={c => {
           this.layout = c;
         }}
