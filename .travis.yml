@@ -62,7 +62,7 @@ after_success:
                 docker push welder/web
                 docker push welder/web-e2e-tests
             fi
-            if [ "$COMMAND" == "cockpit-test" ] && [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+            if [ "$COMMAND" == "cockpit-test" ]; then
                 sudo docker tag welder/web-cockpit:latest welder/web-cockpit:$TRAVIS_BUILD_NUMBER
                 docker push welder/web-cockpit
             fi
