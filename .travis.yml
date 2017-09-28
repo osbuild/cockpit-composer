@@ -11,7 +11,7 @@ cache:
 before_install:
   - |
         npm install codecov
-        npm install nyc
+        npm install nyc@11.1.0
 
         if [ "$COMMAND" == "cockpit-test" ]; then
             sudo docker pull welder/web-e2e-tests:latest
