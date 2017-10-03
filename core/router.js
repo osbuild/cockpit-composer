@@ -64,12 +64,12 @@ function resolve(routes, context) {
           return fetch(url, { method, credentials: 'same-origin' }).then(resp => resp.json());
         }),
       ]).then(([Page, ...data]) => {
-        const props = keys.reduce((result, key, i) => ({ ...result, [key]: data[i] }), {});
-        return <Page route={{ ...route, params }} error={context.error} {...props} />;
+        const props = keys.reduce((result, key, i) => (Object.assign({}, result, { [key]: data[i] })), {});
+        return <Page route={Object.assign({}, route, { params: params })} error={context.error} {...props} />;
       });
     }
 
-    return route.load().then(Page => <Page route={{ ...route, params }} error={context.error} />);
+    return route.load().then(Page => <Page route={Object.assign({}, route, { params: params })} error={context.error} />);
   }
 
   const error = new Error('Page not found');

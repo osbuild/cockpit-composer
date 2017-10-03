@@ -9,45 +9,30 @@ import {
 const modalCreateRecipe = (state = [], action) => {
   switch (action.type) {
     case SET_MODAL_CREATE_RECIPE_ERROR_NAME_VISIBLE:
-      return {
-        ...state,
-        createRecipe: {
-          ...state.createRecipe,
-          errorNameVisible: action.payload.errorNameVisible,
-        },
-      };
+      return Object.assign(
+          {}, state,
+          { createRecipe: Object.assign({}, state.createRecipe, { errorNameVisible: action.payload.errorNameVisible }) }
+      );
     case SET_MODAL_CREATE_RECIPE_ERROR_DUPLICATE_VISIBLE:
-      return {
-        ...state,
-        createRecipe: {
-          ...state.createRecipe,
-          errorDuplicateVisible: action.payload.errorDuplicateVisible,
-        },
-      };
+      return Object.assign(
+          {}, state,
+          { createRecipe: Object.assign({}, state.createRecipe, { errorDuplicateVisible: action.payload.errorDuplicateVisible }) }
+      );
     case SET_MODAL_CREATE_RECIPE_ERROR_INLINE:
-      return {
-        ...state,
-        createRecipe: {
-          ...state.createRecipe,
-          errorInline: action.payload.errorInline,
-        },
-      };
+      return Object.assign(
+          {}, state,
+          { createRecipe: Object.assign({}, state.createRecipe, { errorInline: action.payload.errorInline }) }
+      );
     case SET_MODAL_CREATE_RECIPE_CHECK_ERRORS:
-      return {
-        ...state,
-        createRecipe: {
-          ...state.createRecipe,
-          checkErrors: action.payload.checkErrors,
-        },
-      };
+      return Object.assign(
+          {}, state,
+          { checkErrors: Object.assign({}, state.createRecipe, { errorInline: action.payload.checkErrors }) }
+      );
     case SET_MODAL_CREATE_RECIPE_RECIPE:
-      return {
-        ...state,
-        createRecipe: {
-          ...state.createRecipe,
-          recipe: action.payload.recipe,
-        },
-      };
+      return Object.assign(
+          {}, state,
+          { createRecipe: Object.assign({}, state.createRecipe, { recipe: action.payload.recipe }) }
+      );
     default:
       return state;
   }
@@ -56,13 +41,10 @@ const modalCreateRecipe = (state = [], action) => {
 const modalCreateComposition = (state = [], action) => {
   switch (action.type) {
     case FETCHING_MODAL_CREATE_COMPOSTION_TYPES_SUCCESS:
-      return {
-        ...state,
-        createComposition: {
-          ...state.createComposition,
-          compositionTypes: action.payload.compositionTypes,
-        },
-      };
+      return Object.assign(
+          {}, state,
+          { createComposition: Object.assign({}, state.createComposition, { compositionTypes: action.payload.compositionTypes }) }
+      );
     default:
       return state;
   }
@@ -71,29 +53,20 @@ const modalCreateComposition = (state = [], action) => {
 const modalExportRecipe = (state = [], action) => {
   switch (action.type) {
     case SET_MODAL_EXPORT_RECIPE_NAME:
-      return {
-        ...state,
-        exportRecipe: {
-          ...state.exportRecipe,
-          name: action.payload.recipeName,
-        },
-      };
+      return Object.assign(
+          {}, state,
+          { exportRecipe: Object.assign({}, state.exportRecipe, { name: action.payload.recipeName }) }
+      );
     case SET_MODAL_EXPORT_RECIPE_CONTENTS:
-      return {
-        ...state,
-        exportRecipe: {
-          ...state.exportRecipe,
-          contents: action.payload.recipeContents,
-        },
-      };
+      return Object.assign(
+          {}, state,
+          { exportRecipe: Object.assign({}, state.exportRecipe, { contents: action.payload.recipeContents }) }
+      );
     case SET_MODAL_EXPORT_RECIPE_VISIBLE:
-      return {
-        ...state,
-        exportRecipe: {
-          ...state.exportRecipe,
-          visible: action.payload.visible,
-        },
-      };
+      return Object.assign(
+          {}, state,
+          { exportRecipe: Object.assign({}, state.exportRecipe, { visible: action.payload.visible }) }
+      );
     default:
       return state;
   }
@@ -102,10 +75,7 @@ const modalExportRecipe = (state = [], action) => {
 const modals = (state = [], action) => {
   switch (action.type) {
     case SET_MODAL_ACTIVE:
-      return {
-        ...state,
-        modalActive: action.payload.modalActive,
-      };
+      return Object.assign({}, state, { modalActive: action.payload.modalActive });
     case SET_MODAL_CREATE_RECIPE_ERROR_NAME_VISIBLE:
       return modalCreateRecipe(state, action);
     case SET_MODAL_CREATE_RECIPE_ERROR_DUPLICATE_VISIBLE:

@@ -14,7 +14,7 @@ const recipes = (state = [], action) => {
       return [
         ...state.map(recipe => {
           if (recipe.id === action.payload.recipe.id) {
-            return { ...recipe, ...recipe.components.append(action.payload.component) };
+            return Object.assign({}, recipe, recipe.components.append(action.payload.component) );
           }
           return recipe;
         }),
@@ -23,10 +23,10 @@ const recipes = (state = [], action) => {
       return [
         ...state.map(recipe => {
           if (recipe.id === action.payload.recipe.id) {
-            return {
-              ...recipe,
-              components: recipe.components.filter(component => component.name !== action.payload.component.name),
-            };
+            return Object.assign(
+                {},
+                recipe,
+                { components: recipe.components.filter(component => component.name !== action.payload.component.name) });
           }
           return recipe;
         }),
@@ -65,7 +65,7 @@ const recipes = (state = [], action) => {
       return [
         ...state.map(recipe => {
           if (recipe.id === action.payload.recipe.id) {
-            return { ...recipe, components: action.payload.components };
+            return Object.assign({}, recipe, { components: action.payload.components });
           }
           return recipe;
         }),
@@ -74,7 +74,7 @@ const recipes = (state = [], action) => {
       return [
         ...state.map(recipe => {
           if (recipe.id === action.payload.recipe.id) {
-            return { ...recipe, dependencies: action.payload.dependencies };
+            return Object.assign({}, recipe, { dependencies: action.payload.dependencies });
           }
           return recipe;
         }),
@@ -83,7 +83,7 @@ const recipes = (state = [], action) => {
       return [
         ...state.map(recipe => {
           if (recipe.id === action.payload.recipe.id) {
-            return { ...recipe, description: action.payload.description };
+            return Object.assign({}, recipe, { description: action.payload.description });
           }
           return recipe;
         }),
