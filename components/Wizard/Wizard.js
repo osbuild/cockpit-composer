@@ -1,3 +1,5 @@
+/* global $ */
+
 class Wizard {
 
   constructor(id) {
