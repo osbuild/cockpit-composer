@@ -1,3 +1,5 @@
+/* global jQuery */
+
 // Util: PatternFly Vertical Navigation broken apart and converted to ES6 :)
 // Must have navbar-toggle in navbar-pf-vertical for expand/collapse
 (($ => {

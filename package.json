@@ -129,7 +129,6 @@
       "no-console": 0
     },
     "env": {
-      "jquery": true,
       "jest": true
     }
   },
