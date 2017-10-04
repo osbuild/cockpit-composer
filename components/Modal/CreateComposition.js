@@ -3,8 +3,12 @@ import PropTypes from 'prop-types';
 import NotificationsApi from '../../data/NotificationsApi';
 
 class CreateComposition extends React.Component {
+  constructor() {
+    super();
+    this.handleCreateCompos = this.handleCreateCompos.bind(this);
+  }
 
-  handleCreateCompos = () => {
+  handleCreateCompos() {
     $('#cmpsr-modal-crt-compos').modal('hide');
     NotificationsApi.displayNotification(this.props.recipe, 'creating');
     this.props.setNotifications();
@@ -66,7 +70,7 @@ class CreateComposition extends React.Component {
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-default" data-dismiss="modal">Cancel</button>
-              <button type="button" className="btn btn-primary" onClick={() => this.handleCreateCompos()}>Create</button>
+              <button type="button" className="btn btn-primary" onClick={this.handleCreateCompos}>Create</button>
             </div>
           </div>
         </div>

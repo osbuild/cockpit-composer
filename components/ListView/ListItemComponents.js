@@ -6,7 +6,10 @@ import MetadataApi from '../../data/MetadataApi';
 import constants from '../../core/constants';
 
 class ListItemComponents extends React.Component {
-  state = { expanded: false, dependencies: [], showAllDeps: false };
+  constructor() {
+    super();
+    this.state = { expanded: false, dependencies: [], showAllDeps: false };
+  }
 
   componentWillReceiveProps(newProps) {
     // compare old value to new value, and if this component is getting new data,
@@ -40,7 +43,7 @@ class ListItemComponents extends React.Component {
     return p;
   }
 
-  handleExpandComponent = event => {
+  handleExpandComponent(event) {
     // the user clicked a list item in the recipe contents area to expand or collapse
     if (!$(event.target).is('button, a, input, .fa-ellipsis-v')) {
       const expandState = !this.state.expanded;
@@ -49,7 +52,7 @@ class ListItemComponents extends React.Component {
         this.getDependencies(this.props.listItem);
       }
     }
-  };
+  }
 
   render() {
     const { listItem } = this.props;

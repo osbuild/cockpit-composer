@@ -8,16 +8,15 @@ import utils from '../../core/utils';
 class Layout extends React.Component {
   constructor() {
     super();
+    this.state = { notifications: [] };
     this.setNotifications = this.setNotifications.bind(this);
   }
-
-  state = { notifications: [] }
 
   componentWillMount() {
     this.setNotifications();
   }
 
-  setNotifications = () => {
+  setNotifications() {
     this.setState({ notifications: NotificationsApi.getNotifications() });
   }
 

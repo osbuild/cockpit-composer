@@ -2,15 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class PendingChanges extends React.Component {
-
-  // dummy data
-  state = {
-    componentUpdates: [
-      { componentOld: null, componentNew: 'rsync-3.0-17.317' },
-      { componentOld: 'httpd-2.3-45.el7', componentNew: 'httpd-2.4-45.el7' },
-      { componentOld: 'basesystem-10.0-7.el7', componentNew: null },
-    ],
-  };
+  constructor() {
+    super();
+    // dummy data
+    this.state = {
+      componentUpdates: [
+        { componentOld: null, componentNew: 'rsync-3.0-17.317' },
+        { componentOld: 'httpd-2.3-45.el7', componentNew: 'httpd-2.4-45.el7' },
+        { componentOld: 'basesystem-10.0-7.el7', componentNew: null },
+      ],
+    };
+  }
 
   componentDidMount() {
     $(this.modal).modal('show');

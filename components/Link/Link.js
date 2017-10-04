@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import history from '../../core/history';
 
 class Link extends React.Component {
-  handleClick = (event) => {
+  constructor() {
+    super();
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick (event) {
     if (this.props.onClick) {
       this.props.onClick(event);
     }
@@ -30,7 +35,7 @@ class Link extends React.Component {
         search: event.currentTarget.search,
       });
     }
-  };
+  }
 
   render() {
     var propsWithoutTo = Object.assign({}, this.props);

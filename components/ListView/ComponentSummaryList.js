@@ -3,15 +3,18 @@ import PropTypes from 'prop-types';
 import ComponentTypeIcons from '../../components/ListView/ComponentTypeIcons';
 
 class ComponentSummaryList extends React.Component {
-  state = { showAll: false };
+  constructor() {
+    super();
+    this.state = { showAll: false };
+  }
 
-  handleShowAll = event => {
+  handleShowAll(event) {
     // the user clicked a list item in the recipe contents area to expand or collapse
     const showState = !this.state.showAll;
     this.setState({ showAll: showState });
     event.preventDefault();
     event.stopPropagation();
-  };
+  }
 
   render() {
     const listItems = this.state.showAll ? this.props.listItems : this.props.listItems.slice(0, 5);

@@ -7,15 +7,20 @@ import DependencyListView from '../../components/ListView/DependencyListView';
 import MetadataApi from '../../data/MetadataApi';
 
 class ComponentDetailsView extends React.Component {
-  state = {
-    selectedBuildIndex: 0,
-    availableBuilds: [],
-    activeTab: 'Details',
-    parents: [],
-    dependencies: [],
-    componentData: {},
-    editSelected: false,
-  };
+  constructor() {
+    super();
+    this.state = {
+      selectedBuildIndex: 0,
+      availableBuilds: [],
+      activeTab: 'Details',
+      parents: [],
+      dependencies: [],
+      componentData: {},
+      editSelected: false,
+    };
+    this.handleEdit = this.handleEdit.bind(this);
+    this.handleVersionSelect = this.handleVersionSelect.bind(this);
+  }
 
   componentWillMount() {
     this.getMetadata(this.props.component, this.props.status);
@@ -91,7 +96,7 @@ class ComponentDetailsView extends React.Component {
     $('[data-toggle="tooltip"]').tooltip();
   }
 
-  handleEdit = event => {
+  handleEdit(event) {
     if (event) {
       event.preventDefault();
     }
@@ -107,9 +112,9 @@ class ComponentDetailsView extends React.Component {
       .catch(e => console.log(`handleEdit: Error getting component metadata: ${e}`));
     // display the form
     this.setState({ editSelected: true });
-  };
+  }
 
-  handleVersionSelect = event => {
+  handleVersionSelect(event) {
     this.setState({ selectedBuildIndex: event.target.value });
     const builds = this.state.availableBuilds;
     const componentData = this.state.componentData;
@@ -117,7 +122,7 @@ class ComponentDetailsView extends React.Component {
     componentData.release = builds[event.target.value].release;
     // TODO any data that we display that's defined in builds should be added here
     this.setState({ componentData });
-  };
+  }
 
   handleTabChanged(e) {
     if (this.state.activeTab !== e.detail) {
@@ -186,7 +191,7 @@ class ComponentDetailsView extends React.Component {
               {this.props.status === 'selected' &&
                 this.state.editSelected === false &&
                 <li>
-                  <button className="btn btn-primary" type="button" onClick={e => this.handleEdit(e)}>Edit</button>
+                  <button className="btn btn-primary" type="button" onClick={this.handleEdit}>Edit</button>
                 </li>}
               {((this.props.status === 'selected' && this.state.editSelected === true) || this.props.status === 'editSelected') &&
                 <li>
@@ -248,7 +253,7 @@ class ComponentDetailsView extends React.Component {
                     id="cmpsr-compon__version-select"
                     className="form-control"
                     value={this.state.selectedBuildIndex}
-                    onChange={e => this.handleVersionSelect(e)}
+                    onChange={this.handleVersionSelect}
                   >
                     {this.state.availableBuilds.map((build, i) => (
                       <option key={i} value={i}>{build.version}-{build.release}</option>
@@ -283,7 +288,7 @@ class ComponentDetailsView extends React.Component {
                   {' '}
                   {this.props.status === 'selected' &&
                     this.state.editSelected === false &&
-                    <a href="#" onClick={e => this.handleEdit(e)}>Update</a>}
+                    <a href="#" onClick={this.handleEdit}>Update</a>}
                 </dd>
                 <dt>Release</dt>
                 <dd>{this.state.componentData.release}</dd>
