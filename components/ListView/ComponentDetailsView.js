@@ -269,8 +269,8 @@ class ComponentDetailsView extends React.Component {
               </div>
             </form>
           </div>}
-        <div className="nav-tabs-pf">
-          <Tabs key="pf-tabs" ref="pfTabs" tabChanged={e => this.handleTabChanged(e)}>
+        <div>
+          <Tabs key="pf-tabs" ref="pfTabs" classnames="nav nav-tabs nav-tabs-pf" tabChanged={e => this.handleTabChanged(e)}>
             <Tab tabTitle="Details" active={this.state.activeTab === 'Details'}>
               <h4 className="cmpsr-title">{this.state.componentData.summary}</h4>
               <p>{this.state.componentData.description}</p>
@@ -313,7 +313,7 @@ class ComponentDetailsView extends React.Component {
               <Tab tabTitle="Components" active={this.state.activeTab === 'Components'}>
                 <p>Components</p>
               </Tab>}
-            <Tab tabTitle="Dependencies" active={this.state.activeTab === 'Dependencies'}>
+            <Tab tabTitle={`Dependencies <span class="badge">${this.state.dependencies.length}</span>`} active={this.state.activeTab === 'Dependencies'}>
               <DependencyListView
                 id="cmpsr-component-dependencies"
                 listItems={this.state.dependencies}
