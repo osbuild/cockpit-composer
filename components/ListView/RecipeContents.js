@@ -25,15 +25,19 @@ class RecipeContents extends React.Component {
     const { components, dependencies, handleComponentDetails, handleRemoveComponent, noEditComponent } = this.props;
 
     return (
-      <div className="nav-tabs-pf">
+      <div>
         <Tabs
-          key="pf-tabs"
+          key={components.length + dependencies.length}
           ref={c => {
             this.pfTabs = c;
           }}
           tabChanged={this.handleTabChanged}
+          classnames="nav nav-tabs nav-tabs-pf"
         >
-          <Tab tabTitle="Selected Components" active={this.state.activeTab === 'Selected'}>
+          <Tab
+            tabTitle={`Selected Components <span class="badge">${components.length}</span>`}
+            active={this.state.activeTab === 'Selected'}
+          >
             <ListView className="cmpsr-recipe__components" stacked>
               {components.map((listItem, i) => (
                 <ListItemComponents
@@ -47,7 +51,7 @@ class RecipeContents extends React.Component {
               ))}
             </ListView>
           </Tab>
-          <Tab tabTitle="Dependencies" active={this.state.activeTab === 'Dependencies'}>
+          <Tab tabTitle={`Dependencies <span class="badge">${dependencies.length}</span>`} active={this.state.activeTab === 'Dependencies'}>
             <DependencyListView
               className="cmpsr-recipe__dependencies"
               listItems={dependencies}
