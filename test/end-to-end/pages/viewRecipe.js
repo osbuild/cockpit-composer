@@ -41,6 +41,9 @@ module.exports = class ViewRecipePage extends MainPage {
     // Title-bar: Recipe Title label
     this.labelRecipeTitle = `${this.titleRootElement} h1[class="cmpsr-title__item"]`;
 
+    // Page-level actions
+    this.pagelevelActions = '[class="cmpsr-header__actions"]'
+
     // Create Composition button
     this.varCreateCompos = 'Create Composition';
     this.btnCreateCompos = '#cmpsr-btn-crt-compos';
