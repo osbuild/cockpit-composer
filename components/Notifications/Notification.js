@@ -33,7 +33,7 @@ class Notification extends React.PureComponent {
     this.timeouts.forEach(clearTimeout);
   }
 
-  setFade = (fade) => {
+  setFade(fade) {
     if (fade === true) {
       this.timeouts.push(setTimeout(() => {
         NotificationsApi.closeNotification(this.props.id);
@@ -42,11 +42,11 @@ class Notification extends React.PureComponent {
     }
   }
 
-  stopFade = () => {
+  stopFade() {
     this.clearTimeouts();
   }
 
-  handleClose = (e, id) => {
+  handleClose(e, id) {
     e.preventDefault();
     e.stopPropagation();
     NotificationsApi.closeNotification(id);

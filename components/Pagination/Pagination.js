@@ -2,8 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Pagination extends React.Component {
-
-  state = { pageValue: '' }
+  constructor() {
+    super();
+    this.state = { pageValue: '' }
+    this.handleBlur = this.handleBlur.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
 
   componentWillMount() {
     this.setState({ pageValue: this.props.currentPage });
@@ -18,13 +22,13 @@ class Pagination extends React.Component {
     }
   }
 
-  handleBlur = () => {
+  handleBlur() {
     // if the user exits the field when the value != the current page
     // then reset the page value
     this.setState({ pageValue: this.props.currentPage });
   }
 
-  handleChange = (event) => {
+  handleChange(event) {
     // check if value is a number, if not or if <= 0, then set to ''
     let page;
     if (!isNaN(event.target.value) && event.target.value > 0) {

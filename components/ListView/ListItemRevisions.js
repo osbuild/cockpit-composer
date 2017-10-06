@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import Link from '../../components/Link';
 
 class ListItemRevisions extends React.Component {
-  state = { expanded: false };
+  constructor() {
+    super();
+    this.state = { expanded: false };
+    this.handleExpandComponent = this.handleExpandComponent.bind(this);
+  }
 
   componentWillReceiveProps(newProps) {
     // compare old value to new value, and if this component is getting new data,
@@ -21,13 +25,13 @@ class ListItemRevisions extends React.Component {
     }
   }
 
-  handleExpandComponent = event => {
+  handleExpandComponent(event) {
     // the user clicked a list item in the recipe contents area to expand or collapse
     if (!$(event.target).is('button, a, input, .fa-ellipsis-v')) {
       const expandState = !this.state.expanded;
       this.setState({ expanded: expandState });
     }
-  };
+  }
 
   render() {
     const { listItem } = this.props;
@@ -38,7 +42,7 @@ class ListItemRevisions extends React.Component {
     return (
       <div className={`list-pf-item ${this.state.expanded ? 'active' : ''}`}>
 
-        <div className="list-pf-container" onClick={e => this.handleExpandComponent(e)}>
+        <div className="list-pf-container" onClick={this.handleExpandComponent}>
           <div className="list-pf-chevron">
             <span className={`fa ${this.state.expanded ? 'fa-angle-down' : 'fa-angle-right'}`} />
           </div>

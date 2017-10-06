@@ -34,6 +34,13 @@ class EditRecipePage extends React.Component {
     super();
     this.setNotifications = this.setNotifications.bind(this);
     this.handleSave = this.handleSave.bind(this);
+    this.handlePagination = this.handlePagination.bind(this);
+    this.handleAddComponent = this.handleAddComponent.bind(this);
+    this.handleUpdateComponent = this.handleUpdateComponent.bind(this);
+    this.handleRemoveComponent = this.handleRemoveComponent.bind(this);
+    this.handleComponentDetails = this.handleComponentDetails.bind(this);
+    this.handleHideModal = this.handleHideModal.bind(this);
+    this.handleShowModal = this.handleShowModal.bind(this);
   }
 
   componentWillMount() {
@@ -58,7 +65,7 @@ class EditRecipePage extends React.Component {
     document.title = 'Recipe';
   }
 
-  setNotifications = () => {
+  setNotifications() {
     this.layout.setNotifications();
   }
 
@@ -107,7 +114,7 @@ class EditRecipePage extends React.Component {
     event.stopPropagation();
   }
 
-  handlePagination = (event) => {
+  handlePagination(event) {
     // the event target knows what page to get
     // the event target can either be the paging buttons on the page input
     let page;
@@ -139,7 +146,7 @@ class EditRecipePage extends React.Component {
     $('#cmpsr-recipe-inputs .alert').remove();
   }
 
-  handleSave = () => {
+  handleSave () {
     // clear existing notifications
     NotificationsApi.closeNotification(undefined, 'saved');
     NotificationsApi.closeNotification(undefined, 'saving');
@@ -162,7 +169,7 @@ class EditRecipePage extends React.Component {
           .catch(e => console.log(`Error in reload recipe details: ${e}`));
       })
       .catch(e => console.log(`Error in recipe save: ${e}`));
-  };
+  }
 
   addRecipeComponent(componentData) {
     // component data is [[{component}, [{dependency},{}]]]
@@ -177,7 +184,7 @@ class EditRecipePage extends React.Component {
     RecipeApi.updateRecipe(componentData[0][0], 'add');
   }
 
-  handleAddComponent = (event, source, component, dependencies) => {
+  handleAddComponent(event, source, component, dependencies) {
     // the user clicked Add in the sidebar, e.g. source === "input"
     // or the user clicked Add in the details view
     component.inRecipe = true; // eslint-disable-line no-param-reassign
@@ -209,7 +216,7 @@ class EditRecipePage extends React.Component {
     event.stopPropagation();
   }
 
-  handleUpdateComponent = (event, component) => {
+  handleUpdateComponent(event, component) {
     // the user clicked Edit in the details view and saved updates to the component version
     // find component in recipe components
     // let selectedComponent = this.props.recipe.components.filter((obj) => (obj.name === component.name));
@@ -224,7 +231,7 @@ class EditRecipePage extends React.Component {
     event.stopPropagation();
   }
 
-  handleRemoveComponent = (event, component) => {
+  handleRemoveComponent(event, component) {
     // the user clicked Remove for a component in the recipe component list
     // or the component details view
     // update the recipe object that's used during save
@@ -276,7 +283,7 @@ class EditRecipePage extends React.Component {
     return inputs;
   }
 
-  handleComponentDetails = (event, component, parent, mode) => {
+  handleComponentDetails (event, component, parent, mode) {
     // the user selected a component in the sidebar to view more details on the right
     // remove the active state from the current selected component
     let inputs = this.props.inputs.inputComponents.slice(0);
@@ -331,7 +338,7 @@ class EditRecipePage extends React.Component {
     }
     event.preventDefault();
     event.stopPropagation();
-  };
+  }
 
   hideComponentDetails() {
     this.props.setSelectedInput('');
@@ -364,10 +371,10 @@ class EditRecipePage extends React.Component {
   }
 
   // handle show/hide of modal dialogs
-  handleHideModal = () => {
+  handleHideModal() {
     this.props.setModalActive(null);
   }
-  handleShowModal = (e, modalType) => {
+  handleShowModal(e, modalType) {
     switch (modalType) {
       case 'modalPendingChanges':
         this.props.setModalActive('modalPendingChanges');
@@ -415,7 +422,7 @@ class EditRecipePage extends React.Component {
                 <a href="#" onClick={e => this.handleShowModal(e, 'modalPendingChanges')}>View and Comment</a>
               </li>
               <li>
-                <button className="btn btn-primary" type="button" onClick={e => this.handleSave(e)}>Save</button>
+                <button className="btn btn-primary" type="button" onClick={this.handleSave}>Save</button>
               </li>
               <li>
                 <button className="btn btn-default" type="button">Discard Changes</button>

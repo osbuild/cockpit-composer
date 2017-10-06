@@ -5,15 +5,20 @@ import Link from '../../components/Link';
 import s from './styles.css';
 
 class ErrorPage extends React.Component {
+  constructor() {
+    super();
+    this.goBack = this.goBack.bind(this);
+  }
+
   componentDidMount() {
     document.title = this.props.error && this.props.error.status === 404 ?
       'Page Not Found' : 'Error';
   }
 
-  goBack = event => {
+  goBack(event) {
     event.preventDefault();
     history.goBack();
-  };
+  }
 
   render() {
     if (this.props.error) console.error(this.props.error); // eslint-disable-line no-console

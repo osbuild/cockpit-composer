@@ -17,6 +17,9 @@ class RecipesPage extends React.Component {
   constructor() {
     super();
     this.setNotifications = this.setNotifications.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+    this.handleHideModalExport = this.handleHideModalExport.bind(this);
+    this.handleShowModalExport = this.handleShowModalExport.bind(this);
   }
 
   componentWillMount() {
@@ -26,24 +29,24 @@ class RecipesPage extends React.Component {
     document.title = 'Recipes';
   }
 
-  setNotifications = () => {
+  setNotifications() {
     this.refs.layout.setNotifications();
-  };
+  }
 
-  handleDelete = (event, recipe) => {
+  handleDelete(event, recipe) {
     event.preventDefault();
     event.stopPropagation();
     this.props.deletingRecipe(recipe);
-  };
+  }
 
   // handle show/hide of modal dialogs
-  handleHideModalExport = () => {
+  handleHideModalExport() {
     this.props.setModalExportRecipeVisible(false);
     this.props.setModalExportRecipeName('');
     this.props.setModalExportRecipeContents([]);
-  };
+  }
 
-  handleShowModalExport = (e, recipe) => {
+  handleShowModalExport(e, recipe) {
     // This implementation of the dialog only provides a text option, and it's
     // automatically selected. Eventually, the following code should move to a
     // separate function that is called when the user selects the text option
@@ -57,7 +60,7 @@ class RecipesPage extends React.Component {
     this.props.setModalExportRecipeVisible(true);
     e.preventDefault();
     e.stopPropagation();
-  };
+  }
 
   render() {
     const { recipes, exportRecipe, createComposition, recipeSortKey, recipeSortValue } = this.props;

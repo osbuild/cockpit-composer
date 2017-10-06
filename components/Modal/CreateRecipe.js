@@ -40,7 +40,7 @@ class CreateRecipe extends React.Component {
     $('#cmpsr-modal-crt-compos .btn-primary').off('shown.bs.modal');
   }
 
-  handleChange = (e, prop) => {
+  handleChange(e, prop) {
     const o = Object.assign({}, this.props.createRecipe.recipe);
     o[prop] = e.target.value;
     this.props.setModalCreateRecipeRecipe(o);
@@ -48,7 +48,7 @@ class CreateRecipe extends React.Component {
       this.dismissErrors();
       this.handleErrorDuplicate(e.target.value);
     }
-  };
+  }
 
   handleEnterKey(event) {
     if (event.which === 13 || event.keyCode === 13) {

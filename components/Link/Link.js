@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import history from '../../core/history';
 
 class Link extends React.Component {
-  handleClick = (event) => {
+  constructor() {
+    super();
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick (event) {
     if (this.props.onClick) {
       this.props.onClick(event);
     }
@@ -30,11 +35,12 @@ class Link extends React.Component {
         search: event.currentTarget.search,
       });
     }
-  };
+  }
 
   render() {
-    const { to, ...props } = this.props; // eslint-disable-line no-use-before-define
-    return (<a href={history.createHref(to)} {...props} onClick={this.handleClick}>
+    var propsWithoutTo = Object.assign({}, this.props);
+    delete propsWithoutTo.to;
+    return (<a href={history.createHref(this.props.to)} {...propsWithoutTo} onClick={this.handleClick}>
       {this.props.children}
     </a>);
   }

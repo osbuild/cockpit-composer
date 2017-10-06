@@ -4,7 +4,10 @@ import Link from '../../components/Link';
 import CreateComposition from '../../components/Modal/CreateComposition';
 
 class RecipeListView extends React.Component {
-  state = { recipe: '' };
+  constructor() {
+    super();
+    this.state = { recipe: '' };
+  }
 
   // The following enables the expand/collapse interaction
   // componentDidMount() {
@@ -50,7 +53,7 @@ class RecipeListView extends React.Component {
   //   $('.list-group-item-container .close').off('click');
   // }
 
-  handleCreateCompos = (recipe) => {
+  handleCreateCompos(recipe) {
     this.setState({ recipe });
     $('#cmpsr-modal-crt-compos').modal('show');
   }

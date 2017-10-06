@@ -31,149 +31,152 @@ class RecipePage extends React.Component {
     this.setNotifications = this.setNotifications.bind(this);
     this.handleTabChanged = this.handleTabChanged.bind(this);
     this.handleComponentDetails = this.handleComponentDetails.bind(this);
-  }
+    this.handleHideModalExport = this.handleHideModalExport.bind(this);
+    this.handleShowModalExport = this.handleShowModalExport.bind(this);
+    this.handleChangeDescription = this.handleChangeDescription.bind(this);
 
-  state = {
-    revisions: [
-      {
-        number: '3',
-        basedOn: 'Revision 2',
-        components: '8',
-        compositions: '1',
-        size: '2,678 KB',
-        active: true,
-      },
-      {
-        number: '2',
-        basedOn: 'Revision 1',
-        components: '5',
-        compositions: '1',
-        size: '2,345 KB',
-        active: false,
-      },
-      {
-        number: '1',
-        basedOn: 'New recipe',
-        components: '3',
-        compositions: '0',
-        size: '1,234 KB',
-        active: false,
-      },
-    ],
-    comments: [
-      {
-        date: '2/04/17',
-        user: 'Brian Johnson',
-        revision: '3',
-        comment: 'Including components to support php.',
-      },
-      {
-        date: '1/17/17',
-        user: 'Brian Johnson',
-        revision: '2',
-        comment: 'Early test results are good, but new requirements include php support.',
-      },
-      {
-        date: '1/17/17',
-        user: 'Brian Johnson',
-        revision: '2',
-        comment: 'NOT PRODUCTION READY - only creating a composition to do early testing.',
-      },
-      {
-        date: '1/06/17',
-        user: 'Brian Johnson',
-        revision: '1',
-        comment: `Saving this first revision just to capture minimal requirements
-          for comparison against future revisions`,
-      },
-    ],
-    compositions: [
-      {
-        date_created: '2/06/17',
-        date_exported: '2/06/17',
-        user: 'Brian Johnson',
-        type: 'iso',
-        revision: '3',
-        size: '2,345 KB',
-      },
-      {
-        date_created: '1/17/17',
-        date_exported: '1/17/17',
-        user: 'Brian Johnson',
-        type: 'iso',
-        revision: '2',
-        size: '1,234 KB',
-      },
-    ],
-    changelog: [
-      {
-        revision: '3',
-        action: 'Composition exported',
-        date: '2/06/07',
-        user: 'Brian Johnson',
-      },
-      {
-        revision: '3',
-        action: 'Composition created',
-        date: '2/06/17',
-        user: 'Brian Johnson',
-      },
-      {
-        revision: '3',
-        action: 'Recipe modified',
-        date: '2/06/17',
-        user: 'Brian Johnson',
-      },
-      {
-        revision: '3',
-        action: 'Recipe modified',
-        date: '2/04/17',
-        user: 'Brian Johnson',
-      },
-      {
-        revision: '3',
-        action: 'Revision created',
-        date: '2/04/17',
-        user: 'Brian Johnson',
-      },
-      {
-        revision: '2',
-        action: 'Composition exported',
-        date: '1/17/17',
-        user: 'Brian Johnson',
-      },
-      {
-        revision: '2',
-        action: 'Composition created',
-        date: '1/17/17',
-        user: 'Brian Johnson',
-      },
-      {
-        revision: '2',
-        action: 'Recipe modified',
-        date: '1/12/17',
-        user: 'Brian Johnson',
-      },
-      {
-        revision: '2',
-        action: 'Revision created',
-        date: '1/06/17',
-        user: 'Brian Johnson',
-      },
-      {
-        revision: '1',
-        action: 'Recipe modified',
-        date: '12/15/16',
-        user: 'Brian Johnson',
-      },
-      {
-        revision: '1',
-        action: 'Revision created',
-        date: '12/15/16',
-        user: 'Brian Johnson',
-      },
-    ],
-  };
+    this.state = {
+      revisions: [
+        {
+          number: '3',
+          basedOn: 'Revision 2',
+          components: '8',
+          compositions: '1',
+          size: '2,678 KB',
+          active: true,
+        },
+        {
+          number: '2',
+          basedOn: 'Revision 1',
+          components: '5',
+          compositions: '1',
+          size: '2,345 KB',
+          active: false,
+        },
+        {
+          number: '1',
+          basedOn: 'New recipe',
+          components: '3',
+          compositions: '0',
+          size: '1,234 KB',
+          active: false,
+        },
+      ],
+      comments: [
+        {
+          date: '2/04/17',
+          user: 'Brian Johnson',
+          revision: '3',
+          comment: 'Including components to support php.',
+        },
+        {
+          date: '1/17/17',
+          user: 'Brian Johnson',
+          revision: '2',
+          comment: 'Early test results are good, but new requirements include php support.',
+        },
+        {
+          date: '1/17/17',
+          user: 'Brian Johnson',
+          revision: '2',
+          comment: 'NOT PRODUCTION READY - only creating a composition to do early testing.',
+        },
+        {
+          date: '1/06/17',
+          user: 'Brian Johnson',
+          revision: '1',
+          comment: `Saving this first revision just to capture minimal requirements
+            for comparison against future revisions`,
+        },
+      ],
+      compositions: [
+        {
+          date_created: '2/06/17',
+          date_exported: '2/06/17',
+          user: 'Brian Johnson',
+          type: 'iso',
+          revision: '3',
+          size: '2,345 KB',
+        },
+        {
+          date_created: '1/17/17',
+          date_exported: '1/17/17',
+          user: 'Brian Johnson',
+          type: 'iso',
+          revision: '2',
+          size: '1,234 KB',
+        },
+      ],
+      changelog: [
+        {
+          revision: '3',
+          action: 'Composition exported',
+          date: '2/06/07',
+          user: 'Brian Johnson',
+        },
+        {
+          revision: '3',
+          action: 'Composition created',
+          date: '2/06/17',
+          user: 'Brian Johnson',
+        },
+        {
+          revision: '3',
+          action: 'Recipe modified',
+          date: '2/06/17',
+          user: 'Brian Johnson',
+        },
+        {
+          revision: '3',
+          action: 'Recipe modified',
+          date: '2/04/17',
+          user: 'Brian Johnson',
+        },
+        {
+          revision: '3',
+          action: 'Revision created',
+          date: '2/04/17',
+          user: 'Brian Johnson',
+        },
+        {
+          revision: '2',
+          action: 'Composition exported',
+          date: '1/17/17',
+          user: 'Brian Johnson',
+        },
+        {
+          revision: '2',
+          action: 'Composition created',
+          date: '1/17/17',
+          user: 'Brian Johnson',
+        },
+        {
+          revision: '2',
+          action: 'Recipe modified',
+          date: '1/12/17',
+          user: 'Brian Johnson',
+        },
+        {
+          revision: '2',
+          action: 'Revision created',
+          date: '1/06/17',
+          user: 'Brian Johnson',
+        },
+        {
+          revision: '1',
+          action: 'Recipe modified',
+          date: '12/15/16',
+          user: 'Brian Johnson',
+        },
+        {
+          revision: '1',
+          action: 'Revision created',
+          date: '12/15/16',
+          user: 'Brian Johnson',
+        },
+      ],
+    };
+  }
 
   componentWillMount() {
     if (this.props.rehydrated) {
@@ -191,7 +194,7 @@ class RecipePage extends React.Component {
     document.title = 'Recipe';
   }
 
-  setNotifications = () => {
+  setNotifications() {
     this.refs.layout.setNotifications();
   }
 
@@ -203,15 +206,15 @@ class RecipePage extends React.Component {
     e.stopPropagation();
   }
 
-  handleComponentDetails = (event, component, parent) => {
+  handleComponentDetails(event, component, parent) {
     // the user selected a component to view more details
     this.props.setSelectedComponent(component);
     this.props.setSelectedComponentParent(parent);
     event.preventDefault();
     event.stopPropagation();
-  };
+  }
 
-  handleEditDescription = (action) => {
+  handleEditDescription(action) {
     const state = !this.props.recipePage.editDescriptionVisible;
     this.props.setEditDescriptionVisible(state);
     if (state) {
@@ -228,10 +231,10 @@ class RecipePage extends React.Component {
   }
 
   // handle show/hide of modal dialogs
-  handleHideModalExport = () => {
+  handleHideModalExport() {
     this.props.setModalExportRecipeVisible(false);
   }
-  handleShowModalExport = (e) => {
+  handleShowModalExport(e) {
     this.props.setModalExportRecipeVisible(true);
     e.preventDefault();
     e.stopPropagation();
@@ -297,7 +300,7 @@ class RecipePage extends React.Component {
                           <span className="fa fa-ellipsis-v" />
                         </button>
                         <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
-                          <li><a href="#" onClick={e => this.handleShowModalExport(e)}>Export</a></li>
+                          <li><a href="#" onClick={this.handleShowModalExport}>Export</a></li>
                         </ul>
                       </div>
                     </div>
@@ -338,7 +341,7 @@ class RecipePage extends React.Component {
                           type="text"
                           className="form-control"
                           value={editDescriptionValue}
-                          onChange={e => this.handleChangeDescription(e)}
+                          onChange={this.handleChangeDescription}
                         />
                         <span className="input-group-btn">
                           <button className="btn btn-link" type="button" onClick={() => this.handleEditDescription('save')}>
@@ -516,7 +519,7 @@ class RecipePage extends React.Component {
                                 <span className="fa fa-ellipsis-v" />
                               </button>
                               <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
-                                <li><a href="#" onClick={e => this.handleShowModalExport(e)}>Export</a></li>
+                                <li><a href="#" onClick={this.handleShowModalExport}>Export</a></li>
                               </ul>
                             </div>
                           </div>
@@ -671,7 +674,7 @@ class RecipePage extends React.Component {
                           <span className="fa fa-ellipsis-v" />
                         </button>
                         <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
-                          <li><a href="#" onClick={e => this.handleShowModalExport(e)}>Export</a></li>
+                          <li><a href="#" onClick={this.handleShowModalExport}>Export</a></li>
                         </ul>
                       </div>
                     </div>

@@ -9,12 +9,9 @@ import DependencyListView from '../../components/ListView/DependencyListView';
 class RecipeContents extends React.Component {
   constructor() {
     super();
+    this.state = { activeTab: 'Components' };
     this.handleTabChanged = this.handleTabChanged.bind(this);
   }
-
-  state = {
-    activeTab: 'Components',
-  };
 
   handleTabChanged(e) {
     if (this.state.activeTab !== e.detail) {

@@ -17,8 +17,6 @@ import './pf-tabs.component';
  *
  */
 class Tabs extends React.Component {
-  state = {};
-
   componentDidUpdate() {
     this.refs.pfTabs.addEventListener('tabChanged', e => {
       if (this.props.tabChanged) {
