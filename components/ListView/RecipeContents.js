@@ -51,7 +51,10 @@ class RecipeContents extends React.Component {
               ))}
             </ListView>
           </Tab>
-          <Tab tabTitle={`Dependencies <span class="badge">${dependencies.length}</span>`} active={this.state.activeTab === 'Dependencies'}>
+          <Tab
+            tabTitle={`Dependencies <span class="badge">${dependencies.length}</span>`}
+            active={this.state.activeTab === 'Dependencies'}
+          >
             <DependencyListView
               className="cmpsr-recipe__dependencies"
               listItems={dependencies}

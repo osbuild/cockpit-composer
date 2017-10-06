@@ -318,7 +318,10 @@ class ComponentDetailsView extends React.Component {
               <Tab tabTitle="Components" active={this.state.activeTab === 'Components'}>
                 <p>Components</p>
               </Tab>}
-            <Tab tabTitle={`Dependencies <span class="badge">${this.state.dependencies.length}</span>`} active={this.state.activeTab === 'Dependencies'}>
+            <Tab
+              tabTitle={`Dependencies <span class="badge">${this.state.dependencies.length}</span>`}
+              active={this.state.activeTab === 'Dependencies'}
+            >
               <DependencyListView
                 id="cmpsr-component-dependencies"
                 listItems={this.state.dependencies}
