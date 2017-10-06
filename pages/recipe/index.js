@@ -263,6 +263,41 @@ class RecipePage extends React.Component {
             <li><Link to="/recipes">Back to Recipes</Link></li>
             <li className="active"><strong>{this.props.route.params.recipe}</strong></li>
           </ol>
+          <div className="cmpsr-header__actions">
+            <ul className="list-inline">
+              <li>
+                <Link to={`/edit/${this.props.route.params.recipe}`} className="btn btn-default">Edit Recipe</Link>
+              </li>
+              <li>
+                <button
+                  className="btn btn-default"
+                  id="cmpsr-btn-crt-compos"
+                  data-toggle="modal"
+                  data-target="#cmpsr-modal-crt-compos"
+                  type="button"
+                >
+                  Create Composition
+                </button>
+              </li>
+              <li>
+                <div className="dropdown dropdown-kebab-pf">
+                  <button
+                    className="btn btn-link dropdown-toggle"
+                    type="button"
+                    id="dropdownKebab"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <span className="fa fa-ellipsis-v" />
+                  </button>
+                  <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
+                    <li><a href="#" onClick={this.handleShowModalExport}>Export</a></li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
           <div className="cmpsr-title">
             <h1 className="cmpsr-title__item">{this.props.route.params.recipe}</h1>
             <p className="cmpsr-title__item">
@@ -273,61 +308,6 @@ class RecipePage extends React.Component {
         </header>
         <Tabs key="pf-tabs" ref="pfTabs" tabChanged={this.handleTabChanged}>
           <Tab tabTitle="Details" active={activeTab === 'Details'}>
-            <div className="row toolbar-pf">
-              <div className="col-sm-12">
-                <form className="toolbar-pf-actions">
-                  <div className="toolbar-pf-action-right">
-                    <div className="form-group">
-                      <Link to={`/edit/${this.props.route.params.recipe}`} className="btn btn-default">Edit Recipe</Link>
-                      <button
-                        className="btn btn-default"
-                        id="cmpsr-btn-crt-compos"
-                        data-toggle="modal"
-                        data-target="#cmpsr-modal-crt-compos"
-                        type="button"
-                      >
-                        Create Composition
-                      </button>
-                      <div className="dropdown btn-group  dropdown-kebab-pf">
-                        <button
-                          className="btn btn-link dropdown-toggle"
-                          type="button"
-                          id="dropdownKebab"
-                          data-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                        >
-                          <span className="fa fa-ellipsis-v" />
-                        </button>
-                        <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
-                          <li><a href="#" onClick={this.handleShowModalExport}>Export</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div className="form-group toolbar-pf-find">
-                      <button className="btn btn-link btn-find" type="button">
-                        <span className="fa fa-search" />
-                      </button>
-                      <div className="find-pf-dropdown-container">
-                        <input type="text" className="form-control" id="find" placeholder="Find By Keyword..." />
-                        <div className="find-pf-buttons">
-                          <span className="find-pf-nums">1 of 3</span>
-                          <button className="btn btn-link" type="button">
-                            <span className="fa fa-angle-up" />
-                          </button>
-                          <button className="btn btn-link" type="button">
-                            <span className="fa fa-angle-down" />
-                          </button>
-                          <button className="btn btn-link btn-find-close" type="button">
-                            <span className="pficon pficon-close" />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
             <div className="tab-container row">
               <div className="col-md-6">
                 <dl className="dl-horizontal mt-">
@@ -495,55 +475,6 @@ class RecipePage extends React.Component {
                             </button>
                           }
                         </div>
-                        <div className="toolbar-pf-action-right">
-                          <div className="form-group">
-                            <Link to={`/edit/${this.props.route.params.recipe}`} className="btn btn-default">Edit Recipe</Link>
-                            <button
-                              className="btn btn-default"
-                              id="cmpsr-btn-crt-compos"
-                              data-toggle="modal"
-                              data-target="#cmpsr-modal-crt-compos"
-                              type="button"
-                            >
-                              Create Composition
-                            </button>
-                            <div className="dropdown btn-group  dropdown-kebab-pf">
-                              <button
-                                className="btn btn-link dropdown-toggle"
-                                type="button"
-                                id="dropdownKebab"
-                                data-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                              >
-                                <span className="fa fa-ellipsis-v" />
-                              </button>
-                              <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
-                                <li><a href="#" onClick={this.handleShowModalExport}>Export</a></li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div className="form-group toolbar-pf-find">
-                            <button className="btn btn-link btn-find" type="button">
-                              <span className="fa fa-search" />
-                            </button>
-                            <div className="find-pf-dropdown-container">
-                              <input type="text" className="form-control" id="find" placeholder="Find By Keyword..." />
-                              <div className="find-pf-buttons">
-                                <span className="find-pf-nums">1 of 3</span>
-                                <button className="btn btn-link" type="button">
-                                  <span className="fa fa-angle-up" />
-                                </button>
-                                <button className="btn btn-link" type="button">
-                                  <span className="fa fa-angle-down" />
-                                </button>
-                                <button className="btn btn-link btn-find-close" type="button">
-                                  <span className="pficon pficon-close" />
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
                       </form>
                     </div>
                   </div>
@@ -578,34 +509,6 @@ class RecipePage extends React.Component {
             </div>
           </Tab>
           <Tab tabTitle="Revisions" active={activeTab === 'Revisions'}>
-            <div className="row toolbar-pf">
-              <div className="col-sm-12">
-                <form className="toolbar-pf-actions">
-                  <div className="toolbar-pf-action-right">
-                    <div className="form-group toolbar-pf-find">
-                      <button className="btn btn-link btn-find" type="button">
-                        <span className="fa fa-search" />
-                      </button>
-                      <div className="find-pf-dropdown-container">
-                        <input type="text" className="form-control" id="find" placeholder="Find By Keyword..." />
-                        <div className="find-pf-buttons">
-                          <span className="find-pf-nums">1 of 3</span>
-                          <button className="btn btn-link" type="button">
-                            <span className="fa fa-angle-up" />
-                          </button>
-                          <button className="btn btn-link" type="button">
-                            <span className="fa fa-angle-down" />
-                          </button>
-                          <button className="btn btn-link btn-find-close" type="button">
-                            <span className="pficon pficon-close" />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
             <div className="tab-container">
               <ListView className="cmpsr-recipe__revisions cmpsr-list">
                 <div className="list-pf-item list-group-item__separator">
@@ -647,61 +550,6 @@ class RecipePage extends React.Component {
             </div>
           </Tab>
           <Tab tabTitle="Compositions" active={activeTab === 'Compositions'}>
-            <div className="row toolbar-pf">
-              <div className="col-sm-12">
-                <form className="toolbar-pf-actions">
-                  <div className="toolbar-pf-action-right">
-                    <div className="form-group">
-                      <Link to={`/edit/${this.props.route.params.recipe}`} className="btn btn-default">Edit Recipe</Link>
-                      <button
-                        className="btn btn-default"
-                        id="cmpsr-btn-crt-compos"
-                        data-toggle="modal"
-                        data-target="#cmpsr-modal-crt-compos"
-                        type="button"
-                      >
-                        Create Composition
-                      </button>
-                      <div className="dropdown btn-group  dropdown-kebab-pf">
-                        <button
-                          className="btn btn-link dropdown-toggle"
-                          type="button"
-                          id="dropdownKebab"
-                          data-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                        >
-                          <span className="fa fa-ellipsis-v" />
-                        </button>
-                        <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
-                          <li><a href="#" onClick={this.handleShowModalExport}>Export</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div className="form-group toolbar-pf-find">
-                      <button className="btn btn-link btn-find" type="button">
-                        <span className="fa fa-search" />
-                      </button>
-                      <div className="find-pf-dropdown-container">
-                        <input type="text" className="form-control" id="find" placeholder="Find By Keyword..." />
-                        <div className="find-pf-buttons">
-                          <span className="find-pf-nums">1 of 3</span>
-                          <button className="btn btn-link" type="button">
-                            <span className="fa fa-angle-up" />
-                          </button>
-                          <button className="btn btn-link" type="button">
-                            <span className="fa fa-angle-down" />
-                          </button>
-                          <button className="btn btn-link btn-find-close" type="button">
-                            <span className="pficon pficon-close" />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
             <div className="tab-container">
               {(this.state.compositions.length === 0 &&
                 <EmptyState title={'No Compositions'} message={'No compositions have been created from this recipe.'}>
@@ -726,9 +574,6 @@ class RecipePage extends React.Component {
                   ))}
                 </ListView>}
             </div>
-          </Tab>
-          <Tab tabTitle="Errata" active={activeTab === 'Errata'}>
-            <p>Errata</p>
           </Tab>
         </Tabs>
         <CreateComposition recipe={recipe.name} compositionTypes={compositionTypes} setNotifications={this.setNotifications} />
