@@ -151,22 +151,18 @@ describe('View Recipe Page', () => {
         }, timeout);
       });
     });
-    describe('Components tab - Export Recipe To Manifest Test #acceptance', () => {
+    describe('Recipe page - Export Recipe To Manifest Test #acceptance', () => {
       const exportRecipePage = new ExportRecipePage();
 
       // More action menu
-      const btnMoreAction = `${viewRecipePage.componentsTabRootElement} ${viewRecipePage.btnMore}`;
-      const menuActionExport = `${viewRecipePage.componentsTabRootElement} ${viewRecipePage.menuActionExport}`;
-
-      const tabComponents = viewRecipePage.tabLink('Components');
+      const btnMoreAction = `${viewRecipePage.pagelevelActions} ${viewRecipePage.btnMore}`;
+      const menuActionExport = `${viewRecipePage.pagelevelActions} ${viewRecipePage.menuActionExport}`;
 
       test('should pop up dropdown-menu by clicking ":" button', (done) => {
         // Highlight the expected result
         const expected = viewRecipePage.toolBarMoreActionList.Export;
 
         nightmare
-          .wait(tabComponents)
-          .click(tabComponents)
           .wait(btnMoreAction)
           .click(btnMoreAction)
           .wait(menuActionExport)
@@ -183,8 +179,6 @@ describe('View Recipe Page', () => {
         const expected = exportRecipePage.varExportTitle;
 
         nightmare
-          .wait(tabComponents)
-          .click(tabComponents)
           .wait(btnMoreAction)
           .click(btnMoreAction)
           .wait(menuActionExport)
@@ -214,8 +208,6 @@ describe('View Recipe Page', () => {
           const expectedContent = [...depCompSet].sort().join('\n');
 
           nightmare
-            .wait(tabComponents)
-            .click(tabComponents)
             .wait(btnMoreAction)
             .click(btnMoreAction)
             .wait(menuActionExport)
@@ -245,314 +237,6 @@ describe('View Recipe Page', () => {
         let expected = '';
 
         nightmare
-          .wait(tabComponents)
-          .click(tabComponents)
-          .wait(btnMoreAction)
-          .click(btnMoreAction)
-          .wait(menuActionExport)
-          .click(menuActionExport)
-          .wait(page => document.querySelector(page.rootElement).style.display === 'block'
-            , exportRecipePage)
-          .wait(exportRecipePage.textAreaContent)
-          .evaluate(page => document.querySelector(page.textAreaContent).value
-            , exportRecipePage)
-          .then((element) => { expected = element; })
-          .then(() => nightmare
-            .wait(exportRecipePage.btnCopy)
-            .click(exportRecipePage.btnCopy)
-            .evaluate(() => {
-              // create div element for pasting into
-              const pasteDiv = document.createElement('div');
-
-              // place div outside the visible area
-              pasteDiv.style.position = 'absolute';
-              pasteDiv.style.left = '-10000px';
-              pasteDiv.style.top = '-10000px';
-
-              // set contentEditable mode
-              pasteDiv.contentEditable = true;
-
-              // find a good place to add the div to the document
-              let insertionElement = document.activeElement;
-              let nodeName = insertionElement.nodeName.toLowerCase();
-              while (nodeName !== 'body' && nodeName !== 'div' && nodeName !== 'li' && nodeName !== 'th' && nodeName !== 'td') {
-                insertionElement = insertionElement.parentNode;
-                nodeName = insertionElement.nodeName.toLowerCase();
-              }
-
-              // add element to document
-              insertionElement.appendChild(pasteDiv);
-
-              // paste the current clipboard text into the element
-              pasteDiv.focus();
-              document.execCommand('paste');
-
-              // get the pasted text from the div
-              const clipboardText = pasteDiv.innerText;
-
-              // remove the temporary element
-              insertionElement.removeChild(pasteDiv);
-
-              // return the text
-              return clipboardText;
-            }))
-          .then((element) => {
-            // remove the last "\n" from paste result with trim()
-            expect(element.trim()).toBe(expected);
-
-            eval(fs.readFileSync('utils/coverage.js').toString());
-          });
-      }, timeout);
-    });
-    describe('Details tab - Export Recipe To Manifest Test #acceptance', () => {
-      const exportRecipePage = new ExportRecipePage();
-
-      // More action menu
-      const btnMoreAction = `${viewRecipePage.detailTabRootElement} ${viewRecipePage.btnMore}`;
-      const menuActionExport = `${viewRecipePage.detailTabRootElement} ${viewRecipePage.menuActionExport}`;
-
-      const tabComponents = viewRecipePage.tabLink('Details');
-
-      test('should pop up dropdown-menu by clicking ":" button', (done) => {
-        // Highlight the expected result
-        const expected = viewRecipePage.toolBarMoreActionList.Export;
-
-        nightmare
-          .wait(tabComponents)
-          .click(tabComponents)
-          .wait(btnMoreAction)
-          .click(btnMoreAction)
-          .wait(menuActionExport)
-          .evaluate(element => document.querySelector(element).innerText
-            , menuActionExport)
-          .then((element) => {
-            expect(element).toBe(expected);
-
-            eval(fs.readFileSync('utils/coverage.js').toString());
-          });
-      }, timeout);
-      test('should pop up Export Recipe window by clicking "Export"', (done) => {
-        // Highlight the expected result
-        const expected = exportRecipePage.varExportTitle;
-
-        nightmare
-          .wait(tabComponents)
-          .click(tabComponents)
-          .wait(btnMoreAction)
-          .click(btnMoreAction)
-          .wait(menuActionExport)
-          .click(menuActionExport)
-          .wait(page => document.querySelector(page.rootElement).style.display === 'block'
-            , exportRecipePage)
-          .wait(exportRecipePage.labelExportTitle)
-          .evaluate(page => document.querySelector(page.labelExportTitle).innerText
-            , exportRecipePage)
-          .then((element) => {
-            expect(element).toBe(expected);
-
-            eval(fs.readFileSync('utils/coverage.js').toString());
-          });
-      }, timeout);
-      test('should show the correct dependence packages and total numbers of dependencies', (done) => {
-        // Convert package name into a string
-        const packNames = `${pageConfig.recipe.simple.packages[0].name},${pageConfig.recipe.simple.packages[1].name}`;
-
-        function callback(packs) {
-          const depList = packs.map(
-            pack => pack.dependencies.map(module => `${module.name}-${module.version}-${module.release}`));
-          const depCompSet = new Set(depList.reduce((acc, val) => [...acc, ...val]));
-
-          // Highlight the expected result
-          const expectedNumber = `${[...depCompSet].length} ${exportRecipePage.varTotalComponents}`;
-          const expectedContent = [...depCompSet].sort().join('\n');
-
-          nightmare
-            .wait(tabComponents)
-            .click(tabComponents)
-            .wait(btnMoreAction)
-            .click(btnMoreAction)
-            .wait(menuActionExport)
-            .click(menuActionExport)
-            .wait(page => document.querySelector(page.rootElement).style.display === 'block'
-              , exportRecipePage)
-            .wait(exportRecipePage.labelTotalComponents)
-            .evaluate(page => document.querySelector(page.labelTotalComponents).innerText
-              , exportRecipePage)
-            .then((element) => {
-              expect(element).toBe(expectedNumber);
-            })
-            .then(() => nightmare
-              .evaluate(page => document.querySelector(page.textAreaContent).value
-                , exportRecipePage))
-            .then((element) => {
-              expect(element).toBe(expectedContent);
-
-              eval(fs.readFileSync('utils/coverage.js').toString());
-            });
-        }
-
-        apiCall.moduleInfo(packNames, callback, done);
-      }, timeout);
-      test('should copy and paste correct components', (done) => {
-        // expected result should be the content in textarea
-        let expected = '';
-
-        nightmare
-          .wait(tabComponents)
-          .click(tabComponents)
-          .wait(btnMoreAction)
-          .click(btnMoreAction)
-          .wait(menuActionExport)
-          .click(menuActionExport)
-          .wait(page => document.querySelector(page.rootElement).style.display === 'block'
-            , exportRecipePage)
-          .wait(exportRecipePage.textAreaContent)
-          .evaluate(page => document.querySelector(page.textAreaContent).value
-            , exportRecipePage)
-          .then((element) => { expected = element; })
-          .then(() => nightmare
-            .wait(exportRecipePage.btnCopy)
-            .click(exportRecipePage.btnCopy)
-            .evaluate(() => {
-              // create div element for pasting into
-              const pasteDiv = document.createElement('div');
-
-              // place div outside the visible area
-              pasteDiv.style.position = 'absolute';
-              pasteDiv.style.left = '-10000px';
-              pasteDiv.style.top = '-10000px';
-
-              // set contentEditable mode
-              pasteDiv.contentEditable = true;
-
-              // find a good place to add the div to the document
-              let insertionElement = document.activeElement;
-              let nodeName = insertionElement.nodeName.toLowerCase();
-              while (nodeName !== 'body' && nodeName !== 'div' && nodeName !== 'li' && nodeName !== 'th' && nodeName !== 'td') {
-                insertionElement = insertionElement.parentNode;
-                nodeName = insertionElement.nodeName.toLowerCase();
-              }
-
-              // add element to document
-              insertionElement.appendChild(pasteDiv);
-
-              // paste the current clipboard text into the element
-              pasteDiv.focus();
-              document.execCommand('paste');
-
-              // get the pasted text from the div
-              const clipboardText = pasteDiv.innerText;
-
-              // remove the temporary element
-              insertionElement.removeChild(pasteDiv);
-
-              // return the text
-              return clipboardText;
-            }))
-          .then((element) => {
-            // remove the last "\n" from paste result with trim()
-            expect(element.trim()).toBe(expected);
-
-            eval(fs.readFileSync('utils/coverage.js').toString());
-          });
-      }, timeout);
-    });
-    describe('Compositions tab - Export Recipe To Manifest Test #acceptance', () => {
-      const exportRecipePage = new ExportRecipePage();
-
-      // More action menu
-      const btnMoreAction = `${viewRecipePage.compositionsTabRootElement} ${viewRecipePage.btnMore}`;
-      const menuActionExport = `${viewRecipePage.compositionsTabRootElement} ${viewRecipePage.menuActionExport}`;
-
-      const tabComponents = viewRecipePage.tabLink('Compositions');
-
-      test('should pop up dropdown-menu by clicking ":" button', (done) => {
-        // Highlight the expected result
-        const expected = viewRecipePage.toolBarMoreActionList.Export;
-
-        nightmare
-          .wait(tabComponents)
-          .click(tabComponents)
-          .wait(btnMoreAction)
-          .click(btnMoreAction)
-          .wait(menuActionExport)
-          .evaluate(element => document.querySelector(element).innerText
-            , menuActionExport)
-          .then((element) => {
-            expect(element).toBe(expected);
-
-            eval(fs.readFileSync('utils/coverage.js').toString());
-          });
-      }, timeout);
-      test('should pop up Export Recipe window by clicking "Export"', (done) => {
-        // Highlight the expected result
-        const expected = exportRecipePage.varExportTitle;
-
-        nightmare
-          .wait(tabComponents)
-          .click(tabComponents)
-          .wait(btnMoreAction)
-          .click(btnMoreAction)
-          .wait(menuActionExport)
-          .click(menuActionExport)
-          .wait(page => document.querySelector(page.rootElement).style.display === 'block'
-            , exportRecipePage)
-          .wait(exportRecipePage.labelExportTitle)
-          .evaluate(page => document.querySelector(page.labelExportTitle).innerText
-            , exportRecipePage)
-          .then((element) => {
-            expect(element).toBe(expected);
-
-            eval(fs.readFileSync('utils/coverage.js').toString());
-          });
-      }, timeout);
-      test('should show the correct dependence packages and total numbers of dependencies', (done) => {
-        // Convert package name into a string
-        const packNames = `${pageConfig.recipe.simple.packages[0].name},${pageConfig.recipe.simple.packages[1].name}`;
-
-        function callback(packs) {
-          const depList = packs.map(
-            pack => pack.dependencies.map(module => `${module.name}-${module.version}-${module.release}`));
-          const depCompSet = new Set(depList.reduce((acc, val) => [...acc, ...val]));
-
-          // Highlight the expected result
-          const expectedNumber = `${[...depCompSet].length} ${exportRecipePage.varTotalComponents}`;
-          const expectedContent = [...depCompSet].sort().join('\n');
-
-          nightmare
-            .wait(tabComponents)
-            .click(tabComponents)
-            .wait(btnMoreAction)
-            .click(btnMoreAction)
-            .wait(menuActionExport)
-            .click(menuActionExport)
-            .wait(page => document.querySelector(page.rootElement).style.display === 'block'
-              , exportRecipePage)
-            .wait(exportRecipePage.labelTotalComponents)
-            .evaluate(page => document.querySelector(page.labelTotalComponents).innerText
-              , exportRecipePage)
-            .then((element) => {
-              expect(element).toBe(expectedNumber);
-            })
-            .then(() => nightmare
-              .evaluate(page => document.querySelector(page.textAreaContent).value
-                , exportRecipePage))
-            .then((element) => {
-              expect(element).toBe(expectedContent);
-
-              eval(fs.readFileSync('utils/coverage.js').toString());
-            });
-        }
-
-        apiCall.moduleInfo(packNames, callback, done);
-      }, timeout);
-      test('should copy and paste correct components', (done) => {
-        // expected result should be the content in textarea
-        let expected = '';
-
-        nightmare
-          .wait(tabComponents)
-          .click(tabComponents)
           .wait(btnMoreAction)
           .click(btnMoreAction)
           .wait(menuActionExport)
