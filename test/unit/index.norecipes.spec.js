@@ -39,6 +39,6 @@ describe('Home page', () => {
     const component = mount(<Provider store={mockStore}><RecipesPage recipes={mockState.recipes} /></Provider>);
     const blankSlate = component.find('.blank-slate-pf');
 
-    expect(blankSlate.text()).toContain('Create your first recipe');
+    expect(blankSlate.text()).toContain('Create a recipe');
   });
 });
