@@ -62,7 +62,6 @@
     "front-matter": "^2.1.0",
     "highlight.js": "^9.5.0",
     "jest": "^20.0.4",
-    "jquery": "^3.2.1",
     "json-loader": "^0.5.4",
     "markdown-it": "^7.0.0",
     "path-to-regexp": "^1.5.3",
