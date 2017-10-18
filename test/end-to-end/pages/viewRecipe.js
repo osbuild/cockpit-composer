@@ -8,7 +8,7 @@ module.exports = class ViewRecipePage extends MainPage {
 
 // ---- Root element selector ---- //
     // Navigation bar root element
-    this.navRootElement = 'ol[class="breadcrumb"]';
+    this.navRootElement = '.cmpsr-header .breadcrumb';
 
     // Title bar root element
     this.titleRootElement = 'div[class="cmpsr-title"]';
