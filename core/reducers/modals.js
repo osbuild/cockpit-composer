@@ -77,8 +77,11 @@ const modalPendingChanges = (state = [], action) => {
   switch (action.type) {
     case APPEND_MODAL_PENDING_CHANGES_COMPONENT_UPDATES:
       return Object.assign(
-        {}, state,
-        state.pendingChanges.componentUpdates.push(action.payload.componentUpdate),
+        {}, state, {
+          pendingChanges: Object.assign({}, state.pendingChanges, {
+            componentUpdates: [action.payload.componentUpdate].concat(state.pendingChanges.componentUpdates)
+          })
+        }
       );
     default:
       return state;

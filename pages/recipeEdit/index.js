@@ -631,7 +631,7 @@ class EditRecipePage extends React.Component {
           : null}
         {modalActive === 'modalPendingChanges'
           ? <PendingChanges
-            recipe={recipe.name}
+            recipe={recipe}
             contents={dependencies}
             handleHideModal={this.handleHideModal}
           />

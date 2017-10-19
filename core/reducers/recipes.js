@@ -4,7 +4,7 @@ import {
   FETCHING_RECIPE_SUCCEEDED,
   FETCHING_RECIPES_SUCCEEDED,
   FETCHING_RECIPE_CONTENTS_SUCCEEDED,
-  SET_RECIPE, SET_RECIPE_DESCRIPTION, SET_RECIPE_COMPONENTS, SET_RECIPE_DEPENDENCIES,
+  SET_RECIPE, SET_RECIPE_DESCRIPTION, SET_RECIPE_COMPONENTS, SET_RECIPE_DEPENDENCIES, SET_RECIPE_COMMENT,
   ADD_RECIPE_COMPONENT, REMOVE_RECIPE_COMPONENT,
   DELETING_RECIPE_SUCCEEDED,
 } from '../actions/recipes';
@@ -123,7 +123,18 @@ const recipesPresent = (state = [], action) => {
           }),
         ]
       });
-
+    case SET_RECIPE_COMMENT:
+      return Object.assign(
+        {}, state, {
+        present: [
+          ...state.present.map(recipe => {
+            if (recipe.id === action.payload.recipe.id) {
+              return Object.assign({}, recipe, { comment: action.payload.comment });
+            }
+            return recipe;
+          }),
+        ]
+      });
     case DELETING_RECIPE_SUCCEEDED:
       return Object.assign(
         {}, state, {
@@ -169,6 +180,8 @@ const recipes = (state = [], action) => {
     case SET_RECIPE_DEPENDENCIES:
       return recipesPresent(state, action);
     case SET_RECIPE_DESCRIPTION:
+      return recipesPresent(state, action);
+    case SET_RECIPE_COMMENT:
       return recipesPresent(state, action);
     case DELETING_RECIPE_SUCCEEDED:
       return recipesPresent(state, action);

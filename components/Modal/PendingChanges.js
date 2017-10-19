@@ -1,10 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { setRecipeComment } from '../../core/actions/recipes';
 
 class PendingChanges extends React.Component {
   constructor() {
     super();
+    this.state = {
+      comment: ""
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentWillMount() {
+    this.setState({comment: this.props.recipe.comment});
   }
 
   componentDidMount() {
@@ -15,6 +24,11 @@ class PendingChanges extends React.Component {
   handleSaveChanges() {
     $('#cmpsr-modal-pending-changes').modal('hide');
   }
+
+  handleChange(e) {
+    this.setState({comment: e.target.value});
+  }
+
 
   render() {
     return (
@@ -46,7 +60,7 @@ class PendingChanges extends React.Component {
                     className="col-sm-3 control-label"
                   >Recipe</label>
                   <div className="col-sm-9">
-                    <p className="form-control-static">{this.props.recipe}</p>
+                    <p className="form-control-static">{this.props.recipe.name}</p>
                   </div>
                 </div>
                 <div className="form-group">
@@ -59,7 +73,9 @@ class PendingChanges extends React.Component {
                       id="textInput-modal-markup"
                       className="form-control"
                       rows="1"
-                      value={this.props.recipe.comment}
+                      value={this.state.comment}
+                      onChange={(e) => this.handleChange(e)}
+                      onBlur={() => this.props.setRecipeComment(this.props.recipe, this.state.comment)}
                     />
                   </div>
                 </div>
@@ -69,8 +85,8 @@ class PendingChanges extends React.Component {
                 </div>
                 <strong>Pending Changes</strong><span className="text-muted"> (most recent first)</span>
                 <ul className="list-group">
-                  {this.props.componentUpdates.map((componentUpdated) => (
-                    <li className="list-group-item" key={componentUpdated.componentNew}>
+                  {this.props.componentUpdates.map((componentUpdated, index) => (
+                    <li className="list-group-item" key={index}>
                       {componentUpdated.componentNew && componentUpdated.componentOld &&
                         <div className="row">
                           <div className="col-sm-3">Updated</div>
@@ -110,15 +126,21 @@ class PendingChanges extends React.Component {
 
 PendingChanges.propTypes = {
   comment: PropTypes.string,
-  recipe: PropTypes.string,
+  recipe: PropTypes.object,
   contents: PropTypes.array,
   handleHideModal: PropTypes.func,
   componentUpdates: PropTypes.array,
+  setRecipeComment: PropTypes.func,
 };
-
 
 const mapStateToProps = state => ({
   componentUpdates: state.modals.pendingChanges.componentUpdates,
 });
 
-export default connect(mapStateToProps)(PendingChanges);
+const mapDispatchToProps = dispatch => ({
+  setRecipeComment: (recipe, comment) => {
+    dispatch(setRecipeComment(recipe, comment));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PendingChanges);

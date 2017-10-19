@@ -113,6 +113,16 @@ export const setRecipeDependencies = (recipe, dependencies) => ({
   },
 });
 
+export const SET_RECIPE_COMMENT = 'SET_RECIPE_COMMENT';
+export const setRecipeComment = (recipe, comment) => ({
+  type: SET_RECIPE_COMMENT,
+  payload: {
+    recipe,
+    comment,
+  },
+});
+
+
 export const DELETING_RECIPE = 'DELETING_RECIPE';
 export const deletingRecipe = (recipeId) => ({
   type: DELETING_RECIPE,
