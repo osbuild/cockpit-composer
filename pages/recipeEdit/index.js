@@ -429,7 +429,7 @@ class EditRecipePage extends React.Component {
     const {
       recipe, components, dependencies,
       inputs, createComposition, modalActive, componentsSortKey, componentsSortValue,
-      pastLength, futureLength,
+      pastLength, futureLength, componentUpdates,
     } = this.props;
 
     return (
@@ -448,8 +448,8 @@ class EditRecipePage extends React.Component {
           <div className="cmpsr-header__actions">
           {pastLength > 0 &&
             <ul className="list-inline">
-            {pastLength !== 1 &&
-              <li className="text-muted"> {pastLength} changes</li>
+            {componentUpdates.length !== 1 &&
+              <li className="text-muted"> {componentUpdates.length} changes</li>
             ||
               <li className="text-muted"> 1 change</li>
             }
@@ -703,6 +703,7 @@ const makeMapStateToProps = () => {
         modalActive: state.modals.modalActive,
         pastLength: getPastLength(state),
         futureLength: getFutureLength(state),
+        componentUpdates: state.modals.pendingChanges.componentUpdates.present,
       };
     }
     return {
@@ -718,6 +719,7 @@ const makeMapStateToProps = () => {
       modalActive: state.modals.modalActive,
       pastLength: 0,
       futureLength: 0,
+      componentUpdates: state.modals.pendingChanges.componentUpdates.present,
     };
   };
   return mapStateToProps;

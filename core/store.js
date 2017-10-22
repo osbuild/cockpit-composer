@@ -59,7 +59,11 @@ const initialState = {
       },
     },
     pendingChanges: {
-      componentUpdates: [],
+      componentUpdates: {
+        past: [],
+        present: [],
+        future: [],
+      },
     },
   },
   sort: {

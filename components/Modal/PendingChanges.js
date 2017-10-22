@@ -29,7 +29,6 @@ class PendingChanges extends React.Component {
     this.setState({comment: e.target.value});
   }
 
-
   render() {
     return (
       <div
@@ -134,7 +133,7 @@ PendingChanges.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  componentUpdates: state.modals.pendingChanges.componentUpdates,
+  componentUpdates: state.modals.pendingChanges.componentUpdates.present,
 });
 
 const mapDispatchToProps = dispatch => ({
