@@ -111,12 +111,12 @@ const modalPendingChanges = (state = [], action) => {
             componentUpdates: Object.assign({}, state.pendingChanges.componentUpdates, {
               past: state.pendingChanges.componentUpdates.past.concat([state.pendingChanges.componentUpdates.present]),
               present: state.pendingChanges.componentUpdates.present.some((component) => {
-                   return component.componentNew === action.payload.componentUpdate.componentOld
-                   || component.componentOld === action.payload.componentUpdate.componentNew
-                }) ? state.pendingChanges.componentUpdates.present.filter((component) => {
-                   return component.componentNew != action.payload.componentUpdate.componentOld
-                   || component.componentOld != action.payload.componentUpdate.componentNew
-                }) : [action.payload.componentUpdate].concat(state.pendingChanges.componentUpdates.present),
+                return (component.componentNew === action.payload.componentUpdate.componentOld && component.componentNew !== null)
+                 || (component.componentOld === action.payload.componentUpdate.componentNew && component.componentOld !== null)
+              }) ? state.pendingChanges.componentUpdates.present.filter((component) => {
+                return component.componentNew != action.payload.componentUpdate.componentOld
+                || component.componentOld != action.payload.componentUpdate.componentNew
+              }) : [action.payload.componentUpdate].concat(state.pendingChanges.componentUpdates.present),
             }),
           }),
         }

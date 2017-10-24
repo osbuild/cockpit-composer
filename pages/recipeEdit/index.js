@@ -677,6 +677,7 @@ EditRecipePage.propTypes = {
   appendModalPendingChangesComponentUpdates: PropTypes.func,
   pastLength: PropTypes.number,
   futureLength: PropTypes.number,
+  componentUpdates: PropTypes.array,
   undo: PropTypes.func,
   redo: PropTypes.func,
 };
