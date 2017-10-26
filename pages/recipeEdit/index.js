@@ -407,15 +407,6 @@ class EditRecipePage extends React.Component {
       );
     }, 50);
   }
-  // undo() {
-  //   this.props.undo();
-  //   this.props.fetchingInputs(this.props.filter, 0, 50, this.props.recipe.components);
-  // }
-  //
-  // redo() {
-  //   this.props.redo();
-  //   this.props.fetchingInputs(this.props.filter, 0, 50, this.props.recipe.components);
-  // }
 
   render() {
     if (!this.props.rehydrated) {
@@ -446,7 +437,7 @@ class EditRecipePage extends React.Component {
             <li className="active"><strong>Edit Recipe</strong></li>
           </ol>
           <div className="cmpsr-header__actions">
-          {pastLength > 0 &&
+          {componentUpdates.length > 0 &&
             <ul className="list-inline">
             {componentUpdates.length !== 1 &&
               <li className="text-muted"> {componentUpdates.length} changes</li>
@@ -631,6 +622,7 @@ class EditRecipePage extends React.Component {
           : null}
         {modalActive === 'modalPendingChanges'
           ? <PendingChanges
+            handleSave={this.handleSave}
             recipe={recipe}
             contents={dependencies}
             handleHideModal={this.handleHideModal}

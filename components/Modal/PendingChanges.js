@@ -23,6 +23,7 @@ class PendingChanges extends React.Component {
 
   handleSaveChanges() {
     $('#cmpsr-modal-pending-changes').modal('hide');
+    this.props.handleSave();
   }
 
   handleChange(e) {
@@ -130,6 +131,7 @@ PendingChanges.propTypes = {
   handleHideModal: PropTypes.func,
   componentUpdates: PropTypes.array,
   setRecipeComment: PropTypes.func,
+  handleSave: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
