@@ -685,17 +685,17 @@ const makeMapStateToProps = () => {
       const fetchedRecipe = getRecipeById(state, props.route.params.recipe.replace(/\s/g, '-'));
       return {
         rehydrated: state.rehydrated,
-        recipe: fetchedRecipe,
-        components: getSortedComponents(state, fetchedRecipe),
-        dependencies: getSortedDependencies(state, fetchedRecipe),
+        recipe: fetchedRecipe.present,
+        components: getSortedComponents(state, fetchedRecipe.present),
+        dependencies: getSortedDependencies(state, fetchedRecipe.present),
         componentsSortKey: state.sort.components.key,
         componentsSortValue: state.sort.components.value,
         createComposition: state.modals.createComposition,
         inputs: state.inputs,
         selectedInput: state.inputs.selectedInput,
         modalActive: state.modals.modalActive,
-        pastLength: getPastLength(state),
-        futureLength: getFutureLength(state),
+        pastLength: getPastLength(fetchedRecipe),
+        futureLength: getFutureLength(fetchedRecipe),
         componentUpdates: state.modals.pendingChanges.componentUpdates.present,
       };
     }

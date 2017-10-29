@@ -32,11 +32,7 @@ const initialState = {
         value: '',
     },
   },
-  recipes : {
-    past: [],
-    present: [],
-    future: [],
-  },
+  recipes : [],
   modals: {
     createComposition: {
       compositionTypes: [],

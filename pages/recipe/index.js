@@ -624,9 +624,9 @@ const makeMapStateToProps = () => {
       const fetchedRecipe = getRecipeById(state, props.route.params.recipe.replace(/\s/g, '-'));
       return {
         rehydrated: state.rehydrated,
-        recipe: fetchedRecipe,
-        components: getSortedComponents(state, fetchedRecipe),
-        dependencies: getSortedDependencies(state, fetchedRecipe),
+        recipe: fetchedRecipe.present,
+        components: getSortedComponents(state, fetchedRecipe.present),
+        dependencies: getSortedDependencies(state, fetchedRecipe.present),
         recipePage: state.recipePage,
         exportModalVisible: state.modals.exportRecipe.visible,
         compositionTypes: state.modals.createComposition.compositionTypes,

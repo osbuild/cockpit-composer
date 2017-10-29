@@ -8,9 +8,7 @@ describe('Home page', () => {
     compositionTypes: [{ name: 'qcow2', enabled: true }],
   };
   const mockState = {
-    recipes: {
-      present: [],
-    },
+    recipes: [],
     sort: { recipes: [] },
     modals: {
       createComposition: mockCreateComposition,

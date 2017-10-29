@@ -146,14 +146,14 @@ class RecipesPage extends React.Component {
       }
       {createComposition.compositionTypes !== undefined &&
         <RecipeListView
-          recipes={recipes}
+          recipes={recipes.map(recipe => recipe.present)}
           compositionTypes={createComposition.compositionTypes}
           handleDelete={this.handleDelete}
           setNotifications={this.setNotifications}
           handleShowModalExport={this.handleShowModalExport}
         />
       }
-        <CreateRecipe recipeNames={recipes.map(recipe => recipe.id)} />
+        <CreateRecipe recipeNames={recipes.map(recipe => recipe.present.id)} />
         {(exportRecipe !== undefined && exportRecipe.visible)
           ? <ExportRecipe
             recipe={exportRecipe.name}
