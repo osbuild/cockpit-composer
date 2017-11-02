@@ -6,7 +6,7 @@
 
     "dashboard": {
         "index": {
-            "label": "Welder",
+            "label": "Image Builder",
             "order": 30
         }
     },
