@@ -8,6 +8,7 @@ const apiCall = require('../utils/apiCall');
 const helper = require('../utils/helper');
 const pageConfig = require('../config');
 const fs = require('fs');
+const coverage = require('../utils/coverage.js').coverage;
 
 describe('View Recipe Page', () => {
   let nightmare;
@@ -51,7 +52,7 @@ describe('View Recipe Page', () => {
           .then((element) => {
             expect(element).toBe(expected);
 
-            eval(fs.readFileSync('utils/coverage.js').toString());
+            coverage(nightmare, done);
           });
       }, timeout);
     });
@@ -67,7 +68,7 @@ describe('View Recipe Page', () => {
           .then((element) => {
             expect(element).toBe(expected);
 
-            eval(fs.readFileSync('utils/coverage.js').toString());
+            coverage(nightmare, done);
           });
       }, timeout);
       test('should have Create Composition button @view-recipe-page', (done) => {
@@ -81,7 +82,7 @@ describe('View Recipe Page', () => {
           .then((element) => {
             expect(element).toBe(expected);
 
-            eval(fs.readFileSync('utils/coverage.js').toString());
+            coverage(nightmare, done);
           });
       }, timeout);
     });
@@ -104,7 +105,7 @@ describe('View Recipe Page', () => {
             .then((element) => {
               expect(element).toBe(expected);
 
-              eval(fs.readFileSync('utils/coverage.js').toString());
+              coverage(nightmare, done);
             });
         }, timeout);
         test('should have toast notification pop up when new composition added @view-recipe-page', (done) => {
@@ -144,7 +145,7 @@ describe('View Recipe Page', () => {
             .then((element) => {
               expect(element).toBe(expectedComplete);
 
-              eval(fs.readFileSync('utils/coverage.js').toString());
+              coverage(nightmare, done);
             });
         }, timeout);
       });
@@ -169,7 +170,7 @@ describe('View Recipe Page', () => {
           .then((element) => {
             expect(element).toBe(expected);
 
-            eval(fs.readFileSync('utils/coverage.js').toString());
+            coverage(nightmare, done);
           });
       }, timeout);
       test('should pop up Export Recipe window by clicking "Export"', (done) => {
@@ -189,7 +190,7 @@ describe('View Recipe Page', () => {
           .then((element) => {
             expect(element).toBe(expected);
 
-            eval(fs.readFileSync('utils/coverage.js').toString());
+            coverage(nightmare, done);
           });
       }, timeout);
       test('should show the correct dependence packages and total numbers of dependencies', (done) => {
@@ -224,7 +225,7 @@ describe('View Recipe Page', () => {
             .then((element) => {
               expect(element).toBe(expectedContent);
 
-              eval(fs.readFileSync('utils/coverage.js').toString());
+              coverage(nightmare, done);
             });
         }
 
@@ -288,7 +289,7 @@ describe('View Recipe Page', () => {
             // remove the last "\n" from paste result with trim()
             expect(element.trim()).toBe(expected);
 
-            eval(fs.readFileSync('utils/coverage.js').toString());
+            coverage(nightmare, done);
           });
       }, timeout);
     });

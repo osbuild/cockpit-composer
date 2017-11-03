@@ -6,23 +6,27 @@
 
 // collects coverage from the tested page,
 // calls nightmare.end() and calls done()
-// executed via eval() as a last step of every test!
-nightmare
-  .evaluate(() => {
-    if (window.location.href.includes('9090')) {
-      return window.top.document.querySelector('.container-frame').contentWindow.__coverage__;
-    }
-    return window.__coverage__;
-  })
-  .end()
-  .then((cov) => {
-    const strCoverage = JSON.stringify(cov);
-    const hash = require('crypto').createHmac('sha256', '')
-      .update(strCoverage)
-      .digest('hex');
-    const fileName = `/tmp/coverage-${hash}.json`;
-    require('fs').writeFileSync(fileName, strCoverage);
+module.exports = {
+  coverage: (nightmare, done) => {
+    nightmare
+      .evaluate(() => {
+        if (window.location.href.includes('9090')) {
+          return window.top.document.querySelector('.container-frame').contentWindow.__coverage__;
+        }
+        return window.__coverage__;
+      })
+      .end()
+      .then((cov) => {
+        const strCoverage = JSON.stringify(cov);
+        const hash = require('crypto').createHmac('sha256', '')
+          .update(strCoverage)
+          .digest('hex');
+        const fileName = `/tmp/coverage-${hash}.json`;
+        require('fs').writeFileSync(fileName, strCoverage);
 
-    done();
-  })
-.catch(err => console.log(err));
+        done();
+      })
+    .catch(err => console.log(err));
+  },
+
+};

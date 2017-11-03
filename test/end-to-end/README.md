@@ -147,14 +147,6 @@ There are several things to be noted when writing and executing the tests:
 3. `utils/coverage.js` must be executed inside the last `.then()` method in the
    Nightmare sequence. This is usually after the last expectation (assertion);
 4. `utils/coverage.js` takes care to call `.end()` and close the electron process;
-5. We're using `eval()` to *include* the contents of `utils/coverage.js` inside the
-   last `.then()` method because attempts to execute the same code as a method of
-   a helper module have failed. You will likely get something like
-   `nightmare is not defined` or
-   `Unhandled promise rejection (rejection id: 1): cov_23rlop1885 is not defined`;
-6. `eval()` **must be** called from the global scope, it can't be made into a
-   helper function. Thus the syntax is abit ugly but at least it is a one liner;
-
 
 ## Test Result
 

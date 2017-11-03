@@ -6,6 +6,7 @@ const pageConfig = require('../config');
 const helper = require('../utils/helper');
 const sqlite3 = require('sqlite3').verbose();
 const fs = require('fs');
+const coverage = require('../utils/coverage.js').coverage;
 
 describe('Imported Content Sanity Testing', () => {
   let nightmare;
@@ -57,7 +58,7 @@ describe('Imported Content Sanity Testing', () => {
           expect(element).toBe(expectedText);
 
           // note eval() can't be called from within another function
-          eval(fs.readFileSync('utils/coverage.js').toString());
+          coverage(nightmare, done);
         });
     });
   }, timeout);
