@@ -4,7 +4,7 @@ const pageConfig = require('../config');
 
 module.exports = {
   // BDCS API + Web service checking
-  serviceCheck: (done) => {
+  serviceCheck: () => {
     const bdcsOptions = {
       method: 'GET',
       uri: `${pageConfig.api.uri}${pageConfig.api.test}`,
@@ -14,37 +14,7 @@ module.exports = {
       uri: pageConfig.root,
     };
 
-    request(bdcsOptions)
-      .then(() => {
-        request(webOptions)
-          .then(() => { done(); })
-          .catch((error) => { done(error); });
-      })
-      .catch((error) => { done(error); });
-  },
-
-  // BDCS API checking
-  apiCheck: (done) => {
-    const options = {
-      method: 'GET',
-      uri: `${pageConfig.api.uri}${pageConfig.api.test}`,
-    };
-
-    request(options)
-      .then(() => { done(); })
-      .catch((error) => { done(error); });
-  },
-
-  // Web service checking
-  webCheck: (done) => {
-    const options = {
-      method: 'GET',
-      uri: pageConfig.root,
-    };
-
-    request(options)
-      .then(() => { done(); })
-      .catch((error) => { done(error); });
+    return Promise.all([request(bdcsOptions), request(webOptions)]);
   },
 
   // Create a new recipe

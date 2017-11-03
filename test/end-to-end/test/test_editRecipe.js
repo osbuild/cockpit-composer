@@ -15,9 +15,7 @@ describe('Edit Recipe Page', () => {
   const timeout = 15000;
 
   // Check BDCS API and Web service first
-  beforeAll((done) => {
-    apiCall.serviceCheck(done);
-  });
+  beforeAll(apiCall.serviceCheck);
 
   const editRecipePage = new EditRecipePage(pageConfig.recipe.simple.name);
 
