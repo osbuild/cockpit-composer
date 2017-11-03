@@ -7,6 +7,7 @@ const apiCall = require('../utils/apiCall');
 const helper = require('../utils/helper');
 const pageConfig = require('../config');
 const fs = require('fs');
+const coverage = require('../utils/coverage.js').coverage;
 
 
 describe('Create Recipe Page', () => {
@@ -56,7 +57,7 @@ describe('Create Recipe Page', () => {
           .then((element) => {
             expect(element).toBe(expectedHelpBlockMsg);
 
-            eval(fs.readFileSync('utils/coverage.js').toString());
+            coverage(nightmare, done);
           });
       }, timeout);
       test('should show alert message by clicking Enter key when create recipe without name @create-recipe-page', (done) => {
@@ -84,7 +85,7 @@ describe('Create Recipe Page', () => {
           .then((element) => {
             expect(element).toBe(expectedHelpBlockMsg);
 
-            eval(fs.readFileSync('utils/coverage.js').toString());
+            coverage(nightmare, done);
           });
       }, timeout);
       test('should show alert message by changing focus to description input @create-recipe-page', (done) => {
@@ -104,7 +105,7 @@ describe('Create Recipe Page', () => {
           .then((element) => {
             expect(element).toBe(expected);
 
-            eval(fs.readFileSync('utils/coverage.js').toString());
+            coverage(nightmare, done);
           });
       }, timeout);
     });
@@ -130,7 +131,7 @@ describe('Create Recipe Page', () => {
           .then((element) => {
             expect(element).toBe(true);
 
-            eval(fs.readFileSync('utils/coverage.js').toString());
+            coverage(nightmare, done);
           });
       }, timeout);
     });
