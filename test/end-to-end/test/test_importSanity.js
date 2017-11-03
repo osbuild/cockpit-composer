@@ -23,10 +23,8 @@ describe('Imported Content Sanity Testing', () => {
     });
   });
 
-  beforeAll((done) => {
-    // Check BDCS API and Web service first
-    apiCall.serviceCheck(done);
-  });
+  // Check BDCS API and Web service first
+  beforeAll(apiCall.serviceCheck);
 
   beforeAll((done) => {
     // Create a new recipe before the first test run in this suite

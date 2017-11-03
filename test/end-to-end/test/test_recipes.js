@@ -16,9 +16,7 @@ describe('Recipes Page', () => {
   const timeout = 15000;
 
   // Check BDCS API and Web service first
-  beforeAll((done) => {
-    apiCall.serviceCheck(done);
-  });
+  beforeAll(apiCall.serviceCheck);
 
   const recipesPage = new RecipesPage();
 
