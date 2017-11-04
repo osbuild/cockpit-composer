@@ -10,6 +10,7 @@ class PendingChanges extends React.Component {
       comment: ""
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSaveChanges = this.handleSaveChanges.bind(this);
   }
 
   componentWillMount() {
@@ -85,7 +86,7 @@ class PendingChanges extends React.Component {
                 </div>
                 <strong>Pending Changes</strong><span className="text-muted"> (most recent first)</span>
                 <ul className="list-group">
-                  {this.props.componentUpdates.map((componentUpdated, index) => (
+                  {this.props.recipe.pendingChanges.map((componentUpdated, index) => (
                     <li className="list-group-item" key={index}>
                       {componentUpdated.componentNew && componentUpdated.componentOld &&
                         <div className="row">
@@ -129,16 +130,15 @@ PendingChanges.propTypes = {
   recipe: PropTypes.object,
   contents: PropTypes.array,
   handleHideModal: PropTypes.func,
-  componentUpdates: PropTypes.array,
   setRecipeComment: PropTypes.func,
   handleSave: PropTypes.func,
+  modals: PropTypes.object,
 };
-
 const mapStateToProps = state => ({
-  componentUpdates: state.modals.pendingChanges.componentUpdates.present,
+  modals: state.modals,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   setRecipeComment: (recipe, comment) => {
     dispatch(setRecipeComment(recipe, comment));
   },

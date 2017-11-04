@@ -16,7 +16,7 @@ import MetadataApi from '../../data/MetadataApi';
 import NotificationsApi from '../../data/NotificationsApi';
 import { connect } from 'react-redux';
 import {
-  fetchingRecipeContents, setRecipe, setRecipeComponents, setRecipeDependencies, savingRecipe,
+  fetchingRecipeContents, setRecipe, setRecipeComponents, savingRecipe,
   addRecipeComponent, removeRecipeComponent, fetchingRecipe, fetchingRecipes,
   undo, redo,
 } from '../../core/actions/recipes';
@@ -24,7 +24,7 @@ import {
   fetchingInputs, setInputComponents, setFilteredInputComponents, setSelectedInputPage,
   setSelectedInput, setSelectedInputStatus, setSelectedInputParent, deleteFilter,
 } from '../../core/actions/inputs';
-import { setModalActive, appendModalPendingChangesComponentUpdates } from '../../core/actions/modals';
+import { setModalActive } from '../../core/actions/modals';
 import {
   componentsSortSetKey, componentsSortSetValue, dependenciesSortSetKey, dependenciesSortSetValue,
 } from '../../core/actions/sort';
@@ -50,8 +50,11 @@ class EditRecipePage extends React.Component {
   componentWillMount() {
     // get recipe, get inputs; then update inputs
     if (this.props.rehydrated) {
-      if (this.props.recipe.id !== undefined) {
+      if (this.props.recipe.id !== undefined && this.props.recipe.pendingChanges.length === 0) {
         this.props.fetchingRecipeContents(this.props.recipe.id);
+      }
+      if (this.props.recipe.components !== undefined) {
+        this.props.fetchingInputs(this.props.inputs.inputFilters, 0, 50, this.props.recipe.components);
       }
     }
     this.props.setSelectedInputPage(0);
@@ -174,15 +177,14 @@ class EditRecipePage extends React.Component {
     // component data is [[{component}, [{dependency},{}]]]
     const recipeComponents = this.props.recipe.components.slice(0);
     const updatedRecipeComponents = recipeComponents.concat(componentData[0][0]);
-    this.props.setRecipeComponents(this.props.recipe, updatedRecipeComponents);
-    this.props.appendModalPendingChangesComponentUpdates({
-      componentOld: null,
-      componentNew: componentData[0][0].name + '-' +componentData[0][0].version + '-' + componentData[0][0].release
-    });
-
     const recipeDependencies = this.props.recipe.dependencies;
     const updatedRecipeDependencies = recipeDependencies.concat(componentData[0][0].dependencies);
-    this.props.setRecipeDependencies(this.props.recipe, updatedRecipeDependencies);
+
+    const pendingChange = {
+      componentOld: null,
+      componentNew: componentData[0][0].name + '-' +componentData[0][0].version + '-' + componentData[0][0].release
+    }
+    this.props.setRecipeComponents(this.props.recipe, updatedRecipeComponents, updatedRecipeDependencies, pendingChange);
 
     RecipeApi.updateRecipe(componentData[0][0], 'add');
   }
@@ -243,11 +245,11 @@ class EditRecipePage extends React.Component {
     // update input component data
     this.updateInputComponentsOnChange(component, 'remove');
     // update the list of recipe components to not include the removed component
-    this.props.removeRecipeComponent(this.props.recipe, component);
-    this.props.appendModalPendingChangesComponentUpdates({
+    const pendingChange = {
       componentOld: component.name + '-' + component.version + '-' + component.release,
       componentNew: null,
-    });
+    };
+    this.props.removeRecipeComponent(this.props.recipe, component, pendingChange);
     event.preventDefault();
     event.stopPropagation();
   }
@@ -413,14 +415,15 @@ class EditRecipePage extends React.Component {
       this.props.fetchingRecipeContents(this.props.route.params.recipe.replace(/\s/g, '-'));
       return <div></div>;
     }
-    if (this.props.inputs.inputComponents === undefined && this.props.recipe.components !== undefined) {
+    if ((this.props.inputs.inputComponents === undefined || this.props.inputs.inputComponents.length === 0)
+      && this.props.components !== undefined) {
       this.props.fetchingInputs(this.props.inputs.inputFilters, 0, 50, this.props.recipe.components);
     }
     const recipeDisplayName = this.props.route.params.recipe;
     const {
       recipe, components, dependencies,
       inputs, createComposition, modalActive, componentsSortKey, componentsSortValue,
-      pastLength, futureLength, componentUpdates,
+      pastLength, futureLength,
     } = this.props;
 
     return (
@@ -437,10 +440,10 @@ class EditRecipePage extends React.Component {
             <li className="active"><strong>Edit Recipe</strong></li>
           </ol>
           <div className="cmpsr-header__actions">
-          {componentUpdates.length > 0 &&
+          {recipe.pendingChanges.length > 0 &&
             <ul className="list-inline">
-            {componentUpdates.length !== 1 &&
-              <li className="text-muted"> {componentUpdates.length} changes</li>
+            {recipe.pendingChanges.length !== 1 &&
+              <li className="text-muted"> {recipe.pendingChanges.length} changes</li>
             ||
               <li className="text-muted"> 1 change</li>
             }
@@ -480,6 +483,7 @@ class EditRecipePage extends React.Component {
           <div className="cmpsr-panel__body cmpsr-panel__body--main">
           {componentsSortKey !== undefined && componentsSortValue !== undefined &&
             <Toolbar
+              recipeId={recipe.id}
               handleShowModal={this.handleShowModal}
               componentsSortKey={componentsSortKey}
               componentsSortValue={componentsSortValue}
@@ -658,7 +662,6 @@ EditRecipePage.propTypes = {
   setSelectedInputParent: PropTypes.func,
   deleteFilter: PropTypes.func,
   setRecipeComponents: PropTypes.func,
-  setRecipeDependencies: PropTypes.func,
   setModalActive: PropTypes.func,
   dependenciesSortSetValue: PropTypes.func,
   componentsSortSetValue: PropTypes.func,
@@ -666,10 +669,8 @@ EditRecipePage.propTypes = {
   dependencies: PropTypes.array,
   componentsSortKey: PropTypes.string,
   componentsSortValue: PropTypes.string,
-  appendModalPendingChangesComponentUpdates: PropTypes.func,
   pastLength: PropTypes.number,
   futureLength: PropTypes.number,
-  componentUpdates: PropTypes.array,
   undo: PropTypes.func,
   redo: PropTypes.func,
 };
@@ -696,7 +697,6 @@ const makeMapStateToProps = () => {
         modalActive: state.modals.modalActive,
         pastLength: getPastLength(fetchedRecipe),
         futureLength: getFutureLength(fetchedRecipe),
-        componentUpdates: state.modals.pendingChanges.componentUpdates.present,
       };
     }
     return {
@@ -712,7 +712,6 @@ const makeMapStateToProps = () => {
       modalActive: state.modals.modalActive,
       pastLength: 0,
       futureLength: 0,
-      componentUpdates: state.modals.pendingChanges.componentUpdates.present,
     };
   };
   return mapStateToProps;
@@ -743,11 +742,8 @@ const mapDispatchToProps = (dispatch) => ({
   setRecipe: recipe => {
     dispatch(setRecipe(recipe));
   },
-  setRecipeComponents: (recipe, components) => {
-    dispatch(setRecipeComponents(recipe, components));
-  },
-  setRecipeDependencies: (recipe, dependencies) => {
-    dispatch(setRecipeDependencies(recipe, dependencies));
+  setRecipeComponents: (recipe, components, dependencies, pendingChange) => {
+    dispatch(setRecipeComponents(recipe, components, dependencies, pendingChange));
   },
   setSelectedInput: (selectedInput) => {
     dispatch(setSelectedInput(selectedInput));
@@ -767,8 +763,8 @@ const mapDispatchToProps = (dispatch) => ({
   addRecipeComponent: (recipe, component) => {
     dispatch(addRecipeComponent(recipe, component));
   },
-  removeRecipeComponent: (recipe, component) => {
-    dispatch(removeRecipeComponent(recipe, component));
+  removeRecipeComponent: (recipe, component, pendingChange) => {
+    dispatch(removeRecipeComponent(recipe, component, pendingChange));
   },
   setModalActive: (modalActive) => {
     dispatch(setModalActive(modalActive));
@@ -785,14 +781,11 @@ const mapDispatchToProps = (dispatch) => ({
   dependenciesSortSetValue: value => {
     dispatch(dependenciesSortSetValue(value));
   },
-  appendModalPendingChangesComponentUpdates: componentUpdate => {
-    dispatch(appendModalPendingChangesComponentUpdates(componentUpdate));
+  undo: (recipeId) => {
+    dispatch(undo(recipeId));
   },
-  undo: () => {
-    dispatch(undo());
-  },
-  redo: () => {
-    dispatch(redo());
+  redo: (recipeId) => {
+    dispatch(redo(recipeId));
   }
 });
 

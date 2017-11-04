@@ -4,12 +4,12 @@ import {
   SET_MODAL_CREATE_RECIPE_ERROR_NAME_VISIBLE, SET_MODAL_CREATE_RECIPE_ERROR_DUPLICATE_VISIBLE,
   SET_MODAL_CREATE_RECIPE_ERROR_INLINE, SET_MODAL_CREATE_RECIPE_CHECK_ERRORS, SET_MODAL_CREATE_RECIPE_RECIPE,
   FETCHING_MODAL_CREATE_COMPOSTION_TYPES_SUCCESS,
-  APPEND_MODAL_PENDING_CHANGES_COMPONENT_UPDATES,
+  // APPEND_MODAL_PENDING_CHANGES_COMPONENT_UPDATES,
 } from '../actions/modals';
 
-import {
-  UNDO, REDO
-} from '../actions/recipes';
+// import {
+//   UNDO, REDO
+// } from '../actions/recipes';
 
 const modalCreateRecipe = (state = [], action) => {
   switch (action.type) {
@@ -77,55 +77,6 @@ const modalExportRecipe = (state = [], action) => {
   }
 };
 
-const modalPendingChanges = (state = [], action) => {
-  switch (action.type) {
-    case UNDO:
-      return Object.assign(
-        {}, state, {
-          pendingChanges: Object.assign({}, state.pendingChanges, {
-            componentUpdates: Object.assign({}, state.pendingChanges.componentUpdates, {
-              future: state.pendingChanges.componentUpdates.future.concat([state.pendingChanges.componentUpdates.present]),
-              present: state.pendingChanges.componentUpdates.past.pop(),
-            })
-          })
-        }
-      );
-    case REDO:
-      return Object.assign(
-        {}, state, {
-          pendingChanges: Object.assign({}, state.pendingChanges, {
-            componentUpdates: Object.assign({}, state.pendingChanges.componentUpdates, {
-              past: state.pendingChanges.componentUpdates.past.concat([state.pendingChanges.componentUpdates.present]),
-              present: state.pendingChanges.componentUpdates.future.pop(),
-            })
-          })
-        }
-      );
-    case APPEND_MODAL_PENDING_CHANGES_COMPONENT_UPDATES:
-      // This checks if there is already a pending update for that component.
-      // If so it gets removed from the pending changes. Otherwise the new change is added.
-      // We are also maintaining a history of pendingChanges
-      return Object.assign(
-        {}, state, {
-          pendingChanges: Object.assign({}, state.pendingChanges, {
-            componentUpdates: Object.assign({}, state.pendingChanges.componentUpdates, {
-              past: state.pendingChanges.componentUpdates.past.concat([state.pendingChanges.componentUpdates.present]),
-              present: state.pendingChanges.componentUpdates.present.some((component) => {
-                return (component.componentNew === action.payload.componentUpdate.componentOld && component.componentNew !== null)
-                 || (component.componentOld === action.payload.componentUpdate.componentNew && component.componentOld !== null)
-              }) ? state.pendingChanges.componentUpdates.present.filter((component) => {
-                return component.componentNew != action.payload.componentUpdate.componentOld
-                || component.componentOld != action.payload.componentUpdate.componentNew
-              }) : [action.payload.componentUpdate].concat(state.pendingChanges.componentUpdates.present),
-            }),
-          }),
-        }
-      );
-    default:
-      return state;
-  }
-};
-
 
 const modals = (state = [], action) => {
   switch (action.type) {
@@ -149,12 +100,6 @@ const modals = (state = [], action) => {
       return modalExportRecipe(state, action);
     case SET_MODAL_EXPORT_RECIPE_VISIBLE:
       return modalExportRecipe(state, action);
-    case APPEND_MODAL_PENDING_CHANGES_COMPONENT_UPDATES:
-      return modalPendingChanges(state, action);
-    case UNDO:
-      return modalPendingChanges(state, action);
-    case REDO:
-      return modalPendingChanges(state, action);
     default:
       return state;
   }

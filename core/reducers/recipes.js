@@ -1,15 +1,14 @@
 import {
   UNDO, REDO,
   CREATING_RECIPE_SUCCEEDED,
-  FETCHING_RECIPE_SUCCEEDED,
   FETCHING_RECIPES_SUCCEEDED,
   FETCHING_RECIPE_CONTENTS_SUCCEEDED,
-  SET_RECIPE, SET_RECIPE_DESCRIPTION, SET_RECIPE_COMPONENTS, SET_RECIPE_DEPENDENCIES, SET_RECIPE_COMMENT,
+  SET_RECIPE, SET_RECIPE_DESCRIPTION, SET_RECIPE_COMPONENTS, SET_RECIPE_COMMENT,
   ADD_RECIPE_COMPONENT, REMOVE_RECIPE_COMPONENT,
   DELETING_RECIPE_SUCCEEDED,
 } from '../actions/recipes';
 
-const recipesPresent = (state = [], action) => {
+const recipes = (state = [], action) => {
   switch (action.type) {
     case ADD_RECIPE_COMPONENT:
       return [
@@ -33,8 +32,15 @@ const recipesPresent = (state = [], action) => {
               past: recipe.past.concat([recipe.present]),
               present: Object.assign(
                 {}, recipe.present, {
-                components: recipe.present.components.filter(component => component.name !== action.payload.component.name)
-              })
+                components: recipe.present.components.filter(component => component.name !== action.payload.component.name),
+                pendingChanges: recipe.present.pendingChanges.some((component) => {
+                  return (component.componentNew === action.payload.pendingChange.componentOld && component.componentNew !== null)
+                   || (component.componentOld === action.payload.pendingChange.componentNew && component.componentOld !== null)
+                }) ? recipe.present.pendingChanges.filter((component) => {
+                  return component.componentNew != action.payload.pendingChange.componentOld
+                  || component.componentOld != action.payload.pendingChange.componentNew
+                }) : [action.payload.pendingChange].concat(recipe.present.pendingChanges),
+              }),
             });
           }
           return recipe;
@@ -44,7 +50,7 @@ const recipesPresent = (state = [], action) => {
       return [
         ...state.filter(recipe => recipe.present.id !== action.payload.recipe.id), {
           past: [],
-          present: action.payload.recipe,
+          present: Object.assign({}, action.payload.recipe, { pendingChanges: [] }),
           future: [],
         }
       ];
@@ -55,7 +61,7 @@ const recipesPresent = (state = [], action) => {
       || !state.some(recipe => recipe.present.id === action.payload.recipe.id)
       ? [...state.filter(recipe => recipe.present.id !== action.payload.recipe.id), {
           past: [],
-          present: action.payload.recipe,
+          present: Object.assign({}, action.payload.recipe, { pendingChanges: [] }),
           future: [],
         }]
       : state;
@@ -63,7 +69,7 @@ const recipesPresent = (state = [], action) => {
       return [
         ...state.filter(recipe => recipe.present.id !== action.payload.recipe.id), {
           past: [],
-          present: action.payload.recipe,
+          present: Object.assign({}, action.payload.recipe, { pendingChanges: [] }),
           future: [],
         }
       ];
@@ -73,8 +79,9 @@ const recipesPresent = (state = [], action) => {
           if (recipe.present.id === action.payload.recipe.id) {
             return Object.assign(
               {}, recipe, {
-              past: recipe.past.concat([recipe.present]),
+              past: [],
               present: action.payload.recipe,
+              future: [],
             });
           }
           return recipe;
@@ -87,20 +94,17 @@ const recipesPresent = (state = [], action) => {
             return Object.assign(
               {}, recipe, {
               past: recipe.past.concat([recipe.present]),
-              present: Object.assign({}, recipe.present, { components: action.payload.components }),
-            });
-          }
-          return recipe;
-        }),
-      ];
-    case SET_RECIPE_DEPENDENCIES:
-      return [
-        ...state.map(recipe => {
-          if (recipe.present.id === action.payload.recipe.id) {
-            return Object.assign(
-              {}, recipe, {
-              past: recipe.past.concat([recipe.present]),
-              present: Object.assign({}, recipe.present, { dependencies: action.payload.dependencies }),
+              present: Object.assign({}, recipe.present, {
+                components: action.payload.components,
+                dependencies: action.payload.dependencies,
+                pendingChanges: recipe.present.pendingChanges.some((component) => {
+                  return (component.componentNew === action.payload.pendingChange.componentOld && component.componentNew !== null)
+                  || (component.componentOld === action.payload.pendingChange.componentNew && component.componentOld !== null)
+                }) ? recipe.present.pendingChanges.filter((component) => {
+                  return component.componentNew != action.payload.pendingChange.componentOld
+                  || component.componentOld != action.payload.pendingChange.componentNew
+                }) : [action.payload.pendingChange].concat(recipe.present.pendingChanges),
+              }),
             });
           }
           return recipe;
@@ -125,7 +129,6 @@ const recipesPresent = (state = [], action) => {
           if (recipe.present.id === action.payload.recipe.id) {
             return Object.assign(
               {}, recipe, {
-              past: recipe.past.concat([recipe.present]),
               present: Object.assign({}, recipe.present, { comment: action.payload.comment }),
             });
           }
@@ -137,11 +140,11 @@ const recipesPresent = (state = [], action) => {
     case UNDO:
       return [
         ...state.map(recipe => {
-          if (recipe.present.id === action.payload.recipe.id) {
+          if (recipe.present.id === action.payload.recipeId) {
             return Object.assign(
               {}, recipe, {
-              present: recipe.past.pop(),
               future: recipe.future.concat([recipe.present]),
+              present: recipe.past.pop(),
             });
           }
           return recipe;
@@ -150,7 +153,7 @@ const recipesPresent = (state = [], action) => {
     case REDO:
       return [
         ...state.map(recipe => {
-          if (recipe.present.id === action.payload.recipe.id) {
+          if (recipe.present.id === action.payload.recipeId) {
             return Object.assign(
               {}, recipe, {
               past: recipe.past.concat([recipe.present]),
@@ -160,49 +163,6 @@ const recipesPresent = (state = [], action) => {
           return recipe;
         }),
       ];
-    default:
-      return state;
-  }
-};
-
-const recipes = (state = [], action) => {
-  switch (action.type) {
-    case UNDO:
-      return Object.assign(
-        {}, state, {
-        future: state.future.concat([state.present]),
-        present: state.past.pop(),
-      });
-    case REDO:
-      return Object.assign(
-        {}, state, {
-        past: state.past.concat([state.present]),
-        present: state.future.pop(),
-      });
-    case ADD_RECIPE_COMPONENT:
-      return recipesPresent(state, action);
-    case REMOVE_RECIPE_COMPONENT:
-      return recipesPresent(state, action);
-    case CREATING_RECIPE_SUCCEEDED:
-      return recipesPresent(state, action);
-    case FETCHING_RECIPES_SUCCEEDED:
-      return recipesPresent(state, action);
-    case FETCHING_RECIPE_SUCCEEDED:
-      return recipesPresent(state, action);
-    case FETCHING_RECIPE_CONTENTS_SUCCEEDED:
-      return recipesPresent(state, action);
-    case SET_RECIPE:
-      return recipesPresent(state, action);
-    case SET_RECIPE_COMPONENTS:
-      return recipesPresent(state, action);
-    case SET_RECIPE_DEPENDENCIES:
-      return recipesPresent(state, action);
-    case SET_RECIPE_DESCRIPTION:
-      return recipesPresent(state, action);
-    case SET_RECIPE_COMMENT:
-      return recipesPresent(state, action);
-    case DELETING_RECIPE_SUCCEEDED:
-      return recipesPresent(state, action);
     default:
       return state;
   }

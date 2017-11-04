@@ -88,6 +88,6 @@ const store = createStore(
 );
 sagaMiddleware.run(rootSaga);
 
-persistStore(store, { whitelist: ['recipePage'] });
+persistStore(store, { whitelist: ['recipePage', 'recipes'] });
 
 export default store;
