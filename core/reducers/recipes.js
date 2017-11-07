@@ -80,7 +80,7 @@ const recipes = (state = [], action) => {
             return Object.assign(
               {}, recipe, {
               past: [],
-              present: action.payload.recipe,
+              present: Object.assign({}, action.payload.recipe, { pendingChanges: [] }),
               future: [],
             });
           }
