@@ -7,7 +7,7 @@ The end-to-end automation test for Welder! It is performed on the application le
 
 ### Running end-to-end test directly on the host
 
-The end-to-end tests are powered by [nightmare](http://nightmarejs.org/), 
+The end-to-end tests are powered by [nightmare](http://nightmarejs.org/),
 [Jest](https://facebook.github.io/jest/) and [request-promise-native](https://github.com/request/request-promise-native)
 
 #### Requirement
@@ -39,19 +39,19 @@ $ jest -i -t "@create-recipe-page|@edit-recipe-page"     # Run create recipe and
 
 The end-to-end test docker image is an executable image, which starts container, runs test, and exits.
 
-The docker image depends on a base image, named weld/fedora:25, which needs have been previously built. 
+The docker image depends on a base image, named weld/fedora:25, which needs have been previously built.
 If it is not available it can be built from the welder-deployment repository by running `make weld-f25`.
 
 Build end-to-end test docker image by running:
 
 `sudo docker build -t weld/end-to-end:latest .`
 
-The end-to-end test needs both bdcs-api-rs and welder-web docker running. Build them from welder-deployment 
+The end-to-end test needs both bdcs-api-rs and welder-web docker running. Build them from welder-deployment
 repository by running `make build` and `make import-metadata`. Run them by running `sudo docker-compose -p welder up -d`.
 
 Run end-to-end test like this:
 
-`sudo docker run --rm --name welder_end_to_end --network welder_default -v `pwd`/welder-deployment/mddb:/mddb -e MDDB='/mddb/metadata.db' weld/end-to-end:latest xvfb-run -a -s '-screen 0 1024x768x24' npm run test`
+`sudo docker run --rm --name welder_end_to_end --network welder_default weld/end-to-end:latest xvfb-run -a -s '-screen 0 1024x768x24' npm run test`
 
 ## Directory Layout
 
@@ -81,7 +81,7 @@ module.exports = class CreateComposPage extends MainPage {    // Inherint from t
   constructor(type, arch) {                                   // Call constructor
     super('Create Composition');                              // Call super with title as argument
     this.composType = type;
-    this.composArch = arch; 
+    this.composArch = arch;
 
     // Create Copmosition label                               // Comment about what this element is
     this.varCreateCompos = 'Create Composition';              // Page element value
@@ -102,7 +102,7 @@ describe('View Recipe Page', function () {             // Which page does this s
   });                                                                   
 
   describe('Single Word Recipe Name Scenario', () => {    // Group suite or case into a scenario
-    
+
     beforeAll((done) => {                                 // Scenario provision
     });
 
@@ -111,8 +111,8 @@ describe('View Recipe Page', function () {             // Which page does this s
 
     describe('Menu Nav Bar Check #acceptance', () => {     // Test content and test type
       test('should show a recipe name @view-recipe-page', (done) => {    // Case description and case ID
-        
-        const expected = "Expected Result";         // Highlight the expected result at the top level 
+
+        const expected = "Expected Result";         // Highlight the expected result at the top level
                                                     // of each case block. Explicit is always better!
       }, timeout);
     });
