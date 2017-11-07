@@ -5,7 +5,8 @@
         "test": "api/v0/test",
         "newRecipe": "api/v0/recipes/new",
         "deleteRecipe": "api/v0/recipes/delete/",
-        "moduleInfo": "api/v0/modules/info/"
+        "moduleInfo": "api/v0/modules/info/",
+        "moduleListTotalPackages": "api/v0/modules/list?limit=0&offset=0"
     },
     "recipe": {
         "simple": {

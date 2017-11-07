@@ -59,10 +59,7 @@ $ npm run test                  # Run unit tests. Or, `npm run test:watch`
 
 [End-to-End Test Running Guide](test/end-to-end/README.md).
 
-**NOTE:** all tests are executed in Travis CI on overy commit and every pull request!
-End-to-End tests in Travis CI use publicly available `metadata.db` prepared from
-CentOS 7 content. The same metadata is used also for
-[depclose integration tests](https://github.com/weldr/bdcs-api-rs#testing).
+**NOTE:** all tests are executed in Travis CI on every commit and every pull request!
 
 ### How to Deploy
 

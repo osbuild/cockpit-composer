@@ -58,4 +58,19 @@ module.exports = {
       })
       .catch((error) => { done(error); });
   },
+
+  // Get total number of pcakges
+  moduleListTotalPackages: (callback, done) => {
+    const options = {
+      method: 'GET',
+      uri: `${pageConfig.api.uri}${pageConfig.api.moduleListTotalPackages}`,
+      json: true,
+    };
+
+    request(options)
+      .then((resp) => {
+        callback(resp.total);
+      })
+      .catch((error) => { done(error); });
+  },
 };
