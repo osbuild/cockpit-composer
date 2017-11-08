@@ -418,8 +418,11 @@ class EditRecipePage extends React.Component {
       return <div></div>;
     }
     if ((this.props.inputs.inputComponents === undefined || this.props.inputs.inputComponents.length === 0)
-      && this.props.components !== undefined) {
+      && this.props.recipe.components !== undefined) {
       this.props.fetchingInputs(this.props.inputs.inputFilters, 0, 50, this.props.recipe.components);
+    }
+    else if (this.props.recipe.components === undefined) {
+      this.props.fetchingInputs(this.props.inputs.inputFilters, 0, 50, []);
     }
     const recipeDisplayName = this.props.route.params.recipe;
     const {
