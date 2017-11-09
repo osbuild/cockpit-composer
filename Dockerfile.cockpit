@@ -5,5 +5,8 @@ RUN dnf install -y cockpit-ws cockpit-kubernetes && dnf clean all
 RUN echo $'[Negotiate]\nCommand = /usr/libexec/cockpit-stub\n[WebService]\nShell = /shell/simple.html' > /etc/cockpit/cockpit.conf
 RUN rm -rf /usr/share/cockpit/kubernetes/
 
+COPY welder-web*.rpm /tmp/
+RUN dnf -y install /tmp/welder-web*.rpm && rm -f /tmp/welder-web*.rpm
+
 CMD ["/usr/libexec/cockpit-ws", "--no-tls"]
 EXPOSE 9090
