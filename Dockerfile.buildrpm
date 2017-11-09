@@ -1,0 +1,6 @@
+FROM welder/web-nodejs:latest
+MAINTAINER Xiaofeng Wang <xiaofwan@redhat.com>
+RUN dnf install -y rpm-build && dnf clean all
+
+WORKDIR /welder
+CMD ["make", "rpm"]

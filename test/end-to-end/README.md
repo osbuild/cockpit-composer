@@ -2,6 +2,15 @@
 
 The end-to-end automation test for Welder! It is performed on the application level and tests whether the business requirements are met regardless of app internal architecture, dependencies, data integrity and such. Actually we need to follow the end-user flows and assert they get the intended experience and focus on the behavior of the thing as the user would see it.
 
+## Two Test Scenarios
+
+### Stand Alone Welder Web Scenario
+
+In this scenario, the Welder Web will be run as a stand alone web service. End-to-end test will run against this scenario to make sure Welder Web work as we expected. The code coverage will be generated after end-to-end test.
+
+### Cockpit Integrated Scenario
+
+Welder Web will be integrated into Cockpit in this scenario. Welder Web RPM will install into Cockpit. End-to-end test in this case is to make sure that the RPM package isn't missing important module and to make sure that the Welder Web is able to work with Cockpit. RPM sanity measure and Cockpit functional test will be covered in this scenario.
 
 ## How To Test
 
