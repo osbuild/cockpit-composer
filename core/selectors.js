@@ -76,8 +76,8 @@ const getSortedRecipes = (state) => {
   const key = state.sort.recipes.key;
   const value = state.sort.recipes.value;
   sortedRecipes.sort((a, b) => {
-    if (a[key] > b[key]) return value === 'DESC' ? 1 : -1;
-    if (b[key] > a[key]) return value === 'DESC' ? -1 : 1;
+    if (a.present[key] > b.present[key]) return value === 'DESC' ? 1 : -1;
+    if (b.present[key] > a.present[key]) return value === 'DESC' ? -1 : 1;
     return 0;
   });
   return sortedRecipes;
