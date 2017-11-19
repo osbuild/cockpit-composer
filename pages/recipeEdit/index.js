@@ -411,7 +411,7 @@ class EditRecipePage extends React.Component {
   }
 
   render() {
-    if (!this.props.rehydrated) {
+    if (!this.props.rehydrated || this.props.recipe.id === undefined) {
       if (this.props.recipe.id === undefined) {
         this.props.fetchingRecipeContents(this.props.route.params.recipe.replace(/\s/g, '-'));
       }
