@@ -27,7 +27,12 @@ const initialState = {
       parent: '',
       status: '',
     },
+    inputFilters: {
+        field: 'name',
+        value: '',
+    },
   },
+  recipes : [],
   modals: {
     createComposition: {
       compositionTypes: [],
@@ -47,6 +52,13 @@ const initialState = {
         description: '',
         modules: [],
         packages: [],
+      },
+    },
+    pendingChanges: {
+      componentUpdates: {
+        past: [],
+        present: [],
+        future: [],
       },
     },
   },
@@ -76,6 +88,6 @@ const store = createStore(
 );
 sagaMiddleware.run(rootSaga);
 
-persistStore(store, { whitelist: ['recipes', 'recipePage', 'inputs'] });
+persistStore(store, { whitelist: ['recipePage'] });
 
 export default store;

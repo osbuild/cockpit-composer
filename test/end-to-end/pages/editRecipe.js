@@ -59,6 +59,8 @@ module.exports = class EditRecipePage extends MainPage {
     this.moreActionList = {
       Export: 'Export',
     };
+
+    this.componentListItemRootElementSelect = `${this.componentListItemRootElement} a`;
   }
 
   get url() {

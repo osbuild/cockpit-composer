@@ -66,7 +66,34 @@ const Toolbar = props => (
           </button>
         }
       </div>
-
+      <div className="form-group">
+      {props.pastLength > 0 &&
+        <button className="btn btn-link" type="button" onClick={() => {props.undo(props.recipeId); props.handleHistory();}}>
+          <span className="fa fa-undo" aria-hidden="true" />
+        </button>
+      ||
+        <button
+          className="btn btn-link disabled"
+          type="button"
+          onClick={() => {props.undo(props.recipeId); props.handleHistory();}}
+        >
+          <span className="fa fa-undo" aria-hidden="true" />
+        </button>
+      }
+      {props.futureLength > 0 &&
+        <button className="btn btn-link" type="button" onClick={() => {props.redo(props.recipeId); props.handleHistory();}}>
+          <span className="fa fa-repeat" aria-hidden="true" />
+        </button>
+      ||
+        <button
+          className="btn btn-link disabled"
+          type="button"
+          onClick={() => {props.redo(props.recipeId); props.handleHistory();}}
+        >
+          <span className="fa fa-repeat" aria-hidden="true" />
+        </button>
+      }
+      </div>
       <div className="toolbar-pf-action-right">
         <div className="form-group">
           <button

@@ -87,31 +87,35 @@ export const addRecipeComponent = (recipe, component) => ({
 });
 
 export const REMOVE_RECIPE_COMPONENT = 'REMOVE_RECIPE_COMPONENT';
-export const removeRecipeComponent = (recipe, component) => ({
+export const removeRecipeComponent = (recipe, component, pendingChange) => ({
   type: REMOVE_RECIPE_COMPONENT,
   payload: {
     recipe,
     component,
+    pendingChange,
   },
 });
 
 export const SET_RECIPE_COMPONENTS = 'SET_RECIPE_COMPONENTS';
-export const setRecipeComponents = (recipe, components) => ({
+export const setRecipeComponents = (recipe, components, dependencies, pendingChange) => ({
   type: SET_RECIPE_COMPONENTS,
   payload: {
     recipe,
     components,
+    dependencies,
+    pendingChange,
   },
 });
 
-export const SET_RECIPE_DEPENDENCIES = 'SET_RECIPE_DEPENDENCIES';
-export const setRecipeDependencies = (recipe, dependencies) => ({
-  type: SET_RECIPE_DEPENDENCIES,
+export const SET_RECIPE_COMMENT = 'SET_RECIPE_COMMENT';
+export const setRecipeComment = (recipe, comment) => ({
+  type: SET_RECIPE_COMMENT,
   payload: {
     recipe,
-    dependencies,
+    comment,
   },
 });
+
 
 export const DELETING_RECIPE = 'DELETING_RECIPE';
 export const deletingRecipe = (recipeId) => ({
@@ -129,11 +133,26 @@ export const deletingRecipeSucceeded = (recipeId) => ({
   },
 });
 
-
 export const RECIPES_FAILURE = 'RECIPES_FAILURE';
 export const recipesFailure = (error) => ({
   type: RECIPES_FAILURE,
   payload: {
     error,
+  },
+});
+
+export const UNDO = 'UNDO';
+export const undo = (recipeId) => ({
+  type: UNDO,
+  payload: {
+    recipeId,
+  },
+});
+
+export const REDO = 'REDO';
+export const redo = (recipeId) => ({
+  type: REDO,
+  payload: {
+    recipeId,
   },
 });

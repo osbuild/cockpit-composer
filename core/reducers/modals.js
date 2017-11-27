@@ -4,7 +4,12 @@ import {
   SET_MODAL_CREATE_RECIPE_ERROR_NAME_VISIBLE, SET_MODAL_CREATE_RECIPE_ERROR_DUPLICATE_VISIBLE,
   SET_MODAL_CREATE_RECIPE_ERROR_INLINE, SET_MODAL_CREATE_RECIPE_CHECK_ERRORS, SET_MODAL_CREATE_RECIPE_RECIPE,
   FETCHING_MODAL_CREATE_COMPOSTION_TYPES_SUCCESS,
+  // APPEND_MODAL_PENDING_CHANGES_COMPONENT_UPDATES,
 } from '../actions/modals';
+
+// import {
+//   UNDO, REDO
+// } from '../actions/recipes';
 
 const modalCreateRecipe = (state = [], action) => {
   switch (action.type) {
@@ -71,6 +76,7 @@ const modalExportRecipe = (state = [], action) => {
       return state;
   }
 };
+
 
 const modals = (state = [], action) => {
   switch (action.type) {

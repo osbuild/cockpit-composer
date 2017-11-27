@@ -18,8 +18,9 @@ import MetadataApi from '../../data/MetadataApi';
 import NotificationsApi from '../../data/NotificationsApi';
 import { connect } from 'react-redux';
 import {
-  fetchingRecipeContents, setRecipe, setRecipeComponents, setRecipeDependencies, savingRecipe,
+  fetchingRecipeContents, setRecipe, setRecipeComponents, savingRecipe,
   addRecipeComponent, removeRecipeComponent, fetchingRecipe, fetchingRecipes,
+  undo, redo,
 } from '../../core/actions/recipes';
 import {
   fetchingInputs, setInputComponents, setFilteredInputComponents, setSelectedInputPage,
@@ -29,7 +30,9 @@ import { setModalActive } from '../../core/actions/modals';
 import {
   componentsSortSetKey, componentsSortSetValue, dependenciesSortSetKey, dependenciesSortSetValue,
 } from '../../core/actions/sort';
-import { makeGetRecipeById, makeGetSortedComponents, makeGetSortedDependencies } from '../../core/selectors';
+import {
+  makeGetRecipeById, makeGetSortedComponents, makeGetSortedDependencies, makeGetFutureLength, makeGetPastLength
+} from '../../core/selectors';
 
 class EditRecipePage extends React.Component {
   constructor() {
@@ -43,20 +46,19 @@ class EditRecipePage extends React.Component {
     this.handleComponentDetails = this.handleComponentDetails.bind(this);
     this.handleHideModal = this.handleHideModal.bind(this);
     this.handleShowModal = this.handleShowModal.bind(this);
+    this.handleHistory = this.handleHistory.bind(this);
   }
 
   componentWillMount() {
     // get recipe, get inputs; then update inputs
     if (this.props.rehydrated) {
-      if (this.props.recipe.id !== undefined) {
+      if (this.props.recipe.id !== undefined && this.props.recipe.pendingChanges.length === 0) {
         this.props.fetchingRecipeContents(this.props.recipe.id);
       }
+      if (this.props.recipe.components !== undefined) {
+        this.props.fetchingInputs(this.props.inputs.inputFilters, 0, 50, this.props.recipe.components);
+      }
     }
-    const filter = {
-      field: 'name',
-      value: '',
-    };
-    this.props.fetchingInputs(filter, 0, 50, this.props.recipe.components);
     this.props.setSelectedInputPage(0);
     this.props.setSelectedInput('');
     this.props.setSelectedInputParent('');
@@ -177,11 +179,14 @@ class EditRecipePage extends React.Component {
     // component data is [[{component}, [{dependency},{}]]]
     const recipeComponents = this.props.recipe.components.slice(0);
     const updatedRecipeComponents = recipeComponents.concat(componentData[0][0]);
-    this.props.setRecipeComponents(this.props.recipe, updatedRecipeComponents);
-
     const recipeDependencies = this.props.recipe.dependencies;
     const updatedRecipeDependencies = recipeDependencies.concat(componentData[0][0].dependencies);
-    this.props.setRecipeDependencies(this.props.recipe, updatedRecipeDependencies);
+
+    const pendingChange = {
+      componentOld: null,
+      componentNew: componentData[0][0].name + '-' +componentData[0][0].version + '-' + componentData[0][0].release
+    }
+    this.props.setRecipeComponents(this.props.recipe, updatedRecipeComponents, updatedRecipeDependencies, pendingChange);
 
     RecipeApi.updateRecipe(componentData[0][0], 'add');
   }
@@ -224,7 +229,6 @@ class EditRecipePage extends React.Component {
     // let selectedComponent = this.props.recipe.components.filter((obj) => (obj.name === component.name));
     // // update recipe component with saved updates
     // selectedComponent = Object.assign(selectedComponent, component);
-    // TODO setRecipeComponents
     this.hideComponentDetails();
     // update input component with saved Updates
     this.updateInputComponentsOnChange(component);
@@ -243,7 +247,11 @@ class EditRecipePage extends React.Component {
     // update input component data
     this.updateInputComponentsOnChange(component, 'remove');
     // update the list of recipe components to not include the removed component
-    this.props.removeRecipeComponent(this.props.recipe, component);
+    const pendingChange = {
+      componentOld: component.name + '-' + component.version + '-' + component.release,
+      componentNew: null,
+    };
+    this.props.removeRecipeComponent(this.props.recipe, component, pendingChange);
     event.preventDefault();
     event.stopPropagation();
   }
@@ -379,6 +387,7 @@ class EditRecipePage extends React.Component {
   handleShowModal(e, modalType) {
     switch (modalType) {
       case 'modalPendingChanges':
+        // this.getComponentUpdates();
         this.props.setModalActive('modalPendingChanges');
         break;
       case 'modalExportRecipe':
@@ -392,14 +401,36 @@ class EditRecipePage extends React.Component {
     e.stopPropagation();
   }
 
+  handleHistory() {
+    setTimeout(() => {
+      this.props.fetchingInputs(
+        this.props.inputs.inputFilters,
+        this.props.inputs.selectedInputPage,
+        this.props.inputs.pageSize,
+        this.props.recipe.components
+      );
+    }, 50);
+  }
+
   render() {
-    if (!this.props.rehydrated) {
-      this.props.fetchingRecipeContents(this.props.route.params.recipe.replace(/\s/g, '-'));
+    if (!this.props.rehydrated || this.props.recipe.id === undefined) {
+      if (this.props.recipe.id === undefined) {
+        this.props.fetchingRecipeContents(this.props.route.params.recipe.replace(/\s/g, '-'));
+      }
       return <div></div>;
+    }
+    if ((this.props.inputs.inputComponents === undefined || this.props.inputs.inputComponents.length === 0)
+      && this.props.recipe.components !== undefined) {
+      this.props.fetchingInputs(this.props.inputs.inputFilters, 0, 50, this.props.recipe.components);
+    }
+    else if (this.props.recipe.components === undefined) {
+      this.props.fetchingInputs(this.props.inputs.inputFilters, 0, 50, []);
     }
     const recipeDisplayName = this.props.route.params.recipe;
     const {
-      recipe, components, dependencies, inputs, createComposition, modalActive, componentsSortKey, componentsSortValue,
+      recipe, components, dependencies,
+      inputs, createComposition, modalActive, componentsSortKey, componentsSortValue,
+      pastLength, futureLength,
     } = this.props;
 
     return (
@@ -416,10 +447,13 @@ class EditRecipePage extends React.Component {
             <li className="active"><strong>Edit Recipe</strong></li>
           </ol>
           <div className="cmpsr-header__actions">
+          {recipe.pendingChanges.length > 0 &&
             <ul className="list-inline">
-              <li className="text-muted">
-                3 changes
-              </li>
+            {recipe.pendingChanges.length !== 1 &&
+              <li className="text-muted"> {recipe.pendingChanges.length} changes</li>
+            ||
+              <li className="text-muted"> 1 change</li>
+            }
               <li>
                 <a href="#" onClick={e => this.handleShowModal(e, 'modalPendingChanges')}>View and Comment</a>
               </li>
@@ -430,6 +464,16 @@ class EditRecipePage extends React.Component {
                 <button className="btn btn-default" type="button">Discard Changes</button>
               </li>
             </ul>
+          ||
+            <ul className="list-inline">
+              <li>
+                <button className="btn btn-primary disabled" type="button" onClick={this.handleSave}>Save</button>
+              </li>
+              <li>
+                <button className="btn btn-default disabled" type="button">Discard Changes</button>
+              </li>
+            </ul>
+          }
           </div>
           <div className="cmpsr-title">
             <h1 className="cmpsr-title__item">{recipeDisplayName}</h1>
@@ -446,11 +490,17 @@ class EditRecipePage extends React.Component {
           <div className="cmpsr-panel__body cmpsr-panel__body--main">
           {componentsSortKey !== undefined && componentsSortValue !== undefined &&
             <Toolbar
+              recipeId={recipe.id}
               handleShowModal={this.handleShowModal}
               componentsSortKey={componentsSortKey}
               componentsSortValue={componentsSortValue}
               componentsSortSetValue={this.props.componentsSortSetValue}
               dependenciesSortSetValue={this.props.dependenciesSortSetValue}
+              undo={this.props.undo}
+              redo={this.props.redo}
+              handleHistory={this.handleHistory}
+              pastLength={pastLength}
+              futureLength={futureLength}
             />
           }
             {((components === undefined || components.length === 0) &&
@@ -583,7 +633,8 @@ class EditRecipePage extends React.Component {
           : null}
         {modalActive === 'modalPendingChanges'
           ? <PendingChanges
-            recipe={recipe.name}
+            handleSave={this.handleSave}
+            recipe={recipe}
             contents={dependencies}
             handleHideModal={this.handleHideModal}
           />
@@ -618,7 +669,6 @@ EditRecipePage.propTypes = {
   setSelectedInputParent: PropTypes.func,
   deleteFilter: PropTypes.func,
   setRecipeComponents: PropTypes.func,
-  setRecipeDependencies: PropTypes.func,
   setModalActive: PropTypes.func,
   dependenciesSortSetValue: PropTypes.func,
   componentsSortSetValue: PropTypes.func,
@@ -626,26 +676,34 @@ EditRecipePage.propTypes = {
   dependencies: PropTypes.array,
   componentsSortKey: PropTypes.string,
   componentsSortValue: PropTypes.string,
+  pastLength: PropTypes.number,
+  futureLength: PropTypes.number,
+  undo: PropTypes.func,
+  redo: PropTypes.func,
 };
 
 const makeMapStateToProps = () => {
   const getRecipeById = makeGetRecipeById();
   const getSortedComponents = makeGetSortedComponents();
   const getSortedDependencies = makeGetSortedDependencies();
+  const getPastLength = makeGetPastLength();
+  const getFutureLength = makeGetFutureLength();
   const mapStateToProps = (state, props) => {
     if (getRecipeById(state, props.route.params.recipe.replace(/\s/g, '-')) !== undefined) {
       const fetchedRecipe = getRecipeById(state, props.route.params.recipe.replace(/\s/g, '-'));
       return {
         rehydrated: state.rehydrated,
-        recipe: fetchedRecipe,
-        components: getSortedComponents(state, fetchedRecipe),
-        dependencies: getSortedDependencies(state, fetchedRecipe),
+        recipe: fetchedRecipe.present,
+        components: getSortedComponents(state, fetchedRecipe.present),
+        dependencies: getSortedDependencies(state, fetchedRecipe.present),
         componentsSortKey: state.sort.components.key,
         componentsSortValue: state.sort.components.value,
         createComposition: state.modals.createComposition,
         inputs: state.inputs,
         selectedInput: state.inputs.selectedInput,
         modalActive: state.modals.modalActive,
+        pastLength: getPastLength(fetchedRecipe),
+        futureLength: getFutureLength(fetchedRecipe),
       };
     }
     return {
@@ -659,6 +717,8 @@ const makeMapStateToProps = () => {
       inputs: state.inputs,
       selectedInput: state.inputs.selectedInput,
       modalActive: state.modals.modalActive,
+      pastLength: 0,
+      futureLength: 0,
     };
   };
   return mapStateToProps;
@@ -689,11 +749,8 @@ const mapDispatchToProps = (dispatch) => ({
   setRecipe: recipe => {
     dispatch(setRecipe(recipe));
   },
-  setRecipeComponents: (recipe, components) => {
-    dispatch(setRecipeComponents(recipe, components));
-  },
-  setRecipeDependencies: (recipe, dependencies) => {
-    dispatch(setRecipeDependencies(recipe, dependencies));
+  setRecipeComponents: (recipe, components, dependencies, pendingChange) => {
+    dispatch(setRecipeComponents(recipe, components, dependencies, pendingChange));
   },
   setSelectedInput: (selectedInput) => {
     dispatch(setSelectedInput(selectedInput));
@@ -713,8 +770,8 @@ const mapDispatchToProps = (dispatch) => ({
   addRecipeComponent: (recipe, component) => {
     dispatch(addRecipeComponent(recipe, component));
   },
-  removeRecipeComponent: (recipe, component) => {
-    dispatch(removeRecipeComponent(recipe, component));
+  removeRecipeComponent: (recipe, component, pendingChange) => {
+    dispatch(removeRecipeComponent(recipe, component, pendingChange));
   },
   setModalActive: (modalActive) => {
     dispatch(setModalActive(modalActive));
@@ -731,6 +788,12 @@ const mapDispatchToProps = (dispatch) => ({
   dependenciesSortSetValue: value => {
     dispatch(dependenciesSortSetValue(value));
   },
+  undo: (recipeId) => {
+    dispatch(undo(recipeId));
+  },
+  redo: (recipeId) => {
+    dispatch(redo(recipeId));
+  }
 });
 
 export default connect(makeMapStateToProps, mapDispatchToProps)(EditRecipePage);

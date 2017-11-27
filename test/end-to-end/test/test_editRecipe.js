@@ -319,6 +319,8 @@ describe('Edit Recipe Page', () => {
 
         nightmare
           .wait(editRecipePage.componentListItemRootElement)
+          .wait(editRecipePage.componentListItemRootElementSelect)
+          .click(editRecipePage.componentListItemRootElementSelect)
           .wait(editRecipePage.btnSave)
           .click(editRecipePage.btnSave)
           .wait(toastNotifPage.iconCreating)

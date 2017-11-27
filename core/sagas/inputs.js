@@ -3,7 +3,7 @@ import { fetchRecipeInputsApi } from '../apiCalls';
 import { FETCHING_INPUTS, fetchingInputsSucceeded } from '../actions/inputs';
 
 /* eslint require-yield: "warn" */ // FIXME: issue #151
-function* updateInputComponentData(inputs, componentData) {
+function updateInputComponentData(inputs, componentData) {
   let updatedInputs = inputs;
   if (componentData !== undefined && componentData.length > 0) {
     const parsedInputs = componentData.map(component => {
