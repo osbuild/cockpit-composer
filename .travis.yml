@@ -27,7 +27,6 @@ before_install:
 install:
   - |
         if [ "$COMMAND" == "cockpit-test" ]; then
-            node run build --with-coverage
             sed -i "s,var welderApiHost=.*,var welderApiHost=\"api\";," ./public/js/config.js
         fi
 env:
@@ -44,7 +43,7 @@ script:
 after_success:
   - if [ "$COMMAND" == "unit-test" ]; then cat ./coverage/lcov.info | codecov; fi
   - |
-        if [ "$COMMAND" == "end-to-end-test" ] || [ "$COMMAND" == "cockpit-test" ]; then
+        if [ "$COMMAND" == "end-to-end-test" ]; then
             nyc report
             nyc report --reporter=lcov && codecov
         fi
