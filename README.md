@@ -142,7 +142,7 @@ This project can also be used through cockpit as a cockpit package.
 ```
 npm install && node run build
 mkdir -p ~/.local/share/cockpit
-ln -s /path/to/welder-web/public ~/.local/share/cockpit/welder-web
+ln -s /path/to/welder-web/public ~/.local/share/cockpit/welder
 ```
 
 Then you if you log into cockpit as the user that owns ```~```, you can use the app from cockpit.
