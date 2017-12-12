@@ -5,13 +5,13 @@ npm-install:
 	npm install
 
 install: all
-	mkdir -p /usr/share/cockpit/welder-web
-	cp -r public/* /usr/share/cockpit/welder-web
+	mkdir -p /usr/share/cockpit/welder
+	cp -r public/* /usr/share/cockpit/welder
 
 dist-gzip: NODE_ENV=production
 dist-gzip: all
 	mkdir -p _install/usr/share/cockpit
-	cp -r public/ _install/usr/share/cockpit/welder-web
+	cp -r public/ _install/usr/share/cockpit/welder
 	cp welder-web.spec _install/
 	tar -C _install/ -czf welder-web.tar.gz .
 	rm -rf _install
