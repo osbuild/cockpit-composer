@@ -16,7 +16,7 @@ module.exports = {
         const hash = require('crypto').createHmac('sha256', '')
           .update(strCoverage)
           .digest('hex');
-        const fileName = `/tmp/coverage-${hash}.json`;
+        const fileName = `/tmp/.nyc_output/coverage-${hash}.json`;
         require('fs').writeFileSync(fileName, strCoverage);
 
         done();
