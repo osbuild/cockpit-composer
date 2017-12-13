@@ -72,7 +72,7 @@ end-to-end-test: shared
 	sudo docker run -d --name web --restart=always -p 80:3000 --network welder welder/web-with-coverage:latest
 
 	sudo docker run --rm --name welder_end_to_end --network welder \
-	    -v `pwd`/.nyc_output/:/tmp \
+	    -v `pwd`/.nyc_output/:/tmp/.nyc_output \
 	    welder/web-e2e-tests:latest \
 	    xvfb-run -a -s '-screen 0 1024x768x24' npm run test -- --verbose
 	sudo docker ps --quiet --all --filter 'ancestor=welder/web-with-coverage' | sudo xargs --no-run-if-empty docker rm -f
