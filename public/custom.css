@@ -203,6 +203,10 @@ textarea.form-control[readonly] {
             align-items: center;
   }
 }
+.list-pf-item:hover .cmpsr-list-item__text--muted,
+.list-pf-item.active .cmpsr-list-item__text--muted {
+  color: initial;
+}
 
 /* pagination */
 .toolbar-pf-results .content-view-pf-pagination {
@@ -234,6 +238,7 @@ textarea.form-control[readonly] {
 }
 .cmpsr-panel__body--sidebar .list-pf {
   margin-top: 20px;
+  background-color: #fff;
 }
 .cmpsr-panel__body--sidebar .alert {
   position: relative;
@@ -294,9 +299,6 @@ textarea.form-control[readonly] {
 /* used in sidebar and expanded list items */
 .cmpsr-list-pf__compacted {
   margin-bottom: 20px;
-}
-.cmpsr-list-pf__compacted .list-pf-item {
-  background: #fff;
 }
 .cmpsr-list-pf__compacted .list-pf-item:hover {
   background: #f5f5f5;

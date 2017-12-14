@@ -10,8 +10,8 @@ import CreateComposition from '../../components/Modal/CreateComposition';
 import ExportRecipe from '../../components/Modal/ExportRecipe';
 import EmptyState from '../../components/EmptyState/EmptyState';
 import ListView from '../../components/ListView/ListView';
-import ListItemRevisions from '../../components/ListView/ListItemRevisions';
 import ListItemCompositions from '../../components/ListView/ListItemCompositions';
+import ListItemChanges from '../../components/ListView/ListItemChanges';
 import { connect } from 'react-redux';
 import { fetchingRecipeContents, setRecipeDescription } from '../../core/actions/recipes';
 import { setModalExportRecipeVisible } from '../../core/actions/modals';
@@ -36,57 +36,36 @@ class RecipePage extends React.Component {
     this.handleChangeDescription = this.handleChangeDescription.bind(this);
 
     this.state = {
-      revisions: [
+      changes: [
         {
-          number: '3',
-          basedOn: 'Revision 2',
-          components: '8',
-          compositions: '1',
-          size: '2,678 KB',
-          active: true,
+          commit: "3eaa3e0f732e37be4629042b8b74a4873ebb9909",
+          time: "Thu,  9 Nov 2017 14:50:41 +0000",
+          message: "These are comments about the changes that were saved."
         },
         {
-          number: '2',
-          basedOn: 'Revision 1',
-          components: '5',
-          compositions: '1',
-          size: '2,345 KB',
-          active: false,
+          commit: "627a776366f1f89e70d7453e1d7f4c88e9025229",
+          time: "Thu,  9 Nov 2017 14:48:49 +0000",
+          message:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur \
+          sagittis ullamcorper commodo. Pellentesque vitae arcu non eros \
+          tincidunt malesuada."
         },
         {
-          number: '1',
-          basedOn: 'New recipe',
-          components: '3',
-          compositions: '0',
-          size: '1,234 KB',
-          active: false,
-        },
-      ],
-      comments: [
-        {
-          date: '2/04/17',
-          user: 'Brian Johnson',
-          revision: '3',
-          comment: 'Including components to support php.',
+          commit: "5fc425a221d207393ae3720eaea5cbb9308657c3",
+          time: "Wed, 18 Oct 2017 17:44:50 +0000",
+          message: "Etiam aliquet elit sit amet mauris pretium, ut hendrerit mauris lacinia."
         },
         {
-          date: '1/17/17',
-          user: 'Brian Johnson',
-          revision: '2',
-          comment: 'Early test results are good, but new requirements include php support.',
+          commit: "8feb1e64d7e3f9d8a16ec0476bc76447c67d7f63",
+          time: "Wed, 18 Oct 2017 17:41:10 +0000",
+          message: "Nullam nisl tellus, finibus et porttitor quis, efficitur ac ante."
         },
         {
-          date: '1/17/17',
-          user: 'Brian Johnson',
-          revision: '2',
-          comment: 'NOT PRODUCTION READY - only creating a composition to do early testing.',
-        },
-        {
-          date: '1/06/17',
-          user: 'Brian Johnson',
-          revision: '1',
-          comment: `Saving this first revision just to capture minimal requirements
-            for comparison against future revisions`,
+          commit: "a41325a28174d53ad5e54d2868a0fd312875468f",
+          time: "Thu,  5 Oct 2017 19:54:42 +0000",
+          message:
+          "Mauris tincidunt, tellus id commodo fermentum, tellus nisi elementum \
+          nisi, vitae lacinia augue sem eget turpis."
         },
       ],
       compositions: [
@@ -95,7 +74,7 @@ class RecipePage extends React.Component {
           date_exported: '2/06/17',
           user: 'Brian Johnson',
           type: 'iso',
-          revision: '3',
+          change: '3',
           size: '2,345 KB',
         },
         {
@@ -103,76 +82,8 @@ class RecipePage extends React.Component {
           date_exported: '1/17/17',
           user: 'Brian Johnson',
           type: 'iso',
-          revision: '2',
+          change: '2',
           size: '1,234 KB',
-        },
-      ],
-      changelog: [
-        {
-          revision: '3',
-          action: 'Composition exported',
-          date: '2/06/07',
-          user: 'Brian Johnson',
-        },
-        {
-          revision: '3',
-          action: 'Composition created',
-          date: '2/06/17',
-          user: 'Brian Johnson',
-        },
-        {
-          revision: '3',
-          action: 'Recipe modified',
-          date: '2/06/17',
-          user: 'Brian Johnson',
-        },
-        {
-          revision: '3',
-          action: 'Recipe modified',
-          date: '2/04/17',
-          user: 'Brian Johnson',
-        },
-        {
-          revision: '3',
-          action: 'Revision created',
-          date: '2/04/17',
-          user: 'Brian Johnson',
-        },
-        {
-          revision: '2',
-          action: 'Composition exported',
-          date: '1/17/17',
-          user: 'Brian Johnson',
-        },
-        {
-          revision: '2',
-          action: 'Composition created',
-          date: '1/17/17',
-          user: 'Brian Johnson',
-        },
-        {
-          revision: '2',
-          action: 'Recipe modified',
-          date: '1/12/17',
-          user: 'Brian Johnson',
-        },
-        {
-          revision: '2',
-          action: 'Revision created',
-          date: '1/06/17',
-          user: 'Brian Johnson',
-        },
-        {
-          revision: '1',
-          action: 'Recipe modified',
-          date: '12/15/16',
-          user: 'Brian Johnson',
-        },
-        {
-          revision: '1',
-          action: 'Revision created',
-          date: '12/15/16',
-          user: 'Brian Johnson',
         },
       ],
     };
@@ -254,8 +165,6 @@ class RecipePage extends React.Component {
       selectedComponent, selectedComponentParent, selectedComponentStatus,
     } = this.props.recipePage;
 
-    const activeRevision = this.state.revisions.filter((obj) => obj.active === true)[0];
-    const pastRevisions = this.state.revisions.filter((obj) => obj.active === false);
     return (
       <Layout className="container-fluid" ref="layout">
         <header className="cmpsr-header">
@@ -301,15 +210,14 @@ class RecipePage extends React.Component {
           <div className="cmpsr-title">
             <h1 className="cmpsr-title__item">{this.props.route.params.recipe}</h1>
             <p className="cmpsr-title__item">
-              Current Revision: 3
-              {recipe.description && <span className="text-muted">, {recipe.description}</span>}
+              {recipe.description && <span className="text-muted">{recipe.description}</span>}
             </p>
           </div>
         </header>
         <Tabs key="pf-tabs" ref="pfTabs" tabChanged={this.handleTabChanged}>
           <Tab tabTitle="Details" active={activeTab === 'Details'}>
             <div className="tab-container row">
-              <div className="col-md-6">
+              <div className="col-sm-6 col-lg-4">
                 <dl className="dl-horizontal mt-">
                   <dt>Name</dt>
                   <dd>{recipe.name}</dd>
@@ -339,49 +247,23 @@ class RecipePage extends React.Component {
                         <span className="pficon pficon-edit" />
                       </button>
                     </dd>}
-                  <dt>Revision</dt>
-                  <dd>3</dd>
                   <dt>Install size</dt>
                   <dd>2,678 KB</dd>
-                  <dt>Last modified by</dt>
-                  <dd>Brian Johnson</dd>
                   <dt>Last modified date</dt>
-                  <dd>01/12/17</dd>
+                  <dd>Thu,  9 Nov 2017</dd>
                 </dl>
               </div>
-              <div className="col-md-6">
+              <div className="col-sm-6 col-lg-8">
                 <div className="cmpsr-summary-listview">
-                  <p><strong>Comments</strong> <span className="badge">{this.state.comments.length}</span></p>
-                  <div className="input-group">
-                    <input type="text" className="form-control" />
-                    <span className="input-group-btn">
-                      <button className="btn btn-default" type="button">Post Comment</button>
-                    </span>
-                  </div>
-                  <div className="list-pf list-pf-stacked cmpsr-list-pf__compacted">
-                    {this.state.comments.map((comment, i) => (
-                      <div className="list-pf-item" key={i}>
-                        <div className="list-pf-container">
-                          <div className="list-pf-content list-pf-content-flex ">
-                            <div className="list-pf-left">
-                              <span className="fa fa-comment-o list-pf-icon-small text-muted" aria-hidden="true" />
-                            </div>
-                            <div className="list-pf-content-wrapper">
-                              <div className="list-pf-main-content">
-                                <div className="list-pf-title ">
-                                  Revision {comment.revision}, {comment.date}
-                                  <span className="text-muted pull-right">
-                                    {comment.user}
-                                  </span>
-                                </div>
-                                <div className="list-pf-description ">
-                                  {comment.comment}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                  <p><strong>Changes</strong> <span className="badge">{this.state.changes.length}</span></p>
+                  <div className="list-pf list-pf-stacked cmpsr-list-pf__compacted cmpsr-recipe__changes">
+                    {this.state.changes.map((change, i) => (
+                      <ListItemChanges
+                        listItem={change}
+                        number={this.state.changes.length - i}
+                        listItemParent="cmpsr-recipe__changes"
+                        key={i}
+                      />
                     ))}
                   </div>
                 </div>
@@ -404,12 +286,14 @@ class RecipePage extends React.Component {
                               aria-haspopup="true"
                               aria-expanded="false"
                             >
-                              Revision 3<span className="caret" />
+                              Change 5<span className="caret" />
                             </button>
                             <ul className="dropdown-menu">
-                              <li><a>Revision 3</a></li>
-                              <li><a>Revision 2</a></li>
-                              <li><a>Revision 1</a></li>
+                              <li><a>Change 5</a></li>
+                              <li><a>Change 4</a></li>
+                              <li><a>Change 3</a></li>
+                              <li><a>Change 2</a></li>
+                              <li><a>Change 1</a></li>
                             </ul>
                           </div>
                         </div>
@@ -506,47 +390,6 @@ class RecipePage extends React.Component {
                     handleComponentDetails={this.handleComponentDetails}
                   />
                 </div>}
-            </div>
-          </Tab>
-          <Tab tabTitle="Revisions" active={activeTab === 'Revisions'}>
-            <div className="tab-container">
-              <ListView className="cmpsr-recipe__revisions cmpsr-list">
-                <div className="list-pf-item list-group-item__separator">
-                  <div className="list-pf-container">
-                    <div className="list-pf-content">
-                      <span className="list-pf-title">Current Revision</span>
-                    </div>
-                  </div>
-                </div>
-                <ListItemRevisions
-                  listItemParent="cmpsr-recipe__revisions"
-                  recipe={this.props.route.params.recipe}
-                  comments={this.state.comments}
-                  changelog={this.state.changelog}
-                  compositions={this.state.compositions}
-                  listItem={activeRevision}
-                  handleShowModalExport={this.handleShowModalExport}
-                />
-                <div className="list-pf-item list-group-item__separator">
-                  <div className="list-pf-container">
-                    <div className="list-pf-content">
-                      <span className="list-pf-title">Past Revisions</span>
-                    </div>
-                  </div>
-                </div>
-                {pastRevisions.map((revision, i) => (
-                  <ListItemRevisions
-                    listItemParent="cmpsr-recipe__revisions"
-                    recipe={this.props.route.params.recipe}
-                    comments={this.state.comments}
-                    changelog={this.state.changelog}
-                    compositions={this.state.compositions}
-                    listItem={revision}
-                    handleShowModalExport={this.handleShowModalExport}
-                    key={i}
-                  />
-                ))}
-              </ListView>
             </div>
           </Tab>
           <Tab tabTitle="Compositions" active={activeTab === 'Compositions'}>
