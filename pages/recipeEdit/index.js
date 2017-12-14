@@ -478,8 +478,7 @@ class EditRecipePage extends React.Component {
           <div className="cmpsr-title">
             <h1 className="cmpsr-title__item">{recipeDisplayName}</h1>
             <p className="cmpsr-title__item">
-              Revision 3<span className="hidden">{recipe.version}</span>
-              <span className="text-muted">, Total Disk Space: 1,234 KB</span>
+              <span className="text-muted">Total Disk Space: 1,234 KB</span>
             </p>
           </div>
         </header>

@@ -15,9 +15,9 @@ class ListItemCompositions extends React.PureComponent {
             <div className="list-pf-content-wrapper">
               <div className="list-pf-main-content">
                 <div className="list-pf-title text-overflow-pf">
-                  <a href="#">{this.props.recipe}-rev{listItem.revision}-{listItem.type}</a>
+                  <a href="#">{this.props.recipe}-rev{listItem.change}-{listItem.type}</a>
                 </div>
-                <div className="list-pf-description">Based on revision {listItem.revision}</div>
+                <div className="list-pf-description">Based on change {listItem.change}</div>
               </div>
               <div className="list-pf-additional-content">
                 <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">

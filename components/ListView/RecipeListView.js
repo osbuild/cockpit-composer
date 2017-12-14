@@ -115,12 +115,7 @@ class RecipeListView extends React.Component {
                       {recipe.description}
                     </div>
                   </div>
-                  <div className="list-view-pf-additional-info">
-                    <div
-                      className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked"
-                    >
-                      Revision<strong>3</strong>
-                    </div>
+                  <div className="list-view-pf-additional-info hidden">
                     <div
                       className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked hidden"
                     >
