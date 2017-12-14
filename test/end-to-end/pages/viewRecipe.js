@@ -25,14 +25,8 @@ module.exports = class ViewRecipePage extends MainPage {
     // Components tab page root element
     this.componentsTabRootElement = `${this.tabRootElement} pf-tab[tabtitle="Components"]`;
 
-    // Revisions tab page root element
-    this.revisionsTabRootElement = `${this.tabRootElement} pf-tab[tabtitle="Revisions"]`;
-
     // Compositions tab page root element
     this.compositionsTabRootElement = `${this.tabRootElement} pf-tab[tabtitle="Compositions"]`;
-
-    // Errata tab page root element
-    this.errataTabRootElement = `${this.tabRootElement} pf-tab[tabtitle="Errata"]`;
 
 // ---- Page element selector ---- //
     // Nav-bar: Recipe Name label
@@ -75,12 +69,8 @@ module.exports = class ViewRecipePage extends MainPage {
         return `${this.tabListRootElement} li:nth-child(1) a`;
       case 'Components':
         return `${this.tabListRootElement} li:nth-child(2) a`;
-      case 'Revisions':
-        return `${this.tabListRootElement} li:nth-child(3) a`;
       case 'Compositions':
-        return `${this.tabListRootElement} li:nth-child(4) a`;
-      case 'Errata':
-        return `${this.tabListRootElement} li:nth-child(5) a`;
+        return `${this.tabListRootElement} li:nth-child(3) a`;
       default:
         return `${this.tabListRootElement} li:nth-child(2) a`;
     }
