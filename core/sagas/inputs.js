@@ -1,6 +1,10 @@
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { take, call, put, takeEvery } from 'redux-saga/effects';
 import { fetchRecipeInputsApi } from '../apiCalls';
 import { FETCHING_INPUTS, fetchingInputsSucceeded } from '../actions/inputs';
+import {
+  FETCHING_RECIPE_CONTENTS_SUCCEEDED,
+} from '../actions/recipes';
+
 
 function updateInputComponentData(inputs, componentData) {
   let updatedInputs = inputs;
@@ -23,8 +27,14 @@ function updateInputComponentData(inputs, componentData) {
 function* fetchInputs(action) {
   try {
     const { filter, selectedInputPage, pageSize, componentData } = action.payload;
+    let components = componentData;
+    if (componentData === undefined) {
+      const recipeResponse = yield take(FETCHING_RECIPE_CONTENTS_SUCCEEDED);
+      const { recipePresent } = recipeResponse.payload;
+      components = recipePresent.components;
+    }
     const response = yield call(fetchRecipeInputsApi, `/*${filter.value}*`, selectedInputPage, pageSize);
-    const updatedResponse = yield call(updateInputComponentData, response, componentData);
+    const updatedResponse = yield call(updateInputComponentData, response, components);
     yield put(fetchingInputsSucceeded(filter, selectedInputPage, pageSize, updatedResponse));
   } catch (error) {
     console.log('Error in fetchInputsSaga');

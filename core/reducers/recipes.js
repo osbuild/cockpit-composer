@@ -1,28 +1,15 @@
 import {
-  UNDO, REDO,
+  UNDO, REDO, DELETE_HISTORY,
   CREATING_RECIPE_SUCCEEDED,
   FETCHING_RECIPES_SUCCEEDED,
   FETCHING_RECIPE_CONTENTS_SUCCEEDED,
   SET_RECIPE, SET_RECIPE_DESCRIPTION, SET_RECIPE_COMPONENTS, SET_RECIPE_COMMENT,
-  ADD_RECIPE_COMPONENT, REMOVE_RECIPE_COMPONENT,
+  REMOVE_RECIPE_COMPONENT,
   DELETING_RECIPE_SUCCEEDED,
 } from '../actions/recipes';
 
 const recipes = (state = [], action) => {
   switch (action.type) {
-    case ADD_RECIPE_COMPONENT:
-      return [
-        ...state.map(recipe => {
-          if (recipe.present.id === action.payload.recipe.id) {
-            return Object.assign(
-              {}, recipe, {
-              past: recipe.past.concat([recipe.present]),
-              present: recipe.present.components.append(action.payload.component),
-            });
-          }
-          return recipe;
-        }),
-      ];
     case REMOVE_RECIPE_COMPONENT:
       return [
         ...state.map(recipe => {
@@ -33,13 +20,14 @@ const recipes = (state = [], action) => {
               present: Object.assign(
                 {}, recipe.present, {
                 components: recipe.present.components.filter(component => component.name !== action.payload.component.name),
-                pendingChanges: recipe.present.pendingChanges.some((component) => {
+                packages: recipe.present.packages.filter(component => component.name !== action.payload.component.name),
+                localPendingChanges: recipe.present.localPendingChanges.some((component) => {
                   return (component.componentNew === action.payload.pendingChange.componentOld && component.componentNew !== null)
                    || (component.componentOld === action.payload.pendingChange.componentNew && component.componentOld !== null)
-                }) ? recipe.present.pendingChanges.filter((component) => {
+                }) ? recipe.present.localPendingChanges.filter((component) => {
                   return component.componentNew != action.payload.pendingChange.componentOld
                   || component.componentOld != action.payload.pendingChange.componentNew
-                }) : [action.payload.pendingChange].concat(recipe.present.pendingChanges),
+                }) : [action.payload.pendingChange].concat(recipe.present.localPendingChanges),
               }),
             });
           }
@@ -50,7 +38,7 @@ const recipes = (state = [], action) => {
       return [
         ...state.filter(recipe => recipe.present.id !== action.payload.recipe.id), {
           past: [],
-          present: Object.assign({}, action.payload.recipe, { pendingChanges: [] }),
+          present: Object.assign({}, action.payload.recipe, { localPendingChanges: [], workspacePendingChanges: [] }),
           future: [],
         }
       ];
@@ -61,15 +49,15 @@ const recipes = (state = [], action) => {
       || !state.some(recipe => recipe.present.id === action.payload.recipe.id)
       ? [...state.filter(recipe => recipe.present.id !== action.payload.recipe.id), {
           past: [],
-          present: Object.assign({}, action.payload.recipe, { pendingChanges: [] }),
+          present: Object.assign({}, action.payload.recipe, { localPendingChanges: [], workspacePendingChanges: [] }),
           future: [],
         }]
       : state;
     case FETCHING_RECIPE_CONTENTS_SUCCEEDED:
       return [
-        ...state.filter(recipe => recipe.present.id !== action.payload.recipe.id), {
-          past: [],
-          present: Object.assign({}, action.payload.recipe, { pendingChanges: [] }),
+        ...state.filter(recipe => recipe.present.id !== action.payload.recipePresent.id), {
+          past: action.payload.recipePast,
+          present: action.payload.recipePresent,
           future: [],
         }
       ];
@@ -80,7 +68,7 @@ const recipes = (state = [], action) => {
             return Object.assign(
               {}, recipe, {
               past: [],
-              present: Object.assign({}, action.payload.recipe, { pendingChanges: [] }),
+              present: Object.assign({}, action.payload.recipe, { localPendingChanges: [], workspacePendingChanges: [] }),
               future: [],
             });
           }
@@ -97,13 +85,13 @@ const recipes = (state = [], action) => {
               present: Object.assign({}, recipe.present, {
                 components: action.payload.components,
                 dependencies: action.payload.dependencies,
-                pendingChanges: recipe.present.pendingChanges.some((component) => {
+                localPendingChanges: recipe.present.localPendingChanges.some((component) => {
                   return (component.componentNew === action.payload.pendingChange.componentOld && component.componentNew !== null)
                   || (component.componentOld === action.payload.pendingChange.componentNew && component.componentOld !== null)
-                }) ? recipe.present.pendingChanges.filter((component) => {
+                }) ? recipe.present.localPendingChanges.filter((component) => {
                   return component.componentNew != action.payload.pendingChange.componentOld
                   || component.componentOld != action.payload.pendingChange.componentNew
-                }) : [action.payload.pendingChange].concat(recipe.present.pendingChanges),
+                }) : [action.payload.pendingChange].concat(recipe.present.localPendingChanges),
               }),
             });
           }
@@ -158,6 +146,20 @@ const recipes = (state = [], action) => {
               {}, recipe, {
               past: recipe.past.concat([recipe.present]),
               present: recipe.future.pop(),
+            });
+          }
+          return recipe;
+        }),
+      ];
+    case DELETE_HISTORY:
+      return [
+        ...state.map(recipe => {
+          if (recipe.present.id === action.payload.recipeId) {
+            return Object.assign(
+              {}, recipe, {
+              present: Object.assign({}, recipe.past.shift(), { localPendingChanges: [], workspacePendingChanges: [] }),
+              past: [],
+              future: [],
             });
           }
           return recipe;

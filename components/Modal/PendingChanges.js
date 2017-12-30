@@ -88,7 +88,7 @@ class PendingChanges extends React.Component {
                 </div>
                 <strong>Pending Changes</strong><span className="text-muted"> (most recent first)</span>
                 <ul className="list-group">
-                  {this.props.recipe.pendingChanges.map((componentUpdated, index) => (
+                  {this.props.recipe.localPendingChanges.map((componentUpdated, index) => (
                     <li className="list-group-item" key={index}>
                       {componentUpdated.componentNew && componentUpdated.componentOld &&
                         <div className="row">
@@ -110,6 +110,45 @@ class PendingChanges extends React.Component {
                     </li>
                   ))}
                 </ul>
+                {(this.props.recipe.workspacePendingChanges.addedChanges.length !== 0 ||
+                 this.props.recipe.workspacePendingChanges.deletedChanges.length !== 0) &&
+                  <div>
+                    <strong>Changes made in a previous session (i)</strong>
+                    <ul className="list-group">
+                    {this.props.recipe.workspacePendingChanges.addedChanges.length !== 0 &&
+                      <li className="list-group-item">
+                        <div className="row">
+                          <div className="col-sm-3">Added</div>
+                          <div className="col-sm-9">
+                            <ul className="list-unstyled">
+                              {this.props.recipe.workspacePendingChanges.addedChanges.map((componentUpdated, index) => (
+                                <li key={index}>
+                                  <strong>{componentUpdated.new.Package.name}-{componentUpdated.new.Package.version}</strong>
+                                </li>
+                                ))}
+                            </ul>
+                          </div>
+                        </div>
+                      </li>
+                    } {this.props.recipe.workspacePendingChanges.deletedChanges.length !== 0 &&
+                      <li className="list-group-item">
+                        <div className="row">
+                          <div className="col-sm-3">Deleted</div>
+                          <div className="col-sm-9">
+                            <ul className="list-unstyled">
+                              {this.props.recipe.workspacePendingChanges.deletedChanges.map((componentUpdated, index) => (
+                                <li key={index}>
+                                  <strong>{componentUpdated.old.Package.name}-{componentUpdated.old.Package.version}</strong>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                      </li>
+                    }
+                    </ul>
+                  </div>
+                }
               </form>
             </div>
             <div className="modal-footer">

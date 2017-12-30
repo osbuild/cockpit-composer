@@ -75,7 +75,6 @@ const Toolbar = props => (
         <button
           className="btn btn-link disabled"
           type="button"
-          onClick={() => {props.undo(props.recipeId); props.handleHistory();}}
         >
           <span className="fa fa-undo" aria-hidden="true" />
         </button>
@@ -88,7 +87,6 @@ const Toolbar = props => (
         <button
           className="btn btn-link disabled"
           type="button"
-          onClick={() => {props.redo(props.recipeId); props.handleHistory();}}
         >
           <span className="fa fa-repeat" aria-hidden="true" />
         </button>

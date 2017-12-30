@@ -6,7 +6,7 @@ import CreateRecipe from '../../components/Modal/CreateRecipe';
 import ExportRecipe from '../../components/Modal/ExportRecipe';
 import EmptyState from '../../components/EmptyState/EmptyState';
 import { connect } from 'react-redux';
-import { fetchingRecipes, deletingRecipe } from '../../core/actions/recipes';
+import { deletingRecipe } from '../../core/actions/recipes';
 import {
   setModalExportRecipeName, setModalExportRecipeContents, setModalExportRecipeVisible, fetchingModalExportRecipeContents,
 } from '../../core/actions/modals';
@@ -167,7 +167,6 @@ class RecipesPage extends React.Component {
 }
 
 RecipesPage.propTypes = {
-  fetchingRecipes: PropTypes.func,
   deletingRecipe: PropTypes.func,
   setModalExportRecipeVisible: PropTypes.func,
   setModalExportRecipeName: PropTypes.func,
@@ -210,9 +209,6 @@ const makeMapStateToProps = () => {
 const mapDispatchToProps = dispatch => ({
   fetchingModalExportRecipeContents: modalRecipeName => {
     dispatch(fetchingModalExportRecipeContents(modalRecipeName));
-  },
-  fetchingRecipes: () => {
-    dispatch(fetchingRecipes());
   },
   setModalExportRecipeName: modalRecipeName => {
     dispatch(setModalExportRecipeName(modalRecipeName));
