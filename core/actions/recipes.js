@@ -1,11 +1,3 @@
-export const FETCHING_RECIPE = 'FETCHING_RECIPE';
-export const fetchingRecipe = (recipeId) => ({
-  type: FETCHING_RECIPE,
-  payload: {
-    recipeId,
-  },
-});
-
 export const CREATING_RECIPE = 'CREATING_RECIPE';
 export const creatingRecipe = (events, recipe) => ({
   type: CREATING_RECIPE,
@@ -23,24 +15,17 @@ export const creatingRecipeSucceeded = (recipe) => ({
   },
 });
 
-export const FETCHING_RECIPE_SUCCEEDED = 'FETCHING_RECIPE_SUCCEEDED';
-export const fetchingRecipeSucceeded = (recipe) => ({
-  type: FETCHING_RECIPE_SUCCEEDED,
-  payload: {
-    recipe,
-  },
-});
-
 export const FETCHING_RECIPES = 'FETCHING_RECIPES';
 export const fetchingRecipes = () => ({
   type: FETCHING_RECIPES,
 });
 
 export const FETCHING_RECIPES_SUCCEEDED = 'FETCHING_RECIPES_SUCCEEDED';
-export const fetchingRecipesSucceeded = (recipe) => ({
+export const fetchingRecipesSucceeded = (recipe, pendingChanges) => ({
   type: FETCHING_RECIPES_SUCCEEDED,
   payload: {
     recipe,
+    pendingChanges,
   },
 });
 
@@ -53,10 +38,12 @@ export const fetchingRecipeContents = (recipeId) => ({
 });
 
 export const FETCHING_RECIPE_CONTENTS_SUCCEEDED = 'FETCHING_RECIPE_CONTENTS_SUCCEEDED';
-export const fetchingRecipeContentsSucceeded = (recipe) => ({
+export const fetchingRecipeContentsSucceeded = (recipePast, recipePresent, pendingChanges) => ({
   type: FETCHING_RECIPE_CONTENTS_SUCCEEDED,
   payload: {
-    recipe,
+    recipePast,
+    recipePresent,
+    pendingChanges,
   },
 });
 
@@ -74,15 +61,6 @@ export const setRecipeDescription = (recipe, description) => ({
   payload: {
     recipe,
     description,
-  },
-});
-
-export const ADD_RECIPE_COMPONENT = 'ADD_RECIPE_COMPONENT';
-export const addRecipeComponent = (recipe, component) => ({
-  type: ADD_RECIPE_COMPONENT,
-  payload: {
-    recipe,
-    component,
   },
 });
 
@@ -152,6 +130,22 @@ export const undo = (recipeId) => ({
 export const REDO = 'REDO';
 export const redo = (recipeId) => ({
   type: REDO,
+  payload: {
+    recipeId,
+  },
+});
+
+export const DELETE_HISTORY = 'DELETE_HISTORY';
+export const deleteHistory = (recipeId) => ({
+  type: DELETE_HISTORY,
+  payload: {
+    recipeId,
+  },
+});
+
+export const SAVE_TO_WORKSPACE = 'SAVE_TO_WORKSPACE';
+export const saveToWorkspace = (recipeId) => ({
+  type: SAVE_TO_WORKSPACE,
   payload: {
     recipeId,
   },

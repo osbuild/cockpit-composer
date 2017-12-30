@@ -1,24 +1,20 @@
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
+import { call, put, takeEvery, takeLatest, select } from 'redux-saga/effects';
 import {
-  fetchRecipeInfoApi, fetchRecipeNamesApi, fetchRecipeContentsApi,
+  fetchRecipeInfoApi, fetchRecipeNamesApi, fetchRecipeContentsApi, fetchWorkspaceRecipeContentsApi,
   deleteRecipeApi, setRecipeDescriptionApi,
-  createRecipeApi,
+  createRecipeApi, fetchDiffWorkspaceApi,
+  saveToWorkspaceApi,
 } from '../apiCalls';
 import {
-  FETCHING_RECIPE, fetchingRecipeSucceeded,
   fetchingRecipesSucceeded,
   FETCHING_RECIPE_CONTENTS, fetchingRecipeContentsSucceeded,
   SET_RECIPE_DESCRIPTION,
   CREATING_RECIPE, creatingRecipeSucceeded,
   DELETING_RECIPE, deletingRecipeSucceeded,
+  SAVE_TO_WORKSPACE,
   recipesFailure,
 } from '../actions/recipes';
-
-function* fetchRecipe(action) {
-  const { recipeId } = action.payload;
-  const response = yield call(fetchRecipeInfoApi, recipeId);
-  yield put(fetchingRecipeSucceeded(response));
-}
+import { makeGetRecipeById } from '../selectors';
 
 function* fetchRecipesFromName(recipeName) {
   const response = yield call(fetchRecipeInfoApi, recipeName);
@@ -38,14 +34,40 @@ function* fetchRecipes() {
 function* fetchRecipeContents(action) {
   try {
     const { recipeId } = action.payload;
-    const response = yield call(fetchRecipeContentsApi, recipeId);
-    yield put(fetchingRecipeContentsSucceeded(response));
+    let recipePast = null;
+    let recipePresent = null;
+
+    const recipeResponse = yield call(fetchRecipeContentsApi, recipeId);
+    const workspaceChanges = yield call(fetchDiffWorkspaceApi, recipeId);
+    const addedChanges = workspaceChanges.diff.filter(componentUpdated => componentUpdated.old === null);
+    const deletedChanges = workspaceChanges.diff.filter(componentUpdated => componentUpdated.new === null);
+    const workspacePendingChanges = {
+      'addedChanges': addedChanges,
+      'deletedChanges': deletedChanges,
+    };
+
+    if ((addedChanges.length > 0 || deletedChanges.length > 0) ) {
+      //fetchRecipeInfo will return the most recent recipe version even if its from the workspace
+      const workspaceRecipe = yield call(fetchRecipeInfoApi, recipeId);
+      const workspaceDepsolved = yield call(fetchWorkspaceRecipeContentsApi, workspaceRecipe);
+      recipePast = [Object.assign(
+        {}, recipeResponse, { localPendingChanges: [], workspacePendingChanges: [] }
+      )];
+      recipePresent = Object.assign(
+        {}, workspaceDepsolved, { localPendingChanges: [], workspacePendingChanges: workspacePendingChanges }
+      );
+    } else {
+      recipePast = [];
+      recipePresent = Object.assign(
+        {}, recipeResponse, { localPendingChanges: [], workspacePendingChanges: workspacePendingChanges }
+      );
+    }
+    yield put(fetchingRecipeContentsSucceeded(recipePast, recipePresent, workspacePendingChanges));
   } catch (error) {
     console.log('Error in fetchRecipeContentsSaga');
     yield put(recipesFailure(error));
   }
 }
-
 
 function* setRecipeDescription(action) {
   try {
@@ -79,11 +101,23 @@ function* createRecipe(action) {
   }
 }
 
+function* saveToWorkspace(action) {
+  try {
+    const { recipeId } = action.payload;
+    const getRecipeById = makeGetRecipeById();
+    const recipe = yield select(getRecipeById, recipeId);
+    yield call(saveToWorkspaceApi, recipe.present);
+  } catch (error) {
+    console.log('saveToWorkspaceError');
+    yield put(recipesFailure(error));
+  }
+}
+
 export default function* () {
   yield takeEvery(CREATING_RECIPE, createRecipe);
-  yield takeEvery(FETCHING_RECIPE, fetchRecipe);
   yield takeLatest(FETCHING_RECIPE_CONTENTS, fetchRecipeContents);
   yield takeLatest(SET_RECIPE_DESCRIPTION, setRecipeDescription);
   yield takeEvery(DELETING_RECIPE, deleteRecipe);
+  yield takeEvery(SAVE_TO_WORKSPACE, saveToWorkspace);
   yield* fetchRecipes();
 }

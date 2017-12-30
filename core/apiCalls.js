@@ -18,6 +18,16 @@ export function fetchRecipeContentsApi(recipeName) {
   return recipeContents;
 }
 
+export function fetchWorkspaceRecipeContentsApi(recipeRaw) {
+  const recipeContents = Promise.all([RecipeApi.getRecipeWorkspace(recipeRaw)])
+    .then(data => {
+      const recipe = data[0];
+      return recipe;
+    })
+    .catch(err => console.log(`Error in fetchModalRecipeContents promise: ${err}`));
+  return recipeContents;
+}
+
 export function fetchRecipeInputsApi(filter, selectedInputPage, pageSize) {
   const page = selectedInputPage * pageSize;
   const p = new Promise((resolve, reject) => {
@@ -54,7 +64,7 @@ export function fetchRecipeInfoApi(recipeName) {
   const recipeFetch = utils.apiFetch(constants.get_recipes_info + recipeName)
     .then(recipedata => {
       if (recipedata.recipes.length > 0) {
-        const recipe = recipedata.recipes[0];
+        let recipe = recipedata.recipes[0];
         recipe.id = recipeName;
         return recipe;
       }
@@ -78,4 +88,28 @@ export function deleteRecipeApi(recipe) {
   const deletedRecipe = Promise.all([RecipeApi.deleteRecipe(recipe)])
     .then(() => recipe);
   return deletedRecipe;
+}
+
+export function saveToWorkspaceApi(recipe) {
+  return utils.apiFetch(constants.post_recipes_workspace, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(recipe),
+  }, true);
+}
+
+export function fetchDiffWorkspaceApi(recipeId) {
+  const p = new Promise((resolve, reject) => {
+    utils.apiFetch('/api/v0/recipes/diff/' + recipeId + '/NEWEST/WORKSPACE')
+    .then(data => {
+      resolve(data);
+    })
+    .catch(e => {
+      console.log(`Error fetching diff: ${e}`);
+      reject();
+    });
+  });
+  return p;
 }

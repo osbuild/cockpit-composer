@@ -90,7 +90,7 @@ class RecipePage extends React.Component {
   }
 
   componentWillMount() {
-    if (this.props.rehydrated) {
+    if (this.props.rehydrated && this.props.recipe.components === undefined) {
       this.props.fetchingRecipeContents(this.props.route.params.recipe.replace(/\s/g, '-'));
     }
     this.props.setEditDescriptionVisible(false);

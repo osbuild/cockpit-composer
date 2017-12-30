@@ -19,8 +19,7 @@ import NotificationsApi from '../../data/NotificationsApi';
 import { connect } from 'react-redux';
 import {
   fetchingRecipeContents, setRecipe, setRecipeComponents, savingRecipe,
-  addRecipeComponent, removeRecipeComponent, fetchingRecipe, fetchingRecipes,
-  undo, redo,
+  removeRecipeComponent, undo, redo, saveToWorkspace, deleteHistory,
 } from '../../core/actions/recipes';
 import {
   fetchingInputs, setInputComponents, setFilteredInputComponents, setSelectedInputPage,
@@ -47,17 +46,16 @@ class EditRecipePage extends React.Component {
     this.handleHideModal = this.handleHideModal.bind(this);
     this.handleShowModal = this.handleShowModal.bind(this);
     this.handleHistory = this.handleHistory.bind(this);
+    this.handleDiscardChanges = this.handleDiscardChanges.bind(this);
   }
 
   componentWillMount() {
     // get recipe, get inputs; then update inputs
-    if (this.props.rehydrated) {
-      if (this.props.recipe.id !== undefined && this.props.recipe.pendingChanges.length === 0) {
-        this.props.fetchingRecipeContents(this.props.recipe.id);
-      }
-      if (this.props.recipe.components !== undefined) {
-        this.props.fetchingInputs(this.props.inputs.inputFilters, 0, 50, this.props.recipe.components);
-      }
+    if (this.props.recipe.components === undefined) {
+      this.props.fetchingRecipeContents(this.props.route.params.recipe.replace(/\s/g, '-'));
+      this.props.fetchingInputs(this.props.inputs.inputFilters, 0, 50, undefined);
+    } else {
+      this.props.fetchingInputs(this.props.inputs.inputFilters, 0, 50, this.props.recipe.components);
     }
     this.props.setSelectedInputPage(0);
     this.props.setSelectedInput('');
@@ -221,6 +219,10 @@ class EditRecipePage extends React.Component {
     this.clearInputAlert();
     event.preventDefault();
     event.stopPropagation();
+
+    setTimeout(() => {
+      this.props.saveToWorkspace(this.props.recipe.id);
+    }, 100);
   }
 
   handleUpdateComponent(event, component) {
@@ -235,6 +237,10 @@ class EditRecipePage extends React.Component {
     // update the recipe object that's used during save
     event.preventDefault();
     event.stopPropagation();
+
+    setTimeout(() => {
+      this.props.saveToWorkspace(this.props.recipe.id);
+    }, 100);
   }
 
   handleRemoveComponent(event, component) {
@@ -254,6 +260,10 @@ class EditRecipePage extends React.Component {
     this.props.removeRecipeComponent(this.props.recipe, component, pendingChange);
     event.preventDefault();
     event.stopPropagation();
+
+    setTimeout(() => {
+      this.props.saveToWorkspace(this.props.recipe.id);
+    }, 100);
   }
 
   updateInputComponentsOnChange(component, remove) {
@@ -412,6 +422,14 @@ class EditRecipePage extends React.Component {
     }, 50);
   }
 
+  handleDiscardChanges() {
+    this.props.deleteHistory(this.props.recipe.id);
+    this.handleHistory();
+    setTimeout(() => {
+      this.props.saveToWorkspace(this.props.recipe.id);
+    }, 100);
+  }
+
   render() {
     if (!this.props.rehydrated || this.props.recipe.id === undefined) {
       if (this.props.recipe.id === undefined) {
@@ -419,19 +437,17 @@ class EditRecipePage extends React.Component {
       }
       return <div></div>;
     }
-    if ((this.props.inputs.inputComponents === undefined || this.props.inputs.inputComponents.length === 0)
-      && this.props.recipe.components !== undefined) {
-      this.props.fetchingInputs(this.props.inputs.inputFilters, 0, 50, this.props.recipe.components);
-    }
-    else if (this.props.recipe.components === undefined) {
-      this.props.fetchingInputs(this.props.inputs.inputFilters, 0, 50, []);
-    }
     const recipeDisplayName = this.props.route.params.recipe;
     const {
       recipe, components, dependencies,
       inputs, createComposition, modalActive, componentsSortKey, componentsSortValue,
       pastLength, futureLength,
     } = this.props;
+
+    let numPendingChanges = recipe.localPendingChanges.length;
+    if (recipe.workspacePendingChanges.addedChanges !== undefined) {
+      numPendingChanges+=recipe.workspacePendingChanges.addedChanges.length+recipe.workspacePendingChanges.deletedChanges.length;
+    }
 
     return (
       <Layout
@@ -447,10 +463,10 @@ class EditRecipePage extends React.Component {
             <li className="active"><strong>Edit Recipe</strong></li>
           </ol>
           <div className="cmpsr-header__actions">
-          {recipe.pendingChanges.length > 0 &&
+          {numPendingChanges > 0 &&
             <ul className="list-inline">
-            {recipe.pendingChanges.length !== 1 &&
-              <li className="text-muted"> {recipe.pendingChanges.length} changes</li>
+            {numPendingChanges !== 1 &&
+              <li className="text-muted"> {numPendingChanges} changes</li>
             ||
               <li className="text-muted"> 1 change</li>
             }
@@ -461,13 +477,15 @@ class EditRecipePage extends React.Component {
                 <button className="btn btn-primary" type="button" onClick={this.handleSave}>Save</button>
               </li>
               <li>
-                <button className="btn btn-default" type="button">Discard Changes</button>
+                <button className="btn btn-default" type="button" onClick={this.handleDiscardChanges}>
+                  Discard Changes
+                </button>
               </li>
             </ul>
           ||
             <ul className="list-inline">
               <li>
-                <button className="btn btn-primary disabled" type="button" onClick={this.handleSave}>Save</button>
+                <button className="btn btn-primary disabled" type="button">Save</button>
               </li>
               <li>
                 <button className="btn btn-default disabled" type="button">Discard Changes</button>
@@ -638,7 +656,6 @@ class EditRecipePage extends React.Component {
             handleHideModal={this.handleHideModal}
           />
           : null}
-
       </Layout>
     );
   }
@@ -655,10 +672,7 @@ EditRecipePage.propTypes = {
   fetchingRecipeContents: PropTypes.func,
   setRecipe: PropTypes.func,
   savingRecipe: PropTypes.func,
-  addRecipeComponent: PropTypes.func,
   removeRecipeComponent: PropTypes.func,
-  fetchingRecipe: PropTypes.func,
-  fetchingRecipes: PropTypes.func,
   fetchingInputs: PropTypes.func,
   setInputComponents: PropTypes.func,
   setFilteredInputComponents: PropTypes.func,
@@ -679,6 +693,8 @@ EditRecipePage.propTypes = {
   futureLength: PropTypes.number,
   undo: PropTypes.func,
   redo: PropTypes.func,
+  saveToWorkspace: PropTypes.func,
+  deleteHistory: PropTypes.func,
 };
 
 const makeMapStateToProps = () => {
@@ -727,12 +743,6 @@ const mapDispatchToProps = (dispatch) => ({
   fetchingRecipeContents: recipeId => {
     dispatch(fetchingRecipeContents(recipeId));
   },
-  fetchingRecipe: recipeId => {
-    dispatch(fetchingRecipe(recipeId));
-  },
-  fetchingRecipes: () => {
-    dispatch(fetchingRecipes());
-  },
   fetchingInputs: (filter, selectedInputPage, pageSize, componentData) => {
     dispatch(fetchingInputs(filter, selectedInputPage, pageSize, componentData));
   },
@@ -766,9 +776,6 @@ const mapDispatchToProps = (dispatch) => ({
   savingRecipe: (recipe) => {
     dispatch(savingRecipe(recipe));
   },
-  addRecipeComponent: (recipe, component) => {
-    dispatch(addRecipeComponent(recipe, component));
-  },
   removeRecipeComponent: (recipe, component, pendingChange) => {
     dispatch(removeRecipeComponent(recipe, component, pendingChange));
   },
@@ -792,7 +799,13 @@ const mapDispatchToProps = (dispatch) => ({
   },
   redo: (recipeId) => {
     dispatch(redo(recipeId));
-  }
+  },
+  deleteHistory: (recipeId) => {
+    dispatch(deleteHistory(recipeId));
+  },
+  saveToWorkspace: (recipeId) => {
+    dispatch(saveToWorkspace(recipeId));
+  },
 });
 
 export default connect(makeMapStateToProps, mapDispatchToProps)(EditRecipePage);
