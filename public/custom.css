@@ -158,7 +158,6 @@ textarea.form-control[readonly] {
 }
 
 /* List view */
-/*.cmpsr-list-pf*/
 .cmpsr-list-pf .list-pf-expansion .list-pf-container {
   display: block;
 } /* TODO: remove and switch to flexbox for expanded contents */
@@ -295,6 +294,13 @@ textarea.form-control[readonly] {
   padding-top: 0;
   padding-bottom: 0;
 }
+.cmpsr-recipe__changes .list-group {
+  margin-bottom: 0;
+  border-top: 0;
+}
+.cmpsr-recipe__changes .list-group-item:last-child {
+  border-bottom: 0;
+}
 /* compacted list view */
 /* used in sidebar and expanded list items */
 .cmpsr-list-pf__compacted {
@@ -340,20 +346,7 @@ textarea.form-control[readonly] {
   margin-top: 30px;
 }
 
-/* restrict text width and center */
-.blank-slate-pf dl {
-  max-width: 66rem;
-  margin: auto;
-}
-
 /* list-pf */
-/* current styles do not have a fixed width for the right/down arrows which
-   causes the contents to shift right a few pixels on expansion */
-
-.list-pf-chevron .fa {
-  width: 22px;
-  text-align: center;
-}
 .list-pf-title .text-muted {
   font-weight: normal;
 }

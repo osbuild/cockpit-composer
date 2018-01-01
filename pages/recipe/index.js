@@ -255,8 +255,8 @@ class RecipePage extends React.Component {
               </div>
               <div className="col-sm-6 col-lg-8">
                 <div className="cmpsr-summary-listview">
-                  <p><strong>Changes</strong> <span className="badge">{this.state.changes.length}</span></p>
-                  <div className="list-pf list-pf-stacked cmpsr-list-pf__compacted cmpsr-recipe__changes">
+                  <p><strong>Changes</strong></p>
+                  <div className="list-pf cmpsr-list-pf list-pf-stacked cmpsr-list-pf__compacted cmpsr-recipe__changes">
                     {this.state.changes.map((change, i) => (
                       <ListItemChanges
                         listItem={change}
