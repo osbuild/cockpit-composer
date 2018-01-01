@@ -49,7 +49,7 @@ class ListItemChanges extends React.Component {
             <div className="list-pf-content-wrapper">
               <div className="list-pf-main-content">
                 <div className="list-pf-title text-overflow-pf">
-                  Change {this.props.number}
+                  Commit {this.props.number}
                   <span className="cmpsr-list-item__text--muted text-muted pull-right">
                     {listItem.time}
                   </span>
@@ -63,9 +63,39 @@ class ListItemChanges extends React.Component {
           <div className="list-pf-container" tabIndex="0">
             <div className="list-pf-content">
               <div className="container-fluid ">
-                <p>Individual changes associated with the commit would be listed
-                here, following the UI pattern that is used in the Pending Changes
-                dialog for showing changes saved temporarily in the workspace.</p>
+                <div className="row">
+                  <div className="col-xs-12">
+                    <ul className="list-group">
+                      <li className="list-group-item">
+                        <div className="row">
+                          <div className="col-sm-3">Added</div>
+                          <div className="col-sm-9">
+                            <div className="row">
+                              <div className="col-xs-12">
+                                <strong>389-ds-base-1.3.6.1-16.el7</strong>
+                              </div>
+                              <div className="col-xs-12">
+                                <strong>abattis-cantarell-fonts-0.0.25-1.el7</strong>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <li className="list-group-item">
+                        <div className="row">
+                          <div className="col-sm-3">Removed</div>
+                          <div className="col-sm-9">
+                            <div className="row">
+                              <div className="col-xs-12">
+                                <strong>color-filesystem-1-13.el7</strong>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
