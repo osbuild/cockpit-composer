@@ -97,7 +97,7 @@ const Toolbar = props => (
 );
 
 Toolbar.propTypes = {
-  handleShowModal: PropTypes.func,
+  handleHistory: PropTypes.func,
 };
 
 export default Toolbar;
