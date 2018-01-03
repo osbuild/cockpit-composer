@@ -286,14 +286,14 @@ class RecipePage extends React.Component {
                               aria-haspopup="true"
                               aria-expanded="false"
                             >
-                              Change 5<span className="caret" />
+                              Commit 5<span className="caret" />
                             </button>
                             <ul className="dropdown-menu">
-                              <li><a>Change 5</a></li>
-                              <li><a>Change 4</a></li>
-                              <li><a>Change 3</a></li>
-                              <li><a>Change 2</a></li>
-                              <li><a>Change 1</a></li>
+                              <li><a>Commit 5</a></li>
+                              <li><a>Commit 4</a></li>
+                              <li><a>Commit 3</a></li>
+                              <li><a>Commit 2</a></li>
+                              <li><a>Commit 1</a></li>
                             </ul>
                           </div>
                         </div>
