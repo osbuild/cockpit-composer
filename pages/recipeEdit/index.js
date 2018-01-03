@@ -466,15 +466,15 @@ class EditRecipePage extends React.Component {
           <div className="cmpsr-header__actions">
             <ul className="list-inline">
               {numPendingChanges > 0 &&
-              <li>
-                <a href="#" onClick={e => this.handleShowModal(e, 'modalPendingChanges')}>
-                  {numPendingChanges !== 1 &&
-                    <span>{numPendingChanges} Pending Changes</span>
-                  ||
-                    <span>1 Pending Change</span>
-                  }
-                </a>
-              </li>
+                <li>
+                  <a href="#" onClick={e => this.handleShowModal(e, 'modalPendingChanges')}>
+                    {numPendingChanges !== 1 &&
+                      <span>{numPendingChanges} Pending Changes</span>
+                    ||
+                      <span>1 Pending Change</span>
+                    }
+                  </a>
+                </li>
               }
               {numPendingChanges > 0 &&
                 <li>
