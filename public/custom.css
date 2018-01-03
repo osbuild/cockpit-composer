@@ -141,6 +141,11 @@ textarea.form-control[readonly] {
 .cmpsr-header__actions .list-inline > li:first-child {
   padding-left: 0;
 }
+.list-inline .list__subgroup-item--first {
+  border-left: 1px solid #e5e5e5;
+  padding-left: 10px;
+  margin-left: 5px;
+}
 .cmpsr-title {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -355,3 +360,9 @@ textarea.form-control[readonly] {
  .nav-tabs .badge {
    display: inline;
  }
+
+/* disabled state */
+/* disable pointer events for both <a> and <button> */
+.btn.disabled, fieldset[disabled] .btn {
+    pointer-events: none;
+}

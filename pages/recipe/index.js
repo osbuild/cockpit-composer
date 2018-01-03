@@ -175,8 +175,7 @@ class RecipePage extends React.Component {
               </li>
               <li>
                 <button
-                  className="btn btn-default"
-                  id="cmpsr-btn-crt-compos"
+                  className={`btn btn-default ${components.length ? '' : 'disabled'}`}                  id="cmpsr-btn-crt-compos"
                   data-toggle="modal"
                   data-target="#cmpsr-modal-crt-compos"
                   type="button"
@@ -197,7 +196,11 @@ class RecipePage extends React.Component {
                     <span className="fa fa-ellipsis-v" />
                   </button>
                   <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
-                    <li><a href="#" onClick={this.handleShowModalExport}>Export</a></li>
+                    {components.length &&
+                      <li><a href="#" onClick={this.handleShowModalExport}>Export</a></li>
+                    ||
+                      <li className="disabled"><a>Export</a></li>
+                    }
                   </ul>
                 </div>
               </li>

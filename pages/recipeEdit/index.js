@@ -464,35 +464,77 @@ class EditRecipePage extends React.Component {
             <li className="active"><strong>Edit Recipe</strong></li>
           </ol>
           <div className="cmpsr-header__actions">
-          {numPendingChanges > 0 &&
             <ul className="list-inline">
-            {numPendingChanges !== 1 &&
-              <li className="text-muted"> {numPendingChanges} changes</li>
-            ||
-              <li className="text-muted"> 1 change</li>
-            }
+              {numPendingChanges > 0 &&
               <li>
-                <a href="#" onClick={e => this.handleShowModal(e, 'modalPendingChanges')}>View and Comment</a>
+                <a href="#" onClick={e => this.handleShowModal(e, 'modalPendingChanges')}>
+                  {numPendingChanges !== 1 &&
+                    <span>{numPendingChanges} Pending Changes</span>
+                  ||
+                    <span>1 Pending Change</span>
+                  }
+                </a>
               </li>
-              <li>
-                <button className="btn btn-primary" type="button" onClick={this.handleSave}>Save</button>
-              </li>
-              <li>
-                <button className="btn btn-default" type="button" onClick={this.handleDiscardChanges}>
-                  Discard Changes
+              }
+              {numPendingChanges > 0 &&
+                <li>
+                  <button className="btn btn-primary" onClick={e => this.handleShowModal(e, 'modalPendingChanges')}>
+                    Save
+                  </button>
+                </li>
+              ||
+                <li>
+                  <button className="btn btn-primary disabled" type="button">Save</button>
+                </li>
+              }
+              {numPendingChanges > 0 &&
+                <li>
+                  <button className="btn btn-default" type="button" onClick={this.handleDiscardChanges}>
+                    Discard Changes
+                  </button>
+                </li>
+              ||
+                <li>
+                  <button className="btn btn-default disabled" type="button">
+                    Discard Changes
+                  </button>
+                </li>
+              }
+              <li className="list__subgroup-item--first">
+                <button
+                  className={`btn btn-default ${components.length ? '' : 'disabled'}`}
+                  id="cmpsr-btn-crt-compos"
+                  data-toggle="modal"
+                  data-target="#cmpsr-modal-crt-compos"
+                  type="button"
+                >
+                  Create Composition
                 </button>
               </li>
-            </ul>
-          ||
-            <ul className="list-inline">
               <li>
-                <button className="btn btn-primary disabled" type="button">Save</button>
-              </li>
-              <li>
-                <button className="btn btn-default disabled" type="button">Discard Changes</button>
+                <div className="dropdown dropdown-kebab-pf">
+                  <button
+                    className="btn btn-link dropdown-toggle"
+                    type="button"
+                    id="dropdownKebab"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <span className="fa fa-ellipsis-v" />
+                  </button>
+                  <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
+                    {components.length &&
+                      <li><a href="#" onClick={e => this.handleShowModal(e, 'modalExportRecipe')}>Export</a></li>
+                    ||
+                      <li className="disabled"><a>Export</a></li>
+                    }
+                  </ul>
+                </div>
               </li>
             </ul>
-          }
+
+
           </div>
           <div className="cmpsr-title">
             <h1 className="cmpsr-title__item">{recipeDisplayName}</h1>
