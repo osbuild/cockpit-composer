@@ -1,0 +1,7 @@
+FROM fedora:26
+MAINTAINER Alexander Todorov <atodorov@redhat.com>
+
+RUN dnf -y install sqlite ostree sudo gobject-introspection
+
+COPY ./import-metadata.sh /tmp/
+CMD ["/tmp/import-metadata.sh"]

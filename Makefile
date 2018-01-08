@@ -46,7 +46,10 @@ unit-test:
 	npm run test:cov
 
 metadata.db:
-	wget --progress=dot:giga https://s3.amazonaws.com/weldr/metadata.db
+	sudo docker build -f Dockerfile.metadata -t welder/import-metadata .
+	sudo docker run --name import-metadata welder/import-metadata:latest
+	sudo docker cp import-metadata:/metadata.db .
+	sudo docker rm import-metadata
 
 shared: metadata.db
 	if [ -n "$$TRAVIS" ]; then \
