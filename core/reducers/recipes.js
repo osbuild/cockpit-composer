@@ -38,7 +38,10 @@ const recipes = (state = [], action) => {
       return [
         ...state.filter(recipe => recipe.present.id !== action.payload.recipe.id), {
           past: [],
-          present: Object.assign({}, action.payload.recipe, { localPendingChanges: [], workspacePendingChanges: [] }),
+          present: Object.assign({}, action.payload.recipe,  {
+            localPendingChanges: [],
+            workspacePendingChanges: {addedChanges: [], deletedChanges: []}
+          }),
           future: [],
         }
       ];
@@ -49,7 +52,10 @@ const recipes = (state = [], action) => {
       || !state.some(recipe => recipe.present.id === action.payload.recipe.id)
       ? [...state.filter(recipe => recipe.present.id !== action.payload.recipe.id), {
           past: [],
-          present: Object.assign({}, action.payload.recipe, { localPendingChanges: [], workspacePendingChanges: [] }),
+          present: Object.assign({}, action.payload.recipe, {
+            localPendingChanges: [],
+            workspacePendingChanges: {addedChanges: [], deletedChanges: []}
+          }),
           future: [],
         }]
       : state;
@@ -68,7 +74,10 @@ const recipes = (state = [], action) => {
             return Object.assign(
               {}, recipe, {
               past: [],
-              present: Object.assign({}, action.payload.recipe, { localPendingChanges: [], workspacePendingChanges: [] }),
+              present: Object.assign({}, action.payload.recipe, {
+                localPendingChanges: [],
+                workspacePendingChanges: {addedChanges: [], deletedChanges: []}
+              }),
               future: [],
             });
           }
@@ -85,6 +94,7 @@ const recipes = (state = [], action) => {
               present: Object.assign({}, recipe.present, {
                 components: action.payload.components,
                 dependencies: action.payload.dependencies,
+                packages: action.payload.packages,
                 localPendingChanges: recipe.present.localPendingChanges.some((component) => {
                   return (component.componentNew === action.payload.pendingChange.componentOld && component.componentNew !== null)
                   || (component.componentOld === action.payload.pendingChange.componentNew && component.componentOld !== null)
@@ -157,7 +167,10 @@ const recipes = (state = [], action) => {
           if (recipe.present.id === action.payload.recipeId) {
             return Object.assign(
               {}, recipe, {
-              present: Object.assign({}, recipe.past.shift(), { localPendingChanges: [], workspacePendingChanges: [] }),
+              present: Object.assign({}, recipe.past.shift(),  {
+                localPendingChanges: [],
+                workspacePendingChanges: {addedChanges: [], deletedChanges: []}
+              }),
               past: [],
               future: [],
             });

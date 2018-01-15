@@ -133,7 +133,7 @@ class PendingChanges extends React.Component {
                     } {this.props.recipe.workspacePendingChanges.deletedChanges.length !== 0 &&
                       <li className="list-group-item">
                         <div className="row">
-                          <div className="col-sm-3">Deleted</div>
+                          <div className="col-sm-3">Removed</div>
                           <div className="col-sm-9">
                             <ul className="list-unstyled">
                               {this.props.recipe.workspacePendingChanges.deletedChanges.map((componentUpdated, index) => (

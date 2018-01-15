@@ -75,12 +75,13 @@ export const removeRecipeComponent = (recipe, component, pendingChange) => ({
 });
 
 export const SET_RECIPE_COMPONENTS = 'SET_RECIPE_COMPONENTS';
-export const setRecipeComponents = (recipe, components, dependencies, pendingChange) => ({
+export const setRecipeComponents = (recipe, components, dependencies, packages, pendingChange) => ({
   type: SET_RECIPE_COMPONENTS,
   payload: {
     recipe,
     components,
     dependencies,
+    packages,
     pendingChange,
   },
 });
