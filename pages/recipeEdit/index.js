@@ -179,12 +179,22 @@ class EditRecipePage extends React.Component {
     const updatedRecipeComponents = recipeComponents.concat(componentData[0][0]);
     const recipeDependencies = this.props.recipe.dependencies;
     const updatedRecipeDependencies = recipeDependencies.concat(componentData[0][0].dependencies);
-
+    const updatedRecipePackages = updatedRecipeComponents.map(component => Object.assign({}, {}, {
+      name: component.name,
+      version: component.version
+    }));
     const pendingChange = {
       componentOld: null,
       componentNew: componentData[0][0].name + '-' +componentData[0][0].version + '-' + componentData[0][0].release
     }
-    this.props.setRecipeComponents(this.props.recipe, updatedRecipeComponents, updatedRecipeDependencies, pendingChange);
+
+    this.props.setRecipeComponents(
+      this.props.recipe,
+      updatedRecipeComponents,
+      updatedRecipeDependencies,
+      updatedRecipePackages,
+      pendingChange
+    );
 
     RecipeApi.updateRecipe(componentData[0][0], 'add');
   }
@@ -202,11 +212,13 @@ class EditRecipePage extends React.Component {
           MetadataApi.getMetadataComponent(component, ''),
         ]).then((data) => {
           this.addRecipeComponent(data);
+          this.props.saveToWorkspace(this.props.recipe.id);
         }).catch(e => console.log(`handleAddComponent: Error getting component metadata: ${e}`));
       } else {
         // if source is the details view, then metadata is already known and passed with component
         const data = [[component, dependencies]];
         this.addRecipeComponent(data);
+        this.props.saveToWorkspace(this.props.recipe.id);
       }
     }
 
@@ -219,10 +231,6 @@ class EditRecipePage extends React.Component {
     this.clearInputAlert();
     event.preventDefault();
     event.stopPropagation();
-
-    setTimeout(() => {
-      this.props.saveToWorkspace(this.props.recipe.id);
-    }, 100);
   }
 
   handleUpdateComponent(event, component) {
@@ -238,9 +246,7 @@ class EditRecipePage extends React.Component {
     event.preventDefault();
     event.stopPropagation();
 
-    setTimeout(() => {
-      this.props.saveToWorkspace(this.props.recipe.id);
-    }, 100);
+    this.props.saveToWorkspace(this.props.recipe.id);
   }
 
   handleRemoveComponent(event, component) {
@@ -261,9 +267,7 @@ class EditRecipePage extends React.Component {
     event.preventDefault();
     event.stopPropagation();
 
-    setTimeout(() => {
-      this.props.saveToWorkspace(this.props.recipe.id);
-    }, 100);
+    this.props.saveToWorkspace(this.props.recipe.id);
   }
 
   updateInputComponentsOnChange(component, remove) {
@@ -425,9 +429,7 @@ class EditRecipePage extends React.Component {
   handleDiscardChanges() {
     this.props.deleteHistory(this.props.recipe.id);
     this.handleHistory();
-    setTimeout(() => {
-      this.props.saveToWorkspace(this.props.recipe.id);
-    }, 100);
+    this.props.saveToWorkspace(this.props.recipe.id);
   }
 
   render() {
@@ -444,10 +446,9 @@ class EditRecipePage extends React.Component {
       pastLength, futureLength,
     } = this.props;
 
-    let numPendingChanges = recipe.localPendingChanges.length;
-    if (recipe.workspacePendingChanges.addedChanges !== undefined) {
-      numPendingChanges+=recipe.workspacePendingChanges.addedChanges.length+recipe.workspacePendingChanges.deletedChanges.length;
-    }
+    const numPendingChanges = recipe.localPendingChanges.length
+      + recipe.workspacePendingChanges.addedChanges.length
+      + recipe.workspacePendingChanges.deletedChanges.length;
 
     return (
       <Layout
@@ -758,8 +759,8 @@ const mapDispatchToProps = (dispatch) => ({
   setRecipe: recipe => {
     dispatch(setRecipe(recipe));
   },
-  setRecipeComponents: (recipe, components, dependencies, pendingChange) => {
-    dispatch(setRecipeComponents(recipe, components, dependencies, pendingChange));
+  setRecipeComponents: (recipe, components, dependencies, packages, pendingChange) => {
+    dispatch(setRecipeComponents(recipe, components, dependencies, packages, pendingChange));
   },
   setSelectedInput: (selectedInput) => {
     dispatch(setSelectedInput(selectedInput));
