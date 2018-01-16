@@ -75,49 +75,29 @@ class RecipeApi {
     const p = new Promise((resolve, reject) => {
       const recipe = recipeRaw;
       const componentNames = recipeRaw.packages.map(item => item.name);
-      // utils.apiFetch(constants.get_projects_deps + packageNames)
       if (componentNames.length > 0) {
         utils.apiFetch(constants.get_projects_info + componentNames)
-          .then(data => {
+          .then(compData => {
             // bdcs-api v0.3.0 includes module (component) and dependency NEVRAs
             // tagging all dependencies a "RPM" for now
-            const dependencies = data.projects ?
-                this.makeRecipeDependencies(data.projects, 'RPM') :
-                [];
-            let components = data.projects;
+            let components = compData.projects;
             components = this.setType(components, recipeRaw.modules, 'Module');
-            components = this.setType(components, data.projects, 'RPM');
-            components.map(i => {
-              i.inRecipe = true; // eslint-disable-line no-param-reassign
-              i.user_selected = true; // eslint-disable-line no-param-reassign
-              return i;
+            components = this.setType(components, compData.projects, 'RPM');
+            components.map(component => {
+              component.inRecipe = true; // eslint-disable-line no-param-reassign
+              component.user_selected = true; // eslint-disable-line no-param-reassign
+              component.version = component.builds[0].source.version; // eslint-disable-line no-param-reassign
+              component.release = component.builds[0].release; // eslint-disable-line no-param-reassign
             });
-            // Tag objects as Module if modules and RPM if packages, for now
-            if (dependencies.length === 0) {
-                // get metadata for the components only
-              Promise.all([
-                MetadataApi.getData(constants.get_projects_info + componentNames),
-              ]).then((compData) => {
-                recipe.components = MetadataApi.updateComponentMetadata(components, compData[0]);
-                recipe.dependencies = [];
-                this.recipe = recipe;
-                resolve(recipe);
-              }).catch(e => console.log(`getRecipe: Error getting component metadata: ${e}`));
-            } else {
-                // get metadata for the components
-                // get metadata for the dependencies
-                // get dependencies for dependencies
-              const dependencyNames = MetadataApi.getNames(dependencies);
-              Promise.all([
-                MetadataApi.getData(constants.get_projects_info + componentNames),
-                MetadataApi.getData(constants.get_projects_info + dependencyNames),
-              ]).then((compData) => {
-                recipe.components = MetadataApi.updateComponentMetadata(components, compData[0]);
-                recipe.dependencies = MetadataApi.updateComponentMetadata(dependencies, compData[1]);
+            utils.apiFetch(constants.get_projects_deps + componentNames)
+              .then(depData => {
+                let dependencies = depData.projects;
+                dependencies = this.setType(dependencies, depData.projects, 'RPM');
+                recipe.components = components
+                recipe.dependencies = dependencies;
                 this.recipe = recipe;
                 resolve(recipe);
               }).catch(e => console.log(`getRecipe: Error getting component and dependency metadata: ${e}`));
-            }
           })
           .catch(e => {
             console.log('catch');
