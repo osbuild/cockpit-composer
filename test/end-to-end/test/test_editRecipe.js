@@ -14,7 +14,7 @@ const coverage = require('../utils/coverage.js').coverage;
 describe('Edit Recipe Page', () => {
   let nightmare;
   // Set case running timeout
-  const timeout = 75000;
+  const timeout = 15000;
 
   // Check BDCS API and Web service first
   beforeAll(apiCall.serviceCheck);
