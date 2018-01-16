@@ -4,6 +4,7 @@ const EditRecipePage = require('../pages/editRecipe');
 const CreateComposPage = require('../pages/createCompos');
 const ToastNotifPage = require('../pages/toastNotif');
 const ExportRecipePage = require('../pages/exportRecipe');
+const ChangesPendingSavePage = require('../pages/changesPendingSave');
 const apiCall = require('../utils/apiCall');
 const helper = require('../utils/helper');
 const pageConfig = require('../config');
@@ -13,7 +14,7 @@ const coverage = require('../utils/coverage.js').coverage;
 describe('Edit Recipe Page', () => {
   let nightmare;
   // Set case running timeout
-  const timeout = 15000;
+  const timeout = 75000;
 
   // Check BDCS API and Web service first
   beforeAll(apiCall.serviceCheck);
@@ -318,6 +319,7 @@ describe('Edit Recipe Page', () => {
     describe('Save Recipe Test #acceptance', () => {
       test('should have toast notification pop up when Save button clicked @edit-recipe-page', (done) => {
         const toastNotifPage = new ToastNotifPage(pageConfig.recipe.simple.name);
+        const changesPendingSavePage = new ChangesPendingSavePage();
 
         // Highlight the expected result
         const expected = toastNotifPage.varStatusSaved;
@@ -328,6 +330,8 @@ describe('Edit Recipe Page', () => {
           .click(editRecipePage.componentListItemRootElementSelect)
           .wait(editRecipePage.btnSave)
           .click(editRecipePage.btnSave)
+          .wait(changesPendingSavePage.btnSave)
+          .click(changesPendingSavePage.btnSave)
           .wait(toastNotifPage.iconCreating)
           .wait((page) => {
             const recipeName = document.querySelector(page.labelRecipeName).innerText;

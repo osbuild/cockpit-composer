@@ -19,9 +19,6 @@ module.exports = class EditRecipePage extends MainPage {
     // Recipe inputs root element
     this.recipeInputRootElement = '.cmpsr-panel__body--sidebar';
 
-    // Recipe list edit root element
-    this.recipeListEditRootElement = '.cmpsr-panel__body--main';
-
     // Component list item root element
     this.componentListItemRootElement = `${this.recipeInputRootElement} .cmpsr-list-pf__compacted .list-pf-item`;
 // ---- Page element selector ---- //
@@ -41,13 +38,13 @@ module.exports = class EditRecipePage extends MainPage {
 
     // Create Composition button
     this.varCreateCompos = 'Create Composition';
-    this.btnCreateCompos = `${this.recipeListEditRootElement} button[data-target="#cmpsr-modal-crt-compos"]`;
+    this.btnCreateCompos = `${this.editActionBarRootElement} button[data-target="#cmpsr-modal-crt-compos"]`;
 
     // More action button
-    this.btnMore = `${this.recipeListEditRootElement} button[id="dropdownKebab"]`;
+    this.btnMore = `${this.editActionBarRootElement} button[id="dropdownKebab"]`;
 
     // Export action
-    this.menuActionExport = `${this.recipeListEditRootElement} ul[aria-labelledby="dropdownKebab"] li:nth-child(1) a`;
+    this.menuActionExport = `${this.editActionBarRootElement} ul[aria-labelledby="dropdownKebab"] li:nth-child(1) a`;
 
     // Save button
     this.btnSave = `${this.editActionBarRootElement} ul li button[class="btn btn-primary"]`;
