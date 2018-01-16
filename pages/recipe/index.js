@@ -96,10 +96,6 @@ class RecipePage extends React.Component {
     this.props.setEditDescriptionVisible(false);
     this.props.setModalExportRecipeVisible(false);
   }
-  // Get the recipe details, and its dependencies
-  // Object layout is:
-  // {recipes: [{recipe: RECIPE, modules: MODULES}, ...]}
-  // Where MODULES is a modules/info/ object {name: "", projects: [{...
 
   componentDidMount() {
     document.title = 'Recipe';

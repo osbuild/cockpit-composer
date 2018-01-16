@@ -51,7 +51,7 @@ function* fetchRecipeContents(action) {
       const workspaceRecipe = yield call(fetchRecipeInfoApi, recipeId);
       const workspaceDepsolved = yield call(fetchWorkspaceRecipeContentsApi, workspaceRecipe);
       recipePast = [Object.assign(
-        {}, recipeResponse, { localPendingChanges: [], workspacePendingChanges: [] }
+        {}, recipeResponse, { localPendingChanges: [], workspacePendingChanges: {addedChanges: [], deletedChanges: []} }
       )];
       recipePresent = Object.assign(
         {}, workspaceDepsolved, { localPendingChanges: [], workspacePendingChanges: workspacePendingChanges }
