@@ -12,6 +12,8 @@ dist-gzip: NODE_ENV=production
 dist-gzip: all
 	mkdir -p _install/usr/share/cockpit
 	cp -r public/ _install/usr/share/cockpit/welder
+	# remove evil file name that breaks rpmbuild (https://github.com/patternfly/patternfly/issues/917)
+	find _install -name 'Logo_Horizontal_Reversed.svg alias' -delete
 	cp welder-web.spec _install/
 	tar -C _install/ -czf welder-web.tar.gz .
 	rm -rf _install
