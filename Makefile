@@ -1,3 +1,9 @@
+# generate version number from the latest git tag; if the topmost commit is
+# tagged (at release time), just use that; if there are commits after that,
+# append a ".x" suffix to indicate that's a development snapshot
+# if there is no tag (yet), use 0 as version
+RELEASEVER=$(shell (git describe --exclude '*jenkins*' || echo 0) | sed 's/-[0-9]\+-g.*/.x/')
+
 all:
 	NODE_ENV=$(NODE_ENV) npm run build
 
@@ -15,13 +21,14 @@ dist-gzip: all
 	# remove evil file name that breaks rpmbuild (https://github.com/patternfly/patternfly/issues/917)
 	find _install -name 'Logo_Horizontal_Reversed.svg alias' -delete
 	cp welder-web.spec _install/
-	tar -C _install/ -czf welder-web.tar.gz .
+	tar -C _install/ -czf welder-web-$(RELEASEVER).tar.gz .
 	rm -rf _install
 
 srpm: dist-gzip
 	rpmbuild -bs \
 	  --define "_sourcedir `pwd`" \
 	  --define "_srcrpmdir `pwd`" \
+	  --define "releasever $(RELEASEVER)" \
 	  welder-web.spec
 
 rpm: dist-gzip
@@ -34,6 +41,7 @@ rpm: dist-gzip
 	  --define "_srcrpmdir `pwd`" \
 	  --define "_rpmdir `pwd`/output" \
 	  --define "_buildrootdir `pwd`/build" \
+	  --define "releasever $(RELEASEVER)" \
 	  welder-web.spec
 	find `pwd`/output -name '*.rpm' -printf '%f\n' -exec mv {} . \;
 	rm -r "`pwd`/rpmbuild"
@@ -100,9 +108,9 @@ cockpit-test: shared build-rpm
 
 	sudo docker run -d --name web --restart=always --network host welder/web-cockpit:latest
 
-# Clean generated intermidiate tar file and useless RPM file
+# Clean generated intermediate tar file and useless RPM file
 # RPM file is inside docker image already
-	rm -f welder-web*.rpm welder-web.tar.gz
+	rm -f welder-web*.rpm welder-web*.tar.gz
 
 	sudo docker run --rm --name welder_end_to_end --network host \
 	    -e COCKPIT_TEST=1 \
