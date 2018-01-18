@@ -1,6 +1,7 @@
 FROM welder/web-nodejs:latest
 MAINTAINER Xiaofeng Wang <xiaofwan@redhat.com>
-RUN dnf install -y rpm-build && dnf clean all
+# work around https://bugzilla.redhat.com/show_bug.cgi?id=1532293 by upgrading cmake first
+RUN dnf upgrade -y cmake && dnf install -y rpm-build && dnf clean all
 
 WORKDIR /welder
 CMD ["make", "rpm"]
