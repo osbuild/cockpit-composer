@@ -8,5 +8,5 @@ RUN rm -rf /usr/share/cockpit/kubernetes/
 COPY welder-web*.rpm /tmp/
 RUN dnf -y install /tmp/welder-web*.rpm && rm -f /tmp/welder-web*.rpm
 
-CMD ["/usr/libexec/cockpit-ws", "--no-tls"]
+CMD sed -i "/welderApiPort=/ s_=.*;_='${PORT:-4000}';_" /usr/share/cockpit/welder/js/config.js && exec /usr/libexec/cockpit-ws --no-tls
 EXPOSE 9090

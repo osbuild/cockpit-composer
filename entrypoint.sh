@@ -12,7 +12,7 @@ else
     NO_SCHEME=${API_URL##$SCHEME://}
     HOST=${NO_SCHEME%%:*}
     P1=${NO_SCHEME##*:}
-    PORT=${P1%%/}
+    [ -n "$PORT" ] || PORT=${P1%%/}
 
     if [ -z "$SCHEME" ] || [ -z "$HOST" ] || [ -z "$PORT" ]; then
         echo "ERROR PARSING API_URL=$API_URL";

@@ -1,0 +1,14 @@
+FROM centos:7
+LABEL maintainer='"Martin Pitt" <mpitt@redhat.com>'
+
+RUN yum install -y epel-release && \
+    curl https://copr.fedorainfracloud.org/coprs/g/weldr/lorax-composer/repo/epel-7/group_weldr-lorax-composer-epel-7.repo > \
+        /etc/yum.repos.d/lorax-composer.repo && \
+    yum install -y lorax-composer && \
+    yum clean all
+
+# lorax-composer is (unnecessarily) picky about permissions on its socket dir,
+# so we can't just export /run/weldr/
+VOLUME /recipes /run
+
+CMD [ "lorax-composer", "--group", "wheel", "/recipes" ]
