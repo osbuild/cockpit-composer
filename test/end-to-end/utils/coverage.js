@@ -12,13 +12,17 @@ module.exports = {
       .evaluate(() => window.__coverage__)
       .end()
       .then((cov) => {
-        const strCoverage = JSON.stringify(cov);
-        const hash = require('crypto').createHmac('sha256', '')
-          .update(strCoverage)
-          .digest('hex');
-        const fileName = `/tmp/.nyc_output/coverage-${hash}.json`;
-        require('fs').writeFileSync(fileName, strCoverage);
-
+        if (cov) {
+          const fs = require('fs');
+          const strCoverage = JSON.stringify(cov);
+          const hash = require('crypto').createHmac('sha256', '')
+            .update(strCoverage)
+            .digest('hex');
+          const covOutDir = '/tmp/.nyc_output/';
+          if (!fs.existsSync(covOutDir)) fs.mkdirSync(covOutDir);
+          const fileName = `${covOutDir}coverage-${hash}.json`;
+          fs.writeFileSync(fileName, strCoverage);
+        }
         done();
       })
     .catch(err => console.log(err));
