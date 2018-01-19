@@ -31,7 +31,9 @@ function cockpitFetch(url, options, skipDecode) {
     cockpitHttp.request(options)
         .then((data) => {
           if (skipDecode) { resolve(data); } else { resolve(JSON.parse(data)); }
-        });
+        })
+        .catch(error => console.error(`cockpitFetch: ${url} with options ${JSON.stringify(options)}`,
+                                      `from ${welderApiHost}:${welderApiPort} failed: ${error}`));
   });
 }
 
