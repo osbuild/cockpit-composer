@@ -211,7 +211,7 @@ describe('Edit Recipe Page', () => {
       }, timeout);
       test('should show the correct dependence packages and total numbers of dependencies', (done) => {
         // Convert package name into a string
-        const packNames = `${pageConfig.recipe.simple.packages[0].name},${pageConfig.recipe.simple.packages[1].name}`;
+        const packNames = `${pageConfig.recipe.simple.packages[0].name}`;
 
         function callback(packs) {
           const depList = packs.map(
@@ -220,6 +220,7 @@ describe('Edit Recipe Page', () => {
 
           // Highlight the expected result
           const expectedNumber = `${[...depCompSet].length} ${exportRecipePage.varTotalComponents}`;
+          const zeroComponent = exportRecipePage.varEmptyTotalComponents;
           const expectedContent = [...depCompSet].sort().join('\n');
 
           nightmare
@@ -230,6 +231,9 @@ describe('Edit Recipe Page', () => {
             .click(menuActionExport)
             .wait(page => document.querySelector(page.rootElement).style.display === 'block'
               , exportRecipePage)
+            .wait(exportRecipePage.labelTotalComponents)
+            .wait((page, zero) => document.querySelector(page.labelTotalComponents).innerText !== zero
+              , exportRecipePage, zeroComponent)
             .evaluate(page => document.querySelector(page.labelTotalComponents).innerText
               , exportRecipePage)
             .then((element) => {
@@ -239,6 +243,7 @@ describe('Edit Recipe Page', () => {
               .evaluate(page => document.querySelector(page.textAreaContent).value
                 , exportRecipePage))
             .then((element) => {
+              expect(element).not.toBeFalsy();
               expect(element).toBe(expectedContent);
 
               coverage(nightmare, done);

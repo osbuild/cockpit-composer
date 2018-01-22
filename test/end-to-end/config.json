@@ -13,7 +13,7 @@
             "name": "automation",
             "description": "UI automation recipe",
             "modules": [],
-            "packages": [{"name": "xz", "version": "5.1.2"}, {"name": "whois", "version": "5.1.1"}]
+            "packages": [{"name": "httpd", "version": ""}]
         }
     },
     "__commentComposition": "// Composition type and architechture on Create Composition Page",
