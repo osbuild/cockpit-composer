@@ -74,9 +74,9 @@ end-to-end-test: shared
 	fi;
 
 	sudo docker build -f Dockerfile.with-coverage -t welder/web-with-coverage:latest .
-	sudo docker run -d --name web --restart=always -p 80:3000 --network welder welder/web-with-coverage:latest
+	sudo docker run -d --name web -p 3000:3000 --restart=always --network welder welder/web-with-coverage:latest
 
-	sudo docker run --rm --name welder_end_to_end --network welder \
+	sudo docker run --rm --name welder_end_to_end --network host \
 	    -v `pwd`/.nyc_output/:/tmp/.nyc_output \
 	    welder/web-e2e-tests:latest \
 	    xvfb-run -a -s '-screen 0 1024x768x24' npm run test -- --verbose
@@ -98,13 +98,13 @@ cockpit-test: shared build-rpm
 	    sudo docker build -f Dockerfile.cockpit -t welder/web-cockpit:latest .; \
 	fi;
 
-	sudo docker run -d --name web --restart=always -p 9090:9090 --network welder welder/web-cockpit:latest
+	sudo docker run -d --name web --restart=always --network host welder/web-cockpit:latest
 
 # Clean generated intermidiate tar file and useless RPM file
 # RPM file is inside docker image already
 	rm -f welder-web*.rpm welder-web.tar.gz
 
-	sudo docker run --rm --name welder_end_to_end --network welder \
+	sudo docker run --rm --name welder_end_to_end --network host \
 	    -e COCKPIT_TEST=1 \
 	    welder/web-e2e-tests:latest \
 	    xvfb-run -a -s '-screen 0 1024x768x24' npm run test -- --verbose

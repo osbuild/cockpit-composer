@@ -24,11 +24,6 @@ before_install:
         else
             npm install
         fi
-install:
-  - |
-        if [ "$COMMAND" == "cockpit-test" ]; then
-            sed -i "s,var welderApiHost=.*,var welderApiHost=\"api\";," ./public/js/config.js
-        fi
 env:
   global:
     secure: "Q9X11ehcl4YE0ylxDGk8NgVeO7nIpqWiI9am2GA6JVXcxeYYcLf3NHGe1JiLwFQ/xSq4KJrY0IgpivkVrPwTOojpR/tRG5QNDR/IJzN/6PV0IAWkHjPDKZexCQmy4IoPFib/cWqxo46V/JZ+gzs/TJugkl5/QpTcGlCr+d7VkuA80Bj0nlQO5GevYVgYMCrN6u6cKNOWtNQ0gppxHrpsLo36MpHqHbNbv236GPGsV4K2qpiqvvO5ogD+LCv5xoKEZK0ext4FNrrZFq6XEYdy9uUaUbSFfoG+HXESXbIt0L7krQDT/PkKI0X4nM91eYl5mS63+HVue7vLiijS5h9+YCa8HblMIiAiyrR3lPPH0Hx4FVSrQfkvtoXMBs3nRt7keu2FG370a7WoaQ71Q2jHrI9cfYzRwa/Mok73eF/oeN32hPlPDD679hWOZYqbSksSTikCLIgwJpEgIfaHgEYXFmL2JFXk0HbgIciA+C9fE0rfaUbmARtWYq8c+b52aIxAHEV9zYy3JeARrYxk7s3jQgS/LZIw4rfso+bQIvEMUDWt8MnvKaecY1E7XjOpW1kuk8gVjZbHm6oHKl2IndZA9KNpXjT2ew8d3SB69l2lswUYu4mTdywNEUt6nIaQtROiiftUKYThAbibIEIrq7GxQSOYMUPbvUYsZO5rkVssJps="
