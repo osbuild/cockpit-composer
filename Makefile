@@ -70,6 +70,7 @@ shared: metadata.db
 	    sudo docker build -f ./test/end-to-end/Dockerfile -t welder/web-e2e-tests:latest ./test/end-to-end/ ; \
 	fi;
 
+	sudo mkdir failed-image
 	sudo docker network inspect welder >/dev/null 2>&1 || sudo docker network create welder
 	sudo docker ps --quiet --all --filter 'ancestor=welder/bdcs-api-rs' | sudo xargs --no-run-if-empty docker rm -f
 	sudo docker run -d --name api --restart=always -p 4000:4000 -v bdcs-recipes-volume:/bdcs-recipes -v `pwd`:/mddb --network welder --security-opt label=disable welder/bdcs-api-rs:latest
@@ -86,6 +87,7 @@ end-to-end-test: shared
 
 	sudo docker run --rm --name welder_end_to_end --network host \
 	    -v `pwd`/.nyc_output/:/tmp/.nyc_output \
+	    -v `pwd`/failed-image:/tmp/failed-image \
 	    welder/web-e2e-tests:latest \
 	    xvfb-run -a -s '-screen 0 1024x768x24' npm run test -- --verbose
 	sudo docker ps --quiet --all --filter 'ancestor=welder/web-with-coverage' | sudo xargs --no-run-if-empty docker rm -f
@@ -113,6 +115,7 @@ cockpit-test: shared build-rpm
 	rm -f welder-web*.rpm welder-web*.tar.gz
 
 	sudo docker run --rm --name welder_end_to_end --network host \
+	    -v `pwd`/failed-image:/tmp/failed-image \
 	    -e COCKPIT_TEST=1 \
 	    welder/web-e2e-tests:latest \
 	    xvfb-run -a -s '-screen 0 1024x768x24' npm run test -- --verbose

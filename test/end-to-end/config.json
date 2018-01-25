@@ -16,7 +16,7 @@
             "packages": [{"name": "httpd", "version": ""}]
         }
     },
-    "__commentComposition": "// Composition type and architechture on Create Composition Page",
+    "__comment__": "// Composition type and architechture on Create Composition Page",
     "composition": [
         {"type": "ostree", "arch": "x86_64"},
         {"type": "iso", "arch": "x86_64"},
@@ -24,8 +24,15 @@
         {"type": "qcow2", "arch": "x86_64"},
         {"type": "vhdx", "arch": "x86_64"}
     ],
-    "__commentRecipeExport": "// Manifest type of Recipe Export File on Export Recipe Page",
+    "__comment__": "// Manifest type of Recipe Export File on Export Recipe Page",
     "manifestType": {
         "Text": "Text"
+    },
+    "__comment__": "// Nightmare.js timeout settings",
+    "nightmareTimeout": {
+      "waitTimeout": "3000",
+      "gotoTimeout": "1000",
+      "loadTimeout": "1000",
+      "executionTimeout": "1000"
     }
 }

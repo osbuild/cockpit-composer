@@ -17,6 +17,7 @@
     "no-eval": "off",
     "no-unused-vars": "off",
     "import/no-unresolved": ["error", { "ignore": ["nightmare'"] }],
-    "max-len": ["error", 130]
+    "max-len": ["error", 130],
+    "no-console": ["error", { "allow": ["error"] }]
   }
 }

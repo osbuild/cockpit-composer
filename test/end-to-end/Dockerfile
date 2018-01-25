@@ -3,7 +3,7 @@ FROM welder/web-nodejs:latest
 MAINTAINER Xiaofeng Wang <xiaofwan@redhat.com>
 
 # to avoid the JS code doing checks we create this here
-RUN mkdir -p /tmp/.nyc_output
+RUN mkdir -p /tmp/.nyc_output /tmp/failed-image
 
 # Install xvfb to simulate framebuffer for nightmare.js
 # Install electorn dependency

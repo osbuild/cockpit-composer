@@ -14,17 +14,17 @@ const coverage = require('../utils/coverage.js').coverage;
 describe('Edit Recipe Page', () => {
   let nightmare;
   // Set case running timeout
-  const timeout = 15000;
+  // Some of cases need more time to complete their jobs
+  // Such as Create Composition. The time totally depends on component what the recipe includes
+  const timeoutCreateComposition = 15000;
 
   // Check BDCS API and Web service first
   beforeAll(apiCall.serviceCheck);
 
   const editRecipePage = new EditRecipePage(pageConfig.recipe.simple.name);
 
-  // Switch to welder-web iframe if welder-web is integrated with Cockpit.
-  // Cockpit web service is listening on TCP port 9090.
   beforeEach(() => {
-    helper.gotoURL(nightmare = new Nightmare(), editRecipePage);
+    helper.gotoURL(nightmare = new Nightmare(pageConfig.nightmareTimeout), editRecipePage);
   });
 
   describe('Single Word Recipe Name Scenario', () => {
@@ -41,8 +41,9 @@ describe('Edit Recipe Page', () => {
       apiCall.deleteRecipe(pageConfig.recipe.simple.name, done);
     });
 
-    describe('Menu Nav Bar Check #acceptance', () => {
-      test('should show a recipe name with a correct link address @edit-recipe-page', (done) => {
+    describe('Menu Nav Bar Check', () => {
+      const testSpec1 = test('should show a recipe name with a correct link address',
+      (done) => {
         // Highlight the expected result
         const expectedRecipeName = editRecipePage.recipeName;
         const expectedViewRecipeLinke = editRecipePage.varLinkToViewRec;
@@ -63,11 +64,15 @@ describe('Edit Recipe Page', () => {
             expect(element).toBe(expectedViewRecipeLinke);
 
             coverage(nightmare, done);
+          })
+          .catch((error) => {
+            helper.gotoError(error, nightmare, testSpec1);
           });
-      }, timeout);
+      });
     });
-    describe('Title Bar Check #acceptance', () => {
-      test('should show a recipe name title @edit-recipe-page', (done) => {
+    describe('Title Bar Check', () => {
+      const testSpec2 = test('should show a recipe name title',
+      (done) => {
         // Highlight the expected result
         const expected = editRecipePage.recipeName;
 
@@ -80,9 +85,13 @@ describe('Edit Recipe Page', () => {
             expect(element).toBe(expected);
 
             coverage(nightmare, done);
+          })
+          .catch((error) => {
+            helper.gotoError(error, nightmare, testSpec2);
           });
-      }, timeout);
-      test('should have Create Composition button @edit-recipe-page', (done) => {
+      });
+      const testSpec3 = test('should have Create Composition button',
+      (done) => {
         // Highlight the expected result
         const expected = editRecipePage.varCreateCompos;
 
@@ -95,16 +104,20 @@ describe('Edit Recipe Page', () => {
             expect(element).toBe(expected);
 
             coverage(nightmare, done);
+          })
+          .catch((error) => {
+            helper.gotoError(error, nightmare, testSpec3);
           });
-      }, timeout);
+      });
     });
     compositions.forEach((composition) => {
-      describe(`Create Composition Test For ${composition.type} #acceptance`, () => {
+      describe(`Create Composition Test For ${composition.type}`, () => {
         const createComposPage = new CreateComposPage(composition.type
           , composition.arch);
 
 
-        test('should pop up Create Composition window by clicking Create Compostion button @edit-recipe-page', (done) => {
+        const testSpec4 = test('should pop up Create Composition window by clicking Create Compostion button',
+        (done) => {
           // Highlight the expected result
           const expected = createComposPage.varCreateCompos;
 
@@ -121,9 +134,13 @@ describe('Edit Recipe Page', () => {
               expect(element).toBe(expected);
 
               coverage(nightmare, done);
+            })
+            .catch((error) => {
+              helper.gotoError(error, nightmare, testSpec4);
             });
-        }, timeout);
-        test('should have toast notification pop up when new composition added @edit-recipe-page', (done) => {
+        });
+        const testSpec5 = test('should have toast notification pop up when new composition added',
+        (done) => {
           const toastNotifPage = new ToastNotifPage(pageConfig.recipe.simple.name);
 
           // Highlight the expected result
@@ -162,18 +179,22 @@ describe('Edit Recipe Page', () => {
               expect(element).toBe(expectedComplete);
 
               coverage(nightmare, done);
+            })
+            .catch((error) => {
+              helper.gotoError(error, nightmare, testSpec5);
             });
-        }, timeout);
+        }, timeoutCreateComposition);
       });
     });
-    describe('Export Recipe To Manifest Test #acceptance', () => {
+    describe('Export Recipe To Manifest Test', () => {
       const exportRecipePage = new ExportRecipePage();
 
       // More action button
       const btnMoreAction = editRecipePage.btnMore;
       const menuActionExport = editRecipePage.menuActionExport;
 
-      test('should pop up dropdown-menu by clicking ":" button', (done) => {
+      const testSpec6 = test('should pop up dropdown-menu by clicking ":" button',
+      (done) => {
         // Highlight the expected result
         const expected = editRecipePage.moreActionList.Export;
 
@@ -187,9 +208,13 @@ describe('Edit Recipe Page', () => {
           .then((element) => {
             expect(element).toBe(expected);
             coverage(nightmare, done);
+          })
+          .catch((error) => {
+            helper.gotoError(error, nightmare, testSpec6);
           });
-      }, timeout);
-      test('should pop up Export Recipe window by clicking "Export"', (done) => {
+      });
+      const testSpec7 = test('should pop up Export Recipe window by clicking "Export"',
+      (done) => {
         // Highlight the expected result
         const expected = exportRecipePage.varExportTitle;
 
@@ -208,9 +233,13 @@ describe('Edit Recipe Page', () => {
             expect(element).toBe(expected);
 
             coverage(nightmare, done);
+          })
+          .catch((error) => {
+            helper.gotoError(error, nightmare, testSpec7);
           });
-      }, timeout);
-      test('should show the correct dependence packages and total numbers of dependencies', (done) => {
+      });
+      const testSpec8 = test('should show the correct dependence packages and total numbers of dependencies',
+      (done) => {
         // Convert package name into a string
         const packNames = `${pageConfig.recipe.simple.packages[0].name}`;
 
@@ -248,12 +277,16 @@ describe('Edit Recipe Page', () => {
               expect(element).toBe(expectedContent);
 
               coverage(nightmare, done);
+            })
+            .catch((error) => {
+              helper.gotoError(error, nightmare, testSpec8);
             });
         }
 
         apiCall.moduleInfo(packNames, callback, done);
-      }, timeout);
-      test('should copy and paste correct components', (done) => {
+      });
+      const testSpec9 = test('should copy and paste correct components',
+      (done) => {
         // expected result should be the content in textarea
         let expected = '';
 
@@ -313,11 +346,15 @@ describe('Edit Recipe Page', () => {
             expect(element.trim()).toBe(expected);
 
             coverage(nightmare, done);
+          })
+          .catch((error) => {
+            helper.gotoError(error, nightmare, testSpec9);
           });
-      }, timeout);
+      });
     });
-    describe('Save Recipe Test #acceptance', () => {
-      test('should have toast notification pop up when Save button clicked @edit-recipe-page', (done) => {
+    describe('Save Recipe Test', () => {
+      const testSpec10 = test('should have toast notification pop up when Save button clicked',
+      (done) => {
         const toastNotifPage = new ToastNotifPage(pageConfig.recipe.simple.name);
         const changesPendingSavePage = new ChangesPendingSavePage();
 
@@ -349,8 +386,11 @@ describe('Edit Recipe Page', () => {
             expect(element).toBe(expected);
 
             coverage(nightmare, done);
+          })
+          .catch((error) => {
+            helper.gotoError(error, nightmare, testSpec10);
           });
-      }, timeout);
+      });
     });
   });
 });

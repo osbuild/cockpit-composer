@@ -12,8 +12,6 @@ const coverage = require('../utils/coverage.js').coverage;
 
 describe('Create Recipe Page', () => {
   let nightmare;
-  // Set case running timeout
-  const timeout = 15000;
 
   // Check BDCS API and Web service first
   beforeAll(apiCall.serviceCheck);
@@ -22,15 +20,14 @@ describe('Create Recipe Page', () => {
   const createRecipePage = new CreateRecipePage(pageConfig.recipe.simple.name
     , pageConfig.recipe.simple.description);
 
-// Switch to welder-web iframe if welder-web is integrated with Cockpit.
-// Cockpit web service is listening on TCP port 9090.
   beforeEach(() => {
-    helper.gotoURL(nightmare = new Nightmare(), recipesPage);
+    helper.gotoURL(nightmare = new Nightmare(pageConfig.nightmareTimeout), recipesPage);
   });
 
   describe('Input Data Validation Test', () => {
-    describe('Required Field Missing #acceptance', () => {
-      test('should show alert message by clicking Save button when create recipe without name @create-recipe-page', (done) => {
+    describe('Required Field Missing', () => {
+      const testSpec1 = test('should show alert message by clicking Save button when create recipe without name',
+      (done) => {
         // Highlight the expected result
         const expectedAlertInfo = createRecipePage.varAlertInfo;
         const expectedHelpBlockMsg = createRecipePage.varHelpBlockMsg;
@@ -56,9 +53,13 @@ describe('Create Recipe Page', () => {
             expect(element).toBe(expectedHelpBlockMsg);
 
             coverage(nightmare, done);
+          })
+          .catch((error) => {
+            helper.gotoError(error, nightmare, testSpec1);
           });
-      }, timeout);
-      test('should show alert message by clicking Enter key when create recipe without name @create-recipe-page', (done) => {
+      });
+      const testSpec2 = test('should show alert message by clicking Enter key when create recipe without name',
+      (done) => {
         // Highlight the expected result
         const expectedAlertInfo = createRecipePage.varAlertInfo;
         const expectedHelpBlockMsg = createRecipePage.varHelpBlockMsg;
@@ -84,9 +85,13 @@ describe('Create Recipe Page', () => {
             expect(element).toBe(expectedHelpBlockMsg);
 
             coverage(nightmare, done);
+          })
+          .catch((error) => {
+            helper.gotoError(error, nightmare, testSpec2);
           });
-      }, timeout);
-      test('should show alert message by changing focus to description input @create-recipe-page', (done) => {
+      });
+      const testSpec3 = test('should show alert message by changing focus to description input',
+      (done) => {
         // Highlight the expected result
         const expected = createRecipePage.varHelpBlockMsg;
 
@@ -104,10 +109,13 @@ describe('Create Recipe Page', () => {
             expect(element).toBe(expected);
 
             coverage(nightmare, done);
+          })
+          .catch((error) => {
+            helper.gotoError(error, nightmare, testSpec3);
           });
-      }, timeout);
+      });
     });
-    describe('Simple Valid Input Test #acceptance', () => {
+    describe('Simple Valid Input Test', () => {
       const editRecipePage = new EditRecipePage(pageConfig.recipe.simple.name);
 
       // Delete created recipe after each creation case
@@ -115,7 +123,8 @@ describe('Create Recipe Page', () => {
         apiCall.deleteRecipe(editRecipePage.recipeName, done);
       });
 
-      test('should switch to Edit Recipe page - recipe creation success @create-recipe-page', (done) => {
+      const testSpec4 = test('should switch to Edit Recipe page - recipe creation success',
+      (done) => {
         nightmare
           .wait(recipesPage.btnCreateRecipe)
           .click(recipesPage.btnCreateRecipe)
@@ -130,8 +139,11 @@ describe('Create Recipe Page', () => {
             expect(element).toBe(true);
 
             coverage(nightmare, done);
+          })
+          .catch((error) => {
+            helper.gotoError(error, nightmare, testSpec4);
           });
-      }, timeout);
+      });
     });
   });
 });
