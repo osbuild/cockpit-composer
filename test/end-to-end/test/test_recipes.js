@@ -14,22 +14,23 @@ const coverage = require('../utils/coverage.js').coverage;
 describe('Recipes Page', () => {
   let nightmare;
   // Set case running timeout
-  const timeout = 15000;
+  // Some of cases need more time to complete their jobs
+  // Such as Create Composition. The time totally depends on component what the recipe includes
+  const timeoutCreateComposition = 15000;
 
   // Check BDCS API and Web service first
   beforeAll(apiCall.serviceCheck);
 
   const recipesPage = new RecipesPage();
 
-  // Switch to welder-web iframe if welder-web is integrated with Cockpit.
-  // Cockpit web service is listening on TCP port 9090.
   beforeEach(() => {
-    helper.gotoURL(nightmare = new Nightmare(), recipesPage);
+    helper.gotoURL(nightmare = new Nightmare(pageConfig.nightmareTimeout), recipesPage);
   });
 
   describe('Page Info Check', () => {
-    describe('Title Check #acceptance', () => {
-      test('should be Recipes @recipes-page', (done) => {
+    describe('Title Check', () => {
+      const testSpec1 = test('should be Recipes',
+      (done) => {
         // Highlight the expected result
         const expected = recipesPage.title;
 
@@ -39,14 +40,18 @@ describe('Recipes Page', () => {
             expect(element).toBe(expected);
 
             coverage(nightmare, done);
+          })
+          .catch((error) => {
+            helper.gotoError(error, nightmare, testSpec1);
           });
-      }, timeout);
+      });
     });
   });
 
   describe('Tool Bar', () => {
-    describe('Create Recipe Test #acceptance', () => {
-      test('should have the Create Recipe button on the Recipes page @recipes-page', (done) => {
+    describe('Create Recipe Test', () => {
+      const testSpec2 = test('should have the Create Recipe button on the Recipes page',
+      (done) => {
         // Highlight the expected result
         const expected = recipesPage.varCreateRecipe;
 
@@ -58,9 +63,13 @@ describe('Recipes Page', () => {
             expect(element).toBe(expected);
 
             coverage(nightmare, done);
+          })
+          .catch((error) => {
+            helper.gotoError(error, nightmare, testSpec2);
           });
-      }, timeout);
-      test('should pop up Create Recipe window when click Create Recipe button @recipes-page', (done) => {
+      });
+      const testSpec3 = test('should pop up Create Recipe window when click Create Recipe button',
+      (done) => {
         const createRecipePage = new CreateRecipePage(pageConfig.recipe.simple.name
           , pageConfig.recipe.simple.description);
 
@@ -79,8 +88,11 @@ describe('Recipes Page', () => {
             expect(element).toBe(expected);
 
             coverage(nightmare, done);
+          })
+          .catch((error) => {
+            helper.gotoError(error, nightmare, testSpec3);
           });
-      }, timeout);
+      });
     });
   });
 
@@ -99,8 +111,9 @@ describe('Recipes Page', () => {
         apiCall.deleteRecipe(pageConfig.recipe.simple.name, done);
       });
 
-      describe('Recipe Content Check #acceptance', () => {
-        test('should have correct recipe name on list after new recipe added @recipes-page', (done) => {
+      describe('Recipe Content Check', () => {
+        const testSpec4 = test('should have correct recipe name on list after new recipe added',
+        (done) => {
           // Highlight the expected result
           const expected = pageConfig.recipe.simple.name;
 
@@ -114,34 +127,45 @@ describe('Recipes Page', () => {
               expect(element).toBe(expected);
 
               coverage(nightmare, done);
+            })
+            .catch((error) => {
+              helper.gotoError(error, nightmare, testSpec4);
             });
-        }, timeout);
-        test('should have correct recipe description on list after new recipe added @recipes-page', (done) => {
+        });
+        const testSpec5 = test('should have correct recipe description on list after new recipe added',
+        (done) => {
           // Highlight the expected result
           const expected = pageConfig.recipe.simple.description;
 
           nightmare
-            .wait(recipesPage.labelRecipeDescr)
+            .wait((page, descr) => Array.prototype.slice
+                                     .call(document.querySelectorAll(page.labelRecipeDescr))
+                                     .map(x => x.innerText)
+                                     .includes(descr)
+              , recipesPage, expected)
             .evaluate(page => Array.prototype.slice.call(document.querySelectorAll(page.labelRecipeDescr)).map(x => x.innerText)
               , recipesPage)
             .then((element) => {
               expect(element).toContain(expected);
 
               coverage(nightmare, done);
+            })
+            .catch((error) => {
+              helper.gotoError(error, nightmare, testSpec5);
             });
-        }, timeout);
+        });
       });
 
       compositions.forEach((composition) => {
-        describe(`Create Composition Test For ${composition.type} #acceptance`, () => {
+        describe(`Create Composition Test For ${composition.type}`, () => {
           const createComposPage = new CreateComposPage(composition.type
             , composition.arch);
 
           // Create Composition button selector
           const btnCreateCompos = RecipesPage.btnCreateCompos(pageConfig.recipe.simple.name);
 
-          test('should pop up Create Composition window by clicking Create Compostion button @recipes-page'
-          , (done) => {
+          const testSpec6 = test('should pop up Create Composition window by clicking Create Compostion button',
+          (done) => {
             // Highlight the expected result
             const expected = createComposPage.varCreateCompos;
 
@@ -157,9 +181,13 @@ describe('Recipes Page', () => {
                 expect(element).toBe(expected);
 
                 coverage(nightmare, done);
+              })
+              .catch((error) => {
+                helper.gotoError(error, nightmare, testSpec6);
               });
-          }, timeout);
-          test('should have toast notification pop up when new composition added @recipes-page', (done) => {
+          });
+          const testSpec7 = test('should have toast notification pop up when new composition added',
+          (done) => {
             const toastNotifPage = new ToastNotifPage(pageConfig.recipe.simple.name);
 
             // Highlight the expected result
@@ -197,18 +225,22 @@ describe('Recipes Page', () => {
                 expect(element).toBe(expectedComplete);
 
                 coverage(nightmare, done);
+              })
+              .catch((error) => {
+                helper.gotoError(error, nightmare, testSpec7);
               });
-          }, timeout);
+          }, timeoutCreateComposition);
         });
       });
-      describe('Export Recipe To Manifest Test #acceptance', () => {
+      describe('Export Recipe To Manifest Test', () => {
         const exportRecipePage = new ExportRecipePage();
 
         // More action button
         const btnMoreAction = RecipesPage.btnMore(pageConfig.recipe.simple.name);
         const menuActionExport = RecipesPage.menuActionExport(pageConfig.recipe.simple.name);
 
-        test('should pop up dropdown-menu by clicking ":" button', (done) => {
+        const testSpec8 = test('should pop up dropdown-menu by clicking ":" button',
+        (done) => {
           // Highlight the expected result
           const expected = recipesPage.moreActionList.Export;
 
@@ -222,9 +254,13 @@ describe('Recipes Page', () => {
               expect(element).toBe(expected);
 
               coverage(nightmare, done);
+            })
+            .catch((error) => {
+              helper.gotoError(error, nightmare, testSpec8);
             });
-        }, timeout);
-        test('should pop up Export Recipe window by clicking "Export"', (done) => {
+        });
+        const testSpec9 = test('should pop up Export Recipe window by clicking "Export"',
+        (done) => {
           // Highlight the expected result
           const expected = exportRecipePage.varExportTitle;
 
@@ -242,9 +278,13 @@ describe('Recipes Page', () => {
               expect(element).toBe(expected);
 
               coverage(nightmare, done);
+            })
+            .catch((error) => {
+              helper.gotoError(error, nightmare, testSpec9);
             });
-        }, timeout);
-        test('should show the correct dependence packages and total numbers of dependencies', (done) => {
+        });
+        const testSpec10 = test('should show the correct dependence packages and total numbers of dependencies',
+        (done) => {
           // Convert package name into a string
           const packNames = `${pageConfig.recipe.simple.packages[0].name}`;
 
@@ -281,12 +321,16 @@ describe('Recipes Page', () => {
                 expect(element).toBe(expectedContent);
 
                 coverage(nightmare, done);
+              })
+              .catch((error) => {
+                helper.gotoError(error, nightmare, testSpec10);
               });
           }
 
           apiCall.moduleInfo(packNames, callback, done);
-        }, timeout);
-        test('should copy and paste correct components', (done) => {
+        });
+        const testSpec11 = test('should copy and paste correct components',
+        (done) => {
           // expected result should be the content in textarea
           let expected = '';
 
@@ -345,8 +389,11 @@ describe('Recipes Page', () => {
               expect(element.trim()).toBe(expected);
 
               coverage(nightmare, done);
+            })
+            .catch((error) => {
+              helper.gotoError(error, nightmare, testSpec11);
             });
-        }, timeout);
+        });
       });
     });
   });

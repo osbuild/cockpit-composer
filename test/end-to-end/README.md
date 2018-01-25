@@ -37,30 +37,41 @@ $ npm install                                   # Install end-to-end dependencie
 $ npm run test                                  # Run end-to-end test
 ```
 
-```shell
-$ jest -i -t "#acceptance"                               # Run acceptance case only
-$ jest -i -t "@create-recipe-page"                       # Run create recipe page related case only
-$ jest -i -t "#acceptance.+@create-recipe-page"          # Run acceptance case in create recipe page cases
-$ jest -i -t "@create-recipe-page|@edit-recipe-page"     # Run create recipe and edit recipe pages cases
-```
-
 ### Running end-to-end test in Docker
 
 The end-to-end test docker image is an executable image, which starts container, runs test, and exits.
 
-The docker image depends on a base image, named weld/fedora:25, which needs have been previously built.
-If it is not available it can be built from the welder-deployment repository by running `make weld-f25`.
+The docker image depends on a image, named welder/web-nodejs, which needs have been previously downloaded by running:
+```shell
+sudo docker pull welder/web-nodejs:latest
+```
 
 Build end-to-end test docker image by running:
+```shell
+sudo docker build -t weld/end-to-end:latest .
+```
 
-`sudo docker build -t weld/end-to-end:latest .`
+The end-to-end test needs both bdcs-api-rs and welder-web docker running. Download bdcs-api-rs and welder-web docker image by running:
+```shell
+sudo docker pull welder/bdcs-api-rs:latest
+sudo docker pull welder/web:latest
+```
 
-The end-to-end test needs both bdcs-api-rs and welder-web docker running. Build them from welder-deployment
-repository by running `make build` and `make import-metadata`. Run them by running `sudo docker-compose -p welder up -d`.
+Run bdcs-api-rs and web containers:
+```shell
+sudo docker network inspect welder >/dev/null 2>&1 || sudo docker network create welder
+sudo docker ps --quiet --all --filter 'ancestor=welder/bdcs-api-rs' | sudo xargs --no-run-if-empty docker rm -f
+sudo docker run -d --name api --restart=always -p 4000:4000 -v bdcs-recipes-volume:/bdcs-recipes -v `pwd`:/mddb --network welder --security-opt label=disable welder/bdcs-api-rs:latest
+sudo docker run -d --name web -p 3000:3000 --restart=always --network welder welder/web-with-coverage:latest
+```
 
 Run end-to-end test like this:
 
-`sudo docker run --rm --name welder_end_to_end --network welder_default weld/end-to-end:latest xvfb-run -a -s '-screen 0 1024x768x24' npm run test`
+```shell
+sudo docker run --rm --name welder_end_to_end --network host \
+ -v`pwd`/failed-image:/tmp/failed-image \
+ welder/web-e2e-tests:latest xvfb-run -a -s '-screen 0 1024x768x24' npm run test -- --verbose
+```
 
 ## Directory Layout
 
@@ -102,37 +113,45 @@ module.exports = class CreateComposPage extends MainPage {    // Inherint from t
 ## Test Suite and Case Layout
 
 ```javascript
-describe('View Recipe Page', function () {             // Which page does this suite test
-  // Set case running timeout
-  const timeout = 15000;                               // Timeout setting for this suite (ms)
+describe('Imported Content Sanity Testing', () => {
+  let nightmare;
 
-  beforeAll((done) => {                                // Check BDCS API and Web service avaliable first,
-    apiCall.serviceCheck(done);
-  });                                                                   
+  // Check BDCS API and Web service first
+  beforeAll(apiCall.serviceCheck);
 
-  describe('Single Word Recipe Name Scenario', () => {    // Group suite or case into a scenario
+  beforeAll((done) => {
+    // Create a new recipe before the first test run in this suite
+    apiCall.newRecipe(pageConfig.recipe.simple, done);
+  });
 
-    beforeAll((done) => {                                 // Scenario provision
-    });
+  afterAll((done) => {
+    // Delete added recipe after all tests completed in this suite
+    apiCall.deleteRecipe(pageConfig.recipe.simple.name, done);
+  });
 
-    afterAll((done) => {                                  // Scenario de-provision, like apply a snapshot
-    });
+  const editRecipePage = new EditRecipePage(pageConfig.recipe.simple.name);
 
-    describe('Menu Nav Bar Check #acceptance', () => {     // Test content and test type
-      test('should show a recipe name @view-recipe-page', (done) => {    // Case description and case ID
+  beforeEach(() => {
+    helper.gotoURL(nightmare = new Nightmare(pageConfig.nightmareTimeout), editRecipePage);
+  });
 
-        const expected = "Expected Result";         // Highlight the expected result at the top level
-                                                    // of each case block. Explicit is always better!
-      }, timeout);
-    });
-    describe('Title Bar Check #acceptance', () => {
-      test('should show a recipe name title @view-recipe-page', (done) => {
+  const testSpec1 = test('displayed count should match distinct count from DB',
+  (done) => {
+    function callback(totalNumbers) {
+      const expectedText = `1 - 50 of ${totalNumbers}`;
+      nightmare
+        .wait(editRecipePage.componentListItemRootElement) // list item and total number are rendered at the same time
+        .evaluate(page => document.querySelector(page.totalComponentCount).innerText, editRecipePage)
+        .then((element) => {
+          expect(element).toBe(expectedText);
 
-      }, timeout);
-      test('should have Create Composition button @view-recipe-page', (done) => {
-
-      }, timeout);
-    });
+          coverage(nightmare, done);
+        })
+        .catch((error) => {
+          helper.gotoError(error, nightmare, testSpec1);
+        });
+    }
+    apiCall.moduleListTotalPackages(callback, done);
   });
 });
 ```
@@ -171,9 +190,25 @@ The result should be read like a sentence.
       Title Bar Check
         ✓ should show a recipe name title (1718ms)
         ✓ should have Create Composition button (1698ms)
-
-
   3 passing (6s)
+```
+
+Screenshot and error log will be generated if case failed.
+
+The screenshot will be uploaded to AWS S3 and can be found from `https://s3.amazonaws.com/weldr/web-fail-test-screenshot/<Travis Build Number>/<Test Case Full Name>.<YYYY-mm-dd-HH-MM-SS>.fail.png`
+
+Error log has test case full name and detailed error message.
+```shell
+console.error utils/helper.js:19
+    Failed on case Create Recipe Page Input Data Validation Test Required Field Missing should show alert message by clicking Save button when create recipe without name - Error: expect(received).toBe(expected)
+
+    Expected value to be (using ===):
+      "equired information is missing."
+    Received:
+      "Required information is missing."
+
+  console.error utils/helper.js:29
+    Screenshot Saved at /tmp/failed-image/Create-Recipe-Page-Input-Data-Validation-Test-Required-Field-Missing-should-show-alert-message-by-clicking-Save-button-when-create-recipe-without-name.2018-01-26-03-34-10.fail.png
 ```
 
 ## Code Style

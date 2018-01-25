@@ -1,5 +1,4 @@
 /* eslint no-undef: off */
-/* eslint no-console: off */
 /* eslint global-require: off */
 /* eslint no-underscore-dangle: off */
 
@@ -25,7 +24,7 @@ module.exports = {
         }
         done();
       })
-    .catch(err => console.log(err));
+      .catch(err => console.error(err));
   },
 
 };

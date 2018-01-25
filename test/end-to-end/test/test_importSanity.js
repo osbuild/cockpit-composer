@@ -8,8 +8,6 @@ const coverage = require('../utils/coverage.js').coverage;
 
 describe('Imported Content Sanity Testing', () => {
   let nightmare;
-  // Set case running timeout
-  const timeout = 15000;
 
   // Check BDCS API and Web service first
   beforeAll(apiCall.serviceCheck);
@@ -26,13 +24,12 @@ describe('Imported Content Sanity Testing', () => {
 
   const editRecipePage = new EditRecipePage(pageConfig.recipe.simple.name);
 
-  // Switch to welder-web iframe if welder-web is integrated with Cockpit.
-  // Cockpit web service is listening on TCP port 9090.
   beforeEach(() => {
-    helper.gotoURL(nightmare = new Nightmare(), editRecipePage);
+    helper.gotoURL(nightmare = new Nightmare(pageConfig.nightmareTimeout), editRecipePage);
   });
 
-  test('displayed count should match distinct count from DB', (done) => {
+  const testSpec1 = test('displayed count should match distinct count from DB',
+  (done) => {
     function callback(totalNumbers) {
       const expectedText = `1 - 50 of ${totalNumbers}`;
       nightmare
@@ -42,8 +39,11 @@ describe('Imported Content Sanity Testing', () => {
           expect(element).toBe(expectedText);
 
           coverage(nightmare, done);
+        })
+        .catch((error) => {
+          helper.gotoError(error, nightmare, testSpec1);
         });
     }
     apiCall.moduleListTotalPackages(callback, done);
-  }, timeout);
+  });
 });
