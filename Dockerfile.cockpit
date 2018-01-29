@@ -1,9 +1,6 @@
 FROM fedora:latest
 MAINTAINER Xiaofeng Wang <xiaofwan@redhat.com>
 
-# to avoid the JS code doing checks we create this here
-RUN mkdir -p /tmp/failed-image
-
 RUN dnf install -y cockpit-ws cockpit-kubernetes && dnf clean all
 RUN echo $'[Negotiate]\nCommand = /usr/libexec/cockpit-stub\n[WebService]\nShell = /shell/simple.html' > /etc/cockpit/cockpit.conf
 RUN rm -rf /usr/share/cockpit/kubernetes/
