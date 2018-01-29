@@ -29,11 +29,11 @@ module.exports = class CreateRecipePage extends MainPage {
     this.btnCancel = `${this.dialogRootElement} .modal-footer .btn-default`;
 
     // Alert label
-    this.varAlertInfo = 'Required information is missing.';
+    this.varAlertInfo = '#Required information is missing.';
     this.labelAlertInfo = `${this.dialogRootElement} .alert-danger strong`;
 
     // Help-block error message
-    this.varHelpBlockMsg = 'A recipe name is required.';
+    this.varHelpBlockMsg = '#A recipe name is required.';
     this.spanHelpBlockMsg = `${this.dialogRootElement} span[class="help-block"]`;
   }
 };
