@@ -37,41 +37,14 @@ $ npm install                                   # Install end-to-end dependencie
 $ npm run test                                  # Run end-to-end test
 ```
 
-### Running end-to-end test in Docker
+### Running end-to-end test inside Docker container
 
 The end-to-end test docker image is an executable image, which starts container, runs test, and exits.
+There's a easy way to run end to end test in Docker container.
 
-The docker image depends on a image, named welder/web-nodejs, which needs have been previously downloaded by running:
-```shell
-sudo docker pull welder/web-nodejs:latest
-```
-
-Build end-to-end test docker image by running:
-```shell
-sudo docker build -t weld/end-to-end:latest .
-```
-
-The end-to-end test needs both bdcs-api-rs and welder-web docker running. Download bdcs-api-rs and welder-web docker image by running:
-```shell
-sudo docker pull welder/bdcs-api-rs:latest
-sudo docker pull welder/web:latest
-```
-
-Run bdcs-api-rs and web containers:
-```shell
-sudo docker network inspect welder >/dev/null 2>&1 || sudo docker network create welder
-sudo docker ps --quiet --all --filter 'ancestor=welder/bdcs-api-rs' | sudo xargs --no-run-if-empty docker rm -f
-sudo docker run -d --name api --restart=always -p 4000:4000 -v bdcs-recipes-volume:/bdcs-recipes -v `pwd`:/mddb --network welder --security-opt label=disable welder/bdcs-api-rs:latest
-sudo docker run -d --name web -p 3000:3000 --restart=always --network welder welder/web-with-coverage:latest
-```
-
-Run end-to-end test like this:
-
-```shell
-sudo docker run --rm --name welder_end_to_end --network host \
- -v`pwd`/failed-image:/tmp/failed-image \
- welder/web-e2e-tests:latest xvfb-run -a -s '-screen 0 1024x768x24' npm run test -- --verbose
-```
+1. Go to project root folder.
+2. `make end-to-end-test` to run end to end test against standard web UI.
+3. Or `make cockpit-test` to run end to end test against Cockpit integrated UI.
 
 ## Directory Layout
 
