@@ -19,14 +19,14 @@ module.exports = class ViewRecipePage extends MainPage {
     // Tab list root element
     this.tabListRootElement = `${this.tabRootElement} ul[role="tablist"]`;
 
-    // Detail tab page root element
-    this.detailTabRootElement = `${this.tabRootElement} pf-tab[tabtitle="Details"]`;
+    // Details tab content root element
+    this.detailsContentRootElement = `${this.tabRootElement} pf-tab[tabtitle="Details"]`;
 
-    // Components tab page root element
-    this.componentsTabRootElement = `${this.tabRootElement} pf-tab[tabtitle="Components"]`;
+    // Components tab content root element
+    this.componentsContentRootElement = `${this.tabRootElement} pf-tab[tabtitle="Components"]`;
 
-    // Compositions tab page root element
-    this.compositionsTabRootElement = `${this.tabRootElement} pf-tab[tabtitle="Compositions"]`;
+    // Compositions tab content root element
+    this.compositionsContentRootElement = `${this.tabRootElement} pf-tab[tabtitle="Compositions"]`;
 
 // ---- Page element selector ---- //
     // Nav-bar: Recipe Name label
@@ -52,6 +52,26 @@ module.exports = class ViewRecipePage extends MainPage {
     this.toolBarMoreActionList = {
       Export: 'Export',
     };
+
+    // Detail tab element
+    this.detailTabElement = `${this.tabListRootElement} li:nth-child(1) a`;
+
+    // Components tab page element
+    this.componentsTabElement = `${this.tabListRootElement} li:nth-child(2) a`;
+
+    // Compositions tab page element
+    this.compositionsTabElement = `${this.tabListRootElement} li:nth-child(3) a`;
+
+    // Selected Components tab under Components tab
+    this.tabSelectedComponents = `${this.componentsContentRootElement} pf-tabs ul[role="tablist"] li:nth-child(1) a`;
+
+    // Dependencies tab under Components tab
+    this.tabDependencies = `${this.componentsContentRootElement} pf-tabs ul[role="tablist"] li:nth-child(2) a`;
+
+    // Selected Components content
+    this.contentSelectedComponents = `${this.componentsContentRootElement} pf-tabs pf-tab
+                                      div[class="list-pf cmpsr-list-pf list-pf-stacked cmpsr-recipe__components"]`;
+   }
   }
 
   get url() {
