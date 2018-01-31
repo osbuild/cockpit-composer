@@ -178,6 +178,11 @@ describe('View Recipe Page', () => {
         const expected = exportRecipePage.varExportTitle;
 
         nightmare
+          .wait(viewRecipePage.componentsTabElement)
+          .click(viewRecipePage.componentsTabElement)
+          .wait(viewRecipePage.tabSelectedComponents)
+          .click(viewRecipePage.tabSelectedComponents)
+          .wait(viewRecipePage.contentSelectedComponents)
           .wait(btnMoreAction)
           .click(btnMoreAction)
           .wait(menuActionExport)
@@ -208,6 +213,11 @@ describe('View Recipe Page', () => {
           const expectedContent = [...depCompSet].sort().join('\n');
 
           nightmare
+            .wait(viewRecipePage.componentsTabElement)
+            .click(viewRecipePage.componentsTabElement)
+            .wait(viewRecipePage.tabSelectedComponents)
+            .click(viewRecipePage.tabSelectedComponents)
+            .wait(viewRecipePage.contentSelectedComponents)
             .wait(btnMoreAction)
             .click(btnMoreAction)
             .wait(menuActionExport)
@@ -240,6 +250,11 @@ describe('View Recipe Page', () => {
         let expected = '';
 
         nightmare
+          .wait(viewRecipePage.componentsTabElement)
+          .click(viewRecipePage.componentsTabElement)
+          .wait(viewRecipePage.tabSelectedComponents)
+          .click(viewRecipePage.tabSelectedComponents)
+          .wait(viewRecipePage.contentSelectedComponents)
           .wait(btnMoreAction)
           .click(btnMoreAction)
           .wait(menuActionExport)
