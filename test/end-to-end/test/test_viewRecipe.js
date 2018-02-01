@@ -13,9 +13,7 @@ const coverage = require('../utils/coverage.js').coverage;
 describe('View Recipe Page', () => {
   let nightmare;
   // Set case running timeout
-  // Some of cases need more time to complete their jobs
-  // Such as Create Composition. The time totally depends on component what the recipe includes
-  const timeoutCreateComposition = 15000;
+  const timeout = 15000;
 
   // Check BDCS API and Web service first
   beforeAll(apiCall.serviceCheck);
@@ -49,6 +47,11 @@ describe('View Recipe Page', () => {
         const expected = viewRecipePage.recipeName;
 
         nightmare
+          .wait(viewRecipePage.componentsTabElement)
+          .click(viewRecipePage.componentsTabElement)
+          .wait(viewRecipePage.tabSelectedComponents)
+          .click(viewRecipePage.tabSelectedComponents)
+          .wait(viewRecipePage.contentSelectedComponents)
           .wait(viewRecipePage.labelRecipeName)
           .evaluate(page => document.querySelector(page.labelRecipeName).innerText
             , viewRecipePage)
@@ -60,7 +63,7 @@ describe('View Recipe Page', () => {
           .catch((error) => {
             helper.gotoError(error, nightmare, testSpec1);
           });
-      });
+      }, timeout);
     });
     describe('Title Bar Check', () => {
       const testSpec2 = test('should show a recipe name title',
@@ -69,6 +72,11 @@ describe('View Recipe Page', () => {
         const expected = viewRecipePage.recipeName;
 
         nightmare
+          .wait(viewRecipePage.componentsTabElement)
+          .click(viewRecipePage.componentsTabElement)
+          .wait(viewRecipePage.tabSelectedComponents)
+          .click(viewRecipePage.tabSelectedComponents)
+          .wait(viewRecipePage.contentSelectedComponents)
           .wait(viewRecipePage.labelRecipeTitle)
           .evaluate(page => document.querySelector(page.labelRecipeTitle).innerText
             , viewRecipePage)
@@ -80,13 +88,18 @@ describe('View Recipe Page', () => {
           .catch((error) => {
             helper.gotoError(error, nightmare, testSpec2);
           });
-      });
+      }, timeout);
       const testSpec3 = test('should have Create Composition button',
       (done) => {
         // Highlight the expected result
         const expected = viewRecipePage.varCreateCompos;
 
         nightmare
+          .wait(viewRecipePage.componentsTabElement)
+          .click(viewRecipePage.componentsTabElement)
+          .wait(viewRecipePage.tabSelectedComponents)
+          .click(viewRecipePage.tabSelectedComponents)
+          .wait(viewRecipePage.contentSelectedComponents)
           .wait(viewRecipePage.btnCreateCompos)
           .evaluate(page => document.querySelector(page.btnCreateCompos).innerText
             , viewRecipePage)
@@ -98,7 +111,7 @@ describe('View Recipe Page', () => {
           .catch((error) => {
             helper.gotoError(error, nightmare, testSpec3);
           });
-      });
+      }, timeout);
     });
     compositions.forEach((composition) => {
       describe(`Create Composition Test For ${composition.type}`, () => {
@@ -111,6 +124,11 @@ describe('View Recipe Page', () => {
           const expected = createComposPage.varCreateCompos;
 
           nightmare
+            .wait(viewRecipePage.componentsTabElement)
+            .click(viewRecipePage.componentsTabElement)
+            .wait(viewRecipePage.tabSelectedComponents)
+            .click(viewRecipePage.tabSelectedComponents)
+            .wait(viewRecipePage.contentSelectedComponents)
             .wait(viewRecipePage.btnCreateCompos)
             .click(viewRecipePage.btnCreateCompos)
             .wait(page => document.querySelector(page.dialogRootElement).style.display === 'block'
@@ -125,7 +143,7 @@ describe('View Recipe Page', () => {
             .catch((error) => {
               helper.gotoError(error, nightmare, testSpec4);
             });
-        });
+        }, timeout);
         const testSpec5 = test('should have toast notification pop up when new composition added',
         (done) => {
           const toastNotifPage = new ToastNotifPage(pageConfig.recipe.simple.name);
@@ -135,6 +153,11 @@ describe('View Recipe Page', () => {
           const expectedComplete = toastNotifPage.varStatusComplete;
 
           nightmare
+            .wait(viewRecipePage.componentsTabElement)
+            .click(viewRecipePage.componentsTabElement)
+            .wait(viewRecipePage.tabSelectedComponents)
+            .click(viewRecipePage.tabSelectedComponents)
+            .wait(viewRecipePage.contentSelectedComponents)
             .wait(viewRecipePage.btnCreateCompos)
             .click(viewRecipePage.btnCreateCompos)
             .wait(page => document.querySelector(page.dialogRootElement).style.display === 'block'
@@ -169,7 +192,7 @@ describe('View Recipe Page', () => {
             .catch((error) => {
               helper.gotoError(error, nightmare, testSpec5);
             });
-        }, timeoutCreateComposition);
+        }, timeout);
       });
     });
     describe('Export Recipe To Manifest Test', () => {
@@ -185,6 +208,11 @@ describe('View Recipe Page', () => {
         const expected = viewRecipePage.toolBarMoreActionList.Export;
 
         nightmare
+          .wait(viewRecipePage.componentsTabElement)
+          .click(viewRecipePage.componentsTabElement)
+          .wait(viewRecipePage.tabSelectedComponents)
+          .click(viewRecipePage.tabSelectedComponents)
+          .wait(viewRecipePage.contentSelectedComponents)
           .wait(btnMoreAction)
           .click(btnMoreAction)
           .wait(menuActionExport)
@@ -198,7 +226,7 @@ describe('View Recipe Page', () => {
           .catch((error) => {
             helper.gotoError(error, nightmare, testSpec6);
           });
-      });
+      }, timeout);
       const testSpec7 = test('should pop up Export Recipe window by clicking "Export"',
       (done) => {
         // Highlight the expected result
@@ -227,7 +255,7 @@ describe('View Recipe Page', () => {
           .catch((error) => {
             helper.gotoError(error, nightmare, testSpec7);
           });
-      });
+      }, timeout);
       const testSpec8 = test('should show the correct dependence packages and total numbers of dependencies',
       (done) => {
         // Convert package name into a string
@@ -278,7 +306,7 @@ describe('View Recipe Page', () => {
         }
 
         apiCall.moduleInfo(packNames, callback, done);
-      });
+      }, timeout);
       const testSpec9 = test('should copy and paste correct components',
       (done) => {
         // expected result should be the content in textarea
@@ -348,7 +376,7 @@ describe('View Recipe Page', () => {
           .catch((error) => {
             helper.gotoError(error, nightmare, testSpec9);
           });
-      });
+      }, timeout);
     });
   });
 });

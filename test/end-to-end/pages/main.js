@@ -6,6 +6,6 @@ module.exports = class MainPage {
     this.mailUrl = pageConfig.root;
     this.title = title;
     this.iframeSelector = '.container-frame';
-    this.iframeLoadingTime = 500;
+    this.iframeLoadingTime = 3000;
   }
 };

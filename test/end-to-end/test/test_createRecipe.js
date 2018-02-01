@@ -12,6 +12,8 @@ const coverage = require('../utils/coverage.js').coverage;
 
 describe('Create Recipe Page', () => {
   let nightmare;
+  // Set case running timeout
+  const timeout = 15000;
 
   // Check BDCS API and Web service first
   beforeAll(apiCall.serviceCheck);
@@ -57,7 +59,7 @@ describe('Create Recipe Page', () => {
           .catch((error) => {
             helper.gotoError(error, nightmare, testSpec1);
           });
-      });
+      }, timeout);
       const testSpec2 = test('should show alert message by clicking Enter key when create recipe without name',
       (done) => {
         // Highlight the expected result
@@ -89,7 +91,7 @@ describe('Create Recipe Page', () => {
           .catch((error) => {
             helper.gotoError(error, nightmare, testSpec2);
           });
-      });
+      }, timeout);
       const testSpec3 = test('should show alert message by changing focus to description input',
       (done) => {
         // Highlight the expected result
@@ -113,7 +115,7 @@ describe('Create Recipe Page', () => {
           .catch((error) => {
             helper.gotoError(error, nightmare, testSpec3);
           });
-      });
+      }, timeout);
     });
     describe('Simple Valid Input Test', () => {
       const editRecipePage = new EditRecipePage(pageConfig.recipe.simple.name);
@@ -143,7 +145,7 @@ describe('Create Recipe Page', () => {
           .catch((error) => {
             helper.gotoError(error, nightmare, testSpec4);
           });
-      });
+      }, timeout);
     });
   });
 });

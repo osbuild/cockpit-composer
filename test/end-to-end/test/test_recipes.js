@@ -14,9 +14,7 @@ const coverage = require('../utils/coverage.js').coverage;
 describe('Recipes Page', () => {
   let nightmare;
   // Set case running timeout
-  // Some of cases need more time to complete their jobs
-  // Such as Create Composition. The time totally depends on component what the recipe includes
-  const timeoutCreateComposition = 15000;
+  const timeout = 15000;
 
   // Check BDCS API and Web service first
   beforeAll(apiCall.serviceCheck);
@@ -44,7 +42,7 @@ describe('Recipes Page', () => {
           .catch((error) => {
             helper.gotoError(error, nightmare, testSpec1);
           });
-      });
+      }, timeout);
     });
   });
 
@@ -67,7 +65,7 @@ describe('Recipes Page', () => {
           .catch((error) => {
             helper.gotoError(error, nightmare, testSpec2);
           });
-      });
+      }, timeout);
       const testSpec3 = test('should pop up Create Recipe window when click Create Recipe button',
       (done) => {
         const createRecipePage = new CreateRecipePage(pageConfig.recipe.simple.name
@@ -92,7 +90,7 @@ describe('Recipes Page', () => {
           .catch((error) => {
             helper.gotoError(error, nightmare, testSpec3);
           });
-      });
+      }, timeout);
     });
   });
 
@@ -131,7 +129,7 @@ describe('Recipes Page', () => {
             .catch((error) => {
               helper.gotoError(error, nightmare, testSpec4);
             });
-        });
+        }, timeout);
         const testSpec5 = test('should have correct recipe description on list after new recipe added',
         (done) => {
           // Highlight the expected result
@@ -153,7 +151,7 @@ describe('Recipes Page', () => {
             .catch((error) => {
               helper.gotoError(error, nightmare, testSpec5);
             });
-        });
+        }, timeout);
       });
 
       compositions.forEach((composition) => {
@@ -185,7 +183,7 @@ describe('Recipes Page', () => {
               .catch((error) => {
                 helper.gotoError(error, nightmare, testSpec6);
               });
-          });
+          }, timeout);
           const testSpec7 = test('should have toast notification pop up when new composition added',
           (done) => {
             const toastNotifPage = new ToastNotifPage(pageConfig.recipe.simple.name);
@@ -229,7 +227,7 @@ describe('Recipes Page', () => {
               .catch((error) => {
                 helper.gotoError(error, nightmare, testSpec7);
               });
-          }, timeoutCreateComposition);
+          }, timeout);
         });
       });
       describe('Export Recipe To Manifest Test', () => {
@@ -258,7 +256,7 @@ describe('Recipes Page', () => {
             .catch((error) => {
               helper.gotoError(error, nightmare, testSpec8);
             });
-        });
+        }, timeout);
         const testSpec9 = test('should pop up Export Recipe window by clicking "Export"',
         (done) => {
           // Highlight the expected result
@@ -282,7 +280,7 @@ describe('Recipes Page', () => {
             .catch((error) => {
               helper.gotoError(error, nightmare, testSpec9);
             });
-        });
+        }, timeout);
         const testSpec10 = test('should show the correct dependence packages and total numbers of dependencies',
         (done) => {
           // Convert package name into a string
@@ -328,7 +326,7 @@ describe('Recipes Page', () => {
           }
 
           apiCall.moduleInfo(packNames, callback, done);
-        });
+        }, timeout);
         const testSpec11 = test('should copy and paste correct components',
         (done) => {
           // expected result should be the content in textarea
@@ -393,7 +391,7 @@ describe('Recipes Page', () => {
             .catch((error) => {
               helper.gotoError(error, nightmare, testSpec11);
             });
-        });
+        }, timeout);
       });
     });
   });
