@@ -71,7 +71,6 @@ module.exports = class ViewRecipePage extends MainPage {
     // Selected Components content
     this.contentSelectedComponents = `${this.componentsContentRootElement} pf-tabs pf-tab
                                       div[class="list-pf cmpsr-list-pf list-pf-stacked cmpsr-recipe__components"]`;
-   }
   }
 
   get url() {
