@@ -8,6 +8,8 @@ const coverage = require('../utils/coverage.js').coverage;
 
 describe('Imported Content Sanity Testing', () => {
   let nightmare;
+  // Set case running timeout
+  const timeout = 15000;
 
   // Check BDCS API and Web service first
   beforeAll(apiCall.serviceCheck);
@@ -45,5 +47,5 @@ describe('Imported Content Sanity Testing', () => {
         });
     }
     apiCall.moduleListTotalPackages(callback, done);
-  });
+  }, timeout);
 });
