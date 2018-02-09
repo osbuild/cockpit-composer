@@ -1,4 +1,4 @@
-FROM fedora:26
+FROM fedora:latest
 MAINTAINER Alexander Todorov <atodorov@redhat.com>
 
 RUN dnf -y install sqlite ostree sudo gobject-introspection
