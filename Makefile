@@ -107,6 +107,8 @@ cockpit-test: shared build-rpm
 	else \
 	    sudo docker build -f Dockerfile.cockpit -t welder/web-cockpit:latest .; \
 	fi;
+	# don't interfere with host-installed cockpit
+	sudo systemctl stop cockpit.socket cockpit.service || true
 
 	sudo docker run -d --name web --restart=always --network host welder/web-cockpit:latest
 
