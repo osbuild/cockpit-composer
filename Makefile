@@ -70,7 +70,7 @@ shared: metadata.db
 	    sudo docker build -f ./test/end-to-end/Dockerfile -t welder/web-e2e-tests:latest ./test/end-to-end/ ; \
 	fi;
 
-	sudo mkdir failed-image
+	sudo mkdir -p failed-image
 	sudo docker network inspect welder >/dev/null 2>&1 || sudo docker network create welder
 	sudo docker ps --quiet --all --filter 'ancestor=welder/bdcs-api-rs' | sudo xargs --no-run-if-empty docker rm -f
 	sudo docker run -d --name api --restart=always -p 4000:4000 -v bdcs-recipes-volume:/bdcs-recipes -v `pwd`:/mddb --network welder --security-opt label=disable welder/bdcs-api-rs:latest
