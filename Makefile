@@ -4,7 +4,7 @@
 # if there is no tag (yet), use 0 as version
 RELEASEVER=$(shell (git describe --exclude '*jenkins*' || echo 0) | sed 's/-[0-9]\+-g.*/.x/')
 
-all:
+all: npm-install
 	NODE_ENV=$(NODE_ENV) npm run build
 
 npm-install:
