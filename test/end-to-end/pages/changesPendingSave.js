@@ -1,9 +1,9 @@
-// Changes Pending Save page object
+// Changes Pending Commit page object
 const MainPage = require('./main');
 
-module.exports = class changesPendingSave extends MainPage {
+module.exports = class changesPendingCommit extends MainPage {
   constructor() {
-    super('Changes Pending Save');
+    super('Changes Pending Commit');
 
 // ---- Root element selector ---- //
     // Root Element for this Dialog Page
@@ -20,7 +20,7 @@ module.exports = class changesPendingSave extends MainPage {
 
 // ---- Page element selector ---- //
     // Page Title
-    this.varPageTitle = 'Changes Pending Save';
+    this.varPageTitle = 'Changes Pending Commit';
     this.labelPageTitle = `${this.headerElement} h4[class="modal-title"]`;
 
     // X Close Button
@@ -38,8 +38,8 @@ module.exports = class changesPendingSave extends MainPage {
     // Pending changes component
     this.labelPendingChangesComponent = `${this.bodyElement} ul li div div strong`;
 
-    // Save and Close button
-    this.btnSave = `${this.footerElement} button[class="btn btn-primary"]`;
+    // Commit and Close button
+    this.btnCommit = `${this.footerElement} button[class="btn btn-primary"]`;
     this.btnClose = `${this.footerElement} button[class="btn btn-default" data-dismiss="modal"]`;
   }
 };

@@ -173,7 +173,7 @@ The screenshot will be uploaded to AWS S3 and can be found from `https://s3.amaz
 Error log has test case full name and detailed error message.
 ```shell
 console.error utils/helper.js:19
-    Failed on case Create Blueprint Page Input Data Validation Test Required Field Missing should show alert message by clicking Save button when create blueprint without name - Error: expect(received).toBe(expected)
+    Failed on case Create Blueprint Page Input Data Validation Test Required Field Missing should show alert message by clicking Create button when create blueprint without name - Error: expect(received).toBe(expected)
 
     Expected value to be (using ===):
       "equired information is missing."

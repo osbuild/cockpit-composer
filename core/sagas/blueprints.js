@@ -3,7 +3,7 @@ import {
   fetchBlueprintInfoApi, fetchBlueprintNamesApi, fetchBlueprintContentsApi, fetchWorkspaceBlueprintContentsApi,
   deleteBlueprintApi, setBlueprintDescriptionApi,
   createBlueprintApi, fetchDiffWorkspaceApi,
-  saveToWorkspaceApi,
+  commitToWorkspaceApi,
 } from '../apiCalls';
 import {
   fetchingBlueprintsSucceeded,
@@ -101,14 +101,14 @@ function* createBlueprint(action) {
   }
 }
 
-function* saveToWorkspace(action) {
+function* commitToWorkspace(action) {
   try {
     const { blueprintId } = action.payload;
     const getBlueprintById = makeGetBlueprintById();
     const blueprint = yield select(getBlueprintById, blueprintId);
-    yield call(saveToWorkspaceApi, blueprint.present);
+    yield call(commitToWorkspaceApi, blueprint.present);
   } catch (error) {
-    console.log('saveToWorkspaceError');
+    console.log('commitToWorkspaceError');
     yield put(blueprintsFailure(error));
   }
 }
@@ -118,6 +118,6 @@ export default function* () {
   yield takeLatest(FETCHING_BLUEPRINT_CONTENTS, fetchBlueprintContents);
   yield takeLatest(SET_BLUEPRINT_DESCRIPTION, setBlueprintDescription);
   yield takeEvery(DELETING_BLUEPRINT, deleteBlueprint);
-  yield takeEvery(SAVE_TO_WORKSPACE, saveToWorkspace);
+  yield takeEvery(SAVE_TO_WORKSPACE, commitToWorkspace);
   yield* fetchBlueprints();
 }

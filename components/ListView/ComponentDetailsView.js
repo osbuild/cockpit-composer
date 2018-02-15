@@ -202,7 +202,7 @@ class ComponentDetailsView extends React.Component {
                     type="button"
                     onClick={e => this.props.handleUpdateComponent(e, this.state.componentData)}
                   >
-                    Save Updates
+                    Commit Updates
                   </button>
                 </li>}
               {(this.props.status === 'selected' || this.props.status === 'editSelected') &&

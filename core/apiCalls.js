@@ -90,7 +90,7 @@ export function deleteBlueprintApi(blueprint) {
   return deletedBlueprint;
 }
 
-export function saveToWorkspaceApi(blueprint) {
+export function commitToWorkspaceApi(blueprint) {
   return utils.apiFetch(constants.post_blueprints_workspace, {
     method: 'POST',
     headers: {

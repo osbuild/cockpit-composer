@@ -121,7 +121,7 @@ import Button from './components/Button';
 function MyComponent() {
   return (
     <div>
-      <Button primary={true}>Save</Button>
+      <Button primary={true}>Commit</Button>
       <Button>Cancel</Button>
     </div>
   );

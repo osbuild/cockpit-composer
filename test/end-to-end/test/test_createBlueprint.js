@@ -28,7 +28,7 @@ describe('Create Blueprint Page', () => {
 
   describe('Input Data Validation Test', () => {
     describe('Required Field Missing', () => {
-      const testSpec1 = test('should show alert message by clicking Save button when create blueprint without name',
+      const testSpec1 = test('should show alert message by clicking Commit button when create blueprint without name',
       (done) => {
         // Highlight the expected result
         const expectedAlertInfo = createBlueprintPage.varAlertInfo;
@@ -39,8 +39,8 @@ describe('Create Blueprint Page', () => {
           .click(blueprintsPage.btnCreateBlueprint)
           .wait(page => document.activeElement.id === page.inputNameEleId
             , createBlueprintPage)
-          .wait(createBlueprintPage.btnSave)
-          .click(createBlueprintPage.btnSave)
+          .wait(createBlueprintPage.btnCommit)
+          .click(createBlueprintPage.btnCommit)
           .wait(createBlueprintPage.labelAlertInfo)
           .evaluate(page => document.querySelector(page.labelAlertInfo).innerText
             , createBlueprintPage)
@@ -71,7 +71,7 @@ describe('Create Blueprint Page', () => {
           .click(blueprintsPage.btnCreateBlueprint)
           .wait(page => document.activeElement.id === page.inputNameEleId
             , createBlueprintPage)
-          .wait(createBlueprintPage.btnSave)
+          .wait(createBlueprintPage.btnCommit)
           .type('body', '\u000d')
           .wait(createBlueprintPage.labelAlertInfo)
           .evaluate(page => document.querySelector(page.labelAlertInfo).innerText
@@ -134,7 +134,7 @@ describe('Create Blueprint Page', () => {
             , createBlueprintPage)
           .insert(createBlueprintPage.inputName, createBlueprintPage.varRecName)
           .insert(createBlueprintPage.inputDescription, createBlueprintPage.varRecDesc)
-          .click(createBlueprintPage.btnSave)
+          .click(createBlueprintPage.btnCommit)
           .wait(editBlueprintPage.componentListItemRootElement)
           .exists(editBlueprintPage.componentListItemRootElement)
           .then((element) => {

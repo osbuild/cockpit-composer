@@ -4,7 +4,7 @@ const EditBlueprintPage = require('../pages/editBlueprint');
 const CreateImagePage = require('../pages/createImage');
 const ToastNotifPage = require('../pages/toastNotif');
 const ExportBlueprintPage = require('../pages/exportBlueprint');
-const ChangesPendingSavePage = require('../pages/changesPendingSave');
+const ChangesPendingCommitPage = require('../pages/changesPendingCommit');
 const apiCall = require('../utils/apiCall');
 const helper = require('../utils/helper');
 const pageConfig = require('../config');
@@ -350,23 +350,23 @@ describe('Edit Blueprint Page', () => {
           });
       }, timeout);
     });
-    describe('Save Blueprint Test', () => {
-      const testSpec10 = test('should have toast notification pop up when Save button clicked',
+    describe('Commit Blueprint Test', () => {
+      const testSpec10 = test('should have toast notification pop up when Commit button clicked',
       (done) => {
         const toastNotifPage = new ToastNotifPage(pageConfig.blueprint.simple.name);
-        const changesPendingSavePage = new ChangesPendingSavePage();
+        const changesPendingCommitPage = new ChangesPendingCommitPage();
 
         // Highlight the expected result
-        const expected = toastNotifPage.varStatusSaved;
+        const expected = toastNotifPage.varStatusCommitted;
 
         nightmare
           .wait(editBlueprintPage.componentListItemRootElement)
           .wait(editBlueprintPage.componentListItemRootElementSelect)
           .click(editBlueprintPage.componentListItemRootElementSelect)
-          .wait(editBlueprintPage.btnSave)
-          .click(editBlueprintPage.btnSave)
-          .wait(changesPendingSavePage.btnSave)
-          .click(changesPendingSavePage.btnSave)
+          .wait(editBlueprintPage.btnCommit)
+          .click(editBlueprintPage.btnCommit)
+          .wait(changesPendingCommitPage.btnCommit)
+          .click(changesPendingCommitPage.btnCommit)
           .wait(toastNotifPage.iconCreating)
           .wait((page) => {
             const blueprintName = document.querySelector(page.labelBlueprintName).innerText;

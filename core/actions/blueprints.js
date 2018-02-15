@@ -145,7 +145,7 @@ export const deleteHistory = (blueprintId) => ({
 });
 
 export const SAVE_TO_WORKSPACE = 'SAVE_TO_WORKSPACE';
-export const saveToWorkspace = (blueprintId) => ({
+export const commitToWorkspace = (blueprintId) => ({
   type: SAVE_TO_WORKSPACE,
   payload: {
     blueprintId,
