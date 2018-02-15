@@ -266,7 +266,7 @@ class BlueprintApi {
   }
 
   deleteBlueprint(blueprints) {
-    // /api/v0/blueprints/delete/<blueprint>
+    // /api/v0/recipes/delete/<blueprint>
     return utils.apiFetch(constants.delete_blueprint + blueprints, {
       method: 'DELETE',
     }, true);
