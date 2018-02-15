@@ -8,50 +8,50 @@ export function setModalActive(modalActive) {
   };
 }
 
-export const SET_MODAL_CREATE_RECIPE_ERROR_NAME_VISIBLE = 'SET_MODAL_CREATE_RECIPE_ERROR_NAME_VISIBLE';
+export const SET_MODAL_CREATE_BLUEPRINT_ERROR_NAME_VISIBLE = 'SET_MODAL_CREATE_BLUEPRINT_ERROR_NAME_VISIBLE';
 export function setModalCreateBlueprintErrorNameVisible(errorNameVisible) {
   return {
-    type: SET_MODAL_CREATE_RECIPE_ERROR_NAME_VISIBLE,
+    type: SET_MODAL_CREATE_BLUEPRINT_ERROR_NAME_VISIBLE,
     payload: {
       errorNameVisible,
     },
   };
 }
 
-export const SET_MODAL_CREATE_RECIPE_ERROR_DUPLICATE_VISIBLE = 'SET_MODAL_CREATE_RECIPE_ERROR_DUPLICATE_VISIBLE';
+export const SET_MODAL_CREATE_BLUEPRINT_ERROR_DUPLICATE_VISIBLE = 'SET_MODAL_CREATE_BLUEPRINT_ERROR_DUPLICATE_VISIBLE';
 export function setModalCreateBlueprintErrorDuplicateVisible(errorDuplicateVisible) {
   return {
-    type: SET_MODAL_CREATE_RECIPE_ERROR_DUPLICATE_VISIBLE,
+    type: SET_MODAL_CREATE_BLUEPRINT_ERROR_DUPLICATE_VISIBLE,
     payload: {
       errorDuplicateVisible,
     },
   };
 }
 
-export const SET_MODAL_CREATE_RECIPE_ERROR_INLINE = 'SET_MODAL_CREATE_RECIPE_ERROR_INLINE';
+export const SET_MODAL_CREATE_BLUEPRINT_ERROR_INLINE = 'SET_MODAL_CREATE_BLUEPRINT_ERROR_INLINE';
 export function setModalCreateBlueprintErrorInline(errorInline) {
   return {
-    type: SET_MODAL_CREATE_RECIPE_ERROR_INLINE,
+    type: SET_MODAL_CREATE_BLUEPRINT_ERROR_INLINE,
     payload: {
       errorInline,
     },
   };
 }
 
-export const SET_MODAL_CREATE_RECIPE_CHECK_ERRORS = 'SET_MODAL_CREATE_RECIPE_CHECK_ERRORS';
+export const SET_MODAL_CREATE_BLUEPRINT_CHECK_ERRORS = 'SET_MODAL_CREATE_BLUEPRINT_CHECK_ERRORS';
 export function setModalCreateBlueprintCheckErrors(checkErrors) {
   return {
-    type: SET_MODAL_CREATE_RECIPE_CHECK_ERRORS,
+    type: SET_MODAL_CREATE_BLUEPRINT_CHECK_ERRORS,
     payload: {
       checkErrors,
     },
   };
 }
 
-export const SET_MODAL_CREATE_RECIPE_RECIPE = 'SET_MODAL_CREATE_RECIPE_RECIPE';
+export const SET_MODAL_CREATE_BLUEPRINT_BLUEPRINT = 'SET_MODAL_CREATE_BLUEPRINT_BLUEPRINT';
 export function setModalCreateBlueprintBlueprint(blueprint) {
   return {
-    type: SET_MODAL_CREATE_RECIPE_RECIPE,
+    type: SET_MODAL_CREATE_BLUEPRINT_BLUEPRINT,
     payload: {
       blueprint,
     },
@@ -68,40 +68,40 @@ export function fetchingModalCreateCompositionTypesSuccess(compositionTypes) {
   };
 }
 
-export const SET_MODAL_EXPORT_RECIPE_NAME = 'SET_MODAL_EXPORT_RECIPE_NAME';
+export const SET_MODAL_EXPORT_BLUEPRINT_NAME = 'SET_MODAL_EXPORT_BLUEPRINT_NAME';
 export function setModalExportBlueprintName(blueprintName) {
   return {
-    type: SET_MODAL_EXPORT_RECIPE_NAME,
+    type: SET_MODAL_EXPORT_BLUEPRINT_NAME,
     payload: {
       blueprintName,
     },
   };
 }
 
-export const SET_MODAL_EXPORT_RECIPE_VISIBLE = 'SET_MODAL_EXPORT_RECIPE_VISIBLE';
+export const SET_MODAL_EXPORT_BLUEPRINT_VISIBLE = 'SET_MODAL_EXPORT_BLUEPRINT_VISIBLE';
 export function setModalExportBlueprintVisible(visible) {
   return {
-    type: SET_MODAL_EXPORT_RECIPE_VISIBLE,
+    type: SET_MODAL_EXPORT_BLUEPRINT_VISIBLE,
     payload: {
       visible,
     },
   };
 }
 
-export const SET_MODAL_EXPORT_RECIPE_CONTENTS = 'SET_MODAL_EXPORT_RECIPE_CONTENTS';
+export const SET_MODAL_EXPORT_BLUEPRINT_CONTENTS = 'SET_MODAL_EXPORT_BLUEPRINT_CONTENTS';
 export function setModalExportBlueprintContents(blueprintContents) {
   return {
-    type: SET_MODAL_EXPORT_RECIPE_CONTENTS,
+    type: SET_MODAL_EXPORT_BLUEPRINT_CONTENTS,
     payload: {
       blueprintContents,
     },
   };
 }
 
-export const FETCHING_MODAL_EXPORT_RECIPE_CONTENTS = 'FETCHING_MODAL_EXPORT_RECIPE_CONTENTS';
+export const FETCHING_MODAL_EXPORT_BLUEPRINT_CONTENTS = 'FETCHING_MODAL_EXPORT_BLUEPRINT_CONTENTS';
 export function fetchingModalExportBlueprintContents(blueprintName) {
   return {
-    type: FETCHING_MODAL_EXPORT_RECIPE_CONTENTS,
+    type: FETCHING_MODAL_EXPORT_BLUEPRINT_CONTENTS,
     payload: {
       blueprintName,
     },

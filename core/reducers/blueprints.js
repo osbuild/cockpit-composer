@@ -1,16 +1,16 @@
 import {
   UNDO, REDO, DELETE_HISTORY,
-  CREATING_RECIPE_SUCCEEDED,
-  FETCHING_RECIPES_SUCCEEDED,
-  FETCHING_RECIPE_CONTENTS_SUCCEEDED,
-  SET_RECIPE, SET_RECIPE_DESCRIPTION, SET_RECIPE_COMPONENTS, SET_RECIPE_COMMENT,
-  REMOVE_RECIPE_COMPONENT,
-  DELETING_RECIPE_SUCCEEDED,
+  CREATING_BLUEPRINT_SUCCEEDED,
+  FETCHING_BLUEPRINTS_SUCCEEDED,
+  FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED,
+  SET_BLUEPRINT, SET_BLUEPRINT_DESCRIPTION, SET_BLUEPRINT_COMPONENTS, SET_BLUEPRINT_COMMENT,
+  REMOVE_BLUEPRINT_COMPONENT,
+  DELETING_BLUEPRINT_SUCCEEDED,
 } from '../actions/blueprints';
 
 const blueprints = (state = [], action) => {
   switch (action.type) {
-    case REMOVE_RECIPE_COMPONENT:
+    case REMOVE_BLUEPRINT_COMPONENT:
       return [
         ...state.map(blueprint => {
           if (blueprint.present.id === action.payload.blueprint.id) {
@@ -34,7 +34,7 @@ const blueprints = (state = [], action) => {
           return blueprint;
         }),
       ];
-    case CREATING_RECIPE_SUCCEEDED:
+    case CREATING_BLUEPRINT_SUCCEEDED:
       return [
         ...state.filter(blueprint => blueprint.present.id !== action.payload.blueprint.id), {
           past: [],
@@ -47,7 +47,7 @@ const blueprints = (state = [], action) => {
       ];
     // The following reducers filter the blueprint out of the state and add the new version if
     // the blueprint contains component data or is not found in the state
-    case FETCHING_RECIPES_SUCCEEDED:
+    case FETCHING_BLUEPRINTS_SUCCEEDED:
       return action.payload.blueprint.components !== undefined
       || !state.some(blueprint => blueprint.present.id === action.payload.blueprint.id)
       ? [...state.filter(blueprint => blueprint.present.id !== action.payload.blueprint.id), {
@@ -59,7 +59,7 @@ const blueprints = (state = [], action) => {
           future: [],
         }]
       : state;
-    case FETCHING_RECIPE_CONTENTS_SUCCEEDED:
+    case FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED:
       return [
         ...state.filter(blueprint => blueprint.present.id !== action.payload.blueprintPresent.id), {
           past: action.payload.blueprintPast,
@@ -67,7 +67,7 @@ const blueprints = (state = [], action) => {
           future: [],
         }
       ];
-    case SET_RECIPE:
+    case SET_BLUEPRINT:
       return [
         ...state.map(blueprint => {
           if (blueprint.present.id === action.payload.blueprint.id) {
@@ -84,7 +84,7 @@ const blueprints = (state = [], action) => {
           return blueprint;
         }),
       ];
-    case SET_RECIPE_COMPONENTS:
+    case SET_BLUEPRINT_COMPONENTS:
       return [
         ...state.map(blueprint => {
           if (blueprint.present.id === action.payload.blueprint.id) {
@@ -108,7 +108,7 @@ const blueprints = (state = [], action) => {
           return blueprint;
         }),
       ];
-    case SET_RECIPE_DESCRIPTION:
+    case SET_BLUEPRINT_DESCRIPTION:
       return [
         ...state.map(blueprint => {
           if (blueprint.present.id === action.payload.blueprint.id) {
@@ -121,7 +121,7 @@ const blueprints = (state = [], action) => {
           return blueprint;
         }),
       ];
-    case SET_RECIPE_COMMENT:
+    case SET_BLUEPRINT_COMMENT:
       return [
         ...state.map(blueprint => {
           if (blueprint.present.id === action.payload.blueprint.id) {
@@ -133,7 +133,7 @@ const blueprints = (state = [], action) => {
           return blueprint;
         }),
       ];
-    case DELETING_RECIPE_SUCCEEDED:
+    case DELETING_BLUEPRINT_SUCCEEDED:
       return state.filter(blueprint => blueprint.present.id !== action.payload.blueprintId);
     case UNDO:
       return [

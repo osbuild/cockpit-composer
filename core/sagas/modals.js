@@ -2,7 +2,7 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 import { fetchBlueprintContentsApi, fetchModalCreateCompositionTypesApi } from '../apiCalls';
 
 import {
-   FETCHING_MODAL_EXPORT_RECIPE_CONTENTS, setModalExportBlueprintContents,
+   FETCHING_MODAL_EXPORT_BLUEPRINT_CONTENTS, setModalExportBlueprintContents,
    fetchingModalCreateCompositionTypesSuccess,
 } from '../actions/modals';
 
@@ -26,6 +26,6 @@ function* fetchModalCreateCompositionTypes() {
 }
 
 export default function* () {
-  yield takeEvery(FETCHING_MODAL_EXPORT_RECIPE_CONTENTS, fetchModalBlueprintContents);
+  yield takeEvery(FETCHING_MODAL_EXPORT_BLUEPRINT_CONTENTS, fetchModalBlueprintContents);
   yield* fetchModalCreateCompositionTypes();
 }

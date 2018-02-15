@@ -1,45 +1,45 @@
-export const CREATING_RECIPE = 'CREATING_RECIPE';
+export const CREATING_BLUEPRINT = 'CREATING_BLUEPRINT';
 export const creatingBlueprint = (events, blueprint) => ({
-  type: CREATING_RECIPE,
+  type: CREATING_BLUEPRINT,
   payload: {
     events,
     blueprint,
   },
 });
 
-export const CREATING_RECIPE_SUCCEEDED = 'CREATING_RECIPE_SUCCEEDED';
+export const CREATING_BLUEPRINT_SUCCEEDED = 'CREATING_BLUEPRINT_SUCCEEDED';
 export const creatingBlueprintSucceeded = (blueprint) => ({
-  type: CREATING_RECIPE_SUCCEEDED,
+  type: CREATING_BLUEPRINT_SUCCEEDED,
   payload: {
     blueprint,
   },
 });
 
-export const FETCHING_RECIPES = 'FETCHING_RECIPES';
+export const FETCHING_BLUEPRINTS = 'FETCHING_BLUEPRINTS';
 export const fetchingBlueprints = () => ({
-  type: FETCHING_RECIPES,
+  type: FETCHING_BLUEPRINTS,
 });
 
-export const FETCHING_RECIPES_SUCCEEDED = 'FETCHING_RECIPES_SUCCEEDED';
+export const FETCHING_BLUEPRINTS_SUCCEEDED = 'FETCHING_BLUEPRINTS_SUCCEEDED';
 export const fetchingBlueprintsSucceeded = (blueprint, pendingChanges) => ({
-  type: FETCHING_RECIPES_SUCCEEDED,
+  type: FETCHING_BLUEPRINTS_SUCCEEDED,
   payload: {
     blueprint,
     pendingChanges,
   },
 });
 
-export const FETCHING_RECIPE_CONTENTS = 'FETCHING_RECIPE_CONTENTS';
+export const FETCHING_BLUEPRINT_CONTENTS = 'FETCHING_BLUEPRINT_CONTENTS';
 export const fetchingBlueprintContents = (blueprintId) => ({
-  type: FETCHING_RECIPE_CONTENTS,
+  type: FETCHING_BLUEPRINT_CONTENTS,
   payload: {
     blueprintId,
   },
 });
 
-export const FETCHING_RECIPE_CONTENTS_SUCCEEDED = 'FETCHING_RECIPE_CONTENTS_SUCCEEDED';
+export const FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED = 'FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED';
 export const fetchingBlueprintContentsSucceeded = (blueprintPast, blueprintPresent, pendingChanges) => ({
-  type: FETCHING_RECIPE_CONTENTS_SUCCEEDED,
+  type: FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED,
   payload: {
     blueprintPast,
     blueprintPresent,
@@ -47,26 +47,26 @@ export const fetchingBlueprintContentsSucceeded = (blueprintPast, blueprintPrese
   },
 });
 
-export const SET_RECIPE = 'SET_RECIPE';
+export const SET_BLUEPRINT = 'SET_BLUEPRINT';
 export const setBlueprint = (blueprint) => ({
-  type: SET_RECIPE,
+  type: SET_BLUEPRINT,
   payload: {
     blueprint,
   },
 });
 
-export const SET_RECIPE_DESCRIPTION = 'SET_RECIPE_DESCRIPTION';
+export const SET_BLUEPRINT_DESCRIPTION = 'SET_BLUEPRINT_DESCRIPTION';
 export const setBlueprintDescription = (blueprint, description) => ({
-  type: SET_RECIPE_DESCRIPTION,
+  type: SET_BLUEPRINT_DESCRIPTION,
   payload: {
     blueprint,
     description,
   },
 });
 
-export const REMOVE_RECIPE_COMPONENT = 'REMOVE_RECIPE_COMPONENT';
+export const REMOVE_BLUEPRINT_COMPONENT = 'REMOVE_BLUEPRINT_COMPONENT';
 export const removeBlueprintComponent = (blueprint, component, pendingChange) => ({
-  type: REMOVE_RECIPE_COMPONENT,
+  type: REMOVE_BLUEPRINT_COMPONENT,
   payload: {
     blueprint,
     component,
@@ -74,9 +74,9 @@ export const removeBlueprintComponent = (blueprint, component, pendingChange) =>
   },
 });
 
-export const SET_RECIPE_COMPONENTS = 'SET_RECIPE_COMPONENTS';
+export const SET_BLUEPRINT_COMPONENTS = 'SET_BLUEPRINT_COMPONENTS';
 export const setBlueprintComponents = (blueprint, components, dependencies, packages, pendingChange) => ({
-  type: SET_RECIPE_COMPONENTS,
+  type: SET_BLUEPRINT_COMPONENTS,
   payload: {
     blueprint,
     components,
@@ -86,9 +86,9 @@ export const setBlueprintComponents = (blueprint, components, dependencies, pack
   },
 });
 
-export const SET_RECIPE_COMMENT = 'SET_RECIPE_COMMENT';
+export const SET_BLUEPRINT_COMMENT = 'SET_BLUEPRINT_COMMENT';
 export const setBlueprintComment = (blueprint, comment) => ({
-  type: SET_RECIPE_COMMENT,
+  type: SET_BLUEPRINT_COMMENT,
   payload: {
     blueprint,
     comment,
@@ -96,25 +96,25 @@ export const setBlueprintComment = (blueprint, comment) => ({
 });
 
 
-export const DELETING_RECIPE = 'DELETING_RECIPE';
+export const DELETING_BLUEPRINT = 'DELETING_BLUEPRINT';
 export const deletingBlueprint = (blueprintId) => ({
-  type: DELETING_RECIPE,
+  type: DELETING_BLUEPRINT,
   payload: {
     blueprintId,
   },
 });
 
-export const DELETING_RECIPE_SUCCEEDED = 'DELETING_RECIPE_SUCCEEDED';
+export const DELETING_BLUEPRINT_SUCCEEDED = 'DELETING_BLUEPRINT_SUCCEEDED';
 export const deletingBlueprintSucceeded = (blueprintId) => ({
-  type: DELETING_RECIPE_SUCCEEDED,
+  type: DELETING_BLUEPRINT_SUCCEEDED,
   payload: {
     blueprintId,
   },
 });
 
-export const RECIPES_FAILURE = 'RECIPES_FAILURE';
+export const BLUEPRINTS_FAILURE = 'BLUEPRINTS_FAILURE';
 export const blueprintsFailure = (error) => ({
-  type: RECIPES_FAILURE,
+  type: BLUEPRINTS_FAILURE,
   payload: {
     error,
   },

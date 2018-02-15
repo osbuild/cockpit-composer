@@ -1,6 +1,6 @@
 import {
-  RECIPES_SORT_SET_KEY,
-  RECIPES_SORT_SET_VALUE,
+  BLUEPRINTS_SORT_SET_KEY,
+  BLUEPRINTS_SORT_SET_VALUE,
   DEPENDENCIES_SORT_SET_KEY,
   DEPENDENCIES_SORT_SET_VALUE,
   COMPONENTS_SORT_SET_KEY,
@@ -9,12 +9,12 @@ import {
 
 const sort = (state = [], action) => {
   switch (action.type) {
-    case RECIPES_SORT_SET_KEY:
+    case BLUEPRINTS_SORT_SET_KEY:
       return Object.assign(
           {}, state,
           { blueprints: Object.assign({}, state.blueprints, { key: action.payload.key }) }
       );
-    case RECIPES_SORT_SET_VALUE:
+    case BLUEPRINTS_SORT_SET_VALUE:
       return Object.assign(
           {}, state,
           { blueprints: Object.assign({}, state.blueprints, { value: action.payload.value }) }
