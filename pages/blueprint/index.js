@@ -40,7 +40,7 @@ class BlueprintPage extends React.Component {
         {
           commit: "3eaa3e0f732e37be4629042b8b74a4873ebb9909",
           time: "Thu,  9 Nov 2017 14:50:41 +0000",
-          message: "These are comments about the changes that were saved."
+          message: "These are comments about the changes that were committed."
         },
         {
           commit: "627a776366f1f89e70d7453e1d7f4c88e9025229",
@@ -126,7 +126,7 @@ class BlueprintPage extends React.Component {
     this.props.setEditDescriptionVisible(state);
     if (state) {
       this.props.setEditDescriptionValue(this.props.blueprint.description);
-    } else if (action === 'save') {
+    } else if (action === 'commit') {
       this.props.setBlueprintDescription(this.props.blueprint, this.props.blueprintPage.editDescriptionValue);
     } else if (action === 'cancel') {
       // cancel action
@@ -231,7 +231,7 @@ class BlueprintPage extends React.Component {
                           onChange={this.handleChangeDescription}
                         />
                         <span className="input-group-btn">
-                          <button className="btn btn-link" type="button" onClick={() => this.handleEditDescription('save')}>
+                          <button className="btn btn-link" type="button" onClick={() => this.handleEditDescription('commit')}>
                             <span className="fa fa-check" />
                           </button>
                           <button className="btn btn-link" type="button" onClick={() => this.handleEditDescription('cancel')}>

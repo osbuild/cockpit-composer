@@ -190,7 +190,7 @@ class BlueprintApi {
       window.location.hash = history.createHref(`/edit/${blueprint.name}`);
     }).catch((e) => { console.log(`Error creating blueprint: ${e}`); });
   }
-  handleSaveBlueprint() {
+  handleCommitBlueprint() {
     // create blueprint and post it
     const blueprint = {
       name: this.blueprint.name,
@@ -203,11 +203,11 @@ class BlueprintApi {
       this.postBlueprint(blueprint)
       .then(() => {
         NotificationsApi.closeNotification(undefined, 'saving');
-        NotificationsApi.displayNotification(this.blueprint.name, 'saved');
+        NotificationsApi.displayNotification(this.blueprint.name, 'committed');
         resolve();
       }).catch(e => {
         console.log(`Error saving blueprint: ${e}`);
-        NotificationsApi.displayNotification(this.blueprint.name, 'saveFailed');
+        NotificationsApi.displayNotification(this.blueprint.name, 'commitFailed');
         reject();
       });
     });
@@ -248,7 +248,7 @@ class BlueprintApi {
   }
 
   reloadBlueprintDetails() {
-    // retrieve blueprint details that were updated during save (i.e. version)
+    // retrieve blueprint details that were updated during commit (i.e. version)
     // and reload details in UI
     const p = new Promise((resolve, reject) => {
       utils.apiFetch(constants.get_blueprints_deps + this.blueprint.name.replace(/\s/g, '-'))

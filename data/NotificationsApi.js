@@ -74,20 +74,20 @@ class NotificationsApi {
         };
         break;
       }
-      case 'saved': {
+      case 'committed': {
         notification = {
           type: 'success',
-          label: 'saved',
-          message: <span><strong>{blueprint}:</strong> Blueprint is saved.</span>,
+          label: 'committed',
+          message: <span><strong>{blueprint}:</strong> Blueprint changes are committed.</span>,
           dismiss: true,
           fade: true,
         };
         break;
       }
-      case 'saveFailed': {
+      case 'commitFailed': {
         notification = {
           type: 'error',
-          message: <span><strong>{blueprint}:</strong> Save failed.</span>,
+          message: <span><strong>{blueprint}:</strong> Commit failed.</span>,
           dismiss: true,
         };
         break;

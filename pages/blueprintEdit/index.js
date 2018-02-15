@@ -19,7 +19,7 @@ import NotificationsApi from '../../data/NotificationsApi';
 import { connect } from 'react-redux';
 import {
   fetchingBlueprintContents, setBlueprint, setBlueprintComponents, savingBlueprint,
-  removeBlueprintComponent, undo, redo, saveToWorkspace, deleteHistory,
+  removeBlueprintComponent, undo, redo, commitToWorkspace, deleteHistory,
 } from '../../core/actions/blueprints';
 import {
   fetchingInputs, setInputComponents, setFilteredInputComponents, setSelectedInputPage,
@@ -37,7 +37,7 @@ class EditBlueprintPage extends React.Component {
   constructor() {
     super();
     this.setNotifications = this.setNotifications.bind(this);
-    this.handleSave = this.handleSave.bind(this);
+    this.handleCommit = this.handleCommit.bind(this);
     this.handlePagination = this.handlePagination.bind(this);
     this.handleAddComponent = this.handleAddComponent.bind(this);
     this.handleUpdateComponent = this.handleUpdateComponent.bind(this);
@@ -148,18 +148,18 @@ class EditBlueprintPage extends React.Component {
     $('#cmpsr-blueprint-inputs .alert').remove();
   }
 
-  handleSave () {
+  handleCommit () {
     // clear existing notifications
-    NotificationsApi.closeNotification(undefined, 'saved');
+    NotificationsApi.closeNotification(undefined, 'committed');
     NotificationsApi.closeNotification(undefined, 'saving');
     // display the saving notification
     NotificationsApi.displayNotification(this.props.blueprint.name, 'saving');
     this.setNotifications();
-    // post blueprint (includes 'saved' notification)
-    Promise.all([BlueprintApi.handleSaveBlueprint(this.props.blueprint)])
+    // post blueprint (includes 'committed' notification)
+    Promise.all([BlueprintApi.handleCommitBlueprint(this.props.blueprint)])
       .then(() => {
         // then after blueprint is posted, reload blueprint details
-        // to get details that were updated during save (i.e. version)
+        // to get details that were updated during commit (i.e. version)
         Promise.all([BlueprintApi.reloadBlueprintDetails(this.props.blueprint)])
           .then(data => {
             const blueprintToSet = this.props.blueprint;
@@ -170,7 +170,7 @@ class EditBlueprintPage extends React.Component {
           })
           .catch(e => console.log(`Error in reload blueprint details: ${e}`));
       })
-      .catch(e => console.log(`Error in blueprint save: ${e}`));
+      .catch(e => console.log(`Error in blueprint commit: ${e}`));
   }
 
   addBlueprintComponent(componentData) {
@@ -212,13 +212,13 @@ class EditBlueprintPage extends React.Component {
           MetadataApi.getMetadataComponent(component, ''),
         ]).then((data) => {
           this.addBlueprintComponent(data);
-          this.props.saveToWorkspace(this.props.blueprint.id);
+          this.props.commitToWorkspace(this.props.blueprint.id);
         }).catch(e => console.log(`handleAddComponent: Error getting component metadata: ${e}`));
       } else {
         // if source is the details view, then metadata is already known and passed with component
         const data = [[component, dependencies]];
         this.addBlueprintComponent(data);
-        this.props.saveToWorkspace(this.props.blueprint.id);
+        this.props.commitToWorkspace(this.props.blueprint.id);
       }
     }
 
@@ -234,25 +234,25 @@ class EditBlueprintPage extends React.Component {
   }
 
   handleUpdateComponent(event, component) {
-    // the user clicked Edit in the details view and saved updates to the component version
+    // the user clicked Edit in the details view and committed updates to the component version
     // find component in blueprint components
     // let selectedComponent = this.props.blueprint.components.filter((obj) => (obj.name === component.name));
-    // // update blueprint component with saved updates
+    // // update blueprint component with committed updates
     // selectedComponent = Object.assign(selectedComponent, component);
     this.hideComponentDetails();
-    // update input component with saved Updates
+    // update input component with committed Updates
     this.updateInputComponentsOnChange(component);
-    // update the blueprint object that's used during save
+    // update the blueprint object that's used during commit
     event.preventDefault();
     event.stopPropagation();
 
-    this.props.saveToWorkspace(this.props.blueprint.id);
+    this.props.commitToWorkspace(this.props.blueprint.id);
   }
 
   handleRemoveComponent(event, component) {
     // the user clicked Remove for a component in the blueprint component list
     // or the component details view
-    // update the blueprint object that's used during save
+    // update the blueprint object that's used during commit
     BlueprintApi.updateBlueprint(component, 'remove');
     // hide the details view
     this.hideComponentDetails();
@@ -267,7 +267,7 @@ class EditBlueprintPage extends React.Component {
     event.preventDefault();
     event.stopPropagation();
 
-    this.props.saveToWorkspace(this.props.blueprint.id);
+    this.props.commitToWorkspace(this.props.blueprint.id);
   }
 
   updateInputComponentsOnChange(component, remove) {
@@ -429,7 +429,7 @@ class EditBlueprintPage extends React.Component {
   handleDiscardChanges() {
     this.props.deleteHistory(this.props.blueprint.id);
     this.handleHistory();
-    this.props.saveToWorkspace(this.props.blueprint.id);
+    this.props.commitToWorkspace(this.props.blueprint.id);
   }
 
   render() {
@@ -479,12 +479,12 @@ class EditBlueprintPage extends React.Component {
               {numPendingChanges > 0 &&
                 <li>
                   <button className="btn btn-primary" onClick={e => this.handleShowModal(e, 'modalPendingChanges')}>
-                    Save
+                    Commit
                   </button>
                 </li>
               ||
                 <li>
-                  <button className="btn btn-primary disabled" type="button">Save</button>
+                  <button className="btn btn-primary disabled" type="button">Commit</button>
                 </li>
               }
               {numPendingChanges > 0 &&
@@ -693,7 +693,7 @@ class EditBlueprintPage extends React.Component {
           : null}
         {modalActive === 'modalPendingChanges'
           ? <PendingChanges
-            handleSave={this.handleSave}
+            handleCommit={this.handleCommit}
             blueprint={blueprint}
             contents={dependencies}
             handleHideModal={this.handleHideModal}
@@ -736,7 +736,7 @@ EditBlueprintPage.propTypes = {
   futureLength: PropTypes.number,
   undo: PropTypes.func,
   redo: PropTypes.func,
-  saveToWorkspace: PropTypes.func,
+  commitToWorkspace: PropTypes.func,
   deleteHistory: PropTypes.func,
 };
 
@@ -846,8 +846,8 @@ const mapDispatchToProps = (dispatch) => ({
   deleteHistory: (blueprintId) => {
     dispatch(deleteHistory(blueprintId));
   },
-  saveToWorkspace: (blueprintId) => {
-    dispatch(saveToWorkspace(blueprintId));
+  commitToWorkspace: (blueprintId) => {
+    dispatch(commitToWorkspace(blueprintId));
   },
 });
 

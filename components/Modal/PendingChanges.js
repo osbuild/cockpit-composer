@@ -12,7 +12,7 @@ class PendingChanges extends React.Component {
       comment: ""
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleSaveChanges = this.handleSaveChanges.bind(this);
+    this.handleCommitChanges = this.handleCommitChanges.bind(this);
   }
 
   componentWillMount() {
@@ -24,9 +24,9 @@ class PendingChanges extends React.Component {
     $(this.modal).on('hidden.bs.modal', this.props.handleHideModal);
   }
 
-  handleSaveChanges() {
+  handleCommitChanges() {
     $('#cmpsr-modal-pending-changes').modal('hide');
-    this.props.handleSave();
+    this.props.handleCommit();
   }
 
   handleChange(e) {
@@ -54,7 +54,7 @@ class PendingChanges extends React.Component {
               >
                 <span className="pficon pficon-close"></span>
               </button>
-              <h4 className="modal-title" id="myModalLabel">Changes Pending Save</h4>
+              <h4 className="modal-title" id="myModalLabel">Changes Pending Commit</h4>
             </div>
             <div className="modal-body">
               <form className="form-horizontal">
@@ -157,7 +157,7 @@ class PendingChanges extends React.Component {
                 className="btn btn-default"
                 data-dismiss="modal"
               >Close</button>
-              <button type="button" className="btn btn-primary" onClick={() => this.handleSaveChanges()}>Save</button>
+              <button type="button" className="btn btn-primary" onClick={() => this.handleCommitChanges()}>Commit</button>
             </div>
           </div>
         </div>
@@ -172,7 +172,7 @@ PendingChanges.propTypes = {
   contents: PropTypes.array,
   handleHideModal: PropTypes.func,
   setBlueprintComment: PropTypes.func,
-  handleSave: PropTypes.func,
+  handleCommit: PropTypes.func,
   modals: PropTypes.object,
 };
 const mapStateToProps = state => ({
