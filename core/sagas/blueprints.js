@@ -11,7 +11,7 @@ import {
   SET_BLUEPRINT_DESCRIPTION,
   CREATING_BLUEPRINT, creatingBlueprintSucceeded,
   DELETING_BLUEPRINT, deletingBlueprintSucceeded,
-  SAVE_TO_WORKSPACE,
+  COMMIT_TO_WORKSPACE,
   blueprintsFailure,
 } from '../actions/blueprints';
 import { makeGetBlueprintById } from '../selectors';
@@ -118,6 +118,6 @@ export default function* () {
   yield takeLatest(FETCHING_BLUEPRINT_CONTENTS, fetchBlueprintContents);
   yield takeLatest(SET_BLUEPRINT_DESCRIPTION, setBlueprintDescription);
   yield takeEvery(DELETING_BLUEPRINT, deleteBlueprint);
-  yield takeEvery(SAVE_TO_WORKSPACE, commitToWorkspace);
+  yield takeEvery(COMMIT_TO_WORKSPACE, commitToWorkspace);
   yield* fetchBlueprints();
 }
