@@ -208,13 +208,13 @@ class CreateBlueprint extends React.Component {
                   type="button"
                   className="btn btn-primary"
                   onClick={(e) => this.showInlineError(e)}
-                >Save</button>
+                >Create</button>
                 ||
                 <button
                   type="button"
                   className="btn btn-primary"
                   onClick={(e) => { this.handleCreateBlueprint(e, createBlueprint.blueprint); }}
-                >Save</button>
+                >Create</button>
               }
             </div>
           </div>
