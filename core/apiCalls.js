@@ -102,7 +102,7 @@ export function saveToWorkspaceApi(blueprint) {
 
 export function fetchDiffWorkspaceApi(blueprintId) {
   const p = new Promise((resolve, reject) => {
-    utils.apiFetch('/api/v0/blueprints/diff/' + blueprintId + '/NEWEST/WORKSPACE')
+    utils.apiFetch('/api/v0/recipes/diff/' + blueprintId + '/NEWEST/WORKSPACE')
     .then(data => {
       resolve(data);
     })
