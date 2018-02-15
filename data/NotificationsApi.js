@@ -9,8 +9,8 @@ class NotificationsApi {
     return this.notifications;
   }
 
-  displayNotification(recipe, message) {
-    const notification = this.notificationMessage(recipe, message);
+  displayNotification(blueprint, message) {
+    const notification = this.notificationMessage(blueprint, message);
     this.notifications.push(notification);
   }
 
@@ -28,20 +28,20 @@ class NotificationsApi {
     }
   }
 
-  notificationMessage(recipe, message) {
+  notificationMessage(blueprint, message) {
     let notification = {};
     switch (message) {
       case 'creating': {
         notification = {
           type: 'process',
-          message: <span><strong>{recipe}:</strong> Creating composition.</span>,
+          message: <span><strong>{blueprint}:</strong> Creating composition.</span>,
           action: <a href="#">Cancel</a>,
           dismiss: true,
         };
         const index = this.notifications.length;
         setTimeout(() => {
           this.closeNotification(index);
-          this.displayNotification(recipe, 'created');
+          this.displayNotification(blueprint, 'created');
         }, 2500);
         // setTimeout is only temporary, and included to simulate what will happen
         // when the user creates a composition (i.e. display process message
@@ -52,13 +52,13 @@ class NotificationsApi {
       case 'created': {
         notification = {
           type: 'success',
-          message: <span><strong>{recipe}:</strong> Composition creation is complete.</span>,
+          message: <span><strong>{blueprint}:</strong> Composition creation is complete.</span>,
           // action: <a href="#void">Download (.iso)</a>,
           // this link will need to be implemented when the build process
           // is implemented; this function will need to be extended to handle
           // defining this link
           // kebab: [
-          //   <a href="#" >Export Recipe (.bom)</a>,
+          //   <a href="#" >Export Blueprint (.bom)</a>,
           // ],
           // this kebab may be needed when the build process is implemented
           fade: true,
@@ -69,7 +69,7 @@ class NotificationsApi {
         notification = {
           type: 'process',
           label: 'saving',
-          message: <span><strong>{recipe}:</strong> Saving recipe.</span>,
+          message: <span><strong>{blueprint}:</strong> Saving blueprint.</span>,
           dismiss: true,
         };
         break;
@@ -78,7 +78,7 @@ class NotificationsApi {
         notification = {
           type: 'success',
           label: 'saved',
-          message: <span><strong>{recipe}:</strong> Recipe is saved.</span>,
+          message: <span><strong>{blueprint}:</strong> Blueprint is saved.</span>,
           dismiss: true,
           fade: true,
         };
@@ -87,7 +87,7 @@ class NotificationsApi {
       case 'saveFailed': {
         notification = {
           type: 'error',
-          message: <span><strong>{recipe}:</strong> Save failed.</span>,
+          message: <span><strong>{blueprint}:</strong> Save failed.</span>,
           dismiss: true,
         };
         break;

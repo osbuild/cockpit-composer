@@ -24,7 +24,7 @@ file structure. For a simple to-do app, this list of routes may look like this (
 [
   {
     "path": "/",
-    "page": "./pages/recipes"
+    "page": "./pages/blueprints"
   },
   {
     "path": "/tasks/:status(pending|completed)?",

@@ -26,7 +26,7 @@ class MetadataApi {
   }
 
   getAvailableBuilds(component) {
-    // the user clicked Edit when viewing details of a Recipe component
+    // the user clicked Edit when viewing details of a Blueprint component
     // a list of available builds are returned for displaying in the edit form
     const p = new Promise((resolve, reject) => {
       Promise.all([
@@ -46,7 +46,7 @@ class MetadataApi {
   getMetadataComponent(component, build) {
     // if the user clicked View Details for an available component
     //    then build = "all" and all available builds are returned
-    // if the user clicked Add in the sidebar to add the component to the recipe
+    // if the user clicked Add in the sidebar to add the component to the blueprint
     //    of if the user clicked the name of any component not available to add
     //    then build = ""
 
@@ -64,7 +64,7 @@ class MetadataApi {
         }
 
         const componentData = data[1].modules[0];
-        componentData.inRecipe = component.inRecipe;
+        componentData.inBlueprint = component.inBlueprint;
         componentData.user_selected = component.user_selected;
         componentData.ui_type = component.ui_type;
 
@@ -124,11 +124,11 @@ class MetadataApi {
     return components;
   }
 
-  updateRecipeDependencies(component) {
+  updateBlueprintDependencies(component) {
     if (component.projects.length > 0) {
       component.projects.map(i => {
         i.requiredBy = component.name; // eslint-disable-line no-param-reassign
-        i.inRecipe = true; // eslint-disable-line no-param-reassign
+        i.inBlueprint = true; // eslint-disable-line no-param-reassign
         i.ui_type = component.ui_type; // eslint-disable-line no-param-reassign
         return i;
       });

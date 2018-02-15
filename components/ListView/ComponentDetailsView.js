@@ -50,10 +50,10 @@ class ComponentDetailsView extends React.Component {
   getMetadata(component, status) {
     // when getting metadata, get all builds if component is from list of available inputs
     const build = status === 'available' ? 'all' : '';
-    // if the user clicks a component listed in the inputs and it's in the recipe,
-    // then use the version and release that's selected for the recipe component
+    // if the user clicks a component listed in the inputs and it's in the blueprint,
+    // then use the version and release that's selected for the blueprint component
     const selectedComponent = Object.assign({}, component);
-    if (selectedComponent.active === true && selectedComponent.inRecipe === true) {
+    if (selectedComponent.active === true && selectedComponent.inBlueprint === true) {
       selectedComponent.version = component.version_selected;
       selectedComponent.release = component.release_selected;
     }
@@ -213,7 +213,7 @@ class ComponentDetailsView extends React.Component {
                     data-toggle="tooltip"
                     data-placement="bottom"
                     title=""
-                    data-original-title="Remove from Recipe"
+                    data-original-title="Remove from Blueprint"
                     onClick={e => this.props.handleRemoveComponent(e, component)}
                   >
                     Remove
@@ -236,7 +236,7 @@ class ComponentDetailsView extends React.Component {
           </div>
           <h3 className="cmpsr-title">
             <span>
-              <ComponentTypeIcons componentType={component.ui_type} compDetails componentInRecipe={component.inRecipe} />
+              <ComponentTypeIcons componentType={component.ui_type} compDetails componentInBlueprint={component.inBlueprint} />
               {' '}
               {component.name}
             </span>

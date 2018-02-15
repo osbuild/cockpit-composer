@@ -26,8 +26,8 @@ module.exports = class changesPendingSave extends MainPage {
     // X Close Button
     this.btnXClose = `${this.headerElement} span[class="pficon pficon-close"]`;
 
-    // Recipe Name label
-    this.labelRecipeName = `${this.bodyElement} p[class="form-control-static"]`;
+    // Blueprint Name label
+    this.labelBlueprintName = `${this.bodyElement} p[class="form-control-static"]`;
 
     // Comment text area
     this.textAreaComment = `${this.bodyElement} textarea[id="textInput2-modal-markup"]`;

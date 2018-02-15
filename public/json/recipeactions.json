@@ -1,6 +1,6 @@
 [
 	  {
-	    "label": "Edit Recipe",
+	    "label": "Edit Blueprint",
 	    "type": "button",
 	    "inlistview": true
 	  },
@@ -16,12 +16,12 @@
 	    "inlistview": false
 	  },
     {
-	    "label": "Export Recipe",
+	    "label": "Export Blueprint",
 	    "type": "menu",
 	    "inlistview": true
 	  },
     {
-	    "label": "Delete Recipe",
+	    "label": "Delete Blueprint",
 	    "type": "button",
 	    "inlistview": true
 	  }

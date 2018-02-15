@@ -9,7 +9,7 @@ export function setModalActive(modalActive) {
 }
 
 export const SET_MODAL_CREATE_RECIPE_ERROR_NAME_VISIBLE = 'SET_MODAL_CREATE_RECIPE_ERROR_NAME_VISIBLE';
-export function setModalCreateRecipeErrorNameVisible(errorNameVisible) {
+export function setModalCreateBlueprintErrorNameVisible(errorNameVisible) {
   return {
     type: SET_MODAL_CREATE_RECIPE_ERROR_NAME_VISIBLE,
     payload: {
@@ -19,7 +19,7 @@ export function setModalCreateRecipeErrorNameVisible(errorNameVisible) {
 }
 
 export const SET_MODAL_CREATE_RECIPE_ERROR_DUPLICATE_VISIBLE = 'SET_MODAL_CREATE_RECIPE_ERROR_DUPLICATE_VISIBLE';
-export function setModalCreateRecipeErrorDuplicateVisible(errorDuplicateVisible) {
+export function setModalCreateBlueprintErrorDuplicateVisible(errorDuplicateVisible) {
   return {
     type: SET_MODAL_CREATE_RECIPE_ERROR_DUPLICATE_VISIBLE,
     payload: {
@@ -29,7 +29,7 @@ export function setModalCreateRecipeErrorDuplicateVisible(errorDuplicateVisible)
 }
 
 export const SET_MODAL_CREATE_RECIPE_ERROR_INLINE = 'SET_MODAL_CREATE_RECIPE_ERROR_INLINE';
-export function setModalCreateRecipeErrorInline(errorInline) {
+export function setModalCreateBlueprintErrorInline(errorInline) {
   return {
     type: SET_MODAL_CREATE_RECIPE_ERROR_INLINE,
     payload: {
@@ -39,7 +39,7 @@ export function setModalCreateRecipeErrorInline(errorInline) {
 }
 
 export const SET_MODAL_CREATE_RECIPE_CHECK_ERRORS = 'SET_MODAL_CREATE_RECIPE_CHECK_ERRORS';
-export function setModalCreateRecipeCheckErrors(checkErrors) {
+export function setModalCreateBlueprintCheckErrors(checkErrors) {
   return {
     type: SET_MODAL_CREATE_RECIPE_CHECK_ERRORS,
     payload: {
@@ -49,11 +49,11 @@ export function setModalCreateRecipeCheckErrors(checkErrors) {
 }
 
 export const SET_MODAL_CREATE_RECIPE_RECIPE = 'SET_MODAL_CREATE_RECIPE_RECIPE';
-export function setModalCreateRecipeRecipe(recipe) {
+export function setModalCreateBlueprintBlueprint(blueprint) {
   return {
     type: SET_MODAL_CREATE_RECIPE_RECIPE,
     payload: {
-      recipe,
+      blueprint,
     },
   };
 }
@@ -69,17 +69,17 @@ export function fetchingModalCreateCompositionTypesSuccess(compositionTypes) {
 }
 
 export const SET_MODAL_EXPORT_RECIPE_NAME = 'SET_MODAL_EXPORT_RECIPE_NAME';
-export function setModalExportRecipeName(recipeName) {
+export function setModalExportBlueprintName(blueprintName) {
   return {
     type: SET_MODAL_EXPORT_RECIPE_NAME,
     payload: {
-      recipeName,
+      blueprintName,
     },
   };
 }
 
 export const SET_MODAL_EXPORT_RECIPE_VISIBLE = 'SET_MODAL_EXPORT_RECIPE_VISIBLE';
-export function setModalExportRecipeVisible(visible) {
+export function setModalExportBlueprintVisible(visible) {
   return {
     type: SET_MODAL_EXPORT_RECIPE_VISIBLE,
     payload: {
@@ -89,21 +89,21 @@ export function setModalExportRecipeVisible(visible) {
 }
 
 export const SET_MODAL_EXPORT_RECIPE_CONTENTS = 'SET_MODAL_EXPORT_RECIPE_CONTENTS';
-export function setModalExportRecipeContents(recipeContents) {
+export function setModalExportBlueprintContents(blueprintContents) {
   return {
     type: SET_MODAL_EXPORT_RECIPE_CONTENTS,
     payload: {
-      recipeContents,
+      blueprintContents,
     },
   };
 }
 
 export const FETCHING_MODAL_EXPORT_RECIPE_CONTENTS = 'FETCHING_MODAL_EXPORT_RECIPE_CONTENTS';
-export function fetchingModalExportRecipeContents(recipeName) {
+export function fetchingModalExportBlueprintContents(blueprintName) {
   return {
     type: FETCHING_MODAL_EXPORT_RECIPE_CONTENTS,
     payload: {
-      recipeName,
+      blueprintName,
     },
   };
 }

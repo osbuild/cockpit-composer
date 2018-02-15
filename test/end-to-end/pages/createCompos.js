@@ -8,7 +8,7 @@ module.exports = class CreateComposPage extends MainPage {
     this.composArch = arch;
 
 // ---- Root element selector ---- //
-    // Create Recipe dialog root selector
+    // Create Blueprint dialog root selector
     this.dialogRootElement = 'div[id="cmpsr-modal-crt-compos"]';
 
 // ---- Page element selector ---- //
@@ -19,8 +19,8 @@ module.exports = class CreateComposPage extends MainPage {
     this.varCreateCompos = 'Create Composition';
     this.labelCreateCompos = `${this.dialogRootElement} #myModalLabel`;
 
-    // Recipe Name label
-    this.labelRecipeName = `${this.dialogRootElement} p[class="form-control-static"]`;
+    // Blueprint Name label
+    this.labelBlueprintName = `${this.dialogRootElement} p[class="form-control-static"]`;
 
     // Composition Type and Architecture select
     this.selectComposType = `${this.dialogRootElement} label[for="textInput-modal-markup"] + div select`;

@@ -1,11 +1,11 @@
 import { all, fork } from 'redux-saga/effects';
-import recipes from './recipes';
+import blueprints from './blueprints';
 import modals from './modals';
 import inputs from './inputs';
 
 function* rootSaga() {
   yield all([
-    fork(recipes),
+    fork(blueprints),
     fork(modals),
     fork(inputs),
   ]);

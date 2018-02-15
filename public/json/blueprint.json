@@ -1,0 +1,27 @@
+{ "blueprint": [
+	  {
+	    "group_type": "module",
+	    "name": "fm-group:server-cfg",
+	    "summary": "This group contains all of Red Hat's custom server configuration tools.",
+	    "version": "24",
+	    "release": "2",
+	    "requires": "0"
+	  },
+	  {
+	    "group_type": "module",
+	    "name": "fm-group:virtualization-headless",
+	    "summary": "These packages provide a headless virtualization environment.",
+	    "version": "24",
+	    "release": "2",
+	    "requires": "0"
+	  },
+		{
+			"group_type": "rpm",
+			"name": "ImageMagick",
+			"summary": "An X application for displaying and manipulating images",
+			"version": "15",
+			"release": "2",
+			"requires": "0"
+		}
+ ]
+}

@@ -9,34 +9,34 @@ import {
 
 // import {
 //   UNDO, REDO
-// } from '../actions/recipes';
+// } from '../actions/blueprints';
 
-const modalCreateRecipe = (state = [], action) => {
+const modalCreateBlueprint = (state = [], action) => {
   switch (action.type) {
     case SET_MODAL_CREATE_RECIPE_ERROR_NAME_VISIBLE:
       return Object.assign(
           {}, state,
-          { createRecipe: Object.assign({}, state.createRecipe, { errorNameVisible: action.payload.errorNameVisible }) }
+          { createBlueprint: Object.assign({}, state.createBlueprint, { errorNameVisible: action.payload.errorNameVisible }) }
       );
     case SET_MODAL_CREATE_RECIPE_ERROR_DUPLICATE_VISIBLE:
       return Object.assign(
           {}, state,
-          { createRecipe: Object.assign({}, state.createRecipe, { errorDuplicateVisible: action.payload.errorDuplicateVisible }) }
+          { createBlueprint: Object.assign({}, state.createBlueprint, { errorDuplicateVisible: action.payload.errorDuplicateVisible }) }
       );
     case SET_MODAL_CREATE_RECIPE_ERROR_INLINE:
       return Object.assign(
           {}, state,
-          { createRecipe: Object.assign({}, state.createRecipe, { errorInline: action.payload.errorInline }) }
+          { createBlueprint: Object.assign({}, state.createBlueprint, { errorInline: action.payload.errorInline }) }
       );
     case SET_MODAL_CREATE_RECIPE_CHECK_ERRORS:
       return Object.assign(
           {}, state,
-          { checkErrors: Object.assign({}, state.createRecipe, { errorInline: action.payload.checkErrors }) }
+          { checkErrors: Object.assign({}, state.createBlueprint, { errorInline: action.payload.checkErrors }) }
       );
     case SET_MODAL_CREATE_RECIPE_RECIPE:
       return Object.assign(
           {}, state,
-          { createRecipe: Object.assign({}, state.createRecipe, { recipe: action.payload.recipe }) }
+          { createBlueprint: Object.assign({}, state.createBlueprint, { blueprint: action.payload.blueprint }) }
       );
     default:
       return state;
@@ -55,22 +55,22 @@ const modalCreateComposition = (state = [], action) => {
   }
 };
 
-const modalExportRecipe = (state = [], action) => {
+const modalExportBlueprint = (state = [], action) => {
   switch (action.type) {
     case SET_MODAL_EXPORT_RECIPE_NAME:
       return Object.assign(
           {}, state,
-          { exportRecipe: Object.assign({}, state.exportRecipe, { name: action.payload.recipeName }) }
+          { exportBlueprint: Object.assign({}, state.exportBlueprint, { name: action.payload.blueprintName }) }
       );
     case SET_MODAL_EXPORT_RECIPE_CONTENTS:
       return Object.assign(
           {}, state,
-          { exportRecipe: Object.assign({}, state.exportRecipe, { contents: action.payload.recipeContents }) }
+          { exportBlueprint: Object.assign({}, state.exportBlueprint, { contents: action.payload.blueprintContents }) }
       );
     case SET_MODAL_EXPORT_RECIPE_VISIBLE:
       return Object.assign(
           {}, state,
-          { exportRecipe: Object.assign({}, state.exportRecipe, { visible: action.payload.visible }) }
+          { exportBlueprint: Object.assign({}, state.exportBlueprint, { visible: action.payload.visible }) }
       );
     default:
       return state;
@@ -83,23 +83,23 @@ const modals = (state = [], action) => {
     case SET_MODAL_ACTIVE:
       return Object.assign({}, state, { modalActive: action.payload.modalActive });
     case SET_MODAL_CREATE_RECIPE_ERROR_NAME_VISIBLE:
-      return modalCreateRecipe(state, action);
+      return modalCreateBlueprint(state, action);
     case SET_MODAL_CREATE_RECIPE_ERROR_DUPLICATE_VISIBLE:
-      return modalCreateRecipe(state, action);
+      return modalCreateBlueprint(state, action);
     case SET_MODAL_CREATE_RECIPE_ERROR_INLINE:
-      return modalCreateRecipe(state, action);
+      return modalCreateBlueprint(state, action);
     case SET_MODAL_CREATE_RECIPE_CHECK_ERRORS:
-      return modalCreateRecipe(state, action);
+      return modalCreateBlueprint(state, action);
     case SET_MODAL_CREATE_RECIPE_RECIPE:
-      return modalCreateRecipe(state, action);
+      return modalCreateBlueprint(state, action);
     case FETCHING_MODAL_CREATE_COMPOSTION_TYPES_SUCCESS:
       return modalCreateComposition(state, action);
     case SET_MODAL_EXPORT_RECIPE_NAME:
-      return modalExportRecipe(state, action);
+      return modalExportBlueprint(state, action);
     case SET_MODAL_EXPORT_RECIPE_CONTENTS:
-      return modalExportRecipe(state, action);
+      return modalExportBlueprint(state, action);
     case SET_MODAL_EXPORT_RECIPE_VISIBLE:
-      return modalExportRecipe(state, action);
+      return modalExportBlueprint(state, action);
     default:
       return state;
   }

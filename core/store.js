@@ -12,7 +12,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const initialState = {
   rehydrated: false,
-  recipePage: {
+  blueprintPage: {
     activeTab: 'Details',
     editDescriptionVisible: 'false',
     selectedComponent: '',
@@ -32,22 +32,22 @@ const initialState = {
         value: '',
     },
   },
-  recipes : [],
+  blueprints : [],
   modals: {
     createComposition: {
       compositionTypes: [],
     },
-    exportRecipe: {
+    exportBlueprint: {
       name: '',
       contents: [],
       visible: false,
     },
-    createRecipe: {
+    createBlueprint: {
       showErrorName: false,
       showErrorDuplicate: false,
       inlineError: false,
       checkErrors: true,
-      recipe: {
+      blueprint: {
         name: '',
         description: '',
         modules: [],
@@ -63,7 +63,7 @@ const initialState = {
     },
   },
   sort: {
-    recipes: {
+    blueprints: {
       key: 'name',
       value: 'DESC',
     },
@@ -88,6 +88,6 @@ const store = createStore(
 );
 sagaMiddleware.run(rootSaga);
 
-persistStore(store, { whitelist: ['recipePage'] });
+persistStore(store, { whitelist: ['blueprintPage'] });
 
 export default store;

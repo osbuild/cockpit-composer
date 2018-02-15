@@ -2,9 +2,9 @@
 const MainPage = require('./main');
 
 module.exports = class TostaNotifPage extends MainPage {
-  constructor(recipeName) {
+  constructor(blueprintName) {
     super('Toast Notification');
-    this.notifFor = recipeName;
+    this.notifFor = blueprintName;
 
     // Notification pop up window
     this.divNotifWindow = '.toast-notifications-list-pf';
@@ -13,21 +13,21 @@ module.exports = class TostaNotifPage extends MainPage {
     this.iconCreating = '#cmpsr-toast-0 .pficon .spinner-inverse';
     this.iconComplete = '#cmpsr-toast-0 .pficon-ok';
 
-    // Recipe Name label
-    this.labelRecipeName = '#cmpsr-toast-0 span strong';
-    this.varRecipeName = `${this.notifFor}:`;
+    // Blueprint Name label
+    this.labelBlueprintName = '#cmpsr-toast-0 span strong';
+    this.varBlueprintName = `${this.notifFor}:`;
     this.varEmptyName = ':';
 
     // Working and Complete status label
-    this.varStatusCreating = `${this.varRecipeName} Creating composition.`;
-    this.varStatusComplete = `${this.varRecipeName} Composition creation is complete.`;
+    this.varStatusCreating = `${this.varBlueprintName} Creating composition.`;
+    this.varStatusComplete = `${this.varBlueprintName} Composition creation is complete.`;
 
     // Notification label
     this.labelStatus = '#cmpsr-toast-0 span + span';
 
-    // Recipe saving and saved status label
-    this.varStatusSaving = `${this.varRecipeName} Saving recipe.`;
-    this.varStatusSaved = `${this.varRecipeName} Recipe is saved.`;
+    // Blueprint saving and saved status label
+    this.varStatusSaving = `${this.varBlueprintName} Saving blueprint.`;
+    this.varStatusSaved = `${this.varBlueprintName} Blueprint is saved.`;
 
     // Cancel link
     this.linkCancel = '#cmpsr-toast-0 .toast-pf-action a';

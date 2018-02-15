@@ -1,7 +1,7 @@
 [
   {
     "path": "/",
-    "page": "./pages/recipes",
+    "page": "./pages/blueprints",
     "chunk": "main"
   },
   {
@@ -10,15 +10,15 @@
     "chunk": "main"
   },
   {
-    "path": "/recipes",
-    "page": "./pages/recipes"
+    "path": "/blueprints",
+    "page": "./pages/blueprints"
   },
   {
-    "path": "/recipe/:recipe",
-    "page": "./pages/recipe"
+    "path": "/blueprint/:blueprint",
+    "page": "./pages/blueprint"
   },
   {
-    "path": "/edit/:recipe",
-    "page": "./pages/recipeEdit"
+    "path": "/edit/:blueprint",
+    "page": "./pages/blueprintEdit"
   }
 ]

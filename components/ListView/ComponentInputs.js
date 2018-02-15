@@ -99,7 +99,7 @@ class ComponentInputs extends React.Component {
             >
               <div className="list-pf-content list-pf-content-flex ">
                 <div className="list-pf-left">
-                  <ComponentTypeIcons componentType={component.ui_type} componentInRecipe={component.inRecipe} />
+                  <ComponentTypeIcons componentType={component.ui_type} componentInBlueprint={component.inBlueprint} />
                 </div>
                 <div className="list-pf-content-wrapper">
                   <div className="list-pf-main-content">
@@ -108,7 +108,7 @@ class ComponentInputs extends React.Component {
                   </div>
                 </div>
                 <div className="list-pf-actions">
-                  {(component.inRecipe === true &&
+                  {(component.inBlueprint === true &&
                     <a
                       href="#"
                       className="btn btn-link"
@@ -117,7 +117,7 @@ class ComponentInputs extends React.Component {
                       data-html="true"
                       data-placement="top"
                       title=""
-                      data-original-title="Remove Component from Recipe"
+                      data-original-title="Remove Component from Blueprint"
                       onClick={e => this.props.handleRemoveComponent(e, component)}
                     >
                       <span className="fa fa-minus" />

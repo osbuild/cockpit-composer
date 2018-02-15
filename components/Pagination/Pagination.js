@@ -57,7 +57,7 @@ class Pagination extends React.Component {
           className="pagination-pf-page"
           ref="paginationPage"
           type="text" value={this.state.pageValue + 1}
-          id="cmpsr-recipe-inputs-page"
+          id="cmpsr-blueprint-inputs-page"
           aria-label="Current Page"
           onClick={() => { this.refs.paginationPage.select(); }}
           onChange={this.handleChange}
@@ -71,7 +71,7 @@ class Pagination extends React.Component {
           className="pagination-pf-page"
           ref="paginationPage"
           type="text" value=""
-          id="cmpsr-recipe-inputs-page"
+          id="cmpsr-blueprint-inputs-page"
           aria-label="Current Page"
           onClick={() => { this.refs.paginationPage.select(); }}
           onChange={this.handleChange}

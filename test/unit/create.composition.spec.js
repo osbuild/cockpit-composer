@@ -45,7 +45,7 @@ describe('CreateComposition', () => {
   beforeEach(() => {
     props = {
       compositionTypes: typeList,
-      recipe: undefined,
+      blueprint: undefined,
       setNotifications: undefined,
     };
     shallowedCreateComposition = undefined;
@@ -67,12 +67,12 @@ describe('CreateComposition', () => {
   });
 
   describe('props test', () => {
-    test('should render correct Recipe name passed by props', () => {
-      const fakeRecipeName = faker.lorem.words();
-      props.recipe = fakeRecipeName;
+    test('should render correct Blueprint name passed by props', () => {
+      const fakeBlueprintName = faker.lorem.words();
+      props.blueprint = fakeBlueprintName;
       const divs = createComposition().find('.form-control-static');
 
-      expect(divs.text()).toEqual(fakeRecipeName);
+      expect(divs.text()).toEqual(fakeBlueprintName);
     });
 
     test('setNofifications, passed by props, should be called by clicking Create button', () => {

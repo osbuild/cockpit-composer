@@ -23,9 +23,9 @@ const ComponentTypeIcons = props => {
       type = 'Type&nbsp;<strong>RPM</strong>';
       icon = 'fa fa-sticky-note-o';
   }
-  if (props.componentInRecipe === true) {
+  if (props.componentInBlueprint === true) {
     indicator = 'list-pf-icon-bordered';
-    // TODO - Identify icon as belonging to dependency in the recipe
+    // TODO - Identify icon as belonging to dependency in the blueprint
     // if (props.isDependency) {
     //   indicator += ' list-pf-icon-bordered-dotted';
     // }
@@ -47,7 +47,7 @@ const ComponentTypeIcons = props => {
 ComponentTypeIcons.propTypes = {
   componentType: PropTypes.string,
   compDetails: PropTypes.bool,
-  componentInRecipe: PropTypes.bool,
+  componentInBlueprint: PropTypes.bool,
 };
 
 export default ComponentTypeIcons;
