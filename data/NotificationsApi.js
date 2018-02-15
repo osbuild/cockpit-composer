@@ -34,7 +34,7 @@ class NotificationsApi {
       case 'creating': {
         notification = {
           type: 'process',
-          message: <span><strong>{blueprint}:</strong> Creating composition.</span>,
+          message: <span><strong>{blueprint}:</strong> Creating image.</span>,
           action: <a href="#">Cancel</a>,
           dismiss: true,
         };
@@ -44,15 +44,15 @@ class NotificationsApi {
           this.displayNotification(blueprint, 'created');
         }, 2500);
         // setTimeout is only temporary, and included to simulate what will happen
-        // when the user creates a composition (i.e. display process message
+        // when the user creates an image (i.e. display process message
         // then success notification); this should be updated
-        // when composition creation is fully implemented
+        // when image creation is fully implemented
         break;
       }
       case 'created': {
         notification = {
           type: 'success',
-          message: <span><strong>{blueprint}:</strong> Composition creation is complete.</span>,
+          message: <span><strong>{blueprint}:</strong> Image creation is complete.</span>,
           // action: <a href="#void">Download (.iso)</a>,
           // this link will need to be implemented when the build process
           // is implemented; this function will need to be extended to handle

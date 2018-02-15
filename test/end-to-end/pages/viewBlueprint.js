@@ -25,8 +25,8 @@ module.exports = class ViewBlueprintPage extends MainPage {
     // Components tab content root element
     this.componentsContentRootElement = `${this.tabRootElement} pf-tab[tabtitle="Components"]`;
 
-    // Compositions tab content root element
-    this.compositionsContentRootElement = `${this.tabRootElement} pf-tab[tabtitle="Compositions"]`;
+    // Images tab content root element
+    this.imagesContentRootElement = `${this.tabRootElement} pf-tab[tabtitle="Images"]`;
 
 // ---- Page element selector ---- //
     // Nav-bar: Blueprint Name label
@@ -38,9 +38,9 @@ module.exports = class ViewBlueprintPage extends MainPage {
     // Page-level actions
     this.pagelevelActions = '[class="cmpsr-header__actions"]';
 
-    // Create Composition button
-    this.varCreateCompos = 'Create Composition';
-    this.btnCreateCompos = '#cmpsr-btn-crt-compos';
+    // Create Image button
+    this.varCreateImage = 'Create Image';
+    this.btnCreateImage = '#cmpsr-btn-crt-image';
 
     // More action button
     this.btnMore = 'button[id="dropdownKebab"]';
@@ -59,8 +59,8 @@ module.exports = class ViewBlueprintPage extends MainPage {
     // Components tab page element
     this.componentsTabElement = `${this.tabListRootElement} li:nth-child(2) a`;
 
-    // Compositions tab page element
-    this.compositionsTabElement = `${this.tabListRootElement} li:nth-child(3) a`;
+    // Images tab page element
+    this.imagesTabElement = `${this.tabListRootElement} li:nth-child(3) a`;
 
     // Selected Components tab under Components tab
     this.tabSelectedComponents = `${this.componentsContentRootElement} pf-tabs ul[role="tablist"] li:nth-child(1) a`;
@@ -88,7 +88,7 @@ module.exports = class ViewBlueprintPage extends MainPage {
         return `${this.tabListRootElement} li:nth-child(1) a`;
       case 'Components':
         return `${this.tabListRootElement} li:nth-child(2) a`;
-      case 'Compositions':
+      case 'Images':
         return `${this.tabListRootElement} li:nth-child(3) a`;
       default:
         return `${this.tabListRootElement} li:nth-child(2) a`;

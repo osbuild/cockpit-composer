@@ -31,8 +31,8 @@ module.exports = class BlueprintsPage extends MainPage {
     return `a[href="#/blueprint/${name}"]`;
   }
 
-  // Create Composition button
-  static btnCreateCompos(name) {
+  // Create Image button
+  static btnCreateImage(name) {
     return `a[href="#/edit/${name}"] + .btn-default`;
   }
 

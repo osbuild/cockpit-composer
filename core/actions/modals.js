@@ -59,11 +59,11 @@ export function setModalCreateBlueprintBlueprint(blueprint) {
 }
 
 export const FETCHING_MODAL_CREATE_COMPOSTION_TYPES_SUCCESS = 'FETCHING_MODAL_CREATE_COMPOSTION_TYPES_SUCCESS';
-export function fetchingModalCreateCompositionTypesSuccess(compositionTypes) {
+export function fetchingModalCreateImageTypesSuccess(imageTypes) {
   return {
     type: FETCHING_MODAL_CREATE_COMPOSTION_TYPES_SUCCESS,
     payload: {
-      compositionTypes,
+      imageTypes,
     },
   };
 }

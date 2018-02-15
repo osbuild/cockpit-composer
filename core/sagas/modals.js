@@ -1,9 +1,9 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
-import { fetchBlueprintContentsApi, fetchModalCreateCompositionTypesApi } from '../apiCalls';
+import { fetchBlueprintContentsApi, fetchModalCreateImageTypesApi } from '../apiCalls';
 
 import {
    FETCHING_MODAL_EXPORT_BLUEPRINT_CONTENTS, setModalExportBlueprintContents,
-   fetchingModalCreateCompositionTypesSuccess,
+   fetchingModalCreateImageTypesSuccess,
 } from '../actions/modals';
 
 function* fetchModalBlueprintContents(action) {
@@ -16,10 +16,10 @@ function* fetchModalBlueprintContents(action) {
   }
 }
 
-function* fetchModalCreateCompositionTypes() {
+function* fetchModalCreateImageTypes() {
   try {
-    const response = yield call(fetchModalCreateCompositionTypesApi);
-    yield put(fetchingModalCreateCompositionTypesSuccess(response));
+    const response = yield call(fetchModalCreateImageTypesApi);
+    yield put(fetchingModalCreateImageTypesSuccess(response));
   } catch (error) {
     console.log('Error in loadModalBlueprintSaga');
   }
@@ -27,5 +27,5 @@ function* fetchModalCreateCompositionTypes() {
 
 export default function* () {
   yield takeEvery(FETCHING_MODAL_EXPORT_BLUEPRINT_CONTENTS, fetchModalBlueprintContents);
-  yield* fetchModalCreateCompositionTypes();
+  yield* fetchModalCreateImageTypes();
 }

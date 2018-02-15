@@ -39,7 +39,7 @@ class CreateBlueprint extends React.Component {
   }
 
   unbind() {
-    $('#cmpsr-modal-crt-compos .btn-primary').off('shown.bs.modal');
+    $('#cmpsr-modal-crt-image .btn-primary').off('shown.bs.modal');
   }
 
   handleChange(e, prop) {

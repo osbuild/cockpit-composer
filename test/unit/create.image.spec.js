@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import faker from 'faker';
-import CreateComposition from '../../components/Modal/CreateComposition';
+import CreateImage from '../../components/Modal/CreateImage';
 
 const typeList = [
   { name: 'ami', enabled: true },
@@ -30,39 +30,39 @@ jest.mock('../../core/utils', () => ({ apiFetch: jest.fn().mockImplementation(()
 }),
 }));
 
-describe('CreateComposition', () => {
+describe('CreateImage', () => {
   let props;
-  let shallowedCreateComposition;
-  const createComposition = () => {
-    if (!shallowedCreateComposition) {
-      shallowedCreateComposition = shallow(
-        <CreateComposition {...props} />
+  let shallowedCreateImage;
+  const createImage = () => {
+    if (!shallowedCreateImage) {
+      shallowedCreateImage = shallow(
+        <CreateImage {...props} />
       );
     }
-    return shallowedCreateComposition;
+    return shallowedCreateImage;
   };
 
   beforeEach(() => {
     props = {
-      compositionTypes: typeList,
+      imageTypes: typeList,
       blueprint: undefined,
       setNotifications: undefined,
     };
-    shallowedCreateComposition = undefined;
+    shallowedCreateImage = undefined;
   });
 
   test('always renders a div', () => {
-    const divs = createComposition().find('div');
+    const divs = createImage().find('div');
 
     expect(divs.length).toBeGreaterThan(0);
   });
 
   describe('the rendered div', () => {
     test('contains everything else that gets rendered', () => {
-      const divs = createComposition().find('div');
+      const divs = createImage().find('div');
       const wrappingDiv = divs.first();
 
-      expect(wrappingDiv.children()).toEqual(createComposition().children());
+      expect(wrappingDiv.children()).toEqual(createImage().children());
     });
   });
 
@@ -70,7 +70,7 @@ describe('CreateComposition', () => {
     test('should render correct Blueprint name passed by props', () => {
       const fakeBlueprintName = faker.lorem.words();
       props.blueprint = fakeBlueprintName;
-      const divs = createComposition().find('.form-control-static');
+      const divs = createImage().find('.form-control-static');
 
       expect(divs.text()).toEqual(fakeBlueprintName);
     });
@@ -79,7 +79,7 @@ describe('CreateComposition', () => {
       const setNotificationsSpy = jest.fn();
       props.setNotifications = setNotificationsSpy;
 
-      const wrapper = createComposition();
+      const wrapper = createImage();
       wrapper.find('.btn-primary').simulate('click');
 
       expect(setNotificationsSpy).toHaveBeenCalledTimes(1);
@@ -88,7 +88,7 @@ describe('CreateComposition', () => {
 
   describe('state test', () => {
     test('should have a correct type render', () => {
-      const wrapper = createComposition();
+      const wrapper = createImage();
       const renderedType = wrapper.find('label[htmlFor="textInput-modal-markup"] + div select option');
 
       expect(renderedType).toHaveLength(13);

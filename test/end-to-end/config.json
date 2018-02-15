@@ -16,8 +16,8 @@
             "packages": [{"name": "httpd", "version": ""}]
         }
     },
-    "__comment__": "// Composition type and architechture on Create Composition Page",
-    "composition": [
+    "__comment__": "// Image type and architechture on Create Image Page",
+    "image": [
         {"type": "ostree", "arch": "x86_64"},
         {"type": "iso", "arch": "x86_64"},
         {"type": "ami", "arch": "x86_64"},

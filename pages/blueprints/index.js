@@ -63,7 +63,7 @@ class BlueprintsPage extends React.Component {
   }
 
   render() {
-    const { blueprints, exportBlueprint, createComposition, blueprintSortKey, blueprintSortValue } = this.props;
+    const { blueprints, exportBlueprint, createImage, blueprintSortKey, blueprintSortValue } = this.props;
     return (
       <Layout className="container-fluid" ref="layout">
         <div className="row toolbar-pf">
@@ -144,10 +144,10 @@ class BlueprintsPage extends React.Component {
           </button>
         </EmptyState>
       }
-      {createComposition.compositionTypes !== undefined &&
+      {createImage.imageTypes !== undefined &&
         <BlueprintListView
           blueprints={blueprints.map(blueprint => blueprint.present)}
-          compositionTypes={createComposition.compositionTypes}
+          imageTypes={createImage.imageTypes}
           handleDelete={this.handleDelete}
           setNotifications={this.setNotifications}
           handleShowModalExport={this.handleShowModalExport}
@@ -174,7 +174,7 @@ BlueprintsPage.propTypes = {
   fetchingModalExportBlueprintContents: PropTypes.func,
   blueprints: PropTypes.array,
   exportBlueprint: PropTypes.object,
-  createComposition: PropTypes.object,
+  createImage: PropTypes.object,
   blueprintSortKey: PropTypes.string,
   blueprintSortValue: PropTypes.string,
   blueprintsSortSetKey: PropTypes.func,
@@ -187,7 +187,7 @@ const makeMapStateToProps = () => {
     if (getSortedBlueprints(state) !== undefined) {
       return {
         exportBlueprint: state.modals.exportBlueprint,
-        createComposition: state.modals.createComposition,
+        createImage: state.modals.createImage,
         blueprints: getSortedBlueprints(state),
         blueprintSortKey: state.sort.blueprints.key,
         blueprintSortValue: state.sort.blueprints.value,
@@ -195,7 +195,7 @@ const makeMapStateToProps = () => {
     }
     return {
       exportBlueprint: state.modals.exportBlueprint,
-      createComposition: state.modals.createComposition,
+      createImage: state.modals.createImage,
       blueprints: {},
       blueprintSortKey: state.sort.blueprints.key,
       blueprintSortValue: state.sort.blueprints.value,

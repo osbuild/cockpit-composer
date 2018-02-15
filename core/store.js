@@ -34,8 +34,8 @@ const initialState = {
   },
   blueprints : [],
   modals: {
-    createComposition: {
-      compositionTypes: [],
+    createImage: {
+      imageTypes: [],
     },
     exportBlueprint: {
       name: '',

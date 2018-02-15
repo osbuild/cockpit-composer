@@ -4,14 +4,14 @@ import BlueprintsPage from '../../pages/blueprints/index';
 import { Provider } from 'react-redux';
 
 describe('Home page', () => {
-  const mockCreateComposition = {
-    compositionTypes: [{ name: 'qcow2', enabled: true }],
+  const mockCreateImage = {
+    imageTypes: [{ name: 'qcow2', enabled: true }],
   };
   const mockState = {
     blueprints: [],
     sort: { blueprints: [] },
     modals: {
-      createComposition: mockCreateComposition,
+      createImage: mockCreateImage,
       createBlueprint: { blueprint: {} },
     },
   };

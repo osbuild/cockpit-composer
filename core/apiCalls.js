@@ -73,11 +73,11 @@ export function fetchBlueprintInfoApi(blueprintName) {
   return blueprintFetch;
 }
 
-export function fetchModalCreateCompositionTypesApi() {
-  const compostionTypes = utils.apiFetch(constants.get_compose_types)
+export function fetchModalCreateImageTypesApi() {
+  const imageTypes = utils.apiFetch(constants.get_image_types)
     .then(data => data.types)
     .catch(e => console.log(`Error getting component types: ${e}`));
-  return compostionTypes;
+  return imageTypes;
 }
 
 export function setBlueprintDescriptionApi(blueprint, description) {
