@@ -4,14 +4,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import NotificationsApi from '../../data/NotificationsApi';
 
-class CreateComposition extends React.Component {
+class CreateImage extends React.Component {
   constructor() {
     super();
-    this.handleCreateCompos = this.handleCreateCompos.bind(this);
+    this.handleCreateImage = this.handleCreateImage.bind(this);
   }
 
-  handleCreateCompos() {
-    $('#cmpsr-modal-crt-compos').modal('hide');
+  handleCreateImage() {
+    $('#cmpsr-modal-crt-image').modal('hide');
     NotificationsApi.displayNotification(this.props.blueprint, 'creating');
     this.props.setNotifications();
   }
@@ -20,7 +20,7 @@ class CreateComposition extends React.Component {
     return (
       <div
         className="modal fade"
-        id="cmpsr-modal-crt-compos"
+        id="cmpsr-modal-crt-image"
         tabIndex="-1"
         role="dialog"
         aria-labelledby="myModalLabel"
@@ -32,7 +32,7 @@ class CreateComposition extends React.Component {
               <button type="button" className="close" data-dismiss="modal" aria-hidden="true">
                 <span className="pficon pficon-close"></span>
               </button>
-              <h4 className="modal-title" id="myModalLabel">Create Composition</h4>
+              <h4 className="modal-title" id="myModalLabel">Create Image</h4>
             </div>
             <div className="modal-body">
               <form className="form-horizontal">
@@ -48,10 +48,10 @@ class CreateComposition extends React.Component {
                   <label
                     className="col-sm-3 control-label"
                     htmlFor="textInput-modal-markup"
-                  >Composition Type</label>
+                  >Image Type</label>
                   <div className="col-sm-9">
                     <select className="form-control">
-                      {this.props.compositionTypes !== undefined && this.props.compositionTypes.map((type, i) =>
+                      {this.props.imageTypes !== undefined && this.props.imageTypes.map((type, i) =>
                         <option key={i} disabled={!type.enabled}>{type.name}</option>
                       )}
                     </select>
@@ -72,7 +72,7 @@ class CreateComposition extends React.Component {
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-default" data-dismiss="modal">Cancel</button>
-              <button type="button" className="btn btn-primary" onClick={this.handleCreateCompos}>Create</button>
+              <button type="button" className="btn btn-primary" onClick={this.handleCreateImage}>Create</button>
             </div>
           </div>
         </div>
@@ -81,10 +81,10 @@ class CreateComposition extends React.Component {
   }
 }
 
-CreateComposition.propTypes = {
+CreateImage.propTypes = {
   blueprint: PropTypes.string,
   setNotifications: PropTypes.func,
-  compositionTypes: PropTypes.array,
+  imageTypes: PropTypes.array,
 };
 
-export default CreateComposition;
+export default CreateImage;

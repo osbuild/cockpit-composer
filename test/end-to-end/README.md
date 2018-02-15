@@ -52,7 +52,7 @@ There's a easy way to run end to end test in Docker container.
 .
 ├── /pages/                     # Welder-Web page classes
 │   ├── main.js                 # Top level page class and inherited by other page classes
-│   ├── createCompos.js         # Create Composition page class with tested elements included
+│   ├── createImage.js         # Create Image page class with tested elements included
 │   ├── createBlueprint.js      # Create Blueprint page class with tested elements included
 │   └── /...                    # etc.
 ├── /test/                      # End-to-End test cases
@@ -70,15 +70,15 @@ There's a easy way to run end to end test in Docker container.
 ```javascript
 const MainPage = require('./main');                           // Import top level class
 
-module.exports = class CreateComposPage extends MainPage {    // Inherint from top level class
+module.exports = class CreateImagePage extends MainPage {    // Inherint from top level class
   constructor(type, arch) {                                   // Call constructor
-    super('Create Composition');                              // Call super with title as argument
-    this.composType = type;
-    this.composArch = arch;
+    super('Create Image');                              // Call super with title as argument
+    this.imageType = type;
+    this.imageArch = arch;
 
     // Create Copmosition label                               // Comment about what this element is
-    this.varCreateCompos = 'Create Composition';              // Page element value
-    this.labelCreateCompos = '#myModalLabel';                 // Page element selector
+    this.varCreateImage = 'Create Image';              // Page element value
+    this.labelCreateImage = '#myModalLabel';                 // Page element selector
   }
 };
 ```
@@ -162,7 +162,7 @@ The result should be read like a sentence.
         ✓ should show a blueprint name (2239ms)
       Title Bar Check
         ✓ should show a blueprint name title (1718ms)
-        ✓ should have Create Composition button (1698ms)
+        ✓ should have Create Image button (1698ms)
   3 passing (6s)
 ```
 

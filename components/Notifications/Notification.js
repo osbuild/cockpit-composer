@@ -15,9 +15,9 @@ class Notification extends React.PureComponent {
         this.props.setNotifications();
       }, 2600));
       // setTimeout is only temporary, and included to simulate what will happen
-      // when the user creates a composition (i.e. display process message
+      // when the user creates an image (i.e. display process message
       // then success notification); this should be updated
-      // when composition creation is fully implemented
+      // when image creation is fully implemented
     }
   }
 

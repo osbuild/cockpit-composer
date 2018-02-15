@@ -6,11 +6,11 @@ import Tabs from '../../components/Tabs/Tabs';
 import Tab from '../../components/Tabs/Tab';
 import BlueprintContents from '../../components/ListView/BlueprintContents';
 import ComponentDetailsView from '../../components/ListView/ComponentDetailsView';
-import CreateComposition from '../../components/Modal/CreateComposition';
+import CreateImage from '../../components/Modal/CreateImage';
 import ExportBlueprint from '../../components/Modal/ExportBlueprint';
 import EmptyState from '../../components/EmptyState/EmptyState';
 import ListView from '../../components/ListView/ListView';
-import ListItemCompositions from '../../components/ListView/ListItemCompositions';
+import ListItemImages from '../../components/ListView/ListItemImages';
 import ListItemChanges from '../../components/ListView/ListItemChanges';
 import { connect } from 'react-redux';
 import { fetchingBlueprintContents, setBlueprintDescription } from '../../core/actions/blueprints';
@@ -68,7 +68,7 @@ class BlueprintPage extends React.Component {
           nisi, vitae lacinia augue sem eget turpis."
         },
       ],
-      compositions: [
+      images: [
         {
           date_created: '2/06/17',
           date_exported: '2/06/17',
@@ -153,7 +153,7 @@ class BlueprintPage extends React.Component {
     }
 
     const {
-      blueprint, exportModalVisible, compositionTypes, components, dependencies,
+      blueprint, exportModalVisible, imageTypes, components, dependencies,
     } = this.props;
 
     const {
@@ -175,12 +175,12 @@ class BlueprintPage extends React.Component {
               </li>
               <li>
                 <button
-                  className={`btn btn-default ${components.length ? '' : 'disabled'}`}                  id="cmpsr-btn-crt-compos"
+                  className={`btn btn-default ${components.length ? '' : 'disabled'}`}                  id="cmpsr-btn-crt-image"
                   data-toggle="modal"
-                  data-target="#cmpsr-modal-crt-compos"
+                  data-target="#cmpsr-modal-crt-image"
                   type="button"
                 >
-                  Create Composition
+                  Create Image
                 </button>
               </li>
               <li>
@@ -391,26 +391,26 @@ class BlueprintPage extends React.Component {
                 </div>}
             </div>
           </Tab>
-          <Tab tabTitle="Compositions" active={activeTab === 'Compositions'}>
+          <Tab tabTitle="Images" active={activeTab === 'Images'}>
             <div className="tab-container">
-              {(this.state.compositions.length === 0 &&
-                <EmptyState title={'No Compositions'} message={'No compositions have been created from this blueprint.'}>
+              {(this.state.images.length === 0 &&
+                <EmptyState title={'No Images'} message={'No images have been created from this blueprint.'}>
                   <button
                     className="btn btn-default"
-                    id="cmpsr-btn-crt-compos"
+                    id="cmpsr-btn-crt-image"
                     data-toggle="modal"
-                    data-target="#cmpsr-modal-crt-compos"
+                    data-target="#cmpsr-modal-crt-image"
                     type="button"
                   >
-                    Create Composition
+                    Create Image
                   </button>
                 </EmptyState>) ||
-                <ListView className="cmpsr-blueprint__compositions cmpsr-list">
-                  {this.state.compositions.map((composition, i) => (
-                    <ListItemCompositions
-                      listItemParent="cmpsr-blueprint__compositions"
+                <ListView className="cmpsr-blueprint__images cmpsr-list">
+                  {this.state.images.map((image, i) => (
+                    <ListItemImages
+                      listItemParent="cmpsr-blueprint__images"
                       blueprint={this.props.route.params.blueprint}
-                      listItem={composition}
+                      listItem={image}
                       key={i}
                     />
                   ))}
@@ -418,7 +418,7 @@ class BlueprintPage extends React.Component {
             </div>
           </Tab>
         </Tabs>
-        <CreateComposition blueprint={blueprint.name} compositionTypes={compositionTypes} setNotifications={this.setNotifications} />
+        <CreateImage blueprint={blueprint.name} imageTypes={imageTypes} setNotifications={this.setNotifications} />
         {exportModalVisible
           ? <ExportBlueprint
             blueprint={blueprint.name}
@@ -446,7 +446,7 @@ BlueprintPage.propTypes = {
   blueprintPage: PropTypes.object,
   setBlueprintDescription: PropTypes.func,
   exportModalVisible: PropTypes.bool,
-  compositionTypes: PropTypes.array,
+  imageTypes: PropTypes.array,
   dependenciesSortSetKey: PropTypes.func,
   dependenciesSortSetValue: PropTypes.func,
   componentsSortSetKey: PropTypes.func,
@@ -471,7 +471,7 @@ const makeMapStateToProps = () => {
         dependencies: getSortedDependencies(state, fetchedBlueprint.present),
         blueprintPage: state.blueprintPage,
         exportModalVisible: state.modals.exportBlueprint.visible,
-        compositionTypes: state.modals.createComposition.compositionTypes,
+        imageTypes: state.modals.createImage.imageTypes,
         componentsSortKey: state.sort.components.key,
         componentsSortValue: state.sort.components.value,
       };
@@ -483,7 +483,7 @@ const makeMapStateToProps = () => {
       dependencies: [],
       blueprintPage: state.blueprintPage,
       exportModalVisible: state.modals.exportBlueprint.visible,
-      compositionTypes: state.modals.createComposition.compositionTypes,
+      imageTypes: state.modals.createImage.imageTypes,
       componentsSortKey: state.sort.components.key,
       componentsSortValue: state.sort.components.value,
     };

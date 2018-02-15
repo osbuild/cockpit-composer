@@ -43,12 +43,12 @@ const modalCreateBlueprint = (state = [], action) => {
   }
 };
 
-const modalCreateComposition = (state = [], action) => {
+const modalCreateImage = (state = [], action) => {
   switch (action.type) {
     case FETCHING_MODAL_CREATE_COMPOSTION_TYPES_SUCCESS:
       return Object.assign(
           {}, state,
-          { createComposition: Object.assign({}, state.createComposition, { compositionTypes: action.payload.compositionTypes }) }
+          { createImage: Object.assign({}, state.createImage, { imageTypes: action.payload.imageTypes }) }
       );
     default:
       return state;
@@ -93,7 +93,7 @@ const modals = (state = [], action) => {
     case SET_MODAL_CREATE_BLUEPRINT_BLUEPRINT:
       return modalCreateBlueprint(state, action);
     case FETCHING_MODAL_CREATE_COMPOSTION_TYPES_SUCCESS:
-      return modalCreateComposition(state, action);
+      return modalCreateImage(state, action);
     case SET_MODAL_EXPORT_BLUEPRINT_NAME:
       return modalExportBlueprint(state, action);
     case SET_MODAL_EXPORT_BLUEPRINT_CONTENTS:

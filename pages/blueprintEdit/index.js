@@ -7,7 +7,7 @@ import Layout from '../../components/Layout';
 import BlueprintContents from '../../components/ListView/BlueprintContents';
 import ComponentInputs from '../../components/ListView/ComponentInputs';
 import ComponentDetailsView from '../../components/ListView/ComponentDetailsView';
-import CreateComposition from '../../components/Modal/CreateComposition';
+import CreateImage from '../../components/Modal/CreateImage';
 import ExportBlueprint from '../../components/Modal/ExportBlueprint';
 import PendingChanges from '../../components/Modal/PendingChanges';
 import EmptyState from '../../components/EmptyState/EmptyState';
@@ -442,7 +442,7 @@ class EditBlueprintPage extends React.Component {
     const blueprintDisplayName = this.props.route.params.blueprint;
     const {
       blueprint, components, dependencies,
-      inputs, createComposition, modalActive, componentsSortKey, componentsSortValue,
+      inputs, createImage, modalActive, componentsSortKey, componentsSortValue,
       pastLength, futureLength,
     } = this.props;
 
@@ -503,12 +503,12 @@ class EditBlueprintPage extends React.Component {
               <li className="list__subgroup-item--first">
                 <button
                   className={`btn btn-default ${components.length ? '' : 'disabled'}`}
-                  id="cmpsr-btn-crt-compos"
+                  id="cmpsr-btn-crt-image"
                   data-toggle="modal"
-                  data-target="#cmpsr-modal-crt-compos"
+                  data-target="#cmpsr-modal-crt-image"
                   type="button"
                 >
-                  Create Composition
+                  Create Image
                 </button>
               </li>
               <li>
@@ -677,11 +677,11 @@ class EditBlueprintPage extends React.Component {
             />
           }
         </div>
-      {createComposition.compositionTypes !== undefined &&
-        <CreateComposition
+      {createImage.imageTypes !== undefined &&
+        <CreateImage
           blueprint={blueprint.name}
           setNotifications={this.setNotifications}
-          compositionTypes={createComposition.compositionTypes}
+          imageTypes={createImage.imageTypes}
         />
       }
         {modalActive === 'modalExportBlueprint'
@@ -708,7 +708,7 @@ EditBlueprintPage.propTypes = {
   route: PropTypes.object,
   rehydrated: PropTypes.bool,
   blueprint: PropTypes.object,
-  createComposition: PropTypes.object,
+  createImage: PropTypes.object,
   inputs: PropTypes.object,
   modalActive: PropTypes.string,
   selectedInput: PropTypes.object,
@@ -756,7 +756,7 @@ const makeMapStateToProps = () => {
         dependencies: getSortedDependencies(state, fetchedBlueprint.present),
         componentsSortKey: state.sort.components.key,
         componentsSortValue: state.sort.components.value,
-        createComposition: state.modals.createComposition,
+        createImage: state.modals.createImage,
         inputs: state.inputs,
         selectedInput: state.inputs.selectedInput,
         modalActive: state.modals.modalActive,
@@ -771,7 +771,7 @@ const makeMapStateToProps = () => {
       dependencies: [],
       componentsSortKey: state.sort.components.key,
       componentsSortValue: state.sort.components.value,
-      createComposition: state.modals.createComposition,
+      createImage: state.modals.createImage,
       inputs: state.inputs,
       selectedInput: state.inputs.selectedInput,
       modalActive: state.modals.modalActive,

@@ -36,9 +36,9 @@ module.exports = class EditBlueprintPage extends MainPage {
     // Blueprint Title label
     this.labelBlueprintTitle = `${this.titleBarRootElement} h1[class="cmpsr-title__item"]`;
 
-    // Create Composition button
-    this.varCreateCompos = 'Create Composition';
-    this.btnCreateCompos = `${this.editActionBarRootElement} button[data-target="#cmpsr-modal-crt-compos"]`;
+    // Create Image button
+    this.varCreateImage = 'Create Image';
+    this.btnCreateImage = `${this.editActionBarRootElement} button[data-target="#cmpsr-modal-crt-image"]`;
 
     // More action button
     this.btnMore = `${this.editActionBarRootElement} button[id="dropdownKebab"]`;

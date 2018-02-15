@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class ListItemCompositions extends React.PureComponent {
+class ListItemImages extends React.PureComponent {
   render() {
     const { listItem } = this.props;
 
@@ -60,8 +60,8 @@ class ListItemCompositions extends React.PureComponent {
   }
 }
 
-ListItemCompositions.propTypes = {
+ListItemImages.propTypes = {
   listItem: PropTypes.object,
 };
 
-export default ListItemCompositions;
+export default ListItemImages;

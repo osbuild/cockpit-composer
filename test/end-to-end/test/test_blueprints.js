@@ -2,7 +2,7 @@ const Nightmare = require('nightmare');
 require('nightmare-iframe-manager')(Nightmare);
 const BlueprintsPage = require('../pages/blueprints');
 const CreateBlueprintPage = require('../pages/createBlueprint');
-const CreateComposPage = require('../pages/createCompos');
+const CreateImagePage = require('../pages/createImage');
 const ToastNotifPage = require('../pages/toastNotif');
 const ExportBlueprintPage = require('../pages/exportBlueprint');
 const apiCall = require('../utils/apiCall');
@@ -96,8 +96,8 @@ describe('Blueprints Page', () => {
 
   describe('Blueprint List', () => {
     describe('Single Word Blueprint Name Scenario', () => {
-      // Array of composition types and architechtures
-      const compositions = pageConfig.composition;
+      // Array of image types and architechtures
+      const images = pageConfig.image;
 
       // Create a new blueprint before the first test run in this suite
       beforeAll((done) => {
@@ -154,27 +154,27 @@ describe('Blueprints Page', () => {
         }, timeout);
       });
 
-      compositions.forEach((composition) => {
-        describe(`Create Composition Test For ${composition.type}`, () => {
-          const createComposPage = new CreateComposPage(composition.type
-            , composition.arch);
+      images.forEach((image) => {
+        describe(`Create Image Test For ${image.type}`, () => {
+          const createImagePage = new CreateImagePage(image.type
+            , image.arch);
 
-          // Create Composition button selector
-          const btnCreateCompos = BlueprintsPage.btnCreateCompos(pageConfig.blueprint.simple.name);
+          // Create Image button selector
+          const btnCreateImage = BlueprintsPage.btnCreateImage(pageConfig.blueprint.simple.name);
 
-          const testSpec6 = test('should pop up Create Composition window by clicking Create Compostion button',
+          const testSpec6 = test('should pop up Create Image window by clicking Create Imagetion button',
           (done) => {
             // Highlight the expected result
-            const expected = createComposPage.varCreateCompos;
+            const expected = createImagePage.varCreateImage;
 
             nightmare
-              .wait(btnCreateCompos)
-              .click(btnCreateCompos)
+              .wait(btnCreateImage)
+              .click(btnCreateImage)
               .wait(page => document.querySelector(page.dialogRootElement).style.display === 'block'
-                , createComposPage)
-              .wait(createComposPage.labelCreateCompos)
-              .evaluate(page => document.querySelector(page.labelCreateCompos).innerText
-                , createComposPage)
+                , createImagePage)
+              .wait(createImagePage.labelCreateImage)
+              .evaluate(page => document.querySelector(page.labelCreateImage).innerText
+                , createImagePage)
               .then((element) => {
                 expect(element).toBe(expected);
 
@@ -184,7 +184,7 @@ describe('Blueprints Page', () => {
                 helper.gotoError(error, nightmare, testSpec6);
               });
           }, timeout);
-          const testSpec7 = test('should have toast notification pop up when new composition added',
+          const testSpec7 = test('should have toast notification pop up when new image added',
           (done) => {
             const toastNotifPage = new ToastNotifPage(pageConfig.blueprint.simple.name);
 
@@ -193,13 +193,13 @@ describe('Blueprints Page', () => {
             const expectedComplete = toastNotifPage.varStatusComplete;
 
             nightmare
-              .wait(btnCreateCompos)
-              .click(btnCreateCompos)
+              .wait(btnCreateImage)
+              .click(btnCreateImage)
               .wait(page => document.querySelector(page.dialogRootElement).style.display === 'block'
-                , createComposPage)
-              .select(createComposPage.selectComposType, createComposPage.composType)
-              .select(createComposPage.selectComposArch, createComposPage.composArch)
-              .click(createComposPage.btnCreate)
+                , createImagePage)
+              .select(createImagePage.selectImageType, createImagePage.imageType)
+              .select(createImagePage.selectImageArch, createImagePage.imageArch)
+              .click(createImagePage.btnCreate)
               .wait(toastNotifPage.iconCreating)
               .wait((page) => {
                 const blueprintName = document.querySelector(page.labelBlueprintName).innerText;

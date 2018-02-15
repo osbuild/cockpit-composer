@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from '../../components/Link';
-import CreateComposition from '../../components/Modal/CreateComposition';
+import CreateImage from '../../components/Modal/CreateImage';
 
 class BlueprintListView extends React.Component {
   constructor() {
@@ -55,13 +55,13 @@ class BlueprintListView extends React.Component {
   //   $('.list-group-item-container .close').off('click');
   // }
 
-  handleCreateCompos(blueprint) {
+  handleCreateImage(blueprint) {
     this.setState({ blueprint });
-    $('#cmpsr-modal-crt-compos').modal('show');
+    $('#cmpsr-modal-crt-image').modal('show');
   }
 
   render() {
-    const { blueprints, compositionTypes } = this.props; // eslint-disable-line no-use-before-define
+    const { blueprints, imageTypes } = this.props; // eslint-disable-line no-use-before-define
     return (
       <div className="list-group list-view-pf list-view-pf-view">
 
@@ -80,9 +80,9 @@ class BlueprintListView extends React.Component {
                 </Link>
                 <button
                   className="btn btn-default"
-                  onClick={() => this.handleCreateCompos(blueprint.name)}
+                  onClick={() => this.handleCreateImage(blueprint.name)}
                 >
-                  Create Composition
+                  Create Image
                 </button>
                 <div className="dropdown pull-right dropdown-kebab-pf">
                   <button
@@ -180,7 +180,7 @@ class BlueprintListView extends React.Component {
                         <div className="list-view-pf-body">
                           <div className="list-view-pf-description">
                             <div className="list-group-item-heading">
-                              Composition 1
+                              Image 1
                             </div>
                             <div className="list-group-item-text">
                               Created from Version 1
@@ -196,9 +196,9 @@ class BlueprintListView extends React.Component {
             </div>
           </div>
         )}
-      {compositionTypes !== undefined &&
-        <CreateComposition
-          compositionTypes={compositionTypes}
+      {imageTypes !== undefined &&
+        <CreateImage
+          imageTypes={imageTypes}
           blueprint={this.state.blueprint}
           setNotifications={this.props.setNotifications}
         />
@@ -214,7 +214,7 @@ BlueprintListView.propTypes = {
   blueprints: PropTypes.array,
   setNotifications: PropTypes.func,
   handleShowModalExport: PropTypes.func,
-  compositionTypes: PropTypes.array,
+  imageTypes: PropTypes.array,
 };
 
 export default BlueprintListView;
