@@ -9,7 +9,7 @@ class ComponentSummaryList extends React.Component {
   }
 
   handleShowAll(event) {
-    // the user clicked a list item in the recipe contents area to expand or collapse
+    // the user clicked a list item in the blueprint contents area to expand or collapse
     const showState = !this.state.showAll;
     this.setState({ showAll: showState });
     event.preventDefault();
@@ -35,7 +35,7 @@ class ComponentSummaryList extends React.Component {
                   <div className="list-pf-left">
                     <ComponentTypeIcons
                       componentType={listItem.ui_type}
-                      componentInRecipe
+                      componentInBlueprint
                       isDependency={this.props.isDependency}
                     />
                   </div>

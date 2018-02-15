@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import RecipesPage from '../../pages/recipes/index';
+import BlueprintsPage from '../../pages/blueprints/index';
 import { Provider } from 'react-redux';
 
 describe('Home page', () => {
@@ -8,37 +8,37 @@ describe('Home page', () => {
     compositionTypes: [{ name: 'qcow2', enabled: true }],
   };
   const mockState = {
-    recipes: [],
-    sort: { recipes: [] },
+    blueprints: [],
+    sort: { blueprints: [] },
     modals: {
       createComposition: mockCreateComposition,
-      createRecipe: { recipe: {} },
+      createBlueprint: { blueprint: {} },
     },
   };
   const mockStore = { subscribe: () => null, dispatch: () => null, state: mockState, getState: () => mockState };
 
   test('Home page render', () => {
-    const wrapper = shallow(<RecipesPage store={mockStore} recipes={mockState.recipes} />);
+    const wrapper = shallow(<BlueprintsPage store={mockStore} blueprints={mockState.blueprints} />);
     const nodeName = wrapper.name();
     const container = wrapper.first('div');
 
-    expect(nodeName).toBe('RecipesPage');
+    expect(nodeName).toBe('BlueprintsPage');
     expect(container.length).toBe(1);
   });
 
   test('calls componentDidMount() lifecycle method', () => {
-    const componentDidMountSpy = jest.spyOn(RecipesPage.prototype, 'componentDidMount');
-    mount(<Provider store={mockStore}><RecipesPage recipes={mockState.recipes} /></Provider>);
+    const componentDidMountSpy = jest.spyOn(BlueprintsPage.prototype, 'componentDidMount');
+    mount(<Provider store={mockStore}><BlueprintsPage blueprints={mockState.blueprints} /></Provider>);
 
     expect(componentDidMountSpy).toHaveBeenCalledTimes(1);
 
     componentDidMountSpy.mockRestore();
   });
 
-  test('blank slate without recipes', () => {
-    const component = mount(<Provider store={mockStore}><RecipesPage recipes={mockState.recipes} /></Provider>);
+  test('blank slate without blueprints', () => {
+    const component = mount(<Provider store={mockStore}><BlueprintsPage blueprints={mockState.blueprints} /></Provider>);
     const blankSlate = component.find('.blank-slate-pf');
 
-    expect(blankSlate.text()).toContain('Create a recipe');
+    expect(blankSlate.text()).toContain('Create a blueprint');
   });
 });

@@ -15,7 +15,7 @@ class ListItemCompositions extends React.PureComponent {
             <div className="list-pf-content-wrapper">
               <div className="list-pf-main-content">
                 <div className="list-pf-title text-overflow-pf">
-                  <a href="#">{this.props.recipe}-rev{listItem.change}-{listItem.type}</a>
+                  <a href="#">{this.props.blueprint}-rev{listItem.change}-{listItem.type}</a>
                 </div>
                 <div className="list-pf-description">Based on change {listItem.change}</div>
               </div>
@@ -45,8 +45,8 @@ class ListItemCompositions extends React.PureComponent {
                   <span className="fa fa-ellipsis-v" />
                 </button>
                 <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight9">
-                  <li><a>View Recipe Components</a></li>
-                  <li><a>View Recipe Manifest</a></li>
+                  <li><a>View Blueprint Components</a></li>
+                  <li><a>View Blueprint Manifest</a></li>
                   <li><a>Export</a></li>
                   <li role="separator" className="divider" />
                   <li><a>Archive</a></li>

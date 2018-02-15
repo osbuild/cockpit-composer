@@ -19,11 +19,11 @@ class Actions extends React.Component {
 
   getComptypes() {
     const that = this;
-    utils.apiFetch(constants.get_recipeactions_url)
+    utils.apiFetch(constants.get_blueprintactions_url)
       .then(data => {
         that.setState({ actions: data });
       })
-      .catch(() => console.log('Error getting recipe actions: ${e}'));
+      .catch(() => console.log('Error getting blueprint actions: ${e}'));
   }
 
 

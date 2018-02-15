@@ -6,7 +6,7 @@ textarea.form-control[readonly] {
   background-color: inherit;
   color: inherit;
 }
-/* Recipe Edit layout */
+/* Blueprint Edit layout */
 .cmpsr-grid__wrapper {
   display: grid;
   display: -ms-grid;
@@ -23,7 +23,7 @@ textarea.form-control[readonly] {
   top: 60px;
   bottom: 0;
 }
-/* Recipe Edit page header */
+/* Blueprint Edit page header */
 .cmpsr-grid__wrapper .cmpsr-header {
   grid-area: header;
   -ms-grid-column: 1;
@@ -31,7 +31,7 @@ textarea.form-control[readonly] {
   -ms-grid-row: 1;
   margin: 0 20px;
 }
-/* Recipe Edit panels */
+/* Blueprint Edit panels */
 .cmpsr-panel__title {
   border: 1px solid #d1d1d1;
   background: #f2f2f2;
@@ -68,7 +68,7 @@ textarea.form-control[readonly] {
   -ms-grid-column: 2;
   -ms-grid-row: 3;
 }
-/* Recipe Edit panel contents */
+/* Blueprint Edit panel contents */
 .cmpsr-grid__wrapper .cmpsr-panel__body {
   overflow: auto;
   min-height: -webkit-min-content;
@@ -106,8 +106,8 @@ textarea.form-control[readonly] {
 .cmpsr-panel__body .list-pf {
   border-bottom: none;
 }
- /* Recipe view */
- .cmpsr-pg__recipe-view {
+ /* Blueprint view */
+ .cmpsr-pg__blueprint-view {
    padding: 0 20px;
  }
 
@@ -290,7 +290,7 @@ textarea.form-control[readonly] {
   margin: 15px 0;
 }
 
-/* Recipe details page */
+/* Blueprint details page */
 .list-pf .list-group-item__separator,
 .list-pf .list-group-item__separator:hover {
   background-color: #f7f7f7;
@@ -299,11 +299,11 @@ textarea.form-control[readonly] {
   padding-top: 0;
   padding-bottom: 0;
 }
-.cmpsr-recipe__changes .list-group {
+.cmpsr-blueprint__changes .list-group {
   margin-bottom: 0;
   border-top: 0;
 }
-.cmpsr-recipe__changes .list-group-item:last-child {
+.cmpsr-blueprint__changes .list-group-item:last-child {
   border-bottom: 0;
 }
 /* compacted list view */

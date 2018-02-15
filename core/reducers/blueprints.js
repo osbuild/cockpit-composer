@@ -1,0 +1,186 @@
+import {
+  UNDO, REDO, DELETE_HISTORY,
+  CREATING_RECIPE_SUCCEEDED,
+  FETCHING_RECIPES_SUCCEEDED,
+  FETCHING_RECIPE_CONTENTS_SUCCEEDED,
+  SET_RECIPE, SET_RECIPE_DESCRIPTION, SET_RECIPE_COMPONENTS, SET_RECIPE_COMMENT,
+  REMOVE_RECIPE_COMPONENT,
+  DELETING_RECIPE_SUCCEEDED,
+} from '../actions/blueprints';
+
+const blueprints = (state = [], action) => {
+  switch (action.type) {
+    case REMOVE_RECIPE_COMPONENT:
+      return [
+        ...state.map(blueprint => {
+          if (blueprint.present.id === action.payload.blueprint.id) {
+            return Object.assign(
+              {}, blueprint, {
+              past: blueprint.past.concat([blueprint.present]),
+              present: Object.assign(
+                {}, blueprint.present, {
+                components: blueprint.present.components.filter(component => component.name !== action.payload.component.name),
+                packages: blueprint.present.packages.filter(component => component.name !== action.payload.component.name),
+                localPendingChanges: blueprint.present.localPendingChanges.some((component) => {
+                  return (component.componentNew === action.payload.pendingChange.componentOld && component.componentNew !== null)
+                   || (component.componentOld === action.payload.pendingChange.componentNew && component.componentOld !== null)
+                }) ? blueprint.present.localPendingChanges.filter((component) => {
+                  return component.componentNew != action.payload.pendingChange.componentOld
+                  || component.componentOld != action.payload.pendingChange.componentNew
+                }) : [action.payload.pendingChange].concat(blueprint.present.localPendingChanges),
+              }),
+            });
+          }
+          return blueprint;
+        }),
+      ];
+    case CREATING_RECIPE_SUCCEEDED:
+      return [
+        ...state.filter(blueprint => blueprint.present.id !== action.payload.blueprint.id), {
+          past: [],
+          present: Object.assign({}, action.payload.blueprint,  {
+            localPendingChanges: [],
+            workspacePendingChanges: {addedChanges: [], deletedChanges: []}
+          }),
+          future: [],
+        }
+      ];
+    // The following reducers filter the blueprint out of the state and add the new version if
+    // the blueprint contains component data or is not found in the state
+    case FETCHING_RECIPES_SUCCEEDED:
+      return action.payload.blueprint.components !== undefined
+      || !state.some(blueprint => blueprint.present.id === action.payload.blueprint.id)
+      ? [...state.filter(blueprint => blueprint.present.id !== action.payload.blueprint.id), {
+          past: [],
+          present: Object.assign({}, action.payload.blueprint, {
+            localPendingChanges: [],
+            workspacePendingChanges: {addedChanges: [], deletedChanges: []}
+          }),
+          future: [],
+        }]
+      : state;
+    case FETCHING_RECIPE_CONTENTS_SUCCEEDED:
+      return [
+        ...state.filter(blueprint => blueprint.present.id !== action.payload.blueprintPresent.id), {
+          past: action.payload.blueprintPast,
+          present: action.payload.blueprintPresent,
+          future: [],
+        }
+      ];
+    case SET_RECIPE:
+      return [
+        ...state.map(blueprint => {
+          if (blueprint.present.id === action.payload.blueprint.id) {
+            return Object.assign(
+              {}, blueprint, {
+              past: [],
+              present: Object.assign({}, action.payload.blueprint, {
+                localPendingChanges: [],
+                workspacePendingChanges: {addedChanges: [], deletedChanges: []}
+              }),
+              future: [],
+            });
+          }
+          return blueprint;
+        }),
+      ];
+    case SET_RECIPE_COMPONENTS:
+      return [
+        ...state.map(blueprint => {
+          if (blueprint.present.id === action.payload.blueprint.id) {
+            return Object.assign(
+              {}, blueprint, {
+              past: blueprint.past.concat([blueprint.present]),
+              present: Object.assign({}, blueprint.present, {
+                components: action.payload.components,
+                dependencies: action.payload.dependencies,
+                packages: action.payload.packages,
+                localPendingChanges: blueprint.present.localPendingChanges.some((component) => {
+                  return (component.componentNew === action.payload.pendingChange.componentOld && component.componentNew !== null)
+                  || (component.componentOld === action.payload.pendingChange.componentNew && component.componentOld !== null)
+                }) ? blueprint.present.localPendingChanges.filter((component) => {
+                  return component.componentNew != action.payload.pendingChange.componentOld
+                  || component.componentOld != action.payload.pendingChange.componentNew
+                }) : [action.payload.pendingChange].concat(blueprint.present.localPendingChanges),
+              }),
+            });
+          }
+          return blueprint;
+        }),
+      ];
+    case SET_RECIPE_DESCRIPTION:
+      return [
+        ...state.map(blueprint => {
+          if (blueprint.present.id === action.payload.blueprint.id) {
+            return Object.assign(
+              {}, blueprint, {
+              past: blueprint.past.concat([blueprint.present]),
+              present: Object.assign({}, blueprint.present, { description: action.payload.description }),
+            });
+          }
+          return blueprint;
+        }),
+      ];
+    case SET_RECIPE_COMMENT:
+      return [
+        ...state.map(blueprint => {
+          if (blueprint.present.id === action.payload.blueprint.id) {
+            return Object.assign(
+              {}, blueprint, {
+              present: Object.assign({}, blueprint.present, { comment: action.payload.comment }),
+            });
+          }
+          return blueprint;
+        }),
+      ];
+    case DELETING_RECIPE_SUCCEEDED:
+      return state.filter(blueprint => blueprint.present.id !== action.payload.blueprintId);
+    case UNDO:
+      return [
+        ...state.map(blueprint => {
+          if (blueprint.present.id === action.payload.blueprintId) {
+            return Object.assign(
+              {}, blueprint, {
+              future: blueprint.future.concat([blueprint.present]),
+              present: blueprint.past.pop(),
+            });
+          }
+          return blueprint;
+        }),
+      ];
+    case REDO:
+      return [
+        ...state.map(blueprint => {
+          if (blueprint.present.id === action.payload.blueprintId) {
+            return Object.assign(
+              {}, blueprint, {
+              past: blueprint.past.concat([blueprint.present]),
+              present: blueprint.future.pop(),
+            });
+          }
+          return blueprint;
+        }),
+      ];
+    case DELETE_HISTORY:
+      return [
+        ...state.map(blueprint => {
+          if (blueprint.present.id === action.payload.blueprintId) {
+            return Object.assign(
+              {}, blueprint, {
+              present: Object.assign({}, blueprint.past.shift(),  {
+                localPendingChanges: [],
+                workspacePendingChanges: {addedChanges: [], deletedChanges: []}
+              }),
+              past: [],
+              future: [],
+            });
+          }
+          return blueprint;
+        }),
+      ];
+    default:
+      return state;
+  }
+};
+
+export default blueprints;

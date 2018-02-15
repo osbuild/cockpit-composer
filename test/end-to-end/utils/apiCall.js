@@ -17,11 +17,11 @@ module.exports = {
     return Promise.all([request(bdcsOptions), request(webOptions)]);
   },
 
-  // Create a new recipe
-  newRecipe: (body, done) => {
+  // Create a new blueprint
+  newBlueprint: (body, done) => {
     const options = {
       method: 'POST',
-      uri: `${pageConfig.api.uri}${pageConfig.api.newRecipe}`,
+      uri: `${pageConfig.api.uri}${pageConfig.api.newBlueprint}`,
       json: true,
       body,
     };
@@ -31,11 +31,11 @@ module.exports = {
       .catch((error) => { done(error); });
   },
 
-  // Delete a recipe
-  deleteRecipe: (recipeName, done) => {
+  // Delete a blueprint
+  deleteBlueprint: (blueprintName, done) => {
     const options = {
       method: 'DELETE',
-      uri: `${pageConfig.api.uri}${pageConfig.api.deleteRecipe}${recipeName}`,
+      uri: `${pageConfig.api.uri}${pageConfig.api.deleteBlueprint}${blueprintName}`,
       json: true,
     };
 

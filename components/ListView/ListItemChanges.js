@@ -27,7 +27,7 @@ class ListItemChanges extends React.Component {
   }
 
   handleExpandComponent(event) {
-    // the user clicked a list item in the recipe contents area to expand or collapse
+    // the user clicked a list item in the blueprint contents area to expand or collapse
     if (!$(event.target).is('button, a, input, .fa-ellipsis-v')) {
       const expandState = !this.state.expanded;
       this.setState({ expanded: expandState });

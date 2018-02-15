@@ -46,7 +46,7 @@ class ListItemComponents extends React.Component {
   }
 
   handleExpandComponent(event) {
-    // the user clicked a list item in the recipe contents area to expand or collapse
+    // the user clicked a list item in the blueprint contents area to expand or collapse
     if (!$(event.target).is('button, a, input, .fa-ellipsis-v')) {
       const expandState = !this.state.expanded;
       this.setState({ expanded: expandState });
@@ -72,7 +72,7 @@ class ListItemComponents extends React.Component {
             <div className="list-pf-left">
               <ComponentTypeIcons
                 componentType={listItem.ui_type}
-                componentInRecipe={listItem.inRecipe}
+                componentInBlueprint={listItem.inBlueprint}
                 isDependency={this.props.isDependency}
               />
             </div>

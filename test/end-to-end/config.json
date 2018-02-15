@@ -3,15 +3,15 @@
     "api": {
         "uri": "http://localhost:4000/",
         "test": "api/v0/test",
-        "newRecipe": "api/v0/recipes/new",
-        "deleteRecipe": "api/v0/recipes/delete/",
+        "newBlueprint": "api/v0/blueprints/new",
+        "deleteBlueprint": "api/v0/blueprints/delete/",
         "moduleInfo": "api/v0/modules/info/",
         "moduleListTotalPackages": "api/v0/modules/list?limit=0&offset=0"
     },
-    "recipe": {
+    "blueprint": {
         "simple": {
             "name": "automation",
-            "description": "UI automation recipe",
+            "description": "UI automation blueprint",
             "modules": [],
             "packages": [{"name": "httpd", "version": ""}]
         }
@@ -24,7 +24,7 @@
         {"type": "qcow2", "arch": "x86_64"},
         {"type": "vhdx", "arch": "x86_64"}
     ],
-    "__comment__": "// Manifest type of Recipe Export File on Export Recipe Page",
+    "__comment__": "// Manifest type of Blueprint Export File on Export Blueprint Page",
     "manifestType": {
         "Text": "Text"
     },

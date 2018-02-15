@@ -15,7 +15,7 @@
   },
   { "id": "other",
     "other": {
-        "description": "Another amazing recipe",
+        "description": "Another amazing blueprint",
         "modules": [
             { "name": "fm-php", "version": "11.6.*"}
         ],

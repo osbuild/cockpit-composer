@@ -53,11 +53,11 @@ There's a easy way to run end to end test in Docker container.
 ├── /pages/                     # Welder-Web page classes
 │   ├── main.js                 # Top level page class and inherited by other page classes
 │   ├── createCompos.js         # Create Composition page class with tested elements included
-│   ├── createRecipe.js         # Create Recipe page class with tested elements included
+│   ├── createBlueprint.js      # Create Blueprint page class with tested elements included
 │   └── /...                    # etc.
 ├── /test/                      # End-to-End test cases
-│   ├── test_createRecipe.js    # Test cases for Create Recipe page
-│   ├── test_editRecipe.js      # Test cases for Edit Recipe page
+│   ├── test_createBlueprint.js # Test cases for Create Blueprint page
+│   ├── test_editBlueprint.js   # Test cases for Edit Blueprint page
 │   └── /...                    # etc.
 ├── /utils/                     # Utility and helper functions
 │── .eslintrc                   # ESLint configuration file
@@ -93,19 +93,19 @@ describe('Imported Content Sanity Testing', () => {
   beforeAll(apiCall.serviceCheck);
 
   beforeAll((done) => {
-    // Create a new recipe before the first test run in this suite
-    apiCall.newRecipe(pageConfig.recipe.simple, done);
+    // Create a new blueprint before the first test run in this suite
+    apiCall.newBlueprint(pageConfig.blueprint.simple, done);
   });
 
   afterAll((done) => {
-    // Delete added recipe after all tests completed in this suite
-    apiCall.deleteRecipe(pageConfig.recipe.simple.name, done);
+    // Delete added blueprint after all tests completed in this suite
+    apiCall.deleteBlueprint(pageConfig.blueprint.simple.name, done);
   });
 
-  const editRecipePage = new EditRecipePage(pageConfig.recipe.simple.name);
+  const editBlueprintPage = new EditBlueprintPage(pageConfig.blueprint.simple.name);
 
   beforeEach(() => {
-    helper.gotoURL(nightmare = new Nightmare(pageConfig.nightmareTimeout), editRecipePage);
+    helper.gotoURL(nightmare = new Nightmare(pageConfig.nightmareTimeout), editBlueprintPage);
   });
 
   const testSpec1 = test('displayed count should match distinct count from DB',
@@ -113,8 +113,8 @@ describe('Imported Content Sanity Testing', () => {
     function callback(totalNumbers) {
       const expectedText = `1 - 50 of ${totalNumbers}`;
       nightmare
-        .wait(editRecipePage.componentListItemRootElement) // list item and total number are rendered at the same time
-        .evaluate(page => document.querySelector(page.totalComponentCount).innerText, editRecipePage)
+        .wait(editBlueprintPage.componentListItemRootElement) // list item and total number are rendered at the same time
+        .evaluate(page => document.querySelector(page.totalComponentCount).innerText, editBlueprintPage)
         .then((element) => {
           expect(element).toBe(expectedText);
 
@@ -153,15 +153,15 @@ There are several things to be noted when writing and executing the tests:
 
 The result should be read like a sentence.
 
-*e.g. In View Recipe page, with single word recipe name scenario, do menu bar check, and it should show a recipe name.*
+*e.g. In View Blueprint page, with single word blueprint name scenario, do menu bar check, and it should show a blueprint name.*
 
 ```shell
-  View Recipe Page
-    Single Word Recipe Name Scenario
+  View Blueprint Page
+    Single Word Blueprint Name Scenario
       Menu Nav Bar Check
-        ✓ should show a recipe name (2239ms)
+        ✓ should show a blueprint name (2239ms)
       Title Bar Check
-        ✓ should show a recipe name title (1718ms)
+        ✓ should show a blueprint name title (1718ms)
         ✓ should have Create Composition button (1698ms)
   3 passing (6s)
 ```
@@ -173,7 +173,7 @@ The screenshot will be uploaded to AWS S3 and can be found from `https://s3.amaz
 Error log has test case full name and detailed error message.
 ```shell
 console.error utils/helper.js:19
-    Failed on case Create Recipe Page Input Data Validation Test Required Field Missing should show alert message by clicking Save button when create recipe without name - Error: expect(received).toBe(expected)
+    Failed on case Create Blueprint Page Input Data Validation Test Required Field Missing should show alert message by clicking Save button when create blueprint without name - Error: expect(received).toBe(expected)
 
     Expected value to be (using ===):
       "equired information is missing."
@@ -181,7 +181,7 @@ console.error utils/helper.js:19
       "Required information is missing."
 
   console.error utils/helper.js:29
-    Screenshot Saved at /tmp/failed-image/Create-Recipe-Page-Input-Data-Validation-Test-Required-Field-Missing-should-show-alert-message-by-clicking-Save-button-when-create-recipe-without-name.2018-01-26-03-34-10.fail.png
+    Screenshot Saved at /tmp/failed-image/Create-Blueprint-Page-Input-Data-Validation-Test-Required-Field-Missing-should-show-alert-message-by-clicking-Save-button-when-create-blueprint-without-name.2018-01-26-03-34-10.fail.png
 ```
 
 ## Code Style

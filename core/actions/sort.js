@@ -1,5 +1,5 @@
 export const RECIPES_SORT_SET_KEY = 'RECIPES_SORT_SET_KEY';
-export const recipesSortSetKey = (key) => ({
+export const blueprintsSortSetKey = (key) => ({
   type: RECIPES_SORT_SET_KEY,
   payload: {
     key,
@@ -7,7 +7,7 @@ export const recipesSortSetKey = (key) => ({
 });
 
 export const RECIPES_SORT_SET_VALUE = 'RECIPES_SORT_SET_VALUE';
-export const recipesSortSetValue = (value) => ({
+export const blueprintsSortSetValue = (value) => ({
   type: RECIPES_SORT_SET_VALUE,
   payload: {
     value,

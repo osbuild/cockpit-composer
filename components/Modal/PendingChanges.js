@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { setRecipeComment } from '../../core/actions/recipes';
+import { setBlueprintComment } from '../../core/actions/blueprints';
 
 class PendingChanges extends React.Component {
   constructor() {
@@ -16,7 +16,7 @@ class PendingChanges extends React.Component {
   }
 
   componentWillMount() {
-    this.setState({comment: this.props.recipe.comment});
+    this.setState({comment: this.props.blueprint.comment});
   }
 
   componentDidMount() {
@@ -61,9 +61,9 @@ class PendingChanges extends React.Component {
                 <div className="form-group">
                   <label
                     className="col-sm-3 control-label"
-                  >Recipe</label>
+                  >Blueprint</label>
                   <div className="col-sm-9">
-                    <p className="form-control-static">{this.props.recipe.name}</p>
+                    <p className="form-control-static">{this.props.blueprint.name}</p>
                   </div>
                 </div>
                 <div className="form-group">
@@ -78,7 +78,7 @@ class PendingChanges extends React.Component {
                       rows="1"
                       value={this.state.comment}
                       onChange={(e) => this.handleChange(e)}
-                      onBlur={() => this.props.setRecipeComment(this.props.recipe, this.state.comment)}
+                      onBlur={() => this.props.setBlueprintComment(this.props.blueprint, this.state.comment)}
                     />
                   </div>
                 </div>
@@ -88,7 +88,7 @@ class PendingChanges extends React.Component {
                 </div>
                 <strong>Pending Changes</strong><span className="text-muted"> (most recent first)</span>
                 <ul className="list-group">
-                  {this.props.recipe.localPendingChanges.map((componentUpdated, index) => (
+                  {this.props.blueprint.localPendingChanges.map((componentUpdated, index) => (
                     <li className="list-group-item" key={index}>
                       {componentUpdated.componentNew && componentUpdated.componentOld &&
                         <div className="row">
@@ -110,18 +110,18 @@ class PendingChanges extends React.Component {
                     </li>
                   ))}
                 </ul>
-                {(this.props.recipe.workspacePendingChanges.addedChanges.length !== 0 ||
-                 this.props.recipe.workspacePendingChanges.deletedChanges.length !== 0) &&
+                {(this.props.blueprint.workspacePendingChanges.addedChanges.length !== 0 ||
+                 this.props.blueprint.workspacePendingChanges.deletedChanges.length !== 0) &&
                   <div>
                     <strong>Changes made in a previous session (i)</strong>
                     <ul className="list-group">
-                    {this.props.recipe.workspacePendingChanges.addedChanges.length !== 0 &&
+                    {this.props.blueprint.workspacePendingChanges.addedChanges.length !== 0 &&
                       <li className="list-group-item">
                         <div className="row">
                           <div className="col-sm-3">Added</div>
                           <div className="col-sm-9">
                             <ul className="list-unstyled">
-                              {this.props.recipe.workspacePendingChanges.addedChanges.map((componentUpdated, index) => (
+                              {this.props.blueprint.workspacePendingChanges.addedChanges.map((componentUpdated, index) => (
                                 <li key={index}>
                                   <strong>{componentUpdated.new.Package.name}-{componentUpdated.new.Package.version}</strong>
                                 </li>
@@ -130,13 +130,13 @@ class PendingChanges extends React.Component {
                           </div>
                         </div>
                       </li>
-                    } {this.props.recipe.workspacePendingChanges.deletedChanges.length !== 0 &&
+                    } {this.props.blueprint.workspacePendingChanges.deletedChanges.length !== 0 &&
                       <li className="list-group-item">
                         <div className="row">
                           <div className="col-sm-3">Removed</div>
                           <div className="col-sm-9">
                             <ul className="list-unstyled">
-                              {this.props.recipe.workspacePendingChanges.deletedChanges.map((componentUpdated, index) => (
+                              {this.props.blueprint.workspacePendingChanges.deletedChanges.map((componentUpdated, index) => (
                                 <li key={index}>
                                   <strong>{componentUpdated.old.Package.name}-{componentUpdated.old.Package.version}</strong>
                                 </li>
@@ -168,10 +168,10 @@ class PendingChanges extends React.Component {
 
 PendingChanges.propTypes = {
   comment: PropTypes.string,
-  recipe: PropTypes.object,
+  blueprint: PropTypes.object,
   contents: PropTypes.array,
   handleHideModal: PropTypes.func,
-  setRecipeComment: PropTypes.func,
+  setBlueprintComment: PropTypes.func,
   handleSave: PropTypes.func,
   modals: PropTypes.object,
 };
@@ -180,8 +180,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setRecipeComment: (recipe, comment) => {
-    dispatch(setRecipeComment(recipe, comment));
+  setBlueprintComment: (blueprint, comment) => {
+    dispatch(setBlueprintComment(blueprint, comment));
   },
 });
 

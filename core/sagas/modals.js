@@ -1,18 +1,18 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
-import { fetchRecipeContentsApi, fetchModalCreateCompositionTypesApi } from '../apiCalls';
+import { fetchBlueprintContentsApi, fetchModalCreateCompositionTypesApi } from '../apiCalls';
 
 import {
-   FETCHING_MODAL_EXPORT_RECIPE_CONTENTS, setModalExportRecipeContents,
+   FETCHING_MODAL_EXPORT_RECIPE_CONTENTS, setModalExportBlueprintContents,
    fetchingModalCreateCompositionTypesSuccess,
 } from '../actions/modals';
 
-function* fetchModalRecipeContents(action) {
+function* fetchModalBlueprintContents(action) {
   try {
-    const { recipeName } = action.payload;
-    const response = yield call(fetchRecipeContentsApi, recipeName);
-    yield put(setModalExportRecipeContents(response.dependencies));
+    const { blueprintName } = action.payload;
+    const response = yield call(fetchBlueprintContentsApi, blueprintName);
+    yield put(setModalExportBlueprintContents(response.dependencies));
   } catch (error) {
-    console.log('Error in loadModalRecipeSaga');
+    console.log('Error in loadModalBlueprintSaga');
   }
 }
 
@@ -21,11 +21,11 @@ function* fetchModalCreateCompositionTypes() {
     const response = yield call(fetchModalCreateCompositionTypesApi);
     yield put(fetchingModalCreateCompositionTypesSuccess(response));
   } catch (error) {
-    console.log('Error in loadModalRecipeSaga');
+    console.log('Error in loadModalBlueprintSaga');
   }
 }
 
 export default function* () {
-  yield takeEvery(FETCHING_MODAL_EXPORT_RECIPE_CONTENTS, fetchModalRecipeContents);
+  yield takeEvery(FETCHING_MODAL_EXPORT_RECIPE_CONTENTS, fetchModalBlueprintContents);
   yield* fetchModalCreateCompositionTypes();
 }

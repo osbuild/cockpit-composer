@@ -12,12 +12,12 @@ const sort = (state = [], action) => {
     case RECIPES_SORT_SET_KEY:
       return Object.assign(
           {}, state,
-          { recipes: Object.assign({}, state.recipes, { key: action.payload.key }) }
+          { blueprints: Object.assign({}, state.blueprints, { key: action.payload.key }) }
       );
     case RECIPES_SORT_SET_VALUE:
       return Object.assign(
           {}, state,
-          { recipes: Object.assign({}, state.recipes, { value: action.payload.value }) }
+          { blueprints: Object.assign({}, state.blueprints, { value: action.payload.value }) }
       );
     case COMPONENTS_SORT_SET_KEY:
       return Object.assign(

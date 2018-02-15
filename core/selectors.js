@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
-const getPastLength = (recipe) => {
-  const pastLength = recipe.past.length;
+const getPastLength = (blueprint) => {
+  const pastLength = blueprint.past.length;
   return pastLength;
 };
 
@@ -10,8 +10,8 @@ export const makeGetPastLength = () => createSelector(
   (pastLength) => pastLength
 );
 
-const getFutureLength = (recipe) => {
-  const futureLength = recipe.future.length;
+const getFutureLength = (blueprint) => {
+  const futureLength = blueprint.future.length;
   return futureLength;
 };
 
@@ -20,19 +20,19 @@ export const makeGetFutureLength = () => createSelector(
   (futureLength) => futureLength
 );
 
-const getRecipeById = (state, recipeId) => {
-  const recipeById = state.recipes.find(recipe => recipe.present.id === recipeId);
-  return recipeById;
+const getBlueprintById = (state, blueprintId) => {
+  const blueprintById = state.blueprints.find(blueprint => blueprint.present.id === blueprintId);
+  return blueprintById;
 };
 
-export const makeGetRecipeById = () => createSelector(
-  [getRecipeById],
-  (recipe) => recipe
+export const makeGetBlueprintById = () => createSelector(
+  [getBlueprintById],
+  (blueprint) => blueprint
 );
 
-const getSortedComponents = (state, recipe) => {
+const getSortedComponents = (state, blueprint) => {
   // TODO; sort
-  const sortedComponents = recipe.components;
+  const sortedComponents = blueprint.components;
   if (sortedComponents === undefined) {
     return [];
   }
@@ -51,8 +51,8 @@ export const makeGetSortedComponents = () => createSelector(
   (components) => components
 );
 
-const getSortedDependencies = (state, recipe) => {
-  const sortedDependencies = recipe.dependencies;
+const getSortedDependencies = (state, blueprint) => {
+  const sortedDependencies = blueprint.dependencies;
   if (sortedDependencies === undefined) {
     return [];
   }
@@ -71,19 +71,19 @@ export const makeGetSortedDependencies = () => createSelector(
   (dependencies) => dependencies
 );
 
-const getSortedRecipes = (state) => {
-  const sortedRecipes = state.recipes;
-  const key = state.sort.recipes.key;
-  const value = state.sort.recipes.value;
-  sortedRecipes.sort((a, b) => {
+const getSortedBlueprints = (state) => {
+  const sortedBlueprints = state.blueprints;
+  const key = state.sort.blueprints.key;
+  const value = state.sort.blueprints.value;
+  sortedBlueprints.sort((a, b) => {
     if (a.present[key] > b.present[key]) return value === 'DESC' ? 1 : -1;
     if (b.present[key] > a.present[key]) return value === 'DESC' ? -1 : 1;
     return 0;
   });
-  return sortedRecipes;
+  return sortedBlueprints;
 };
 
-export const makeGetSortedRecipes = () => createSelector(
-  [getSortedRecipes],
-  (recipes) => recipes
+export const makeGetSortedBlueprints = () => createSelector(
+  [getSortedBlueprints],
+  (blueprints) => blueprints
 );

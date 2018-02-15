@@ -1,9 +1,9 @@
 import { take, call, put, takeEvery } from 'redux-saga/effects';
-import { fetchRecipeInputsApi } from '../apiCalls';
+import { fetchBlueprintInputsApi } from '../apiCalls';
 import { FETCHING_INPUTS, fetchingInputsSucceeded } from '../actions/inputs';
 import {
   FETCHING_RECIPE_CONTENTS_SUCCEEDED,
-} from '../actions/recipes';
+} from '../actions/blueprints';
 
 
 function updateInputComponentData(inputs, componentData) {
@@ -12,7 +12,7 @@ function updateInputComponentData(inputs, componentData) {
     const parsedInputs = componentData.map(component => {
       const index = inputs[0].map(input => input.name).indexOf(component.name);
       if (index >= 0) {
-        inputs[0][index].inRecipe = true; // eslint-disable-line no-param-reassign
+        inputs[0][index].inBlueprint = true; // eslint-disable-line no-param-reassign
         inputs[0][index].user_selected = true; // eslint-disable-line no-param-reassign
         inputs[0][index].version_selected = component.version; // eslint-disable-line no-param-reassign
         inputs[0][index].release_selected = component.release; // eslint-disable-line no-param-reassign
@@ -29,11 +29,11 @@ function* fetchInputs(action) {
     const { filter, selectedInputPage, pageSize, componentData } = action.payload;
     let components = componentData;
     if (componentData === undefined) {
-      const recipeResponse = yield take(FETCHING_RECIPE_CONTENTS_SUCCEEDED);
-      const { recipePresent } = recipeResponse.payload;
-      components = recipePresent.components;
+      const blueprintResponse = yield take(FETCHING_RECIPE_CONTENTS_SUCCEEDED);
+      const { blueprintPresent } = blueprintResponse.payload;
+      components = blueprintPresent.components;
     }
-    const response = yield call(fetchRecipeInputsApi, `/*${filter.value}*`, selectedInputPage, pageSize);
+    const response = yield call(fetchBlueprintInputsApi, `/*${filter.value}*`, selectedInputPage, pageSize);
     const updatedResponse = yield call(updateInputComponentData, response, components);
     yield put(fetchingInputsSucceeded(filter, selectedInputPage, pageSize, updatedResponse));
   } catch (error) {

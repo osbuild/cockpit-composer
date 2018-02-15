@@ -1,6 +1,6 @@
 const Nightmare = require('nightmare');
 require('nightmare-iframe-manager')(Nightmare);
-const EditRecipePage = require('../pages/editRecipe');
+const EditBlueprintPage = require('../pages/editBlueprint');
 const apiCall = require('../utils/apiCall');
 const pageConfig = require('../config');
 const helper = require('../utils/helper');
@@ -15,19 +15,19 @@ describe('Imported Content Sanity Testing', () => {
   beforeAll(apiCall.serviceCheck);
 
   beforeAll((done) => {
-    // Create a new recipe before the first test run in this suite
-    apiCall.newRecipe(pageConfig.recipe.simple, done);
+    // Create a new blueprint before the first test run in this suite
+    apiCall.newBlueprint(pageConfig.blueprint.simple, done);
   });
 
   afterAll((done) => {
-    // Delete added recipe after all tests completed in this suite
-    apiCall.deleteRecipe(pageConfig.recipe.simple.name, done);
+    // Delete added blueprint after all tests completed in this suite
+    apiCall.deleteBlueprint(pageConfig.blueprint.simple.name, done);
   });
 
-  const editRecipePage = new EditRecipePage(pageConfig.recipe.simple.name);
+  const editBlueprintPage = new EditBlueprintPage(pageConfig.blueprint.simple.name);
 
   beforeEach(() => {
-    helper.gotoURL(nightmare = new Nightmare(pageConfig.nightmareTimeout), editRecipePage);
+    helper.gotoURL(nightmare = new Nightmare(pageConfig.nightmareTimeout), editBlueprintPage);
   });
 
   const testSpec1 = test('displayed count should match distinct count from DB',
@@ -35,8 +35,8 @@ describe('Imported Content Sanity Testing', () => {
     function callback(totalNumbers) {
       const expectedText = `1 - 50 of ${totalNumbers}`;
       nightmare
-        .wait(editRecipePage.componentListItemRootElement) // list item and total number are rendered at the same time
-        .evaluate(page => document.querySelector(page.totalComponentCount).innerText, editRecipePage)
+        .wait(editBlueprintPage.componentListItemRootElement) // list item and total number are rendered at the same time
+        .evaluate(page => document.querySelector(page.totalComponentCount).innerText, editBlueprintPage)
         .then((element) => {
           expect(element).toBe(expectedText);
 

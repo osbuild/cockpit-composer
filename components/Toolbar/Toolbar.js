@@ -68,7 +68,7 @@ const Toolbar = props => (
       </div>
       <div className="form-group">
       {props.pastLength > 0 &&
-        <button className="btn btn-link" type="button" onClick={() => {props.undo(props.recipeId); props.handleHistory();}}>
+        <button className="btn btn-link" type="button" onClick={() => {props.undo(props.blueprintId); props.handleHistory();}}>
           <span className="fa fa-undo" aria-hidden="true" />
         </button>
       ||
@@ -80,7 +80,7 @@ const Toolbar = props => (
         </button>
       }
       {props.futureLength > 0 &&
-        <button className="btn btn-link" type="button" onClick={() => {props.redo(props.recipeId); props.handleHistory();}}>
+        <button className="btn btn-link" type="button" onClick={() => {props.redo(props.blueprintId); props.handleHistory();}}>
           <span className="fa fa-repeat" aria-hidden="true" />
         </button>
       ||
