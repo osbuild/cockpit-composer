@@ -7,10 +7,10 @@ import {
 } from '../apiCalls';
 import {
   fetchingBlueprintsSucceeded,
-  FETCHING_RECIPE_CONTENTS, fetchingBlueprintContentsSucceeded,
-  SET_RECIPE_DESCRIPTION,
-  CREATING_RECIPE, creatingBlueprintSucceeded,
-  DELETING_RECIPE, deletingBlueprintSucceeded,
+  FETCHING_BLUEPRINT_CONTENTS, fetchingBlueprintContentsSucceeded,
+  SET_BLUEPRINT_DESCRIPTION,
+  CREATING_BLUEPRINT, creatingBlueprintSucceeded,
+  DELETING_BLUEPRINT, deletingBlueprintSucceeded,
   SAVE_TO_WORKSPACE,
   blueprintsFailure,
 } from '../actions/blueprints';
@@ -114,10 +114,10 @@ function* saveToWorkspace(action) {
 }
 
 export default function* () {
-  yield takeEvery(CREATING_RECIPE, createBlueprint);
-  yield takeLatest(FETCHING_RECIPE_CONTENTS, fetchBlueprintContents);
-  yield takeLatest(SET_RECIPE_DESCRIPTION, setBlueprintDescription);
-  yield takeEvery(DELETING_RECIPE, deleteBlueprint);
+  yield takeEvery(CREATING_BLUEPRINT, createBlueprint);
+  yield takeLatest(FETCHING_BLUEPRINT_CONTENTS, fetchBlueprintContents);
+  yield takeLatest(SET_BLUEPRINT_DESCRIPTION, setBlueprintDescription);
+  yield takeEvery(DELETING_BLUEPRINT, deleteBlueprint);
   yield takeEvery(SAVE_TO_WORKSPACE, saveToWorkspace);
   yield* fetchBlueprints();
 }

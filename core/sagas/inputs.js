@@ -2,7 +2,7 @@ import { take, call, put, takeEvery } from 'redux-saga/effects';
 import { fetchBlueprintInputsApi } from '../apiCalls';
 import { FETCHING_INPUTS, fetchingInputsSucceeded } from '../actions/inputs';
 import {
-  FETCHING_RECIPE_CONTENTS_SUCCEEDED,
+  FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED,
 } from '../actions/blueprints';
 
 
@@ -29,7 +29,7 @@ function* fetchInputs(action) {
     const { filter, selectedInputPage, pageSize, componentData } = action.payload;
     let components = componentData;
     if (componentData === undefined) {
-      const blueprintResponse = yield take(FETCHING_RECIPE_CONTENTS_SUCCEEDED);
+      const blueprintResponse = yield take(FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED);
       const { blueprintPresent } = blueprintResponse.payload;
       components = blueprintPresent.components;
     }

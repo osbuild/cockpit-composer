@@ -11,8 +11,8 @@ class BlueprintApi {
 
   // Get the blueprint details, and its dependencies
   // Object layout is:
-  // {blueprints: [{blueprint: RECIPE, modules: NEVRA, dependencies: NEVRA}, ...]}
-  // Where RECIPE is a blueprint object
+  // {blueprints: [{blueprint: BLUEPRINT, modules: NEVRA, dependencies: NEVRA}, ...]}
+  // Where BLUEPRINT is a blueprint object
   // NEVRA is a list of name, epoch, version, release, arch objects.
   // "modules" are the specific versions for the blueprint's modules and packages
   // "dependencies" are all the things that are required to satisfy the blueprint
