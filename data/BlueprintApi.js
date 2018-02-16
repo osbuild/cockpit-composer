@@ -22,12 +22,12 @@ class BlueprintApi {
             .then(data => {
               // bdcs-api v0.3.0 includes module (component) and dependency NEVRAs
               // tagging all dependencies a "RPM" for now
-              const dependencies = data.blueprints[0].dependencies ?
-                  this.makeBlueprintDependencies(data.blueprints[0].dependencies, 'RPM') :
+              const dependencies = data.recipes[0].dependencies ?
+                  this.makeBlueprintDependencies(data.recipes[0].dependencies, 'RPM') :
                   [];
               // Tag objects as Module if modules and RPM if packages, for now
-              const components = this.makeBlueprintComponents(data.blueprints[0]);
-              const blueprint = data.blueprints[0].blueprint;
+              const components = this.makeBlueprintComponents(data.recipes[0]);
+              const blueprint = data.recipes[0].recipe;
               if (components.length > 0) {
                 const componentNames = MetadataApi.getNames(components);
                 if (dependencies.length === 0) {
@@ -118,8 +118,8 @@ class BlueprintApi {
   // set additional metadata for each of the components
   makeBlueprintComponents(data) {
     let components = data.modules;
-    components = this.setType(components, data.blueprint.modules, 'Module');
-    components = this.setType(components, data.blueprint.packages, 'RPM');
+    components = this.setType(components, data.recipe.modules, 'Module');
+    components = this.setType(components, data.recipe.packages, 'RPM');
     components.map(i => {
       i.inBlueprint = true; // eslint-disable-line no-param-reassign
       i.user_selected = true; // eslint-disable-line no-param-reassign
@@ -253,7 +253,7 @@ class BlueprintApi {
     const p = new Promise((resolve, reject) => {
       utils.apiFetch(constants.get_blueprints_deps + this.blueprint.name.replace(/\s/g, '-'))
       .then(data => {
-        const blueprint = data.blueprints[0].blueprint;
+        const blueprint = data.recipes[0].recipe;
         this.blueprint.version = blueprint.version;
         resolve(blueprint);
       })
