@@ -162,7 +162,7 @@ describe('Blueprints Page', () => {
           // Create Image button selector
           const btnCreateImage = BlueprintsPage.btnCreateImage(pageConfig.blueprint.simple.name);
 
-          const testSpec6 = test('should pop up Create Image window by clicking Create Imagetion button',
+          const testSpec6 = test('should pop up Create Image window by clicking Create Image button',
           (done) => {
             // Highlight the expected result
             const expected = createImagePage.varCreateImage;
