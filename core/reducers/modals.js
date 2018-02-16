@@ -15,13 +15,21 @@ const modalCreateBlueprint = (state = [], action) => {
   switch (action.type) {
     case SET_MODAL_CREATE_BLUEPRINT_ERROR_NAME_VISIBLE:
       return Object.assign(
-          {}, state,
-          { createBlueprint: Object.assign({}, state.createBlueprint, { errorNameVisible: action.payload.errorNameVisible }) }
+          {}, state, {
+            createBlueprint: Object.assign(
+              {}, state.createBlueprint, {
+              errorNameVisible: action.payload.errorNameVisible
+              })
+          }
       );
     case SET_MODAL_CREATE_BLUEPRINT_ERROR_DUPLICATE_VISIBLE:
       return Object.assign(
-          {}, state,
-          { createBlueprint: Object.assign({}, state.createBlueprint, { errorDuplicateVisible: action.payload.errorDuplicateVisible }) }
+          {}, state, {
+            createBlueprint: Object.assign(
+              {}, state.createBlueprint, {
+                errorDuplicateVisible: action.payload.errorDuplicateVisible
+              }) 
+          }
       );
     case SET_MODAL_CREATE_BLUEPRINT_ERROR_INLINE:
       return Object.assign(

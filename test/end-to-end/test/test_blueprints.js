@@ -141,7 +141,9 @@ describe('Blueprints Page', () => {
                                      .map(x => x.innerText)
                                      .includes(descr)
               , blueprintsPage, expected)
-            .evaluate(page => Array.prototype.slice.call(document.querySelectorAll(page.labelBlueprintDescr)).map(x => x.innerText)
+            .evaluate(page => Array.prototype.slice
+                                     .call(document.querySelectorAll(page.labelBlueprintDescr))
+                                     .map(x => x.innerText)
               , blueprintsPage)
             .then((element) => {
               expect(element).toContain(expected);
