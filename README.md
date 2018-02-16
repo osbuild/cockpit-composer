@@ -119,7 +119,7 @@ This source code is licensed under the MIT license found in the [`LICENSE.txt`](
 ├── /pages/                     # React components for web pages
 │   ├── /app/                   # App page
 │   ├── /error/                 # Error page
-│   ├── /blueprints/               # Blueprints page
+│   ├── /blueprints/            # Blueprints page
 │   └── /...                    # etc.
 ├── /public/                    # Static files such as favicon.ico etc.
 │   ├── /dist/                  # The folder for compiled output
