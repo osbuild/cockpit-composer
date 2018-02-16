@@ -10,14 +10,14 @@ class ListItemImages extends React.PureComponent {
         <div className="list-pf-container">
           <div className="list-pf-content list-pf-content-flex">
             <div className="list-pf-left">
-              <span className="pf pficon-image list-pf-icon-small" aria-hidden="true" />
+              <span className="pf pficon-builder-image list-pf-icon-small" aria-hidden="true" />
             </div>
             <div className="list-pf-content-wrapper">
               <div className="list-pf-main-content">
                 <div className="list-pf-title text-overflow-pf">
                   <a href="#">{this.props.blueprint}-rev{listItem.change}-{listItem.type}</a>
                 </div>
-                <div className="list-pf-description">Based on change {listItem.change}</div>
+                <div className="list-pf-description">Based on Commit {listItem.change}</div>
               </div>
               <div className="list-pf-additional-content">
                 <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
