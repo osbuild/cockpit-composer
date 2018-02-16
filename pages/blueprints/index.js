@@ -8,7 +8,10 @@ import EmptyState from '../../components/EmptyState/EmptyState';
 import { connect } from 'react-redux';
 import { deletingBlueprint } from '../../core/actions/blueprints';
 import {
-  setModalExportBlueprintName, setModalExportBlueprintContents, setModalExportBlueprintVisible, fetchingModalExportBlueprintContents,
+  setModalExportBlueprintName,
+  setModalExportBlueprintContents,
+  setModalExportBlueprintVisible,
+  fetchingModalExportBlueprintContents,
 } from '../../core/actions/modals';
 import { blueprintsSortSetKey, blueprintsSortSetValue } from '../../core/actions/sort';
 import { makeGetSortedBlueprints } from '../../core/selectors';
