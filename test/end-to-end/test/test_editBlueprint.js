@@ -114,7 +114,7 @@ describe('Edit Blueprint Page', () => {
           , image.arch);
 
 
-        const testSpec4 = test('should pop up Create Image window by clicking Create Imagetion button',
+        const testSpec4 = test('should pop up Create Image window by clicking Create Image button',
         (done) => {
           // Highlight the expected result
           const expected = createImagePage.varCreateImage;
