@@ -13,7 +13,7 @@
     "history": "^3.0.0",
     "jquery": "^2.1",
     "jquery-match-height": "^0.7.0",
-    "patternfly": "^3.23.1",
+    "patternfly": "^3.40.0",
     "patternfly-webcomponents": "0.0.8",
     "react": "^15.2.1",
     "react-dom": "^15.6.1",

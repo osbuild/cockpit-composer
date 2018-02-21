@@ -103,9 +103,7 @@ class BlueprintListView extends React.Component {
                 </div>
               </div>
               <div className="list-view-pf-main-info">
-                <div className="list-view-pf-left">
-                  <span className="pficon pficon-blueprint list-view-pf-icon-sm"></span>
-                </div>
+                <span className="pficon pficon-template list-pf-icon-small"></span>
                 <div className="list-view-pf-body">
                   <div className="list-view-pf-description">
                     <div className="list-group-item-heading">
