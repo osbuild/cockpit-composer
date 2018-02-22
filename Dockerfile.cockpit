@@ -1,12 +1,13 @@
-FROM fedora:latest
+FROM centos:7
 MAINTAINER Xiaofeng Wang <xiaofwan@redhat.com>
 
-RUN dnf install -y cockpit-ws cockpit-kubernetes && dnf clean all
+RUN yum install -y cockpit-ws cockpit-kubernetes && \
+    yum clean all && \
+    rm -rf /usr/share/cockpit/kubernetes/
 RUN echo $'[Negotiate]\nCommand = /usr/libexec/cockpit-stub\n[WebService]\nShell = /shell/simple.html' > /etc/cockpit/cockpit.conf
-RUN rm -rf /usr/share/cockpit/kubernetes/
 
 COPY welder-web*.rpm /tmp/
-RUN dnf -y install /tmp/welder-web*.rpm && rm -f /tmp/welder-web*.rpm
+RUN yum -y install /tmp/welder-web*.rpm && rm -f /tmp/welder-web*.rpm
 
 CMD ["/usr/libexec/cockpit-ws", "--no-tls"]
 EXPOSE 9090
