@@ -10,6 +10,7 @@ import ComponentDetailsView from '../../components/ListView/ComponentDetailsView
 import CreateComposition from '../../components/Modal/CreateComposition';
 import ExportRecipe from '../../components/Modal/ExportRecipe';
 import PendingChanges from '../../components/Modal/PendingChanges';
+import DiscardChanges from '../../components/Modal/DiscardChanges';
 import EmptyState from '../../components/EmptyState/EmptyState';
 import Pagination from '../../components/Pagination/Pagination';
 import Toolbar from '../../components/Toolbar/Toolbar';
@@ -407,6 +408,9 @@ class EditRecipePage extends React.Component {
       case 'modalExportRecipe':
         this.props.setModalActive('modalExportRecipe');
         break;
+      case 'modalDiscardChanges':
+        this.props.setModalActive('modalDiscardChanges');
+        break;
       default:
         this.props.setModalActive(null);
         break;
@@ -489,7 +493,7 @@ class EditRecipePage extends React.Component {
               }
               {numPendingChanges > 0 &&
                 <li>
-                  <button className="btn btn-default" type="button" onClick={this.handleDiscardChanges}>
+                  <button className="btn btn-default" type="button" onClick={e => this.handleShowModal(e, 'modalDiscardChanges')}>
                     Discard Changes
                   </button>
                 </li>
@@ -697,6 +701,13 @@ class EditRecipePage extends React.Component {
             recipe={recipe}
             contents={dependencies}
             handleHideModal={this.handleHideModal}
+          />
+          : null}
+        {modalActive === 'modalDiscardChanges'
+          ? <DiscardChanges
+            handleHideModal={this.handleHideModal}
+            handleShowModal={this.handleShowModal}
+            handleDiscardChanges={this.handleDiscardChanges}
           />
           : null}
       </Layout>
