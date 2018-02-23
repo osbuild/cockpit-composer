@@ -7,6 +7,8 @@
     "npm": ">=3.8"
   },
   "dependencies": {
+    "@webcomponents/custom-elements": "^1.0.0",
+    "@webcomponents/webcomponentsjs": "^1.0.0",
     "babel-polyfill": "^6.9.1",
     "classnames": "^2.2.5",
     "fastclick": "^1.0.6",
@@ -14,6 +16,7 @@
     "jquery": "^2.1",
     "jquery-match-height": "^0.7.0",
     "patternfly": "^3.40.0",
+    "patternfly-react": "^1.9.3",
     "patternfly-webcomponents": "0.0.8",
     "react": "^15.2.1",
     "react-dom": "^15.6.1",
@@ -24,9 +27,7 @@
     "redux-saga": "^0.15.3",
     "reselect": "^3.0.1",
     "webcomponentsjs": "^1.0.2",
-    "whatwg-fetch": "^1.0.0",
-    "@webcomponents/custom-elements": "^1.0.0",
-    "@webcomponents/webcomponentsjs": "^1.0.0"
+    "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {
     "assets-webpack-plugin": "^3.4.0",

@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { setBlueprintComment } from '../../core/actions/blueprints';
+import { Button, OverlayTrigger, Popover, Icon, Alert } from 'patternfly-react';
 
 class PendingChanges extends React.Component {
   constructor() {
@@ -82,38 +83,55 @@ class PendingChanges extends React.Component {
                     />
                   </div>
                 </div>
-                <div className="alert alert-info">
-                  <span className="pficon pficon-info"></span>
-                  Only changes to selected components are shown. <a href="#" className="alert-link">View all changes.</a>
-                </div>
-                <strong>Pending Changes</strong><span className="text-muted"> (most recent first)</span>
-                <ul className="list-group">
-                  {this.props.blueprint.localPendingChanges.map((componentUpdated, index) => (
-                    <li className="list-group-item" key={index}>
-                      {componentUpdated.componentNew && componentUpdated.componentOld &&
-                        <div className="row">
-                          <div className="col-sm-3">Updated</div>
-                          <div className="col-sm-9">from <strong>{componentUpdated.componentOld}</strong> to <strong>
-                            {componentUpdated.componentNew}</strong></div>
-                        </div>
-                      } {componentUpdated.componentNew && !componentUpdated.componentOld &&
-                        <div className="row">
-                          <div className="col-sm-3">Added</div>
-                          <div className="col-sm-9"><strong>{componentUpdated.componentNew}</strong></div>
-                        </div>
-                      } {componentUpdated.componentOld && !componentUpdated.componentNew &&
-                        <div className="row">
-                          <div className="col-sm-3">Removed</div>
-                          <div className="col-sm-9"><strong>{componentUpdated.componentOld}</strong></div>
-                        </div>
-                      }
-                    </li>
-                  ))}
-                </ul>
+                <Alert type="info">
+                  Only changes to selected components are shown.
+                </Alert>
+                {this.props.blueprint.localPendingChanges.length !== 0 &&
+                  <div>
+                    <strong>Pending Changes</strong><span className="text-muted"> (most recent first)</span>
+                    <ul className="list-group">
+                      {this.props.blueprint.localPendingChanges.map((componentUpdated, index) => (
+                        <li className="list-group-item" key={index}>
+                          {componentUpdated.componentNew && componentUpdated.componentOld &&
+                            <div className="row">
+                              <div className="col-sm-3">Updated</div>
+                              <div className="col-sm-9">from <strong>{componentUpdated.componentOld}</strong> to <strong>
+                                {componentUpdated.componentNew}</strong></div>
+                            </div>
+                          } {componentUpdated.componentNew && !componentUpdated.componentOld &&
+                            <div className="row">
+                              <div className="col-sm-3">Added</div>
+                              <div className="col-sm-9"><strong>{componentUpdated.componentNew}</strong></div>
+                            </div>
+                          } {componentUpdated.componentOld && !componentUpdated.componentNew &&
+                            <div className="row">
+                              <div className="col-sm-3">Removed</div>
+                              <div className="col-sm-9"><strong>{componentUpdated.componentOld}</strong></div>
+                            </div>
+                          }
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                }
                 {(this.props.blueprint.workspacePendingChanges.addedChanges.length !== 0 ||
                  this.props.blueprint.workspacePendingChanges.deletedChanges.length !== 0) &&
                   <div>
-                    <strong>Changes made in a previous session (i)</strong>
+                    <strong>Changes made in a previous session</strong>
+                    <OverlayTrigger
+                      overlay={
+                          <Popover>
+                            Changes made in a previous session are not listed
+                            in the order they were made. If you choose to undo these
+                            changes, they are undone as a group.
+                          </Popover>
+                        }
+                      placement="right"
+                      trigger={["click"]}
+                      rootClose
+                    >
+                    <Button bsStyle="link"><Icon type="pf" name="pficon pficon-help" /></Button>
+                    </OverlayTrigger>
                     <ul className="list-group">
                     {this.props.blueprint.workspacePendingChanges.addedChanges.length !== 0 &&
                       <li className="list-group-item">
