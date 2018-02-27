@@ -28,14 +28,6 @@ export const setInputComponents = (inputComponents) => ({
   },
 });
 
-export const SET_FILTERED_INPUT_INPUTS = 'SET_FILTERED_INPUT_INPUTS';
-export const setFilteredInputInputs = (filteredInputInputs) => ({
-  type: SET_FILTERED_INPUT_INPUTS,
-  payload: {
-    filteredInputInputs,
-  },
-});
-
 export const SET_SELECTED_INPUT_PAGE = 'SET_SELECTED_INPUT_PAGE';
 export const setSelectedInputPage = (selectedInputPage) => ({
   type: SET_SELECTED_INPUT_PAGE,
