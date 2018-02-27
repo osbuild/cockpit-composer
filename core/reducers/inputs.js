@@ -2,7 +2,7 @@ import {
   FETCHING_INPUTS_SUCCEEDED,
   SET_SELECTED_INPUT_PAGE,
   SET_SELECTED_INPUT, SET_SELECTED_INPUT_STATUS, SET_SELECTED_INPUT_PARENT,
-  SET_INPUT_COMPONENTS, SET_FILTERED_INPUT_COMPONENTS,
+  SET_INPUT_COMPONENTS,
   DELETE_FILTER,
 } from '../actions/inputs';
 
@@ -25,11 +25,7 @@ const inputs = (state = [], action) => {
                   Math.ceil((action.payload.inputs[1] / action.payload.pageSize) - 1)).fill([])),
               totalInputs: action.payload.inputs[1],
               pageSize: action.payload.pageSize,
-          });
-    case SET_FILTERED_INPUT_COMPONENTS:
-      return Object.assign(
-          {}, state,
-          { filteredInputComponents: action.payload.filteredInputComponents }
+          }
       );
     case SET_SELECTED_INPUT_PAGE:
       return Object.assign(
@@ -55,8 +51,8 @@ const inputs = (state = [], action) => {
       return Object.assign(
           {}, state,
           {
-              filteredInputComponents: [[]],
-              totalFilteredInputs: 0,
+              inputComponents: undefined,
+              totalInputs: 0,
               selectedInputPage: 0,
               inputFilters: {
                   field: 'name',

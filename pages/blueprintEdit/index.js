@@ -22,7 +22,7 @@ import {
   removeBlueprintComponent, undo, redo, commitToWorkspace, deleteHistory,
 } from '../../core/actions/blueprints';
 import {
-  fetchingInputs, setInputComponents, setFilteredInputComponents, setSelectedInputPage,
+  fetchingInputs, setInputComponents, setSelectedInputPage,
   setSelectedInput, setSelectedInputStatus, setSelectedInputParent, deleteFilter,
 } from '../../core/actions/inputs';
 import { setModalActive } from '../../core/actions/modals';
@@ -65,6 +65,10 @@ class EditBlueprintPage extends React.Component {
 
   componentDidMount() {
     document.title = 'Blueprint';
+  }
+
+  componentWillUnmount() {
+    this.props.deleteFilter();
   }
 
   setNotifications() {
@@ -110,7 +114,12 @@ class EditBlueprintPage extends React.Component {
   }
 
   handleClearFilters(event) {
+    const filter = {
+      field: 'name',
+      value: '',
+    };
     this.props.deleteFilter();
+    this.props.fetchingInputs(filter, 0, this.props.inputs.pageSize, this.props.blueprint.components);
     $('#cmpsr-blueprint-input-filter').val('');
     event.preventDefault();
     event.stopPropagation();
@@ -718,7 +727,6 @@ EditBlueprintPage.propTypes = {
   removeBlueprintComponent: PropTypes.func,
   fetchingInputs: PropTypes.func,
   setInputComponents: PropTypes.func,
-  setFilteredInputComponents: PropTypes.func,
   setSelectedInputPage: PropTypes.func,
   setSelectedInput: PropTypes.func,
   setSelectedInputStatus: PropTypes.func,
@@ -791,9 +799,6 @@ const mapDispatchToProps = (dispatch) => ({
   },
   setInputComponents: (inputComponents) => {
     dispatch(setInputComponents(inputComponents));
-  },
-  setFilteredInputComponents: (inputFilterComponents) => {
-    dispatch(setFilteredInputComponents(inputFilterComponents));
   },
   setSelectedInputPage: (selectedInputPage) => {
     dispatch(setSelectedInputPage(selectedInputPage));
