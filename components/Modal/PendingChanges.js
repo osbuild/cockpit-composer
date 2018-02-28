@@ -120,17 +120,17 @@ class PendingChanges extends React.Component {
                     <strong>Changes made in a previous session</strong>
                     <OverlayTrigger
                       overlay={
-                          <Popover>
-                            Changes made in a previous session are not listed
-                            in the order they were made. If you choose to undo these
-                            changes, they are undone as a group.
-                          </Popover>
+                        <Popover>
+                          Changes made in a previous session are not listed
+                          in the order they were made. If you choose to undo these
+                          changes, they are undone as a group.
+                        </Popover>
                         }
                       placement="right"
                       trigger={["click"]}
                       rootClose
                     >
-                    <Button bsStyle="link"><Icon type="pf" name="pficon pficon-help" /></Button>
+                      <Button bsStyle="link"><Icon type="pf" name="pficon pficon-help" /></Button>
                     </OverlayTrigger>
                     <ul className="list-group">
                     {this.props.blueprint.workspacePendingChanges.addedChanges.length !== 0 &&
