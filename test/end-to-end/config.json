@@ -16,7 +16,7 @@
             "packages": [{"name": "httpd", "version": ""}]
         }
     },
-    "__comment__": "// Image type and architechture on Create Image Page",
+    "__comment1__": "// Image type and architechture on Create Image Page",
     "image": [
         {"type": "ostree", "arch": "x86_64"},
         {"type": "iso", "arch": "x86_64"},
@@ -24,11 +24,11 @@
         {"type": "qcow2", "arch": "x86_64"},
         {"type": "vhdx", "arch": "x86_64"}
     ],
-    "__comment__": "// Manifest type of Blueprint Export File on Export Blueprint Page",
+    "__comment2__": "// Manifest type of Blueprint Export File on Export Blueprint Page",
     "manifestType": {
         "Text": "Text"
     },
-    "__comment__": "// Nightmare.js timeout settings",
+    "__comment3__": "// Nightmare.js timeout settings",
     "nightmareTimeout": {
       "waitTimeout": "5000",
       "gotoTimeout": "1000",

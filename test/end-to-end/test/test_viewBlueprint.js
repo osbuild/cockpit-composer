@@ -1,5 +1,6 @@
 const Nightmare = require('nightmare');
 require('nightmare-iframe-manager')(Nightmare);
+const faker = require('faker');
 const ViewBlueprintPage = require('../pages/viewBlueprint');
 const CreateImagePage = require('../pages/createImage');
 const ToastNotifPage = require('../pages/toastNotif');
@@ -35,7 +36,7 @@ describe('View Blueprint Page', () => {
       apiCall.newBlueprint(pageConfig.blueprint.simple, done);
     });
 
-    // Delete added blueprint after all tests completed in this sute
+    // Delete added blueprint after all tests completed in this suite
     afterAll((done) => {
       apiCall.deleteBlueprint(pageConfig.blueprint.simple.name, done);
     });
@@ -89,6 +90,29 @@ describe('View Blueprint Page', () => {
             helper.gotoError(error, nightmare, testSpec2);
           });
       }, timeout);
+      const testSpec10 = test('should show correct blueprint description title',
+      (done) => {
+        // Highlight the expected result
+        const expected = pageConfig.blueprint.simple.description;
+
+        nightmare
+          .wait(viewBlueprintPage.componentsTabElement)
+          .click(viewBlueprintPage.componentsTabElement)
+          .wait(viewBlueprintPage.tabSelectedComponents)
+          .click(viewBlueprintPage.tabSelectedComponents)
+          .wait(viewBlueprintPage.contentSelectedComponents)
+          .wait(viewBlueprintPage.labelBlueprintDescription)
+          .evaluate(page => document.querySelector(page.labelBlueprintDescription).innerText
+            , viewBlueprintPage)
+          .then((element) => {
+            expect(element).toBe(expected);
+
+            coverage(nightmare, done);
+          })
+          .catch((error) => {
+            helper.gotoError(error, nightmare, testSpec10);
+          });
+      }, timeout);
       const testSpec3 = test('should have Create Image button',
       (done) => {
         // Highlight the expected result
@@ -110,6 +134,129 @@ describe('View Blueprint Page', () => {
           })
           .catch((error) => {
             helper.gotoError(error, nightmare, testSpec3);
+          });
+      }, timeout);
+    });
+    describe('Details Tab', () => {
+      const testSpec11 = test('should show correct blueprint name',
+      (done) => {
+        // Highlight the expected result
+        const expected = viewBlueprintPage.blueprintName;
+
+        nightmare
+          .wait(viewBlueprintPage.componentsTabElement)
+          .click(viewBlueprintPage.componentsTabElement)
+          .wait(viewBlueprintPage.tabSelectedComponents)
+          .click(viewBlueprintPage.tabSelectedComponents)
+          .wait(viewBlueprintPage.contentSelectedComponents)
+          .wait(viewBlueprintPage.detailTabElement)
+          .click(viewBlueprintPage.detailTabElement)
+          .wait(viewBlueprintPage.labelNameUnderDetails)
+          .evaluate(page => document.querySelector(page.labelNameUnderDetails).innerText
+            , viewBlueprintPage)
+          .then((element) => {
+            expect(element).toBe(expected);
+
+            coverage(nightmare, done);
+          })
+          .catch((error) => {
+            helper.gotoError(error, nightmare, testSpec11);
+          });
+      }, timeout);
+      const testSpec12 = test('should show correct blueprint description',
+      (done) => {
+        // Highlight the expected result
+        const expected = pageConfig.blueprint.simple.description;
+
+        nightmare
+          .wait(viewBlueprintPage.componentsTabElement)
+          .click(viewBlueprintPage.componentsTabElement)
+          .wait(viewBlueprintPage.tabSelectedComponents)
+          .click(viewBlueprintPage.tabSelectedComponents)
+          .wait(viewBlueprintPage.contentSelectedComponents)
+          .wait(viewBlueprintPage.detailTabElement)
+          .click(viewBlueprintPage.detailTabElement)
+          .wait(viewBlueprintPage.labelDescriptionUnderDetails)
+          .evaluate(page => document.querySelector(page.labelDescriptionUnderDetails).innerText
+            , viewBlueprintPage)
+          .then((element) => {
+            expect(element).toBe(expected);
+
+            coverage(nightmare, done);
+          })
+          .catch((error) => {
+            helper.gotoError(error, nightmare, testSpec12);
+          });
+      }, timeout);
+      const testSpec13 = test('should update description',
+      (done) => {
+        // Highlight the expected result
+        const expected = faker.lorem.sentence();
+
+        nightmare
+          .wait(viewBlueprintPage.componentsTabElement)
+          .click(viewBlueprintPage.componentsTabElement)
+          .wait(viewBlueprintPage.tabSelectedComponents)
+          .click(viewBlueprintPage.tabSelectedComponents)
+          .wait(viewBlueprintPage.contentSelectedComponents)
+          .wait(viewBlueprintPage.detailTabElement)
+          .click(viewBlueprintPage.detailTabElement)
+          .wait(viewBlueprintPage.btnEditDescriptionUnderDetails)
+          .click(viewBlueprintPage.btnEditDescriptionUnderDetails)
+          .wait(viewBlueprintPage.inputTextDescriptionUnderDetails)
+          .evaluate((page) => {
+            document.querySelector(page.inputTextDescriptionUnderDetails).value = '';
+          }, viewBlueprintPage)
+          .insert(viewBlueprintPage.inputTextDescriptionUnderDetails, expected)
+          .wait(viewBlueprintPage.btnOkDescriptionUnderDetails)
+          .click(viewBlueprintPage.btnOkDescriptionUnderDetails)
+          .wait(viewBlueprintPage.labelBlueprintDescription)
+          .evaluate(page => document.querySelector(page.labelBlueprintDescription).innerText
+            , viewBlueprintPage)
+          .then((element) => {
+            expect(element).toBe(expected);
+
+            coverage(nightmare, done);
+          })
+          .catch((error) => {
+            helper.gotoError(error, nightmare, testSpec13);
+          });
+      }, timeout);
+      const testSpec14 = test('should not update description if click cancel button',
+      (done) => {
+        // Highlight the expected result
+        let expected = '';
+
+        nightmare
+          .wait(viewBlueprintPage.componentsTabElement)
+          .click(viewBlueprintPage.componentsTabElement)
+          .wait(viewBlueprintPage.tabSelectedComponents)
+          .click(viewBlueprintPage.tabSelectedComponents)
+          .wait(viewBlueprintPage.contentSelectedComponents)
+          .evaluate(page => document.querySelector(page.labelBlueprintDescription).innerText
+            , viewBlueprintPage)
+          .then((element) => { expected = element; })
+          .then(() => nightmare
+            .wait(viewBlueprintPage.detailTabElement)
+            .click(viewBlueprintPage.detailTabElement)
+            .wait(viewBlueprintPage.btnEditDescriptionUnderDetails)
+            .click(viewBlueprintPage.btnEditDescriptionUnderDetails)
+            .wait(viewBlueprintPage.inputTextDescriptionUnderDetails)
+            .evaluate((page) => {
+              document.querySelector(page.inputTextDescriptionUnderDetails).value = '';
+            }, viewBlueprintPage)
+            .wait(viewBlueprintPage.btnCancelDescriptionUnderDetails)
+            .click(viewBlueprintPage.btnCancelDescriptionUnderDetails)
+            .wait(viewBlueprintPage.labelDescriptionUnderDetails)
+            .evaluate(page => document.querySelector(page.labelDescriptionUnderDetails).innerText
+              , viewBlueprintPage))
+          .then((element) => {
+            expect(element).toBe(expected);
+
+            coverage(nightmare, done);
+          })
+          .catch((error) => {
+            helper.gotoError(error, nightmare, testSpec14);
           });
       }, timeout);
     });
