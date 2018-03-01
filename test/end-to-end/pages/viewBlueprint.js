@@ -35,6 +35,9 @@ module.exports = class ViewBlueprintPage extends MainPage {
     // Title-bar: Blueprint Title label
     this.labelBlueprintTitle = `${this.titleRootElement} h1[class="cmpsr-title__item"]`;
 
+    // Title-bar: Blueprint Description label
+    this.labelBlueprintDescription = `${this.titleRootElement} p span[class="text-muted"]`;
+
     // Page-level actions
     this.pagelevelActions = '[class="cmpsr-header__actions"]';
 
@@ -70,7 +73,31 @@ module.exports = class ViewBlueprintPage extends MainPage {
 
     // Selected Components content
     this.contentSelectedComponents = `${this.componentsContentRootElement} pf-tabs pf-tab
-                                      div[class="list-pf cmpsr-list-pf list-pf-stacked cmpsr-blueprint__components"]`;
+      div[class="list-pf cmpsr-list-pf list-pf-stacked cmpsr-blueprint__components"]`;
+
+    // Name label under Details tab
+    this.labelNameUnderDetails = `${this.detailsContentRootElement} div[class="tab-container row"]
+      div[class="col-sm-6 col-lg-4"] dl[class="dl-horizontal mt-"] dd:nth-child(2)`;
+
+    // Description label under Details tab
+    this.labelDescriptionUnderDetails = `${this.detailsContentRootElement} div[class="tab-container row"]
+      div[class="col-sm-6 col-lg-4"] dl[class="dl-horizontal mt-"] dd:nth-child(4)`;
+
+    // Description edit button under Details tab
+    this.btnEditDescriptionUnderDetails = `${this.detailsContentRootElement} div[class="tab-container row"]
+      div[class="col-sm-6 col-lg-4"] dl[class="dl-horizontal mt-"] dd button[class="btn btn-link"]`;
+
+    // Description text input under Details tab
+    this.inputTextDescriptionUnderDetails = `${this.detailsContentRootElement} div[class="tab-container row"]
+      div[class="col-sm-6 col-lg-4"] dl[class="dl-horizontal mt-"] dd div input[class="form-control"]`;
+
+    // Description ok button under Details tab
+    this.btnOkDescriptionUnderDetails = `${this.detailsContentRootElement} div[class="tab-container row"]
+      div[class="col-sm-6 col-lg-4"] dl[class="dl-horizontal mt-"] dd div span button span[class="fa fa-check"]`;
+
+    // Description cancel button under Details tab
+    this.btnCancelDescriptionUnderDetails = `${this.detailsContentRootElement} div[class="tab-container row"]
+      div[class="col-sm-6 col-lg-4"] dl[class="dl-horizontal mt-"] dd div span button span[class="pficon pficon-close"]`;
   }
 
   get url() {
@@ -80,18 +107,5 @@ module.exports = class ViewBlueprintPage extends MainPage {
   // Edit Blueprint button
   get btnEditBlueprint() {
     return `a[href="#/blueprint/${this.blueprintName}]`;
-  }
-
-  tabLink(tabName) {
-    switch (tabName) {
-      case 'Details':
-        return `${this.tabListRootElement} li:nth-child(1) a`;
-      case 'Components':
-        return `${this.tabListRootElement} li:nth-child(2) a`;
-      case 'Images':
-        return `${this.tabListRootElement} li:nth-child(3) a`;
-      default:
-        return `${this.tabListRootElement} li:nth-child(2) a`;
-    }
   }
 };
