@@ -18,7 +18,7 @@ module.exports = class BlueprintsPage extends MainPage {
     // More Action dropdown menu list
     this.moreActionList = {
       Export: 'Export',
-      Archive: 'Archive',
+      Delete: 'Delete',
     };
   }
 

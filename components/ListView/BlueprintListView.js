@@ -98,7 +98,7 @@ class BlueprintListView extends React.Component {
                     aria-labelledby="dropdownKebabRight9"
                   >
                     <li><a href="#" onClick={(e) => this.props.handleShowModalExport(e, blueprint.name)}>Export</a></li>
-                    <li><a href="#" onClick={(e) => this.props.handleDelete(e, blueprint.id)}>Archive</a></li>
+                    <li><a href="#" onClick={(e) => this.props.handleShowModalDelete(e, blueprint)}>Delete</a></li>
                   </ul>
                 </div>
               </div>
@@ -208,7 +208,7 @@ class BlueprintListView extends React.Component {
 }
 
 BlueprintListView.propTypes = {
-  handleDelete: PropTypes.func,
+  handleShowModalDelete: PropTypes.func,
   blueprints: PropTypes.array,
   setNotifications: PropTypes.func,
   handleShowModalExport: PropTypes.func,
