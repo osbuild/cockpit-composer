@@ -1,6 +1,7 @@
 import {
   SET_MODAL_ACTIVE,
   SET_MODAL_EXPORT_BLUEPRINT_NAME, SET_MODAL_EXPORT_BLUEPRINT_CONTENTS, SET_MODAL_EXPORT_BLUEPRINT_VISIBLE,
+  SET_MODAL_DELETE_BLUEPRINT_NAME, SET_MODAL_DELETE_BLUEPRINT_ID, SET_MODAL_DELETE_BLUEPRINT_VISIBLE,
   SET_MODAL_CREATE_BLUEPRINT_ERROR_NAME_VISIBLE, SET_MODAL_CREATE_BLUEPRINT_ERROR_DUPLICATE_VISIBLE,
   SET_MODAL_CREATE_BLUEPRINT_ERROR_INLINE, SET_MODAL_CREATE_BLUEPRINT_CHECK_ERRORS, SET_MODAL_CREATE_BLUEPRINT_BLUEPRINT,
   FETCHING_MODAL_CREATE_COMPOSTION_TYPES_SUCCESS,
@@ -28,7 +29,7 @@ const modalCreateBlueprint = (state = [], action) => {
             createBlueprint: Object.assign(
               {}, state.createBlueprint, {
                 errorDuplicateVisible: action.payload.errorDuplicateVisible
-              }) 
+              })
           }
       );
     case SET_MODAL_CREATE_BLUEPRINT_ERROR_INLINE:
@@ -57,6 +58,28 @@ const modalCreateImage = (state = [], action) => {
       return Object.assign(
           {}, state,
           { createImage: Object.assign({}, state.createImage, { imageTypes: action.payload.imageTypes }) }
+      );
+    default:
+      return state;
+  }
+};
+
+const modalDeleteBlueprint = (state = [], action) => {
+  switch (action.type) {
+    case SET_MODAL_DELETE_BLUEPRINT_NAME:
+      return Object.assign(
+          {}, state,
+          { deleteBlueprint: Object.assign({}, state.deleteBlueprint, { name: action.payload.blueprintName }) }
+      );
+    case SET_MODAL_DELETE_BLUEPRINT_ID:
+      return Object.assign(
+          {}, state,
+          { deleteBlueprint: Object.assign({}, state.deleteBlueprint, { id: action.payload.blueprintId }) }
+      );
+    case SET_MODAL_DELETE_BLUEPRINT_VISIBLE:
+      return Object.assign(
+          {}, state,
+          { deleteBlueprint: Object.assign({}, state.deleteBlueprint, { visible: action.payload.visible }) }
       );
     default:
       return state;
@@ -100,6 +123,12 @@ const modals = (state = [], action) => {
       return modalCreateBlueprint(state, action);
     case SET_MODAL_CREATE_BLUEPRINT_BLUEPRINT:
       return modalCreateBlueprint(state, action);
+    case SET_MODAL_DELETE_BLUEPRINT_NAME:
+      return modalDeleteBlueprint(state, action);
+    case SET_MODAL_DELETE_BLUEPRINT_ID:
+      return modalDeleteBlueprint(state, action);
+    case SET_MODAL_DELETE_BLUEPRINT_VISIBLE:
+      return modalDeleteBlueprint(state, action);
     case FETCHING_MODAL_CREATE_COMPOSTION_TYPES_SUCCESS:
       return modalCreateImage(state, action);
     case SET_MODAL_EXPORT_BLUEPRINT_NAME:

@@ -108,6 +108,36 @@ export function fetchingModalExportBlueprintContents(blueprintName) {
   };
 }
 
+export const SET_MODAL_DELETE_BLUEPRINT_NAME = 'SET_MODAL_DELETE_BLUEPRINT_NAME';
+export function setModalDeleteBlueprintName(blueprintName) {
+  return {
+    type: SET_MODAL_DELETE_BLUEPRINT_NAME,
+    payload: {
+      blueprintName,
+    },
+  };
+}
+
+export const SET_MODAL_DELETE_BLUEPRINT_ID = 'SET_MODAL_DELETE_BLUEPRINT_ID';
+export function setModalDeleteBlueprintId(blueprintId) {
+  return {
+    type: SET_MODAL_DELETE_BLUEPRINT_ID,
+    payload: {
+      blueprintId,
+    },
+  };
+}
+
+export const SET_MODAL_DELETE_BLUEPRINT_VISIBLE = 'SET_MODAL_DELETE_BLUEPRINT_VISIBLE';
+export function setModalDeleteBlueprintVisible(visible) {
+  return {
+    type: SET_MODAL_DELETE_BLUEPRINT_VISIBLE,
+    payload: {
+      visible,
+    },
+  };
+}
+
 export const APPEND_MODAL_PENDING_CHANGES_COMPONENT_UPDATES = 'APPEND_MODAL_PENDING_CHANGES_COMPONENT_UPDATES';
 export function appendModalPendingChangesComponentUpdates(componentUpdate) {
   return {

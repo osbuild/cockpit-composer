@@ -42,6 +42,11 @@ const initialState = {
       contents: [],
       visible: false,
     },
+    deleteBlueprint: {
+      name: '',
+      id: '',
+      visible: false,
+    },
     createBlueprint: {
       showErrorName: false,
       showErrorDuplicate: false,

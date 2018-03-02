@@ -4,6 +4,7 @@ import Layout from '../../components/Layout';
 import BlueprintListView from '../../components/ListView/BlueprintListView';
 import CreateBlueprint from '../../components/Modal/CreateBlueprint';
 import ExportBlueprint from '../../components/Modal/ExportBlueprint';
+import DeleteBlueprint from '../../components/Modal/DeleteBlueprint';
 import EmptyState from '../../components/EmptyState/EmptyState';
 import { connect } from 'react-redux';
 import { deletingBlueprint } from '../../core/actions/blueprints';
@@ -12,6 +13,9 @@ import {
   setModalExportBlueprintContents,
   setModalExportBlueprintVisible,
   fetchingModalExportBlueprintContents,
+  setModalDeleteBlueprintName,
+  setModalDeleteBlueprintId,
+  setModalDeleteBlueprintVisible,
 } from '../../core/actions/modals';
 import { blueprintsSortSetKey, blueprintsSortSetValue } from '../../core/actions/sort';
 import { makeGetSortedBlueprints } from '../../core/selectors';
@@ -21,6 +25,8 @@ class BlueprintsPage extends React.Component {
     super();
     this.setNotifications = this.setNotifications.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleHideModalDelete = this.handleHideModalDelete.bind(this);
+    this.handleShowModalDelete = this.handleShowModalDelete.bind(this);
     this.handleHideModalExport = this.handleHideModalExport.bind(this);
     this.handleShowModalExport = this.handleShowModalExport.bind(this);
   }
@@ -65,8 +71,22 @@ class BlueprintsPage extends React.Component {
     e.stopPropagation();
   }
 
+  handleHideModalDelete() {
+    this.props.setModalDeleteBlueprintVisible(false);
+    this.props.setModalDeleteBlueprintId('');
+    this.props.setModalDeleteBlueprintName('');
+  }
+
+  handleShowModalDelete(e, blueprint) {
+    this.props.setModalDeleteBlueprintId(blueprint.id);
+    this.props.setModalDeleteBlueprintName(blueprint.name);
+    this.props.setModalDeleteBlueprintVisible(true);
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
   render() {
-    const { blueprints, exportBlueprint, createImage, blueprintSortKey, blueprintSortValue } = this.props;
+    const { blueprints, exportBlueprint, deleteBlueprint, createImage, blueprintSortKey, blueprintSortValue } = this.props;
     return (
       <Layout className="container-fluid" ref="layout">
         <div className="row toolbar-pf">
@@ -151,9 +171,9 @@ class BlueprintsPage extends React.Component {
         <BlueprintListView
           blueprints={blueprints.map(blueprint => blueprint.present)}
           imageTypes={createImage.imageTypes}
-          handleDelete={this.handleDelete}
           setNotifications={this.setNotifications}
           handleShowModalExport={this.handleShowModalExport}
+          handleShowModalDelete={this.handleShowModalDelete}
         />
       }
         <CreateBlueprint blueprintNames={blueprints.map(blueprint => blueprint.present.id)} />
@@ -164,6 +184,13 @@ class BlueprintsPage extends React.Component {
             handleHideModal={this.handleHideModalExport}
           />
           : null}
+        {(deleteBlueprint !== undefined && deleteBlueprint.visible)
+          ? <DeleteBlueprint
+            blueprint={deleteBlueprint}
+            handleDelete={this.handleDelete}
+            handleHideModal={this.handleHideModalDelete}
+          />
+          : null}
       </Layout>
     );
   }
@@ -171,12 +198,16 @@ class BlueprintsPage extends React.Component {
 
 BlueprintsPage.propTypes = {
   deletingBlueprint: PropTypes.func,
+  setModalDeleteBlueprintVisible: PropTypes.func,
+  setModalDeleteBlueprintName: PropTypes.func,
+  setModalDeleteBlueprintId: PropTypes.func,
   setModalExportBlueprintVisible: PropTypes.func,
   setModalExportBlueprintName: PropTypes.func,
   setModalExportBlueprintContents: PropTypes.func,
   fetchingModalExportBlueprintContents: PropTypes.func,
   blueprints: PropTypes.array,
   exportBlueprint: PropTypes.object,
+  deleteBlueprint: PropTypes.object,
   createImage: PropTypes.object,
   blueprintSortKey: PropTypes.string,
   blueprintSortValue: PropTypes.string,
@@ -190,6 +221,7 @@ const makeMapStateToProps = () => {
     if (getSortedBlueprints(state) !== undefined) {
       return {
         exportBlueprint: state.modals.exportBlueprint,
+        deleteBlueprint: state.modals.deleteBlueprint,
         createImage: state.modals.createImage,
         blueprints: getSortedBlueprints(state),
         blueprintSortKey: state.sort.blueprints.key,
@@ -198,6 +230,7 @@ const makeMapStateToProps = () => {
     }
     return {
       exportBlueprint: state.modals.exportBlueprint,
+      deleteBlueprint: state.modals.deleteBlueprint,
       createImage: state.modals.createImage,
       blueprints: {},
       blueprintSortKey: state.sort.blueprints.key,
@@ -221,6 +254,15 @@ const mapDispatchToProps = dispatch => ({
   },
   setModalExportBlueprintVisible: modalVisible => {
     dispatch(setModalExportBlueprintVisible(modalVisible));
+  },
+  setModalDeleteBlueprintName: modalBlueprintName => {
+    dispatch(setModalDeleteBlueprintName(modalBlueprintName));
+  },
+  setModalDeleteBlueprintId: modalBlueprintId => {
+    dispatch(setModalDeleteBlueprintId(modalBlueprintId));
+  },
+  setModalDeleteBlueprintVisible: modalVisible => {
+    dispatch(setModalDeleteBlueprintVisible(modalVisible));
   },
   deletingBlueprint: blueprint => {
     dispatch(deletingBlueprint(blueprint));
