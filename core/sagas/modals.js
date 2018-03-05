@@ -9,8 +9,9 @@ import {
 function* fetchModalBlueprintContents(action) {
   try {
     const { blueprintName } = action.payload;
+    console.log('in saga');
     const response = yield call(fetchBlueprintContentsApi, blueprintName);
-    yield put(setModalExportBlueprintContents(response.dependencies));
+    yield put(setModalExportBlueprintContents(response.components));
   } catch (error) {
     console.log('Error in loadModalBlueprintSaga');
   }

@@ -1,6 +1,6 @@
 import {
   SET_EDIT_DESCRIPTION_VISIBLE, SET_EDIT_DESCRIPTION_VALUE,
-  SET_SELECTED_COMPONENT, SET_SELECTED_COMPONENT_PARENT, SET_SELECTED_COMPONENT_STATUS,
+  SET_ACTIVE_COMPONENT, SET_ACTIVE_COMPONENT_PARENT, SET_ACTIVE_COMPONENT_STATUS,
   SET_ACTIVE_TAB,
 } from '../actions/blueprintPage';
 
@@ -12,15 +12,15 @@ const blueprintPage = (state = [], action) => {
     case SET_EDIT_DESCRIPTION_VALUE:
       return Object.assign({}, state,
                            { editDescriptionValue: action.payload.value });
-    case SET_SELECTED_COMPONENT:
+    case SET_ACTIVE_COMPONENT:
       return Object.assign({}, state,
-                           { selectedComponent: action.payload.component });
-    case SET_SELECTED_COMPONENT_PARENT:
+                           { activeComponent: action.payload.component });
+    case SET_ACTIVE_COMPONENT_PARENT:
       return Object.assign({}, state,
-                           { selectedComponentParent: action.payload.componentParent });
-    case SET_SELECTED_COMPONENT_STATUS:
+                           { activeComponentParent: action.payload.componentParent });
+    case SET_ACTIVE_COMPONENT_STATUS:
       return Object.assign({}, state,
-                           { selectedComponentStatus: action.payload.componentStatus });
+                           { activeComponentStatus: action.payload.componentStatus });
     case SET_ACTIVE_TAB:
       return Object.assign({}, state,
                            { activeTab: action.payload.activeTab });

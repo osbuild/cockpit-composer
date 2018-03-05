@@ -55,37 +55,6 @@ export const setBlueprint = (blueprint) => ({
   },
 });
 
-export const SET_BLUEPRINT_DESCRIPTION = 'SET_BLUEPRINT_DESCRIPTION';
-export const setBlueprintDescription = (blueprint, description) => ({
-  type: SET_BLUEPRINT_DESCRIPTION,
-  payload: {
-    blueprint,
-    description,
-  },
-});
-
-export const REMOVE_BLUEPRINT_COMPONENT = 'REMOVE_BLUEPRINT_COMPONENT';
-export const removeBlueprintComponent = (blueprint, component, pendingChange) => ({
-  type: REMOVE_BLUEPRINT_COMPONENT,
-  payload: {
-    blueprint,
-    component,
-    pendingChange,
-  },
-});
-
-export const SET_BLUEPRINT_COMPONENTS = 'SET_BLUEPRINT_COMPONENTS';
-export const setBlueprintComponents = (blueprint, components, dependencies, packages, pendingChange) => ({
-  type: SET_BLUEPRINT_COMPONENTS,
-  payload: {
-    blueprint,
-    components,
-    dependencies,
-    packages,
-    pendingChange,
-  },
-});
-
 export const SET_BLUEPRINT_COMMENT = 'SET_BLUEPRINT_COMMENT';
 export const setBlueprintComment = (blueprint, comment) => ({
   type: SET_BLUEPRINT_COMMENT,
@@ -95,6 +64,54 @@ export const setBlueprintComment = (blueprint, comment) => ({
   },
 });
 
+export const SET_BLUEPRINT_DESCRIPTION = 'SET_BLUEPRINT_DESCRIPTION';
+export const setBlueprintDescription = (blueprint, description) => ({
+  type: SET_BLUEPRINT_DESCRIPTION,
+  payload: {
+    blueprint,
+    description,
+  },
+});
+
+export const ADD_BLUEPRINT_COMPONENT = 'ADD_BLUEPRINT_COMPONENT';
+export const addBlueprintComponent = (blueprint, component) => ({
+  type: ADD_BLUEPRINT_COMPONENT,
+  payload: {
+    blueprint,
+    component,
+  },
+});
+
+export const ADD_BLUEPRINT_COMPONENT_SUCCEEDED = 'ADD_BLUEPRINT_COMPONENT_SUCCEEDED';
+export const addBlueprintComponentSucceeded = (blueprintId, components, packages, pendingChange) => ({
+  type: ADD_BLUEPRINT_COMPONENT_SUCCEEDED,
+  payload: {
+    blueprintId,
+    components,
+    packages,
+    pendingChange,
+  },
+});
+
+export const REMOVE_BLUEPRINT_COMPONENT = 'REMOVE_BLUEPRINT_COMPONENT';
+export const removeBlueprintComponent = (blueprint, component) => ({
+  type: REMOVE_BLUEPRINT_COMPONENT,
+  payload: {
+    blueprint,
+    component,
+  },
+});
+
+export const REMOVE_BLUEPRINT_COMPONENT_SUCCEEDED = 'REMOVE_BLUEPRINT_COMPONENT_SUCCEEDED';
+export const removeBlueprintComponentSucceeded = (blueprintId, components, packages, pendingChange) => ({
+  type: REMOVE_BLUEPRINT_COMPONENT_SUCCEEDED,
+  payload: {
+    blueprintId,
+    components,
+    packages,
+    pendingChange,
+  },
+});
 
 export const DELETING_BLUEPRINT = 'DELETING_BLUEPRINT';
 export const deletingBlueprint = (blueprintId) => ({

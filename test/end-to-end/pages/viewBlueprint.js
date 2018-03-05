@@ -23,7 +23,7 @@ module.exports = class ViewBlueprintPage extends MainPage {
     this.detailsContentRootElement = `${this.tabRootElement} pf-tab[tabtitle="Details"]`;
 
     // Components tab content root element
-    this.componentsContentRootElement = `${this.tabRootElement} pf-tab[tabtitle="Components"]`;
+    this.componentsContentRootElement = `${this.tabRootElement} pf-tab[tabtitle="Selected Components"]`;
 
     // Images tab content root element
     this.imagesContentRootElement = `${this.tabRootElement} pf-tab[tabtitle="Images"]`;

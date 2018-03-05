@@ -1,10 +1,10 @@
-import { take, call, put, takeEvery } from 'redux-saga/effects';
+import { take, call, put, takeEvery, select } from 'redux-saga/effects';
 import { fetchBlueprintInputsApi } from '../apiCalls';
 import { FETCHING_INPUTS, fetchingInputsSucceeded } from '../actions/inputs';
 import {
   FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED,
 } from '../actions/blueprints';
-
+import { makeGetSortedSelectedComponents } from '../selectors';
 
 function updateInputComponentData(inputs, componentData) {
   let updatedInputs = inputs;
@@ -27,12 +27,15 @@ function updateInputComponentData(inputs, componentData) {
 function* fetchInputs(action) {
   try {
     const { filter, selectedInputPage, pageSize, componentData } = action.payload;
+
     let components = componentData;
     if (componentData === undefined) {
       const blueprintResponse = yield take(FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED);
       const { blueprintPresent } = blueprintResponse.payload;
-      components = blueprintPresent.components;
+      const getSortedSelectedComponents = makeGetSortedSelectedComponents();
+      components = yield select(getSortedSelectedComponents, blueprintPresent);
     }
+
     const response = yield call(fetchBlueprintInputsApi, `/*${filter.value}*`, selectedInputPage, pageSize);
     const updatedResponse = yield call(updateInputComponentData, response, components);
     yield put(fetchingInputsSucceeded(filter, selectedInputPage, pageSize, updatedResponse));

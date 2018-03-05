@@ -25,8 +25,8 @@ module.exports = class TostaNotifPage extends MainPage {
     // Notification label
     this.labelStatus = '#cmpsr-toast-0 span + span';
 
-    // Blueprint saving and committed status label
-    this.varStatusSaving = `${this.varBlueprintName} Saving blueprint.`;
+    // Blueprint committing and committed status label
+    this.varStatusCommitting = `${this.varBlueprintName} Committing blueprint.`;
     this.varStatusCommitted = `${this.varBlueprintName} Blueprint changes are committed.`;
 
     // Cancel link

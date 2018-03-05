@@ -2,14 +2,17 @@ import { call, put, takeEvery, takeLatest, select } from 'redux-saga/effects';
 import {
   fetchBlueprintInfoApi, fetchBlueprintNamesApi, fetchBlueprintContentsApi, fetchWorkspaceBlueprintContentsApi,
   deleteBlueprintApi, setBlueprintDescriptionApi,
-  createBlueprintApi, fetchDiffWorkspaceApi,
-  commitToWorkspaceApi,
+  createBlueprintApi,
+  depsolveComponentsApi,
+  commitToWorkspaceApi, fetchDiffWorkspaceApi,
 } from '../apiCalls';
 import {
   fetchingBlueprintsSucceeded,
   FETCHING_BLUEPRINT_CONTENTS, fetchingBlueprintContentsSucceeded,
-  SET_BLUEPRINT_DESCRIPTION,
   CREATING_BLUEPRINT, creatingBlueprintSucceeded,
+  ADD_BLUEPRINT_COMPONENT, ADD_BLUEPRINT_COMPONENT_SUCCEEDED, addBlueprintComponentSucceeded,
+  REMOVE_BLUEPRINT_COMPONENT, REMOVE_BLUEPRINT_COMPONENT_SUCCEEDED, removeBlueprintComponentSucceeded,
+  SET_BLUEPRINT_DESCRIPTION,
   DELETING_BLUEPRINT, deletingBlueprintSucceeded,
   COMMIT_TO_WORKSPACE,
   blueprintsFailure,
@@ -101,6 +104,47 @@ function* createBlueprint(action) {
   }
 }
 
+function* addComponent(action) {
+  try {
+    const { blueprint, component } = action.payload;
+
+    const addedPackage = Object.assign({}, {}, {
+      name: component.name,
+      version: component.version
+    });
+    const pendingChange = {
+      componentOld: null,
+      componentNew: component.name + '-' + component.version + '-' + component.release
+    };
+
+    const packages = blueprint.packages.concat(addedPackage);
+    const components = yield call(depsolveComponentsApi, packages);
+
+    yield put(addBlueprintComponentSucceeded(blueprint.id, components, packages, pendingChange));
+  } catch (error) {
+    console.log('errorAddComponentSaga');
+    yield put(blueprintsFailure(error));
+  }
+}
+
+function* removeComponent(action) {
+  try {
+    const { blueprint, component } = action.payload;
+
+    const pendingChange = {
+      componentOld: component.name + '-' + component.version + '-' + component.release,
+      componentNew: null,
+    };
+    const packages = blueprint.packages.filter(pack => pack.name !== component.name);
+    const components = yield call(depsolveComponentsApi, packages);
+
+    yield put(removeBlueprintComponentSucceeded(blueprint.id, components, packages, pendingChange));
+  } catch (error) {
+    console.log('errorRemoveComponentSaga');
+    yield put(blueprintsFailure(error));
+  }
+}
+
 function* commitToWorkspace(action) {
   try {
     const { blueprintId } = action.payload;
@@ -118,6 +162,10 @@ export default function* () {
   yield takeLatest(FETCHING_BLUEPRINT_CONTENTS, fetchBlueprintContents);
   yield takeLatest(SET_BLUEPRINT_DESCRIPTION, setBlueprintDescription);
   yield takeEvery(DELETING_BLUEPRINT, deleteBlueprint);
+  yield takeLatest(ADD_BLUEPRINT_COMPONENT_SUCCEEDED, commitToWorkspace);
+  yield takeLatest(REMOVE_BLUEPRINT_COMPONENT_SUCCEEDED, commitToWorkspace);
   yield takeEvery(COMMIT_TO_WORKSPACE, commitToWorkspace);
+  yield takeEvery(ADD_BLUEPRINT_COMPONENT, addComponent);
+  yield takeEvery(REMOVE_BLUEPRINT_COMPONENT, removeComponent);
   yield* fetchBlueprints();
 }

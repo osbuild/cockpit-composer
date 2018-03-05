@@ -15,9 +15,9 @@ const initialState = {
   blueprintPage: {
     activeTab: 'Details',
     editDescriptionVisible: 'false',
-    selectedComponent: '',
-    selectedComponentParent: '',
-    selectedComponentStatus: 'view',
+    activeComponent: '',
+    activeComponentParent: '',
+    activeComponentStatus: 'view',
   },
   inputs: {
     selectedInputPage: 0,

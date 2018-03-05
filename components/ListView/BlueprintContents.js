@@ -27,7 +27,7 @@ class BlueprintContents extends React.Component {
     return (
       <div>
         <Tabs
-          key={components.length + dependencies.length}
+          key={components.length}
           ref={c => {
             this.pfTabs = c;
           }}

@@ -9,56 +9,50 @@ class BlueprintApi {
     this.blueprint = undefined;
   }
 
-  // Get the blueprint details, and its dependencies
+  // Get the blueprint details, and its components
   // Object layout is:
-  // {blueprints: [{blueprint: BLUEPRINT, modules: NEVRA, dependencies: NEVRA}, ...]}
+  // {blueprints: [{blueprint: BLUEPRINT, modules: NEVRA, components: NEVRA}, ...]}
   // Where BLUEPRINT is a blueprint object
   // NEVRA is a list of name, epoch, version, release, arch objects.
   // "modules" are the specific versions for the blueprint's modules and packages
-  // "dependencies" are all the things that are required to satisfy the blueprint
+  // "components" are all the things that are required to satisfy the blueprint
   getBlueprint(blueprintName) {
     const p = new Promise((resolve, reject) => {
       utils.apiFetch(constants.get_blueprints_deps + blueprintName)
             .then(data => {
-              // bdcs-api v0.3.0 includes module (component) and dependency NEVRAs
-              // tagging all dependencies a "RPM" for now
-              const dependencies = data.recipes[0].dependencies ?
-                  this.makeBlueprintDependencies(data.recipes[0].dependencies, 'RPM') :
+              // bdcs-api v0.3.0 includes module (component) and component NEVRAs
+              // tagging all components a "RPM" for now
+              const components = data.recipes[0].dependencies ?
+                  this.makeBlueprintComponents(data.recipes[0].dependencies, 'RPM') :
                   [];
               // Tag objects as Module if modules and RPM if packages, for now
-              const components = this.makeBlueprintComponents(data.recipes[0]);
+              const selectedComponents = this.makeBlueprintSelectedComponents(data.recipes[0]);
               const blueprint = data.recipes[0].recipe;
-              if (components.length > 0) {
-                const componentNames = MetadataApi.getNames(components);
-                if (dependencies.length === 0) {
+              if (selectedComponents.length > 0) {
+                const selectedComponentNames = MetadataApi.getNames(selectedComponents);
+                if (components.length === 0) {
                     // get metadata for the components only
                   Promise.all([
-                    MetadataApi.getData(constants.get_projects_info + componentNames),
+                    MetadataApi.getData(constants.get_projects_info + selectedComponentNames),
                   ]).then((compData) => {
-                    blueprint.components = MetadataApi.updateComponentMetadata(components, compData[0]);
-                    blueprint.dependencies = [];
+                    blueprint.components = MetadataApi.updateComponentMetadata(selectedComponents, compData[0]);
                     this.blueprint = blueprint;
                     resolve(blueprint);
                   }).catch(e => console.log(`getBlueprint: Error getting component metadata: ${e}`));
                 } else {
                     // get metadata for the components
-                    // get metadata for the dependencies
-                    // get dependencies for dependencies
-                  const dependencyNames = MetadataApi.getNames(dependencies);
+                  const componentNames = MetadataApi.getNames(components);
                   Promise.all([
                     MetadataApi.getData(constants.get_projects_info + componentNames),
-                    MetadataApi.getData(constants.get_projects_info + dependencyNames),
                   ]).then((compData) => {
                     blueprint.components = MetadataApi.updateComponentMetadata(components, compData[0]);
-                    blueprint.dependencies = MetadataApi.updateComponentMetadata(dependencies, compData[1]);
                     this.blueprint = blueprint;
                     resolve(blueprint);
-                  }).catch(e => console.log(`getBlueprint: Error getting component and dependency metadata: ${e}`));
+                  }).catch(e => console.log(`getBlueprint: Error getting component and component metadata: ${e}`));
                 }
               } else {
                   // there are no components, just a blueprint name and description
                 blueprint.components = [];
-                blueprint.dependencies = [];
                 this.blueprint = blueprint;
                 resolve(blueprint);
               }
@@ -76,38 +70,23 @@ class BlueprintApi {
       const blueprint = blueprintRaw;
       const componentNames = blueprintRaw.packages.map(item => item.name);
       if (componentNames.length > 0) {
-        utils.apiFetch(constants.get_projects_info + componentNames)
-          .then(compData => {
-            // bdcs-api v0.3.0 includes module (component) and dependency NEVRAs
-            // tagging all dependencies a "RPM" for now
-            let components = compData.projects;
-            components = this.setType(components, blueprintRaw.modules, 'Module');
-            components = this.setType(components, compData.projects, 'RPM');
-            components.map(component => {
-              component.inBlueprint = true; // eslint-disable-line no-param-reassign
-              component.user_selected = true; // eslint-disable-line no-param-reassign
-              component.version = component.builds[0].source.version; // eslint-disable-line no-param-reassign
-              component.release = component.builds[0].release; // eslint-disable-line no-param-reassign
-            });
-            utils.apiFetch(constants.get_projects_deps + componentNames)
-              .then(depData => {
-                let dependencies = depData.projects;
-                dependencies = this.setType(dependencies, depData.projects, 'RPM');
-                blueprint.components = components
-                blueprint.dependencies = dependencies;
-                this.blueprint = blueprint;
-                resolve(blueprint);
-              }).catch(e => console.log(`getBlueprint: Error getting component and dependency metadata: ${e}`));
+        utils.apiFetch(constants.get_projects_deps + componentNames)
+          .then(depData => {
+            // bdcs-api v0.3.0 includes module (component) and component NEVRAs
+            // tagging all components a "RPM" for now
+            let components = depData.projects;
+            components = this.setType(components, depData.projects, 'RPM');
+            blueprint.components = components;
+            this.blueprint = blueprint;
+            resolve(blueprint);
           })
           .catch(e => {
-            console.log('catch');
-            console.log(`Error fetching blueprint: ${e}`);
+            console.log(`getBlueprint: Error getting component and component metadata: ${e}`);
             reject();
           });
       } else {
         // there are no components, just a blueprint name and description
         blueprint.components = [];
-        blueprint.dependencies = [];
         this.blueprint = blueprint;
         resolve(blueprint);
       }
@@ -116,7 +95,7 @@ class BlueprintApi {
   }
 
   // set additional metadata for each of the components
-  makeBlueprintComponents(data) {
+  makeBlueprintSelectedComponents(data) {
     let components = data.modules;
     components = this.setType(components, data.recipe.modules, 'Module');
     components = this.setType(components, data.recipe.packages, 'RPM');
@@ -138,8 +117,8 @@ class BlueprintApi {
     return components;
   }
 
-  // set additional metadata for each of the dependencies
-  makeBlueprintDependencies(components, uiType) {
+  // set additional metadata for each of the components
+  makeBlueprintComponents(components, uiType) {
     return components.map(i => {
       i.inBlueprint = true; // eslint-disable-line no-param-reassign
       i.ui_type = uiType; // eslint-disable-line no-param-reassign
@@ -190,6 +169,7 @@ class BlueprintApi {
       window.location.hash = history.createHref(`/edit/${blueprint.name}`);
     }).catch((e) => { console.log(`Error creating blueprint: ${e}`); });
   }
+
   handleCommitBlueprint() {
     // create blueprint and post it
     const blueprint = {
@@ -202,17 +182,17 @@ class BlueprintApi {
     const p = new Promise((resolve, reject) => {
       this.postBlueprint(blueprint)
       .then(() => {
-        NotificationsApi.closeNotification(undefined, 'saving');
+        NotificationsApi.closeNotification(undefined, 'committing');
         NotificationsApi.displayNotification(this.blueprint.name, 'committed');
         resolve();
       }).catch(e => {
-        console.log(`Error saving blueprint: ${e}`);
+        console.log(`Error committing blueprint: ${e}`);
         NotificationsApi.displayNotification(this.blueprint.name, 'commitFailed');
         reject();
       });
     });
     return p;
-  }
+}
 
   handleEditDescription(description) {
     // update cached blueprint data
@@ -248,7 +228,7 @@ class BlueprintApi {
   }
 
   reloadBlueprintDetails() {
-    // retrieve blueprint details that were updated during commit (i.e. version)
+    // retrieve blueprint details that were updated during save (i.e. version)
     // and reload details in UI
     const p = new Promise((resolve, reject) => {
       utils.apiFetch(constants.get_blueprints_deps + this.blueprint.name.replace(/\s/g, '-'))
@@ -266,12 +246,11 @@ class BlueprintApi {
   }
 
   deleteBlueprint(blueprints) {
-    // /api/v0/recipes/delete/<blueprint>
+    // /api/v0/blueprints/delete/<blueprint>
     return utils.apiFetch(constants.delete_blueprint + blueprints, {
       method: 'DELETE',
     }, true);
   }
-
 }
 
 export default new BlueprintApi();

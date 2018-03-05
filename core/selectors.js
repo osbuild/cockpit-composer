@@ -30,32 +30,39 @@ export const makeGetBlueprintById = () => createSelector(
   (blueprint) => blueprint
 );
 
-const getSortedComponents = (state, blueprint) => {
-  // TODO; sort
-  const sortedComponents = blueprint.components;
-  if (sortedComponents === undefined) {
+const getSortedSelectedComponents = (state, blueprint) => {
+  const selectedComponentNames = blueprint.packages.map(item => item.name);
+
+  const components = blueprint.components;
+  if (components === undefined) {
     return [];
   }
+
+  const sortedSelectedComponents = components.filter(component => selectedComponentNames.includes(component.name));
   const key = state.sort.components.key;
   const value = state.sort.components.value;
-  sortedComponents.sort((a, b) => {
+  sortedSelectedComponents.sort((a, b) => {
     if (a[key] > b[key]) return value === 'DESC' ? 1 : -1;
     if (b[key] > a[key]) return value === 'DESC' ? -1 : 1;
     return 0;
   });
-  return sortedComponents;
+  return sortedSelectedComponents;
 };
 
-export const makeGetSortedComponents = () => createSelector(
-  [getSortedComponents],
-  (components) => components
+export const makeGetSortedSelectedComponents = () => createSelector(
+  [getSortedSelectedComponents],
+  (selectedComponents) => selectedComponents
 );
 
 const getSortedDependencies = (state, blueprint) => {
-  const sortedDependencies = blueprint.dependencies;
-  if (sortedDependencies === undefined) {
+  const selectedComponentNames = blueprint.packages.map(item => item.name);
+  const dependencies = blueprint.components;
+  if (dependencies === undefined) {
     return [];
   }
+
+  const sortedDependencies = dependencies.filter(dependency => !selectedComponentNames.includes(dependency.name));
+
   const key = state.sort.dependencies.key;
   const value = state.sort.dependencies.value;
   sortedDependencies.sort((a, b) => {
