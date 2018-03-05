@@ -129,3 +129,5 @@ ci_after_success:
 
 	cat ./coverage/lcov.info | ./node_modules/codecov/bin/codecov
 	./node_modules/nyc/bin/nyc.js report --reporter=lcov && ./node_modules/codecov/bin/codecov
+
+.PHONY: metadata.db ci ci_after_success
