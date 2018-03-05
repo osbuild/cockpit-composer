@@ -7,21 +7,17 @@ const ComponentTypeIcons = props => {
   let indicator = '';
   const context = props.compDetails ? 'pf-icon-small' : 'list-pf-icon list-pf-icon-small';
   switch (props.componentType) {
-    case 'Module Stack':
-      type = 'Type&nbsp;<strong>Module Stack</strong>';
-      icon = 'fa fa-cubes';
-      break;
     case 'Module':
       type = 'Type&nbsp;<strong>Module</strong>';
-      icon = 'fa fa-cube';
+      icon = 'pficon pficon-bundle';
       break;
     case 'RPM':
       type = 'Type&nbsp;<strong>RPM</strong>';
-      icon = 'fa fa-sticky-note-o';
+      icon = 'pficon pficon-bundle';
       break;
     default:
       type = 'Type&nbsp;<strong>RPM</strong>';
-      icon = 'fa fa-sticky-note-o';
+      icon = 'pficon pficon-bundle';
   }
   if (props.componentInBlueprint === true) {
     indicator = 'list-pf-icon-bordered';
