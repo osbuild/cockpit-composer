@@ -1,6 +1,8 @@
-# A Fedora 25 End-To-End Automation Test Container
 FROM welder/web-nodejs:latest
-MAINTAINER Xiaofeng Wang <xiaofwan@redhat.com>
+LABEL maintainer="Xiaofeng Wang" \
+      email="xiaofwan@redhat.com" \
+      baseimage="Fedora:latest" \
+      description="A welder-web end to end test runner container running on Fedora"
 
 # Install xvfb to simulate framebuffer for nightmare.js
 # Install electorn dependency

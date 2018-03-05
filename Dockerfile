@@ -1,6 +1,8 @@
-# A Fedora 25 BDCS API Container
 FROM welder/web-nodejs:latest
-MAINTAINER Brian C. Lane <bcl@redhat.com>
+LABEL maintainer="Brian C. Lane" \
+      email="bcl@redhat.com" \
+      baseimage="Fedora:latest" \
+      description="A welder-web container running on Fedora"
 RUN dnf install -y nginx
 
 CMD nginx -g "daemon off;"
