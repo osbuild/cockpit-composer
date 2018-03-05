@@ -1,5 +1,8 @@
 FROM fedora:latest
-MAINTAINER Xiaofeng Wang <xiaofwan@redhat.com>
+LABEL maintainer="Xiaofeng Wang" \
+      email="xiaofwan@redhat.com" \
+      baseimage="Fedora:latest" \
+      description="A welder-web on cockpit container running on Fedora"
 
 RUN dnf install -y cockpit-ws cockpit-kubernetes && dnf clean all
 RUN echo $'[Negotiate]\nCommand = /usr/libexec/cockpit-stub\n[WebService]\nShell = /shell/simple.html' > /etc/cockpit/cockpit.conf

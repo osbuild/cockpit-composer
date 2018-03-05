@@ -1,6 +1,8 @@
-# A base image with Node.js environment
 FROM welder/fedora:latest
-MAINTAINER Alexander Todorov <atodorov@redhat.com>
+LABEL maintainer="Alexander Todorov" \
+      email="atodorov@redhat.com" \
+      baseimage="Fedora:latest" \
+      description="A Node.js environment container running on Fedora"
 
 RUN echo 'PATH=/usr/local/bin/:$PATH' >> /etc/bashrc
 
