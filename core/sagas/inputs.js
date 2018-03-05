@@ -4,40 +4,49 @@ import { FETCHING_INPUTS, fetchingInputsSucceeded } from '../actions/inputs';
 import {
   FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED,
 } from '../actions/blueprints';
-import { makeGetSortedSelectedComponents } from '../selectors';
+import { makeGetSortedSelectedComponents, makeGetSortedDependencies } from '../selectors';
 
-function updateInputComponentData(inputs, componentData) {
-  let updatedInputs = inputs;
-  if (componentData !== undefined && componentData.length > 0) {
-    const parsedInputs = componentData.map(component => {
-      const index = inputs[0].map(input => input.name).indexOf(component.name);
-      if (index >= 0) {
-        inputs[0][index].inBlueprint = true; // eslint-disable-line no-param-reassign
-        inputs[0][index].user_selected = true; // eslint-disable-line no-param-reassign
-        inputs[0][index].version_selected = component.version; // eslint-disable-line no-param-reassign
-        inputs[0][index].release_selected = component.release; // eslint-disable-line no-param-reassign
-      }
-      return inputs;
+function updateInputComponentData(inputs, selectedComponents, dependencies) {
+  if (selectedComponents !== undefined && selectedComponents.length > 0) {
+    inputs[0].forEach(input => {
+      selectedComponents.map(component => {
+        if (component.name === input.name) {
+          input.inBlueprint = true; // eslint-disable-line no-param-reassign
+          input.user_selected = true; // eslint-disable-line no-param-reassign
+          input.version_selected = component.version; // eslint-disable-line no-param-reassign
+          input.release_selected = component.release; // eslint-disable-line no-param-reassign
+        }
+      });
+      dependencies.map(dependency => {
+        if (dependency.name === input.name) {
+          input.inBlueprint = true; // eslint-disable-line no-param-reassign
+          input.user_selected = false; // eslint-disable-line no-param-reassign
+          input.version_selected = dependency.version; // eslint-disable-line no-param-reassign
+          input.release_selected = dependency.release; // eslint-disable-line no-param-reassign
+        }
+      });
     });
-    updatedInputs = parsedInputs[0];
   }
-  return updatedInputs;
+  return inputs;
 }
 
 function* fetchInputs(action) {
   try {
     const { filter, selectedInputPage, pageSize, componentData } = action.payload;
 
-    let components = componentData;
-    if (componentData === undefined) {
+    let selectedComponents = componentData;
+    let dependencies = [];
+    if (selectedComponents === undefined) {
       const blueprintResponse = yield take(FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED);
       const { blueprintPresent } = blueprintResponse.payload;
       const getSortedSelectedComponents = makeGetSortedSelectedComponents();
-      components = yield select(getSortedSelectedComponents, blueprintPresent);
+      selectedComponents = yield select(getSortedSelectedComponents, blueprintPresent);
+      const getSortedDependencies = makeGetSortedDependencies();
+      dependencies = yield select(getSortedDependencies, blueprintPresent);
     }
 
     const response = yield call(fetchBlueprintInputsApi, `/*${filter.value}*`, selectedInputPage, pageSize);
-    const updatedResponse = yield call(updateInputComponentData, response, components);
+    const updatedResponse = yield call(updateInputComponentData, response, selectedComponents, dependencies);
     yield put(fetchingInputsSucceeded(filter, selectedInputPage, pageSize, updatedResponse));
   } catch (error) {
     console.log('Error in fetchInputsSaga');

@@ -9,7 +9,6 @@ import {
 function* fetchModalBlueprintContents(action) {
   try {
     const { blueprintName } = action.payload;
-    console.log('in saga');
     const response = yield call(fetchBlueprintContentsApi, blueprintName);
     yield put(setModalExportBlueprintContents(response.components));
   } catch (error) {
