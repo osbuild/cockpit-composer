@@ -7,7 +7,8 @@ set -e
 # create the MDDB database if it doesn't exist
 # ARG1 - OPTIONAL - a content store directory for exports
 
-IMPORT="./bdcs-import"
+# needs bdcs.rpm installed
+IMPORT="/usr/libexec/weldr/bdcs-import"
 SCHEMA="./schema.sql"
 METADATA="metadata.db"
 DNF="/usr/bin/dnf"
@@ -22,7 +23,6 @@ else
     REMOVE_IMPORT_REPO=0
 fi
 
-[ -f "$IMPORT" ] || curl -o "$IMPORT" https://s3.amazonaws.com/weldr/bdcs-import && chmod a+x "$IMPORT"
 [ -f "$SCHEMA" ] || curl -o "$SCHEMA" https://raw.githubusercontent.com/weldr/bdcs/master/schema.sql
 sqlite3 "$METADATA" < "$SCHEMA"
 
@@ -40,5 +40,5 @@ for F in $DNF_DOWNLOAD/*.rpm; do
 done
 
 # cleanup temporary directories and files
-sudo rm -rf $DNF_ROOT $DNF_DOWNLOAD $IMPORT $SCHEMA
+sudo rm -rf $DNF_ROOT $DNF_DOWNLOAD $SCHEMA
 [ "$REMOVE_IMPORT_REPO" == 1 ] && rm -rf $IMPORT_REPO
