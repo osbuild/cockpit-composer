@@ -92,8 +92,6 @@ class ComponentDetailsView extends React.Component {
   }
 
   initializeBootstrapElements() {
-    // Initialize Boostrap-select
-    $('.selectpicker').selectpicker();
     // Initialize Boostrap-tooltip
     $('[data-toggle="tooltip"]').tooltip();
   }
@@ -277,7 +275,12 @@ class ComponentDetailsView extends React.Component {
             </form>
           </div>}
         <div>
-          <Tabs key="pf-tabs" ref="pfTabs" classnames="nav nav-tabs nav-tabs-pf" tabChanged={e => this.handleTabChanged(e)}>
+          <Tabs
+            key={this.state.dependencies.length}
+            ref="pfTabs" 
+            classnames="nav nav-tabs nav-tabs-pf"
+            tabChanged={e => this.handleTabChanged(e)}
+          >
             <Tab tabTitle="Details" active={this.state.activeTab === 'Details'}>
               <h4 className="cmpsr-title">{this.state.componentData.summary}</h4>
               <p>{this.state.componentData.description}</p>
