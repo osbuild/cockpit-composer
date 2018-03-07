@@ -52,6 +52,27 @@ module.exports = class EditBlueprintPage extends MainPage {
     // component count inside the pagination control
     this.totalComponentCount = `${this.blueprintInputRootElement} .cmpsr-blueprint__inputs__pagination span`;
 
+    // filter input
+    this.inputFilter = `${this.blueprintInputRootElement} .toolbar-pf .toolbar-pf-actions .toolbar-pf-filter .input-group
+      input[id="cmpsr-blueprint-input-filter"]`;
+
+    // filter type
+    this.labelFilterType = `${this.blueprintInputRootElement} .toolbar-pf .toolbar-pf-actions .toolbar-pf-filter
+      label[for="cmpsr-blueprint-input-filter"]`;
+
+    // filter content label
+    this.labelFilterContent = `${this.blueprintInputRootElement} .toolbar-pf .toolbar-pf-results ul li span`;
+
+    // clear filter button
+    this.btnClearFilter = `${this.labelFilterContent} a span[class="pficon pficon-close"]`;
+
+    // clear all filters link
+    this.linkClearAllFilters = `${this.blueprintInputRootElement} .toolbar-pf .toolbar-pf-results .list-inline li a`;
+
+    // filter result
+    this.filterResult = `${this.componentListItemRootElement} .list-pf-container .list-pf-content .list-pf-content-wrapper
+      .list-pf-main-content .list-pf-title`;
+
     // More Action dropdown menu list
     this.moreActionList = {
       Export: 'Export',
