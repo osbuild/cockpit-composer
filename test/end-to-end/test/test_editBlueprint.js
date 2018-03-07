@@ -390,5 +390,139 @@ describe('Edit Blueprint Page', () => {
           });
       }, timeout);
     });
+    describe('Component Filter', () => {
+      const testSpec11 = test('should have correct filter content label',
+      (done) => {
+        const filterContent = 'http';
+        // Highlight the expected result
+        let expected = '';
+
+        nightmare
+          .wait(editBlueprintPage.componentListItemRootElement)
+          .wait(editBlueprintPage.inputFilter)
+          .insert(editBlueprintPage.inputFilter, filterContent)
+          .type(editBlueprintPage.inputFilter, '\u000d')
+          .wait(editBlueprintPage.linkClearAllFilters)
+          .evaluate(page => document.querySelector(page.labelFilterType).innerText
+            , editBlueprintPage)
+          .then((element) => { expected = `${element}: ${filterContent}`; })
+          .then(() => nightmare
+            .wait(editBlueprintPage.labelFilterContent)
+            .evaluate(page => document.querySelector(page.labelFilterContent).innerText
+              , editBlueprintPage))
+          .then((element) => {
+            expect(element).toBe(expected);
+
+            coverage(nightmare, done);
+          })
+          .catch((error) => {
+            helper.gotoError(error, nightmare, testSpec11);
+          });
+      }, timeout);
+      const testSpec12 = test('should show correct filtered components name and number',
+      (done) => {
+        const filterContent = 'http';
+        const packNames = pageConfig.blueprint.simple.packages[0].name;
+
+        function callback(packs) {
+          const depLists = packs.map(
+            pack => pack.dependencies.map(module => module.name)
+                                     .filter(elem => elem.includes(filterContent)));
+          const depList = depLists.reduce((acc, val) => [...acc, ...val]);
+
+          // Highlight the expected result
+          const expectedNumber = depList.length <= 50 ?
+            `1 - ${depList.length} of ${depList.length}` : `1 - 50 of ${depList.length}`;
+          const expectedContent = depList.sort();
+
+          nightmare
+            .wait(editBlueprintPage.componentListItemRootElement)
+            .wait(editBlueprintPage.inputFilter)
+            .insert(editBlueprintPage.inputFilter, filterContent)
+            .type(editBlueprintPage.inputFilter, '\u000d')
+            .wait(editBlueprintPage.linkClearAllFilters)
+            .evaluate(page => document.querySelector(page.totalComponentCount).innerText
+              , editBlueprintPage)
+            .then((element) => {
+              expect(element).toBe(expectedNumber);
+            })
+            .then(() => nightmare
+              .evaluate(page => Array.prototype.slice
+                                .call(document.querySelectorAll(page.filterResult))
+                                .map(x => x.innerText).sort()
+                , editBlueprintPage))
+            .then((element) => {
+              expect(element).not.toBeFalsy();
+              expect(element).toMatchObject(expectedContent);
+
+              coverage(nightmare, done);
+            })
+            .catch((error) => {
+              helper.gotoError(error, nightmare, testSpec12);
+            });
+        }
+
+        apiCall.moduleInfo(packNames, callback, done);
+      }, timeout);
+      const testSpec13 = test('should clear filter result by clicking X button on filter label',
+      (done) => {
+        const filterContent = 'http';
+        // Highlight the expected result
+        let expected = '';
+
+        nightmare
+          .wait(editBlueprintPage.componentListItemRootElement)
+          .evaluate(page => document.querySelector(page.totalComponentCount).innerText
+            , editBlueprintPage)
+          .then((element) => { expected = element; })
+          .then(() => nightmare
+            .wait(editBlueprintPage.inputFilter)
+            .insert(editBlueprintPage.inputFilter, filterContent)
+            .type(editBlueprintPage.inputFilter, '\u000d')
+            .wait(editBlueprintPage.linkClearAllFilters)
+            .wait(editBlueprintPage.btnClearFilter)
+            .click(editBlueprintPage.btnClearFilter)
+            .wait(editBlueprintPage.componentListItemRootElement)
+            .evaluate(page => document.querySelector(page.totalComponentCount).innerText
+              , editBlueprintPage))
+          .then((element) => {
+            expect(element).toBe(expected);
+
+            coverage(nightmare, done);
+          })
+          .catch((error) => {
+            helper.gotoError(error, nightmare, testSpec13);
+          });
+      }, timeout);
+      const testSpec14 = test('should clear filter result by clicking Clear All Filters link',
+      (done) => {
+        const filterContent = 'http';
+        // Highlight the expected result
+        let expected = '';
+
+        nightmare
+          .wait(editBlueprintPage.componentListItemRootElement)
+          .evaluate(page => document.querySelector(page.totalComponentCount).innerText
+            , editBlueprintPage)
+          .then((element) => { expected = element; })
+          .then(() => nightmare
+            .wait(editBlueprintPage.inputFilter)
+            .insert(editBlueprintPage.inputFilter, filterContent)
+            .type(editBlueprintPage.inputFilter, '\u000d')
+            .wait(editBlueprintPage.linkClearAllFilters)
+            .click(editBlueprintPage.linkClearAllFilters)
+            .wait(editBlueprintPage.componentListItemRootElement)
+            .evaluate(page => document.querySelector(page.totalComponentCount).innerText
+              , editBlueprintPage))
+          .then((element) => {
+            expect(element).toBe(expected);
+
+            coverage(nightmare, done);
+          })
+          .catch((error) => {
+            helper.gotoError(error, nightmare, testSpec14);
+          });
+      }, timeout);
+    });
   });
 });
