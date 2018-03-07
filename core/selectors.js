@@ -39,6 +39,10 @@ const getSortedSelectedComponents = (state, blueprint) => {
   }
 
   const sortedSelectedComponents = components.filter(component => selectedComponentNames.includes(component.name));
+  sortedSelectedComponents.map(component => {
+    component.inBlueprint = true; // eslint-disable-line no-param-reassign
+    component.user_selected = true;
+  });
   const key = state.sort.components.key;
   const value = state.sort.components.value;
   sortedSelectedComponents.sort((a, b) => {
@@ -62,7 +66,9 @@ const getSortedDependencies = (state, blueprint) => {
   }
 
   const sortedDependencies = dependencies.filter(dependency => !selectedComponentNames.includes(dependency.name));
-
+  sortedDependencies.map(dependency => {
+    dependency.inBlueprint = true; // eslint-disable-line no-param-reassign
+  });
   const key = state.sort.dependencies.key;
   const value = state.sort.dependencies.value;
   sortedDependencies.sort((a, b) => {
