@@ -45,4 +45,9 @@ module.exports = class BlueprintsPage extends MainPage {
   static menuActionExport(name) {
     return `a[href="#/edit/${name}"] ~ div ul > li:nth-child(1) > a`;
   }
+
+  // Delete action in dropdown menu
+  static menuActionDelete(name) {
+    return `a[href="#/edit/${name}"] ~ div ul > li:nth-child(2) > a`;
+  }
 };
