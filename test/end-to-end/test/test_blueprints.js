@@ -1,10 +1,12 @@
 const Nightmare = require('nightmare');
 require('nightmare-iframe-manager')(Nightmare);
+const faker = require('faker');
 const BlueprintsPage = require('../pages/blueprints');
 const CreateBlueprintPage = require('../pages/createBlueprint');
 const CreateImagePage = require('../pages/createImage');
 const ToastNotifPage = require('../pages/toastNotif');
 const ExportBlueprintPage = require('../pages/exportBlueprint');
+const DeleteBlueprintPage = require('../pages/deleteBlueprint');
 const apiCall = require('../utils/apiCall');
 const helper = require('../utils/helper');
 const pageConfig = require('../config');
@@ -392,6 +394,171 @@ describe('Blueprints Page', () => {
             })
             .catch((error) => {
               helper.gotoError(error, nightmare, testSpec11);
+            });
+        }, timeout);
+      });
+      describe('Delete Blueprint Test', () => {
+        const randomBlueprint = pageConfig.blueprint.random;
+        const blueprintName = faker.lorem.words();
+        const blueprintDescription = faker.lorem.sentence();
+        randomBlueprint.name = blueprintName;
+        randomBlueprint.description = blueprintDescription;
+        // Create a new blueprint before each one of the tests starting
+        beforeEach((done) => {
+          apiCall.newBlueprint(randomBlueprint, done);
+        });
+
+        // Delete added blueprint after each one of the tests finished
+        afterEach((done) => {
+          apiCall.deleteBlueprint(blueprintName, done);
+        });
+
+        const deleteBlueprintPage = new DeleteBlueprintPage();
+
+        // More action button
+        const btnMoreAction = BlueprintsPage.btnMore(blueprintName);
+        const menuActionDelete = BlueprintsPage.menuActionDelete(blueprintName);
+
+        const testSpec12 = test('should show Delete button under dropdown-menu',
+        (done) => {
+          // Highlight the expected result
+          const expected = blueprintsPage.moreActionList.Delete;
+
+          nightmare
+            .wait(btnMoreAction)
+            .click(btnMoreAction)
+            .wait(menuActionDelete)
+            .evaluate(element => document.querySelector(element).innerText
+              , menuActionDelete)
+            .then((element) => {
+              expect(element).toBe(expected);
+
+              coverage(nightmare, done);
+            })
+            .catch((error) => {
+              helper.gotoError(error, nightmare, testSpec12);
+            });
+        }, timeout);
+        const testSpec13 = test('should show Delete Blueprint page',
+        (done) => {
+          // Highlight the expected result
+          const expected = deleteBlueprintPage.title;
+
+          nightmare
+            .wait(btnMoreAction)
+            .click(btnMoreAction)
+            .wait(menuActionDelete)
+            .click(menuActionDelete)
+            .wait(deleteBlueprintPage.labelPageTitle)
+            .evaluate(page => document.querySelector(page.labelPageTitle).innerText
+              , deleteBlueprintPage)
+            .then((element) => {
+              expect(element).toBe(expected);
+
+              coverage(nightmare, done);
+            })
+            .catch((error) => {
+              helper.gotoError(error, nightmare, testSpec13);
+            });
+        }, timeout);
+        const testSpec14 = test('should show correct deleting blueprint name',
+        (done) => {
+          // Highlight the expected result
+          const expected = blueprintName;
+
+          nightmare
+            .wait(btnMoreAction)
+            .click(btnMoreAction)
+            .wait(menuActionDelete)
+            .click(menuActionDelete)
+            .wait(deleteBlueprintPage.labelBlueprintName)
+            .evaluate(page => document.querySelector(page.labelBlueprintName).innerText
+              , deleteBlueprintPage)
+            .then((element) => {
+              expect(element).toBe(expected);
+
+              coverage(nightmare, done);
+            })
+            .catch((error) => {
+              helper.gotoError(error, nightmare, testSpec14);
+            });
+        }, timeout);
+        const testSpec15 = test('should delete blueprint by clicking Delete button',
+        (done) => {
+          // Highlight the expected result
+          const expected = false;
+
+          const blueprintNameSelector = BlueprintsPage.blueprintNameSelector(blueprintName);
+
+          nightmare
+            .wait(btnMoreAction)
+            .click(btnMoreAction)
+            .wait(menuActionDelete)
+            .click(menuActionDelete)
+            .wait(deleteBlueprintPage.btnDelete)
+            .click(deleteBlueprintPage.btnDelete)
+            .wait(selector => document.querySelector(selector) === null
+              , blueprintNameSelector)
+            .exists(blueprintNameSelector)
+            .then((element) => {
+              expect(element).toBe(expected);
+
+              coverage(nightmare, done);
+            })
+            .catch((error) => {
+              helper.gotoError(error, nightmare, testSpec15);
+            });
+        }, timeout);
+        const testSpec16 = test('should close Delete Blueprint page and no blueprint deleted by clicking Cancel button',
+        (done) => {
+          // Highlight the expected result
+          const expected = true;
+
+          const blueprintNameSelector = BlueprintsPage.blueprintNameSelector(blueprintName);
+
+          nightmare
+            .wait(btnMoreAction)
+            .click(btnMoreAction)
+            .wait(menuActionDelete)
+            .click(menuActionDelete)
+            .wait(deleteBlueprintPage.btnCancel)
+            .click(deleteBlueprintPage.btnCancel)
+            .wait((selector, bpName) => document.querySelector(selector).innerText === bpName
+              , blueprintNameSelector, blueprintName)
+            .exists(blueprintNameSelector)
+            .then((element) => {
+              expect(element).toBe(expected);
+
+              coverage(nightmare, done);
+            })
+            .catch((error) => {
+              helper.gotoError(error, nightmare, testSpec16);
+            });
+        }, timeout);
+        const testSpec17 = test('should close Delete Blueprint page and no blueprint deleted by clicking X button',
+        (done) => {
+          // Highlight the expected result
+          const expected = true;
+
+          const blueprintNameSelector = BlueprintsPage.blueprintNameSelector(blueprintName);
+
+          nightmare
+            .wait(btnMoreAction)
+            .click(btnMoreAction)
+            .wait(menuActionDelete)
+            .click(menuActionDelete)
+            .wait(deleteBlueprintPage.btnXClose)
+            .click(deleteBlueprintPage.btnXClose)
+            .wait((selector, bpName) => document.querySelector(selector).innerText === bpName
+              , blueprintNameSelector, blueprintName)
+            .exists(blueprintNameSelector)
+            .then((element) => {
+              expect(element).toBe(expected);
+
+              coverage(nightmare, done);
+            })
+            .catch((error) => {
+              helper.gotoError(error, nightmare, testSpec17);
             });
         }, timeout);
       });
