@@ -12,17 +12,17 @@ function updateInputComponentData(inputs, selectedComponents, dependencies) {
       selectedComponents.map(component => {
         if (component.name === input.name) {
           input.inBlueprint = true; // eslint-disable-line no-param-reassign
-          input.user_selected = true; // eslint-disable-line no-param-reassign
-          input.version_selected = component.version; // eslint-disable-line no-param-reassign
-          input.release_selected = component.release; // eslint-disable-line no-param-reassign
+          input.userSelected = true; // eslint-disable-line no-param-reassign
+          input.versionSelected = component.version; // eslint-disable-line no-param-reassign
+          input.releaseSelected = component.release; // eslint-disable-line no-param-reassign
         }
       });
       dependencies.map(dependency => {
         if (dependency.name === input.name) {
           input.inBlueprint = true; // eslint-disable-line no-param-reassign
-          input.user_selected = false; // eslint-disable-line no-param-reassign
-          input.version_selected = dependency.version; // eslint-disable-line no-param-reassign
-          input.release_selected = dependency.release; // eslint-disable-line no-param-reassign
+          input.userSelected = false; // eslint-disable-line no-param-reassign
+          input.versionSelected = dependency.version; // eslint-disable-line no-param-reassign
+          input.releaseSelected = dependency.release; // eslint-disable-line no-param-reassign
         }
       });
     });

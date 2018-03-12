@@ -101,7 +101,7 @@ class BlueprintApi {
     components = this.setType(components, data.recipe.packages, 'RPM');
     components.map(i => {
       i.inBlueprint = true; // eslint-disable-line no-param-reassign
-      i.user_selected = true; // eslint-disable-line no-param-reassign
+      i.userSelected = true; // eslint-disable-line no-param-reassign
       return i;
     });
     return components;

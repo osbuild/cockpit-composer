@@ -101,9 +101,9 @@ class EditBlueprintPage extends React.Component {
         const index = inputs[page].map(input => input.name).indexOf(component.name);
         if (index >= 0) {
           inputs[page][index].inBlueprint = true; // eslint-disable-line no-param-reassign
-          inputs[page][index].user_selected = true; // eslint-disable-line no-param-reassign
-          inputs[page][index].version_selected = component.version; // eslint-disable-line no-param-reassign
-          inputs[page][index].release_selected = component.release; // eslint-disable-line no-param-reassign
+          inputs[page][index].userSelected = true; // eslint-disable-line no-param-reassign
+          inputs[page][index].versionSelected = component.version; // eslint-disable-line no-param-reassign
+          inputs[page][index].releaseSelected = component.release; // eslint-disable-line no-param-reassign
         }
         return inputs;
       });
@@ -185,7 +185,7 @@ class EditBlueprintPage extends React.Component {
     // the user clicked Add in the sidebar, e.g. source === "input"
     // or the user clicked Add in the details view
     component.inBlueprint = true; // eslint-disable-line no-param-reassign
-    component.user_selected = true; // eslint-disable-line no-param-reassign
+    component.userSelected = true; // eslint-disable-line no-param-reassign
     if (component !== undefined) {
       if (source === 'input') {
         $(event.currentTarget).tooltip('hide');
@@ -263,9 +263,9 @@ class EditBlueprintPage extends React.Component {
     // of inputs, then update metadata for the input component
     if (index >= 0) {
       inputs[page][index].inBlueprint = false; // eslint-disable-line no-param-reassign
-      inputs[page][index].user_selected = false; // eslint-disable-line no-param-reassign
-      delete inputs[page][index].version_selected; // eslint-disable-line no-param-reassign
-      delete inputs[page][index].release_selected; // eslint-disable-line no-param-reassign
+      inputs[page][index].userSelected = false; // eslint-disable-line no-param-reassign
+      delete inputs[page][index].versionSelected; // eslint-disable-line no-param-reassign
+      delete inputs[page][index].releaseSelected; // eslint-disable-line no-param-reassign
     }
 
     return inputs;
@@ -295,7 +295,7 @@ class EditBlueprintPage extends React.Component {
       } else if (parent === undefined || parent === '') {
         // if parent is not defined (i.e. I clicked a component in the input list
         // or component list, or I clicked the first component in the breadcrumb)
-        if (component.user_selected === true) {
+        if (component.userSelected === true) {
           // and component is selected by the user to be in the blueprint,
           // then set state to selected
           this.props.setSelectedInputStatus('selected');

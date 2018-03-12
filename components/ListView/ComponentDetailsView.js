@@ -54,13 +54,14 @@ class ComponentDetailsView extends React.Component {
     // then use the version and release that's selected for the blueprint component
     const activeComponent = Object.assign({}, component);
     if (activeComponent.active === true && activeComponent.inBlueprint === true) {
-      activeComponent.version = component.version_selected;
-      activeComponent.release = component.release_selected;
+      activeComponent.version = component.versionSelected;
+      activeComponent.release = component.releaseSelected;
     }
     Promise.all([MetadataApi.getMetadataComponent(activeComponent, build)])
       .then(data => {
         this.setState({ componentData: data[0][0] });
-        this.setState({ dependencies: data[0][0].dependencies });
+        const filteredDependencies = data[0][0].dependencies.filter(dependency => dependency.name !== data[0][0].name);
+        this.setState({ dependencies: filteredDependencies });
         if (this.props.status === 'editSelected') {
           this.handleEdit();
         }
@@ -277,7 +278,7 @@ class ComponentDetailsView extends React.Component {
         <div>
           <Tabs
             key={this.state.dependencies.length}
-            ref="pfTabs" 
+            ref="pfTabs"
             classnames="nav nav-tabs nav-tabs-pf"
             tabChanged={e => this.handleTabChanged(e)}
           >

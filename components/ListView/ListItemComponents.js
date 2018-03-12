@@ -33,8 +33,8 @@ class ListItemComponents extends React.Component {
     const p = new Promise((resolve, reject) => {
       Promise.all([MetadataApi.getData(constants.get_modules_info + component.name)])
         .then(data => {
-          const dependencies = data[0].modules[0].dependencies;
-          this.setState({ dependencies });
+          const filteredDependencies = data[0].modules[0].dependencies.filter(dependency => dependency.name !== component.name);
+          this.setState({ dependencies: filteredDependencies });
           resolve();
         })
         .catch(e => {

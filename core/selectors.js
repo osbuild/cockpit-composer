@@ -41,7 +41,7 @@ const getSortedSelectedComponents = (state, blueprint) => {
   const sortedSelectedComponents = components.filter(component => selectedComponentNames.includes(component.name));
   sortedSelectedComponents.map(component => {
     component.inBlueprint = true; // eslint-disable-line no-param-reassign
-    component.user_selected = true;
+    component.userSelected = true;
   });
   const key = state.sort.components.key;
   const value = state.sort.components.value;
