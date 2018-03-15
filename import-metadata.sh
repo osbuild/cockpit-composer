@@ -9,7 +9,7 @@ set -e
 
 # needs bdcs.rpm installed
 IMPORT="/usr/libexec/weldr/bdcs-import"
-SCHEMA="./schema.sql"
+SCHEMA=`ls /usr/share/bdcs-*/schema.sql`
 METADATA="metadata.db"
 DNF="/usr/bin/dnf"
 
@@ -23,7 +23,6 @@ else
     REMOVE_IMPORT_REPO=0
 fi
 
-[ -f "$SCHEMA" ] || curl -o "$SCHEMA" https://raw.githubusercontent.com/weldr/bdcs/master/schema.sql
 sqlite3 "$METADATA" < "$SCHEMA"
 
 DNF_ROOT=`mktemp -d /tmp/dnf.root.XXXXXX`
@@ -40,5 +39,5 @@ for F in $DNF_DOWNLOAD/*.rpm; do
 done
 
 # cleanup temporary directories and files
-sudo rm -rf $DNF_ROOT $DNF_DOWNLOAD $SCHEMA
+sudo rm -rf $DNF_ROOT $DNF_DOWNLOAD
 [ "$REMOVE_IMPORT_REPO" == 1 ] && rm -rf $IMPORT_REPO
