@@ -7,7 +7,7 @@ LABEL maintainer="Alexander Todorov" \
 RUN dnf -y install python3-dnf-plugins-core && \
     dnf -y copr enable @weldr/bdcs && \
     rpm --import https://copr-be.cloud.fedoraproject.org/results/@weldr/bdcs/pubkey.gpg && \
-    dnf -y install sqlite ostree sudo gobject-introspection bdcs
+    dnf -y install --enablerepo=updates-testing sqlite ostree sudo gobject-introspection bdcs
 
 COPY ./import-metadata.sh /tmp/
 CMD ["/tmp/import-metadata.sh"]
