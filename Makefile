@@ -18,14 +18,12 @@ dist-gzip: NODE_ENV=production
 dist-gzip: all
 	mkdir -p _install/usr/share/cockpit
 	cp -r public/ _install/usr/share/cockpit/welder
-	# remove evil file name that breaks rpmbuild (https://github.com/patternfly/patternfly/issues/917)
-	find _install -name 'Logo_Horizontal_Reversed.svg alias' -delete
 	cp welder-web.spec _install/
 	tar -C _install/ -czf welder-web-$(RELEASEVER).tar.gz .
 	rm -rf _install
 
 srpm: dist-gzip
-	rpmbuild -bs \
+	/usr/bin/rpmbuild -bs \
 	  --define "_sourcedir `pwd`" \
 	  --define "_srcrpmdir `pwd`" \
 	  --define "releasever $(RELEASEVER)" \
@@ -140,4 +138,42 @@ ci_after_success:
 	cat ./coverage/lcov.info | ./node_modules/codecov/bin/codecov
 	./node_modules/nyc/bin/nyc.js report --reporter=lcov && ./node_modules/codecov/bin/codecov
 
-.PHONY: metadata.db ci ci_after_success
+# NOTE: this is executed on a RHEL 7 or CentOS 7 host which is
+# VM or bare metal. All required repositories must be configured, e.g.
+# https://copr.fedorainfracloud.org/coprs/g/weldr/lorax-composer/repo/epel-7/group_weldr-lorax-composer-epel-7.repo
+test_with_lorax_composer: rpm
+# install required RPM packages
+	sudo yum -y install lorax-composer cockpit-ws cockpit-kubernetes welder-web*.rpm
+
+# don't require Cockpit authentication when logging in
+	sudo /bin/sh -c 'echo -e "[Negotiate]\nCommand = /usr/libexec/cockpit-stub\n[WebService]\nShell = /shell/simple.html" > /etc/cockpit/cockpit.conf'
+	sudo setenforce 0
+
+# patch application to use UNIX socket with lorax-composer
+	sudo sed -i "s|welderApiPort=.*|welderApiPort='/run/weldr/api.socket';|" /usr/share/cockpit/welder/js/config.js
+	sudo systemctl restart cockpit
+
+# build e2e test images with increased timeouts
+	sed -i "s|waitforTimeout: 30000|waitforTimeout: 90000|" ./test/end-to-end/wdio.conf.js
+	sudo docker build -f Dockerfile.nodejs -t welder/web-nodejs:latest .
+	sudo docker build -f ./test/end-to-end/Dockerfile -t welder/web-e2e-tests:latest ./test/end-to-end/
+
+# execute lorax-composer in the background to serve as the API backend
+# making the socket accessible to the cockpit-ws group
+	sudo mkdir /recipes
+	sudo lorax-composer --group cockpit-ws /recipes &
+
+# wait for the backend to become ready
+	until sudo curl --unix-socket /run/weldr/api.socket http://localhost:4000/api/status | grep 'db_supported": true'; do \
+	    sleep 1; \
+	    echo "Waiting for backend API to become ready before testing ..."; \
+	done;
+
+# execute the test suite
+	sudo mkdir -p failed-image
+	sudo docker run --rm --name welder_end_to_end --network host -v /run/weldr:/run/weldr   \
+	                -v `pwd`/failed-image:/tmp/failed-image                                 \
+	                -e COCKPIT_TEST=1 welder/web-e2e-tests:latest                           \
+	                npm run test
+
+.PHONY: metadata.db ci ci_after_success test_with_lorax_composer
