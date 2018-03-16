@@ -16,6 +16,9 @@ module.exports = class EditBlueprintPage extends MainPage {
     // Title bar root element
     this.titleBarRootElement = 'div[class="cmpsr-title"]';
 
+    // Blueprint Components and Component Details
+    this.bodyMainRootElement = 'div[class="cmpsr-panel__body cmpsr-panel__body--main"]';
+
     // Blueprint inputs root element
     this.blueprintInputRootElement = '.cmpsr-panel__body--sidebar';
 
@@ -25,6 +28,9 @@ module.exports = class EditBlueprintPage extends MainPage {
     // Edit Blueprint label
     this.varEditBlueprint = 'Edit Blueprint';
     this.labelEditBlueprint = `${this.navBarRootElement} li strong`;
+
+    // Back to Bluprints link
+    this.linkBackToBlueprints = `${this.navBarRootElement} li a[href="#/blueprints"]`;
 
     // Blueprint Name link
     this.varLinkToViewRec = `${this.mailUrl}#/blueprint/${this.blueprintName}`;
@@ -79,6 +85,26 @@ module.exports = class EditBlueprintPage extends MainPage {
     };
 
     this.componentListItemRootElementSelect = `${this.componentListItemRootElement} a`;
+
+    // httpd component
+    this.httpdComponent = `${this.blueprintInputRootElement} .cmpsr-list-pf__compacted
+      div:nth-child(36) .list-pf-container .list-pf-content-wrapper`;
+
+    // httpd + button
+    this.btnHttpdComponent = `${this.blueprintInputRootElement} .cmpsr-list-pf__compacted
+    div:nth-child(36) .list-pf-container a`;
+
+    // Body Main elements
+    // Blueprint Components - 1st component
+    this.boxFirstSelectedComponent = `${this.bodyMainRootElement} .cmpsr-blueprint__components div:nth-child(1)`;
+    this.labelFirstComponentName = `${this.bodyMainRootElement} .cmpsr-blueprint__components
+      div:nth-child(1) .list-pf-content .list-pf-title a`;
+
+    // Component Details - Component name label
+    this.labelComponentName = `${this.bodyMainRootElement} .cmpsr-header h3[class="cmpsr-title"] span`;
+
+    // Component Details - Add button
+    this.btnAdd = `${this.bodyMainRootElement} .cmpsr-header .cmpsr-header__actions ul li button`;
   }
 
   get url() {
