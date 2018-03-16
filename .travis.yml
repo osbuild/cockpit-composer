@@ -43,6 +43,7 @@ env:
     - COMMAND=unit-test
     - COMMAND=end-to-end-test
     - COMMAND=cockpit-test
+    - COMMAND=cockpit-test-lorax
 script:
   - make "$COMMAND"
 after_success:
