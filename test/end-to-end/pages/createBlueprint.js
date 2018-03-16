@@ -24,8 +24,8 @@ module.exports = class CreateBlueprintPage extends MainPage {
     this.inputNameEleId = 'textInput-modal-markup';
     this.inputDescription = `${this.dialogRootElement} #textInput2-modal-markup`;
 
-    // Commit and Cancel button
-    this.btnCommit = `${this.dialogRootElement} .modal-footer .btn-primary`;
+    // Create and Cancel button
+    this.btnCreate = `${this.dialogRootElement} .modal-footer .btn-primary`;
     this.btnCancel = `${this.dialogRootElement} .modal-footer .btn-default`;
 
     // Alert label
