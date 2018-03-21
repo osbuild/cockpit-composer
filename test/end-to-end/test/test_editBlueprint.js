@@ -245,7 +245,6 @@ describe('Edit Blueprint Page', () => {
           const depList = packs.map(
             pack => pack.dependencies.map(module => `${module.name}-${module.version}-${module.release}`));
           const depCompSet = new Set(depList.reduce((acc, val) => [...acc, ...val]));
-
           // Highlight the expected result
           const expectedNumber = `${[...depCompSet].length} ${exportBlueprintPage.varTotalComponents}`;
           const zeroComponent = exportBlueprintPage.varEmptyTotalComponents;

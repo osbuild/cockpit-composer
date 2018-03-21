@@ -113,3 +113,26 @@ export function fetchDiffWorkspaceApi(blueprintId) {
   });
   return p;
 }
+
+export function depsolveComponentsApi(packages) {
+  const p = new Promise((resolve, reject) => {
+    const packageNames = packages.map(item => item.name);
+    let dependencies = [];
+    if (packageNames.length > 0) {
+      utils.apiFetch(constants.get_projects_deps + packageNames)
+        .then(depData => {
+          // bdcs-api v0.3.0 includes module (component) and dependency NEVRAs
+          // tagging all dependencies a "RPM" for now
+          dependencies = BlueprintApi.setType(depData.projects, depData.projects, 'RPM');
+          resolve(dependencies);
+        })
+        .catch(e => {
+          console.log(`getBlueprint: Error getting component and dependency metadata: ${e}`);
+          reject();
+        });
+    } else {
+      resolve(dependencies);
+    }
+  });
+  return p;
+}

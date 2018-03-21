@@ -17,13 +17,13 @@ import { fetchingBlueprintContents, setBlueprintDescription } from '../../core/a
 import { setModalExportBlueprintVisible } from '../../core/actions/modals';
 import {
   setEditDescriptionVisible, setEditDescriptionValue,
-  setSelectedComponent, setSelectedComponentStatus, setSelectedComponentParent,
+  setActiveComponent, setActiveComponentStatus, setActiveComponentParent,
   setActiveTab,
 } from '../../core/actions/blueprintPage';
 import {
   componentsSortSetKey, componentsSortSetValue, dependenciesSortSetKey, dependenciesSortSetValue,
 } from '../../core/actions/sort';
-import { makeGetBlueprintById, makeGetSortedComponents, makeGetSortedDependencies } from '../../core/selectors';
+import { makeGetBlueprintById, makeGetSortedSelectedComponents, makeGetSortedDependencies } from '../../core/selectors';
 
 class BlueprintPage extends React.Component {
   constructor() {
@@ -115,8 +115,8 @@ class BlueprintPage extends React.Component {
 
   handleComponentDetails(event, component, parent) {
     // the user selected a component to view more details
-    this.props.setSelectedComponent(component);
-    this.props.setSelectedComponentParent(parent);
+    this.props.setActiveComponent(component);
+    this.props.setActiveComponentParent(parent);
     event.preventDefault();
     event.stopPropagation();
   }
@@ -153,12 +153,12 @@ class BlueprintPage extends React.Component {
     }
 
     const {
-      blueprint, exportModalVisible, imageTypes, components, dependencies,
+      blueprint, exportModalVisible, imageTypes, selectedComponents, dependencies,
     } = this.props;
 
     const {
       editDescriptionValue, editDescriptionVisible, activeTab,
-      selectedComponent, selectedComponentParent, selectedComponentStatus,
+      activeComponent, activeComponentParent, activeComponentStatus,
     } = this.props.blueprintPage;
 
     return (
@@ -175,7 +175,8 @@ class BlueprintPage extends React.Component {
               </li>
               <li>
                 <button
-                  className={`btn btn-default ${components.length ? '' : 'disabled'}`}                  id="cmpsr-btn-crt-image"
+                  className={`btn btn-default ${selectedComponents.length ? '' : 'disabled'}`}
+                  id="cmpsr-btn-crt-image"
                   data-toggle="modal"
                   data-target="#cmpsr-modal-crt-image"
                   type="button"
@@ -196,7 +197,7 @@ class BlueprintPage extends React.Component {
                     <span className="fa fa-ellipsis-v" />
                   </button>
                   <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
-                    {components.length &&
+                    {selectedComponents.length &&
                       <li><a href="#" onClick={this.handleShowModalExport}>Export</a></li>
                     ||
                       <li className="disabled"><a>Export</a></li>
@@ -269,9 +270,9 @@ class BlueprintPage extends React.Component {
               </div>
             </div>
           </Tab>
-          <Tab tabTitle="Components" active={activeTab === 'Components'}>
+          <Tab tabTitle="Selected Components" active={activeTab === 'SelectedComponents'}>
             <div className="row">
-              {(selectedComponent === '' &&
+              {(activeComponent === '' &&
                 <div className="col-sm-12">
                   <div className="row toolbar-pf">
                     <div className="col-sm-12">
@@ -361,7 +362,7 @@ class BlueprintPage extends React.Component {
                       </form>
                     </div>
                   </div>
-                  {(components === undefined || components.length === 0) &&
+                  {(selectedComponents === undefined || selectedComponents.length === 0) &&
                     <EmptyState
                       title={'Empty Blueprint'}
                       message={'There are no components listed in the blueprint. Edit the blueprint to add components.'}
@@ -373,7 +374,7 @@ class BlueprintPage extends React.Component {
                       </Link>
                     </EmptyState> ||
                     <BlueprintContents
-                      components={components}
+                      components={selectedComponents}
                       dependencies={dependencies}
                       noEditComponent
                       handleComponentDetails={this.handleComponentDetails}
@@ -383,9 +384,9 @@ class BlueprintPage extends React.Component {
                   <h3 className="cmpsr-panel__title cmpsr-panel__title--main">Component Details</h3>
                   <ComponentDetailsView
                     parent={this.props.route.params.blueprint}
-                    component={selectedComponent}
-                    componentParent={selectedComponentParent}
-                    status={selectedComponentStatus}
+                    component={activeComponent}
+                    componentParent={activeComponentParent}
+                    status={activeComponentStatus}
                     handleComponentDetails={this.handleComponentDetails}
                   />
                 </div>}
@@ -422,7 +423,7 @@ class BlueprintPage extends React.Component {
         {exportModalVisible
           ? <ExportBlueprint
             blueprint={blueprint.name}
-            contents={blueprint.dependencies}
+            contents={blueprint.components}
             handleHideModal={this.handleHideModalExport}
           />
           : null}
@@ -439,9 +440,9 @@ BlueprintPage.propTypes = {
   setActiveTab: PropTypes.func,
   setEditDescriptionValue: PropTypes.func,
   setEditDescriptionVisible: PropTypes.func,
-  setSelectedComponent: PropTypes.func,
-  setSelectedComponentParent: PropTypes.func,
-  setSelectedComponentStatus: PropTypes.func,
+  setActiveComponent: PropTypes.func,
+  setActiveComponentParent: PropTypes.func,
+  setActiveComponentStatus: PropTypes.func,
   setModalExportBlueprintVisible: PropTypes.func,
   blueprintPage: PropTypes.object,
   setBlueprintDescription: PropTypes.func,
@@ -451,7 +452,7 @@ BlueprintPage.propTypes = {
   dependenciesSortSetValue: PropTypes.func,
   componentsSortSetKey: PropTypes.func,
   componentsSortSetValue: PropTypes.func,
-  components: PropTypes.array,
+  selectedComponents: PropTypes.array,
   dependencies: PropTypes.array,
   componentsSortKey: PropTypes.string,
   componentsSortValue: PropTypes.string,
@@ -459,7 +460,7 @@ BlueprintPage.propTypes = {
 
 const makeMapStateToProps = () => {
   const getBlueprintById = makeGetBlueprintById();
-  const getSortedComponents = makeGetSortedComponents();
+  const getSortedSelectedComponents = makeGetSortedSelectedComponents();
   const getSortedDependencies = makeGetSortedDependencies();
   const mapStateToProps = (state, props) => {
     if (getBlueprintById(state, props.route.params.blueprint.replace(/\s/g, '-')) !== undefined) {
@@ -467,7 +468,7 @@ const makeMapStateToProps = () => {
       return {
         rehydrated: state.rehydrated,
         blueprint: fetchedBlueprint.present,
-        components: getSortedComponents(state, fetchedBlueprint.present),
+        selectedComponents: getSortedSelectedComponents(state, fetchedBlueprint.present),
         dependencies: getSortedDependencies(state, fetchedBlueprint.present),
         blueprintPage: state.blueprintPage,
         exportModalVisible: state.modals.exportBlueprint.visible,
@@ -479,7 +480,7 @@ const makeMapStateToProps = () => {
     return {
       rehydrated: state.rehydrated,
       blueprint: {},
-      components: [],
+      selectedComponents: [],
       dependencies: [],
       blueprintPage: state.blueprintPage,
       exportModalVisible: state.modals.exportBlueprint.visible,
@@ -507,14 +508,14 @@ const mapDispatchToProps = (dispatch) => ({
   setActiveTab: (activeTab) => {
     dispatch(setActiveTab(activeTab));
   },
-  setSelectedComponent: (component) => {
-    dispatch(setSelectedComponent(component));
+  setActiveComponent: (component) => {
+    dispatch(setActiveComponent(component));
   },
-  setSelectedComponentParent: (componentParent) => {
-    dispatch(setSelectedComponentParent(componentParent));
+  setActiveComponentParent: (componentParent) => {
+    dispatch(setActiveComponentParent(componentParent));
   },
-  setSelectedComponentStatus: (componentStatus) => {
-    dispatch(setSelectedComponentStatus(componentStatus));
+  setActiveComponentStatus: (componentStatus) => {
+    dispatch(setActiveComponentStatus(componentStatus));
   },
   setModalExportBlueprintVisible: (visible) => {
     dispatch(setModalExportBlueprintVisible(visible));

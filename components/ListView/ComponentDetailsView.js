@@ -52,15 +52,16 @@ class ComponentDetailsView extends React.Component {
     const build = status === 'available' ? 'all' : '';
     // if the user clicks a component listed in the inputs and it's in the blueprint,
     // then use the version and release that's selected for the blueprint component
-    const selectedComponent = Object.assign({}, component);
-    if (selectedComponent.active === true && selectedComponent.inBlueprint === true) {
-      selectedComponent.version = component.version_selected;
-      selectedComponent.release = component.release_selected;
+    const activeComponent = Object.assign({}, component);
+    if (activeComponent.active === true && activeComponent.inBlueprint === true) {
+      activeComponent.version = component.versionSelected;
+      activeComponent.release = component.releaseSelected;
     }
-    Promise.all([MetadataApi.getMetadataComponent(selectedComponent, build)])
+    Promise.all([MetadataApi.getMetadataComponent(activeComponent, build)])
       .then(data => {
         this.setState({ componentData: data[0][0] });
-        this.setState({ dependencies: data[0][0].dependencies });
+        const filteredDependencies = data[0][0].dependencies.filter(dependency => dependency.name !== data[0][0].name);
+        this.setState({ dependencies: filteredDependencies });
         if (this.props.status === 'editSelected') {
           this.handleEdit();
         }
@@ -92,8 +93,6 @@ class ComponentDetailsView extends React.Component {
   }
 
   initializeBootstrapElements() {
-    // Initialize Boostrap-select
-    $('.selectpicker').selectpicker();
     // Initialize Boostrap-tooltip
     $('[data-toggle="tooltip"]').tooltip();
   }
@@ -185,7 +184,7 @@ class ComponentDetailsView extends React.Component {
                   <button
                     className="btn btn-primary add"
                     type="button"
-                    onClick={e => this.props.handleAddComponent(e, 'details', this.state.componentData, this.state.dependencies)}
+                    onClick={e => this.props.handleAddComponent(e, 'details', this.state.componentData)}
                   >
                     Add
                   </button>
@@ -277,7 +276,12 @@ class ComponentDetailsView extends React.Component {
             </form>
           </div>}
         <div>
-          <Tabs key="pf-tabs" ref="pfTabs" classnames="nav nav-tabs nav-tabs-pf" tabChanged={e => this.handleTabChanged(e)}>
+          <Tabs
+            key={this.state.dependencies.length}
+            ref="pfTabs"
+            classnames="nav nav-tabs nav-tabs-pf"
+            tabChanged={e => this.handleTabChanged(e)}
+          >
             <Tab tabTitle="Details" active={this.state.activeTab === 'Details'}>
               <h4 className="cmpsr-title">{this.state.componentData.summary}</h4>
               <p>{this.state.componentData.description}</p>

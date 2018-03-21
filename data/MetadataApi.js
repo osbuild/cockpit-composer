@@ -65,7 +65,7 @@ class MetadataApi {
 
         const componentData = data[1].modules[0];
         componentData.inBlueprint = component.inBlueprint;
-        componentData.user_selected = component.user_selected;
+        componentData.userSelected = component.userSelected;
         componentData.ui_type = component.ui_type;
 
         // The component's depsolved version may be in .dependencies

@@ -22,25 +22,25 @@ export const setActiveTab = (activeTab) => ({
   },
 });
 
-export const SET_SELECTED_COMPONENT = 'SET_SELECTED_COMPONENT';
-export const setSelectedComponent = (component) => ({
-  type: SET_SELECTED_COMPONENT,
+export const SET_ACTIVE_COMPONENT = 'SET_ACTIVE_COMPONENT';
+export const setActiveComponent = (component) => ({
+  type: SET_ACTIVE_COMPONENT,
   payload: {
     component,
   },
 });
 
-export const SET_SELECTED_COMPONENT_PARENT = 'SET_SELECTED_COMPONENT_PARENT';
-export const setSelectedComponentParent = (componentParent) => ({
-  type: SET_SELECTED_COMPONENT_PARENT,
+export const SET_ACTIVE_COMPONENT_PARENT = 'SET_ACTIVE_COMPONENT_PARENT';
+export const setActiveComponentParent = (componentParent) => ({
+  type: SET_ACTIVE_COMPONENT_PARENT,
   payload: {
     componentParent,
   },
 });
 
-export const SET_SELECTED_COMPONENT_STATUS = 'SET_SELECTED_COMPONENT_STATUS';
-export const setSelectedComponentStatus = (componentStatus) => ({
-  type: SET_SELECTED_COMPONENT_STATUS,
+export const SET_ACTIVE_COMPONENT_STATUS = 'SET_ACTIVE_COMPONENT_STATUS';
+export const setActiveComponentStatus = (componentStatus) => ({
+  type: SET_ACTIVE_COMPONENT_STATUS,
   payload: {
     componentStatus,
   },

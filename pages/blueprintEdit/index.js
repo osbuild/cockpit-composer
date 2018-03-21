@@ -14,11 +14,10 @@ import EmptyState from '../../components/EmptyState/EmptyState';
 import Pagination from '../../components/Pagination/Pagination';
 import Toolbar from '../../components/Toolbar/Toolbar';
 import BlueprintApi from '../../data/BlueprintApi';
-import MetadataApi from '../../data/MetadataApi';
 import NotificationsApi from '../../data/NotificationsApi';
 import { connect } from 'react-redux';
 import {
-  fetchingBlueprintContents, setBlueprint, setBlueprintComponents, savingBlueprint,
+  fetchingBlueprintContents, setBlueprint, addBlueprintComponent, committingBlueprint,
   removeBlueprintComponent, undo, redo, commitToWorkspace, deleteHistory,
 } from '../../core/actions/blueprints';
 import {
@@ -30,7 +29,7 @@ import {
   componentsSortSetKey, componentsSortSetValue, dependenciesSortSetKey, dependenciesSortSetValue,
 } from '../../core/actions/sort';
 import {
-  makeGetBlueprintById, makeGetSortedComponents, makeGetSortedDependencies, makeGetFutureLength, makeGetPastLength
+  makeGetBlueprintById, makeGetSortedSelectedComponents, makeGetSortedDependencies, makeGetFutureLength, makeGetPastLength
 } from '../../core/selectors';
 
 class EditBlueprintPage extends React.Component {
@@ -81,7 +80,7 @@ class EditBlueprintPage extends React.Component {
         field: 'name',
         value: event.target.value,
       };
-      this.props.fetchingInputs(filter, 0, this.props.inputs.pageSize, this.props.blueprint.components);
+      this.props.fetchingInputs(filter, 0, this.props.inputs.pageSize, this.props.selectedComponents);
       this.props.setSelectedInputPage(0);
       // TODO handle the case where no results are returned
       $('#cmpsr-blueprint-input-filter').blur();
@@ -94,7 +93,7 @@ class EditBlueprintPage extends React.Component {
     // where componentData represents either a single blueprint component
     // or the entire set of blueprint components
     if (componentData === undefined) {
-      componentData = this.props.blueprint.components; // eslint-disable-line no-param-reassign
+      componentData = this.props.selectedComponents; // eslint-disable-line no-param-reassign
     }
     let updatedInputs = inputs;
     if (componentData.length > 0) {
@@ -102,9 +101,9 @@ class EditBlueprintPage extends React.Component {
         const index = inputs[page].map(input => input.name).indexOf(component.name);
         if (index >= 0) {
           inputs[page][index].inBlueprint = true; // eslint-disable-line no-param-reassign
-          inputs[page][index].user_selected = true; // eslint-disable-line no-param-reassign
-          inputs[page][index].version_selected = component.version; // eslint-disable-line no-param-reassign
-          inputs[page][index].release_selected = component.release; // eslint-disable-line no-param-reassign
+          inputs[page][index].userSelected = true; // eslint-disable-line no-param-reassign
+          inputs[page][index].versionSelected = component.version; // eslint-disable-line no-param-reassign
+          inputs[page][index].releaseSelected = component.release; // eslint-disable-line no-param-reassign
         }
         return inputs;
       });
@@ -149,7 +148,7 @@ class EditBlueprintPage extends React.Component {
     const filter = this.props.inputs.inputFilters;
     // check if filters are set to determine current input set
     if (this.props.inputs.inputComponents.slice(0)[page].length === 0) {
-      this.props.fetchingInputs(filter, page, this.props.inputs.pageSize, this.props.blueprint.components);
+      this.props.fetchingInputs(filter, page, this.props.inputs.pageSize, this.props.selectedComponents);
     }
   }
 
@@ -160,9 +159,9 @@ class EditBlueprintPage extends React.Component {
   handleCommit () {
     // clear existing notifications
     NotificationsApi.closeNotification(undefined, 'committed');
-    NotificationsApi.closeNotification(undefined, 'saving');
-    // display the saving notification
-    NotificationsApi.displayNotification(this.props.blueprint.name, 'saving');
+    NotificationsApi.closeNotification(undefined, 'committing');
+    // display the committing notification
+    NotificationsApi.displayNotification(this.props.blueprint.name, 'committing');
     this.setNotifications();
     // post blueprint (includes 'committed' notification)
     Promise.all([BlueprintApi.handleCommitBlueprint(this.props.blueprint)])
@@ -182,53 +181,17 @@ class EditBlueprintPage extends React.Component {
       .catch(e => console.log(`Error in blueprint commit: ${e}`));
   }
 
-  addBlueprintComponent(componentData) {
-    // component data is [[{component}, [{dependency},{}]]]
-    const blueprintComponents = this.props.blueprint.components.slice(0);
-    const updatedBlueprintComponents = blueprintComponents.concat(componentData[0][0]);
-    const blueprintDependencies = this.props.blueprint.dependencies;
-    const updatedBlueprintDependencies = blueprintDependencies.concat(componentData[0][0].dependencies);
-    const updatedBlueprintPackages = updatedBlueprintComponents.map(component => Object.assign({}, {}, {
-      name: component.name,
-      version: component.version
-    }));
-    const pendingChange = {
-      componentOld: null,
-      componentNew: componentData[0][0].name + '-' +componentData[0][0].version + '-' + componentData[0][0].release
-    }
-
-    this.props.setBlueprintComponents(
-      this.props.blueprint,
-      updatedBlueprintComponents,
-      updatedBlueprintDependencies,
-      updatedBlueprintPackages,
-      pendingChange
-    );
-
-    BlueprintApi.updateBlueprint(componentData[0][0], 'add');
-  }
-
-  handleAddComponent(event, source, component, dependencies) {
+  handleAddComponent(event, source, component) {
     // the user clicked Add in the sidebar, e.g. source === "input"
     // or the user clicked Add in the details view
     component.inBlueprint = true; // eslint-disable-line no-param-reassign
-    component.user_selected = true; // eslint-disable-line no-param-reassign
+    component.userSelected = true; // eslint-disable-line no-param-reassign
     if (component !== undefined) {
       if (source === 'input') {
         $(event.currentTarget).tooltip('hide');
-        // get metadata for default build
-        Promise.all([
-          MetadataApi.getMetadataComponent(component, ''),
-        ]).then((data) => {
-          this.addBlueprintComponent(data);
-          this.props.commitToWorkspace(this.props.blueprint.id);
-        }).catch(e => console.log(`handleAddComponent: Error getting component metadata: ${e}`));
-      } else {
-        // if source is the details view, then metadata is already known and passed with component
-        const data = [[component, dependencies]];
-        this.addBlueprintComponent(data);
-        this.props.commitToWorkspace(this.props.blueprint.id);
       }
+      // if source is the details view, then metadata is already known and passed with component
+      this.props.addBlueprintComponent(this.props.blueprint, component);
     }
 
     // update input component data to match the blueprint component data
@@ -243,11 +206,9 @@ class EditBlueprintPage extends React.Component {
   }
 
   handleUpdateComponent(event, component) {
-    // the user clicked Edit in the details view and committed updates to the component version
+    // the user clicked Edit in the details view and saved updates to the component version
     // find component in blueprint components
-    // let selectedComponent = this.props.blueprint.components.filter((obj) => (obj.name === component.name));
-    // // update blueprint component with committed updates
-    // selectedComponent = Object.assign(selectedComponent, component);
+    // update blueprint component with saved updates
     this.hideComponentDetails();
     // update input component with committed Updates
     this.updateInputComponentsOnChange(component);
@@ -268,15 +229,9 @@ class EditBlueprintPage extends React.Component {
     // update input component data
     this.updateInputComponentsOnChange(component, 'remove');
     // update the list of blueprint components to not include the removed component
-    const pendingChange = {
-      componentOld: component.name + '-' + component.version + '-' + component.release,
-      componentNew: null,
-    };
-    this.props.removeBlueprintComponent(this.props.blueprint, component, pendingChange);
+    this.props.removeBlueprintComponent(this.props.blueprint, component);
     event.preventDefault();
     event.stopPropagation();
-
-    this.props.commitToWorkspace(this.props.blueprint.id);
   }
 
   updateInputComponentsOnChange(component, remove) {
@@ -308,9 +263,9 @@ class EditBlueprintPage extends React.Component {
     // of inputs, then update metadata for the input component
     if (index >= 0) {
       inputs[page][index].inBlueprint = false; // eslint-disable-line no-param-reassign
-      inputs[page][index].user_selected = false; // eslint-disable-line no-param-reassign
-      delete inputs[page][index].version_selected; // eslint-disable-line no-param-reassign
-      delete inputs[page][index].release_selected; // eslint-disable-line no-param-reassign
+      inputs[page][index].userSelected = false; // eslint-disable-line no-param-reassign
+      delete inputs[page][index].versionSelected; // eslint-disable-line no-param-reassign
+      delete inputs[page][index].releaseSelected; // eslint-disable-line no-param-reassign
     }
 
     return inputs;
@@ -333,14 +288,14 @@ class EditBlueprintPage extends React.Component {
         inputs[page][index].active = true;
       }
       this.props.setInputComponents(inputs);
-      // set selectedComponentStatus
+      // set activeComponentStatus
       if (mode === 'edit') {
         // if I clicked Edit in list item kebab
         this.props.setSelectedInputStatus('editSelected');
       } else if (parent === undefined || parent === '') {
         // if parent is not defined (i.e. I clicked a component in the input list
         // or component list, or I clicked the first component in the breadcrumb)
-        if (component.user_selected === true) {
+        if (component.userSelected === true) {
           // and component is selected by the user to be in the blueprint,
           // then set state to selected
           this.props.setSelectedInputStatus('selected');
@@ -430,7 +385,7 @@ class EditBlueprintPage extends React.Component {
         this.props.inputs.inputFilters,
         this.props.inputs.selectedInputPage,
         this.props.inputs.pageSize,
-        this.props.blueprint.components
+        this.props.selectedComponents,
       );
     }, 50);
   }
@@ -450,7 +405,7 @@ class EditBlueprintPage extends React.Component {
     }
     const blueprintDisplayName = this.props.route.params.blueprint;
     const {
-      blueprint, components, dependencies,
+      blueprint, selectedComponents, dependencies,
       inputs, createImage, modalActive, componentsSortKey, componentsSortValue,
       pastLength, futureLength,
     } = this.props;
@@ -511,7 +466,7 @@ class EditBlueprintPage extends React.Component {
               }
               <li className="list__subgroup-item--first">
                 <button
-                  className={`btn btn-default ${components.length ? '' : 'disabled'}`}
+                  className={`btn btn-default ${selectedComponents.length ? '' : 'disabled'}`}
                   id="cmpsr-btn-crt-image"
                   data-toggle="modal"
                   data-target="#cmpsr-modal-crt-image"
@@ -533,7 +488,7 @@ class EditBlueprintPage extends React.Component {
                     <span className="fa fa-ellipsis-v" />
                   </button>
                   <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
-                    {components.length &&
+                    {selectedComponents.length &&
                       <li><a href="#" onClick={e => this.handleShowModal(e, 'modalExportBlueprint')}>Export</a></li>
                     ||
                       <li className="disabled"><a>Export</a></li>
@@ -572,13 +527,13 @@ class EditBlueprintPage extends React.Component {
               futureLength={futureLength}
             />
           }
-            {((components === undefined || components.length === 0) &&
+            {((selectedComponents === undefined || selectedComponents.length === 0) &&
               <EmptyState
                 title={'Add Blueprint Components'}
                 message={'Browse or search for components, then add them to the blueprint.'}
               />) ||
               <BlueprintContents
-                components={components}
+                components={selectedComponents}
                 dependencies={dependencies}
                 handleRemoveComponent={this.handleRemoveComponent}
                 handleComponentDetails={this.handleComponentDetails}
@@ -696,7 +651,7 @@ class EditBlueprintPage extends React.Component {
         {modalActive === 'modalExportBlueprint'
           ? <ExportBlueprint
             blueprint={blueprint.name}
-            contents={dependencies}
+            contents={blueprint.components}
             handleHideModal={this.handleHideModal}
           />
           : null}
@@ -723,7 +678,7 @@ EditBlueprintPage.propTypes = {
   selectedInput: PropTypes.object,
   fetchingBlueprintContents: PropTypes.func,
   setBlueprint: PropTypes.func,
-  savingBlueprint: PropTypes.func,
+  committingBlueprint: PropTypes.func,
   removeBlueprintComponent: PropTypes.func,
   fetchingInputs: PropTypes.func,
   setInputComponents: PropTypes.func,
@@ -732,11 +687,11 @@ EditBlueprintPage.propTypes = {
   setSelectedInputStatus: PropTypes.func,
   setSelectedInputParent: PropTypes.func,
   deleteFilter: PropTypes.func,
-  setBlueprintComponents: PropTypes.func,
+  addBlueprintComponent: PropTypes.func,
   setModalActive: PropTypes.func,
   dependenciesSortSetValue: PropTypes.func,
   componentsSortSetValue: PropTypes.func,
-  components: PropTypes.array,
+  selectedComponents: PropTypes.array,
   dependencies: PropTypes.array,
   componentsSortKey: PropTypes.string,
   componentsSortValue: PropTypes.string,
@@ -750,7 +705,7 @@ EditBlueprintPage.propTypes = {
 
 const makeMapStateToProps = () => {
   const getBlueprintById = makeGetBlueprintById();
-  const getSortedComponents = makeGetSortedComponents();
+  const getSortedSelectedComponents = makeGetSortedSelectedComponents();
   const getSortedDependencies = makeGetSortedDependencies();
   const getPastLength = makeGetPastLength();
   const getFutureLength = makeGetFutureLength();
@@ -760,7 +715,7 @@ const makeMapStateToProps = () => {
       return {
         rehydrated: state.rehydrated,
         blueprint: fetchedBlueprint.present,
-        components: getSortedComponents(state, fetchedBlueprint.present),
+        selectedComponents: getSortedSelectedComponents(state, fetchedBlueprint.present),
         dependencies: getSortedDependencies(state, fetchedBlueprint.present),
         componentsSortKey: state.sort.components.key,
         componentsSortValue: state.sort.components.value,
@@ -775,7 +730,7 @@ const makeMapStateToProps = () => {
     return {
       rehydrated: state.rehydrated,
       blueprint: {},
-      components: [],
+      selectedComponents: [],
       dependencies: [],
       componentsSortKey: state.sort.components.key,
       componentsSortValue: state.sort.components.value,
@@ -806,8 +761,11 @@ const mapDispatchToProps = (dispatch) => ({
   setBlueprint: blueprint => {
     dispatch(setBlueprint(blueprint));
   },
-  setBlueprintComponents: (blueprint, components, dependencies, packages, pendingChange) => {
-    dispatch(setBlueprintComponents(blueprint, components, dependencies, packages, pendingChange));
+  addBlueprintComponent: (blueprint, component) => {
+    dispatch(addBlueprintComponent(blueprint, component));
+  },
+  removeBlueprintComponent: (blueprint, component) => {
+    dispatch(removeBlueprintComponent(blueprint, component));
   },
   setSelectedInput: (selectedInput) => {
     dispatch(setSelectedInput(selectedInput));
@@ -821,11 +779,8 @@ const mapDispatchToProps = (dispatch) => ({
   deleteFilter: () => {
     dispatch(deleteFilter());
   },
-  savingBlueprint: (blueprint) => {
-    dispatch(savingBlueprint(blueprint));
-  },
-  removeBlueprintComponent: (blueprint, component, pendingChange) => {
-    dispatch(removeBlueprintComponent(blueprint, component, pendingChange));
+  committingBlueprint: (blueprint) => {
+    dispatch(committingBlueprint(blueprint));
   },
   setModalActive: (modalActive) => {
     dispatch(setModalActive(modalActive));

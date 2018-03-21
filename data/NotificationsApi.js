@@ -65,11 +65,11 @@ class NotificationsApi {
         };
         break;
       }
-      case 'saving': {
+      case 'committing': {
         notification = {
           type: 'process',
-          label: 'saving',
-          message: <span><strong>{blueprint}:</strong> Saving blueprint.</span>,
+          label: 'committing',
+          message: <span><strong>{blueprint}:</strong> Committing blueprint.</span>,
           dismiss: true,
         };
         break;

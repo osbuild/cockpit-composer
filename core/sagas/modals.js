@@ -10,7 +10,7 @@ function* fetchModalBlueprintContents(action) {
   try {
     const { blueprintName } = action.payload;
     const response = yield call(fetchBlueprintContentsApi, blueprintName);
-    yield put(setModalExportBlueprintContents(response.dependencies));
+    yield put(setModalExportBlueprintContents(response.components));
   } catch (error) {
     console.log('Error in loadModalBlueprintSaga');
   }
