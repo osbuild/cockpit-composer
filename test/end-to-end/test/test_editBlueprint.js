@@ -67,6 +67,117 @@ describe('Edit Blueprint Page', () => {
             helper.gotoError(error, nightmare, testSpec1);
           });
       }, timeout);
+      const testSpec15 = test('Commit button should be in disabled stauts',
+      (done) => {
+        // Highlight the expected result
+        const expected = true;
+
+        nightmare
+          .wait(editBlueprintPage.componentListItemRootElement)
+          .exists(editBlueprintPage.btnDisabledCommit)
+          .then((element) => {
+            expect(element).toBe(expected);
+
+            coverage(nightmare, done);
+          })
+          .catch((error) => {
+            helper.gotoError(error, nightmare, testSpec15);
+          });
+      }, timeout);
+      const testSpec16 = test('Discard Changes button should be in disabled stauts',
+      (done) => {
+        // Highlight the expected result
+        const expected = true;
+
+        nightmare
+          .wait(editBlueprintPage.componentListItemRootElement)
+          .exists(editBlueprintPage.btnDisabledDiscard)
+          .then((element) => {
+            expect(element).toBe(expected);
+
+            coverage(nightmare, done);
+          })
+          .catch((error) => {
+            helper.gotoError(error, nightmare, testSpec16);
+          });
+      }, timeout);
+      const testSpec18 = test('Commit button should be in enabled stauts',
+      (done) => {
+        // Highlight the expected result
+        const expected = true;
+
+        nightmare
+          .wait(editBlueprintPage.componentListItemRootElement)
+          .wait(editBlueprintPage.componentListItemRootElementSelect)
+          .click(editBlueprintPage.componentListItemRootElementSelect)
+          .wait(editBlueprintPage.btnCommit)
+          .exists(editBlueprintPage.btnCommit)
+          .then((element) => {
+            expect(element).toBe(expected);
+
+            coverage(nightmare, done);
+          })
+          .catch((error) => {
+            helper.gotoError(error, nightmare, testSpec18);
+          });
+      }, timeout);
+      const testSpec17 = test('Discard Changes button should be in enabled stauts',
+      (done) => {
+        // Highlight the expected result
+        const expected = true;
+
+        nightmare
+          .wait(editBlueprintPage.componentListItemRootElement)
+          .wait(editBlueprintPage.componentListItemRootElementSelect)
+          .click(editBlueprintPage.componentListItemRootElementSelect)
+          .wait(editBlueprintPage.btnDiscard)
+          .exists(editBlueprintPage.btnDiscard)
+          .then((element) => {
+            expect(element).toBe(expected);
+
+            coverage(nightmare, done);
+          })
+          .catch((error) => {
+            helper.gotoError(error, nightmare, testSpec17);
+          });
+      }, timeout);
+      const testSpec20 = test('Pending Changes link should not exist',
+      (done) => {
+        // Highlight the expected result
+        const expected = false;
+
+        nightmare
+          .wait(editBlueprintPage.componentListItemRootElement)
+          .exists(editBlueprintPage.linkPendingChange)
+          .then((element) => {
+            expect(element).toBe(expected);
+
+            coverage(nightmare, done);
+          })
+          .catch((error) => {
+            helper.gotoError(error, nightmare, testSpec20);
+          });
+      }, timeout);
+      const testSpec19 = test('Pending Changes link should be displayed',
+      (done) => {
+        // Highlight the expected result
+        const expected = true;
+
+        nightmare
+          .wait(editBlueprintPage.componentListItemRootElement)
+          .wait(editBlueprintPage.componentListItemRootElementSelect)
+          .click(editBlueprintPage.componentListItemRootElementSelect)
+          .wait(editBlueprintPage.linkPendingChange)
+          .exists(editBlueprintPage.linkPendingChange)
+          .then((element) => {
+            expect(element).toBe(expected);
+
+            coverage(nightmare, done);
+          })
+          .catch((error) => {
+            helper.gotoError(error, nightmare, testSpec19);
+          });
+      }, timeout);
     });
     describe('Title Bar Check', () => {
       const testSpec2 = test('should show a blueprint name title',

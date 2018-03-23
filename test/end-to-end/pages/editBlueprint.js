@@ -52,8 +52,20 @@ module.exports = class EditBlueprintPage extends MainPage {
     // Export action
     this.menuActionExport = `${this.editActionBarRootElement} ul[aria-labelledby="dropdownKebab"] li:nth-child(1) a`;
 
+    // Pending Change link
+    this.linkPendingChange = `${this.editActionBarRootElement} ul li a span`;
+
     // Commit button
     this.btnCommit = `${this.editActionBarRootElement} ul li button[class="btn btn-primary"]`;
+
+    // Commit button (disabled)
+    this.btnDisabledCommit = `${this.editActionBarRootElement} ul li button[class="btn btn-primary disabled"]`;
+
+    // Discard button
+    this.btnDiscard = `${this.editActionBarRootElement} ul li button[class="btn btn-default"]`;
+
+    // Discard button (disabled)
+    this.btnDisabledDiscard = `${this.editActionBarRootElement} ul li button[class="btn btn-default disabled"]`;
 
     // component count inside the pagination control
     this.totalComponentCount = `${this.blueprintInputRootElement} .cmpsr-blueprint__inputs__pagination span`;
