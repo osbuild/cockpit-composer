@@ -16,7 +16,7 @@ const coverage = require('../utils/coverage.js').coverage;
 describe('Create Blueprint Page', () => {
   let nightmare;
   // Set case running timeout
-  const timeout = 15000;
+  const timeout = pageConfig.nightmareTimeout.waitTimeout * 3;
 
   // Check BDCS API and Web service first
   beforeAll(apiCall.serviceCheck);

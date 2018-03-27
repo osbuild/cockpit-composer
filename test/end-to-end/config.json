@@ -36,9 +36,9 @@
     },
     "__comment3__": "// Nightmare.js timeout settings",
     "nightmareTimeout": {
-      "waitTimeout": "5000",
-      "gotoTimeout": "1000",
-      "loadTimeout": "1000",
-      "executionTimeout": "1000"
+      "waitTimeout": 5000,
+      "gotoTimeout": 1000,
+      "loadTimeout": 1000,
+      "executionTimeout": 1000
     }
 }
