@@ -8,7 +8,9 @@ module.exports = {
     if (pageConfig.root.includes('9090')) {
       nightmare
         .goto(page.url)
-        .wait(page.iframeLoadingTime)
+        // note: waiting for the iframe to load should be less than waitTimeout
+        // with the default values this is around 3 seconds
+        .wait(0.6 * pageConfig.nightmareOptions.waitTimeout)
         .enterIFrame(page.iframeSelector);
     } else {
       nightmare
