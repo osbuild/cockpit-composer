@@ -14,7 +14,7 @@ const coverage = require('../utils/coverage.js').coverage;
 describe('View Blueprint Page', () => {
   let nightmare;
   // Set case running timeout
-  const timeout = pageConfig.nightmareTimeout.waitTimeout * 3;
+  const timeout = pageConfig.nightmareOptions.waitTimeout * 3;
 
   // Check BDCS API and Web service first
   beforeAll(apiCall.serviceCheck);
@@ -24,7 +24,7 @@ describe('View Blueprint Page', () => {
   // Switch to welder-web iframe if welder-web is integrated with Cockpit.
   // Cockpit web service is listening on TCP port 9090.
   beforeEach(() => {
-    helper.gotoURL(nightmare = new Nightmare(pageConfig.nightmareTimeout), viewBlueprintPage);
+    helper.gotoURL(nightmare = new Nightmare(pageConfig.nightmareOptions), viewBlueprintPage);
   });
 
   describe('Single Word Blueprint Name Scenario', () => {

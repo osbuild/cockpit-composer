@@ -14,7 +14,7 @@ const coverage = require('../utils/coverage.js').coverage;
 describe('Edit Blueprint Page', () => {
   let nightmare;
   // Set case running timeout
-  const timeout = pageConfig.nightmareTimeout.waitTimeout * 3;
+  const timeout = pageConfig.nightmareOptions.waitTimeout * 3;
 
   // Check BDCS API and Web service first
   beforeAll(apiCall.serviceCheck);
@@ -22,7 +22,7 @@ describe('Edit Blueprint Page', () => {
   const editBlueprintPage = new EditBlueprintPage(pageConfig.blueprint.simple.name);
 
   beforeEach(() => {
-    helper.gotoURL(nightmare = new Nightmare(pageConfig.nightmareTimeout), editBlueprintPage);
+    helper.gotoURL(nightmare = new Nightmare(pageConfig.nightmareOptions), editBlueprintPage);
   });
 
   describe('Single Word Blueprint Name Scenario', () => {
