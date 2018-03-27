@@ -16,7 +16,7 @@ const coverage = require('../utils/coverage.js').coverage;
 describe('Blueprints Page', () => {
   let nightmare;
   // Set case running timeout
-  const timeout = pageConfig.nightmareTimeout.waitTimeout * 3;
+  const timeout = pageConfig.nightmareOptions.waitTimeout * 3;
 
   // Check BDCS API and Web service first
   beforeAll(apiCall.serviceCheck);
@@ -24,7 +24,7 @@ describe('Blueprints Page', () => {
   const blueprintsPage = new BlueprintsPage();
 
   beforeEach(() => {
-    helper.gotoURL(nightmare = new Nightmare(pageConfig.nightmareTimeout), blueprintsPage);
+    helper.gotoURL(nightmare = new Nightmare(pageConfig.nightmareOptions), blueprintsPage);
   });
 
   describe('Page Info Check', () => {

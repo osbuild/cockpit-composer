@@ -105,7 +105,7 @@ describe('Imported Content Sanity Testing', () => {
   const editBlueprintPage = new EditBlueprintPage(pageConfig.blueprint.simple.name);
 
   beforeEach(() => {
-    helper.gotoURL(nightmare = new Nightmare(pageConfig.nightmareTimeout), editBlueprintPage);
+    helper.gotoURL(nightmare = new Nightmare(pageConfig.nightmareOptions), editBlueprintPage);
   });
 
   const testSpec1 = test('displayed count should match distinct count from DB',

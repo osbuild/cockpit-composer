@@ -35,7 +35,7 @@
         "Text": "Text"
     },
     "__comment3__": "// Nightmare.js timeout settings",
-    "nightmareTimeout": {
+    "nightmareOptions": {
       "waitTimeout": 5000,
       "gotoTimeout": 1000,
       "loadTimeout": 1000,
