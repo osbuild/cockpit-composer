@@ -16,7 +16,7 @@ module.exports = {
     }
   },
   gotoError: (error, nightmare, testSpec) => {
-    console.error(`Failed on case ${testSpec.result.fullName} - ${error}`);
+    console.error(`Failed on case ${testSpec.result.fullName} - ${error.toString()} - ${JSON.stringify(error)}`);
     const dtStr = new Date().toISOString()
                             .replace(/T/, '-')
                             .replace(/:/g, '-')
