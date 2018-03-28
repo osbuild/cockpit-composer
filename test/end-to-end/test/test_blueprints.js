@@ -104,7 +104,7 @@ describe('Blueprints Page', () => {
 
       // Create a new blueprint before the first test run in this suite
       beforeAll((done) => {
-        apiCall.newBlueprint(pageConfig.blueprint.simple, done);
+        CreateBlueprintPage.newBlueprint(pageConfig.blueprint.simple, done);
       });
 
       // Delete added blueprint after all tests completed in this sute
@@ -406,7 +406,7 @@ describe('Blueprints Page', () => {
         randomBlueprint.description = blueprintDescription;
         // Create a new blueprint before each one of the tests starting
         beforeEach((done) => {
-          apiCall.newBlueprint(randomBlueprint, done);
+          CreateBlueprintPage.newBlueprint(randomBlueprint, done);
         });
 
         // Delete added blueprint after each one of the tests finished

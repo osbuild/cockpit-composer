@@ -1,5 +1,6 @@
 const Nightmare = require('nightmare');
 require('nightmare-iframe-manager')(Nightmare);
+const CreateBlueprintPage = require('../pages/createBlueprint');
 const EditBlueprintPage = require('../pages/editBlueprint');
 const CreateImagePage = require('../pages/createImage');
 const ToastNotifPage = require('../pages/toastNotif');
@@ -23,7 +24,7 @@ describe('Edit Blueprint Page', () => {
 
   beforeEach((done) => {
     // Create a new blueprint before every test run in this suite
-    apiCall.newBlueprint(pageConfig.blueprint.simple, done);
+    CreateBlueprintPage.newBlueprint(pageConfig.blueprint.simple, done);
 
     // open the blueprint for editting
     helper.gotoURL(nightmare = new Nightmare(pageConfig.nightmareOptions), editBlueprintPage);

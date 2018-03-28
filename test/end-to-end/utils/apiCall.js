@@ -17,20 +17,6 @@ module.exports = {
     return Promise.all([request(bdcsOptions), request(webOptions)]);
   },
 
-  // Create a new blueprint
-  newBlueprint: (body, done) => {
-    const options = {
-      method: 'POST',
-      uri: `${pageConfig.api.uri}${pageConfig.api.newBlueprint}`,
-      json: true,
-      body,
-    };
-
-    request(options)
-      .then(() => { done(); })
-      .catch((error) => { done(error); });
-  },
-
   // Delete a blueprint
   deleteBlueprint: (blueprintName, done) => {
     const options = {

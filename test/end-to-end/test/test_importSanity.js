@@ -1,5 +1,6 @@
 const Nightmare = require('nightmare');
 require('nightmare-iframe-manager')(Nightmare);
+const CreateBlueprintPage = require('../pages/createBlueprint');
 const EditBlueprintPage = require('../pages/editBlueprint');
 const apiCall = require('../utils/apiCall');
 const pageConfig = require('../config');
@@ -16,7 +17,7 @@ describe('Imported Content Sanity Testing', () => {
 
   beforeAll((done) => {
     // Create a new blueprint before the first test run in this suite
-    apiCall.newBlueprint(pageConfig.blueprint.simple, done);
+    CreateBlueprintPage.newBlueprint(pageConfig.blueprint.simple, done);
   });
 
   afterAll((done) => {
