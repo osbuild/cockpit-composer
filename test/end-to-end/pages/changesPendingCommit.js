@@ -32,14 +32,20 @@ module.exports = class changesPendingCommit extends MainPage {
     // Comment text area
     this.textAreaComment = `${this.bodyElement} textarea[id="textInput2-modal-markup"]`;
 
-    // Pending changes action
-    this.labelPendingChangesAction = `${this.bodyElement} ul li div div[class="col-sm-3"]`;
+    // Line 1 Pending changes action
+    this.labelLine1PendingChangesAction = `${this.bodyElement} ul li:nth-child(1) div div[class="col-sm-3"]`;
 
-    // Pending changes component
-    this.labelPendingChangesComponent = `${this.bodyElement} ul li div div strong`;
+    // Line 1 Pending changes component
+    this.labelLine1PendingChangesComponent = `${this.bodyElement} ul li:nth-child(1) div div strong`;
+
+    // Line 2 Pending changes action
+    this.labelLine2PendingChangesAction = `${this.bodyElement} ul li:nth-child(2) div div[class="col-sm-3"]`;
+
+    // Line 2 Pending changes component
+    this.labelLine2PendingChangesComponent = `${this.bodyElement} ul li:nth-child(2) div div strong`;
 
     // Commit and Close button
     this.btnCommit = `${this.footerElement} button[class="btn btn-primary"]`;
-    this.btnClose = `${this.footerElement} button[class="btn btn-default" data-dismiss="modal"]`;
+    this.btnClose = `${this.footerElement} button[class="btn btn-default"]`;
   }
 };

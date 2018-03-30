@@ -54,6 +54,7 @@ module.exports = class EditBlueprintPage extends MainPage {
 
     // Pending Change link
     this.linkPendingChange = `${this.editActionBarRootElement} ul li a span`;
+    this.labelLinkPendingChange = 'Pending Changes';
 
     // Commit button
     this.btnCommit = `${this.editActionBarRootElement} ul li button[class="btn btn-primary"]`;
@@ -104,7 +105,23 @@ module.exports = class EditBlueprintPage extends MainPage {
 
     // httpd + button
     this.btnHttpdComponent = `${this.blueprintInputRootElement} .cmpsr-list-pf__compacted
-    div:nth-child(36) .list-pf-container a`;
+      div:nth-child(36) .list-pf-container a`;
+
+    // the 1st component name
+    this.theFirstComponentName = `${this.blueprintInputRootElement} .cmpsr-list-pf__compacted
+      div:nth-child(1) .list-pf-container .list-pf-content-wrapper .list-pf-main-content div[class="list-pf-title "]`;
+
+    // the 1st + button
+    this.btnTheFirstComponent = `${this.blueprintInputRootElement} .cmpsr-list-pf__compacted
+      div:nth-child(1) .list-pf-container a`;
+
+    // the 2nd component name
+    this.theSecondComponentName = `${this.blueprintInputRootElement} .cmpsr-list-pf__compacted
+      div:nth-child(2) .list-pf-container .list-pf-content-wrapper .list-pf-main-content div[class="list-pf-title "]`;
+
+    // the 2nd + button
+    this.btnTheSecondComponent = `${this.blueprintInputRootElement} .cmpsr-list-pf__compacted
+      div:nth-child(2) .list-pf-container a`;
 
     // Body Main elements
     // Blueprint Components - 1st component
