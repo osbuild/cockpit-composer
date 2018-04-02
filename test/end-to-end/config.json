@@ -3,8 +3,8 @@
     "api": {
         "uri": "http://localhost:4000/",
         "test": "api/v0/test",
-        "newBlueprint": "api/v0/recipes/new",
-        "deleteBlueprint": "api/v0/recipes/delete/",
+        "newBlueprint": "api/v0/blueprints/new",
+        "deleteBlueprint": "api/v0/blueprints/delete/",
         "moduleInfo": "api/v0/modules/info/",
         "moduleListTotalPackages": "api/v0/modules/list?limit=0&offset=0"
     },
