@@ -1,6 +1,7 @@
 const Nightmare = require('nightmare');
 require('nightmare-iframe-manager')(Nightmare);
 const EditBlueprintPage = require('../pages/editBlueprint');
+const DeleteBlueprintPage = require('../pages/deleteBlueprint');
 const apiCall = require('../utils/apiCall');
 const pageConfig = require('../config');
 const helper = require('../utils/helper');
@@ -21,7 +22,7 @@ describe('Imported Content Sanity Testing', () => {
 
   afterAll((done) => {
     // Delete added blueprint after all tests completed in this suite
-    apiCall.deleteBlueprint(pageConfig.blueprint.simple.name, done);
+    DeleteBlueprintPage.deleteBlueprint(pageConfig.blueprint.simple.name, done);
   });
 
   const editBlueprintPage = new EditBlueprintPage(pageConfig.blueprint.simple.name);

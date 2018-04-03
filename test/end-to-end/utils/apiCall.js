@@ -31,19 +31,6 @@ module.exports = {
       .catch((error) => { done(error); });
   },
 
-  // Delete a blueprint
-  deleteBlueprint: (blueprintName, done) => {
-    const options = {
-      method: 'DELETE',
-      uri: `${pageConfig.api.uri}${pageConfig.api.deleteBlueprint}${blueprintName}`,
-      json: true,
-    };
-
-    request(options)
-      .then(() => { done(); })
-      .catch((error) => { done(error); });
-  },
-
   // Get module info
   moduleInfo: (moduleName, callback, done) => {
     const options = {

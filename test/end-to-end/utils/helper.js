@@ -13,16 +13,16 @@ module.exports = {
         waitTime = 5000;
       }
 
-      nightmare
+      return nightmare
         .goto(page.url)
         // note: waiting for the iframe to load should be less than waitTimeout
         // with the default values this is around 3 seconds
         .wait(waitTime)
         .enterIFrame(page.iframeSelector);
-    } else {
-      nightmare
-        .goto(page.url);
     }
+
+    return nightmare
+      .goto(page.url);
   },
   gotoError: (error, nightmare, testSpec) => {
     console.error(`Failed on case ${testSpec.result.fullName} - ${error.toString()} - ${JSON.stringify(error)}`);

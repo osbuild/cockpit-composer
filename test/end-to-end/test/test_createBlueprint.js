@@ -4,6 +4,7 @@ const faker = require('faker');
 const BlueprintsPage = require('../pages/blueprints');
 const CreateBlueprintPage = require('../pages/createBlueprint');
 const EditBlueprintPage = require('../pages/editBlueprint');
+const DeleteBlueprintPage = require('../pages/deleteBlueprint');
 const ChangesPendingCommitPage = require('../pages/changesPendingCommit');
 const ToastNotifPage = require('../pages/toastNotif');
 const apiCall = require('../utils/apiCall');
@@ -125,7 +126,7 @@ describe('Create Blueprint Page', () => {
 
       // Delete created blueprint after each creation case
       afterEach((done) => {
-        apiCall.deleteBlueprint(editBlueprintPage.blueprintName, done);
+        DeleteBlueprintPage.deleteBlueprint(editBlueprintPage.blueprintName, done);
       });
 
       const testSpec4 = test('should switch to Edit Blueprint page - blueprint creation success',
@@ -161,7 +162,7 @@ describe('Create Blueprint Page', () => {
 
       // Delete created blueprint after each creation case
       afterEach((done) => {
-        apiCall.deleteBlueprint(blueprintName, done);
+        DeleteBlueprintPage.deleteBlueprint(blueprintName, done);
       });
 
       const testSpec5 = test('should successfuly create a blueprint',

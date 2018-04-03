@@ -1,6 +1,7 @@
 const Nightmare = require('nightmare');
 require('nightmare-iframe-manager')(Nightmare);
 const EditBlueprintPage = require('../pages/editBlueprint');
+const DeleteBlueprintPage = require('../pages/deleteBlueprint');
 const ChangesPendingCommitPage = require('../pages/changesPendingCommit');
 const apiCall = require('../utils/apiCall');
 const helper = require('../utils/helper');
@@ -31,7 +32,7 @@ describe('Changes Pending Commit Page', () => {
 
     // Delete added blueprint after all tests completed in this suite
     afterAll((done) => {
-      apiCall.deleteBlueprint(pageConfig.blueprint.simple.name, done);
+      DeleteBlueprintPage.deleteBlueprint(pageConfig.blueprint.simple.name, done);
     });
 
     const testSpec1 = test('should show changes pending commit page by clicking Commit button',
@@ -89,7 +90,7 @@ describe('Changes Pending Commit Page', () => {
 
     // Delete added blueprint after all tests completed in this sute
     afterEach((done) => {
-      apiCall.deleteBlueprint(pageConfig.blueprint.simple.name, done);
+      DeleteBlueprintPage.deleteBlueprint(pageConfig.blueprint.simple.name, done);
     });
 
     const testSpec3 = test('should show correct pending change content',
