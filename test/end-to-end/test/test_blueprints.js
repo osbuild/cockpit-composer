@@ -109,7 +109,7 @@ describe('Blueprints Page', () => {
 
       // Delete added blueprint after all tests completed in this sute
       afterAll((done) => {
-        apiCall.deleteBlueprint(pageConfig.blueprint.simple.name, done);
+        DeleteBlueprintPage.deleteBlueprint(pageConfig.blueprint.simple.name, done);
       });
 
       describe('Blueprint Content Check', () => {
@@ -411,7 +411,7 @@ describe('Blueprints Page', () => {
 
         // Delete added blueprint after each one of the tests finished
         afterEach((done) => {
-          apiCall.deleteBlueprint(blueprintName, done);
+          DeleteBlueprintPage.deleteBlueprint(blueprintName, done);
         });
 
         const deleteBlueprintPage = new DeleteBlueprintPage();

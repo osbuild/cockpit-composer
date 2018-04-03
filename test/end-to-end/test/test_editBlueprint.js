@@ -2,6 +2,7 @@ const Nightmare = require('nightmare');
 require('nightmare-iframe-manager')(Nightmare);
 const CreateBlueprintPage = require('../pages/createBlueprint');
 const EditBlueprintPage = require('../pages/editBlueprint');
+const DeleteBlueprintPage = require('../pages/deleteBlueprint');
 const CreateImagePage = require('../pages/createImage');
 const ToastNotifPage = require('../pages/toastNotif');
 const ExportBlueprintPage = require('../pages/exportBlueprint');
@@ -33,7 +34,7 @@ describe('Edit Blueprint Page', () => {
 
   afterEach((done) => {
     // Delete added blueprint after every test completed in this suite
-    apiCall.deleteBlueprint(pageConfig.blueprint.simple.name, done);
+    DeleteBlueprintPage.deleteBlueprint(pageConfig.blueprint.simple.name, done);
   });
 
   describe('Single Word Blueprint Name Scenario', () => {

@@ -48,7 +48,7 @@ module.exports = class CreateBlueprintPage extends BlueprintsPage {
 
   // **** start page actions ****
   static newBlueprint(bpObject, done) {
-    const nightmare = Nightmare(pageConfig.nightmareOptions);
+    const nightmare = new Nightmare(pageConfig.nightmareOptions);
     const page = new this();
     const edit_page = new EditBlueprintPage(bpObject.name);
     const commit_dialog = new ChangesPendingCommitPage();

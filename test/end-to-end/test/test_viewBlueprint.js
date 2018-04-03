@@ -2,6 +2,7 @@ const Nightmare = require('nightmare');
 require('nightmare-iframe-manager')(Nightmare);
 const faker = require('faker');
 const CreateBlueprintPage = require('../pages/createBlueprint');
+const DeleteBlueprintPage = require('../pages/deleteBlueprint');
 const ViewBlueprintPage = require('../pages/viewBlueprint');
 const CreateImagePage = require('../pages/createImage');
 const ToastNotifPage = require('../pages/toastNotif');
@@ -39,7 +40,7 @@ describe('View Blueprint Page', () => {
 
     // Delete added blueprint after all tests completed in this suite
     afterAll((done) => {
-      apiCall.deleteBlueprint(pageConfig.blueprint.simple.name, done);
+      DeleteBlueprintPage.deleteBlueprint(pageConfig.blueprint.simple.name, done);
     });
 
     describe('Menu Nav Bar Check', () => {
