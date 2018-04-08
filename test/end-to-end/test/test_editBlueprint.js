@@ -634,5 +634,44 @@ describe('Edit Blueprint Page', () => {
           });
       }, timeout);
     });
+    describe('Icon Status', () => {
+      const testSpec21 = test('should show correct icon according to component status',
+      (done) => {
+        // Highlight the expected result
+        const expected = true;
+
+        nightmare
+          .wait(editBlueprintPage.componentListItemRootElement)
+          .exists(editBlueprintPage.iconBorderedTheFirstComponent)
+          .then((element) => {
+            expect(element).toBe(expected);
+          })
+          .then(() => nightmare
+            .exists(editBlueprintPage.iconMinusTheFirstComponent),
+          )
+          .then((element) => {
+            expect(element).toBe(expected);
+          })
+          .then(() => nightmare
+            .click(editBlueprintPage.iconMinusTheFirstComponent)
+            .wait(editBlueprintPage.iconTheFirstComponent)
+            .exists(editBlueprintPage.iconTheFirstComponent),
+          )
+          .then((element) => {
+            expect(element).toBe(expected);
+          })
+          .then(() => nightmare
+            .exists(editBlueprintPage.iconPlusTheFirstComponent),
+          )
+          .then((element) => {
+            expect(element).toBe(expected);
+
+            coverage(nightmare, done);
+          })
+          .catch((error) => {
+            helper.gotoError(error, nightmare, testSpec21);
+          });
+      }, timeout);
+    });
   });
 });

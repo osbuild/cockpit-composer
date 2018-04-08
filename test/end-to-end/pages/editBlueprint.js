@@ -115,6 +115,24 @@ module.exports = class EditBlueprintPage extends MainPage {
     this.btnTheFirstComponent = `${this.blueprintInputRootElement} .cmpsr-list-pf__compacted
       div:nth-child(1) .list-pf-container a`;
 
+    // the 1st + icon
+    this.iconPlusTheFirstComponent = `${this.blueprintInputRootElement} .cmpsr-list-pf__compacted
+      div:nth-child(1) .list-pf-container a span[class="fa fa-plus"]`;
+
+    // the 1st - icon
+    this.iconMinusTheFirstComponent = `${this.blueprintInputRootElement} .cmpsr-list-pf__compacted
+      div:nth-child(1) .list-pf-container a span[class="fa fa-minus"]`;
+
+    // the 1st component icon
+    this.iconTheFirstComponent = `${this.blueprintInputRootElement} .cmpsr-list-pf__compacted
+      div:nth-child(1) .list-pf-container .list-pf-left
+      span[class="pficon pficon-bundle  list-pf-icon list-pf-icon-small"]`;
+
+    // the 1st component bordered icon
+    this.iconBorderedTheFirstComponent = `${this.blueprintInputRootElement} .cmpsr-list-pf__compacted
+      div:nth-child(1) .list-pf-container .list-pf-left
+      span[class="pficon pficon-bundle list-pf-icon-bordered list-pf-icon list-pf-icon-small"]`;
+
     // the 2nd component name
     this.theSecondComponentName = `${this.blueprintInputRootElement} .cmpsr-list-pf__compacted
       div:nth-child(2) .list-pf-container .list-pf-content-wrapper .list-pf-main-content div[class="list-pf-title "]`;
