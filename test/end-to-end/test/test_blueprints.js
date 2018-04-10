@@ -7,6 +7,7 @@ const CreateImagePage = require('../pages/createImage');
 const ToastNotifPage = require('../pages/toastNotif');
 const ExportBlueprintPage = require('../pages/exportBlueprint');
 const DeleteBlueprintPage = require('../pages/deleteBlueprint');
+const EditBlueprintPage = require('../pages/editBlueprint');
 const apiCall = require('../utils/apiCall');
 const helper = require('../utils/helper');
 const pageConfig = require('../config');
@@ -559,6 +560,39 @@ describe('Blueprints Page', () => {
             })
             .catch((error) => {
               helper.gotoError(error, nightmare, testSpec17);
+            });
+        }, timeout);
+      });
+      describe('Edit Blueprint', () => {
+        const blueprintName = pageConfig.blueprint.simple.name;
+        const editBlueprintPage = new EditBlueprintPage(blueprintName);
+
+        const testSpec18 = test('should open Edit Blueprint page by clicking Edit Blueprint button',
+        (done) => {
+          const blueprintNameSelector = BlueprintsPage.blueprintNameSelector(blueprintName);
+          // Highlight the expected result
+          const expected = blueprintName;
+
+          nightmare
+            .wait(blueprintNameSelector)
+            .evaluate((page, name) => {
+              document.querySelectorAll(page.itemsBlueprint).forEach((item) => {
+                const bpName = item.querySelector(page.itemNamesBlueprint).innerText;
+                if (bpName === name) {
+                  item.querySelector(page.btnEditBlueprint).click();
+                }
+              });
+            }, blueprintsPage, blueprintName)
+            .wait(editBlueprintPage.componentListItemRootElement)
+            .evaluate(page => document.querySelector(page.labelBlueprintTitle).innerText
+              , editBlueprintPage)
+            .then((element) => {
+              expect(element).toBe(expected);
+
+              coverage(nightmare, done);
+            })
+            .catch((error) => {
+              helper.gotoError(error, nightmare, testSpec18);
             });
         }, timeout);
       });
