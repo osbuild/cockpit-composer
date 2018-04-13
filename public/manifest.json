@@ -7,7 +7,8 @@
     "dashboard": {
         "index": {
             "label": "Image Builder",
-            "order": 30
+            "order": 30,
+            "icon": "pficon-build"
         }
     },
     "content-security-policy": "default-src 'self' 'unsafe-eval'"
