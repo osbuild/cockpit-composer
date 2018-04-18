@@ -193,7 +193,7 @@ class EditBlueprintPage extends React.Component {
       // if source is the details view, then metadata is already known and passed with component
       this.props.addBlueprintComponent(this.props.blueprint, component);
     }
-
+    BlueprintApi.updateBlueprint(component, 'add');
     // update input component data to match the blueprint component data
     this.updateInputComponentsOnChange(component);
     // TODO if inputs also lists dependencies, should these be indicated as included in the list of available components?
