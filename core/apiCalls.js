@@ -56,15 +56,15 @@ export function fetchBlueprintInputsApi(filter, selectedInputPage, pageSize) {
 
 export function fetchBlueprintNamesApi() {
   const blueprintNames = utils.apiFetch(constants.get_blueprints_list)
-    .then(response => response.recipes);
+    .then(response => response.blueprints);
   return blueprintNames;
 }
 
 export function fetchBlueprintInfoApi(blueprintName) {
   const blueprintFetch = utils.apiFetch(constants.get_blueprints_info + blueprintName)
     .then(blueprintdata => {
-      if (blueprintdata.recipes.length > 0) {
-        let blueprint = blueprintdata.recipes[0];
+      if (blueprintdata.blueprints.length > 0) {
+        let blueprint = blueprintdata.blueprints[0];
         blueprint.id = blueprintName;
         return blueprint;
       }
@@ -102,7 +102,7 @@ export function commitToWorkspaceApi(blueprint) {
 
 export function fetchDiffWorkspaceApi(blueprintId) {
   const p = new Promise((resolve, reject) => {
-    utils.apiFetch('/api/v0/recipes/diff/' + blueprintId + '/NEWEST/WORKSPACE')
+    utils.apiFetch('/api/v0/blueprints/diff/' + blueprintId + '/NEWEST/WORKSPACE')
     .then(data => {
       resolve(data);
     })
