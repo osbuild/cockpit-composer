@@ -45,7 +45,8 @@ function* fetchInputs(action) {
       dependencies = yield select(getSortedDependencies, blueprintPresent);
     }
 
-    const response = yield call(fetchBlueprintInputsApi, `/*${filter.value}*`, selectedInputPage, pageSize);
+    const filter_value = `/*${filter.value}*`.replace("**", "*");
+    const response = yield call(fetchBlueprintInputsApi, filter_value, selectedInputPage, pageSize);
     const updatedResponse = yield call(updateInputComponentData, response, selectedComponents, dependencies);
     yield put(fetchingInputsSucceeded(filter, selectedInputPage, pageSize, updatedResponse));
   } catch (error) {
