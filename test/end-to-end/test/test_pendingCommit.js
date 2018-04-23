@@ -29,7 +29,7 @@ describe('Changes Pending Commit Page', () => {
       apiCall.newBlueprint(pageConfig.blueprint.simple, done);
     });
 
-    // Delete added blueprint after all tests completed in this sute
+    // Delete added blueprint after all tests completed in this suite
     afterAll((done) => {
       apiCall.deleteBlueprint(pageConfig.blueprint.simple.name, done);
     });
@@ -95,7 +95,7 @@ describe('Changes Pending Commit Page', () => {
     const testSpec3 = test('should show correct pending change content',
       (done) => {
         // Highlight the expected result
-        const expectedAction = 'Removed';
+        const expectedAction = 'Added';
         let expectedName;
 
         nightmare
