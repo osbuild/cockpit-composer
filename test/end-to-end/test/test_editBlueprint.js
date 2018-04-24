@@ -21,23 +21,23 @@ describe('Edit Blueprint Page', () => {
 
   const editBlueprintPage = new EditBlueprintPage(pageConfig.blueprint.simple.name);
 
-  beforeEach(() => {
+  beforeEach((done) => {
+    // Create a new blueprint before every test run in this suite
+    apiCall.newBlueprint(pageConfig.blueprint.simple, done);
+
+    // open the blueprint for editting
     helper.gotoURL(nightmare = new Nightmare(pageConfig.nightmareOptions), editBlueprintPage);
+  });
+
+
+  afterEach((done) => {
+    // Delete added blueprint after every test completed in this suite
+    apiCall.deleteBlueprint(pageConfig.blueprint.simple.name, done);
   });
 
   describe('Single Word Blueprint Name Scenario', () => {
     // Array of image types and architechtures
     const images = pageConfig.image;
-
-    // Create a new blueprint before the first test run in this suite
-    beforeAll((done) => {
-      apiCall.newBlueprint(pageConfig.blueprint.simple, done);
-    });
-
-    // Delete added blueprint after all tests completed in this sute
-    afterAll((done) => {
-      apiCall.deleteBlueprint(pageConfig.blueprint.simple.name, done);
-    });
 
     describe('Menu Nav Bar Check', () => {
       const testSpec1 = test('should show a blueprint name with a correct link address',
@@ -635,13 +635,16 @@ describe('Edit Blueprint Page', () => {
       }, timeout);
     });
     describe('Icon Status', () => {
-      const testSpec21 = test('should show correct icon according to component status',
+      const testSpec21 = test('should show bordered icon when component is selected',
       (done) => {
         // Highlight the expected result
         const expected = true;
 
         nightmare
           .wait(editBlueprintPage.componentListItemRootElement)
+          .wait(editBlueprintPage.componentListItemRootElementSelect)
+          .click(editBlueprintPage.componentListItemRootElementSelect)
+          .wait(editBlueprintPage.btnCommit)
           .exists(editBlueprintPage.iconBorderedTheFirstComponent)
           .then((element) => {
             expect(element).toBe(expected);
