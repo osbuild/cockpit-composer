@@ -6,11 +6,18 @@ module.exports = {
   // Cockpit web service is listening on TCP port 9090.
   gotoURL: (nightmare, page) => {
     if (pageConfig.root.includes('9090')) {
+      let waitTime = 0.6 * pageConfig.nightmareOptions.waitTimeout;
+      // don't wait longer than 5 seconds! when waitTimeout increases
+      // this can become ridiculuously slow and cause timeouts in CI
+      if (waitTime > 5000) {
+        waitTime = 5000;
+      }
+
       nightmare
         .goto(page.url)
         // note: waiting for the iframe to load should be less than waitTimeout
         // with the default values this is around 3 seconds
-        .wait(0.6 * pageConfig.nightmareOptions.waitTimeout)
+        .wait(waitTime)
         .enterIFrame(page.iframeSelector);
     } else {
       nightmare
