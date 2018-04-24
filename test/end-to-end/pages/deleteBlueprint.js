@@ -1,7 +1,14 @@
+// nightmare helper
+const Nightmare = require('nightmare');
+require('nightmare-iframe-manager')(Nightmare);
+const pageConfig = require('../config');
+const helper = require('../utils/helper');
+
 // Delete Blueprint page object
 const MainPage = require('./main');
+const BlueprintsPage = require('./blueprints');
 
-module.exports = class deleteBlueprint extends MainPage {
+module.exports = class deleteBlueprint extends BlueprintsPage {
   constructor() {
     super('Delete Blueprint');
 
@@ -31,5 +38,29 @@ module.exports = class deleteBlueprint extends MainPage {
     // Delete and Cancel button
     this.btnDelete = `${this.footerElement} button[class="btn btn-danger"]`;
     this.btnCancel = `${this.footerElement} button[class="btn btn-default"]`;
+  }
+
+  // **** start page actions ****
+  static deleteBlueprint(bpName, done) {
+    const nightmare = new Nightmare(pageConfig.nightmareOptions);
+    const page = new this();
+
+    const btnMoreAction = BlueprintsPage.btnMore(bpName);
+    const menuActionDelete = BlueprintsPage.menuActionDelete(bpName);
+    const blueprintNameSelector = BlueprintsPage.blueprintNameSelector(bpName);
+
+    // first create the blueprint
+    helper.gotoURL(nightmare, page)
+      .wait(btnMoreAction)
+      .click(btnMoreAction)
+      .wait(menuActionDelete)
+      .click(menuActionDelete)
+      .wait(page.btnDelete)
+      .click(page.btnDelete)
+      // wait until the blueprint has been deleted
+      .wait(selector => document.querySelector(selector) === null, blueprintNameSelector)
+      .end()
+      .then(() => { done(); })
+      .catch((error) => { done(error); });
   }
 };

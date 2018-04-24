@@ -3,8 +3,6 @@
     "api": {
         "uri": "http://localhost:4000/",
         "test": "api/status",
-        "newBlueprint": "api/v0/blueprints/new",
-        "deleteBlueprint": "api/v0/blueprints/delete/",
         "moduleInfo": "api/v0/modules/info/",
         "moduleListTotalPackages": "api/v0/modules/list?limit=0&offset=0"
     },
@@ -36,7 +34,7 @@
     },
     "__comment3__": "// Nightmare.js timeout settings",
     "nightmareOptions": {
-      "show": "true",
+      "show": true,
       "waitTimeout": 90000,
       "gotoTimeout": 30000,
       "loadTimeout": 60000,

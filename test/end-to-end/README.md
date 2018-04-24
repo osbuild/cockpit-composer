@@ -94,7 +94,7 @@ describe('Imported Content Sanity Testing', () => {
 
   beforeAll((done) => {
     // Create a new blueprint before the first test run in this suite
-    apiCall.newBlueprint(pageConfig.blueprint.simple, done);
+    CreateBlueprintPage.newBlueprint(nightmare, pageConfig.blueprint.simple, done);
   });
 
   afterAll((done) => {
