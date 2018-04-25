@@ -47,6 +47,8 @@ describe('CreateImage', () => {
       imageTypes: typeList,
       blueprint: undefined,
       setNotifications: undefined,
+      handleStartCompose: undefined,
+      handleHideModal: undefined,
     };
     shallowedCreateImage = undefined;
   });

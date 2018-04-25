@@ -33,7 +33,9 @@ const initialState = {
   blueprints : [],
   modals: {
     createImage: {
+      name: '',
       imageTypes: [],
+      visible: false,
     },
     exportBlueprint: {
       name: '',

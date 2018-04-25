@@ -12,8 +12,11 @@ const constants = {
   get_projects_deps: '/api/v0/projects/depsolve/',
   get_modules_info: '/api/v0/modules/info/',
   get_image_types: '/api/v0/compose/types',
+  get_image_output: '/api/v0/compose/image/',
+  get_image_status: '/api/v0/compose/status/',
   post_blueprints_new: '/api/v0/blueprints/new',
   post_blueprints_workspace: '/api/v0/blueprints/workspace',
+  post_compose_start: '/api/v0/compose',
   delete_blueprint: '/api/v0/blueprints/delete/',
 
 };

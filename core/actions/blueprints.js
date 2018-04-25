@@ -168,3 +168,38 @@ export const commitToWorkspace = (blueprintId) => ({
     blueprintId,
   },
 });
+
+export const START_COMPOSE = 'START_COMPOSE';
+export const startCompose = (blueprintName, composeType) => ({
+  type: START_COMPOSE,
+  payload: {
+    blueprintName,
+    composeType,
+  },
+});
+
+export const START_COMPOSE_SUCCEEDED = 'START_COMPOSE_SUCCEEDED';
+export const startComposeSucceeded = (blueprintName, imageInfo) => ({
+  type: START_COMPOSE_SUCCEEDED,
+  payload: {
+    blueprintName,
+    imageInfo,
+  },
+});
+
+export const FETCHING_IMAGE_STATUS = 'FETCHING_IMAGE_STATUS';
+export const fetchingImageStatus = (blueprintName, imageId) => ({
+  type: FETCHING_IMAGE_STATUS,
+  payload: {
+    imageId,
+  },
+});
+
+export const FETCHING_IMAGE_STATUS_SUCCEEDED = 'FETCHING_IMAGE_STATUS_SUCCEEDED';
+export const fetchingImageStatusSucceeded = (blueprintName, imageInfo) => ({
+  type: FETCHING_IMAGE_STATUS_SUCCEEDED,
+  payload: {
+    blueprintName,
+    imageInfo,
+  },
+});
