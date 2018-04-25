@@ -5,18 +5,16 @@ import BlueprintListView from '../../components/ListView/BlueprintListView';
 import CreateBlueprint from '../../components/Modal/CreateBlueprint';
 import ExportBlueprint from '../../components/Modal/ExportBlueprint';
 import DeleteBlueprint from '../../components/Modal/DeleteBlueprint';
+import CreateImage from '../../components/Modal/CreateImage';
 import EmptyState from '../../components/EmptyState/EmptyState';
 import BlueprintsToolbar from '../../components/Toolbar/BlueprintsToolbar';
 import { connect } from 'react-redux';
-import { deletingBlueprint } from '../../core/actions/blueprints';
+import { deletingBlueprint, startCompose } from '../../core/actions/blueprints';
 import {
-  setModalExportBlueprintName,
-  setModalExportBlueprintContents,
-  setModalExportBlueprintVisible,
   fetchingModalExportBlueprintContents,
-  setModalDeleteBlueprintName,
-  setModalDeleteBlueprintId,
-  setModalDeleteBlueprintVisible,
+  setModalExportBlueprintName, setModalExportBlueprintContents, setModalExportBlueprintVisible,
+  setModalDeleteBlueprintName, setModalDeleteBlueprintId, setModalDeleteBlueprintVisible,
+  setModalCreateImageBlueprintName, setModalCreateImageVisible,
 } from '../../core/actions/modals';
 import { blueprintsSortSetKey, blueprintsSortSetValue } from '../../core/actions/sort';
 import { blueprintsFilterAddValue, blueprintsFilterRemoveValue, blueprintsFilterClearValues } from '../../core/actions/filter';
@@ -31,6 +29,9 @@ class BlueprintsPage extends React.Component {
     this.handleShowModalDelete = this.handleShowModalDelete.bind(this);
     this.handleHideModalExport = this.handleHideModalExport.bind(this);
     this.handleShowModalExport = this.handleShowModalExport.bind(this);
+    this.handleHideModalCreateImage = this.handleHideModalCreateImage.bind(this);
+    this.handleShowModalCreateImage = this.handleShowModalCreateImage.bind(this);
+    this.handleStartCompose = this.handleStartCompose.bind(this);
   }
 
   componentWillMount() {
@@ -48,6 +49,10 @@ class BlueprintsPage extends React.Component {
     event.preventDefault();
     event.stopPropagation();
     this.props.deletingBlueprint(blueprint);
+  }
+
+  handleStartCompose(blueprintName, composeType) {
+    this.props.startCompose(blueprintName, composeType);
   }
 
   // handle show/hide of modal dialogs
@@ -83,6 +88,18 @@ class BlueprintsPage extends React.Component {
     this.props.setModalDeleteBlueprintId(blueprint.id);
     this.props.setModalDeleteBlueprintName(blueprint.name);
     this.props.setModalDeleteBlueprintVisible(true);
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
+  handleHideModalCreateImage() {
+    this.props.setModalCreateImageVisible(false);
+    this.props.setModalCreateImageBlueprintName('');
+  }
+
+  handleShowModalCreateImage(e, blueprint) {
+    this.props.setModalCreateImageBlueprintName(blueprint.name);
+    this.props.setModalCreateImageVisible(true);
     e.preventDefault();
     e.stopPropagation();
   }
@@ -139,10 +156,10 @@ class BlueprintsPage extends React.Component {
       {createImage.imageTypes !== undefined &&
         <BlueprintListView
           blueprints={blueprints.map(blueprint => blueprint.present)}
-          imageTypes={createImage.imageTypes}
           setNotifications={this.setNotifications}
           handleShowModalExport={this.handleShowModalExport}
           handleShowModalDelete={this.handleShowModalDelete}
+          handleShowModalCreateImage={this.handleShowModalCreateImage}
         />
       }
         <CreateBlueprint blueprintNames={blueprints.map(blueprint => blueprint.present.id)} />
@@ -160,6 +177,15 @@ class BlueprintsPage extends React.Component {
             handleHideModal={this.handleHideModalDelete}
           />
           : null}
+        {(createImage !== undefined && createImage.visible)
+          ? <CreateImage
+            blueprint={createImage.name}
+            imageTypes={createImage.imageTypes}
+            handleStartCompose={this.handleStartCompose}
+            handleHideModal={this.handleHideModalCreateImage}
+            setNotifications={this.setNotifications}
+          />
+          : null}
       </Layout>
     );
   }
@@ -167,6 +193,8 @@ class BlueprintsPage extends React.Component {
 
 BlueprintsPage.propTypes = {
   deletingBlueprint: PropTypes.func,
+  setModalCreateImageVisible: PropTypes.func,
+  setModalCreateImageBlueprintName: PropTypes.func,
   setModalDeleteBlueprintVisible: PropTypes.func,
   setModalDeleteBlueprintName: PropTypes.func,
   setModalDeleteBlueprintId: PropTypes.func,
@@ -187,6 +215,7 @@ BlueprintsPage.propTypes = {
   blueprintsFilterAddValue: PropTypes.func,
   blueprintsFilterRemoveValue: PropTypes.func,
   blueprintsFilterClearValues: PropTypes.func,
+  startCompose: PropTypes.func,
 };
 
 const makeMapStateToProps = () => {
@@ -241,6 +270,12 @@ const mapDispatchToProps = dispatch => ({
   setModalDeleteBlueprintVisible: modalVisible => {
     dispatch(setModalDeleteBlueprintVisible(modalVisible));
   },
+  setModalCreateImageBlueprintName: modalBlueprintName => {
+    dispatch(setModalCreateImageBlueprintName(modalBlueprintName));
+  },
+  setModalCreateImageVisible: modalVisible => {
+    dispatch(setModalCreateImageVisible(modalVisible));
+  },
   deletingBlueprint: blueprint => {
     dispatch(deletingBlueprint(blueprint));
   },
@@ -258,7 +293,10 @@ const mapDispatchToProps = dispatch => ({
   },
   blueprintsFilterClearValues: value => {
     dispatch(blueprintsFilterClearValues(value));
-  }
+  },
+  startCompose: (blueprintName, composeType) => {
+    dispatch(startCompose(blueprintName, composeType));
+  },
 });
 
 export default connect(makeMapStateToProps, mapDispatchToProps)(BlueprintsPage);

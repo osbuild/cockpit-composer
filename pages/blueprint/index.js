@@ -15,8 +15,13 @@ import ListView from '../../components/ListView/ListView';
 import ListItemImages from '../../components/ListView/ListItemImages';
 import ListItemChanges from '../../components/ListView/ListItemChanges';
 import { connect } from 'react-redux';
-import { fetchingBlueprintContents, setBlueprintDescription } from '../../core/actions/blueprints';
-import { setModalExportBlueprintVisible } from '../../core/actions/modals';
+import {
+  fetchingBlueprintContents, fetchingImageStatus,
+  setBlueprintDescription, startCompose
+} from '../../core/actions/blueprints';
+import {
+  setModalExportBlueprintVisible, setModalCreateImageVisible, setModalCreateImageBlueprintName
+} from '../../core/actions/modals';
 import {
   setEditDescriptionVisible, setEditDescriptionValue,
   setActiveComponent, setActiveComponentStatus, setActiveComponentParent,
@@ -37,7 +42,10 @@ class BlueprintPage extends React.Component {
     this.handleComponentDetails = this.handleComponentDetails.bind(this);
     this.handleHideModalExport = this.handleHideModalExport.bind(this);
     this.handleShowModalExport = this.handleShowModalExport.bind(this);
+    this.handleHideModalCreateImage = this.handleHideModalCreateImage.bind(this);
+    this.handleShowModalCreateImage = this.handleShowModalCreateImage.bind(this);
     this.handleChangeDescription = this.handleChangeDescription.bind(this);
+    this.handleStartCompose = this.handleStartCompose.bind(this);
 
     this.state = {
       changes: [
@@ -70,24 +78,6 @@ class BlueprintPage extends React.Component {
           message:
           "Mauris tincidunt, tellus id commodo fermentum, tellus nisi elementum \
           nisi, vitae lacinia augue sem eget turpis."
-        },
-      ],
-      images: [
-        {
-          date_created: '2/06/17',
-          date_exported: '2/06/17',
-          user: 'Brian Johnson',
-          type: 'iso',
-          change: '3',
-          size: '2,345 KB',
-        },
-        {
-          date_created: '1/17/17',
-          date_exported: '1/17/17',
-          user: 'Brian Johnson',
-          type: 'iso',
-          change: '2',
-          size: '1,234 KB',
         },
       ],
     };
@@ -150,11 +140,32 @@ class BlueprintPage extends React.Component {
     e.preventDefault();
     e.stopPropagation();
   }
-  render() {
-    const {
-      blueprint, exportModalVisible, imageTypes, selectedComponents, dependencies, componentsFilters,
-    } = this.props;
 
+  handleHideModalCreateImage() {
+    this.props.setModalCreateImageVisible(false);
+    this.props.setModalCreateImageBlueprintName('');
+  }
+
+  handleShowModalCreateImage(e, blueprint) {
+    this.props.setModalCreateImageBlueprintName(blueprint.name);
+    this.props.setModalCreateImageVisible(true);
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
+
+  handleStartCompose(blueprintName, composeType) {
+    this.props.startCompose(blueprintName, composeType);
+  }
+
+  render() {
+    if (this.props.blueprint.components === undefined) {
+      this.props.fetchingBlueprintContents(this.props.route.params.blueprint.replace(/\s/g, '-'));
+      return <div></div>;
+    }
+    const {
+      blueprint, exportModalVisible, createImage, selectedComponents, dependencies, componentsFilters,
+    } = this.props;
     const {
       editDescriptionValue, editDescriptionVisible, activeTab,
       activeComponent, activeComponentParent, activeComponentStatus,
@@ -179,6 +190,7 @@ class BlueprintPage extends React.Component {
                   data-toggle="modal"
                   data-target="#cmpsr-modal-crt-image"
                   type="button"
+                  onClick={(e) => this.handleShowModalCreateImage(e, blueprint)}
                 >
                   Create Image
                 </button>
@@ -323,7 +335,7 @@ class BlueprintPage extends React.Component {
           </Tab>
           <Tab tabTitle="Images" active={activeTab === 'Images'}>
             <div className="tab-container">
-              {(this.state.images.length === 0 &&
+              {(this.props.blueprint.images.length === 0 &&
                 <EmptyState title={'No Images'} message={'No images have been created from this blueprint.'}>
                   <button
                     className="btn btn-default"
@@ -331,16 +343,18 @@ class BlueprintPage extends React.Component {
                     data-toggle="modal"
                     data-target="#cmpsr-modal-crt-image"
                     type="button"
+                    onClick={(e) => this.handleShowModalCreateImage(e, blueprint)}
                   >
                     Create Image
                   </button>
                 </EmptyState>) ||
                 <ListView className="cmpsr-blueprint__images cmpsr-list">
-                  {this.state.images.map((image, i) => (
+                  {this.props.blueprint.images.map((image, i) => (
                     <ListItemImages
                       listItemParent="cmpsr-blueprint__images"
                       blueprint={this.props.route.params.blueprint}
                       listItem={image}
+                      fetchingImageStatus={this.props.fetchingImageStatus}
                       key={i}
                     />
                   ))}
@@ -348,7 +362,15 @@ class BlueprintPage extends React.Component {
             </div>
           </Tab>
         </Tabs>
-        <CreateImage blueprint={blueprint.name} imageTypes={imageTypes} setNotifications={this.setNotifications} />
+        {createImage.visible
+          ? <CreateImage
+            blueprint={blueprint.name}
+            imageTypes={createImage.imageTypes}
+            setNotifications={this.setNotifications}
+            handleStartCompose={this.handleStartCompose}
+            handleHideModal={this.handleHideModalCreateImage}
+          />
+          : null}
         {exportModalVisible
           ? <ExportBlueprint
             blueprint={blueprint.name}
@@ -375,7 +397,7 @@ BlueprintPage.propTypes = {
   blueprintPage: PropTypes.object,
   setBlueprintDescription: PropTypes.func,
   exportModalVisible: PropTypes.bool,
-  imageTypes: PropTypes.array,
+  createImage: PropTypes.array,
   dependenciesSortSetKey: PropTypes.func,
   dependenciesSortSetValue: PropTypes.func,
   componentsSortSetKey: PropTypes.func,
@@ -388,6 +410,10 @@ BlueprintPage.propTypes = {
   dependencies: PropTypes.array,
   componentsSortKey: PropTypes.string,
   componentsSortValue: PropTypes.string,
+  setModalCreateImageVisible: PropTypes.func,
+  setModalCreateImageBlueprintName: PropTypes.func,
+  startCompose: PropTypes.func,
+  fetchingImageStatus: PropTypes.func,
 };
 
 const makeMapStateToProps = () => {
@@ -404,7 +430,7 @@ const makeMapStateToProps = () => {
         dependencies: getFilteredComponents(state, getSortedDependencies(state, fetchedBlueprint.present)),
         blueprintPage: state.blueprintPage,
         exportModalVisible: state.modals.exportBlueprint.visible,
-        imageTypes: state.modals.createImage.imageTypes,
+        createImage: state.modals.createImage,
         componentsSortKey: state.sort.components.key,
         componentsSortValue: state.sort.components.value,
         componentsFilters: state.filter.components,
@@ -416,7 +442,7 @@ const makeMapStateToProps = () => {
       dependencies: [],
       blueprintPage: state.blueprintPage,
       exportModalVisible: state.modals.exportBlueprint.visible,
-      imageTypes: state.modals.createImage.imageTypes,
+      createImage: state.modals.createImage,
       componentsSortKey: state.sort.components.key,
       componentsSortValue: state.sort.components.value,
       componentsFilters: state.filter.components,
@@ -453,6 +479,12 @@ const mapDispatchToProps = (dispatch) => ({
   setModalExportBlueprintVisible: (visible) => {
     dispatch(setModalExportBlueprintVisible(visible));
   },
+  setModalCreateImageBlueprintName: modalBlueprintName => {
+    dispatch(setModalCreateImageBlueprintName(modalBlueprintName));
+  },
+  setModalCreateImageVisible: modalVisible => {
+    dispatch(setModalCreateImageVisible(modalVisible));
+  },
   componentsSortSetKey: key => {
     dispatch(componentsSortSetKey(key));
   },
@@ -473,7 +505,13 @@ const mapDispatchToProps = (dispatch) => ({
   },
   componentsFilterClearValues: value => {
     dispatch(componentsFilterClearValues(value));
-  }
+  },
+  startCompose: (blueprintName, composeType) => {
+    dispatch(startCompose(blueprintName, composeType));
+  },
+  fetchingImageStatus: (blueprintName, imageId) => {
+    dispatch(fetchingImageStatus(blueprintName, imageId));
+  },
 });
 
 export default connect(makeMapStateToProps, mapDispatchToProps)(BlueprintPage);

@@ -136,3 +136,43 @@ export function depsolveComponentsApi(packages) {
   });
   return p;
 }
+
+export function startComposeApi(blueprintName, composeType) {
+  const requestBody = {
+    blueprint_name: blueprintName,
+    compose_type: composeType,
+    branch: "master"
+  };
+
+  const p = new Promise((resolve, reject) => {
+    utils.apiFetch(constants.post_compose_start, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestBody),
+    }, true)
+    .then(data => {
+      resolve(JSON.parse(data));
+    })
+    .catch(e => {
+      console.log(`Error fetching diff: ${e}`);
+      reject();
+    });
+  });
+  return p;
+}
+
+export function fetchImageStatusApi(uuid) {
+  const p = new Promise((resolve, reject) => {
+    utils.apiFetch(constants.get_image_status + uuid)
+    .then(data => {
+      resolve(data);
+    })
+    .catch(e => {
+      console.log(`Error fetching diff: ${e}`);
+      reject();
+    });
+  });
+  return p;
+}

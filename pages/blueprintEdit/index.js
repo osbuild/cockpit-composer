@@ -19,7 +19,7 @@ import NotificationsApi from '../../data/NotificationsApi';
 import { connect } from 'react-redux';
 import {
   fetchingBlueprintContents, setBlueprint, addBlueprintComponent, committingBlueprint,
-  removeBlueprintComponent, undo, redo, commitToWorkspace, deleteHistory,
+  removeBlueprintComponent, undo, redo, commitToWorkspace, deleteHistory, startCompose,
 } from '../../core/actions/blueprints';
 import {
   fetchingInputs, setInputComponents, setSelectedInputPage,
@@ -49,6 +49,7 @@ class EditBlueprintPage extends React.Component {
     this.handleShowModal = this.handleShowModal.bind(this);
     this.handleHistory = this.handleHistory.bind(this);
     this.handleDiscardChanges = this.handleDiscardChanges.bind(this);
+    this.handleStartCompose = this.handleStartCompose.bind(this);
   }
 
   componentWillMount() {
@@ -375,6 +376,9 @@ class EditBlueprintPage extends React.Component {
       case 'modalExportBlueprint':
         this.props.setModalActive('modalExportBlueprint');
         break;
+      case 'modalCreateImage':
+        this.props.setModalActive('modalCreateImage');
+        break;
       default:
         this.props.setModalActive(null);
         break;
@@ -400,11 +404,13 @@ class EditBlueprintPage extends React.Component {
     this.props.commitToWorkspace(this.props.blueprint.id);
   }
 
+  handleStartCompose(blueprintName, composeType) {
+    this.props.startCompose(blueprintName, composeType);
+  }
+
   render() {
     if (this.props.blueprint.id === undefined) {
-      if (this.props.blueprint.id === undefined) {
-        this.props.fetchingBlueprintContents(this.props.route.params.blueprint.replace(/\s/g, '-'));
-      }
+      this.props.fetchingBlueprintContents(this.props.route.params.blueprint.replace(/\s/g, '-'));
       return <div></div>;
     }
     const blueprintDisplayName = this.props.route.params.blueprint;
@@ -475,6 +481,7 @@ class EditBlueprintPage extends React.Component {
                   data-toggle="modal"
                   data-target="#cmpsr-modal-crt-image"
                   type="button"
+                  onClick={e => this.handleShowModal(e, 'modalCreateImage')}
                 >
                   Create Image
                 </button>
@@ -638,13 +645,15 @@ class EditBlueprintPage extends React.Component {
             <Loading />
           </div>
         }
-        {createImage.imageTypes !== undefined &&
-          <CreateImage
+        {modalActive === 'modalCreateImage'
+          ? <CreateImage
             blueprint={blueprint.name}
             setNotifications={this.setNotifications}
+            handleStartCompose={this.handleStartCompose}
             imageTypes={createImage.imageTypes}
+            handleHideModal={this.handleHideModal}
           />
-        }
+          : null}
         {modalActive === 'modalExportBlueprint'
           ? <ExportBlueprint
             blueprint={blueprint.name}
@@ -701,6 +710,7 @@ EditBlueprintPage.propTypes = {
   redo: PropTypes.func,
   commitToWorkspace: PropTypes.func,
   deleteHistory: PropTypes.func,
+  startCompose: PropTypes.func,
 };
 
 const makeMapStateToProps = () => {
@@ -818,6 +828,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   commitToWorkspace: (blueprintId) => {
     dispatch(commitToWorkspace(blueprintId));
+  },
+  startCompose: (blueprintName, composeType) => {
+    dispatch(startCompose(blueprintName, composeType));
   },
 });
 

@@ -7,13 +7,29 @@ import NotificationsApi from '../../data/NotificationsApi';
 class CreateImage extends React.Component {
   constructor() {
     super();
+    this.state = { imageType: '' };
     this.handleCreateImage = this.handleCreateImage.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentWillMount() {
+    this.setState({ imageType: this.props.imageTypes[0].name });
+  }
+
+  componentDidMount() {
+    $(this.modal).modal('show');
+    $(this.modal).on('hidden.bs.modal', this.props.handleHideModal);
   }
 
   handleCreateImage() {
-    $('#cmpsr-modal-crt-image').modal('hide');
     NotificationsApi.displayNotification(this.props.blueprint, 'creating');
     this.props.setNotifications();
+    this.props.handleStartCompose(this.props.blueprint, this.state.imageType);
+    $('#cmpsr-modal-crt-image').modal('hide');
+  }
+
+  handleChange(event) {
+    this.setState({imageType: event.target.value});
   }
 
   render() {
@@ -21,6 +37,7 @@ class CreateImage extends React.Component {
       <div
         className="modal fade"
         id="cmpsr-modal-crt-image"
+        ref={(c) => { this.modal = c; }}
         tabIndex="-1"
         role="dialog"
         aria-labelledby="myModalLabel"
@@ -50,9 +67,9 @@ class CreateImage extends React.Component {
                     htmlFor="textInput-modal-markup"
                   >Image Type</label>
                   <div className="col-sm-9">
-                    <select className="form-control">
+                    <select className="form-control" value={this.state.imageType} onChange={this.handleChange}>
                       {this.props.imageTypes !== undefined && this.props.imageTypes.map((type, i) =>
-                        <option key={i} disabled={!type.enabled}>{type.name}</option>
+                        <option key={i} value={type.name} disabled={!type.enabled}>{type.name}</option>
                       )}
                     </select>
                   </div>
@@ -83,6 +100,8 @@ class CreateImage extends React.Component {
 
 CreateImage.propTypes = {
   blueprint: PropTypes.string,
+  handleStartCompose: PropTypes.func,
+  handleHideModal: PropTypes.func,
   setNotifications: PropTypes.func,
   imageTypes: PropTypes.array,
 };
