@@ -7,4 +7,8 @@ module.exports = class MainPage {
     this.title = title;
     this.iframeSelector = '.container-frame';
   }
+
+  get url() {
+    return this.mailUrl;
+  }
 };

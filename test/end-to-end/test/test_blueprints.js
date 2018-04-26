@@ -109,7 +109,7 @@ describe('Blueprints Page', () => {
 
       // Delete added blueprint after all tests completed in this sute
       afterAll((done) => {
-        apiCall.deleteBlueprint(pageConfig.blueprint.simple.name, done);
+        DeleteBlueprintPage.deleteBlueprint(pageConfig.blueprint.simple.name, done);
       });
 
       describe('Blueprint Content Check', () => {
@@ -411,7 +411,7 @@ describe('Blueprints Page', () => {
 
         // Delete added blueprint after each one of the tests finished
         afterEach((done) => {
-          apiCall.deleteBlueprint(blueprintName, done);
+          DeleteBlueprintPage.deleteBlueprint(blueprintName, done);
         });
 
         const deleteBlueprintPage = new DeleteBlueprintPage();
@@ -484,32 +484,7 @@ describe('Blueprints Page', () => {
               helper.gotoError(error, nightmare, testSpec14);
             });
         }, timeout);
-        const testSpec15 = test('should delete blueprint by clicking Delete button',
-        (done) => {
-          // Highlight the expected result
-          const expected = false;
 
-          const blueprintNameSelector = BlueprintsPage.blueprintNameSelector(blueprintName);
-
-          nightmare
-            .wait(btnMoreAction)
-            .click(btnMoreAction)
-            .wait(menuActionDelete)
-            .click(menuActionDelete)
-            .wait(deleteBlueprintPage.btnDelete)
-            .click(deleteBlueprintPage.btnDelete)
-            .wait(selector => document.querySelector(selector) === null
-              , blueprintNameSelector)
-            .exists(blueprintNameSelector)
-            .then((element) => {
-              expect(element).toBe(expected);
-
-              coverage(nightmare, done);
-            })
-            .catch((error) => {
-              helper.gotoError(error, nightmare, testSpec15);
-            });
-        }, timeout);
         const testSpec16 = test('should close Delete Blueprint page and no blueprint deleted by clicking Cancel button',
         (done) => {
           // Highlight the expected result
