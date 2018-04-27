@@ -11,7 +11,8 @@
     "nightmare": "^2.10.0",
     "nightmare-iframe-manager": "0.0.4",
     "request": "^2.81.0",
-    "request-promise-native": "^1.0.3"
+    "request-promise-native": "^1.0.3",
+    "webdriverio": "^4.12.0"
   },
   "devDependencies": {
     "eslint": "^3.19.0",
@@ -19,7 +20,8 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jest": "^20.0.3",
     "eslint-plugin-jsx-a11y": "^5.1.1",
-    "eslint-plugin-react": "^7.1.0"
+    "eslint-plugin-react": "^7.1.0",
+    "wdio-mocha-framework": "^0.5.13"
   },
   "jest": {
     "testMatch": [

@@ -1,5 +1,8 @@
 // Delete Blueprint page object
+const helper = require('../utils/helper_wdio');
 const MainPage = require('./main');
+const BlueprintsPage = require('./blueprints');
+
 
 module.exports = class deleteBlueprint extends MainPage {
   constructor() {
@@ -31,5 +34,24 @@ module.exports = class deleteBlueprint extends MainPage {
     // Delete and Cancel button
     this.btnDelete = `${this.footerElement} button[class="btn btn-danger"]`;
     this.btnCancel = `${this.footerElement} button[class="btn btn-default"]`;
+  }
+
+  // **** start page actions ****
+  static deleteBlueprint(bpName) {
+    const page = new this();
+
+    const btnMoreAction = BlueprintsPage.btnMore(bpName);
+    const menuActionDelete = BlueprintsPage.menuActionDelete(bpName);
+    const blueprintNameSelector = BlueprintsPage.blueprintNameSelector(bpName);
+
+    helper.goto(page)
+      .waitForVisible(btnMoreAction);
+
+    browser
+      .click(btnMoreAction)
+      .click(menuActionDelete)
+      .click(page.btnDelete)
+      // wait until the blueprint has been deleted
+      .waitForExist(blueprintNameSelector, 1000, true);
   }
 };
