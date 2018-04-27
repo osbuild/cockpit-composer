@@ -1,4 +1,5 @@
 import React from 'react';
+import {FormattedMessage} from 'react-intl';
 import PropTypes from 'prop-types';
 
 class ListItemImages extends React.PureComponent {
@@ -21,18 +22,33 @@ class ListItemImages extends React.PureComponent {
               </div>
               <div className="list-pf-additional-content">
                 <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
-                  Type <strong>{listItem.type}</strong>
+                  <FormattedMessage
+                    defaultMessage="Type {type}"
+                    values={{
+                      type: <strong>{listItem.type}</strong>
+                    }}
+                  />
                 </div>
                 <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
-                  Date Created <strong>{listItem.date_created}</strong>
+                  <FormattedMessage
+                    defaultMessage="Date Created {date}"
+                    values={{
+                      date: <strong>{listItem.date_created}</strong>
+                    }}
+                  />
                 </div>
                 <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
-                  Install Size <strong>{listItem.size}</strong>
+                  <FormattedMessage
+                    defaultMessage="Install Size {size}"
+                    values={{
+                      size: <strong>{listItem.size}</strong>
+                    }}
+                  />
                 </div>
               </div>
             </div>
             <div className="list-pf-actions">
-              <button className="btn btn-default" type="button">Download</button>
+              <button className="btn btn-default" type="button"><FormattedMessage defaultMessage="Download" /></button>
               <div className="dropdown pull-right dropdown-kebab-pf">
                 <button
                   className="btn btn-link dropdown-toggle"
@@ -45,11 +61,11 @@ class ListItemImages extends React.PureComponent {
                   <span className="fa fa-ellipsis-v" />
                 </button>
                 <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight9">
-                  <li><a>View Blueprint Components</a></li>
-                  <li><a>View Blueprint Manifest</a></li>
-                  <li><a>Export</a></li>
+                  <li><a><FormattedMessage defaultMessage="View Blueprint Components" /></a></li>
+                  <li><a><FormattedMessage defaultMessage="View Blueprint Manifest" /></a></li>
+                  <li><a><FormattedMessage defaultMessage="Export" /></a></li>
                   <li role="separator" className="divider" />
-                  <li><a>Archive</a></li>
+                  <li><a><FormattedMessage defaultMessage="Archive" /></a></li>
                 </ul>
               </div>
             </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import {FormattedDate, FormattedMessage, defineMessages, injectIntl, intlShape} from 'react-intl';
 import PropTypes from 'prop-types';
 import Link from '../../components/Link';
 import Layout from '../../components/Layout';
@@ -24,6 +25,27 @@ import {
   componentsSortSetKey, componentsSortSetValue, dependenciesSortSetKey, dependenciesSortSetValue,
 } from '../../core/actions/sort';
 import { makeGetBlueprintById, makeGetSortedSelectedComponents, makeGetSortedDependencies } from '../../core/selectors';
+
+const messages = defineMessages({
+  blueprint: {
+    defaultMessage: "Blueprint"
+  },
+  emptyBlueprintTitle: {
+    defaultMessage: "Empty Blueprint"
+  },
+  emptyBlueprintMessage: {
+    defaultMessage: "There are no components listed in the blueprint. Edit the blueprint to add components."
+  },
+  noImagesTitle: {
+    defaultMessage: "No Images"
+  },
+  noImagesMessage: {
+    defaultMessage: "No images have been created from this blueprint."
+  },
+  filterPlaceholder: {
+    defaultMessage: "Filter By Name..."
+  }
+});
 
 class BlueprintPage extends React.Component {
   constructor() {
@@ -98,7 +120,7 @@ class BlueprintPage extends React.Component {
   }
 
   componentDidMount() {
-    document.title = 'Blueprint';
+    document.title = this.props.intl.formatMessage(messages.blueprint);
   }
 
   setNotifications() {
@@ -161,17 +183,21 @@ class BlueprintPage extends React.Component {
       activeComponent, activeComponentParent, activeComponentStatus,
     } = this.props.blueprintPage;
 
+    const { formatMessage } = this.props.intl;
+
     return (
       <Layout className="container-fluid" ref="layout">
         <header className="cmpsr-header">
           <ol className="breadcrumb">
-            <li><Link to="/blueprints">Back to Blueprints</Link></li>
+            <li><Link to="/blueprints"><FormattedMessage defaultMessage="Back to Blueprints" /></Link></li>
             <li className="active"><strong>{this.props.route.params.blueprint}</strong></li>
           </ol>
           <div className="cmpsr-header__actions">
             <ul className="list-inline">
               <li>
-                <Link to={`/edit/${this.props.route.params.blueprint}`} className="btn btn-default">Edit Blueprint</Link>
+                <Link to={`/edit/${this.props.route.params.blueprint}`} className="btn btn-default">
+                  <FormattedMessage defaultMessage="Edit Blueprint" />
+                </Link>
               </li>
               <li>
                 <button
@@ -181,7 +207,7 @@ class BlueprintPage extends React.Component {
                   data-target="#cmpsr-modal-crt-image"
                   type="button"
                 >
-                  Create Image
+                  <FormattedMessage defaultMessage="Create Image" />
                 </button>
               </li>
               <li>
@@ -198,9 +224,9 @@ class BlueprintPage extends React.Component {
                   </button>
                   <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
                     {selectedComponents.length &&
-                      <li><a href="#" onClick={this.handleShowModalExport}>Export</a></li>
+                      <li><a href="#" onClick={this.handleShowModalExport}><FormattedMessage defaultMessage="Export" /></a></li>
                     ||
-                      <li className="disabled"><a>Export</a></li>
+                      <li className="disabled"><a><FormattedMessage defaultMessage="Export" /></a></li>
                     }
                   </ul>
                 </div>
@@ -221,7 +247,7 @@ class BlueprintPage extends React.Component {
                 <dl className="dl-horizontal mt-">
                   <dt>Name</dt>
                   <dd>{blueprint.name}</dd>
-                  <dt>Description</dt>
+                  <dt><FormattedMessage defaultMessage="Description" /></dt>
                   {(editDescriptionVisible &&
                     <dd>
                       <div className="input-group">
@@ -247,15 +273,29 @@ class BlueprintPage extends React.Component {
                         <span className="pficon pficon-edit" />
                       </button>
                     </dd>}
-                  <dt>Install size</dt>
-                  <dd>2,678 KB</dd>
-                  <dt>Last modified date</dt>
-                  <dd>Thu,  9 Nov 2017</dd>
+                  <dt><FormattedMessage defaultMessage="Install size" /></dt>
+                  <dd>
+                    <FormattedMessage
+                      defaultMessage="{size, number} KB"
+                      values={{
+                        size: 2678
+                      }}
+                    />
+                  </dd>
+                  <dt><FormattedMessage defaultMessage="Last modified date" /></dt>
+                  <dd><FormattedDate
+                    value={new Date('2017-11-07T00:00:00')}
+                    year='numeric'
+                    weekday='short'
+                    month='short'
+                    day='numeric'
+                  />
+                  </dd>
                 </dl>
               </div>
               <div className="col-sm-6 col-lg-8">
                 <div className="cmpsr-summary-listview">
-                  <p><strong>Changes</strong></p>
+                  <p><strong><FormattedMessage defaultMessage="Changes" /></strong></p>
                   <div className="list-pf cmpsr-list-pf list-pf-stacked cmpsr-list-pf__compacted cmpsr-blueprint__changes">
                     {this.state.changes.map((change, i) => (
                       <ListItemChanges
@@ -286,19 +326,60 @@ class BlueprintPage extends React.Component {
                               aria-haspopup="true"
                               aria-expanded="false"
                             >
-                              Commit 5<span className="caret" />
+                              <FormattedMessage
+                                defaultMessage="Commit {commitNumber}"
+                                values={{
+                                  commitNumber: 5
+                                }}
+                              />
+                              <span className="caret" />
                             </button>
                             <ul className="dropdown-menu">
-                              <li><a>Commit 5</a></li>
-                              <li><a>Commit 4</a></li>
-                              <li><a>Commit 3</a></li>
-                              <li><a>Commit 2</a></li>
-                              <li><a>Commit 1</a></li>
+                              <li><a>
+                                <FormattedMessage
+                                  defaultMessage="Commit {commitNumber}"
+                                  values={{
+                                    commitNumber: 5
+                                  }}
+                                />
+                              </a></li>
+                              <li><a>
+                                <FormattedMessage
+                                  defaultMessage="Commit {commitNumber}"
+                                  values={{
+                                    commitNumber: 4
+                                  }}
+                                />
+                              </a></li>
+                              <li><a>
+                                <FormattedMessage
+                                  defaultMessage="Commit {commitNumber}"
+                                  values={{
+                                    commitNumber: 3
+                                  }}
+                                />
+                              </a></li>
+                              <li><a>
+                                <FormattedMessage
+                                  defaultMessage="Commit {commitNumber}"
+                                  values={{
+                                    commitNumber: 2
+                                  }}
+                                />
+                              </a></li>
+                              <li><a>
+                                <FormattedMessage
+                                  defaultMessage="Commit {commitNumber}"
+                                  values={{
+                                    commitNumber: 1
+                                  }}
+                                />
+                              </a></li>
                             </ul>
                           </div>
                         </div>
                         <div className="form-group toolbar-pf-filter">
-                          <label className="sr-only" htmlFor="filter">Name</label>
+                          <label className="sr-only" htmlFor="filter"><FormattedMessage defaultMessage="Name" /></label>
                           <div className="input-group">
                             <div className="input-group-btn">
                               <button
@@ -308,14 +389,19 @@ class BlueprintPage extends React.Component {
                                 aria-haspopup="true"
                                 aria-expanded="false"
                               >
-                                Name<span className="caret" />
+                                <FormattedMessage defaultMessage="Name" /><span className="caret" />
                               </button>
                               <ul className="dropdown-menu">
-                                <li><a>Name</a></li>
-                                <li><a>Version</a></li>
+                                <li><a><FormattedMessage defaultMessage="Name" /></a></li>
+                                <li><a><FormattedMessage defaultMessage="Version" /></a></li>
                               </ul>
                             </div>
-                            <input type="text" className="form-control" id="filter" placeholder="Filter By Name..." />
+                            <input
+                              type="text"
+                              className="form-control"
+                              id="filter"
+                              placeholder={formatMessage(messages.filterPlaceholder)}
+                            />
                           </div>
                         </div>
                         <div className="form-group">
@@ -327,11 +413,11 @@ class BlueprintPage extends React.Component {
                               aria-haspopup="true"
                               aria-expanded="false"
                             >
-                              Name<span className="caret" />
+                              <FormattedMessage defaultMessage="Name" /><span className="caret" />
                             </button>
                             <ul className="dropdown-menu">
-                              <li><a>Name</a></li>
-                              <li><a>Version</a></li>
+                              <li><a><FormattedMessage defaultMessage="Name" /></a></li>
+                              <li><a><FormattedMessage defaultMessage="Version" /></a></li>
                             </ul>
                           </div>
                           {this.props.componentsSortKey === 'name' && this.props.componentsSortValue === 'DESC' &&
@@ -364,12 +450,12 @@ class BlueprintPage extends React.Component {
                   </div>
                   {(selectedComponents === undefined || selectedComponents.length === 0) &&
                     <EmptyState
-                      title={'Empty Blueprint'}
-                      message={'There are no components listed in the blueprint. Edit the blueprint to add components.'}
+                      title={formatMessage(messages.emptyBlueprintTitle)}
+                      message={formatMessage(messages.emptyBlueprintMessage)}
                     >
                       <Link to={`/edit/${this.props.route.params.blueprint}`}>
                         <button className="btn btn-default btn-primary" type="button">
-                          Edit Blueprint
+                          <FormattedMessage defaultMessage="Edit Blueprint" />
                         </button>
                       </Link>
                     </EmptyState> ||
@@ -381,7 +467,9 @@ class BlueprintPage extends React.Component {
                     />}
                 </div>) ||
                 <div className="col-sm-12 cmpsr-component-details--view">
-                  <h3 className="cmpsr-panel__title cmpsr-panel__title--main">Component Details</h3>
+                  <h3 className="cmpsr-panel__title cmpsr-panel__title--main">
+                    <FormattedMessage defaultMessage="Component Details" />
+                  </h3>
                   <ComponentDetailsView
                     parent={this.props.route.params.blueprint}
                     component={activeComponent}
@@ -395,7 +483,10 @@ class BlueprintPage extends React.Component {
           <Tab tabTitle="Images" active={activeTab === 'Images'}>
             <div className="tab-container">
               {(this.state.images.length === 0 &&
-                <EmptyState title={'No Images'} message={'No images have been created from this blueprint.'}>
+                <EmptyState
+                  title={formatMessage(messages.noImagesTitle)} 
+                  message={formatMessage(messages.noImagesMessage)}
+                >
                   <button
                     className="btn btn-default"
                     id="cmpsr-btn-crt-image"
@@ -403,7 +494,7 @@ class BlueprintPage extends React.Component {
                     data-target="#cmpsr-modal-crt-image"
                     type="button"
                   >
-                    Create Image
+                    <FormattedMessage defaultMessage="Create Image" />
                   </button>
                 </EmptyState>) ||
                 <ListView className="cmpsr-blueprint__images cmpsr-list">
@@ -456,6 +547,7 @@ BlueprintPage.propTypes = {
   dependencies: PropTypes.array,
   componentsSortKey: PropTypes.string,
   componentsSortValue: PropTypes.string,
+  intl: intlShape.isRequired,
 };
 
 const makeMapStateToProps = () => {
@@ -534,4 +626,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(makeMapStateToProps, mapDispatchToProps)(BlueprintPage);
+export default connect(makeMapStateToProps, mapDispatchToProps)(injectIntl(BlueprintPage));

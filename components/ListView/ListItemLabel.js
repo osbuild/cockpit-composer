@@ -1,4 +1,5 @@
 import React from 'react';
+import {FormattedMessage} from 'react-intl';
 import PropTypes from 'prop-types';
 
 const ListItemLabel = (props) => {
@@ -7,7 +8,7 @@ const ListItemLabel = (props) => {
     dependency = (<div
       className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked"
     >
-      <span className="label label-default">Dependency</span>
+      <span className="label label-default"><FormattedMessage defaultMessage="Dependency" /></span>
     </div>);
   }
 

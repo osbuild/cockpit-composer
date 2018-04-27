@@ -1,6 +1,7 @@
 /* global $ */
 
 import React from 'react';
+import {FormattedDate, FormattedMessage} from 'react-intl';
 import PropTypes from 'prop-types';
 import ComponentTypeIcons from '../../components/ListView/ComponentTypeIcons';
 import ComponentSummaryList from '../../components/ListView/ComponentSummaryList';
@@ -87,10 +88,20 @@ class ListItemComponents extends React.Component {
               </div>
               <div className="list-pf-additional-content">
                 <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
-                  Version <strong>{listItem.version}</strong>
+                  <FormattedMessage
+                    defaultMessage="Version {version}"
+                    values={{
+                      version: <strong>{listItem.version}</strong>
+                    }}
+                  />
                 </div>
                 <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
-                  Release <strong>{listItem.release}</strong>
+                  <FormattedMessage
+                    defaultMessage="Release {release}"
+                    values={{
+                      release: <strong>{listItem.release}</strong>
+                    }}
+                  />
                 </div>
               </div>
             </div>
@@ -113,7 +124,7 @@ class ListItemComponents extends React.Component {
                         href="#"
                         onClick={e => this.props.handleComponentDetails(e, listItem, this.props.componentDetailsParent)}
                       >
-                        View
+                        <FormattedMessage defaultMessage="View" />
                       </a>
                     </li>
                     <li>
@@ -121,12 +132,14 @@ class ListItemComponents extends React.Component {
                         href="#"
                         onClick={e => this.props.handleComponentDetails(e, listItem, this.props.componentDetailsParent, 'edit')}
                       >
-                        Edit
+                        <FormattedMessage defaultMessage="Edit" />
                       </a>
                     </li>
                     <li role="separator" className="divider" />
                     <li>
-                      <a href="#" onClick={e => this.props.handleRemoveComponent(e, listItem)}>Remove</a>
+                      <a href="#" onClick={e => this.props.handleRemoveComponent(e, listItem)}>
+                        <FormattedMessage defaultMessage="Remove" />
+                      </a>
                     </li>
                   </ul>
                 </div>
@@ -141,26 +154,41 @@ class ListItemComponents extends React.Component {
                 <div className="row">
                   <div className="col-md-6">
                     <dl className="dl-horizontal clearfix">
-                      <dt>Version</dt>
+                      <dt><FormattedMessage defaultMessage="Version" /></dt>
                       <dd>{listItem.version ? listItem.version : <span>&nbsp;</span>}</dd>
-                      <dt>Release</dt>
+                      <dt><FormattedMessage defaultMessage="Release" /></dt>
                       <dd>{listItem.release ? listItem.release : <span>&nbsp;</span>}</dd>
-                      <dt>Architecture</dt>
+                      <dt><FormattedMessage defaultMessage="Architecture" /></dt>
                       <dd>---</dd>
-                      <dt>Install Size</dt>
-                      <dd>2 MB (5 MB with Dependencies)</dd>
+                      <dt><FormattedMessage defaultMessage="Install Size" /></dt>
+                      <dd>
+                        <FormattedMessage
+                          defaultMessage="{size} MB ({depSize} MB with Dependencies"
+                          values={{
+                            size: 2,
+                            depSize: 5
+                          }}
+                        />
+                      </dd>
                       <dt>URL</dt>
                       {(listItem.homepage != null &&
                         <dd><a target="_blank" href={listItem.homepage}>{listItem.homepage}</a></dd>) ||
                         <dd>&nbsp;</dd>}
-                      <dt>Packager</dt>
-                      <dd>Red Hat</dd>
-                      <dt>Product Family</dt>
+                      <dt><FormattedMessage defaultMessage="Packager" /></dt>
+                      <dd><FormattedMessage defaultMessage="Red Hat" /></dd>
+                      <dt><FormattedMessage defaultMessage="Product Family" /></dt>
                       <dd>---</dd>
-                      <dt>Lifecycle</dt>
-                      <dd>01/15/2017</dd>
-                      <dt>Support Level</dt>
-                      <dd>Standard</dd>
+                      <dt><FormattedMessage defaultMessage="Lifecycle" /></dt>
+                      <dd>
+                        <FormattedDate
+                          value={new Date(2017,0,15)}
+                          year="numeric"
+                          month="2-digit"
+                          day="2-digit"
+                        />
+                      </dd>
+                      <dt><FormattedMessage defaultMessage="Support Level" /></dt>
+                      <dd><FormattedMessage defaultMessage="Standard" /></dd>
                     </dl>
                   </div>
                   <div className="col-md-6">
@@ -169,8 +197,8 @@ class ListItemComponents extends React.Component {
                   <div className="col-md-12 hidden">
                     <div className="cmpsr-summary-listview">
                       <p>
-                        <strong>Errata</strong>
-                        <a href="#" className="pull-right hidden">Show All</a>
+                        <strong><FormattedMessage defaultMessage="Errata" /></strong>
+                        <a href="#" className="pull-right hidden"><FormattedMessage defaultMessage="Show All" /></a>
                       </p>
                       <div className="list-pf cmpsr-list-pf__compacted">
                         <div className="list-pf-item">

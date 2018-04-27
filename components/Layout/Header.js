@@ -1,6 +1,19 @@
 import React from 'react';
+import {FormattedMessage, defineMessages, injectIntl, intlShape} from 'react-intl';
 
-function Header() {
+const messages = defineMessages({
+  helpTitle: {
+    defaultMessage: "Help"
+  },
+  noNewNotifications: {
+    defaultMessage: "No new notifications"
+  },
+  username: {
+    defaultMessage: "Username"
+  }
+});
+
+function Header(props) {
   return (
     <nav className="navbar navbar-pf-vertical">
       <div className="navbar-header">
@@ -15,7 +28,7 @@ function Header() {
               className="nav-item-iconic"
               id="notifications"
             >
-              <span className="fa fa-bell-o" title="No new notifications"></span>
+              <span className="fa fa-bell-o" title={props.intl.formatMessage(messages.noNewNotifications)}></span>
             </a>
           </li>
           <li className="dropdown">
@@ -26,12 +39,12 @@ function Header() {
               aria-haspopup="true"
               aria-expanded="true"
             >
-              <span title="Help" className="fa pficon-help"></span>
+              <span title={props.intl.formatMessage(messages.helpTitle)} className="fa pficon-help"></span>
               <span className="caret"></span>
             </a>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <li><a >Help</a></li>
-              <li><a >About</a></li>
+              <li><a ><FormattedMessage defaultMessage="Help" /></a></li>
+              <li><a ><FormattedMessage defaultMessage="About" /></a></li>
             </ul>
           </li>
           <li className="dropdown">
@@ -42,12 +55,12 @@ function Header() {
               aria-haspopup="true"
               aria-expanded="true"
             >
-              <span title="Username" className="fa pficon-user"></span>
+              <span title={props.intl.formatMessage(messages.username)} className="fa pficon-user"></span>
               <span className="caret"></span>
             </a>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenu2">
-              <li><a >Preferences</a></li>
-              <li><a >Logout</a></li>
+              <li><a ><FormattedMessage defaultMessage="Preferences" /></a></li>
+              <li><a ><FormattedMessage defaultMessage="Logout" /></a></li>
             </ul>
           </li>
         </ul>
@@ -56,4 +69,8 @@ function Header() {
   );
 }
 
-export default Header;
+Header.propTypes = {
+  intl: intlShape.isRequired,
+};
+
+export default injectIntl(Header);

@@ -1,10 +1,20 @@
 import React from 'react';
+import {defineMessages, injectIntl, intlShape} from 'react-intl';
 import PropTypes from 'prop-types';
 import Tabs from '../../components/Tabs/Tabs';
 import Tab from '../../components/Tabs/Tab';
 import ListView from '../../components/ListView/ListView';
 import ListItemComponents from '../../components/ListView/ListItemComponents';
 import DependencyListView from '../../components/ListView/DependencyListView';
+
+const messages = defineMessages({
+  dependencies: {
+    defaultMessage: "Dependencies {count}"
+  },
+  selected: {
+    defaultMessage: "Selected Components {count}"
+  }
+});
 
 class BlueprintContents extends React.Component {
   constructor() {
@@ -23,6 +33,7 @@ class BlueprintContents extends React.Component {
 
   render() {
     const { components, dependencies, handleComponentDetails, handleRemoveComponent, noEditComponent } = this.props;
+    const { formatMessage } = this.props.intl;
 
     return (
       <div>
@@ -35,7 +46,7 @@ class BlueprintContents extends React.Component {
           classnames="nav nav-tabs nav-tabs-pf"
         >
           <Tab
-            tabTitle={`Selected Components <span class="badge">${components.length}</span>`}
+            tabTitle={formatMessage(messages.selected, {count: <span className="badge">{components.length}</span>})}
             active={this.state.activeTab === 'Selected'}
           >
             <ListView className="cmpsr-blueprint__components" stacked>
@@ -52,7 +63,7 @@ class BlueprintContents extends React.Component {
             </ListView>
           </Tab>
           <Tab
-            tabTitle={`Dependencies <span class="badge">${dependencies.length}</span>`}
+            tabTitle={formatMessage(messages.dependencies, {count: <span className="badge">{dependencies.length}</span>})}
             active={this.state.activeTab === 'Dependencies'}
           >
             <DependencyListView
@@ -74,7 +85,8 @@ BlueprintContents.propTypes = {
   dependencies: PropTypes.array,
   handleComponentDetails: PropTypes.func,
   handleRemoveComponent: PropTypes.func,
+  intl: intlShape.isRequired,
   noEditComponent: PropTypes.bool,
 };
 
-export default BlueprintContents;
+export default injectIntl(BlueprintContents);
