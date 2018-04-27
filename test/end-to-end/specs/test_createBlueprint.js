@@ -1,208 +1,118 @@
-const Nightmare = require('nightmare');
-require('nightmare-iframe-manager')(Nightmare);
+const assert = require('assert');
 const faker = require('faker');
+const helper = require('../utils/helper_wdio');
+const pageConfig = require('../config');
+
 const BlueprintsPage = require('../pages/blueprints');
+const DeleteBlueprintPage = require('../pages/deleteBlueprint');
 const CreateBlueprintPage = require('../pages/createBlueprint');
 const EditBlueprintPage = require('../pages/editBlueprint');
 const ChangesPendingCommitPage = require('../pages/changesPendingCommit');
 const ToastNotifPage = require('../pages/toastNotif');
-const apiCall = require('../utils/apiCall');
-const helper = require('../utils/helper');
-const pageConfig = require('../config');
-const fs = require('fs');
-const coverage = require('../utils/coverage.js').coverage;
 
 
-describe('Create Blueprint Page', () => {
-  let nightmare;
-  // Set case running timeout
-  const timeout = pageConfig.nightmareOptions.waitTimeout * 3;
-
-  // Check BDCS API and Web service first
-  beforeAll(apiCall.serviceCheck);
-
+describe('Create Blueprint Page', function() {
   const blueprintsPage = new BlueprintsPage();
-  const createBlueprintPage = new CreateBlueprintPage(pageConfig.blueprint.simple.name
-    , pageConfig.blueprint.simple.description);
+  const createBlueprintPage = new CreateBlueprintPage(
+    pageConfig.blueprint.simple.name,
+    pageConfig.blueprint.simple.description);
 
-  beforeEach(() => {
-    helper.gotoURL(nightmare = new Nightmare(pageConfig.nightmareOptions), blueprintsPage);
+  beforeEach(function() {
+    helper.goto(blueprintsPage);
   });
 
-  describe('Input Data Validation Test', () => {
-    describe('Required Field Missing', () => {
-      const testSpec1 = test('should show alert message by clicking Create button when create blueprint without name',
-      (done) => {
-        // Highlight the expected result
-        const expectedAlertInfo = createBlueprintPage.varAlertInfo;
-        const expectedHelpBlockMsg = createBlueprintPage.varHelpBlockMsg;
-
-        nightmare
-          .wait(blueprintsPage.btnCreateBlueprint)
+  describe('Input Data Validation Test', function() {
+    describe('Required Field Missing', function() {
+      it('show alert message when creating blueprint without name', function() {
+        browser
           .click(blueprintsPage.btnCreateBlueprint)
-          .wait(page => document.activeElement.id === page.inputNameEleId
-            , createBlueprintPage)
-          .wait(createBlueprintPage.btnCreate)
+          .waitForVisible(createBlueprintPage.dialogRootElement);
+
+        // make sure the modal dialog is fully loaded
+        browser
+          .waitForVisible(createBlueprintPage.labelCreateBlueprint);
+
+        // wait until the name input element has focus
+        browser
+          .waitUntil(function() {
+            return $(createBlueprintPage.inputName).hasFocus();
+          });
+
+        browser
+          .waitForVisible(createBlueprintPage.btnCreate);
+
+        browser
           .click(createBlueprintPage.btnCreate)
-          .wait(createBlueprintPage.labelAlertInfo)
-          .evaluate(page => document.querySelector(page.labelAlertInfo).innerText
-            , createBlueprintPage)
-          .then((element) => {
-            expect(element).toBe(expectedAlertInfo);
-          })
-          .then(() => nightmare
-            .wait(createBlueprintPage.spanHelpBlockMsg)
-            .evaluate(page => document.querySelector(page.spanHelpBlockMsg).innerText
-              , createBlueprintPage))
-          .then((element) => {
-            expect(element).toBe(expectedHelpBlockMsg);
+          .waitForVisible(createBlueprintPage.labelAlertInfo);
 
-            coverage(nightmare, done);
-          })
-          .catch((error) => {
-            helper.gotoError(error, nightmare, testSpec1);
-          });
-      }, timeout);
-      const testSpec2 = test('should show alert message by clicking Enter key when create blueprint without name',
-      (done) => {
-        // Highlight the expected result
-        const expectedAlertInfo = createBlueprintPage.varAlertInfo;
-        const expectedHelpBlockMsg = createBlueprintPage.varHelpBlockMsg;
+        const actualAlertText = $(createBlueprintPage.labelAlertInfo).getText();
+        const actualHelpText = $(createBlueprintPage.spanHelpBlockMsg).getText();
 
-        nightmare
-          .wait(blueprintsPage.btnCreateBlueprint)
-          .click(blueprintsPage.btnCreateBlueprint)
-          .wait(page => document.activeElement.id === page.inputNameEleId
-            , createBlueprintPage)
-          .wait(createBlueprintPage.btnCommit)
-          .type('body', '\u000d')
-          .wait(createBlueprintPage.labelAlertInfo)
-          .evaluate(page => document.querySelector(page.labelAlertInfo).innerText
-            , createBlueprintPage)
-          .then((element) => {
-            expect(element).toBe(expectedAlertInfo);
-          })
-          .then(() => nightmare
-            .wait(createBlueprintPage.spanHelpBlockMsg)
-            .evaluate(page => document.querySelector(page.spanHelpBlockMsg).innerText
-              , createBlueprintPage))
-          .then((element) => {
-            expect(element).toBe(expectedHelpBlockMsg);
-
-            coverage(nightmare, done);
-          })
-          .catch((error) => {
-            helper.gotoError(error, nightmare, testSpec2);
-          });
-      }, timeout);
-      const testSpec3 = test('should show alert message by changing focus to description input',
-      (done) => {
-        // Highlight the expected result
-        const expected = createBlueprintPage.varHelpBlockMsg;
-
-        nightmare
-          .wait(blueprintsPage.btnCreateBlueprint)
-          .click(blueprintsPage.btnCreateBlueprint)
-          .wait(page => document.activeElement.id === page.inputNameEleId
-            , createBlueprintPage)
-          .evaluate(page => document.querySelector(page.inputDescription).focus()
-            , createBlueprintPage)
-          .wait(createBlueprintPage.spanHelpBlockMsg)
-          .evaluate(page => document.querySelector(page.spanHelpBlockMsg).innerText
-            , createBlueprintPage)
-          .then((element) => {
-            expect(element).toBe(expected);
-
-            coverage(nightmare, done);
-          })
-          .catch((error) => {
-            helper.gotoError(error, nightmare, testSpec3);
-          });
-      }, timeout);
-    });
-    describe('Simple Valid Input Test', () => {
-      const editBlueprintPage = new EditBlueprintPage(pageConfig.blueprint.simple.name);
-
-      // Delete created blueprint after each creation case
-      afterEach((done) => {
-        apiCall.deleteBlueprint(editBlueprintPage.blueprintName, done);
+        assert.equal(actualAlertText, createBlueprintPage.varAlertInfo);
+        assert.equal(actualHelpText, createBlueprintPage.varHelpBlockMsg);
       });
 
-      const testSpec4 = test('should switch to Edit Blueprint page - blueprint creation success',
-      (done) => {
-        nightmare
-          .wait(blueprintsPage.btnCreateBlueprint)
+      it.skip('show alert message when creating blueprint without name by clicking Enter', function() {
+        browser
           .click(blueprintsPage.btnCreateBlueprint)
-          .wait(page => document.querySelector(page.dialogRootElement).style.display === 'block'
-            , createBlueprintPage)
-          .insert(createBlueprintPage.inputName, createBlueprintPage.varRecName)
-          .insert(createBlueprintPage.inputDescription, createBlueprintPage.varRecDesc)
-          .click(createBlueprintPage.btnCreate)
-          .wait(editBlueprintPage.componentListItemRootElement)
-          .exists(editBlueprintPage.componentListItemRootElement)
-          .then((element) => {
-            expect(element).toBe(true);
+          .waitForVisible(createBlueprintPage.dialogRootElement);
 
-            coverage(nightmare, done);
-          })
-          .catch((error) => {
-            helper.gotoError(error, nightmare, testSpec4);
-          });
-      }, timeout);
-    });
-    describe('Create Blueprint', () => {
-      const blueprintName = faker.lorem.words();
-      const blueprintDescription = faker.lorem.sentence();
-      const blueprintComponentName = pageConfig.blueprint.simple.packages[0].name;
-      const editBlueprintPage = new EditBlueprintPage(blueprintName);
-      const blueprintNameSelector = BlueprintsPage.blueprintNameSelector(blueprintName);
-      const changesPendingCommitPage = new ChangesPendingCommitPage();
-      const toastNotifPage = new ToastNotifPage(blueprintName);
+        browser
+          .waitForVisible(createBlueprintPage.btnCreate);
 
-      // Delete created blueprint after each creation case
-      afterEach((done) => {
-        apiCall.deleteBlueprint(blueprintName, done);
+        browser
+          .keys('Enter') // appears to not be supported in Firefox
+          .waitForVisible(createBlueprintPage.labelAlertInfo);
+
+        const actualAlertText = $(createBlueprintPage.labelAlertInfo).getText();
+        const actualHelpText = $(createBlueprintPage.spanHelpBlockMsg).getText();
+
+        assert.equal(actualAlertText, createBlueprintPage.varAlertInfo);
+        assert.equal(actualHelpText, createBlueprintPage.varHelpBlockMsg);
       });
 
-      const testSpec5 = test('should successfuly create a blueprint',
-      (done) => {
-        // Highlight the expected result
-        const expected = blueprintName;
+      it('should show alert message by changing focus to description input', function () {
+        browser
+          .waitForVisible(blueprintsPage.btnCreateBlueprint);
 
-        nightmare
-          .wait(blueprintsPage.btnCreateBlueprint)
+        browser
           .click(blueprintsPage.btnCreateBlueprint)
-          .wait(page => document.querySelector(page.dialogRootElement).style.display === 'block'
-            , createBlueprintPage)
-          .insert(createBlueprintPage.inputName, blueprintName)
-          .insert(createBlueprintPage.inputDescription, blueprintDescription)
-          .click(createBlueprintPage.btnCreate)
-          .wait(editBlueprintPage.httpdComponent)
-          .click(editBlueprintPage.httpdComponent)
-          .wait((page, name) => document.querySelector(page.labelComponentName).innerText.includes(name)
-            , editBlueprintPage, blueprintComponentName)
-          .wait(editBlueprintPage.btnHttpdComponent)
-          .click(editBlueprintPage.btnHttpdComponent)
-          .wait(editBlueprintPage.boxFirstSelectedComponent)
-          .wait((page, name) => document.querySelector(page.labelFirstComponentName).text === name
-            , editBlueprintPage, blueprintComponentName)
-          .click(editBlueprintPage.btnCommit)
-          .wait(changesPendingCommitPage.btnCommit)
-          .click(changesPendingCommitPage.btnCommit)
-          .wait(toastNotifPage.iconComplete)
-          .click(editBlueprintPage.linkBackToBlueprints)
-          .wait(blueprintNameSelector)
-          .evaluate(selector => document.querySelector(selector).innerText
-              , blueprintNameSelector)
-          .then((element) => {
-            expect(element).toBe(expected);
-
-            coverage(nightmare, done);
-          })
-          .catch((error) => {
-            helper.gotoError(error, nightmare, testSpec5);
+          .waitUntil(function() {
+            return $(createBlueprintPage.inputName).hasFocus();
           });
-      }, timeout);
+
+        // change the focus to the next input field
+        $(createBlueprintPage.inputDescription).click();
+
+        browser
+          .waitForExist(createBlueprintPage.spanHelpBlockMsg);
+
+        const actualText = $(createBlueprintPage.spanHelpBlockMsg).getText();
+
+        assert.equal(actualText, createBlueprintPage.varHelpBlockMsg);
+      });
+    });
+  });
+
+  describe('Simple Valid Input Test', function() {
+    const editBlueprintPage = new EditBlueprintPage(pageConfig.blueprint.simple.name);
+
+    afterEach(function() {
+      // Delete created blueprint after each creation case
+      DeleteBlueprintPage.deleteBlueprint(pageConfig.blueprint.simple.name);
+    });
+
+    it('should switch to Edit Blueprint page after BP creation', function() {
+      helper.goto(blueprintsPage)
+        .click(createBlueprintPage.btnCreateBlueprint)
+        .waitForVisible(createBlueprintPage.dialogRootElement);
+
+      browser
+        .setValue(createBlueprintPage.inputName, pageConfig.blueprint.simple.name)
+        .setValue(createBlueprintPage.inputDescription, pageConfig.blueprint.simple.description)
+        .click(createBlueprintPage.btnCreate)
+        // this component is visible only if we've been redirected to the edit page
+        .waitForVisible(editBlueprintPage.componentListItemRootElement);
     });
   });
 });
