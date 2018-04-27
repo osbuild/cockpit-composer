@@ -1,4 +1,5 @@
 import React from 'react';
+import {FormattedMessage} from 'react-intl';
 import PropTypes from 'prop-types';
 import ComponentTypeIcons from '../../components/ListView/ComponentTypeIcons';
 
@@ -21,10 +22,14 @@ class ComponentSummaryList extends React.Component {
     return (
       <div className="cmpsr-summary-listview">
         <p>
-          <strong>Dependencies</strong>
+          <strong><FormattedMessage defaultMessage="Dependencies" /></strong>
           <span className="badge">{this.props.listItems.length}</span>
           <a href="#" className="pull-right" onClick={e => this.handleShowAll(e)}>
-            {`${this.state.showAll ? 'Show Less' : 'Show All'}`}
+            {this.state.showAll ? (
+              <FormattedMessage defaultMessage="Show Less" />
+            ) : (
+              <FormattedMessage defaultMessage="Show All" />
+            )}
           </a>
         </p>
         <div className="list-pf cmpsr-list-pf__compacted">

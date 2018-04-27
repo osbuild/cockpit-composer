@@ -1,4 +1,5 @@
 import React from 'react';
+import {FormattedMessage} from 'react-intl';
 import PropTypes from 'prop-types';
 import { Filter, Toolbar } from 'patternfly-react';
 
@@ -42,7 +43,7 @@ class ToolbarLayout extends React.Component {
                 onClick={filterClearValues}
 
               >
-                Clear All Filters
+                <FormattedMessage defaultMessage="Clear All Filters" />
               </button>
             </Toolbar.Results>
           )}

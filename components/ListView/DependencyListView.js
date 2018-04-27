@@ -1,4 +1,5 @@
 import React from 'react';
+import {FormattedMessage} from 'react-intl';
 import PropTypes from 'prop-types';
 import ListView from '../../components/ListView/ListView';
 import ListItemComponents from '../../components/ListView/ListItemComponents';
@@ -11,9 +12,11 @@ class DependencyListView extends React.Component {
       <div>
         <div className="alert alert-warning alert-dismissable hidden">
           <span className="pficon pficon-warning-triangle-o" />
-          One or more dependencies have multiple variations that could be used.
-          A default variation was automatically selected.
-          Click a flagged dependency to see other options available.
+          <FormattedMessage
+            defaultMessage="One or more dependencies have multiple variations that could be used.
+                            A default variation was automatically selected.
+                            Click a flagged dependency to see other options available."
+          />
         </div>
         <ListView className={this.props.className} stacked>
           {this.props.listItems.map((listItem, i) => (

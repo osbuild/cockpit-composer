@@ -1,4 +1,5 @@
 import React from 'react';
+import {FormattedMessage, defineMessages, injectIntl, intlShape} from 'react-intl';
 import PropTypes from 'prop-types';
 import Link from '../../components/Link';
 import Layout from '../../components/Layout';
@@ -33,6 +34,30 @@ import { componentsFilterAddValue, componentsFilterRemoveValue, componentsFilter
 import { makeGetBlueprintById, makeGetSortedSelectedComponents, makeGetSortedDependencies,
   makeGetFilteredComponents } from '../../core/selectors';
 
+const messages = defineMessages({
+  blueprint: {
+    defaultMessage: "Blueprint"
+  },
+  emptyBlueprintTitle: {
+    defaultMessage: "Empty Blueprint"
+  },
+  emptyBlueprintMessage: {
+    defaultMessage: "There are no components listed in the blueprint. Edit the blueprint to add components."
+  },
+  imagesTitle: {
+    defaultMessage: "Images"
+  },
+  noImagesTitle: {
+    defaultMessage: "No Images"
+  },
+  noImagesMessage: {
+    defaultMessage: "No images have been created from this blueprint."
+  },
+  selectedComponentsTitle: {
+    defaultMessage: "Selected Components"
+  }
+});
+
 class BlueprintPage extends React.Component {
   constructor() {
     super();
@@ -61,7 +86,7 @@ class BlueprintPage extends React.Component {
   }
 
   componentDidMount() {
-    document.title = 'Blueprint';
+    document.title = this.props.intl.formatMessage(messages.blueprint);
   }
 
   setNotifications() {
@@ -139,6 +164,7 @@ class BlueprintPage extends React.Component {
       editDescriptionValue, editDescriptionVisible, activeTab,
       activeComponent, activeComponentParent, activeComponentStatus,
     } = this.props.blueprintPage;
+    const { formatMessage } = this.props.intl;
 
     var changes;
     if (this.state.changes.length > 0) {
@@ -165,13 +191,15 @@ class BlueprintPage extends React.Component {
       <Layout className="container-fluid" ref="layout">
         <header className="cmpsr-header">
           <ol className="breadcrumb">
-            <li><Link to="/blueprints">Back to Blueprints</Link></li>
+            <li><Link to="/blueprints"><FormattedMessage defaultMessage="Back to Blueprints" /></Link></li>
             <li className="active"><strong>{this.props.route.params.blueprint}</strong></li>
           </ol>
           <div className="cmpsr-header__actions">
             <ul className="list-inline">
               <li>
-                <Link to={`/edit/${this.props.route.params.blueprint}`} className="btn btn-default">Edit Blueprint</Link>
+                <Link to={`/edit/${this.props.route.params.blueprint}`} className="btn btn-default">
+                  <FormattedMessage defaultMessage="Edit Blueprint" />
+                </Link>
               </li>
               <li>
                 <button
@@ -182,7 +210,7 @@ class BlueprintPage extends React.Component {
                   type="button"
                   onClick={(e) => this.handleShowModalCreateImage(e, blueprint)}
                 >
-                  Create Image
+                  <FormattedMessage defaultMessage="Create Image" />
                 </button>
               </li>
               <li>
@@ -199,9 +227,9 @@ class BlueprintPage extends React.Component {
                   </button>
                   <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
                     {selectedComponents.length &&
-                      <li><a href="#" onClick={this.handleShowModalExport}>Export</a></li>
+                      <li><a href="#" onClick={this.handleShowModalExport}><FormattedMessage defaultMessage="Export" /></a></li>
                     ||
-                      <li className="disabled"><a>Export</a></li>
+                      <li className="disabled"><a><FormattedMessage defaultMessage="Export" /></a></li>
                     }
                   </ul>
                 </div>
@@ -220,9 +248,9 @@ class BlueprintPage extends React.Component {
             <div className="tab-container row">
               <div className="col-sm-6 col-lg-4">
                 <dl className="dl-horizontal mt-">
-                  <dt>Name</dt>
+                  <dt><FormattedMessage defaultMessage="Name" /></dt>
                   <dd>{blueprint.name}</dd>
-                  <dt>Description</dt>
+                  <dt><FormattedMessage defaultMessage="Description" /></dt>
                   {(editDescriptionVisible &&
                     <dd>
                       <div className="input-group">
@@ -253,7 +281,7 @@ class BlueprintPage extends React.Component {
               {changes}
             </div>
           </Tab>
-          <Tab tabTitle="Selected Components" active={activeTab === 'SelectedComponents'}>
+          <Tab tabTitle={formatMessage(messages.selectedComponentsTitle)} active={activeTab === 'SelectedComponents'}>
             <div className="row">
               {(activeComponent === '' &&
                 <div className="col-sm-12">
@@ -282,12 +310,12 @@ class BlueprintPage extends React.Component {
                     fetchingState={this.props.blueprintContentsFetching}
                   >
                     <EmptyState
-                      title={'Empty Blueprint'}
-                      message={'There are no components listed in the blueprint. Edit the blueprint to add components.'}
+                      title={formatMessage(messages.emptyBlueprintTitle)}
+                      message={formatMessage(messages.emptyBlueprintMessage)}
                     >
                       <Link to={`/edit/${this.props.route.params.blueprint}`}>
                         <button className="btn btn-default btn-primary" type="button">
-                          Edit Blueprint
+                          <FormattedMessage defaultMessage="Edit Blueprint" />
                         </button>
                       </Link>
                     </EmptyState>
@@ -295,7 +323,9 @@ class BlueprintPage extends React.Component {
                 </div>)
                 ||
                 <div className="col-sm-12 cmpsr-component-details--view">
-                  <h3 className="cmpsr-panel__title cmpsr-panel__title--main">Component Details</h3>
+                  <h3 className="cmpsr-panel__title cmpsr-panel__title--main">
+                    <FormattedMessage defaultMessage="Component Details" />
+                  </h3>
                   <ComponentDetailsView
                     parent={this.props.route.params.blueprint}
                     component={activeComponent}
@@ -307,10 +337,13 @@ class BlueprintPage extends React.Component {
               }
             </div>
           </Tab>
-          <Tab tabTitle="Images" active={activeTab === 'Images'}>
+          <Tab tabTitle={formatMessage(messages.imagesTitle)} active={activeTab === 'Images'}>
             <div className="tab-container">
               {(this.props.blueprint.images.length === 0 &&
-                <EmptyState title={'No Images'} message={'No images have been created from this blueprint.'}>
+                <EmptyState
+                  title={formatMessage(messages.noImagesTitle)}
+                  message={formatMessage(messages.noImagesMessage)}
+                >
                   <button
                     className="btn btn-default"
                     id="cmpsr-btn-crt-image"
@@ -319,7 +352,7 @@ class BlueprintPage extends React.Component {
                     type="button"
                     onClick={(e) => this.handleShowModalCreateImage(e, blueprint)}
                   >
-                    Create Image
+                    <FormattedMessage defaultMessage="Create Image" />
                   </button>
                 </EmptyState>) ||
                 <ListView className="cmpsr-images" stacked>
@@ -390,6 +423,7 @@ BlueprintPage.propTypes = {
   fetchingImageStatus: PropTypes.func,
   blueprintContentsError: PropTypes.object,
   blueprintContentsFetching: PropTypes.bool,
+  intl: intlShape.isRequired,
 };
 
 const makeMapStateToProps = () => {
@@ -495,4 +529,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(makeMapStateToProps, mapDispatchToProps)(BlueprintPage);
+export default connect(makeMapStateToProps, mapDispatchToProps)(injectIntl(BlueprintPage));

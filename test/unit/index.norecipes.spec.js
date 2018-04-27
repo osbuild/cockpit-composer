@@ -1,4 +1,5 @@
 import React from 'react';
+import {IntlProvider} from 'react-intl';
 import { shallow, mount } from 'enzyme';
 import BlueprintsPage from '../../pages/blueprints/index';
 import { Provider } from 'react-redux';
@@ -45,13 +46,19 @@ describe('Home page', () => {
     const nodeName = wrapper.name();
     const container = wrapper.first('div');
 
-    expect(nodeName).toBe('BlueprintsPage');
+    expect(nodeName).toBe('InjectIntl(BlueprintsPage)');
     expect(container.length).toBe(1);
   });
 
   test('calls componentDidMount() lifecycle method', () => {
     const componentDidMountSpy = jest.spyOn(BlueprintsPage.prototype, 'componentDidMount');
-    mount(<Provider store={mockStore}><BlueprintsPage blueprints={mockState.blueprints.blueprintList} /></Provider>);
+    mount(
+      <Provider store={mockStore}>
+        <IntlProvider locale='en'>
+          <BlueprintsPage blueprints={mockState.blueprints.blueprintList} />
+        </IntlProvider>
+      </Provider>
+    );
 
     expect(componentDidMountSpy).toHaveBeenCalledTimes(1);
 
@@ -60,7 +67,11 @@ describe('Home page', () => {
 
   test('blank slate without blueprints', () => {
     const component = mount(
-      <Provider store={mockStore}><BlueprintsPage blueprints={mockState.blueprints.blueprintList} /></Provider>
+      <Provider store={mockStore}>
+        <IntlProvider locale='en'>
+          <BlueprintsPage blueprints={mockState.blueprints.blueprintList} />
+        </IntlProvider>
+      </Provider>
     );
     const blankSlate = component.find('.blank-slate-pf');
 

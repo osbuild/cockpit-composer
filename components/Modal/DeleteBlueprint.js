@@ -1,6 +1,7 @@
 /* global $ */
 
 import React from 'react';
+import {FormattedMessage} from 'react-intl';
 import PropTypes from 'prop-types';
 
 class DeleteBlueprint extends React.Component {
@@ -31,24 +32,31 @@ class DeleteBlueprint extends React.Component {
               >
                 <span className="pficon pficon-close"></span>
               </button>
-              <h4 className="modal-title" id="myModalLabel">Delete Blueprint</h4>
+              <h4 className="modal-title" id="myModalLabel"><FormattedMessage defaultMessage="Delete Blueprint" /></h4>
             </div>
             <div className="modal-body">
-              <p>Are you sure you want to delete the blueprint <strong>{this.props.blueprint.name}</strong>?</p>
+              <p>
+                <FormattedMessage
+                  defaultMessage="Are you sure you want to delete the blueprint {name}?"
+                  values={{
+                    name: <strong>{this.props.blueprint.name}</strong>
+                  }}
+                />
+              </p>
             </div>
             <div className="modal-footer">
-              <p className="pull-left">This action cannot be undone.</p>
+              <p className="pull-left"><FormattedMessage defaultMessage="This action cannot be undone." /></p>
               <button
                 type="button"
                 className="btn btn-default"
                 data-dismiss="modal"
-              >Cancel</button>
+              ><FormattedMessage defaultMessage="Cancel" /></button>
               <button
                 type="button"
                 className="btn btn-danger"
                 data-dismiss="modal"
                 onClick={(e) => this.props.handleDelete(e, this.props.blueprint.id)}
-              >Delete</button>
+              ><FormattedMessage defaultMessage="Delete" /></button>
             </div>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import {FormattedMessage} from 'react-intl';
 import PropTypes from 'prop-types';
 import FilterInput from '../../components/Toolbar/FilterInput';
 import ToolbarLayout from '../../components/Toolbar/ToolbarLayout';
@@ -31,7 +32,7 @@ const BlueprintsToolbar = props => (
           data-target="#cmpsr-modal-crt-blueprint"
           disabled={props.errorState}
         >
-          Create Blueprint
+          <FormattedMessage defaultMessage="Create Blueprint" />
         </button>
       </div>
     </div>

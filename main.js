@@ -3,6 +3,8 @@ import 'whatwg-fetch';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {addLocaleData, IntlProvider} from 'react-intl';
+import enLocaleData from 'react-intl/locale-data/en';
 import FastClick from 'fastclick';
 import { Provider } from 'react-redux';
 import 'bootstrap';
@@ -14,8 +16,15 @@ import history from './core/history';
 let routes = require('./routes.json'); // Loaded with utils/routes-loader.js
 const container = document.getElementById('main');
 
+addLocaleData(enLocaleData);
+
 function renderComponent(component) {
-  ReactDOM.render(<Provider store={store}>{component}</Provider>, container);
+  ReactDOM.render(
+    <Provider store={store}>
+      <IntlProvider locale='en'>
+        {component}
+      </IntlProvider>
+    </Provider>, container);
 }
 
 // Find and render a web page matching the current URL path,
