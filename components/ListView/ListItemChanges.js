@@ -1,6 +1,7 @@
 /* global $ */
 
 import React from 'react';
+import {FormattedMessage} from 'react-intl';
 import PropTypes from 'prop-types';
 
 class ListItemChanges extends React.Component {
@@ -49,7 +50,12 @@ class ListItemChanges extends React.Component {
             <div className="list-pf-content-wrapper">
               <div className="list-pf-main-content">
                 <div className="list-pf-title text-overflow-pf">
-                  Commit {this.props.number}
+                  <FormattedMessage
+                    defaultMessage="Commit {commitNumber}"
+                    values={{
+                      commitNumber: this.props.number
+                    }}
+                  />
                   <span className="cmpsr-list-item__text--muted text-muted pull-right">
                     {listItem.time}
                   </span>
@@ -68,7 +74,7 @@ class ListItemChanges extends React.Component {
                     <ul className="list-group">
                       <li className="list-group-item">
                         <div className="row">
-                          <div className="col-sm-3">Added</div>
+                          <div className="col-sm-3"><FormattedMessage defaultMessage="Added" /></div>
                           <div className="col-sm-9">
                             <div className="row">
                               <div className="col-xs-12">
@@ -83,7 +89,7 @@ class ListItemChanges extends React.Component {
                       </li>
                       <li className="list-group-item">
                         <div className="row">
-                          <div className="col-sm-3">Removed</div>
+                          <div className="col-sm-3"><FormattedMessage defaultMessage="Removed" /></div>
                           <div className="col-sm-9">
                             <div className="row">
                               <div className="col-xs-12">

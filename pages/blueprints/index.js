@@ -1,4 +1,5 @@
 import React from 'react';
+import {FormattedMessage, defineMessages, injectIntl, intlShape} from 'react-intl';
 import PropTypes from 'prop-types';
 import Layout from '../../components/Layout';
 import BlueprintListView from '../../components/ListView/BlueprintListView';
@@ -21,6 +22,28 @@ import { blueprintsSortSetKey, blueprintsSortSetValue } from '../../core/actions
 import { blueprintsFilterAddValue, blueprintsFilterRemoveValue, blueprintsFilterClearValues } from '../../core/actions/filter';
 import { makeGetSortedBlueprints, makeGetFilteredBlueprints } from '../../core/selectors';
 
+const messages = defineMessages({
+  blueprintsTitle: {
+    defaultMessage: "Blueprints"
+  },
+  emptyMessage: {
+    defaultMessage: "Create a blueprint to define the contents that will be included in the images you create. " +
+                    "Images can be produced in a variety of output formats."
+  },
+  emptyTitle: {
+    defaultMessage: "No Blueprints",
+  },
+  errorTitle: {
+    defaultMessage: "An Error Occurred"
+  },
+  noResultsMessage: {
+    defaultMessage: "Modify your filter criteria to get results."
+  },
+  noResultsTitle: {
+    defaultMessage: "No Results Match the Filter Criteria"
+  }
+});
+
 class BlueprintsPage extends React.Component {
   constructor() {
     super();
@@ -39,7 +62,7 @@ class BlueprintsPage extends React.Component {
   }
 
   componentDidMount() {
-    document.title = 'Blueprints';
+    document.title = this.props.intl.formatMessage(messages.blueprintsTitle);
   }
 
   setNotifications() {
@@ -112,6 +135,7 @@ class BlueprintsPage extends React.Component {
       blueprintsFilterAddValue, blueprintsFilterRemoveValue, blueprintsFilterClearValues,
       blueprintsError, blueprintsLoading
     } = this.props;
+    const { formatMessage } = this.props.intl;
     return (
       <Layout className="container-fluid" ref="layout">
         <BlueprintsToolbar
@@ -130,7 +154,7 @@ class BlueprintsPage extends React.Component {
         ||
         (blueprintsError !== null &&
           <EmptyState
-            title="An Error Occurred"
+            title={formatMessage(messages.errorTitle)}
             message={blueprintsError.message}
           />
           ||
@@ -145,10 +169,8 @@ class BlueprintsPage extends React.Component {
             ||
             (blueprintFilters.filterValues.length === 0 &&
               <EmptyState
-                title="No Blueprints"
-                message={`Create a blueprint to define the contents that will be included
-                  in the images you create. Images can be produced in a variety of
-                  output formats.`}
+                title={formatMessage(messages.emptyTitle)}
+                message={formatMessage(messages.emptyMessage)}
               >
                 <button
                   className="btn btn-primary btn-lg"
@@ -156,20 +178,20 @@ class BlueprintsPage extends React.Component {
                   data-toggle="modal"
                   data-target="#cmpsr-modal-crt-blueprint"
                 >
-                  Create Blueprint
+                  <FormattedMessage defaultMessage="Create Blueprint" />
                 </button>
               </EmptyState>
               ||
               <EmptyState
-                title="No Results Match the Filter Criteria"
-                message={`Modify your filter criteria to get results.`}
+                title={formatMessage(messages.noResultsTitle)}
+                message={formatMessage(messages.noResultsMessage)}
               >
                 <button
                   className="btn btn-link btn-lg"
                   type="button"
                   onClick={blueprintsFilterClearValues}
                 >
-                  Clear All Filters
+                  <FormattedMessage defaultMessage="Clear All Filters" />
                 </button>
               </EmptyState>
             )
@@ -232,6 +254,7 @@ BlueprintsPage.propTypes = {
   blueprintsError: PropTypes.object,
   blueprintsLoading: PropTypes.bool,
   startCompose: PropTypes.func,
+  intl: intlShape.isRequired,
 };
 
 const makeMapStateToProps = () => {
@@ -319,4 +342,4 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export default connect(makeMapStateToProps, mapDispatchToProps)(BlueprintsPage);
+export default connect(makeMapStateToProps, mapDispatchToProps)(injectIntl(BlueprintsPage));

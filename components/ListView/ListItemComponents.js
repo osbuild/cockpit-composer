@@ -1,6 +1,7 @@
 /* global $ */
 
 import React from 'react';
+import {FormattedMessage} from 'react-intl';
 import PropTypes from 'prop-types';
 import ComponentTypeIcons from '../../components/ListView/ComponentTypeIcons';
 import ComponentSummaryList from '../../components/ListView/ComponentSummaryList';
@@ -87,10 +88,20 @@ class ListItemComponents extends React.Component {
               </div>
               <div className="list-pf-additional-content">
                 <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
-                  Version <strong>{listItem.version}</strong>
+                  <FormattedMessage
+                    defaultMessage="Version {version}"
+                    values={{
+                      version: <strong>{listItem.version}</strong>
+                    }}
+                  />
                 </div>
                 <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
-                  Release <strong>{listItem.release}</strong>
+                  <FormattedMessage
+                    defaultMessage="Release {release}"
+                    values={{
+                      release: <strong>{listItem.release}</strong>
+                    }}
+                  />
                 </div>
               </div>
             </div>
@@ -113,7 +124,7 @@ class ListItemComponents extends React.Component {
                         href="#"
                         onClick={e => this.props.handleComponentDetails(e, listItem, this.props.componentDetailsParent)}
                       >
-                        View
+                        <FormattedMessage defaultMessage="View" />
                       </a>
                     </li>
                     <li>
@@ -121,12 +132,14 @@ class ListItemComponents extends React.Component {
                         href="#"
                         onClick={e => this.props.handleComponentDetails(e, listItem, this.props.componentDetailsParent, 'edit')}
                       >
-                        Edit
+                        <FormattedMessage defaultMessage="Edit" />
                       </a>
                     </li>
                     <li role="separator" className="divider" />
                     <li>
-                      <a href="#" onClick={e => this.props.handleRemoveComponent(e, listItem)}>Remove</a>
+                      <a href="#" onClick={e => this.props.handleRemoveComponent(e, listItem)}>
+                        <FormattedMessage defaultMessage="Remove" />
+                      </a>
                     </li>
                   </ul>
                 </div>
@@ -141,9 +154,9 @@ class ListItemComponents extends React.Component {
                 <div className="row">
                   <div className="col-md-6">
                     <dl className="dl-horizontal clearfix">
-                      <dt>Version</dt>
+                      <dt><FormattedMessage defaultMessage="Version" /></dt>
                       <dd>{listItem.version ? listItem.version : <span>&nbsp;</span>}</dd>
-                      <dt>Release</dt>
+                      <dt><FormattedMessage defaultMessage="Release" /></dt>
                       <dd>{listItem.release ? listItem.release : <span>&nbsp;</span>}</dd>
                       <dt>URL</dt>
                       {(listItem.homepage != null &&

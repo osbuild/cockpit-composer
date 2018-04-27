@@ -1,4 +1,5 @@
 import React from 'react';
+import {defineMessages, injectIntl, intlShape, FormattedMessage} from 'react-intl';
 import PropTypes from 'prop-types';
 import Tabs from '../../components/Tabs/Tabs';
 import Tab from '../../components/Tabs/Tab';
@@ -7,6 +8,27 @@ import ListItemComponents from '../../components/ListView/ListItemComponents';
 import DependencyListView from '../../components/ListView/DependencyListView';
 import EmptyState from '../../components/EmptyState/EmptyState';
 import Loading from '../../components/Loading/Loading';
+
+const messages = defineMessages({
+  dependenciesTabTitle: {
+    defaultMessage: "Dependencies {count}"
+  },
+  emptyStateErrorMessage: {
+    defaultMessage: "An error occurred while trying to get blueprint contents."
+  },
+  emptyStateErrorTitle: {
+    defaultMessage: "An Error Occurred"
+  },
+  emptyStateNoResultsMessage: {
+    defaultMessage: "Modify your filter criteria to get results."
+  },
+  emptyStateNoResultsTitle: {
+    defaultMessage: "No Results Match the Filter Criteria"
+  },
+  selectedTabTitle: {
+    defaultMessage: "Selected Components {count}"
+  }
+});
 
 class BlueprintContents extends React.Component {
   constructor() {
@@ -29,6 +51,8 @@ class BlueprintContents extends React.Component {
       noEditComponent, filterClearValues, filterValues, errorState, fetchingState
     } = this.props;
 
+    const { formatMessage } = this.props.intl;
+
     return (
       <div>
         {fetchingState === true &&
@@ -36,8 +60,8 @@ class BlueprintContents extends React.Component {
           ||
           (errorState !== undefined &&
             <EmptyState
-              title="An Error Occurred"
-              message="An error occurred while trying to get blueprint contents."
+              title={formatMessage(messages.emptyStateErrorTitle)}
+              message={formatMessage(messages.emptyStateErrorMessage)}
             />
             ||
             ((components.length === 0 && filterValues.length === 0) &&
@@ -54,20 +78,20 @@ class BlueprintContents extends React.Component {
                 classnames="nav nav-tabs nav-tabs-pf"
               >
                 <Tab
-                  tabTitle={`Selected Components <span class="badge">${components.length}</span>`}
+                  tabTitle={formatMessage(messages.selectedTabTitle, {count: `<span class="badge">${components.length}</span>`})}
                   active={this.state.activeTab === 'Selected'}
                 >
                   {components.length === 0 &&
                     <EmptyState
-                      title="No Results Match the Filter Criteria"
-                      message={`Modify your filter criteria to get results.`}
+                      title={formatMessage(messages.emptyStateNoResultsTitle)}
+                      message={formatMessage(messages.emptyStateNoResultsMessage)}
                     >
                       <button
                         className="btn btn-link btn-lg"
                         type="button"
                         onClick={() => filterClearValues([])}
                       >
-                        Clear All Filters
+                        <FormattedMessage defaultMessage="Clear All Filters" />
                       </button>
                     </EmptyState>
                   ||
@@ -86,20 +110,21 @@ class BlueprintContents extends React.Component {
                   }
                 </Tab>
                 <Tab
-                  tabTitle={`Dependencies <span class="badge">${dependencies.length}</span>`}
+                  tabTitle={formatMessage(messages.dependenciesTabTitle,
+                    {count: `<span class="badge">${dependencies.length}</span>`})}
                   active={this.state.activeTab === 'Dependencies'}
                 >
                   {dependencies.length === 0 &&
                     <EmptyState
-                      title="No Results Match the Filter Criteria"
-                      message={`Modify your filter criteria to get results.`}
+                      title={formatMessage(messages.emptyStateNoResultsTitle)}
+                      message={formatMessage(messages.emptyStateNoResultsMessage)}
                     >
                       <button
                         className="btn btn-link btn-lg"
                         type="button"
                         onClick={() => filterClearValues([])}
                       >
-                        Clear All Filters
+                        <FormattedMessage defaultMessage="Clear All Filters" />
                       </button>
                     </EmptyState>
                   ||
@@ -126,6 +151,7 @@ BlueprintContents.propTypes = {
   dependencies: PropTypes.array,
   handleComponentDetails: PropTypes.func,
   handleRemoveComponent: PropTypes.func,
+  intl: intlShape.isRequired,
   noEditComponent: PropTypes.bool,
   filterClearValues: PropTypes.func,
   filterValues: PropTypes.array,
@@ -134,4 +160,4 @@ BlueprintContents.propTypes = {
   children: PropTypes.node,
 };
 
-export default BlueprintContents;
+export default injectIntl(BlueprintContents);

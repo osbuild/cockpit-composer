@@ -1,4 +1,5 @@
 import React from 'react';
+import {FormattedMessage} from 'react-intl';
 
 class NotificationsApi {
   constructor() {
@@ -34,8 +35,15 @@ class NotificationsApi {
       case 'creating': {
         notification = {
           type: 'process',
-          message: <span><strong>{blueprint}:</strong> Creating image.</span>,
-          action: <a href="#">Cancel</a>,
+          message: <span>
+            <FormattedMessage
+              defaultMessage="{blueprint} Creating image."
+              values={{
+                blueprint: <strong>{blueprint}:</strong>
+              }}
+            />
+          </span>,
+          action: <a href="#"><FormattedMessage defaultMessage="Cancel" /></a>,
           dismiss: true,
         };
         const index = this.notifications.length;
@@ -52,7 +60,14 @@ class NotificationsApi {
       case 'created': {
         notification = {
           type: 'success',
-          message: <span><strong>{blueprint}:</strong> Image creation is complete.</span>,
+          message: <span>
+            <FormattedMessage
+              defaultMessage="{blueprint} Image creation is complete."
+              values={{
+                blueprint: <strong>{blueprint}:</strong>
+              }}
+            />
+          </span>,
           // action: <a href="#void">Download (.iso)</a>,
           // this link will need to be implemented when the build process
           // is implemented; this function will need to be extended to handle
@@ -69,7 +84,14 @@ class NotificationsApi {
         notification = {
           type: 'process',
           label: 'committing',
-          message: <span><strong>{blueprint}:</strong> Committing blueprint.</span>,
+          message: <span>
+            <FormattedMessage
+              defaultMessage="{blueprint} Committing blueprint."
+              values={{
+                blueprint: <strong>{blueprint}:</strong>
+              }}
+            />
+          </span>,
           dismiss: true,
         };
         break;
@@ -78,7 +100,14 @@ class NotificationsApi {
         notification = {
           type: 'success',
           label: 'committed',
-          message: <span><strong>{blueprint}:</strong> Blueprint changes are committed.</span>,
+          message: <span>
+            <FormattedMessage
+              defaultMessage="{blueprint} Blueprint changes are committed."
+              values={{
+                blueprint: <strong>{blueprint}:</strong>
+              }}
+            />
+          </span>,
           dismiss: true,
           fade: true,
         };
@@ -87,7 +116,14 @@ class NotificationsApi {
       case 'commitFailed': {
         notification = {
           type: 'error',
-          message: <span><strong>{blueprint}:</strong> Commit failed.</span>,
+          message: <span>
+            <FormattedMessage
+              defaultMessage="{blueprint} Commit failed."
+              values={{
+                blueprint: <strong>{blueprint}:</strong>
+              }}
+            />
+          </span>,
           dismiss: true,
         };
         break;

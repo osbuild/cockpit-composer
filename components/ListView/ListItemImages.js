@@ -1,4 +1,5 @@
 import React from 'react';
+import {FormattedMessage} from 'react-intl';
 import PropTypes from 'prop-types';
 
 class ListItemImages extends React.PureComponent {
@@ -23,37 +24,49 @@ class ListItemImages extends React.PureComponent {
               </div>
               <div className="list-pf-additional-content">
                 <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
-                  Type <strong>{listItem.compose_type}</strong>
+                  <FormattedMessage
+                    defaultMessage="Type {type}"
+                    values={{
+                      type: <strong>{listItem.compose_type}</strong>
+                    }}
+                  />
                 </div>
                 <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
-                  Date Created <strong>{formattedTime}</strong>
+                  <FormattedMessage
+                    defaultMessage="Date Created {date}"
+                    values={{
+                      date: <strong>{formattedTime}</strong>
+                    }}
+                  />
                 </div>
               </div>
             </div>
             {listItem.queue_status === 'WAITING' &&
               <div className="list-view-pf-additional-info-item cmpsr-images__status">
                 <span className="pficon pficon-pending" aria-hidden="true" />
-                Pending
+                <FormattedMessage defaultMessage="Pending" />
               </div>
             } {listItem.queue_status === 'RUNNING' &&
               <div className="list-view-pf-additional-info-item cmpsr-images__status">
                 <span className="pficon pficon-in-progress" aria-hidden="true" />
-                In Progress
+                <FormattedMessage defaultMessage="In Progress" />
               </div>
             } {listItem.queue_status === 'FINISHED' &&
               <div className="list-view-pf-additional-info-item cmpsr-images__status">
                 <span className="pficon pficon-ok" aria-hidden="true" />
-                Complete
+                <FormattedMessage defaultMessage="Complete" />
               </div>
             } {listItem.queue_status === 'FAILED' &&
               <div className="list-view-pf-additional-info-item cmpsr-images__status">
                 <span className="pficon pficon-error-circle-o" aria-hidden="true" />
-                Failed
+                <FormattedMessage defaultMessage="Failed" />
               </div>
             }
             {listItem.queue_status === 'READY' &&
               <div className="list-pf-actions">
-                <button className="btn btn-default" type="button" onClick={() => this.fetchImage(listItem.id)}>Download</button>
+                <button className="btn btn-default" type="button" onClick={() => this.fetchImage(listItem.id)}>
+                  <FormattedMessage defaultMessage="Download" />
+                </button>
               </div>
             }
           </div>

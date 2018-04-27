@@ -1,6 +1,7 @@
 /* global $ */
 
 import React from 'react';
+import {FormattedMessage} from 'react-intl';
 import PropTypes from 'prop-types';
 import Link from '../../components/Link';
 
@@ -17,11 +18,11 @@ class BlueprintListView extends React.PureComponent {
           <div className="list-group-item" key={i}>
             <div className="list-view-pf-actions">
               <Link to={`/edit/${blueprint.name}`} className="btn btn-default">
-                Edit Blueprint
+                <FormattedMessage defaultMessage="Edit Blueprint" />
               </Link>
               {(blueprint.modules.length === 0 && blueprint.packages.length === 0) &&
                 <button type="button" className="btn btn-default" disabled="disabled">
-                  Create Image
+                  <FormattedMessage defaultMessage="Create Image" />
                 </button>
               ||
                 <button
@@ -29,7 +30,7 @@ class BlueprintListView extends React.PureComponent {
                   className="btn btn-default"
                   onClick={(e) => this.props.handleShowModalCreateImage(e, blueprint)}
                 >
-                  Create Image
+                  <FormattedMessage defaultMessage="Create Image" />
                 </button>
               }
               <div className="dropdown pull-right dropdown-kebab-pf">
@@ -46,11 +47,23 @@ class BlueprintListView extends React.PureComponent {
                   aria-labelledby="dropdownKebabRight9"
                 >
                   {(blueprint.modules.length === 0 && blueprint.packages.length === 0) &&
-                    <li className="disabled"><a aria-disabled="true">Export</a></li>
+                    <li className="disabled">
+                      <a aria-disabled="true">
+                        <FormattedMessage defaultMessage="Export" />
+                      </a>
+                    </li>
                     ||
-                    <li><a href="#" onClick={(e) => this.props.handleShowModalExport(e, blueprint.name)}>Export</a></li>
+                    <li>
+                      <a href="#" onClick={(e) => this.props.handleShowModalExport(e, blueprint.name)}>
+                        <FormattedMessage defaultMessage="Export" />
+                      </a>
+                    </li>
                   }
-                  <li><a href="#" onClick={(e) => this.props.handleShowModalDelete(e, blueprint)}>Delete</a></li>
+                  <li>
+                    <a href="#" onClick={(e) => this.props.handleShowModalDelete(e, blueprint)}>
+                      <FormattedMessage defaultMessage="Delete" />
+                    </a>
+                  </li>
                 </ul>
               </div>
             </div>

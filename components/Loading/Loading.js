@@ -1,4 +1,5 @@
 import React from 'react';
+import {FormattedMessage} from 'react-intl';
 
 class Loading extends React.Component {
   constructor(props) {
@@ -26,7 +27,7 @@ class Loading extends React.Component {
     return (
       <div className="cmpsr-loading">
         <div className="spinner spinner-md"></div>
-        <p className="lead">Loading</p>
+        <p className="lead"><FormattedMessage defaultMessage="Loading" /></p>
       </div>
     );
   }

@@ -1,12 +1,25 @@
 /* global $ */
 
 import React from 'react';
+import {FormattedMessage, defineMessages, injectIntl, intlShape} from 'react-intl';
 import PropTypes from 'prop-types';
 import ComponentTypeIcons from '../../components/ListView/ComponentTypeIcons';
 import Tabs from '../../components/Tabs/Tabs';
 import Tab from '../../components/Tabs/Tab';
 import DependencyListView from '../../components/ListView/DependencyListView';
 import MetadataApi from '../../data/MetadataApi';
+
+const messages = defineMessages({
+  dependencies: {
+    defaultMessage: "Dependencies {count}"
+  },
+  hideDetails: {
+    defaultMessage: "Hide Details"
+  },
+  removeFromBlueprint: {
+    defaultMessage: "Remove from Blueprint"
+  }
+})
 
 class ComponentDetailsView extends React.Component {
   constructor() {
@@ -154,6 +167,7 @@ class ComponentDetailsView extends React.Component {
 
   render() {
     const { component } = this.props;
+    const { formatMessage } = this.props.intl;
 
     return (
       <div className="cmpsr-panel__body cmpsr-panel__body--main">
@@ -161,7 +175,14 @@ class ComponentDetailsView extends React.Component {
           {(this.state.parents.length > 0 &&
             <ol className="breadcrumb">
               <li>
-                <a href="#" onClick={e => this.props.handleComponentDetails(e, '')}>Back to {this.props.parent}</a>
+                <a href="#" onClick={e => this.props.handleComponentDetails(e, '')}>
+                  <FormattedMessage
+                    defaultMessage="Back to {parent}"
+                    values={{
+                      parent: this.props.parent
+                    }}
+                  />
+                </a>
               </li>
               {this.state.parents.map((parent, i) => (
                 <li key={i}>
@@ -174,7 +195,14 @@ class ComponentDetailsView extends React.Component {
             </ol>) ||
             <ol className="breadcrumb">
               <li>
-                <a href="#" onClick={e => this.props.handleComponentDetails(e, '')}>Back to {this.props.parent}</a>
+                <a href="#" onClick={e => this.props.handleComponentDetails(e, '')}>
+                  <FormattedMessage
+                    defaultMessage="Back to {parent}"
+                    values={{
+                      parent: this.props.parent
+                    }}
+                  />
+                </a>
               </li>
             </ol>}
           <div className="cmpsr-header__actions">
@@ -186,13 +214,15 @@ class ComponentDetailsView extends React.Component {
                     type="button"
                     onClick={e => this.props.handleAddComponent(e, 'details', this.state.componentData)}
                   >
-                    Add
+                    <FormattedMessage defaultMessage="Add" />
                   </button>
                 </li>}
               {this.props.status === 'selected' &&
                 this.state.editSelected === false &&
                 <li>
-                  <button className="btn btn-primary" type="button" onClick={this.handleEdit}>Edit</button>
+                  <button className="btn btn-primary" type="button" onClick={this.handleEdit}>
+                    <FormattedMessage defaultMessage="Edit" />
+                  </button>
                 </li>}
               {((this.props.status === 'selected' && this.state.editSelected === true) || this.props.status === 'editSelected') &&
                 <li>
@@ -201,7 +231,7 @@ class ComponentDetailsView extends React.Component {
                     type="button"
                     onClick={e => this.props.handleUpdateComponent(e, this.state.componentData)}
                   >
-                    Apply Change
+                    <FormattedMessage defaultMessage="Apply Change" />
                   </button>
                 </li>}
               {(this.props.status === 'selected' || this.props.status === 'editSelected') &&
@@ -212,10 +242,10 @@ class ComponentDetailsView extends React.Component {
                     data-toggle="tooltip"
                     data-placement="bottom"
                     title=""
-                    data-original-title="Remove from Blueprint"
+                    data-original-title={formatMessage(messages.removeFromBlueprint)}
                     onClick={e => this.props.handleRemoveComponent(e, component)}
                   >
-                    Remove
+                    <FormattedMessage defaultMessage="Remove" />
                   </button>
                 </li>}
               <li>
@@ -225,7 +255,7 @@ class ComponentDetailsView extends React.Component {
                   data-toggle="tooltip"
                   data-placement="bottom"
                   title=""
-                  data-original-title="Hide Details"
+                  data-original-title={formatMessage(messages.hideDetails)}
                   onClick={e => this.props.handleComponentDetails(e, '')}
                 >
                   <span className="pficon pficon-close" />
@@ -243,11 +273,11 @@ class ComponentDetailsView extends React.Component {
         </div>
         {(this.props.status === 'available' || this.state.editSelected === true || this.props.status === 'editSelected') &&
           <div className="cmpsr-component-details__form">
-            <h4>Component Options</h4>
+            <h4><FormattedMessage defaultMessage="Component Options" /></h4>
             <form className="form-horizontal">
               <div className="form-group">
                 <label className="col-sm-3 col-md-2 control-label" htmlFor="cmpsr-compon__version-select">
-                  Version Release
+                  <FormattedMessage defaultMessage="Version" /> <FormattedMessage defaultMessage="Release" />
                 </label>
                 <div className="col-sm-8 col-md-9">
                   <select
@@ -264,12 +294,12 @@ class ComponentDetailsView extends React.Component {
               </div>
               <div className="form-group hidden">
                 <label className="col-sm-3 col-md-2 control-label" htmlFor="cmpsr-compon__instprof-select">
-                  Install Profile
+                  <FormattedMessage defaultMessage="Install Profile" />
                 </label>
                 <div className="col-sm-8 col-md-9">
                   <select id="cmpsr-compon__instprof-select" className="form-control">
-                    <option>Default</option>
-                    <option>Debug</option>
+                    <FormattedMessage defaultMessage="Default" tagName="option" />
+                    <FormattedMessage defaultMessage="Debug" tagName="option" />
                   </select>
                 </div>
               </div>
@@ -286,19 +316,19 @@ class ComponentDetailsView extends React.Component {
               <h4 className="cmpsr-title">{this.state.componentData.summary}</h4>
               <p>{this.state.componentData.description}</p>
               <dl className="dl-horizontal">
-                <dt>Type</dt>
+                <dt><FormattedMessage defaultMessage="Type" /></dt>
                 <dd>{component.ui_type}</dd>
-                <dt>Version</dt>
+                <dt><FormattedMessage defaultMessage="Version" /></dt>
                 <dd>
                   {this.state.componentData.version}
                   {' '}
                   {this.props.status === 'selected' &&
                     this.state.editSelected === false &&
-                    <a href="#" onClick={this.handleEdit}>Update</a>}
+                    <a href="#" onClick={this.handleEdit}><FormattedMessage defaultMessage="Update" /></a>}
                 </dd>
-                <dt>Release</dt>
+                <dt><FormattedMessage defaultMessage="Release" /></dt>
                 <dd>{this.state.componentData.release}</dd>
-                <dt>URL</dt>
+                <dt><FormattedMessage defaultMessage="URL" /></dt>
                 {(this.state.componentData.homepage !== null &&
                   <dd>
                     <a target="_blank" href={this.state.componentData.homepage}>
@@ -310,10 +340,12 @@ class ComponentDetailsView extends React.Component {
             </Tab>
             {this.state.componentData.components &&
               <Tab tabTitle="Components" active={this.state.activeTab === 'Components'}>
-                <p>Components</p>
+                <p><FormattedMessage defaultMessage="Components" /></p>
               </Tab>}
             <Tab
-              tabTitle={`Dependencies <span class="badge">${this.state.dependencies.length}</span>`}
+              tabTitle={formatMessage(messages.dependencies,
+                {count: `<span class="badge">${this.state.dependencies.length}</span>`}
+              )}
               active={this.state.activeTab === 'Dependencies'}
             >
               <DependencyListView
@@ -339,6 +371,7 @@ ComponentDetailsView.propTypes = {
   handleRemoveComponent: PropTypes.func,
   handleAddComponent: PropTypes.func,
   handleUpdateComponent: PropTypes.func,
+  intl: intlShape.isRequired,
 };
 
-export default ComponentDetailsView;
+export default injectIntl(ComponentDetailsView);
