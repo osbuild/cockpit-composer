@@ -44,7 +44,7 @@ module.exports = class CreateBlueprintPage extends BlueprintPage {
   }
 
   // **** start page actions ****
-  static newBlueprint(bpObject) {
+  static newBlueprint(bpObject, commit = true) {
     const page = new this();
     const edit_page = new EditBlueprintPage(bpObject.name);
     const commit_dialog = new ChangesPendingCommitPage();
@@ -91,14 +91,16 @@ module.exports = class CreateBlueprintPage extends BlueprintPage {
     browser
       .waitForEnabled(edit_page.btnCommit);
 
-    browser
-      .click(edit_page.btnCommit)
-      // pop-up dialog to commit the changes
-      .waitForExist(commit_dialog.btnCommit);
+    if (commit) {
+      browser
+        .click(edit_page.btnCommit)
+        // pop-up dialog to commit the changes
+        .waitForExist(commit_dialog.btnCommit);
 
-    browser
-      .click(commit_dialog.btnCommit)
-      .waitForVisible(toastNotification.iconComplete);
+      browser
+        .click(commit_dialog.btnCommit)
+        .waitForVisible(toastNotification.iconComplete);
+    }
 
     // return back to the main page
     browser
