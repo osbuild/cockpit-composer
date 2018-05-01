@@ -50,6 +50,14 @@ module.exports = class deleteBlueprint extends MainPage {
     browser
       .click(btnMoreAction)
       .click(menuActionDelete)
+      .waitForVisible(page.btnDelete);
+
+    browser
+      .waitUntil(function() {
+        return $(page.labelBlueprintName).getText() === bpName;
+      });
+
+    browser
       .click(page.btnDelete)
       // wait until the blueprint has been deleted
       .waitForExist(blueprintNameSelector, 1000, true);

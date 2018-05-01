@@ -109,5 +109,19 @@ module.exports = class CreateBlueprintPage extends BlueprintPage {
     browser
       .click(edit_page.linkBackToBlueprints)
       .waitForExist(this.blueprintNameSelector(bpObject.name));
+
+    // wait until the description is shown as well
+    browser
+      .waitUntil(function() {
+        let result = false;
+
+        $$(page.labelBlueprintDescr).forEach(function(item) {
+          if (item.getText() === bpObject.description) {
+            result = true;
+          }
+        });
+
+        return result;
+      });
   }
 };
