@@ -23,11 +23,10 @@
     },
     "__comment1__": "// Image type and architechture on Create Image Page",
     "image": [
+        {"type": "directory", "arch": "x86_64"},
         {"type": "ostree", "arch": "x86_64"},
-        {"type": "iso", "arch": "x86_64"},
-        {"type": "ami", "arch": "x86_64"},
         {"type": "qcow2", "arch": "x86_64"},
-        {"type": "vhdx", "arch": "x86_64"}
+        {"type": "tar", "arch": "x86_64"}
     ],
     "__comment2__": "// Manifest type of Blueprint Export File on Export Blueprint Page",
     "manifestType": {

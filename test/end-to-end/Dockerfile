@@ -8,7 +8,8 @@ LABEL maintainer="Xiaofeng Wang" \
 # Install electorn dependency
 RUN dnf --setopt=deltarpm=0 --verbose install -y xorg-x11-server-Xvfb which libXScrnSaver \
 clang dbus-devel gtk2-devel libnotify-devel libgnome-keyring-devel xorg-x11-server-utils \
-libcap-devel cups-devel libXtst-devel alsa-lib-devel libXrandr-devel GConf2-devel nss-devel
+libcap-devel cups-devel libXtst-devel alsa-lib-devel libXrandr-devel GConf2-devel nss-devel \
+xclip
 
 CMD ["xvfb-run", "-a", "-s", "-screen 0 1024x768x24", "npm", "run", "test"]
 

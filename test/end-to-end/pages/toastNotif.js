@@ -29,7 +29,7 @@ module.exports = class TostaNotifPage extends MainPage {
     this.varStatusCommitting = `${this.varBlueprintName} Committing blueprint.`;
     this.varStatusCommitted = `${this.varBlueprintName} Blueprint changes are committed.`;
 
-    // Cancel link
-    this.linkCancel = '#cmpsr-toast-0 .toast-pf-action a';
+    // close button
+    this.btnClose = '#cmpsr-toast-0 .close';
   }
 };

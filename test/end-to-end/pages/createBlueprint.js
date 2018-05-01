@@ -100,6 +100,9 @@ module.exports = class CreateBlueprintPage extends BlueprintPage {
       browser
         .click(commit_dialog.btnCommit)
         .waitForVisible(toastNotification.iconComplete);
+
+      browser.
+        click(toastNotification.btnClose);
     }
 
     // return back to the main page
