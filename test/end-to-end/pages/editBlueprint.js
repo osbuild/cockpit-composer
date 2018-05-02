@@ -1,6 +1,6 @@
 // Edit Blueprint page object
 const MainPage = require('./main');
-const pageConfig = require('../config');
+const config = require('../wdio.conf.js');
 
 module.exports = class EditBlueprintPage extends MainPage {
   constructor(blueprintName) {
@@ -34,7 +34,7 @@ module.exports = class EditBlueprintPage extends MainPage {
 
     // Blueprint Name link
     this.varLinkToViewRec = `${this.mailUrl}#/blueprint/${this.blueprintName}`;
-    if (pageConfig.root.includes('9090')) {
+    if (config.config.baseUrl.includes('9090')) {
       this.varLinkToViewRec = `${this.mailUrl.slice(0, -6)}cockpit/@localhost/welder/index.html#/blueprint/${this.blueprintName}`;
     }
     this.linkBlueprintName = `${this.navBarRootElement}  li + li a`;

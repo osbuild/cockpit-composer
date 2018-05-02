@@ -10,23 +10,23 @@ const ToastNotifPage = require('../pages/toastNotif');
 const ExportBlueprintPage = require('../pages/exportBlueprint');
 
 const helper = require('../utils/helper');
-const pageConfig = require('../config');
+const testData = require('../wdio.conf.js').testData;
 
 describe('View Blueprint Page', function() {
-  const viewBlueprintPage = new ViewBlueprintPage(pageConfig.blueprint.simple.name);
+  const viewBlueprintPage = new ViewBlueprintPage(testData.blueprint.simple.name);
 
   describe('Single Word Blueprint Name Scenario', function() {
     // Array of image types and architechtures
-    const images = pageConfig.image;
+    const images = testData.image;
 
     beforeEach(function() {
-      CreateBlueprintPage.newBlueprint(pageConfig.blueprint.simple);
+      CreateBlueprintPage.newBlueprint(testData.blueprint.simple);
 
       helper.goto(viewBlueprintPage);
     });
 
     afterEach(function() {
-      DeleteBlueprintPage.deleteBlueprint(pageConfig.blueprint.simple.name);
+      DeleteBlueprintPage.deleteBlueprint(testData.blueprint.simple.name);
     });
 
     it('should have all sanity attributes when shown', function() {
@@ -47,7 +47,7 @@ describe('View Blueprint Page', function() {
 
       // validate description
       const actualDescription = $(viewBlueprintPage.labelBlueprintDescription).getText();
-      assert.equal(actualDescription, pageConfig.blueprint.simple.description);
+      assert.equal(actualDescription, testData.blueprint.simple.description);
 
       // should have Create Image button
       const createImageText = $(viewBlueprintPage.btnCreateImage).getText();
@@ -66,7 +66,7 @@ describe('View Blueprint Page', function() {
       assert.equal(nameInDetailsTab, viewBlueprintPage.blueprintName);
       // description matches
       const descriptionInDetails = $(viewBlueprintPage.labelDescriptionUnderDetails).getText();
-      assert.equal(descriptionInDetails, pageConfig.blueprint.simple.description);
+      assert.equal(descriptionInDetails, testData.blueprint.simple.description);
     });
 
 
@@ -121,7 +121,7 @@ describe('View Blueprint Page', function() {
           .waitForVisible(viewBlueprintPage.labelBlueprintDescription);
 
         const newDescription = $(viewBlueprintPage.labelBlueprintDescription).getText();
-        assert.equal(newDescription, pageConfig.blueprint.simple.description);
+        assert.equal(newDescription, testData.blueprint.simple.description);
       });
 
       describe('Create Image Tests', function() {
@@ -146,7 +146,7 @@ describe('View Blueprint Page', function() {
         images.forEach((image) => {
           it(`should have toast notification pop up for image ${image.type}/${image.arch}`, function() {
             const createImagePage = new CreateImagePage(image.type, image.arch);
-            const toastNotifPage = new ToastNotifPage(pageConfig.blueprint.simple.name);
+            const toastNotifPage = new ToastNotifPage(testData.blueprint.simple.name);
 
             browser
               .waitForVisible(viewBlueprintPage.btnCreateImage);
@@ -216,7 +216,7 @@ describe('View Blueprint Page', function() {
 
         // verify all of the input packages are listed
         const componentsText = $(exportBlueprintPage.textAreaContent).getText();
-        pageConfig.blueprint.simple.packages.forEach(function(pkg) {
+        testData.blueprint.simple.packages.forEach(function(pkg) {
           assert(componentsText.includes(pkg.name));
         });
 

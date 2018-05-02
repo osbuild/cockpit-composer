@@ -1,7 +1,7 @@
 const assert = require('assert');
 const faker = require('faker');
 const helper = require('../utils/helper');
-const pageConfig = require('../config');
+const testData = require('../wdio.conf.js').testData;
 
 const BlueprintsPage = require('../pages/blueprints');
 const CreateBlueprintPage = require('../pages/createBlueprint');
@@ -14,7 +14,7 @@ const EditBlueprintPage = require('../pages/editBlueprint');
 
 describe('Blueprints Page', function() {
   // Array of image types and architechtures
-  const images = pageConfig.image;
+  const images = testData.image;
   const blueprintsPage = new BlueprintsPage();
 
   beforeEach(function() {
@@ -36,20 +36,20 @@ describe('Blueprints Page', function() {
 
   describe('Blueprint List', function() {
     const createImagePage = new CreateImagePage(images[0].type, images[0].arch);
-    const btnCreateImage = BlueprintsPage.btnCreateImage(pageConfig.blueprint.simple.name);
+    const btnCreateImage = BlueprintsPage.btnCreateImage(testData.blueprint.simple.name);
 
     const exportBlueprintPage = new ExportBlueprintPage();
-    const btnMoreAction = BlueprintsPage.btnMore(pageConfig.blueprint.simple.name);
-    const menuActionDelete = BlueprintsPage.menuActionDelete(pageConfig.blueprint.simple.name);
-    const menuActionExport = BlueprintsPage.menuActionExport(pageConfig.blueprint.simple.name);
+    const btnMoreAction = BlueprintsPage.btnMore(testData.blueprint.simple.name);
+    const menuActionDelete = BlueprintsPage.menuActionDelete(testData.blueprint.simple.name);
+    const menuActionExport = BlueprintsPage.menuActionExport(testData.blueprint.simple.name);
 
 
     beforeEach(function() {
-      CreateBlueprintPage.newBlueprint(pageConfig.blueprint.simple);
+      CreateBlueprintPage.newBlueprint(testData.blueprint.simple);
     });
 
     afterEach(function() {
-      DeleteBlueprintPage.deleteBlueprint(pageConfig.blueprint.simple.name);
+      DeleteBlueprintPage.deleteBlueprint(testData.blueprint.simple.name);
     });
 
 
@@ -101,7 +101,7 @@ describe('Blueprints Page', function() {
     });
 
     it('when clicking Cancel should close Delete Blueprint page and not delete', function() {
-      const blueprintNameSelector = BlueprintsPage.blueprintNameSelector(pageConfig.blueprint.simple.name);
+      const blueprintNameSelector = BlueprintsPage.blueprintNameSelector(testData.blueprint.simple.name);
       const deleteBlueprintPage = new DeleteBlueprintPage();
 
       browser
@@ -118,7 +118,7 @@ describe('Blueprints Page', function() {
     });
 
     it('when clicking X should close Delete Blueprint page and not delete', function() {
-      const blueprintNameSelector = BlueprintsPage.blueprintNameSelector(pageConfig.blueprint.simple.name);
+      const blueprintNameSelector = BlueprintsPage.blueprintNameSelector(testData.blueprint.simple.name);
       const deleteBlueprintPage = new DeleteBlueprintPage();
 
       browser
@@ -135,7 +135,7 @@ describe('Blueprints Page', function() {
     });
 
     it('should open Edit Blueprint page when clicking Edit Blueprint button', function() {
-      const blueprintName = pageConfig.blueprint.simple.name;
+      const blueprintName = testData.blueprint.simple.name;
       const editBlueprintPage = new EditBlueprintPage(blueprintName);
       const blueprintNameSelector = BlueprintsPage.blueprintNameSelector(blueprintName);
 

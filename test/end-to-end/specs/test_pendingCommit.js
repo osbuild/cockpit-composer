@@ -1,6 +1,6 @@
 const assert = require('assert');
 const helper = require('../utils/helper');
-const pageConfig = require('../config');
+const testData = require('../wdio.conf.js').testData;
 
 const EditBlueprintPage = require('../pages/editBlueprint');
 const ChangesPendingCommitPage = require('../pages/changesPendingCommit');
@@ -9,12 +9,12 @@ const DeleteBlueprintPage = require('../pages/deleteBlueprint');
 
 
 describe('Changes Pending Commit Page', function() {
-  const editBlueprintPage = new EditBlueprintPage(pageConfig.blueprint.simple.name);
+  const editBlueprintPage = new EditBlueprintPage(testData.blueprint.simple.name);
   const changesPendingCommitPage = new ChangesPendingCommitPage();
 
 
   beforeEach(function() {
-    CreateBlueprintPage.newBlueprint(pageConfig.blueprint.simple, false);
+    CreateBlueprintPage.newBlueprint(testData.blueprint.simple, false);
 
     helper.goto(editBlueprintPage);
 
@@ -24,7 +24,7 @@ describe('Changes Pending Commit Page', function() {
 
 
   afterEach(function() {
-    DeleteBlueprintPage.deleteBlueprint(pageConfig.blueprint.simple.name);
+    DeleteBlueprintPage.deleteBlueprint(testData.blueprint.simple.name);
   });
 
 

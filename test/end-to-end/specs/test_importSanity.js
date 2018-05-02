@@ -1,22 +1,23 @@
 const assert = require('assert');
 const helper = require('../utils/helper');
+const testData = require('../wdio.conf.js').testData;
 
 const EditBlueprintPage = require('../pages/editBlueprint');
 const CreateBlueprintPage = require('../pages/createBlueprint');
 const DeleteBlueprintPage = require('../pages/deleteBlueprint');
-const pageConfig = require('../config');
+
 
 describe('Imported Content Sanity Testing', function() {
-  const editBlueprintPage = new EditBlueprintPage(pageConfig.blueprint.simple.name);
+  const editBlueprintPage = new EditBlueprintPage(testData.blueprint.simple.name);
 
   before(function() {
     // Create a new blueprint before the first test run in this suite
-    CreateBlueprintPage.newBlueprint(pageConfig.blueprint.simple);
+    CreateBlueprintPage.newBlueprint(testData.blueprint.simple);
   });
 
   after(function() {
     // Delete added blueprint after all tests completed in this suite
-    DeleteBlueprintPage.deleteBlueprint(pageConfig.blueprint.simple.name);
+    DeleteBlueprintPage.deleteBlueprint(testData.blueprint.simple.name);
   });
 
   beforeEach(function() {

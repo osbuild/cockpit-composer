@@ -1,7 +1,7 @@
 const assert = require('assert');
 const config = require('../wdio.conf.js');
+const testData = config.testData;
 const helper = require('../utils/helper');
-const pageConfig = require('../config');
 
 const BlueprintsPage = require('../pages/blueprints');
 const CreateBlueprintPage = require('../pages/createBlueprint');
@@ -14,17 +14,17 @@ const ChangesPendingCommitPage = require('../pages/changesPendingCommit');
 
 
 describe('Given Edit Blueprint Page', function() {
-  const editBlueprintPage = new EditBlueprintPage(pageConfig.blueprint.simple.name);
+  const editBlueprintPage = new EditBlueprintPage(testData.blueprint.simple.name);
 
 
   afterEach(function() {
-    DeleteBlueprintPage.deleteBlueprint(pageConfig.blueprint.simple.name);
+    DeleteBlueprintPage.deleteBlueprint(testData.blueprint.simple.name);
   });
 
 
   describe('When page is opened', function() {
     beforeEach(function() {
-      CreateBlueprintPage.newBlueprint(pageConfig.blueprint.simple);
+      CreateBlueprintPage.newBlueprint(testData.blueprint.simple);
 
       helper.goto(editBlueprintPage)
         .waitForVisible(editBlueprintPage.componentListItemRootElement);
@@ -65,7 +65,7 @@ describe('Given Edit Blueprint Page', function() {
       // note: functionality of image creation dialog is validated in test_viewBlueprints.js
       // here we only validate that the buttons placed on the main page still
       // trigger the same dialog
-      const createImagePage = new CreateImagePage(pageConfig.image[0].type, pageConfig.image[0].arch);
+      const createImagePage = new CreateImagePage(testData.image[0].type, testData.image[0].arch);
 
       browser
         .waitForEnabled(editBlueprintPage.btnCreateImage);
@@ -191,7 +191,7 @@ describe('Given Edit Blueprint Page', function() {
 
   describe('When page is opened with uncommitted changes', function() {
     beforeEach(function() {
-      CreateBlueprintPage.newBlueprint(pageConfig.blueprint.simple, false);
+      CreateBlueprintPage.newBlueprint(testData.blueprint.simple, false);
 
       helper.goto(editBlueprintPage);
     });

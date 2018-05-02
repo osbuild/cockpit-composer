@@ -1,5 +1,4 @@
 exports.config = {
-    
     //
     // ==================
     // Specify Test Files
@@ -155,4 +154,29 @@ exports.config = {
 
       fs.writeFileSync(`${covOutDir}coverage-${hash}.json`, strCoverage);
     },
+};
+
+exports.testData = {
+    blueprint: {
+        simple: {
+            name: "automation",
+            description: "UI automation blueprint",
+            modules: [],
+            packages: [{name: "httpd", version: ""}]
+        },
+        random: {
+            name: "",
+            description: "",
+            modules: [],
+            packages: [{name: "httpd", version: ""}]
+        }
+    },
+
+    // Image type and architechture on Create Image Page",
+    image: [
+        {type: "directory", arch: "x86_64"},
+        {type: "ostree",    arch: "x86_64"},
+        {type: "qcow2",     arch: "x86_64"},
+        {type: "tar",       arch: "x86_64"}
+    ],
 }
