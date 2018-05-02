@@ -132,7 +132,27 @@ exports.config = {
 
     // always start with a clean browser session before
     // every single test
-    beforeTest: function (test) {
+    beforeTest: function(test) {
         browser.reload();
+    },
+
+    afterTest: function(test) {
+      const fs = require('fs');
+      const coverageData = browser.execute("return window.__coverage__;");
+    if (coverageData === undefined) {
+      return;
+    }
+      const strCoverage = JSON.stringify(coverageData);
+      const hash = require('crypto')
+            .createHmac('sha256', '')
+            .update(strCoverage)
+            .digest('hex');
+
+      const covOutDir = '/tmp/.nyc_output/';
+      if (!fs.existsSync(covOutDir)) {
+        fs.mkdirSync(covOutDir);
+      }
+
+      fs.writeFileSync(`${covOutDir}coverage-${hash}.json`, strCoverage);
     },
 }
