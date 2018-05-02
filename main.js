@@ -17,14 +17,29 @@ import history from './core/history';
 let routes = require('./routes.json'); // Loaded with utils/routes-loader.js
 const container = document.getElementById('main');
 
+// TODO: select language to use
+let userLanguage = 'en';
+let translations = require('./build/translations.json');
+let messages = undefined;
+if (userLanguage in translations) {
+  messages = translations[userLanguage];
+}
+
+// TODO what other locale data should be loaded?
 addLocaleData(enLocaleData);
 
 function renderComponent(component) {
   ReactDOM.render(
     <Provider store={store}>
-      <IntlProvider locale='en'>
-        {component}
-      </IntlProvider>
+      {messages !== undefined ? (
+        <IntlProvider locale={userLanguage} messages={messages}>
+          {component}
+        </IntlProvider>
+      ) : (
+        <IntlProvider locale='en'>
+          {component}
+        </IntlProvider>
+      )}
     </Provider>, container);
 }
 
