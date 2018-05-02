@@ -5,7 +5,7 @@ module.exports = class changesPendingCommit extends MainPage {
   constructor() {
     super('Changes Pending Commit');
 
-// ---- Root element selector ---- //
+    // ---- Root element selector ---- //
     // Root Element for this Dialog Page
     this.rootElement = 'div[id="cmpsr-modal-pending-changes"] .modal-dialog .modal-content';
 
@@ -18,7 +18,7 @@ module.exports = class changesPendingCommit extends MainPage {
     // Footer
     this.footerElement = `${this.rootElement} .modal-footer`;
 
-// ---- Page element selector ---- //
+    // ---- Page element selector ---- //
     // Page Title
     this.varPageTitle = 'Changes Pending Commit';
     this.labelPageTitle = `${this.headerElement} h4[class="modal-title"]`;

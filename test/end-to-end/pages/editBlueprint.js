@@ -7,7 +7,7 @@ module.exports = class EditBlueprintPage extends MainPage {
     super('Blueprint');
     this.blueprintName = blueprintName;
 
-// ---- Root element selector ---- //
+    // ---- Root element selector ---- //
     // Navigation bar root element
     this.navBarRootElement = 'ol[class="breadcrumb"]';
     // Edit action bar root element
@@ -24,7 +24,7 @@ module.exports = class EditBlueprintPage extends MainPage {
 
     // Component list item root element
     this.componentListItemRootElement = `${this.blueprintInputRootElement} .cmpsr-list-pf__compacted .list-pf-item`;
-// ---- Page element selector ---- //
+    // ---- Page element selector ---- //
     // Edit Blueprint label
     this.varEditBlueprint = 'Edit Blueprint';
     this.labelEditBlueprint = `${this.navBarRootElement} li strong`;

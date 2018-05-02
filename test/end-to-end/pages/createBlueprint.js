@@ -13,11 +13,11 @@ module.exports = class CreateBlueprintPage extends BlueprintPage {
     this.varRecName = name;
     this.varRecDesc = desc;
 
-// ---- Root element selector ---- //
+    // ---- Root element selector ---- //
     // Create Blueprint dialog root selector
     this.dialogRootElement = 'div[id="cmpsr-modal-crt-blueprint"]';
 
-// ---- Page element selector ---- //
+    // ---- Page element selector ---- //
     // Close button
     this.btnClose = `${this.dialogRootElement} .modal-header .close`;
 
@@ -46,8 +46,8 @@ module.exports = class CreateBlueprintPage extends BlueprintPage {
   // **** start page actions ****
   static newBlueprint(bpObject, commit = true) {
     const page = new this();
-    const edit_page = new EditBlueprintPage(bpObject.name);
-    const commit_dialog = new ChangesPendingCommitPage();
+    const editPage = new EditBlueprintPage(bpObject.name);
+    const commitDialog = new ChangesPendingCommitPage();
     const toastNotification = new ToastNotifPage(bpObject.name);
 
     // first create the blueprint
@@ -62,30 +62,28 @@ module.exports = class CreateBlueprintPage extends BlueprintPage {
       .setValue(page.inputName, bpObject.name)
       .setValue(page.inputDescription, bpObject.description)
       .click(page.btnCreate)
-      .waitForVisible(edit_page.componentListItemRootElement);
+      .waitForVisible(editPage.componentListItemRootElement);
 
     browser
-      .waitForVisible(edit_page.inputFilter);
+      .waitForVisible(editPage.inputFilter);
 
     // page is now in edit mode, add all the packages from the BP
-    bpObject.packages.forEach(function(pkg) {
+    bpObject.packages.forEach((pkg) => {
       browser
-        .setValue(edit_page.inputFilter, pkg.name)
-        .addValue(edit_page.inputFilter, '\u000d')
-        .waitForVisible(edit_page.linkClearAllFilters);
+        .setValue(editPage.inputFilter, pkg.name)
+        .addValue(editPage.inputFilter, '\u000d')
+        .waitForVisible(editPage.linkClearAllFilters);
 
       // wait until a filter label with the correct name is shown
       browser
-        .waitUntil(function() {
-          return $(edit_page.labelFilterContent).getText() === `Name: ${pkg.name}`;
-        });
+        .waitUntil(() => $(editPage.labelFilterContent).getText() === `Name: ${pkg.name}`);
 
       // wait for the search results to appear
       browser
         .waitForVisible('.list-pf-content.list-pf-content-flex');
 
       // find the package in the list of filtered results
-      $$('.list-pf-content.list-pf-content-flex').forEach(function(item) {
+      $$('.list-pf-content.list-pf-content-flex').forEach((item) => {
         const title = item.$('.list-pf-title').getText();
         if (title === pkg.name) {
           // clicks on the + button
@@ -95,33 +93,33 @@ module.exports = class CreateBlueprintPage extends BlueprintPage {
     });
 
     browser
-      .waitForEnabled(edit_page.btnCommit);
+      .waitForEnabled(editPage.btnCommit);
 
     if (commit) {
       browser
-        .click(edit_page.btnCommit)
+        .click(editPage.btnCommit)
         // pop-up dialog to commit the changes
-        .waitForExist(commit_dialog.btnCommit);
+        .waitForExist(commitDialog.btnCommit);
 
       browser
-        .click(commit_dialog.btnCommit)
+        .click(commitDialog.btnCommit)
         .waitForVisible(toastNotification.iconComplete);
 
-      browser.
-        click(toastNotification.btnClose);
+      browser
+        .click(toastNotification.btnClose);
     }
 
     // return back to the main page
     browser
-      .click(edit_page.linkBackToBlueprints)
+      .click(editPage.linkBackToBlueprints)
       .waitForExist(this.blueprintNameSelector(bpObject.name));
 
     // wait until the description is shown as well
     browser
-      .waitUntil(function() {
+      .waitUntil(() => {
         let result = false;
 
-        $$(page.labelBlueprintDescr).forEach(function(item) {
+        $$(page.labelBlueprintDescr).forEach((item) => {
           if (item.getText() === bpObject.description) {
             result = true;
           }

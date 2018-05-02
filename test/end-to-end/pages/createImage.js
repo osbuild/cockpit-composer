@@ -7,11 +7,11 @@ module.exports = class CreateImagePage extends MainPage {
     this.imageType = type;
     this.imageArch = arch;
 
-// ---- Root element selector ---- //
+    // ---- Root element selector ---- //
     // Create Blueprint dialog root selector
     this.dialogRootElement = 'div[id="cmpsr-modal-crt-image"]';
 
-// ---- Page element selector ---- //
+    // ---- Page element selector ---- //
     // Close button
     this.btnClose = `${this.dialogRootElement} .modal-header .close`;
 

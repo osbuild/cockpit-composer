@@ -11,19 +11,19 @@ const ChangesPendingCommitPage = require('../pages/changesPendingCommit');
 const ToastNotifPage = require('../pages/toastNotif');
 
 
-describe('Create Blueprint Page', function() {
+describe('Create Blueprint Page', () => {
   const blueprintsPage = new BlueprintsPage();
   const createBlueprintPage = new CreateBlueprintPage(
     testData.blueprint.simple.name,
     testData.blueprint.simple.description);
 
-  beforeEach(function() {
+  beforeEach(() => {
     helper.goto(blueprintsPage);
   });
 
-  describe('Input Data Validation Test', function() {
-    describe('Required Field Missing', function() {
-      it('show alert message when creating blueprint without name', function() {
+  describe('Input Data Validation Test', () => {
+    describe('Required Field Missing', () => {
+      it('show alert message when creating blueprint without name', () => {
         browser
           .click(blueprintsPage.btnCreateBlueprint)
           .waitForVisible(createBlueprintPage.dialogRootElement);
@@ -34,9 +34,7 @@ describe('Create Blueprint Page', function() {
 
         // wait until the name input element has focus
         browser
-          .waitUntil(function() {
-            return $(createBlueprintPage.inputName).hasFocus();
-          });
+          .waitUntil(() => $(createBlueprintPage.inputName).hasFocus());
 
         browser
           .waitForVisible(createBlueprintPage.btnCreate);
@@ -52,7 +50,7 @@ describe('Create Blueprint Page', function() {
         assert.equal(actualHelpText, createBlueprintPage.varHelpBlockMsg);
       });
 
-      it.skip('show alert message when creating blueprint without name by clicking Enter', function() {
+      it.skip('show alert message when creating blueprint without name by clicking Enter', () => {
         browser
           .click(blueprintsPage.btnCreateBlueprint)
           .waitForVisible(createBlueprintPage.dialogRootElement);
@@ -71,15 +69,13 @@ describe('Create Blueprint Page', function() {
         assert.equal(actualHelpText, createBlueprintPage.varHelpBlockMsg);
       });
 
-      it('should show alert message by changing focus to description input', function () {
+      it('should show alert message by changing focus to description input', () => {
         browser
           .waitForVisible(blueprintsPage.btnCreateBlueprint);
 
         browser
           .click(blueprintsPage.btnCreateBlueprint)
-          .waitUntil(function() {
-            return $(createBlueprintPage.inputName).hasFocus();
-          });
+          .waitUntil(() => $(createBlueprintPage.inputName).hasFocus());
 
         // change the focus to the next input field
         $(createBlueprintPage.inputDescription).click();
@@ -94,15 +90,15 @@ describe('Create Blueprint Page', function() {
     });
   });
 
-  describe('Simple Valid Input Test', function() {
+  describe('Simple Valid Input Test', () => {
     const editBlueprintPage = new EditBlueprintPage(testData.blueprint.simple.name);
 
-    afterEach(function() {
+    afterEach(() => {
       // Delete created blueprint after each creation case
       DeleteBlueprintPage.deleteBlueprint(testData.blueprint.simple.name);
     });
 
-    it('should switch to Edit Blueprint page after BP creation', function() {
+    it('should switch to Edit Blueprint page after BP creation', () => {
       helper.goto(blueprintsPage)
         .click(createBlueprintPage.btnCreateBlueprint)
         .waitForVisible(createBlueprintPage.dialogRootElement);

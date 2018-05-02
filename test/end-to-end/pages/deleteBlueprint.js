@@ -10,7 +10,7 @@ module.exports = class deleteBlueprint extends MainPage {
   constructor() {
     super('Delete Blueprint');
 
-// ---- Root element selector ---- //
+    // ---- Root element selector ---- //
     // Root Element for this Dialog Page
     this.rootElement = 'div[id="cmpsr-modal-delete"] .modal-dialog .modal-content';
 
@@ -23,7 +23,7 @@ module.exports = class deleteBlueprint extends MainPage {
     // Footer
     this.footerElement = `${this.rootElement} .modal-footer`;
 
-// ---- Page element selector ---- //
+    // ---- Page element selector ---- //
     // Page Title
     this.labelPageTitle = `${this.headerElement} h4[class="modal-title"]`;
 
@@ -55,9 +55,7 @@ module.exports = class deleteBlueprint extends MainPage {
       .waitForVisible(page.btnDelete);
 
     browser
-      .waitUntil(function() {
-        return $(page.labelBlueprintName).getText() === bpName;
-      });
+      .waitUntil(() => $(page.labelBlueprintName).getText() === bpName);
 
     browser
       .click(page.btnDelete)

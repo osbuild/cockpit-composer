@@ -12,24 +12,24 @@ const ExportBlueprintPage = require('../pages/exportBlueprint');
 const helper = require('../utils/helper');
 const testData = require('../wdio.conf.js').testData;
 
-describe('View Blueprint Page', function() {
+describe('View Blueprint Page', () => {
   const viewBlueprintPage = new ViewBlueprintPage(testData.blueprint.simple.name);
 
-  describe('Single Word Blueprint Name Scenario', function() {
+  describe('Single Word Blueprint Name Scenario', () => {
     // Array of image types and architechtures
     const images = testData.image;
 
-    beforeEach(function() {
+    beforeEach(() => {
       CreateBlueprintPage.newBlueprint(testData.blueprint.simple);
 
       helper.goto(viewBlueprintPage);
     });
 
-    afterEach(function() {
+    afterEach(() => {
       DeleteBlueprintPage.deleteBlueprint(testData.blueprint.simple.name);
     });
 
-    it('should have all sanity attributes when shown', function() {
+    it('should have all sanity attributes when shown', () => {
       browser
         .waitForVisible(viewBlueprintPage.componentsTabElement);
 
@@ -55,7 +55,7 @@ describe('View Blueprint Page', function() {
 
       // now click back to the Details tab
       browser
-        .waitForVisible(viewBlueprintPage.detailTabElement)
+        .waitForVisible(viewBlueprintPage.detailTabElement);
 
       browser
         .click(viewBlueprintPage.detailTabElement)
@@ -70,13 +70,13 @@ describe('View Blueprint Page', function() {
     });
 
 
-    describe('Details Tab', function() {
-      it('should update description', function() {
+    describe('Details Tab', () => {
+      it('should update description', () => {
         // Highlight the expected result
         const expected = faker.lorem.sentence();
 
         browser
-          .waitForVisible(viewBlueprintPage.detailTabElement)
+          .waitForVisible(viewBlueprintPage.detailTabElement);
 
         browser
           .click(viewBlueprintPage.detailTabElement)
@@ -99,9 +99,9 @@ describe('View Blueprint Page', function() {
         assert.equal(newDescription, expected);
       });
 
-      it('should not update description when clicking cancel', function() {
+      it('should not update description when clicking cancel', () => {
         browser
-          .waitForVisible(viewBlueprintPage.detailTabElement)
+          .waitForVisible(viewBlueprintPage.detailTabElement);
 
         browser
           .click(viewBlueprintPage.detailTabElement)
@@ -124,12 +124,12 @@ describe('View Blueprint Page', function() {
         assert.equal(newDescription, testData.blueprint.simple.description);
       });
 
-      describe('Create Image Tests', function() {
+      describe('Create Image Tests', () => {
         const createImagePage = new CreateImagePage(images[0].type, images[0].arch);
 
-        it('should pop up Create Image window by clicking Create Image button', function() {
+        it('should pop up Create Image window by clicking Create Image button', () => {
           browser
-            .waitForVisible(viewBlueprintPage.detailTabElement)
+            .waitForVisible(viewBlueprintPage.detailTabElement);
 
           browser
             .click(viewBlueprintPage.detailTabElement)
@@ -144,8 +144,8 @@ describe('View Blueprint Page', function() {
         });
 
         images.forEach((image) => {
-          it(`should have toast notification pop up for image ${image.type}/${image.arch}`, function() {
-            const createImagePage = new CreateImagePage(image.type, image.arch);
+          it(`should have toast notification pop up for image ${image.type}/${image.arch}`, () => {
+            const createImagePage2 = new CreateImagePage(image.type, image.arch);
             const toastNotifPage = new ToastNotifPage(testData.blueprint.simple.name);
 
             browser
@@ -153,27 +153,27 @@ describe('View Blueprint Page', function() {
 
             browser
               .click(viewBlueprintPage.btnCreateImage)
-              .waitForVisible(createImagePage.dialogRootElement);
+              .waitForVisible(createImagePage2.dialogRootElement);
 
             browser
-              .waitForVisible(createImagePage.selectImageType);
+              .waitForVisible(createImagePage2.selectImageType);
 
             browser
-              .selectByVisibleText(createImagePage.selectImageType, createImagePage.imageType)
-              .selectByVisibleText(createImagePage.selectImageArch, createImagePage.imageArch)
-              .click(createImagePage.btnCreate)
+              .selectByVisibleText(createImagePage2.selectImageType, createImagePage.imageType)
+              .selectByVisibleText(createImagePage2.selectImageArch, createImagePage.imageArch)
+              .click(createImagePage2.btnCreate)
               .waitForVisible(toastNotifPage.iconCreating);
 
             // first status is Creating
-            const text_creating = $(toastNotifPage.labelStatus).getText();
-            assert.equal(text_creating, toastNotifPage.varStatusCreating);
+            const textCreating = $(toastNotifPage.labelStatus).getText();
+            assert.equal(textCreating, toastNotifPage.varStatusCreating);
 
             // then it changes to Complete
             browser
               .waitForVisible(toastNotifPage.iconComplete);
 
-            const text_complete = $(toastNotifPage.labelStatus).getText();
-            assert.equal(text_complete, toastNotifPage.varStatusComplete);
+            const textComplete = $(toastNotifPage.labelStatus).getText();
+            assert.equal(textComplete, toastNotifPage.varStatusComplete);
           });
         }); // for image
       });
@@ -186,9 +186,9 @@ describe('View Blueprint Page', function() {
       const btnMoreAction = `${viewBlueprintPage.pagelevelActions} ${viewBlueprintPage.btnMore}`;
       const menuActionExport = `${viewBlueprintPage.pagelevelActions} ${viewBlueprintPage.menuActionExport}`;
 
-      it('sanity test', function() {
+      it('sanity test', () => {
         browser
-          .waitForVisible(btnMoreAction)
+          .waitForVisible(btnMoreAction);
 
         browser
           .click(btnMoreAction)
@@ -204,7 +204,7 @@ describe('View Blueprint Page', function() {
           .waitForVisible(exportBlueprintPage.rootElement);
 
         browser
-            .waitForVisible(exportBlueprintPage.labelExportTitle);
+          .waitForVisible(exportBlueprintPage.labelExportTitle);
 
         // verify it was shown as expected
         const exportTitle = $(exportBlueprintPage.labelExportTitle).getText();
@@ -216,13 +216,13 @@ describe('View Blueprint Page', function() {
 
         // verify all of the input packages are listed
         const componentsText = $(exportBlueprintPage.textAreaContent).getText();
-        testData.blueprint.simple.packages.forEach(function(pkg) {
+        testData.blueprint.simple.packages.forEach((pkg) => {
           assert(componentsText.includes(pkg.name));
         });
 
         // now click the Copy button
         browser
-            .waitForVisible(exportBlueprintPage.btnCopy);
+          .waitForVisible(exportBlueprintPage.btnCopy);
 
         browser.click(exportBlueprintPage.btnCopy);
 

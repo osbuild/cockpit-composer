@@ -8,12 +8,12 @@ const CreateBlueprintPage = require('../pages/createBlueprint');
 const DeleteBlueprintPage = require('../pages/deleteBlueprint');
 
 
-describe('Changes Pending Commit Page', function() {
+describe('Changes Pending Commit Page', () => {
   const editBlueprintPage = new EditBlueprintPage(testData.blueprint.simple.name);
   const changesPendingCommitPage = new ChangesPendingCommitPage();
 
 
-  beforeEach(function() {
+  beforeEach(() => {
     CreateBlueprintPage.newBlueprint(testData.blueprint.simple, false);
 
     helper.goto(editBlueprintPage);
@@ -23,30 +23,30 @@ describe('Changes Pending Commit Page', function() {
   });
 
 
-  afterEach(function() {
+  afterEach(() => {
     DeleteBlueprintPage.deleteBlueprint(testData.blueprint.simple.name);
   });
 
 
-  describe('Edit Blueprint Page', function() {
+  describe('Edit Blueprint Page', () => {
     // repeat the test twice for both links
     [
       editBlueprintPage.btnCommit,
-      editBlueprintPage.linkPendingChange
-    ].forEach(function(button) {
-      it('should show Pending Changes', function() {
-          browser
-            .click(button)
-            .waitForVisible(changesPendingCommitPage.labelPageTitle);
+      editBlueprintPage.linkPendingChange,
+    ].forEach((button) => {
+      it('should show Pending Changes', () => {
+        browser
+          .click(button)
+          .waitForVisible(changesPendingCommitPage.labelPageTitle);
 
-          const actualText = $(changesPendingCommitPage.labelPageTitle).getText();
-          assert.equal(actualText, changesPendingCommitPage.varPageTitle);
+        const actualText = $(changesPendingCommitPage.labelPageTitle).getText();
+        assert.equal(actualText, changesPendingCommitPage.varPageTitle);
       });
     });
   });
 
-  describe('Pending Changes Commit Page', function() {
-    beforeEach(function() {
+  describe('Pending Changes Commit Page', () => {
+    beforeEach(() => {
       // bring up the pending changes dialog
       browser
         .click(editBlueprintPage.btnCommit)
@@ -54,7 +54,7 @@ describe('Changes Pending Commit Page', function() {
     });
 
 
-    it('should show correct pending change content', function() {
+    it('should show correct pending change content', () => {
       const actualText = $(changesPendingCommitPage.labelLine1PendingChangesAction).getText();
       assert.equal(actualText, 'Added');
 
@@ -62,7 +62,7 @@ describe('Changes Pending Commit Page', function() {
       assert.equal(actualComponent.split('-')[0], 'httpd');
     });
 
-    it('should show correct order of pending changes', function() {
+    it('should show correct order of pending changes', () => {
       // close the dialog b/c it is already open
       browser.click(changesPendingCommitPage.btnClose);
 
@@ -104,9 +104,9 @@ describe('Changes Pending Commit Page', function() {
     // repeat the test twice for each closing button
     [
       changesPendingCommitPage.btnClose,
-      changesPendingCommitPage.btnXClose
-    ].forEach(function(button) {
-      it('should not commit by clicking Close or X buttons', function() {
+      changesPendingCommitPage.btnXClose,
+    ].forEach((button) => {
+      it('should not commit by clicking Close or X buttons', () => {
         // close the dialog b/c it is already open
         browser.click(button);
         // wait until the dialog fades out
@@ -132,6 +132,5 @@ describe('Changes Pending Commit Page', function() {
         assert.equal(actualComponent1.split('-')[0], 'httpd');
       });
     });
-
   });
 });

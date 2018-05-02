@@ -1,5 +1,6 @@
 const assert = require('assert');
 const config = require('../wdio.conf.js');
+
 const testData = config.testData;
 const helper = require('../utils/helper');
 
@@ -13,24 +14,24 @@ const ExportBlueprintPage = require('../pages/exportBlueprint');
 const ChangesPendingCommitPage = require('../pages/changesPendingCommit');
 
 
-describe('Given Edit Blueprint Page', function() {
+describe('Given Edit Blueprint Page', () => {
   const editBlueprintPage = new EditBlueprintPage(testData.blueprint.simple.name);
 
 
-  afterEach(function() {
+  afterEach(() => {
     DeleteBlueprintPage.deleteBlueprint(testData.blueprint.simple.name);
   });
 
 
-  describe('When page is opened', function() {
-    beforeEach(function() {
+  describe('When page is opened', () => {
+    beforeEach(() => {
       CreateBlueprintPage.newBlueprint(testData.blueprint.simple);
 
       helper.goto(editBlueprintPage)
         .waitForVisible(editBlueprintPage.componentListItemRootElement);
     });
 
-    it('Then sanity validation will pass', function() {
+    it('Then sanity validation will pass', () => {
       browser
         .waitForVisible(editBlueprintPage.linkBlueprintName);
 
@@ -61,7 +62,7 @@ describe('Given Edit Blueprint Page', function() {
         .waitForExist(editBlueprintPage.linkPendingChange, config.config.waitforTimeout, true);
     });
 
-    it('And When clicking Create Image button Then will show Create Image dialog', function() {
+    it('And When clicking Create Image button Then will show Create Image dialog', () => {
       // note: functionality of image creation dialog is validated in test_viewBlueprints.js
       // here we only validate that the buttons placed on the main page still
       // trigger the same dialog
@@ -79,7 +80,7 @@ describe('Given Edit Blueprint Page', function() {
     });
 
 
-    it('And When : button is clicked Then it should trigger the export dialog', function() {
+    it('And When : button is clicked Then it should trigger the export dialog', () => {
       // NOTE the rest of the export functionality is tested in
       // test_viewBlueprint.js. Here we only verify that the action
       // buttons show the same dialog
@@ -109,8 +110,8 @@ describe('Given Edit Blueprint Page', function() {
       assert.equal(exportTitle, exportBlueprintPage.varExportTitle);
     });
 
-    describe('When filtering components', function() {
-      beforeEach(function() {
+    describe('When filtering components', () => {
+      beforeEach(() => {
         browser
           .waitForVisible(editBlueprintPage.inputFilter);
 
@@ -122,9 +123,7 @@ describe('Given Edit Blueprint Page', function() {
 
         // wait until a filter label with the correct name is shown
         browser
-          .waitUntil(function() {
-            return $(editBlueprintPage.labelFilterContent).getText() === 'Name: httpd';
-          });
+          .waitUntil(() => $(editBlueprintPage.labelFilterContent).getText() === 'Name: httpd');
 
         // wait for the search results to appear
         browser
@@ -134,9 +133,9 @@ describe('Given Edit Blueprint Page', function() {
 
       [
         editBlueprintPage.btnClearFilter,
-        editBlueprintPage.linkClearAllFilters
-      ].forEach(function(selector) {
-        it('Then will clear filter results by clicking X button or Clear All link', function() {
+        editBlueprintPage.linkClearAllFilters,
+      ].forEach((selector) => {
+        it('Then will clear filter results by clicking X button or Clear All link', () => {
           browser
             .waitForVisible(selector);
 
@@ -151,13 +150,13 @@ describe('Given Edit Blueprint Page', function() {
 
           // wait until filters are gone
           browser
-              .waitForExist(editBlueprintPage.btnClearFilter, config.config.waitforTimeout, true);
+            .waitForExist(editBlueprintPage.btnClearFilter, config.config.waitforTimeout, true);
           browser
-              .waitForExist(editBlueprintPage.linkClearAllFilters, config.config.waitforTimeout, true);
+            .waitForExist(editBlueprintPage.linkClearAllFilters, config.config.waitforTimeout, true);
         });
       });
 
-      it('Then selected component icon should have border', function() {
+      it('Then selected component icon should have border', () => {
         // select the first component in the filtered results
         browser
           .waitForVisible(editBlueprintPage.componentListItemRootElementSelect);
@@ -189,14 +188,14 @@ describe('Given Edit Blueprint Page', function() {
   });
 
 
-  describe('When page is opened with uncommitted changes', function() {
-    beforeEach(function() {
+  describe('When page is opened with uncommitted changes', () => {
+    beforeEach(() => {
       CreateBlueprintPage.newBlueprint(testData.blueprint.simple, false);
 
       helper.goto(editBlueprintPage);
     });
 
-    it('Then additional buttons are enabled', function() {
+    it('Then additional buttons are enabled', () => {
       // commit button is enabled
       browser
         .waitForVisible(editBlueprintPage.btnCommit);
@@ -210,5 +209,4 @@ describe('Given Edit Blueprint Page', function() {
         .waitForVisible(editBlueprintPage.linkPendingChange);
     });
   });
-
 });

@@ -7,25 +7,25 @@ const CreateBlueprintPage = require('../pages/createBlueprint');
 const DeleteBlueprintPage = require('../pages/deleteBlueprint');
 
 
-describe('Imported Content Sanity Testing', function() {
+describe('Imported Content Sanity Testing', () => {
   const editBlueprintPage = new EditBlueprintPage(testData.blueprint.simple.name);
 
-  before(function() {
+  before(() => {
     // Create a new blueprint before the first test run in this suite
     CreateBlueprintPage.newBlueprint(testData.blueprint.simple);
   });
 
-  after(function() {
+  after(() => {
     // Delete added blueprint after all tests completed in this suite
     DeleteBlueprintPage.deleteBlueprint(testData.blueprint.simple.name);
   });
 
-  beforeEach(function() {
+  beforeEach(() => {
     // navigate to the BP in edit mode
     helper.goto(editBlueprintPage);
   });
 
-  it('displayed count should match distinct count from DB', function() {
+  it('displayed count should match distinct count from DB', () => {
     // list item and total number are rendered at the same time
     browser.waitForVisible(editBlueprintPage.componentListItemRootElement);
 

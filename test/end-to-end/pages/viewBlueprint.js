@@ -6,7 +6,7 @@ module.exports = class ViewBlueprintPage extends MainPage {
     super('Blueprint');
     this.blueprintName = blueprintName;
 
-// ---- Root element selector ---- //
+    // ---- Root element selector ---- //
     // Navigation bar root element
     this.navRootElement = '.cmpsr-header .breadcrumb';
 
@@ -28,7 +28,7 @@ module.exports = class ViewBlueprintPage extends MainPage {
     // Images tab content root element
     this.imagesContentRootElement = `${this.tabRootElement} pf-tab[tabtitle="Images"]`;
 
-// ---- Page element selector ---- //
+    // ---- Page element selector ---- //
     // Nav-bar: Blueprint Name label
     this.labelBlueprintName = `${this.navRootElement} li strong`;
 

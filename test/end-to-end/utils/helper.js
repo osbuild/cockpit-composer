@@ -10,7 +10,7 @@ module.exports = {
         .waitForExist(page.iframeSelector);
 
       browser
-        .frame($(page.iframeSelector).value)
+        .frame($(page.iframeSelector).value);
 
       // wait for the body to load inside the iframe
       browser
