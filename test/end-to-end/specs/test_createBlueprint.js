@@ -1,6 +1,6 @@
 const assert = require('assert');
 const faker = require('faker');
-const helper = require('../utils/helper_wdio');
+const helper = require('../utils/helper');
 const pageConfig = require('../config');
 
 const BlueprintsPage = require('../pages/blueprints');

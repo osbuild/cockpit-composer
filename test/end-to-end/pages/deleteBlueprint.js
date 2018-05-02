@@ -1,5 +1,5 @@
 // Delete Blueprint page object
-const helper = require('../utils/helper_wdio');
+const helper = require('../utils/helper');
 const config = require('../wdio.conf.js');
 
 const MainPage = require('./main');

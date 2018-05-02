@@ -1,5 +1,5 @@
 const assert = require('assert');
-const helper = require('../utils/helper_wdio');
+const helper = require('../utils/helper');
 const pageConfig = require('../config');
 
 const EditBlueprintPage = require('../pages/editBlueprint');

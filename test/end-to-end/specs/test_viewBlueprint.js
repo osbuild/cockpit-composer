@@ -9,7 +9,7 @@ const CreateImagePage = require('../pages/createImage');
 const ToastNotifPage = require('../pages/toastNotif');
 const ExportBlueprintPage = require('../pages/exportBlueprint');
 
-const helper = require('../utils/helper_wdio');
+const helper = require('../utils/helper');
 const pageConfig = require('../config');
 
 describe('View Blueprint Page', function() {

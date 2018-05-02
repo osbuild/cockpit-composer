@@ -1,6 +1,6 @@
 const assert = require('assert');
 const config = require('../wdio.conf.js');
-const helper = require('../utils/helper_wdio');
+const helper = require('../utils/helper');
 const pageConfig = require('../config');
 
 const BlueprintsPage = require('../pages/blueprints');

@@ -1,5 +1,5 @@
 // Create Blueprint page object
-const helper = require('../utils/helper_wdio');
+const helper = require('../utils/helper');
 const MainPage = require('./main');
 const BlueprintPage = require('./blueprints');
 const EditBlueprintPage = require('./editBlueprint');
