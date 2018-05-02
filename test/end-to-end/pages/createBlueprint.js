@@ -74,6 +74,12 @@ module.exports = class CreateBlueprintPage extends BlueprintPage {
         .addValue(edit_page.inputFilter, '\u000d')
         .waitForVisible(edit_page.linkClearAllFilters);
 
+      // wait until a filter label with the correct name is shown
+      browser
+        .waitUntil(function() {
+          return $(edit_page.labelFilterContent).getText() === `Name: ${pkg.name}`;
+        });
+
       // wait for the search results to appear
       browser
         .waitForVisible('.list-pf-content.list-pf-content-flex');

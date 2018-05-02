@@ -1,5 +1,7 @@
 // Delete Blueprint page object
 const helper = require('../utils/helper_wdio');
+const config = require('../wdio.conf.js');
+
 const MainPage = require('./main');
 const BlueprintsPage = require('./blueprints');
 
@@ -60,6 +62,6 @@ module.exports = class deleteBlueprint extends MainPage {
     browser
       .click(page.btnDelete)
       // wait until the blueprint has been deleted
-      .waitForExist(blueprintNameSelector, 1000, true);
+      .waitForExist(blueprintNameSelector, config.config.waitforTimeout, true);
   }
 };
