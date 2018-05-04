@@ -18,7 +18,8 @@ describe('Create Blueprint Page', () => {
     testData.blueprint.simple.description);
 
   beforeEach(() => {
-    helper.goto(blueprintsPage);
+    helper.goto(blueprintsPage)
+      .waitForVisible(blueprintsPage.btnCreateBlueprint);
   });
 
   describe('Input Data Validation Test', () => {
@@ -99,7 +100,7 @@ describe('Create Blueprint Page', () => {
     });
 
     it('should switch to Edit Blueprint page after BP creation', () => {
-      helper.goto(blueprintsPage)
+      browser
         .click(createBlueprintPage.btnCreateBlueprint)
         .waitForVisible(createBlueprintPage.dialogRootElement);
 

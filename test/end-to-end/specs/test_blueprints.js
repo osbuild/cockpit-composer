@@ -1,7 +1,8 @@
 const assert = require('assert');
 const faker = require('faker');
 const helper = require('../utils/helper');
-const testData = require('../wdio.conf.js').testData;
+const config = require('../wdio.conf.js');
+const testData = config.testData;
 
 const BlueprintsPage = require('../pages/blueprints');
 const CreateBlueprintPage = require('../pages/createBlueprint');
@@ -17,14 +18,15 @@ describe('Blueprints Page', () => {
   const images = testData.image;
   const blueprintsPage = new BlueprintsPage();
 
-  beforeEach(() => {
-    helper.goto(blueprintsPage);
-  });
-
   it('Sanity Check', () => {
-    // Title should be Blueprints
-    const actualTitle = browser.getTitle();
-    assert.equal(actualTitle, blueprintsPage.title);
+    helper.goto(blueprintsPage);
+
+    // note: under Cockpit title is different
+    if (config.config.baseUrl.includes('http://localhost:3000')) {
+      // Title should be Blueprints
+      const actualTitle = browser.getTitle();
+      assert.equal(actualTitle, blueprintsPage.title);
+    }
 
     // should have the Create Blueprint button
     browser
@@ -45,6 +47,7 @@ describe('Blueprints Page', () => {
 
 
     beforeEach(() => {
+      // after creation we're redirected back to the main page
       CreateBlueprintPage.newBlueprint(testData.blueprint.simple);
     });
 

@@ -14,7 +14,7 @@ const initialState = {
   rehydrated: false,
   blueprintPage: {
     activeTab: 'Details',
-    editDescriptionVisible: 'false',
+    editDescriptionVisible: false,
     activeComponent: '',
     activeComponentParent: '',
     activeComponentStatus: 'view',

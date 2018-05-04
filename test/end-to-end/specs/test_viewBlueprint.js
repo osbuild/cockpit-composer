@@ -22,7 +22,26 @@ describe('View Blueprint Page', () => {
     beforeEach(() => {
       CreateBlueprintPage.newBlueprint(testData.blueprint.simple);
 
-      helper.goto(viewBlueprintPage);
+      helper.goto(viewBlueprintPage)
+        .waitForVisible(viewBlueprintPage.detailTabElement);
+
+      // this loads a bit later together with the description
+      // and some of the details
+      browser
+        .waitForVisible(viewBlueprintPage.labelBlueprintDescription);
+
+      browser
+        .waitForVisible(viewBlueprintPage.labelNameUnderDetails);
+
+      browser
+        .waitForVisible(viewBlueprintPage.labelDescriptionUnderDetails);
+
+      browser
+        .waitUntil(() => $(viewBlueprintPage.labelDescriptionUnderDetails).getText() === testData.blueprint.simple.description);
+
+      // wait for the Create Image button to become enabled
+      browser
+        .waitForVisible(viewBlueprintPage.btnCreateImage);
     });
 
     afterEach(() => {
@@ -30,22 +49,14 @@ describe('View Blueprint Page', () => {
     });
 
     it('should have all sanity attributes when shown', () => {
-      browser
-        .waitForVisible(viewBlueprintPage.componentsTabElement);
-
-      browser
-        .click(viewBlueprintPage.componentsTabElement)
-        .waitForVisible(viewBlueprintPage.tabSelectedComponents);
-
-      browser
-        .click(viewBlueprintPage.tabSelectedComponents)
-        .waitForVisible(viewBlueprintPage.contentSelectedComponents);
-
       // validate that we have a title
       const actualTitle = $(viewBlueprintPage.labelBlueprintName).getText();
       assert.equal(actualTitle, viewBlueprintPage.blueprintName);
 
-      // validate description
+      // validate description in title bar
+      browser
+        .waitUntil(() => browser.isExisting(viewBlueprintPage.labelBlueprintDescription));
+
       const actualDescription = $(viewBlueprintPage.labelBlueprintDescription).getText();
       assert.equal(actualDescription, testData.blueprint.simple.description);
 
@@ -53,18 +64,14 @@ describe('View Blueprint Page', () => {
       const createImageText = $(viewBlueprintPage.btnCreateImage).getText();
       assert.equal(createImageText, viewBlueprintPage.varCreateImage);
 
-      // now click back to the Details tab
-      browser
-        .waitForVisible(viewBlueprintPage.detailTabElement);
-
-      browser
-        .click(viewBlueprintPage.detailTabElement)
-        .waitForVisible(viewBlueprintPage.labelNameUnderDetails);
-
       // name matches
       const nameInDetailsTab = $(viewBlueprintPage.labelNameUnderDetails).getText();
       assert.equal(nameInDetailsTab, viewBlueprintPage.blueprintName);
+
       // description matches
+      browser
+        .waitForVisible(viewBlueprintPage.labelDescriptionUnderDetails);
+
       const descriptionInDetails = $(viewBlueprintPage.labelDescriptionUnderDetails).getText();
       assert.equal(descriptionInDetails, testData.blueprint.simple.description);
     });
@@ -74,13 +81,6 @@ describe('View Blueprint Page', () => {
       it('should update description', () => {
         // Highlight the expected result
         const expected = faker.lorem.sentence();
-
-        browser
-          .waitForVisible(viewBlueprintPage.detailTabElement);
-
-        browser
-          .click(viewBlueprintPage.detailTabElement)
-          .waitForVisible(viewBlueprintPage.btnEditDescriptionUnderDetails);
 
         browser
           .click(viewBlueprintPage.btnEditDescriptionUnderDetails)
@@ -100,13 +100,6 @@ describe('View Blueprint Page', () => {
       });
 
       it('should not update description when clicking cancel', () => {
-        browser
-          .waitForVisible(viewBlueprintPage.detailTabElement);
-
-        browser
-          .click(viewBlueprintPage.detailTabElement)
-          .waitForVisible(viewBlueprintPage.btnEditDescriptionUnderDetails);
-
         browser
           .click(viewBlueprintPage.btnEditDescriptionUnderDetails)
           .waitForVisible(viewBlueprintPage.inputTextDescriptionUnderDetails);
@@ -129,13 +122,6 @@ describe('View Blueprint Page', () => {
 
         it('should pop up Create Image window by clicking Create Image button', () => {
           browser
-            .waitForVisible(viewBlueprintPage.detailTabElement);
-
-          browser
-            .click(viewBlueprintPage.detailTabElement)
-            .waitForVisible(viewBlueprintPage.btnCreateImage);
-
-          browser
             .click(viewBlueprintPage.btnCreateImage)
             .waitForVisible(createImagePage.dialogRootElement);
 
@@ -149,9 +135,6 @@ describe('View Blueprint Page', () => {
             const toastNotifPage = new ToastNotifPage(testData.blueprint.simple.name);
 
             browser
-              .waitForVisible(viewBlueprintPage.btnCreateImage);
-
-            browser
               .click(viewBlueprintPage.btnCreateImage)
               .waitForVisible(createImagePage2.dialogRootElement);
 
@@ -159,8 +142,8 @@ describe('View Blueprint Page', () => {
               .waitForVisible(createImagePage2.selectImageType);
 
             browser
-              .selectByVisibleText(createImagePage2.selectImageType, createImagePage.imageType)
-              .selectByVisibleText(createImagePage2.selectImageArch, createImagePage.imageArch)
+              .selectByVisibleText(createImagePage2.selectImageType, createImagePage2.imageType)
+              .selectByVisibleText(createImagePage2.selectImageArch, createImagePage2.imageArch)
               .click(createImagePage2.btnCreate)
               .waitForVisible(toastNotifPage.iconCreating);
 
@@ -188,11 +171,13 @@ describe('View Blueprint Page', () => {
 
       it('sanity test', () => {
         browser
-          .waitForVisible(btnMoreAction);
+          .waitForEnabled(btnMoreAction);
 
         browser
-          .click(btnMoreAction)
-          .waitForVisible(menuActionExport);
+          .waitForEnabled(menuActionExport);
+
+        browser
+          .click(btnMoreAction);
 
         // menu was shown when clicking the ":" button
         const menuText = $(menuActionExport).getText();
