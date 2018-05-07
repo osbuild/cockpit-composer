@@ -1,22 +1,25 @@
 {
   "globals": {
-    "document": true
+    "document": true,
+    "browser": true,
+    "$": true,
+    "$$": true
   },
   "extends": [
-    "airbnb",
-    "plugin:jest/recommended"
+    "airbnb"
   ],
   "env": {
-    "jest": true
+    "mocha": true
   },
   "plugins": [
-    "jest"
+    "mocha"
   ],
   "rules": {
+    "mocha/no-exclusive-tests": "error",
     "func-names": ["error", "never"],
     "no-eval": "off",
     "no-unused-vars": "off",
-    "import/no-unresolved": ["error", { "ignore": ["nightmare'"] }],
+    "import/no-unresolved": ["error", { "ignore": ["copy-paste'"] }],
     "max-len": ["error", 130],
     "no-console": ["error", { "allow": ["error"] }]
   }

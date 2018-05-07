@@ -5,11 +5,11 @@ module.exports = class exportBlueprintPage extends MainPage {
   constructor() {
     super('Export Blueprint');
 
-// ---- Root element selector ---- //
+    // ---- Root element selector ---- //
     // Root Element for this Dialog Page
     this.rootElement = 'div[id="cmpsr-modal-export"]';
 
-// ---- Page element selector ---- //
+    // ---- Page element selector ---- //
     // Modal Title
     this.varExportTitle = 'Export Blueprint';
     this.labelExportTitle = `${this.rootElement} h4[id="myModalLabel"]`;

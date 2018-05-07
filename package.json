@@ -55,6 +55,7 @@
     "eslint-config-airbnb": "^9.0.1",
     "eslint-plugin-import": "^1.12.0",
     "eslint-plugin-jest": "^20.0.3",
+    "eslint-plugin-mocha": "^5.0.0",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^5.2.2",
     "eslint-plugin-redux-saga": "^0.4.0",

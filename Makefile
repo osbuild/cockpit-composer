@@ -88,8 +88,7 @@ end-to-end-test: shared
 	sudo docker run --rm --name welder_end_to_end --network host \
 	    -v `pwd`/.nyc_output/:/tmp/.nyc_output \
 	    -v `pwd`/failed-image:/tmp/failed-image \
-	    welder/web-e2e-tests:latest \
-	    xvfb-run -a -s '-screen 0 1024x768x24' npm run test -- --verbose
+	    welder/web-e2e-tests:latest npm run test
 	sudo docker ps --quiet --all --filter 'ancestor=welder/web-with-coverage' | sudo xargs --no-run-if-empty docker rm -f
 
 build-rpm:
@@ -119,8 +118,7 @@ cockpit-test: shared build-rpm
 	sudo docker run --rm --name welder_end_to_end --network host \
 	    -v `pwd`/failed-image:/tmp/failed-image \
 	    -e COCKPIT_TEST=1 \
-	    welder/web-e2e-tests:latest \
-	    xvfb-run -a -s '-screen 0 1024x768x24' npm run test -- --verbose
+	    welder/web-e2e-tests:latest npm run test
 	sudo docker ps --quiet --all --filter 'ancestor=welder/web-cockpit' | sudo xargs --no-run-if-empty docker rm -f
 
 ci: npm-install eslint stylelint unit-test end-to-end-test cockpit-test
