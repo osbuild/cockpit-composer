@@ -167,6 +167,13 @@ exports.testData = {
       modules: [],
       packages: [{ name: 'httpd', version: '' }],
     },
+    // used for testing pending changes
+    bash: {
+      name: 'terminals',
+      description: 'my favorite terminal',
+      modules: [],
+      packages: [{ name: 'bash', version: '' }],
+    },
     random: {
       name: '',
       description: '',

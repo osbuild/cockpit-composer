@@ -22,9 +22,6 @@ module.exports = class ViewBlueprintPage extends MainPage {
     // Details tab content root element
     this.detailsContentRootElement = `${this.tabRootElement} pf-tab[tabtitle="Details"]`;
 
-    // Components tab content root element
-    this.componentsContentRootElement = `${this.tabRootElement} pf-tab[tabtitle="Selected Components"]`;
-
     // Images tab content root element
     this.imagesContentRootElement = `${this.tabRootElement} pf-tab[tabtitle="Images"]`;
 
@@ -64,16 +61,6 @@ module.exports = class ViewBlueprintPage extends MainPage {
 
     // Images tab page element
     this.imagesTabElement = `${this.tabListRootElement} li:nth-child(3) a`;
-
-    // Selected Components tab under Components tab
-    this.tabSelectedComponents = `${this.componentsContentRootElement} pf-tabs ul[role="tablist"] li:nth-child(1) a`;
-
-    // Dependencies tab under Components tab
-    this.tabDependencies = `${this.componentsContentRootElement} pf-tabs ul[role="tablist"] li:nth-child(2) a`;
-
-    // Selected Components content
-    this.contentSelectedComponents = `${this.componentsContentRootElement} pf-tabs pf-tab
-      div[class="list-pf cmpsr-list-pf list-pf-stacked cmpsr-blueprint__components"]`;
 
     // Name label under Details tab
     this.labelNameUnderDetails = `${this.detailsContentRootElement} div[class="tab-container row"]
