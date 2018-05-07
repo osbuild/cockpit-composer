@@ -1,6 +1,7 @@
 /* global $ */
 
 import React from 'react';
+import {FormattedMessage} from 'react-intl';
 import PropTypes from 'prop-types';
 import BlueprintApi from '../../data/BlueprintApi';
 import { connect } from 'react-redux';
@@ -132,24 +133,29 @@ class CreateBlueprint extends React.Component {
               >
                 <span className="pficon pficon-close"></span>
               </button>
-              <h4 className="modal-title" id="myModalLabel">Create Blueprint</h4>
+              <h4 className="modal-title" id="myModalLabel"><FormattedMessage defaultMessage="Create Blueprint" /></h4>
             </div>
             <div className="modal-body">
               {(createBlueprint.errorInline && createBlueprint.errorNameVisible) &&
                 <div className="alert alert-danger">
                   <span className="pficon pficon-error-circle-o"></span>
-                  <strong>Required information is missing.</strong>
+                  <strong><FormattedMessage defaultMessage="Required information is missing." /></strong>
                 </div>
               }
               {(createBlueprint.errorInline && createBlueprint.errorDuplicateVisible) &&
                 <div className="alert alert-danger">
                   <span className="pficon pficon-error-circle-o"></span>
-                  <strong>Specify a new blueprint name.</strong>
+                  <strong><FormattedMessage defaultMessage="Specify a new blueprint name." /></strong>
                 </div>
               }
               <form className="form-horizontal" onKeyPress={(e) => this.handleEnterKey(e)}>
                 <p className="fields-status-pf">
-                  The fields marked with <span className="required-pf">*</span> are required.
+                  <FormattedMessage
+                    defaultMessage="The fields marked with {val} are required."
+                    values={{
+                      val: <span className="required-pf">*</span>
+                    }}
+                  />
                 </p>
                 <div
                   className={`form-group ${(createBlueprint.errorNameVisible || createBlueprint.errorDuplicateVisible)
@@ -158,7 +164,7 @@ class CreateBlueprint extends React.Component {
                   <label
                     className="col-sm-3 control-label required-pf"
                     htmlFor="textInput-modal-markup"
-                  >Name</label>
+                  ><FormattedMessage defaultMessage="Name" /></label>
                   <div className="col-sm-9">
                     <input
                       type="text"
@@ -170,10 +176,17 @@ class CreateBlueprint extends React.Component {
                       onBlur={(e) => this.handleErrors(e.target.value)}
                     />
                     {createBlueprint.errorNameVisible &&
-                      <span className="help-block">A blueprint name is required.</span>
+                      <span className="help-block"><FormattedMessage defaultMessage="A blueprint name is required." /></span>
                     }
                     {createBlueprint.errorDuplicateVisible &&
-                      <span className="help-block">The name "{createBlueprint.blueprint.name}" already exists.</span>
+                      <span className="help-block">
+                        <FormattedMessage
+                          defaultMessage="The name {name} already exists."
+                          values={{
+                            name: createBlueprint.blueprint.name
+                          }}
+                        />
+                      </span>
                     }
                   </div>
                 </div>
@@ -181,7 +194,7 @@ class CreateBlueprint extends React.Component {
                   <label
                     className="col-sm-3 control-label"
                     htmlFor="textInput2-modal-markup"
-                  >Description</label>
+                  ><FormattedMessage defaultMessage="Description" /></label>
                   <div className="col-sm-9">
                     <input
                       type="text"
@@ -202,7 +215,7 @@ class CreateBlueprint extends React.Component {
                 onMouseEnter={() => this.errorChecking(false)}
                 onMouseLeave={() => this.errorChecking(true)}
                 onClick={(e) => this.dismissErrors(e)}
-              >Cancel</button>
+              ><FormattedMessage defaultMessage="Cancel" /></button>
               {(createBlueprint.blueprint.name === '' || createBlueprint.errorDuplicateVisible) &&
                 <button
                   type="button"
@@ -214,7 +227,7 @@ class CreateBlueprint extends React.Component {
                   type="button"
                   className="btn btn-primary"
                   onClick={(e) => { this.handleCreateBlueprint(e, createBlueprint.blueprint); }}
-                >Create</button>
+                ><FormattedMessage defaultMessage="Create" /></button>
               }
             </div>
           </div>

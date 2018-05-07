@@ -1,8 +1,18 @@
 /* global $ */
 
 import React from 'react';
+import {defineMessages, injectIntl, intlShape} from 'react-intl';
 import PropTypes from 'prop-types';
 import ComponentTypeIcons from '../../components/ListView/ComponentTypeIcons';
+
+const messages = defineMessages({
+  hideDetails: {
+    defaultMessage: "Hide Details"
+  },
+  showDetails: {
+    defaultMessage: "Show Details and More Options"
+  }
+});
 
 class ComponentInputs extends React.Component {
   componentDidMount() {
@@ -82,6 +92,7 @@ class ComponentInputs extends React.Component {
 
   render() {
     const { components } = this.props;
+    const { formatMessage } = this.props.intl;
 
     return (
       <div className="list-pf cmpsr-list-inputs cmpsr-list-pf__compacted list-pf-stacked">
@@ -94,7 +105,7 @@ class ComponentInputs extends React.Component {
               data-trigger="manual"
               data-placement="top"
               title=""
-              data-original-title={component.active ? 'Hide Details' : 'Show Details and More Options'}
+              data-original-title={component.active ? formatMessage(messages.hideDetails) : formatMessage(messages.showDetails)}
               onClick={e => this.props.handleComponentDetails(e, component)}
             >
               <div className="list-pf-content list-pf-content-flex ">
@@ -152,6 +163,7 @@ ComponentInputs.propTypes = {
   handleComponentDetails: PropTypes.func,
   handleAddComponent: PropTypes.func,
   handleRemoveComponent: PropTypes.func,
+  intl: intlShape.isRequired,
 };
 
-export default ComponentInputs;
+export default injectIntl(ComponentInputs);

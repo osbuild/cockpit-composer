@@ -1,11 +1,18 @@
 import React from 'react';
+import {FormattedMessage, defineMessages, injectIntl, intlShape} from 'react-intl';
 import PropTypes from 'prop-types';
+
+const messages = defineMessages({
+  filterPlaceholder: {
+    defaultMessage: "Filter By Name..."
+  }
+});
 
 const Toolbar = props => (
   <div className="toolbar-pf">
     <form className="toolbar-pf-actions">
       <div className="form-group toolbar-pf-filter">
-        <label className="sr-only" htmlFor="filter">Name</label>
+        <label className="sr-only" htmlFor="filter"><FormattedMessage defaultMessage="Name" /></label>
         <div className="input-group">
           <div className="input-group-btn">
             <button
@@ -15,14 +22,19 @@ const Toolbar = props => (
               aria-haspopup="true"
               aria-expanded="false"
             >
-              Name<span className="caret" />
+              <FormattedMessage defaultMessage="Name" /><span className="caret" />
             </button>
             <ul className="dropdown-menu">
-              <li><a>Name</a></li>
-              <li><a>Version</a></li>
+              <li><a><FormattedMessage defaultMessage="Name" /></a></li>
+              <li><a><FormattedMessage defaultMessage="Version" /></a></li>
             </ul>
           </div>
-          <input type="text" className="form-control" id="filter" placeholder="Filter By Name..." />
+          <input 
+            type="text"
+            className="form-control"
+            id="filter"
+            placeholder={props.intl.formatMessage(messages.filterPlaceholder)}
+          />
         </div>
       </div>
       <div className="form-group">
@@ -34,11 +46,11 @@ const Toolbar = props => (
             aria-haspopup="true"
             aria-expanded="false"
           >
-            Name<span className="caret" />
+            <FormattedMessage defaultMessage="Name" /><span className="caret" />
           </button>
           <ul className="dropdown-menu">
-            <li><a>Name</a></li>
-            <li><a>Version</a></li>
+            <li><a><FormattedMessage defaultMessage="Name" /></a></li>
+            <li><a><FormattedMessage defaultMessage="Version" /></a></li>
           </ul>
         </div>
         {props.componentsSortKey === 'name' && props.componentsSortValue === 'DESC' &&
@@ -98,6 +110,7 @@ const Toolbar = props => (
 
 Toolbar.propTypes = {
   handleHistory: PropTypes.func,
+  intl: intlShape.isRequired,
 };
 
-export default Toolbar;
+export default injectIntl(Toolbar);

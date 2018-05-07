@@ -1,4 +1,5 @@
 import React from 'react';
+import {FormattedMessage, defineMessages, injectIntl, intlShape} from 'react-intl';
 import PropTypes from 'prop-types';
 import Layout from '../../components/Layout';
 import BlueprintListView from '../../components/ListView/BlueprintListView';
@@ -20,6 +21,22 @@ import {
 import { blueprintsSortSetKey, blueprintsSortSetValue } from '../../core/actions/sort';
 import { makeGetSortedBlueprints } from '../../core/selectors';
 
+const messages = defineMessages({
+  blueprintsTitle: {
+    defaultMessage: "Blueprints"
+  },
+  emptyTitle: {
+    defaultMessage: "No Blueprints",
+  },
+  emptyMessage: {
+    defaultMessage: "Create a blueprint to define the contents that will be included in the images you create. " +
+                    "Images can be produced in a variety of output formats."
+  },
+  filterByPlaceholder: {
+    defaultMessage: "Filter By Name..."
+  }
+});
+
 class BlueprintsPage extends React.Component {
   constructor() {
     super();
@@ -35,7 +52,7 @@ class BlueprintsPage extends React.Component {
   }
 
   componentDidMount() {
-    document.title = 'Blueprints';
+    document.title = this.props.intl.formatMessage(messages.blueprintsTitle);
   }
 
   setNotifications() {
@@ -87,13 +104,14 @@ class BlueprintsPage extends React.Component {
 
   render() {
     const { blueprints, exportBlueprint, deleteBlueprint, createImage, blueprintSortKey, blueprintSortValue } = this.props;
+    const { formatMessage } = this.props.intl;
     return (
       <Layout className="container-fluid" ref="layout">
         <div className="row toolbar-pf">
           <div className="col-sm-12">
             <form className="toolbar-pf-actions">
               <div className="form-group toolbar-pf-filter">
-                <label className="sr-only" htmlFor="filter">Name</label>
+                <label className="sr-only" htmlFor="filter"><FormattedMessage defaultMessage="Name" /></label>
                 <div className="input-group">
                   <div className="input-group-btn">
                     <button
@@ -103,14 +121,19 @@ class BlueprintsPage extends React.Component {
                       aria-haspopup="true"
                       aria-expanded="false"
                     >
-                      Name<span className="caret" />
+                      <FormattedMessage defaultMessage="Name" /><span className="caret" />
                     </button>
                     <ul className="dropdown-menu">
-                      <li><a>Name</a></li>
-                      <li><a>Version</a></li>
+                      <li><a><FormattedMessage defaultMessage="Name" /></a></li>
+                      <li><a><FormattedMessage defaultMessage="Version" /></a></li>
                     </ul>
                   </div>
-                  <input type="text" className="form-control" id="filter" placeholder="Filter By Name..." />
+                  <input
+                    type="text" 
+                    className="form-control"
+                    id="filter"
+                    placeholder={formatMessage(messages.filterByPlaceholder)}
+                  />
                 </div>
               </div>
               <div className="form-group">
@@ -122,11 +145,11 @@ class BlueprintsPage extends React.Component {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    Name<span className="caret" />
+                    <FormattedMessage defaultMessage="Name" /><span className="caret" />
                   </button>
                   <ul className="dropdown-menu">
-                    <li><a>Name</a></li>
-                    <li><a>Version</a></li>
+                    <li><a><FormattedMessage defaultMessage="Name" /></a></li>
+                    <li><a><FormattedMessage defaultMessage="Version" /></a></li>
                   </ul>
                 </div>
               {blueprintSortKey === 'name' && blueprintSortValue === 'DESC' &&
@@ -143,7 +166,7 @@ class BlueprintsPage extends React.Component {
               <div className="toolbar-pf-action-right">
                 <div className="form-group">
                   <button className="btn btn-default" type="button" data-toggle="modal" data-target="#cmpsr-modal-crt-blueprint">
-                    Create Blueprint
+                    <FormattedMessage defaultMessage="Create Blueprint" />
                   </button>
                 </div>
               </div>
@@ -152,10 +175,8 @@ class BlueprintsPage extends React.Component {
         </div>
       {blueprints.length === 0 &&
         <EmptyState
-          title="No Blueprints"
-          message={`Create a blueprint to define the contents that will be included
-            in the images you create. Images can be produced in a variety of
-            output formats.`}
+          title={formatMessage(messages.emptyTitle)}
+          message={formatMessage(messages.emptyMessage)}
         >
           <button
             className="btn btn-primary btn-lg"
@@ -163,7 +184,7 @@ class BlueprintsPage extends React.Component {
             data-toggle="modal"
             data-target="#cmpsr-modal-crt-blueprint"
           >
-            Create Blueprint
+            <FormattedMessage defaultMessage="Create Blueprint" />
           </button>
         </EmptyState>
       }
@@ -213,6 +234,7 @@ BlueprintsPage.propTypes = {
   blueprintSortValue: PropTypes.string,
   blueprintsSortSetKey: PropTypes.func,
   blueprintsSortSetValue: PropTypes.func,
+  intl: intlShape.isRequired,
 };
 
 const makeMapStateToProps = () => {
@@ -275,4 +297,4 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export default connect(makeMapStateToProps, mapDispatchToProps)(BlueprintsPage);
+export default connect(makeMapStateToProps, mapDispatchToProps)(injectIntl(BlueprintsPage));

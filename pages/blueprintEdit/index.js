@@ -1,6 +1,7 @@
 /* global $ */
 
 import React from 'react';
+import {FormattedMessage, defineMessages, injectIntl, intlShape} from 'react-intl';
 import PropTypes from 'prop-types';
 import Link from '../../components/Link';
 import Layout from '../../components/Layout';
@@ -31,6 +32,21 @@ import {
 import {
   makeGetBlueprintById, makeGetSortedSelectedComponents, makeGetSortedDependencies, makeGetFutureLength, makeGetPastLength
 } from '../../core/selectors';
+
+const messages = defineMessages({
+  addComponentTitle: {
+    defaultMessage: "Add Blueprint Components"
+  },
+  addComponentMessage: {
+    defaultMessage: "Browse or search for components, then add them to the blueprint."
+  },
+  blueprintTitle: {
+    defaultMessage: "Blueprint"
+  },
+  filterByPlaceholder: {
+    defaultMessage: "Filter By Name..."
+  }
+});
 
 class EditBlueprintPage extends React.Component {
   constructor() {
@@ -63,7 +79,7 @@ class EditBlueprintPage extends React.Component {
   }
 
   componentDidMount() {
-    document.title = 'Blueprint';
+    document.title = this.props.intl.formatMessage(messages.blueprintTitle);
   }
 
   componentWillUnmount() {
@@ -414,6 +430,8 @@ class EditBlueprintPage extends React.Component {
       + blueprint.workspacePendingChanges.addedChanges.length
       + blueprint.workspacePendingChanges.deletedChanges.length;
 
+    const { formatMessage } = this.props.intl;
+
     return (
       <Layout
         className="cmpsr-grid__wrapper"
@@ -423,44 +441,48 @@ class EditBlueprintPage extends React.Component {
       >
         <header className="cmpsr-header">
           <ol className="breadcrumb">
-            <li><Link to="/blueprints">Back to Blueprints</Link></li>
+            <li><Link to="/blueprints"><FormattedMessage defaultMessage="Back to Blueprints" /></Link></li>
             <li><Link to={`/blueprint/${blueprintDisplayName}`}>{blueprintDisplayName}</Link></li>
-            <li className="active"><strong>Edit Blueprint</strong></li>
+            <li className="active"><strong><FormattedMessage defaultMessage="Edit Blueprint" /></strong></li>
           </ol>
           <div className="cmpsr-header__actions">
             <ul className="list-inline">
               {numPendingChanges > 0 &&
                 <li>
                   <a href="#" onClick={e => this.handleShowModal(e, 'modalPendingChanges')}>
-                    {numPendingChanges !== 1 &&
-                      <span>{numPendingChanges} Pending Changes</span>
-                    ||
-                      <span>1 Pending Change</span>
-                    }
+                    <FormattedMessage
+                      defaultMessage="{pendingChanges, plural,
+                        one {# Pending Change}
+                        other {# Pending Changes}
+                        }"
+                      values={{
+                        pendingChanges: numPendingChanges
+                      }}
+                    />
                   </a>
                 </li>
               }
               {numPendingChanges > 0 &&
                 <li>
                   <button className="btn btn-primary" onClick={e => this.handleShowModal(e, 'modalPendingChanges')}>
-                    Commit
+                    <FormattedMessage defaultMessage="Commit" />
                   </button>
                 </li>
               ||
                 <li>
-                  <button className="btn btn-primary disabled" type="button">Commit</button>
+                  <button className="btn btn-primary disabled" type="button"><FormattedMessage defaultMessage="Commit" /></button>
                 </li>
               }
               {numPendingChanges > 0 &&
                 <li>
                   <button className="btn btn-default" type="button" onClick={this.handleDiscardChanges}>
-                    Discard Changes
+                    <FormattedMessage defaultMessage="Discard Changes" />
                   </button>
                 </li>
               ||
                 <li>
                   <button className="btn btn-default disabled" type="button">
-                    Discard Changes
+                    <FormattedMessage defaultMessage="Discard Changes" />
                   </button>
                 </li>
               }
@@ -472,7 +494,7 @@ class EditBlueprintPage extends React.Component {
                   data-target="#cmpsr-modal-crt-image"
                   type="button"
                 >
-                  Create Image
+                  <FormattedMessage defaultMessage="Create Image" />
                 </button>
               </li>
               <li>
@@ -489,9 +511,13 @@ class EditBlueprintPage extends React.Component {
                   </button>
                   <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
                     {selectedComponents.length &&
-                      <li><a href="#" onClick={e => this.handleShowModal(e, 'modalExportBlueprint')}>Export</a></li>
+                      <li><a href="#" onClick={e => this.handleShowModal(e, 'modalExportBlueprint')}>
+                        <FormattedMessage defaultMessage="Export" />
+                      </a></li>
                     ||
-                      <li className="disabled"><a>Export</a></li>
+                      <li className="disabled"><a>
+                        <FormattedMessage defaultMessage="Export" />
+                      </a></li>
                     }
                   </ul>
                 </div>
@@ -503,13 +529,24 @@ class EditBlueprintPage extends React.Component {
           <div className="cmpsr-title">
             <h1 className="cmpsr-title__item">{blueprintDisplayName}</h1>
             <p className="cmpsr-title__item">
-              <span className="text-muted">Total Disk Space: 1,234 KB</span>
+              <span className="text-muted">
+                <FormattedMessage
+                  defaultMessage="Total Disk Space: {space, number} KB"
+                  values={{
+                    space: 1234
+                  }}
+                />
+              </span>
             </p>
           </div>
         </header>
         {(inputs.selectedInput !== undefined && inputs.selectedInput.component === '' &&
-          <h3 className="cmpsr-panel__title cmpsr-panel__title--main">Blueprint Components</h3>) ||
-          <h3 className="cmpsr-panel__title cmpsr-panel__title--main">Component Details</h3>}
+          <h3 className="cmpsr-panel__title cmpsr-panel__title--main">
+            <FormattedMessage defaultMessage="Blueprint Components" />
+          </h3>) ||
+          <h3 className="cmpsr-panel__title cmpsr-panel__title--main">
+            <FormattedMessage defaultMessage="Component Details" />
+          </h3>}
         {(inputs.selectedInput !== undefined && inputs.selectedInput.component === '' &&
           <div className="cmpsr-panel__body cmpsr-panel__body--main">
           {componentsSortKey !== undefined && componentsSortValue !== undefined &&
@@ -529,8 +566,8 @@ class EditBlueprintPage extends React.Component {
           }
             {((selectedComponents === undefined || selectedComponents.length === 0) &&
               <EmptyState
-                title={'Add Blueprint Components'}
-                message={'Browse or search for components, then add them to the blueprint.'}
+                title={formatMessage(messages.addComponentTitle)}
+                message={formatMessage(messages.addComponentMessage)}
               />) ||
               <BlueprintContents
                 components={selectedComponents}
@@ -551,13 +588,17 @@ class EditBlueprintPage extends React.Component {
             handleRemoveComponent={this.handleRemoveComponent}
           />}
 
-        <h3 className="cmpsr-panel__title cmpsr-panel__title--sidebar">Available Components</h3>
+        <h3 className="cmpsr-panel__title cmpsr-panel__title--sidebar">
+          <FormattedMessage defaultMessage="Available Components" />
+        </h3>
         <div className="cmpsr-panel__body cmpsr-panel__body--sidebar">
 
           <div className="toolbar-pf">
             <form className="toolbar-pf-actions">
               <div className="form-group toolbar-pf-filter">
-                <label className="sr-only" htmlFor="cmpsr-blueprint-input-filter">Name</label>
+                <label className="sr-only" htmlFor="cmpsr-blueprint-input-filter">
+                  <FormattedMessage defaultMessage="Name" />
+                </label>
                 <div className="input-group">
                   <div className="input-group-btn">
                     <button
@@ -567,22 +608,22 @@ class EditBlueprintPage extends React.Component {
                       aria-haspopup="true"
                       aria-expanded="false"
                     >
-                      Name <span className="caret" />
+                      <FormattedMessage defaultMessage="Name" /> <span className="caret" />
                     </button>
                     <ul className="dropdown-menu">
-                      <li><a href="#">Type</a></li>
-                      <li><a href="#">Name</a></li>
-                      <li><a href="#">Version</a></li>
-                      <li><a href="#">Release</a></li>
-                      <li><a href="#">Lifecycle</a></li>
-                      <li><a href="#">Support Level</a></li>
+                      <li><a href="#"><FormattedMessage defaultMessage="Type" /></a></li>
+                      <li><a href="#"><FormattedMessage defaultMessage="Name" /></a></li>
+                      <li><a href="#"><FormattedMessage defaultMessage="Version" /></a></li>
+                      <li><a href="#"><FormattedMessage defaultMessage="Release" /></a></li>
+                      <li><a href="#"><FormattedMessage defaultMessage="Lifecycle" /></a></li>
+                      <li><a href="#"><FormattedMessage defaultMessage="Support Level" /></a></li>
                     </ul>
                   </div>
                   <input
                     type="text"
                     className="form-control"
                     id="cmpsr-blueprint-input-filter"
-                    placeholder="Filter By Name..."
+                    placeholder={formatMessage(messages.filterByPlaceholder)}
                     onKeyPress={e => this.getFilteredInputs(e)}
                   />
                 </div>
@@ -605,14 +646,16 @@ class EditBlueprintPage extends React.Component {
                 <ul className="list-inline">
                   <li>
                     <span className="label label-info">
-                      Name: {inputs.inputFilters.value}
+                      <FormattedMessage defaultMessage="Name:" /> {inputs.inputFilters.value}
                       <a href="#" onClick={e => this.handleClearFilters(e)}>
                         <span className="pficon pficon-close" />
                       </a>
                     </span>
                   </li>
                   <li>
-                    <a href="#" onClick={e => this.handleClearFilters(e)}>Clear All Filters</a>
+                    <a href="#" onClick={e => this.handleClearFilters(e)}>
+                      <FormattedMessage defaultMessage="Clear All Filters" />
+                    </a>
                   </li>
                 </ul>}
               <Pagination
@@ -630,7 +673,12 @@ class EditBlueprintPage extends React.Component {
               <span className="pficon pficon-close" />
             </button>
             <span className="pficon pficon-info" />
-            <strong>Select components</strong> in this list to add to the blueprint.
+            <FormattedMessage
+              defaultMessage="{selectComponents} in this list to add to the blueprint."
+              values={{
+                selectComponents: <strong><FormattedMessage defaultMessage="Select components" /></strong>
+              }}
+            />
           </div>
           {inputs.inputComponents !== undefined &&
             <ComponentInputs
@@ -701,6 +749,7 @@ EditBlueprintPage.propTypes = {
   redo: PropTypes.func,
   commitToWorkspace: PropTypes.func,
   deleteHistory: PropTypes.func,
+  intl: intlShape.isRequired,
 };
 
 const makeMapStateToProps = () => {
@@ -811,4 +860,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(makeMapStateToProps, mapDispatchToProps)(EditBlueprintPage);
+export default connect(makeMapStateToProps, mapDispatchToProps)(injectIntl(EditBlueprintPage));

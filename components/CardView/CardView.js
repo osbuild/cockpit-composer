@@ -1,6 +1,7 @@
 /* global $ */
 
 import React from 'react';
+import {FormattedMessage} from 'react-intl';
 import PropTypes from 'prop-types';
 
 class CardView extends React.Component {
@@ -49,7 +50,15 @@ class CardView extends React.Component {
                   </div>
                 </div>
                 <p className="card-pf-info text-center">
-                  <strong>Created On</strong> 2015-03-01 02:00 AM <br /> Never Expires
+                  <FormattedMessage
+                    defaultMessage="{createdOnMsg} {createdOnDate, date, 'YYYY-MM-dd'} {createdOnDate, time, 'hh:mm a'}"
+                    values={{
+                      createOnMsg: <strong><FormattedMessage defaultMessage="Created On" /></strong>,
+                      createdOnDate: new Date(2015, 2, 1, 2, 0)
+                    }}
+                  />
+                  <br />
+                  <FormattedMessage defaultMessage="Never Expires" />
                 </p>
               </div>
               <div className="card-pf-view-checkbox">

@@ -3,6 +3,8 @@ import 'whatwg-fetch';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {addLocaleData, IntlProvider} from 'react-intl';
+import enLocaleData from 'react-intl/locale-data/en';
 import FastClick from 'fastclick';
 import { Provider } from 'react-redux';
 import 'bootstrap';
@@ -15,8 +17,30 @@ import history from './core/history';
 let routes = require('./routes.json'); // Loaded with utils/routes-loader.js
 const container = document.getElementById('main');
 
+// TODO: select language to use
+let userLanguage = 'en';
+let translations = require('./build/translations.json');
+let messages = undefined;
+if (userLanguage in translations) {
+  messages = translations[userLanguage];
+}
+
+// TODO what other locale data should be loaded?
+addLocaleData(enLocaleData);
+
 function renderComponent(component) {
-  ReactDOM.render(<Provider store={store}>{component}</Provider>, container);
+  ReactDOM.render(
+    <Provider store={store}>
+      {messages !== undefined ? (
+        <IntlProvider locale={userLanguage} messages={messages}>
+          {component}
+        </IntlProvider>
+      ) : (
+        <IntlProvider locale='en'>
+          {component}
+        </IntlProvider>
+      )}
+    </Provider>, container);
 }
 
 // Find and render a web page matching the current URL path,

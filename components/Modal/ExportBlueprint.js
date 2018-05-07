@@ -1,6 +1,7 @@
 /* global $ */
 
 import React from 'react';
+import {FormattedMessage} from 'react-intl';
 import PropTypes from 'prop-types';
 
 class ExportBlueprint extends React.Component {
@@ -36,14 +37,14 @@ class ExportBlueprint extends React.Component {
               >
                 <span className="pficon pficon-close"></span>
               </button>
-              <h4 className="modal-title" id="myModalLabel">Export Blueprint</h4>
+              <h4 className="modal-title" id="myModalLabel"><FormattedMessage defaultMessage="Export Blueprint" /></h4>
             </div>
             <div className="modal-body">
               <form className="form-horizontal" onKeyPress={(e) => this.handleEnterKey(e)}>
                 <div className="form-group">
                   <label
                     className="col-sm-3 control-label"
-                  >Blueprint</label>
+                  ><FormattedMessage defaultMessage="Blueprint" /></label>
                   <div className="col-sm-9">
                     <p className="form-control-static">{this.props.blueprint}</p>
                   </div>
@@ -52,10 +53,10 @@ class ExportBlueprint extends React.Component {
                   <label
                     className="col-sm-3 control-label"
                     htmlFor="textInput-modal-markup"
-                  >Export as</label>
+                  ><FormattedMessage defaultMessage="Export as" /></label>
                   <div className="col-sm-9">
                     <select className="form-control">
-                      <option>Text</option>
+                      <FormattedMessage defaultMessage="Text" tagName="option" />
                     </select>
                   </div>
                 </div>
@@ -63,7 +64,7 @@ class ExportBlueprint extends React.Component {
                   <label
                     className="col-sm-3 control-label"
                     htmlFor="textInput2-modal-markup"
-                  >Contents</label>
+                  ><FormattedMessage defaultMessage="Contents" /></label>
                   {this.props.contents &&
                     <div className="col-sm-9">
                       <textarea
@@ -76,7 +77,14 @@ class ExportBlueprint extends React.Component {
                           `${comp.name}-${comp.version}-${comp.release}`
                         )).join('\n')}
                       />
-                      <p>{this.props.contents.length} total components</p>
+                      <p>
+                        <FormattedMessage
+                          defaultMessage="{count} total components"
+                          values={{
+                            count: this.props.contents.length
+                          }}
+                        />
+                      </p>
                     </div>
                     ||
                     <div className="col-sm-1">
@@ -91,8 +99,10 @@ class ExportBlueprint extends React.Component {
                 type="button"
                 className="btn btn-default"
                 data-dismiss="modal"
-              >Close</button>
-              <button type="button" className="btn btn-primary" onClick={() => this.handleCopy()}>Copy</button>
+              ><FormattedMessage defaultMessage="Close" /></button>
+              <button type="button" className="btn btn-primary" onClick={() => this.handleCopy()}>
+                <FormattedMessage defaultMessage="Copy" />
+              </button>
             </div>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import {FormattedMessage} from 'react-intl';
 import PropTypes from 'prop-types';
 import NotificationsApi from '../../data/NotificationsApi';
 
@@ -114,7 +115,7 @@ class Notification extends React.PureComponent {
               )}
               <li>
                 <a href="#" onClick={(e) => this.handleClose(e, this.props.id)}>
-                  Close
+                  <FormattedMessage defaultMessage="Close" />
                 </a>
               </li>
             </ul>
