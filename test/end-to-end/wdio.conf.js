@@ -175,11 +175,11 @@ exports.testData = {
     },
   },
 
-  // Image type and architechture on Create Image Page",
+  // Image type and architechture on Create Image Page
+  // NOTE: these are backend dependent and may actually take a lot of time
+  // if/when the backend decides to really build a compose. So leave testing
+  // only with the tar compose type b/c it should be relatively fast
   image: [
-    { type: 'directory', arch: 'x86_64' },
-    { type: 'ostree', arch: 'x86_64' },
-    { type: 'qcow2', arch: 'x86_64' },
     { type: 'tar', arch: 'x86_64' },
   ],
 };
