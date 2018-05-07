@@ -8,7 +8,7 @@ set -e
 # ARG1 - OPTIONAL - a content store directory for exports
 
 # needs bdcs.rpm installed
-IMPORT="/usr/libexec/weldr/bdcs-import"
+IMPORT=`ls /usr/libexec/weldr/bdcs-*/bdcs-import`
 SCHEMA=`ls /usr/share/bdcs-*/schema.sql`
 METADATA="metadata.db"
 DNF="/usr/bin/dnf"
