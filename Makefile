@@ -85,6 +85,11 @@ end-to-end-test: shared
 	sudo docker build -f Dockerfile.with-coverage -t welder/web-with-coverage:latest .
 	sudo docker run -d --name web -p 3000:3000 --restart=always --network welder welder/web-with-coverage:latest
 
+	until curl http://localhost:4000/api/status | grep '"supported":true'; do \
+	    sleep 1; \
+	    echo "Waiting for backend API to become ready before testing ..."; \
+	done;
+
 	sudo docker run --rm --name welder_end_to_end --network host \
 	    -v `pwd`/.nyc_output/:/tmp/.nyc_output \
 	    -v `pwd`/failed-image:/tmp/failed-image \
@@ -114,6 +119,11 @@ cockpit-test: shared build-rpm
 # Clean generated intermediate tar file and useless RPM file
 # RPM file is inside docker image already
 	rm -f welder-web*.rpm welder-web*.tar.gz
+
+	until curl http://localhost:4000/api/status | grep '"supported":true'; do \
+	    sleep 1; \
+	    echo "Waiting for backend API to become ready before testing ..."; \
+	done;
 
 	sudo docker run --rm --name welder_end_to_end --network host \
 	    -v `pwd`/failed-image:/tmp/failed-image \
