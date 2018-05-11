@@ -1,11 +1,4 @@
-[data-toggle] {
-  cursor: pointer;
-}
-/* This is added for the export dialog so that the contents have higher contrast */
-textarea.form-control[readonly] {
-  background-color: inherit;
-  color: inherit;
-}
+
 /* Blueprint Edit layout */
 .cmpsr-grid__wrapper {
   display: grid;
@@ -20,8 +13,9 @@ textarea.form-control[readonly] {
     "inputs edit";
   overflow: auto;
   position: absolute;
-  top: 60px;
+  top: 0;
   bottom: 0;
+  width: 100%;
 }
 /* Blueprint Edit page header */
 .cmpsr-grid__wrapper .cmpsr-header {
@@ -340,10 +334,13 @@ textarea.form-control[readonly] {
 /* ------------------------------- */
 /* modifications to patternfly css */
 
-/* masthead */
-/* without an icon in the masthead, the logo sits too high relative to other elements */
-.navbar-brand {
-  line-height: 35px;
+/* body displays in an iframe without nav */
+/* resetting body so that grid layout can fill page */
+body, html {
+  height: 100%;
+}
+body {
+  position: relative;
 }
 
 /* empty state */
@@ -365,4 +362,14 @@ textarea.form-control[readonly] {
 /* disable pointer events for both <a> and <button> */
 .btn.disabled, fieldset[disabled] .btn {
     pointer-events: none;
+}
+
+[data-toggle] {
+  cursor: pointer;
+}
+
+/* This is added for the export dialog so that the contents have higher contrast */
+textarea.form-control[readonly] {
+  background-color: inherit;
+  color: inherit;
 }
