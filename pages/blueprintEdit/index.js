@@ -502,9 +502,6 @@ class EditBlueprintPage extends React.Component {
           </div>
           <div className="cmpsr-title">
             <h1 className="cmpsr-title__item">{blueprintDisplayName}</h1>
-            <p className="cmpsr-title__item">
-              <span className="text-muted">Total Disk Space: 1,234 KB</span>
-            </p>
           </div>
         </header>
         {(inputs.selectedInput !== undefined && inputs.selectedInput.component === '' &&
