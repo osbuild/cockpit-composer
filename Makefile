@@ -1,8 +1,6 @@
-# generate version number from the latest git tag; if the topmost commit is
-# tagged (at release time), just use that; if there are commits after that,
-# append a ".x" suffix to indicate that's a development snapshot
-# if there is no tag (yet), use 0 as version
-RELEASEVER=$(shell (git describe --exclude '*jenkins*' || echo 0) | sed 's/-[0-9]\+-g.*/.x/')
+# Extract the version from package.json
+VERSION=$(shell $(CURDIR)/rpmversion.sh | cut -d - -f 1)
+RELEASE=$(shell $(CURDIR)/rpmversion.sh | cut -d - -f 2)
 
 all: npm-install
 	NODE_ENV=$(NODE_ENV) npm run build
@@ -16,20 +14,23 @@ install: all
 
 dist-gzip: NODE_ENV=production
 dist-gzip: all
-	mkdir -p _install/usr/share/cockpit
-	cp -r public/ _install/usr/share/cockpit/welder
-	cp welder-web.spec _install/
-	tar -C _install/ -czf welder-web-$(RELEASEVER).tar.gz .
-	rm -rf _install
+	mkdir -p welder-web-$(VERSION)
+	cp -r public/ LICENSE.txt README.md welder-web-$(VERSION)
+	tar -czf welder-web-$(VERSION).tar.gz welder-web-$(VERSION)
+	rm -rf welder-web-$(VERSION)
 
-srpm: dist-gzip
+welder-web.spec: welder-web.spec.in
+	sed -e 's|@VERSION@|$(VERSION)|' \
+	    -e 's|@RELEASE@|$(RELEASE)|' \
+	    < welder-web.spec.in > welder-web.spec
+
+srpm: dist-gzip welder-web.spec
 	/usr/bin/rpmbuild -bs \
-	  --define "_sourcedir `pwd`" \
-	  --define "_srcrpmdir `pwd`" \
-	  --define "releasever $(RELEASEVER)" \
+	  --define "_sourcedir $(CURDIR)" \
+	  --define "_srcrpmdir $(CURDIR)" \
 	  welder-web.spec
 
-rpm: dist-gzip
+rpm: dist-gzip welder-web.spec
 	mkdir -p "`pwd`/output"
 	mkdir -p "`pwd`/rpmbuild"
 	rpmbuild -bb \
@@ -39,7 +40,6 @@ rpm: dist-gzip
 	  --define "_srcrpmdir `pwd`" \
 	  --define "_rpmdir `pwd`/output" \
 	  --define "_buildrootdir `pwd`/build" \
-	  --define "releasever $(RELEASEVER)" \
 	  welder-web.spec
 	find `pwd`/output -name '*.rpm' -printf '%f\n' -exec mv {} . \;
 	rm -r "`pwd`/rpmbuild"
