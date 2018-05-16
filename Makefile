@@ -83,7 +83,7 @@ end-to-end-test: shared
 	sudo docker build -f Dockerfile.with-coverage -t welder/web-with-coverage:latest .
 	sudo docker run -d --name web -p 3000:3000 --restart=always --network welder welder/web-with-coverage:latest
 
-	until curl http://localhost:4000/api/status | grep '"supported":true'; do \
+	until curl http://localhost:4000/api/status | grep 'db_supported":true'; do \
 	    sleep 1; \
 	    echo "Waiting for backend API to become ready before testing ..."; \
 	done;
@@ -118,7 +118,7 @@ cockpit-test: shared build-rpm
 # RPM file is inside docker image already
 	rm -f welder-web*.rpm welder-web*.tar.gz
 
-	until curl http://localhost:4000/api/status | grep '"supported":true'; do \
+	until curl http://localhost:4000/api/status | grep 'db_supported":true'; do \
 	    sleep 1; \
 	    echo "Waiting for backend API to become ready before testing ..."; \
 	done;
