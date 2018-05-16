@@ -8,3 +8,4 @@ db.json
 core/build-version.json
 npm-debug.log
 metadata.db
+welder-web.spec
