@@ -93,6 +93,9 @@
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.12.2"
   },
+  "optionalDependencies": {
+    "fsevents": "*"
+  },
   "jest": {
     "testRegex": "(/test/unit/.*\\.spec.js)$",
     "setupFiles": [
