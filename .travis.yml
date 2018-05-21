@@ -25,7 +25,6 @@ before_install:
             sudo docker pull welder/web-cockpit:latest
         fi
         if [ "$COMMAND" == "end-to-end-test" ]; then
-            sudo docker pull welder/web-nodejs:latest
             sudo docker pull welder/web:latest
             sudo docker pull welder/web-e2e-tests:latest
         else
@@ -59,10 +58,8 @@ after_success:
                 # if nothing has been changed the push will detect that
                 # and the new tag will appear on Docker Hub without anything being
                 # actually uploaded
-                sudo docker tag welder/web-nodejs:latest welder/web-nodejs:$TRAVIS_BUILD_NUMBER
                 sudo docker tag welder/web:latest welder/web:$TRAVIS_BUILD_NUMBER
                 sudo docker tag welder/web-e2e-tests:latest welder/web-e2e-tests:$TRAVIS_BUILD_NUMBER
-                docker push welder/web-nodejs
                 docker push welder/web
                 docker push welder/web-e2e-tests
             fi

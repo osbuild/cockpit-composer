@@ -1,8 +1,0 @@
-FROM welder/web:latest
-LABEL maintainer="Alexander Todorov" \
-      email="atodorov@redhat.com" \
-      baseimage="Fedora:latest" \
-      description="A welder-web with code coverage enabled container running on Fedora"
-
-# just build the web container with coverage instrumentation
-RUN cd /welder/ && node run build --with-coverage

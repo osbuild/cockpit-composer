@@ -86,10 +86,8 @@ metadata.db:
 
 shared: metadata.db
 	if [ -n "$$TRAVIS" ]; then \
-	    sudo docker build -f Dockerfile.nodejs --cache-from welder/web-nodejs:latest -t welder/web-nodejs:latest . ; \
 	    sudo docker build -f ./test/end-to-end/Dockerfile --cache-from welder/web-e2e-tests:latest -t welder/web-e2e-tests:latest ./test/end-to-end/; \
 	else \
-	    sudo docker build -f Dockerfile.nodejs -t welder/web-nodejs:latest . ; \
 	    sudo docker build -f ./test/end-to-end/Dockerfile -t welder/web-e2e-tests:latest ./test/end-to-end/ ; \
 	fi;
 
@@ -105,8 +103,7 @@ end-to-end-test: shared
 	    sudo docker build -t welder/web:latest . ; \
 	fi;
 
-	sudo docker build -f Dockerfile.with-coverage -t welder/web-with-coverage:latest .
-	sudo docker run -d --name web -p 3000:3000 --restart=always --network welder welder/web-with-coverage:latest
+	sudo docker run -d --name web -p 3000:3000 --restart=always --network welder welder/web:latest
 
 	until curl http://localhost:4000/api/status | grep 'db_supported":true'; do \
 	    sleep 1; \
@@ -117,7 +114,7 @@ end-to-end-test: shared
 	    -v `pwd`/.nyc_output/:/tmp/.nyc_output \
 	    -v `pwd`/failed-image:/tmp/failed-image \
 	    welder/web-e2e-tests:latest npm run test
-	sudo docker ps --quiet --all --filter 'ancestor=welder/web-with-coverage' | sudo xargs --no-run-if-empty docker rm -f
+	sudo docker ps --quiet --all --filter 'ancestor=welder/web' | sudo xargs --no-run-if-empty docker rm -f
 
 build-rpm:
 	if [ -n "$$TRAVIS" ]; then \
@@ -180,7 +177,6 @@ test_with_lorax_composer: rpm
 
 # build e2e test images with increased timeouts
 	sed -i "s|waitforTimeout: 30000|waitforTimeout: 90000|" ./test/end-to-end/wdio.conf.js
-	sudo docker build -f Dockerfile.nodejs -t welder/web-nodejs:latest .
 	sudo docker build -f ./test/end-to-end/Dockerfile -t welder/web-e2e-tests:latest ./test/end-to-end/
 
 # execute lorax-composer in the background to serve as the API backend
