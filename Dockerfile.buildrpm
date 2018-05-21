@@ -1,10 +1,10 @@
-FROM welder/web-nodejs:latest
+FROM fedora:latest
 LABEL maintainer="Xiaofeng Wang" \
       email="xiaofwan@redhat.com" \
       baseimage="Fedora:latest" \
       description="A welder-web RPM builder container running on Fedora"
-# work around https://bugzilla.redhat.com/show_bug.cgi?id=1532293 by upgrading cmake first
-RUN dnf upgrade -y cmake && dnf install -y rpm-build jq && dnf clean all
+
+RUN dnf install -y make cmake rpm-build which gnupg tar xz curl jq nodejs && dnf clean all
 
 WORKDIR /welder
 CMD ["make", "rpm"]
