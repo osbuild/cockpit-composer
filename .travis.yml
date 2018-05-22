@@ -17,8 +17,8 @@ before_install:
         git log -1 --pretty=format:%H welder/master
         git rebase welder/master
 
-        npm install codecov
-        npm install nyc@11.1.0
+        npm install -g codecov
+        npm install -g nyc@11.1.0
 
         if [ "$COMMAND" == "cockpit-test" ]; then
             sudo docker pull welder/web-e2e-tests:latest

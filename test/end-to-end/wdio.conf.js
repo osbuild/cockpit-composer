@@ -144,7 +144,7 @@ exports.config = {
       return;
     }
 
-    const strCoverage = JSON.stringify(coverageData);
+    const strCoverage = JSON.stringify(coverageData.value);
     const hash = crypto
       .createHmac('sha256', '')
       .update(strCoverage)
