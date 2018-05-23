@@ -24,11 +24,22 @@ welder-web.spec: welder-web.spec.in
 	    -e 's|@RELEASE@|$(RELEASE)|' \
 	    < welder-web.spec.in > welder-web.spec
 
+cockpit-composer.spec: cockpit-composer.spec.in
+	sed -e 's|@VERSION@|$(VERSION)|' \
+	    -e 's|@RELEASE@|$(RELEASE)|' \
+	    < cockpit-composer.spec.in > cockpit-composer.spec
+
 srpm: dist-gzip welder-web.spec
 	/usr/bin/rpmbuild -bs \
 	  --define "_sourcedir $(CURDIR)" \
 	  --define "_srcrpmdir $(CURDIR)" \
 	  welder-web.spec
+
+cockpit-composer-srpm: dist-gzip cockpit-composer.spec
+	/usr/bin/rpmbuild -bs \
+	  --define "_sourcedir $(CURDIR)" \
+	  --define "_srcrpmdir $(CURDIR)" \
+	  cockpit-composer.spec
 
 rpm: dist-gzip welder-web.spec
 	mkdir -p "`pwd`/output"
@@ -41,6 +52,20 @@ rpm: dist-gzip welder-web.spec
 	  --define "_rpmdir `pwd`/output" \
 	  --define "_buildrootdir `pwd`/build" \
 	  welder-web.spec
+	find `pwd`/output -name '*.rpm' -printf '%f\n' -exec mv {} . \;
+	rm -r "`pwd`/rpmbuild"
+
+cockpit-composer-rpm: dist-gzip cockpit-composer.spec
+	mkdir -p "`pwd`/output"
+	mkdir -p "`pwd`/rpmbuild"
+	rpmbuild -bb \
+	  --define "_sourcedir `pwd`" \
+	  --define "_specdir `pwd`" \
+	  --define "_builddir `pwd`/rpmbuild" \
+	  --define "_srcrpmdir `pwd`" \
+	  --define "_rpmdir `pwd`/output" \
+	  --define "_buildrootdir `pwd`/build" \
+	  cockpit-composer.spec
 	find `pwd`/output -name '*.rpm' -printf '%f\n' -exec mv {} . \;
 	rm -r "`pwd`/rpmbuild"
 

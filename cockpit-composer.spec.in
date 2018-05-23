@@ -1,0 +1,31 @@
+Name:           cockpit-composer
+Version:        @VERSION@
+Release:        @RELEASE@
+Summary:        Composer GUI for use with Cockpit
+
+License:        MIT
+URL:            http://weldr.io/
+Source0:        welder-web-%{version}.tar.gz
+
+BuildArch:      noarch
+
+Requires:       cockpit
+Requires:       lorax-composer
+
+%description
+Composer GUI for Cockpit and lorax-composer
+
+%prep
+%setup -q -n welder-web-%{version}
+
+%build
+# Nothing to build
+
+%install
+mkdir -p %{buildroot}/%{_datadir}/cockpit/welder
+cp -r public/* %{buildroot}/%{_datadir}/cockpit/welder
+
+%files
+%doc README.md
+%license LICENSE.txt
+%{_datadir}/cockpit/welder
