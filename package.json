@@ -32,6 +32,7 @@
   "devDependencies": {
     "assets-webpack-plugin": "^3.4.0",
     "autoprefixer": "^6.3.7",
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.11.4",
     "babel-eslint": "^6.1.2",
     "babel-jest": "^16.0.0",
@@ -56,8 +57,8 @@
     "eslint-config-airbnb": "^9.0.1",
     "eslint-plugin-import": "^1.12.0",
     "eslint-plugin-jest": "^20.0.3",
-    "eslint-plugin-mocha": "^5.0.0",
     "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-mocha": "^5.0.0",
     "eslint-plugin-react": "^5.2.2",
     "eslint-plugin-redux-saga": "^0.4.0",
     "faker": "^4.1.0",
@@ -67,6 +68,7 @@
     "jest": "^20.0.4",
     "json-loader": "^0.5.4",
     "markdown-it": "^7.0.0",
+    "mkdirp": "^0.5.1",
     "path-to-regexp": "^1.5.3",
     "pixrem": "^3.0.1",
     "pleeease-filters": "^3.0.0",
@@ -84,6 +86,7 @@
     "postcss-selector-matches": "^2.0.1",
     "postcss-selector-not": "^2.0.0",
     "react-hot-loader": "^3.0.0-beta.2",
+    "react-intl-po": "^2.2.2",
     "react-test-renderer": "^15.6.1",
     "s3": "^4.4.0",
     "style-loader": "^0.13.1",
@@ -92,7 +95,8 @@
     "url-loader": "^0.5.7",
     "webpack": "^1.13.1",
     "webpack-dev-middleware": "^1.6.1",
-    "webpack-hot-middleware": "^2.12.2"
+    "webpack-hot-middleware": "^2.12.2",
+    "zanata-js": "^2.1.4"
   },
   "jest": {
     "testRegex": "(/test/unit/.*\\.spec.js)$",
@@ -165,6 +169,11 @@
     "start": "node run",
     "test": "jest",
     "test:watch": "npm test -- --watch",
-    "test:cov": "npm test -- --coverage"
+    "test:cov": "npm test -- --coverage",
+    "translations:extract": "babel 'components/**/*.js' 'core/**/*.js' 'pages/**/*.js' 'data/**/*.js' main.js >/dev/null",
+    "translations:json2pot": "mkdirp build/messages build/po && rip json2pot 'build/messages/**/*.json' -o build/po/welder-web.pot",
+    "translations:po2json": "npm run translations:extract && rip po2json 'build/po/*.po' -m 'build/messages/**/*.json' -o build/translations.json",
+    "translations:pull": "mkdirp build/po && zanata-js project pull -v --po-dir build/po --pot-dir build/po",
+    "translations:push": "npm run translations:extract && npm run translations:json2pot && zanata-js project push -v --pot-dir build/po"
   }
 }
