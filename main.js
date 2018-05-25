@@ -13,17 +13,34 @@ import store from './core/store';
 import router from './core/router';
 import history from './core/history';
 
+// Intialize any necessary locale data, and load translated messages
+import './build/localeLoader'; // eslint-disable-line import/no-unresolved
+let translations = require('./build/translations.json'); // eslint-disable-line import/no-unresolved
+
+addLocaleData(enLocaleData);
+
 let routes = require('./routes.json'); // Loaded with utils/routes-loader.js
 const container = document.getElementById('main');
 
-addLocaleData(enLocaleData);
+// Check if we have translations for the user's language
+let userLanguage = navigator.language.split('-')[0];
+let messages = undefined;
+if (userLanguage in translations) {
+  messages = translations[userLanguage];
+}
 
 function renderComponent(component) {
   ReactDOM.render(
     <Provider store={store}>
-      <IntlProvider locale='en'>
-        {component}
-      </IntlProvider>
+      {messages !== undefined ? (
+        <IntlProvider locale={userLanguage} messages={messages}>
+          {component}
+        </IntlProvider>
+      ) : (
+        <IntlProvider locale='en'>
+          {component}
+        </IntlProvider>
+      )}
     </Provider>, container);
 }
 
