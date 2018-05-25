@@ -2,6 +2,7 @@
 const fs = require('fs');
 const del = require('del');
 const ejs = require('ejs');
+const mkdirp = require('mkdirp');
 const webpack = require('webpack');
 // TODO: Update configuration settings
 const config = {
@@ -21,7 +22,8 @@ function run(task) {
 //
 // Clean up the output directory
 // -----------------------------------------------------------------------------
-tasks.set('clean', () => del(['public/dist/*', '!public/dist/.git'], { dot: true }));
+tasks.set('clean', () => del(['public/dist/*', '!public/dist/.git', 'build/localeLoader.js'], { dot: true }));
+
 //
 // Copy ./index.html into the /public folder
 // -----------------------------------------------------------------------------
@@ -32,6 +34,35 @@ tasks.set('html', () => {
   const render = ejs.compile(template, { filename: './public/index.ejs' });
   const output = render({ debug: webpackConfig.debug, bundle: assets.main.js, config });
   fs.writeFileSync('./public/index.html', output, 'utf8');
+});
+
+//
+// Create a module to handle loading the necessary locale data
+// -----------------------------------------------------------------------------
+tasks.set('locale-data', () => {
+  return new Promise(resolve => {
+    // If the translations file does not exist, create an empty one
+    const translationsPath = './build/translations.json';
+    if (!fs.existsSync(translationsPath)) {
+      mkdirp.sync('./build');
+      fs.writeFileSync(translationsPath, "{}");
+    }
+
+    // Read the translation data to get a list of available languages
+    var translationsData = JSON.parse(fs.readFileSync(translationsPath));
+
+    // Create a module that imports and loads each language's locale data
+    var languages = Object.keys(translationsData);
+    const outputName = './build/localeLoader.js';
+    var outputData = `define(['react-intl',
+  ${languages.map((lang) => `'react-intl/locale-data/${lang}'`).join(', ')}], function() {
+  ${languages.map((lang, idx) => `arguments[0].addLocaleData(arguments[${idx + 1}]);`).join("\n")}
+  return {};
+})
+`;
+    fs.writeFileSync(outputName, outputData);
+    resolve();
+  });
 });
 
 //
@@ -70,6 +101,7 @@ tasks.set('build', () => {
 
   return Promise.resolve()
     .then(() => run('clean'))
+    .then(() => run('locale-data'))
     .then(() => run('bundle'))
     .then(() => run('html'));
 });
@@ -104,7 +136,9 @@ tasks.set('publish', () => {
 tasks.set('start', () => {
   let count = 0;
   global.HMR = !process.argv.includes('--no-hmr'); // Hot Module Replacement (HMR)
-  return run('clean').then(() => new Promise(resolve => {
+  return run('clean')
+    .then(() => run('locale-data'))
+    .then(() => new Promise(resolve => {
     const bs = require('browser-sync').create();
     const webpackConfig = require('./webpack.config');
     const compiler = webpack(webpackConfig);
