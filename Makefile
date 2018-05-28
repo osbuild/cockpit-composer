@@ -69,6 +69,10 @@ cockpit-composer-rpm: dist-gzip cockpit-composer.spec
 	find `pwd`/output -name '*.rpm' -printf '%f\n' -exec mv {} . \;
 	rm -r "`pwd`/rpmbuild"
 
+# targets used by Jenkins to execute rpmbuild sanity tests
+test_rpmbuild: srpm rpm
+test_rpmbuild_cockpit-composer: cockpit-composer-srpm cockpit-composer-rpm
+
 eslint:
 	npm run eslint
 
