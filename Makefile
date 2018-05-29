@@ -44,7 +44,7 @@ cockpit-composer-srpm: dist-gzip cockpit-composer.spec
 rpm: dist-gzip welder-web.spec
 	mkdir -p "`pwd`/output"
 	mkdir -p "`pwd`/rpmbuild"
-	rpmbuild -bb \
+	/usr/bin/rpmbuild -bb \
 	  --define "_sourcedir `pwd`" \
 	  --define "_specdir `pwd`" \
 	  --define "_builddir `pwd`/rpmbuild" \
@@ -58,7 +58,7 @@ rpm: dist-gzip welder-web.spec
 cockpit-composer-rpm: dist-gzip cockpit-composer.spec
 	mkdir -p "`pwd`/output"
 	mkdir -p "`pwd`/rpmbuild"
-	rpmbuild -bb \
+	/usr/bin/rpmbuild -bb \
 	  --define "_sourcedir `pwd`" \
 	  --define "_specdir `pwd`" \
 	  --define "_builddir `pwd`/rpmbuild" \
