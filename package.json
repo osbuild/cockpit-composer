@@ -66,6 +66,7 @@
     "front-matter": "^2.1.0",
     "highlight.js": "^9.5.0",
     "jest": "^20.0.4",
+    "jsel": "^1.1.6",
     "json-loader": "^0.5.4",
     "markdown-it": "^7.0.0",
     "mkdirp": "^0.5.1",
@@ -171,7 +172,7 @@
     "test:watch": "npm test -- --watch",
     "test:cov": "npm test -- --coverage",
     "translations:extract": "babel 'components/**/*.js' 'core/**/*.js' 'pages/**/*.js' 'data/**/*.js' main.js >/dev/null",
-    "translations:json2pot": "mkdirp build/messages build/po && rip json2pot 'build/messages/**/*.json' -o build/po/welder-web.pot",
+    "translations:json2pot": "mkdirp build/messages build/po && rip json2pot 'build/messages/**/*.json' -o build/po/welder-web.pot && node utils/add-title.js ./public/manifest.json ./build/po/welder-web.pot",
     "translations:po2json": "npm run translations:extract && rip po2json 'build/po/*.po' -m 'build/messages/**/*.json' -o build/translations.json",
     "translations:pull": "mkdirp build/po && zanata-js project pull -v --po-dir build/po --pot-dir build/po",
     "translations:push": "npm run translations:extract && npm run translations:json2pot && zanata-js project push -v --pot-dir build/po"
