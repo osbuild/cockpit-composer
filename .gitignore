@@ -5,6 +5,7 @@ public/dist
 public/css
 public/fonts
 public/img
+public/po.*.js
 db.json
 core/build-version.json
 npm-debug.log

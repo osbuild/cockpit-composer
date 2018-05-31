@@ -12,6 +12,7 @@ import 'bootstrap';
 import store from './core/store';
 import router from './core/router';
 import history from './core/history';
+import utils from './core/utils';
 
 // Intialize any necessary locale data, and load translated messages
 import './build/localeLoader'; // eslint-disable-line import/no-unresolved
@@ -23,7 +24,14 @@ let routes = require('./routes.json'); // Loaded with utils/routes-loader.js
 const container = document.getElementById('main');
 
 // Check if we have translations for the user's language
-let userLanguage = navigator.language.split('-')[0];
+let userLanguage;
+if (utils.inCockpit) {
+  var cockpit = require('cockpit'); // eslint-disable-line global-require, import/no-unresolved
+  userLanguage = cockpit.language;
+} else {
+  userLanguage = navigator.language.split('-')[0];
+}
+
 let messages = undefined;
 if (userLanguage in translations) {
   messages = translations[userLanguage];

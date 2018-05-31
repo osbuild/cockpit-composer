@@ -2,7 +2,9 @@
 const fs = require('fs');
 const del = require('del');
 const ejs = require('ejs');
+const glob = require('glob');
 const mkdirp = require('mkdirp');
+const path = require('path');
 const webpack = require('webpack');
 // TODO: Update configuration settings
 const config = {
@@ -22,7 +24,7 @@ function run(task) {
 //
 // Clean up the output directory
 // -----------------------------------------------------------------------------
-tasks.set('clean', () => del(['public/dist/*', '!public/dist/.git', 'build/localeLoader.js'], { dot: true }));
+tasks.set('clean', () => del(['public/dist/*', '!public/dist/.git', 'public/po.*.js', 'build/localeLoader.js'], { dot: true }));
 
 //
 // Copy ./index.html into the /public folder
@@ -40,7 +42,7 @@ tasks.set('html', () => {
 // Create a module to handle loading the necessary locale data
 // -----------------------------------------------------------------------------
 tasks.set('locale-data', () => {
-  return new Promise(resolve => {
+  return new Promise((resolve, error) => {
     // If the translations file does not exist, create an empty one
     const translationsPath = './build/translations.json';
     if (!fs.existsSync(translationsPath)) {
@@ -61,6 +63,23 @@ tasks.set('locale-data', () => {
 })
 `;
     fs.writeFileSync(outputName, outputData);
+
+    // For cockpit, for each language, run po2json on the original .po file to output a module
+    // to public/po.<lang>.js containing the necessary initialization code and data. 
+    
+    const exec = require('child_process').exec;
+    var pofiles = glob.sync('./build/po/*.po');
+    pofiles.forEach((filename) => {
+      var language = path.basename(filename, '.po');
+      exec(`node ./utils/po2json -m ./utils/po.empty.js -o public/po.${language}.js ${filename}`,
+        (err) => {
+          if (err !== null) {
+            console.error(`Unable to create cockpit module for ${language}`);
+            error(err);
+          }
+        });
+    });
+
     resolve();
   });
 });
