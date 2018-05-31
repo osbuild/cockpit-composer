@@ -164,5 +164,29 @@ This project can be packaged as either a noarch rpm or an srpm.
 $ make rpm                # Or, `make srpm`
 ```
 
+### i18n
+
+For a general guide on how to write translatable strings, see [weldr.io](http://weldr.io/Translating-welder-web-strings/)
+
+There are a lot of parts involved in translating a string. Here's an overview of the process, from start to finish:
+
+**Step 1**. During development, the developer adds a translatable string. See [weldr.io](http://weldr.io/Translating-welder-web-strings/)
+for details on how to indicate that the string is translatable, and what the string may contain. In general, the string
+is added using [react-intl](https://github.com/yahoo/react-intl) `MessageDescriptor`s, but without explicit `id` attributes.
+
+**Step 2**. The developer runs `npm run translations:push`. As part of this process, [babel-plugin-react-intl-auto](https://github.com/akameco/babel-plugin-react-intl-auto)
+will add `id` attributes to all of the messages, and [babel-plugin-react-intl](https://github.com/yahoo/babel-plugin-react-intl)
+will extract all of the messages to JSON files, written to `./build/messages`. [react-intl-po](https://github.com/evenchange4/react-intl-po) is
+used to collect the JSON files into a gettext-style POT file, and the POT file is uploaded to [Zanata](https://fedora.zanata.org/).
+
+**Step 3**. Translators provide translations on Zanata.
+
+**Step 4**. The developer runs `npm run build`. This downloads the translations from Zanata as gettext-style .po files,
+converts the .po files back to JSON, and bundles the JSON translations with the rest of the project into main.js.
+
+**Step 5**. The user runs welder-web. Based on the user's browser configuration, welder-web determines the user's preferred
+language, and if translations are available, these translations are provided to react-intl's `<IntlProvider>`. react-intl
+then displays translated strings where possible.
+
 ---
 Made with ♥ by the Welder [team](https://github.com/orgs/weldr/people) and its contributors
