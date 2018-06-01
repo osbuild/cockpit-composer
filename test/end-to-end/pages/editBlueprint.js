@@ -53,7 +53,7 @@ module.exports = class EditBlueprintPage extends MainPage {
     this.menuActionExport = `${this.editActionBarRootElement} ul[aria-labelledby="dropdownKebab"] li:nth-child(1) a`;
 
     // Pending Change link
-    this.linkPendingChange = `${this.editActionBarRootElement} ul li a span`;
+    this.linkPendingChange = `${this.editActionBarRootElement} > ul > li > a > span`;
     this.labelLinkPendingChange = 'Pending Changes';
 
     // Commit button
