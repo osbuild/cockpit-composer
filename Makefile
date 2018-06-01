@@ -7,6 +7,7 @@ all: npm-install
 
 npm-install:
 	npm install
+	npm rebuild
 
 install: all
 	mkdir -p /usr/share/cockpit/welder
