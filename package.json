@@ -4,7 +4,7 @@
   "private": true,
   "engines": {
     "node": ">=6",
-    "npm": ">=3.8"
+    "npm": ">=5.0"
   },
   "dependencies": {
     "@webcomponents/custom-elements": "^1.0.0",
@@ -92,9 +92,6 @@
     "webpack": "^1.13.1",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.12.2"
-  },
-  "optionalDependencies": {
-    "fsevents": "*"
   },
   "jest": {
     "testRegex": "(/test/unit/.*\\.spec.js)$",
