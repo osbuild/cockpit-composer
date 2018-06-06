@@ -3,5 +3,8 @@ topdir  := $(makedir)/..
 
 srpm:
 	dnf -y install npm jq git
-	$(MAKE) -C $(topdir) srpm
+	case "$(notdir $(spec))" in \
+		"cockpit-composer.spec") $(MAKE) -C $(topdir) cockpit-composer-srpm ;; \
+	        *)                       $(MAKE) -C $(topdir) srpm ;; \
+	esac
 	cp $(topdir)/*.src.rpm $(outdir)
