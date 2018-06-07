@@ -1,4 +1,4 @@
 var welderApiHost="localhost";
-var welderApiPort=4000;
+var welderApiPort="/run/weldr/api.socket";
 var welderApiScheme="http";
 var welderApiRelative=false;
