@@ -94,7 +94,7 @@ class BlueprintPage extends React.Component {
   }
 
   componentWillMount() {
-    if (this.props.rehydrated && this.props.blueprint.components === undefined) {
+    if (this.props.blueprint.components === undefined) {
       this.props.fetchingBlueprintContents(this.props.route.params.blueprint.replace(/\s/g, '-'));
     }
     this.props.setEditDescriptionVisible(false);
@@ -151,11 +151,6 @@ class BlueprintPage extends React.Component {
     e.stopPropagation();
   }
   render() {
-    if (!this.props.rehydrated) {
-      this.props.fetchingBlueprintContents(this.props.route.params.blueprint.replace(/\s/g, '-'));
-      return <div></div>;
-    }
-
     const {
       blueprint, exportModalVisible, imageTypes, selectedComponents, dependencies, componentsFilters,
     } = this.props;
@@ -368,7 +363,6 @@ class BlueprintPage extends React.Component {
 
 BlueprintPage.propTypes = {
   route: PropTypes.object,
-  rehydrated: PropTypes.bool,
   fetchingBlueprintContents: PropTypes.func,
   blueprint: PropTypes.object,
   setActiveTab: PropTypes.func,
@@ -405,7 +399,6 @@ const makeMapStateToProps = () => {
     if (getBlueprintById(state, props.route.params.blueprint.replace(/\s/g, '-')) !== undefined) {
       const fetchedBlueprint = getBlueprintById(state, props.route.params.blueprint.replace(/\s/g, '-'));
       return {
-        rehydrated: state.rehydrated,
         blueprint: fetchedBlueprint.present,
         selectedComponents: getFilteredComponents(state, getSortedSelectedComponents(state, fetchedBlueprint.present)),
         dependencies: getFilteredComponents(state, getSortedDependencies(state, fetchedBlueprint.present)),
@@ -418,7 +411,6 @@ const makeMapStateToProps = () => {
       };
     }
     return {
-      rehydrated: state.rehydrated,
       blueprint: {},
       selectedComponents: [],
       dependencies: [],
