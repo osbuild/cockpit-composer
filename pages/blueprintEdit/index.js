@@ -401,7 +401,7 @@ class EditBlueprintPage extends React.Component {
   }
 
   render() {
-    if (!this.props.rehydrated || this.props.blueprint.id === undefined) {
+    if (this.props.blueprint.id === undefined) {
       if (this.props.blueprint.id === undefined) {
         this.props.fetchingBlueprintContents(this.props.route.params.blueprint.replace(/\s/g, '-'));
       }
@@ -667,7 +667,6 @@ class EditBlueprintPage extends React.Component {
 
 EditBlueprintPage.propTypes = {
   route: PropTypes.object,
-  rehydrated: PropTypes.bool,
   blueprint: PropTypes.object,
   createImage: PropTypes.object,
   inputs: PropTypes.object,
@@ -715,7 +714,6 @@ const makeMapStateToProps = () => {
     if (getBlueprintById(state, props.route.params.blueprint.replace(/\s/g, '-')) !== undefined) {
       const fetchedBlueprint = getBlueprintById(state, props.route.params.blueprint.replace(/\s/g, '-'));
       return {
-        rehydrated: state.rehydrated,
         blueprint: fetchedBlueprint.present,
         selectedComponents: getFilteredComponents(state, getSortedSelectedComponents(state, fetchedBlueprint.present)),
         dependencies: getFilteredComponents(state, getSortedDependencies(state, fetchedBlueprint.present)),
@@ -731,7 +729,6 @@ const makeMapStateToProps = () => {
       };
     }
     return {
-      rehydrated: state.rehydrated,
       blueprint: {},
       selectedComponents: [],
       dependencies: [],

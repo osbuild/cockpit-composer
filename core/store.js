@@ -1,6 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import { persistStore, autoRehydrate } from 'redux-persist';
 import rootReducer from './reducers/index';
 import rootSaga from './sagas/index';
 
@@ -11,7 +10,6 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 /* eslint-enable */
 
 const initialState = {
-  rehydrated: false,
   blueprintPage: {
     activeTab: 'Details',
     editDescriptionVisible: false,
@@ -125,12 +123,9 @@ const store = createStore(
   rootReducer,
   initialState,
   composeEnhancers(
-    applyMiddleware(sagaMiddleware),
-    autoRehydrate()
+    applyMiddleware(sagaMiddleware)
   )
 );
 sagaMiddleware.run(rootSaga);
-
-persistStore(store, { whitelist: ['blueprintPage'] });
 
 export default store;

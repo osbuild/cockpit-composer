@@ -3,7 +3,6 @@ import blueprints from './blueprints';
 import blueprintPage from './blueprintPage';
 import inputs from './inputs';
 import modals from './modals';
-import rehydrated from './rehydrated';
 import sort from './sort';
 import filter from './filter';
 
@@ -12,7 +11,6 @@ const rootReducer = combineReducers({
   blueprintPage,
   inputs,
   modals,
-  rehydrated,
   sort,
   filter
 });
