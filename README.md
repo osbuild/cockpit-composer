@@ -188,5 +188,10 @@ converts the .po files back to JSON, and bundles the JSON translations with the 
 language, and if translations are available, these translations are provided to react-intl's `<IntlProvider>`. react-intl
 then displays translated strings where possible.
 
+To test translations, `npm run translations:test` will generate Pig Latin translations of all translatable strings and
+save them as the Volapük (vo) translation. Volapük is used because it's a constructed language that has locale support
+in react-intl and an estimated 20 speakers worldwide. To switch to the test translations, add "Volapük" to the top of
+your browser's preferred language list. In Firefox, this can be configured in the Language section of about:preferences.
+
 ---
 Made with ♥ by the Welder [team](https://github.com/orgs/weldr/people) and its contributors
