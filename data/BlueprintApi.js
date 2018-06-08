@@ -19,48 +19,48 @@ class BlueprintApi {
   getBlueprint(blueprintName) {
     const p = new Promise((resolve, reject) => {
       utils.apiFetch(constants.get_blueprints_deps + blueprintName)
-            .then(data => {
-              // bdcs-api v0.3.0 includes module (component) and component NEVRAs
-              // tagging all components a "RPM" for now
-              const components = data.blueprints[0].dependencies ?
-                  this.makeBlueprintComponents(data.blueprints[0].dependencies, 'RPM') :
-                  [];
-              // Tag objects as Module if modules and RPM if packages, for now
-              const selectedComponents = this.makeBlueprintSelectedComponents(data.blueprints[0]);
-              const blueprint = data.blueprints[0].blueprint;
-              if (selectedComponents.length > 0) {
-                const selectedComponentNames = MetadataApi.getNames(selectedComponents);
-                if (components.length === 0) {
-                    // get metadata for the components only
-                  Promise.all([
-                    MetadataApi.getData(constants.get_projects_info + selectedComponentNames),
-                  ]).then((compData) => {
-                    blueprint.components = MetadataApi.updateComponentMetadata(selectedComponents, compData[0]);
-                    this.blueprint = blueprint;
-                    resolve(blueprint);
-                  }).catch(e => console.log(`getBlueprint: Error getting component metadata: ${e}`));
-                } else {
-                    // get metadata for the components
-                  const componentNames = MetadataApi.getNames(components);
-                  Promise.all([
-                    MetadataApi.getData(constants.get_projects_info + componentNames),
-                  ]).then((compData) => {
-                    blueprint.components = MetadataApi.updateComponentMetadata(components, compData[0]);
-                    this.blueprint = blueprint;
-                    resolve(blueprint);
-                  }).catch(e => console.log(`getBlueprint: Error getting component and component metadata: ${e}`));
-                }
-              } else {
-                  // there are no components, just a blueprint name and description
-                blueprint.components = [];
-                this.blueprint = blueprint;
-                resolve(blueprint);
-              }
-            })
-            .catch(e => {
-              console.log(`Error fetching blueprint: ${e}`);
-              reject();
-            });
+      .then(data => {
+        // bdcs-api v0.3.0 includes module (component) and component NEVRAs
+        // tagging all components a "RPM" for now
+        const components = data.blueprints[0].dependencies ?
+            this.makeBlueprintComponents(data.blueprints[0].dependencies, 'RPM') :
+            [];
+        // Tag objects as Module if modules and RPM if packages, for now
+        const selectedComponents = this.makeBlueprintSelectedComponents(data.blueprints[0]);
+        const blueprint = data.blueprints[0].blueprint;
+        if (selectedComponents.length > 0) {
+          const selectedComponentNames = MetadataApi.getNames(selectedComponents);
+          if (components.length === 0) {
+              // get metadata for the components only
+            Promise.all([
+              MetadataApi.getData(constants.get_projects_info + selectedComponentNames),
+            ]).then((compData) => {
+              blueprint.components = MetadataApi.updateComponentMetadata(selectedComponents, compData[0]);
+              this.blueprint = blueprint;
+              resolve(blueprint);
+            }).catch(e => console.log(`getBlueprint: Error getting component metadata: ${e}`));
+          } else {
+              // get metadata for the components
+            const componentNames = MetadataApi.getNames(components);
+            Promise.all([
+              MetadataApi.getData(constants.get_projects_info + componentNames),
+            ]).then((compData) => {
+              blueprint.components = MetadataApi.updateComponentMetadata(components, compData[0]);
+              this.blueprint = blueprint;
+              resolve(blueprint);
+            }).catch(e => console.log(`getBlueprint: Error getting component and component metadata: ${e}`));
+          }
+        } else {
+            // there are no components, just a blueprint name and description
+          blueprint.components = [];
+          this.blueprint = blueprint;
+          resolve(blueprint);
+        }
+      })
+      .catch(e => {
+        console.log(`Error fetching blueprint: ${e}`);
+        reject();
+      });
     });
     return p;
   }
@@ -74,8 +74,7 @@ class BlueprintApi {
           .then(depData => {
             // bdcs-api v0.3.0 includes module (component) and component NEVRAs
             // tagging all components a "RPM" for now
-            let components = depData.projects;
-            components = this.setType(components, depData.projects, 'RPM');
+            let components = this.setType(depData.projects, 'RPM');
             blueprint.components = components;
             this.blueprint = blueprint;
             resolve(blueprint);
@@ -96,9 +95,8 @@ class BlueprintApi {
 
   // set additional metadata for each of the components
   makeBlueprintSelectedComponents(data) {
-    let components = data.modules;
-    components = this.setType(components, data.blueprint.modules, 'Module');
-    components = this.setType(components, data.blueprint.packages, 'RPM');
+    const modules = this.setType(data.blueprint.modules, 'Module');
+    let components = modules.concat(this.setType(data.blueprint.packages, 'RPM'));
     components.map(i => {
       i.inBlueprint = true; // eslint-disable-line no-param-reassign
       i.userSelected = true; // eslint-disable-line no-param-reassign
@@ -107,13 +105,11 @@ class BlueprintApi {
     return components;
   }
 
-  setType(components, array, type) {
-    for (const i of array) {
-      // find the array object within components; set ui_type and version for component
-      const component = components.find(x => x.name === i.name);
+  // sets the ui type of a list of components 
+  setType(components, type) {
+    components.map(component => {
       component.ui_type = type;
-      component.version = i.version;
-    }
+    });
     return components;
   }
 

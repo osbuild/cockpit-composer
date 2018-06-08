@@ -14,7 +14,7 @@ export function fetchBlueprintContentsApi(blueprintName) {
       blueprint.id = blueprintName;
       return blueprint;
     })
-    .catch(err => console.log(`Error in fetchModalBlueprintContents promise: ${err}`));
+    .catch(err => console.log(`Error in fetchBlueprintContents promise: ${err}`));
   return blueprintContents;
 }
 
@@ -123,7 +123,7 @@ export function depsolveComponentsApi(packages) {
         .then(depData => {
           // bdcs-api v0.3.0 includes module (component) and dependency NEVRAs
           // tagging all dependencies a "RPM" for now
-          dependencies = BlueprintApi.setType(depData.projects, depData.projects, 'RPM');
+          dependencies = BlueprintApi.setType(depData.projects, 'RPM');
           resolve(dependencies);
         })
         .catch(e => {
