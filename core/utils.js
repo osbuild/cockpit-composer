@@ -15,6 +15,7 @@ function setupCockpitHttp() {
   cockpitHttp = cockpit.http(port, {
     address: welderApiHost,
     tls: useHttps ? {} : undefined,
+    superuser: 'try'
   });
 }
 
