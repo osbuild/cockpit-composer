@@ -6,6 +6,7 @@ import inputs from './inputs';
 import modals from './modals';
 import rehydrated from './rehydrated';
 import sort from './sort';
+import filter from './filter';
 
 const rootReducer = combineReducers({
   states,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   modals,
   rehydrated,
   sort,
+  filter
 });
 
 export default rootReducer;

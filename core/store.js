@@ -81,6 +81,44 @@ const initialState = {
       value: 'DESC',
     },
   },
+  filter: {
+    blueprints: {
+      filterValues: [],
+      filterTypes: [
+        {
+          id: "name",
+          title: "Name",
+          placeholder: "Filter by Name",
+          filterType: "text"
+        }
+      ],
+      defaultFilterType: 'name'
+    },
+    components: {
+      filterValues: [],
+      filterTypes: [
+        {
+          id: "name",
+          title: "Name",
+          placeholder: "Filter by Name",
+          filterType: "text"
+        },
+        {
+          id: "version",
+          title: "Version",
+          placeholder: "Filter by Version",
+          filterType: "text"
+        },
+        {
+          id: "release",
+          title: "Release",
+          placeholder: "Filter by Release",
+          filterType: "text"
+        }
+      ],
+      defaultFilterType: 'name'
+    },
+  },
 };
 
 const store = createStore(

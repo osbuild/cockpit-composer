@@ -12,7 +12,8 @@ import ExportBlueprint from '../../components/Modal/ExportBlueprint';
 import PendingChanges from '../../components/Modal/PendingChanges';
 import EmptyState from '../../components/EmptyState/EmptyState';
 import Pagination from '../../components/Pagination/Pagination';
-import Toolbar from '../../components/Toolbar/Toolbar';
+import Loading from '../../components/Loading/Loading';
+import BlueprintToolbar from '../../components/Toolbar/BlueprintToolbar';
 import BlueprintApi from '../../data/BlueprintApi';
 import NotificationsApi from '../../data/NotificationsApi';
 import { connect } from 'react-redux';
@@ -28,8 +29,10 @@ import { setModalActive } from '../../core/actions/modals';
 import {
   componentsSortSetKey, componentsSortSetValue, dependenciesSortSetKey, dependenciesSortSetValue,
 } from '../../core/actions/sort';
+import { componentsFilterAddValue, componentsFilterRemoveValue, componentsFilterClearValues } from '../../core/actions/filter';
 import {
-  makeGetBlueprintById, makeGetSortedSelectedComponents, makeGetSortedDependencies, makeGetFutureLength, makeGetPastLength
+  makeGetBlueprintById, makeGetSortedSelectedComponents, makeGetSortedDependencies,
+  makeGetFutureLength, makeGetPastLength, makeGetFilteredComponents
 } from '../../core/selectors';
 
 class EditBlueprintPage extends React.Component {
@@ -87,6 +90,7 @@ class EditBlueprintPage extends React.Component {
       event.preventDefault();
     }
   }
+
 
   updateInputComponentData(inputs, page, componentData) {
     // updates the input component data to match the blueprint component data
@@ -407,7 +411,7 @@ class EditBlueprintPage extends React.Component {
     const {
       blueprint, selectedComponents, dependencies,
       inputs, createImage, modalActive, componentsSortKey, componentsSortValue,
-      pastLength, futureLength,
+      componentsFilters, pastLength, futureLength,
     } = this.props;
 
     const numPendingChanges = blueprint.localPendingChanges.length
@@ -510,9 +514,16 @@ class EditBlueprintPage extends React.Component {
         {(inputs.selectedInput !== undefined && inputs.selectedInput.component === '' &&
           <div className="cmpsr-panel__body cmpsr-panel__body--main">
           {componentsSortKey !== undefined && componentsSortValue !== undefined &&
-            <Toolbar
+            <BlueprintToolbar
+              emptyState={
+                (selectedComponents === undefined || selectedComponents.length === 0) &&
+                componentsFilters.filterValues.length === 0
+              }
               blueprintId={blueprint.id}
-              handleShowModal={this.handleShowModal}
+              filters={componentsFilters}
+              filterRemoveValue={this.props.componentsFilterRemoveValue}
+              filterClearValues={this.props.componentsFilterClearValues}
+              filterAddValue={this.props.componentsFilterAddValue}
               componentsSortKey={componentsSortKey}
               componentsSortValue={componentsSortValue}
               componentsSortSetValue={this.props.componentsSortSetValue}
@@ -524,17 +535,20 @@ class EditBlueprintPage extends React.Component {
               futureLength={futureLength}
             />
           }
-            {((selectedComponents === undefined || selectedComponents.length === 0) &&
-              <EmptyState
-                title={'Add Blueprint Components'}
-                message={'Browse or search for components, then add them to the blueprint.'}
-              />) ||
-              <BlueprintContents
-                components={selectedComponents}
-                dependencies={dependencies}
-                handleRemoveComponent={this.handleRemoveComponent}
-                handleComponentDetails={this.handleComponentDetails}
-              />}
+          {(blueprint.components === undefined &&
+            <Loading />) ||
+          (selectedComponents !== undefined && selectedComponents.length === 0 && componentsFilters.filterValues.length === 0 &&
+            <EmptyState
+              title={'Add Blueprint Components'}
+              message={'Browse or search for components, then add them to the blueprint.'}
+            />) ||
+            <BlueprintContents
+              components={selectedComponents}
+              dependencies={dependencies}
+              handleRemoveComponent={this.handleRemoveComponent}
+              handleComponentDetails={this.handleComponentDetails}
+              filterClearValues={this.props.componentsFilterClearValues}
+            />}
           </div>) ||
         inputs.selectedInput !== undefined &&
           <ComponentDetailsView
@@ -549,102 +563,88 @@ class EditBlueprintPage extends React.Component {
           />}
 
         <h3 className="cmpsr-panel__title cmpsr-panel__title--sidebar">Available Components</h3>
-        <div className="cmpsr-panel__body cmpsr-panel__body--sidebar">
-
-          <div className="toolbar-pf">
-            <form className="toolbar-pf-actions">
-              <div className="form-group toolbar-pf-filter">
-                <label className="sr-only" htmlFor="cmpsr-blueprint-input-filter">Name</label>
-                <div className="input-group">
-                  <div className="input-group-btn">
-                    <button
-                      type="button"
-                      className="btn btn-default dropdown-toggle"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-                      Name <span className="caret" />
-                    </button>
-                    <ul className="dropdown-menu">
-                      <li><a href="#">Type</a></li>
-                      <li><a href="#">Name</a></li>
-                      <li><a href="#">Version</a></li>
-                      <li><a href="#">Release</a></li>
-                      <li><a href="#">Lifecycle</a></li>
-                      <li><a href="#">Support Level</a></li>
-                    </ul>
-                  </div>
+        {inputs.inputComponents !== undefined &&
+          <div className="cmpsr-panel__body cmpsr-panel__body--sidebar">
+            <div className="toolbar-pf">
+              <form className="toolbar-pf-actions" >
+                <div className="form-group toolbar-pf-filter">
                   <input
                     type="text"
                     className="form-control"
                     id="cmpsr-blueprint-input-filter"
+                    aria-label="Filter Available Components by Name"
                     placeholder="Filter By Name..."
-                    onKeyPress={e => this.getFilteredInputs(e)}
+                    onKeyPress={(e) => this.getFilteredInputs(e)}
                   />
                 </div>
+              </form>
+              <div className="toolbar-pf-results">
+                {inputs.inputFilters !== undefined && inputs.inputFilters.value.length > 0 &&
+                  <ul className="list-inline">
+                    <li>
+                      <span className="label label-info">
+                        Name: {inputs.inputFilters.value}
+                        <a href="#" onClick={e => this.handleClearFilters(e)}>
+                          <span className="pficon pficon-close" />
+                        </a>
+                      </span>
+                    </li>
+                    <li>
+                      <a href="#" onClick={e => this.handleClearFilters(e)}>Clear All Filters</a>
+                    </li>
+                  </ul>
+                }
+                <Pagination
+                  cssClass="cmpsr-blueprint__inputs__pagination"
+                  currentPage={inputs.selectedInputPage}
+                  totalItems={inputs.totalInputs}
+                  pageSize={inputs.pageSize}
+                  handlePagination={this.handlePagination}
+                />
               </div>
-              <div className="toolbar-pf-action-right">
-                <div className="form-group toolbar-pf-settings">
-                  <button
-                    className="btn btn-link btn-settings"
-                    type="button"
-                    data-toggle="modal"
-                    data-target="#cmpsr-blueprint-inputs-settings"
-                  >
-                    <span className="pf-icon pficon-settings" />
-                  </button>
-                </div>
-              </div>
-            </form>
-            <div className="toolbar-pf-results">
-              {inputs.inputFilters !== undefined && inputs.inputFilters.value.length > 0 &&
-                <ul className="list-inline">
-                  <li>
-                    <span className="label label-info">
-                      Name: {inputs.inputFilters.value}
-                      <a href="#" onClick={e => this.handleClearFilters(e)}>
-                        <span className="pficon pficon-close" />
-                      </a>
-                    </span>
-                  </li>
-                  <li>
-                    <a href="#" onClick={e => this.handleClearFilters(e)}>Clear All Filters</a>
-                  </li>
-                </ul>}
-              <Pagination
-                cssClass="cmpsr-blueprint__inputs__pagination"
-                currentPage={inputs.selectedInputPage}
-                totalItems={inputs.totalInputs}
-                pageSize={inputs.pageSize}
-                handlePagination={this.handlePagination}
-              />
             </div>
-          </div>
-
-          <div className="alert alert-info alert-dismissable">
-            <button type="button" className="close" data-dismiss="alert" aria-hidden="true">
-              <span className="pficon pficon-close" />
-            </button>
-            <span className="pficon pficon-info" />
-            <strong>Select components</strong> in this list to add to the blueprint.
-          </div>
-          {inputs.inputComponents !== undefined &&
+            {(blueprint.components.length === 0 || blueprint.components === undefined ) &&
+              <div className="alert alert-info alert-dismissable">
+                <button type="button" className="close" data-dismiss="alert" aria-hidden="true" aria-label="Dismiss Message">
+                  <span className="pficon pficon-close" />
+                </button>
+                <span className="pficon pficon-info" />
+                <strong>Select components</strong> in this list to add to the blueprint.
+              </div>
+            }
             <ComponentInputs
               components={inputs.inputComponents[inputs.selectedInputPage]}
               handleComponentDetails={this.handleComponentDetails}
               handleAddComponent={this.handleAddComponent}
               handleRemoveComponent={this.handleRemoveComponent}
             />
-          }
-        </div>
-      {createImage.imageTypes !== undefined &&
-        <CreateImage
-          blueprint={blueprint.name}
-          setNotifications={this.setNotifications}
-          imageTypes={createImage.imageTypes}
-        />
-      }
+          </div>
+          ||
+          <div className="cmpsr-panel__body cmpsr-panel__body--sidebar">
+            <div className="toolbar-pf">
+              <form className="toolbar-pf-actions" >
+                <div className="form-group toolbar-pf-filter">
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="cmpsr-blueprint-input-filter"
+                    aria-label="Filter Available Components by Name"
+                    placeholder="Filter By Name..."
+                    disabled="disabled"
+                  />
+                </div>
+              </form>
+            </div>
+            <Loading />
+          </div>
+        }
+        {createImage.imageTypes !== undefined &&
+          <CreateImage
+            blueprint={blueprint.name}
+            setNotifications={this.setNotifications}
+            imageTypes={createImage.imageTypes}
+          />
+        }
         {modalActive === 'modalExportBlueprint'
           ? <ExportBlueprint
             blueprint={blueprint.name}
@@ -692,6 +692,10 @@ EditBlueprintPage.propTypes = {
   dependencies: PropTypes.array,
   componentsSortKey: PropTypes.string,
   componentsSortValue: PropTypes.string,
+  componentsFilters: PropTypes.object,
+  componentsFilterAddValue: PropTypes.func,
+  componentsFilterRemoveValue: PropTypes.func,
+  componentsFilterClearValues: PropTypes.func,
   pastLength: PropTypes.number,
   futureLength: PropTypes.number,
   undo: PropTypes.func,
@@ -704,6 +708,7 @@ const makeMapStateToProps = () => {
   const getBlueprintById = makeGetBlueprintById();
   const getSortedSelectedComponents = makeGetSortedSelectedComponents();
   const getSortedDependencies = makeGetSortedDependencies();
+  const getFilteredComponents = makeGetFilteredComponents();
   const getPastLength = makeGetPastLength();
   const getFutureLength = makeGetFutureLength();
   const mapStateToProps = (state, props) => {
@@ -712,10 +717,11 @@ const makeMapStateToProps = () => {
       return {
         rehydrated: state.rehydrated,
         blueprint: fetchedBlueprint.present,
-        selectedComponents: getSortedSelectedComponents(state, fetchedBlueprint.present),
-        dependencies: getSortedDependencies(state, fetchedBlueprint.present),
+        selectedComponents: getFilteredComponents(state, getSortedSelectedComponents(state, fetchedBlueprint.present)),
+        dependencies: getFilteredComponents(state, getSortedDependencies(state, fetchedBlueprint.present)),
         componentsSortKey: state.sort.components.key,
         componentsSortValue: state.sort.components.value,
+        componentsFilters: state.filter.components,
         createImage: state.modals.createImage,
         inputs: state.inputs,
         selectedInput: state.inputs.selectedInput,
@@ -731,6 +737,7 @@ const makeMapStateToProps = () => {
       dependencies: [],
       componentsSortKey: state.sort.components.key,
       componentsSortValue: state.sort.components.value,
+      componentsFilters: state.filter.components,
       createImage: state.modals.createImage,
       inputs: state.inputs,
       selectedInput: state.inputs.selectedInput,
@@ -793,6 +800,15 @@ const mapDispatchToProps = (dispatch) => ({
   },
   dependenciesSortSetValue: value => {
     dispatch(dependenciesSortSetValue(value));
+  },
+  componentsFilterAddValue: value => {
+    dispatch(componentsFilterAddValue(value));
+  },
+  componentsFilterRemoveValue: value => {
+    dispatch(componentsFilterRemoveValue(value));
+  },
+  componentsFilterClearValues: value => {
+    dispatch(componentsFilterClearValues(value));
   },
   undo: (blueprintId) => {
     dispatch(undo(blueprintId));

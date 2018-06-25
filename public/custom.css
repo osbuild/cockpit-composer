@@ -90,7 +90,7 @@
   padding: 0 20px;
 }
 .cmpsr-panel__body  .toolbar-pf .toolbar-pf-actions {
-  padding: 10px 20px 0 20px;
+  padding-top: 10px;
   margin: 0 0 10px 0;
 }
 .cmpsr-panel__body--view {
@@ -329,6 +329,12 @@
 }
 .toolbar-pf-actions .form-group:first-child {
   padding-left: 0;
+}
+
+/* loading */
+.cmpsr-loading {
+  text-align: center;
+  padding-top: 40px;
 }
 
 /* ------------------------------- */
