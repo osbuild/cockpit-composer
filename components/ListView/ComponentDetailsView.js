@@ -298,10 +298,6 @@ class ComponentDetailsView extends React.Component {
                 </dd>
                 <dt>Release</dt>
                 <dd>{this.state.componentData.release}</dd>
-                <dt>Architecture</dt>
-                <dd>---</dd>
-                <dt>Install Size</dt>
-                <dd>2 MB (5 MB with Dependencies)</dd>
                 <dt>URL</dt>
                 {(this.state.componentData.homepage !== null &&
                   <dd>
@@ -310,14 +306,6 @@ class ComponentDetailsView extends React.Component {
                     </a>
                   </dd>) ||
                   <dd>&nbsp;</dd>}
-                <dt>Packager</dt>
-                <dd>Red Hat</dd>
-                <dt>Product Family</dt>
-                <dd>---</dd>
-                <dt>Lifecycle</dt>
-                <dd>01/15/2017</dd>
-                <dt>Support Level</dt>
-                <dd>Standard</dd>
               </dl>
             </Tab>
             {this.state.componentData.components &&
@@ -335,9 +323,6 @@ class ComponentDetailsView extends React.Component {
                 handleComponentDetails={this.props.handleComponentDetails}
                 componentDetailsParent={component}
               />
-            </Tab>
-            <Tab tabTitle="Errata" active={this.state.activeTab === 'Errata'}>
-              <p>Errata</p>
             </Tab>
           </Tabs>
         </div>
