@@ -54,7 +54,7 @@ class Pagination extends React.Component {
     if (this.state.pageValue !== '') {
       pageInput = (
         <input
-          className="pagination-pf-page"
+          className="pagination-pf-page form-control"
           ref="paginationPage"
           type="text" value={this.state.pageValue + 1}
           id="cmpsr-blueprint-inputs-page"
@@ -68,7 +68,7 @@ class Pagination extends React.Component {
     } else {
       pageInput = (
         <input
-          className="pagination-pf-page"
+          className="pagination-pf-page form-control"
           ref="paginationPage"
           type="text" value=""
           id="cmpsr-blueprint-inputs-page"
