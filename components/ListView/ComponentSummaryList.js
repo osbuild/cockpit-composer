@@ -42,7 +42,7 @@ class ComponentSummaryList extends React.Component {
                   <div className="list-pf-content-wrapper">
                     <div className="list-pf-main-content">
                       <div className="list-pf-description ">
-                        <a>{listItem.name}</a>
+                        {listItem.name}
                       </div>
                     </div>
                   </div>
