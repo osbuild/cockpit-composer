@@ -59,7 +59,7 @@ class PendingChanges extends React.Component {
             </div>
             <div className="modal-body">
               <form className="form-horizontal">
-                <div className="form-group">
+                <div className="form-group" hidden>
                   <label
                     className="col-sm-3 control-label"
                   >Blueprint</label>
@@ -67,7 +67,7 @@ class PendingChanges extends React.Component {
                     <p className="form-control-static">{this.props.blueprint.name}</p>
                   </div>
                 </div>
-                <div className="form-group">
+                <div className="form-group" hidden>
                   <label
                     className="col-sm-3 control-label"
                     htmlFor="textInput-modal-markup"
@@ -86,6 +86,7 @@ class PendingChanges extends React.Component {
                 <Alert type="info">
                   Only changes to selected components are shown.
                 </Alert>
+                <p><strong>Blueprint:</strong> {this.props.blueprint.name}</p>
                 {this.props.blueprint.localPendingChanges.length !== 0 &&
                   <div>
                     <strong>Pending Changes</strong><span className="text-muted"> (most recent first)</span>
