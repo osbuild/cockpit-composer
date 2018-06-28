@@ -12,7 +12,7 @@ class ListItemImages extends React.PureComponent {
         <div className="list-pf-container">
           <div className="list-pf-content list-pf-content-flex">
             <div className="list-pf-left">
-              <span className="pf pficon-builder-image list-pf-icon-small" aria-hidden="true" />
+              <span className="pficon pficon-builder-image list-pf-icon-small" aria-hidden="true" />
             </div>
             <div className="list-pf-content-wrapper">
               <div className="list-pf-main-content">
@@ -28,8 +28,30 @@ class ListItemImages extends React.PureComponent {
                 <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
                   Date Created <strong>{formattedTime}</strong>
                 </div>
-                <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
-                  Install Size <strong>{listItem.image_size}</strong>
+                <div className="list-pf-additional-content">
+                  <div className="list-view-pf-additional-info-item">
+                  {listItem.queue_status === 'WAITING' &&
+                    <div>
+                      <span className="pficon pficon-pending" aria-hidden="true" />
+                      Waiting
+                    </div>
+                  } {listItem.queue_status === 'RUNNING' &&
+                    <div>
+                      <span className="pficon pficon-in-progress" aria-hidden="true" />
+                      Running
+                    </div>
+                  } {listItem.queue_status === 'FINISHED' &&
+                    <div>
+                      <span className="pficon pficon-ok" aria-hidden="true" />
+                      Finished
+                    </div>
+                  } {listItem.queue_status === 'FAILED' &&
+                    <div>
+                      <span className="pficon pficon-error-circle-o" aria-hidden="true" />
+                      Failed
+                    </div>
+                  }
+                  </div>
                 </div>
               </div>
             </div>
@@ -57,7 +79,9 @@ class ListItemImages extends React.PureComponent {
                 </div>
               </div>
             ||
-              <div><strong>{this.props.listItem.queue_status}</strong></div>
+              <div className="list-pf-actions">
+                <button className="btn btn-default" type="button">Cancel</button>
+              </div>
             }
           </div>
         </div>
