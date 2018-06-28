@@ -4,10 +4,10 @@ import {
 } from '../actions/filter';
 
 const filtersWithNewFilter = (filters, filterValue) => {
-  if (filters.length === 0) {
+  const index = filters.findIndex(filter => filter.key === filterValue.key);
+  if (index === -1) {
     return [...filters, filterValue]
   } else {
-    const index = filters.findIndex(filter => filter.key === filterValue.key);
     return [
       ...filters.slice(0, index),
       ...filters.slice(index + 1),
