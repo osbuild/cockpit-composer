@@ -6,7 +6,6 @@ import {
   ADD_BLUEPRINT_COMPONENT_SUCCEEDED, REMOVE_BLUEPRINT_COMPONENT_SUCCEEDED,
   SET_BLUEPRINT, SET_BLUEPRINT_DESCRIPTION, SET_BLUEPRINT_COMMENT,
   DELETING_BLUEPRINT_SUCCEEDED, BLUEPRINTS_FAILURE, BLUEPRINT_CONTENTS_FAILURE,
-  FETCHING_IMAGE_STATUS_SUCCEEDED,
 } from '../actions/blueprints';
 
 const blueprints = (state = [], action) => {
@@ -18,7 +17,6 @@ const blueprints = (state = [], action) => {
               present: Object.assign({}, action.payload.blueprint,  {
                 localPendingChanges: [],
                 workspacePendingChanges: {addedChanges: [], deletedChanges: []},
-                images: [],
               }),
               future: [],
             }
@@ -42,7 +40,6 @@ const blueprints = (state = [], action) => {
               present: Object.assign({}, action.payload.blueprint, {
                 localPendingChanges: [],
                 workspacePendingChanges: {addedChanges: [], deletedChanges: []},
-                images: [],
               }),
               future: [],
             }
@@ -147,7 +144,6 @@ const blueprints = (state = [], action) => {
                   present: Object.assign({}, action.payload.blueprint, {
                     localPendingChanges: [],
                     workspacePendingChanges: {addedChanges: [], deletedChanges: []},
-                    images: [],
                   }),
                   future: [],
                 });
@@ -192,24 +188,6 @@ const blueprints = (state = [], action) => {
       return Object.assign({}, state, {
         blueprintList: state.blueprintList.filter(blueprint => blueprint.present.id !== action.payload.blueprintId)
       });
-    case FETCHING_IMAGE_STATUS_SUCCEEDED:
-      return Object.assign({}, state, {
-          blueprintList: [
-            ...state.blueprintList.map(blueprint => {
-              if (blueprint.present.name === action.payload.blueprintName) {
-                return Object.assign(
-                  {}, blueprint, {
-                  present: Object.assign({}, blueprint.present, {
-                    images: blueprint.present.images.filter(image => image.id !== action.payload.imageInfo.id)
-                      .concat([action.payload.imageInfo]),
-                  }),
-                });
-              }
-              return blueprint;
-            }),
-          ]
-        }
-      );
     case UNDO:
       return Object.assign({}, state, {
           blueprintList: [

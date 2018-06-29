@@ -64,7 +64,7 @@ class ListItemImages extends React.PureComponent {
             }
             {listItem.queue_status === 'READY' &&
               <div className="list-pf-actions">
-                <button className="btn btn-default" type="button" onClick={() => this.fetchImage(listItem.id)}>
+                <button className="btn btn-default" type="button">
                   <FormattedMessage defaultMessage="Download" />
                 </button>
               </div>

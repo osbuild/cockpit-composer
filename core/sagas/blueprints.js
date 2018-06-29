@@ -1,4 +1,3 @@
-import { delay } from 'redux-saga'
 import { call, put, takeEvery, takeLatest, select } from 'redux-saga/effects';
 import {
   fetchBlueprintInfoApi, fetchBlueprintNamesApi, fetchBlueprintContentsApi, fetchWorkspaceBlueprintContentsApi,
@@ -6,19 +5,16 @@ import {
   createBlueprintApi,
   depsolveComponentsApi,
   commitToWorkspaceApi, fetchDiffWorkspaceApi,
-  startComposeApi, fetchImageStatusApi,
 } from '../apiCalls';
 import {
   fetchingBlueprintsSucceeded, fetchingBlueprintNamesSucceeded,
   FETCHING_BLUEPRINT_CONTENTS, fetchingBlueprintContentsSucceeded,
-  fetchingImageStatusSucceeded,
   CREATING_BLUEPRINT, creatingBlueprintSucceeded,
   ADD_BLUEPRINT_COMPONENT, ADD_BLUEPRINT_COMPONENT_SUCCEEDED, addBlueprintComponentSucceeded,
   REMOVE_BLUEPRINT_COMPONENT, REMOVE_BLUEPRINT_COMPONENT_SUCCEEDED, removeBlueprintComponentSucceeded,
   SET_BLUEPRINT_DESCRIPTION,
   DELETING_BLUEPRINT, deletingBlueprintSucceeded,
   COMMIT_TO_WORKSPACE,
-  START_COMPOSE,
   blueprintsFailure, blueprintContentsFailure,
 } from '../actions/blueprints';
 import { makeGetBlueprintById } from '../selectors';
@@ -62,14 +58,12 @@ function* fetchBlueprintContents(action) {
         {}, blueprintResponse, {
           localPendingChanges: [],
           workspacePendingChanges: {addedChanges: [], deletedChanges: []},
-          images: []
         }
       )];
       blueprintPresent = Object.assign(
         {}, workspaceDepsolved, {
           localPendingChanges: [],
           workspacePendingChanges: workspacePendingChanges,
-          images: []
         }
       );
     } else {
@@ -78,7 +72,6 @@ function* fetchBlueprintContents(action) {
         {}, blueprintResponse, {
           localPendingChanges: [],
           workspacePendingChanges: workspacePendingChanges,
-          images: [],
         }
       );
     }
@@ -174,32 +167,6 @@ function* commitToWorkspace(action) {
   }
 }
 
-function* startCompose(action) {
-  try {
-    const {blueprintName, composeType} = action.payload;
-    const response = yield call(startComposeApi, blueprintName, composeType);
-    yield* fetchImageStatus(blueprintName, response.build_id);
-  } catch (error) {
-    console.log('startComposeError');
-    yield put(blueprintsFailure(error));
-  }
-}
-
-function* fetchImageStatus(blueprintName, imageId) {
-  try {
-    let statusResponse = yield call(fetchImageStatusApi, imageId);
-    yield put(fetchingImageStatusSucceeded(blueprintName, statusResponse.uuids[0]));
-    while (statusResponse.uuids[0].queue_status === "WAITING" || statusResponse.uuids[0].queue_status === "RUNNING") {
-      yield call(delay, 60000);
-      statusResponse = yield call(fetchImageStatusApi, imageId);
-      yield put(fetchingImageStatusSucceeded(blueprintName, statusResponse.uuids[0]));
-    }
-  } catch (error) {
-    console.log('fetchImagesError');
-    yield put(blueprintsFailure(error));
-  }
-}
-
 export default function* () {
   yield takeEvery(CREATING_BLUEPRINT, createBlueprint);
   yield takeLatest(FETCHING_BLUEPRINT_CONTENTS, fetchBlueprintContents);
@@ -210,6 +177,5 @@ export default function* () {
   yield takeEvery(COMMIT_TO_WORKSPACE, commitToWorkspace);
   yield takeEvery(ADD_BLUEPRINT_COMPONENT, addComponent);
   yield takeEvery(REMOVE_BLUEPRINT_COMPONENT, removeComponent);
-  yield takeEvery(START_COMPOSE, startCompose);
   yield* fetchBlueprints();
 }
