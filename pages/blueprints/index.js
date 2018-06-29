@@ -7,6 +7,7 @@ import ExportBlueprint from '../../components/Modal/ExportBlueprint';
 import DeleteBlueprint from '../../components/Modal/DeleteBlueprint';
 import CreateImage from '../../components/Modal/CreateImage';
 import EmptyState from '../../components/EmptyState/EmptyState';
+import Loading from '../../components/Loading/Loading';
 import BlueprintsToolbar from '../../components/Toolbar/BlueprintsToolbar';
 import { connect } from 'react-redux';
 import { deletingBlueprint, startCompose } from '../../core/actions/blueprints';
@@ -108,7 +109,8 @@ class BlueprintsPage extends React.Component {
     const {
       blueprints, exportBlueprint, deleteBlueprint, createImage,
       blueprintSortKey, blueprintSortValue, blueprintsSortSetValue, blueprintFilters,
-      blueprintsFilterAddValue, blueprintsFilterRemoveValue, blueprintsFilterClearValues
+      blueprintsFilterAddValue, blueprintsFilterRemoveValue, blueprintsFilterClearValues,
+      blueprintsError, blueprintsLoading
     } = this.props;
     return (
       <Layout className="container-fluid" ref="layout">
@@ -122,45 +124,56 @@ class BlueprintsPage extends React.Component {
           sortValue={blueprintSortValue}
           sortSetValue={blueprintsSortSetValue}
         />
-      {blueprints.length === 0 && blueprintFilters.filterValues.length === 0 &&
-        <EmptyState
-          title="No Blueprints"
-          message={`Create a blueprint to define the contents that will be included
-            in the images you create. Images can be produced in a variety of
-            output formats.`}
-        >
-          <button
-            className="btn btn-primary btn-lg"
-            type="button"
-            data-toggle="modal"
-            data-target="#cmpsr-modal-crt-blueprint"
-          >
-            Create Blueprint
-          </button>
-        </EmptyState>
-      }
-      {blueprints.length === 0 && blueprintFilters.filterValues.length > 0 &&
-        <EmptyState
-          title="No Results Match the Filter Criteria"
-          message={`Modify your filter criteria to get results.`}
-        >
-          <button
-            className="btn btn-link btn-lg"
-            type="button"
-            onClick={blueprintsFilterClearValues}
-          >
-            Clear All Filters
-          </button>
-        </EmptyState>
-      }
-      {createImage.imageTypes !== undefined &&
-        <BlueprintListView
-          blueprints={blueprints.map(blueprint => blueprint.present)}
-          setNotifications={this.setNotifications}
-          handleShowModalExport={this.handleShowModalExport}
-          handleShowModalDelete={this.handleShowModalDelete}
-          handleShowModalCreateImage={this.handleShowModalCreateImage}
-        />
+      {blueprintsLoading === true &&
+        <Loading />
+        ||
+        (blueprintsError !== null &&
+          <EmptyState
+            title="An Error Occurred"
+            message="An error occurred while trying to get blueprints."
+          />
+          ||
+          (blueprints.length > 0 &&
+            <BlueprintListView
+              blueprints={blueprints.map(blueprint => blueprint.present)}
+              setNotifications={this.setNotifications}
+              handleShowModalExport={this.handleShowModalExport}
+              handleShowModalDelete={this.handleShowModalDelete}
+              handleShowModalCreateImage={this.handleShowModalCreateImage}
+            />
+            ||
+            (blueprintFilters.filterValues.length === 0 &&
+              <EmptyState
+                title="No Blueprints"
+                message={`Create a blueprint to define the contents that will be included
+                  in the images you create. Images can be produced in a variety of
+                  output formats.`}
+              >
+                <button
+                  className="btn btn-primary btn-lg"
+                  type="button"
+                  data-toggle="modal"
+                  data-target="#cmpsr-modal-crt-blueprint"
+                >
+                  Create Blueprint
+                </button>
+              </EmptyState>
+              ||
+              <EmptyState
+                title="No Results Match the Filter Criteria"
+                message={`Modify your filter criteria to get results.`}
+              >
+                <button
+                  className="btn btn-link btn-lg"
+                  type="button"
+                  onClick={blueprintsFilterClearValues}
+                >
+                  Clear All Filters
+                </button>
+              </EmptyState>
+            )
+          )
+        )
       }
         <CreateBlueprint blueprintNames={blueprints.map(blueprint => blueprint.present.id)} />
         {(exportBlueprint !== undefined && exportBlueprint.visible)
@@ -215,6 +228,8 @@ BlueprintsPage.propTypes = {
   blueprintsFilterAddValue: PropTypes.func,
   blueprintsFilterRemoveValue: PropTypes.func,
   blueprintsFilterClearValues: PropTypes.func,
+  blueprintsError: PropTypes.object,
+  blueprintsLoading: PropTypes.bool,
   startCompose: PropTypes.func,
 };
 
@@ -231,6 +246,8 @@ const makeMapStateToProps = () => {
         blueprintSortKey: state.sort.blueprints.key,
         blueprintSortValue: state.sort.blueprints.value,
         blueprintFilters: state.filter.blueprints,
+        blueprintsError: state.blueprints.errorMessage,
+        blueprintsLoading: state.blueprints.fetchingBlueprints,
       };
     }
     return {
@@ -241,6 +258,8 @@ const makeMapStateToProps = () => {
       blueprintSortKey: state.sort.blueprints.key,
       blueprintSortValue: state.sort.blueprints.value,
       blueprintFilters: state.filter.blueprints,
+      blueprintsError: state.blueprints.errorMessage,
+      blueprintsLoading: state.blueprints.fetchingBlueprints,
     };
   };
 
