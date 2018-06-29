@@ -33,17 +33,17 @@ class ListItemImages extends React.PureComponent {
                   {listItem.queue_status === 'WAITING' &&
                     <div>
                       <span className="pficon pficon-pending" aria-hidden="true" />
-                      Waiting
+                      Pending
                     </div>
                   } {listItem.queue_status === 'RUNNING' &&
                     <div>
                       <span className="pficon pficon-in-progress" aria-hidden="true" />
-                      Running
+                      In Progress
                     </div>
                   } {listItem.queue_status === 'FINISHED' &&
                     <div>
                       <span className="pficon pficon-ok" aria-hidden="true" />
-                      Finished
+                      Complete
                     </div>
                   } {listItem.queue_status === 'FAILED' &&
                     <div>
@@ -77,10 +77,6 @@ class ListItemImages extends React.PureComponent {
                     <li><a>Archive</a></li>
                   </ul>
                 </div>
-              </div>
-            ||
-              <div className="list-pf-actions">
-                <button className="btn btn-default" type="button">Cancel</button>
               </div>
             }
           </div>
