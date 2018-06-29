@@ -46,7 +46,8 @@ const blueprints = (state = [], action) => {
       : state;
     case BLUEPRINTS_FAILURE:
       return Object.assign({}, state, {
-        errorMessage: action.payload.error
+        errorMessage: action.payload.error,
+        fetchingBlueprints: false,
       });
     case FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED:
       return Object.assign({}, state, {
