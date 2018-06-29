@@ -21,7 +21,7 @@ export const makeGetFutureLength = () => createSelector(
 );
 
 const getBlueprintById = (state, blueprintId) => {
-  const blueprintById = state.blueprints.find(blueprint => blueprint.present.id === blueprintId);
+  const blueprintById = state.blueprints.blueprintList.find(blueprint => blueprint.present.id === blueprintId);
   return blueprintById;
 };
 
@@ -105,7 +105,7 @@ export const makeGetFilteredComponents = () => createSelector(
 );
 
 const getSortedBlueprints = (state) => {
-  const sortedBlueprints = state.blueprints;
+  const sortedBlueprints = state.blueprints.blueprintList;
   const key = state.sort.blueprints.key;
   const value = state.sort.blueprints.value;
   sortedBlueprints.sort((a, b) => {
