@@ -16,9 +16,12 @@ import ListItemImages from '../../components/ListView/ListItemImages';
 import ListItemChanges from '../../components/ListView/ListItemChanges';
 import { connect } from 'react-redux';
 import {
-  fetchingBlueprintContents, fetchingImageStatus,
-  setBlueprintDescription, startCompose
+  fetchingBlueprintContents,
+  setBlueprintDescription,
 } from '../../core/actions/blueprints';
+import {
+  startCompose,
+} from '../../core/actions/composes';
 import {
   setModalExportBlueprintVisible, setModalCreateImageVisible, setModalCreateImageBlueprintName
 } from '../../core/actions/modals';
@@ -32,7 +35,7 @@ import {
 } from '../../core/actions/sort';
 import { componentsFilterAddValue, componentsFilterRemoveValue, componentsFilterClearValues } from '../../core/actions/filter';
 import { makeGetBlueprintById, makeGetSortedSelectedComponents, makeGetSortedDependencies,
-  makeGetFilteredComponents } from '../../core/selectors';
+  makeGetFilteredComponents, makeGetBlueprintComposes } from '../../core/selectors';
 
 const messages = defineMessages({
   blueprint: {
@@ -147,7 +150,6 @@ class BlueprintPage extends React.Component {
     e.stopPropagation();
   }
 
-
   handleStartCompose(blueprintName, composeType) {
     this.props.startCompose(blueprintName, composeType);
   }
@@ -158,7 +160,7 @@ class BlueprintPage extends React.Component {
       return <div></div>;
     }
     const {
-      blueprint, exportModalVisible, createImage, selectedComponents, dependencies, componentsFilters,
+      blueprint, exportModalVisible, createImage, selectedComponents, dependencies, componentsFilters, composes,
     } = this.props;
     const {
       editDescriptionValue, editDescriptionVisible, activeTab,
@@ -339,7 +341,7 @@ class BlueprintPage extends React.Component {
           </Tab>
           <Tab tabTitle={formatMessage(messages.imagesTitle)} active={activeTab === 'Images'}>
             <div className="tab-container">
-              {(this.props.blueprint.images.length === 0 &&
+              {(composes.length === 0 &&
                 <EmptyState
                   title={formatMessage(messages.noImagesTitle)}
                   message={formatMessage(messages.noImagesMessage)}
@@ -356,12 +358,11 @@ class BlueprintPage extends React.Component {
                   </button>
                 </EmptyState>) ||
                 <ListView className="cmpsr-images" stacked>
-                  {this.props.blueprint.images.map((image, i) => (
+                  {composes.map((image, i) => (
                     <ListItemImages
                       listItemParent="cmpsr-images"
                       blueprint={this.props.route.params.blueprint}
-                      listItem={image}
-                      fetchingImageStatus={this.props.fetchingImageStatus}
+                      listItem={compose}
                       key={i}
                     />
                   ))}
@@ -394,6 +395,7 @@ BlueprintPage.propTypes = {
   route: PropTypes.object,
   fetchingBlueprintContents: PropTypes.func,
   blueprint: PropTypes.object,
+  composes: PropTypes.array,
   setActiveTab: PropTypes.func,
   setEditDescriptionValue: PropTypes.func,
   setEditDescriptionVisible: PropTypes.func,
@@ -420,7 +422,6 @@ BlueprintPage.propTypes = {
   setModalCreateImageVisible: PropTypes.func,
   setModalCreateImageBlueprintName: PropTypes.func,
   startCompose: PropTypes.func,
-  fetchingImageStatus: PropTypes.func,
   blueprintContentsError: PropTypes.object,
   blueprintContentsFetching: PropTypes.bool,
   intl: intlShape.isRequired,
@@ -431,6 +432,7 @@ const makeMapStateToProps = () => {
   const getSortedSelectedComponents = makeGetSortedSelectedComponents();
   const getSortedDependencies = makeGetSortedDependencies();
   const getFilteredComponents = makeGetFilteredComponents();
+  const getBlueprintComposes = makeGetBlueprintComposes();
   const mapStateToProps = (state, props) => {
     if (getBlueprintById(state, props.route.params.blueprint.replace(/\s/g, '-')) !== undefined) {
       const fetchedBlueprint = getBlueprintById(state, props.route.params.blueprint.replace(/\s/g, '-'));
@@ -438,6 +440,7 @@ const makeMapStateToProps = () => {
         blueprint: fetchedBlueprint.present,
         selectedComponents: getFilteredComponents(state, getSortedSelectedComponents(state, fetchedBlueprint.present)),
         dependencies: getFilteredComponents(state, getSortedDependencies(state, fetchedBlueprint.present)),
+        composes: getBlueprintComposes(state, fetchedBlueprint.present),
         blueprintPage: state.blueprintPage,
         exportModalVisible: state.modals.exportBlueprint.visible,
         createImage: state.modals.createImage,
@@ -454,6 +457,7 @@ const makeMapStateToProps = () => {
       blueprint: {},
       selectedComponents: [],
       dependencies: [],
+      composes: [],
       blueprintPage: state.blueprintPage,
       exportModalVisible: state.modals.exportBlueprint.visible,
       createImage: state.modals.createImage,
@@ -523,9 +527,6 @@ const mapDispatchToProps = (dispatch) => ({
   },
   startCompose: (blueprintName, composeType) => {
     dispatch(startCompose(blueprintName, composeType));
-  },
-  fetchingImageStatus: (blueprintName, imageId) => {
-    dispatch(fetchingImageStatus(blueprintName, imageId));
   },
 });
 

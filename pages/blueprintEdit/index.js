@@ -20,7 +20,7 @@ import NotificationsApi from '../../data/NotificationsApi';
 import { connect } from 'react-redux';
 import {
   fetchingBlueprintContents, setBlueprint, addBlueprintComponent, committingBlueprint,
-  removeBlueprintComponent, undo, redo, commitToWorkspace, deleteHistory, startCompose,
+  removeBlueprintComponent, undo, redo, commitToWorkspace, deleteHistory,
 } from '../../core/actions/blueprints';
 import {
   fetchingInputs, setInputComponents, setSelectedInputPage,
@@ -31,6 +31,7 @@ import {
   componentsSortSetKey, componentsSortSetValue, dependenciesSortSetKey, dependenciesSortSetValue,
 } from '../../core/actions/sort';
 import { componentsFilterAddValue, componentsFilterRemoveValue, componentsFilterClearValues } from '../../core/actions/filter';
+import { startCompose } from '../../core/actions/composes';
 import {
   makeGetBlueprintById, makeGetSortedSelectedComponents, makeGetSortedDependencies,
   makeGetFutureLength, makeGetPastLength, makeGetFilteredComponents

@@ -11,7 +11,7 @@ import EmptyState from '../../components/EmptyState/EmptyState';
 import Loading from '../../components/Loading/Loading';
 import BlueprintsToolbar from '../../components/Toolbar/BlueprintsToolbar';
 import { connect } from 'react-redux';
-import { deletingBlueprint, startCompose } from '../../core/actions/blueprints';
+import { deletingBlueprint } from '../../core/actions/blueprints';
 import {
   fetchingModalExportBlueprintContents,
   setModalExportBlueprintName, setModalExportBlueprintContents, setModalExportBlueprintVisible,
@@ -20,6 +20,7 @@ import {
 } from '../../core/actions/modals';
 import { blueprintsSortSetKey, blueprintsSortSetValue } from '../../core/actions/sort';
 import { blueprintsFilterAddValue, blueprintsFilterRemoveValue, blueprintsFilterClearValues } from '../../core/actions/filter';
+import { startCompose } from '../../core/actions/composes';
 import { makeGetSortedBlueprints, makeGetFilteredBlueprints } from '../../core/selectors';
 
 const messages = defineMessages({
@@ -272,6 +273,7 @@ const makeMapStateToProps = () => {
         blueprintFilters: state.filter.blueprints,
         blueprintsError: state.blueprints.errorState,
         blueprintsLoading: state.blueprints.fetchingBlueprints,
+        composes: state.composes,
       };
     }
     return {
@@ -284,6 +286,7 @@ const makeMapStateToProps = () => {
       blueprintFilters: state.filter.blueprints,
       blueprintsError: state.blueprints.errorState,
       blueprintsLoading: state.blueprints.fetchingBlueprints,
+      composes: state.composes,
     };
   };
 

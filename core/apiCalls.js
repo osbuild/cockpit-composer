@@ -176,3 +176,46 @@ export function fetchImageStatusApi(uuid) {
   });
   return p;
 }
+
+export function fetchComposeQueueApi() {
+  const p = new Promise((resolve, reject) => {
+    utils.apiFetch(constants.get_compose_queue)
+    .then(data => {
+      const queue = data.new.concat(data.run);
+      resolve(queue);
+    })
+    .catch(e => {
+      console.log(`Error fetching diff: ${e}`);
+      reject();
+    });
+  });
+  return p;
+}
+
+export function fetchComposeFinishedApi() {
+  const p = new Promise((resolve, reject) => {
+    utils.apiFetch(constants.get_compose_finished)
+    .then(data => {
+      resolve(data.finished);
+    })
+    .catch(e => {
+      console.log(`Error fetching diff: ${e}`);
+      reject();
+    });
+  });
+  return p;
+}
+
+export function fetchComposeFailedApi() {
+  const p = new Promise((resolve, reject) => {
+    utils.apiFetch(constants.get_compose_failed)
+    .then(data => {
+      resolve(data.failed);
+    })
+    .catch(e => {
+      console.log(`Error fetching diff: ${e}`);
+      reject();
+    });
+  });
+  return p;
+}

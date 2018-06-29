@@ -140,3 +140,17 @@ export const makeGetFilteredBlueprints = () => createSelector(
   [getFilteredBlueprints],
   (filteredBlueprints) => filteredBlueprints
 );
+
+const getBlueprintComposes = (state, blueprint) => {
+  const composes = state.composes.filter(compose => compose.blueprint === blueprint.name);
+  composes.sort((a, b) => {
+    return a.timestamp < b.timestamp ? 1 : -1;
+  });
+
+  return composes;
+};
+
+export const makeGetBlueprintComposes = () => createSelector(
+  [getBlueprintComposes],
+  (composes) => composes
+);
