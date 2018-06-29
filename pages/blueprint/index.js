@@ -9,6 +9,8 @@ import ComponentDetailsView from '../../components/ListView/ComponentDetailsView
 import CreateImage from '../../components/Modal/CreateImage';
 import ExportBlueprint from '../../components/Modal/ExportBlueprint';
 import EmptyState from '../../components/EmptyState/EmptyState';
+import Loading from '../../components/Loading/Loading';
+import BlueprintToolbar from '../../components/Toolbar/BlueprintToolbar';
 import ListView from '../../components/ListView/ListView';
 import ListItemImages from '../../components/ListView/ListItemImages';
 import ListItemChanges from '../../components/ListView/ListItemChanges';
@@ -23,7 +25,9 @@ import {
 import {
   componentsSortSetKey, componentsSortSetValue, dependenciesSortSetKey, dependenciesSortSetValue,
 } from '../../core/actions/sort';
-import { makeGetBlueprintById, makeGetSortedSelectedComponents, makeGetSortedDependencies } from '../../core/selectors';
+import { componentsFilterAddValue, componentsFilterRemoveValue, componentsFilterClearValues } from '../../core/actions/filter';
+import { makeGetBlueprintById, makeGetSortedSelectedComponents, makeGetSortedDependencies,
+  makeGetFilteredComponents } from '../../core/selectors';
 
 class BlueprintPage extends React.Component {
   constructor() {
@@ -153,7 +157,7 @@ class BlueprintPage extends React.Component {
     }
 
     const {
-      blueprint, exportModalVisible, imageTypes, selectedComponents, dependencies,
+      blueprint, exportModalVisible, imageTypes, selectedComponents, dependencies, componentsFilters,
     } = this.props;
 
     const {
@@ -274,110 +278,40 @@ class BlueprintPage extends React.Component {
             <div className="row">
               {(activeComponent === '' &&
                 <div className="col-sm-12">
-                  <div className="row toolbar-pf">
-                    <div className="col-sm-12">
-                      <form className="toolbar-pf-actions">
-                        <div className="form-group">
-                          <div className="dropdown btn-group">
-                            <button
-                              type="button"
-                              className="btn btn-default dropdown-toggle"
-                              data-toggle="dropdown"
-                              aria-haspopup="true"
-                              aria-expanded="false"
-                            >
-                              Commit 5<span className="caret" />
-                            </button>
-                            <ul className="dropdown-menu">
-                              <li><a>Commit 5</a></li>
-                              <li><a>Commit 4</a></li>
-                              <li><a>Commit 3</a></li>
-                              <li><a>Commit 2</a></li>
-                              <li><a>Commit 1</a></li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div className="form-group toolbar-pf-filter">
-                          <label className="sr-only" htmlFor="filter">Name</label>
-                          <div className="input-group">
-                            <div className="input-group-btn">
-                              <button
-                                type="button"
-                                className="btn btn-default dropdown-toggle"
-                                data-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                              >
-                                Name<span className="caret" />
-                              </button>
-                              <ul className="dropdown-menu">
-                                <li><a>Name</a></li>
-                                <li><a>Version</a></li>
-                              </ul>
-                            </div>
-                            <input type="text" className="form-control" id="filter" placeholder="Filter By Name..." />
-                          </div>
-                        </div>
-                        <div className="form-group">
-                          <div className="dropdown btn-group">
-                            <button
-                              type="button"
-                              className="btn btn-default dropdown-toggle"
-                              data-toggle="dropdown"
-                              aria-haspopup="true"
-                              aria-expanded="false"
-                            >
-                              Name<span className="caret" />
-                            </button>
-                            <ul className="dropdown-menu">
-                              <li><a>Name</a></li>
-                              <li><a>Version</a></li>
-                            </ul>
-                          </div>
-                          {this.props.componentsSortKey === 'name' && this.props.componentsSortValue === 'DESC' &&
-                            <button
-                              className="btn btn-link"
-                              type="button"
-                              onClick={() => {
-                                this.props.componentsSortSetValue('ASC');
-                                this.props.dependenciesSortSetValue('ASC');
-                              }}
-                            >
-                              <span className="fa fa-sort-alpha-asc" />
-                            </button>
-                          ||
-                          this.props.componentsSortKey === 'name' && this.props.componentsSortValue === 'ASC' &&
-                            <button
-                              className="btn btn-link"
-                              type="button"
-                              onClick={() => {
-                                this.props.componentsSortSetValue('DESC');
-                                this.props.dependenciesSortSetValue('DESC');
-                              }}
-                            >
-                              <span className="fa fa-sort-alpha-desc" />
-                            </button>
-                          }
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                  {(selectedComponents === undefined || selectedComponents.length === 0) &&
-                    <EmptyState
-                      title={'Empty Blueprint'}
-                      message={'There are no components listed in the blueprint. Edit the blueprint to add components.'}
-                    >
-                      <Link to={`/edit/${this.props.route.params.blueprint}`}>
-                        <button className="btn btn-default btn-primary" type="button">
-                          Edit Blueprint
-                        </button>
-                      </Link>
-                    </EmptyState> ||
+                  <BlueprintToolbar
+                    emptyState={
+                      (selectedComponents === undefined || selectedComponents.length === 0) &&
+                      componentsFilters.filterValues.length === 0
+                    }
+                    filters={componentsFilters}
+                    filterRemoveValue={this.props.componentsFilterRemoveValue}
+                    filterClearValues={this.props.componentsFilterClearValues}
+                    filterAddValue={this.props.componentsFilterAddValue}
+                    componentsSortKey={this.props.componentsSortKey}
+                    componentsSortValue={this.props.componentsSortValue}
+                    componentsSortSetValue={this.props.componentsSortSetValue}
+                    dependenciesSortSetValue={this.props.dependenciesSortSetValue}
+                  />
+                  {(blueprint.components === undefined &&
+                    <Loading />) ||
+                    ((selectedComponents === undefined || selectedComponents.length === 0) &&
+                      componentsFilters.filterValues.length === 0) &&
+                      <EmptyState
+                        title={'Empty Blueprint'}
+                        message={'There are no components listed in the blueprint. Edit the blueprint to add components.'}
+                      >
+                        <Link to={`/edit/${this.props.route.params.blueprint}`}>
+                          <button className="btn btn-default btn-primary" type="button">
+                            Edit Blueprint
+                          </button>
+                        </Link>
+                      </EmptyState> ||
                     <BlueprintContents
                       components={selectedComponents}
                       dependencies={dependencies}
                       noEditComponent
                       handleComponentDetails={this.handleComponentDetails}
+                      filterClearValues={this.props.componentsFilterClearValues}
                     />}
                 </div>) ||
                 <div className="col-sm-12 cmpsr-component-details--view">
@@ -452,6 +386,10 @@ BlueprintPage.propTypes = {
   dependenciesSortSetValue: PropTypes.func,
   componentsSortSetKey: PropTypes.func,
   componentsSortSetValue: PropTypes.func,
+  componentsFilters: PropTypes.object,
+  componentsFilterAddValue: PropTypes.func,
+  componentsFilterRemoveValue: PropTypes.func,
+  componentsFilterClearValues: PropTypes.func,
   selectedComponents: PropTypes.array,
   dependencies: PropTypes.array,
   componentsSortKey: PropTypes.string,
@@ -462,19 +400,21 @@ const makeMapStateToProps = () => {
   const getBlueprintById = makeGetBlueprintById();
   const getSortedSelectedComponents = makeGetSortedSelectedComponents();
   const getSortedDependencies = makeGetSortedDependencies();
+  const getFilteredComponents = makeGetFilteredComponents();
   const mapStateToProps = (state, props) => {
     if (getBlueprintById(state, props.route.params.blueprint.replace(/\s/g, '-')) !== undefined) {
       const fetchedBlueprint = getBlueprintById(state, props.route.params.blueprint.replace(/\s/g, '-'));
       return {
         rehydrated: state.rehydrated,
         blueprint: fetchedBlueprint.present,
-        selectedComponents: getSortedSelectedComponents(state, fetchedBlueprint.present),
-        dependencies: getSortedDependencies(state, fetchedBlueprint.present),
+        selectedComponents: getFilteredComponents(state, getSortedSelectedComponents(state, fetchedBlueprint.present)),
+        dependencies: getFilteredComponents(state, getSortedDependencies(state, fetchedBlueprint.present)),
         blueprintPage: state.blueprintPage,
         exportModalVisible: state.modals.exportBlueprint.visible,
         imageTypes: state.modals.createImage.imageTypes,
         componentsSortKey: state.sort.components.key,
         componentsSortValue: state.sort.components.value,
+        componentsFilters: state.filter.components,
       };
     }
     return {
@@ -487,6 +427,7 @@ const makeMapStateToProps = () => {
       imageTypes: state.modals.createImage.imageTypes,
       componentsSortKey: state.sort.components.key,
       componentsSortValue: state.sort.components.value,
+      componentsFilters: state.filter.components,
     };
   };
   return mapStateToProps;
@@ -532,6 +473,15 @@ const mapDispatchToProps = (dispatch) => ({
   dependenciesSortSetValue: value => {
     dispatch(dependenciesSortSetValue(value));
   },
+  componentsFilterAddValue: value => {
+    dispatch(componentsFilterAddValue(value));
+  },
+  componentsFilterRemoveValue: value => {
+    dispatch(componentsFilterRemoveValue(value));
+  },
+  componentsFilterClearValues: value => {
+    dispatch(componentsFilterClearValues(value));
+  }
 });
 
 export default connect(makeMapStateToProps, mapDispatchToProps)(BlueprintPage);

@@ -5,6 +5,7 @@ import Tab from '../../components/Tabs/Tab';
 import ListView from '../../components/ListView/ListView';
 import ListItemComponents from '../../components/ListView/ListItemComponents';
 import DependencyListView from '../../components/ListView/DependencyListView';
+import EmptyState from '../../components/EmptyState/EmptyState';
 
 class BlueprintContents extends React.Component {
   constructor() {
@@ -22,7 +23,10 @@ class BlueprintContents extends React.Component {
   }
 
   render() {
-    const { components, dependencies, handleComponentDetails, handleRemoveComponent, noEditComponent } = this.props;
+    const {
+      components, dependencies, handleComponentDetails, handleRemoveComponent,
+      noEditComponent, filterClearValues,
+    } = this.props;
 
     return (
       <div>
@@ -38,23 +42,52 @@ class BlueprintContents extends React.Component {
             tabTitle={`Selected Components <span class="badge">${components.length}</span>`}
             active={this.state.activeTab === 'Selected'}
           >
-            <ListView className="cmpsr-blueprint__components" stacked>
-              {components.map((listItem, i) => (
-                <ListItemComponents
-                  listItemParent="cmpsr-blueprint__components"
-                  listItem={listItem}
-                  key={i}
-                  handleRemoveComponent={handleRemoveComponent}
-                  handleComponentDetails={handleComponentDetails}
-                  noEditComponent={noEditComponent}
-                />
-              ))}
-            </ListView>
+            {components.length === 0 &&
+              <EmptyState
+                title="No Results Match the Filter Criteria"
+                message={`Modify your filter criteria to get results.`}
+              >
+                <button
+                  className="btn btn-link btn-lg"
+                  type="button"
+                  onClick={() => filterClearValues([])}
+                >
+                  Clear All Filters
+                </button>
+              </EmptyState>
+            ||
+              <ListView className="cmpsr-blueprint__components" stacked>
+                {components.map((listItem, i) => (
+                  <ListItemComponents
+                    listItemParent="cmpsr-blueprint__components"
+                    listItem={listItem}
+                    key={i}
+                    handleRemoveComponent={handleRemoveComponent}
+                    handleComponentDetails={handleComponentDetails}
+                    noEditComponent={noEditComponent}
+                  />
+                ))}
+              </ListView>
+            }
           </Tab>
           <Tab
             tabTitle={`Dependencies <span class="badge">${dependencies.length}</span>`}
             active={this.state.activeTab === 'Dependencies'}
           >
+          {dependencies.length === 0 &&
+            <EmptyState
+              title="No Results Match the Filter Criteria"
+              message={`Modify your filter criteria to get results.`}
+            >
+              <button
+                className="btn btn-link btn-lg"
+                type="button"
+                onClick={() => filterClearValues([])}
+              >
+                Clear All Filters
+              </button>
+            </EmptyState>
+          ||
             <DependencyListView
               className="cmpsr-blueprint__dependencies"
               listItems={dependencies}
@@ -62,6 +95,7 @@ class BlueprintContents extends React.Component {
               handleComponentDetails={handleComponentDetails}
               noEditComponent={noEditComponent}
             />
+            }
           </Tab>
         </Tabs>
       </div>
@@ -75,6 +109,7 @@ BlueprintContents.propTypes = {
   handleComponentDetails: PropTypes.func,
   handleRemoveComponent: PropTypes.func,
   noEditComponent: PropTypes.bool,
+  filterClearValues: PropTypes.func,
 };
 
 export default BlueprintContents;

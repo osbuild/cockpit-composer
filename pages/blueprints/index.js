@@ -6,6 +6,7 @@ import CreateBlueprint from '../../components/Modal/CreateBlueprint';
 import ExportBlueprint from '../../components/Modal/ExportBlueprint';
 import DeleteBlueprint from '../../components/Modal/DeleteBlueprint';
 import EmptyState from '../../components/EmptyState/EmptyState';
+import BlueprintsToolbar from '../../components/Toolbar/BlueprintsToolbar';
 import { connect } from 'react-redux';
 import { deletingBlueprint } from '../../core/actions/blueprints';
 import {
@@ -18,7 +19,8 @@ import {
   setModalDeleteBlueprintVisible,
 } from '../../core/actions/modals';
 import { blueprintsSortSetKey, blueprintsSortSetValue } from '../../core/actions/sort';
-import { makeGetSortedBlueprints } from '../../core/selectors';
+import { blueprintsFilterAddValue, blueprintsFilterRemoveValue, blueprintsFilterClearValues } from '../../core/actions/filter';
+import { makeGetSortedBlueprints, makeGetFilteredBlueprints } from '../../core/selectors';
 
 class BlueprintsPage extends React.Component {
   constructor() {
@@ -86,71 +88,24 @@ class BlueprintsPage extends React.Component {
   }
 
   render() {
-    const { blueprints, exportBlueprint, deleteBlueprint, createImage, blueprintSortKey, blueprintSortValue } = this.props;
+    const {
+      blueprints, exportBlueprint, deleteBlueprint, createImage,
+      blueprintSortKey, blueprintSortValue, blueprintsSortSetValue, blueprintFilters,
+      blueprintsFilterAddValue, blueprintsFilterRemoveValue, blueprintsFilterClearValues
+    } = this.props;
     return (
       <Layout className="container-fluid" ref="layout">
-        <div className="row toolbar-pf">
-          <div className="col-sm-12">
-            <form className="toolbar-pf-actions">
-              <div className="form-group toolbar-pf-filter">
-                <label className="sr-only" htmlFor="filter">Name</label>
-                <div className="input-group">
-                  <div className="input-group-btn">
-                    <button
-                      type="button"
-                      className="btn btn-default dropdown-toggle"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-                      Name<span className="caret" />
-                    </button>
-                    <ul className="dropdown-menu">
-                      <li><a>Name</a></li>
-                      <li><a>Version</a></li>
-                    </ul>
-                  </div>
-                  <input type="text" className="form-control" id="filter" placeholder="Filter By Name..." />
-                </div>
-              </div>
-              <div className="form-group">
-                <div className="dropdown btn-group">
-                  <button
-                    type="button"
-                    className="btn btn-default dropdown-toggle"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    Name<span className="caret" />
-                  </button>
-                  <ul className="dropdown-menu">
-                    <li><a>Name</a></li>
-                    <li><a>Version</a></li>
-                  </ul>
-                </div>
-              {blueprintSortKey === 'name' && blueprintSortValue === 'DESC' &&
-                <button className="btn btn-link" type="button" onClick={() => this.props.blueprintsSortSetValue('ASC')}>
-                  <span className="fa fa-sort-alpha-asc" />
-                </button>
-              ||
-              blueprintSortKey === 'name' && blueprintSortValue === 'ASC' &&
-                <button className="btn btn-link" type="button" onClick={() => this.props.blueprintsSortSetValue('DESC')}>
-                  <span className="fa fa-sort-alpha-desc" />
-                </button>
-              }
-              </div>
-              <div className="toolbar-pf-action-right">
-                <div className="form-group">
-                  <button className="btn btn-default" type="button" data-toggle="modal" data-target="#cmpsr-modal-crt-blueprint">
-                    Create Blueprint
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      {blueprints.length === 0 &&
+        <BlueprintsToolbar
+          emptyState={blueprints.length === 0 && blueprintFilters.filterValues.length === 0}
+          filters={blueprintFilters}
+          filterRemoveValue={blueprintsFilterRemoveValue}
+          filterClearValues={blueprintsFilterClearValues}
+          filterAddValue={blueprintsFilterAddValue}
+          sortKey={blueprintSortKey}
+          sortValue={blueprintSortValue}
+          sortSetValue={blueprintsSortSetValue}
+        />
+      {blueprints.length === 0 && blueprintFilters.filterValues.length === 0 &&
         <EmptyState
           title="No Blueprints"
           message={`Create a blueprint to define the contents that will be included
@@ -164,6 +119,20 @@ class BlueprintsPage extends React.Component {
             data-target="#cmpsr-modal-crt-blueprint"
           >
             Create Blueprint
+          </button>
+        </EmptyState>
+      }
+      {blueprints.length === 0 && blueprintFilters.filterValues.length > 0 &&
+        <EmptyState
+          title="No Results Match the Filter Criteria"
+          message={`Modify your filter criteria to get results.`}
+        >
+          <button
+            className="btn btn-link btn-lg"
+            type="button"
+            onClick={blueprintsFilterClearValues}
+          >
+            Clear All Filters
           </button>
         </EmptyState>
       }
@@ -206,26 +175,33 @@ BlueprintsPage.propTypes = {
   setModalExportBlueprintContents: PropTypes.func,
   fetchingModalExportBlueprintContents: PropTypes.func,
   blueprints: PropTypes.array,
+  filteredBlueprints: PropTypes.array,
   exportBlueprint: PropTypes.object,
   deleteBlueprint: PropTypes.object,
   createImage: PropTypes.object,
   blueprintSortKey: PropTypes.string,
   blueprintSortValue: PropTypes.string,
+  blueprintFilters: PropTypes.object,
   blueprintsSortSetKey: PropTypes.func,
   blueprintsSortSetValue: PropTypes.func,
+  blueprintsFilterAddValue: PropTypes.func,
+  blueprintsFilterRemoveValue: PropTypes.func,
+  blueprintsFilterClearValues: PropTypes.func,
 };
 
 const makeMapStateToProps = () => {
   const getSortedBlueprints = makeGetSortedBlueprints();
+  const getFilteredBlueprints = makeGetFilteredBlueprints();
   const mapStateToProps = (state) => {
     if (getSortedBlueprints(state) !== undefined) {
       return {
         exportBlueprint: state.modals.exportBlueprint,
         deleteBlueprint: state.modals.deleteBlueprint,
         createImage: state.modals.createImage,
-        blueprints: getSortedBlueprints(state),
+        blueprints: getFilteredBlueprints(state, getSortedBlueprints(state)),
         blueprintSortKey: state.sort.blueprints.key,
         blueprintSortValue: state.sort.blueprints.value,
+        blueprintFilters: state.filter.blueprints,
       };
     }
     return {
@@ -235,6 +211,7 @@ const makeMapStateToProps = () => {
       blueprints: {},
       blueprintSortKey: state.sort.blueprints.key,
       blueprintSortValue: state.sort.blueprints.value,
+      blueprintFilters: state.filter.blueprints,
     };
   };
 
@@ -273,6 +250,15 @@ const mapDispatchToProps = dispatch => ({
   blueprintsSortSetValue: value => {
     dispatch(blueprintsSortSetValue(value));
   },
+  blueprintsFilterAddValue: value => {
+    dispatch(blueprintsFilterAddValue(value));
+  },
+  blueprintsFilterRemoveValue: value => {
+    dispatch(blueprintsFilterRemoveValue(value));
+  },
+  blueprintsFilterClearValues: value => {
+    dispatch(blueprintsFilterClearValues(value));
+  }
 });
 
 export default connect(makeMapStateToProps, mapDispatchToProps)(BlueprintsPage);

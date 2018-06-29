@@ -84,6 +84,26 @@ export const makeGetSortedDependencies = () => createSelector(
   (dependencies) => dependencies
 );
 
+const getFilteredComponents = (state, components) => {
+  let filteredComponents = [];
+  const filters = state.filter.components.filterValues;
+  if (filters && filters.length !== 0) {
+    filteredComponents  = components.filter((component) => {
+      return filters.filter((filter) => {
+        return !component[filter.key].includes(filter.value);
+      }).length == 0
+    });
+  } else {
+    filteredComponents = components;
+  }
+  return filteredComponents;
+};
+
+export const makeGetFilteredComponents = () => createSelector(
+  [getFilteredComponents],
+  (filteredComponents) => filteredComponents
+);
+
 const getSortedBlueprints = (state) => {
   const sortedBlueprints = state.blueprints;
   const key = state.sort.blueprints.key;
@@ -99,4 +119,24 @@ const getSortedBlueprints = (state) => {
 export const makeGetSortedBlueprints = () => createSelector(
   [getSortedBlueprints],
   (blueprints) => blueprints
+);
+
+const getFilteredBlueprints = (state, blueprints) => {
+  let filteredBlueprints = [];
+  const filters = state.filter.blueprints.filterValues;
+  if (filters && filters.length !== 0) {
+    filteredBlueprints  = blueprints.filter((blueprint) => {
+      return filters.filter((filter) => {
+        return !blueprint.present[filter.key].includes(filter.value);
+      }).length == 0
+    });
+  } else {
+    filteredBlueprints = blueprints;
+  }
+  return filteredBlueprints;
+};
+
+export const makeGetFilteredBlueprints = () => createSelector(
+  [getFilteredBlueprints],
+  (filteredBlueprints) => filteredBlueprints
 );
