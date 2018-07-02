@@ -116,6 +116,7 @@ class BlueprintsPage extends React.Component {
       <Layout className="container-fluid" ref="layout">
         <BlueprintsToolbar
           emptyState={blueprints.length === 0 && blueprintFilters.filterValues.length === 0}
+          errorState={blueprintsError !== null}
           filters={blueprintFilters}
           filterRemoveValue={blueprintsFilterRemoveValue}
           filterClearValues={blueprintsFilterClearValues}
