@@ -24,7 +24,13 @@ const BlueprintsToolbar = props => (
     </div>
     <div className="toolbar-pf-action-right">
       <div className="form-group">
-        <button className="btn btn-default" type="button" data-toggle="modal" data-target="#cmpsr-modal-crt-blueprint">
+        <button
+          className="btn btn-default"
+          type="button"
+          data-toggle="modal"
+          data-target="#cmpsr-modal-crt-blueprint"
+          disabled={props.errorState}
+        >
           Create Blueprint
         </button>
       </div>
@@ -34,6 +40,7 @@ const BlueprintsToolbar = props => (
 
 BlueprintsToolbar.propTypes = {
   sortSetValue: PropTypes.func,
+  errorState: PropTypes.bool,
 };
 
 export default BlueprintsToolbar;
