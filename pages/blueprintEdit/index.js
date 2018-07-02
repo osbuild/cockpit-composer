@@ -542,21 +542,24 @@ class EditBlueprintPage extends React.Component {
               futureLength={futureLength}
             />
           }
-          {(blueprint.components === undefined &&
-            <Loading />) ||
-          (selectedComponents !== undefined && selectedComponents.length === 0 && componentsFilters.filterValues.length === 0 &&
-            <EmptyState
-              title={'Add Blueprint Components'}
-              message={'Browse or search for components, then add them to the blueprint.'}
-            />) ||
             <BlueprintContents
               components={selectedComponents}
               dependencies={dependencies}
               handleRemoveComponent={this.handleRemoveComponent}
               handleComponentDetails={this.handleComponentDetails}
               filterClearValues={this.props.componentsFilterClearValues}
-            />}
-          </div>) ||
+              filterValues={componentsFilters.filterValues}
+              errorState={this.props.blueprintContentsError}
+              fetchingState={this.props.blueprintContentsFetching}
+            >
+              <EmptyState
+                title={'Add Blueprint Components'}
+                message={'Browse or search for components, then add them to the blueprint.'}
+              />
+            </BlueprintContents>
+          </div>
+          )
+        ||
         inputs.selectedInput !== undefined &&
           <ComponentDetailsView
             parent={blueprintDisplayName}
@@ -567,8 +570,8 @@ class EditBlueprintPage extends React.Component {
             handleAddComponent={this.handleAddComponent}
             handleUpdateComponent={this.handleUpdateComponent}
             handleRemoveComponent={this.handleRemoveComponent}
-          />}
-
+          />
+        }
         <h3 className="cmpsr-panel__title cmpsr-panel__title--sidebar">Available Components</h3>
         {inputs.inputComponents !== undefined &&
           <div className="cmpsr-panel__body cmpsr-panel__body--sidebar">
@@ -711,6 +714,8 @@ EditBlueprintPage.propTypes = {
   commitToWorkspace: PropTypes.func,
   deleteHistory: PropTypes.func,
   startCompose: PropTypes.func,
+  blueprintContentsError: PropTypes.object,
+  blueprintContentsFetching: PropTypes.bool,
 };
 
 const makeMapStateToProps = () => {
@@ -736,6 +741,10 @@ const makeMapStateToProps = () => {
         modalActive: state.modals.modalActive,
         pastLength: getPastLength(fetchedBlueprint),
         futureLength: getFutureLength(fetchedBlueprint),
+        blueprintContentsError: fetchedBlueprint.errorState,
+        blueprintContentsFetching:
+          fetchedBlueprint.present.components === undefined &&
+          fetchedBlueprint.errorState === undefined ? true : false,
       };
     }
     return {
@@ -751,6 +760,7 @@ const makeMapStateToProps = () => {
       modalActive: state.modals.modalActive,
       pastLength: 0,
       futureLength: 0,
+      blueprintContentsError: {},
     };
   };
   return mapStateToProps;

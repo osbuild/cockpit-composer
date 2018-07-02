@@ -19,7 +19,7 @@ import {
   DELETING_BLUEPRINT, deletingBlueprintSucceeded,
   COMMIT_TO_WORKSPACE,
   START_COMPOSE,
-  blueprintsFailure,
+  blueprintsFailure, blueprintContentsFailure,
 } from '../actions/blueprints';
 import { makeGetBlueprintById } from '../selectors';
 
@@ -84,7 +84,7 @@ function* fetchBlueprintContents(action) {
     yield put(fetchingBlueprintContentsSucceeded(blueprintPast, blueprintPresent, workspacePendingChanges));
   } catch (error) {
     console.log('Error in fetchBlueprintContentsSaga');
-    yield put(blueprintsFailure(error));
+    yield put(blueprintContentsFailure(error, action.payload.blueprintId));
   }
 }
 

@@ -136,6 +136,14 @@ export const blueprintsFailure = (error) => ({
     error,
   },
 });
+export const BLUEPRINT_CONTENTS_FAILURE = 'BLUEPRINT_CONTENTS_FAILURE';
+export const blueprintContentsFailure = (error, blueprintId) => ({
+  type: BLUEPRINT_CONTENTS_FAILURE,
+  payload: {
+    error,
+    blueprintId
+  },
+});
 
 export const UNDO = 'UNDO';
 export const undo = (blueprintId) => ({
