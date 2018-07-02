@@ -9,7 +9,6 @@ import ComponentDetailsView from '../../components/ListView/ComponentDetailsView
 import CreateImage from '../../components/Modal/CreateImage';
 import ExportBlueprint from '../../components/Modal/ExportBlueprint';
 import EmptyState from '../../components/EmptyState/EmptyState';
-import Loading from '../../components/Loading/Loading';
 import BlueprintToolbar from '../../components/Toolbar/BlueprintToolbar';
 import ListView from '../../components/ListView/ListView';
 import ListItemImages from '../../components/ListView/ListItemImages';
@@ -272,28 +271,29 @@ class BlueprintPage extends React.Component {
                     componentsSortSetValue={this.props.componentsSortSetValue}
                     dependenciesSortSetValue={this.props.dependenciesSortSetValue}
                   />
-                  {(blueprint.components === undefined &&
-                    <Loading />) ||
-                    ((selectedComponents === undefined || selectedComponents.length === 0) &&
-                      componentsFilters.filterValues.length === 0) &&
-                      <EmptyState
-                        title={'Empty Blueprint'}
-                        message={'There are no components listed in the blueprint. Edit the blueprint to add components.'}
-                      >
-                        <Link to={`/edit/${this.props.route.params.blueprint}`}>
-                          <button className="btn btn-default btn-primary" type="button">
-                            Edit Blueprint
-                          </button>
-                        </Link>
-                      </EmptyState> ||
-                    <BlueprintContents
-                      components={selectedComponents}
-                      dependencies={dependencies}
-                      noEditComponent
-                      handleComponentDetails={this.handleComponentDetails}
-                      filterClearValues={this.props.componentsFilterClearValues}
-                    />}
-                </div>) ||
+                  <BlueprintContents
+                    components={selectedComponents}
+                    dependencies={dependencies}
+                    noEditComponent
+                    handleComponentDetails={this.handleComponentDetails}
+                    filterClearValues={this.props.componentsFilterClearValues}
+                    filterValues={componentsFilters.filterValues}
+                    errorState={this.props.blueprintContentsError}
+                    fetchingState={this.props.blueprintContentsFetching}
+                  >
+                    <EmptyState
+                      title={'Empty Blueprint'}
+                      message={'There are no components listed in the blueprint. Edit the blueprint to add components.'}
+                    >
+                      <Link to={`/edit/${this.props.route.params.blueprint}`}>
+                        <button className="btn btn-default btn-primary" type="button">
+                          Edit Blueprint
+                        </button>
+                      </Link>
+                    </EmptyState>
+                  </BlueprintContents>
+                </div>)
+                ||
                 <div className="col-sm-12 cmpsr-component-details--view">
                   <h3 className="cmpsr-panel__title cmpsr-panel__title--main">Component Details</h3>
                   <ComponentDetailsView
@@ -303,7 +303,8 @@ class BlueprintPage extends React.Component {
                     status={activeComponentStatus}
                     handleComponentDetails={this.handleComponentDetails}
                   />
-                </div>}
+                </div>
+              }
             </div>
           </Tab>
           <Tab tabTitle="Images" active={activeTab === 'Images'}>
@@ -387,6 +388,8 @@ BlueprintPage.propTypes = {
   setModalCreateImageBlueprintName: PropTypes.func,
   startCompose: PropTypes.func,
   fetchingImageStatus: PropTypes.func,
+  blueprintContentsError: PropTypes.object,
+  blueprintContentsFetching: PropTypes.bool,
 };
 
 const makeMapStateToProps = () => {
@@ -407,6 +410,10 @@ const makeMapStateToProps = () => {
         componentsSortKey: state.sort.components.key,
         componentsSortValue: state.sort.components.value,
         componentsFilters: state.filter.components,
+        blueprintContentsError: fetchedBlueprint.errorState,
+        blueprintContentsFetching:
+          fetchedBlueprint.present.components === undefined &&
+          fetchedBlueprint.errorState === undefined ? true : false,
       };
     }
     return {
@@ -419,6 +426,7 @@ const makeMapStateToProps = () => {
       componentsSortKey: state.sort.components.key,
       componentsSortValue: state.sort.components.value,
       componentsFilters: state.filter.components,
+      blueprintContentsError: {},
     };
   };
   return mapStateToProps;

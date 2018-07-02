@@ -31,7 +31,7 @@ const initialState = {
     },
   },
   blueprints: {
-    errorMessage: null,
+    errorState: null,
     fetchingBlueprints: true,
     blueprintList: [],
   },

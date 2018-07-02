@@ -5,7 +5,7 @@ import {
   FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED,
   ADD_BLUEPRINT_COMPONENT_SUCCEEDED, REMOVE_BLUEPRINT_COMPONENT_SUCCEEDED,
   SET_BLUEPRINT, SET_BLUEPRINT_DESCRIPTION, SET_BLUEPRINT_COMMENT,
-  DELETING_BLUEPRINT_SUCCEEDED, BLUEPRINTS_FAILURE,
+  DELETING_BLUEPRINT_SUCCEEDED, BLUEPRINTS_FAILURE, BLUEPRINT_CONTENTS_FAILURE,
   FETCHING_IMAGE_STATUS_SUCCEEDED,
 } from '../actions/blueprints';
 
@@ -46,7 +46,7 @@ const blueprints = (state = [], action) => {
       : state;
     case BLUEPRINTS_FAILURE:
       return Object.assign({}, state, {
-        errorMessage: action.payload.error,
+        errorState: action.payload.error,
         fetchingBlueprints: false,
       });
     case FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED:
@@ -60,6 +60,20 @@ const blueprints = (state = [], action) => {
           ]
         }
       );
+    case BLUEPRINT_CONTENTS_FAILURE:
+      return Object.assign({}, state, {
+        blueprintList: [
+          ...state.blueprintList.map(blueprint => {
+            if (blueprint.present.id === action.payload.blueprintId) {
+              return Object.assign({}, blueprint, {
+                  errorState: action.payload.error,
+                });
+              }
+              return blueprint;
+            }
+          ),
+        ]
+      });
     case ADD_BLUEPRINT_COMPONENT_SUCCEEDED:
       return Object.assign({}, state, {
           blueprintList: [

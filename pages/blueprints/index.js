@@ -247,7 +247,7 @@ const makeMapStateToProps = () => {
         blueprintSortKey: state.sort.blueprints.key,
         blueprintSortValue: state.sort.blueprints.value,
         blueprintFilters: state.filter.blueprints,
-        blueprintsError: state.blueprints.errorMessage,
+        blueprintsError: state.blueprints.errorState,
         blueprintsLoading: state.blueprints.fetchingBlueprints,
       };
     }
@@ -259,7 +259,7 @@ const makeMapStateToProps = () => {
       blueprintSortKey: state.sort.blueprints.key,
       blueprintSortValue: state.sort.blueprints.value,
       blueprintFilters: state.filter.blueprints,
-      blueprintsError: state.blueprints.errorMessage,
+      blueprintsError: state.blueprints.errorState,
       blueprintsLoading: state.blueprints.fetchingBlueprints,
     };
   };
