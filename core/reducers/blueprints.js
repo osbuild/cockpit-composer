@@ -72,8 +72,10 @@ const blueprints = (state = [], action) => {
                     components: action.payload.components,
                     packages: action.payload.packages,
                     localPendingChanges: blueprint.present.localPendingChanges.some((component) => {
-                      return (component.componentNew === action.payload.pendingChange.componentOld && component.componentNew !== null)
-                      || (component.componentOld === action.payload.pendingChange.componentNew && component.componentOld !== null)
+                      return (component.componentNew === action.payload.pendingChange.componentOld
+                        && component.componentNew !== null)
+                      || (component.componentOld === action.payload.pendingChange.componentNew
+                        && component.componentOld !== null)
                     }) ? blueprint.present.localPendingChanges.filter((component) => {
                       return component.componentNew != action.payload.pendingChange.componentOld
                       || component.componentOld != action.payload.pendingChange.componentNew
@@ -98,8 +100,10 @@ const blueprints = (state = [], action) => {
                     components: action.payload.components,
                     packages: action.payload.packages,
                     localPendingChanges: blueprint.present.localPendingChanges.some((component) => {
-                      return (component.componentNew === action.payload.pendingChange.componentOld && component.componentNew !== null)
-                       || (component.componentOld === action.payload.pendingChange.componentNew && component.componentOld !== null)
+                      return (component.componentNew === action.payload.pendingChange.componentOld
+                        && component.componentNew !== null)
+                       || (component.componentOld === action.payload.pendingChange.componentNew
+                         && component.componentOld !== null)
                     }) ? blueprint.present.localPendingChanges.filter((component) => {
                       return component.componentNew != action.payload.pendingChange.componentOld
                       || component.componentOld != action.payload.pendingChange.componentNew
