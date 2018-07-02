@@ -27,7 +27,7 @@ class BlueprintListView extends React.PureComponent {
               <div className="list-view-pf-checkbox">
                 <input type="checkbox" />
               </div>
-              <div className="list-view-pf-actions">n
+              <div className="list-view-pf-actions">
                 <Link to={`/edit/${blueprint.name}`} className="btn btn-default">
                   Edit Blueprint
                 </Link>
