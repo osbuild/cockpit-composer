@@ -40,7 +40,7 @@ env:
     - COMMAND=eslint
     - COMMAND=stylelint
     - COMMAND=unit-test
-    - COMMAND=end-to-end-test
+    # - COMMAND=end-to-end-test
     - COMMAND=cockpit-test
 script:
   - make "$COMMAND"

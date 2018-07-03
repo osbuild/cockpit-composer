@@ -98,7 +98,7 @@ shared: metadata.db
 	sudo mkdir -p failed-image
 	sudo docker network inspect welder >/dev/null 2>&1 || sudo docker network create welder
 	sudo docker ps --quiet --all --filter 'ancestor=welder/bdcs-api-img' | sudo xargs --no-run-if-empty docker rm -f
-	sudo docker run -d --name api --restart=always -p 4000:4000 -v bdcs-recipes-volume:/recipes -v `pwd`:/mddb --network welder --security-opt label=disable welder/bdcs-api-img:latest
+	sudo docker run -d --name api --restart=always -v bdcs-recipes-volume:/recipes -v `pwd`:/mddb -v bdcs-socket:/run/weldr --security-opt label=disable welder/bdcs-api-img:latest
 
 end-to-end-test: shared
 	if [ -n "$$TRAVIS" ]; then \
@@ -138,19 +138,14 @@ cockpit-test: shared build-rpm
 	# don't interfere with host-installed cockpit
 	sudo systemctl stop cockpit.socket cockpit.service || true
 
-	sudo docker run -d --name web --restart=always --network host welder/web-cockpit:latest
+	sudo docker run -d --name web -v bdcs-socket:/run/weldr --restart=always --network host welder/web-cockpit:latest
 
 # Clean generated intermediate tar file and useless RPM file
 # RPM file is inside docker image already
 	rm -f welder-web*.rpm welder-web*.tar.gz
 
-	until curl http://localhost:4000/api/status | grep 'db_supported":true'; do \
-	    sleep 1; \
-	    echo "Waiting for backend API to become ready before testing ..."; \
-	done;
-
 	sudo docker run --rm --name welder_end_to_end --network host \
-	    -v `pwd`/failed-image:/tmp/failed-image \
+	    -v `pwd`/failed-image:/tmp/failed-image -v bdcs-socket:/run/weldr \
 	    -e COCKPIT_TEST=1 \
 	    welder/web-e2e-tests:latest npm run test
 	sudo docker ps --quiet --all --filter 'ancestor=welder/web-cockpit' | sudo xargs --no-run-if-empty docker rm -f
