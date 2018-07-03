@@ -72,7 +72,7 @@ module.exports = class EditBlueprintPage extends MainPage {
     this.totalComponentCount = `${this.blueprintInputRootElement} .cmpsr-blueprint__inputs__pagination span`;
 
     // filter input
-    this.inputFilter = `${this.blueprintInputRootElement} .toolbar-pf .toolbar-pf-actions .toolbar-pf-filter .input-group
+    this.inputFilter = `${this.blueprintInputRootElement} .toolbar-pf .toolbar-pf-actions .toolbar-pf-filter
       input[id="cmpsr-blueprint-input-filter"]`;
 
     // filter type
