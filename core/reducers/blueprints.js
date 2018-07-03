@@ -17,7 +17,8 @@ const blueprints = (state = [], action) => {
               past: [],
               present: Object.assign({}, action.payload.blueprint,  {
                 localPendingChanges: [],
-                workspacePendingChanges: {addedChanges: [], deletedChanges: []}
+                workspacePendingChanges: {addedChanges: [], deletedChanges: []},
+                images: [],
               }),
               future: [],
             }
@@ -140,7 +141,8 @@ const blueprints = (state = [], action) => {
                   past: [],
                   present: Object.assign({}, action.payload.blueprint, {
                     localPendingChanges: [],
-                    workspacePendingChanges: {addedChanges: [], deletedChanges: []}
+                    workspacePendingChanges: {addedChanges: [], deletedChanges: []},
+                    images: [],
                   }),
                   future: [],
                 });
