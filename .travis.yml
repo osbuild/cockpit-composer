@@ -20,15 +20,22 @@ before_install:
         npm install -g codecov
         npm install -g nyc@11.1.0
 
-        if [ "$COMMAND" == "cockpit-test" ]; then
+        if [ "$COMMAND" == "bdcs-test" ]; then
             sudo docker pull welder/web-e2e-tests:latest
-            sudo docker pull welder/web-cockpit:latest
+            sudo docker pull welder/web-bdcs:latest
         fi
-        if [ "$COMMAND" == "end-to-end-test" ]; then
-            sudo docker pull welder/web:latest
+        if [ "$COMMAND" == "lorax-test" ]; then
+            sudo docker pull welder/web-lorax:latest
             sudo docker pull welder/web-e2e-tests:latest
-        else
+        fi
+install:
+  - |
+        if [ "$COMMAND" != "bdcs-test" ]; then
             npm install
+        fi
+
+        if [ "$COMMAND" == "lorax-test" ]; then
+            node run build --with-coverage
         fi
 env:
   global:
@@ -40,32 +47,32 @@ env:
     - COMMAND=eslint
     - COMMAND=stylelint
     - COMMAND=unit-test
-    # - COMMAND=end-to-end-test
-    - COMMAND=cockpit-test
+    - COMMAND=lorax-test
+    - COMMAND=bdcs-test
 script:
   - make "$COMMAND"
 after_success:
   - if [ "$COMMAND" == "unit-test" ]; then cat ./coverage/lcov.info | codecov; fi
   - |
-        if [ "$COMMAND" == "end-to-end-test" ]; then
+        if [ "$COMMAND" == "lorax-test" ]; then
             nyc report
             nyc report --reporter=lcov && codecov
         fi
         if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
             docker login -u atodorov -p $DOCKER_PASSWORD
-            if [ "$COMMAND" == "end-to-end-test" ]; then
+            if [ "$COMMAND" == "lorax-test" ]; then
                 # tag the current builds with the build number
                 # if nothing has been changed the push will detect that
                 # and the new tag will appear on Docker Hub without anything being
                 # actually uploaded
-                sudo docker tag welder/web:latest welder/web:$TRAVIS_BUILD_NUMBER
+                sudo docker tag welder/web-lorax:latest welder/web-lorax:$TRAVIS_BUILD_NUMBER
                 sudo docker tag welder/web-e2e-tests:latest welder/web-e2e-tests:$TRAVIS_BUILD_NUMBER
-                docker push welder/web
+                docker push welder/web-lorax
                 docker push welder/web-e2e-tests
             fi
-            if [ "$COMMAND" == "cockpit-test" ]; then
-                sudo docker tag welder/web-cockpit:latest welder/web-cockpit:$TRAVIS_BUILD_NUMBER
-                docker push welder/web-cockpit
+            if [ "$COMMAND" == "bdcs-test" ]; then
+                sudo docker tag welder/web-bdcs:latest welder/web-bdcs:$TRAVIS_BUILD_NUMBER
+                docker push welder/web-bdcs
             fi
         fi
 after_failure:

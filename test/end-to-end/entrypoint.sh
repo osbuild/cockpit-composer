@@ -11,14 +11,10 @@ sleep 3
 java -jar selenium-server-standalone-3.11.0.jar > /dev/null 2>&1 &
 sleep 5 # wait to initialize
 
-if [ "$COCKPIT_TEST" ]; then
-    sed -i "s|baseUrl: 'http://localhost:3000/'|baseUrl: 'http://localhost:9090/welder'|" wdio.conf.js
-fi
-
 echo "Running with config.json settings:"
 cat ./wdio.conf.js
 
-until curl --unix-socket /run/weldr/api.socket http://localhost/api/status | grep 'db_supported":true'; do \
+until curl --unix-socket /run/weldr/api.socket http://localhost/api/status | grep "\"db_supported\": *true"; do \
     sleep 1; \
     echo "Waiting for backend API to become ready before testing ..."; \
 done;

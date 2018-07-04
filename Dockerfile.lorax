@@ -1,0 +1,17 @@
+FROM fedora:latest
+LABEL maintainer="Xiaofeng Wang" \
+      email="xiaofwan@redhat.com" \
+      baseimage="Fedora:latest" \
+      description="Docker container with Cockpit and lorax-composer installed"
+
+RUN dnf install -y lorax-composer less lorax cockpit-ws cockpit-kubernetes && dnf clean all
+RUN echo $'[Negotiate]\nCommand = /usr/libexec/cockpit-stub\n[WebService]\nShell = /shell/simple.html' > /etc/cockpit/cockpit.conf
+RUN rm -rf /usr/share/cockpit/kubernetes/
+
+RUN mkdir -p /blueprints
+
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+
+CMD ["/usr/libexec/cockpit-ws", "--no-tls"]
+EXPOSE 9090

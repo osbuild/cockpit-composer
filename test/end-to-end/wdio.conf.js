@@ -79,10 +79,10 @@ exports.config = {
   // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
   // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
   // gets prepended directly.
-  baseUrl: 'http://localhost:3000/',
+  baseUrl: 'http://localhost:9090/welder',
   //
   // Default timeout for all waitFor* commands.
-  waitforTimeout: 60000,
+  waitforTimeout: 90000,
   //
   // Default timeout in milliseconds for request
   // if Selenium Grid doesn't send response

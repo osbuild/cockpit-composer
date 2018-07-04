@@ -88,37 +88,29 @@ metadata.db:
 	sudo docker cp import-metadata:/metadata.db .
 	sudo docker rm import-metadata
 
-shared: metadata.db
+shared:
 	if [ -n "$$TRAVIS" ]; then \
 	    sudo docker build -f ./test/end-to-end/Dockerfile --cache-from welder/web-e2e-tests:latest -t welder/web-e2e-tests:latest ./test/end-to-end/; \
 	else \
 	    sudo docker build -f ./test/end-to-end/Dockerfile -t welder/web-e2e-tests:latest ./test/end-to-end/ ; \
 	fi;
 
-	sudo mkdir -p failed-image
-	sudo docker network inspect welder >/dev/null 2>&1 || sudo docker network create welder
-	sudo docker ps --quiet --all --filter 'ancestor=welder/bdcs-api-img' | sudo xargs --no-run-if-empty docker rm -f
-	sudo docker run -d --name api --restart=always -v bdcs-recipes-volume:/recipes -v `pwd`:/mddb -v bdcs-socket:/run/weldr --security-opt label=disable welder/bdcs-api-img:latest
-
-end-to-end-test: shared
+lorax-test: shared
 	if [ -n "$$TRAVIS" ]; then \
-	    sudo docker build --cache-from welder/web:latest -t welder/web:latest . ; \
+	    sudo docker build -f Dockerfile.lorax --cache-from welder/web-lorax:latest -t welder/web-lorax:latest . ; \
 	else \
-	    sudo docker build -t welder/web:latest . ; \
+	    sudo docker build -f Dockerfile.lorax -t welder/web-lorax:latest . ; \
 	fi;
 
-	sudo docker run -d --name web -p 3000:3000 --restart=always --network welder welder/web:latest
+	sudo docker run -d --name web --restart=always -v bdcs-socket:/run/weldr -v `pwd`/public:/usr/share/cockpit/welder --network host welder/web-lorax:latest
 
-	until curl http://localhost:4000/api/status | grep 'db_supported":true'; do \
-	    sleep 1; \
-	    echo "Waiting for backend API to become ready before testing ..."; \
-	done;
-
+	sudo mkdir -p failed-image
 	sudo docker run --rm --name welder_end_to_end --network host \
 	    -v `pwd`/.nyc_output/:/tmp/.nyc_output \
 	    -v `pwd`/failed-image:/tmp/failed-image \
+	    -v bdcs-socket:/run/weldr \
 	    welder/web-e2e-tests:latest npm run test
-	sudo docker ps --quiet --all --filter 'ancestor=welder/web' | sudo xargs --no-run-if-empty docker rm -f
+	sudo docker ps --quiet --all --filter 'ancestor=welder/web-lorax' | sudo xargs --no-run-if-empty docker rm -f
 
 build-rpm:
 	if [ -n "$$TRAVIS" ]; then \
@@ -129,16 +121,19 @@ build-rpm:
 
 	sudo docker run --rm --name buildrpm -v `pwd`:/welder welder/buildrpm:latest
 
-cockpit-test: shared build-rpm
+bdcs-test: shared metadata.db build-rpm
+	sudo docker ps --quiet --all --filter 'ancestor=welder/bdcs-api-img' | sudo xargs --no-run-if-empty docker rm -f
+	sudo docker run -d --name api --restart=always -v bdcs-recipes-volume:/recipes -v `pwd`:/mddb -v bdcs-socket:/run/weldr --security-opt label=disable welder/bdcs-api-img:latest
+
 	if [ -n "$$TRAVIS" ]; then \
-	    sudo docker build -f Dockerfile.cockpit --cache-from welder/web-cockpit:latest -t welder/web-cockpit:latest .; \
+	    sudo docker build -f Dockerfile.cockpit --cache-from welder/web-bdcs:latest -t welder/web-bdcs:latest .; \
 	else \
-	    sudo docker build -f Dockerfile.cockpit -t welder/web-cockpit:latest .; \
+	    sudo docker build -f Dockerfile.cockpit -t welder/web-bdcs:latest .; \
 	fi;
 	# don't interfere with host-installed cockpit
 	sudo systemctl stop cockpit.socket cockpit.service || true
 
-	sudo docker run -d --name web -v bdcs-socket:/run/weldr --restart=always --network host welder/web-cockpit:latest
+	sudo docker run -d --name web -v bdcs-socket:/run/weldr --restart=always --network host welder/web-bdcs:latest
 
 # Clean generated intermediate tar file and useless RPM file
 # RPM file is inside docker image already
@@ -146,9 +141,8 @@ cockpit-test: shared build-rpm
 
 	sudo docker run --rm --name welder_end_to_end --network host \
 	    -v `pwd`/failed-image:/tmp/failed-image -v bdcs-socket:/run/weldr \
-	    -e COCKPIT_TEST=1 \
 	    welder/web-e2e-tests:latest npm run test
-	sudo docker ps --quiet --all --filter 'ancestor=welder/web-cockpit' | sudo xargs --no-run-if-empty docker rm -f
+	sudo docker ps --quiet --all --filter 'ancestor=welder/web-bdcs' | sudo xargs --no-run-if-empty docker rm -f
 
 ci: npm-install eslint stylelint unit-test end-to-end-test cockpit-test
 
@@ -170,12 +164,10 @@ test_with_lorax_composer: rpm
 	sudo /bin/sh -c 'echo -e "[Negotiate]\nCommand = /usr/libexec/cockpit-stub\n[WebService]\nShell = /shell/simple.html" > /etc/cockpit/cockpit.conf'
 	sudo setenforce 0
 
-# patch application to use UNIX socket with lorax-composer
-	sudo sed -i "s|welderApiPort=.*|welderApiPort='/run/weldr/api.socket';|" /usr/share/cockpit/welder/js/config.js
+# restart cockpit
 	sudo systemctl restart cockpit
 
-# build e2e test images with increased timeouts
-	sed -i "s|waitforTimeout: 30000|waitforTimeout: 90000|" ./test/end-to-end/wdio.conf.js
+# build e2e test images
 	sudo docker build -f ./test/end-to-end/Dockerfile -t welder/web-e2e-tests:latest ./test/end-to-end/
 
 # execute lorax-composer in the background to serve as the API backend
@@ -184,7 +176,7 @@ test_with_lorax_composer: rpm
 	sudo lorax-composer --group cockpit-ws /recipes &
 
 # wait for the backend to become ready
-	until sudo curl --unix-socket /run/weldr/api.socket http://localhost:4000/api/status | grep 'db_supported": true'; do \
+	until sudo curl --unix-socket /run/weldr/api.socket http://localhost:4000/api/status | grep '"db_supported": true'; do \
 	    sleep 1; \
 	    echo "Waiting for backend API to become ready before testing ..."; \
 	done;
