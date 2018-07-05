@@ -145,62 +145,14 @@ class ListItemComponents extends React.Component {
                       <dd>{listItem.version ? listItem.version : <span>&nbsp;</span>}</dd>
                       <dt>Release</dt>
                       <dd>{listItem.release ? listItem.release : <span>&nbsp;</span>}</dd>
-                      <dt>Architecture</dt>
-                      <dd>---</dd>
-                      <dt>Install Size</dt>
-                      <dd>2 MB (5 MB with Dependencies)</dd>
                       <dt>URL</dt>
                       {(listItem.homepage != null &&
                         <dd><a target="_blank" href={listItem.homepage}>{listItem.homepage}</a></dd>) ||
                         <dd>&nbsp;</dd>}
-                      <dt>Packager</dt>
-                      <dd>Red Hat</dd>
-                      <dt>Product Family</dt>
-                      <dd>---</dd>
-                      <dt>Lifecycle</dt>
-                      <dd>01/15/2017</dd>
-                      <dt>Support Level</dt>
-                      <dd>Standard</dd>
                     </dl>
                   </div>
                   <div className="col-md-6">
                     {this.state.dependencies.length > 0 && <ComponentSummaryList listItems={this.state.dependencies} />}
-                  </div>
-                  <div className="col-md-12 hidden">
-                    <div className="cmpsr-summary-listview">
-                      <p>
-                        <strong>Errata</strong>
-                        <a href="#" className="pull-right hidden">Show All</a>
-                      </p>
-                      <div className="list-pf cmpsr-list-pf__compacted">
-                        <div className="list-pf-item">
-                          <div className="list-pf-container">
-                            <div className="list-pf-content list-pf-content-flex ">
-                              <div className="list-pf-content-wrapper">
-                                <div className="list-pf-main-content">
-                                  <div className="list-pf-description">
-                                    <a href="#">RHBA-2016:1641 RHEL Atomic OSTree Update 7.2.6-1</a>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="list-pf-item">
-                          <div className="list-pf-container">
-                            <div className="list-pf-content list-pf-content-flex ">
-                              <div className="list-pf-content-wrapper">
-                                <div className="list-pf-main-content">
-                                  <div className="list-pf-description">
-                                    <a href="#">RHBA-2016:1641 RHEL Atomic OSTree Update 7.2.6-1</a>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>

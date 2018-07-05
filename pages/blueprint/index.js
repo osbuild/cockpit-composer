@@ -48,38 +48,8 @@ class BlueprintPage extends React.Component {
     this.handleStartCompose = this.handleStartCompose.bind(this);
 
     this.state = {
-      changes: [
-        {
-          commit: "3eaa3e0f732e37be4629042b8b74a4873ebb9909",
-          time: "Thu,  9 Nov 2017 14:50:41 +0000",
-          message: "These are comments about the changes that were committed."
-        },
-        {
-          commit: "627a776366f1f89e70d7453e1d7f4c88e9025229",
-          time: "Thu,  9 Nov 2017 14:48:49 +0000",
-          message:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur \
-          sagittis ullamcorper commodo. Pellentesque vitae arcu non eros \
-          tincidunt malesuada."
-        },
-        {
-          commit: "5fc425a221d207393ae3720eaea5cbb9308657c3",
-          time: "Wed, 18 Oct 2017 17:44:50 +0000",
-          message: "Etiam aliquet elit sit amet mauris pretium, ut hendrerit mauris lacinia."
-        },
-        {
-          commit: "8feb1e64d7e3f9d8a16ec0476bc76447c67d7f63",
-          time: "Wed, 18 Oct 2017 17:41:10 +0000",
-          message: "Nullam nisl tellus, finibus et porttitor quis, efficitur ac ante."
-        },
-        {
-          commit: "a41325a28174d53ad5e54d2868a0fd312875468f",
-          time: "Thu,  5 Oct 2017 19:54:42 +0000",
-          message:
-          "Mauris tincidunt, tellus id commodo fermentum, tellus nisi elementum \
-          nisi, vitae lacinia augue sem eget turpis."
-        },
-      ],
+      changes: [],
+      images: []
     };
   }
 
@@ -171,6 +141,27 @@ class BlueprintPage extends React.Component {
       activeComponent, activeComponentParent, activeComponentStatus,
     } = this.props.blueprintPage;
 
+    var changes;
+    if (this.state.changes.length > 0) {
+        changes = (
+          <div className="col-sm-6 col-lg-8">
+            <div className="cmpsr-summary-listview">
+              <p><strong>Changes</strong></p>
+              <div className="list-pf cmpsr-list-pf list-pf-stacked cmpsr-list-pf__compacted cmpsr-blueprint__changes">
+                {this.state.changes.map((change, i) => (
+                  <ListItemChanges
+                    listItem={change}
+                    number={this.state.changes.length - i}
+                    listItemParent="cmpsr-blueprint__changes"
+                    key={i}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+    }
+
     return (
       <Layout className="container-fluid" ref="layout">
         <header className="cmpsr-header">
@@ -258,27 +249,9 @@ class BlueprintPage extends React.Component {
                         <span className="pficon pficon-edit" />
                       </button>
                     </dd>}
-                  <dt>Install size</dt>
-                  <dd>2,678 KB</dd>
-                  <dt>Last modified date</dt>
-                  <dd>Thu,  9 Nov 2017</dd>
                 </dl>
               </div>
-              <div className="col-sm-6 col-lg-8">
-                <div className="cmpsr-summary-listview">
-                  <p><strong>Changes</strong></p>
-                  <div className="list-pf cmpsr-list-pf list-pf-stacked cmpsr-list-pf__compacted cmpsr-blueprint__changes">
-                    {this.state.changes.map((change, i) => (
-                      <ListItemChanges
-                        listItem={change}
-                        number={this.state.changes.length - i}
-                        listItemParent="cmpsr-blueprint__changes"
-                        key={i}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
+              {changes}
             </div>
           </Tab>
           <Tab tabTitle="Selected Components" active={activeTab === 'SelectedComponents'}>
