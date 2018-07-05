@@ -30,7 +30,11 @@ const initialState = {
         value: '',
     },
   },
-  blueprints : [],
+  blueprints: {
+    errorState: null,
+    fetchingBlueprints: true,
+    blueprintList: [],
+  },
   modals: {
     createImage: {
       name: '',
@@ -86,10 +90,10 @@ const initialState = {
       filterValues: [],
       filterTypes: [
         {
-          id: "name",
-          title: "Name",
-          placeholder: "Filter by Name",
-          filterType: "text"
+          id: 'name',
+          title: 'Name',
+          placeholder: 'Filter by Name',
+          filterType: 'text'
         }
       ],
       defaultFilterType: 'name'
@@ -98,22 +102,22 @@ const initialState = {
       filterValues: [],
       filterTypes: [
         {
-          id: "name",
-          title: "Name",
-          placeholder: "Filter by Name",
-          filterType: "text"
+          id: 'name',
+          title: 'Name',
+          placeholder: 'Filter by Name',
+          filterType: 'text'
         },
         {
-          id: "version",
-          title: "Version",
-          placeholder: "Filter by Version",
-          filterType: "text"
+          id: 'version',
+          title: 'Version',
+          placeholder: 'Filter by Version',
+          filterType: 'text'
         },
         {
-          id: "release",
-          title: "Release",
-          placeholder: "Filter by Release",
-          filterType: "text"
+          id: 'release',
+          title: 'Release',
+          placeholder: 'Filter by Release',
+          filterType: 'text'
         }
       ],
       defaultFilterType: 'name'

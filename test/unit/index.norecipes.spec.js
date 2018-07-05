@@ -9,7 +9,26 @@ describe('Home page', () => {
   };
   const mockState = {
     blueprints: [],
-    sort: { blueprints: [] },
+    sort: {
+      blueprints: {
+        key: 'name',
+        value: 'DESC',
+      },
+    },
+    filter: {
+      blueprints: {
+        filterValues: [],
+        filterTypes: [
+          {
+            id: 'name',
+            title: 'Name',
+            placeholder: 'Filter by Name',
+            filterType: 'text'
+          }
+        ],
+        defaultFilterType: 'name'
+      },
+    },
     modals: {
       createImage: mockCreateImage,
       createBlueprint: { blueprint: {} },

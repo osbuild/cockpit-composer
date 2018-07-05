@@ -56,7 +56,7 @@ ToolbarLayout.propTypes = {
   filters: PropTypes.object,
   filterRemoveValue: PropTypes.func,
   filterClearValues: PropTypes.func,
-  children: PropTypes.element,
+  children: PropTypes.node,
 };
 
 export default ToolbarLayout;
