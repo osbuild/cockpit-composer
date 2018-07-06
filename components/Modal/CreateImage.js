@@ -18,13 +18,16 @@ class CreateImage extends React.Component {
 
   componentDidMount() {
     $(this.modal).modal('show');
-    $(this.modal).on('hidden.bs.modal', this.props.handleHideModal);
+    if (this.props.handleHideModal)
+      $(this.modal).on('hidden.bs.modal', this.props.handleHideModal);
   }
 
   handleCreateImage() {
     NotificationsApi.displayNotification(this.props.blueprint, 'creating');
-    this.props.setNotifications();
-    this.props.handleStartCompose(this.props.blueprint, this.state.imageType);
+    if (this.props.setNotifications)
+      this.props.setNotifications();
+    if (this.props.handleStartCompose)
+      this.props.handleStartCompose(this.props.blueprint, this.state.imageType);
     $('#cmpsr-modal-crt-image').modal('hide');
   }
 
