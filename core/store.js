@@ -30,11 +30,7 @@ const initialState = {
         value: '',
     },
   },
-  blueprints: {
-    errorState: null,
-    fetchingBlueprints: true,
-    blueprintList: [],
-  },
+  blueprints: [],
   modals: {
     createImage: {
       name: '',
