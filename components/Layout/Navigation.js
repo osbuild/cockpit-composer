@@ -13,9 +13,11 @@ class Navigation extends React.Component {
   componentDidMount() {
     // Initialize the vertical navigation
     $().setupVerticalNavigation(true);
+
+    this.handleNavClick = this.handleNavClick.bind(this);
   }
 
-  handleNavClick = (e) => {
+  handleNavClick(e) {
     $(e.target).tooltip('hide');
   }
 
@@ -30,7 +32,7 @@ class Navigation extends React.Component {
                 className="fa fa-shield"
                 data-toggle="tooltip"
                 title="Blueprints"
-                onClick={(e) => this.handleNavClick(e)}
+                onClick={this.handleNavClick}
               >
               </span>
               <span className="list-group-item-value">Blueprints</span>

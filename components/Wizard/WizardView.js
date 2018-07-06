@@ -6,14 +6,16 @@ import PropTypes from 'prop-types';
 
 class WizardView extends React.Component {
 
-  // componentDidMount() {
-  //   const wizard = new Wizard('#complete');
-  // }
+  constructor() {
+      super();
 
-  handleClose = (event) => {
-    this.props.handleClose(event);
-  };
+      this.handleClose = this.handleClose.bind(this);
+  }
 
+  handleClose(event) {
+    if (this.props.handleClose)
+      this.props.handleClose(event);
+  }
 
   render() {
     return (
