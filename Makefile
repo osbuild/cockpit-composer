@@ -144,7 +144,7 @@ bdcs-test: shared metadata.db build-rpm
 	    welder/web-e2e-tests:latest npm run test
 	sudo docker ps --quiet --all --filter 'ancestor=welder/web-bdcs' | sudo xargs --no-run-if-empty docker rm -f
 
-ci: npm-install eslint stylelint unit-test end-to-end-test cockpit-test
+ci: npm-install eslint stylelint unit-test lorax-test bdcs-test
 
 ci_after_success:
 	[ -f ./node_modules/codecov/bin/codecov ] || npm install codecov
@@ -185,7 +185,7 @@ test_with_lorax_composer: rpm
 	sudo mkdir -p failed-image
 	sudo docker run --rm --name welder_end_to_end --network host -v /run/weldr:/run/weldr   \
 	                -v `pwd`/failed-image:/tmp/failed-image                                 \
-	                -e COCKPIT_TEST=1 welder/web-e2e-tests:latest                           \
+	                welder/web-e2e-tests:latest                                             \
 	                npm run test
 
 .PHONY: metadata.db ci ci_after_success test_with_lorax_composer
