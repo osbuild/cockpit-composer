@@ -45,10 +45,7 @@ describe('CreateImage', () => {
   beforeEach(() => {
     props = {
       imageTypes: typeList,
-      blueprint: undefined,
-      setNotifications: undefined,
-      handleStartCompose: undefined,
-      handleHideModal: undefined,
+      blueprint: undefined
     };
     shallowedCreateImage = undefined;
   });
