@@ -81,10 +81,14 @@ describe('CreateImage', () => {
       const setNotificationsSpy = jest.fn();
       props.setNotifications = setNotificationsSpy;
 
+      const handleStartComposeSpy = jest.fn();
+      props.handleStartCompose = handleStartComposeSpy;
+
       const wrapper = createImage();
       wrapper.find('.btn-primary').simulate('click');
 
       expect(setNotificationsSpy).toHaveBeenCalledTimes(1);
+      expect(handleStartComposeSpy).toHaveBeenCalledTimes(1);
     });
   });
 
