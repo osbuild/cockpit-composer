@@ -31,24 +31,11 @@ jest.mock('../../core/utils', () => ({ apiFetch: jest.fn().mockImplementation(()
 }));
 
 describe('CreateImage', () => {
-  let props;
-  let shallowedCreateImage;
-  const createImage = () => {
-    if (!shallowedCreateImage) {
-      shallowedCreateImage = shallow(
-        <CreateImage {...props} />
-      );
-    }
-    return shallowedCreateImage;
+  const createImage = (props) => {
+    return shallow(
+      <CreateImage {...Object.assign({ imageTypes: typeList }, props)} />
+    );
   };
-
-  beforeEach(() => {
-    props = {
-      imageTypes: typeList,
-      blueprint: undefined
-    };
-    shallowedCreateImage = undefined;
-  });
 
   test('always renders a div', () => {
     const divs = createImage().find('div');
@@ -58,30 +45,33 @@ describe('CreateImage', () => {
 
   describe('the rendered div', () => {
     test('contains everything else that gets rendered', () => {
-      const divs = createImage().find('div');
+      const wrapper = createImage();
+      const divs = wrapper.find('div');
       const wrappingDiv = divs.first();
 
-      expect(wrappingDiv.children()).toEqual(createImage().children());
+      expect(wrappingDiv.children()).toEqual(wrapper.children());
     });
   });
 
   describe('props test', () => {
     test('should render correct Blueprint name passed by props', () => {
       const fakeBlueprintName = faker.lorem.words();
-      props.blueprint = fakeBlueprintName;
-      const divs = createImage().find('.form-control-static');
+      const wrapper = createImage({ blueprint: fakeBlueprintName });
+
+      const divs = wrapper.find('.form-control-static');
 
       expect(divs.text()).toEqual(fakeBlueprintName);
     });
 
     test('setNofifications, passed by props, should be called by clicking Create button', () => {
       const setNotificationsSpy = jest.fn();
-      props.setNotifications = setNotificationsSpy;
-
       const handleStartComposeSpy = jest.fn();
-      props.handleStartCompose = handleStartComposeSpy;
 
-      const wrapper = createImage();
+      const wrapper = createImage({
+        setNotifications: setNotificationsSpy,
+        handleStartCompose: handleStartComposeSpy
+      });
+
       wrapper.find('.btn-primary').simulate('click');
 
       expect(setNotificationsSpy).toHaveBeenCalledTimes(1);
