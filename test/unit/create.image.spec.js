@@ -79,7 +79,9 @@ describe('CreateImage', () => {
 
     test('setNofifications, passed by props, should be called by clicking Create button', () => {
       const setNotificationsSpy = jest.fn();
+      const handleStartComposeSpy = jest.fn();
       props.setNotifications = setNotificationsSpy;
+      props.handleStartCompose = handleStartComposeSpy;
 
       const wrapper = createImage();
       wrapper.find('.btn-primary').simulate('click');
