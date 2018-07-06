@@ -5,8 +5,11 @@ import utils from '../../core/utils';
 
 class Actions extends React.Component {
 
-  state = { actions: [] };
+  constructor() {
+    super();
 
+    this.state = { actions: [] };
+  }
 
   componentDidMount() {
   }
