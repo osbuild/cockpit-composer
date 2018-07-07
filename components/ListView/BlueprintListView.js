@@ -40,18 +40,18 @@ class BlueprintListView extends React.PureComponent {
                   </button>
                 }
                 <div className="dropdown pull-right dropdown-kebab-pf">
-                   <button
-                     className="btn btn-link dropdown-toggle"
-                     type="button"
-                     id="dropdownKebabRight9"
-                     data-toggle="dropdown"
-                     aria-haspopup="true"
-                     aria-expanded="true"
-                   ><span className="fa fa-ellipsis-v"></span></button>
-                   <ul
-                     className="dropdown-menu dropdown-menu-right"
-                     aria-labelledby="dropdownKebabRight9"
-                   >
+                  <button
+                    className="btn btn-link dropdown-toggle"
+                    type="button"
+                    id="dropdownKebabRight9"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="true"
+                  ><span className="fa fa-ellipsis-v"></span></button>
+                  <ul
+                    className="dropdown-menu dropdown-menu-right"
+                    aria-labelledby="dropdownKebabRight9"
+                  >
                     {(blueprint.modules.length === 0 && blueprint.packages.length === 0) &&
                       <li className="disabled"><a aria-disabled="true">Export</a></li>
                       ||
