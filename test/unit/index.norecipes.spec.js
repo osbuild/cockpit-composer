@@ -59,7 +59,9 @@ describe('Home page', () => {
   });
 
   test('blank slate without blueprints', () => {
-    const component = mount(<Provider store={mockStore}><BlueprintsPage blueprints={mockState.blueprints.blueprintList} /></Provider>);
+    const component = mount(
+      <Provider store={mockStore}><BlueprintsPage blueprints={mockState.blueprints.blueprintList} /></Provider>
+    );
     const blankSlate = component.find('.blank-slate-pf');
 
     expect(blankSlate.text()).toContain('Create a blueprint');
