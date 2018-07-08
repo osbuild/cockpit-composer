@@ -9,7 +9,7 @@ import {
   startComposeApi, fetchImageStatusApi,
 } from '../apiCalls';
 import {
-  fetchingBlueprintsSucceeded,
+  fetchingBlueprintsSucceeded, fetchingBlueprintNamesSucceeded,
   FETCHING_BLUEPRINT_CONTENTS, fetchingBlueprintContentsSucceeded,
   fetchingImageStatusSucceeded,
   CREATING_BLUEPRINT, creatingBlueprintSucceeded,
@@ -31,6 +31,7 @@ function* fetchBlueprintsFromName(blueprintName) {
 function* fetchBlueprints() {
   try {
     const blueprintNames = yield call(fetchBlueprintNamesApi);
+    yield put(fetchingBlueprintNamesSucceeded());
     yield* blueprintNames.map(blueprintName => fetchBlueprintsFromName(blueprintName));
   } catch (error) {
     console.log('errorloadBlueprintsSaga');

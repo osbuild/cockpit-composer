@@ -8,7 +8,11 @@ describe('Home page', () => {
     imageTypes: [{ name: 'qcow2', enabled: true }],
   };
   const mockState = {
-    blueprints: [],
+    blueprints: {
+      errorState: null,
+      fetchingBlueprints: false,
+      blueprintList: [],
+    },
     sort: {
       blueprints: {
         key: 'name',
@@ -37,7 +41,7 @@ describe('Home page', () => {
   const mockStore = { subscribe: () => null, dispatch: () => null, state: mockState, getState: () => mockState };
 
   test('Home page render', () => {
-    const wrapper = shallow(<BlueprintsPage store={mockStore} blueprints={mockState.blueprints} />);
+    const wrapper = shallow(<BlueprintsPage store={mockStore} blueprints={mockState.blueprints.blueprintList} />);
     const nodeName = wrapper.name();
     const container = wrapper.first('div');
 
@@ -47,7 +51,7 @@ describe('Home page', () => {
 
   test('calls componentDidMount() lifecycle method', () => {
     const componentDidMountSpy = jest.spyOn(BlueprintsPage.prototype, 'componentDidMount');
-    mount(<Provider store={mockStore}><BlueprintsPage blueprints={mockState.blueprints} /></Provider>);
+    mount(<Provider store={mockStore}><BlueprintsPage blueprints={mockState.blueprints.blueprintList} /></Provider>);
 
     expect(componentDidMountSpy).toHaveBeenCalledTimes(1);
 
@@ -55,7 +59,7 @@ describe('Home page', () => {
   });
 
   test('blank slate without blueprints', () => {
-    const component = mount(<Provider store={mockStore}><BlueprintsPage blueprints={mockState.blueprints} /></Provider>);
+    const component = mount(<Provider store={mockStore}><BlueprintsPage blueprints={mockState.blueprints.blueprintList} /></Provider>);
     const blankSlate = component.find('.blank-slate-pf');
 
     expect(blankSlate.text()).toContain('Create a blueprint');
