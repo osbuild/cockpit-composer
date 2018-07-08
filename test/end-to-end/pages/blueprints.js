@@ -22,7 +22,7 @@ module.exports = class BlueprintsPage extends MainPage {
     this.itemsBlueprint = '.container-fluid .list-view-pf-view .list-group-item .list-group-item-header';
 
     // Button - Edit Blueprint
-    this.btnEditBlueprint = '.list-view-pf-actions a button';
+    this.btnEditBlueprint = '.list-view-pf-actions a';
 
     // More Action dropdown menu list
     this.moreActionList = {
