@@ -12,9 +12,11 @@ welderApiScheme = welderApiScheme || 'http';
 function setupCockpitHttp() {
   const useHttps = welderApiScheme === 'https';
   const port = welderApiPort || (useHttps ? 443 : 80);
+  const superUser = welderApiPort ? "try" : undefined;
   cockpitHttp = cockpit.http(port, {
     address: welderApiHost,
     tls: useHttps ? {} : undefined,
+    superuser: superUser
   });
 }
 
