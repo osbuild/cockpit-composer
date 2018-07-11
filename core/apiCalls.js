@@ -47,7 +47,7 @@ export function fetchBlueprintInputsApi(filter, selectedInputPage, pageSize) {
         }).catch(e => console.log(`Error getting blueprint metadata: ${e}`));
       })
       .catch(e => {
-        console.log(`Failed to get inputs during blueprint edit: ${e}`);
+        console.log('Failed to get inputs during blueprint edit', e);
         reject();
       });
   });
@@ -76,7 +76,7 @@ export function fetchBlueprintInfoApi(blueprintName) {
 export function fetchModalCreateImageTypesApi() {
   const imageTypes = utils.apiFetch(constants.get_image_types)
     .then(data => data.types)
-    .catch(e => console.log(`Error getting component types: ${e}`));
+    .catch(e => console.log('Error getting component types', e));
   return imageTypes;
 }
 
@@ -107,7 +107,7 @@ export function fetchDiffWorkspaceApi(blueprintId) {
       resolve(data);
     })
     .catch(e => {
-      console.log(`Error fetching diff: ${e}`);
+      console.log('Error fetching diff', e);
       reject();
     });
   });
@@ -127,7 +127,7 @@ export function depsolveComponentsApi(packages) {
           resolve(dependencies);
         })
         .catch(e => {
-          console.log(`getBlueprint: Error getting component and dependency metadata: ${e}`);
+          console.log('getBlueprint: Error getting component and dependency metadata', e);
           reject();
         });
     } else {
@@ -156,7 +156,7 @@ export function startComposeApi(blueprintName, composeType) {
       resolve(JSON.parse(data));
     })
     .catch(e => {
-      console.log(`Error fetching diff: ${e}`);
+      console.log('Error fetching diff', e);
       reject();
     });
   });
@@ -170,7 +170,7 @@ export function fetchImageStatusApi(uuid) {
       resolve(data);
     })
     .catch(e => {
-      console.log(`Error fetching diff: ${e}`);
+      console.log('Error fetching diff', e);
       reject();
     });
   });
