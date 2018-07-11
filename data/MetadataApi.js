@@ -10,7 +10,7 @@ class MetadataApi {
           resolve(data);
         })
         .catch(e => {
-          console.log(`Failed to get ${api}${e}`);
+          console.log(`Failed to get ${api}`, e);
         });
     });
     return p;

@@ -27,13 +27,20 @@ function cockpitFetch(url, options, skipDecode) {
 
   if (!cockpitHttp) { setupCockpitHttp(); }
 
-  return new Promise((resolve) => {
+  /*
+   * Wrap this in an additional Promise. The promise returned by
+   * cockpit.http.request() doesn't propagate exceptions thrown in a .catch
+   * handler. Thus, we need to reject() manually.
+   */
+  return new Promise((resolve, reject) => {
     cockpitHttp.request(options)
-        .then((data) => {
-          if (skipDecode) { resolve(data); } else { resolve(JSON.parse(data)); }
-        })
-        .catch(error => console.error(`cockpitFetch: ${url} with options ${JSON.stringify(options)}`,
-                                      `from ${welderApiHost}:${welderApiPort} failed: ${error}`));
+      .then(data => skipDecode ? resolve(data) : resolve(JSON.parse(data)))
+      .catch(error => reject({
+        problem: error.problem,
+        message: error.message,
+        url: url,
+        options: options
+      }));
   });
 }
 

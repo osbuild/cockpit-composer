@@ -58,7 +58,7 @@ class BlueprintApi {
         }
       })
       .catch(e => {
-        console.log(`Error fetching blueprint: ${e}`);
+        console.log('Error fetching blueprint', e);
         reject();
       });
     });
@@ -80,7 +80,7 @@ class BlueprintApi {
             resolve(blueprint);
           })
           .catch(e => {
-            console.log(`getBlueprint: Error getting component and component metadata: ${e}`);
+            console.log('getBlueprint: Error getting component and component metadata', e);
             reject();
           });
       } else {
