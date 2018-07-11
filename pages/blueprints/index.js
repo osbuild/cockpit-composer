@@ -131,7 +131,7 @@ class BlueprintsPage extends React.Component {
         (blueprintsError !== null &&
           <EmptyState
             title="An Error Occurred"
-            message="An error occurred while trying to get blueprints."
+            message={blueprintsError.message}
           />
           ||
           (blueprints.length > 0 &&
