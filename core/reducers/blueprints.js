@@ -195,7 +195,7 @@ const blueprints = (state = [], action) => {
     case FETCHING_IMAGE_STATUS_SUCCEEDED:
       return Object.assign({}, state, {
           blueprintList: [
-            ...state.map(blueprint => {
+            ...state.blueprintList.map(blueprint => {
               if (blueprint.present.name === action.payload.blueprintName) {
                 return Object.assign(
                   {}, blueprint, {
