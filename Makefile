@@ -160,6 +160,9 @@ test_with_lorax_composer: rpm
 # install required RPM packages
 	sudo yum -y install lorax-composer cockpit-ws cockpit-kubernetes welder-web*.rpm
 
+# execute lorax-composer in the background to serve as the API backend
+	sudo /usr/sbin/lorax-composer /var/lib/lorax/composer/ &
+
 # don't require Cockpit authentication when logging in
 	sudo /bin/sh -c 'echo -e "[Negotiate]\nCommand = /usr/libexec/cockpit-stub\n[WebService]\nShell = /shell/simple.html" > /etc/cockpit/cockpit.conf'
 	sudo setenforce 0
@@ -169,11 +172,6 @@ test_with_lorax_composer: rpm
 
 # build e2e test images
 	sudo docker build -f ./test/end-to-end/Dockerfile -t welder/web-e2e-tests:latest ./test/end-to-end/
-
-# execute lorax-composer in the background to serve as the API backend
-# making the socket accessible to the cockpit-ws group
-	sudo mkdir /recipes
-	sudo lorax-composer --group cockpit-ws /recipes &
 
 # wait for the backend to become ready
 	until sudo curl --unix-socket /run/weldr/api.socket http://localhost:4000/api/status | grep '"db_supported": true'; do \
