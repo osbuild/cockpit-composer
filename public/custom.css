@@ -369,6 +369,11 @@ body {
   margin-top: 30px;
 }
 
+/* notifications */
+.toast-notifications-list-pf {
+  top: 8px;
+}
+
 /* list-pf */
 .list-pf-title .text-muted {
   font-weight: normal;
