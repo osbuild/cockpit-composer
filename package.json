@@ -42,7 +42,6 @@
     "babel-register": "^6.11.6",
     "babel-runtime": "^6.11.6",
     "bootstrap": "^3.3.7",
-    "bootstrap-select": "^1.12.4",
     "browser-sync": "^2.13.0",
     "connect-history-api-fallback": "^1.2.0",
     "copy-webpack-plugin": "^3.0.1",
