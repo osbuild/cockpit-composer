@@ -150,8 +150,8 @@ ci_after_success:
 	[ -f ./node_modules/codecov/bin/codecov ] || npm install codecov
 	[ -f ./node_modules/nyc/bin/nyc.js ] || npm install nyc@11.1.0
 
-	cat ./coverage/lcov.info | ./node_modules/codecov/bin/codecov
-	./node_modules/nyc/bin/nyc.js report --reporter=lcov && ./node_modules/codecov/bin/codecov
+	[ -f ./coverage/lcov.info ] && cat ./coverage/lcov.info | ./node_modules/codecov/bin/codecov
+	[ -d .nyc_output/ ] && ./node_modules/nyc/bin/nyc.js report --reporter=lcov && ./node_modules/codecov/bin/codecov
 
 # NOTE: this is executed on a RHEL 7 or CentOS 7 host which is
 # VM or bare metal. All required repositories must be configured, e.g.
