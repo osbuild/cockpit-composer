@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Notification from '../../components/Notifications/Notification';
 import NotificationsApi from '../../data/NotificationsApi';
-import utils from '../../core/utils';
 
 class Layout extends React.Component {
   constructor() {
