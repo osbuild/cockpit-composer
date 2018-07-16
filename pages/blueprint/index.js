@@ -322,10 +322,10 @@ class BlueprintPage extends React.Component {
                     Create Image
                   </button>
                 </EmptyState>) ||
-                <ListView className="cmpsr-blueprint__images cmpsr-list">
+                <ListView className="cmpsr-images" stacked>
                   {this.props.blueprint.images.map((image, i) => (
                     <ListItemImages
-                      listItemParent="cmpsr-blueprint__images"
+                      listItemParent="cmpsr-images"
                       blueprint={this.props.route.params.blueprint}
                       listItem={image}
                       fetchingImageStatus={this.props.fetchingImageStatus}

@@ -17,7 +17,7 @@ class ListItemImages extends React.PureComponent {
             <div className="list-pf-content-wrapper">
               <div className="list-pf-main-content">
                 <div className="list-pf-title text-overflow-pf">
-                  <a href="#">{this.props.blueprint}-ver{listItem.version}-{listItem.compose_type}</a>
+                  {this.props.blueprint}-ver{listItem.version}-{listItem.compose_type}
                 </div>
                 <div className="list-pf-description">Based on Version {listItem.version}</div>
               </div>
@@ -28,55 +28,32 @@ class ListItemImages extends React.PureComponent {
                 <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
                   Date Created <strong>{formattedTime}</strong>
                 </div>
-                <div className="list-pf-additional-content">
-                  <div className="list-view-pf-additional-info-item">
-                  {listItem.queue_status === 'WAITING' &&
-                    <div>
-                      <span className="pficon pficon-pending" aria-hidden="true" />
-                      Pending
-                    </div>
-                  } {listItem.queue_status === 'RUNNING' &&
-                    <div>
-                      <span className="pficon pficon-in-progress" aria-hidden="true" />
-                      In Progress
-                    </div>
-                  } {listItem.queue_status === 'FINISHED' &&
-                    <div>
-                      <span className="pficon pficon-ok" aria-hidden="true" />
-                      Complete
-                    </div>
-                  } {listItem.queue_status === 'FAILED' &&
-                    <div>
-                      <span className="pficon pficon-error-circle-o" aria-hidden="true" />
-                      Failed
-                    </div>
-                  }
-                  </div>
-                </div>
               </div>
             </div>
+            {listItem.queue_status === 'WAITING' &&
+              <div className="list-view-pf-additional-info-item cmpsr-images__status">
+                <span className="pficon pficon-pending" aria-hidden="true" />
+                Pending
+              </div>
+            } {listItem.queue_status === 'RUNNING' &&
+              <div className="list-view-pf-additional-info-item cmpsr-images__status">
+                <span className="pficon pficon-in-progress" aria-hidden="true" />
+                In Progress
+              </div>
+            } {listItem.queue_status === 'FINISHED' &&
+              <div className="list-view-pf-additional-info-item cmpsr-images__status">
+                <span className="pficon pficon-ok" aria-hidden="true" />
+                Complete
+              </div>
+            } {listItem.queue_status === 'FAILED' &&
+              <div className="list-view-pf-additional-info-item cmpsr-images__status">
+                <span className="pficon pficon-error-circle-o" aria-hidden="true" />
+                Failed
+              </div>
+            }
             {listItem.queue_status === 'READY' &&
               <div className="list-pf-actions">
                 <button className="btn btn-default" type="button" onClick={() => this.fetchImage(listItem.id)}>Download</button>
-                <div className="dropdown pull-right dropdown-kebab-pf">
-                  <button
-                    className="btn btn-link dropdown-toggle"
-                    type="button"
-                    id="dropdownKebabRight9"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="true"
-                  >
-                    <span className="fa fa-ellipsis-v" />
-                  </button>
-                  <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight9">
-                    <li><a>View Blueprint Components</a></li>
-                    <li><a>View Blueprint Manifest</a></li>
-                    <li><a>Export</a></li>
-                    <li role="separator" className="divider" />
-                    <li><a>Archive</a></li>
-                  </ul>
-                </div>
               </div>
             }
           </div>
