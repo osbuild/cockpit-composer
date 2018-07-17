@@ -25,10 +25,17 @@ export const fetchingComposeSucceeded = (compose) => ({
 });
 
 export const FETCHING_COMPOSE_STATUS_SUCCEEDED = 'FETCHING_COMPOSE_STATUS_SUCCEEDED';
-export const fetchingComposeStatusSucceeded = (blueprintName, compose) => ({
+export const fetchingComposeStatusSucceeded = (compose) => ({
   type: FETCHING_COMPOSE_STATUS_SUCCEEDED,
   payload: {
-    blueprintName,
     compose,
+  },
+});
+
+export const COMPOSES_FAILURE = 'COMPOSES_FAILURE';
+export const composesFailure = (error) => ({
+  type: COMPOSES_FAILURE,
+  payload: {
+    error,
   },
 });

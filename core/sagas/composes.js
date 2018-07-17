@@ -7,6 +7,7 @@ import {
 import {
    START_COMPOSE,
    fetchingComposeStatusSucceeded, fetchingComposeSucceeded,
+   composesFailure,
 } from '../actions/composes';
 
 
@@ -14,23 +15,30 @@ function* startCompose(action) {
   try {
     const {blueprintName, composeType} = action.payload;
     const response = yield call(startComposeApi, blueprintName, composeType);
-    yield* fetchComposeStatus(blueprintName, response.build_id);
-  } catch (error) {
+    const statusResponse = yield call(fetchImageStatusApi, response.build_id);
+    yield put(fetchingComposeSucceeded(statusResponse.uuids[0]));
+    if (statusResponse.uuids[0].queue_status === "WAITING" || statusResponse.uuids[0].queue_status === "RUNNING") {
+      yield* pollComposeStatus(statusResponse.uuids[0]);
+    }
+  }
+  catch (error) {
     console.log('startComposeError');
+    yield put(composesFailure(error));
   }
 }
 
-function* fetchComposeStatus(blueprintName, composeId) {
+function* pollComposeStatus(compose) {
   try {
-    let statusResponse = yield call(fetchImageStatusApi, composeId);
-    yield put(fetchingComposeStatusSucceeded(blueprintName, statusResponse.uuids[0]));
-    while (statusResponse.uuids[0].queue_status === "WAITING" || statusResponse.uuids[0].queue_status === "RUNNING") {
+    let polledCompose = compose;
+    while (polledCompose.queue_status === "WAITING" || polledCompose.queue_status === "RUNNING") {
+      const response = yield call(fetchImageStatusApi, polledCompose.id);
+      polledCompose = response.uuids[0];
+      yield put(fetchingComposeStatusSucceeded(polledCompose));
       yield call(delay, 60000);
-      statusResponse = yield call(fetchImageStatusApi, composeId);
-      yield put(fetchingComposeStatusSucceeded(blueprintName, statusResponse.uuids[0]));
     }
   } catch (error) {
-    console.log('fetchComposeStatusError' + error);
+    console.log('pollComposeStatusError');
+    yield put(composesFailure(error));
   }
 }
 
@@ -43,8 +51,10 @@ function* fetchComposes() {
     ]);
     const composes = queue.concat(finished, failed);
     yield all(composes.map(compose => put(fetchingComposeSucceeded(compose))));
+    yield all(queue.map(compose => pollComposeStatus(compose)));
   } catch (error) {
-    console.log('fetchinComposesError');
+    console.log('fetchComposesError');
+    yield put(composesFailure(error));
   }
 }
 

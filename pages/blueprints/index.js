@@ -273,7 +273,6 @@ const makeMapStateToProps = () => {
         blueprintFilters: state.filter.blueprints,
         blueprintsError: state.blueprints.errorState,
         blueprintsLoading: state.blueprints.fetchingBlueprints,
-        composes: state.composes,
       };
     }
     return {
@@ -286,7 +285,6 @@ const makeMapStateToProps = () => {
       blueprintFilters: state.filter.blueprints,
       blueprintsError: state.blueprints.errorState,
       blueprintsLoading: state.blueprints.fetchingBlueprints,
-      composes: state.composes,
     };
   };
 
