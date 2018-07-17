@@ -35,6 +35,10 @@ const initialState = {
     fetchingBlueprints: true,
     blueprintList: [],
   },
+  composes: {
+    composeList: [],
+    errorState: null,
+  },
   modals: {
     createImage: {
       name: '',

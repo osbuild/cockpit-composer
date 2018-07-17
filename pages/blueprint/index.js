@@ -358,7 +358,7 @@ class BlueprintPage extends React.Component {
                   </button>
                 </EmptyState>) ||
                 <ListView className="cmpsr-images" stacked>
-                  {composes.map((image, i) => (
+                  {composes.map((compose, i) => (
                     <ListItemImages
                       listItemParent="cmpsr-images"
                       blueprint={this.props.route.params.blueprint}
