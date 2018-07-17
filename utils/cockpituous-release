@@ -9,18 +9,7 @@ RELEASE_SOURCE="_release/source"
 RELEASE_SPEC="welder-web.spec"
 RELEASE_SRPM="_release/srpm"
 
-release_source() {
-# cockpituous' release-source is aimed at ./autogen.sh/autotools style
-# projects, so just build our own here
-    npm prune
-    npm install
-    make dist-gzip
-    mkdir -p "$RELEASE_SOURCE"
-    # this script gets sourced, normal shell globbing does not work
-    find -name welder-web-*.tar.gz -exec mv '{}' "$RELEASE_SOURCE/" \;
-}
-
-release_source
+job release-source
 job release-srpm
 job release-github
 job release-copr @weldr/welder-web
