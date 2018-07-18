@@ -156,7 +156,7 @@ export function startComposeApi(blueprintName, composeType) {
       resolve(JSON.parse(data));
     })
     .catch(e => {
-      console.log('Error fetching diff', e);
+      console.log('Error starting compose', e);
       reject();
     });
   });
@@ -170,7 +170,7 @@ export function fetchImageStatusApi(uuid) {
       resolve(data);
     })
     .catch(e => {
-      console.log('Error fetching diff', e);
+      console.log('Error fetching image status', e);
       reject();
     });
   });
@@ -185,7 +185,7 @@ export function fetchComposeQueueApi() {
       resolve(queue);
     })
     .catch(e => {
-      console.log(`Error fetching diff: ${e}`);
+      console.log('Error fetching queued composes', e);
       reject();
     });
   });
@@ -199,7 +199,7 @@ export function fetchComposeFinishedApi() {
       resolve(data.finished);
     })
     .catch(e => {
-      console.log(`Error fetching diff: ${e}`);
+      console.log('Error fetching finished composes', e);
       reject();
     });
   });
@@ -213,7 +213,7 @@ export function fetchComposeFailedApi() {
       resolve(data.failed);
     })
     .catch(e => {
-      console.log(`Error fetching diff: ${e}`);
+      console.log('Error fetching failed composes', e);
       reject();
     });
   });
