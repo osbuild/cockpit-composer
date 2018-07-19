@@ -1,4 +1,4 @@
-import { call, put, takeEvery, takeLatest, select } from 'redux-saga/effects';
+import { call, put, takeEvery, select } from 'redux-saga/effects';
 import {
   fetchBlueprintInfoApi, fetchBlueprintNamesApi, fetchBlueprintContentsApi, fetchWorkspaceBlueprintContentsApi,
   deleteBlueprintApi, setBlueprintDescriptionApi,
@@ -7,7 +7,7 @@ import {
   commitToWorkspaceApi, fetchDiffWorkspaceApi,
 } from '../apiCalls';
 import {
-  fetchingBlueprintsSucceeded, fetchingBlueprintNamesSucceeded,
+  FETCHING_BLUEPRINTS, fetchingBlueprintsSucceeded, fetchingBlueprintNamesSucceeded,
   FETCHING_BLUEPRINT_CONTENTS, fetchingBlueprintContentsSucceeded,
   CREATING_BLUEPRINT, creatingBlueprintSucceeded,
   ADD_BLUEPRINT_COMPONENT, ADD_BLUEPRINT_COMPONENT_SUCCEEDED, addBlueprintComponentSucceeded,
@@ -169,13 +169,13 @@ function* commitToWorkspace(action) {
 
 export default function* () {
   yield takeEvery(CREATING_BLUEPRINT, createBlueprint);
-  yield takeLatest(FETCHING_BLUEPRINT_CONTENTS, fetchBlueprintContents);
-  yield takeLatest(SET_BLUEPRINT_DESCRIPTION, setBlueprintDescription);
+  yield takeEvery(FETCHING_BLUEPRINT_CONTENTS, fetchBlueprintContents);
+  yield takeEvery(SET_BLUEPRINT_DESCRIPTION, setBlueprintDescription);
   yield takeEvery(DELETING_BLUEPRINT, deleteBlueprint);
-  yield takeLatest(ADD_BLUEPRINT_COMPONENT_SUCCEEDED, commitToWorkspace);
-  yield takeLatest(REMOVE_BLUEPRINT_COMPONENT_SUCCEEDED, commitToWorkspace);
+  yield takeEvery(ADD_BLUEPRINT_COMPONENT_SUCCEEDED, commitToWorkspace);
+  yield takeEvery(REMOVE_BLUEPRINT_COMPONENT_SUCCEEDED, commitToWorkspace);
   yield takeEvery(COMMIT_TO_WORKSPACE, commitToWorkspace);
   yield takeEvery(ADD_BLUEPRINT_COMPONENT, addComponent);
   yield takeEvery(REMOVE_BLUEPRINT_COMPONENT, removeComponent);
-  yield* fetchBlueprints();
+  yield takeEvery(FETCHING_BLUEPRINTS, fetchBlueprints);
 }

@@ -6,7 +6,8 @@ import {
 
 import {
    START_COMPOSE,
-   fetchingComposeStatusSucceeded, fetchingComposeSucceeded,
+   fetchingComposeStatusSucceeded,
+   FETCHING_COMPOSES, fetchingComposeSucceeded,
    composesFailure,
 } from '../actions/composes';
 
@@ -44,11 +45,9 @@ function* pollComposeStatus(compose) {
 
 function* fetchComposes() {
   try {
-    const [queue, finished, failed] = yield all([
-      call(fetchComposeQueueApi),
-      call(fetchComposeFinishedApi),
-      call(fetchComposeFailedApi),
-    ]);
+    const queue = yield* call(fetchComposeQueueApi);
+    const finished = yield* call(fetchComposeFinishedApi);
+    const failed = yield* call(fetchComposeFailedApi);
     const composes = queue.concat(finished, failed);
     yield all(composes.map(compose => put(fetchingComposeSucceeded(compose))));
     yield all(queue.map(compose => pollComposeStatus(compose)));
@@ -60,5 +59,5 @@ function* fetchComposes() {
 
 export default function* () {
   yield takeEvery(START_COMPOSE, startCompose);
-  yield* fetchComposes();
+  yield takeEvery(FETCHING_COMPOSES, fetchComposes);
 }

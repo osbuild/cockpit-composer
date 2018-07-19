@@ -16,6 +16,12 @@ export const startComposeSucceeded = (blueprintName, compose) => ({
   },
 });
 
+export const FETCHING_COMPOSES = 'FETCHING_COMPOSES';
+export const fetchingComposes = () => ({
+  type: FETCHING_COMPOSES,
+});
+
+
 export const FETCHING_COMPOSE_SUCCEEDED = 'FETCHING_COMPOSE_SUCCEEDED';
 export const fetchingComposeSucceeded = (compose) => ({
   type: FETCHING_COMPOSE_SUCCEEDED,

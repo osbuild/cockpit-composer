@@ -14,6 +14,11 @@ describe('Home page', () => {
       fetchingBlueprints: false,
       blueprintList: [],
     },
+    composes: {
+      errorState: null,
+      fetchingComposes: false,
+      composeList: [],
+    },
     sort: {
       blueprints: {
         key: 'name',

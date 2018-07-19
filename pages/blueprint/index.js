@@ -20,7 +20,7 @@ import {
   setBlueprintDescription,
 } from '../../core/actions/blueprints';
 import {
-  startCompose,
+  fetchingComposes, startCompose,
 } from '../../core/actions/composes';
 import {
   setModalExportBlueprintVisible, setModalCreateImageVisible, setModalCreateImageBlueprintName
@@ -83,6 +83,9 @@ class BlueprintPage extends React.Component {
   componentWillMount() {
     if (this.props.blueprint.components === undefined) {
       this.props.fetchingBlueprintContents(this.props.route.params.blueprint.replace(/\s/g, '-'));
+    }
+    if (this.props.composesLoading === true) {
+      this.props.fetchingComposes();
     }
     this.props.setEditDescriptionVisible(false);
     this.props.setModalExportBlueprintVisible(false);
@@ -160,7 +163,7 @@ class BlueprintPage extends React.Component {
       return <div></div>;
     }
     const {
-      blueprint, exportModalVisible, createImage, selectedComponents, dependencies, componentsFilters, composes,
+      blueprint, exportModalVisible, createImage, selectedComponents, dependencies, componentsFilters, composeList,
     } = this.props;
     const {
       editDescriptionValue, editDescriptionVisible, activeTab,
@@ -341,7 +344,7 @@ class BlueprintPage extends React.Component {
           </Tab>
           <Tab tabTitle={formatMessage(messages.imagesTitle)} active={activeTab === 'Images'}>
             <div className="tab-container">
-              {(composes.length === 0 &&
+              {(composeList.length === 0 &&
                 <EmptyState
                   title={formatMessage(messages.noImagesTitle)}
                   message={formatMessage(messages.noImagesMessage)}
@@ -358,7 +361,7 @@ class BlueprintPage extends React.Component {
                   </button>
                 </EmptyState>) ||
                 <ListView className="cmpsr-images" stacked>
-                  {composes.map((compose, i) => (
+                  {composeList.map((compose, i) => (
                     <ListItemImages
                       listItemParent="cmpsr-images"
                       blueprint={this.props.route.params.blueprint}
@@ -395,7 +398,9 @@ BlueprintPage.propTypes = {
   route: PropTypes.object,
   fetchingBlueprintContents: PropTypes.func,
   blueprint: PropTypes.object,
-  composes: PropTypes.array,
+  fetchingComposes: PropTypes.func,
+  composesLoading: PropTypes.bool,
+  composeList: PropTypes.array,
   setActiveTab: PropTypes.func,
   setEditDescriptionValue: PropTypes.func,
   setEditDescriptionVisible: PropTypes.func,
@@ -440,7 +445,8 @@ const makeMapStateToProps = () => {
         blueprint: fetchedBlueprint.present,
         selectedComponents: getFilteredComponents(state, getSortedSelectedComponents(state, fetchedBlueprint.present)),
         dependencies: getFilteredComponents(state, getSortedDependencies(state, fetchedBlueprint.present)),
-        composes: getBlueprintComposes(state, fetchedBlueprint.present),
+        composeList: getBlueprintComposes(state, fetchedBlueprint.present),
+        composesLoading: state.composes.fetchingComposes,
         blueprintPage: state.blueprintPage,
         exportModalVisible: state.modals.exportBlueprint.visible,
         createImage: state.modals.createImage,
@@ -457,7 +463,8 @@ const makeMapStateToProps = () => {
       blueprint: {},
       selectedComponents: [],
       dependencies: [],
-      composes: [],
+      composeList: [],
+      composesLoading: state.composes.fetchingComposes,
       blueprintPage: state.blueprintPage,
       exportModalVisible: state.modals.exportBlueprint.visible,
       createImage: state.modals.createImage,
@@ -473,6 +480,9 @@ const makeMapStateToProps = () => {
 const mapDispatchToProps = (dispatch) => ({
   fetchingBlueprintContents: blueprintId => {
     dispatch(fetchingBlueprintContents(blueprintId));
+  },
+  fetchingComposes: () => {
+    dispatch(fetchingComposes());
   },
   setBlueprintDescription: (blueprint, description) => {
     dispatch(setBlueprintDescription(blueprint, description));

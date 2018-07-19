@@ -31,12 +31,13 @@ const initialState = {
     },
   },
   blueprints: {
-    errorState: null,
-    fetchingBlueprints: true,
     blueprintList: [],
+    fetchingBlueprints: true,
+    errorState: null,
   },
   composes: {
     composeList: [],
+    fetchingComposes: true,
     errorState: null,
   },
   modals: {

@@ -11,7 +11,7 @@ import EmptyState from '../../components/EmptyState/EmptyState';
 import Loading from '../../components/Loading/Loading';
 import BlueprintsToolbar from '../../components/Toolbar/BlueprintsToolbar';
 import { connect } from 'react-redux';
-import { deletingBlueprint } from '../../core/actions/blueprints';
+import { deletingBlueprint, fetchingBlueprints } from '../../core/actions/blueprints';
 import {
   fetchingModalExportBlueprintContents,
   setModalExportBlueprintName, setModalExportBlueprintContents, setModalExportBlueprintVisible,
@@ -20,7 +20,7 @@ import {
 } from '../../core/actions/modals';
 import { blueprintsSortSetKey, blueprintsSortSetValue } from '../../core/actions/sort';
 import { blueprintsFilterAddValue, blueprintsFilterRemoveValue, blueprintsFilterClearValues } from '../../core/actions/filter';
-import { startCompose } from '../../core/actions/composes';
+import { fetchingComposes, startCompose } from '../../core/actions/composes';
 import { makeGetSortedBlueprints, makeGetFilteredBlueprints } from '../../core/selectors';
 
 const messages = defineMessages({
@@ -60,6 +60,12 @@ class BlueprintsPage extends React.Component {
   }
 
   componentWillMount() {
+    if (this.props.blueprintsLoading === true) {
+      this.props.fetchingBlueprints();
+    }
+    if (this.props.composesLoading === true) {
+      this.props.fetchingComposes();
+    }
   }
 
   componentDidMount() {
@@ -239,10 +245,13 @@ BlueprintsPage.propTypes = {
   setModalExportBlueprintName: PropTypes.func,
   setModalExportBlueprintContents: PropTypes.func,
   fetchingModalExportBlueprintContents: PropTypes.func,
+  fetchingBlueprints: PropTypes.func,
   blueprints: PropTypes.array,
   filteredBlueprints: PropTypes.array,
   exportBlueprint: PropTypes.object,
   deleteBlueprint: PropTypes.object,
+  fetchingComposes: PropTypes.func,
+  composesLoading: PropTypes.bool,
   createImage: PropTypes.object,
   blueprintSortKey: PropTypes.string,
   blueprintSortValue: PropTypes.string,
@@ -273,18 +282,20 @@ const makeMapStateToProps = () => {
         blueprintFilters: state.filter.blueprints,
         blueprintsError: state.blueprints.errorState,
         blueprintsLoading: state.blueprints.fetchingBlueprints,
+        composesLoading: state.composes.fetchingComposes,
       };
     }
     return {
       exportBlueprint: state.modals.exportBlueprint,
       deleteBlueprint: state.modals.deleteBlueprint,
       createImage: state.modals.createImage,
-      blueprints: {},
+      blueprints: state.blueprints.blueprintList,
       blueprintSortKey: state.sort.blueprints.key,
       blueprintSortValue: state.sort.blueprints.value,
       blueprintFilters: state.filter.blueprints,
       blueprintsError: state.blueprints.errorState,
       blueprintsLoading: state.blueprints.fetchingBlueprints,
+      composesLoading: state.composes.fetchingComposes,
     };
   };
 
@@ -295,6 +306,12 @@ const makeMapStateToProps = () => {
 const mapDispatchToProps = dispatch => ({
   fetchingModalExportBlueprintContents: modalBlueprintName => {
     dispatch(fetchingModalExportBlueprintContents(modalBlueprintName));
+  },
+  fetchingBlueprints: () => {
+    dispatch(fetchingBlueprints());
+  },
+  fetchingComposes: () => {
+    dispatch(fetchingComposes());
   },
   setModalExportBlueprintName: modalBlueprintName => {
     dispatch(setModalExportBlueprintName(modalBlueprintName));
