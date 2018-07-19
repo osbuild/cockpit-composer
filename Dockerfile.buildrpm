@@ -7,4 +7,4 @@ LABEL maintainer="Xiaofeng Wang" \
 RUN dnf install -y make cmake rpm-build which gnupg tar xz curl jq nodejs && dnf clean all
 
 WORKDIR /welder
-CMD ["make", "rpm"]
+CMD ["make", "rpm", "srpm"]
