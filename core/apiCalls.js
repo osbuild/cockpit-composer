@@ -144,78 +144,37 @@ export function startComposeApi(blueprintName, composeType) {
     branch: "master"
   };
 
-  const p = new Promise((resolve, reject) => {
-    utils.apiFetch(constants.post_compose_start, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(requestBody),
-    }, true)
-    .then(data => {
-      resolve(JSON.parse(data));
-    })
-    .catch(e => {
-      console.log('Error starting compose', e);
-      reject();
-    });
-  });
-  return p;
+  utils.apiFetch(constants.post_compose_start, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(requestBody),
+  }, true)
+  .then(data => JSON.parse(data))
+  .catch(e => console.log('Error starting compose', e));
 }
 
 export function fetchImageStatusApi(uuid) {
-  const p = new Promise((resolve, reject) => {
-    utils.apiFetch(constants.get_image_status + uuid)
-    .then(data => {
-      resolve(data);
-    })
-    .catch(e => {
-      console.log('Error fetching image status', e);
-      reject();
-    });
-  });
-  return p;
+  return utils.apiFetch(constants.get_image_status + uuid)
+  .then(data => data)
+  .catch(e => console.log('Error fetching image status', e));
 }
 
 export function fetchComposeQueueApi() {
-  const p = new Promise((resolve, reject) => {
-    utils.apiFetch(constants.get_compose_queue)
-    .then(data => {
-      const queue = data.new.concat(data.run);
-      resolve(queue);
-    })
-    .catch(e => {
-      console.log('Error fetching queued composes', e);
-      reject();
-    });
-  });
-  return p;
+  return utils.apiFetch(constants.get_compose_queue)
+  .then(data => data.new.concat(data.run))
+  .catch(e => console.log('Error fetching queued composes', e));
 }
 
 export function fetchComposeFinishedApi() {
-  const p = new Promise((resolve, reject) => {
-    utils.apiFetch(constants.get_compose_finished)
-    .then(data => {
-      resolve(data.finished);
-    })
-    .catch(e => {
-      console.log('Error fetching finished composes', e);
-      reject();
-    });
-  });
-  return p;
+  return utils.apiFetch(constants.get_compose_finished)
+  .then(data => data.finished)
+  .catch(e => console.log('Error fetching finished composes', e));
 }
 
 export function fetchComposeFailedApi() {
-  const p = new Promise((resolve, reject) => {
-    utils.apiFetch(constants.get_compose_failed)
-    .then(data => {
-      resolve(data.failed);
-    })
-    .catch(e => {
-      console.log('Error fetching failed composes', e);
-      reject();
-    });
-  });
-  return p;
+  return utils.apiFetch(constants.get_compose_failed)
+  .then(data => data.failed)
+  .catch(e => console.log('Error fetching failed composes', e));
 }

@@ -18,11 +18,13 @@ const compose = (state = [], action) => {
     case FETCHING_COMPOSE_SUCCEEDED:
       // Remove any instance of the compose and append the new one to the array
       return Object.assign({}, state, {
+        fetchingComposes: false,
         composeList: removeCompose(state.composeList, action).concat(action.payload.compose),
       });
     case COMPOSES_FAILURE:
       return Object.assign({}, state, {
         errorState: action.payload.error,
+        fetchingComposes: false,
       });
     default:
       return state;
