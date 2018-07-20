@@ -47,6 +47,7 @@ exports.config = {
     maxInstances: 1,
     //
     browserName: 'firefox',
+    acceptInsecureCerts: true,
   }],
   //
   // ===================
@@ -189,4 +190,16 @@ exports.testData = {
   image: [
     { type: 'tar', arch: 'x86_64' },
   ],
+
+  // cockpit authentication username and password
+  cockpit: {
+    root: {
+      username: 'root',
+      password: 'composer',
+    },
+    composer: {
+      username: 'composer',
+      password: 'composer',
+    },
+  },
 };
