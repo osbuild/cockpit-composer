@@ -62,11 +62,11 @@ class ListItemImages extends React.PureComponent {
                 <FormattedMessage defaultMessage="Failed" />
               </div>
             }
-            {listItem.queue_status === 'READY' &&
+            {listItem.queue_status === 'FINISHED' &&
               <div className="list-pf-actions">
-                <button className="btn btn-default" type="button">
+                <a className="btn btn-default" role="button" download href={this.props.downloadUrl}>
                   <FormattedMessage defaultMessage="Download" />
-                </button>
+                </a>
               </div>
             }
           </div>
