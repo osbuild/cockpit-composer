@@ -1,5 +1,8 @@
+/* global welderApiPort:false */
+
 import React from 'react';
 import {FormattedMessage, defineMessages, injectIntl, intlShape} from 'react-intl';
+import cockpit from 'cockpit'; // eslint-disable-line import/no-unresolved
 import PropTypes from 'prop-types';
 import Link from '../../components/Link';
 import Layout from '../../components/Layout';
@@ -73,6 +76,7 @@ class BlueprintPage extends React.Component {
     this.handleShowModalCreateImage = this.handleShowModalCreateImage.bind(this);
     this.handleChangeDescription = this.handleChangeDescription.bind(this);
     this.handleStartCompose = this.handleStartCompose.bind(this);
+    this.downloadUrl = this.downloadUrl.bind(this);
 
     this.state = {
       changes: [],
@@ -155,6 +159,19 @@ class BlueprintPage extends React.Component {
 
   handleStartCompose(blueprintName, composeType) {
     this.props.startCompose(blueprintName, composeType);
+  }
+
+  downloadUrl(compose) {
+    // NOTE: this only works when welderApiPort is a unix socket
+    const query = window.btoa(JSON.stringify({
+        payload: "http-stream2",
+        unix: welderApiPort,
+        method: 'GET',
+        path: `/api/v0/compose/image/${compose.id}`,
+        superuser: "try"
+    }));
+
+    return `/cockpit/channel/${cockpit.transport.csrf_token}?${query}`;
   }
 
   render() {
@@ -366,6 +383,7 @@ class BlueprintPage extends React.Component {
                       listItemParent="cmpsr-images"
                       blueprint={this.props.route.params.blueprint}
                       listItem={compose}
+                      downloadUrl={this.downloadUrl(compose)}
                       key={i}
                     />
                   ))}
