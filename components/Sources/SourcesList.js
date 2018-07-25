@@ -26,16 +26,20 @@ class SourcesList extends React.PureComponent {
               <SourcesListItem source={source} i={i} />
             ))}
           </tbody>
-          <thead>
-            <tr>
-              <th colSpan={3}>Custom Sources</th>
-            </tr>
-          </thead>
-          <tbody>
-            {customSources.map((source, i) => (
-              <SourcesListItem source={source} i={i} />
-            ))}
-          </tbody>
+          {customSources.length > 0 &&
+            <thead>
+              <tr>
+                <th colSpan={3}>Custom Sources</th>
+              </tr>
+            </thead>
+          }
+          {customSources.length > 0 &&
+            <tbody>
+              {customSources.map((source, i) => (
+                <SourcesListItem source={source} i={i} />
+              ))}
+            </tbody>
+          }
         </table>
       </div>
     );
