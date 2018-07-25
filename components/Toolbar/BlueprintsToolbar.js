@@ -34,6 +34,21 @@ const BlueprintsToolbar = props => (
         >
           <FormattedMessage defaultMessage="Create Blueprint" />
         </button>
+        <div className="dropdown btn-group dropdown-kebab-pf">
+          <button
+            className="btn btn-link dropdown-toggle"
+            type="button"
+            id="dropdownKebab"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <span className="fa fa-ellipsis-v" />
+          </button>
+          <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
+            <li><a href="#" onClick={(e) => props.handleShowModalManageSources(e)}>View Sources</a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </ToolbarLayout>
@@ -42,6 +57,7 @@ const BlueprintsToolbar = props => (
 BlueprintsToolbar.propTypes = {
   sortSetValue: PropTypes.func,
   errorState: PropTypes.bool,
+  handleShowModalManageSources: PropTypes.func,
 };
 
 export default BlueprintsToolbar;

@@ -426,6 +426,47 @@
   padding-top: 40px;
 }
 
+/* tables */
+.cmpsr-table-actions {
+  width: 1%;
+  white-space: nowrap;
+}
+.cmpsr-table-actions .btn-link {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+table .form-control {
+  margin-left: -7px;
+  box-sizing: content-box;
+  height: auto;
+}
+
+.cmpsr-table-row--editable .cmpsr-table-actions {
+  height: 0;
+}
+
+.cmpsr-inline-edit-btn-wrapper {
+  height: 100%;
+  width: 100%;
+}
+
+.cmpsr-table-row--editable .cmpsr-inline-edit-buttons {
+  position: absolute;
+  background-color: #def3ff;
+  border: 1px solid #d1d1d1;
+  border-top-color: #def3ff;
+  padding: 3px;
+  display: block;
+  transform: translate(calc(-100% + 10px), 3px);
+}
+
+.cmpsr-table-row--editable:hover .cmpsr-inline-edit-buttons {
+  background-color: #c4eaff;
+  border-color: #7DC3F0;
+  border-top-color: #c4eaff;
+}
+
+
 /* ------------------------------- */
 /* modifications to patternfly css */
 
@@ -446,6 +487,7 @@ body {
 /* notifications */
 .toast-notifications-list-pf {
   top: 8px;
+}
 
 /*toolbar*/
 .toolbar-pf .form-group {

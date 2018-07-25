@@ -137,6 +137,19 @@ export function depsolveComponentsApi(packages) {
   return p;
 }
 
+export function fetchSourceInfoApi(sourceName) {
+  const sourceFetch = utils.apiFetch(constants.get_sources_info + sourceName)
+    .then(sourceData => {
+      if (sourceData) {
+        return sourceData;
+      }
+      return null;
+    }).catch(e => {
+      console.log('Error fetching sources', e);
+    });
+  return sourceFetch;
+}
+
 export function startComposeApi(blueprintName, composeType) {
   const requestBody = {
     blueprint_name: blueprintName,
