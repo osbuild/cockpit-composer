@@ -6,12 +6,8 @@ import {
   SET_MODAL_CREATE_BLUEPRINT_ERROR_INLINE, SET_MODAL_CREATE_BLUEPRINT_CHECK_ERRORS, SET_MODAL_CREATE_BLUEPRINT_BLUEPRINT,
   SET_MODAL_CREATE_IMAGE_BLUEPRINT_NAME, SET_MODAL_CREATE_IMAGE_VISIBLE,
   FETCHING_MODAL_CREATE_COMPOSTION_TYPES_SUCCESS,
-  // APPEND_MODAL_PENDING_CHANGES_COMPONENT_UPDATES,
+  SET_MODAL_MANAGE_SOURCES_VISIBLE, SET_MODAL_MANAGE_SOURCES_CONTENTS, MODAL_MANAGE_SOURCES_FAILURE,
 } from '../actions/modals';
-
-// import {
-//   UNDO, REDO
-// } from '../actions/blueprints';
 
 const modalCreateBlueprint = (state = [], action) => {
   switch (action.type) {
@@ -119,6 +115,31 @@ const modalExportBlueprint = (state = [], action) => {
   }
 };
 
+const modalManageSources = (state = [], action) => {
+  switch (action.type) {
+    case SET_MODAL_MANAGE_SOURCES_CONTENTS:
+      return Object.assign(
+        {}, state,
+        { manageSources: Object.assign(
+          {},
+          state.manageSources,
+          { sources: action.payload.sources.sources, error: action.payload.sources.errors }
+        ) }
+      );
+    case SET_MODAL_MANAGE_SOURCES_VISIBLE:
+      return Object.assign(
+        {}, state,
+        { manageSources: Object.assign({}, state.manageSources, { visible: action.payload.visible }) }
+      );
+    case MODAL_MANAGE_SOURCES_FAILURE:
+      return Object.assign(
+        {}, state,
+        { manageSources: Object.assign({}, state.manageSources, { error: action.payload.error }) }
+      );
+    default:
+      return state;
+  }
+};
 
 const modals = (state = [], action) => {
   switch (action.type) {
@@ -152,6 +173,12 @@ const modals = (state = [], action) => {
       return modalExportBlueprint(state, action);
     case SET_MODAL_EXPORT_BLUEPRINT_VISIBLE:
       return modalExportBlueprint(state, action);
+    case SET_MODAL_MANAGE_SOURCES_CONTENTS:
+      return modalManageSources(state, action);
+    case SET_MODAL_MANAGE_SOURCES_VISIBLE:
+      return modalManageSources(state, action);
+    case MODAL_MANAGE_SOURCES_FAILURE:
+      return modalManageSources(state, action);
     default:
       return state;
   }

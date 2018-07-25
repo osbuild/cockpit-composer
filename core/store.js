@@ -75,6 +75,10 @@ const initialState = {
         future: [],
       },
     },
+    manageSources: {
+      sources: [],
+      visible: false,
+    },
   },
   sort: {
     blueprints: {
