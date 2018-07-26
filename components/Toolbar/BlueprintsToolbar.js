@@ -46,7 +46,12 @@ const BlueprintsToolbar = props => (
             <span className="fa fa-ellipsis-v" />
           </button>
           <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
-            <li><a href="#" onClick={(e) => props.handleShowModalManageSources(e)}>View Sources</a></li>
+            <li><a href="#" onClick={(e) => props.handleShowModalManageSources(e)}>
+              <FormattedMessage
+                defaultMessage="View Source"
+                description="User action for displaying the list of source repositories"
+              />
+            </a></li>
           </ul>
         </div>
       </div>
