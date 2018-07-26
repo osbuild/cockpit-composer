@@ -9,7 +9,7 @@ RUN echo $'[Negotiate]\nCommand = /usr/libexec/cockpit-stub\n[WebService]\nShell
 RUN rm -rf /usr/share/cockpit/kubernetes/
 
 COPY welder-web*.rpm /tmp/
-RUN dnf -y install /tmp/welder-web*.x86_64.rpm
+RUN dnf -y install /tmp/welder-web*.noarch.rpm
 
 CMD ["/usr/libexec/cockpit-ws", "--no-tls"]
 EXPOSE 9090
