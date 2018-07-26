@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {FormattedMessage} from 'react-intl';
 import SourcesListItem from '../../components/Sources/SourcesListItem';
 
 class SourcesList extends React.PureComponent {
@@ -10,9 +11,24 @@ class SourcesList extends React.PureComponent {
         <table className="table table-striped table-bordered table-hover">
           <thead>
             <tr>
-              <th className="cmpsr-width-60">Source Path</th>
-              <th className="cmpsr-width-20">Name</th>
-              <th className="cmpsr-width-20">Type</th>
+              <th className="cmpsr-width-60">
+                <FormattedMessage
+                  defaultMessage="Source Path"
+                  description="The path or url to the source repository"
+                />
+              </th>
+              <th className="cmpsr-width-20">
+                <FormattedMessage
+                  defaultMessage="Name"
+                  description="Name of source"
+                />
+              </th>
+              <th className="cmpsr-width-20">
+                <FormattedMessage
+                  defaultMessage="Type"
+                  description="Type of source"
+                />
+              </th>
             </tr>
           </thead>
           <tbody>

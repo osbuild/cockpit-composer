@@ -3,9 +3,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import {FormattedMessage, defineMessages, injectIntl, intlShape} from 'react-intl';
 import SourcesList from '../../components/Sources/SourcesList';
 import EmptyState from '../../components/EmptyState/EmptyState';
 
+const messages = defineMessages({
+  errorStateTitle: {
+    defaultMessage: "Translatable message"
+  },
+  errorStateMessage: {
+    defaultMessage: ""
+  }
+});
 
 class ManageSources extends React.Component {
   constructor() {
@@ -19,6 +28,7 @@ class ManageSources extends React.Component {
 
 
   render() {
+    const { formatMessage } = this.props.intl;
     const systemSources = Object.values(this.props.sources).filter(source => source.system === true);
     const customSources = Object.values(this.props.sources).filter(source => source.system !== true);
     return (
@@ -40,20 +50,35 @@ class ManageSources extends React.Component {
               >
                 <span className="pficon pficon-close"></span>
               </button>
-              <h4 className="modal-title" id="myModalLabel">Sources</h4>
+              <h4 className="modal-title" id="myModalLabel">
+                <FormattedMessage
+                  defaultMessage="Sources"
+                  description="Sources provide the contents from which components are selected"
+                />
+              </h4>
             </div>
             <div className="modal-body">
               {this.props.sources.length === 0 &&
                 <EmptyState
-                  title="An Error Occurred"
-                  message="An error occurred while trying to get sources."
+                  title={formatMessage(messages.errorStateTitle)}
+                  message={formatMessage(messages.errorStateMessage)}
                 />
               ||
                 <div>
-                  <h5>System Sources</h5>
+                  <h5>
+                    <FormattedMessage
+                      defaultMessage="System Sources"
+                      description="System sources are configured repositories that were found on the host machine"
+                    />
+                  </h5>
                   <SourcesList sources={systemSources} />
                   {customSources.length > 0 &&
-                    <h5>Custom Sources</h5>
+                    <h5>
+                      <FormattedMessage
+                        defaultMessage="Custom Sources"
+                        description="Custom sources are additional repositories that were added by the user"
+                      />
+                    </h5>
                   }
                   {customSources.length > 0 &&
                     <SourcesList sources={customSources} />
@@ -78,9 +103,10 @@ class ManageSources extends React.Component {
 ManageSources.propTypes = {
   sources: PropTypes.array,
   handleHideModal: PropTypes.func,
+  intl: intlShape.isRequired,
 };
 const mapStateToProps = state => ({
   modals: state.modals,
 });
 
-export default connect(mapStateToProps)(ManageSources);
+export default connect(mapStateToProps)(injectIntl(ManageSources));
