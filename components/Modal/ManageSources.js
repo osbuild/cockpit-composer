@@ -9,10 +9,13 @@ import EmptyState from '../../components/EmptyState/EmptyState';
 
 const messages = defineMessages({
   errorStateTitle: {
-    defaultMessage: "Translatable message"
+    defaultMessage: "An Error Occurred"
   },
   errorStateMessage: {
-    defaultMessage: ""
+    defaultMessage: "An error occurred while trying to get sources."
+  },
+  closeButtonLabel: {
+    defaultMessage: "Close"
   }
 });
 
@@ -47,6 +50,7 @@ class ManageSources extends React.Component {
                 type="button"
                 className="close"
                 data-dismiss="modal"
+                aria-label={formatMessage(messages.closeButtonLabel)}
               >
                 <span className="pficon pficon-close"></span>
               </button>
@@ -91,7 +95,7 @@ class ManageSources extends React.Component {
                 type="button"
                 className="btn btn-default"
                 data-dismiss="modal"
-              >Close</button>
+              ><FormattedMessage defaultMessage="Close" /></button>
             </div>
           </div>
         </div>
