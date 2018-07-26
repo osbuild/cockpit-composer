@@ -19,6 +19,8 @@ class ManageSources extends React.Component {
 
 
   render() {
+    const systemSources = Object.values(this.props.sources).filter(source => source.system === true);
+    const customSources = Object.values(this.props.sources).filter(source => source.system !== true);
     return (
       <div
         className="modal fade"
@@ -47,7 +49,16 @@ class ManageSources extends React.Component {
                   message="An error occurred while trying to get sources."
                 />
               ||
-                <SourcesList sources={this.props.sources} />
+                <div>
+                  <h5>System Sources</h5>
+                  <SourcesList sources={systemSources} />
+                  {customSources.length > 0 &&
+                    <h5>Custom Sources</h5>
+                  }
+                  {customSources.length > 0 &&
+                    <SourcesList sources={customSources} />
+                  }
+                </div>
               }
             </div>
             <div className="modal-footer">

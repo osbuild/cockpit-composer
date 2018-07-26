@@ -4,42 +4,22 @@ import SourcesListItem from '../../components/Sources/SourcesListItem';
 
 class SourcesList extends React.PureComponent {
   render() {
-    const systemSources = Object.values(this.props.sources).filter(source => source.system === true);
-    const customSources = Object.values(this.props.sources).filter(source => source.system !== true);
+
     return (
       <div className="table-responsive">
         <table className="table table-striped table-bordered table-hover">
           <thead>
             <tr>
-              <th>Source Path</th>
-              <th>Name</th>
-              <th>Type</th>
-            </tr>
-            <tr>
-              <th colSpan={3}>
-                System Sources
-              </th>
+              <th className="cmpsr-width-60">Source Path</th>
+              <th className="cmpsr-width-20">Name</th>
+              <th className="cmpsr-width-20">Type</th>
             </tr>
           </thead>
           <tbody>
-            {systemSources.map((source, i) => (
+            {this.props.sources.map((source, i) => (
               <SourcesListItem source={source} i={i} />
             ))}
           </tbody>
-          {customSources.length > 0 &&
-            <thead>
-              <tr>
-                <th colSpan={3}>Custom Sources</th>
-              </tr>
-            </thead>
-          }
-          {customSources.length > 0 &&
-            <tbody>
-              {customSources.map((source, i) => (
-                <SourcesListItem source={source} i={i} />
-              ))}
-            </tbody>
-          }
         </table>
       </div>
     );

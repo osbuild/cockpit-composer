@@ -466,6 +466,12 @@ table .form-control {
   border-top-color: #c4eaff;
 }
 
+.table .cmpsr-width-60 {
+  width: 60%;
+}
+.table .cmpsr-width-20 {
+  width: 20%;
+}
 
 /* ------------------------------- */
 /* modifications to patternfly css */
