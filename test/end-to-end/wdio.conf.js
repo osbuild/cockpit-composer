@@ -124,7 +124,12 @@ exports.config = {
   // Test reporter for stdout.
   // The only one supported by default is 'dot'
   // see also: http://webdriver.io/guide/reporters/dot.html
-  reporters: ['dot', 'spec'],
+  reporters: ['dot', 'spec', 'html-format'],
+  reporterOptions: {
+    htmlFormat: {
+      outputDir: './failed-image/',
+    },
+  },
   //
   // Options to be passed to Mocha.
   // See the full list at http://mochajs.org/
