@@ -100,8 +100,7 @@
     "url-loader": "^0.5.7",
     "webpack": "^1.13.1",
     "webpack-dev-middleware": "^1.6.1",
-    "webpack-hot-middleware": "^2.12.2",
-    "zanata-js": "^2.1.4"
+    "webpack-hot-middleware": "^2.12.2"
   },
   "jest": {
     "testRegex": "(/test/unit/.*\\.spec.js)$",
@@ -167,10 +166,10 @@
     "stylelint": "stylelint \"components/**/*.css\" \"pages/**/*.css\"",
     "lint": "npm run eslint && npm run stylelint",
     "clean": "node run clean",
-    "build": "npm run translations:pull && npm run translations:po2json && node run build",
-    "build:debug": "npm run translations:pull && npm run translations:po2json && node run build --debug",
-    "publish": "npm run translations:pull && npm run translations:po2json && node run publish",
-    "publish:debug": "npm run translations:pull && npm run translations:po2json && node run publish --debug",
+    "build": "node run build",
+    "build:debug": "node run build --debug",
+    "publish": "node run publish",
+    "publish:debug": "node run publish --debug",
     "start": "node run",
     "test": "jest",
     "test:watch": "npm test -- --watch",
