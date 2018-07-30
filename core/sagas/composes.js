@@ -45,9 +45,9 @@ function* pollComposeStatus(compose) {
 
 function* fetchComposes() {
   try {
-    const queue = yield* call(fetchComposeQueueApi);
-    const finished = yield* call(fetchComposeFinishedApi);
-    const failed = yield* call(fetchComposeFailedApi);
+    const queue = yield call(fetchComposeQueueApi);
+    const finished = yield call(fetchComposeFinishedApi);
+    const failed = yield call(fetchComposeFailedApi);
     const composes = queue.concat(finished, failed);
     yield all(composes.map(compose => put(fetchingComposeSucceeded(compose))));
     yield all(queue.map(compose => pollComposeStatus(compose)));
