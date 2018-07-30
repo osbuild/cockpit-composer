@@ -5,6 +5,11 @@ RELEASE=$(shell $(CURDIR)/rpmversion.sh | cut -d - -f 2)
 all: npm-install
 	NODE_ENV=$(NODE_ENV) npm run build
 
+po-pull: npm-install
+	npm install --no-save zanata-js
+	NODE_ENV=$(NODE_ENV) npm run translations:pull
+	NODE_ENV=$(NODE_ENV) npm run translations:po2json
+
 npm-install:
 	npm install
 
@@ -13,7 +18,7 @@ install: all
 	cp -r public/* /usr/share/cockpit/welder
 
 dist-gzip: NODE_ENV=production
-dist-gzip: all
+dist-gzip: po-pull all
 	mkdir -p welder-web-$(VERSION)
 	cp -r public/ LICENSE.txt README.md welder-web-$(VERSION)
 	tar -czf welder-web-$(VERSION).tar.gz welder-web-$(VERSION)
