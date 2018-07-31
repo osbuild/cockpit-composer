@@ -48,7 +48,7 @@ const BlueprintsToolbar = props => (
           <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
             <li><a href="#" onClick={(e) => props.handleShowModalManageSources(e)}>
               <FormattedMessage
-                defaultMessage="View Source"
+                defaultMessage="View Sources"
                 description="User action for displaying the list of source repositories"
               />
             </a></li>
