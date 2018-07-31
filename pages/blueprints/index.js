@@ -20,7 +20,7 @@ import {
 } from '../../core/actions/modals';
 import { blueprintsSortSetKey, blueprintsSortSetValue } from '../../core/actions/sort';
 import { blueprintsFilterAddValue, blueprintsFilterRemoveValue, blueprintsFilterClearValues } from '../../core/actions/filter';
-import { fetchingComposes, startCompose } from '../../core/actions/composes';
+import { startCompose } from '../../core/actions/composes';
 import { makeGetSortedBlueprints, makeGetFilteredBlueprints } from '../../core/selectors';
 
 const messages = defineMessages({
@@ -62,9 +62,6 @@ class BlueprintsPage extends React.Component {
   componentWillMount() {
     if (this.props.blueprintsLoading === true) {
       this.props.fetchingBlueprints();
-    }
-    if (this.props.composesLoading === true) {
-      this.props.fetchingComposes();
     }
   }
 
@@ -250,7 +247,6 @@ BlueprintsPage.propTypes = {
   filteredBlueprints: PropTypes.array,
   exportBlueprint: PropTypes.object,
   deleteBlueprint: PropTypes.object,
-  fetchingComposes: PropTypes.func,
   composesLoading: PropTypes.bool,
   createImage: PropTypes.object,
   blueprintSortKey: PropTypes.string,
@@ -281,8 +277,7 @@ const makeMapStateToProps = () => {
         blueprintSortValue: state.sort.blueprints.value,
         blueprintFilters: state.filter.blueprints,
         blueprintsError: state.blueprints.errorState,
-        blueprintsLoading: state.blueprints.fetchingBlueprints,
-        composesLoading: state.composes.fetchingComposes,
+        blueprintsLoading: state.blueprints.fetchingBlueprints
       };
     }
     return {
@@ -294,8 +289,7 @@ const makeMapStateToProps = () => {
       blueprintSortValue: state.sort.blueprints.value,
       blueprintFilters: state.filter.blueprints,
       blueprintsError: state.blueprints.errorState,
-      blueprintsLoading: state.blueprints.fetchingBlueprints,
-      composesLoading: state.composes.fetchingComposes,
+      blueprintsLoading: state.blueprints.fetchingBlueprints
     };
   };
 
@@ -309,9 +303,6 @@ const mapDispatchToProps = dispatch => ({
   },
   fetchingBlueprints: () => {
     dispatch(fetchingBlueprints());
-  },
-  fetchingComposes: () => {
-    dispatch(fetchingComposes());
   },
   setModalExportBlueprintName: modalBlueprintName => {
     dispatch(setModalExportBlueprintName(modalBlueprintName));
