@@ -5,10 +5,15 @@ RELEASE=$(shell $(CURDIR)/rpmversion.sh | cut -d - -f 2)
 all: npm-install
 	NODE_ENV=$(NODE_ENV) npm run build
 
-po-pull: npm-install
+npm-install-zanata: npm-install
 	npm install --no-save zanata-js
+
+po-pull: npm-install-zanata
 	NODE_ENV=$(NODE_ENV) npm run translations:pull
 	NODE_ENV=$(NODE_ENV) npm run translations:po2json
+
+po-push: npm-install-zanata
+	NODE_ENV=$(NODE_ENV) npm run translations:push
 
 npm-install:
 	npm install
