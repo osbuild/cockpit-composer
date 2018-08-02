@@ -218,7 +218,6 @@ class EditBlueprintPage extends React.Component {
       // if source is the details view, then metadata is already known and passed with component
       this.props.addBlueprintComponent(this.props.blueprint, component);
     }
-    BlueprintApi.updateBlueprint(component, 'add');
     // update input component data to match the blueprint component data
     this.updateInputComponentsOnChange(component);
     // TODO if inputs also lists dependencies, should these be indicated as included in the list of available components?
@@ -247,8 +246,6 @@ class EditBlueprintPage extends React.Component {
   handleRemoveComponent(event, component) {
     // the user clicked Remove for a component in the blueprint component list
     // or the component details view
-    // update the blueprint object that's used during commit
-    BlueprintApi.updateBlueprint(component, 'remove');
     // hide the details view
     this.hideComponentDetails();
     // update input component data

@@ -105,7 +105,7 @@ class BlueprintApi {
     return components;
   }
 
-  // sets the ui type of a list of components 
+  // sets the ui type of a list of components
   setType(components, type) {
     components.map(component => {
       component.ui_type = type;
@@ -120,44 +120,6 @@ class BlueprintApi {
       i.ui_type = uiType; // eslint-disable-line no-param-reassign
       return i;
     });
-  }
-
-// update Blueprint on Add or Remove component
-  updateBlueprint(component, action) {
-    const blueprintComponent = {
-      name: component.name,
-      version: component.version,
-    };
-    // action is add or remove, and maybe update
-    if (action === 'add') {
-      if (component.ui_type === 'Module') {
-        this.blueprint.modules.push(blueprintComponent);
-      } else if (component.ui_type === 'RPM') {
-        this.blueprint.packages.push(blueprintComponent);
-      }
-    }
-    if (action === 'edit') {
-      if (component.ui_type === 'Module') {
-        // comment the following two lines to fix eslint no-unused-vars error
-        // let updatedComponent = this.blueprint.modules.filter((obj) => (obj.name === blueprintComponent.name))[0];
-        // updatedComponent = Object.assign(updatedComponent, blueprintComponent);
-      } else if (component.ui_type === 'RPM') {
-        // comment the following two lines to fix eslint no-unused-vars error
-        // let updatedComponent = this.blueprint.packages.filter((obj) => (obj.name === blueprintComponent.name))[0];
-        // updatedComponent = Object.assign(updatedComponent, blueprintComponent);
-      }
-    }
-    if (action === 'remove') {
-      if (component.ui_type === 'Module') {
-        this.blueprint.modules = this.blueprint.modules.filter(
-          (obj) => (!(obj.name === blueprintComponent.name && obj.version === blueprintComponent.version))
-        );
-      } else if (component.ui_type === 'RPM') {
-        this.blueprint.packages = this.blueprint.packages.filter(
-          (obj) => (!(obj.name === blueprintComponent.name && obj.version === blueprintComponent.version))
-        );
-      }
-    }
   }
 
   handleCreateBlueprint(event, blueprint) {
