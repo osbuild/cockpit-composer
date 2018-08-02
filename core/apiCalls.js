@@ -156,8 +156,7 @@ export function startComposeApi(blueprintName, composeType) {
     compose_type: composeType,
     branch: "master"
   };
-
-  utils.apiFetch(constants.post_compose_start, {
+  return utils.apiFetch(constants.post_compose_start, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
