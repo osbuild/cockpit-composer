@@ -5,7 +5,7 @@ module.exports = class MainPage {
   constructor(title) {
     this.mailUrl = config.config.baseUrl;
     this.title = title;
-    this.iframeSelector = '.container-frame';
+    this.iframeSelector = 'iframe[name="cockpit1:localhost/welder"]';
   }
 
   get url() {
