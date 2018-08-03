@@ -32,32 +32,39 @@ class NotificationsApi {
   notificationMessage(blueprint, message) {
     let notification = {};
     switch (message) {
-      case 'creating': {
+      case 'imageWaiting': {
         notification = {
-          type: 'process',
+          type: 'info',
           message: <span>
             <FormattedMessage
-              defaultMessage="{blueprint} Creating image."
+              defaultMessage="{blueprint} Image creation has been added to the queue."
               values={{
                 blueprint: <strong>{blueprint}:</strong>
               }}
             />
           </span>,
-          action: <a href="#"><FormattedMessage defaultMessage="Cancel" /></a>,
           dismiss: true,
+          fade: true,
         };
-        const index = this.notifications.length;
-        setTimeout(() => {
-          this.closeNotification(index);
-          this.displayNotification(blueprint, 'created');
-        }, 2500);
-        // setTimeout is only temporary, and included to simulate what will happen
-        // when the user creates an image (i.e. display process message
-        // then success notification); this should be updated
-        // when image creation is fully implemented
         break;
       }
-      case 'created': {
+      case 'imageStarted': {
+        notification = {
+          type: 'success',
+          message: <span>
+            <FormattedMessage
+              defaultMessage="{blueprint} Image creation has started."
+              values={{
+                blueprint: <strong>{blueprint}:</strong>
+              }}
+            />
+          </span>,
+          dismiss: true,
+          fade: true,
+        };
+        break;
+      }
+      case 'imageCreated': {
         notification = {
           type: 'success',
           message: <span>
@@ -68,14 +75,23 @@ class NotificationsApi {
               }}
             />
           </span>,
-          // action: <a href="#void">Download (.iso)</a>,
-          // this link will need to be implemented when the build process
-          // is implemented; this function will need to be extended to handle
-          // defining this link
-          // kebab: [
-          //   <a href="#" >Export Blueprint (.bom)</a>,
-          // ],
-          // this kebab may be needed when the build process is implemented
+          dismiss: true,
+          fade: true,
+        };
+        break;
+      }
+      case 'imageFailed': {
+        notification = {
+          type: 'error',
+          message: <span>
+            <FormattedMessage
+              defaultMessage="{blueprint} Image creation failed."
+              values={{
+                blueprint: <strong>{blueprint}:</strong>
+              }}
+            />
+          </span>,
+          dismiss: true,
           fade: true,
         };
         break;
