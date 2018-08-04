@@ -20,10 +20,17 @@ class ListItemImages extends React.PureComponent {
                 <div className="list-pf-title text-overflow-pf">
                   {this.props.blueprint}-ver{listItem.version}-{listItem.compose_type}
                 </div>
-                <div className="list-pf-description">Based on Version {listItem.version}</div>
+                <div className="list-pf-description">
+                  <FormattedMessage
+                    defaultMessage="Based on Version {version}"
+                    values={{
+                      version: listItem.version
+                    }}
+                  />
+                </div>
               </div>
               <div className="list-pf-additional-content">
-                <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
+                <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked i18n">
                   <FormattedMessage
                     defaultMessage="Type {type}"
                     values={{
@@ -31,7 +38,7 @@ class ListItemImages extends React.PureComponent {
                     }}
                   />
                 </div>
-                <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
+                <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked i18n">
                   <FormattedMessage
                     defaultMessage="Date Created {date}"
                     values={{
@@ -62,13 +69,13 @@ class ListItemImages extends React.PureComponent {
                 <FormattedMessage defaultMessage="Failed" />
               </div>
             }
-            {listItem.queue_status === 'FINISHED' &&
-              <div className="list-pf-actions">
+            <div className="list-pf-actions">
+              {listItem.queue_status === 'FINISHED' &&
                 <a className="btn btn-default" role="button" download href={this.props.downloadUrl}>
                   <FormattedMessage defaultMessage="Download" />
                 </a>
-              </div>
-            }
+              }
+            </div>
           </div>
         </div>
       </div>
