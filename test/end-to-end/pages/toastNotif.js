@@ -19,7 +19,7 @@ module.exports = class TostaNotifPage extends MainPage {
     this.varEmptyName = ':';
 
     // Working and Complete status label
-    this.varStatusCreating = `${this.varBlueprintName} Creating image.`;
+    this.varStatusCreating = `${this.varBlueprintName} Image creation has started.`;
     this.varStatusComplete = `${this.varBlueprintName} Image creation is complete.`;
 
     // Notification label
