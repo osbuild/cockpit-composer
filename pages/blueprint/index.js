@@ -27,7 +27,7 @@ import {
   fetchingComposes, startCompose,
 } from '../../core/actions/composes';
 import {
-  setModalExportBlueprintVisible, setModalCreateImageVisible, setModalCreateImageBlueprintName,
+  setModalExportBlueprintVisible, setModalCreateImageVisible, setModalCreateImageHidden,
   setModalStopBuildVisible, setModalStopBuildState, setModalDeleteImageVisible, setModalDeleteImageState,
 } from '../../core/actions/modals';
 import {
@@ -148,13 +148,11 @@ class BlueprintPage extends React.Component {
   }
 
   handleHideModalCreateImage() {
-    this.props.setModalCreateImageVisible(false);
-    this.props.setModalCreateImageBlueprintName('');
+    this.props.setModalCreateImageHidden();
   }
 
   handleShowModalCreateImage(e, blueprint) {
-    this.props.setModalCreateImageBlueprintName(blueprint.name);
-    this.props.setModalCreateImageVisible(true);
+    this.props.setModalCreateImageVisible(blueprint);
     e.preventDefault();
     e.stopPropagation();
   }
@@ -238,7 +236,7 @@ class BlueprintPage extends React.Component {
               </li>
               <li>
                 <button
-                  className={`btn btn-default ${selectedComponents.length ? '' : 'disabled'}`}
+                  className="btn btn-default"
                   id="cmpsr-btn-crt-image"
                   data-toggle="modal"
                   data-target="#cmpsr-modal-crt-image"
@@ -411,6 +409,8 @@ class BlueprintPage extends React.Component {
             setNotifications={this.setNotifications}
             handleStartCompose={this.handleStartCompose}
             handleHideModal={this.handleHideModalCreateImage}
+            warningEmpty={createImage.warningEmpty}
+            warningUnsaved={createImage.warningUnsaved}
           />
           : null}
         {exportModalVisible
@@ -472,7 +472,7 @@ BlueprintPage.propTypes = {
   componentsSortKey: PropTypes.string,
   componentsSortValue: PropTypes.string,
   setModalCreateImageVisible: PropTypes.func,
-  setModalCreateImageBlueprintName: PropTypes.func,
+  setModalCreateImageHidden: PropTypes.func,
   setModalStopBuildVisible: PropTypes.func,
   setModalStopBuildState: PropTypes.func,
   setModalDeleteImageVisible: PropTypes.func,
@@ -563,11 +563,11 @@ const mapDispatchToProps = (dispatch) => ({
   setModalExportBlueprintVisible: (visible) => {
     dispatch(setModalExportBlueprintVisible(visible));
   },
-  setModalCreateImageBlueprintName: modalBlueprintName => {
-    dispatch(setModalCreateImageBlueprintName(modalBlueprintName));
-  },
   setModalCreateImageVisible: modalVisible => {
     dispatch(setModalCreateImageVisible(modalVisible));
+  },
+  setModalCreateImageHidden: () => {
+    dispatch(setModalCreateImageHidden());
   },
   setModalStopBuildState: (composeId, blueprintName) => {
     dispatch(setModalStopBuildState(composeId, blueprintName));

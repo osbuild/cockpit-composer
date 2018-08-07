@@ -20,19 +20,13 @@ class BlueprintListView extends React.PureComponent {
               <Link to={`/edit/${blueprint.name}`} className="btn btn-default">
                 <FormattedMessage defaultMessage="Edit Blueprint" />
               </Link>
-              {(blueprint.modules.length === 0 && blueprint.packages.length === 0) &&
-                <button type="button" className="btn btn-default" disabled="disabled">
-                  <FormattedMessage defaultMessage="Create Image" />
-                </button>
-              ||
-                <button
-                  type="button"
-                  className="btn btn-default"
-                  onClick={(e) => this.props.handleShowModalCreateImage(e, blueprint)}
-                >
-                  <FormattedMessage defaultMessage="Create Image" />
-                </button>
-              }
+              <button
+                type="button"
+                className="btn btn-default"
+                onClick={(e) => this.props.handleShowModalCreateImage(e, blueprint)}
+              >
+                <FormattedMessage defaultMessage="Create Image" />
+              </button>
               <div className="dropdown pull-right dropdown-kebab-pf">
                 <button
                   className="btn btn-link dropdown-toggle"

@@ -1,9 +1,17 @@
 /* global $ */
 
 import React from 'react';
-import {FormattedMessage} from 'react-intl';
+import {FormattedMessage, defineMessages, injectIntl, intlShape} from 'react-intl';
 import PropTypes from 'prop-types';
 import NotificationsApi from '../../data/NotificationsApi';
+import { Alert } from 'patternfly-react';
+
+const messages = defineMessages({
+  warningUnsaved: {
+    defaultMessage: "This blueprint has changes that are not committed. " +
+                    "These changes will not be included in the image."
+  }
+});
 
 class CreateImage extends React.Component {
   constructor() {
@@ -37,6 +45,7 @@ class CreateImage extends React.Component {
   }
 
   render() {
+    const { formatMessage } = this.props.intl;
     return (
       <div
         className="modal fade"
@@ -56,6 +65,16 @@ class CreateImage extends React.Component {
               <h4 className="modal-title" id="myModalLabel"><FormattedMessage defaultMessage="Create Image" /></h4>
             </div>
             <div className="modal-body">
+              {this.props.warningEmpty === true &&
+                <Alert type="warning">
+                  <FormattedMessage defaultMessage="This blueprint is empty." />
+                </Alert>
+              }
+              {this.props.warningUnsaved === true &&
+                <Alert type="warning">
+                  {formatMessage(messages.warningUnsaved)}
+                </Alert>
+              }
               <form className="form-horizontal">
                 <div className="form-group">
                   <label
@@ -112,6 +131,9 @@ CreateImage.propTypes = {
   handleHideModal: PropTypes.func,
   setNotifications: PropTypes.func,
   imageTypes: PropTypes.array,
+  warningEmpty: PropTypes.bool,
+  warningUnsaved: PropTypes.bool,
+  intl: intlShape.isRequired,
 };
 
-export default CreateImage;
+export default injectIntl(CreateImage);

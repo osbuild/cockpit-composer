@@ -26,7 +26,8 @@ import {
   fetchingInputs, setInputComponents, setSelectedInputPage,
   setSelectedInput, setSelectedInputStatus, setSelectedInputParent, deleteFilter,
 } from '../../core/actions/inputs';
-import { setModalActive } from '../../core/actions/modals';
+import { setModalActive, setModalCreateImageVisible, setModalCreateImageHidden,
+} from '../../core/actions/modals';
 import {
   componentsSortSetKey, componentsSortSetValue, dependenciesSortSetKey, dependenciesSortSetValue,
 } from '../../core/actions/sort';
@@ -65,6 +66,7 @@ class EditBlueprintPage extends React.Component {
     this.handleUpdateComponent = this.handleUpdateComponent.bind(this);
     this.handleRemoveComponent = this.handleRemoveComponent.bind(this);
     this.handleComponentDetails = this.handleComponentDetails.bind(this);
+    this.handleHideModalCreateImage = this.handleHideModalCreateImage.bind(this);
     this.handleHideModal = this.handleHideModal.bind(this);
     this.handleShowModal = this.handleShowModal.bind(this);
     this.handleHistory = this.handleHistory.bind(this);
@@ -384,6 +386,10 @@ class EditBlueprintPage extends React.Component {
   handleHideModal() {
     this.props.setModalActive(null);
   }
+  handleHideModalCreateImage() {
+    this.props.setModalActive(null);
+    this.props.setModalCreateImageHidden();
+  }
   handleShowModal(e, modalType) {
     switch (modalType) {
       case 'modalPendingChanges':
@@ -394,6 +400,7 @@ class EditBlueprintPage extends React.Component {
         this.props.setModalActive('modalExportBlueprint');
         break;
       case 'modalCreateImage':
+        this.props.setModalCreateImageVisible(this.props.blueprint);
         this.props.setModalActive('modalCreateImage');
         break;
       default:
@@ -499,7 +506,7 @@ class EditBlueprintPage extends React.Component {
               }
               <li className="list__subgroup-item--first">
                 <button
-                  className={`btn btn-default ${selectedComponents.length ? '' : 'disabled'}`}
+                  className="btn btn-default"
                   id="cmpsr-btn-crt-image"
                   data-toggle="modal"
                   data-target="#cmpsr-modal-crt-image"
@@ -695,11 +702,13 @@ class EditBlueprintPage extends React.Component {
         }
         {modalActive === 'modalCreateImage'
           ? <CreateImage
-            blueprint={blueprint.name}
-            setNotifications={this.setNotifications}
-            handleStartCompose={this.handleStartCompose}
+            blueprint={createImage.name}
             imageTypes={createImage.imageTypes}
-            handleHideModal={this.handleHideModal}
+            handleStartCompose={this.handleStartCompose}
+            handleHideModal={this.handleHideModalCreateImage}
+            setNotifications={this.setNotifications}
+            warningEmpty={createImage.warningEmpty}
+            warningUnsaved={createImage.warningUnsaved}
           />
           : null}
         {modalActive === 'modalExportBlueprint'
@@ -742,6 +751,8 @@ EditBlueprintPage.propTypes = {
   deleteFilter: PropTypes.func,
   addBlueprintComponent: PropTypes.func,
   setModalActive: PropTypes.func,
+  setModalCreateImageVisible: PropTypes.func,
+  setModalCreateImageHidden: PropTypes.func,
   dependenciesSortSetValue: PropTypes.func,
   componentsSortSetValue: PropTypes.func,
   selectedComponents: PropTypes.array,
@@ -851,6 +862,12 @@ const mapDispatchToProps = (dispatch) => ({
   },
   setModalActive: (modalActive) => {
     dispatch(setModalActive(modalActive));
+  },
+  setModalCreateImageVisible: modalVisible => {
+    dispatch(setModalCreateImageVisible(modalVisible));
+  },
+  setModalCreateImageHidden: () => {
+    dispatch(setModalCreateImageHidden());
   },
   componentsSortSetKey: key => {
     dispatch(componentsSortSetKey(key));
