@@ -17,7 +17,7 @@ import {
   fetchingModalExportBlueprintContents,
   setModalExportBlueprintName, setModalExportBlueprintContents, setModalExportBlueprintVisible,
   setModalDeleteBlueprintName, setModalDeleteBlueprintId, setModalDeleteBlueprintVisible,
-  setModalCreateImageBlueprintName, setModalCreateImageVisible,
+  setModalCreateImageVisible, setModalCreateImageHidden,
   setModalManageSourcesVisible, fetchingModalManageSourcesContents,
 } from '../../core/actions/modals';
 import { blueprintsSortSetKey, blueprintsSortSetValue } from '../../core/actions/sort';
@@ -125,13 +125,11 @@ class BlueprintsPage extends React.Component {
   }
 
   handleHideModalCreateImage() {
-    this.props.setModalCreateImageVisible(false);
-    this.props.setModalCreateImageBlueprintName('');
+    this.props.setModalCreateImageHidden();
   }
 
   handleShowModalCreateImage(e, blueprint) {
-    this.props.setModalCreateImageBlueprintName(blueprint.name);
-    this.props.setModalCreateImageVisible(true);
+    this.props.setModalCreateImageVisible(blueprint);
     e.preventDefault();
     e.stopPropagation();
   }
@@ -240,6 +238,8 @@ class BlueprintsPage extends React.Component {
             handleStartCompose={this.handleStartCompose}
             handleHideModal={this.handleHideModalCreateImage}
             setNotifications={this.setNotifications}
+            warningEmpty={createImage.warningEmpty}
+            warningUnsaved={createImage.warningUnsaved}
           />
           : null}
         {(manageSources !== undefined && manageSources.visible)
@@ -256,7 +256,7 @@ class BlueprintsPage extends React.Component {
 BlueprintsPage.propTypes = {
   deletingBlueprint: PropTypes.func,
   setModalCreateImageVisible: PropTypes.func,
-  setModalCreateImageBlueprintName: PropTypes.func,
+  setModalCreateImageHidden: PropTypes.func,
   setModalDeleteBlueprintVisible: PropTypes.func,
   setModalDeleteBlueprintName: PropTypes.func,
   setModalDeleteBlueprintId: PropTypes.func,
@@ -349,11 +349,11 @@ const mapDispatchToProps = dispatch => ({
   setModalDeleteBlueprintVisible: modalVisible => {
     dispatch(setModalDeleteBlueprintVisible(modalVisible));
   },
-  setModalCreateImageBlueprintName: modalBlueprintName => {
-    dispatch(setModalCreateImageBlueprintName(modalBlueprintName));
-  },
   setModalCreateImageVisible: modalVisible => {
     dispatch(setModalCreateImageVisible(modalVisible));
+  },
+  setModalCreateImageHidden: () => {
+    dispatch(setModalCreateImageHidden());
   },
   fetchingModalManageSourcesContents: () => {
     dispatch(fetchingModalManageSourcesContents());

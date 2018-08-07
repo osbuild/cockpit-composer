@@ -65,6 +65,7 @@ export function fetchBlueprintInfoApi(blueprintName) {
     .then(blueprintdata => {
       if (blueprintdata.blueprints.length > 0) {
         let blueprint = blueprintdata.blueprints[0];
+        blueprint.changed = blueprintdata.changes[0].changed;
         blueprint.id = blueprintName;
         return blueprint;
       }
