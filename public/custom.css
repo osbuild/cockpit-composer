@@ -217,7 +217,11 @@
         -ms-flex-align: center;
             align-items: center;
   }
-  .cmpsr-list-pf .list-view-pf-additional-info-item-stacked {
+  .cmpsr-list-pf .list-view-pf-additional-info-item.i18n > span {
+    display: flex;
+  }
+  .cmpsr-list-pf .list-view-pf-additional-info-item-stacked,
+  .cmpsr-list-pf .list-view-pf-additional-info-item-stacked.i18n > span {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
