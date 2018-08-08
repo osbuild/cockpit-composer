@@ -1,7 +1,7 @@
 import {
   UNDO, REDO, DELETE_HISTORY,
   CREATING_BLUEPRINT_SUCCEEDED,
-  FETCHING_BLUEPRINTS_SUCCEEDED, FETCHING_BLUEPRINT_NAMES_SUCCEEDED,
+  FETCHING_BLUEPRINTS_SUCCEEDED, 
   FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED,
   ADD_BLUEPRINT_COMPONENT_SUCCEEDED, REMOVE_BLUEPRINT_COMPONENT_SUCCEEDED,
   SET_BLUEPRINT, SET_BLUEPRINT_DESCRIPTION, SET_BLUEPRINT_COMMENT,
@@ -21,11 +21,6 @@ const blueprints = (state = [], action) => {
               future: [],
             }
           ]
-        }
-      );
-    case FETCHING_BLUEPRINT_NAMES_SUCCEEDED:
-      return Object.assign({}, state, {
-          fetchingBlueprints: false,
         }
       );
     // The following reducers filter the blueprint out of the state and add the new version if

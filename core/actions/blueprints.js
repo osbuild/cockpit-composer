@@ -20,11 +20,6 @@ export const fetchingBlueprints = () => ({
   type: FETCHING_BLUEPRINTS,
 });
 
-export const FETCHING_BLUEPRINT_NAMES_SUCCEEDED = 'FETCHING_BLUEPRINT_NAMES_SUCCEEDED';
-export const fetchingBlueprintNamesSucceeded = () => ({
-  type: FETCHING_BLUEPRINT_NAMES_SUCCEEDED,
-});
-
 export const FETCHING_BLUEPRINTS_SUCCEEDED = 'FETCHING_BLUEPRINTS_SUCCEEDED';
 export const fetchingBlueprintsSucceeded = (blueprint, pendingChanges) => ({
   type: FETCHING_BLUEPRINTS_SUCCEEDED,

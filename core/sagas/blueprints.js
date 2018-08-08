@@ -7,7 +7,7 @@ import {
   commitToWorkspaceApi, fetchDiffWorkspaceApi,
 } from '../apiCalls';
 import {
-  FETCHING_BLUEPRINTS, fetchingBlueprintsSucceeded, fetchingBlueprintNamesSucceeded,
+  FETCHING_BLUEPRINTS, fetchingBlueprintsSucceeded,
   FETCHING_BLUEPRINT_CONTENTS, fetchingBlueprintContentsSucceeded,
   CREATING_BLUEPRINT, creatingBlueprintSucceeded,
   ADD_BLUEPRINT_COMPONENT, ADD_BLUEPRINT_COMPONENT_SUCCEEDED, addBlueprintComponentSucceeded,
@@ -27,7 +27,6 @@ function* fetchBlueprintsFromName(blueprintName) {
 function* fetchBlueprints() {
   try {
     const blueprintNames = yield call(fetchBlueprintNamesApi);
-    yield put(fetchingBlueprintNamesSucceeded());
     yield* blueprintNames.map(blueprintName => fetchBlueprintsFromName(blueprintName));
   } catch (error) {
     console.log('errorloadBlueprintsSaga');
