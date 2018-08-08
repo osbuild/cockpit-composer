@@ -10,7 +10,7 @@ module.exports = class TostaNotifPage extends MainPage {
     this.divNotifWindow = '.toast-notifications-list-pf';
 
     // Working and Complete icon
-    this.iconCreating = '#cmpsr-toast-0 .pficon .spinner-inverse';
+    this.iconCreating = '#cmpsr-toast-0 .pficon-info';
     this.iconComplete = '#cmpsr-toast-0 .pficon-ok';
 
     // Blueprint Name label
@@ -19,7 +19,7 @@ module.exports = class TostaNotifPage extends MainPage {
     this.varEmptyName = ':';
 
     // Working and Complete status label
-    this.varStatusCreating = `${this.varBlueprintName} Image creation has started.`;
+    this.varStatusCreating = `${this.varBlueprintName} Image creation has been added to the queue.`;
     this.varStatusComplete = `${this.varBlueprintName} Image creation is complete.`;
 
     // Notification label
