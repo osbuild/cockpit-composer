@@ -1,0 +1,14 @@
+#!/bin/sh
+# image-customize script to enable cockpit in test VMs
+# The application RPM will be installed separately
+set -eu
+
+# Allow cockpit port (9090) in INPUT chain
+# Do not reload firewall rule during image generation
+if type firewall-cmd >/dev/null 2>&1; then
+firewall-cmd --add-service=cockpit --permanent
+fi
+# Make cockpit.socket and lorax-composer auto-start when system started
+# Do not start it during image generation
+systemctl enable cockpit.socket
+systemctl enable lorax-composer

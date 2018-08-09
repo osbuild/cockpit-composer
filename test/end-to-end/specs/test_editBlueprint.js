@@ -26,8 +26,18 @@ describe('Given Edit Blueprint Page', () => {
   describe('When page is opened', () => {
     beforeEach(() => {
       CreateBlueprintPage.newBlueprint(testData.blueprint.simple);
+      const blueprintsPage = new BlueprintsPage();
+      const blueprintName = testData.blueprint.simple.name;
 
-      helper.goto(editBlueprintPage)
+      $$(blueprintsPage.itemsBlueprint).some((item) => {
+        const bpName = item.$(blueprintsPage.itemNamesBlueprint).getText();
+        if (bpName === blueprintName) {
+          item.$(blueprintsPage.btnEditBlueprint).click();
+        }
+        return bpName === blueprintName;
+      });
+
+      browser
         .waitForVisible(editBlueprintPage.componentListItemRootElement);
     });
 
@@ -40,6 +50,9 @@ describe('Given Edit Blueprint Page', () => {
       assert.equal(actualBlueprintName, editBlueprintPage.blueprintName);
 
       const actualLink = $(editBlueprintPage.linkBlueprintName).getAttribute('href');
+      // the href attribute will return link like this
+      // https://127.0.0.2:9092/cockpit/$cca633e8fa1478313ae39ef12b45e04b07337e852433dc4fb0e1938732896bbd/
+      // welder/index.html#/blueprint/automation
       assert(actualLink.includes(editBlueprintPage.varLinkToViewRec));
 
       browser
@@ -157,32 +170,10 @@ describe('Given Edit Blueprint Page', () => {
       });
 
       it('Then selected component icon should have border', () => {
-        // select the first component in the filtered results
-        browser
-          .waitForVisible(editBlueprintPage.componentListItemRootElementSelect);
-
-        browser
-          .click(editBlueprintPage.componentListItemRootElementSelect);
-
-        browser
-          .waitForVisible(editBlueprintPage.btnCommit);
-
+        // select the first component in the filtered results (httpd)
         // verify bordered icon
         browser
           .waitForVisible(editBlueprintPage.iconBorderedTheFirstComponent);
-
-        // then remove the selected component from the list
-        browser
-          .waitForVisible(editBlueprintPage.iconMinusTheFirstComponent);
-
-        browser
-          .click(editBlueprintPage.iconMinusTheFirstComponent);
-
-        // and verify that the icon changes back to one without border
-        browser
-          .waitForVisible(editBlueprintPage.iconTheFirstComponent);
-        browser
-          .waitForVisible(editBlueprintPage.iconPlusTheFirstComponent);
       });
     });
   });
