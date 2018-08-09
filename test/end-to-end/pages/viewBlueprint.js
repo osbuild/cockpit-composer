@@ -40,7 +40,7 @@ module.exports = class ViewBlueprintPage extends MainPage {
 
     // Create Image button
     this.varCreateImage = 'Create Image';
-    this.btnCreateImage = '#cmpsr-btn-crt-image[class="btn btn-default "]';
+    this.btnCreateImage = '#cmpsr-btn-crt-image';
 
     // More action button
     this.btnMore = 'button[id="dropdownKebab"]';
