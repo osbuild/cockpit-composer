@@ -142,11 +142,12 @@ describe('Blueprints Page', () => {
       const editBlueprintPage = new EditBlueprintPage(blueprintName);
       const blueprintNameSelector = BlueprintsPage.blueprintNameSelector(blueprintName);
 
-      $$(blueprintsPage.itemsBlueprint).forEach((item) => {
+      $$(blueprintsPage.itemsBlueprint).some((item) => {
         const bpName = item.$(blueprintsPage.itemNamesBlueprint).getText();
         if (bpName === blueprintName) {
           item.$(blueprintsPage.btnEditBlueprint).click();
         }
+        return bpName === blueprintName;
       });
 
       browser

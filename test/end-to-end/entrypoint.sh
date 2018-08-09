@@ -14,10 +14,5 @@ sleep 5 # wait to initialize
 echo "Running with config.json settings:"
 cat ./wdio.conf.js
 
-until curl --unix-socket /run/weldr/api.socket http://localhost/api/status | grep "\"db_supported\": *true"; do \
-    sleep 1; \
-    echo "Waiting for backend API to become ready before testing ..."; \
-done;
-
 # Execute the CMD
 exec "$@"
