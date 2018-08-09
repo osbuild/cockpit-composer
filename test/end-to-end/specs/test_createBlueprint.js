@@ -59,8 +59,17 @@ describe('Create Blueprint Page', () => {
         browser
           .waitForVisible(createBlueprintPage.btnCreate);
 
+        browser.actions([{
+          type: 'key',
+          id: 'keyboard',
+          actions: [
+            { type: 'keyDown', value: '\uE007' },
+          ],
+        }]);
+        // release an action
+        // browser.actions();
+
         browser
-          .keys('Enter') // appears to not be supported in Firefox
           .waitForVisible(createBlueprintPage.labelAlertInfo);
 
         const actualAlertText = $(createBlueprintPage.labelAlertInfo).getText();

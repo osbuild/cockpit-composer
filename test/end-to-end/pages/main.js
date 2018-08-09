@@ -3,9 +3,9 @@ const config = require('../wdio.conf.js');
 // Root Page object
 module.exports = class MainPage {
   constructor(title) {
-    this.mailUrl = config.config.baseUrl;
+    this.mailUrl = browser.options.baseUrl;
     this.title = title;
-    this.iframeSelector = '.container-frame';
+    this.iframeSelector = 'iframe[name="cockpit1:localhost/welder"]';
   }
 
   get url() {
