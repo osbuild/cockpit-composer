@@ -79,6 +79,11 @@ cockpit-composer-rpm: dist-gzip cockpit-composer.spec
 	find `pwd`/output -name '*.rpm' -printf '%f\n' -exec mv {} . \;
 	rm -r "`pwd`/rpmbuild"
 
+tag:
+	@[ -n "$(NEWTAG)" ] || (echo "Run 'make NEWTAG=X.Y.Z tag' to tag a new release"; exit 1)
+	@git log --no-merges --pretty="format:- %s (%ae)" $(VERSION).. |sed -e 's/@.*)/)/' > clog.tmp
+	git tag -s -e -F clog.tmp $(NEWTAG); rm -f clog.tmp
+
 # targets used by Jenkins to execute rpmbuild sanity tests
 test_rpmbuild: srpm rpm
 test_rpmbuild_cockpit-composer: cockpit-composer-srpm cockpit-composer-rpm
@@ -196,4 +201,4 @@ test_with_lorax_composer: rpm
 	                welder/web-e2e-tests:latest                                             \
 	                npm run test
 
-.PHONY: metadata.db ci ci_after_success test_with_lorax_composer
+.PHONY: metadata.db ci ci_after_success test_with_lorax_composer tag
