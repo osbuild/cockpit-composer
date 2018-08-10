@@ -196,5 +196,26 @@ save them as the Volapük (vo) translation. Volapük is used because it's a cons
 in react-intl and an estimated 20 speakers worldwide. To switch to the test translations, add "Volapük" to the top of
 your browser's preferred language list. In Firefox, this can be configured in the Language section of about:preferences.
 
+### Making A New Release Of welder-web
+
+When the project is ready for a new release, do the following:
+
+ * Tag the release with `make NEWTAG=X.Y.Z tag`, bumping .Z to the next version unless there are major changes.
+ * Edit the commit list to reflect the changes that will be visible to users (it shows up on the GitHub Releases page)
+ * Sign the tag with your GPG key
+
+(an editor should open automatically, and gpg is required to be setup in order to sign the tag).
+
+Then push the tag with `git push --tags`. This will trigger
+[cockpituous](https://github.com/cockpit-project/cockpituous/tree/master/release)
+to build a new release of welder-web.
+
+#### Releasing cockpit-composer
+
+Do this after tagging a new release of `welder-web` as described above. It uses the same source.
+
+ * Build a new `.srpm` with `make cockpit-composer-srpm`, this will also download new translations.
+ * Import the new `.srpm` into the appropriate RHEL release
+
 ---
 Made with ♥ by the Welder [team](https://github.com/orgs/weldr/people) and its contributors
