@@ -201,4 +201,4 @@ test_with_lorax_composer: rpm
 	                welder/web-e2e-tests:latest                                             \
 	                npm run test
 
-.PHONY: metadata.db ci ci_after_success test_with_lorax_composer tag
+.PHONY: metadata.db ci ci_after_success test_with_lorax_composer tag welder-web.spec cockpit-composer.spec
