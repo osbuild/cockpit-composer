@@ -1,0 +1,59 @@
+#!/usr/bin/python3
+import sys
+import os
+import errno
+import argparse
+import subprocess
+import testvm
+
+parser = argparse.ArgumentParser(description='Run a test machine')
+parser.add_argument('-v', '--verbose', action='store_true',
+                    help='Display verbose details')
+parser.add_argument('-M', '--memory', type=int, default=1024,
+                    help='Memory (in MiB) of the target machine')
+parser.add_argument('-C', '--cpus', type=int, default=1,
+                    help='Number of cpus in the target machine')
+
+parser.add_argument('image', help='The image to run')
+args = parser.parse_args()
+
+network = testvm.VirtNetwork(0)
+machine = testvm.VirtMachine(verbose=args.verbose, image=args.image,
+                             networking=network.host(),
+                             memory_mb=args.memory, cpus=args.cpus)
+machine.start()
+machine.wait_boot()
+
+# run a command to force starting the SSH master
+machine.execute('uptime')
+
+# print ssh command
+print("ssh -o ControlPath=%s -p %s %s@%s" % (
+        machine.ssh_master,
+        machine.ssh_port,
+        machine.ssh_user,
+        machine.ssh_address))
+
+# baseUrl and current dir path
+base_url = "https://{}:{}/welder".format(machine.web_address, machine.web_port)
+
+# print Cockpit web address
+print(base_url)
+
+# print marker that the VM is ready; tests can poll for this to wait for the VM
+print("RUNNING")
+
+machine.execute("until curl --unix-socket /run/weldr/api.socket http://localhost/api/status | grep '\"db_supported\": *true'; do sleep 1; done;")
+
+dir_path = os.path.dirname(os.path.realpath(__file__))
+command = "sudo docker run --rm --name welder_e2e --network host -v {}:/end2end/reports -v {}/.nyc_output/:/tmp/.nyc_output welder/web-e2e-tests:latest npm run test -- --baseUrl={}".format(dir_path, os.environ['CURDIR'], base_url)
+try:
+    ret = subprocess.call(command, shell=True)
+except OSError as ex:
+    if ex.errno != errno.ENOENT:
+        machine.stop()
+        raise
+else:
+    machine.stop()
+    if ret != 0:
+        sys.exit(ret)

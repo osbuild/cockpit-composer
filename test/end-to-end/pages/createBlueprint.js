@@ -83,12 +83,13 @@ module.exports = class CreateBlueprintPage extends BlueprintPage {
         .waitForVisible('.list-pf-content.list-pf-content-flex');
 
       // find the package in the list of filtered results
-      $$('.list-pf-content.list-pf-content-flex').forEach((item) => {
+      $$('.list-pf-content.list-pf-content-flex').some((item) => {
         const title = item.$('.list-pf-title').getText();
         if (title === pkg.name) {
           // clicks on the + button
           item.$('.btn-link').click();
         }
+        return title === pkg.name;
       });
     });
 
@@ -119,10 +120,11 @@ module.exports = class CreateBlueprintPage extends BlueprintPage {
       .waitUntil(() => {
         let result = false;
 
-        $$(page.labelBlueprintDescr).forEach((item) => {
+        $$(page.labelBlueprintDescr).some((item) => {
           if (item.getText() === bpObject.description) {
             result = true;
           }
+          return result;
         });
 
         return result;
