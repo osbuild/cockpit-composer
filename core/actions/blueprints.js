@@ -42,12 +42,10 @@ export const fetchingBlueprintContents = (blueprintId) => ({
 });
 
 export const FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED = 'FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED';
-export const fetchingBlueprintContentsSucceeded = (blueprintPast, blueprintPresent, pendingChanges) => ({
+export const fetchingBlueprintContentsSucceeded = (blueprint) => ({
   type: FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED,
   payload: {
-    blueprintPast,
-    blueprintPresent,
-    pendingChanges,
+    blueprint,
   },
 });
 

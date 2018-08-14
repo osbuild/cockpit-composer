@@ -1,6 +1,6 @@
 import { call, put, takeEvery, select } from 'redux-saga/effects';
 import {
-  fetchBlueprintInfoApi, fetchBlueprintNamesApi, fetchBlueprintContentsApi, fetchWorkspaceBlueprintContentsApi,
+  fetchBlueprintInfoApi, fetchBlueprintNamesApi, fetchBlueprintContentsApi, fetchWorkspaceBlueprintContentsApi, fetchSelectedComponentsInfoApi, fetchDependenciesInfoApi,
   deleteBlueprintApi, setBlueprintDescriptionApi,
   createBlueprintApi,
   depsolveComponentsApi,
@@ -38,44 +38,34 @@ function* fetchBlueprints() {
 function* fetchBlueprintContents(action) {
   try {
     const { blueprintId } = action.payload;
-    let blueprintPast = null;
-    let blueprintPresent = null;
+    const blueprintData = yield call(fetchBlueprintContentsApi, blueprintId);
 
-    const blueprintResponse = yield call(fetchBlueprintContentsApi, blueprintId);
+    // List of all components
+    const componentNames = blueprintData.dependencies.map(component => component.name);
+    // List of selected components
+    const selectedComponentNames = blueprintData.blueprint.packages.map(component => component.name);
+    // List of dependencies (component list without selected components)
+    const dependencyNames = componentNames.filter(component => !selectedComponentNames.includes(component));
+
+    const selectedComponents = yield call(fetchSelectedComponentsInfoApi, selectedComponentNames);
+    const dependencies = yield call(fetchDependenciesInfoApi, dependencyNames);
+    const components = selectedComponents.concat(dependencies);
+
     const workspaceChanges = yield call(fetchDiffWorkspaceApi, blueprintId);
     const addedChanges = workspaceChanges.diff.filter(componentUpdated => componentUpdated.old === null);
     const deletedChanges = workspaceChanges.diff.filter(componentUpdated => componentUpdated.new === null);
-    const workspacePendingChanges = {
-      'addedChanges': addedChanges,
-      'deletedChanges': deletedChanges,
-    };
 
-    if ((addedChanges.length > 0 || deletedChanges.length > 0) ) {
-      //fetchBlueprintInfo will return the most recent blueprint version even if its from the workspace
-      const workspaceBlueprint = yield call(fetchBlueprintInfoApi, blueprintId);
-      const workspaceDepsolved = yield call(fetchWorkspaceBlueprintContentsApi, workspaceBlueprint);
-      blueprintPast = [Object.assign(
-        {}, blueprintResponse, {
-          localPendingChanges: [],
-          workspacePendingChanges: {addedChanges: [], deletedChanges: []},
-        }
-      )];
-      blueprintPresent = Object.assign(
-        {}, workspaceDepsolved, {
-          localPendingChanges: [],
-          workspacePendingChanges: workspacePendingChanges,
-        }
-      );
-    } else {
-      blueprintPast = [];
-      blueprintPresent = Object.assign(
-        {}, blueprintResponse, {
-          localPendingChanges: [],
-          workspacePendingChanges: workspacePendingChanges,
-        }
-      );
-    }
-    yield put(fetchingBlueprintContentsSucceeded(blueprintPast, blueprintPresent, workspacePendingChanges));
+    const blueprint = Object.assign({}, blueprintData.blueprint, {
+      components: components,
+      id: blueprintId,
+      localPendingChanges: [],
+      workspacePendingChanges: {
+        'addedChanges': addedChanges,
+        'deletedChanges': deletedChanges,
+      },
+    });
+
+    yield put(fetchingBlueprintContentsSucceeded(blueprint));
   } catch (error) {
     console.log('Error in fetchBlueprintContentsSaga');
     yield put(blueprintContentsFailure(error, action.payload.blueprintId));

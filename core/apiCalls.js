@@ -16,15 +16,47 @@ export function createBlueprintApi(blueprint) {
     .catch((e) => console.log(`Error creating blueprint: ${e}`));
 }
 
+// Takes a list of selected component names and returns selected component objects with metadata
+export function fetchSelectedComponentsInfoApi(selectedComponentNames) {
+  return utils.apiFetch(constants.get_projects_info + selectedComponentNames.join(','))
+    .then(response => response.projects.map(component => {
+      // Only one build is currently returned
+      const builds = component.builds[0];
+      // removing builds so we can flatten the object
+      delete component.builds;
+      const flatComponent = Object.assign({}, component, builds);
+      const completeComponent = Object.assign({}, flatComponent, {
+      // Creates a new component object combining UI params, the build info, and the main component info
+        inBlueprint: true,
+        userSelected: true,
+        ui_type: 'RPM' // Temporarily setting all components as RPM
+      });
+      return completeComponent;
+    }));
+}
+
+// Takes a list of dependency names and returns dependency objects with metadata
+export function fetchDependenciesInfoApi(dependencyNames) {
+  return utils.apiFetch(constants.get_projects_info + dependencyNames.join(','))
+    .then(response => response.projects.map(dependency => {
+      // Only one build is currently returned
+      const builds = dependency.builds[0];
+      // removing builds so we can flatten the object
+      delete dependency.builds;
+      const flatDependency = Object.assign({}, dependency, builds);
+      const completeDependency = Object.assign({}, flatDependency, {
+      // Creates a new component object combining UI params, the build info, and the main component info
+        inBlueprint: true,
+        userSelected: false,
+        ui_type: 'RPM' // Temporarily setting all components as RPM
+      });
+      return completeDependency;
+    }));
+}
+
 export function fetchBlueprintContentsApi(blueprintName) {
-  const blueprintContents = Promise.all([BlueprintApi.getBlueprint(blueprintName)])
-    .then(data => {
-      const blueprint = data[0];
-      blueprint.id = blueprintName;
-      return blueprint;
-    })
-    .catch(err => console.log(`Error in fetchBlueprintContents promise: ${err}`));
-  return blueprintContents;
+  return utils.apiFetch(constants.get_blueprints_deps + blueprintName)
+    .then(response => response.blueprints[0]);
 }
 
 export function fetchWorkspaceBlueprintContentsApi(blueprintRaw) {

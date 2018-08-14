@@ -436,7 +436,6 @@ class EditBlueprintPage extends React.Component {
       inputs, createImage, modalActive, componentsSortKey, componentsSortValue,
       componentsFilters, pastLength, futureLength,
     } = this.props;
-
     const numPendingChanges = blueprint.localPendingChanges.length
       + blueprint.workspacePendingChanges.addedChanges.length
       + blueprint.workspacePendingChanges.deletedChanges.length;
@@ -535,8 +534,6 @@ class EditBlueprintPage extends React.Component {
                 </div>
               </li>
             </ul>
-
-
           </div>
           <div className="cmpsr-title">
             <h1 className="cmpsr-title__item">{blueprintDisplayName}</h1>
