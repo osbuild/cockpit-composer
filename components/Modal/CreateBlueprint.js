@@ -9,7 +9,7 @@ import {
   setModalCreateBlueprintErrorNameVisible, setModalCreateBlueprintErrorDuplicateVisible,
   setModalCreateBlueprintErrorInline, setModalCreateBlueprintCheckErrors, setModalCreateBlueprintBlueprint,
 } from '../../core/actions/modals';
-import { creatingBlueprintSucceeded } from '../../core/actions/blueprints';
+import { creatingBlueprint } from '../../core/actions/blueprints';
 
 class CreateBlueprint extends React.Component {
 
@@ -60,18 +60,17 @@ class CreateBlueprint extends React.Component {
         if (this.props.createBlueprint.errorNameVisible || this.props.createBlueprint.errorDuplicateVisible) {
           this.showInlineError();
         } else {
-          this.handleCreateBlueprint(event, this.props.createBlueprint.blueprint);
+          this.handleCreateBlueprint(this.props.createBlueprint.blueprint);
         }
       }, 300);
     }
   }
 
-  handleCreateBlueprint(event, blueprint) {
+  handleCreateBlueprint(blueprint) {
     $('#cmpsr-modal-crt-blueprint').modal('hide');
-    BlueprintApi.handleCreateBlueprint(event, blueprint);
     const updatedBlueprint = blueprint;
     updatedBlueprint.id = updatedBlueprint.name.replace(/\s/g, '-');
-    this.props.creatingBlueprintSucceeded(updatedBlueprint);
+    this.props.creatingBlueprint(updatedBlueprint)
   }
 
   errorChecking(state) {
@@ -226,7 +225,7 @@ class CreateBlueprint extends React.Component {
                 <button
                   type="button"
                   className="btn btn-primary"
-                  onClick={(e) => { this.handleCreateBlueprint(e, createBlueprint.blueprint); }}
+                  onClick={() => this.handleCreateBlueprint(createBlueprint.blueprint)}
                 ><FormattedMessage defaultMessage="Create" /></button>
               }
             </div>
@@ -245,7 +244,7 @@ CreateBlueprint.propTypes = {
   setModalCreateBlueprintCheckErrors: PropTypes.func,
   setModalCreateBlueprintBlueprint: PropTypes.func,
   createBlueprint: PropTypes.object,
-  creatingBlueprintSucceeded: PropTypes.func,
+  creatingBlueprint: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -269,8 +268,8 @@ const mapDispatchToProps = dispatch => ({
   setModalCreateBlueprintBlueprint: blueprint => {
     dispatch(setModalCreateBlueprintBlueprint(blueprint));
   },
-  creatingBlueprintSucceeded: (blueprint) => {
-    dispatch(creatingBlueprintSucceeded(blueprint));
+  creatingBlueprint: (blueprint) => {
+    dispatch(creatingBlueprint(blueprint));
   },
 });
 

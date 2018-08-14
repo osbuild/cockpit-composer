@@ -2,9 +2,18 @@ import constants from './constants';
 import BlueprintApi from '../data/BlueprintApi';
 import MetadataApi from '../data/MetadataApi';
 import utils from './utils';
+import history from '../core/history';
 
-export function createBlueprintApi(events, blueprint) {
-  BlueprintApi.handleCreateBlueprint(events, blueprint);
+export function createBlueprintApi(blueprint) {
+  return utils.apiFetch(constants.post_blueprints_new, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(blueprint),
+  }, true)
+    .then(() => window.location.hash = history.createHref(`/edit/${blueprint.name}`))
+    .catch((e) => console.log(`Error creating blueprint: ${e}`));
 }
 
 export function fetchBlueprintContentsApi(blueprintName) {

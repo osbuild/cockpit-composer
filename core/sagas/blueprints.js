@@ -105,8 +105,8 @@ function* deleteBlueprint(action) {
 
 function* createBlueprint(action) {
   try {
-    const { events, blueprint } = action.payload;
-    yield call(createBlueprintApi, events, blueprint);
+    const { blueprint } = action.payload;
+    yield call(createBlueprintApi, blueprint);
     yield put(creatingBlueprintSucceeded(blueprint));
   } catch (error) {
     console.log('errorCreateBlueprintSaga');
