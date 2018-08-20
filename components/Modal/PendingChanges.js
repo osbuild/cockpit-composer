@@ -1,10 +1,32 @@
 /* global $ */
 
 import React from 'react';
+import {FormattedMessage, defineMessages, injectIntl, intlShape} from 'react-intl';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { setBlueprintComment } from '../../core/actions/blueprints';
 import { Button, OverlayTrigger, Popover, Icon, Alert } from 'patternfly-react';
+
+const messages = defineMessages({
+  previousSessionInfotip: {
+    defaultMessage: "Changes made in a previous session are not listed " +
+      "in the order they were made. If you choose to undo these " +
+      "changes, they are undone as a group."
+  },
+  blueprint: {
+    defaultMessage: "Blueprint"
+  },
+  closeButtonLabel: {
+    defaultMessage: "Close"
+  },
+  commitButtonLabel: {
+    defaultMessage: "Commit"
+  },
+  parenthetical: {
+    defaultMessage: "(most recent first)",
+    description: "Describes the sort order of the pending changes"
+  }
+});
 
 class PendingChanges extends React.Component {
   constructor() {
@@ -35,6 +57,7 @@ class PendingChanges extends React.Component {
   }
 
   render() {
+    const { formatMessage } = this.props.intl;
     return (
       <div
         className="modal fade"
@@ -43,7 +66,6 @@ class PendingChanges extends React.Component {
         tabIndex="-1"
         role="dialog"
         aria-labelledby="myModalLabel"
-        aria-hidden="true"
       >
         <div className="modal-dialog">
           <div className="modal-content">
@@ -52,17 +74,18 @@ class PendingChanges extends React.Component {
                 type="button"
                 className="close"
                 data-dismiss="modal"
+                aria-label={formatMessage(messages.closeButtonLabel)}
               >
                 <span className="pficon pficon-close"></span>
               </button>
-              <h4 className="modal-title" id="myModalLabel">Changes Pending Commit</h4>
+              <h4 className="modal-title" id="myModalLabel"><FormattedMessage defaultMessage="Changes Pending Commit" /></h4>
             </div>
             <div className="modal-body">
               <form className="form-horizontal">
                 <div className="form-group" hidden>
                   <label
                     className="col-sm-3 control-label"
-                  >Blueprint</label>
+                  >{formatMessage(messages.blueprint)}</label>
                   <div className="col-sm-9">
                     <p className="form-control-static">{this.props.blueprint.name}</p>
                   </div>
@@ -71,7 +94,7 @@ class PendingChanges extends React.Component {
                   <label
                     className="col-sm-3 control-label"
                     htmlFor="textInput-modal-markup"
-                  >Comment</label>
+                  ><FormattedMessage defaultMessage="Comment" /></label>
                   <div className="col-sm-9">
                     <textarea
                       id="textInput-modal-markup"
@@ -84,29 +107,64 @@ class PendingChanges extends React.Component {
                   </div>
                 </div>
                 <Alert type="info">
-                  Only changes to selected components are shown.
+                  <FormattedMessage defaultMessage="Only changes to selected components are shown." />
                 </Alert>
-                <p><strong>Blueprint:</strong> {this.props.blueprint.name}</p>
+                <p>
+                  <strong>{formatMessage(messages.blueprint)}: </strong> 
+                  {this.props.blueprint.name}
+                </p>
                 {this.props.blueprint.localPendingChanges.length !== 0 &&
                   <div>
-                    <strong>Pending Changes</strong><span className="text-muted"> (most recent first)</span>
+                    <FormattedMessage
+                      defaultMessage="{heading} {parenthetical}"
+                      values={{
+                        heading: <FormattedMessage defaultMessage="Pending Changes" tagName="strong" />,
+                        parenthetical: <span className="text-muted"> {formatMessage(messages.parenthetical)}</span>
+                      }}
+                    />
                     <ul className="list-group">
                       {this.props.blueprint.localPendingChanges.map((componentUpdated, index) => (
                         <li className="list-group-item" key={index}>
                           {componentUpdated.componentNew && componentUpdated.componentOld &&
                             <div className="row">
-                              <div className="col-sm-3">Updated</div>
-                              <div className="col-sm-9">from <strong>{componentUpdated.componentOld}</strong> to <strong>
-                                {componentUpdated.componentNew}</strong></div>
+                              <div className="col-sm-3">
+                                <FormattedMessage
+                                  defaultMessage="Updated"
+                                  description="Identifies the change as a component that was updated"
+                                />
+                              </div>
+                              <div className="col-sm-9">
+                                <strong>
+                                  <FormattedMessage
+                                    defaultMessage="{from} {oldVersion} {to} {newVersion}"
+                                    values={{
+                                      from: <span className="text-muted"><FormattedMessage defaultMessage="from" /> </span>,
+                                      oldVersion: componentUpdated.componentOld,
+                                      to: <span className="text-muted"><FormattedMessage defaultMessage="to" /> </span>,
+                                      newVersion: componentUpdated.componentNew
+                                    }}
+                                  />
+                                </strong>
+                              </div>
                             </div>
                           } {componentUpdated.componentNew && !componentUpdated.componentOld &&
                             <div className="row">
-                              <div className="col-sm-3">Added</div>
+                              <div className="col-sm-3">
+                                <FormattedMessage
+                                  defaultMessage="Added"
+                                  description="Identifies the change as a component that was added"
+                                />
+                              </div>
                               <div className="col-sm-9"><strong>{componentUpdated.componentNew}</strong></div>
                             </div>
                           } {componentUpdated.componentOld && !componentUpdated.componentNew &&
                             <div className="row">
-                              <div className="col-sm-3">Removed</div>
+                              <div className="col-sm-3">
+                                <FormattedMessage
+                                  defaultMessage="Removed"
+                                  description="Identifies the change as a component that was removed"
+                                />
+                              </div>
                               <div className="col-sm-9"><strong>{componentUpdated.componentOld}</strong></div>
                             </div>
                           }
@@ -118,13 +176,14 @@ class PendingChanges extends React.Component {
                 {(this.props.blueprint.workspacePendingChanges.addedChanges.length !== 0 ||
                  this.props.blueprint.workspacePendingChanges.deletedChanges.length !== 0) &&
                   <div>
-                    <strong>Changes made in a previous session</strong>
+                    <FormattedMessage 
+                      defaultMessage="Changes made in a previous session" 
+                      tagName="strong" 
+                    />
                     <OverlayTrigger
                       overlay={
                         <Popover>
-                          Changes made in a previous session are not listed
-                          in the order they were made. If you choose to undo these
-                          changes, they are undone as a group.
+                          {formatMessage(messages.previousSessionInfotip)}
                         </Popover>
                         }
                       placement="right"
@@ -175,8 +234,10 @@ class PendingChanges extends React.Component {
                 type="button"
                 className="btn btn-default"
                 data-dismiss="modal"
-              >Close</button>
-              <button type="button" className="btn btn-primary" onClick={() => this.handleCommitChanges()}>Commit</button>
+              >{formatMessage(messages.closeButtonLabel)}</button>
+              <button type="button" className="btn btn-primary" onClick={() => this.handleCommitChanges()}>
+                {formatMessage(messages.commitButtonLabel)}
+              </button>
             </div>
           </div>
         </div>
@@ -193,6 +254,7 @@ PendingChanges.propTypes = {
   setBlueprintComment: PropTypes.func,
   handleCommit: PropTypes.func,
   modals: PropTypes.object,
+  intl: intlShape.isRequired,
 };
 const mapStateToProps = state => ({
   modals: state.modals,
@@ -204,4 +266,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PendingChanges);
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(PendingChanges));
