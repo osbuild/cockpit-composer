@@ -531,6 +531,12 @@ body {
   cursor: pointer;
 }
 
+/* text-muted inside strong element - for translatable strings */
+strong > .text-muted {
+  font-weight: normal;
+  color: initial;
+}
+
 /* This is added for the export dialog so that the contents have higher contrast */
 textarea.form-control[readonly] {
   background-color: inherit;
