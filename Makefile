@@ -23,7 +23,7 @@ install: all
 	cp -r public/* /usr/share/cockpit/welder
 
 dist-gzip: NODE_ENV=production
-dist-gzip: po-pull all
+dist-gzip: all
 	mkdir -p welder-web-$(VERSION)
 	cp -r public/ LICENSE.txt README.md welder-web-$(VERSION)
 	tar -czf welder-web-$(VERSION).tar.gz welder-web-$(VERSION)
