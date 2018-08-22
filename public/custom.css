@@ -261,6 +261,32 @@
 .toolbar-pf-results .pagination.pagination-pf-forward {
   margin-left: 5px;
 }
+.toolbar-pf-results .pagination-pf-page {
+  display: inline;
+}
+.pagination-cmpsr-pages {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+/* given complexity of this component related to sr a11y and i18n, 
+this applies sr-only styles to the child span, which includes 
+the translated screenreader text, while the next line provides 
+the "-" that would display instead of the sr-only "to" */
+.pagination-cmpsr-to > span {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+.pagination-cmpsr-to:before {
+  content: "\2013";
+}
+
 /* sidebar */
 .cmpsr-panel__body--sidebar .toolbar-pf-actions .toolbar-pf-filter {
   width: auto;

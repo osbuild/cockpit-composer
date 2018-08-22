@@ -1,5 +1,18 @@
 import React from 'react';
+import {FormattedMessage, defineMessages, injectIntl, intlShape} from 'react-intl';
 import PropTypes from 'prop-types';
+
+const messages = defineMessages({
+  previousPage: {
+    defaultMessage: "Show Previous Page"
+  },
+  nextPage: {
+    defaultMessage: "Show Next Page"
+  },
+  currentPage: {
+    defaultMessage: "Current Page"
+  }
+});
 
 class Pagination extends React.Component {
   constructor() {
@@ -48,8 +61,11 @@ class Pagination extends React.Component {
   // display in the UI, then + 1 must be included.
 
   render() {
+    const { formatMessage } = this.props.intl;
     const { cssClass, currentPage, totalItems, pageSize } = this.props;
     const totalPages = Math.ceil((totalItems / pageSize) - 1);
+    const startItems = (currentPage + 1) * pageSize - pageSize + 1;
+    const endItems = currentPage === totalPages && totalItems || (currentPage + 1) * pageSize;
     let pageInput = null;
     if (this.state.pageValue !== '') {
       pageInput = (
@@ -58,7 +74,7 @@ class Pagination extends React.Component {
           ref="paginationPage"
           type="text" value={this.state.pageValue + 1}
           id="cmpsr-blueprint-inputs-page"
-          aria-label="Current Page"
+          aria-label={formatMessage(messages.currentPage)}
           onClick={() => { this.refs.paginationPage.select(); }}
           onChange={this.handleChange}
           onKeyPress={(e) => this.props.handlePagination(e)}
@@ -72,7 +88,7 @@ class Pagination extends React.Component {
           ref="paginationPage"
           type="text" value=""
           id="cmpsr-blueprint-inputs-page"
-          aria-label="Current Page"
+          aria-label={formatMessage(messages.currentPage)}
           onClick={() => { this.refs.paginationPage.select(); }}
           onChange={this.handleChange}
           onBlur={this.handleBlur}
@@ -83,7 +99,7 @@ class Pagination extends React.Component {
     if (currentPage === 0) {
       previousPage = (
         <li className="disabled">
-          <a>
+          <a aria-disabled="true">
             <span className="i fa fa-angle-left"></span>
           </a>
         </li>
@@ -93,6 +109,7 @@ class Pagination extends React.Component {
         <li>
           <a
             href="#"
+            aria-label={formatMessage(messages.previousPage)}
             data-page={currentPage - 1}
             onClick={(e) => this.props.handlePagination(e)}
           >
@@ -105,7 +122,7 @@ class Pagination extends React.Component {
     if (currentPage === totalPages) {
       nextPage = (
         <li className="disabled">
-          <a>
+          <a aria-disabled="true">
             <span className="i fa fa-angle-right"></span>
           </a>
         </li>
@@ -115,6 +132,7 @@ class Pagination extends React.Component {
         <li>
           <a
             href="#"
+            aria-label={formatMessage(messages.nextPage)}
             data-page={currentPage + 1}
             onClick={(e) => this.props.handlePagination(e)}
           >
@@ -123,25 +141,36 @@ class Pagination extends React.Component {
         </li>
       );
     }
-
     return (
       <div className={`${cssClass}  content-view-pf-pagination`}>
-        <span>
-          <span className="pagination-pf-items-current">
-            {(currentPage + 1) * pageSize - pageSize + 1}
-            <span> - </span>
-            {currentPage === totalPages && totalItems || (currentPage + 1) * pageSize}
-          </span> of {totalItems}
+        <FormattedMessage
+          defaultMessage="{items} {start} {to} {end} of {total} {items}"
+          values={{
+            items: <span className="sr-only"><FormattedMessage defaultMessage="Items" /></span>,
+            start: startItems,
+            to: <span className="pagination-cmpsr-to"><FormattedMessage defaultMessage="to" /></span>,
+            end: endItems,
+            total: totalItems
+          }}
+        />
+        <span className="pagination-cmpsr-pages">
+          <ul className="pagination pagination-pf-back">
+            {previousPage}
+          </ul>
+          <FormattedMessage
+            defaultMessage="{currentPage} of {totalPages} {pages}"
+            values={{
+              currentPage: pageInput,
+              totalPages: totalPages + 1,
+              pages: <span className="sr-only"><FormattedMessage defaultMessage="Pages" /></span>
+            }}
+          />
+          <ul className="pagination pagination-pf-forward">
+            {nextPage}
+          </ul>
         </span>
-        <ul className="pagination pagination-pf-back">
-          {previousPage}
-        </ul>
-        {pageInput}
-        <span>of <span className="pagination-pf-pages">{totalPages + 1}</span></span>
-        <ul className="pagination pagination-pf-forward">
-          {nextPage}
-        </ul>
       </div>
+      
     );
   }
 }
@@ -152,6 +181,7 @@ Pagination.propTypes = {
   totalItems: PropTypes.number,
   pageSize: PropTypes.number,
   handlePagination: PropTypes.func,
+  intl: intlShape.isRequired,
 };
 
-export default Pagination;
+export default (injectIntl(Pagination));
