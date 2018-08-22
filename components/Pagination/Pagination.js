@@ -99,7 +99,11 @@ class Pagination extends React.Component {
     if (currentPage === 0) {
       previousPage = (
         <li className="disabled">
-          <a aria-disabled="true">
+          <a 
+            aria-disabled="true" 
+            role="button"
+            aria-label={formatMessage(messages.previousPage)}
+          >
             <span className="i fa fa-angle-left"></span>
           </a>
         </li>
@@ -109,6 +113,7 @@ class Pagination extends React.Component {
         <li>
           <a
             href="#"
+            role="button"
             aria-label={formatMessage(messages.previousPage)}
             data-page={currentPage - 1}
             onClick={(e) => this.props.handlePagination(e)}
@@ -122,7 +127,11 @@ class Pagination extends React.Component {
     if (currentPage === totalPages) {
       nextPage = (
         <li className="disabled">
-          <a aria-disabled="true">
+          <a 
+            aria-disabled="true"
+            role="button"
+            aria-label={formatMessage(messages.nextPage)}
+          >
             <span className="i fa fa-angle-right"></span>
           </a>
         </li>
@@ -132,6 +141,7 @@ class Pagination extends React.Component {
         <li>
           <a
             href="#"
+            role="button"
             aria-label={formatMessage(messages.nextPage)}
             data-page={currentPage + 1}
             onClick={(e) => this.props.handlePagination(e)}
@@ -154,7 +164,7 @@ class Pagination extends React.Component {
           }}
         />
         <span className="pagination-cmpsr-pages">
-          <ul className="pagination pagination-pf-back">
+          <ul className="pagination pagination-pf-back" role="presentation">
             {previousPage}
           </ul>
           <FormattedMessage
@@ -165,7 +175,7 @@ class Pagination extends React.Component {
               pages: <span className="sr-only"><FormattedMessage defaultMessage="Pages" /></span>
             }}
           />
-          <ul className="pagination pagination-pf-forward">
+          <ul className="pagination pagination-pf-forward" role="presentation">
             {nextPage}
           </ul>
         </span>
