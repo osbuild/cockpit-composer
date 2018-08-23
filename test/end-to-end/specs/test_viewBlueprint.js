@@ -150,7 +150,6 @@ describe('View Blueprint Page', () => {
             // first status is Creating
             const textCreating = $(toastNotifPage.labelStatus).getText();
             assert.equal(textCreating, toastNotifPage.varStatusCreating);
-
           });
         }); // for image
       });
