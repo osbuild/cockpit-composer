@@ -10,7 +10,11 @@ const messages = defineMessages({
     defaultMessage: "Show Next Page"
   },
   currentPage: {
-    defaultMessage: "Current Page"
+    defaultMessage: "Current Page",
+    description: "Label of form input for setting current page number"
+  },
+  pagination: {
+    defaultMessage: "Pagination"
   }
 });
 
@@ -152,15 +156,22 @@ class Pagination extends React.Component {
       );
     }
     return (
-      <div className={`${cssClass}  content-view-pf-pagination`}>
+      <nav 
+        className={`${cssClass}  content-view-pf-pagination`}
+        aria-label={formatMessage(messages.pagination)}
+      >
+        <span className="sr-only">
+          <FormattedMessage 
+            defaultMessage="Current Items" 
+            description="Label for the string: 1–50 of 125; only visible to screen readers"
+          />:
+        </span>
         <FormattedMessage
-          defaultMessage="{items} {start} {to} {end} of {total} {items}"
+          defaultMessage="{startNumber}–{endNumber} of {totalNumber}"
           values={{
-            items: <span className="sr-only"><FormattedMessage defaultMessage="Items" /></span>,
-            start: startItems,
-            to: <span className="pagination-cmpsr-to"><FormattedMessage defaultMessage="to" /></span>,
-            end: endItems,
-            total: totalItems
+            startNumber: startItems,
+            endNumber: endItems,
+            totalNumber: totalItems
           }}
         />
         <span className="pagination-cmpsr-pages">
@@ -168,18 +179,17 @@ class Pagination extends React.Component {
             {previousPage}
           </ul>
           <FormattedMessage
-            defaultMessage="{currentPage} of {totalPages} {pages}"
+            defaultMessage="{currentPage} of {totalPages}"
             values={{
               currentPage: pageInput,
               totalPages: totalPages + 1,
-              pages: <span className="sr-only"><FormattedMessage defaultMessage="Pages" /></span>
             }}
           />
           <ul className="pagination pagination-pf-forward" role="presentation">
             {nextPage}
           </ul>
         </span>
-      </div>
+      </nav>
       
     );
   }
