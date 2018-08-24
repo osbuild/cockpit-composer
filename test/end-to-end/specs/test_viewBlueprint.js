@@ -150,13 +150,6 @@ describe('View Blueprint Page', () => {
             // first status is Creating
             const textCreating = $(toastNotifPage.labelStatus).getText();
             assert.equal(textCreating, toastNotifPage.varStatusCreating);
-
-            // then it changes to Complete
-            browser
-              .waitForVisible(toastNotifPage.iconComplete);
-
-            const textComplete = $(toastNotifPage.labelStatus).getText();
-            assert.equal(textComplete, toastNotifPage.varStatusComplete);
           });
         }); // for image
       });

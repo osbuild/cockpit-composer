@@ -24,7 +24,7 @@ class CreateImage extends React.Component {
   }
 
   handleCreateImage() {
-    NotificationsApi.displayNotification(this.props.blueprint, 'creating');
+    NotificationsApi.displayNotification(this.props.blueprint, 'imageWaiting');
     if (this.props.setNotifications)
       this.props.setNotifications();
     if (this.props.handleStartCompose)
