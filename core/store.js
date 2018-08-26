@@ -42,7 +42,7 @@ const initialState = {
   },
   modals: {
     createImage: {
-      name: '',
+      blueprint: {},
       imageTypes: [],
       visible: false,
     },

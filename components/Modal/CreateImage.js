@@ -32,11 +32,11 @@ class CreateImage extends React.Component {
   }
 
   handleCreateImage() {
-    NotificationsApi.displayNotification(this.props.blueprint, 'imageWaiting');
+    NotificationsApi.displayNotification(this.props.blueprint.name, 'imageWaiting');
     if (this.props.setNotifications)
       this.props.setNotifications();
     if (this.props.handleStartCompose)
-      this.props.handleStartCompose(this.props.blueprint, this.state.imageType);
+      this.props.handleStartCompose(this.props.blueprint.name, this.state.imageType);
     $('#cmpsr-modal-crt-image').modal('hide');
   }
 
@@ -81,7 +81,7 @@ class CreateImage extends React.Component {
                     className="col-sm-3 control-label"
                   ><FormattedMessage defaultMessage="Blueprint" /></label>
                   <div className="col-sm-9">
-                    <p className="form-control-static">{this.props.blueprint}</p>
+                    <p className="form-control-static">{this.props.blueprint.name}</p>
                   </div>
                 </div>
                 <div className="form-group">
@@ -126,7 +126,7 @@ class CreateImage extends React.Component {
 }
 
 CreateImage.propTypes = {
-  blueprint: PropTypes.string,
+  blueprint: PropTypes.object,
   handleStartCompose: PropTypes.func,
   handleHideModal: PropTypes.func,
   setNotifications: PropTypes.func,
