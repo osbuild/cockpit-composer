@@ -145,6 +145,7 @@ class BlueprintApi {
         resolve();
       }).catch(e => {
         console.log(`Error committing blueprint: ${e}`);
+        NotificationsApi.closeNotification(undefined, 'committing');
         NotificationsApi.displayNotification(this.blueprint.name, 'commitFailed');
         reject();
       });
