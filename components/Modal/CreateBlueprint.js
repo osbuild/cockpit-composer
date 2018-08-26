@@ -221,7 +221,7 @@ class CreateBlueprint extends React.Component {
                   type="button"
                   className="btn btn-primary"
                   onClick={(e) => this.showInlineError(e)}
-                >Create</button>
+                ><FormattedMessage defaultMessage="Create" /></button>
                 ||
                 <button
                   type="button"
