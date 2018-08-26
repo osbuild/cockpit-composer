@@ -128,15 +128,7 @@ class BlueprintApi {
     }).catch((e) => { console.log(`Error creating blueprint: ${e}`); });
   }
 
-  handleCommitBlueprint() {
-    // create blueprint and post it
-    const blueprint = {
-      name: this.blueprint.name,
-      description: this.blueprint.description,
-      version: this.blueprint.version,
-      modules: this.blueprint.modules,
-      packages: this.blueprint.packages,
-    };
+  handleCommitBlueprint(blueprint) {
     const p = new Promise((resolve, reject) => {
       this.postBlueprint(blueprint)
       .then(() => {

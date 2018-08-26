@@ -5,11 +5,14 @@ import {FormattedMessage, defineMessages, injectIntl, intlShape} from 'react-int
 import PropTypes from 'prop-types';
 import NotificationsApi from '../../data/NotificationsApi';
 import { Alert } from 'patternfly-react';
+import BlueprintApi from '../../data/BlueprintApi';
+import { connect } from 'react-redux';
+import { setBlueprint } from '../../core/actions/blueprints';
 
 const messages = defineMessages({
   warningUnsaved: {
     defaultMessage: "This blueprint has changes that are not committed. " +
-                    "These changes will not be included in the image."
+      "These changes will be committed before the image is created."
   }
 });
 
@@ -19,6 +22,7 @@ class CreateImage extends React.Component {
     this.state = { imageType: '' };
     this.handleCreateImage = this.handleCreateImage.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleCommit = this.handleCommit.bind(this);
   }
 
   componentWillMount() {
@@ -42,6 +46,33 @@ class CreateImage extends React.Component {
 
   handleChange(event) {
     this.setState({imageType: event.target.value});
+  }
+
+  handleCommit() {
+    // clear existing notifications
+    NotificationsApi.closeNotification(undefined, 'committed');
+    NotificationsApi.closeNotification(undefined, 'committing');
+    // display the committing notification
+    NotificationsApi.displayNotification(this.props.blueprint.name, 'committing');
+    this.props.setNotifications();
+    // post blueprint (includes 'committed' notification)
+    Promise.all([BlueprintApi.handleCommitBlueprint(this.props.blueprint)])
+      .then(() => {
+        // then after blueprint is posted, reload blueprint details
+        // to get details that were updated during commit (i.e. version)
+        // and call create image     
+        Promise.all([BlueprintApi.reloadBlueprintDetails(this.props.blueprint)])
+          .then(data => {
+            const blueprintToSet = this.props.blueprint;
+            blueprintToSet.name = data[0].name;
+            blueprintToSet.description = data[0].description;
+            blueprintToSet.version = data[0].version;
+            this.props.setBlueprint(blueprintToSet);
+            this.handleCreateImage();
+          })
+          .catch(e => console.log(`Error in reload blueprint details: ${e}`));
+      })
+      .catch(e => console.log(`Error in blueprint commit: ${e}`));
   }
 
   render() {
@@ -114,9 +145,15 @@ class CreateImage extends React.Component {
               <button type="button" className="btn btn-default" data-dismiss="modal">
                 <FormattedMessage defaultMessage="Cancel" />
               </button>
-              <button type="button" className="btn btn-primary" onClick={this.handleCreateImage}>
-                <FormattedMessage defaultMessage="Create" />
-              </button>
+              {this.props.warningUnsaved === true &&
+                <button type="button" className="btn btn-primary" onClick={this.handleCommit}>
+                  <FormattedMessage defaultMessage="Commit and Create" />
+                </button>
+              ||
+                <button type="button" className="btn btn-primary" onClick={this.handleCreateImage}>
+                  <FormattedMessage defaultMessage="Create" />
+                </button>
+              }
             </div>
           </div>
         </div>
@@ -133,7 +170,14 @@ CreateImage.propTypes = {
   imageTypes: PropTypes.array,
   warningEmpty: PropTypes.bool,
   warningUnsaved: PropTypes.bool,
+  setBlueprint: PropTypes.func,
   intl: intlShape.isRequired,
 };
 
-export default injectIntl(CreateImage);
+const mapDispatchToProps = (dispatch) => ({
+  setBlueprint: blueprint => {
+    dispatch(setBlueprint(blueprint));
+  },
+});
+
+export default connect(null, mapDispatchToProps)(injectIntl(CreateImage));
