@@ -233,7 +233,7 @@ class BlueprintsPage extends React.Component {
           : null}
         {(createImage !== undefined && createImage.visible)
           ? <CreateImage
-            blueprint={createImage.name}
+            blueprint={createImage.blueprint}
             imageTypes={createImage.imageTypes}
             handleStartCompose={this.handleStartCompose}
             handleHideModal={this.handleHideModalCreateImage}

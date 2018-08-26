@@ -660,7 +660,7 @@ class EditBlueprintPage extends React.Component {
                 />
               </div>
             </div>
-            {(blueprint.components.length === 0 || blueprint.components === undefined ) &&
+            {(blueprint.components === undefined || blueprint.components.length === 0) &&
               <div className="alert alert-info alert-dismissable">
                 <button type="button" className="close" data-dismiss="alert" aria-hidden="true" aria-label="Dismiss Message">
                   <span className="pficon pficon-close" />
@@ -702,7 +702,7 @@ class EditBlueprintPage extends React.Component {
         }
         {modalActive === 'modalCreateImage'
           ? <CreateImage
-            blueprint={createImage.name}
+            blueprint={createImage.blueprint}
             imageTypes={createImage.imageTypes}
             handleStartCompose={this.handleStartCompose}
             handleHideModal={this.handleHideModalCreateImage}

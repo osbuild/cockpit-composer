@@ -404,7 +404,7 @@ class BlueprintPage extends React.Component {
         </Tabs>
         {createImage.visible
           ? <CreateImage
-            blueprint={blueprint.name}
+            blueprint={blueprint}
             imageTypes={createImage.imageTypes}
             setNotifications={this.setNotifications}
             handleStartCompose={this.handleStartCompose}

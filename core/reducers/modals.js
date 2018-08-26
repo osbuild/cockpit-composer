@@ -63,7 +63,7 @@ const modalCreateImage = (state = [], action) => {
         { createImage: Object.assign(
           {}, state.createImage, {
             visible: true,
-            name: action.payload.blueprint.name,
+            blueprint: action.payload.blueprint,
             warningEmpty: action.payload.blueprint.packages.length === 0 && action.payload.blueprint.modules.length === 0,
             warningUnsaved: (
               action.payload.blueprint.changed === true ||
