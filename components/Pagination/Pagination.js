@@ -167,7 +167,7 @@ class Pagination extends React.Component {
           />:
         </span>
         <FormattedMessage
-          defaultMessage="{startNumber}–{endNumber} of {totalNumber}"
+          defaultMessage="{startNumber} - {endNumber} of {totalNumber}"
           values={{
             startNumber: startItems,
             endNumber: endItems,
