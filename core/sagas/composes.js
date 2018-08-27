@@ -10,7 +10,8 @@ import {
    fetchingComposeStatusSucceeded,
    FETCHING_COMPOSES, fetchingComposeSucceeded,
    composesFailure, CANCELLING_COMPOSE, DELETING_COMPOSE, deletingComposeSucceeded, 
-   deletingComposeFailure, cancellingComposeSucceeded, cancellingComposeFailure
+   deletingComposeFailure, cancellingComposeSucceeded, cancellingComposeFailure,
+   FETCHING_QUEUE, fetchingQueueSucceeded
 } from '../actions/composes';
 
 
@@ -90,9 +91,20 @@ function* cancelCompose(action) {
   }
 }
 
+function* fetchQueue() {
+  try {
+    const queue = yield call(fetchComposeQueueApi);
+    yield put(fetchingQueueSucceeded(queue));
+  } catch (error) {
+    console.log('fetchQueueError');
+    yield put(composesFailure(error));
+  }
+}
+
 export default function* () {
   yield takeEvery(START_COMPOSE, startCompose);
   yield takeEvery(FETCHING_COMPOSES, fetchComposes);
   yield takeEvery(DELETING_COMPOSE, deleteCompose);
   yield takeEvery(CANCELLING_COMPOSE, cancelCompose);
+  yield takeEvery(FETCHING_QUEUE, fetchQueue);
 }

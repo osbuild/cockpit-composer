@@ -37,6 +37,8 @@ const initialState = {
   },
   composes: {
     composeList: [],
+    queue: [],
+    queueFetched: false,
     fetchingComposes: true,
     errorState: null,
   },
