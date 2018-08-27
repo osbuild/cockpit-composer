@@ -21,6 +21,10 @@ export const fetchingComposes = () => ({
   type: FETCHING_COMPOSES,
 });
 
+export const FETCHING_QUEUE = 'FETCHING_QUEUE';
+export const fetchingQueue = () => ({
+  type: FETCHING_QUEUE,
+});
 
 export const FETCHING_COMPOSE_SUCCEEDED = 'FETCHING_COMPOSE_SUCCEEDED';
 export const fetchingComposeSucceeded = (compose) => ({
@@ -36,6 +40,18 @@ export const fetchingComposeStatusSucceeded = (compose) => ({
   payload: {
     compose,
   },
+});
+
+export const FETCHING_QUEUE_SUCCEEDED = 'FETCHING_QUEUE_SUCCEEDED';
+export const fetchingQueueSucceeded = (queue) => ({
+  type: FETCHING_QUEUE_SUCCEEDED,
+  payload: {
+    queue,
+  },
+});
+export const CLEAR_QUEUE = 'CLEAR_QUEUE';
+export const clearQueue = () => ({
+  type: CLEAR_QUEUE,
 });
 
 export const COMPOSES_FAILURE = 'COMPOSES_FAILURE';

@@ -1,6 +1,7 @@
 import {
   FETCHING_COMPOSE_SUCCEEDED, FETCHING_COMPOSE_STATUS_SUCCEEDED, COMPOSES_FAILURE, DELETING_COMPOSE_SUCCEEDED,
   DELETING_COMPOSE_FAILURE, CANCELLING_COMPOSE, CANCELLING_COMPOSE_SUCCEEDED, CANCELLING_COMPOSE_FAILURE,
+  FETCHING_QUEUE_SUCCEEDED, CLEAR_QUEUE,
 } from '../actions/composes';
 
 function removeCompose(array, composeId) {
@@ -21,6 +22,17 @@ const compose = (state = [], action) => {
       return Object.assign({}, state, {
         fetchingComposes: false,
         composeList: removeCompose(state.composeList, action.payload.compose.id).concat(action.payload.compose),
+      });
+    case FETCHING_QUEUE_SUCCEEDED:
+      // Replace any existing queue with new queue
+      return Object.assign({}, state, {
+        queue: action.payload.queue,
+        queueFetched: true,
+      });
+    case CLEAR_QUEUE:
+      return Object.assign({}, state, {
+        queue: [],
+        queueFetched: false,
       });
     case COMPOSES_FAILURE:
       return Object.assign({}, state, {
