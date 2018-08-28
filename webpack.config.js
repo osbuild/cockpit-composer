@@ -99,29 +99,11 @@ const config = {
         flatten: true,
       },
       {
-        from: {
-          glob: 'node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js',
-        },
-        to: '../dist',
-        flatten: true,
-      },
-      {
-        from: {
-          glob: 'node_modules/@webcomponents/custom-elements/src/native-shim.js',
-        },
-        to: '../dist',
-        flatten: true,
-      },
-      {
         from: { glob: './node_modules/jquery/dist/jquery.min.js' },
         to: '../dist',
         flatten: true,
       },
     ]),
-
-    // for console log error related to webcomponents
-    // https://github.com/webcomponents/webcomponentsjs/issues/794
-    new webpack.IgnorePlugin(/vertx/),
   ],
   // Options affecting the normal modules
   module: {

@@ -1,17 +1,17 @@
 import React from 'react';
 import {defineMessages, injectIntl, intlShape, FormattedMessage} from 'react-intl';
 import PropTypes from 'prop-types';
-import Tabs from '../../components/Tabs/Tabs';
-import Tab from '../../components/Tabs/Tab';
+import { Tabs, Tab } from 'patternfly-react';
 import ListView from '../../components/ListView/ListView';
 import ListItemComponents from '../../components/ListView/ListItemComponents';
 import DependencyListView from '../../components/ListView/DependencyListView';
 import EmptyState from '../../components/EmptyState/EmptyState';
 import Loading from '../../components/Loading/Loading';
+import LabelWithBadge from './LabelWithBadge';
 
 const messages = defineMessages({
   dependenciesTabTitle: {
-    defaultMessage: "Dependencies {count}"
+    defaultMessage: "Dependencies"
   },
   emptyStateErrorMessage: {
     defaultMessage: "An error occurred while trying to get blueprint contents."
@@ -26,7 +26,7 @@ const messages = defineMessages({
     defaultMessage: "No Results Match the Filter Criteria"
   },
   selectedTabTitle: {
-    defaultMessage: "Selected Components {count}"
+    defaultMessage: "Selected Components"
   }
 });
 
@@ -34,15 +34,6 @@ class BlueprintContents extends React.Component {
   constructor() {
     super();
     this.state = { activeTab: 'Components' };
-    this.handleTabChanged = this.handleTabChanged.bind(this);
-  }
-
-  handleTabChanged(e) {
-    if (this.state.activeTab !== e.detail) {
-      this.setState({ activeTab: e.detail });
-    }
-    e.preventDefault();
-    e.stopPropagation();
   }
 
   render() {
@@ -69,17 +60,10 @@ class BlueprintContents extends React.Component {
                 {this.props.children}
               </div>
               ||
-              <Tabs
-                key={components.length}
-                ref={c => {
-                  this.pfTabs = c;
-                }}
-                tabChanged={this.handleTabChanged}
-                classnames="nav nav-tabs nav-tabs-pf"
-              >
+              <Tabs id="blueprint-tabs">
                 <Tab
-                  tabTitle={formatMessage(messages.selectedTabTitle, {count: `<span class="badge">${components.length}</span>`})}
-                  active={this.state.activeTab === 'Selected'}
+                  eventKey="selected-components"
+                  title={<LabelWithBadge title={formatMessage(messages.selectedTabTitle)} badge={components.length} />}
                 >
                   {components.length === 0 &&
                     <EmptyState
@@ -110,9 +94,8 @@ class BlueprintContents extends React.Component {
                   }
                 </Tab>
                 <Tab
-                  tabTitle={formatMessage(messages.dependenciesTabTitle,
-                    {count: `<span class="badge">${dependencies.length}</span>`})}
-                  active={this.state.activeTab === 'Dependencies'}
+                  eventKey="dependencies"
+                  title={<LabelWithBadge title={formatMessage(messages.dependenciesTabTitle)} badge={dependencies.length} />}
                 >
                   {dependencies.length === 0 &&
                     <EmptyState

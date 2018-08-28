@@ -4,14 +4,14 @@ import React from 'react';
 import {FormattedMessage, defineMessages, injectIntl, intlShape} from 'react-intl';
 import PropTypes from 'prop-types';
 import ComponentTypeIcons from '../../components/ListView/ComponentTypeIcons';
-import Tabs from '../../components/Tabs/Tabs';
-import Tab from '../../components/Tabs/Tab';
+import { Tabs, Tab } from 'patternfly-react';
 import DependencyListView from '../../components/ListView/DependencyListView';
 import MetadataApi from '../../data/MetadataApi';
+import LabelWithBadge from './LabelWithBadge';
 
 const messages = defineMessages({
   dependencies: {
-    defaultMessage: "Dependencies {count}"
+    defaultMessage: "Dependencies"
   },
   hideDetails: {
     defaultMessage: "Hide Details"
@@ -136,12 +136,6 @@ class ComponentDetailsView extends React.Component {
     componentData.release = builds[event.target.value].release;
     // TODO any data that we display that's defined in builds should be added here
     this.setState({ componentData });
-  }
-
-  handleTabChanged(e) {
-    if (this.state.activeTab !== e.detail) {
-      this.setState({ activeTab: e.detail });
-    }
   }
 
   updateBreadcrumb(newProps) {
@@ -306,13 +300,8 @@ class ComponentDetailsView extends React.Component {
             </form>
           </div>}
         <div>
-          <Tabs
-            key={this.state.dependencies.length}
-            ref="pfTabs"
-            classnames="nav nav-tabs nav-tabs-pf"
-            tabChanged={e => this.handleTabChanged(e)}
-          >
-            <Tab tabTitle="Details" active={this.state.activeTab === 'Details'}>
+          <Tabs id="blueprint-tabs">
+            <Tab eventKey="details" title="Details">
               <h4 className="cmpsr-title">{this.state.componentData.summary}</h4>
               <p>{this.state.componentData.description}</p>
               <dl className="dl-horizontal">
@@ -339,14 +328,12 @@ class ComponentDetailsView extends React.Component {
               </dl>
             </Tab>
             {this.state.componentData.components &&
-              <Tab tabTitle="Components" active={this.state.activeTab === 'Components'}>
+              <Tab eventKey="components" title="Components">
                 <p><FormattedMessage defaultMessage="Components" /></p>
               </Tab>}
             <Tab
-              tabTitle={formatMessage(messages.dependencies,
-                {count: `<span class="badge">${this.state.dependencies.length}</span>`}
-              )}
-              active={this.state.activeTab === 'Dependencies'}
+              eventKey="dependencies"
+              title={<LabelWithBadge title={formatMessage(messages.dependencies)} badge={this.state.dependencies.length} />}
             >
               <DependencyListView
                 id="cmpsr-component-dependencies"
