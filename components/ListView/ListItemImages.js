@@ -85,7 +85,7 @@ class ListItemImages extends React.PureComponent {
 
 ListItemImages.propTypes = {
   listItem: PropTypes.object,
-  blueprint: PropTypes.object,
+  blueprint: PropTypes.string,
 };
 
 export default ListItemImages;
