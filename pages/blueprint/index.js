@@ -6,8 +6,7 @@ import cockpit from 'cockpit'; // eslint-disable-line import/no-unresolved
 import PropTypes from 'prop-types';
 import Link from '../../components/Link';
 import Layout from '../../components/Layout';
-import Tabs from '../../components/Tabs/Tabs';
-import Tab from '../../components/Tabs/Tab';
+import { Tab, Tabs } from 'patternfly-react';
 import BlueprintContents from '../../components/ListView/BlueprintContents';
 import ComponentDetailsView from '../../components/ListView/ComponentDetailsView';
 import CreateImage from '../../components/Modal/CreateImage';
@@ -103,12 +102,10 @@ class BlueprintPage extends React.Component {
     this.refs.layout.setNotifications();
   }
 
-  handleTabChanged(e) {
-    if (this.props.blueprintPage.activeTab !== e.detail) {
-      this.props.setActiveTab(e.detail);
+  handleTabChanged(key) {
+    if (this.props.blueprintPage.activeTab !== key) {
+      this.props.setActiveTab(key);
     }
-    e.preventDefault();
-    e.stopPropagation();
   }
 
   handleComponentDetails(event, component, parent) {
@@ -183,7 +180,7 @@ class BlueprintPage extends React.Component {
       blueprint, exportModalVisible, createImage, selectedComponents, dependencies, componentsFilters, composeList,
     } = this.props;
     const {
-      editDescriptionValue, editDescriptionVisible, activeTab,
+      editDescriptionValue, editDescriptionVisible,
       activeComponent, activeComponentParent, activeComponentStatus,
     } = this.props.blueprintPage;
     const { formatMessage } = this.props.intl;
@@ -265,8 +262,8 @@ class BlueprintPage extends React.Component {
             </p>
           </div>
         </header>
-        <Tabs key="pf-tabs" ref="pfTabs" tabChanged={this.handleTabChanged}>
-          <Tab tabTitle="Details" active={activeTab === 'Details'}>
+        <Tabs id="blueprint-tabs">
+          <Tab eventKey="details" title="Details">
             <div className="tab-container row">
               <div className="col-sm-6 col-lg-4">
                 <dl className="dl-horizontal mt-">
@@ -303,7 +300,7 @@ class BlueprintPage extends React.Component {
               {changes}
             </div>
           </Tab>
-          <Tab tabTitle={formatMessage(messages.selectedComponentsTitle)} active={activeTab === 'SelectedComponents'}>
+          <Tab eventKey="selected-components" title={formatMessage(messages.selectedComponentsTitle)}>
             <div className="row">
               {(activeComponent === '' &&
                 <div className="col-sm-12">
@@ -359,7 +356,7 @@ class BlueprintPage extends React.Component {
               }
             </div>
           </Tab>
-          <Tab tabTitle={formatMessage(messages.imagesTitle)} active={activeTab === 'Images'}>
+          <Tab eventKey="images" title={formatMessage(messages.imagesTitle)}>
             <div className="tab-container">
               {(composeList.length === 0 &&
                 <EmptyState
