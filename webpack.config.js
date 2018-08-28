@@ -36,13 +36,6 @@ const config = {
   context: __dirname,
   // The entry point for the bundle
   entry: [
-    // css entries
-    // '!!style!css!patternfly/dist/css/patternfly.css',
-    // '!!style!css!patternfly/dist/css/patternfly-additions.css',
-    '!!style!css!patternfly-webcomponents/dist/css/patternfly-webcomponents.css',
-
-    // js entries
-    'jquery-match-height/dist/jquery.matchHeight.js',
     /* The main entry point of your JavaScript application */
     './main.js',
   ],
@@ -121,11 +114,6 @@ const config = {
       },
       {
         from: { glob: './node_modules/jquery/dist/jquery.min.js' },
-        to: '../dist',
-        flatten: true,
-      },
-      {
-        from: { glob: './node_modules/jquery-match-height/dist/jquery.matchHeight-min.js' },
         to: '../dist',
         flatten: true,
       },
