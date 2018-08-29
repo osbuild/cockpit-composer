@@ -15,7 +15,7 @@ class BlueprintListView extends React.PureComponent {
     return (
       <div className="list-group list-view-pf list-view-pf-view">
         {blueprints.map((blueprint, i) =>
-          <div className="list-group-item" key={i}>
+          <div className="list-group-item" key={i} data-blueprint={blueprint.name}>
             <div className="list-view-pf-actions">
               <Link to={`/edit/${blueprint.name}`} className="btn btn-default">
                 <FormattedMessage defaultMessage="Edit Blueprint" />
