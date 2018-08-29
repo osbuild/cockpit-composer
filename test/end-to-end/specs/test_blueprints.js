@@ -140,16 +140,13 @@ describe('Blueprints Page', () => {
     it('should open Edit Blueprint page when clicking Edit Blueprint button', () => {
       const blueprintName = testData.blueprint.simple.name;
       const editBlueprintPage = new EditBlueprintPage(blueprintName);
-      const blueprintNameSelector = BlueprintsPage.blueprintNameSelector(blueprintName);
-
-      $$(blueprintsPage.itemsBlueprint).forEach((item) => {
-        const bpName = item.$(blueprintsPage.itemNamesBlueprint).getText();
-        if (bpName === blueprintName) {
-          item.$(blueprintsPage.btnEditBlueprint).click();
-        }
-      });
+      const rowSelector = `${blueprintsPage.itemsBlueprint}[data-blueprint="${blueprintName}"]`;
 
       browser
+        .waitForVisible(rowSelector);
+
+      browser
+        .click(`${rowSelector} a[href*="edit"]`)
         .waitForVisible(editBlueprintPage.componentListItemRootElement);
 
       const pageTitle = $(editBlueprintPage.labelBlueprintTitle).getText();

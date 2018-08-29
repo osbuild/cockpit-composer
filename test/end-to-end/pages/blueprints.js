@@ -15,14 +15,8 @@ module.exports = class BlueprintsPage extends MainPage {
     // Label - Blueprint Description in the blueprints list
     this.labelBlueprintDescr = '.list-group-item-text';
 
-    // Item Names - Blueprints
-    this.itemNamesBlueprint = '.list-view-pf-main-info .list-group-item-heading a';
-
     // Items - Blueprints
     this.itemsBlueprint = '.container-fluid .list-view-pf-view .list-group-item';
-
-    // Button - Edit Blueprint
-    this.btnEditBlueprint = '.list-view-pf-actions a';
 
     // More Action dropdown menu list
     this.moreActionList = {
