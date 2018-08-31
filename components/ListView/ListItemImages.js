@@ -3,19 +3,29 @@ import {FormattedMessage} from 'react-intl';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { deletingCompose } from '../../core/actions/composes';
+import { 
+  setModalDeleteBuildVisible, setModalDeleteBuildState, 
+} from '../../core/actions/modals';
 
 class ListItemImages extends React.Component {
 
   constructor() {
     super();
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleShowModalDeleteBuild = this.handleShowModalDeleteBuild.bind(this);
   }
 
-  // maps to Delete button for FINISHED or FAILED
-  handleDelete(e) {
+  // maps to Remove button for FAILED
+  handleDelete() {
+    this.props.deletingCompose(this.props.listItem.id);
+  }
+
+  // maps to Delete button for FINISHED
+  handleShowModalDeleteBuild(e) {
     e.preventDefault();
     e.stopPropagation();
-    this.props.deletingCompose(this.props.listItem.id);
+    this.props.setModalDeleteBuildState(this.props.listItem.id, this.props.blueprint);
+    this.props.setModalDeleteBuildVisible(true);
   }
 
   render() {
@@ -102,7 +112,7 @@ class ListItemImages extends React.Component {
                     aria-labelledby="dropdownKebabRight"
                   >
                     <li>
-                      <a href="#" onClick={(e) => this.handleDelete(e)}>
+                      <a href="#" onClick={(e) => this.handleShowModalDeleteBuild(e)}>
                         <FormattedMessage defaultMessage="Delete" />
                       </a>
                     </li>
@@ -117,7 +127,7 @@ class ListItemImages extends React.Component {
               </div>
             } {listItem.queue_status === 'FAILED' &&
               <div className="list-pf-actions">
-                <button className="btn btn-default" onClick={(e) => this.handleDelete(e)}>
+                <button className="btn btn-default" onClick={this.handleDelete}>
                   <FormattedMessage defaultMessage="Remove" />
                 </button>
               </div>
@@ -133,11 +143,19 @@ ListItemImages.propTypes = {
   listItem: PropTypes.object,
   blueprint: PropTypes.object,
   deletingCompose: PropTypes.func,
+  setModalDeleteBuildState: PropTypes.func,
+  setModalDeleteBuildVisible: PropTypes.func,
 };
 
 const mapDispatchToProps = (dispatch) => ({
   deletingCompose: (compose) => {
     dispatch(deletingCompose(compose));
+  },
+  setModalDeleteBuildState: (composeId, blueprintName) => {
+    dispatch(setModalDeleteBuildState(composeId, blueprintName));
+  },
+  setModalDeleteBuildVisible: (visible) => {
+    dispatch(setModalDeleteBuildVisible(visible));
   },
 });
 
