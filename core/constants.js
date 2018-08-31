@@ -17,6 +17,7 @@ const constants = {
   get_compose_queue: '/api/v0/compose/queue',
   get_compose_finished: '/api/v0/compose/finished',
   get_compose_failed: '/api/v0/compose/failed',
+  delete_compose: '/api/v0/compose/delete/',
   post_blueprints_new: '/api/v0/blueprints/new',
   post_blueprints_workspace: '/api/v0/blueprints/workspace',
   post_compose_start: '/api/v0/compose',

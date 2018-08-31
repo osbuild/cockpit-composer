@@ -45,3 +45,28 @@ export const composesFailure = (error) => ({
     error,
   },
 });
+
+export const DELETING_COMPOSE = 'DELETING_COMPOSE';
+export const deletingCompose = (composeId) => ({
+  type: DELETING_COMPOSE,
+  payload: {
+    composeId,
+  },
+});
+
+export const DELETING_COMPOSE_SUCCEEDED = 'DELETING_COMPOSE_SUCCEEDED';
+export const deletingComposeSucceeded = (status, composeId) => ({
+  type: DELETING_COMPOSE_SUCCEEDED,
+  payload: {
+    status,
+    composeId
+  }
+});
+
+export const DELETING_COMPOSE_FAILURE = 'DELETING_COMPOSE_FAILURE';
+export const deletingComposeFailure = (error) => ({
+  type: DELETING_COMPOSE_FAILURE,
+  payload: {
+    error,
+  }
+});
