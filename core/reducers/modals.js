@@ -4,9 +4,9 @@ import {
   SET_MODAL_DELETE_BLUEPRINT_NAME, SET_MODAL_DELETE_BLUEPRINT_ID, SET_MODAL_DELETE_BLUEPRINT_VISIBLE,
   SET_MODAL_CREATE_BLUEPRINT_ERROR_NAME_VISIBLE, SET_MODAL_CREATE_BLUEPRINT_ERROR_DUPLICATE_VISIBLE,
   SET_MODAL_CREATE_BLUEPRINT_ERROR_INLINE, SET_MODAL_CREATE_BLUEPRINT_CHECK_ERRORS, SET_MODAL_CREATE_BLUEPRINT_BLUEPRINT,
-  SET_MODAL_CREATE_IMAGE_BLUEPRINT_NAME, SET_MODAL_CREATE_IMAGE_VISIBLE,
+  SET_MODAL_CREATE_IMAGE_BLUEPRINT_NAME, SET_MODAL_CREATE_IMAGE_VISIBLE,  
+  SET_MODAL_DELETE_IMAGE_VISIBLE, SET_MODAL_DELETE_IMAGE_STATE,
   FETCHING_MODAL_CREATE_COMPOSTION_TYPES_SUCCESS,
-  SET_MODAL_DELETE_BUILD_VISIBLE, SET_MODAL_DELETE_BUILD_STATE,
   SET_MODAL_MANAGE_SOURCES_VISIBLE, SET_MODAL_MANAGE_SOURCES_CONTENTS, MODAL_MANAGE_SOURCES_FAILURE,
 } from '../actions/modals';
 
@@ -72,20 +72,20 @@ const modalCreateImage = (state = [], action) => {
   }
 };
 
-const modalDeleteBuild = (state = [], action) => {
+const modalDeleteImage = (state = [], action) => {
   switch (action.type) {
-    case SET_MODAL_DELETE_BUILD_STATE:
+    case SET_MODAL_DELETE_IMAGE_STATE:
       return Object.assign(
         {}, state, { 
-        deleteBuild: Object.assign({}, state.deleteBuild, { 
+        deleteImage: Object.assign({}, state.deleteImage, { 
           composeId: action.payload.composeId,
           blueprintName: action.payload.blueprintName, 
         }),
       });
-    case SET_MODAL_DELETE_BUILD_VISIBLE:
+    case SET_MODAL_DELETE_IMAGE_VISIBLE:
       return Object.assign(
           {}, state,
-          { deleteBuild: Object.assign({}, state.deleteBuild, { visible: action.payload.visible }) }
+          { deleteImage: Object.assign({}, state.deleteImage, { visible: action.payload.visible }) }
       );
     default:
       return state;
@@ -188,6 +188,10 @@ const modals = (state = [], action) => {
       return modalCreateImage(state, action);
     case SET_MODAL_CREATE_IMAGE_VISIBLE:
       return modalCreateImage(state, action);
+    case SET_MODAL_DELETE_IMAGE_STATE:
+      return modalDeleteImage(state, action);
+    case SET_MODAL_DELETE_IMAGE_VISIBLE:
+      return modalDeleteImage(state, action);
     case SET_MODAL_EXPORT_BLUEPRINT_NAME:
       return modalExportBlueprint(state, action);
     case SET_MODAL_EXPORT_BLUEPRINT_CONTENTS:
