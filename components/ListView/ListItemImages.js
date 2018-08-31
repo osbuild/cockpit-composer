@@ -2,8 +2,9 @@ import React from 'react';
 import {FormattedMessage} from 'react-intl';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { deletingCompose } from '../../core/actions/composes';
+import { deletingCompose, cancellingCompose } from '../../core/actions/composes';
 import { 
+  setModalStopBuildVisible, setModalStopBuildState, 
   setModalDeleteImageVisible, setModalDeleteImageState, 
 } from '../../core/actions/modals';
 
@@ -12,12 +13,25 @@ class ListItemImages extends React.Component {
   constructor() {
     super();
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
+    this.handleShowModalStop = this.handleShowModalStop.bind(this);
     this.handleShowModalDeleteImage = this.handleShowModalDeleteImage.bind(this);
   }
 
   // maps to Remove button for FAILED
   handleDelete() {
     this.props.deletingCompose(this.props.listItem.id);
+  }
+
+  // maps to Stop button for WAITING
+  handleCancel() {
+    this.props.cancellingCompose(this.props.listItem.id);
+  }
+
+  // maps to Stop button for RUNNING
+  handleShowModalStop() {
+    this.props.setModalStopBuildState(this.props.listItem.id, this.props.blueprint);
+    this.props.setModalStopBuildVisible(true);
   }
 
   // maps to Delete button for FINISHED
@@ -121,9 +135,19 @@ class ListItemImages extends React.Component {
               </div>
             } {listItem.queue_status === 'WAITING' &&
               <div className="list-pf-actions">
+                <button className="btn btn-default" onClick={this.handleCancel}>
+                  <FormattedMessage defaultMessage="Stop" />
+                </button>
               </div>
             } {listItem.queue_status === 'RUNNING' &&
               <div className="list-pf-actions">
+                <button className="btn btn-default" onClick={this.handleShowModalStop}>
+                  <FormattedMessage defaultMessage="Stop" />
+                </button>
+              </div>
+            } {listItem.queue_status === 'STOPPING' &&
+              <div className="list-pf-actions">
+                <em className="text-muted"><FormattedMessage defaultMessage="Stopping" /></em>
               </div>
             } {listItem.queue_status === 'FAILED' &&
               <div className="list-pf-actions">
@@ -143,6 +167,9 @@ ListItemImages.propTypes = {
   listItem: PropTypes.object,
   blueprint: PropTypes.string,
   deletingCompose: PropTypes.func,
+  cancellingCompose: PropTypes.func,
+  setModalStopBuildState: PropTypes.func,
+  setModalStopBuildVisible: PropTypes.func,
   setModalDeleteImageState: PropTypes.func,
   setModalDeleteImageVisible: PropTypes.func,
   downloadUrl: PropTypes.string,
@@ -151,6 +178,15 @@ ListItemImages.propTypes = {
 const mapDispatchToProps = (dispatch) => ({
   deletingCompose: (compose) => {
     dispatch(deletingCompose(compose));
+  },
+  cancellingCompose: (compose) => {
+    dispatch(cancellingCompose(compose));
+  },
+  setModalStopBuildState: (composeId, blueprintName) => {
+    dispatch(setModalStopBuildState(composeId, blueprintName));
+  },
+  setModalStopBuildVisible: (visible) => {
+    dispatch(setModalStopBuildVisible(visible));
   },
   setModalDeleteImageState: (composeId, blueprintName) => {
     dispatch(setModalDeleteImageState(composeId, blueprintName));

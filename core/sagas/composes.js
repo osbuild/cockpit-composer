@@ -2,15 +2,15 @@ import { delay } from 'redux-saga'
 import { call, all, put, takeEvery } from 'redux-saga/effects';
 import {
   startComposeApi, fetchImageStatusApi, fetchComposeQueueApi, fetchComposeFinishedApi, fetchComposeFailedApi,
-  deleteComposeApi
+  deleteComposeApi, cancelComposeApi
 } from '../apiCalls';
 
 import {
    START_COMPOSE,
    fetchingComposeStatusSucceeded,
    FETCHING_COMPOSES, fetchingComposeSucceeded,
-   composesFailure, DELETING_COMPOSE, deletingComposeSucceeded, 
-   deletingComposeFailure
+   composesFailure, CANCELLING_COMPOSE, DELETING_COMPOSE, deletingComposeSucceeded, 
+   deletingComposeFailure, cancellingComposeSucceeded, cancellingComposeFailure
 } from '../actions/composes';
 
 
@@ -35,9 +35,14 @@ function* pollComposeStatus(compose) {
     let polledCompose = compose;
     while (polledCompose.queue_status === "WAITING" || polledCompose.queue_status === "RUNNING") {
       const response = yield call(fetchImageStatusApi, polledCompose.id);
-      polledCompose = response.uuids[0];
-      yield put(fetchingComposeStatusSucceeded(polledCompose));
-      yield call(delay, 60000);
+      polledCompose = response.uuids[0];      
+      if (polledCompose !== undefined) {
+        yield put(fetchingComposeStatusSucceeded(polledCompose));
+        yield call(delay, 60000);
+      } else {
+        // polledCompose was stopped by user
+        break;
+      }
     }
   } catch (error) {
     console.log('pollComposeStatusError');
@@ -52,7 +57,9 @@ function* fetchComposes() {
     const failed = yield call(fetchComposeFailedApi);
     const composes = queue.concat(finished, failed);
     yield all(composes.map(compose => put(fetchingComposeSucceeded(compose))));
-    yield all(queue.map(compose => pollComposeStatus(compose)));
+    if (queue.length >= 1) {
+      yield all(queue.map(compose => pollComposeStatus(compose)));
+    }
   } catch (error) {
     console.log('fetchComposesError');
     yield put(composesFailure(error));
@@ -71,8 +78,21 @@ function* deleteCompose(action) {
   }
 }
 
+function* cancelCompose(action) {
+  try {
+    const {composeId} = action.payload;
+    const response = yield call(cancelComposeApi, composeId);
+    yield put(cancellingComposeSucceeded(response, composeId));
+    yield* fetchComposes();
+  } catch (error) {
+    console.log('errorCancelComposeSaga');
+    yield put(cancellingComposeFailure(error));
+  }
+}
+
 export default function* () {
   yield takeEvery(START_COMPOSE, startCompose);
   yield takeEvery(FETCHING_COMPOSES, fetchComposes);
   yield takeEvery(DELETING_COMPOSE, deleteCompose);
+  yield takeEvery(CANCELLING_COMPOSE, cancelCompose);
 }
