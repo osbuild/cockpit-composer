@@ -12,7 +12,9 @@ class ListItemImages extends React.Component {
   }
 
   // maps to Delete button for FINISHED or FAILED
-  handleDelete() {
+  handleDelete(e) {
+    e.preventDefault();
+    e.stopPropagation();
     this.props.deletingCompose(this.props.listItem.id);
   }
 
@@ -81,17 +83,45 @@ class ListItemImages extends React.Component {
                 <FormattedMessage defaultMessage="Failed" />
               </div>
             }
-            <div className="list-pf-actions">
-              {listItem.queue_status === 'FINISHED' &&
+            {listItem.queue_status === 'FINISHED' &&
+              <div className="list-pf-actions">
                 <a className="btn btn-default" role="button" download href={this.props.downloadUrl}>
                   <FormattedMessage defaultMessage="Download" />
                 </a>
-              } {listItem.queue_status === 'FAILED' &&
-                <button className="btn btn-default" onClick={this.handleDelete}>
+                <div className="dropdown pull-right dropdown-kebab-pf">
+                  <button
+                    className="btn btn-link dropdown-toggle"
+                    type="button"
+                    id="dropdownKebabRight"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="true"
+                  ><span className="fa fa-ellipsis-v"></span></button>
+                  <ul
+                    className="dropdown-menu dropdown-menu-right"
+                    aria-labelledby="dropdownKebabRight"
+                  >
+                    <li>
+                      <a href="#" onClick={(e) => this.handleDelete(e)}>
+                        <FormattedMessage defaultMessage="Delete" />
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            } {listItem.queue_status === 'WAITING' &&
+              <div className="list-pf-actions">
+              </div>
+            } {listItem.queue_status === 'RUNNING' &&
+              <div className="list-pf-actions">
+              </div>
+            } {listItem.queue_status === 'FAILED' &&
+              <div className="list-pf-actions">
+                <button className="btn btn-default" onClick={(e) => this.handleDelete(e)}>
                   <FormattedMessage defaultMessage="Remove" />
                 </button>
-              }
-            </div>
+              </div>
+            }
           </div>
         </div>
       </div>
