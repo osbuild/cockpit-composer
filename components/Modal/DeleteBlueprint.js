@@ -35,7 +35,7 @@ class DeleteBlueprint extends React.Component {
               <h4 className="modal-title" id="myModalLabel"><FormattedMessage defaultMessage="Delete Blueprint" /></h4>
             </div>
             <div className="modal-body">
-              <p>
+              <p className="lead">
                 <FormattedMessage
                   defaultMessage="Are you sure you want to delete the blueprint {name}?"
                   values={{
@@ -43,9 +43,9 @@ class DeleteBlueprint extends React.Component {
                   }}
                 />
               </p>
+              <FormattedMessage defaultMessage="This action cannot be undone." tagName="p" />
             </div>
             <div className="modal-footer">
-              <p className="pull-left"><FormattedMessage defaultMessage="This action cannot be undone." /></p>
               <button
                 type="button"
                 className="btn btn-default"
