@@ -141,10 +141,11 @@ class ListItemImages extends React.Component {
 
 ListItemImages.propTypes = {
   listItem: PropTypes.object,
-  blueprint: PropTypes.object,
+  blueprint: PropTypes.string,
   deletingCompose: PropTypes.func,
   setModalDeleteBuildState: PropTypes.func,
   setModalDeleteBuildVisible: PropTypes.func,
+  downloadUrl: PropTypes.string,
 };
 
 const mapDispatchToProps = (dispatch) => ({
