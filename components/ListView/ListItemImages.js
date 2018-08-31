@@ -46,17 +46,17 @@ class ListItemImages extends React.Component {
               <div className="list-pf-additional-content">
                 <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked i18n">
                   <FormattedMessage
-                    defaultMessage="Type {type}"
+                    defaultMessage="Date Created {date}"
                     values={{
-                      type: <strong>{listItem.compose_type}</strong>
+                      date: <strong>{formattedTime}</strong>
                     }}
                   />
                 </div>
                 <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked i18n">
                   <FormattedMessage
-                    defaultMessage="Date Created {date}"
+                    defaultMessage="Type {type}"
                     values={{
-                      date: <strong>{formattedTime}</strong>
+                      type: <strong>{listItem.compose_type}</strong>
                     }}
                   />
                 </div>
