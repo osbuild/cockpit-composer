@@ -171,7 +171,6 @@ export function cancelComposeApi(compose) {
   return utils.apiFetch(constants.cancel_compose + compose, {
     method: 'DELETE',
   }, true)
-  .then(data => data)
   .catch (e => console.log('Error canceling compose', e));
 }
 
@@ -179,7 +178,6 @@ export function deleteComposeApi(compose) {
   return utils.apiFetch(constants.delete_compose + compose, {
     method: 'DELETE',
   }, true)
-  .then(data => data)
   .catch (e => console.log('Error deleting compose', e));
 }
 
