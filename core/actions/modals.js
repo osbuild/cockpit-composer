@@ -158,10 +158,10 @@ export function setModalCreateImageVisible(visible) {
   };
 }
 
-export const SET_MODAL_DELETE_BUILD_STATE = 'SET_MODAL_DELETE_BUILD_STATE';
-export function setModalDeleteBuildState(composeId, blueprintName) {
+export const SET_MODAL_DELETE_IMAGE_STATE = 'SET_MODAL_DELETE_IMAGE_STATE';
+export function setModalDeleteImageState(composeId, blueprintName) {
   return {
-    type: SET_MODAL_DELETE_BUILD_STATE,
+    type: SET_MODAL_DELETE_IMAGE_STATE,
     payload: {
       composeId,
       blueprintName
@@ -169,10 +169,10 @@ export function setModalDeleteBuildState(composeId, blueprintName) {
   };
 }
 
-export const SET_MODAL_DELETE_BUILD_VISIBLE = 'SET_MODAL_DELETE_BUILD_VISIBLE';
-export function setModalDeleteBuildVisible(visible) {
+export const SET_MODAL_DELETE_IMAGE_VISIBLE = 'SET_MODAL_DELETE_IMAGE_VISIBLE';
+export function setModalDeleteImageVisible(visible) {
   return {
-    type: SET_MODAL_DELETE_BUILD_VISIBLE,
+    type: SET_MODAL_DELETE_IMAGE_VISIBLE,
     payload: {
       visible,
     },

@@ -11,7 +11,7 @@ import BlueprintContents from '../../components/ListView/BlueprintContents';
 import ComponentDetailsView from '../../components/ListView/ComponentDetailsView';
 import CreateImage from '../../components/Modal/CreateImage';
 import ExportBlueprint from '../../components/Modal/ExportBlueprint';
-import DeleteBuild from '../../components/Modal/DeleteBuild';
+import DeleteImage from '../../components/Modal/DeleteImage';
 import EmptyState from '../../components/EmptyState/EmptyState';
 import BlueprintToolbar from '../../components/Toolbar/BlueprintToolbar';
 import ListView from '../../components/ListView/ListView';
@@ -27,7 +27,7 @@ import {
 } from '../../core/actions/composes';
 import {
   setModalExportBlueprintVisible, setModalCreateImageVisible, setModalCreateImageBlueprintName,
-  setModalDeleteBuildVisible, setModalDeleteBuildState,
+  setModalDeleteImageVisible, setModalDeleteImageState,
 } from '../../core/actions/modals';
 import {
   setEditDescriptionVisible, setEditDescriptionValue,
@@ -75,7 +75,7 @@ class BlueprintPage extends React.Component {
     this.handleShowModalExport = this.handleShowModalExport.bind(this);
     this.handleHideModalCreateImage = this.handleHideModalCreateImage.bind(this);
     this.handleShowModalCreateImage = this.handleShowModalCreateImage.bind(this);
-    this.handleHideModalDeleteBuild = this.handleHideModalDeleteBuild.bind(this);
+    this.handleHideModalDeleteImage = this.handleHideModalDeleteImage.bind(this);
     this.handleChangeDescription = this.handleChangeDescription.bind(this);
     this.handleStartCompose = this.handleStartCompose.bind(this);
     this.downloadUrl = this.downloadUrl.bind(this);
@@ -157,9 +157,9 @@ class BlueprintPage extends React.Component {
     e.stopPropagation();
   }
 
-  handleHideModalDeleteBuild() {
-    this.props.setModalDeleteBuildVisible(false);
-    this.props.setModalDeleteBuildState('', '');
+  handleHideModalDeleteImage() {
+    this.props.setModalDeleteImageVisible(false);
+    this.props.setModalDeleteImageState('', '');
   }
 
   handleStartCompose(blueprintName, composeType) {
@@ -185,7 +185,7 @@ class BlueprintPage extends React.Component {
       return <div></div>;
     }
     const {
-      blueprint, exportModalVisible, createImage, deleteBuild, 
+      blueprint, exportModalVisible, createImage, deleteImage, 
       selectedComponents, dependencies, componentsFilters, composeList,
     } = this.props;
     const {
@@ -413,11 +413,11 @@ class BlueprintPage extends React.Component {
             handleHideModal={this.handleHideModalExport}
           />
           : null}
-        {deleteBuild.visible
-          ? <DeleteBuild
-            composeId={deleteBuild.composeId}
-            blueprintName={deleteBuild.blueprintName}
-            handleHideModal={this.handleHideModalDeleteBuild}
+        {deleteImage.visible
+          ? <DeleteImage
+            composeId={deleteImage.composeId}
+            blueprintName={deleteImage.blueprintName}
+            handleHideModal={this.handleHideModalDeleteImage}
           />
           : null}
       </Layout>
@@ -442,7 +442,7 @@ BlueprintPage.propTypes = {
   blueprintPage: PropTypes.object,
   setBlueprintDescription: PropTypes.func,
   exportModalVisible: PropTypes.bool,
-  deleteBuild: PropTypes.object,
+  deleteImage: PropTypes.object,
   createImage: PropTypes.object,
   dependenciesSortSetKey: PropTypes.func,
   dependenciesSortSetValue: PropTypes.func,
@@ -458,8 +458,8 @@ BlueprintPage.propTypes = {
   componentsSortValue: PropTypes.string,
   setModalCreateImageVisible: PropTypes.func,
   setModalCreateImageBlueprintName: PropTypes.func,
-  setModalDeleteBuildVisible: PropTypes.func,
-  setModalDeleteBuildState: PropTypes.func,
+  setModalDeleteImageVisible: PropTypes.func,
+  setModalDeleteImageState: PropTypes.func,
   startCompose: PropTypes.func,
   blueprintContentsError: PropTypes.object,
   blueprintContentsFetching: PropTypes.bool,
@@ -484,7 +484,7 @@ const makeMapStateToProps = () => {
         blueprintPage: state.blueprintPage,
         exportModalVisible: state.modals.exportBlueprint.visible,
         createImage: state.modals.createImage,
-        deleteBuild: state.modals.deleteBuild,
+        deleteImage: state.modals.deleteImage,
         componentsSortKey: state.sort.components.key,
         componentsSortValue: state.sort.components.value,
         componentsFilters: state.filter.components,
@@ -503,7 +503,7 @@ const makeMapStateToProps = () => {
       blueprintPage: state.blueprintPage,
       exportModalVisible: state.modals.exportBlueprint.visible,
       createImage: state.modals.createImage,
-      deleteBuild: state.modals.deleteBuild,
+      deleteImage: state.modals.deleteImage,
       componentsSortKey: state.sort.components.key,
       componentsSortValue: state.sort.components.value,
       componentsFilters: state.filter.components,
@@ -550,11 +550,11 @@ const mapDispatchToProps = (dispatch) => ({
   setModalCreateImageVisible: modalVisible => {
     dispatch(setModalCreateImageVisible(modalVisible));
   },
-  setModalDeleteBuildState: (composeId, blueprintName) => {
-    dispatch(setModalDeleteBuildState(composeId, blueprintName));
+  setModalDeleteImageState: (composeId, blueprintName) => {
+    dispatch(setModalDeleteImageState(composeId, blueprintName));
   },
-  setModalDeleteBuildVisible: (visible) => {
-    dispatch(setModalDeleteBuildVisible(visible));
+  setModalDeleteImageVisible: (visible) => {
+    dispatch(setModalDeleteImageVisible(visible));
   },
   componentsSortSetKey: key => {
     dispatch(componentsSortSetKey(key));

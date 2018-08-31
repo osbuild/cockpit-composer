@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { deletingCompose } from '../../core/actions/composes';
 import { 
-  setModalDeleteBuildVisible, setModalDeleteBuildState, 
+  setModalDeleteImageVisible, setModalDeleteImageState, 
 } from '../../core/actions/modals';
 
 class ListItemImages extends React.Component {
@@ -12,7 +12,7 @@ class ListItemImages extends React.Component {
   constructor() {
     super();
     this.handleDelete = this.handleDelete.bind(this);
-    this.handleShowModalDeleteBuild = this.handleShowModalDeleteBuild.bind(this);
+    this.handleShowModalDeleteImage = this.handleShowModalDeleteImage.bind(this);
   }
 
   // maps to Remove button for FAILED
@@ -21,11 +21,11 @@ class ListItemImages extends React.Component {
   }
 
   // maps to Delete button for FINISHED
-  handleShowModalDeleteBuild(e) {
+  handleShowModalDeleteImage(e) {
     e.preventDefault();
     e.stopPropagation();
-    this.props.setModalDeleteBuildState(this.props.listItem.id, this.props.blueprint);
-    this.props.setModalDeleteBuildVisible(true);
+    this.props.setModalDeleteImageState(this.props.listItem.id, this.props.blueprint);
+    this.props.setModalDeleteImageVisible(true);
   }
 
   render() {
@@ -112,7 +112,7 @@ class ListItemImages extends React.Component {
                     aria-labelledby="dropdownKebabRight"
                   >
                     <li>
-                      <a href="#" onClick={(e) => this.handleShowModalDeleteBuild(e)}>
+                      <a href="#" onClick={(e) => this.handleShowModalDeleteImage(e)}>
                         <FormattedMessage defaultMessage="Delete" />
                       </a>
                     </li>
@@ -143,8 +143,8 @@ ListItemImages.propTypes = {
   listItem: PropTypes.object,
   blueprint: PropTypes.string,
   deletingCompose: PropTypes.func,
-  setModalDeleteBuildState: PropTypes.func,
-  setModalDeleteBuildVisible: PropTypes.func,
+  setModalDeleteImageState: PropTypes.func,
+  setModalDeleteImageVisible: PropTypes.func,
   downloadUrl: PropTypes.string,
 };
 
@@ -152,11 +152,11 @@ const mapDispatchToProps = (dispatch) => ({
   deletingCompose: (compose) => {
     dispatch(deletingCompose(compose));
   },
-  setModalDeleteBuildState: (composeId, blueprintName) => {
-    dispatch(setModalDeleteBuildState(composeId, blueprintName));
+  setModalDeleteImageState: (composeId, blueprintName) => {
+    dispatch(setModalDeleteImageState(composeId, blueprintName));
   },
-  setModalDeleteBuildVisible: (visible) => {
-    dispatch(setModalDeleteBuildVisible(visible));
+  setModalDeleteImageVisible: (visible) => {
+    dispatch(setModalDeleteImageVisible(visible));
   },
 });
 

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { deletingCompose } from '../../core/actions/composes';
 
-class DeleteBuild extends React.Component {
+class DeleteImage extends React.Component {
 
   constructor() {
     super();
@@ -43,12 +43,12 @@ class DeleteBuild extends React.Component {
               >
                 <span className="pficon pficon-close"></span>
               </button>
-              <h4 className="modal-title" id="myModalLabel"><FormattedMessage defaultMessage="Delete Build" /></h4>
+              <h4 className="modal-title" id="myModalLabel"><FormattedMessage defaultMessage="Delete Image" /></h4>
             </div>
             <div className="modal-body">
               <p className="lead">
                 <FormattedMessage
-                  defaultMessage="Are you sure you want to delete the build for {blueprintName}?"
+                  defaultMessage="Are you sure you want to delete the image for {blueprintName}?"
                   values={{
                     blueprintName: <strong>{this.props.blueprintName}</strong>
                   }}
@@ -67,7 +67,7 @@ class DeleteBuild extends React.Component {
                 className="btn btn-danger"
                 data-dismiss="modal"
                 onClick={this.handleDelete}
-              ><FormattedMessage defaultMessage="Delete Build" /></button>
+              ><FormattedMessage defaultMessage="Delete Image" /></button>
             </div>
           </div>
         </div>
@@ -76,7 +76,7 @@ class DeleteBuild extends React.Component {
   }
 }
 
-DeleteBuild.propTypes = {
+DeleteImage.propTypes = {
   blueprintName: PropTypes.string,
   composeId: PropTypes.string,
   handleHideModal: PropTypes.func,
@@ -90,4 +90,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(null, mapDispatchToProps)(DeleteBuild);
+export default connect(null, mapDispatchToProps)(DeleteImage);
