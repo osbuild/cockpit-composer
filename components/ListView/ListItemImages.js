@@ -44,7 +44,7 @@ class ListItemImages extends React.Component {
 
   render() {
     const { listItem } = this.props;
-    const timestamp = new Date(listItem.timestamp * 1000);
+    const timestamp = new Date(listItem.job_created * 1000);
     const formattedTime = timestamp.toDateString();
     return (
       <div className="list-pf-item">
