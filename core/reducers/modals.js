@@ -6,6 +6,7 @@ import {
   SET_MODAL_CREATE_BLUEPRINT_ERROR_INLINE, SET_MODAL_CREATE_BLUEPRINT_CHECK_ERRORS, SET_MODAL_CREATE_BLUEPRINT_BLUEPRINT,
   SET_MODAL_CREATE_IMAGE_BLUEPRINT_NAME, SET_MODAL_CREATE_IMAGE_VISIBLE,
   FETCHING_MODAL_CREATE_COMPOSTION_TYPES_SUCCESS,
+  SET_MODAL_DELETE_BUILD_VISIBLE, SET_MODAL_DELETE_BUILD_STATE,
   SET_MODAL_MANAGE_SOURCES_VISIBLE, SET_MODAL_MANAGE_SOURCES_CONTENTS, MODAL_MANAGE_SOURCES_FAILURE,
 } from '../actions/modals';
 
@@ -65,6 +66,26 @@ const modalCreateImage = (state = [], action) => {
       return Object.assign(
           {}, state,
           { createImage: Object.assign({}, state.createImage, { visible: action.payload.visible }) }
+      );
+    default:
+      return state;
+  }
+};
+
+const modalDeleteBuild = (state = [], action) => {
+  switch (action.type) {
+    case SET_MODAL_DELETE_BUILD_STATE:
+      return Object.assign(
+        {}, state, { 
+        deleteBuild: Object.assign({}, state.deleteBuild, { 
+          composeId: action.payload.composeId,
+          blueprintName: action.payload.blueprintName, 
+        }),
+      });
+    case SET_MODAL_DELETE_BUILD_VISIBLE:
+      return Object.assign(
+          {}, state,
+          { deleteBuild: Object.assign({}, state.deleteBuild, { visible: action.payload.visible }) }
       );
     default:
       return state;

@@ -158,6 +158,27 @@ export function setModalCreateImageVisible(visible) {
   };
 }
 
+export const SET_MODAL_DELETE_BUILD_STATE = 'SET_MODAL_DELETE_BUILD_STATE';
+export function setModalDeleteBuildState(composeId, blueprintName) {
+  return {
+    type: SET_MODAL_DELETE_BUILD_STATE,
+    payload: {
+      composeId,
+      blueprintName
+    },
+  };
+}
+
+export const SET_MODAL_DELETE_BUILD_VISIBLE = 'SET_MODAL_DELETE_BUILD_VISIBLE';
+export function setModalDeleteBuildVisible(visible) {
+  return {
+    type: SET_MODAL_DELETE_BUILD_VISIBLE,
+    payload: {
+      visible,
+    },
+  };
+}
+
 export const APPEND_MODAL_PENDING_CHANGES_COMPONENT_UPDATES = 'APPEND_MODAL_PENDING_CHANGES_COMPONENT_UPDATES';
 export function appendModalPendingChangesComponentUpdates(componentUpdate) {
   return {

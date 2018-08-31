@@ -46,6 +46,11 @@ const initialState = {
       imageTypes: [],
       visible: false,
     },
+    deleteBuild: {
+      composeId: '',
+      blueprintName: '',
+      visible: false,
+    },
     exportBlueprint: {
       name: '',
       contents: [],
