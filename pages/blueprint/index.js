@@ -429,7 +429,7 @@ BlueprintPage.propTypes = {
   blueprintPage: PropTypes.object,
   setBlueprintDescription: PropTypes.func,
   exportModalVisible: PropTypes.bool,
-  createImage: PropTypes.array,
+  createImage: PropTypes.object,
   dependenciesSortSetKey: PropTypes.func,
   dependenciesSortSetValue: PropTypes.func,
   componentsSortSetKey: PropTypes.func,
