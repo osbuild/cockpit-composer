@@ -1,8 +1,20 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { deletingCompose } from '../../core/actions/composes';
 
-class ListItemImages extends React.PureComponent {
+class ListItemImages extends React.Component {
+
+  constructor() {
+    super();
+    this.handleDelete = this.handleDelete.bind(this);
+  }
+
+  // maps to Delete button for FINISHED or FAILED
+  handleDelete() {
+    this.props.deletingCompose(this.props.listItem.id);
+  }
 
   render() {
     const { listItem } = this.props;
@@ -74,6 +86,10 @@ class ListItemImages extends React.PureComponent {
                 <a className="btn btn-default" role="button" download href={this.props.downloadUrl}>
                   <FormattedMessage defaultMessage="Download" />
                 </a>
+              } {listItem.queue_status === 'FAILED' &&
+                <button className="btn btn-default" onClick={this.handleDelete}>
+                  <FormattedMessage defaultMessage="Remove" />
+                </button>
               }
             </div>
           </div>
@@ -86,6 +102,13 @@ class ListItemImages extends React.PureComponent {
 ListItemImages.propTypes = {
   listItem: PropTypes.object,
   blueprint: PropTypes.object,
+  deletingCompose: PropTypes.func,
 };
 
-export default ListItemImages;
+const mapDispatchToProps = (dispatch) => ({
+  deletingCompose: (compose) => {
+    dispatch(deletingCompose(compose));
+  },
+});
+
+export default connect(null, mapDispatchToProps)(ListItemImages);

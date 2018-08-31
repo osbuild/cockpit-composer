@@ -1,14 +1,16 @@
 import { delay } from 'redux-saga'
 import { call, all, put, takeEvery } from 'redux-saga/effects';
 import {
-  startComposeApi, fetchImageStatusApi, fetchComposeQueueApi, fetchComposeFinishedApi, fetchComposeFailedApi
+  startComposeApi, fetchImageStatusApi, fetchComposeQueueApi, fetchComposeFinishedApi, fetchComposeFailedApi,
+  deleteComposeApi
 } from '../apiCalls';
 
 import {
    START_COMPOSE,
    fetchingComposeStatusSucceeded,
    FETCHING_COMPOSES, fetchingComposeSucceeded,
-   composesFailure,
+   composesFailure, DELETING_COMPOSE, deletingComposeSucceeded, 
+   deletingComposeFailure
 } from '../actions/composes';
 
 
@@ -57,7 +59,20 @@ function* fetchComposes() {
   }
 }
 
+function* deleteCompose(action) {
+  try {
+    const {composeId} = action.payload;
+    const response = yield call(deleteComposeApi, composeId);
+    yield put(deletingComposeSucceeded(response, composeId));
+    yield* fetchComposes();
+  } catch (error) {
+    console.log('errorDeleteComposeSaga');
+    yield put(deletingComposeFailure(error));
+  }
+}
+
 export default function* () {
   yield takeEvery(START_COMPOSE, startCompose);
   yield takeEvery(FETCHING_COMPOSES, fetchComposes);
+  yield takeEvery(DELETING_COMPOSE, deleteCompose);
 }

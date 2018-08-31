@@ -167,6 +167,14 @@ export function startComposeApi(blueprintName, composeType) {
   .catch(e => console.log('Error starting compose', e));
 }
 
+export function deleteComposeApi(compose) {
+  return utils.apiFetch(constants.delete_compose + compose, {
+    method: 'DELETE',
+  }, true)
+  .then(data => data)
+  .catch (e => console.log('Error deleting compose', e));
+}
+
 export function fetchImageStatusApi(uuid) {
   return utils.apiFetch(constants.get_image_status + uuid)
   .then(data => data)

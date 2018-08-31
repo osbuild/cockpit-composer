@@ -1,9 +1,10 @@
 import {
-  FETCHING_COMPOSE_SUCCEEDED, FETCHING_COMPOSE_STATUS_SUCCEEDED, COMPOSES_FAILURE,
+  FETCHING_COMPOSE_SUCCEEDED, FETCHING_COMPOSE_STATUS_SUCCEEDED, COMPOSES_FAILURE, DELETING_COMPOSE_SUCCEEDED,
+  DELETING_COMPOSE_FAILURE
 } from '../actions/composes';
 
-function removeCompose(array, action) {
-  return array.filter(compose => compose.id !== action.payload.compose.id);
+function removeCompose(array, composeId) {
+  return array.filter(compose => compose.id !== composeId);
 }
 
 const compose = (state = [], action) => {
@@ -19,12 +20,21 @@ const compose = (state = [], action) => {
       // Remove any instance of the compose and append the new one to the array
       return Object.assign({}, state, {
         fetchingComposes: false,
-        composeList: removeCompose(state.composeList, action).concat(action.payload.compose),
+        composeList: removeCompose(state.composeList, action.payload.compose.id).concat(action.payload.compose),
       });
     case COMPOSES_FAILURE:
       return Object.assign({}, state, {
         errorState: action.payload.error,
         fetchingComposes: false,
+      });
+    case DELETING_COMPOSE_SUCCEEDED:
+      return Object.assign({}, state, {
+        deleteStatus: action.payload.status,
+        composeList: removeCompose(state.composeList, action.payload.composeId),
+      });
+    case DELETING_COMPOSE_FAILURE:
+      return Object.assign({}, state, {
+        errorState: action.payload.error,
       });
     default:
       return state;
