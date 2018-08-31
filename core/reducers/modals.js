@@ -4,9 +4,9 @@ import {
   SET_MODAL_DELETE_BLUEPRINT_NAME, SET_MODAL_DELETE_BLUEPRINT_ID, SET_MODAL_DELETE_BLUEPRINT_VISIBLE,
   SET_MODAL_CREATE_BLUEPRINT_ERROR_NAME_VISIBLE, SET_MODAL_CREATE_BLUEPRINT_ERROR_DUPLICATE_VISIBLE,
   SET_MODAL_CREATE_BLUEPRINT_ERROR_INLINE, SET_MODAL_CREATE_BLUEPRINT_CHECK_ERRORS, SET_MODAL_CREATE_BLUEPRINT_BLUEPRINT,
-  SET_MODAL_CREATE_IMAGE_BLUEPRINT_NAME, SET_MODAL_CREATE_IMAGE_VISIBLE,  
-  SET_MODAL_DELETE_IMAGE_VISIBLE, SET_MODAL_DELETE_IMAGE_STATE,
-  FETCHING_MODAL_CREATE_COMPOSTION_TYPES_SUCCESS,
+  SET_MODAL_CREATE_IMAGE_BLUEPRINT_NAME, SET_MODAL_CREATE_IMAGE_VISIBLE, 
+  SET_MODAL_DELETE_IMAGE_VISIBLE, SET_MODAL_DELETE_IMAGE_STATE, SET_MODAL_STOP_BUILD_VISIBLE, 
+  SET_MODAL_STOP_BUILD_STATE, FETCHING_MODAL_CREATE_COMPOSTION_TYPES_SUCCESS,
   SET_MODAL_MANAGE_SOURCES_VISIBLE, SET_MODAL_MANAGE_SOURCES_CONTENTS, MODAL_MANAGE_SOURCES_FAILURE,
 } from '../actions/modals';
 
@@ -66,6 +66,26 @@ const modalCreateImage = (state = [], action) => {
       return Object.assign(
           {}, state,
           { createImage: Object.assign({}, state.createImage, { visible: action.payload.visible }) }
+      );
+    default:
+      return state;
+  }
+};
+
+const modalStopBuild = (state = [], action) => {
+  switch (action.type) {
+    case SET_MODAL_STOP_BUILD_STATE:
+      return Object.assign(
+        {}, state, { 
+        stopBuild: Object.assign({}, state.stopBuild, { 
+          composeId: action.payload.composeId,
+          blueprintName: action.payload.blueprintName, 
+        }),
+      });
+    case SET_MODAL_STOP_BUILD_VISIBLE:
+      return Object.assign(
+          {}, state,
+          { stopBuild: Object.assign({}, state.stopBuild, { visible: action.payload.visible }) }
       );
     default:
       return state;
@@ -188,6 +208,10 @@ const modals = (state = [], action) => {
       return modalCreateImage(state, action);
     case SET_MODAL_CREATE_IMAGE_VISIBLE:
       return modalCreateImage(state, action);
+    case SET_MODAL_STOP_BUILD_STATE:
+      return modalStopBuild(state, action);
+    case SET_MODAL_STOP_BUILD_VISIBLE:
+      return modalStopBuild(state, action);
     case SET_MODAL_DELETE_IMAGE_STATE:
       return modalDeleteImage(state, action);
     case SET_MODAL_DELETE_IMAGE_VISIBLE:

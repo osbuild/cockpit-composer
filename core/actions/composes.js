@@ -70,3 +70,28 @@ export const deletingComposeFailure = (error) => ({
     error,
   }
 });
+
+export const CANCELLING_COMPOSE = 'CANCELLING_COMPOSE';
+export const cancellingCompose = (composeId) => ({
+  type: CANCELLING_COMPOSE,
+  payload: {
+    composeId,
+  },
+});
+
+export const CANCELLING_COMPOSE_SUCCEEDED = 'CANCELLING_COMPOSE_SUCCEEDED';
+export const cancellingComposeSucceeded = (status, composeId) => ({
+  type: CANCELLING_COMPOSE_SUCCEEDED,
+  payload: {
+    status,
+    composeId
+  }
+});
+
+export const CANCELLING_COMPOSE_FAILURE = 'CANCELLING_COMPOSE_FAILURE';
+export const cancellingComposeFailure = (error) => ({
+  type: CANCELLING_COMPOSE_FAILURE,
+  payload: {
+    error,
+  }
+});
