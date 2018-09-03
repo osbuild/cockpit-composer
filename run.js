@@ -54,7 +54,7 @@ tasks.set('locale-data', () => {
     var translationsData = JSON.parse(fs.readFileSync(translationsPath));
 
     // Create a module that imports and loads each language's locale data
-    var languages = Object.keys(translationsData);
+    var languages = [... new Set(Object.keys(translationsData).map(lang => lang.split('_')[0]))];
     const outputName = './build/localeLoader.js';
     var outputData = `define(['react-intl',
   ${languages.map((lang) => `'react-intl/locale-data/${lang}'`).join(', ')}], function() {
