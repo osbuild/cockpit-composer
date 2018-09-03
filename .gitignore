@@ -12,3 +12,5 @@ npm-debug.log
 metadata.db
 welder-web.spec
 /package-lock.json
+/po/etag-cache.json
+/po/*.pot

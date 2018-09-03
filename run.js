@@ -71,7 +71,7 @@ tasks.set('locale-data', () => {
     var pofiles = glob.sync('./build/po/*.po');
     pofiles.forEach((filename) => {
       var language = path.basename(filename, '.po');
-      exec(`node ./utils/po2json -m ./utils/po.empty.js -o public/po.${language}.js ${filename}`,
+      exec(`node ./po/po2json -m ./po/po.empty.js -o public/po.${language}.js ${filename}`,
         (err) => {
           if (err !== null) {
             console.error(`Unable to create cockpit module for ${language}`);
