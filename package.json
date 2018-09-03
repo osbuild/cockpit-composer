@@ -169,10 +169,10 @@
     "test:watch": "npm test -- --watch",
     "test:cov": "npm test -- --coverage",
     "translations:extract": "babel 'components/**/*.js' 'core/**/*.js' 'pages/**/*.js' 'data/**/*.js' main.js >/dev/null",
-    "translations:json2pot": "mkdirp build/messages build/po && rip json2pot 'build/messages/**/*.json' -o build/po/welder-web.pot && node utils/add-title.js ./public/manifest.json ./build/po/welder-web.pot",
-    "translations:po2json": "npm run translations:extract && rip po2json 'build/po/*.po' -m 'build/messages/**/*.json' -o build/translations.json",
-    "translations:pull": "mkdirp build/po && node utils/run-zanata project pull -v --po-dir build/po --pot-dir build/po",
-    "translations:push": "npm run translations:extract && npm run translations:json2pot && node utils/run-zanata project push -v --pot-dir build/po",
+    "translations:json2pot": "mkdirp build/messages && rip json2pot 'build/messages/**/*.json' -o po/welder-web.pot && node utils/add-title.js ./public/manifest.json po/welder-web.pot",
+    "translations:po2json": "npm run translations:extract && rip po2json 'po/*.po' -m 'build/messages/**/*.json' -o build/translations.json",
+    "translations:pull": "node utils/run-zanata project pull -v --po-dir po --pot-dir po",
+    "translations:push": "npm run translations:extract && npm run translations:json2pot && node utils/run-zanata project push -v --pot-dir po",
     "translations:test": "npm run translations:extract && npm run translations:json2pot && node utils/test-translations build/po/welder-web.pot build/po/vo.po"
   }
 }
