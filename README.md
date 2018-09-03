@@ -191,11 +191,6 @@ Zanata as gettext-style .po files and converts the .po files back to JSON.
 language, and if translations are available, these translations are provided to react-intl's `<IntlProvider>`. react-intl
 then displays translated strings where possible.
 
-To test translations, `npm run translations:test` will generate Pig Latin translations of all translatable strings and
-save them as the Volapük (vo) translation. Volapük is used because it's a constructed language that has locale support
-in react-intl and an estimated 20 speakers worldwide. To switch to the test translations, add "Volapük" to the top of
-your browser's preferred language list. In Firefox, this can be configured in the Language section of about:preferences.
-
 ### Making A New Release Of welder-web
 
 When the project is ready for a new release, do the following:
