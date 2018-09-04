@@ -10,7 +10,17 @@ if ("ZANATA_API_KEY" in process.env) {
   auth_args.push(process.env["ZANATA_API_KEY"]);
 }
 
-spawnSync("zanata-js",
+var zanata = spawnSync("zanata-js",
   auth_args.concat(process.argv.slice(2)),
   {stdio: 'inherit'}
 );
+
+console.log(zanata.status);
+console.log(zanata.error);
+
+if (zanata.error && zanata.error.errno === "ENOENT") {
+  console.error("zanata-js doen not seem to be installed. Run `npm install zanata-js`");
+  process.exit(2); // ENOENT
+}
+
+process.exit(zanata.status);
