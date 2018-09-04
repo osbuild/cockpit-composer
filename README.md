@@ -184,7 +184,7 @@ used to collect the JSON files into a gettext-style POT file, and the POT file i
 
 **Step 3**. Translators provide translations on Zanata.
 
-**Step 4**. The developer runs `npm run translations:pull` and `npm run po2json`. This downloads the translations from
+**Step 4**. The developer runs `npm run translations:pull` and `npm run translations:po2json`. This downloads the translations from
 Zanata as gettext-style .po files and converts the .po files back to JSON.
 
 **Step 5**. The user runs welder-web. Based on the user's browser configuration, welder-web determines the user's preferred
