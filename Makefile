@@ -5,7 +5,10 @@ PACKAGE_NAME := $(shell python3 -c "import json; print(json.load(open('package.j
 ifeq ($(TEST_OS),)
 TEST_OS = rhel-7-6
 endif
-export TEST_OS CURDIR
+ifeq ($(BROWSER),)
+BROWSER = firefox
+endif
+export TEST_OS BROWSER CURDIR
 VM_IMAGE=$(CURDIR)/test/images/$(TEST_OS)
 ifdef TEST_COV
 BUILD_RUN = node run build --with-coverage
@@ -113,12 +116,23 @@ test_rpmbuild: buildrpm_image
 test_rpmbuild_cockpit-composer: buildrpm_image
 	sudo docker run --rm --name buildrpm -v `pwd`:/welder welder/buildrpm:latest make cockpit-composer-rpm cockpit-composer-srpm
 
-# build a VM with locally built rpm installed
+local-clean:
+	rm -rf node_modules test/end-to-end/node_modules bots test/images tmp cockpit-composer.spec cockpit-composer*.rpm welder-web*.tar.gz
+
+# build VMs
 $(VM_IMAGE): cockpit-composer-rpm bots
+	# VM running cockpit, composer, and end to end test container
 	bots/image-customize -v \
 		-r 'sed -i "s,devel/candidate-trees,nightly," /etc/yum.repos.d/nightly.repo' \
+		-r 'mkdir -p /root/webdriver_report /tmp/webdriver_tests' \
+		-u test/end-to-end/:/tmp/webdriver_tests/ \
 		-i `pwd`/cockpit-composer-*.noarch.rpm \
-		-s $(CURDIR)/test/end-to-end/run/vm.install $(TEST_OS)
+		-s $(CURDIR)/test/end-to-end/run/vm.install \
+		$(TEST_OS)
+	# VM running as selenium server
+	bots/image-customize -v \
+		-u test/end-to-end/run/selenium_start.sh:/root/ \
+		selenium
 
 # convenience target for the above
 vm: $(VM_IMAGE)
@@ -126,7 +140,7 @@ vm: $(VM_IMAGE)
 
 # run the end to end test
 check: $(VM_IMAGE)
-	PYTHONPATH=`pwd`/bots/machine test/end-to-end/run/check-application $(TEST_OS)
+	PYTHONPATH=`pwd`/bots/machine test/end-to-end/run/check-application -b $(BROWSER) $(TEST_OS)
 
 # checkout Cockpit's bots/ directory for standard test VM images and API to launch them
 # must be from cockpit's master, as only that has current and existing images; but testvm.py API is stable

@@ -3,6 +3,17 @@ const crypto = require('crypto');
 
 exports.config = {
   //
+  // =====================
+  // Server Configurations
+  // =====================
+  // Host address of the running Selenium server. This information is usually obsolete as
+  // WebdriverIO automatically connects to localhost. Also if you are using one of the
+  // supported cloud services like Sauce Labs, Browserstack or Testing Bot you also don't
+  // need to define host and port information because WebdriverIO can figure that out
+  // according to your user and key information. However if you are using a private Selenium
+  // backend you should define the host address, port, and path here.
+  //
+  host: process.env.HUB || '0.0.0.0',
   // ==================
   // Specify Test Files
   // ==================
@@ -46,7 +57,7 @@ exports.config = {
     // 5 instances get started at a time.
     maxInstances: 1,
     //
-    browserName: 'firefox',
+    browserName: process.env.BROWSER || 'firefox',
     acceptInsecureCerts: true,
   }],
   //
@@ -80,7 +91,7 @@ exports.config = {
   // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
   // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
   // gets prepended directly.
-  baseUrl: 'http://localhost:9090/welder',
+  baseUrl: process.env.BASE_URL || 'http://localhost:9090/welder',
   //
   // Default timeout for all waitFor* commands.
   waitforTimeout: 90000,

@@ -12,3 +12,4 @@ fi
 # Do not start it during image generation
 systemctl enable cockpit.socket
 systemctl enable lorax-composer
+systemctl enable docker

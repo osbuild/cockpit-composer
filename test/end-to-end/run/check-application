@@ -1,25 +1,7 @@
 #!/usr/bin/python3
 import argparse
+import sys
 import testvm
-
-machine_test_dir = "/tmp/webdriver_tests"
-webdriver_report_dir = "/root/webdriver_report"
-
-parser = argparse.ArgumentParser(description='Run a test machine')
-parser.add_argument('-v', '--verbose', action='store_true',
-                    help='Display verbose details')
-parser.add_argument('-M', '--memory', type=int, default=1024,
-                    help='Memory (in MiB) of the target machine')
-parser.add_argument('-C', '--cpus', type=int, default=1,
-                    help='Number of cpus in the target machine')
-parser.add_argument("-b", "--browser",
-                    choices=['none', 'firefox', 'chrome', 'explorer', 'edge'],
-                    default='none',
-                    help="selenium browser choice - in case of none, \
-                          selenium isn't started")
-
-parser.add_argument('image', help='The image to run')
-args = parser.parse_args()
 
 
 def wait_for_selenium_running(machine, host, port=4444):
@@ -34,95 +16,125 @@ done;
         machine.execute(script=WAIT_SELENIUM_RUNNING)
 
 
+def wait_for_composer_running(machine):
+    WAIT_COMPOSER_RUNNING = """#!/bin/sh
+until curl -s --unix-socket /run/weldr/api.socket http://localhost:4000/api/status | grep '"db_supported": true'; do
+sleep 1;
+done;
+"""
+    with testvm.Timeout(seconds=300,
+                        error_message="Timeout while waiting for composer \
+                                       to start"):
+        machine.execute(script=WAIT_COMPOSER_RUNNING)
+
+
 def prepare_webdriver_tests(machine):
-    """ Upload all webdriver related files and create the results directory
+    """ Upload all end to end test related files and build docker image
     """
-    machine.execute(command="mkdir -p " + webdriver_report_dir)
-    machine.upload(["../../end-to-end"], machine_test_dir)
-    machine.execute(command="dnf -y install xclip")
-    machine.execute(command="ls -l /tmp/webdriver_tests")
-    machine.execute(command="cd /tmp/webdriver_tests && npm install")
+    cmd = "sudo docker build -f /tmp/webdriver_tests/Dockerfile \
+           -t welder/web-e2e-tests:latest \
+           /tmp/webdriver_tests/"
+
+    with open('build_log.txt', "w+") as f:
+        machine.execute(command=cmd, timeout=1800, stdout=f)
 
 
-def run_webdriver_tests(machine):
+def run_webdriver_tests(machine, selenium_addr, cockpit_addr, browser):
     """Execute webdriver end to end test on the machine.
     """
-    machine.execute("cd /tmp/webdriver_tests && npm run test", timeout=3600)
+    base_rul = "http://{}:9090/welder".format(cockpit_addr)
+    cmd_parts = "sudo docker run --rm --name e2e --network host \
+                 -v /root/webdriver_report:/end2end/reports \
+                 -e HUB={} -e BROWSER={} -e BASE_URL={} \
+                 welder/web-e2e-tests:latest \
+                 npm run test".format(selenium_addr, browser, base_rul)
+
+    with open('run_log.txt', "w+") as f:
+        machine.execute(cmd_parts, timeout=3600, stdout=f)
 
 
-# settings on composer VM
-network = testvm.VirtNetwork(0)
-composer = testvm.VirtMachine(verbose=args.verbose, image=args.image,
-                              networking=network.host(),
-                              memory_mb=args.memory, cpus=args.cpus)
+def run_e2e(verbose, image, browser, cpus, memory):
+    # settings on composer VM
+    network = testvm.VirtNetwork(0)
+    composer = testvm.VirtMachine(verbose=verbose, image=image,
+                                  networking=network.host(),
+                                  memory_mb=memory, cpus=cpus)
+    selenium = windows = None
 
-machine = testvm.VirtMachine(verbose=args.verbose,
-                             networking=network.host(),
-                             image="fedora-28")
-selenium = windows = None
+    # settings on selenium VM
+    if "explorer" in browser:
+        windows = testvm.VirtMachine(image="windows-8", verbose=verbose,
+                                     networking=network.host())
+    elif 'edge' in browser:
+        windows = testvm.VirtMachine(image='windows-10', verbose=verbose,
+                                     networking=network.host())
+    else:
+        selenium = testvm.VirtMachine(image="selenium", verbose=verbose,
+                                      networking=network.host())
+    try:
+        composer.start()
+        if selenium:
+            # actually wait here, because starting selenium takes a while
+            selenium.pull(selenium.image_file)
+            selenium.start()
+            selenium.wait_boot()
+            selenium.set_address("10.111.112.10/20")
 
-# settings on selenium VM
-if "explorer" in args.browser:
-    windows = testvm.VirtMachine(image="windows-8", verbose=args.verbose,
-                                 networking=network.host())
-elif 'edge' in args.browser:
-    windows = testvm.VirtMachine(image='windows-10', verbose=args.verbose,
-                                 networking=network.host())
-else:
-    selenium = testvm.VirtMachine(image="selenium", verbose=args.verbose,
-                                  networking=network.host())
+            # start selenium on the server
+            selenium.execute(command="/root/selenium_start.sh")
+        elif windows:
+            selenium = windows
+            selenium.pull(selenium.image_file)
+            selenium.start()
 
-composer.start()
-machine.pull(machine.image_file)
-machine.start()
-if selenium:
-    # actually wait here, because starting selenium takes a while
-    selenium.pull(selenium.image_file)
-    selenium.start()
-    selenium.wait_boot()
-    selenium.set_address("10.111.112.10/20")
+        composer.wait_boot()
+        composer.set_address("10.111.113.1/20")
 
-    # start selenium on the server
-    selenium.upload(["end-to-end/run/selenium_start.sh"], "/root")
-    selenium.execute(command="/root/selenium_start.sh")
-elif windows:
-    selenium = windows
-    selenium.pull(selenium.image_file)
-    selenium.start()
+        if selenium and 'edge' in browser:
+            composer.dhcp_server(range=['10.111.112.10', '10.111.112.10'])
 
-composer.wait_boot()
-# run a command to force starting the SSH master
-composer.execute('uptime')
-# print ssh command
-print("ssh -o ControlPath=%s -p %s %s@%s" % (
-        composer.ssh_master,
-        composer.ssh_port,
-        composer.ssh_user,
-        composer.ssh_address))
-# baseUrl and current dir path
-base_url = "https://{}:{}/welder".format(composer.web_address,
-                                         composer.web_port)
-# print Cockpit web address
-print(base_url)
-# print marker that the VM is ready; tests can poll for this to wait for the VM
-print("RUNNING")
+        wait_for_selenium_running(composer, "10.111.112.10")
+        wait_for_composer_running(composer)
 
-machine.wait_boot()
-machine.set_address("10.111.113.1/20")
+        # Now actually run the tests
+        selenium_address = "10.111.112.10" if selenium else ""
 
-if selenium and 'edge' in args.browser:
-    machine.dhcp_server(range=['10.111.112.10', '10.111.112.10'])
+        prepare_webdriver_tests(composer)
+        success = run_webdriver_tests(composer, selenium_address,
+                                      "10.111.113.1", browser)
+        # Download html report
+        composer.download("/root/webdriver_report/wdio-report.html", "/root")
 
-wait_for_selenium_running(machine, "10.111.112.10")
-prepare_webdriver_tests(machine)
+        return success
+    finally:
+        composer.kill()
+        if selenium:
+            selenium.kill()
 
-# Now actually run the tests
-selenium_address = "10.111.112.10" if selenium else ""
-env = ["HUB=" + selenium_address,
-       "GUEST=10.111.113.1",
-       "BROWSER=" + args.browser]
-success = run_webdriver_tests(machine)
 
-machine.kill()
-if selenium:
-    selenium.kill()
+def main():
+    parser = argparse.ArgumentParser(description='Run a test machine')
+    parser.add_argument('-v', '--verbose', action='store_true',
+                        help='Display verbose details')
+    parser.add_argument('-M', '--memory', type=int, default=1024,
+                        help='Memory (in MiB) of the target machine')
+    parser.add_argument('-C', '--cpus', type=int, default=1,
+                        help='Number of cpus in the target machine')
+    parser.add_argument("-b", "--browser",
+                        choices=['none', 'firefox',
+                                 'chrome', 'explorer', 'edge'],
+                        default='none',
+                        help="selenium browser choice - in case of none, \
+                            selenium isn't started")
+
+    parser.add_argument('image', help='The image to run')
+    args = parser.parse_args()
+
+    if run_e2e(args.verbose, args.image, args.browser, args.cpus, args.memory):
+        return 0
+    else:
+        return 1
+
+
+if __name__ == '__main__':
+    sys.exit(main())
