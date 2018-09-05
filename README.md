@@ -169,7 +169,8 @@ $ make rpm                # Or, `make srpm`
 For a general guide on how to write translatable strings, see [weldr.io](http://weldr.io/Translating-welder-web-strings/)
 
 All `npm run` targets that start with `translate:` need `zanata-js` to be installed. Install it with the usual
-`npm install zanata-js`.
+`npm install zanata-js`. To be able to push to Zanata, you need to have your credentials in `~/config/zanata.ini`.
+The contents of this file are accessible from your profile screen in the Zanata web UI.
 
 There are a lot of parts involved in translating a string. Here's an overview of the process, from start to finish:
 
