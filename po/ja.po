@@ -9,10 +9,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "MIME-Version: 1.0\n"
 "X-Generator: Zanata 4.6.2\n"
-"PO-Revision-Date: 2018-08-23 10:19+0000\n"
+"PO-Revision-Date: 2018-09-07 12:17+0000\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
+
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.parenthetical] - Describes the sort order of the pending changes
+#. defaultMessage is:
+#. (most recent first)
+msgid "(most recent first)"
+msgstr "(最新順)"
+
+#: build/messages/components/Modal/CreateImage.json
+#. [components.Modal.CreateImage.485442669]
+#. defaultMessage is:
+#. 1 build is in progress
+msgid "1 build is in progress"
+msgstr "1 つのビルドが進行中"
 
 #: build/messages/components/Modal/CreateBlueprint.json
 #. [components.Modal.CreateBlueprint.4177685254]
@@ -36,7 +50,11 @@ msgid "Add Blueprint Components"
 msgstr "ブループリントコンポーネントの追加"
 
 #: build/messages/components/ListView/ListItemChanges.json
+#: build/messages/components/Modal/PendingChanges.json
 #. [components.ListView.ListItemChanges.1362724042]
+#. defaultMessage is:
+#. Added
+#. [components.Modal.PendingChanges.1362724042] - Identifies the change as a component that was added
 #. defaultMessage is:
 #. Added
 msgid "Added"
@@ -92,6 +110,20 @@ msgstr "アーキテクチャー"
 msgid "Are you sure you want to delete the blueprint {name}?"
 msgstr "ブループリント {name} を削除してもよろしいですか?"
 
+#: build/messages/components/Modal/DeleteImage.json
+#. [components.Modal.DeleteImage.1346739796]
+#. defaultMessage is:
+#. Are you sure you want to delete the image for {blueprintName}?
+msgid "Are you sure you want to delete the image for {blueprintName}?"
+msgstr "{blueprintName} のイメージを削除してもよろしいですか?"
+
+#: build/messages/components/Modal/StopBuild.json
+#. [components.Modal.StopBuild.234116272]
+#. defaultMessage is:
+#. Are you sure you want to stop the build process for {blueprintName}?
+msgid "Are you sure you want to stop the build process for {blueprintName}?"
+msgstr "{blueprintName} のビルドプロセスを終了してもよろしいですか?"
+
 #: build/messages/pages/blueprintEdit/index.json
 #. [pages.blueprintEdit.index.2346760817]
 #. defaultMessage is:
@@ -122,16 +154,20 @@ msgstr "{parent} に戻る"
 #. defaultMessage is:
 #. Based on Version {version}
 msgid "Based on Version {version}"
-msgstr ""
+msgstr "バージョン {version} に基づきます"
 
 #: build/messages/components/Modal/CreateImage.json
 #: build/messages/components/Modal/ExportBlueprint.json
+#: build/messages/components/Modal/PendingChanges.json
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
 #. [components.Modal.CreateImage.1281198655]
 #. defaultMessage is:
 #. Blueprint
 #. [components.Modal.ExportBlueprint.1281198655]
+#. defaultMessage is:
+#. Blueprint
+#. [components.Modal.PendingChanges.blueprint]
 #. defaultMessage is:
 #. Blueprint
 #. [pages.blueprint.index.blueprint]
@@ -167,7 +203,8 @@ msgstr "コンポーネントを閲覧または検索した後、ブループリ
 #: build/messages/components/Modal/CreateBlueprint.json
 #: build/messages/components/Modal/CreateImage.json
 #: build/messages/components/Modal/DeleteBlueprint.json
-#: build/messages/data/NotificationsApi.json
+#: build/messages/components/Modal/DeleteImage.json
+#: build/messages/components/Modal/StopBuild.json
 #. [components.Modal.CreateBlueprint.3528672691]
 #. defaultMessage is:
 #. Cancel
@@ -177,11 +214,37 @@ msgstr "コンポーネントを閲覧または検索した後、ブループリ
 #. [components.Modal.DeleteBlueprint.3528672691]
 #. defaultMessage is:
 #. Cancel
-#. [data.NotificationsApi.3528672691]
+#. [components.Modal.DeleteImage.3528672691]
+#. defaultMessage is:
+#. Cancel
+#. [components.Modal.StopBuild.3528672691]
 #. defaultMessage is:
 #. Cancel
 msgid "Cancel"
 msgstr "キャンセル"
+
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.2208777537]
+#. defaultMessage is:
+#. Changes Pending Commit
+msgid "Changes Pending Commit"
+msgstr "保留中のコミットを変更"
+
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.683130131]
+#. defaultMessage is:
+#. Changes made in a previous session
+msgid "Changes made in a previous session"
+msgstr "前回のセッションでの変更点"
+
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.previousSessionInfotip]
+#. defaultMessage is:
+#. Changes made in a previous session are not listed in the order they were made. If you choose to undo these changes, they are undone as a group.
+msgid ""
+"Changes made in a previous session are not listed in the order they were "
+"made. If you choose to undo these changes, they are undone as a group."
+msgstr "前回のセッションでの変更点は、変更順に表示されていません。これらの変更点を元に戻す場合は、グループとして戻します。"
 
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/components/Toolbar/ToolbarLayout.json
@@ -205,6 +268,7 @@ msgstr "すべてのフィルターの消去"
 #: build/messages/components/Modal/ExportBlueprint.json
 #: build/messages/components/Modal/ManageSources.json
 #: build/messages/components/Modal/ManageSources.json
+#: build/messages/components/Modal/PendingChanges.json
 #: build/messages/components/Notifications/Notification.json
 #. [components.Modal.ExportBlueprint.2324218928]
 #. defaultMessage is:
@@ -215,18 +279,39 @@ msgstr "すべてのフィルターの消去"
 #. [components.Modal.ManageSources.2324218928]
 #. defaultMessage is:
 #. Close
+#. [components.Modal.PendingChanges.closeButtonLabel]
+#. defaultMessage is:
+#. Close
 #. [components.Notifications.Notification.2324218928]
 #. defaultMessage is:
 #. Close
 msgid "Close"
 msgstr "閉じる"
 
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.2299254306]
+#. defaultMessage is:
+#. Comment
+msgid "Comment"
+msgstr "コメント"
+
+#: build/messages/components/Modal/PendingChanges.json
 #: build/messages/pages/blueprintEdit/index.json
+#. [components.Modal.PendingChanges.commitButtonLabel]
+#. defaultMessage is:
+#. Commit
 #. [pages.blueprintEdit.index.1951088698]
 #. defaultMessage is:
 #. Commit
 msgid "Commit"
 msgstr "コミット"
+
+#: build/messages/components/Modal/CreateImage.json
+#. [components.Modal.CreateImage.4244040826]
+#. defaultMessage is:
+#. Commit and Create
+msgid "Commit and Create"
+msgstr "コミットおよび作成"
 
 #: build/messages/components/ListView/ListItemChanges.json
 #. [components.ListView.ListItemChanges.1076233378]
@@ -335,6 +420,20 @@ msgid ""
 "images you create. Images can be produced in a variety of output formats."
 msgstr "作成するイメージに含まれるコンテンツを定義するためにブループリントを作成します。イメージは、様々な出力フォーマットで作成可能です。"
 
+#: build/messages/components/Pagination/Pagination.json
+#. [components.Pagination.Pagination.2925773048] - Label for the string: 1–50 of 125; only visible to screen readers
+#. defaultMessage is:
+#. Current Items
+msgid "Current Items"
+msgstr "現在のアイテム"
+
+#: build/messages/components/Pagination/Pagination.json
+#. [components.Pagination.Pagination.currentPage] - Label of form input for setting current page number
+#. defaultMessage is:
+#. Current Page
+msgid "Current Page"
+msgstr "現在のページ"
+
 #: build/messages/components/Modal/ManageSources.json
 #. [components.Modal.ManageSources.3535450089] - Custom sources are additional repositories that were added by the user
 #. defaultMessage is:
@@ -364,8 +463,12 @@ msgid "Default"
 msgstr "デフォルト"
 
 #: build/messages/components/ListView/BlueprintListView.json
+#: build/messages/components/ListView/ListItemImages.json
 #: build/messages/components/Modal/DeleteBlueprint.json
 #. [components.ListView.BlueprintListView.3645414921]
+#. defaultMessage is:
+#. Delete
+#. [components.ListView.ListItemImages.3645414921]
 #. defaultMessage is:
 #. Delete
 #. [components.Modal.DeleteBlueprint.3645414921]
@@ -381,23 +484,27 @@ msgstr "削除"
 msgid "Delete Blueprint"
 msgstr "ブループリントの削除"
 
+#: build/messages/components/Modal/DeleteImage.json
+#. [components.Modal.DeleteImage.1731766393]
+#. defaultMessage is:
+#. Delete Image
+msgid "Delete Image"
+msgstr "イメージの削除"
+
+#: build/messages/components/ListView/BlueprintContents.json
+#: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ComponentSummaryList.json
+#. [components.ListView.BlueprintContents.dependenciesTabTitle]
+#. defaultMessage is:
+#. Dependencies
+#. [components.ListView.ComponentDetailsView.dependencies]
+#. defaultMessage is:
+#. Dependencies
 #. [components.ListView.ComponentSummaryList.3727965333]
 #. defaultMessage is:
 #. Dependencies
 msgid "Dependencies"
 msgstr "依存性"
-
-#: build/messages/components/ListView/BlueprintContents.json
-#: build/messages/components/ListView/ComponentDetailsView.json
-#. [components.ListView.BlueprintContents.dependenciesTabTitle]
-#. defaultMessage is:
-#. Dependencies {count}
-#. [components.ListView.ComponentDetailsView.dependencies]
-#. defaultMessage is:
-#. Dependencies {count}
-msgid "Dependencies {count}"
-msgstr "依存性 {count}"
 
 #: build/messages/components/ListView/ListItemLabel.json
 #. [components.ListView.ListItemLabel.2051291306]
@@ -656,6 +763,13 @@ msgstr ""
 "                            デフォルトのバリエーションが自動的に選択されました。\n"
 "                            利用可能なその他のオプションを見るには、フラグ付きの依存性をクリックします。"
 
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.1475836573]
+#. defaultMessage is:
+#. Only changes to selected components are shown.
+msgid "Only changes to selected components are shown."
+msgstr "選択されたコンポーネントへの変更点のみを表示"
+
 #: build/messages/pages/error/index.json
 #. [pages.error.index.oupsTitle]
 #. defaultMessage is:
@@ -677,12 +791,26 @@ msgstr "ページが見つかりません"
 msgid "Page not found"
 msgstr "ページが見つかりません"
 
+#: build/messages/components/Pagination/Pagination.json
+#. [components.Pagination.Pagination.pagination]
+#. defaultMessage is:
+#. Pagination
+msgid "Pagination"
+msgstr "ページネーション"
+
 #: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.ListItemImages.1102534324]
 #. defaultMessage is:
 #. Pending
 msgid "Pending"
 msgstr "保留中"
+
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.433458873]
+#. defaultMessage is:
+#. Pending Changes
+msgid "Pending Changes"
+msgstr "保留中の変更"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ListItemComponents.json
@@ -704,10 +832,14 @@ msgstr "リリース {release}"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ListItemComponents.json
+#: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.ComponentDetailsView.2703758654]
 #. defaultMessage is:
 #. Remove
 #. [components.ListView.ListItemComponents.2703758654]
+#. defaultMessage is:
+#. Remove
+#. [components.ListView.ListItemImages.2703758654]
 #. defaultMessage is:
 #. Remove
 msgid "Remove"
@@ -721,7 +853,11 @@ msgid "Remove from Blueprint"
 msgstr "ブループリントから削除"
 
 #: build/messages/components/ListView/ListItemChanges.json
+#: build/messages/components/Modal/PendingChanges.json
 #. [components.ListView.ListItemChanges.2291868453]
+#. defaultMessage is:
+#. Removed
+#. [components.Modal.PendingChanges.2291868453] - Identifies the change as a component that was removed
 #. defaultMessage is:
 #. Removed
 msgid "Removed"
@@ -741,19 +877,16 @@ msgstr "必須情報が見つかりません。"
 msgid "Select components"
 msgstr "コンポーネントの選択"
 
+#: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/pages/blueprint/index.json
+#. [components.ListView.BlueprintContents.selectedTabTitle]
+#. defaultMessage is:
+#. Selected Components
 #. [pages.blueprint.index.selectedComponentsTitle]
 #. defaultMessage is:
 #. Selected Components
 msgid "Selected Components"
 msgstr "選択されたコンポーネント"
-
-#: build/messages/components/ListView/BlueprintContents.json
-#. [components.ListView.BlueprintContents.selectedTabTitle]
-#. defaultMessage is:
-#. Selected Components {count}
-msgid "Selected Components {count}"
-msgstr "選択されたコンポーネント {count}"
 
 #: build/messages/components/ListView/ComponentSummaryList.json
 #. [components.ListView.ComponentSummaryList.1256153657]
@@ -776,6 +909,20 @@ msgstr "詳細とさらなるオプションの表示"
 msgid "Show Less"
 msgstr "簡易表示"
 
+#: build/messages/components/Pagination/Pagination.json
+#. [components.Pagination.Pagination.nextPage]
+#. defaultMessage is:
+#. Show Next Page
+msgid "Show Next Page"
+msgstr "次のページに進みます"
+
+#: build/messages/components/Pagination/Pagination.json
+#. [components.Pagination.Pagination.previousPage]
+#. defaultMessage is:
+#. Show Previous Page
+msgid "Show Previous Page"
+msgstr "前のページに戻ります"
+
 #: build/messages/components/Sources/SourcesList.json
 #. [components.Sources.SourcesList.3503331186] - The path or url to the source repository
 #. defaultMessage is:
@@ -797,6 +944,27 @@ msgstr "ソース"
 msgid "Specify a new blueprint name."
 msgstr "新規ブループリント名を指定します。"
 
+#: build/messages/components/ListView/ListItemImages.json
+#. [components.ListView.ListItemImages.2989081855]
+#. defaultMessage is:
+#. Stop
+msgid "Stop"
+msgstr "終了"
+
+#: build/messages/components/Modal/StopBuild.json
+#. [components.Modal.StopBuild.1162993432]
+#. defaultMessage is:
+#. Stop Build
+msgid "Stop Build"
+msgstr "ビルドを終了"
+
+#: build/messages/components/ListView/ListItemImages.json
+#. [components.ListView.ListItemImages.2434115730]
+#. defaultMessage is:
+#. Stopping
+msgid "Stopping"
+msgstr "終了中"
+
 #: build/messages/components/Modal/ManageSources.json
 #. [components.Modal.ManageSources.766860407] - System sources are configured repositories that were found on the host machine
 #. defaultMessage is:
@@ -810,6 +978,13 @@ msgstr "システムソース"
 #. Text
 msgid "Text"
 msgstr "テキスト"
+
+#: build/messages/components/Modal/StopBuild.json
+#. [components.Modal.StopBuild.3426018028]
+#. defaultMessage is:
+#. The build process cannot resume after it stops.
+msgid "The build process cannot resume after it stops."
+msgstr "ビルドプロセス終了後に再開することはできません。"
 
 #: build/messages/components/Modal/CreateBlueprint.json
 #. [components.Modal.CreateBlueprint.216946930]
@@ -842,11 +1017,40 @@ msgid ""
 msgstr "ブループリントにリストされたコンポーネントはありません。ブループリントを編集して、コンポーネントを追加します。"
 
 #: build/messages/components/Modal/DeleteBlueprint.json
+#: build/messages/components/Modal/DeleteImage.json
 #. [components.Modal.DeleteBlueprint.181468144]
+#. defaultMessage is:
+#. This action cannot be undone.
+#. [components.Modal.DeleteImage.181468144]
 #. defaultMessage is:
 #. This action cannot be undone.
 msgid "This action cannot be undone."
 msgstr "このアクションは取り消せません。"
+
+#: build/messages/components/Modal/CreateImage.json
+#. [components.Modal.CreateImage.warningUnsaved]
+#. defaultMessage is:
+#. This blueprint has changes that are not committed. These changes will be committed before the image is created.
+msgid ""
+"This blueprint has changes that are not committed. These changes will be "
+"committed before the image is created."
+msgstr "このブループリントには、コミットされていない変更点があります。これらの変更点はイメージの作成前にコミットされます。"
+
+#: build/messages/components/Modal/CreateImage.json
+#. [components.Modal.CreateImage.1766703173]
+#. defaultMessage is:
+#. This blueprint is empty.
+msgid "This blueprint is empty."
+msgstr "このブループリントは空です。"
+
+#: build/messages/components/Modal/CreateImage.json
+#. [components.Modal.CreateImage.infotip]
+#. defaultMessage is:
+#. This process can take a while. Images are built in the order they are started.
+msgid ""
+"This process can take a while. Images are built in the order they are "
+"started."
+msgstr "この処理には数分かかることがあります。イメージは開始順にビルドされます。"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/Sources/SourcesList.json
@@ -880,6 +1084,13 @@ msgstr "URL"
 msgid "Update"
 msgstr "更新"
 
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.562988552] - Identifies the change as a component that was updated
+#. defaultMessage is:
+#. Updated
+msgid "Updated"
+msgstr "更新済み"
+
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ListItemComponents.json
 #. [components.ListView.ComponentDetailsView.602883748]
@@ -912,12 +1123,26 @@ msgstr "表示"
 msgid "View Sources"
 msgstr "ソースを表示"
 
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.2755325844]
+#. defaultMessage is:
+#. from
+msgid "from"
+msgstr "(バージョン) から"
+
 #: build/messages/pages/error/index.json
 #. [pages.error.index.2054225650]
 #. defaultMessage is:
 #. home page
 msgid "home page"
 msgstr "ホームページ"
+
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.152217691]
+#. defaultMessage is:
+#. to
+msgid "to"
+msgstr "(バージョン) へ"
 
 #: build/messages/components/Modal/CreateImage.json
 #. [components.Modal.CreateImage.282502245]
@@ -948,11 +1173,25 @@ msgid "{blueprint} Committing blueprint."
 msgstr "{blueprint} ブループリントのコミット中。"
 
 #: build/messages/data/NotificationsApi.json
-#. [data.NotificationsApi.1846920931]
+#. [data.NotificationsApi.3947958753]
 #. defaultMessage is:
-#. {blueprint} Creating image.
-msgid "{blueprint} Creating image."
-msgstr "{blueprint} イメージの作成中"
+#. {blueprint} Image creation failed.
+msgid "{blueprint} Image creation failed."
+msgstr "{blueprint} イメージの作成に失敗しました。"
+
+#: build/messages/data/NotificationsApi.json
+#. [data.NotificationsApi.705169148]
+#. defaultMessage is:
+#. {blueprint} Image creation has been added to the queue.
+msgid "{blueprint} Image creation has been added to the queue."
+msgstr "{blueprint} イメージの作成がキューに追加されました。"
+
+#: build/messages/data/NotificationsApi.json
+#. [data.NotificationsApi.1726548071]
+#. defaultMessage is:
+#. {blueprint} Image creation has started.
+msgid "{blueprint} Image creation has started."
+msgstr "{blueprint} イメージの作成が開始されました。"
 
 #: build/messages/data/NotificationsApi.json
 #. [data.NotificationsApi.210196387]
@@ -961,6 +1200,13 @@ msgstr "{blueprint} イメージの作成中"
 msgid "{blueprint} Image creation is complete."
 msgstr "{blueprint} イメージの作成が完了"
 
+#: build/messages/components/Modal/CreateImage.json
+#. [components.Modal.CreateImage.2122759296]
+#. defaultMessage is:
+#. {builds, plural, one {# build is waiting} other {# builds are waiting}}
+msgid "{builds, plural, one {# build is waiting} other {# builds are waiting}}"
+msgstr "{builds, plural, one {# build is waiting} other {# builds are waiting}}"
+
 #: build/messages/components/Modal/ExportBlueprint.json
 #. [components.Modal.ExportBlueprint.1557505074]
 #. defaultMessage is:
@@ -968,12 +1214,33 @@ msgstr "{blueprint} イメージの作成が完了"
 msgid "{count} total components"
 msgstr "{count} 総コンポーネント"
 
+#: build/messages/components/Pagination/Pagination.json
+#. [components.Pagination.Pagination.3506832526]
+#. defaultMessage is:
+#. {currentPage} of {totalPages}
+msgid "{currentPage} of {totalPages}"
+msgstr "{totalPages} の {currentPage} "
+
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.3908981070]
+#. defaultMessage is:
+#. {from} {oldVersion} {to} {newVersion}
+msgid "{from} {oldVersion} {to} {newVersion}"
+msgstr "{from} {oldVersion} {to} {newVersion}"
+
 #: build/messages/pages/error/index.json
 #. [pages.error.index.526995878]
 #. defaultMessage is:
 #. {goBack}, or head over to the {homePage} to choose a new direction.
 msgid "{goBack}, or head over to the {homePage} to choose a new direction."
 msgstr "{goBack}、または {homePage} へ進み、新しいディレクションを選択します。"
+
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.3141775911]
+#. defaultMessage is:
+#. {heading} {parenthetical}
+msgid "{heading} {parenthetical}"
+msgstr "{heading} {parenthetical}"
 
 #: build/messages/pages/blueprintEdit/index.json
 #. [pages.blueprintEdit.index.4031669927]
@@ -988,6 +1255,13 @@ msgstr "{pendingChanges, plural, one {# Pending Change} other {# Pending Changes
 #. {selectComponents} in this list to add to the blueprint.
 msgid "{selectComponents} in this list to add to the blueprint."
 msgstr "このリストで {selectComponents} し、ブループリントに追加します。"
+
+#: build/messages/components/Pagination/Pagination.json
+#. [components.Pagination.Pagination.3363928156]
+#. defaultMessage is:
+#. {startNumber} - {endNumber} of {totalNumber}
+msgid "{startNumber} - {endNumber} of {totalNumber}"
+msgstr "{totalNumber} の {startNumber} - {endNumber}"
 
 #: ./public/manifest.json
 msgid "Image Builder"
