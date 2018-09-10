@@ -14,16 +14,16 @@ module.exports = class ViewBlueprintPage extends MainPage {
     this.titleRootElement = 'div[class="cmpsr-title"]';
 
     // Tab root element
-    this.tabRootElement = 'pf-tabs';
+    this.tabRootElement = 'div[id="blueprint-tabs"]';
 
     // Tab list root element
     this.tabListRootElement = `${this.tabRootElement} ul[role="tablist"]`;
 
     // Details tab content root element
-    this.detailsContentRootElement = `${this.tabRootElement} pf-tab[tabtitle="Details"]`;
+    this.detailsContentRootElement = `${this.tabRootElement} div[id="blueprint-tabs-pane-details"]`;
 
     // Images tab content root element
-    this.imagesContentRootElement = `${this.tabRootElement} pf-tab[tabtitle="Images"]`;
+    this.imagesContentRootElement = `${this.tabRootElement} div[id="blueprint-tabs-pane-images"]`;
 
     // ---- Page element selector ---- //
     // Nav-bar: Blueprint Name label

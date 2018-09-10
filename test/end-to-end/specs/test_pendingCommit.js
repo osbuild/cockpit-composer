@@ -3,6 +3,7 @@ const helper = require('../utils/helper');
 const config = require('../wdio.conf.js');
 const testData = config.testData;
 
+const BlueprintsPage = require('../pages/blueprints');
 const EditBlueprintPage = require('../pages/editBlueprint');
 const ChangesPendingCommitPage = require('../pages/changesPendingCommit');
 const CreateBlueprintPage = require('../pages/createBlueprint');
@@ -16,10 +17,15 @@ describe('Changes Pending Commit Page', () => {
 
   beforeEach(() => {
     CreateBlueprintPage.newBlueprint(testData.blueprint.bash, false);
-
-    helper.goto(editBlueprintPage);
+    const blueprintsPage = new BlueprintsPage();
+    const blueprintName = testData.blueprint.bash.name;
+    const rowSelector = `${blueprintsPage.itemsBlueprint}[data-blueprint="${blueprintName}"]`;
 
     browser
+      .waitForVisible(rowSelector);
+
+    browser
+      .click(`${rowSelector} a[href*="edit"]`)
       .waitForExist(editBlueprintPage.componentListItemRootElement);
   });
 
@@ -126,8 +132,17 @@ describe('Changes Pending Commit Page', () => {
 
         // reload the page
         browser.reload();
-        helper.goto(editBlueprintPage)
-          .waitForVisible(editBlueprintPage.btnCommit);
+        const blueprintsPage = new BlueprintsPage();
+        const blueprintName = testData.blueprint.bash.name;
+        const rowSelector = `${blueprintsPage.itemsBlueprint}[data-blueprint="${blueprintName}"]`;
+        helper.goto(blueprintsPage);
+
+        browser
+          .waitForVisible(rowSelector);
+
+        browser
+          .click(`${rowSelector} a[href*="edit"]`)
+          .waitForExist(editBlueprintPage.componentListItemRootElement);
 
         // bring up the pending changes dialog again by clicking the commit button
         browser

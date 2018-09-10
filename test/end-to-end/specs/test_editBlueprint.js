@@ -26,8 +26,15 @@ describe('Given Edit Blueprint Page', () => {
   describe('When page is opened', () => {
     beforeEach(() => {
       CreateBlueprintPage.newBlueprint(testData.blueprint.simple);
+      const blueprintsPage = new BlueprintsPage();
+      const blueprintName = testData.blueprint.simple.name;
+      const rowSelector = `${blueprintsPage.itemsBlueprint}[data-blueprint="${blueprintName}"]`;
 
-      helper.goto(editBlueprintPage)
+      browser
+        .waitForVisible(rowSelector);
+
+      browser
+        .click(`${rowSelector} a[href*="edit"]`)
         .waitForVisible(editBlueprintPage.componentListItemRootElement);
     });
 
