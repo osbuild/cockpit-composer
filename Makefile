@@ -111,11 +111,11 @@ shared:
 	fi;
 
 lorax-test: shared
-	if [ -n "$$TRAVIS" ]; then \
-	    sudo docker build -f Dockerfile.lorax --cache-from welder/web-lorax:latest -t welder/web-lorax:latest . ; \
-	else \
-	    sudo docker build -f Dockerfile.lorax -t welder/web-lorax:latest . ; \
-	fi;
+	# if [ -n "$$TRAVIS" ]; then \
+	#     sudo docker build -f Dockerfile.lorax --cache-from welder/web-lorax:latest -t welder/web-lorax:latest . ; \
+	# else \
+	#     sudo docker build -f Dockerfile.lorax -t welder/web-lorax:latest . ; \
+	# fi;
 
 	sudo docker run -d --name web --restart=always -v bdcs-socket:/run/weldr -v `pwd`/public:/usr/share/cockpit/welder --network host welder/web-lorax:latest
 
