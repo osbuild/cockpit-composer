@@ -143,7 +143,6 @@ describe('Changes Pending Commit Page', () => {
         browser
           .click(`${rowSelector} a[href*="edit"]`)
           .waitForExist(editBlueprintPage.componentListItemRootElement);
-          // .waitForVisible(editBlueprintPage.btnCommit);
 
         // bring up the pending changes dialog again by clicking the commit button
         browser
