@@ -154,8 +154,7 @@ module.exports = class EditBlueprintPage extends MainPage {
     this.btnAdd = `${this.bodyMainRootElement} .cmpsr-header .cmpsr-header__actions ul li button`;
 
     // Selected Components content
-    this.contentSelectedComponents = `pf-tabs pf-tab
-      div[class="list-pf cmpsr-list-pf list-pf-stacked cmpsr-blueprint__components"]`;
+    this.contentSelectedComponents = 'div[class="list-pf cmpsr-list-pf list-pf-stacked cmpsr-blueprint__components"]';
   }
 
   get url() {
