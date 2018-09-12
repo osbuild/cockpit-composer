@@ -11,6 +11,13 @@ core/build-version.json
 npm-debug.log
 metadata.db
 welder-web.spec
-/package-lock.json
+cockpit-composer.spec
+package-lock.json
 /po/etag-cache.json
 /po/*.pot
+bots
+/test/images
+*.tar.gz
+*.rpm
+wdio-report.html
+/tmp

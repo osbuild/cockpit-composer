@@ -71,7 +71,7 @@ module.exports = class CreateBlueprintPage extends BlueprintPage {
     bpObject.packages.forEach((pkg) => {
       browser
         .setValue(editPage.inputFilter, pkg.name)
-        .addValue(editPage.inputFilter, '\u000d')
+        .addValue(editPage.inputFilter, editPage.enter)
         .waitForVisible(editPage.linkClearAllFilters);
 
       // wait until a filter label with the correct name is shown
@@ -100,7 +100,7 @@ module.exports = class CreateBlueprintPage extends BlueprintPage {
       browser
         .click(editPage.btnCommit)
         // pop-up dialog to commit the changes
-        .waitForExist(commitDialog.btnCommit);
+        .waitForVisible(commitDialog.btnCommit);
 
       browser
         .click(commitDialog.btnCommit)

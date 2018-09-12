@@ -47,6 +47,7 @@ describe('Given Edit Blueprint Page', () => {
       assert.equal(actualBlueprintName, editBlueprintPage.blueprintName);
 
       const actualLink = $(editBlueprintPage.linkBlueprintName).getAttribute('href');
+      // the href attribute will return "#/blueprint/automation"
       assert(actualLink.includes(editBlueprintPage.varLinkToViewRec));
 
       browser
@@ -125,7 +126,7 @@ describe('Given Edit Blueprint Page', () => {
         // filter out components
         browser
           .setValue(editBlueprintPage.inputFilter, 'httpd')
-          .addValue(editBlueprintPage.inputFilter, '\u000d')
+          .addValue(editBlueprintPage.inputFilter, editBlueprintPage.enter)
           .waitForVisible(editBlueprintPage.linkClearAllFilters);
 
         // wait until a filter label with the correct name is shown
@@ -155,11 +156,12 @@ describe('Given Edit Blueprint Page', () => {
           browser
             .waitForVisible('.list-pf-content.list-pf-content-flex');
 
-          // wait until filters are gone
-          browser
-            .waitForExist(editBlueprintPage.btnClearFilter, config.config.waitforTimeout, true);
-          browser
-            .waitForExist(editBlueprintPage.linkClearAllFilters, config.config.waitforTimeout, true);
+          // run the element command and check if the result type is NoSuchElement
+          // that means the filter result is cleared
+          const existBtnClearFilter = browser.element(editBlueprintPage.btnClearFilter);
+          assert.equal(existBtnClearFilter.type, 'NoSuchElement');
+          const existLinkClearAllFilters = browser.element(editBlueprintPage.linkClearAllFilters);
+          assert.equal(existLinkClearAllFilters.type, 'NoSuchElement');
         });
       });
 
@@ -199,7 +201,16 @@ describe('Given Edit Blueprint Page', () => {
     beforeEach(() => {
       CreateBlueprintPage.newBlueprint(testData.blueprint.simple, false);
 
-      helper.goto(editBlueprintPage);
+      const blueprintsPage = new BlueprintsPage();
+      const blueprintName = testData.blueprint.simple.name;
+      const rowSelector = `${blueprintsPage.itemsBlueprint}[data-blueprint="${blueprintName}"]`;
+
+      browser
+        .waitForVisible(rowSelector);
+
+      browser
+        .click(`${rowSelector} a[href*="edit"]`)
+        .waitForVisible(editBlueprintPage.componentListItemRootElement);
     });
 
     it('Then additional buttons are enabled', () => {

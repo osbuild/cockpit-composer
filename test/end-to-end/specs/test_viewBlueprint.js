@@ -1,4 +1,3 @@
-const ncp = require('copy-paste');
 const assert = require('assert');
 const faker = require('faker');
 
@@ -204,10 +203,29 @@ describe('View Blueprint Page', () => {
 
         browser.click(exportBlueprintPage.btnCopy);
 
-        // grab the text from the clipboard
-        // and verify it is still the same text
-        const clipboardText = ncp.paste();
-        assert.equal(clipboardText, componentsText);
+        // close export Blueprint window
+        browser.click(exportBlueprintPage.btnClose);
+
+        // wait export blueprint window closed
+        browser
+          .waitUntil(() => browser.isExisting(viewBlueprintPage.clearViewBlueprintWindow));
+        // paste copied content into blueprint description box then check content
+        browser
+          .click(viewBlueprintPage.btnEditDescriptionUnderDetails)
+          .waitForVisible(viewBlueprintPage.inputTextDescriptionUnderDetails);
+
+        browser
+          .setValue(viewBlueprintPage.inputTextDescriptionUnderDetails, ['Control', 'v'])
+          .waitForVisible(viewBlueprintPage.btnOkDescriptionUnderDetails);
+
+        browser
+          .click(viewBlueprintPage.btnOkDescriptionUnderDetails)
+          .waitForVisible(viewBlueprintPage.labelBlueprintDescription);
+
+        // the text in blueprint description box does not include '\n', but space
+        const newDescription = $(viewBlueprintPage.labelBlueprintDescription).getText();
+        // the copied content should replace '\n' with space
+        assert.equal(newDescription, componentsText.replace(/\n/g, ' '));
       });
     });
   });

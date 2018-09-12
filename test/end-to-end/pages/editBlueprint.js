@@ -33,10 +33,7 @@ module.exports = class EditBlueprintPage extends MainPage {
     this.linkBackToBlueprints = `${this.navBarRootElement} li a[href="#/blueprints"]`;
 
     // Blueprint Name link
-    this.varLinkToViewRec = `${this.mailUrl}#/blueprint/${this.blueprintName}`;
-    if (config.config.baseUrl.includes('9090')) {
-      this.varLinkToViewRec = `${this.mailUrl.slice(0, -6)}cockpit/@localhost/welder/index.html#/blueprint/${this.blueprintName}`;
-    }
+    this.varLinkToViewRec = `#/blueprint/${this.blueprintName}`;
     this.linkBlueprintName = `${this.navBarRootElement}  li + li a`;
 
     // Blueprint Title label

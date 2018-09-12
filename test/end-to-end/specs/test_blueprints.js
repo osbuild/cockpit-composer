@@ -21,13 +21,6 @@ describe('Blueprints Page', () => {
   it('Sanity Check', () => {
     helper.goto(blueprintsPage);
 
-    // note: under Cockpit title is different
-    if (config.config.baseUrl.includes('http://localhost:3000')) {
-      // Title should be Blueprints
-      const actualTitle = browser.getTitle();
-      assert.equal(actualTitle, blueprintsPage.title);
-    }
-
     // should have the Create Blueprint button
     browser
       .waitForVisible(blueprintsPage.btnCreateBlueprint);
