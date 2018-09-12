@@ -33,6 +33,6 @@ module.exports = class exportBlueprintPage extends MainPage {
 
     // Copy and Close button
     this.btnCopy = `${this.rootElement} .modal-footer button[class="btn btn-primary"]`;
-    this.btnClose = `${this.rootElement} .modal-footer button[class="btn btn-default" data-dismiss="modal"]`;
+    this.btnClose = `${this.rootElement} .modal-footer button[class="btn btn-default"]`;
   }
 };

@@ -25,6 +25,9 @@ module.exports = class ViewBlueprintPage extends MainPage {
     // Images tab content root element
     this.imagesContentRootElement = `${this.tabRootElement} div[id="blueprint-tabs-pane-images"]`;
 
+    // No other windows above view blueprint page
+    this.clearViewBlueprintWindow = 'body[class=""]';
+
     // ---- Page element selector ---- //
     // Nav-bar: Blueprint Name label
     this.labelBlueprintName = `${this.navRootElement} li strong`;
@@ -40,7 +43,7 @@ module.exports = class ViewBlueprintPage extends MainPage {
 
     // Create Image button
     this.varCreateImage = 'Create Image';
-    this.btnCreateImage = '#cmpsr-btn-crt-image';
+    this.btnCreateImage = '[id="cmpsr-btn-crt-image"]';
 
     // More action button
     this.btnMore = 'button[id="dropdownKebab"]';
