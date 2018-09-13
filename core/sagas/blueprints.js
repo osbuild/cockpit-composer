@@ -12,7 +12,7 @@ import {
   CREATING_BLUEPRINT, creatingBlueprintSucceeded,
   ADD_BLUEPRINT_COMPONENT, ADD_BLUEPRINT_COMPONENT_SUCCEEDED, addBlueprintComponentSucceeded,
   REMOVE_BLUEPRINT_COMPONENT, REMOVE_BLUEPRINT_COMPONENT_SUCCEEDED, removeBlueprintComponentSucceeded,
-  SET_BLUEPRINT_DESCRIPTION,
+  SET_BLUEPRINT_DESCRIPTION, setBlueprintDescriptionSucceeded,
   DELETING_BLUEPRINT, deletingBlueprintSucceeded,
   COMMIT_TO_WORKSPACE,
   blueprintsFailure, blueprintContentsFailure,
@@ -85,7 +85,22 @@ function* fetchBlueprintContents(action) {
 function* setBlueprintDescription(action) {
   try {
     const { blueprint, description } = action.payload;
-    yield call(setBlueprintDescriptionApi, blueprint, description);
+    // get blueprint history
+    const getBlueprintById = makeGetBlueprintById();
+    const blueprintHistory = yield select(getBlueprintById, blueprint.id);
+    const blueprintToPost = blueprintHistory.past[0] ? blueprintHistory.past[0] : blueprintHistory.present;
+    // post the oldest blueprint with the updated description
+    yield call(setBlueprintDescriptionApi, blueprintToPost, description);
+    // get updated blueprint info
+    const response = yield call(fetchBlueprintInfoApi, blueprint.name);
+    yield put(setBlueprintDescriptionSucceeded(response));
+    // post present blueprint object to workspace
+    const workspace = Object.assign({}, blueprintHistory.present, {
+      description: description, 
+      version: response.version,
+    });
+    yield call(commitToWorkspaceApi, workspace);
+
   } catch (error) {
     console.log('Error in setBlueprintDescription');
     yield put(blueprintsFailure(error));

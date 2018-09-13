@@ -197,10 +197,9 @@ class EditBlueprintPage extends React.Component {
         // to get details that were updated during commit (i.e. version)
         Promise.all([BlueprintApi.reloadBlueprintDetails(this.props.blueprint)])
           .then(data => {
-            const blueprintToSet = this.props.blueprint;
-            blueprintToSet.name = data[0].name;
-            blueprintToSet.description = data[0].description;
-            blueprintToSet.version = data[0].version;
+            const blueprintToSet = Object.assign({}, this.props.blueprint, {
+              version: data[0].version,
+            });
             this.props.setBlueprint(blueprintToSet);
           })
           .catch(e => console.log(`Error in reload blueprint details: ${e}`));
