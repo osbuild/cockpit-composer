@@ -75,10 +75,9 @@ class CreateImage extends React.Component {
         // and call create image     
         Promise.all([BlueprintApi.reloadBlueprintDetails(this.props.blueprint)])
           .then(data => {
-            const blueprintToSet = this.props.blueprint;
-            blueprintToSet.name = data[0].name;
-            blueprintToSet.description = data[0].description;
-            blueprintToSet.version = data[0].version;
+            const blueprintToSet = Object.assign({}, this.props.blueprint, {
+              version: data[0].version,
+            });
             this.props.setBlueprint(blueprintToSet);
             this.handleCreateImage();
           })

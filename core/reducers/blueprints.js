@@ -4,7 +4,7 @@ import {
   FETCHING_BLUEPRINTS_SUCCEEDED, FETCHING_BLUEPRINT_NAMES_SUCCEEDED,
   FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED,
   ADD_BLUEPRINT_COMPONENT_SUCCEEDED, REMOVE_BLUEPRINT_COMPONENT_SUCCEEDED,
-  SET_BLUEPRINT, SET_BLUEPRINT_DESCRIPTION, SET_BLUEPRINT_COMMENT,
+  SET_BLUEPRINT, SET_BLUEPRINT_DESCRIPTION_SUCCEEDED, SET_BLUEPRINT_COMMENT,
   DELETING_BLUEPRINT_SUCCEEDED, BLUEPRINTS_FAILURE, BLUEPRINT_CONTENTS_FAILURE,
 } from '../actions/blueprints';
 
@@ -168,22 +168,36 @@ const blueprints = (state = [], action) => {
           ]
         }
       );
-    case SET_BLUEPRINT_DESCRIPTION:
+    case SET_BLUEPRINT_DESCRIPTION_SUCCEEDED: 
       return Object.assign({}, state, {
-          blueprintList: [
-            ...state.blueprintList.map(blueprint => {
-              if (blueprint.present.id === action.payload.blueprint.id) {
-                return Object.assign(
-                  {}, blueprint, {
-                  past: blueprint.past.concat([blueprint.present]),
-                  present: Object.assign({}, blueprint.present, { description: action.payload.description }),
-                });
-              }
-              return blueprint;
-            }),
-          ]
-        }
-      );
+        blueprintList: [
+          ...state.blueprintList.map(blueprint => {
+            if (blueprint.present.id === action.payload.blueprint.id) {
+              return Object.assign(
+                {}, blueprint, {
+                past: blueprint.past.map(pastBlueprint => {
+                  return Object.assign({}, pastBlueprint, {
+                    version: action.payload.blueprint.version,
+                    description: action.payload.blueprint.description,
+                  })
+                }),
+                present: Object.assign({}, blueprint.present, { 
+                  version: action.payload.blueprint.version,
+                  description: action.payload.blueprint.description,
+                }),
+                future: blueprint.future.map(futureBlueprint => {
+                  return Object.assign({}, futureBlueprint, {
+                    version: action.payload.blueprint.version,
+                    description: action.payload.blueprint.description,
+                  })
+                }),
+              });
+            }
+            return blueprint;
+          }),
+        ]
+      }
+    );
     case DELETING_BLUEPRINT_SUCCEEDED:
       return Object.assign({}, state, {
         blueprintList: state.blueprintList.filter(blueprint => blueprint.present.id !== action.payload.blueprintId)

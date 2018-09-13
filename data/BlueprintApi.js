@@ -130,34 +130,25 @@ class BlueprintApi {
 
   handleCommitBlueprint(blueprint) {
     const p = new Promise((resolve, reject) => {
-      this.postBlueprint(blueprint)
+      this.postBlueprint(this.postedBlueprintData(blueprint))
       .then(() => {
         NotificationsApi.closeNotification(undefined, 'committing');
-        NotificationsApi.displayNotification(this.blueprint.name, 'committed');
+        NotificationsApi.displayNotification(blueprint.name, 'committed');
         resolve();
       }).catch(e => {
         console.log(`Error committing blueprint: ${e}`);
         NotificationsApi.closeNotification(undefined, 'committing');
-        NotificationsApi.displayNotification(this.blueprint.name, 'commitFailed');
+        NotificationsApi.displayNotification(blueprint.name, 'commitFailed');
         reject();
       });
     });
     return p;
 }
 
-  handleEditDescription(description) {
-    // update cached blueprint data
-    this.blueprint.description = description;
-    // create blueprint variable to post updates
-    const blueprint = {
-      name: this.blueprint.name,
-      description,
-      version: this.blueprint.version,
-      modules: this.blueprint.modules,
-      packages: this.blueprint.packages,
-    };
+  handleEditDescription(blueprint, description) {
+    const updatedBlueprint = Object.assign({}, blueprint, {description: description});
     const p = new Promise((resolve, reject) => {
-      this.postBlueprint(blueprint)
+      this.postBlueprint(this.postedBlueprintData(updatedBlueprint))
       .then(() => {
         resolve();
       }).catch(e => {
@@ -166,6 +157,21 @@ class BlueprintApi {
       });
     });
     return p;
+  }
+
+  postedBlueprintData(blueprint) {
+   const blueprintData = {
+    name: blueprint.name,
+    description: blueprint.description,
+    version: blueprint.version,
+    modules: blueprint.modules,
+    packages: blueprint.packages,
+    groups: blueprint.groups !== undefined ? blueprint.groups : [],
+   };
+   if (blueprint.customizations !== undefined) {
+     blueprintData.customizations = blueprint.customizations;
+   }
+   return blueprintData;
   }
 
   postBlueprint(blueprint) {
@@ -178,15 +184,16 @@ class BlueprintApi {
     }, true);
   }
 
-  reloadBlueprintDetails() {
+  reloadBlueprintDetails(blueprint) {
     // retrieve blueprint details that were updated during save (i.e. version)
     // and reload details in UI
     const p = new Promise((resolve, reject) => {
-      utils.apiFetch(constants.get_blueprints_deps + this.blueprint.name.replace(/\s/g, '-'))
+      utils.apiFetch(constants.get_blueprints_deps + blueprint.name.replace(/\s/g, '-'))
       .then(data => {
-        const blueprint = data.blueprints[0].blueprint;
-        this.blueprint.version = blueprint.version;
-        resolve(blueprint);
+        const updatedBlueprint = Object.assign({}, blueprint, {
+          version: data.blueprints[0].blueprint.version,
+        });
+        resolve(updatedBlueprint);
       })
       .catch(e => {
         console.log(`Error fetching blueprint details: ${e}`);

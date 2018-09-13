@@ -82,7 +82,7 @@ export function fetchModalCreateImageTypesApi() {
 }
 
 export function setBlueprintDescriptionApi(blueprint, description) {
-  BlueprintApi.handleEditDescription(description);
+  BlueprintApi.handleEditDescription(blueprint, description);
 }
 
 export function deleteBlueprintApi(blueprint) {

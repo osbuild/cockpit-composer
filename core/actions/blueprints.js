@@ -78,6 +78,14 @@ export const setBlueprintDescription = (blueprint, description) => ({
   },
 });
 
+export const SET_BLUEPRINT_DESCRIPTION_SUCCEEDED = 'SET_BLUEPRINT_DESCRIPTION_SUCCEEDED';
+export const setBlueprintDescriptionSucceeded = (blueprint) => ({
+  type: SET_BLUEPRINT_DESCRIPTION_SUCCEEDED,
+  payload: {
+    blueprint,
+  },
+});
+
 export const ADD_BLUEPRINT_COMPONENT = 'ADD_BLUEPRINT_COMPONENT';
 export const addBlueprintComponent = (blueprint, component) => ({
   type: ADD_BLUEPRINT_COMPONENT,
