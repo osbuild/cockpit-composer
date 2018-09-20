@@ -31,7 +31,9 @@ export const makeGetBlueprintById = () => createSelector(
 );
 
 const getSortedSelectedComponents = (state, blueprint) => {
-  const selectedComponentNames = blueprint.packages.map(item => item.name);
+  const selectedPackages = blueprint.packages.map(item => item.name);
+  const selectedModules = blueprint.modules.map(item => item.name);
+  const selectedComponentNames = selectedPackages.concat(selectedModules);
 
   const components = blueprint.components;
   if (components === undefined) {
@@ -59,7 +61,9 @@ export const makeGetSortedSelectedComponents = () => createSelector(
 );
 
 const getSortedDependencies = (state, blueprint) => {
-  const selectedComponentNames = blueprint.packages.map(item => item.name);
+  const selectedPackages = blueprint.packages.map(item => item.name);
+  const selectedModules = blueprint.modules.map(item => item.name);
+  const selectedComponentNames = selectedPackages.concat(selectedModules);
   const dependencies = blueprint.components;
   if (dependencies === undefined) {
     return [];
