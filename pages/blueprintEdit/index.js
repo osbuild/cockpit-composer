@@ -20,7 +20,7 @@ import NotificationsApi from '../../data/NotificationsApi';
 import { connect } from 'react-redux';
 import {
   fetchingBlueprintContents, setBlueprint, addBlueprintComponent, committingBlueprint,
-  removeBlueprintComponent, undo, redo, commitToWorkspace, deleteHistory,
+  removeBlueprintComponent, undo, redo, commitToWorkspace, deleteWorkspace, deleteHistory,
 } from '../../core/actions/blueprints';
 import {
   fetchingInputs, setInputComponents, setSelectedInputPage,
@@ -71,6 +71,7 @@ class EditBlueprintPage extends React.Component {
     this.handleShowModal = this.handleShowModal.bind(this);
     this.handleHistory = this.handleHistory.bind(this);
     this.handleDiscardChanges = this.handleDiscardChanges.bind(this);
+    this.handleUndo = this.handleUndo.bind(this);
     this.handleStartCompose = this.handleStartCompose.bind(this);
   }
 
@@ -423,8 +424,25 @@ class EditBlueprintPage extends React.Component {
 
   handleDiscardChanges() {
     this.props.deleteHistory(this.props.blueprint.id);
+    const workspaceChanges = this.props.blueprint.workspacePendingChanges.addedChanges.length
+      + this.props.blueprint.workspacePendingChanges.deletedChanges.length;
+    if (workspaceChanges > 0) {
+      this.props.deleteWorkspace(this.props.blueprint.id);
+    } else {
+      this.props.commitToWorkspace(this.props.blueprint.id);
+    }
     this.handleHistory();
-    this.props.commitToWorkspace(this.props.blueprint.id);
+  }
+
+  handleUndo() {
+    const workspaceChanges = this.props.blueprint.workspacePendingChanges.addedChanges.length
+      + this.props.blueprint.workspacePendingChanges.deletedChanges.length;
+    if (this.props.pastLength === 1 && workspaceChanges > 0) {
+      this.handleDiscardChanges();
+    } else {
+      this.props.undo(this.props.blueprint.id);
+      this.handleHistory();
+    }
   }
 
   handleStartCompose(blueprintName, composeType) {
@@ -572,7 +590,7 @@ class EditBlueprintPage extends React.Component {
               componentsSortValue={componentsSortValue}
               componentsSortSetValue={this.props.componentsSortSetValue}
               dependenciesSortSetValue={this.props.dependenciesSortSetValue}
-              undo={this.props.undo}
+              undo={this.handleUndo}
               redo={this.props.redo}
               handleHistory={this.handleHistory}
               pastLength={pastLength}
@@ -767,6 +785,7 @@ EditBlueprintPage.propTypes = {
   undo: PropTypes.func,
   redo: PropTypes.func,
   commitToWorkspace: PropTypes.func,
+  deleteWorkspace: PropTypes.func,
   deleteHistory: PropTypes.func,
   startCompose: PropTypes.func,
   blueprintContentsError: PropTypes.object,
@@ -900,6 +919,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   commitToWorkspace: (blueprintId) => {
     dispatch(commitToWorkspace(blueprintId));
+  },
+  deleteWorkspace: (blueprintId) => {
+    dispatch(deleteWorkspace(blueprintId));
   },
   startCompose: (blueprintName, composeType) => {
     dispatch(startCompose(blueprintName, composeType));

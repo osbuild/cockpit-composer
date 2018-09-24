@@ -190,3 +190,11 @@ export const commitToWorkspace = (blueprintId) => ({
     blueprintId,
   },
 });
+
+export const DELETE_WORKSPACE = 'DELETE_WORKSPACE';
+export const deleteWorkspace = (blueprintId) => ({
+  type: DELETE_WORKSPACE,
+  payload: {
+    blueprintId,
+  },
+});
