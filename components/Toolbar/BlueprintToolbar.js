@@ -41,7 +41,7 @@ const BlueprintToolbar = props => (
     {props.undo !== undefined &&
       <div className="form-group">
       {props.pastLength > 0 &&
-        <button className="btn btn-link" type="button" onClick={() => {props.undo(props.blueprintId); props.handleHistory();}}>
+        <button className="btn btn-link" type="button" onClick={() => {props.undo()}}>
           <span className="fa fa-undo" aria-hidden="true" />
         </button>
       ||

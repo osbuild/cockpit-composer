@@ -18,16 +18,6 @@ export function fetchBlueprintContentsApi(blueprintName) {
   return blueprintContents;
 }
 
-export function fetchWorkspaceBlueprintContentsApi(blueprintRaw) {
-  const blueprintContents = Promise.all([BlueprintApi.getBlueprintWorkspace(blueprintRaw)])
-    .then(data => {
-      const blueprint = data[0];
-      return blueprint;
-    })
-    .catch(err => console.log(`Error in fetchModalBlueprintContents promise: ${err}`));
-  return blueprintContents;
-}
-
 export function fetchBlueprintInputsApi(filter, selectedInputPage, pageSize) {
   const page = selectedInputPage * pageSize;
   const p = new Promise((resolve, reject) => {
@@ -89,6 +79,13 @@ export function deleteBlueprintApi(blueprint) {
   const deletedBlueprint = Promise.all([BlueprintApi.deleteBlueprint(blueprint)])
     .then(() => blueprint);
   return deletedBlueprint;
+}
+
+export function deleteWorkspaceApi(blueprintId) {
+  return utils.apiFetch(constants.delete_workspace + blueprintId, {
+    method: 'DELETE',
+  }, true)
+  .catch (e => console.log('Error deleting workspace', e));
 }
 
 export function commitToWorkspaceApi(blueprint) {

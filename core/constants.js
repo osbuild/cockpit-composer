@@ -23,6 +23,7 @@ const constants = {
   post_blueprints_workspace: '/api/v0/blueprints/workspace',
   post_compose_start: '/api/v0/compose',
   delete_blueprint: '/api/v0/blueprints/delete/',
+  delete_workspace: '/api/v0/blueprints/workspace/',
   get_sources_list: '/api/v0/projects/source/list',
   get_sources_info: '/api/v0/projects/source/info/',
 

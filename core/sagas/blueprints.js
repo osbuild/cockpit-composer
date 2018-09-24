@@ -1,10 +1,11 @@
 import { call, put, takeEvery, select } from 'redux-saga/effects';
 import {
-  fetchBlueprintInfoApi, fetchBlueprintNamesApi, fetchBlueprintContentsApi, fetchWorkspaceBlueprintContentsApi,
+  fetchBlueprintInfoApi, fetchBlueprintNamesApi, fetchBlueprintContentsApi,
   deleteBlueprintApi, setBlueprintDescriptionApi,
   createBlueprintApi,
   depsolveComponentsApi,
   commitToWorkspaceApi, fetchDiffWorkspaceApi,
+  deleteWorkspaceApi,
 } from '../apiCalls';
 import {
   FETCHING_BLUEPRINTS, fetchingBlueprintsSucceeded, fetchingBlueprintNamesSucceeded,
@@ -14,7 +15,7 @@ import {
   REMOVE_BLUEPRINT_COMPONENT, REMOVE_BLUEPRINT_COMPONENT_SUCCEEDED, removeBlueprintComponentSucceeded,
   SET_BLUEPRINT_DESCRIPTION, setBlueprintDescriptionSucceeded,
   DELETING_BLUEPRINT, deletingBlueprintSucceeded,
-  COMMIT_TO_WORKSPACE,
+  COMMIT_TO_WORKSPACE, DELETE_WORKSPACE,
   blueprintsFailure, blueprintContentsFailure,
 } from '../actions/blueprints';
 import { makeGetBlueprintById } from '../selectors';
@@ -38,43 +39,35 @@ function* fetchBlueprints() {
 function* fetchBlueprintContents(action) {
   try {
     const { blueprintId } = action.payload;
-    let blueprintPast = null;
+    let blueprintPast = [];
     let blueprintPresent = null;
-
-    const blueprintResponse = yield call(fetchBlueprintContentsApi, blueprintId);
-    const workspaceChanges = yield call(fetchDiffWorkspaceApi, blueprintId);
-    const addedChanges = workspaceChanges.diff.filter(componentUpdated => componentUpdated.old === null);
-    const deletedChanges = workspaceChanges.diff.filter(componentUpdated => componentUpdated.new === null);
-    const workspacePendingChanges = {
-      'addedChanges': addedChanges,
-      'deletedChanges': deletedChanges,
+    const blueprint = yield call(fetchBlueprintInfoApi, blueprintId);   
+    const blueprintResponse = yield call(fetchBlueprintContentsApi, blueprint.name);
+    let workspacePendingChanges = {
+      'addedChanges': [],
+      'deletedChanges': [],
     };
-
-    if ((addedChanges.length > 0 || deletedChanges.length > 0) ) {
-      //fetchBlueprintInfo will return the most recent blueprint version even if its from the workspace
-      const workspaceBlueprint = yield call(fetchBlueprintInfoApi, blueprintId);
-      const workspaceDepsolved = yield call(fetchWorkspaceBlueprintContentsApi, workspaceBlueprint);
+    if (blueprint.changed === true) {
+      const workspaceChanges = yield call(fetchDiffWorkspaceApi, blueprintId);
+      const addedChanges = workspaceChanges.diff.filter(componentUpdated => componentUpdated.old === null);
+      const deletedChanges = workspaceChanges.diff.filter(componentUpdated => componentUpdated.new === null);
+      workspacePendingChanges = {
+        'addedChanges': addedChanges,
+        'deletedChanges': deletedChanges,
+      };
       blueprintPast = [Object.assign(
         {}, blueprintResponse, {
           localPendingChanges: [],
           workspacePendingChanges: {addedChanges: [], deletedChanges: []},
         }
       )];
-      blueprintPresent = Object.assign(
-        {}, workspaceDepsolved, {
-          localPendingChanges: [],
-          workspacePendingChanges: workspacePendingChanges,
-        }
-      );
-    } else {
-      blueprintPast = [];
-      blueprintPresent = Object.assign(
-        {}, blueprintResponse, {
-          localPendingChanges: [],
-          workspacePendingChanges: workspacePendingChanges,
-        }
-      );
     }
+    blueprintPresent = Object.assign(
+      {}, blueprintResponse, {
+        localPendingChanges: [],
+        workspacePendingChanges: workspacePendingChanges,
+      }
+    );
     yield put(fetchingBlueprintContentsSucceeded(blueprintPast, blueprintPresent, workspacePendingChanges));
   } catch (error) {
     console.log('Error in fetchBlueprintContentsSaga');
@@ -182,6 +175,31 @@ function* commitToWorkspace(action) {
   }
 }
 
+function* deleteWorkspace(action) {
+  try {
+    const { blueprintId } = action.payload;
+    yield call(deleteWorkspaceApi, blueprintId);
+    const blueprint = yield call(fetchBlueprintInfoApi, blueprintId);
+    let blueprintPast = [];
+    let blueprintPresent = null;
+    let workspacePendingChanges = {
+      'addedChanges': [],
+      'deletedChanges': [],
+    };
+    const blueprintDepsolved = yield call(fetchBlueprintContentsApi, blueprint.name);
+    blueprintPresent = Object.assign(
+      {}, blueprintDepsolved, {
+        localPendingChanges: [],
+        workspacePendingChanges: workspacePendingChanges,
+      }
+    );
+    yield put(fetchingBlueprintContentsSucceeded(blueprintPast, blueprintPresent, workspacePendingChanges));
+  } catch (error) {
+    console.log('deleteWorkspaceError');
+    yield put(blueprintsFailure(error));
+  }
+}
+
 export default function* () {
   yield takeEvery(CREATING_BLUEPRINT, createBlueprint);
   yield takeEvery(FETCHING_BLUEPRINT_CONTENTS, fetchBlueprintContents);
@@ -190,6 +208,7 @@ export default function* () {
   yield takeEvery(ADD_BLUEPRINT_COMPONENT_SUCCEEDED, commitToWorkspace);
   yield takeEvery(REMOVE_BLUEPRINT_COMPONENT_SUCCEEDED, commitToWorkspace);
   yield takeEvery(COMMIT_TO_WORKSPACE, commitToWorkspace);
+  yield takeEvery(DELETE_WORKSPACE, deleteWorkspace);
   yield takeEvery(ADD_BLUEPRINT_COMPONENT, addComponent);
   yield takeEvery(REMOVE_BLUEPRINT_COMPONENT, removeComponent);
   yield takeEvery(FETCHING_BLUEPRINTS, fetchBlueprints);

@@ -65,34 +65,6 @@ class BlueprintApi {
     return p;
   }
 
-  getBlueprintWorkspace(blueprintRaw) {
-    const p = new Promise((resolve, reject) => {
-      const blueprint = blueprintRaw;
-      const componentNames = blueprintRaw.packages.map(item => item.name);
-      if (componentNames.length > 0) {
-        utils.apiFetch(constants.get_projects_deps + componentNames)
-          .then(depData => {
-            // bdcs-api v0.3.0 includes module (component) and component NEVRAs
-            // tagging all components a "RPM" for now
-            let components = this.setType(depData.projects, 'RPM');
-            blueprint.components = components;
-            this.blueprint = blueprint;
-            resolve(blueprint);
-          })
-          .catch(e => {
-            console.log('getBlueprint: Error getting component and component metadata', e);
-            reject();
-          });
-      } else {
-        // there are no components, just a blueprint name and description
-        blueprint.components = [];
-        this.blueprint = blueprint;
-        resolve(blueprint);
-      }
-    });
-    return p;
-  }
-
   // set additional metadata for each of the components
   makeBlueprintSelectedComponents(data) {
     const modules = this.setType(data.blueprint.modules, 'Module');
