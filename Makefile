@@ -33,9 +33,9 @@ install: all
 	cp -r public/* /usr/share/cockpit/welder
 
 dist-gzip: NODE_ENV=production
-dist-gzip: all
+dist-gzip: all $(PACKAGE_NAME).spec
 	mkdir -p $(PACKAGE_NAME)-$(VERSION)
-	cp -r public/ LICENSE.txt README.md $(PACKAGE_NAME)-$(VERSION)
+	cp -r public/ LICENSE.txt README.md $(PACKAGE_NAME).spec $(PACKAGE_NAME)-$(VERSION)
 	tar -czf $(PACKAGE_NAME)-$(VERSION).tar.gz $(PACKAGE_NAME)-$(VERSION)
 	rm -rf $(PACKAGE_NAME)-$(VERSION)
 
