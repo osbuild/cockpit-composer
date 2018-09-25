@@ -170,12 +170,6 @@ describe('Given Edit Blueprint Page', () => {
         browser
           .waitForVisible(editBlueprintPage.componentListItemRootElementSelect);
 
-        browser
-          .click(editBlueprintPage.componentListItemRootElementSelect);
-
-        browser
-          .waitForVisible(editBlueprintPage.btnCommit);
-
         // verify bordered icon
         browser
           .waitForVisible(editBlueprintPage.iconBorderedTheFirstComponent);

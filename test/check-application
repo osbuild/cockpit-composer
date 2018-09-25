@@ -41,7 +41,7 @@ def run_webdriver_tests(machine, env=[]):
         Return success of the tests
         (True: all passed, False: at least one failed)
     """
-    cmd_parts = ["cd /root/e2e_tests;"] + env + ["npm run test", ">&2"]
+    cmd_parts = ["cd /root/end-to-end;"] + env + ["npm run test", ">&2"]
     print(" ".join(cmd_parts))
 
     machine.execute(" ".join(cmd_parts), timeout=3600)
@@ -84,6 +84,8 @@ def run_e2e(verbose, image, browser, cpus, memory, sit):
 
         composer.wait_boot()
         composer.set_address("10.111.113.1/20")
+        composer.upload(["end-to-end"], "/root/")
+        composer.execute("cd /root/end-to-end && npm install", timeout=600)
 
         if selenium and 'edge' in browser:
             composer.dhcp_server(range=['10.111.112.10', '10.111.112.10'])
@@ -105,7 +107,7 @@ def run_e2e(verbose, image, browser, cpus, memory, sit):
         # Download html report to environment $TEST_ATTACHMENTS
         report_dir = os.environ.get("TEST_ATTACHMENTS", os.getcwd())
         os.makedirs(report_dir, exist_ok=True)
-        composer.download("/root/e2e_tests/wdio-report.html", report_dir)
+        composer.download("/root/end-to-end/wdio-report.html", report_dir)
 
         if not success and sit:
             sys.stderr.write(composer.diagnose() + "\n")
