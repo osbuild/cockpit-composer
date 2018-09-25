@@ -123,8 +123,6 @@ local-clean:
 $(VM_IMAGE): local-clean cockpit-composer-rpm bots
 	# VM running cockpit, composer, and end to end test container
 	bots/image-customize -v \
-		-r 'mkdir -p /root/e2e_tests' \
-		-u test/end-to-end/:/root/e2e_tests/ \
 		-i `pwd`/cockpit-composer-*.noarch.rpm -i gcc-c++ \
 		-s $(CURDIR)/test/vm.install \
 		$(TEST_OS)

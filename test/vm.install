@@ -38,8 +38,6 @@ tar -xJf "node-v$NODE_VERSION-linux-x64.tar.xz" -C /usr/local --strip-components
 rm "node-v$NODE_VERSION-linux-x64.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt
 ln -s /usr/local/bin/node /usr/local/bin/nodejs
 
-cd /root/e2e_tests && npm install
-
 # Allow cockpit port (9090) in INPUT chain
 # Do not reload firewall rule during image generation
 if type firewall-cmd >/dev/null 2>&1; then
