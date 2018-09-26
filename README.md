@@ -59,7 +59,9 @@ $ npm run test                  # Run unit tests. Or, `npm run test:watch`
 
 [End-to-End Test Running Guide](test/end-to-end/README.md).
 
-**NOTE:** all tests are executed in Travis CI on every commit and every pull request!
+**NOTE:** all tests are executed in
+[Cockpit](https://github.com/cockpit-project/cockpit)'s CI on every commit and
+every pull request.
 
 ### How to Deploy
 
