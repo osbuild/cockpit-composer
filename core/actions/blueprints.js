@@ -96,12 +96,13 @@ export const addBlueprintComponent = (blueprint, component) => ({
 });
 
 export const ADD_BLUEPRINT_COMPONENT_SUCCEEDED = 'ADD_BLUEPRINT_COMPONENT_SUCCEEDED';
-export const addBlueprintComponentSucceeded = (blueprintId, components, packages, pendingChange) => ({
+export const addBlueprintComponentSucceeded = (blueprintId, components, packages, modules, pendingChange) => ({
   type: ADD_BLUEPRINT_COMPONENT_SUCCEEDED,
   payload: {
     blueprintId,
     components,
     packages,
+    modules,
     pendingChange,
   },
 });
@@ -116,12 +117,13 @@ export const removeBlueprintComponent = (blueprint, component) => ({
 });
 
 export const REMOVE_BLUEPRINT_COMPONENT_SUCCEEDED = 'REMOVE_BLUEPRINT_COMPONENT_SUCCEEDED';
-export const removeBlueprintComponentSucceeded = (blueprintId, components, packages, pendingChange) => ({
+export const removeBlueprintComponentSucceeded = (blueprintId, components, packages, modules, pendingChange) => ({
   type: REMOVE_BLUEPRINT_COMPONENT_SUCCEEDED,
   payload: {
     blueprintId,
     components,
     packages,
+    modules,
     pendingChange,
   },
 });

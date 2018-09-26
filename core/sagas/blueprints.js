@@ -143,9 +143,10 @@ function* addComponent(action) {
     };
 
     const packages = blueprint.packages.concat(addedPackage);
-    const components = yield call(depsolveComponentsApi, packages);
+    const modules = blueprint.modules;
+    const components = yield call(depsolveComponentsApi, packages, modules);
 
-    yield put(addBlueprintComponentSucceeded(blueprint.id, components, packages, pendingChange));
+    yield put(addBlueprintComponentSucceeded(blueprint.id, components, packages, modules, pendingChange));
   } catch (error) {
     console.log('errorAddComponentSaga');
     yield put(blueprintsFailure(error));
@@ -161,9 +162,9 @@ function* removeComponent(action) {
       componentNew: null,
     };
     const packages = blueprint.packages.filter(pack => pack.name !== component.name);
-    const components = yield call(depsolveComponentsApi, packages);
-
-    yield put(removeBlueprintComponentSucceeded(blueprint.id, components, packages, pendingChange));
+    const modules = blueprint.modules.filter(module => module.name !== component.name);
+    const components = yield call(depsolveComponentsApi, packages, modules);
+    yield put(removeBlueprintComponentSucceeded(blueprint.id, components, packages, modules, pendingChange));
   } catch (error) {
     console.log('errorRemoveComponentSaga');
     yield put(blueprintsFailure(error));

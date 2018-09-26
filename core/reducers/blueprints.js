@@ -88,6 +88,7 @@ const blueprints = (state = [], action) => {
                   present: Object.assign({}, blueprint.present, {
                     components: action.payload.components,
                     packages: action.payload.packages,
+                    modules: action.payload.modules,
                     localPendingChanges: blueprint.present.localPendingChanges.some((component) => {
                       return (component.componentNew === action.payload.pendingChange.componentOld
                         && component.componentNew !== null)
@@ -116,6 +117,7 @@ const blueprints = (state = [], action) => {
                   present: Object.assign({}, blueprint.present, {
                     components: action.payload.components,
                     packages: action.payload.packages,
+                    modules: action.payload.modules,
                     localPendingChanges: blueprint.present.localPendingChanges.some((component) => {
                       return (component.componentNew === action.payload.pendingChange.componentOld
                         && component.componentNew !== null)

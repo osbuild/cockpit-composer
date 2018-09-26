@@ -115,12 +115,14 @@ export function fetchDiffWorkspaceApi(blueprintId) {
   return p;
 }
 
-export function depsolveComponentsApi(packages) {
+export function depsolveComponentsApi(packages, modules) {
   const p = new Promise((resolve, reject) => {
     const packageNames = packages.map(item => item.name);
+    const moduleNames = modules.map(item => item.name);
+    const names = packageNames.concat(moduleNames);
     let dependencies = [];
-    if (packageNames.length > 0) {
-      utils.apiFetch(constants.get_projects_deps + packageNames)
+    if (names.length > 0) {
+      utils.apiFetch(constants.get_projects_deps + names)
         .then(depData => {
           // bdcs-api v0.3.0 includes module (component) and dependency NEVRAs
           // tagging all dependencies a "RPM" for now
