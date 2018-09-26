@@ -61,17 +61,18 @@ def run_e2e(verbose, image, browser, cpus, memory, sit):
                                   networking=network.host(),
                                   memory_mb=memory, cpus=cpus)
     selenium = windows = None
+    networking_selenium = network.host(forward={"5901": 5901, "5902": 5902})
 
     # settings on selenium VM
     if 'edge' in browser:
         windows = testvm.VirtMachine(image='windows-10', verbose=verbose,
-                                     networking=network.host(),
+                                     networking=networking_selenium,
                                      memory_mb=4096, cpus=4)
         # wdio.conf.js needs key word MicrosoftEdge for edge browser
         browser = 'MicrosoftEdge'
     else:
         selenium = testvm.VirtMachine(image="selenium", verbose=verbose,
-                                      networking=network.host())
+                                      networking=networking_selenium)
     try:
         composer.start()
         if selenium:
@@ -83,7 +84,7 @@ def run_e2e(verbose, image, browser, cpus, memory, sit):
             selenium.upload(["selenium_start.sh"], "/root/")
 
             # start selenium on the server
-            selenium.execute(command="/root/selenium_start.sh")
+            selenium.execute("/root/selenium_start.sh")
         elif windows:
             selenium = windows
             selenium.pull(selenium.image_file)
@@ -102,6 +103,25 @@ def run_e2e(verbose, image, browser, cpus, memory, sit):
 
         # Now actually run the tests
         selenium_address = "10.111.112.10" if selenium else ""
+
+        # networking_selenium["forward"] is a dict like:
+        # {'5901': '127.0.0.2:5903', '5902': '127.0.0.2:5904'}
+        if "DEBUG_TEST" in os.environ:
+            try:
+                if browser == "chrome":
+                    subprocess.Popen(["vncviewer",
+                                     networking_selenium["forward"]["5901"]])
+                if browser == "firefox":
+                    subprocess.Popen(["vncviewer",
+                                     networking_selenium["forward"]["5902"]])
+            except OSError as e:
+                if e.errno == os.errno.ENOENT:
+                    print("Please install vncviewer "
+                          "by 'dnf install tigervnc'")
+                else:
+                    print("Something else went wrong while "
+                          "trying to run `vncviewer`")
+                    raise
 
         base_url = "https://10.111.113.1:9090/welder"
         env = [

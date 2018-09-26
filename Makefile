@@ -135,6 +135,10 @@ vm: $(VM_IMAGE)
 check: $(VM_IMAGE)
 	PYTHONPATH=`pwd`/bots/machine test/check-application -v -b $(BROWSER) -C 2 -M 2048 $(TEST_OS)
 
+# debug end to end test
+debug-check:
+	DEBUG_TEST=true $(MAKE) check
+
 # checkout Cockpit's bots/ directory for standard test VM images and API to launch them
 # must be from cockpit's master, as only that has current and existing images; but testvm.py API is stable
 bots:
