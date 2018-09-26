@@ -201,7 +201,9 @@ class PendingChanges extends React.Component {
                             <ul className="list-unstyled">
                               {this.props.blueprint.workspacePendingChanges.addedChanges.map((componentUpdated, index) => (
                                 <li key={index}>
-                                  <strong>{componentUpdated.new.Package.name}-{componentUpdated.new.Package.version}</strong>
+                                  <strong>
+                                    {Object.values(componentUpdated.new)[0].name}-{Object.values(componentUpdated.new)[0].version}
+                                  </strong>
                                 </li>
                                 ))}
                             </ul>
@@ -216,7 +218,9 @@ class PendingChanges extends React.Component {
                             <ul className="list-unstyled">
                               {this.props.blueprint.workspacePendingChanges.deletedChanges.map((componentUpdated, index) => (
                                 <li key={index}>
-                                  <strong>{componentUpdated.old.Package.name}-{componentUpdated.old.Package.version}</strong>
+                                  <strong>
+                                    {Object.values(componentUpdated.old)[0].name}-{Object.values(componentUpdated.old)[0].version}
+                                  </strong>
                                 </li>
                               ))}
                             </ul>
