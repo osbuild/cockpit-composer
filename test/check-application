@@ -41,10 +41,16 @@ def run_webdriver_tests(machine, env=[]):
         Return success of the tests
         (True: all passed, False: at least one failed)
     """
-    cmd_parts = ["cd /root/end-to-end;"] + env + ["npm run test", ">&2"]
+    return_state = True
+    cmd_parts = ["cd /root/end-to-end;"] + env + ["npm run test"]
     print(" ".join(cmd_parts))
 
-    machine.execute(" ".join(cmd_parts), timeout=3600)
+    try:
+        machine.execute(" ".join(cmd_parts), timeout=3600)
+    except Exception as e:
+        return_state = False
+        print(e)
+    return return_state
 
 
 def run_e2e(verbose, image, browser, cpus, memory, sit):
