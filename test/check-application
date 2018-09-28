@@ -16,7 +16,6 @@ done;
             seconds=600,
             error_message="Timeout while waiting for selenium to start"):
         machine.execute(script=WAIT_SELENIUM_RUNNING)
-    print("Selenium started.")
 
 
 def wait_for_composer_running(machine):
@@ -30,7 +29,6 @@ done;
             seconds=300,
             error_message="Timeout while waiting for composer to start"):
         machine.execute(script=WAIT_COMPOSER_RUNNING)
-    print("lorax-composer started.")
 
 
 def run_webdriver_tests(machine, env=[]):
@@ -44,7 +42,6 @@ def run_webdriver_tests(machine, env=[]):
     """
     return_state = True
     cmd_parts = ["cd /root/end-to-end;"] + env + ["npm run test"]
-    print(" ".join(cmd_parts))
 
     try:
         machine.execute(" ".join(cmd_parts), timeout=3600)
@@ -115,6 +112,15 @@ def run_e2e(verbose, image, browser, cpus, memory, sit):
         report_dir = os.environ.get("TEST_ATTACHMENTS", os.getcwd())
         os.makedirs(report_dir, exist_ok=True)
         composer.download("/root/end-to-end/wdio-report.html", report_dir)
+
+        # Report code coverage result to codecov.io
+        codecov_token_file = os.path.expanduser("~/.config/codecov-token")
+        if os.path.isfile(codecov_token_file) and success:
+            composer.download_dir("/root/end-to-end/.nyc_output/", os.getcwd())
+            token = open(codecov_token_file).read().replace("\n", "")
+            os.environ["CODECOV_TOKEN"] = token
+            subprocess.run("curl -s https://codecov.io/bash | bash",
+                           shell=True)
 
         if not success and sit:
             sys.stderr.write(composer.diagnose() + "\n")

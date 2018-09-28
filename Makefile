@@ -10,7 +10,7 @@ BROWSER = firefox
 endif
 export TEST_OS BROWSER CURDIR
 VM_IMAGE=$(CURDIR)/test/images/$(TEST_OS)
-ifdef TEST_COV
+ifneq ("$(wildcard ~/.config/codecov-token)",)
 BUILD_RUN = node run build --with-coverage
 else
 BUILD_RUN = npm run build
