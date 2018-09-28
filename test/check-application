@@ -49,7 +49,7 @@ def run_webdriver_tests(machine, env=[]):
     try:
         machine.execute(" ".join(cmd_parts), timeout=3600)
     except (subprocess.CalledProcessError, RuntimeError) as e:
-        sys.stderr.write("ERROR: %s\n", e)
+        sys.stderr.write("ERROR: %s\n" % e)
         return_state = False
     return return_state
 
