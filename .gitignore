@@ -21,3 +21,5 @@ bots
 *.rpm
 wdio-report.html
 /tmp
+/.nyc_output
+failed-image

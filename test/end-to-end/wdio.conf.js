@@ -163,7 +163,7 @@ exports.config = {
       .update(strCoverage)
       .digest('hex');
 
-    const covOutDir = '/tmp/.nyc_output/';
+    const covOutDir = '.nyc_output/';
     if (!fs.existsSync(covOutDir)) {
       fs.mkdirSync(covOutDir);
     }
