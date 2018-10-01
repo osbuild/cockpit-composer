@@ -2,13 +2,9 @@
 VERSION=$(shell $(CURDIR)/rpmversion.sh | cut -d - -f 1)
 RELEASE=$(shell $(CURDIR)/rpmversion.sh | cut -d - -f 2)
 PACKAGE_NAME := $(shell awk '/"name":/ {gsub(/[",]/, "", $$2); print $$2}' package.json)
-ifeq ($(TEST_OS),)
-TEST_OS = rhel-7-6
-endif
-ifeq ($(BROWSER),)
-BROWSER = firefox
-endif
-export TEST_OS BROWSER CURDIR
+TEST_OS ?= rhel-7-6
+BROWSER ?= firefox
+export TEST_OS BROWSER
 VM_IMAGE=$(CURDIR)/test/images/$(TEST_OS)
 ifneq (,$(wildcard ~/.config/codecov-token))
 BUILD_RUN = node run build --with-coverage
