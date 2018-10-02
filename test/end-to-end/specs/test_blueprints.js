@@ -48,6 +48,16 @@ describe('Blueprints Page', () => {
       DeleteBlueprintPage.deleteBlueprint(testData.blueprint.simple.name);
     });
 
+    it('should display default blueprints from backend', () => {
+      browser
+        .waitForVisible('a[href="#/blueprint/example-atlas"]');
+
+      browser
+        .waitForVisible('a[href="#/blueprint/example-development"]');
+
+      browser
+        .waitForVisible('a[href="#/blueprint/example-http-server"]');
+    });
 
     it('should Create Image dialog when clicking Create Image button', () => {
       // note: functionality of image creation dialog is validated in test_viewBlueprints.js
