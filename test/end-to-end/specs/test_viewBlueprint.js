@@ -4,8 +4,6 @@ const faker = require('faker');
 const ViewBlueprintPage = require('../pages/viewBlueprint');
 const CreateBlueprintPage = require('../pages/createBlueprint');
 const DeleteBlueprintPage = require('../pages/deleteBlueprint');
-const CreateImagePage = require('../pages/createImage');
-const ToastNotifPage = require('../pages/toastNotif');
 const ExportBlueprintPage = require('../pages/exportBlueprint');
 
 const helper = require('../utils/helper');
@@ -15,9 +13,6 @@ describe('View Blueprint Page', () => {
   const viewBlueprintPage = new ViewBlueprintPage(testData.blueprint.simple.name);
 
   describe('Single Word Blueprint Name Scenario', () => {
-    // Array of image types and architechtures
-    const images = testData.image;
-
     beforeEach(() => {
       CreateBlueprintPage.newBlueprint(testData.blueprint.simple);
 
@@ -114,43 +109,6 @@ describe('View Blueprint Page', () => {
 
         const newDescription = $(viewBlueprintPage.labelBlueprintDescription).getText();
         assert.equal(newDescription, testData.blueprint.simple.description);
-      });
-
-      describe('Create Image Tests', () => {
-        const createImagePage = new CreateImagePage(images[0].type, images[0].label, images[0].arch);
-
-        it('should pop up Create Image window by clicking Create Image button', () => {
-          browser
-            .click(viewBlueprintPage.btnCreateImage)
-            .waitForVisible(createImagePage.dialogRootElement);
-
-          const actualText = $(createImagePage.labelCreateImage).getText();
-          assert.equal(actualText, createImagePage.varCreateImage);
-        });
-
-        images.forEach((image) => {
-          it(`should have toast notification pop up for image ${image.type}/${image.arch}`, () => {
-            const createImagePage2 = new CreateImagePage(image.type, image.label, image.arch);
-            const toastNotifPage = new ToastNotifPage(testData.blueprint.simple.name);
-
-            browser
-              .click(viewBlueprintPage.btnCreateImage)
-              .waitForVisible(createImagePage2.dialogRootElement);
-
-            browser
-              .waitForVisible(createImagePage2.selectImageType);
-
-            browser
-              .selectByVisibleText(createImagePage2.selectImageType, createImagePage2.imageTypeLabel)
-              .selectByVisibleText(createImagePage2.selectImageArch, createImagePage2.imageArch)
-              .click(createImagePage2.btnCreate)
-              .waitForVisible(toastNotifPage.iconCreating);
-
-            // first status is Creating
-            const textCreating = $(toastNotifPage.labelStatus).getText();
-            assert.equal(textCreating, toastNotifPage.varStatusCreating);
-          });
-        }); // for image
       });
     });
 
