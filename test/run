@@ -1,4 +1,8 @@
 #!/bin/sh -e
 # This is the expected entry point for Cockpit CI; will be called without
 # arguments but with an appropriate $TEST_OS
+
+# mock compose creation calls to backend for testing purposes
+sed -i "s|'/api/v0/compose'|'/api/v0/compose?test=2'|" core/constants.js
+
 make check
