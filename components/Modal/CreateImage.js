@@ -129,7 +129,10 @@ class CreateImage extends React.Component {
                     className="col-sm-3 control-label"
                   ><FormattedMessage defaultMessage="Blueprint" /></label>
                   <div className="col-sm-9">
-                    <p className="form-control-static">{this.props.blueprint.name}</p>
+                    <p
+                      className="form-control-static"
+                      data-id="cmpsr-form-blueprint"
+                    >{this.props.blueprint.name}</p>
                   </div>
                 </div>
                 <div className="form-group">

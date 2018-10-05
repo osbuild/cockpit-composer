@@ -176,7 +176,9 @@ class CreateBlueprint extends React.Component {
                       onBlur={(e) => this.handleErrors(e.target.value)}
                     />
                     {createBlueprint.errorNameVisible &&
-                      <span className="help-block"><FormattedMessage defaultMessage="A blueprint name is required." /></span>
+                      <span className="help-block" data-id="help-block-msg">
+                        <FormattedMessage defaultMessage="A blueprint name is required." />
+                      </span>
                     }
                     {createBlueprint.errorDuplicateVisible &&
                       <span className="help-block">

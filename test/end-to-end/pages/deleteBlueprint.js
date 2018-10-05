@@ -12,7 +12,7 @@ module.exports = class deleteBlueprint extends MainPage {
 
     // ---- Root element selector ---- //
     // Root Element for this Dialog Page
-    this.rootElement = 'div[id="cmpsr-modal-delete"] .modal-dialog .modal-content';
+    this.rootElement = '[id="cmpsr-modal-delete"] .modal-dialog .modal-content';
 
     // Header
     this.headerElement = `${this.rootElement} .modal-header`;
@@ -25,17 +25,17 @@ module.exports = class deleteBlueprint extends MainPage {
 
     // ---- Page element selector ---- //
     // Page Title
-    this.labelPageTitle = `${this.headerElement} h4[class="modal-title"]`;
+    this.labelPageTitle = `${this.headerElement} [id="myModalLabel"]`;
 
     // X Close Button
-    this.btnXClose = `${this.headerElement} span[class="pficon pficon-close"]`;
+    this.btnXClose = `${this.headerElement} .pficon-close`;
 
     // Blueprint Name label
     this.labelBlueprintName = `${this.bodyElement} p strong`;
 
     // Delete and Cancel button
-    this.btnDelete = `${this.footerElement} button[class="btn btn-danger"]`;
-    this.btnCancel = `${this.footerElement} button[class="btn btn-default"]`;
+    this.btnDelete = `${this.footerElement} .btn-danger`;
+    this.btnCancel = `${this.footerElement} .btn-default`;
   }
 
   // **** start page actions ****

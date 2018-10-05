@@ -9,18 +9,18 @@ module.exports = class CreateImagePage extends MainPage {
 
     // ---- Root element selector ---- //
     // Create Blueprint dialog root selector
-    this.dialogRootElement = 'div[id="cmpsr-modal-crt-image"]';
+    this.dialogRootElement = '[id="cmpsr-modal-crt-image"]';
 
     // ---- Page element selector ---- //
     // Close button
     this.btnClose = `${this.dialogRootElement} .modal-header .close`;
 
-    // Create Copmosition label
+    // Create Composition label
     this.varCreateImage = 'Create Image';
-    this.labelCreateImage = `${this.dialogRootElement} #myModalLabel`;
+    this.labelCreateImage = `${this.dialogRootElement} [id="myModalLabel"]`;
 
     // Blueprint Name label
-    this.labelBlueprintName = `${this.dialogRootElement} p[class="form-control-static"]`;
+    this.labelBlueprintName = `${this.dialogRootElement} [data-id="cmpsr-form-blueprint"]`;
 
     // Image Type select
     this.selectImageType = `${this.dialogRootElement} form div:nth-child(2) div select`;

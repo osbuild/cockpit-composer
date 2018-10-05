@@ -16,7 +16,7 @@ module.exports = class CreateBlueprintPage extends BlueprintPage {
 
     // ---- Root element selector ---- //
     // Create Blueprint dialog root selector
-    this.dialogRootElement = 'div[id="cmpsr-modal-crt-blueprint"]';
+    this.dialogRootElement = '[id="cmpsr-modal-crt-blueprint"]';
 
     // ---- Page element selector ---- //
     // Close button
@@ -24,12 +24,12 @@ module.exports = class CreateBlueprintPage extends BlueprintPage {
 
     // Create Blueprint label
     this.varCreateBlueprint = 'Create Blueprint';
-    this.labelCreateBlueprint = `${this.dialogRootElement} #myModalLabel`;
+    this.labelCreateBlueprint = `${this.dialogRootElement} [id="myModalLabel"]`;
 
     // Blueprint Name and Description Input
-    this.inputName = `${this.dialogRootElement} #textInput-modal-markup`;
+    this.inputName = `${this.dialogRootElement} [id="textInput-modal-markup"]`;
     this.inputNameEleId = 'textInput-modal-markup';
-    this.inputDescription = `${this.dialogRootElement} #textInput2-modal-markup`;
+    this.inputDescription = `${this.dialogRootElement} [id="textInput2-modal-markup"]`;
 
     // Create and Cancel button
     this.btnCreate = `${this.dialogRootElement} .modal-footer .btn-primary`;
@@ -41,7 +41,7 @@ module.exports = class CreateBlueprintPage extends BlueprintPage {
 
     // Help-block error message
     this.varHelpBlockMsg = 'A blueprint name is required.';
-    this.spanHelpBlockMsg = `${this.dialogRootElement} span[class="help-block"]`;
+    this.spanHelpBlockMsg = `${this.dialogRootElement} [data-id="help-block-msg"]`;
   }
 
   // **** start page actions ****
