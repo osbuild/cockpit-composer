@@ -65,8 +65,22 @@ export function fetchBlueprintInfoApi(blueprintName) {
 }
 
 export function fetchModalCreateImageTypesApi() {
+  const imageTypeLabels = {
+    'ami': 'Amazon Machine Image Disk (.ami)',
+    'ext4-filesystem': 'Ext4 File System Image (.img)',
+    'live-iso': 'Live Bootable ISO (.iso)',
+    'partitioned-disk': 'Raw Partitioned Disk Image (.img)',
+    'qcow2': 'QEMU QCOW2 Image (.qcow2)',
+    'tar': 'TAR Archive (.tar)',
+    'vhd': 'Azure Disk Image (.vhd)',
+    'vmdk': 'VMware Virtual Machine Disk (.vmdk)'
+  };
   const imageTypes = utils.apiFetch(constants.get_image_types)
-    .then(data => data.types)
+    .then(data => data.types.map(type => {
+      return Object.assign({}, type,
+        {label: imageTypeLabels[type.name] || type.name}
+      );
+    }))
     .catch(e => console.log('Error getting component types', e));
   return imageTypes;
 }

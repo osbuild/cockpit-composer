@@ -138,7 +138,7 @@ class CreateImage extends React.Component {
                   <div className="col-sm-9">
                     <select className="form-control" value={this.state.imageType} onChange={this.handleChange}>
                       {this.props.imageTypes !== undefined && this.props.imageTypes.map((type, i) =>
-                        <option key={i} value={type.name} disabled={!type.enabled}>{type.name}</option>
+                        <option key={i} value={type.name} disabled={!type.enabled}>{type.label}</option>
                       )}
                     </select>
                   </div>
