@@ -200,7 +200,7 @@ exports.testData = {
   // if/when the backend decides to really build a compose. So leave testing
   // only with the tar compose type b/c it should be relatively fast
   image: [
-    { type: 'tar', arch: 'x86_64' },
+    { type: 'tar', arch: 'x86_64', label: 'TAR Archive (.tar)' },
   ],
 
   // cockpit authentication username and password

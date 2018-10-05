@@ -2,9 +2,10 @@
 const MainPage = require('./main');
 
 module.exports = class CreateImagePage extends MainPage {
-  constructor(type, arch) {
+  constructor(type, label, arch) {
     super('Create Image');
     this.imageType = type;
+    this.imageTypeLabel = label;
     this.imageArch = arch;
 
     // ---- Root element selector ---- //

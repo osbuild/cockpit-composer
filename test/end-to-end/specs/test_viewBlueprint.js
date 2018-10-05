@@ -117,7 +117,7 @@ describe('View Blueprint Page', () => {
       });
 
       describe('Create Image Tests', () => {
-        const createImagePage = new CreateImagePage(images[0].type, images[0].arch);
+        const createImagePage = new CreateImagePage(images[0].type, images[0].label, images[0].arch);
 
         it('should pop up Create Image window by clicking Create Image button', () => {
           browser
@@ -130,7 +130,7 @@ describe('View Blueprint Page', () => {
 
         images.forEach((image) => {
           it(`should have toast notification pop up for image ${image.type}/${image.arch}`, () => {
-            const createImagePage2 = new CreateImagePage(image.type, image.arch);
+            const createImagePage2 = new CreateImagePage(image.type, image.label, image.arch);
             const toastNotifPage = new ToastNotifPage(testData.blueprint.simple.name);
 
             browser
@@ -141,7 +141,7 @@ describe('View Blueprint Page', () => {
               .waitForVisible(createImagePage2.selectImageType);
 
             browser
-              .selectByVisibleText(createImagePage2.selectImageType, createImagePage2.imageType)
+              .selectByVisibleText(createImagePage2.selectImageType, createImagePage2.imageTypeLabel)
               .selectByVisibleText(createImagePage2.selectImageArch, createImagePage2.imageArch)
               .click(createImagePage2.btnCreate)
               .waitForVisible(toastNotifPage.iconCreating);
