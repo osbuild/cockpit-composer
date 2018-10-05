@@ -24,6 +24,7 @@ module.exports = class CreateImagePage extends MainPage {
 
     // Image Type select
     this.selectImageType = `${this.dialogRootElement} form div:nth-child(2) div select`;
+
     // Create and Cancel button
     this.btnCreate = `${this.dialogRootElement} .modal-footer .btn-primary`;
     this.btnCancel = `${this.dialogRootElement} .modal-footer .btn-default`;
