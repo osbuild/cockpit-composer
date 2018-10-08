@@ -149,6 +149,7 @@ exports.config = {
   // every single test
   beforeTest(test) {
     browser.reload();
+    browser.windowHandleFullscreen();
   },
 
   afterTest(test) {
