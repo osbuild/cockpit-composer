@@ -112,6 +112,7 @@ describe('CreateImage', () => {
       </Provider>
     );
 
+    component.find('#textInput-modal-markup').simulate('change', {target: { value : 'tar'}});
     component.find('.btn-primary').simulate('click');
 
     expect(setNotificationsSpy).toHaveBeenCalledTimes(1);
@@ -132,7 +133,7 @@ describe('CreateImage', () => {
     );
     const renderedType = component.find('label[htmlFor="textInput-modal-markup"] + div select option');
 
-    expect(renderedType).toHaveLength(13);
+    expect(renderedType).toHaveLength(14);
   });
 
 });
