@@ -18,6 +18,9 @@ const messages = defineMessages({
   warningUnsaved: {
     defaultMessage: "This blueprint has changes that are not committed. " +
       "These changes will be committed before the image is created."
+  },
+  selectOne: {
+    defaultMessage: "Select one"
   }
 });
 
@@ -31,7 +34,6 @@ class CreateImage extends React.Component {
   }
 
   componentWillMount() {
-    this.setState({ imageType: this.props.imageTypes[0].name });
     if (this.props.composeQueueFetched === false) {
       this.props.fetchingQueue();
     }
@@ -132,11 +134,20 @@ class CreateImage extends React.Component {
                 </div>
                 <div className="form-group">
                   <label
-                    className="col-sm-3 control-label"
+                    className="col-sm-3 control-label required-pf"
                     htmlFor="textInput-modal-markup"
                   ><FormattedMessage defaultMessage="Image Type" /></label>
                   <div className="col-sm-9">
-                    <select className="form-control" value={this.state.imageType} onChange={this.handleChange}>
+                    <select 
+                      id="textInput-modal-markup" 
+                      className="form-control" 
+                      required 
+                      value={this.state.imageType} 
+                      onChange={this.handleChange}
+                    >
+                      <option value="" disabled hidden>
+                        {formatMessage(messages.selectOne)}  
+                      </option>
                       {this.props.imageTypes !== undefined && this.props.imageTypes.map((type, i) =>
                         <option key={i} value={type.name} disabled={!type.enabled}>{type.label}</option>
                       )}
@@ -189,13 +200,23 @@ class CreateImage extends React.Component {
               <button type="button" className="btn btn-default" data-dismiss="modal">
                 <FormattedMessage defaultMessage="Cancel" />
               </button>
-              {this.props.warningUnsaved === true &&
+              {(this.props.warningUnsaved === true && this.state.imageType !== "" && 
                 <button type="button" className="btn btn-primary" onClick={this.handleCommit}>
                   <FormattedMessage defaultMessage="Commit and Create" />
-                </button>
+                </button>) 
               ||
+              (this.state.imageType !== "" &&
                 <button type="button" className="btn btn-primary" onClick={this.handleCreateImage}>
                   <FormattedMessage defaultMessage="Create" />
+                </button>)
+              }
+              {this.state.imageType === "" && 
+                <button type="button" className="btn btn-primary" disabled>
+                  {this.props.warningUnsaved === true && 
+                    <FormattedMessage defaultMessage="Commit and Create" />
+                  ||
+                    <FormattedMessage defaultMessage="Create" />
+                  }
                 </button>
               }
             </div>
