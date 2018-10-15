@@ -6,13 +6,7 @@ internal architecture, dependencies, data integrity and such. Actually we need
 to follow the end-user flows and assert they get the intended experience and
 focus on the behavior of the thing as the user would see it.
 
-## Two Test Scenarios
-
-### Stand Alone Welder Web Scenario
-
-In this scenario, the Welder Web will be run as a stand alone web service.
-End-to-end test will run against this scenario to make sure Welder Web work
-as we expected. The code coverage will be generated after end-to-end test.
+## Test Scenario
 
 ### Cockpit Integrated Scenario
 
@@ -32,28 +26,29 @@ code to test for various async events that go on behind the scenes.
 
 #### Requirement
 
-1. Have both bdcs-api and welder-web running on localhost.
+For testing, the following dependencies are required:
 
-#### Test Case Location
-
-All test cases are placed in *test/end-to-end/specs/* directory.
+    $ sudo yum install libvirt libvirt-client libvirt-daemon libvirt-python \
+        python python-libguestfs python-lxml libguestfs-xfs \
+        python3 libvirt-python3 \
+        libguestfs-tools qemu qemu-kvm rpm-build
 
 #### Test Running Command
 
-```shell
-$ cd test/end-to-end
-$ npm install                                   # Install end-to-end dependencies
-$ npm run test                                  # Run end-to-end test
-```
+Run test without visually seeing what the browser is doing:
 
-### Running end-to-end test inside Docker container
+    $ make check
 
-The end-to-end test docker image is an executable image, which starts container, runs test, and exits.
-There's a easy way to run end to end test in Docker container.
+In the event you wish to visually see what the browser is doing you will want to run:
 
-1. Go to project root folder.
-2. `make end-to-end-test` to run end to end test against standard web UI.
-3. Or `make cockpit-test` to run end to end test against Cockpit integrated UI.
+    $ make debug-check
+
+By default the test will be run on Firefox. To run it on Chrome, a prefix ```BROWSER=chrome``` needs to be added, like:
+
+    $ BROWSER=chrome make check
+
+
+**NOTE:** You have to have **vncviewer** installed by ```sudo dnf install tigervnc``` to get browser out.
 
 ## Directory Layout
 
@@ -83,7 +78,7 @@ and made available for the reporting tools to use.
 
 The helper code inside
 `afterTest` already does this and stores the report files under
-`/tmp/coverage-<HASH>.json`. The hash value is the sha256 sum of the coverage
+`.nyc_output/coverage-<HASH>.json`. The hash value is the sha256 sum of the coverage
 report itself. Some cases may have identical coverage so the number of json
 files will be equal or less to the number of test cases.
 
@@ -104,10 +99,10 @@ The result should be read like a sentence.
   3 passing (6s)
 ```
 
-Screenshot and error log will be generated if case failed.
-The screenshot will be uploaded to AWS S3 and can be found from
-`https://s3.amazonaws.com/weldr/web-fail-test-screenshot/<Travis Build Number>/<Test Case Full Name>.<YYYY-mm-dd-HH-MM-SS>.fail.png`
+## Test Report
 
+1. Test report will be generated in ```test/end-to-end``` folder if you run test locally.
+2. The CI will upload test log and report to ```https://fedorapeople.org```, and you can find a link to it in the commit message of each push request.
 
 ## Code Style
 
