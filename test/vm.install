@@ -44,6 +44,10 @@ fi
 if type firewall-cmd >/dev/null 2>&1; then
     firewall-cmd --add-service=cockpit --permanent
 fi
+
+# mock compose creation calls to backend for testing purposes
+sed -i "s|\"/api/v0/compose\"|\"/api/v0/compose?test=2\"|" /usr/share/cockpit/welder/dist/main.*.js
+
 # Make cockpit.socket and lorax-composer auto-start when system started
 # Do not start it during image generation
 systemctl enable cockpit.socket
