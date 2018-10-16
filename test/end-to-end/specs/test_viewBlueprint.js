@@ -5,6 +5,7 @@ const ViewBlueprintPage = require('../pages/viewBlueprint');
 const CreateBlueprintPage = require('../pages/createBlueprint');
 const DeleteBlueprintPage = require('../pages/deleteBlueprint');
 const ExportBlueprintPage = require('../pages/exportBlueprint');
+const BlueprintPage = require('../pages/blueprints');
 
 const helper = require('../utils/helper');
 const testData = require('../wdio.conf.js').testData;
@@ -16,7 +17,8 @@ describe('View Blueprint Page', () => {
     beforeEach(() => {
       CreateBlueprintPage.newBlueprint(testData.blueprint.simple);
 
-      helper.goto(viewBlueprintPage)
+      browser
+        .click(BlueprintPage.blueprintNameSelector(testData.blueprint.simple.name))
         .waitForVisible(viewBlueprintPage.detailTabElement);
 
       // this loads a bit later together with the description
@@ -81,8 +83,7 @@ describe('View Blueprint Page', () => {
           .waitForVisible(viewBlueprintPage.inputTextDescriptionUnderDetails);
 
         browser
-          .setValue(viewBlueprintPage.inputTextDescriptionUnderDetails, '')
-          .addValue(viewBlueprintPage.inputTextDescriptionUnderDetails, expected)
+          .setValue(viewBlueprintPage.inputTextDescriptionUnderDetails, expected)
           .waitForVisible(viewBlueprintPage.btnOkDescriptionUnderDetails);
 
         browser

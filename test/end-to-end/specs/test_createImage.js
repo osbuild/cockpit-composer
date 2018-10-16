@@ -7,6 +7,7 @@ const DeleteBlueprintPage = require('../pages/deleteBlueprint');
 const CreateImagePage = require('../pages/createImage');
 const ToastNotifPage = require('../pages/toastNotif');
 const ExportBlueprintPage = require('../pages/exportBlueprint');
+const BlueprintPage = require('../pages/blueprints');
 
 const helper = require('../utils/helper');
 const testData = require('../wdio.conf.js').testData;
@@ -19,7 +20,8 @@ describe('Create Blueprint Image', () => {
   beforeEach(() => {
     CreateBlueprintPage.newBlueprint(testData.blueprint.simple);
 
-    helper.goto(viewBlueprintPage)
+    browser
+      .click(BlueprintPage.blueprintNameSelector(testData.blueprint.simple.name))
       .waitForVisible(viewBlueprintPage.imagesTabElement);
 
     // go to the Images tab
