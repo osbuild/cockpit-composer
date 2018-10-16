@@ -146,4 +146,4 @@ bots:
 	git checkout --force FETCH_HEAD -- bots/
 	git reset bots
 
-.PHONY: tag welder-web.spec cockpit-composer.spec local-clean vm check bots
+.PHONY: tag welder-web.spec cockpit-composer.spec local-clean vm check
