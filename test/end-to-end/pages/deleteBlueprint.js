@@ -51,6 +51,8 @@ module.exports = class deleteBlueprint extends MainPage {
 
     browser
       .click(btnMoreAction)
+      .waitForVisible(menuActionDelete);
+    browser
       .click(menuActionDelete)
       .waitForVisible(page.btnDelete);
 
