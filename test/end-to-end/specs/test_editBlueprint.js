@@ -138,31 +138,46 @@ describe('Given Edit Blueprint Page', () => {
           .waitForVisible('.list-pf-content.list-pf-content-flex');
       });
 
+      it('Then will clear filter results by clicking Clear All link', () => {
+        browser
+          .waitForVisible(editBlueprintPage.linkClearAllFilters);
 
-      [
-        editBlueprintPage.btnClearFilter,
-        editBlueprintPage.linkClearAllFilters,
-      ].forEach((selector) => {
-        it('Then will clear filter results by clicking X button or Clear All link', () => {
-          browser
-            .waitForVisible(selector);
+        // clear filters
+        browser
+          .click(editBlueprintPage.linkClearAllFilters)
+          .waitForVisible(editBlueprintPage.componentListItemRootElement);
 
-          // clear filters
-          browser
-            .click(selector)
-            .waitForVisible(editBlueprintPage.componentListItemRootElement);
+        // wait for the search results to reload
+        browser
+          .waitForVisible('.list-pf-content.list-pf-content-flex');
 
-          // wait for the search results to reload
-          browser
-            .waitForVisible('.list-pf-content.list-pf-content-flex');
+        // run the element command and check if the result type is NoSuchElement
+        // that means the filter result is cleared
+        const existBtnClearFilter = browser.element(editBlueprintPage.btnClearFilter);
+        assert.equal(existBtnClearFilter.type, 'NoSuchElement');
+        const existLinkClearAllFilters = browser.element(editBlueprintPage.linkClearAllFilters);
+        assert.equal(existLinkClearAllFilters.type, 'NoSuchElement');
+      });
 
-          // run the element command and check if the result type is NoSuchElement
-          // that means the filter result is cleared
-          const existBtnClearFilter = browser.element(editBlueprintPage.btnClearFilter);
-          assert.equal(existBtnClearFilter.type, 'NoSuchElement');
-          const existLinkClearAllFilters = browser.element(editBlueprintPage.linkClearAllFilters);
-          assert.equal(existLinkClearAllFilters.type, 'NoSuchElement');
-        });
+      it('Then will clear filter results by clicking X button', () => {
+        browser
+          .waitForVisible(editBlueprintPage.btnClearFilter);
+
+        // clear filters
+        browser
+          .click(editBlueprintPage.btnClearFilter)
+          .waitForVisible(editBlueprintPage.componentListItemRootElement);
+
+        // wait for the search results to reload
+        browser
+          .waitForVisible('.list-pf-content.list-pf-content-flex');
+
+        // run the element command and check if the result type is NoSuchElement
+        // that means the filter result is cleared
+        const existBtnClearFilter = browser.element(editBlueprintPage.btnClearFilter);
+        assert.equal(existBtnClearFilter.type, 'NoSuchElement');
+        const existLinkClearAllFilters = browser.element(editBlueprintPage.linkClearAllFilters);
+        assert.equal(existLinkClearAllFilters.type, 'NoSuchElement');
       });
 
       it('Then selected component icon should have border', () => {
