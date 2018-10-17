@@ -74,7 +74,7 @@ describe('Given Edit Blueprint Page', () => {
       // note: functionality of image creation dialog is validated in test_viewBlueprints.js
       // here we only validate that the buttons placed on the main page still
       // trigger the same dialog
-      const createImagePage = new CreateImagePage(testData.image[0].type, testData.image[0].arch);
+      const createImagePage = new CreateImagePage(testData.image[0].type);
 
       browser
         .waitForEnabled(editBlueprintPage.btnCreateImage);

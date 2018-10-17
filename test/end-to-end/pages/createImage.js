@@ -2,11 +2,10 @@
 const MainPage = require('./main');
 
 module.exports = class CreateImagePage extends MainPage {
-  constructor(type, label, arch) {
+  constructor(type, label) {
     super('Create Image');
     this.imageType = type;
     this.imageTypeLabel = label;
-    this.imageArch = arch;
 
     // ---- Root element selector ---- //
     // Create Blueprint dialog root selector
@@ -23,9 +22,8 @@ module.exports = class CreateImagePage extends MainPage {
     // Blueprint Name label
     this.labelBlueprintName = `${this.dialogRootElement} p[class="form-control-static"]`;
 
-    // Image Type and Architecture select
+    // Image Type select
     this.selectImageType = `${this.dialogRootElement} label[for="textInput-modal-markup"] + div select`;
-    this.selectImageArch = `${this.dialogRootElement} label[for="textInput2-modal-markup"] + div select`;
 
     // Create and Cancel button
     this.btnCreate = `${this.dialogRootElement} .modal-footer .btn-primary`;

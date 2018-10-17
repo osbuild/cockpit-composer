@@ -30,7 +30,7 @@ describe('Blueprints Page', () => {
   });
 
   describe('Blueprint List', () => {
-    const createImagePage = new CreateImagePage(images[0].type, images[0].arch);
+    const createImagePage = new CreateImagePage(images[0].type);
     const btnCreateImage = BlueprintsPage.btnCreateImage(testData.blueprint.simple.name);
 
     const exportBlueprintPage = new ExportBlueprintPage();
