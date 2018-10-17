@@ -118,45 +118,70 @@ describe('Changes Pending Commit Page', () => {
       assert.equal('Added', $(changesPendingCommitPage.labelLine2PendingChangesAction).getText());
     });
 
-    // repeat the test twice for each closing button
-    [
-      changesPendingCommitPage.btnClose,
-      changesPendingCommitPage.btnXClose,
-    ].forEach((button) => {
-      it('should not commit by clicking Close or X buttons', () => {
-        // close the dialog b/c it is already open
-        browser.click(button);
-        // wait until the dialog fades out
-        browser
-          .waitForVisible(editBlueprintPage.componentListItemRootElementSelect);
+    it('should not commit by clicking Close', () => {
+      // close the dialog b/c it is already open
+      browser.click(changesPendingCommitPage.btnClose);
+      // wait until the dialog fades out
+      browser
+        .waitForVisible(editBlueprintPage.componentListItemRootElementSelect);
 
-        // reload the page
-        browser.reload();
-        const blueprintsPage = new BlueprintsPage();
-        const blueprintName = testData.blueprint.bash.name;
-        const rowSelector = `${blueprintsPage.itemsBlueprint}[data-blueprint="${blueprintName}"]`;
-        helper.goto(blueprintsPage);
+      const blueprintsPage = new BlueprintsPage();
+      const blueprintName = testData.blueprint.bash.name;
+      const rowSelector = `${blueprintsPage.itemsBlueprint}[data-blueprint="${blueprintName}"]`;
 
-        browser
-          .waitForVisible(rowSelector);
+      browser
+        .click(editBlueprintPage.linkBackToBlueprints)
+        .waitForVisible(rowSelector);
 
-        browser
-          .click(`${rowSelector} a[href*="edit"]`)
-          .waitForExist(editBlueprintPage.componentListItemRootElement);
+      browser
+        .click(`${rowSelector} a[href*="edit"]`)
+        .waitForExist(editBlueprintPage.componentListItemRootElement);
 
-        // bring up the pending changes dialog again by clicking the commit button
-        browser
-          .click(editBlueprintPage.btnCommit)
-          .waitForVisible(changesPendingCommitPage.labelPageTitle);
+      // bring up the pending changes dialog again by clicking the commit button
+      browser
+        .click(editBlueprintPage.btnCommit)
+        .waitForVisible(changesPendingCommitPage.labelPageTitle);
 
-        const actualText = $(changesPendingCommitPage.labelLine1PendingChangesAction).getText();
-        assert.equal(actualText, 'Added');
+      const actualText = $(changesPendingCommitPage.labelLine1PendingChangesAction).getText();
+      assert.equal(actualText, 'Added');
 
-        // there's still a pending commit for the bash component added when the BP
-        // was initially created !
-        const actualComponent1 = $(changesPendingCommitPage.labelLine1PendingChangesComponent).getText();
-        assert.equal(actualComponent1.split('-')[0], 'bash');
-      });
+      // there's still a pending commit for the bash component added when the BP
+      // was initially created !
+      const actualComponent1 = $(changesPendingCommitPage.labelLine1PendingChangesComponent).getText();
+      assert.equal(actualComponent1.split('-')[0], 'bash');
+    });
+
+    it('should not commit by clicking X buttons', () => {
+      // close the dialog b/c it is already open
+      browser.click(changesPendingCommitPage.btnXClose);
+      // wait until the dialog fades out
+      browser
+        .waitForVisible(editBlueprintPage.componentListItemRootElementSelect);
+
+      const blueprintsPage = new BlueprintsPage();
+      const blueprintName = testData.blueprint.bash.name;
+      const rowSelector = `${blueprintsPage.itemsBlueprint}[data-blueprint="${blueprintName}"]`;
+
+      browser
+        .click(editBlueprintPage.linkBackToBlueprints)
+        .waitForVisible(rowSelector);
+
+      browser
+        .click(`${rowSelector} a[href*="edit"]`)
+        .waitForExist(editBlueprintPage.componentListItemRootElement);
+
+      // bring up the pending changes dialog again by clicking the commit button
+      browser
+        .click(editBlueprintPage.btnCommit)
+        .waitForVisible(changesPendingCommitPage.labelPageTitle);
+
+      const actualText = $(changesPendingCommitPage.labelLine1PendingChangesAction).getText();
+      assert.equal(actualText, 'Added');
+
+      // there's still a pending commit for the bash component added when the BP
+      // was initially created !
+      const actualComponent1 = $(changesPendingCommitPage.labelLine1PendingChangesComponent).getText();
+      assert.equal(actualComponent1.split('-')[0], 'bash');
     });
   });
 });

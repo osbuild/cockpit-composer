@@ -105,10 +105,13 @@ module.exports = class CreateBlueprintPage extends BlueprintPage {
 
       browser
         .click(commitDialog.btnCommit)
-        .waitForVisible(toastNotification.iconComplete);
+        .waitForExist(commitDialog.rootElement, config.config.waitforTimeout, true);
 
       browser
-        .click(toastNotification.btnClose);
+        .waitForExist('[id="cmpsr-toast-0"]', config.config.waitforTimeout, true);
+
+      browser
+        .waitForVisible(editPage.linkBackToBlueprints);
     }
 
     // return back to the main page
