@@ -1,5 +1,6 @@
 // Create Blueprint page object
 const helper = require('../utils/helper');
+const config = require('../wdio.conf.js');
 const MainPage = require('./main');
 const BlueprintPage = require('./blueprints');
 const EditBlueprintPage = require('./editBlueprint');
@@ -117,17 +118,10 @@ module.exports = class CreateBlueprintPage extends BlueprintPage {
 
     // wait until the description is shown as well
     browser
-      .waitUntil(() => {
-        let result = false;
-
-        $$(page.labelBlueprintDescr).some((item) => {
-          if (item.getText() === bpObject.description) {
-            result = true;
-          }
-          return result;
-        });
-
-        return result;
-      });
+      .waitUntil(
+        () => browser.getText(`[data-blueprint="${bpObject.name}"] .list-group-item-text`) === bpObject.description,
+        config.config.waitforTimeout,
+        'expected description to be different from new created one after 5s'
+      );
   }
 };
