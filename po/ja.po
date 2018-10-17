@@ -5,11 +5,11 @@ msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Plural-Forms: nplurals=1; plural=0\n"
-"POT-Creation-Date: 2018-08-03T21:24:36.983Z\n"
+"POT-Creation-Date: 2018-10-15T06:34:21.742Z\n"
 "Content-Transfer-Encoding: 8bit\n"
 "MIME-Version: 1.0\n"
 "X-Generator: Zanata 4.6.2\n"
-"PO-Revision-Date: 2018-09-07 12:17+0000\n"
+"PO-Revision-Date: 2018-10-17 09:25+0000\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -40,7 +40,7 @@ msgstr "ブループリント名が必要です。"
 #. defaultMessage is:
 #. Add
 msgid "Add"
-msgstr "追加"
+msgstr "追加する"
 
 #: build/messages/pages/blueprintEdit/index.json
 #. [pages.blueprintEdit.index.addComponentTitle]
@@ -221,7 +221,7 @@ msgstr "コンポーネントを閲覧または検索した後、ブループリ
 #. defaultMessage is:
 #. Cancel
 msgid "Cancel"
-msgstr "キャンセル"
+msgstr "取り消し"
 
 #: build/messages/components/Modal/PendingChanges.json
 #. [components.Modal.PendingChanges.2208777537]
@@ -877,6 +877,13 @@ msgstr "必須情報が見つかりません。"
 msgid "Select components"
 msgstr "コンポーネントの選択"
 
+#: build/messages/components/Modal/CreateImage.json
+#. [components.Modal.CreateImage.selectOne]
+#. defaultMessage is:
+#. Select one
+msgid "Select one"
+msgstr "1 つ選択"
+
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/pages/blueprint/index.json
 #. [components.ListView.BlueprintContents.selectedTabTitle]
@@ -949,7 +956,7 @@ msgstr "新規ブループリント名を指定します。"
 #. defaultMessage is:
 #. Stop
 msgid "Stop"
-msgstr "終了"
+msgstr "停止"
 
 #: build/messages/components/Modal/StopBuild.json
 #. [components.Modal.StopBuild.1162993432]
@@ -1061,14 +1068,14 @@ msgstr "この処理には数分かかることがあります。イメージは
 #. defaultMessage is:
 #. Type
 msgid "Type"
-msgstr "種類"
+msgstr "タイプ"
 
 #: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.ListItemImages.860864899]
 #. defaultMessage is:
 #. Type {type}
 msgid "Type {type}"
-msgstr "種類 {type}"
+msgstr "タイプ {type}"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #. [components.ListView.ComponentDetailsView.1324178587]
@@ -1198,14 +1205,14 @@ msgstr "{blueprint} イメージの作成が開始されました。"
 #. defaultMessage is:
 #. {blueprint} Image creation is complete.
 msgid "{blueprint} Image creation is complete."
-msgstr "{blueprint} イメージの作成が完了"
+msgstr "{blueprint} イメージの作成が完了しました。"
 
 #: build/messages/components/Modal/CreateImage.json
 #. [components.Modal.CreateImage.2122759296]
 #. defaultMessage is:
 #. {builds, plural, one {# build is waiting} other {# builds are waiting}}
 msgid "{builds, plural, one {# build is waiting} other {# builds are waiting}}"
-msgstr "{builds, plural, one {# build is waiting} other {# builds are waiting}}"
+msgstr "{builds, plural, one {# build is waiting} その他 {# builds are waiting}}"
 
 #: build/messages/components/Modal/ExportBlueprint.json
 #. [components.Modal.ExportBlueprint.1557505074]
@@ -1219,7 +1226,7 @@ msgstr "{count} 総コンポーネント"
 #. defaultMessage is:
 #. {currentPage} of {totalPages}
 msgid "{currentPage} of {totalPages}"
-msgstr "{totalPages} の {currentPage} "
+msgstr "{currentPage}/{totalPages}"
 
 #: build/messages/components/Modal/PendingChanges.json
 #. [components.Modal.PendingChanges.3908981070]
@@ -1233,7 +1240,7 @@ msgstr "{from} {oldVersion} {to} {newVersion}"
 #. defaultMessage is:
 #. {goBack}, or head over to the {homePage} to choose a new direction.
 msgid "{goBack}, or head over to the {homePage} to choose a new direction."
-msgstr "{goBack}、または {homePage} へ進み、新しいディレクションを選択します。"
+msgstr "{goBack}、または {homePage} へ進み、新しいディレクションを選択します。"
 
 #: build/messages/components/Modal/PendingChanges.json
 #. [components.Modal.PendingChanges.3141775911]
@@ -1247,7 +1254,7 @@ msgstr "{heading} {parenthetical}"
 #. defaultMessage is:
 #. {pendingChanges, plural, one {# Pending Change} other {# Pending Changes}}
 msgid "{pendingChanges, plural, one {# Pending Change} other {# Pending Changes}}"
-msgstr "{pendingChanges, plural, one {# Pending Change} other {# Pending Changes}}"
+msgstr "{pendingChanges, plural, one {# Pending Change} その他 {# Pending Changes}}"
 
 #: build/messages/pages/blueprintEdit/index.json
 #. [pages.blueprintEdit.index.3140434516]
@@ -1261,7 +1268,7 @@ msgstr "このリストで {selectComponents} し、ブループリントに追�
 #. defaultMessage is:
 #. {startNumber} - {endNumber} of {totalNumber}
 msgid "{startNumber} - {endNumber} of {totalNumber}"
-msgstr "{totalNumber} の {startNumber} - {endNumber}"
+msgstr "{startNumber} - {endNumber}/{totalNumber}"
 
 #: ./public/manifest.json
 msgid "Image Builder"
