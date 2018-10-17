@@ -4,18 +4,35 @@ msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"PO-Revision-Date: 2018-08-23 10:19+0000\n"
+"POT-Creation-Date: 2018-10-15T06:34:21.742Z\n"
+"Content-Transfer-Encoding: 8bit\n"
+"MIME-Version: 1.0\n"
+"X-Generator: Zanata 4.6.2\n"
+"PO-Revision-Date: 2018-10-17 09:26+0000\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
-"X-Generator: Zanata 4.6.2\n"
+
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.parenthetical] - Describes the sort order of the pending changes
+#. defaultMessage is:
+#. (most recent first)
+msgid "(most recent first)"
+msgstr "(más reciente primero)"
+
+#: build/messages/components/Modal/CreateImage.json
+#. [components.Modal.CreateImage.485442669]
+#. defaultMessage is:
+#. 1 build is in progress
+msgid "1 build is in progress"
+msgstr "1 construcción en curso"
 
 #: build/messages/components/Modal/CreateBlueprint.json
 #. [components.Modal.CreateBlueprint.4177685254]
 #. defaultMessage is:
 #. A blueprint name is required.
 msgid "A blueprint name is required."
-msgstr ""
+msgstr "Se requiere un nombre de plano."
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #. [components.ListView.ComponentDetailsView.3099331554]
@@ -29,11 +46,15 @@ msgstr "Añadir"
 #. defaultMessage is:
 #. Add Blueprint Components
 msgid "Add Blueprint Components"
-msgstr ""
+msgstr "Agregar componentes de planos"
 
 # translation auto-copied from project Drools Workbench, version 6.0.0, document org.drools/drools-wb-guided-rule-editor-client/org/drools/workbench/screens/guided/rule/client/resources/i18n/Constants, author angela.garcia
 #: build/messages/components/ListView/ListItemChanges.json
+#: build/messages/components/Modal/PendingChanges.json
 #. [components.ListView.ListItemChanges.1362724042]
+#. defaultMessage is:
+#. Added
+#. [components.Modal.PendingChanges.1362724042] - Identifies the change as a component that was added
 #. defaultMessage is:
 #. Added
 msgid "Added"
@@ -52,28 +73,28 @@ msgstr "Agregado"
 #. defaultMessage is:
 #. An Error Occurred
 msgid "An Error Occurred"
-msgstr ""
+msgstr "Ocurrió un error"
 
 #: build/messages/components/ListView/BlueprintContents.json
 #. [components.ListView.BlueprintContents.emptyStateErrorMessage]
 #. defaultMessage is:
 #. An error occurred while trying to get blueprint contents.
 msgid "An error occurred while trying to get blueprint contents."
-msgstr ""
+msgstr "Se ha producido un error al intentar obtener el contenido del plano."
 
 #: build/messages/components/Modal/ManageSources.json
 #. [components.Modal.ManageSources.errorStateMessage]
 #. defaultMessage is:
 #. An error occurred while trying to get sources.
 msgid "An error occurred while trying to get sources."
-msgstr ""
+msgstr "Se ha producido un error al intentar obtener las fuentes."
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #. [components.ListView.ComponentDetailsView.668376819]
 #. defaultMessage is:
 #. Apply Change
 msgid "Apply Change"
-msgstr ""
+msgstr "Aplicar Cambiar"
 
 #: build/messages/components/Modal/CreateImage.json
 #. [components.Modal.CreateImage.1857500869]
@@ -87,14 +108,30 @@ msgstr "Arquitectura"
 #. defaultMessage is:
 #. Are you sure you want to delete the blueprint {name}?
 msgid "Are you sure you want to delete the blueprint {name}?"
+msgstr "¿Estás seguro de que quieres borrar el plano{name}?"
+
+#: build/messages/components/Modal/DeleteImage.json
+#. [components.Modal.DeleteImage.1346739796]
+#. defaultMessage is:
+#. Are you sure you want to delete the image for {blueprintName}?
+msgid "Are you sure you want to delete the image for {blueprintName}?"
+msgstr "¿Está seguro de que desea eliminar la imagen de{blueprintName}?"
+
+#: build/messages/components/Modal/StopBuild.json
+#. [components.Modal.StopBuild.234116272]
+#. defaultMessage is:
+#. Are you sure you want to stop the build process for {blueprintName}?
+msgid "Are you sure you want to stop the build process for {blueprintName}?"
 msgstr ""
+"¿Estás seguro de que quieres detener el proceso de construcción "
+"de{blueprintName}?"
 
 #: build/messages/pages/blueprintEdit/index.json
 #. [pages.blueprintEdit.index.2346760817]
 #. defaultMessage is:
 #. Available Components
 msgid "Available Components"
-msgstr ""
+msgstr "Componentes disponibles"
 
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
@@ -105,30 +142,34 @@ msgstr ""
 #. defaultMessage is:
 #. Back to Blueprints
 msgid "Back to Blueprints"
-msgstr ""
+msgstr "Volver a Planos"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #. [components.ListView.ComponentDetailsView.3057400647]
 #. defaultMessage is:
 #. Back to {parent}
 msgid "Back to {parent}"
-msgstr ""
+msgstr "Volver a {parent}"
 
 #: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.ListItemImages.2943300373]
 #. defaultMessage is:
 #. Based on Version {version}
 msgid "Based on Version {version}"
-msgstr ""
+msgstr "Basado en la versión {version}"
 
 #: build/messages/components/Modal/CreateImage.json
 #: build/messages/components/Modal/ExportBlueprint.json
+#: build/messages/components/Modal/PendingChanges.json
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
 #. [components.Modal.CreateImage.1281198655]
 #. defaultMessage is:
 #. Blueprint
 #. [components.Modal.ExportBlueprint.1281198655]
+#. defaultMessage is:
+#. Blueprint
+#. [components.Modal.PendingChanges.blueprint]
 #. defaultMessage is:
 #. Blueprint
 #. [pages.blueprint.index.blueprint]
@@ -145,7 +186,7 @@ msgstr "Diagrama"
 #. defaultMessage is:
 #. Blueprint Components
 msgid "Blueprint Components"
-msgstr ""
+msgstr "Componentes de planos"
 
 #: build/messages/pages/blueprints/index.json
 #. [pages.blueprints.index.blueprintsTitle]
@@ -159,12 +200,13 @@ msgstr "Diagramas"
 #. defaultMessage is:
 #. Browse or search for components, then add them to the blueprint.
 msgid "Browse or search for components, then add them to the blueprint."
-msgstr ""
+msgstr "Busque o busque componentes y añádalos al plano."
 
 #: build/messages/components/Modal/CreateBlueprint.json
 #: build/messages/components/Modal/CreateImage.json
 #: build/messages/components/Modal/DeleteBlueprint.json
-#: build/messages/data/NotificationsApi.json
+#: build/messages/components/Modal/DeleteImage.json
+#: build/messages/components/Modal/StopBuild.json
 #. [components.Modal.CreateBlueprint.3528672691]
 #. defaultMessage is:
 #. Cancel
@@ -174,11 +216,39 @@ msgstr ""
 #. [components.Modal.DeleteBlueprint.3528672691]
 #. defaultMessage is:
 #. Cancel
-#. [data.NotificationsApi.3528672691]
+#. [components.Modal.DeleteImage.3528672691]
+#. defaultMessage is:
+#. Cancel
+#. [components.Modal.StopBuild.3528672691]
 #. defaultMessage is:
 #. Cancel
 msgid "Cancel"
 msgstr "Cancelar"
+
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.2208777537]
+#. defaultMessage is:
+#. Changes Pending Commit
+msgid "Changes Pending Commit"
+msgstr "Cambios Pendientes de Confirmar"
+
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.683130131]
+#. defaultMessage is:
+#. Changes made in a previous session
+msgid "Changes made in a previous session"
+msgstr "Cambios realizados en una sesión anterior"
+
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.previousSessionInfotip]
+#. defaultMessage is:
+#. Changes made in a previous session are not listed in the order they were made. If you choose to undo these changes, they are undone as a group.
+msgid ""
+"Changes made in a previous session are not listed in the order they were "
+"made. If you choose to undo these changes, they are undone as a group."
+msgstr ""
+"Los cambios realizados en una sesión anterior no aparecen en la lista en el "
+"orden en que se realizaron."
 
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/components/Toolbar/ToolbarLayout.json
@@ -197,11 +267,12 @@ msgstr "Cancelar"
 #. defaultMessage is:
 #. Clear All Filters
 msgid "Clear All Filters"
-msgstr ""
+msgstr "Borrar todos los filtros"
 
 #: build/messages/components/Modal/ExportBlueprint.json
 #: build/messages/components/Modal/ManageSources.json
 #: build/messages/components/Modal/ManageSources.json
+#: build/messages/components/Modal/PendingChanges.json
 #: build/messages/components/Notifications/Notification.json
 #. [components.Modal.ExportBlueprint.2324218928]
 #. defaultMessage is:
@@ -212,25 +283,46 @@ msgstr ""
 #. [components.Modal.ManageSources.2324218928]
 #. defaultMessage is:
 #. Close
+#. [components.Modal.PendingChanges.closeButtonLabel]
+#. defaultMessage is:
+#. Close
 #. [components.Notifications.Notification.2324218928]
 #. defaultMessage is:
 #. Close
 msgid "Close"
 msgstr "Cerrar"
 
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.2299254306]
+#. defaultMessage is:
+#. Comment
+msgid "Comment"
+msgstr "Comentario"
+
+#: build/messages/components/Modal/PendingChanges.json
 #: build/messages/pages/blueprintEdit/index.json
+#. [components.Modal.PendingChanges.commitButtonLabel]
+#. defaultMessage is:
+#. Commit
 #. [pages.blueprintEdit.index.1951088698]
 #. defaultMessage is:
 #. Commit
 msgid "Commit"
-msgstr "Confirmar"
+msgstr "Consigna"
+
+#: build/messages/components/Modal/CreateImage.json
+#. [components.Modal.CreateImage.4244040826]
+#. defaultMessage is:
+#. Commit and Create
+msgid "Commit and Create"
+msgstr "Comprometerse y crear"
 
 #: build/messages/components/ListView/ListItemChanges.json
 #. [components.ListView.ListItemChanges.1076233378]
 #. defaultMessage is:
 #. Commit {commitNumber}
 msgid "Commit {commitNumber}"
-msgstr ""
+msgstr "Comprometer {commitNumber}"
 
 #: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.ListItemImages.1275749364]
@@ -248,14 +340,14 @@ msgstr "Completar"
 #. defaultMessage is:
 #. Component Details
 msgid "Component Details"
-msgstr ""
+msgstr "Detalles de los componentes"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #. [components.ListView.ComponentDetailsView.2104464527]
 #. defaultMessage is:
 #. Component Options
 msgid "Component Options"
-msgstr ""
+msgstr "Opciones de componentes"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #. [components.ListView.ComponentDetailsView.2279094754]
@@ -302,7 +394,7 @@ msgstr "Crear"
 #. defaultMessage is:
 #. Create Blueprint
 msgid "Create Blueprint"
-msgstr ""
+msgstr "Crear un plano"
 
 #: build/messages/components/ListView/BlueprintListView.json
 #: build/messages/components/Modal/CreateImage.json
@@ -331,20 +423,36 @@ msgid ""
 "Create a blueprint to define the contents that will be included in the "
 "images you create. Images can be produced in a variety of output formats."
 msgstr ""
+"Cree un plano para definir el contenido que se incluirá en las imágenes que "
+"cree, las cuales se pueden producir en una variedad de formatos de salida."
+
+#: build/messages/components/Pagination/Pagination.json
+#. [components.Pagination.Pagination.2925773048] - Label for the string: 1–50 of 125; only visible to screen readers
+#. defaultMessage is:
+#. Current Items
+msgid "Current Items"
+msgstr "Elementos actuales"
+
+#: build/messages/components/Pagination/Pagination.json
+#. [components.Pagination.Pagination.currentPage] - Label of form input for setting current page number
+#. defaultMessage is:
+#. Current Page
+msgid "Current Page"
+msgstr "Página actual"
 
 #: build/messages/components/Modal/ManageSources.json
 #. [components.Modal.ManageSources.3535450089] - Custom sources are additional repositories that were added by the user
 #. defaultMessage is:
 #. Custom Sources
 msgid "Custom Sources"
-msgstr ""
+msgstr "Fuentes personalizadas"
 
 #: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.ListItemImages.3751098589]
 #. defaultMessage is:
 #. Date Created {date}
 msgid "Date Created {date}"
-msgstr ""
+msgstr "Fecha de creación {date}"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #. [components.ListView.ComponentDetailsView.1305464942]
@@ -361,8 +469,12 @@ msgid "Default"
 msgstr "Predeterminado"
 
 #: build/messages/components/ListView/BlueprintListView.json
+#: build/messages/components/ListView/ListItemImages.json
 #: build/messages/components/Modal/DeleteBlueprint.json
 #. [components.ListView.BlueprintListView.3645414921]
+#. defaultMessage is:
+#. Delete
+#. [components.ListView.ListItemImages.3645414921]
 #. defaultMessage is:
 #. Delete
 #. [components.Modal.DeleteBlueprint.3645414921]
@@ -376,25 +488,29 @@ msgstr "Eliminar"
 #. defaultMessage is:
 #. Delete Blueprint
 msgid "Delete Blueprint"
-msgstr ""
+msgstr "Borrar plano"
 
+#: build/messages/components/Modal/DeleteImage.json
+#. [components.Modal.DeleteImage.1731766393]
+#. defaultMessage is:
+#. Delete Image
+msgid "Delete Image"
+msgstr "Eliminar imagen"
+
+#: build/messages/components/ListView/BlueprintContents.json
+#: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ComponentSummaryList.json
+#. [components.ListView.BlueprintContents.dependenciesTabTitle]
+#. defaultMessage is:
+#. Dependencies
+#. [components.ListView.ComponentDetailsView.dependencies]
+#. defaultMessage is:
+#. Dependencies
 #. [components.ListView.ComponentSummaryList.3727965333]
 #. defaultMessage is:
 #. Dependencies
 msgid "Dependencies"
 msgstr "Dependencias"
-
-#: build/messages/components/ListView/BlueprintContents.json
-#: build/messages/components/ListView/ComponentDetailsView.json
-#. [components.ListView.BlueprintContents.dependenciesTabTitle]
-#. defaultMessage is:
-#. Dependencies {count}
-#. [components.ListView.ComponentDetailsView.dependencies]
-#. defaultMessage is:
-#. Dependencies {count}
-msgid "Dependencies {count}"
-msgstr ""
 
 #: build/messages/components/ListView/ListItemLabel.json
 #. [components.ListView.ListItemLabel.2051291306]
@@ -412,7 +528,7 @@ msgstr "Dependencia"
 #. defaultMessage is:
 #. Description
 msgid "Description"
-msgstr "Descripción"
+msgstr "Descripción "
 
 # translation auto-copied from project Customer Portal Translations, version PortalCaseManagementStrings, document PortalCaseManagementStrings, author gguerrer
 #: build/messages/pages/blueprintEdit/index.json
@@ -460,7 +576,7 @@ msgstr "Modificar diagrama"
 #. defaultMessage is:
 #. Empty Blueprint
 msgid "Empty Blueprint"
-msgstr ""
+msgstr "Planos Vacíos"
 
 #: build/messages/pages/error/index.json
 #. [pages.error.index.errorMessage]
@@ -489,14 +605,14 @@ msgstr "Exportar"
 #. defaultMessage is:
 #. Export Blueprint
 msgid "Export Blueprint"
-msgstr ""
+msgstr "Planos de Exportación"
 
 #: build/messages/components/Modal/ExportBlueprint.json
 #. [components.Modal.ExportBlueprint.3658760324]
 #. defaultMessage is:
 #. Export as
 msgid "Export as"
-msgstr ""
+msgstr "Exportar como"
 
 #: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.ListItemImages.2753020605]
@@ -510,14 +626,14 @@ msgstr "Falló"
 #. defaultMessage is:
 #. Filter Available Components by Name
 msgid "Filter Available Components by Name"
-msgstr ""
+msgstr "Filtrar componentes disponibles por nombre"
 
 #: build/messages/pages/blueprintEdit/index.json
 #. [pages.blueprintEdit.index.filterByPlaceholder]
 #. defaultMessage is:
 #. Filter By Name...
 msgid "Filter By Name..."
-msgstr ""
+msgstr "Filtrar por nombre...."
 
 #: build/messages/pages/error/index.json
 #. [pages.error.index.2333299345]
@@ -563,7 +679,7 @@ msgstr "en curso"
 #. defaultMessage is:
 #. Install Profile
 msgid "Install Profile"
-msgstr ""
+msgstr "Instalar perfil"
 
 #: build/messages/components/Loading/Loading.json
 #. [components.Loading.Loading.2617450248]
@@ -581,7 +697,7 @@ msgstr "Cargando"
 #. defaultMessage is:
 #. Modify your filter criteria to get results.
 msgid "Modify your filter criteria to get results."
-msgstr ""
+msgstr "Modifique sus criterios de filtrado para obtener resultados."
 
 #: build/messages/components/Modal/CreateBlueprint.json
 #: build/messages/components/Sources/SourcesList.json
@@ -603,21 +719,21 @@ msgstr "Nombre"
 #. defaultMessage is:
 #. Name: {name}
 msgid "Name: {name}"
-msgstr ""
+msgstr "Nombre: {name}"
 
 #: build/messages/pages/blueprints/index.json
 #. [pages.blueprints.index.emptyTitle]
 #. defaultMessage is:
 #. No Blueprints
 msgid "No Blueprints"
-msgstr ""
+msgstr "No hay planos"
 
 #: build/messages/pages/blueprint/index.json
 #. [pages.blueprint.index.noImagesTitle]
 #. defaultMessage is:
 #. No Images
 msgid "No Images"
-msgstr ""
+msgstr "No hay imágenes"
 
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/pages/blueprints/index.json
@@ -628,14 +744,14 @@ msgstr ""
 #. defaultMessage is:
 #. No Results Match the Filter Criteria
 msgid "No Results Match the Filter Criteria"
-msgstr ""
+msgstr "Ningún resultado coincide con los criterios de filtrado"
 
 #: build/messages/pages/blueprint/index.json
 #. [pages.blueprint.index.noImagesMessage]
 #. defaultMessage is:
 #. No images have been created from this blueprint.
 msgid "No images have been created from this blueprint."
-msgstr ""
+msgstr "No se han creado imágenes a partir de este plano."
 
 #: build/messages/components/ListView/DependencyListView.json
 #. [components.ListView.DependencyListView.1983535507]
@@ -649,13 +765,22 @@ msgid ""
 "                            Click a flagged dependency to see other options "
 "available."
 msgstr ""
+"Una o más dependencias tienen múltiples variaciones que pueden ser usadas. "
+"Una variación por defecto fue seleccionada automáticamente."
+
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.1475836573]
+#. defaultMessage is:
+#. Only changes to selected components are shown.
+msgid "Only changes to selected components are shown."
+msgstr "Sólo se muestran las modificaciones de los componentes seleccionados."
 
 #: build/messages/pages/error/index.json
 #. [pages.error.index.oupsTitle]
 #. defaultMessage is:
 #. Oups, something went wrong
 msgid "Oups, something went wrong"
-msgstr ""
+msgstr "Oups, algo salió mal"
 
 # ctx::sourcefile::404 error page
 #: build/messages/pages/error/index.json
@@ -670,7 +795,14 @@ msgstr "Página no encontrada"
 #. defaultMessage is:
 #. Page not found
 msgid "Page not found"
-msgstr ""
+msgstr "Página no encontrada"
+
+#: build/messages/components/Pagination/Pagination.json
+#. [components.Pagination.Pagination.pagination]
+#. defaultMessage is:
+#. Pagination
+msgid "Pagination"
+msgstr "Paginación"
 
 # translation auto-copied from project Satellite6 Foreman, version 6.1, document foreman
 #: build/messages/components/ListView/ListItemImages.json
@@ -679,6 +811,13 @@ msgstr ""
 #. Pending
 msgid "Pending"
 msgstr "Pendiente"
+
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.433458873]
+#. defaultMessage is:
+#. Pending Changes
+msgid "Pending Changes"
+msgstr "Cambios Pendientes"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ListItemComponents.json
@@ -696,28 +835,36 @@ msgstr "Soltar"
 #. defaultMessage is:
 #. Release {release}
 msgid "Release {release}"
-msgstr ""
+msgstr "Liberación {release}"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ListItemComponents.json
+#: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.ComponentDetailsView.2703758654]
 #. defaultMessage is:
 #. Remove
 #. [components.ListView.ListItemComponents.2703758654]
 #. defaultMessage is:
 #. Remove
+#. [components.ListView.ListItemImages.2703758654]
+#. defaultMessage is:
+#. Remove
 msgid "Remove"
-msgstr "Retirar"
+msgstr "Eliminar"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #. [components.ListView.ComponentDetailsView.removeFromBlueprint]
 #. defaultMessage is:
 #. Remove from Blueprint
 msgid "Remove from Blueprint"
-msgstr ""
+msgstr "Eliminar de planos"
 
 #: build/messages/components/ListView/ListItemChanges.json
+#: build/messages/components/Modal/PendingChanges.json
 #. [components.ListView.ListItemChanges.2291868453]
+#. defaultMessage is:
+#. Removed
+#. [components.Modal.PendingChanges.2291868453] - Identifies the change as a component that was removed
 #. defaultMessage is:
 #. Removed
 msgid "Removed"
@@ -728,28 +875,32 @@ msgstr "Eliminado"
 #. defaultMessage is:
 #. Required information is missing.
 msgid "Required information is missing."
-msgstr ""
+msgstr "Falta la información requerida."
 
 #: build/messages/pages/blueprintEdit/index.json
 #. [pages.blueprintEdit.index.1513086105]
 #. defaultMessage is:
 #. Select components
 msgid "Select components"
-msgstr ""
+msgstr "Seleccionar componentes"
 
+#: build/messages/components/Modal/CreateImage.json
+#. [components.Modal.CreateImage.selectOne]
+#. defaultMessage is:
+#. Select one
+msgid "Select one"
+msgstr "Seleccione uno"
+
+#: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/pages/blueprint/index.json
+#. [components.ListView.BlueprintContents.selectedTabTitle]
+#. defaultMessage is:
+#. Selected Components
 #. [pages.blueprint.index.selectedComponentsTitle]
 #. defaultMessage is:
 #. Selected Components
 msgid "Selected Components"
-msgstr ""
-
-#: build/messages/components/ListView/BlueprintContents.json
-#. [components.ListView.BlueprintContents.selectedTabTitle]
-#. defaultMessage is:
-#. Selected Components {count}
-msgid "Selected Components {count}"
-msgstr ""
+msgstr "Componentes seleccionados"
 
 #: build/messages/components/ListView/ComponentSummaryList.json
 #. [components.ListView.ComponentSummaryList.1256153657]
@@ -763,7 +914,7 @@ msgstr "Mostrar todo"
 #. defaultMessage is:
 #. Show Details and More Options
 msgid "Show Details and More Options"
-msgstr ""
+msgstr "Mostrar detalles y más opciones"
 
 #: build/messages/components/ListView/ComponentSummaryList.json
 #. [components.ListView.ComponentSummaryList.2354351315]
@@ -771,6 +922,20 @@ msgstr ""
 #. Show Less
 msgid "Show Less"
 msgstr "Mostrar menos"
+
+#: build/messages/components/Pagination/Pagination.json
+#. [components.Pagination.Pagination.nextPage]
+#. defaultMessage is:
+#. Show Next Page
+msgid "Show Next Page"
+msgstr "Mostrar la página siguiente"
+
+#: build/messages/components/Pagination/Pagination.json
+#. [components.Pagination.Pagination.previousPage]
+#. defaultMessage is:
+#. Show Previous Page
+msgid "Show Previous Page"
+msgstr "Mostrar página anterior"
 
 #: build/messages/components/Sources/SourcesList.json
 #. [components.Sources.SourcesList.3503331186] - The path or url to the source repository
@@ -791,14 +956,35 @@ msgstr "Fuentes"
 #. defaultMessage is:
 #. Specify a new blueprint name.
 msgid "Specify a new blueprint name."
-msgstr ""
+msgstr "Especifique un nuevo nombre de plano."
+
+#: build/messages/components/ListView/ListItemImages.json
+#. [components.ListView.ListItemImages.2989081855]
+#. defaultMessage is:
+#. Stop
+msgid "Stop"
+msgstr "Detener"
+
+#: build/messages/components/Modal/StopBuild.json
+#. [components.Modal.StopBuild.1162993432]
+#. defaultMessage is:
+#. Stop Build
+msgid "Stop Build"
+msgstr "Detener la construcción"
+
+#: build/messages/components/ListView/ListItemImages.json
+#. [components.ListView.ListItemImages.2434115730]
+#. defaultMessage is:
+#. Stopping
+msgid "Stopping"
+msgstr "Parada"
 
 #: build/messages/components/Modal/ManageSources.json
 #. [components.Modal.ManageSources.766860407] - System sources are configured repositories that were found on the host machine
 #. defaultMessage is:
 #. System Sources
 msgid "System Sources"
-msgstr ""
+msgstr "Fuentes del sistema"
 
 #: build/messages/components/Modal/ExportBlueprint.json
 #. [components.Modal.ExportBlueprint.3495336243]
@@ -807,26 +993,33 @@ msgstr ""
 msgid "Text"
 msgstr "Texto"
 
+#: build/messages/components/Modal/StopBuild.json
+#. [components.Modal.StopBuild.3426018028]
+#. defaultMessage is:
+#. The build process cannot resume after it stops.
+msgid "The build process cannot resume after it stops."
+msgstr "El proceso de compilación no puede reanudarse después de que se detenga."
+
 #: build/messages/components/Modal/CreateBlueprint.json
 #. [components.Modal.CreateBlueprint.216946930]
 #. defaultMessage is:
 #. The fields marked with {val} are required.
 msgid "The fields marked with {val} are required."
-msgstr ""
+msgstr "Los campos marcados con {val} son obligatorios."
 
 #: build/messages/components/Modal/CreateBlueprint.json
 #. [components.Modal.CreateBlueprint.2580689893]
 #. defaultMessage is:
 #. The name {name} already exists.
 msgid "The name {name} already exists."
-msgstr ""
+msgstr "El nombre {name} ya existe."
 
 #: build/messages/pages/error/index.json
 #. [pages.error.index.26562577]
 #. defaultMessage is:
 #. The page you're looking for does not exist or an another error occurred.
 msgid "The page you're looking for does not exist or an another error occurred."
-msgstr ""
+msgstr "La página que está buscando no existe o se ha producido otro error."
 
 #: build/messages/pages/blueprint/index.json
 #. [pages.blueprint.index.emptyBlueprintMessage]
@@ -835,14 +1028,45 @@ msgstr ""
 msgid ""
 "There are no components listed in the blueprint. Edit the blueprint to add "
 "components."
-msgstr ""
+msgstr "No hay componentes listados en el plano, edítelo para añadir componentes."
 
 #: build/messages/components/Modal/DeleteBlueprint.json
+#: build/messages/components/Modal/DeleteImage.json
 #. [components.Modal.DeleteBlueprint.181468144]
 #. defaultMessage is:
 #. This action cannot be undone.
+#. [components.Modal.DeleteImage.181468144]
+#. defaultMessage is:
+#. This action cannot be undone.
 msgid "This action cannot be undone."
+msgstr "Esta acción no puede deshacerse."
+
+#: build/messages/components/Modal/CreateImage.json
+#. [components.Modal.CreateImage.warningUnsaved]
+#. defaultMessage is:
+#. This blueprint has changes that are not committed. These changes will be committed before the image is created.
+msgid ""
+"This blueprint has changes that are not committed. These changes will be "
+"committed before the image is created."
 msgstr ""
+"Este plano tiene cambios que no son confirmados y que serán confirmados "
+"antes de que la imagen sea creada."
+
+#: build/messages/components/Modal/CreateImage.json
+#. [components.Modal.CreateImage.1766703173]
+#. defaultMessage is:
+#. This blueprint is empty.
+msgid "This blueprint is empty."
+msgstr "Este plano está vacío."
+
+#: build/messages/components/Modal/CreateImage.json
+#. [components.Modal.CreateImage.infotip]
+#. defaultMessage is:
+#. This process can take a while. Images are built in the order they are started.
+msgid ""
+"This process can take a while. Images are built in the order they are "
+"started."
+msgstr "Las imágenes se construyen en el orden en que se inician."
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/Sources/SourcesList.json
@@ -876,6 +1100,13 @@ msgstr "URL"
 msgid "Update"
 msgstr "Actualizar"
 
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.562988552] - Identifies the change as a component that was updated
+#. defaultMessage is:
+#. Updated
+msgid "Updated"
+msgstr "Actualizado"
+
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ListItemComponents.json
 #. [components.ListView.ComponentDetailsView.602883748]
@@ -892,7 +1123,7 @@ msgstr "Versión"
 #. defaultMessage is:
 #. Version {version}
 msgid "Version {version}"
-msgstr ""
+msgstr "Versión {version}"
 
 #: build/messages/components/ListView/ListItemComponents.json
 #. [components.ListView.ListItemComponents.3097747573]
@@ -906,14 +1137,28 @@ msgstr "VIsta"
 #. defaultMessage is:
 #. View Sources
 msgid "View Sources"
-msgstr ""
+msgstr "Ver fuentes"
+
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.2755325844]
+#. defaultMessage is:
+#. from
+msgid "from"
+msgstr "a causa de"
 
 #: build/messages/pages/error/index.json
 #. [pages.error.index.2054225650]
 #. defaultMessage is:
 #. home page
 msgid "home page"
-msgstr ""
+msgstr "página de inicio"
+
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.152217691]
+#. defaultMessage is:
+#. to
+msgid "to"
+msgstr "para"
 
 #: build/messages/components/Modal/CreateImage.json
 #. [components.Modal.CreateImage.282502245]
@@ -927,64 +1172,113 @@ msgstr "x86_64"
 #. defaultMessage is:
 #. {blueprint} Blueprint changes are committed.
 msgid "{blueprint} Blueprint changes are committed."
-msgstr ""
+msgstr "{blueprint} Los cambios en los planos están comprometidos."
 
 #: build/messages/data/NotificationsApi.json
 #. [data.NotificationsApi.477516828]
 #. defaultMessage is:
 #. {blueprint} Commit failed.
 msgid "{blueprint} Commit failed."
-msgstr ""
+msgstr "{blueprint} La comisión falló."
 
 #: build/messages/data/NotificationsApi.json
 #. [data.NotificationsApi.1829299735]
 #. defaultMessage is:
 #. {blueprint} Committing blueprint.
 msgid "{blueprint} Committing blueprint."
-msgstr ""
+msgstr "{blueprint} Comprometiendo el plano."
 
 #: build/messages/data/NotificationsApi.json
-#. [data.NotificationsApi.1846920931]
+#. [data.NotificationsApi.3947958753]
 #. defaultMessage is:
-#. {blueprint} Creating image.
-msgid "{blueprint} Creating image."
-msgstr ""
+#. {blueprint} Image creation failed.
+msgid "{blueprint} Image creation failed."
+msgstr "{blueprint} La creación de la imagen falló."
+
+#: build/messages/data/NotificationsApi.json
+#. [data.NotificationsApi.705169148]
+#. defaultMessage is:
+#. {blueprint} Image creation has been added to the queue.
+msgid "{blueprint} Image creation has been added to the queue."
+msgstr "{blueprint} La creación de imágenes se ha añadido a la cola."
+
+#: build/messages/data/NotificationsApi.json
+#. [data.NotificationsApi.1726548071]
+#. defaultMessage is:
+#. {blueprint} Image creation has started.
+msgid "{blueprint} Image creation has started."
+msgstr "{blueprint} La creación de la imagen ha comenzado."
 
 #: build/messages/data/NotificationsApi.json
 #. [data.NotificationsApi.210196387]
 #. defaultMessage is:
 #. {blueprint} Image creation is complete.
 msgid "{blueprint} Image creation is complete."
-msgstr ""
+msgstr "{blueprint} La creación de la imagen se ha completado."
+
+#: build/messages/components/Modal/CreateImage.json
+#. [components.Modal.CreateImage.2122759296]
+#. defaultMessage is:
+#. {builds, plural, one {# build is waiting} other {# builds are waiting}}
+msgid "{builds, plural, one {# build is waiting} other {# builds are waiting}}"
+msgstr "{builds, plural, one {# build is waiting} otros }{# builds are waiting}"
 
 #: build/messages/components/Modal/ExportBlueprint.json
 #. [components.Modal.ExportBlueprint.1557505074]
 #. defaultMessage is:
 #. {count} total components
 msgid "{count} total components"
-msgstr ""
+msgstr "{count} componentes totales"
+
+#: build/messages/components/Pagination/Pagination.json
+#. [components.Pagination.Pagination.3506832526]
+#. defaultMessage is:
+#. {currentPage} of {totalPages}
+msgid "{currentPage} of {totalPages}"
+msgstr "{currentPage} de {totalPages}"
+
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.3908981070]
+#. defaultMessage is:
+#. {from} {oldVersion} {to} {newVersion}
+msgid "{from} {oldVersion} {to} {newVersion}"
+msgstr "{from} {oldVersion} {to} {newVersion}"
 
 #: build/messages/pages/error/index.json
 #. [pages.error.index.526995878]
 #. defaultMessage is:
 #. {goBack}, or head over to the {homePage} to choose a new direction.
 msgid "{goBack}, or head over to the {homePage} to choose a new direction."
-msgstr ""
+msgstr "{goBack}o diríjase al {homePage} para elegir una nueva dirección."
+
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.3141775911]
+#. defaultMessage is:
+#. {heading} {parenthetical}
+msgid "{heading} {parenthetical}"
+msgstr "{heading} {parenthetical}"
 
 #: build/messages/pages/blueprintEdit/index.json
 #. [pages.blueprintEdit.index.4031669927]
 #. defaultMessage is:
 #. {pendingChanges, plural, one {# Pending Change} other {# Pending Changes}}
 msgid "{pendingChanges, plural, one {# Pending Change} other {# Pending Changes}}"
-msgstr ""
+msgstr "{pendingChanges, plural, one {# Pending Change} otros }{# Pending Changes}"
 
 #: build/messages/pages/blueprintEdit/index.json
 #. [pages.blueprintEdit.index.3140434516]
 #. defaultMessage is:
 #. {selectComponents} in this list to add to the blueprint.
 msgid "{selectComponents} in this list to add to the blueprint."
-msgstr ""
+msgstr "{selectComponents} en esta lista para añadir al plano."
+
+#: build/messages/components/Pagination/Pagination.json
+#. [components.Pagination.Pagination.3363928156]
+#. defaultMessage is:
+#. {startNumber} - {endNumber} of {totalNumber}
+msgid "{startNumber} - {endNumber} of {totalNumber}"
+msgstr "{startNumber} - {endNumber} de {totalNumber}"
 
 #: ./public/manifest.json
 msgid "Image Builder"
-msgstr ""
+msgstr "Constructor de Imágenes"

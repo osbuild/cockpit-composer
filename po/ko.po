@@ -4,18 +4,35 @@ msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Plural-Forms: nplurals=1; plural=0\n"
-"PO-Revision-Date: 2018-08-23 10:19+0000\n"
+"POT-Creation-Date: 2018-10-15T06:34:21.742Z\n"
+"Content-Transfer-Encoding: 8bit\n"
+"MIME-Version: 1.0\n"
+"X-Generator: Zanata 4.6.2\n"
+"PO-Revision-Date: 2018-10-17 09:25+0000\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Korean\n"
 "Language: ko\n"
-"X-Generator: Zanata 4.6.2\n"
+
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.parenthetical] - Describes the sort order of the pending changes
+#. defaultMessage is:
+#. (most recent first)
+msgid "(most recent first)"
+msgstr "(최신 순)"
+
+#: build/messages/components/Modal/CreateImage.json
+#. [components.Modal.CreateImage.485442669]
+#. defaultMessage is:
+#. 1 build is in progress
+msgid "1 build is in progress"
+msgstr "1 개의 빌드가 진행 중입니다."
 
 #: build/messages/components/Modal/CreateBlueprint.json
 #. [components.Modal.CreateBlueprint.4177685254]
 #. defaultMessage is:
 #. A blueprint name is required.
 msgid "A blueprint name is required."
-msgstr ""
+msgstr "청사진 이름이 필요합니다."
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #. [components.ListView.ComponentDetailsView.3099331554]
@@ -29,14 +46,18 @@ msgstr "추가"
 #. defaultMessage is:
 #. Add Blueprint Components
 msgid "Add Blueprint Components"
-msgstr ""
+msgstr "청사진 구성 요소 추가"
 
 #: build/messages/components/ListView/ListItemChanges.json
+#: build/messages/components/Modal/PendingChanges.json
 #. [components.ListView.ListItemChanges.1362724042]
 #. defaultMessage is:
 #. Added
+#. [components.Modal.PendingChanges.1362724042] - Identifies the change as a component that was added
+#. defaultMessage is:
+#. Added
 msgid "Added"
-msgstr ""
+msgstr "추가됨:"
 
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/components/Modal/ManageSources.json
@@ -51,28 +72,28 @@ msgstr ""
 #. defaultMessage is:
 #. An Error Occurred
 msgid "An Error Occurred"
-msgstr ""
+msgstr "오류가 발생했습니다 "
 
 #: build/messages/components/ListView/BlueprintContents.json
 #. [components.ListView.BlueprintContents.emptyStateErrorMessage]
 #. defaultMessage is:
 #. An error occurred while trying to get blueprint contents.
 msgid "An error occurred while trying to get blueprint contents."
-msgstr ""
+msgstr "청사진 내용을 가져 오는 도중 오류가 발생했습니다."
 
 #: build/messages/components/Modal/ManageSources.json
 #. [components.Modal.ManageSources.errorStateMessage]
 #. defaultMessage is:
 #. An error occurred while trying to get sources.
 msgid "An error occurred while trying to get sources."
-msgstr ""
+msgstr "소스를 가져 오는 도중 오류가 발생했습니다."
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #. [components.ListView.ComponentDetailsView.668376819]
 #. defaultMessage is:
 #. Apply Change
 msgid "Apply Change"
-msgstr ""
+msgstr "변경 사항 적용"
 
 # auto translated by TM merge from project: RHOSP Director Installation and Usage , version: 11-Korean, DocId: master
 #: build/messages/components/Modal/CreateImage.json
@@ -87,14 +108,28 @@ msgstr "아키텍처"
 #. defaultMessage is:
 #. Are you sure you want to delete the blueprint {name}?
 msgid "Are you sure you want to delete the blueprint {name}?"
-msgstr ""
+msgstr " 청사진 {name}을/를 정말로 삭제하시겠습니까?"
+
+#: build/messages/components/Modal/DeleteImage.json
+#. [components.Modal.DeleteImage.1346739796]
+#. defaultMessage is:
+#. Are you sure you want to delete the image for {blueprintName}?
+msgid "Are you sure you want to delete the image for {blueprintName}?"
+msgstr " {blueprintName}의 이미지를 정말로 삭제하시겠습니까?"
+
+#: build/messages/components/Modal/StopBuild.json
+#. [components.Modal.StopBuild.234116272]
+#. defaultMessage is:
+#. Are you sure you want to stop the build process for {blueprintName}?
+msgid "Are you sure you want to stop the build process for {blueprintName}?"
+msgstr " {blueprintName}의 빌드 프로세스를 중지하시겠습니까? "
 
 #: build/messages/pages/blueprintEdit/index.json
 #. [pages.blueprintEdit.index.2346760817]
 #. defaultMessage is:
 #. Available Components
 msgid "Available Components"
-msgstr ""
+msgstr "사용 가능한 구성 요소"
 
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
@@ -105,30 +140,34 @@ msgstr ""
 #. defaultMessage is:
 #. Back to Blueprints
 msgid "Back to Blueprints"
-msgstr ""
+msgstr "청사진으로 돌아 가기"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #. [components.ListView.ComponentDetailsView.3057400647]
 #. defaultMessage is:
 #. Back to {parent}
 msgid "Back to {parent}"
-msgstr ""
+msgstr "{parent}(으)로 돌아가기 "
 
 #: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.ListItemImages.2943300373]
 #. defaultMessage is:
 #. Based on Version {version}
 msgid "Based on Version {version}"
-msgstr ""
+msgstr "{version} 버전 기반"
 
 #: build/messages/components/Modal/CreateImage.json
 #: build/messages/components/Modal/ExportBlueprint.json
+#: build/messages/components/Modal/PendingChanges.json
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
 #. [components.Modal.CreateImage.1281198655]
 #. defaultMessage is:
 #. Blueprint
 #. [components.Modal.ExportBlueprint.1281198655]
+#. defaultMessage is:
+#. Blueprint
+#. [components.Modal.PendingChanges.blueprint]
 #. defaultMessage is:
 #. Blueprint
 #. [pages.blueprint.index.blueprint]
@@ -138,33 +177,34 @@ msgstr ""
 #. defaultMessage is:
 #. Blueprint
 msgid "Blueprint"
-msgstr ""
+msgstr "청사진"
 
 #: build/messages/pages/blueprintEdit/index.json
 #. [pages.blueprintEdit.index.711554923]
 #. defaultMessage is:
 #. Blueprint Components
 msgid "Blueprint Components"
-msgstr ""
+msgstr "청사진 구성 요소"
 
 #: build/messages/pages/blueprints/index.json
 #. [pages.blueprints.index.blueprintsTitle]
 #. defaultMessage is:
 #. Blueprints
 msgid "Blueprints"
-msgstr ""
+msgstr "청사진"
 
 #: build/messages/pages/blueprintEdit/index.json
 #. [pages.blueprintEdit.index.addComponentMessage]
 #. defaultMessage is:
 #. Browse or search for components, then add them to the blueprint.
 msgid "Browse or search for components, then add them to the blueprint."
-msgstr ""
+msgstr "구성 요소를 찾아 보거나 검색 한 다음 청사진에 추가하십시오."
 
 #: build/messages/components/Modal/CreateBlueprint.json
 #: build/messages/components/Modal/CreateImage.json
 #: build/messages/components/Modal/DeleteBlueprint.json
-#: build/messages/data/NotificationsApi.json
+#: build/messages/components/Modal/DeleteImage.json
+#: build/messages/components/Modal/StopBuild.json
 #. [components.Modal.CreateBlueprint.3528672691]
 #. defaultMessage is:
 #. Cancel
@@ -174,11 +214,37 @@ msgstr ""
 #. [components.Modal.DeleteBlueprint.3528672691]
 #. defaultMessage is:
 #. Cancel
-#. [data.NotificationsApi.3528672691]
+#. [components.Modal.DeleteImage.3528672691]
+#. defaultMessage is:
+#. Cancel
+#. [components.Modal.StopBuild.3528672691]
 #. defaultMessage is:
 #. Cancel
 msgid "Cancel"
-msgstr "취소 "
+msgstr "취소"
+
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.2208777537]
+#. defaultMessage is:
+#. Changes Pending Commit
+msgid "Changes Pending Commit"
+msgstr "보류 중인 커밋을 변경 "
+
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.683130131]
+#. defaultMessage is:
+#. Changes made in a previous session
+msgid "Changes made in a previous session"
+msgstr "이전 세션에서 변경한 내용"
+
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.previousSessionInfotip]
+#. defaultMessage is:
+#. Changes made in a previous session are not listed in the order they were made. If you choose to undo these changes, they are undone as a group.
+msgid ""
+"Changes made in a previous session are not listed in the order they were "
+"made. If you choose to undo these changes, they are undone as a group."
+msgstr "이전 세션에서 변경한 사항은 변경된 순서대로 나열되지 않습니다. 이러한 변경 사항을 실행 취소하면 그룹으로 실행 취소됩니다."
 
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/components/Toolbar/ToolbarLayout.json
@@ -197,11 +263,12 @@ msgstr "취소 "
 #. defaultMessage is:
 #. Clear All Filters
 msgid "Clear All Filters"
-msgstr ""
+msgstr "모든 필터 지우기"
 
 #: build/messages/components/Modal/ExportBlueprint.json
 #: build/messages/components/Modal/ManageSources.json
 #: build/messages/components/Modal/ManageSources.json
+#: build/messages/components/Modal/PendingChanges.json
 #: build/messages/components/Notifications/Notification.json
 #. [components.Modal.ExportBlueprint.2324218928]
 #. defaultMessage is:
@@ -212,25 +279,46 @@ msgstr ""
 #. [components.Modal.ManageSources.2324218928]
 #. defaultMessage is:
 #. Close
+#. [components.Modal.PendingChanges.closeButtonLabel]
+#. defaultMessage is:
+#. Close
 #. [components.Notifications.Notification.2324218928]
 #. defaultMessage is:
 #. Close
 msgid "Close"
 msgstr "닫기"
 
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.2299254306]
+#. defaultMessage is:
+#. Comment
+msgid "Comment"
+msgstr "설명"
+
+#: build/messages/components/Modal/PendingChanges.json
 #: build/messages/pages/blueprintEdit/index.json
+#. [components.Modal.PendingChanges.commitButtonLabel]
+#. defaultMessage is:
+#. Commit
 #. [pages.blueprintEdit.index.1951088698]
 #. defaultMessage is:
 #. Commit
 msgid "Commit"
 msgstr "커밋 "
 
+#: build/messages/components/Modal/CreateImage.json
+#. [components.Modal.CreateImage.4244040826]
+#. defaultMessage is:
+#. Commit and Create
+msgid "Commit and Create"
+msgstr "커밋 및 생성"
+
 #: build/messages/components/ListView/ListItemChanges.json
 #. [components.ListView.ListItemChanges.1076233378]
 #. defaultMessage is:
 #. Commit {commitNumber}
 msgid "Commit {commitNumber}"
-msgstr ""
+msgstr "커밋 {commitNumber}"
 
 #: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.ListItemImages.1275749364]
@@ -248,14 +336,14 @@ msgstr "완료"
 #. defaultMessage is:
 #. Component Details
 msgid "Component Details"
-msgstr ""
+msgstr "구성 요소 세부 정보"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #. [components.ListView.ComponentDetailsView.2104464527]
 #. defaultMessage is:
 #. Component Options
 msgid "Component Options"
-msgstr ""
+msgstr "구성 요소 옵션"
 
 # translation auto-copied from project [RHEL] [CLUSTER] High Availability Add-On Overview  (was Cluster Suite Overview), version 5.9, document RHCS_Component_Summary
 #: build/messages/components/ListView/ComponentDetailsView.json
@@ -288,7 +376,7 @@ msgstr "복사"
 #. defaultMessage is:
 #. Create
 msgid "Create"
-msgstr "생성 "
+msgstr "생성"
 
 #: build/messages/components/Modal/CreateBlueprint.json
 #: build/messages/components/Toolbar/BlueprintsToolbar.json
@@ -303,7 +391,7 @@ msgstr "생성 "
 #. defaultMessage is:
 #. Create Blueprint
 msgid "Create Blueprint"
-msgstr ""
+msgstr "청사진 만들기"
 
 #: build/messages/components/ListView/BlueprintListView.json
 #: build/messages/components/Modal/CreateImage.json
@@ -322,7 +410,7 @@ msgstr ""
 #. defaultMessage is:
 #. Create Image
 msgid "Create Image"
-msgstr ""
+msgstr "이미지 만들기"
 
 #: build/messages/pages/blueprints/index.json
 #. [pages.blueprints.index.emptyMessage]
@@ -331,21 +419,35 @@ msgstr ""
 msgid ""
 "Create a blueprint to define the contents that will be included in the "
 "images you create. Images can be produced in a variety of output formats."
-msgstr ""
+msgstr "생성한 이미지에 포함할 내용을 정의하기 위해 청사진을 만듭니다. 이미지는 다양한 출력 형식으로 생성할 수 있습니다."
+
+#: build/messages/components/Pagination/Pagination.json
+#. [components.Pagination.Pagination.2925773048] - Label for the string: 1–50 of 125; only visible to screen readers
+#. defaultMessage is:
+#. Current Items
+msgid "Current Items"
+msgstr "현재 항목"
+
+#: build/messages/components/Pagination/Pagination.json
+#. [components.Pagination.Pagination.currentPage] - Label of form input for setting current page number
+#. defaultMessage is:
+#. Current Page
+msgid "Current Page"
+msgstr "현재 페이지"
 
 #: build/messages/components/Modal/ManageSources.json
 #. [components.Modal.ManageSources.3535450089] - Custom sources are additional repositories that were added by the user
 #. defaultMessage is:
 #. Custom Sources
 msgid "Custom Sources"
-msgstr ""
+msgstr "사용자 정의 소스"
 
 #: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.ListItemImages.3751098589]
 #. defaultMessage is:
 #. Date Created {date}
 msgid "Date Created {date}"
-msgstr ""
+msgstr "작성일 {date}"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #. [components.ListView.ComponentDetailsView.1305464942]
@@ -359,50 +461,58 @@ msgstr "디버그 "
 #. defaultMessage is:
 #. Default
 msgid "Default"
-msgstr "디폴트 "
+msgstr "기본"
 
 #: build/messages/components/ListView/BlueprintListView.json
+#: build/messages/components/ListView/ListItemImages.json
 #: build/messages/components/Modal/DeleteBlueprint.json
 #. [components.ListView.BlueprintListView.3645414921]
+#. defaultMessage is:
+#. Delete
+#. [components.ListView.ListItemImages.3645414921]
 #. defaultMessage is:
 #. Delete
 #. [components.Modal.DeleteBlueprint.3645414921]
 #. defaultMessage is:
 #. Delete
 msgid "Delete"
-msgstr "삭제 "
+msgstr "삭제"
 
 #: build/messages/components/Modal/DeleteBlueprint.json
 #. [components.Modal.DeleteBlueprint.3153775112]
 #. defaultMessage is:
 #. Delete Blueprint
 msgid "Delete Blueprint"
-msgstr ""
+msgstr "청사진 삭제"
 
+#: build/messages/components/Modal/DeleteImage.json
+#. [components.Modal.DeleteImage.1731766393]
+#. defaultMessage is:
+#. Delete Image
+msgid "Delete Image"
+msgstr "이미지 삭제"
+
+#: build/messages/components/ListView/BlueprintContents.json
+#: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ComponentSummaryList.json
+#. [components.ListView.BlueprintContents.dependenciesTabTitle]
+#. defaultMessage is:
+#. Dependencies
+#. [components.ListView.ComponentDetailsView.dependencies]
+#. defaultMessage is:
+#. Dependencies
 #. [components.ListView.ComponentSummaryList.3727965333]
 #. defaultMessage is:
 #. Dependencies
 msgid "Dependencies"
 msgstr "종속성 "
 
-#: build/messages/components/ListView/BlueprintContents.json
-#: build/messages/components/ListView/ComponentDetailsView.json
-#. [components.ListView.BlueprintContents.dependenciesTabTitle]
-#. defaultMessage is:
-#. Dependencies {count}
-#. [components.ListView.ComponentDetailsView.dependencies]
-#. defaultMessage is:
-#. Dependencies {count}
-msgid "Dependencies {count}"
-msgstr ""
-
 #: build/messages/components/ListView/ListItemLabel.json
 #. [components.ListView.ListItemLabel.2051291306]
 #. defaultMessage is:
 #. Dependency
 msgid "Dependency"
-msgstr ""
+msgstr "종속성 "
 
 #: build/messages/components/Modal/CreateBlueprint.json
 #: build/messages/pages/blueprint/index.json
@@ -413,7 +523,7 @@ msgstr ""
 #. defaultMessage is:
 #. Description
 msgid "Description"
-msgstr "설명 "
+msgstr "설명"
 
 # translation auto-copied from project Customer Portal Translations, version PortalCaseManagementStrings, document PortalCaseManagementStrings, author eukim
 #: build/messages/pages/blueprintEdit/index.json
@@ -454,21 +564,21 @@ msgstr "편집"
 #. defaultMessage is:
 #. Edit Blueprint
 msgid "Edit Blueprint"
-msgstr ""
+msgstr "청사진 편집"
 
 #: build/messages/pages/blueprint/index.json
 #. [pages.blueprint.index.emptyBlueprintTitle]
 #. defaultMessage is:
 #. Empty Blueprint
 msgid "Empty Blueprint"
-msgstr ""
+msgstr "청사진이 비어있음 "
 
 #: build/messages/pages/error/index.json
 #. [pages.error.index.errorMessage]
 #. defaultMessage is:
 #. Error
 msgid "Error"
-msgstr "오류 "
+msgstr "오류"
 
 #: build/messages/components/ListView/BlueprintListView.json
 #: build/messages/pages/blueprint/index.json
@@ -490,35 +600,35 @@ msgstr "내보내기 "
 #. defaultMessage is:
 #. Export Blueprint
 msgid "Export Blueprint"
-msgstr ""
+msgstr "청사진 내보내기 "
 
 #: build/messages/components/Modal/ExportBlueprint.json
 #. [components.Modal.ExportBlueprint.3658760324]
 #. defaultMessage is:
 #. Export as
 msgid "Export as"
-msgstr ""
+msgstr "다음 형식으로 내보내기"
 
 #: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.ListItemImages.2753020605]
 #. defaultMessage is:
 #. Failed
 msgid "Failed"
-msgstr "실패하였습니다"
+msgstr "실패했습니다. "
 
 #: build/messages/pages/blueprintEdit/index.json
 #. [pages.blueprintEdit.index.filterByLabel]
 #. defaultMessage is:
 #. Filter Available Components by Name
 msgid "Filter Available Components by Name"
-msgstr ""
+msgstr "이름별로 사용 ​​가능한 구성 요소 필터링"
 
 #: build/messages/pages/blueprintEdit/index.json
 #. [pages.blueprintEdit.index.filterByPlaceholder]
 #. defaultMessage is:
 #. Filter By Name...
 msgid "Filter By Name..."
-msgstr ""
+msgstr "이름으로 필터링 ..."
 
 #: build/messages/pages/error/index.json
 #. [pages.error.index.2333299345]
@@ -536,14 +646,14 @@ msgstr "뒤로 이동"
 #. defaultMessage is:
 #. Hide Details
 msgid "Hide Details"
-msgstr ""
+msgstr "세부 정보 숨기기"
 
 #: build/messages/components/Modal/CreateImage.json
 #. [components.Modal.CreateImage.380558550]
 #. defaultMessage is:
 #. Image Type
 msgid "Image Type"
-msgstr "그림 형식"
+msgstr "이미지 유형"
 
 #: build/messages/pages/blueprint/index.json
 #. [pages.blueprint.index.imagesTitle]
@@ -564,7 +674,7 @@ msgstr "진행 중 "
 #. defaultMessage is:
 #. Install Profile
 msgid "Install Profile"
-msgstr ""
+msgstr "프로파일 설치"
 
 #: build/messages/components/Loading/Loading.json
 #. [components.Loading.Loading.2617450248]
@@ -582,7 +692,7 @@ msgstr "로딩 중 "
 #. defaultMessage is:
 #. Modify your filter criteria to get results.
 msgid "Modify your filter criteria to get results."
-msgstr ""
+msgstr "원하는 검색 결과를 얻으려면 필터를 수정하십시오."
 
 #: build/messages/components/Modal/CreateBlueprint.json
 #: build/messages/components/Sources/SourcesList.json
@@ -604,21 +714,21 @@ msgstr "이름"
 #. defaultMessage is:
 #. Name: {name}
 msgid "Name: {name}"
-msgstr ""
+msgstr "이름: {name}"
 
 #: build/messages/pages/blueprints/index.json
 #. [pages.blueprints.index.emptyTitle]
 #. defaultMessage is:
 #. No Blueprints
 msgid "No Blueprints"
-msgstr ""
+msgstr "청사진 없음"
 
 #: build/messages/pages/blueprint/index.json
 #. [pages.blueprint.index.noImagesTitle]
 #. defaultMessage is:
 #. No Images
 msgid "No Images"
-msgstr ""
+msgstr "이미지 없음"
 
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/pages/blueprints/index.json
@@ -629,14 +739,14 @@ msgstr ""
 #. defaultMessage is:
 #. No Results Match the Filter Criteria
 msgid "No Results Match the Filter Criteria"
-msgstr ""
+msgstr "검색 기준과 일치하는 결과가 없습니다."
 
 #: build/messages/pages/blueprint/index.json
 #. [pages.blueprint.index.noImagesMessage]
 #. defaultMessage is:
 #. No images have been created from this blueprint.
 msgid "No images have been created from this blueprint."
-msgstr ""
+msgstr "이 청사진에서 생성된 이미지가 없습니다."
 
 #: build/messages/components/ListView/DependencyListView.json
 #. [components.ListView.DependencyListView.1983535507]
@@ -650,13 +760,22 @@ msgid ""
 "                            Click a flagged dependency to see other options "
 "available."
 msgstr ""
+"하나 이상의 종속성에는 여러 가지 변형을 사용할 수 있습니다. 기본 변형이 자동으로 선택됩니다. 플래그가 있는 종속성을 클릭하여 사용 "
+"가능한 다른 옵션을 확인하십시오."
+
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.1475836573]
+#. defaultMessage is:
+#. Only changes to selected components are shown.
+msgid "Only changes to selected components are shown."
+msgstr "선택한 구성 요소의 변경 사항 만 표시됩니다."
 
 #: build/messages/pages/error/index.json
 #. [pages.error.index.oupsTitle]
 #. defaultMessage is:
 #. Oups, something went wrong
 msgid "Oups, something went wrong"
-msgstr ""
+msgstr "문제가 발생했습니다. "
 
 # ctx::sourcefile::404 error page
 #: build/messages/pages/error/index.json
@@ -671,7 +790,14 @@ msgstr "페이지를 찾을 수 없음"
 #. defaultMessage is:
 #. Page not found
 msgid "Page not found"
-msgstr ""
+msgstr "페이지를 찾을 수 없음"
+
+#: build/messages/components/Pagination/Pagination.json
+#. [components.Pagination.Pagination.pagination]
+#. defaultMessage is:
+#. Pagination
+msgid "Pagination"
+msgstr "페이지 매김 "
 
 #: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.ListItemImages.1102534324]
@@ -679,6 +805,13 @@ msgstr ""
 #. Pending
 msgid "Pending"
 msgstr "보류 중 "
+
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.433458873]
+#. defaultMessage is:
+#. Pending Changes
+msgid "Pending Changes"
+msgstr "보류중인 변경"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ListItemComponents.json
@@ -696,60 +829,72 @@ msgstr "릴리즈 "
 #. defaultMessage is:
 #. Release {release}
 msgid "Release {release}"
-msgstr ""
+msgstr "릴리즈 {release}"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ListItemComponents.json
+#: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.ComponentDetailsView.2703758654]
 #. defaultMessage is:
 #. Remove
 #. [components.ListView.ListItemComponents.2703758654]
 #. defaultMessage is:
 #. Remove
+#. [components.ListView.ListItemImages.2703758654]
+#. defaultMessage is:
+#. Remove
 msgid "Remove"
-msgstr "삭제"
+msgstr "제거 "
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #. [components.ListView.ComponentDetailsView.removeFromBlueprint]
 #. defaultMessage is:
 #. Remove from Blueprint
 msgid "Remove from Blueprint"
-msgstr ""
+msgstr "청사진에서 삭제 "
 
 #: build/messages/components/ListView/ListItemChanges.json
+#: build/messages/components/Modal/PendingChanges.json
 #. [components.ListView.ListItemChanges.2291868453]
 #. defaultMessage is:
 #. Removed
+#. [components.Modal.PendingChanges.2291868453] - Identifies the change as a component that was removed
+#. defaultMessage is:
+#. Removed
 msgid "Removed"
-msgstr ""
+msgstr "삭제됨"
 
 #: build/messages/components/Modal/CreateBlueprint.json
 #. [components.Modal.CreateBlueprint.128739785]
 #. defaultMessage is:
 #. Required information is missing.
 msgid "Required information is missing."
-msgstr ""
+msgstr "필수 정보가 없습니다. "
 
 #: build/messages/pages/blueprintEdit/index.json
 #. [pages.blueprintEdit.index.1513086105]
 #. defaultMessage is:
 #. Select components
 msgid "Select components"
-msgstr ""
+msgstr "구성 요소 선택"
 
+#: build/messages/components/Modal/CreateImage.json
+#. [components.Modal.CreateImage.selectOne]
+#. defaultMessage is:
+#. Select one
+msgid "Select one"
+msgstr "모두 선택"
+
+#: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/pages/blueprint/index.json
+#. [components.ListView.BlueprintContents.selectedTabTitle]
+#. defaultMessage is:
+#. Selected Components
 #. [pages.blueprint.index.selectedComponentsTitle]
 #. defaultMessage is:
 #. Selected Components
 msgid "Selected Components"
-msgstr ""
-
-#: build/messages/components/ListView/BlueprintContents.json
-#. [components.ListView.BlueprintContents.selectedTabTitle]
-#. defaultMessage is:
-#. Selected Components {count}
-msgid "Selected Components {count}"
-msgstr ""
+msgstr "선택된 구성 요소"
 
 #: build/messages/components/ListView/ComponentSummaryList.json
 #. [components.ListView.ComponentSummaryList.1256153657]
@@ -763,14 +908,28 @@ msgstr "모두 표시"
 #. defaultMessage is:
 #. Show Details and More Options
 msgid "Show Details and More Options"
-msgstr ""
+msgstr "세부 정보 및 기타 옵션 표시"
 
 #: build/messages/components/ListView/ComponentSummaryList.json
 #. [components.ListView.ComponentSummaryList.2354351315]
 #. defaultMessage is:
 #. Show Less
 msgid "Show Less"
-msgstr ""
+msgstr "부분 표시 "
+
+#: build/messages/components/Pagination/Pagination.json
+#. [components.Pagination.Pagination.nextPage]
+#. defaultMessage is:
+#. Show Next Page
+msgid "Show Next Page"
+msgstr "다음 페이지보기"
+
+#: build/messages/components/Pagination/Pagination.json
+#. [components.Pagination.Pagination.previousPage]
+#. defaultMessage is:
+#. Show Previous Page
+msgid "Show Previous Page"
+msgstr "이전 페이지보기 "
 
 #: build/messages/components/Sources/SourcesList.json
 #. [components.Sources.SourcesList.3503331186] - The path or url to the source repository
@@ -791,42 +950,70 @@ msgstr "소스 "
 #. defaultMessage is:
 #. Specify a new blueprint name.
 msgid "Specify a new blueprint name."
-msgstr ""
+msgstr "새 청사진 이름을 지정하십시오."
+
+#: build/messages/components/ListView/ListItemImages.json
+#. [components.ListView.ListItemImages.2989081855]
+#. defaultMessage is:
+#. Stop
+msgid "Stop"
+msgstr "중지"
+
+#: build/messages/components/Modal/StopBuild.json
+#. [components.Modal.StopBuild.1162993432]
+#. defaultMessage is:
+#. Stop Build
+msgid "Stop Build"
+msgstr "빌드 중지"
+
+#: build/messages/components/ListView/ListItemImages.json
+#. [components.ListView.ListItemImages.2434115730]
+#. defaultMessage is:
+#. Stopping
+msgid "Stopping"
+msgstr "중지 중 "
 
 #: build/messages/components/Modal/ManageSources.json
 #. [components.Modal.ManageSources.766860407] - System sources are configured repositories that were found on the host machine
 #. defaultMessage is:
 #. System Sources
 msgid "System Sources"
-msgstr ""
+msgstr "시스템 소스"
 
 #: build/messages/components/Modal/ExportBlueprint.json
 #. [components.Modal.ExportBlueprint.3495336243]
 #. defaultMessage is:
 #. Text
 msgid "Text"
-msgstr "글자"
+msgstr "텍스트 "
+
+#: build/messages/components/Modal/StopBuild.json
+#. [components.Modal.StopBuild.3426018028]
+#. defaultMessage is:
+#. The build process cannot resume after it stops.
+msgid "The build process cannot resume after it stops."
+msgstr "빌드 프로세스가 중지 된 후에 다시 시작할 수 없습니다."
 
 #: build/messages/components/Modal/CreateBlueprint.json
 #. [components.Modal.CreateBlueprint.216946930]
 #. defaultMessage is:
 #. The fields marked with {val} are required.
 msgid "The fields marked with {val} are required."
-msgstr ""
+msgstr "{val}(으)로 표시된 항목은 필수 항목입니다."
 
 #: build/messages/components/Modal/CreateBlueprint.json
 #. [components.Modal.CreateBlueprint.2580689893]
 #. defaultMessage is:
 #. The name {name} already exists.
 msgid "The name {name} already exists."
-msgstr ""
+msgstr "{name} 이름이 이미 있습니다."
 
 #: build/messages/pages/error/index.json
 #. [pages.error.index.26562577]
 #. defaultMessage is:
 #. The page you're looking for does not exist or an another error occurred.
 msgid "The page you're looking for does not exist or an another error occurred."
-msgstr ""
+msgstr "찾으시는 페이지가 존재하지 않거나 다른 오류가 발생했습니다."
 
 #: build/messages/pages/blueprint/index.json
 #. [pages.blueprint.index.emptyBlueprintMessage]
@@ -835,14 +1022,43 @@ msgstr ""
 msgid ""
 "There are no components listed in the blueprint. Edit the blueprint to add "
 "components."
-msgstr ""
+msgstr "청사진에 나열된 구성 요소가 없습니다. 청사진을 편집하여 구성 요소를 추가하십시오."
 
 #: build/messages/components/Modal/DeleteBlueprint.json
+#: build/messages/components/Modal/DeleteImage.json
 #. [components.Modal.DeleteBlueprint.181468144]
 #. defaultMessage is:
 #. This action cannot be undone.
+#. [components.Modal.DeleteImage.181468144]
+#. defaultMessage is:
+#. This action cannot be undone.
 msgid "This action cannot be undone."
-msgstr ""
+msgstr "이 작업은 실행 취소할 수 없습니다."
+
+#: build/messages/components/Modal/CreateImage.json
+#. [components.Modal.CreateImage.warningUnsaved]
+#. defaultMessage is:
+#. This blueprint has changes that are not committed. These changes will be committed before the image is created.
+msgid ""
+"This blueprint has changes that are not committed. These changes will be "
+"committed before the image is created."
+msgstr "이 청사진에는 커밋되지 않은 변경 사항이 있습니다. 이러한 변경 사항은 이미지가 작성되기 전에 커밋됩니다."
+
+#: build/messages/components/Modal/CreateImage.json
+#. [components.Modal.CreateImage.1766703173]
+#. defaultMessage is:
+#. This blueprint is empty.
+msgid "This blueprint is empty."
+msgstr "이 청사진은 비어 있습니다."
+
+#: build/messages/components/Modal/CreateImage.json
+#. [components.Modal.CreateImage.infotip]
+#. defaultMessage is:
+#. This process can take a while. Images are built in the order they are started.
+msgid ""
+"This process can take a while. Images are built in the order they are "
+"started."
+msgstr "이 프로세스는 몇 분 정도 시간이 걸릴 수 있습니다. 이미지는 시작된 순서대로 빌드됩니다."
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/Sources/SourcesList.json
@@ -853,14 +1069,14 @@ msgstr ""
 #. defaultMessage is:
 #. Type
 msgid "Type"
-msgstr "유형 "
+msgstr "유형"
 
 #: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.ListItemImages.860864899]
 #. defaultMessage is:
 #. Type {type}
 msgid "Type {type}"
-msgstr ""
+msgstr "유형 {type}"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #. [components.ListView.ComponentDetailsView.1324178587]
@@ -875,6 +1091,13 @@ msgstr "URL"
 #. Update
 msgid "Update"
 msgstr "업데이트"
+
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.562988552] - Identifies the change as a component that was updated
+#. defaultMessage is:
+#. Updated
+msgid "Updated"
+msgstr "업데이트됨"
 
 # auto translated by TM merge from project: Customer Portal Drupal, version: cp-drupal, DocId: node/2357861/Red_Hat_Mobile_Application_Platform_Product_Life_Cycle.field_page_body][0][value.html
 #: build/messages/components/ListView/ComponentDetailsView.json
@@ -893,7 +1116,7 @@ msgstr "버전"
 #. defaultMessage is:
 #. Version {version}
 msgid "Version {version}"
-msgstr ""
+msgstr "버전 {version}"
 
 #: build/messages/components/ListView/ListItemComponents.json
 #. [components.ListView.ListItemComponents.3097747573]
@@ -907,14 +1130,28 @@ msgstr "보기 "
 #. defaultMessage is:
 #. View Sources
 msgid "View Sources"
-msgstr ""
+msgstr "소스보기"
+
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.2755325844]
+#. defaultMessage is:
+#. from
+msgid "from"
+msgstr "에서 "
 
 #: build/messages/pages/error/index.json
 #. [pages.error.index.2054225650]
 #. defaultMessage is:
 #. home page
 msgid "home page"
-msgstr ""
+msgstr "홈페이지"
+
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.152217691]
+#. defaultMessage is:
+#. to
+msgid "to"
+msgstr "에"
 
 #: build/messages/components/Modal/CreateImage.json
 #. [components.Modal.CreateImage.282502245]
@@ -928,64 +1165,113 @@ msgstr "x86_64"
 #. defaultMessage is:
 #. {blueprint} Blueprint changes are committed.
 msgid "{blueprint} Blueprint changes are committed."
-msgstr ""
+msgstr "{blueprint} 청사진 변경 사항이 커밋되었습니다."
 
 #: build/messages/data/NotificationsApi.json
 #. [data.NotificationsApi.477516828]
 #. defaultMessage is:
 #. {blueprint} Commit failed.
 msgid "{blueprint} Commit failed."
-msgstr ""
+msgstr "{blueprint} 커밋에 실패했습니다. "
 
 #: build/messages/data/NotificationsApi.json
 #. [data.NotificationsApi.1829299735]
 #. defaultMessage is:
 #. {blueprint} Committing blueprint.
 msgid "{blueprint} Committing blueprint."
-msgstr ""
+msgstr "{blueprint} 청사진을 커밋하고 있습니다."
 
 #: build/messages/data/NotificationsApi.json
-#. [data.NotificationsApi.1846920931]
+#. [data.NotificationsApi.3947958753]
 #. defaultMessage is:
-#. {blueprint} Creating image.
-msgid "{blueprint} Creating image."
-msgstr ""
+#. {blueprint} Image creation failed.
+msgid "{blueprint} Image creation failed."
+msgstr "{blueprint} 이미지 만들기에 실패했습니다."
+
+#: build/messages/data/NotificationsApi.json
+#. [data.NotificationsApi.705169148]
+#. defaultMessage is:
+#. {blueprint} Image creation has been added to the queue.
+msgid "{blueprint} Image creation has been added to the queue."
+msgstr "{blueprint} 이미지 만들기 큐에 추가되었습니다. "
+
+#: build/messages/data/NotificationsApi.json
+#. [data.NotificationsApi.1726548071]
+#. defaultMessage is:
+#. {blueprint} Image creation has started.
+msgid "{blueprint} Image creation has started."
+msgstr "{blueprint} 이미지 만들기가 시작되었습니다."
 
 #: build/messages/data/NotificationsApi.json
 #. [data.NotificationsApi.210196387]
 #. defaultMessage is:
 #. {blueprint} Image creation is complete.
 msgid "{blueprint} Image creation is complete."
-msgstr ""
+msgstr "{blueprint} 이미지 만들기가 완료되었습니다. "
+
+#: build/messages/components/Modal/CreateImage.json
+#. [components.Modal.CreateImage.2122759296]
+#. defaultMessage is:
+#. {builds, plural, one {# build is waiting} other {# builds are waiting}}
+msgid "{builds, plural, one {# build is waiting} other {# builds are waiting}}"
+msgstr "{builds, plural, one {# build is waiting} other {# builds are waiting}}"
 
 #: build/messages/components/Modal/ExportBlueprint.json
 #. [components.Modal.ExportBlueprint.1557505074]
 #. defaultMessage is:
 #. {count} total components
 msgid "{count} total components"
-msgstr ""
+msgstr "{count} 총 구성 요소"
+
+#: build/messages/components/Pagination/Pagination.json
+#. [components.Pagination.Pagination.3506832526]
+#. defaultMessage is:
+#. {currentPage} of {totalPages}
+msgid "{currentPage} of {totalPages}"
+msgstr "{currentPage} (총 {totalPages})"
+
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.3908981070]
+#. defaultMessage is:
+#. {from} {oldVersion} {to} {newVersion}
+msgid "{from} {oldVersion} {to} {newVersion}"
+msgstr " {from} {oldVersion} {to} {newVersion}"
 
 #: build/messages/pages/error/index.json
 #. [pages.error.index.526995878]
 #. defaultMessage is:
 #. {goBack}, or head over to the {homePage} to choose a new direction.
 msgid "{goBack}, or head over to the {homePage} to choose a new direction."
-msgstr ""
+msgstr "{goBack} 또는 {homePage}로 이동하여 다시 선택하십시오. "
+
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.PendingChanges.3141775911]
+#. defaultMessage is:
+#. {heading} {parenthetical}
+msgid "{heading} {parenthetical}"
+msgstr "{heading} {parenthetical}"
 
 #: build/messages/pages/blueprintEdit/index.json
 #. [pages.blueprintEdit.index.4031669927]
 #. defaultMessage is:
 #. {pendingChanges, plural, one {# Pending Change} other {# Pending Changes}}
 msgid "{pendingChanges, plural, one {# Pending Change} other {# Pending Changes}}"
-msgstr ""
+msgstr "{pendingChanges, plural, one {# Pending Change} other {# Pending Changes}}"
 
 #: build/messages/pages/blueprintEdit/index.json
 #. [pages.blueprintEdit.index.3140434516]
 #. defaultMessage is:
 #. {selectComponents} in this list to add to the blueprint.
 msgid "{selectComponents} in this list to add to the blueprint."
-msgstr ""
+msgstr "이 목록에서 청사진에 추가할 {selectComponents} 실행 "
+
+#: build/messages/components/Pagination/Pagination.json
+#. [components.Pagination.Pagination.3363928156]
+#. defaultMessage is:
+#. {startNumber} - {endNumber} of {totalNumber}
+msgid "{startNumber} - {endNumber} of {totalNumber}"
+msgstr "{startNumber} - {endNumber} (총 {totalNumber})"
 
 #: ./public/manifest.json
 msgid "Image Builder"
-msgstr ""
+msgstr "이미지 빌더"
