@@ -154,17 +154,6 @@ class CreateImage extends React.Component {
                     </select>
                   </div>
                 </div>
-                <div className="form-group">
-                  <label
-                    className="col-sm-3 control-label"
-                    htmlFor="textInput2-modal-markup"
-                  ><FormattedMessage defaultMessage="Architecture" /></label>
-                  <div className="col-sm-9">
-                    <select className="form-control">
-                      <FormattedMessage defaultMessage="x86_64" tagName="option" />
-                    </select>
-                  </div>
-                </div>
               </form>
             </div>
             <div className="modal-footer">
