@@ -3,16 +3,15 @@
 # The application RPM will be installed separately
 set -eu
 
-export NPM_CONFIG_LOGLEVEL="info"
-NODE_VERSION="8.12.0"
-
-echo 'PATH=/usr/local/bin/:$PATH' >> /etc/bashrc
-
 # Allow cockpit port (9090) in INPUT chain
 # Do not reload firewall rule during image generation
 if type firewall-cmd >/dev/null 2>&1; then
     firewall-cmd --add-service=cockpit --permanent
 fi
+
+# Kernel 4.x ONLY
+# Set SELinux to permissive to make lorax-composer happy
+[[ $(uname -r) == 4* ]] && sed -i 's/^SELINUX=.*/SELINUX=permissive/g' /etc/selinux/config && cat /etc/selinux/config
 
 # mock compose creation calls to backend for testing purposes
 sed -i "s|\"/api/v0/compose\"|\"/api/v0/compose?test=2\"|" /usr/share/cockpit/welder/dist/main.*.js
