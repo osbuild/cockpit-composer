@@ -25,6 +25,8 @@ module.exports = class EditBlueprintPage extends MainPage {
     // Component list item root element
     this.componentListItemRootElement = `${this.blueprintInputRootElement} .cmpsr-list-pf__compacted .list-pf-item`;
     // ---- Page element selector ---- //
+    // Component number
+    this.componentNumber = '.cmpsr-blueprint__inputs__pagination span:nth-of-type(2)';
     // Edit Blueprint label
     this.varEditBlueprint = 'Edit Blueprint';
     this.labelEditBlueprint = `${this.navBarRootElement} li strong`;

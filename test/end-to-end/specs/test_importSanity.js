@@ -34,8 +34,8 @@ describe('Imported Content Sanity Testing', () => {
     // list item and total number are rendered at the same time
     browser.waitForVisible(editBlueprintPage.componentListItemRootElement);
 
-    const actualText = browser.getText(editBlueprintPage.componentListItemRootElement);
+    const actualText = browser.getText(editBlueprintPage.componentNumber);
 
-    assert(actualText !== '1 - 50 of 0');
+    assert(actualText !== '1 - 50 of 0' && actualText.startsWith('1 - 50 of'));
   });
 });
