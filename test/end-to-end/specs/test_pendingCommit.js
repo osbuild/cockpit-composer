@@ -1,5 +1,4 @@
 const assert = require('assert');
-const helper = require('../utils/helper');
 const config = require('../wdio.conf.js');
 const testData = config.testData;
 
@@ -78,11 +77,11 @@ describe('Changes Pending Commit Page', () => {
 
       // add 1st component to the selection. Note: there's already bash selected
       browser
-        .waitForVisible(editBlueprintPage.btnTheFirstComponent);
+        .waitForVisible(editBlueprintPage.plusButtonOfTheFirstComponent);
 
-      const firstComponent = $(editBlueprintPage.theFirstComponentName).getText();
+      const firstComponent = $(editBlueprintPage.nameOfTheFirstComponent).getText();
       browser
-        .click(editBlueprintPage.btnTheFirstComponent)
+        .click(editBlueprintPage.plusButtonOfTheFirstComponent)
         .waitForVisible(editBlueprintPage.contentSelectedComponents);
 
       browser
@@ -91,11 +90,11 @@ describe('Changes Pending Commit Page', () => {
 
       // add 2nd component to the selection and wait for depsolve to complete
       browser
-        .waitForVisible(editBlueprintPage.btnTheSecondComponent);
+        .waitForVisible(editBlueprintPage.plusButtonOfTheSecondComponent);
 
-      const secondComponent = $(editBlueprintPage.theSecondComponentName).getText();
+      const secondComponent = $(editBlueprintPage.nameOfTheSecondComponent).getText();
       browser
-        .click(editBlueprintPage.btnTheSecondComponent)
+        .click(editBlueprintPage.plusButtonOfTheSecondComponent)
         .waitForVisible(editBlueprintPage.contentSelectedComponents);
 
       browser

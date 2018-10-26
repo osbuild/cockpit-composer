@@ -81,14 +81,14 @@ module.exports = class CreateBlueprintPage extends BlueprintPage {
 
       // wait for the search results to appear
       browser
-        .waitForVisible('.list-pf-content.list-pf-content-flex');
+        .waitForVisible(editPage.availableComponentList);
 
       // find the package in the list of filtered results
-      $$('.list-pf-content.list-pf-content-flex').some((item) => {
-        const title = item.$('.list-pf-title').getText();
+      $$(editPage.availableComponentList).some((item) => {
+        const title = item.$(editPage.availableComponentName).getText();
         if (title === pkg.name) {
           // clicks on the + button
-          item.$('.btn-link').click();
+          item.$(editPage.availableComponentPlusButton).click();
         }
         return title === pkg.name;
       });
