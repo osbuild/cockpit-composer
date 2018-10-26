@@ -2,16 +2,13 @@ const assert = require('assert');
 const config = require('../wdio.conf.js');
 
 const testData = config.testData;
-const helper = require('../utils/helper');
 
 const BlueprintsPage = require('../pages/blueprints');
 const CreateBlueprintPage = require('../pages/createBlueprint');
 const DeleteBlueprintPage = require('../pages/deleteBlueprint');
 const EditBlueprintPage = require('../pages/editBlueprint');
 const CreateImagePage = require('../pages/createImage');
-const ToastNotifPage = require('../pages/toastNotif');
 const ExportBlueprintPage = require('../pages/exportBlueprint');
-const ChangesPendingCommitPage = require('../pages/changesPendingCommit');
 
 
 describe('Given Edit Blueprint Page', () => {
@@ -171,22 +168,27 @@ describe('Given Edit Blueprint Page', () => {
         browser
           .waitForVisible(editBlueprintPage.componentListItemRootElementSelect);
 
-        // verify bordered icon
-        browser
-          .waitForVisible(editBlueprintPage.iconBorderedTheFirstComponent);
+        // find the package in the list of filtered results
+        $$(editBlueprintPage.availableComponentList).some((item) => {
+          const title = item.$(editBlueprintPage.availableComponentName).getText();
+          if (title === 'httpd') {
+            const icon = item.$(editBlueprintPage.availableComponentIcon);
+            let iconAttribute = icon.getAttribute('class');
+            // httpd package should have a bordered icon because it's selected components
+            assert.equal(iconAttribute, editBlueprintPage.borderedIconClassAttribute);
 
-        // then remove the selected component from the list
-        browser
-          .waitForVisible(editBlueprintPage.iconMinusTheFirstComponent);
+            // clicks - button to remove httpd from selected components
+            item.$(editBlueprintPage.availableComponentMinusButton).click();
 
-        browser
-          .click(editBlueprintPage.iconMinusTheFirstComponent);
-
-        // and verify that the icon changes back to one without border
-        browser
-          .waitForVisible(editBlueprintPage.iconTheFirstComponent);
-        browser
-          .waitForVisible(editBlueprintPage.iconPlusTheFirstComponent);
+            // wait for + button after clicking - button
+            item.$(editBlueprintPage.availableComponentPlusButton).waitForVisible();
+            browser.pause(5000);
+            // httpd package should have a normal icon because it's not a selected components
+            iconAttribute = icon.getAttribute('class');
+            assert.equal(iconAttribute, editBlueprintPage.normalIconClassAttribute);
+          }
+          return title === 'httpd';
+        });
       });
     });
   });
