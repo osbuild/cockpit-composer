@@ -10,7 +10,7 @@
     "webdriverio": "^4.12.0",
     "pngjs": "^3.3.3",
     "wdio-html-format-reporter": "~0.2.7",
-    "wdio-mocha-framework": "^0.5.13",
+    "wdio-mocha-framework": "^0.6.4",
     "wdio-spec-reporter": "~0.0.1"
   }
 }
