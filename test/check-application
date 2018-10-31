@@ -18,10 +18,12 @@ done;
         machine.execute(script=WAIT_SELENIUM_RUNNING)
 
 
+# lorax-composer in Fedora retruns: "db_supported":true
+# lorax-composer in RHEL returns: "db_supported": true
 def wait_for_composer_running(machine):
     WAIT_COMPOSER_RUNNING = """#!/bin/sh
 until curl --unix-socket /run/weldr/api.socket \
-http://localhost:4000/api/status | grep '"db_supported": true'; do
+http://localhost:4000/api/status | grep '"db_supported": *true'; do
 sleep 1;
 done;
 """
