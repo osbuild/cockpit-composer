@@ -9,6 +9,9 @@ if type firewall-cmd >/dev/null 2>&1; then
     firewall-cmd --add-service=cockpit --permanent
 fi
 
+# Install nodejs if it does not exist
+which node > /dev/null 2>&1 || yum install -y nodejs
+
 # Kernel 4.x ONLY
 # Set SELinux to permissive to make lorax-composer happy
 [[ $(uname -r) == 4* ]] && sed -i 's/^SELINUX=.*/SELINUX=permissive/g' /etc/selinux/config && cat /etc/selinux/config
