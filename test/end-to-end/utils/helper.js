@@ -5,16 +5,39 @@ module.exports = {
   // Switch to welder-web iframe if welder-web is integrated with Cockpit.
   // Cockpit web service is listening on TCP port 9090.
   goto: (page) => {
-    browser
-      .url(page.url);
+    // clearing cockie is to force auth when nevigate page by URL not by page element
+    // sometimes the edge will show Certificate error page even it's passed at the
+    // same session. Passing error page has to follow cockpit auth page.
+    browser.deleteCookie();
+    browser.url(page.url);
+    // call windowHandle to work around browser hang here sometimes
+    browser.windowHandle();
+    browser.waitForVisible('body');
+
+    // pass Certificate error page reported by edge only.
+    if (browser.getTitle().includes('Certificate error')) {
+      browser
+        .waitForVisible('[id="moreInformationDropdownLink"]');
+      browser
+        .click('[id="moreInformationDropdownLink"]');
+      browser
+        .waitForVisible('[id="invalidcert_continue"]');
+      browser
+        .click('[id="invalidcert_continue"]');
+      browser
+        .waitForVisible('[id="badge"]');
+    }
 
     // if there's a cockpit login page
-    if (!browser.getHTML('base').includes('cockpit')) {
+    if (!browser.getAttribute('head base', 'href').includes('cockpit')) {
       const cockpitLoginPage = new CockpitLoginPage();
 
       browser
+        .waitForEnabled(cockpitLoginPage.loginButton);
+
+      browser
         .waitUntil(() => browser.hasFocus(cockpitLoginPage.usernameInput),
-                         5000,
+                         90000,
                          'expected page element to be different after 5s'
                   );
 

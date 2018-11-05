@@ -19,7 +19,7 @@ describe('Imported Content Sanity Testing', () => {
     const rowSelector = `${blueprintsPage.itemsBlueprint}[data-blueprint="${blueprintName}"]`;
 
     browser
-      .waitForVisible(rowSelector);
+      .waitForVisible(`${rowSelector} a[href*="edit"]`);
 
     browser
       .click(`${rowSelector} a[href*="edit"]`);
@@ -32,7 +32,7 @@ describe('Imported Content Sanity Testing', () => {
 
   it('displayed count should match distinct count from DB', () => {
     // list item and total number are rendered at the same time
-    browser.waitForVisible(editBlueprintPage.componentListItemRootElement);
+    $('.cmpsr-list-pf__compacted').waitForText(90000);
 
     const actualText = browser.getText(editBlueprintPage.componentNumber);
 

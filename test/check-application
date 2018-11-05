@@ -18,6 +18,20 @@ done;
         machine.execute(script=WAIT_SELENIUM_RUNNING)
 
 
+# Microsoftwebdriver has to be ready before all workers get launched.
+def wait_for_edge_running(machine, host, port=4444):
+    WAIT_EDGE_RUNNING = """#!/bin/sh
+until curl -s --connect-timeout 3 \
+http://%s:%d/grid/console | grep "browserName: MicrosoftEdge" >/dev/null; do
+sleep 0.5;
+done;
+""" % (host, port)
+    with testvm.Timeout(
+            seconds=600,
+            error_message="Timeout while waiting for selenium to start"):
+        machine.execute(script=WAIT_EDGE_RUNNING)
+
+
 # lorax-composer in Fedora retruns: "db_supported":true
 # lorax-composer in RHEL returns: "db_supported": true
 def wait_for_composer_running(machine):
@@ -65,7 +79,7 @@ def run_e2e(verbose, image, browser, cpus, memory, sit):
     # settings on selenium VM
     if 'edge' in browser:
         windows = testvm.VirtMachine(image='windows-10', verbose=verbose,
-                                     networking=networking_selenium,
+                                     networking=network.host(),
                                      memory_mb=4096, cpus=4)
         # wdio.conf.js needs key word MicrosoftEdge for edge browser
         browser = 'MicrosoftEdge'
@@ -94,11 +108,13 @@ def run_e2e(verbose, image, browser, cpus, memory, sit):
         composer.upload(["end-to-end"], "/root/")
         composer.execute("cd /root/end-to-end && npm install", timeout=600)
 
-        if selenium and 'edge' in browser:
+        if selenium and 'MicrosoftEdge' in browser:
             composer.dhcp_server(range=['10.111.112.10', '10.111.112.10'])
 
         wait_for_selenium_running(composer, "10.111.112.10")
         wait_for_composer_running(composer)
+        if selenium and 'MicrosoftEdge' in browser:
+            wait_for_edge_running(composer, "10.111.112.10")
 
         # Now actually run the tests
         selenium_address = "10.111.112.10" if selenium else ""
