@@ -140,16 +140,17 @@ exports.config = {
   //
   // Options to be passed to Mocha.
   // See the full list at http://mochajs.org/
+  // mocha is a test runner. test timeout has to be longer or equal than waitforxxx.
   mochaOpts: {
     ui: 'bdd',
     timeout: 90000,
   },
 
-  // always start with a clean browser session before
-  // every single test
+  // always start with a clean browser session before every single test
+  // windowHandleFullscreen is not supported by Edge, but by Chrome and Firefox
+  // enable windowHandleFullscreen or not does not have any impact on Chrome anf Fiefox
   beforeTest(test) {
     browser.reload();
-    browser.windowHandleFullscreen();
   },
 
   afterTest(test) {

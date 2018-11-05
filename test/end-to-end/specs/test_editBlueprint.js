@@ -28,11 +28,11 @@ describe('Given Edit Blueprint Page', () => {
       const rowSelector = `${blueprintsPage.itemsBlueprint}[data-blueprint="${blueprintName}"]`;
 
       browser
-        .waitForVisible(rowSelector);
+        .waitForVisible(`${rowSelector} a[href*="edit"]`);
 
       browser
-        .click(`${rowSelector} a[href*="edit"]`)
-        .waitForVisible(editBlueprintPage.componentListItemRootElement);
+        .click(`${rowSelector} a[href*="edit"]`);
+      $('.cmpsr-list-pf__compacted').waitForText(90000);
     });
 
     it('Then sanity validation will pass', () => {
@@ -137,8 +137,8 @@ describe('Given Edit Blueprint Page', () => {
 
         // clear filters
         browser
-          .click(editBlueprintPage.linkClearAllFilters)
-          .waitForVisible(editBlueprintPage.componentListItemRootElement);
+          .click(editBlueprintPage.linkClearAllFilters);
+        $('.cmpsr-list-pf__compacted').waitForText(90000);
 
         // the search tag and clear all link should disappear.
         browser
@@ -153,8 +153,8 @@ describe('Given Edit Blueprint Page', () => {
 
         // clear filters
         browser
-          .click(editBlueprintPage.btnClearFilter)
-          .waitForVisible(editBlueprintPage.componentListItemRootElement);
+          .click(editBlueprintPage.btnClearFilter);
+        $('.cmpsr-list-pf__compacted').waitForText(90000);
 
         // the search tag and clear all link should disappear.
         browser
@@ -203,11 +203,12 @@ describe('Given Edit Blueprint Page', () => {
       const rowSelector = `${blueprintsPage.itemsBlueprint}[data-blueprint="${blueprintName}"]`;
 
       browser
-        .waitForVisible(rowSelector);
+        .waitForVisible(`${rowSelector} a[href*="edit"]`);
 
       browser
-        .click(`${rowSelector} a[href*="edit"]`)
-        .waitForVisible(editBlueprintPage.componentListItemRootElement);
+        .click(`${rowSelector} a[href*="edit"]`);
+        // .waitForVisible(editBlueprintPage.);
+      $('.cmpsr-list-pf__compacted').waitForText(90000);
     });
 
     it('Then additional buttons are enabled', () => {
