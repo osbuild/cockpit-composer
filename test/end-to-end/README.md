@@ -31,7 +31,7 @@ For testing, the following dependencies are required:
     $ sudo yum install libvirt libvirt-client libvirt-daemon libvirt-python \
         python python-libguestfs python-lxml libguestfs-xfs \
         python3 libvirt-python3 \
-        libguestfs-tools qemu qemu-kvm rpm-build
+        libguestfs-tools qemu qemu-kvm rpm-build nodejs jq git
 
 #### Test Running Command
 
@@ -43,9 +43,13 @@ In the event you wish to visually see what the browser is doing you will want to
 
     $ make debug-check
 
-By default the test will be run on Firefox. To run it on Chrome, a prefix ```BROWSER=chrome``` needs to be added, like:
+By default the cockpit-composer will be installed into RHEL 7.6 and test will be run on Firefox. To run it on Chrome, a prefix ```BROWSER=chrome``` needs to be added, like:
 
     $ BROWSER=chrome make check
+
+To test cockpit-composer in different OS, add prefx ```TEST_OS=fedora-29```, for example.
+
+    $ TEST_OS=fedora-29 make check
 
 
 **NOTE:** You have to have **vncviewer** installed by ```sudo dnf install tigervnc``` to get browser out.
