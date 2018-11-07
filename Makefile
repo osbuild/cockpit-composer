@@ -2,7 +2,7 @@
 VERSION=$(shell $(CURDIR)/rpmversion.sh | cut -d - -f 1)
 RELEASE=$(shell $(CURDIR)/rpmversion.sh | cut -d - -f 2)
 PACKAGE_NAME := $(shell awk '/"name":/ {gsub(/[",]/, "", $$2); print $$2}' package.json)
-TEST_OS ?= rhel-7-6
+TEST_OS ?= fedora-29
 BROWSER ?= firefox
 export TEST_OS BROWSER
 VM_IMAGE=$(CURDIR)/test/images/$(TEST_OS)
