@@ -29,6 +29,19 @@ describe('Blueprints Page', () => {
     assert.equal(buttonText, blueprintsPage.varCreateBlueprint);
   });
 
+  it('should display default blueprints from backend', () => {
+    helper.goto(blueprintsPage);
+
+    browser
+      .waitForVisible('a[href="#/blueprint/example-atlas"]');
+
+    browser
+      .waitForVisible('a[href="#/blueprint/example-development"]');
+
+    browser
+      .waitForVisible('a[href="#/blueprint/example-http-server"]');
+  });
+
   describe('Blueprint List', () => {
     const createImagePage = new CreateImagePage(images[0].type);
     const btnCreateImage = BlueprintsPage.btnCreateImage(testData.blueprint.simple.name);
@@ -46,17 +59,6 @@ describe('Blueprints Page', () => {
 
     afterEach(() => {
       DeleteBlueprintPage.deleteBlueprint(testData.blueprint.simple.name);
-    });
-
-    it('should display default blueprints from backend', () => {
-      browser
-        .waitForVisible('a[href="#/blueprint/example-atlas"]');
-
-      browser
-        .waitForVisible('a[href="#/blueprint/example-development"]');
-
-      browser
-        .waitForVisible('a[href="#/blueprint/example-http-server"]');
     });
 
     it('should Create Image dialog when clicking Create Image button', () => {
@@ -146,11 +148,12 @@ describe('Blueprints Page', () => {
       const rowSelector = `${blueprintsPage.itemsBlueprint}[data-blueprint="${blueprintName}"]`;
 
       browser
-        .waitForVisible(rowSelector);
+        .waitForVisible(`${rowSelector} a[href*="edit"]`);
 
       browser
-        .click(`${rowSelector} a[href*="edit"]`)
-        .waitForVisible(editBlueprintPage.componentListItemRootElement);
+        .click(`${rowSelector} a[href*="edit"]`);
+
+      $('.cmpsr-list-pf__compacted').waitForText(90000);
 
       const pageTitle = $(editBlueprintPage.labelBlueprintTitle).getText();
       assert.equal(pageTitle, blueprintName);

@@ -2,11 +2,8 @@
 /* Blueprint Edit layout */
 .cmpsr-grid__wrapper {
   display: grid;
-  display: -ms-grid;
   grid-template-columns: 1fr 2fr;
-  -ms-grid-columns: 1fr 2fr;
   grid-template-rows: auto auto 1fr;
-  -ms-grid-rows: auto auto 1fr;
   grid-template-areas:
     "header header"
     "inputsTitle editTitle"
@@ -20,9 +17,6 @@
 /* Blueprint Edit page header */
 .cmpsr-grid__wrapper .cmpsr-header {
   grid-area: header;
-  -ms-grid-column: 1;
-  -ms-span-columns: 2;
-  -ms-grid-row: 1;
   margin: 0 20px;
 }
 /* Blueprint Edit panels */
@@ -37,14 +31,10 @@
 }
 .cmpsr-panel__title--sidebar {
   grid-area: inputsTitle;
-  -ms-grid-column: 1;
-  -ms-grid-row: 2;
   margin-right: -1px;
 }
 .cmpsr-panel__title--main {
   grid-area: editTitle;
-  -ms-grid-column: 2;
-  -ms-grid-row: 2;
 }
 .cmpsr-panel__body {
   border-width: 0 1px 1px;
@@ -53,14 +43,10 @@
 }
 .cmpsr-panel__body--sidebar {
   grid-area: inputs;
-  -ms-grid-column: 1;
-  -ms-grid-row: 3;
   margin-right: -1px;
 }
 .cmpsr-panel__body--main {
   grid-area: edit;
-  -ms-grid-column: 2;
-  -ms-grid-row: 3;
 }
 /* Blueprint Edit panel contents */
 .cmpsr-grid__wrapper .cmpsr-panel__body {
@@ -108,16 +94,12 @@
  /* page header */
 .cmpsr-header {
   display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
           justify-content: space-between;
   -webkit-box-align: baseline;
-      -ms-flex-align: baseline;
           align-items: baseline;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 .cmpsr-header > * {
   margin: 8px 0 0 0;
@@ -142,13 +124,10 @@
 }
 .cmpsr-title {
   display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-align: baseline;
-      -ms-flex-align: baseline;
           align-items: baseline;
-  -ms-flex-preferred-size: 100%;
-      flex-basis: 100%;
+  flex-basis: 100%;
   margin-top: 20px;
   margin-bottom: 10px;
 }
@@ -161,37 +140,27 @@
   display: block;
 } /* TODO: remove and switch to flexbox for expanded contents */
 .cmpsr-list-pf .list-pf-main-content {
-  -ms-flex-preferred-size: 100%;
-      flex-basis: 100%;
+  flex-basis: 100%;
 }
 .cmpsr-list-pf .list-pf-additional-content {
-  -ms-flex-preferred-size: 100%;
-      flex-basis: 100%;
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
+  flex-basis: 100%;
+  flex-shrink: 0;
   -webkit-box-pack: start;
-      -ms-flex-pack: start;
           justify-content: flex-start;
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
+  flex-wrap: nowrap;
 }
 .cmpsr-list-pf .list-view-pf-additional-info-item {
-  -ms-flex-preferred-size: auto;
-      flex-basis: auto;
+  flex-basis: auto;
   -webkit-box-align: baseline;
-      -ms-flex-align: baseline;
           align-items: baseline;
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
+  flex-shrink: 0;
   -webkit-box-flex: 0;
-      -ms-flex-positive: 0;
           flex-grow: 0;
 }
 .cmpsr-list-pf  .list-view-pf-additional-info-item-stacked {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  flex-direction: row;
   white-space: nowrap;
 }
 .cmpsr-list-pf  .list-view-pf-additional-info-item-stacked strong {
@@ -201,20 +170,15 @@
 }
 @media (min-width: 992px) {
   .cmpsr-list-pf .list-pf-main-content {
-    -ms-flex-preferred-size: 50%;
-        flex-basis: 50%;
+    flex-basis: 50%;
   }
   .cmpsr-list-pf .list-pf-additional-content {
-    -ms-flex-preferred-size: 50%;
-        flex-basis: 50%;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
+    flex-basis: 50%;
+    justify-content: space-around;
   }
   .cmpsr-list-pf .list-view-pf-additional-info-item {
-    -ms-flex-preferred-size: 50%;
-        flex-basis: 50%;
+    flex-basis: 50%;
     -webkit-box-align: center;
-        -ms-flex-align: center;
             align-items: center;
   }
   .cmpsr-list-pf .list-view-pf-additional-info-item.i18n > span {
@@ -224,10 +188,8 @@
   .cmpsr-list-pf .list-view-pf-additional-info-item-stacked.i18n > span {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-        -ms-flex-direction: column;
             flex-direction: column;
     -webkit-box-align: center;
-        -ms-flex-align: center;
             align-items: center;
   }
   .cmpsr-list-pf .list-view-pf-additional-info-item-stacked strong {
@@ -246,16 +208,12 @@
   background-color: transparent;
   border: none;
   -webkit-box-pack: end;
-      -ms-flex-pack: end;
           justify-content: flex-end;
   -webkit-box-align: baseline;
-      -ms-flex-align: baseline;
           align-items: baseline;
 }
 .toolbar-pf-results .pagination {
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
+  align-self: center;
 }
 .toolbar-pf-results .pagination-pf-page,
 .toolbar-pf-results .pagination.pagination-pf-forward {
@@ -266,7 +224,6 @@
 }
 .pagination-cmpsr-pages {
   display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
 /* given complexity of this component related to sr a11y and i18n, 
@@ -321,13 +278,10 @@ the "-" that would display instead of the sr-only "to" */
     line-height: 30px;
     width: 30px;
     display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
     display: inline-flex;
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
             justify-content: center;
     -webkit-box-align: center;
-        -ms-flex-align: center;
             align-items: center;
 }
 .cmpsr-component-details--view {
@@ -364,25 +318,20 @@ the "-" that would display instead of the sr-only "to" */
 /* Images list view */
 
 .cmpsr-images .list-pf-actions {
-  -ms-flex-preferred-size: 20%;
-      flex-basis: 20%;
+  flex-basis: 20%;
   -webkit-box-pack: end;
-      -ms-flex-pack: end;
           justify-content: flex-end;
   margin-left: 0;
 }
 .cmpsr-images.cmpsr-list-pf .list-view-pf-additional-info-item.cmpsr-images__status {
-  -ms-flex-preferred-size: 15%;
-      flex-basis: 15%;
+  flex-basis: 15%;
   margin-left: 10%;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   white-space: nowrap;
 }
 .cmpsr-images .list-pf-content-wrapper {
-  -ms-flex-preferred-size: 55%;
-      flex-basis: 55%;
+  flex-basis: 55%;
 }
 
 .cmpsr-images__status .pficon-in-progress {
@@ -414,8 +363,7 @@ the "-" that would display instead of the sr-only "to" */
 
 @media (min-width: 992px) {
   .cmpsr-images .list-view-pf-additional-info-item {
-    -ms-flex-preferred-size: 30%;
-        flex-basis: 30%;
+    flex-basis: 30%;
   }
 }
 

@@ -62,7 +62,7 @@ describe('Create Blueprint Image', () => {
           .waitForVisible(createImagePage2.selectImageType);
 
         browser
-          .selectByVisibleText(createImagePage2.selectImageType, createImagePage2.imageTypeLabel)
+          .selectByValue(createImagePage2.selectImageType, createImagePage2.imageType)
           .click(createImagePage2.btnCreate)
           .waitForVisible(toastNotifPage.iconCreating);
 

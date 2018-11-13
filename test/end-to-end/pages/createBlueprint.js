@@ -62,8 +62,9 @@ module.exports = class CreateBlueprintPage extends BlueprintPage {
     browser
       .setValue(page.inputName, bpObject.name)
       .setValue(page.inputDescription, bpObject.description)
-      .click(page.btnCreate)
-      .waitForVisible(editPage.componentListItemRootElement);
+      .click(page.btnCreate);
+
+    $('.cmpsr-list-pf__compacted').waitForText(90000);
 
     browser
       .waitForVisible(editPage.inputFilter);
@@ -80,8 +81,7 @@ module.exports = class CreateBlueprintPage extends BlueprintPage {
         .waitUntil(() => $(editPage.labelFilterContent).getText() === `Name: ${pkg.name}`);
 
       // wait for the search results to appear
-      browser
-        .waitForVisible(editPage.availableComponentList);
+      $('.cmpsr-list-pf__compacted').waitForText(90000);
 
       // find the package in the list of filtered results
       $$(editPage.availableComponentList).some((item) => {
@@ -105,8 +105,10 @@ module.exports = class CreateBlueprintPage extends BlueprintPage {
 
       browser
         .click(commitDialog.btnCommit)
+        // wait until "Changes Pending Commit" dialog fades out
         .waitForExist(commitDialog.rootElement, config.config.waitforTimeout, true);
 
+      // wait until toast notification dialog fades out
       browser
         .waitForExist('[id="cmpsr-toast-0"]', config.config.waitforTimeout, true);
 

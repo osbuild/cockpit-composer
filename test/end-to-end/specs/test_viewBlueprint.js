@@ -88,7 +88,7 @@ describe('View Blueprint Page', () => {
 
         browser
           .click(viewBlueprintPage.btnOkDescriptionUnderDetails)
-          .waitForVisible(viewBlueprintPage.labelBlueprintDescription);
+          .waitUntil(() => $(viewBlueprintPage.labelBlueprintDescription).getText() === expected);
 
         const newDescription = $(viewBlueprintPage.labelBlueprintDescription).getText();
         assert.equal(newDescription, expected);
@@ -151,7 +151,10 @@ describe('View Blueprint Page', () => {
           .waitForVisible(exportBlueprintPage.textAreaContent);
 
         // verify all of the input packages are listed
-        const componentsText = $(exportBlueprintPage.textAreaContent).getText();
+        // getText() does not work here on Edge, but works on Firefox and Chrome
+        // the copied content should replace '\n' with space because
+        // the text in blueprint description box does not include '\n', but space
+        const componentsText = $(exportBlueprintPage.textAreaContent).getValue().replace(/\n/g, ' ');
         testData.blueprint.simple.packages.forEach((pkg) => {
           assert(componentsText.includes(pkg.name));
         });
@@ -168,23 +171,19 @@ describe('View Blueprint Page', () => {
         // wait export blueprint window closed
         browser
           .waitUntil(() => browser.isExisting(viewBlueprintPage.clearViewBlueprintWindow));
-        // paste copied content into blueprint description box then check content
+
+        // paste copied content into filter input box under Selected Component tab
         browser
-          .click(viewBlueprintPage.btnEditDescriptionUnderDetails)
-          .waitForVisible(viewBlueprintPage.inputTextDescriptionUnderDetails);
+          .click('[id="blueprint-tabs-tab-selected-components"]')
+          .waitForVisible('[id="filter-blueprints"]');
 
         browser
-          .setValue(viewBlueprintPage.inputTextDescriptionUnderDetails, ['Control', 'v'])
-          .waitForVisible(viewBlueprintPage.btnOkDescriptionUnderDetails);
+          .setValue('[id="filter-blueprints"]', ['Control', 'v']);
 
-        browser
-          .click(viewBlueprintPage.btnOkDescriptionUnderDetails)
-          .waitForVisible(viewBlueprintPage.labelBlueprintDescription);
+        $('[id="filter-blueprints"]').waitForValue(90000);
 
-        // the text in blueprint description box does not include '\n', but space
-        const newDescription = $(viewBlueprintPage.labelBlueprintDescription).getText();
-        // the copied content should replace '\n' with space
-        assert.equal(newDescription, componentsText.replace(/\n/g, ' '));
+        const newDescription = $('[id="filter-blueprints"]').getValue();
+        assert.equal(newDescription, componentsText);
       });
     });
   });

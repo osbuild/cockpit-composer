@@ -21,11 +21,11 @@ describe('Changes Pending Commit Page', () => {
     const rowSelector = `${blueprintsPage.itemsBlueprint}[data-blueprint="${blueprintName}"]`;
 
     browser
-      .waitForVisible(rowSelector);
+      .waitForVisible(`${rowSelector} a[href*="edit"]`);
 
     browser
-      .click(`${rowSelector} a[href*="edit"]`)
-      .waitForExist(editBlueprintPage.componentListItemRootElement);
+      .click(`${rowSelector} a[href*="edit"]`);
+    $('.cmpsr-list-pf__compacted').waitForText(90000);
   });
 
 
@@ -80,8 +80,15 @@ describe('Changes Pending Commit Page', () => {
         .waitForVisible(editBlueprintPage.plusButtonOfTheFirstComponent);
 
       const firstComponent = $(editBlueprintPage.nameOfTheFirstComponent).getText();
+
+      // browser.click() does not work with Edge due to "Element is Obscured" error.
+      // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/5238133/
+      browser.execute((clicked) => {
+        document.querySelector(clicked).click();
+        return true;
+      }, editBlueprintPage.plusButtonOfTheFirstComponent);
+
       browser
-        .click(editBlueprintPage.plusButtonOfTheFirstComponent)
         .waitForVisible(editBlueprintPage.contentSelectedComponents);
 
       browser
@@ -120,21 +127,28 @@ describe('Changes Pending Commit Page', () => {
     it('should not commit by clicking Close', () => {
       // close the dialog b/c it is already open
       browser.click(changesPendingCommitPage.btnClose);
-      // wait until the dialog fades out
-      browser
-        .waitForVisible(editBlueprintPage.componentListItemRootElementSelect);
+      // wait until "Changes Pending Commit" dialog fades out
+      browser.waitForExist(changesPendingCommitPage.rootElement, config.config.waitforTimeout, true);
+
+      $('.cmpsr-list-pf__compacted').waitForText(90000);
 
       const blueprintsPage = new BlueprintsPage();
       const blueprintName = testData.blueprint.bash.name;
       const rowSelector = `${blueprintsPage.itemsBlueprint}[data-blueprint="${blueprintName}"]`;
 
-      browser
-        .click(editBlueprintPage.linkBackToBlueprints)
-        .waitForVisible(rowSelector);
+      // browser.click() does not work with Edge due to "Element is Obscured" error.
+      // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/5238133/
+      browser.execute((clicked) => {
+        document.querySelector(clicked).click();
+        return true;
+      }, editBlueprintPage.linkBackToBlueprints);
 
       browser
-        .click(`${rowSelector} a[href*="edit"]`)
-        .waitForExist(editBlueprintPage.componentListItemRootElement);
+        .waitForVisible(`${rowSelector} a[href*="edit"]`);
+
+      browser
+        .click(`${rowSelector} a[href*="edit"]`);
+      $('.cmpsr-list-pf__compacted').waitForText(90000);
 
       // bring up the pending changes dialog again by clicking the commit button
       browser
@@ -153,7 +167,9 @@ describe('Changes Pending Commit Page', () => {
     it('should not commit by clicking X buttons', () => {
       // close the dialog b/c it is already open
       browser.click(changesPendingCommitPage.btnXClose);
-      // wait until the dialog fades out
+      // wait until "Changes Pending Commit" dialog fades out
+      browser.waitForExist(changesPendingCommitPage.rootElement, config.config.waitforTimeout, true);
+
       browser
         .waitForVisible(editBlueprintPage.componentListItemRootElementSelect);
 
@@ -161,13 +177,19 @@ describe('Changes Pending Commit Page', () => {
       const blueprintName = testData.blueprint.bash.name;
       const rowSelector = `${blueprintsPage.itemsBlueprint}[data-blueprint="${blueprintName}"]`;
 
-      browser
-        .click(editBlueprintPage.linkBackToBlueprints)
-        .waitForVisible(rowSelector);
+      // browser.click() does not work with Edge due to "Element is Obscured" error.
+      // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/5238133/
+      browser.execute((clicked) => {
+        document.querySelector(clicked).click();
+        return true;
+      }, editBlueprintPage.linkBackToBlueprints);
 
       browser
-        .click(`${rowSelector} a[href*="edit"]`)
-        .waitForExist(editBlueprintPage.componentListItemRootElement);
+        .waitForVisible(`${rowSelector} a[href*="edit"]`);
+
+      browser
+        .click(`${rowSelector} a[href*="edit"]`);
+      $('.cmpsr-list-pf__compacted').waitForText(90000);
 
       // bring up the pending changes dialog again by clicking the commit button
       browser

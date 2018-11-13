@@ -24,6 +24,12 @@ describe('Create Blueprint Page', () => {
 
   describe('Input Data Validation Test', () => {
     describe('Required Field Missing', () => {
+      // close Create Blueprint dialog after each test
+      afterEach(() => {
+        browser.click(createBlueprintPage.btnCancel);
+        browser.waitUntil(() => browser.getAttribute(createBlueprintPage.dialogRootElement, 'style') === 'display: none;');
+      });
+
       it('show alert message when creating blueprint without name', () => {
         browser
           .click(blueprintsPage.btnCreateBlueprint)
@@ -107,9 +113,9 @@ describe('Create Blueprint Page', () => {
       browser
         .setValue(createBlueprintPage.inputName, testData.blueprint.simple.name)
         .setValue(createBlueprintPage.inputDescription, testData.blueprint.simple.description)
-        .click(createBlueprintPage.btnCreate)
-        // this component is visible only if we've been redirected to the edit page
-        .waitForVisible(editBlueprintPage.componentListItemRootElement);
+        .click(createBlueprintPage.btnCreate);
+
+      $('.cmpsr-list-pf__compacted').waitForText(90000);
     });
   });
 });
