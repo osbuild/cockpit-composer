@@ -7,7 +7,7 @@
     "npm": ">=5.0"
   },
   "dependencies": {
-    "babel-polyfill": "~6.9.1",
+    "babel-polyfill": "6.9.1",
     "classnames": "~2.2.6",
     "fastclick": "~1.0.6",
     "history": "~3.0.0",
