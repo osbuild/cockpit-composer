@@ -71,6 +71,7 @@ export function fetchModalCreateImageTypesApi() {
     'live-iso': 'Live Bootable ISO (.iso)',
     'partitioned-disk': 'Raw Partitioned Disk Image (.img)',
     'qcow2': 'QEMU QCOW2 Image (.qcow2)',
+    'openstack': 'OpenStack Image (.qcow2)',
     'tar': 'TAR Archive (.tar)',
     'vhd': 'Azure Disk Image (.vhd)',
     'vmdk': 'VMware Virtual Machine Disk (.vmdk)'
