@@ -8,7 +8,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "MIME-Version: 1.0\n"
 "X-Generator: Zanata 4.6.2\n"
-"PO-Revision-Date: 2018-10-17 09:25+0000\n"
+"PO-Revision-Date: 2018-10-25 01:09+0000\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Korean\n"
 "Language: ko\n"
@@ -94,14 +94,6 @@ msgstr "소스를 가져 오는 도중 오류가 발생했습니다."
 #. Apply Change
 msgid "Apply Change"
 msgstr "변경 사항 적용"
-
-# auto translated by TM merge from project: RHOSP Director Installation and Usage , version: 11-Korean, DocId: master
-#: build/messages/components/Modal/CreateImage.json
-#. [components.Modal.CreateImage.1857500869]
-#. defaultMessage is:
-#. Architecture
-msgid "Architecture"
-msgstr "아키텍처"
 
 #: build/messages/components/Modal/DeleteBlueprint.json
 #. [components.Modal.DeleteBlueprint.4140003068]
@@ -883,7 +875,7 @@ msgstr "구성 요소 선택"
 #. defaultMessage is:
 #. Select one
 msgid "Select one"
-msgstr "모두 선택"
+msgstr "하나만 선택"
 
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/pages/blueprint/index.json
@@ -1152,13 +1144,6 @@ msgstr "홈페이지"
 #. to
 msgid "to"
 msgstr "에"
-
-#: build/messages/components/Modal/CreateImage.json
-#. [components.Modal.CreateImage.282502245]
-#. defaultMessage is:
-#. x86_64
-msgid "x86_64"
-msgstr "x86_64"
 
 #: build/messages/data/NotificationsApi.json
 #. [data.NotificationsApi.4273735599]
