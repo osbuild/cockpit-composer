@@ -149,6 +149,9 @@
       "jest": true
     }
   },
+  "eslintIgnore": [
+    "/test/end-to-end/node_modules"
+  ],
   "stylelint": {
     "extends": "stylelint-config-standard",
     "rules": {

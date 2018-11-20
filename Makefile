@@ -113,7 +113,7 @@ test_rpmbuild_cockpit-composer: buildrpm_image
 	sudo docker run --rm --name buildrpm -v `pwd`:/welder welder/buildrpm:latest make cockpit-composer-rpm cockpit-composer-srpm
 
 local-clean:
-	rm -rf test/images tmp cockpit-composer.spec cockpit-composer*.rpm welder-web*.tar.gz
+	rm -rf test/images tmp cockpit-composer.spec cockpit-composer*.rpm welder-web*.tar.gz test/end-to-end/wdio_report
 
 # build VMs
 $(VM_IMAGE): local-clean cockpit-composer-rpm bots

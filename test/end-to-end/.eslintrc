@@ -2,25 +2,24 @@
   "globals": {
     "document": true,
     "browser": true,
+    "timeout": true,
     "$": true,
-    "$$": true
+    "$$": true,
+    "expect": true
   },
-  "extends": [
-    "airbnb"
-  ],
   "env": {
     "mocha": true
   },
-  "plugins": [
-    "mocha"
-  ],
   "rules": {
-    "mocha/no-exclusive-tests": "error",
-    "func-names": ["error", "never"],
-    "no-eval": "off",
-    "no-unused-vars": "off",
-    "import/no-unresolved": ["error", { "ignore": ["copy-paste'"] }],
-    "max-len": ["error", 130],
-    "no-console": ["error", { "allow": ["error"] }]
-  }
+    "import/no-unresolved": [
+      2,
+      {
+        "ignore": [
+          "mochawesome/addContext",
+          "wdio-visual-regression-service/compare",
+          "chai"
+        ]
+      }
+    ]
+ }
 }
