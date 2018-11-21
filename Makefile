@@ -142,4 +142,9 @@ bots:
 	git checkout --force FETCH_HEAD -- bots/
 	git reset bots
 
+# The po-refresh bot expects these specific Makefile targets
+update-po:
+upload-pot: po-push
+download-po: po-pull
+
 .PHONY: tag welder-web.spec cockpit-composer.spec local-clean vm check
