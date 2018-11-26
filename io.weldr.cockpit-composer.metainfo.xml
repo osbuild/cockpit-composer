@@ -1,0 +1,16 @@
+<component type="addon">
+  <id>io.weldr.cockpit-composer</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <name>Image Builder</name>
+  <summary>
+      Build customized operating system images
+  </summary>
+  <description>
+    <p>
+      Image Builder (Composer) can generate custom images suitable for deploying
+      systems, or as images ready to upload to the cloud.
+    </p>
+  </description>
+  <extends>cockpit.desktop</extends>
+  <launchable type="cockpit-manifest">welder</launchable>
+</component>
