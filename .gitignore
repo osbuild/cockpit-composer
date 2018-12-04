@@ -9,7 +9,6 @@ public/po.*.js
 db.json
 core/build-version.json
 npm-debug.log
-metadata.db
 welder-web.spec
 cockpit-composer.spec
 package-lock.json
@@ -19,7 +18,7 @@ bots
 /test/images
 *.tar.gz
 *.rpm
-wdio-report.html
 /tmp
 .nyc_output
-failed-image
+screen_error
+wdio_report

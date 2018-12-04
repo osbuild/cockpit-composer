@@ -1,16 +1,25 @@
 {
-  "name": "weldr-web-end-to-end-tests",
+  "name": "end-to-end-test",
   "version": "1.0.0",
-  "description": "weldr-web end-to-end automation test",
+  "description": "The end to end test for welder-web",
   "scripts": {
-    "test": "./node_modules/.bin/wdio"
+    "test": "wdio"
   },
+  "author": "Xiaofeng Wang",
+  "license": "MIT",
   "dependencies": {
+    "chai": "^4.2.0",
+    "del": "^3.0.0",
     "faker": "^4.1.0",
-    "webdriverio": "^4.14.0",
-    "pngjs": "^3.3.3",
-    "wdio-html-format-reporter": "~0.2.7",
+    "path": "^0.12.7",
+    "webdriverio": "^4.14.0"
+  },
+  "devDependencies": {
+    "mochawesome": "^3.1.1",
+    "wdio-dot-reporter": "0.0.10",
     "wdio-mocha-framework": "^0.6.4",
-    "wdio-spec-reporter": "~0.0.1"
+    "wdio-mochawesome-reporter": "^2.0.1",
+    "mochawesome-report-generator": "^3.1.4",
+    "wdio-spec-reporter": "^0.1.5"
   }
 }

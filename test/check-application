@@ -138,18 +138,19 @@ def run_e2e(verbose, image, browser, cpus, memory, sit):
                           "trying to run `vncviewer`")
                     raise
 
-        base_url = "https://10.111.113.1:9090/welder"
+        base_url = "https://10.111.113.1:9090"
         env = [
                 "HUB=" + selenium_address,
                 "BASE_URL=" + base_url,
-                "BROWSER=" + browser
+                "BROWSER=" + browser,
+                "TEST_OS=" + image
               ]
         success = run_webdriver_tests(composer, env=env)
 
-        # Download html report to environment $TEST_ATTACHMENTS
+        # Download report and screenshot to environment $TEST_ATTACHMENTS
         report_dir = os.environ.get("TEST_ATTACHMENTS", os.getcwd())
         os.makedirs(report_dir, exist_ok=True)
-        composer.download("/root/end-to-end/wdio-report.html", report_dir)
+        composer.download_dir("/root/end-to-end/wdio_report", report_dir)
 
         # Report code coverage result to codecov.io
         codecov_token_file = os.path.expanduser("~/.config/codecov-token")
