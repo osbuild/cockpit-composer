@@ -12,17 +12,6 @@ const toastNotificationPage = require('../pages/toastNotification.page');
 module.exports = {
   login: function() {
     browser.url('/welder');
-    // Edge ONLY! to allow untrusted certificate
-    if (browser.desiredCapabilities.browserName === 'MicrosoftEdge') {
-      // sometimes the edge will go back to certificate error page after cockpit login
-      // this is a work aound
-      browser.reload();
-      browser.url('/welder');
-      loginPage.loadingCertificateErrorPage();
-      loginPage.detailsDropdownMenu.click();
-      loginPage.goOntoTheWebpageLink.click();
-    }
-
     loginPage.loadingCockpitLoginPage();
     loginPage.usernameBox.setValue(loginPage.username);
     loginPage.passwordBox.setValue(loginPage.password);

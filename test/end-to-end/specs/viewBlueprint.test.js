@@ -155,15 +155,7 @@ describe('View Blueprint Page', function(){
         expect(viewBlueprintPage.imageTypeLabel('tar').getText()).to.equal('tar');
       });
 
-      it('Image creatation stage 1 => Pending', function(){
-        expect(viewBlueprintPage.pendingLabel.getText()).to.equal('Pending');
-      });
-
-      it('should show correct Pending icon', function(){
-        expect(viewBlueprintPage.pendingIcon.getAttribute('class')).to.include('pficon-pending');
-      });
-
-      it('Image creatation stage 2 => Complete', function(){
+      it('should show "Complete"', function(){
         expect(viewBlueprintPage.completeLebel.getText()).to.equal('Complete');
       });
 
