@@ -64,7 +64,6 @@ exports.config = {
       maxInstances: 1,
       //
       browserName: process.env.BROWSER || 'firefox',
-      acceptInsecureCerts: true,
     }],
     //
     // ===================
@@ -97,7 +96,7 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: process.env.BASE_URL || 'https://localhost:9090',
+    baseUrl: process.env.BASE_URL || 'http://localhost:9090',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 120000,

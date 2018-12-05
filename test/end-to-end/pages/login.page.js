@@ -4,35 +4,6 @@ class LoginPage {
     this.username = 'root';
     this.password = process.env.COCKPIT_PASSWORD || 'foobar';
   }
-  // Edge ONLY
-  // Certificate error page
-  loadingCertificateErrorPage() {
-    browser.waitUntil(
-      () => browser.getTitle().includes('Certificate error'),
-      timeout,
-      'Cannot find Certificate error page'
-    );
-  }
-
-  get detailsDropdownMenu() {
-    const selector = '[id="moreInformationDropdownLink"]';
-    browser.waitUntil(
-      () => browser.isVisible(selector),
-      timeout,
-      `Details dropdown in Certificate error page cannot be found by selector ${selector}`
-    );
-    return $(selector);
-  }
-
-  get goOntoTheWebpageLink() {
-    const selector = '[id="invalidcert_continue"]';
-    browser.waitUntil(
-      () => browser.isVisible(selector),
-      timeout,
-      `Go on to the webpage link in Certificate error page cannot be found by selector ${selector}`
-    );
-    return $(selector);
-  }
 
   // Cockpit login page
   loadingCockpitLoginPage() {
