@@ -21,7 +21,7 @@
     "redux": "3.6.0",
     "redux-saga": "0.15.3",
     "reselect": "3.0.1",
-    "whatwg-fetch": "1.0.0"
+    "whatwg-fetch": "1.1.1"
   },
   "devDependencies": {
     "assets-webpack-plugin": "^3.9.6",
