@@ -11,7 +11,7 @@ describe('Blueprints Page', function(){
   });
 
   let name, description, blueprintComponent;
-  beforeEach(function(){
+  before(function(){
     // blueprint name cannot contain space due to issue https://github.com/weldr/welder-web/issues/317
     // use lorem.slug() ("a-accusantium-repudiandae") instead of lorem.words() ("nulla placeat qui")
     name = faker.lorem.slug();
@@ -21,7 +21,7 @@ describe('Blueprints Page', function(){
     addContext(this, `create new blueprint with name, ${name}, and description, ${description}`);
     commands.newBlueprint(name, description);
   });
-  afterEach(function(){
+  after(function(){
     commands.deleteBlueprint(name);
     blueprintsPage.loading();
   });
@@ -33,14 +33,23 @@ describe('Blueprints Page', function(){
 
   it('should have correct blueprint order by default sort rule', function(){
     const defaultArray = $$(blueprintComponent.blueprintNameList).map((item) => item.getText());
-    const sortedArray = defaultArray.sort();
+    // make a copy of default Array
+    const sortedArray = [...defaultArray].sort();
     expect(defaultArray.every((value, index) => value === sortedArray[index])).to.be.true;
   });
 
-  it('blueprint with reverse order by clicking sort button', function(){
+  it('blueprint with reverse order by clicking A->Z sort button', function(){
     const defaultArray = $$(blueprintComponent.blueprintNameList).map((item) => item.getText());
     blueprintsPage.sortAscButton.click();
     blueprintsPage.sortDescButton.waitForVisible(timeout);
+    const sortedArray = $$(blueprintComponent.blueprintNameList).map((item) => item.getText());
+    expect(defaultArray.reverse().every((value, index) => value === sortedArray[index])).to.be.true;
+  });
+
+  it('blueprint with reverse order by clicking Z->A sort button', function(){
+    const defaultArray = $$(blueprintComponent.blueprintNameList).map((item) => item.getText());
+    blueprintsPage.sortDescButton.click();
+    blueprintsPage.sortAscButton.waitForVisible(timeout);
     const sortedArray = $$(blueprintComponent.blueprintNameList).map((item) => item.getText());
     expect(defaultArray.reverse().every((value, index) => value === sortedArray[index])).to.be.true;
   });
@@ -53,24 +62,19 @@ describe('Blueprints Page', function(){
       blueprintsPage.waitForActiveFiltersExist();
       blueprintsPage.loading();
     })
-    afterEach(function(){
-      if(browser.isExisting('p=Active Filters:')) {
-        blueprintsPage.clearAllFiltersLink.click();
-        blueprintsPage.waitForActiveFiltersNotExist();
-        blueprintsPage.loading();
-      }
-    })
 
-    it('should have correct filter result', function(){
+    it('should have correct filter result and clear filter result by clicking Clear All Filters link', function(){
       // only show the blueprint because filtered by blueprint name
       expect($$(blueprintsPage.blueprintListView)).to.have.lengthOf(1);
+      blueprintsPage.clearAllFiltersLink.click();
+      blueprintsPage.waitForActiveFiltersNotExist();
+      blueprintsPage.loading();
+      // one new added blueprints + three default blueprints
+      expect($$(blueprintsPage.blueprintListView)).to.have.lengthOf.above(1);
     });
 
-    it('should have correct filter content label', function(){
+    it('should have correct filter content label and clear filter result by clicking X button', function(){
       expect(blueprintsPage.filterContentLabel.getText()).to.include(name);
-    })
-
-    it('should clear filter by clicking X button after filter content label', function(){
       blueprintsPage.filterContentLabelCloseButton.click();
       blueprintsPage.waitForActiveFiltersNotExist();
       blueprintsPage.loading();
