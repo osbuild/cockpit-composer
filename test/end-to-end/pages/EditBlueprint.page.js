@@ -8,6 +8,21 @@ class EditBlueprintPage {
     browser.waitForText('.cmpsr-list-pf__compacted', timeout);
   }
 
+  backToBlueprintsPage() {
+    const selector = 'a[href="#/blueprints"]';
+    browser.waitUntil(
+      () => browser.isVisible(selector),
+      timeout,
+      `Back to Blueprint Link in Blueprints page cannot be found by selector ${selector}`
+    );
+    // browser.click() does not work with Edge due to "Element is Obscured" error.
+    // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/5238133/
+    browser.execute((backToBlueprintsLink) => {
+      document.querySelector(backToBlueprintsLink).click();
+      return true;
+    }, selector);
+  }
+
   get blueprintNameLink() {
     const selector = `=${this.name}`;
     browser.waitUntil(
@@ -140,19 +155,20 @@ class EditBlueprintPage {
     return $$(selector);
   }
 
-  backToBlueprintsPage() {
-    const selector = 'a[href="#/blueprints"]';
-    browser.waitUntil(
-      () => browser.isVisible(selector),
-      timeout,
-      `Back to Blueprint Link in Blueprints page cannot be found by selector ${selector}`
-    );
-    // browser.click() does not work with Edge due to "Element is Obscured" error.
-    // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/5238133/
-    browser.execute((backToBlueprintsLink) => {
-      document.querySelector(backToBlueprintsLink).click();
-      return true;
-    }, selector);
+  get sortAscButton() {
+    return $('.fa-sort-alpha-asc');
+  }
+
+  get sortDescButton() {
+    return $('.fa-sort-alpha-desc');
+  }
+
+  get undoButton() {
+    return $('.fa-undo');
+  }
+
+  get redoButton() {
+    return $('.fa-repeat');
   }
 }
 
