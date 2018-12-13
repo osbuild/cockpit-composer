@@ -1,9 +1,9 @@
-# Welder Web
+# Cockpit Composer
 
 [![Build Status](https://travis-ci.org/weldr/welder-web.svg?branch=master)](https://travis-ci.org/weldr/welder-web)
 [![codecov](https://codecov.io/gh/weldr/welder-web/branch/master/graph/badge.svg)](https://codecov.io/gh/weldr/welder-web)
 
-The web interface for Welder!
+The web interface for Composer!
 
 
 ### Getting Started
@@ -86,7 +86,7 @@ $ node run build                # Or, `node run build --release` for production 
 
 ### Building a Docker image
 
-To build the Welder web application as a Docker image see
+To build the Cockpit Composer application as a Docker image see
 [`README.docker`](README.docker)
 
 ### License
@@ -189,11 +189,11 @@ used to collect the JSON files into a gettext-style POT file, and the POT file i
 **Step 4**. The developer runs `npm run translations:pull` and `npm run translations:po2json`. This downloads the translations from
 Zanata as gettext-style .po files and converts the .po files back to JSON.
 
-**Step 5**. The user runs welder-web. Based on the user's browser configuration, welder-web determines the user's preferred
+**Step 5**. The user runs cockpit-composer. Based on the user's browser configuration, cockpit-composer determines the user's preferred
 language, and if translations are available, these translations are provided to react-intl's `<IntlProvider>`. react-intl
 then displays translated strings where possible.
 
-### Making A New Release Of welder-web
+### Making A New Release Of cockpit-composer
 
 When the project is ready for a new release, do the following:
 
@@ -205,14 +205,9 @@ When the project is ready for a new release, do the following:
 
 Then push the tag with `git push --tags`. This will trigger
 [cockpituous](https://github.com/cockpit-project/cockpituous/tree/master/release)
-to build a new release of welder-web.
+to build a new release of cockpit-composer.
 
-#### Releasing cockpit-composer
-
-Do this after tagging a new release of `welder-web` as described above. It uses the same source.
-
- * Build a new `.srpm` with `make cockpit-composer-srpm`, this will also download new translations.
- * Import the new `.srpm` into the appropriate RHEL release
+Finally, import the new `.srpm` into the appropriate RHEL release.
 
 ---
 Made with ♥ by the Welder [team](https://github.com/orgs/weldr/people) and its contributors

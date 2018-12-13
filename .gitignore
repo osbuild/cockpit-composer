@@ -9,7 +9,6 @@ public/po.*.js
 db.json
 core/build-version.json
 npm-debug.log
-welder-web.spec
 cockpit-composer.spec
 package-lock.json
 /po/etag-cache.json

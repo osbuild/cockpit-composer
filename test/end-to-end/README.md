@@ -1,20 +1,10 @@
-# Welder End-To-End Test
+# Cockpit Composer End-To-End Test
 
-The end-to-end automation test for Welder! It is performed on the application
-level and tests whether the business requirements are met regardless of app
-internal architecture, dependencies, data integrity and such. Actually we need
-to follow the end-user flows and assert they get the intended experience and
-focus on the behavior of the thing as the user would see it.
-
-## Test Scenario
-
-### Cockpit Integrated Scenario
-
-Welder Web will be integrated into Cockpit in this scenario. Welder Web RPM
-will install into Cockpit. End-to-end test in this case is to make sure that
-the RPM package isn't missing important module and to make sure that the
-Welder Web is able to work with Cockpit. RPM sanity measure and Cockpit
-functional test will be covered in this scenario.
+The end-to-end automation test for Cockpit Composer! It is performed on the
+application level and tests whether the business requirements are met
+regardless of app internal architecture, dependencies, data integrity and such.
+Actually we need to follow the end-user flows and assert they get the intended
+experience and focus on the behavior of the thing as the user would see it.
 
 ## How To Test
 
@@ -60,7 +50,7 @@ To test cockpit-composer in different OS, set the `$TEST_OS` environment variabl
 ├── /components/                # Component inside page
 │   ├── Blueprint.component.js  # One blueprint group item in Blueprints page
 │   └── /...                    # etc.
-├── /pages/                     # Welder-Web page classes
+├── /pages/                     # Composer page classes
 │   ├── main.js                 # Top level page class and inherited by other page classes
 │   ├── createImage.js          # Create Image page class with tested elements included
 │   ├── createBlueprint.js      # Create Blueprint page class with tested elements included

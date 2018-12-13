@@ -1,7 +1,7 @@
 {
   "name": "end-to-end-test",
   "version": "1.0.0",
-  "description": "The end to end test for welder-web",
+  "description": "The end to end test for cockpit-composer",
   "scripts": {
     "test": "wdio"
   },

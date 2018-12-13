@@ -20,7 +20,7 @@ before_install:
         git rebase welder/master
 install:
   - |
-        if [ "$COMMAND" != "test_rpmbuild" ] && [ "$COMMAND" != "test_rpmbuild_cockpit-composer" ]; then
+        if [ "$COMMAND" != "test_rpmbuild" ]; then
             npm install
         fi
 env:
@@ -33,7 +33,6 @@ env:
     - COMMAND=stylelint
     - COMMAND=unit-test
     - COMMAND=test_rpmbuild
-    - COMMAND=test_rpmbuild_cockpit-composer
 script:
   - make "$COMMAND"
 jobs:

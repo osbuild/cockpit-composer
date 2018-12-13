@@ -46,22 +46,11 @@ $(PACKAGE_NAME).spec: $(PACKAGE_NAME).spec.in
 	    -e 's|@RELEASE@|$(RELEASE)|' \
 	    < $(PACKAGE_NAME).spec.in > $(PACKAGE_NAME).spec
 
-cockpit-composer.spec: cockpit-composer.spec.in
-	sed -e 's|@VERSION@|$(VERSION)|' \
-	    -e 's|@RELEASE@|$(RELEASE)|' \
-	    < cockpit-composer.spec.in > cockpit-composer.spec
-
 srpm: dist-gzip $(PACKAGE_NAME).spec
 	/usr/bin/rpmbuild -bs \
 	  --define "_sourcedir $(CURDIR)" \
 	  --define "_srcrpmdir $(CURDIR)" \
 	  $(PACKAGE_NAME).spec
-
-cockpit-composer-srpm: dist-gzip cockpit-composer.spec
-	/usr/bin/rpmbuild -bs \
-	  --define "_sourcedir $(CURDIR)" \
-	  --define "_srcrpmdir $(CURDIR)" \
-	  cockpit-composer.spec
 
 rpm: dist-gzip $(PACKAGE_NAME).spec
 	mkdir -p "`pwd`/output"
@@ -74,20 +63,6 @@ rpm: dist-gzip $(PACKAGE_NAME).spec
 	  --define "_rpmdir `pwd`/output" \
 	  --define "_buildrootdir `pwd`/build" \
 	  $(PACKAGE_NAME).spec
-	find `pwd`/output -name '*.rpm' -printf '%f\n' -exec mv {} . \;
-	rm -r "`pwd`/rpmbuild"
-
-cockpit-composer-rpm: dist-gzip cockpit-composer.spec
-	mkdir -p "`pwd`/output"
-	mkdir -p "`pwd`/rpmbuild"
-	/usr/bin/rpmbuild -bb \
-	  --define "_sourcedir `pwd`" \
-	  --define "_specdir `pwd`" \
-	  --define "_builddir `pwd`/rpmbuild" \
-	  --define "_srcrpmdir `pwd`" \
-	  --define "_rpmdir `pwd`/output" \
-	  --define "_buildrootdir `pwd`/build" \
-	  cockpit-composer.spec
 	find `pwd`/output -name '*.rpm' -printf '%f\n' -exec mv {} . \;
 	rm -r "`pwd`/rpmbuild"
 
@@ -111,17 +86,14 @@ buildrpm_image:
 test_rpmbuild: buildrpm_image
 	sudo docker run --rm --name buildrpm -v `pwd`:/welder welder/buildrpm:latest make rpm srpm
 
-test_rpmbuild_cockpit-composer: buildrpm_image
-	sudo docker run --rm --name buildrpm -v `pwd`:/welder welder/buildrpm:latest make cockpit-composer-rpm cockpit-composer-srpm
-
 local-clean:
-	rm -rf test/images tmp cockpit-composer.spec cockpit-composer*.rpm welder-web*.tar.gz test/end-to-end/wdio_report
+	rm -rf test/images tmp $(PACKAGE_NAME).spec $(PACKAGE_NAME)*.rpm $(PACKAGE_NAME)*.tar.gz test/end-to-end/wdio_report
 
 # build VMs
-$(VM_IMAGE): local-clean cockpit-composer-rpm bots
+$(VM_IMAGE): local-clean rpm bots
 	# VM running cockpit, composer, and end to end test container
 	bots/image-customize -v \
-		-i `pwd`/cockpit-composer-*.noarch.rpm -i gcc-c++ \
+		-i `pwd`/$(PACKAGE_NAME)-*.noarch.rpm -i gcc-c++ \
 		-s $(CURDIR)/test/vm.install \
 		$(TEST_OS)
 
@@ -149,4 +121,4 @@ update-po:
 upload-pot: po-push
 download-po: po-pull
 
-.PHONY: tag welder-web.spec cockpit-composer.spec local-clean vm check
+.PHONY: tag local-clean vm check

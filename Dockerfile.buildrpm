@@ -2,7 +2,7 @@ FROM fedora:latest
 LABEL maintainer="Xiaofeng Wang" \
       email="xiaofwan@redhat.com" \
       baseimage="Fedora:latest" \
-      description="A welder-web RPM builder container running on Fedora"
+      description="A cockpit-composer RPM builder container running on Fedora"
 
 RUN dnf install -y make cmake rpm-build which gnupg tar xz curl jq nodejs python gcc gcc-c++ && dnf clean all
 
