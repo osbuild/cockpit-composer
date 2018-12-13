@@ -60,8 +60,7 @@ class ListItemComponents extends React.Component {
   render() {
     const { listItem } = this.props;
     return (
-      <div className={`list-pf-item ${this.state.expanded ? 'active' : ''}`}>
-
+      <div className={`list-pf-item ${this.state.expanded ? 'active' : ''}`} data-component={listItem.name}>
         <div className="list-pf-container" onClick={e => this.handleExpandComponent(e)}>
           <div className="list-pf-chevron">
             <span className={`fa ${this.state.expanded ? 'fa-angle-down' : 'fa-angle-right'}`} />

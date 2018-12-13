@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export default function LabelWithBadge(props) {
   return (
-    <span>{props.title}&nbsp;<span className="badge">{props.badge}</span></span>
+    <span>{props.title}&nbsp;<span className="badge" data-badge={props.title}>{props.badge}</span></span>
   );
 }
 
