@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Notification from '../../components/Notifications/Notification';
-import NotificationsApi from '../../data/NotificationsApi';
+import React from "react";
+import PropTypes from "prop-types";
+import Notification from "../Notifications/Notification";
+import NotificationsApi from "../../data/NotificationsApi";
 
 class Layout extends React.Component {
   constructor() {
@@ -19,32 +19,31 @@ class Layout extends React.Component {
   }
 
   render() {
+    const { className, children } = this.props;
+    const { notifications } = this.state;
     return (
       <div>
-        {this.state.notifications &&
+        {notifications && (
           <div className="toast-notifications-list-pf">
-            {this.state.notifications.map((notification, i) =>
+            {notifications.map(notification => (
               <Notification
                 notification={notification}
-                id={i}
-                key={i}
+                id={notification.id}
+                key={notification.id}
                 setNotifications={this.setNotifications}
               />
-            )}
+            ))}
           </div>
-        }
-        <div className={this.props.className}>
-          {this.props.children}
-        </div>
+        )}
+        <div className={className}>{children}</div>
       </div>
     );
   }
 }
 
 Layout.propTypes = {
-  className: PropTypes.string,
-  notifications: PropTypes.array,
-  children: PropTypes.node,
+  className: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired
 };
 
 export default Layout;

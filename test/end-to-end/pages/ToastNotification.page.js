@@ -1,21 +1,21 @@
 // Toast Notification Commit Page
 class ToastNotificationPage {
-  constructor() {
-    this.containerSelector = '[id="cmpsr-toast-0"]';
+  constructor(name) {
+    this.containerSelector = `[id="cmpsr-toast-${name}"]`;
   }
 
   loading() {
-    const selector = `${this.containerSelector} .pficon-ok`
+    const selector = `${this.containerSelector} .pficon-ok`;
     browser.waitForVisible(selector, timeout);
   }
 
   loadingInfoNotification() {
-    const selector = `${this.containerSelector} .pficon-info`
+    const selector = `${this.containerSelector} .pficon-info`;
     browser.waitForVisible(selector, timeout);
   }
 
   close() {
-    const selector = `${this.containerSelector} .pficon-close`
+    const selector = `${this.containerSelector} .pficon-close`;
     browser.waitUntil(
       () => browser.isVisible(selector),
       timeout,
@@ -23,11 +23,11 @@ class ToastNotificationPage {
     );
     // browser.click() does not work with Edge due to "Element is Obscured" error.
     // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/5238133/
-    browser.execute((closeButton) => {
+    browser.execute(closeButton => {
       document.querySelector(closeButton).click();
       return true;
     }, selector);
   }
 }
 
-module.exports = new ToastNotificationPage();
+module.exports = ToastNotificationPage;

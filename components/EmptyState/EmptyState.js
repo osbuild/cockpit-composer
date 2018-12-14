@@ -1,27 +1,27 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-
+import React from "react";
+import PropTypes from "prop-types";
 
 class EmptyState extends React.PureComponent {
-
   render() {
+    const { title, message, children } = this.props;
     return (
       <div className="blank-slate-pf">
-        {this.props.icon}
-        <h1>{this.props.title}</h1>
-        <p>{this.props.message}</p>
-        {this.props.children}
+        <h1>{title}</h1>
+        <p>{message}</p>
+        {children}
       </div>
     );
   }
-
 }
 
 EmptyState.propTypes = {
-  icon: PropTypes.string,
-  title: PropTypes.string,
-  message: PropTypes.string,
-  children: PropTypes.node,
+  title: PropTypes.string.isRequired,
+  message: PropTypes.string.isRequired,
+  children: PropTypes.element
+};
+
+EmptyState.defaultProps = {
+  children: React.createElement("div")
 };
 
 export default EmptyState;

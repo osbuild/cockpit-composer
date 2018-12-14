@@ -1,17 +1,17 @@
-const loginPage = require('../pages/login.page');
-const blueprintsPage = require('../pages/blueprints.page');
-const createBlueprintPage = require('../pages/createBlueprint.page');
-const deleteBlueprintPage = require('../pages/deleteBlueprint.page');
-const EditBlueprintPage = require('../pages/EditBlueprint.page');
-const Blueprint = require('../components/Blueprint.component');
-const AvailableComponents = require('../components/AvailableComponents.component');
-const selectedComponents = require('../components/selectedComponents.component');
-const pendingCommitPage = require('../pages/pendingCommit.page');
-const toastNotificationPage = require('../pages/toastNotification.page');
+const loginPage = require("../pages/login.page");
+const blueprintsPage = require("../pages/blueprints.page");
+const createBlueprintPage = require("../pages/createBlueprint.page");
+const deleteBlueprintPage = require("../pages/deleteBlueprint.page");
+const EditBlueprintPage = require("../pages/EditBlueprint.page");
+const Blueprint = require("../components/Blueprint.component");
+const AvailableComponents = require("../components/AvailableComponents.component");
+const selectedComponents = require("../components/selectedComponents.component");
+const pendingCommitPage = require("../pages/pendingCommit.page");
+const ToastNotificationPage = require("../pages/ToastNotification.page");
 
 module.exports = {
   login: function() {
-    browser.url('/welder');
+    browser.url("/welder");
     loginPage.loadingCockpitLoginPage();
     loginPage.usernameBox.setValue(loginPage.username);
     loginPage.passwordBox.setValue(loginPage.password);
@@ -34,12 +34,14 @@ module.exports = {
     editBlueprintPage.loading();
     // generate a random page number between 1 to max page which is fetched from web page
     // Edge returns '\n of xxxx\n', but others return just 'of xxxx'
-    const pagination = $('.pagination-cmpsr-pages').getText().replace(/^\s+|\s+$/g, '');
-    const totalPage = parseInt(pagination.split(' ')[1], 10);
+    const pagination = $(".pagination-cmpsr-pages")
+      .getText()
+      .replace(/^\s+|\s+$/g, "");
+    const totalPage = parseInt(pagination.split(" ")[1], 10);
     // go to a random page by inputing random number and pressing enter key
     const randomPageNum = Math.floor(Math.random() * totalPage) + 1;
     editBlueprintPage.nthPageBox.setValue(randomPageNum);
-    browser.keys('Enter');
+    browser.keys("Enter");
     // make sure new availabe components for new page loaded
     editBlueprintPage.loading();
     console.log(`Random Page Number: ${randomPageNum}`);
@@ -47,9 +49,9 @@ module.exports = {
     const nth = Math.floor(Math.random() * 50) + 1;
     const availableComponent = new AvailableComponents(nth);
     const packageName = availableComponent.nameLabel.getText();
-    const s = ["th","st","nd","rd"];
+    const s = ["th", "st", "nd", "rd"];
     const v = nth % 100;
-    console.log(`Add the ${nth+(s[(v-20)%10]||s[v]||s[0])} package "${packageName}" to blueprint`);
+    console.log(`Add the ${nth + (s[(v - 20) % 10] || s[v] || s[0])} package "${packageName}" to blueprint`);
     availableComponent.addPackageByNth();
     // make sure the package added into selected components
     selectedComponents.loading();
@@ -65,6 +67,7 @@ module.exports = {
     // wait for Changes Pending Commit dialog fades out
     browser.waitForExist(pendingCommitPage.containerSelector, timeout, true);
     // wait for Toast Notification dialog fades out
+    const toastNotificationPage = new ToastNotificationPage("committed");
     toastNotificationPage.loading();
     toastNotificationPage.close();
     browser.waitForExist('[id="cmpsr-toast-0"]', timeout, true);
@@ -82,4 +85,4 @@ module.exports = {
     deleteBlueprintPage.deleteButton.click();
     browser.waitForExist(deleteBlueprintPage.containerSelector, timeout, true);
   }
-}
+};
