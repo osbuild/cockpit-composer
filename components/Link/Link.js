@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import history from '../../core/history';
+import React from "react";
+import PropTypes from "prop-types";
+import history from "../../core/history";
 
 class Link extends React.Component {
   constructor() {
@@ -8,9 +8,10 @@ class Link extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick (event) {
-    if (this.props.onClick) {
-      this.props.onClick(event);
+  handleClick(event) {
+    const { to, onClick } = this.props;
+    if (onClick) {
+      onClick(event);
     }
 
     if (event.button !== 0 /* left click */) {
@@ -27,30 +28,36 @@ class Link extends React.Component {
 
     event.preventDefault();
 
-    if (this.props.to) {
-      history.push(this.props.to);
+    if (to) {
+      history.push(to);
     } else {
       history.push({
         pathname: event.currentTarget.pathname,
-        search: event.currentTarget.search,
+        search: event.currentTarget.search
       });
     }
   }
 
   render() {
+    const { to, children } = this.props;
     var propsWithoutTo = Object.assign({}, this.props);
     delete propsWithoutTo.to;
-    return (<a href={history.createHref(this.props.to)} {...propsWithoutTo} onClick={this.handleClick}>
-      {this.props.children}
-    </a>);
+    return (
+      <a href={history.createHref(to)} {...propsWithoutTo} onClick={this.handleClick}>
+        {children}
+      </a>
+    );
   }
-
 }
 
 Link.propTypes = {
   to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   onClick: PropTypes.func,
-  children: PropTypes.node,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired
+};
+
+Link.defaultProps = {
+  onClick: function() {}
 };
 
 export default Link;
