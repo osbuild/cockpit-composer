@@ -18,7 +18,7 @@
     "react-dom": "15.6.2",
     "react-intl": "2.7.2",
     "react-redux": "5.1.1",
-    "redux": "3.6.0",
+    "redux": "3.7.2",
     "redux-saga": "0.15.3",
     "reselect": "3.0.1",
     "whatwg-fetch": "1.1.1"
