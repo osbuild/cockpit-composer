@@ -135,7 +135,7 @@ describe('Edit Blueprint Page', function(){
       });
 
       it('Unselected package icon should not have blue border', function(){
-        expect(browser.getAttribute(availableComponent.iconByName(packageName), 'class')).to.not.include('list-pf-icon-bordered');
+        expect(availableComponent.iconByName(packageName).getAttribute('class')).to.not.include('list-pf-icon-bordered');
       });
 
       it('Selected package icon should have blue border', function(){
@@ -148,7 +148,7 @@ describe('Edit Blueprint Page', function(){
           `Cannot add package ${packageName} into blueprint ${name}`
         );
         // icon should be blue bordered
-        expect(browser.getAttribute(availableComponent.iconByName(packageName), 'class')).to.include('list-pf-icon-bordered');
+        expect(availableComponent.iconByName(packageName).getAttribute('class')).to.include('list-pf-icon-bordered');
       });
     });
 
@@ -197,7 +197,7 @@ describe('Edit Blueprint Page', function(){
         // get package name which will be removed
         removedPackageName = selectedComponents.packageNameByNth(0);
         // remove added package
-        selectedComponents.moreButtonByNth(0).click();
+        selectedComponents.moreButtonByName(removedPackageName).click();
         browser.keys('ArrowDown'); // View
         browser.keys('ArrowDown'); // Edit
         browser.keys('ArrowDown'); // Remove
@@ -205,7 +205,7 @@ describe('Edit Blueprint Page', function(){
         // add a new package
         const availableComponent = new AvailableComponents(1);
         addedPackageName = availableComponent.nameLabel.getText();
-        availableComponent.addComponent();
+        availableComponent.addPackageByNth();
         // make sure the package added into selected components
         browser.waitUntil(
           () => selectedComponents.packageList.map(item => item.getText()).includes(addedPackageName),

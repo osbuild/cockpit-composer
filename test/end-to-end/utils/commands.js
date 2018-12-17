@@ -50,7 +50,7 @@ module.exports = {
     const s = ["th","st","nd","rd"];
     const v = nth % 100;
     console.log(`Add the ${nth+(s[(v-20)%10]||s[v]||s[0])} package "${packageName}" to blueprint`);
-    availableComponent.addComponent();
+    availableComponent.addPackageByNth();
     // make sure the package added into selected components
     selectedComponents.loading();
     browser.waitUntil(

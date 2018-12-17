@@ -164,11 +164,23 @@ class EditBlueprintPage {
   }
 
   get undoButton() {
-    return $('.fa-undo');
+    const selector = '[data-button="undo"]';
+    browser.waitUntil(
+      () => $(selector).getAttribute('class').indexOf('disabled') === -1,
+      timeout,
+      `Undo button in Edit Blueprint page cannot be found by selector ${selector}`
+    );
+    return $(`${selector} span`);
   }
 
   get redoButton() {
-    return $('.fa-repeat');
+    const selector = '[data-button="redo"]';
+    browser.waitUntil(
+      () => $(selector).getAttribute('class').indexOf('disabled') === -1,
+      timeout,
+      `Redo button in Edit Blueprint page cannot be found by selector ${selector}`
+    );
+    return $(`${selector} span`);
   }
 }
 

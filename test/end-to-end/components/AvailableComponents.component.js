@@ -8,7 +8,7 @@ class AvailableComponents {
     }
   }
 
-  addComponent() {
+  addPackageByNth() {
     const selector = `${this.containerSelector} .fa-plus`;
     browser.waitUntil(
       () => $(selector).isVisible(),
@@ -33,19 +33,13 @@ class AvailableComponents {
     return $(selector);
   }
 
-  nthSelectorByName(name) {
-    const tmpArray = $$('.cmpsr-list-pf__compacted .list-pf-item').map(item => item.$('.list-pf-title').getText());
-    const nth = tmpArray.indexOf(name);
-    return `.cmpsr-list-pf__compacted .list-pf-item:nth-child(${nth+1})`;
-  }
-
   addPackageByName(name) {
     // browser.click() does not work with Edge due to "Element is Obscured" error.
     // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/5238133/
     browser.execute((plusButton) => {
       document.querySelector(plusButton).click();
       return true;
-    }, `${this.nthSelectorByName(name)} .fa-plus`);
+    }, `[data-input=${name}] .fa-plus`);
   }
 
   removePackageByName(name) {
@@ -54,11 +48,11 @@ class AvailableComponents {
     browser.execute((plusButton) => {
       document.querySelector(plusButton).click();
       return true;
-    }, `${this.nthSelectorByName(name)} .fa-minus`);
+    }, `[data-input=${name}] .fa-minus`);
   }
 
   iconByName(name) {
-    return `${this.nthSelectorByName(name)} .pficon-bundle`;
+    return $(`[data-input=${name}] .pficon-bundle`);
   }
 }
 
