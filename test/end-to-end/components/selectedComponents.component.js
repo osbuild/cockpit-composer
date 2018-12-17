@@ -25,19 +25,14 @@ class SelectedComponents {
     return $$(this.components)[nth].$('.list-pf-title a').getText();
   }
 
-  moreButtonByNth(nth) {
-    return $$(this.components)[nth].$('.fa-ellipsis-v');
-  }
-
   moreButtonByName(name) {
-    let moreButton;
-    $$(this.components).some((component) => {
-      if (component.$('.list-pf-title a').getText() === name) {
-        moreButton = component.$('.fa-ellipsis-v');
-        return true;
-      }
-    })
-    return moreButton;
+    const selector = `[data-component=${name}] .fa-ellipsis-v`;
+    browser.waitUntil(
+      () => browser.isExisting(selector),
+      timeout,
+      `: button inside ${name} component in Selected Component cannot be found by selector ${selector}`
+    );
+    return $(selector);
   }
 }
 

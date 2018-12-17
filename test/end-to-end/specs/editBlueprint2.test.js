@@ -86,6 +86,10 @@ describe('Edit Blueprint Page', function(){
         expect(defaultArray.reverse().every((value, index) => value === sortedArray[index])).to.be.true;
       });
 
+      it('Redo butto should be disabled', function(){
+        expect(browser.getAttribute('[data-button="redo"]', 'class')).to.include('disabled');
+      });
+
       it('Undo button should work', function(){
         editBlueprintPage.undoButton.click();
         browser.waitUntil(
@@ -94,6 +98,10 @@ describe('Edit Blueprint Page', function(){
           `Cannot add package ${packageName} into blueprint ${name}`
         );
         expect(selectedComponents.packageList.map(item => item.getText())).to.not.include(packageName);
+      });
+
+      it('Undo butto should be disabled', function(){
+        expect(browser.getAttribute('[data-button="undo"]', 'class')).to.include('disabled');
       });
 
       it('Redo button should work', function(){
