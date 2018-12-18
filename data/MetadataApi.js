@@ -1,11 +1,11 @@
-import constants from '../core/constants';
-import utils from '../core/utils';
+import constants from "../core/constants";
+import utils from "../core/utils";
 
 class MetadataApi {
-
   getData(api) {
-    const p = new Promise((resolve) => {
-      utils.apiFetch(api)
+    const p = new Promise(resolve => {
+      utils
+        .apiFetch(api)
         .then(data => {
           resolve(data);
         })
@@ -17,9 +17,9 @@ class MetadataApi {
   }
 
   getNames(components) {
-    let names = '';
+    let names = "";
     components.map(i => {
-      names = names === '' ? i.name : `${names},${i.name}`;
+      names = names === "" ? i.name : `${names},${i.name}`;
       return i;
     });
     return names;
@@ -29,16 +29,15 @@ class MetadataApi {
     // the user clicked Edit when viewing details of a Blueprint component
     // a list of available builds are returned for displaying in the edit form
     const p = new Promise((resolve, reject) => {
-      Promise.all([
-        this.getData(constants.get_projects_info + component.name),
-      ]).then((data) => {
-        const builds = data[0].projects[0].builds;
-        resolve(builds);
-      })
-      .catch(e => {
-        console.log(`Error getting component builds: ${e}`);
-        reject();
-      });
+      Promise.all([this.getData(constants.get_projects_info + component.name)])
+        .then(data => {
+          const builds = data[0].projects[0].builds;
+          resolve(builds);
+        })
+        .catch(e => {
+          console.log(`Error getting component builds: ${e}`);
+          reject();
+        });
     });
     return p;
   }
@@ -56,46 +55,48 @@ class MetadataApi {
     const p = new Promise((resolve, reject) => {
       Promise.all([
         this.getData(constants.get_projects_info + component.name),
-        this.getData(constants.get_modules_info + component.name),
-      ]).then((data) => {
-        if ((data[0].projects.length === 0) || (data[1].modules.length === 0)) {
-          console.log(`Error fetching metadata for ${component.name}`);
-          return;
-        }
+        this.getData(constants.get_modules_info + component.name)
+      ])
+        .then(data => {
+          if (data[0].projects.length === 0 || data[1].modules.length === 0) {
+            console.log(`Error fetching metadata for ${component.name}`);
+            return;
+          }
 
-        const componentData = data[1].modules[0];
-        componentData.inBlueprint = component.inBlueprint;
-        componentData.userSelected = component.userSelected;
-        componentData.ui_type = component.ui_type;
+          const componentData = data[1].modules[0];
+          componentData.inBlueprint = component.inBlueprint;
+          componentData.userSelected = component.userSelected;
+          componentData.ui_type = component.ui_type;
 
-        // The component's depsolved version may be in .dependencies
-        let compNEVRA = componentData.dependencies.filter((obj) => obj.name === component.name);
-        if (compNEVRA.length > 0) {
-          compNEVRA = compNEVRA[0];
-        } else {
+          // The component's depsolved version may be in .dependencies
+          let compNEVRA = componentData.dependencies.filter(obj => obj.name === component.name);
+          if (compNEVRA.length > 0) {
+            compNEVRA = compNEVRA[0];
+          } else {
             // Missing deps, construct a NEVRA from the build data
-          const firstBuild = data[0].projects[0].builds[0];
-          compNEVRA = {
-            name: component.name,
-            version: firstBuild.source.version,
-            release: firstBuild.release,
-            arch: firstBuild.arch,
-            epoch: firstBuild.epoch,
-          };
-        }
+            const firstBuild = data[0].projects[0].builds[0];
+            compNEVRA = {
+              name: component.name,
+              version: firstBuild.source.version,
+              release: firstBuild.release,
+              arch: firstBuild.arch,
+              epoch: firstBuild.epoch
+            };
+          }
 
-        componentData.version = compNEVRA.version;
-        componentData.release = compNEVRA.release;
-        componentData.arch = compNEVRA.arch;
+          componentData.version = compNEVRA.version;
+          componentData.release = compNEVRA.release;
+          componentData.arch = compNEVRA.arch;
 
-        // if the user clicked View Details for an available component
-        // then get the list of available builds
-        const metadata = (build === 'all') ? [componentData, data[0].projects[0].builds] : [componentData, []];
-        resolve(metadata);
-      }).catch(e => {
-        console.log(`getMetadataComponent: Error getting component: ${e}`);
-        reject();
-      });
+          // if the user clicked View Details for an available component
+          // then get the list of available builds
+          const metadata = build === "all" ? [componentData, data[0].projects[0].builds] : [componentData, []];
+          resolve(metadata);
+        })
+        .catch(e => {
+          console.log(`getMetadataComponent: Error getting component: ${e}`);
+          reject();
+        });
     });
     return p;
   }
@@ -135,7 +136,6 @@ class MetadataApi {
     }
     return component.projects;
   }
-
 }
 
 export default new MetadataApi();

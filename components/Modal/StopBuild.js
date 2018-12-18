@@ -1,21 +1,20 @@
 /* global $ */
 
-import React from 'react';
-import {FormattedMessage} from 'react-intl';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { cancellingCompose } from '../../core/actions/composes';
+import React from "react";
+import { FormattedMessage } from "react-intl";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { cancellingCompose } from "../../core/actions/composes";
 
 class StopBuild extends React.Component {
-
   constructor() {
     super();
     this.handleCancel = this.handleCancel.bind(this);
   }
 
   componentDidMount() {
-    $(this.modal).modal('show');
-    $(this.modal).on('hidden.bs.modal', this.props.handleHideModal);
+    $(this.modal).modal("show");
+    $(this.modal).on("hidden.bs.modal", this.props.handleHideModal);
   }
 
   handleCancel() {
@@ -27,7 +26,9 @@ class StopBuild extends React.Component {
       <div
         className="modal fade"
         id="cmpsr-modal-delete"
-        ref={(c) => { this.modal = c; }}
+        ref={c => {
+          this.modal = c;
+        }}
         tabIndex="-1"
         role="dialog"
         aria-labelledby="myModalLabel"
@@ -36,14 +37,12 @@ class StopBuild extends React.Component {
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <button
-                type="button"
-                className="close"
-                data-dismiss="modal"
-              >
-                <span className="pficon pficon-close"></span>
+              <button type="button" className="close" data-dismiss="modal">
+                <span className="pficon pficon-close" />
               </button>
-              <h4 className="modal-title" id="myModalLabel"><FormattedMessage defaultMessage="Stop Build" /></h4>
+              <h4 className="modal-title" id="myModalLabel">
+                <FormattedMessage defaultMessage="Stop Build" />
+              </h4>
             </div>
             <div className="modal-body">
               <p className="lead">
@@ -57,17 +56,12 @@ class StopBuild extends React.Component {
               <FormattedMessage defaultMessage="The build process cannot resume after it stops." tagName="p" />
             </div>
             <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-default"
-                data-dismiss="modal"
-              ><FormattedMessage defaultMessage="Cancel" /></button>
-              <button
-                type="button"
-                className="btn btn-primary"
-                data-dismiss="modal"
-                onClick={this.handleCancel}
-              ><FormattedMessage defaultMessage="Stop Build" /></button>
+              <button type="button" className="btn btn-default" data-dismiss="modal">
+                <FormattedMessage defaultMessage="Cancel" />
+              </button>
+              <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.handleCancel}>
+                <FormattedMessage defaultMessage="Stop Build" />
+              </button>
             </div>
           </div>
         </div>
@@ -81,13 +75,16 @@ StopBuild.propTypes = {
   composeId: PropTypes.string,
   handleHideModal: PropTypes.func,
   handleCancel: PropTypes.func,
-  cancellingCompose: PropTypes.func,
+  cancellingCompose: PropTypes.func
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  cancellingCompose: (compose) => {
+const mapDispatchToProps = dispatch => ({
+  cancellingCompose: compose => {
     dispatch(cancellingCompose(compose));
-  },
+  }
 });
 
-export default connect(null, mapDispatchToProps)(StopBuild);
+export default connect(
+  null,
+  mapDispatchToProps
+)(StopBuild);

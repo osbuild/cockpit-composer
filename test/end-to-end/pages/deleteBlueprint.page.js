@@ -7,9 +7,9 @@ class DeleteBlueprintPage {
   loading() {
     // sometimes the style attribute is style="display: block; padding-right: 12px;"
     browser.waitUntil(
-      () => browser.getAttribute(this.containerSelector, 'style').includes('display: block;'),
+      () => browser.getAttribute(this.containerSelector, "style").includes("display: block;"),
       timeout,
-      'Cannot pop up Delete Blueprint dialog'
+      "Cannot pop up Delete Blueprint dialog"
     );
   }
 

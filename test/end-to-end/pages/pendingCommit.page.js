@@ -9,7 +9,7 @@ class PendingCommitPage {
   }
 
   commit() {
-    const selector = `${this.containerSelector} .modal-footer button[class="btn btn-primary"]`
+    const selector = `${this.containerSelector} .modal-footer button[class="btn btn-primary"]`;
     browser.waitUntil(
       () => browser.isVisible(selector),
       timeout,
@@ -17,14 +17,14 @@ class PendingCommitPage {
     );
     // browser.click() does not work with Edge due to "Element is Obscured" error.
     // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/5238133/
-    browser.execute((commitButton) => {
+    browser.execute(commitButton => {
       document.querySelector(commitButton).click();
       return true;
     }, selector);
   }
 
   get closeButton() {
-    const selector = 'button=Close';
+    const selector = "button=Close";
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
@@ -44,7 +44,7 @@ class PendingCommitPage {
   }
 
   get infoMessage() {
-    const selector = 'span=Only changes to selected components are shown.';
+    const selector = "span=Only changes to selected components are shown.";
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
@@ -64,7 +64,7 @@ class PendingCommitPage {
   }
 
   get changeLogList() {
-    return $$(`${this.containerSelector} .form-horizontal ul li`)
+    return $$(`${this.containerSelector} .form-horizontal ul li`);
   }
 
   actionNameOnNth(nth) {

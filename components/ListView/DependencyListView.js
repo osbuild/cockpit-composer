@@ -1,8 +1,8 @@
-import React from 'react';
-import {FormattedMessage} from 'react-intl';
-import PropTypes from 'prop-types';
-import ListView from '../../components/ListView/ListView';
-import ListItemComponents from '../../components/ListView/ListItemComponents';
+import React from "react";
+import { FormattedMessage } from "react-intl";
+import PropTypes from "prop-types";
+import ListView from "../../components/ListView/ListView";
+import ListItemComponents from "../../components/ListView/ListItemComponents";
 
 class DependencyListView extends React.Component {
   componentWillMount() {}
@@ -44,7 +44,7 @@ DependencyListView.propTypes = {
   handleComponentDetails: PropTypes.func,
   handleRemoveComponent: PropTypes.func,
   componentDetailsParent: PropTypes.object,
-  className: PropTypes.string,
+  className: PropTypes.string
 };
 
 export default DependencyListView;

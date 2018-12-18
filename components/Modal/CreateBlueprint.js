@@ -1,18 +1,20 @@
 /* global $ */
 
-import React from 'react';
-import {FormattedMessage} from 'react-intl';
-import PropTypes from 'prop-types';
-import BlueprintApi from '../../data/BlueprintApi';
-import { connect } from 'react-redux';
+import React from "react";
+import { FormattedMessage } from "react-intl";
+import PropTypes from "prop-types";
+import BlueprintApi from "../../data/BlueprintApi";
+import { connect } from "react-redux";
 import {
-  setModalCreateBlueprintErrorNameVisible, setModalCreateBlueprintErrorDuplicateVisible,
-  setModalCreateBlueprintErrorInline, setModalCreateBlueprintCheckErrors, setModalCreateBlueprintBlueprint,
-} from '../../core/actions/modals';
-import { creatingBlueprintSucceeded } from '../../core/actions/blueprints';
+  setModalCreateBlueprintErrorNameVisible,
+  setModalCreateBlueprintErrorDuplicateVisible,
+  setModalCreateBlueprintErrorInline,
+  setModalCreateBlueprintCheckErrors,
+  setModalCreateBlueprintBlueprint
+} from "../../core/actions/modals";
+import { creatingBlueprintSucceeded } from "../../core/actions/blueprints";
 
 class CreateBlueprint extends React.Component {
-
   componentDidMount() {
     this.bindAutofocus();
   }
@@ -24,30 +26,30 @@ class CreateBlueprint extends React.Component {
 
   componentWillUnmount() {
     const initialBlueprint = {
-      name: '',
-      description: '',
+      name: "",
+      description: "",
       modules: [],
-      packages: [],
+      packages: []
     };
     this.props.setModalCreateBlueprintBlueprint(initialBlueprint);
     this.unbind();
   }
 
   bindAutofocus() {
-    $('#cmpsr-modal-crt-blueprint').on('shown.bs.modal', () => {
-      $('#textInput-modal-markup').focus();
+    $("#cmpsr-modal-crt-blueprint").on("shown.bs.modal", () => {
+      $("#textInput-modal-markup").focus();
     });
   }
 
   unbind() {
-    $('#cmpsr-modal-crt-image .btn-primary').off('shown.bs.modal');
+    $("#cmpsr-modal-crt-image .btn-primary").off("shown.bs.modal");
   }
 
   handleChange(e, prop) {
     const o = Object.assign({}, this.props.createBlueprint.blueprint);
     o[prop] = e.target.value;
     this.props.setModalCreateBlueprintBlueprint(o);
-    if (prop === 'name') {
+    if (prop === "name") {
       this.dismissErrors();
       this.handleErrorDuplicate(e.target.value);
     }
@@ -67,10 +69,10 @@ class CreateBlueprint extends React.Component {
   }
 
   handleCreateBlueprint(event, blueprint) {
-    $('#cmpsr-modal-crt-blueprint').modal('hide');
+    $("#cmpsr-modal-crt-blueprint").modal("hide");
     BlueprintApi.handleCreateBlueprint(event, blueprint);
     const updatedBlueprint = blueprint;
-    updatedBlueprint.id = updatedBlueprint.name.replace(/\s/g, '-');
+    updatedBlueprint.id = updatedBlueprint.name.replace(/\s/g, "-");
     this.props.creatingBlueprintSucceeded(updatedBlueprint);
   }
 
@@ -90,14 +92,14 @@ class CreateBlueprint extends React.Component {
   }
 
   handleErrorDuplicate(blueprintName) {
-    const nameNoSpaces = blueprintName.replace(/\s+/g, '-');
+    const nameNoSpaces = blueprintName.replace(/\s+/g, "-");
     if (this.props.blueprintNames.includes(nameNoSpaces)) {
       this.props.setModalCreateBlueprintErrorDuplicateVisible(true);
     }
   }
 
   handleErrorName(blueprintName) {
-    if (blueprintName === '' && this.props.createBlueprint.checkErrors) {
+    if (blueprintName === "" && this.props.createBlueprint.checkErrors) {
       setTimeout(() => {
         this.props.setModalCreateBlueprintErrorNameVisible(true);
       }, 200);
@@ -129,26 +131,32 @@ class CreateBlueprint extends React.Component {
                 aria-hidden="true"
                 onMouseEnter={() => this.errorChecking(false)}
                 onMouseLeave={() => this.errorChecking(true)}
-                onClick={(e) => this.dismissErrors(e)}
+                onClick={e => this.dismissErrors(e)}
               >
-                <span className="pficon pficon-close"></span>
+                <span className="pficon pficon-close" />
               </button>
-              <h4 className="modal-title" id="myModalLabel"><FormattedMessage defaultMessage="Create Blueprint" /></h4>
+              <h4 className="modal-title" id="myModalLabel">
+                <FormattedMessage defaultMessage="Create Blueprint" />
+              </h4>
             </div>
             <div className="modal-body">
-              {(createBlueprint.errorInline && createBlueprint.errorNameVisible) &&
+              {createBlueprint.errorInline && createBlueprint.errorNameVisible && (
                 <div className="alert alert-danger">
-                  <span className="pficon pficon-error-circle-o"></span>
-                  <strong><FormattedMessage defaultMessage="Required information is missing." /></strong>
+                  <span className="pficon pficon-error-circle-o" />
+                  <strong>
+                    <FormattedMessage defaultMessage="Required information is missing." />
+                  </strong>
                 </div>
-              }
-              {(createBlueprint.errorInline && createBlueprint.errorDuplicateVisible) &&
+              )}
+              {createBlueprint.errorInline && createBlueprint.errorDuplicateVisible && (
                 <div className="alert alert-danger">
-                  <span className="pficon pficon-error-circle-o"></span>
-                  <strong><FormattedMessage defaultMessage="Specify a new blueprint name." /></strong>
+                  <span className="pficon pficon-error-circle-o" />
+                  <strong>
+                    <FormattedMessage defaultMessage="Specify a new blueprint name." />
+                  </strong>
                 </div>
-              }
-              <form className="form-horizontal" onKeyPress={(e) => this.handleEnterKey(e)}>
+              )}
+              <form className="form-horizontal" onKeyPress={e => this.handleEnterKey(e)}>
                 <p className="fields-status-pf">
                   <FormattedMessage
                     defaultMessage="The fields marked with {val} are required."
@@ -158,27 +166,32 @@ class CreateBlueprint extends React.Component {
                   />
                 </p>
                 <div
-                  className={`form-group ${(createBlueprint.errorNameVisible || createBlueprint.errorDuplicateVisible)
-                    ? 'has-error' : ''}`}
+                  className={`form-group ${
+                    createBlueprint.errorNameVisible || createBlueprint.errorDuplicateVisible ? "has-error" : ""
+                  }`}
                 >
-                  <label
-                    className="col-sm-3 control-label required-pf"
-                    htmlFor="textInput-modal-markup"
-                  ><FormattedMessage defaultMessage="Name" /></label>
+                  <label className="col-sm-3 control-label required-pf" htmlFor="textInput-modal-markup">
+                    <FormattedMessage defaultMessage="Name" />
+                  </label>
                   <div className="col-sm-9">
                     <input
                       type="text"
                       id="textInput-modal-markup"
                       className="form-control"
                       value={createBlueprint.blueprint.name}
-                      onFocus={(e) => { this.dismissErrors(); this.handleErrorDuplicate(e.target.value); }}
-                      onChange={(e) => this.handleChange(e, 'name')}
-                      onBlur={(e) => this.handleErrors(e.target.value)}
+                      onFocus={e => {
+                        this.dismissErrors();
+                        this.handleErrorDuplicate(e.target.value);
+                      }}
+                      onChange={e => this.handleChange(e, "name")}
+                      onBlur={e => this.handleErrors(e.target.value)}
                     />
-                    {createBlueprint.errorNameVisible &&
-                      <span className="help-block"><FormattedMessage defaultMessage="A blueprint name is required." /></span>
-                    }
-                    {createBlueprint.errorDuplicateVisible &&
+                    {createBlueprint.errorNameVisible && (
+                      <span className="help-block">
+                        <FormattedMessage defaultMessage="A blueprint name is required." />
+                      </span>
+                    )}
+                    {createBlueprint.errorDuplicateVisible && (
                       <span className="help-block">
                         <FormattedMessage
                           defaultMessage="The name {name} already exists."
@@ -187,21 +200,20 @@ class CreateBlueprint extends React.Component {
                           }}
                         />
                       </span>
-                    }
+                    )}
                   </div>
                 </div>
                 <div className="form-group">
-                  <label
-                    className="col-sm-3 control-label"
-                    htmlFor="textInput2-modal-markup"
-                  ><FormattedMessage defaultMessage="Description" /></label>
+                  <label className="col-sm-3 control-label" htmlFor="textInput2-modal-markup">
+                    <FormattedMessage defaultMessage="Description" />
+                  </label>
                   <div className="col-sm-9">
                     <input
                       type="text"
                       id="textInput2-modal-markup"
                       className="form-control"
                       value={createBlueprint.blueprint.description}
-                      onChange={(e) => this.handleChange(e, 'description')}
+                      onChange={e => this.handleChange(e, "description")}
                     />
                   </div>
                 </div>
@@ -214,21 +226,25 @@ class CreateBlueprint extends React.Component {
                 data-dismiss="modal"
                 onMouseEnter={() => this.errorChecking(false)}
                 onMouseLeave={() => this.errorChecking(true)}
-                onClick={(e) => this.dismissErrors(e)}
-              ><FormattedMessage defaultMessage="Cancel" /></button>
-              {(createBlueprint.blueprint.name === '' || createBlueprint.errorDuplicateVisible) &&
+                onClick={e => this.dismissErrors(e)}
+              >
+                <FormattedMessage defaultMessage="Cancel" />
+              </button>
+              {((createBlueprint.blueprint.name === "" || createBlueprint.errorDuplicateVisible) && (
+                <button type="button" className="btn btn-primary" onClick={e => this.showInlineError(e)}>
+                  <FormattedMessage defaultMessage="Create" />
+                </button>
+              )) || (
                 <button
                   type="button"
                   className="btn btn-primary"
-                  onClick={(e) => this.showInlineError(e)}
-                ><FormattedMessage defaultMessage="Create" /></button>
-                ||
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={(e) => { this.handleCreateBlueprint(e, createBlueprint.blueprint); }}
-                ><FormattedMessage defaultMessage="Create" /></button>
-              }
+                  onClick={e => {
+                    this.handleCreateBlueprint(e, createBlueprint.blueprint);
+                  }}
+                >
+                  <FormattedMessage defaultMessage="Create" />
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -245,13 +261,12 @@ CreateBlueprint.propTypes = {
   setModalCreateBlueprintCheckErrors: PropTypes.func,
   setModalCreateBlueprintBlueprint: PropTypes.func,
   createBlueprint: PropTypes.object,
-  creatingBlueprintSucceeded: PropTypes.func,
+  creatingBlueprintSucceeded: PropTypes.func
 };
 
 const mapStateToProps = state => ({
-  createBlueprint: state.modals.createBlueprint,
+  createBlueprint: state.modals.createBlueprint
 });
-
 
 const mapDispatchToProps = dispatch => ({
   setModalCreateBlueprintErrorNameVisible: nameErrorVisible => {
@@ -269,9 +284,12 @@ const mapDispatchToProps = dispatch => ({
   setModalCreateBlueprintBlueprint: blueprint => {
     dispatch(setModalCreateBlueprintBlueprint(blueprint));
   },
-  creatingBlueprintSucceeded: (blueprint) => {
+  creatingBlueprintSucceeded: blueprint => {
     dispatch(creatingBlueprintSucceeded(blueprint));
-  },
+  }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateBlueprint);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CreateBlueprint);

@@ -1,24 +1,40 @@
-import { call, put, takeEvery, select } from 'redux-saga/effects';
+import { call, put, takeEvery, select } from "redux-saga/effects";
 import {
-  fetchBlueprintInfoApi, fetchBlueprintNamesApi, fetchBlueprintContentsApi,
-  deleteBlueprintApi, setBlueprintDescriptionApi,
+  fetchBlueprintInfoApi,
+  fetchBlueprintNamesApi,
+  fetchBlueprintContentsApi,
+  deleteBlueprintApi,
+  setBlueprintDescriptionApi,
   createBlueprintApi,
   depsolveComponentsApi,
-  commitToWorkspaceApi, fetchDiffWorkspaceApi,
-  deleteWorkspaceApi,
-} from '../apiCalls';
+  commitToWorkspaceApi,
+  fetchDiffWorkspaceApi,
+  deleteWorkspaceApi
+} from "../apiCalls";
 import {
-  FETCHING_BLUEPRINTS, fetchingBlueprintsSucceeded, fetchingBlueprintNamesSucceeded,
-  FETCHING_BLUEPRINT_CONTENTS, fetchingBlueprintContentsSucceeded,
-  CREATING_BLUEPRINT, creatingBlueprintSucceeded,
-  ADD_BLUEPRINT_COMPONENT, ADD_BLUEPRINT_COMPONENT_SUCCEEDED, addBlueprintComponentSucceeded,
-  REMOVE_BLUEPRINT_COMPONENT, REMOVE_BLUEPRINT_COMPONENT_SUCCEEDED, removeBlueprintComponentSucceeded,
-  SET_BLUEPRINT_DESCRIPTION, setBlueprintDescriptionSucceeded,
-  DELETING_BLUEPRINT, deletingBlueprintSucceeded,
-  COMMIT_TO_WORKSPACE, DELETE_WORKSPACE,
-  blueprintsFailure, blueprintContentsFailure,
-} from '../actions/blueprints';
-import { makeGetBlueprintById } from '../selectors';
+  FETCHING_BLUEPRINTS,
+  fetchingBlueprintsSucceeded,
+  fetchingBlueprintNamesSucceeded,
+  FETCHING_BLUEPRINT_CONTENTS,
+  fetchingBlueprintContentsSucceeded,
+  CREATING_BLUEPRINT,
+  creatingBlueprintSucceeded,
+  ADD_BLUEPRINT_COMPONENT,
+  ADD_BLUEPRINT_COMPONENT_SUCCEEDED,
+  addBlueprintComponentSucceeded,
+  REMOVE_BLUEPRINT_COMPONENT,
+  REMOVE_BLUEPRINT_COMPONENT_SUCCEEDED,
+  removeBlueprintComponentSucceeded,
+  SET_BLUEPRINT_DESCRIPTION,
+  setBlueprintDescriptionSucceeded,
+  DELETING_BLUEPRINT,
+  deletingBlueprintSucceeded,
+  COMMIT_TO_WORKSPACE,
+  DELETE_WORKSPACE,
+  blueprintsFailure,
+  blueprintContentsFailure
+} from "../actions/blueprints";
+import { makeGetBlueprintById } from "../selectors";
 
 function* fetchBlueprintsFromName(blueprintName) {
   const response = yield call(fetchBlueprintInfoApi, blueprintName);
@@ -31,7 +47,7 @@ function* fetchBlueprints() {
     yield put(fetchingBlueprintNamesSucceeded());
     yield* blueprintNames.map(blueprintName => fetchBlueprintsFromName(blueprintName));
   } catch (error) {
-    console.log('errorloadBlueprintsSaga');
+    console.log("errorloadBlueprintsSaga");
     yield put(blueprintsFailure(error));
   }
 }
@@ -41,36 +57,34 @@ function* fetchBlueprintContents(action) {
     const { blueprintId } = action.payload;
     let blueprintPast = [];
     let blueprintPresent = null;
-    const blueprint = yield call(fetchBlueprintInfoApi, blueprintId);   
+    const blueprint = yield call(fetchBlueprintInfoApi, blueprintId);
     const blueprintResponse = yield call(fetchBlueprintContentsApi, blueprint.name);
     let workspacePendingChanges = {
-      'addedChanges': [],
-      'deletedChanges': [],
+      addedChanges: [],
+      deletedChanges: []
     };
     if (blueprint.changed === true) {
       const workspaceChanges = yield call(fetchDiffWorkspaceApi, blueprintId);
       const addedChanges = workspaceChanges.diff.filter(componentUpdated => componentUpdated.old === null);
       const deletedChanges = workspaceChanges.diff.filter(componentUpdated => componentUpdated.new === null);
       workspacePendingChanges = {
-        'addedChanges': addedChanges,
-        'deletedChanges': deletedChanges,
+        addedChanges: addedChanges,
+        deletedChanges: deletedChanges
       };
-      blueprintPast = [Object.assign(
-        {}, blueprintResponse, {
+      blueprintPast = [
+        Object.assign({}, blueprintResponse, {
           localPendingChanges: [],
-          workspacePendingChanges: {addedChanges: [], deletedChanges: []},
-        }
-      )];
+          workspacePendingChanges: { addedChanges: [], deletedChanges: [] }
+        })
+      ];
     }
-    blueprintPresent = Object.assign(
-      {}, blueprintResponse, {
-        localPendingChanges: [],
-        workspacePendingChanges: workspacePendingChanges,
-      }
-    );
+    blueprintPresent = Object.assign({}, blueprintResponse, {
+      localPendingChanges: [],
+      workspacePendingChanges: workspacePendingChanges
+    });
     yield put(fetchingBlueprintContentsSucceeded(blueprintPast, blueprintPresent, workspacePendingChanges));
   } catch (error) {
-    console.log('Error in fetchBlueprintContentsSaga');
+    console.log("Error in fetchBlueprintContentsSaga");
     yield put(blueprintContentsFailure(error, action.payload.blueprintId));
   }
 }
@@ -89,13 +103,12 @@ function* setBlueprintDescription(action) {
     yield put(setBlueprintDescriptionSucceeded(response));
     // post present blueprint object to workspace
     const workspace = Object.assign({}, blueprintHistory.present, {
-      description: description, 
-      version: response.version,
+      description: description,
+      version: response.version
     });
     yield call(commitToWorkspaceApi, workspace);
-
   } catch (error) {
-    console.log('Error in setBlueprintDescription');
+    console.log("Error in setBlueprintDescription");
     yield put(blueprintsFailure(error));
   }
 }
@@ -106,7 +119,7 @@ function* deleteBlueprint(action) {
     const response = yield call(deleteBlueprintApi, blueprintId);
     yield put(deletingBlueprintSucceeded(response));
   } catch (error) {
-    console.log('errorDeleteBlueprintsSaga');
+    console.log("errorDeleteBlueprintsSaga");
     yield put(blueprintsFailure(error));
   }
 }
@@ -117,7 +130,7 @@ function* createBlueprint(action) {
     yield call(createBlueprintApi, events, blueprint);
     yield put(creatingBlueprintSucceeded(blueprint));
   } catch (error) {
-    console.log('errorCreateBlueprintSaga');
+    console.log("errorCreateBlueprintSaga");
     yield put(blueprintsFailure(error));
   }
 }
@@ -126,13 +139,17 @@ function* addComponent(action) {
   try {
     const { blueprint, component } = action.payload;
 
-    const addedPackage = Object.assign({}, {}, {
-      name: component.name,
-      version: component.version
-    });
+    const addedPackage = Object.assign(
+      {},
+      {},
+      {
+        name: component.name,
+        version: component.version
+      }
+    );
     const pendingChange = {
       componentOld: null,
-      componentNew: component.name + '-' + component.version + '-' + component.release
+      componentNew: component.name + "-" + component.version + "-" + component.release
     };
 
     const packages = blueprint.packages.concat(addedPackage);
@@ -141,7 +158,7 @@ function* addComponent(action) {
 
     yield put(addBlueprintComponentSucceeded(blueprint.id, components, packages, modules, pendingChange));
   } catch (error) {
-    console.log('errorAddComponentSaga');
+    console.log("errorAddComponentSaga");
     yield put(blueprintsFailure(error));
   }
 }
@@ -151,15 +168,15 @@ function* removeComponent(action) {
     const { blueprint, component } = action.payload;
 
     const pendingChange = {
-      componentOld: component.name + '-' + component.version + '-' + component.release,
-      componentNew: null,
+      componentOld: component.name + "-" + component.version + "-" + component.release,
+      componentNew: null
     };
     const packages = blueprint.packages.filter(pack => pack.name !== component.name);
     const modules = blueprint.modules.filter(module => module.name !== component.name);
     const components = yield call(depsolveComponentsApi, packages, modules);
     yield put(removeBlueprintComponentSucceeded(blueprint.id, components, packages, modules, pendingChange));
   } catch (error) {
-    console.log('errorRemoveComponentSaga');
+    console.log("errorRemoveComponentSaga");
     yield put(blueprintsFailure(error));
   }
 }
@@ -171,7 +188,7 @@ function* commitToWorkspace(action) {
     const blueprint = yield select(getBlueprintById, blueprintId);
     yield call(commitToWorkspaceApi, blueprint.present);
   } catch (error) {
-    console.log('commitToWorkspaceError');
+    console.log("commitToWorkspaceError");
     yield put(blueprintsFailure(error));
   }
 }
@@ -184,24 +201,22 @@ function* deleteWorkspace(action) {
     let blueprintPast = [];
     let blueprintPresent = null;
     let workspacePendingChanges = {
-      'addedChanges': [],
-      'deletedChanges': [],
+      addedChanges: [],
+      deletedChanges: []
     };
     const blueprintDepsolved = yield call(fetchBlueprintContentsApi, blueprint.name);
-    blueprintPresent = Object.assign(
-      {}, blueprintDepsolved, {
-        localPendingChanges: [],
-        workspacePendingChanges: workspacePendingChanges,
-      }
-    );
+    blueprintPresent = Object.assign({}, blueprintDepsolved, {
+      localPendingChanges: [],
+      workspacePendingChanges: workspacePendingChanges
+    });
     yield put(fetchingBlueprintContentsSucceeded(blueprintPast, blueprintPresent, workspacePendingChanges));
   } catch (error) {
-    console.log('deleteWorkspaceError');
+    console.log("deleteWorkspaceError");
     yield put(blueprintsFailure(error));
   }
 }
 
-export default function* () {
+export default function*() {
   yield takeEvery(CREATING_BLUEPRINT, createBlueprint);
   yield takeEvery(FETCHING_BLUEPRINT_CONTENTS, fetchBlueprintContents);
   yield takeEvery(SET_BLUEPRINT_DESCRIPTION, setBlueprintDescription);

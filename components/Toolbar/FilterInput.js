@@ -1,14 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Filter } from 'patternfly-react';
+import React from "react";
+import PropTypes from "prop-types";
+import { Filter } from "patternfly-react";
 
 class FilterInput extends React.Component {
   constructor() {
     super();
     this.state = {
-      filterValue: '',
-      currentFilterId: ''
-    }
+      filterValue: "",
+      currentFilterId: ""
+    };
     this.handleChangeFilter = this.handleChangeFilter.bind(this);
     this.handleSubmitFilter = this.handleSubmitFilter.bind(this);
     this.selectFilterType = this.selectFilterType.bind(this);
@@ -19,7 +19,7 @@ class FilterInput extends React.Component {
   }
 
   handleChangeFilter(event) {
-    this.setState({filterValue: event.target.value});
+    this.setState({ filterValue: event.target.value });
   }
 
   handleSubmitFilter(event) {
@@ -28,33 +28,31 @@ class FilterInput extends React.Component {
       key: this.state.currentFilterId,
       value: this.state.filterValue
     });
-    this.setState({filterValue: ''});
+    this.setState({ filterValue: "" });
   }
 
   selectFilterType(filterType) {
     const { currentFilterId } = this.state;
     if (currentFilterId !== filterType.id) {
-      this.setState({currentFilterId: filterType.id});
+      this.setState({ currentFilterId: filterType.id });
     }
   }
 
-
-
   render() {
-    const {emptyState, filters} = this.props;
+    const { emptyState, filters } = this.props;
     const currentFilterType = filters.filterTypes.find(type => type.id === this.state.currentFilterId);
     return (
-      <form onSubmit={(e) => this.handleSubmitFilter(e)}>
+      <form onSubmit={e => this.handleSubmitFilter(e)}>
         <div className="filter-pf-fields">
           <div className="form-group toolbar-pf-filter">
             <div className="input-group">
-              {filters.filterTypes.length > 1 &&
+              {filters.filterTypes.length > 1 && (
                 <Filter.TypeSelector
                   filterTypes={filters.filterTypes}
                   currentFilterType={currentFilterType}
                   onFilterTypeSelected={this.selectFilterType}
                 />
-              }
+              )}
               <input
                 onChange={this.handleChangeFilter}
                 disabled={emptyState}
@@ -76,7 +74,7 @@ class FilterInput extends React.Component {
 FilterInput.propTypes = {
   emptyState: PropTypes.bool,
   filters: PropTypes.object,
-  filterAddValue: PropTypes.func,
+  filterAddValue: PropTypes.func
 };
 
 export default FilterInput;

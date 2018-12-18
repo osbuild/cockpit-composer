@@ -1,26 +1,26 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 const ComponentTypeIcons = props => {
-  let icon = '';
-  let type = '';
-  let indicator = '';
-  const context = props.compDetails ? 'pf-icon-small' : 'list-pf-icon list-pf-icon-small';
+  let icon = "";
+  let type = "";
+  let indicator = "";
+  const context = props.compDetails ? "pf-icon-small" : "list-pf-icon list-pf-icon-small";
   switch (props.componentType) {
-    case 'Module':
-      type = 'Type&nbsp;<strong>Module</strong>';
-      icon = 'pficon pficon-bundle';
+    case "Module":
+      type = "Type&nbsp;<strong>Module</strong>";
+      icon = "pficon pficon-bundle";
       break;
-    case 'RPM':
-      type = 'Type&nbsp;<strong>RPM</strong>';
-      icon = 'pficon pficon-bundle';
+    case "RPM":
+      type = "Type&nbsp;<strong>RPM</strong>";
+      icon = "pficon pficon-bundle";
       break;
     default:
-      type = 'Type&nbsp;<strong>RPM</strong>';
-      icon = 'pficon pficon-bundle';
+      type = "Type&nbsp;<strong>RPM</strong>";
+      icon = "pficon pficon-bundle";
   }
   if (props.componentInBlueprint === true) {
-    indicator = 'list-pf-icon-bordered';
+    indicator = "list-pf-icon-bordered";
     // TODO - Identify icon as belonging to dependency in the blueprint
     // if (props.isDependency) {
     //   indicator += ' list-pf-icon-bordered-dotted';
@@ -43,7 +43,7 @@ const ComponentTypeIcons = props => {
 ComponentTypeIcons.propTypes = {
   componentType: PropTypes.string,
   compDetails: PropTypes.bool,
-  componentInBlueprint: PropTypes.bool,
+  componentInBlueprint: PropTypes.bool
 };
 
 export default ComponentTypeIcons;

@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
 function decodeParam(val) {
-  if (!(typeof val === 'string' || val.length === 0)) {
+  if (!(typeof val === "string" || val.length === 0)) {
     return val;
   }
 
@@ -40,7 +40,7 @@ function matchURI(route, path) {
 // instantiate and return a React component
 function resolve(routes, context) {
   for (const route of routes) {
-    const params = matchURI(route, context.error ? '/error' : context.pathname);
+    const params = matchURI(route, context.error ? "/error" : context.pathname);
 
     if (!params) {
       continue;
@@ -55,24 +55,26 @@ function resolve(routes, context) {
         route.load(),
         ...keys.map(key => {
           const query = route.data[key];
-          const method = query.substring(0, query.indexOf(' ')); // GET
-          let url = query.substr(query.indexOf(' ') + 1);      // /api/tasks/$id
+          const method = query.substring(0, query.indexOf(" ")); // GET
+          let url = query.substr(query.indexOf(" ") + 1); // /api/tasks/$id
           // TODO: Optimize
-          Object.keys(params).forEach((k) => {
+          Object.keys(params).forEach(k => {
             url = url.replace(`${k}`, params[k]);
           });
-          return fetch(url, { method, credentials: 'same-origin' }).then(resp => resp.json());
-        }),
+          return fetch(url, { method, credentials: "same-origin" }).then(resp => resp.json());
+        })
       ]).then(([Page, ...data]) => {
-        const props = keys.reduce((result, key, i) => (Object.assign({}, result, { [key]: data[i] })), {});
+        const props = keys.reduce((result, key, i) => Object.assign({}, result, { [key]: data[i] }), {});
         return <Page route={Object.assign({}, route, { params: params })} error={context.error} {...props} />;
       });
     }
 
-    return route.load().then(Page => <Page route={Object.assign({}, route, { params: params })} error={context.error} />);
+    return route
+      .load()
+      .then(Page => <Page route={Object.assign({}, route, { params: params })} error={context.error} />);
   }
 
-  const error = new Error('Page not found');
+  const error = new Error("Page not found");
   error.status = 404;
   return Promise.reject(error);
 }

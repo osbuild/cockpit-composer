@@ -1,13 +1,13 @@
 /* global $ */
 
-import React from 'react';
-import {FormattedMessage, defineMessages, injectIntl, intlShape} from 'react-intl';
-import PropTypes from 'prop-types';
-import ComponentTypeIcons from '../../components/ListView/ComponentTypeIcons';
-import { Tabs, Tab } from 'patternfly-react';
-import DependencyListView from '../../components/ListView/DependencyListView';
-import MetadataApi from '../../data/MetadataApi';
-import LabelWithBadge from './LabelWithBadge';
+import React from "react";
+import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
+import PropTypes from "prop-types";
+import ComponentTypeIcons from "../../components/ListView/ComponentTypeIcons";
+import { Tabs, Tab } from "patternfly-react";
+import DependencyListView from "../../components/ListView/DependencyListView";
+import MetadataApi from "../../data/MetadataApi";
+import LabelWithBadge from "./LabelWithBadge";
 
 const messages = defineMessages({
   dependencies: {
@@ -19,7 +19,7 @@ const messages = defineMessages({
   removeFromBlueprint: {
     defaultMessage: "Remove from Blueprint"
   }
-})
+});
 
 class ComponentDetailsView extends React.Component {
   constructor() {
@@ -27,11 +27,11 @@ class ComponentDetailsView extends React.Component {
     this.state = {
       selectedBuildIndex: 0,
       availableBuilds: [],
-      activeTab: 'Details',
+      activeTab: "Details",
       parents: [],
       dependencies: [],
       componentData: {},
-      editSelected: false,
+      editSelected: false
     };
     this.handleEdit = this.handleEdit.bind(this);
     this.handleVersionSelect = this.handleVersionSelect.bind(this);
@@ -48,10 +48,10 @@ class ComponentDetailsView extends React.Component {
   componentWillReceiveProps(newProps) {
     this.updateBreadcrumb(newProps);
     this.getMetadata(newProps.component, newProps.status);
-    this.setState({ activeTab: 'Details' });
+    this.setState({ activeTab: "Details" });
     // this needs to be updated when Edit in the li is enabled,
     // in that case, status can be "editSelected"
-    if (newProps.status !== 'editSelected') {
+    if (newProps.status !== "editSelected") {
       this.setState({ editSelected: false });
     }
   }
@@ -62,7 +62,7 @@ class ComponentDetailsView extends React.Component {
 
   getMetadata(component, status) {
     // when getting metadata, get all builds if component is from list of available inputs
-    const build = status === 'available' ? 'all' : '';
+    const build = status === "available" ? "all" : "";
     // if the user clicks a component listed in the inputs and it's in the blueprint,
     // then use the version and release that's selected for the blueprint component
     const activeComponent = Object.assign({}, component);
@@ -75,16 +75,16 @@ class ComponentDetailsView extends React.Component {
         this.setState({ componentData: data[0][0] });
         const filteredDependencies = data[0][0].dependencies.filter(dependency => dependency.name !== data[0][0].name);
         this.setState({ dependencies: filteredDependencies });
-        if (this.props.status === 'editSelected') {
+        if (this.props.status === "editSelected") {
           this.handleEdit();
         }
-        if (status === 'available' || this.props.status === 'editSelected') {
+        if (status === "available" || this.props.status === "editSelected") {
           // when status === "available" a form displays with a menu for selecting a specific version
           // availableBuilds is an array listing each option
           // TODO - include other metadata that's defined in builds
           const availableBuilds = data[0][1].map(i => ({ version: i.source.version, release: i.release }));
           this.setState({ availableBuilds });
-          if (this.props.status === 'editSelected') {
+          if (this.props.status === "editSelected") {
             this.setBuildIndex(availableBuilds, data[0][0]);
           }
         } else {
@@ -166,10 +166,10 @@ class ComponentDetailsView extends React.Component {
     return (
       <div className="cmpsr-panel__body cmpsr-panel__body--main">
         <div className="cmpsr-header">
-          {(this.state.parents.length > 0 &&
+          {(this.state.parents.length > 0 && (
             <ol className="breadcrumb">
               <li>
-                <a href="#" onClick={e => this.props.handleComponentDetails(e, '')}>
+                <a href="#" onClick={e => this.props.handleComponentDetails(e, "")}>
                   <FormattedMessage
                     defaultMessage="Back to {parent}"
                     values={{
@@ -186,10 +186,11 @@ class ComponentDetailsView extends React.Component {
                 </li>
               ))}
               <li />
-            </ol>) ||
+            </ol>
+          )) || (
             <ol className="breadcrumb">
               <li>
-                <a href="#" onClick={e => this.props.handleComponentDetails(e, '')}>
+                <a href="#" onClick={e => this.props.handleComponentDetails(e, "")}>
                   <FormattedMessage
                     defaultMessage="Back to {parent}"
                     values={{
@@ -198,27 +199,30 @@ class ComponentDetailsView extends React.Component {
                   />
                 </a>
               </li>
-            </ol>}
+            </ol>
+          )}
           <div className="cmpsr-header__actions">
             <ul className="list-inline">
-              {this.props.status === 'available' &&
+              {this.props.status === "available" && (
                 <li>
                   <button
                     className="btn btn-primary add"
                     type="button"
-                    onClick={e => this.props.handleAddComponent(e, 'details', this.state.componentData)}
+                    onClick={e => this.props.handleAddComponent(e, "details", this.state.componentData)}
                   >
                     <FormattedMessage defaultMessage="Add" />
                   </button>
-                </li>}
-              {this.props.status === 'selected' &&
-                this.state.editSelected === false &&
+                </li>
+              )}
+              {this.props.status === "selected" && this.state.editSelected === false && (
                 <li>
                   <button className="btn btn-primary" type="button" onClick={this.handleEdit}>
                     <FormattedMessage defaultMessage="Edit" />
                   </button>
-                </li>}
-              {((this.props.status === 'selected' && this.state.editSelected === true) || this.props.status === 'editSelected') &&
+                </li>
+              )}
+              {((this.props.status === "selected" && this.state.editSelected === true) ||
+                this.props.status === "editSelected") && (
                 <li>
                   <button
                     className="btn btn-primary"
@@ -227,8 +231,9 @@ class ComponentDetailsView extends React.Component {
                   >
                     <FormattedMessage defaultMessage="Apply Change" />
                   </button>
-                </li>}
-              {(this.props.status === 'selected' || this.props.status === 'editSelected') &&
+                </li>
+              )}
+              {(this.props.status === "selected" || this.props.status === "editSelected") && (
                 <li>
                   <button
                     className="btn btn-default"
@@ -241,7 +246,8 @@ class ComponentDetailsView extends React.Component {
                   >
                     <FormattedMessage defaultMessage="Remove" />
                   </button>
-                </li>}
+                </li>
+              )}
               <li>
                 <button
                   type="button"
@@ -250,7 +256,7 @@ class ComponentDetailsView extends React.Component {
                   data-placement="bottom"
                   title=""
                   data-original-title={formatMessage(messages.hideDetails)}
-                  onClick={e => this.props.handleComponentDetails(e, '')}
+                  onClick={e => this.props.handleComponentDetails(e, "")}
                 >
                   <span className="pficon pficon-close" />
                 </button>
@@ -259,15 +265,22 @@ class ComponentDetailsView extends React.Component {
           </div>
           <h3 className="cmpsr-title">
             <span>
-              <ComponentTypeIcons componentType={component.ui_type} compDetails componentInBlueprint={component.inBlueprint} />
-              {' '}
+              <ComponentTypeIcons
+                componentType={component.ui_type}
+                compDetails
+                componentInBlueprint={component.inBlueprint}
+              />{" "}
               {component.name}
             </span>
           </h3>
         </div>
-        {(this.props.status === 'available' || this.state.editSelected === true || this.props.status === 'editSelected') &&
+        {(this.props.status === "available" ||
+          this.state.editSelected === true ||
+          this.props.status === "editSelected") && (
           <div className="cmpsr-component-details__form">
-            <h4><FormattedMessage defaultMessage="Component Options" /></h4>
+            <h4>
+              <FormattedMessage defaultMessage="Component Options" />
+            </h4>
             <form className="form-horizontal">
               <div className="form-group">
                 <label className="col-sm-3 col-md-2 control-label" htmlFor="cmpsr-compon__version-select">
@@ -281,7 +294,9 @@ class ComponentDetailsView extends React.Component {
                     onChange={this.handleVersionSelect}
                   >
                     {this.state.availableBuilds.map((build, i) => (
-                      <option key={i} value={i}>{build.version}-{build.release}</option>
+                      <option key={i} value={i}>
+                        {build.version}-{build.release}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -298,42 +313,57 @@ class ComponentDetailsView extends React.Component {
                 </div>
               </div>
             </form>
-          </div>}
+          </div>
+        )}
         <div>
           <Tabs id="blueprint-tabs">
             <Tab eventKey="details" title="Details">
               <h4 className="cmpsr-title">{this.state.componentData.summary}</h4>
               <p>{this.state.componentData.description}</p>
               <dl className="dl-horizontal">
-                <dt><FormattedMessage defaultMessage="Type" /></dt>
+                <dt>
+                  <FormattedMessage defaultMessage="Type" />
+                </dt>
                 <dd>{component.ui_type}</dd>
-                <dt><FormattedMessage defaultMessage="Version" /></dt>
+                <dt>
+                  <FormattedMessage defaultMessage="Version" />
+                </dt>
                 <dd>
-                  {this.state.componentData.version}
-                  {' '}
-                  {this.props.status === 'selected' &&
-                    this.state.editSelected === false &&
-                    <a href="#" onClick={this.handleEdit}><FormattedMessage defaultMessage="Update" /></a>}
+                  {this.state.componentData.version}{" "}
+                  {this.props.status === "selected" && this.state.editSelected === false && (
+                    <a href="#" onClick={this.handleEdit}>
+                      <FormattedMessage defaultMessage="Update" />
+                    </a>
+                  )}
                 </dd>
-                <dt><FormattedMessage defaultMessage="Release" /></dt>
+                <dt>
+                  <FormattedMessage defaultMessage="Release" />
+                </dt>
                 <dd>{this.state.componentData.release}</dd>
-                <dt><FormattedMessage defaultMessage="URL" /></dt>
-                {(this.state.componentData.homepage !== null &&
+                <dt>
+                  <FormattedMessage defaultMessage="URL" />
+                </dt>
+                {(this.state.componentData.homepage !== null && (
                   <dd>
                     <a target="_blank" href={this.state.componentData.homepage}>
                       {this.state.componentData.homepage}
                     </a>
-                  </dd>) ||
-                  <dd>&nbsp;</dd>}
+                  </dd>
+                )) || <dd>&nbsp;</dd>}
               </dl>
             </Tab>
-            {this.state.componentData.components &&
+            {this.state.componentData.components && (
               <Tab eventKey="components" title="Components">
-                <p><FormattedMessage defaultMessage="Components" /></p>
-              </Tab>}
+                <p>
+                  <FormattedMessage defaultMessage="Components" />
+                </p>
+              </Tab>
+            )}
             <Tab
               eventKey="dependencies"
-              title={<LabelWithBadge title={formatMessage(messages.dependencies)} badge={this.state.dependencies.length} />}
+              title={
+                <LabelWithBadge title={formatMessage(messages.dependencies)} badge={this.state.dependencies.length} />
+              }
             >
               <DependencyListView
                 id="cmpsr-component-dependencies"
@@ -358,7 +388,7 @@ ComponentDetailsView.propTypes = {
   handleRemoveComponent: PropTypes.func,
   handleAddComponent: PropTypes.func,
   handleUpdateComponent: PropTypes.func,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 export default injectIntl(ComponentDetailsView);

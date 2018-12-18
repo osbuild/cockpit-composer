@@ -1,66 +1,66 @@
-export const FETCHING_INPUTS = 'FETCHING_INPUTS';
+export const FETCHING_INPUTS = "FETCHING_INPUTS";
 export const fetchingInputs = (filter, selectedInputPage, pageSize, componentData) => ({
   type: FETCHING_INPUTS,
   payload: {
     filter,
     selectedInputPage,
     pageSize,
-    componentData,
-  },
+    componentData
+  }
 });
 
-export const FETCHING_INPUTS_SUCCEEDED = 'FETCHING_INPUTS_SUCCEEDED';
+export const FETCHING_INPUTS_SUCCEEDED = "FETCHING_INPUTS_SUCCEEDED";
 export const fetchingInputsSucceeded = (filter, selectedInputPage, pageSize, inputs) => ({
   type: FETCHING_INPUTS_SUCCEEDED,
   payload: {
     filter,
     selectedInputPage,
     pageSize,
-    inputs,
-  },
+    inputs
+  }
 });
 
-export const SET_INPUT_COMPONENTS = 'SET_INPUT_COMPONENTS';
-export const setInputComponents = (inputComponents) => ({
+export const SET_INPUT_COMPONENTS = "SET_INPUT_COMPONENTS";
+export const setInputComponents = inputComponents => ({
   type: SET_INPUT_COMPONENTS,
   payload: {
-    inputComponents,
-  },
+    inputComponents
+  }
 });
 
-export const SET_SELECTED_INPUT_PAGE = 'SET_SELECTED_INPUT_PAGE';
-export const setSelectedInputPage = (selectedInputPage) => ({
+export const SET_SELECTED_INPUT_PAGE = "SET_SELECTED_INPUT_PAGE";
+export const setSelectedInputPage = selectedInputPage => ({
   type: SET_SELECTED_INPUT_PAGE,
   payload: {
-    selectedInputPage,
-  },
+    selectedInputPage
+  }
 });
 
-export const SET_SELECTED_INPUT = 'SET_SELECTED_INPUT';
-export const setSelectedInput = (selectedInput) => ({
+export const SET_SELECTED_INPUT = "SET_SELECTED_INPUT";
+export const setSelectedInput = selectedInput => ({
   type: SET_SELECTED_INPUT,
   payload: {
-    selectedInput,
-  },
+    selectedInput
+  }
 });
 
-export const SET_SELECTED_INPUT_STATUS = 'SET_SELECTED_INPUT_STATUS';
-export const setSelectedInputStatus = (selectedInputStatus) => ({
+export const SET_SELECTED_INPUT_STATUS = "SET_SELECTED_INPUT_STATUS";
+export const setSelectedInputStatus = selectedInputStatus => ({
   type: SET_SELECTED_INPUT_STATUS,
   payload: {
-    selectedInputStatus,
-  },
+    selectedInputStatus
+  }
 });
 
-export const SET_SELECTED_INPUT_PARENT = 'SET_SELECTED_INPUT_PARENT';
-export const setSelectedInputParent = (selectedInputParent) => ({
+export const SET_SELECTED_INPUT_PARENT = "SET_SELECTED_INPUT_PARENT";
+export const setSelectedInputParent = selectedInputParent => ({
   type: SET_SELECTED_INPUT_PARENT,
   payload: {
-    selectedInputParent,
-  },
+    selectedInputParent
+  }
 });
 
-export const DELETE_FILTER = 'DELETE_FILTER';
+export const DELETE_FILTER = "DELETE_FILTER";
 export const deleteFilter = () => ({
-  type: DELETE_FILTER,
+  type: DELETE_FILTER
 });

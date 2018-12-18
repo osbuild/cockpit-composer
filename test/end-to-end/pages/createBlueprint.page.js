@@ -7,9 +7,9 @@ class CreateBlueprintPage {
   loading() {
     // sometimes the style attribute is style="display: block; padding-right: 12px;"
     browser.waitUntil(
-      () => browser.getAttribute(this.containerSelector, 'style').includes('display: block;'),
+      () => browser.getAttribute(this.containerSelector, "style").includes("display: block;"),
       timeout,
-      'Cannot pop up Create Blueprint dialog'
+      "Cannot pop up Create Blueprint dialog"
     );
   }
 
@@ -34,7 +34,7 @@ class CreateBlueprintPage {
   }
 
   get createButton() {
-    const selector = 'span=Create';
+    const selector = "span=Create";
     browser.waitUntil(
       () => browser.isVisible(selector),
       timeout,
@@ -44,7 +44,7 @@ class CreateBlueprintPage {
   }
 
   get cancelButton() {
-    const selector = 'span=Cancel';
+    const selector = "span=Cancel";
     browser.waitUntil(
       () => browser.isVisible(selector),
       timeout,
@@ -62,7 +62,7 @@ class CreateBlueprintPage {
     );
     // browser.click() does not work with Edge due to "Element is Obscured" error.
     // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/5238133/
-    browser.execute((xButton) => {
+    browser.execute(xButton => {
       document.querySelector(xButton).click();
       return true;
     }, selector);

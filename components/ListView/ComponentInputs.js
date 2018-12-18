@@ -1,9 +1,9 @@
 /* global $ */
 
-import React from 'react';
-import {defineMessages, injectIntl, intlShape} from 'react-intl';
-import PropTypes from 'prop-types';
-import ComponentTypeIcons from '../../components/ListView/ComponentTypeIcons';
+import React from "react";
+import { defineMessages, injectIntl, intlShape } from "react-intl";
+import PropTypes from "prop-types";
+import ComponentTypeIcons from "../../components/ListView/ComponentTypeIcons";
 
 const messages = defineMessages({
   hideDetails: {
@@ -28,32 +28,36 @@ class ComponentInputs extends React.Component {
     this.bindTooltipShow();
     this.bindHideTooltip();
     this.bindTooltipMouseleave();
-    this.hideTooltip('all');
+    this.hideTooltip("all");
   }
 
   componentWillUnmount() {
     this.unbind();
-    this.hideTooltip('all');
+    this.hideTooltip("all");
   }
 
   bindTooltipShow() {
-    $('.cmpsr-list-inputs').off().on('mouseenter focus', '[data-toggle="tooltip"]', event => {
-      // prevent li tooltip from flashing when focus moves to the <a>
-      event.stopPropagation();
-      // hide tooltip for other list items
-      if ($(event.currentTarget).hasClass('list-pf-container')) {
-        $('.list-pf-container[data-toggle="tooltip"]').not(event.target).tooltip('hide');
-      }
-      // hide tooltip for component list item if hovering over an action
-      if ($(event.currentTarget).parent('.list-pf-actions').length) {
-        this.hideTooltip('parent');
-      }
-      $(event.currentTarget).tooltip('show');
-    });
+    $(".cmpsr-list-inputs")
+      .off()
+      .on("mouseenter focus", '[data-toggle="tooltip"]', event => {
+        // prevent li tooltip from flashing when focus moves to the <a>
+        event.stopPropagation();
+        // hide tooltip for other list items
+        if ($(event.currentTarget).hasClass("list-pf-container")) {
+          $('.list-pf-container[data-toggle="tooltip"]')
+            .not(event.target)
+            .tooltip("hide");
+        }
+        // hide tooltip for component list item if hovering over an action
+        if ($(event.currentTarget).parent(".list-pf-actions").length) {
+          this.hideTooltip("parent");
+        }
+        $(event.currentTarget).tooltip("show");
+      });
   }
 
   bindHideTooltip() {
-    $('.cmpsr-list-inputs').on('blur mousedown', '[data-toggle="tooltip"]', event => {
+    $(".cmpsr-list-inputs").on("blur mousedown", '[data-toggle="tooltip"]', event => {
       // prevent focus event so that tooltip doesn't display again on click
       event.preventDefault();
       this.hideTooltip(event.currentTarget);
@@ -61,32 +65,34 @@ class ComponentInputs extends React.Component {
   }
 
   bindTooltipMouseleave() {
-    $('.cmpsr-list-inputs').on('mouseleave', '[data-toggle="tooltip"]', event => {
+    $(".cmpsr-list-inputs").on("mouseleave", '[data-toggle="tooltip"]', event => {
       this.hideTooltip(event.currentTarget);
-      if ($(event.currentTarget).parent('.list-pf-actions').length) {
-        $(event.currentTarget).parents('.list-pf-container').tooltip('show');
+      if ($(event.currentTarget).parent(".list-pf-actions").length) {
+        $(event.currentTarget)
+          .parents(".list-pf-container")
+          .tooltip("show");
       }
     });
   }
 
   unbind() {
-    $('.list-pf-actions').off('mouseenter focus mouseleave blur mousedown');
+    $(".list-pf-actions").off("mouseenter focus mouseleave blur mousedown");
   }
 
   hideTooltip(target) {
-    if (target === 'all') {
-      $('.cmpsr-list-inputs [data-toggle="tooltip"][aria-describedby]').tooltip('hide');
-    } else if (target === 'parent') {
-      $('.list-pf-container[data-toggle="tooltip"][aria-describedby]').tooltip('hide');
+    if (target === "all") {
+      $('.cmpsr-list-inputs [data-toggle="tooltip"][aria-describedby]').tooltip("hide");
+    } else if (target === "parent") {
+      $('.list-pf-container[data-toggle="tooltip"][aria-describedby]').tooltip("hide");
     } else {
-      $(target).tooltip('hide');
+      $(target).tooltip("hide");
     }
   }
 
   initializeBootstrapElements() {
     // Initialize Boostrap-tooltip
     $('[data-toggle="tooltip"]').tooltip({
-      trigger: 'manual',
+      trigger: "manual"
     });
   }
 
@@ -97,7 +103,7 @@ class ComponentInputs extends React.Component {
     return (
       <div className="list-pf cmpsr-list-inputs cmpsr-list-pf__compacted list-pf-stacked">
         {components.map((component, i) => (
-          <div key={i} className={`list-pf-item ${component.active ? 'active' : ''}`} data-input={component.name}>
+          <div key={i} className={`list-pf-item ${component.active ? "active" : ""}`} data-input={component.name}>
             <div
               className="list-pf-container"
               tabIndex="0"
@@ -105,7 +111,9 @@ class ComponentInputs extends React.Component {
               data-trigger="manual"
               data-placement="top"
               title=""
-              data-original-title={component.active ? formatMessage(messages.hideDetails) : formatMessage(messages.showDetails)}
+              data-original-title={
+                component.active ? formatMessage(messages.hideDetails) : formatMessage(messages.showDetails)
+              }
               onClick={e => this.props.handleComponentDetails(e, component)}
             >
               <div className="list-pf-content list-pf-content-flex ">
@@ -119,7 +127,7 @@ class ComponentInputs extends React.Component {
                   </div>
                 </div>
                 <div className="list-pf-actions">
-                  {(component.inBlueprint === true &&
+                  {(component.inBlueprint === true && (
                     <a
                       href="#"
                       className="btn btn-link"
@@ -132,7 +140,8 @@ class ComponentInputs extends React.Component {
                       onClick={e => this.props.handleRemoveComponent(e, component)}
                     >
                       <span className="fa fa-minus" />
-                    </a>) ||
+                    </a>
+                  )) || (
                     <a
                       href="#"
                       className="btn btn-link"
@@ -144,10 +153,11 @@ class ComponentInputs extends React.Component {
                       data-original-title={`Add Component<br />
                             Version&nbsp;<strong>${component.version}</strong>
                             Release&nbsp;<strong>${component.release}</strong>`}
-                      onClick={e => this.props.handleAddComponent(e, 'input', component)}
+                      onClick={e => this.props.handleAddComponent(e, "input", component)}
                     >
                       <span className="fa fa-plus" />
-                    </a>}
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
@@ -163,7 +173,7 @@ ComponentInputs.propTypes = {
   handleComponentDetails: PropTypes.func,
   handleAddComponent: PropTypes.func,
   handleRemoveComponent: PropTypes.func,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 export default injectIntl(ComponentInputs);

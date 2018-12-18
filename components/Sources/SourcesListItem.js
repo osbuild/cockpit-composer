@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 class SourcesListItem extends React.PureComponent {
   render() {
@@ -12,12 +12,11 @@ class SourcesListItem extends React.PureComponent {
       </tr>
     );
   }
-
 }
 
 SourcesListItem.propTypes = {
   source: PropTypes.object,
-  editable: PropTypes.bool,
-}
+  editable: PropTypes.bool
+};
 
 export default SourcesListItem;

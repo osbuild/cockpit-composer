@@ -1,7 +1,7 @@
-import React from 'react';
-import {FormattedMessage} from 'react-intl';
-import PropTypes from 'prop-types';
-import ComponentTypeIcons from '../../components/ListView/ComponentTypeIcons';
+import React from "react";
+import { FormattedMessage } from "react-intl";
+import PropTypes from "prop-types";
+import ComponentTypeIcons from "../../components/ListView/ComponentTypeIcons";
 
 class ComponentSummaryList extends React.Component {
   constructor() {
@@ -22,7 +22,9 @@ class ComponentSummaryList extends React.Component {
     return (
       <div className="cmpsr-summary-listview">
         <p>
-          <strong><FormattedMessage defaultMessage="Dependencies" /></strong>
+          <strong>
+            <FormattedMessage defaultMessage="Dependencies" />
+          </strong>
           <span className="badge">{this.props.listItems.length}</span>
           <a href="#" className="pull-right" onClick={e => this.handleShowAll(e)}>
             {this.state.showAll ? (
@@ -46,9 +48,7 @@ class ComponentSummaryList extends React.Component {
                   </div>
                   <div className="list-pf-content-wrapper">
                     <div className="list-pf-main-content">
-                      <div className="list-pf-description ">
-                        {listItem.name}
-                      </div>
+                      <div className="list-pf-description ">{listItem.name}</div>
                     </div>
                   </div>
                 </div>
@@ -63,7 +63,7 @@ class ComponentSummaryList extends React.Component {
 
 ComponentSummaryList.propTypes = {
   listItems: PropTypes.array,
-  isDependency: PropTypes.bool,
+  isDependency: PropTypes.bool
 };
 
 export default ComponentSummaryList;

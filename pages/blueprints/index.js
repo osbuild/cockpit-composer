@@ -1,40 +1,51 @@
-import React from 'react';
-import {FormattedMessage, defineMessages, injectIntl, intlShape} from 'react-intl';
-import PropTypes from 'prop-types';
-import Layout from '../../components/Layout';
-import BlueprintListView from '../../components/ListView/BlueprintListView';
-import CreateBlueprint from '../../components/Modal/CreateBlueprint';
-import ExportBlueprint from '../../components/Modal/ExportBlueprint';
-import DeleteBlueprint from '../../components/Modal/DeleteBlueprint';
-import CreateImage from '../../components/Modal/CreateImage';
-import ManageSources from '../../components/Modal/ManageSources';
-import EmptyState from '../../components/EmptyState/EmptyState';
-import Loading from '../../components/Loading/Loading';
-import BlueprintsToolbar from '../../components/Toolbar/BlueprintsToolbar';
-import { connect } from 'react-redux';
-import { deletingBlueprint, fetchingBlueprints } from '../../core/actions/blueprints';
+import React from "react";
+import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
+import PropTypes from "prop-types";
+import Layout from "../../components/Layout";
+import BlueprintListView from "../../components/ListView/BlueprintListView";
+import CreateBlueprint from "../../components/Modal/CreateBlueprint";
+import ExportBlueprint from "../../components/Modal/ExportBlueprint";
+import DeleteBlueprint from "../../components/Modal/DeleteBlueprint";
+import CreateImage from "../../components/Modal/CreateImage";
+import ManageSources from "../../components/Modal/ManageSources";
+import EmptyState from "../../components/EmptyState/EmptyState";
+import Loading from "../../components/Loading/Loading";
+import BlueprintsToolbar from "../../components/Toolbar/BlueprintsToolbar";
+import { connect } from "react-redux";
+import { deletingBlueprint, fetchingBlueprints } from "../../core/actions/blueprints";
 import {
   fetchingModalExportBlueprintContents,
-  setModalExportBlueprintName, setModalExportBlueprintContents, setModalExportBlueprintVisible,
-  setModalDeleteBlueprintName, setModalDeleteBlueprintId, setModalDeleteBlueprintVisible,
-  setModalCreateImageVisible, setModalCreateImageHidden,
-  setModalManageSourcesVisible, fetchingModalManageSourcesContents,
-} from '../../core/actions/modals';
-import { blueprintsSortSetKey, blueprintsSortSetValue } from '../../core/actions/sort';
-import { blueprintsFilterAddValue, blueprintsFilterRemoveValue, blueprintsFilterClearValues } from '../../core/actions/filter';
-import { startCompose } from '../../core/actions/composes';
-import { makeGetSortedBlueprints, makeGetFilteredBlueprints } from '../../core/selectors';
+  setModalExportBlueprintName,
+  setModalExportBlueprintContents,
+  setModalExportBlueprintVisible,
+  setModalDeleteBlueprintName,
+  setModalDeleteBlueprintId,
+  setModalDeleteBlueprintVisible,
+  setModalCreateImageVisible,
+  setModalCreateImageHidden,
+  setModalManageSourcesVisible,
+  fetchingModalManageSourcesContents
+} from "../../core/actions/modals";
+import { blueprintsSortSetKey, blueprintsSortSetValue } from "../../core/actions/sort";
+import {
+  blueprintsFilterAddValue,
+  blueprintsFilterRemoveValue,
+  blueprintsFilterClearValues
+} from "../../core/actions/filter";
+import { startCompose } from "../../core/actions/composes";
+import { makeGetSortedBlueprints, makeGetFilteredBlueprints } from "../../core/selectors";
 
 const messages = defineMessages({
   blueprintsTitle: {
     defaultMessage: "Blueprints"
   },
   emptyMessage: {
-    defaultMessage: "Create a blueprint to define the contents that will be included in the images you create. " +
-                    "Images can be produced in a variety of output formats."
+    defaultMessage:
+      "Create a blueprint to define the contents that will be included in the images you create. " +
+      "Images can be produced in a variety of output formats."
   },
   emptyTitle: {
-    defaultMessage: "No Blueprints",
+    defaultMessage: "No Blueprints"
   },
   errorTitle: {
     defaultMessage: "An Error Occurred"
@@ -90,7 +101,7 @@ class BlueprintsPage extends React.Component {
   // handle show/hide of modal dialogs
   handleHideModalExport() {
     this.props.setModalExportBlueprintVisible(false);
-    this.props.setModalExportBlueprintName('');
+    this.props.setModalExportBlueprintName("");
     this.props.setModalExportBlueprintContents([]);
   }
 
@@ -102,7 +113,7 @@ class BlueprintsPage extends React.Component {
     // display the dialog, a spinner will display while contents are undefined
     this.props.setModalExportBlueprintName(blueprint);
     this.props.setModalExportBlueprintContents(undefined);
-    const blueprintName = blueprint.replace(/\s/g, '-');
+    const blueprintName = blueprint.replace(/\s/g, "-");
     // run depsolving against blueprint to get contents for dialog
     this.props.fetchingModalExportBlueprintContents(blueprintName);
     this.props.setModalExportBlueprintVisible(true);
@@ -112,8 +123,8 @@ class BlueprintsPage extends React.Component {
 
   handleHideModalDelete() {
     this.props.setModalDeleteBlueprintVisible(false);
-    this.props.setModalDeleteBlueprintId('');
-    this.props.setModalDeleteBlueprintName('');
+    this.props.setModalDeleteBlueprintId("");
+    this.props.setModalDeleteBlueprintName("");
   }
 
   handleShowModalDelete(e, blueprint) {
@@ -147,10 +158,20 @@ class BlueprintsPage extends React.Component {
 
   render() {
     const {
-      blueprints, exportBlueprint, deleteBlueprint, createImage, manageSources,
-      blueprintSortKey, blueprintSortValue, blueprintsSortSetValue, blueprintFilters,
-      blueprintsFilterAddValue, blueprintsFilterRemoveValue, blueprintsFilterClearValues,
-      blueprintsError, blueprintsLoading
+      blueprints,
+      exportBlueprint,
+      deleteBlueprint,
+      createImage,
+      manageSources,
+      blueprintSortKey,
+      blueprintSortValue,
+      blueprintsSortSetValue,
+      blueprintFilters,
+      blueprintsFilterAddValue,
+      blueprintsFilterRemoveValue,
+      blueprintsFilterClearValues,
+      blueprintsError,
+      blueprintsLoading
     } = this.props;
     const { formatMessage } = this.props.intl;
     return (
@@ -167,72 +188,57 @@ class BlueprintsPage extends React.Component {
           sortSetValue={blueprintsSortSetValue}
           handleShowModalManageSources={this.handleShowModalManageSources}
         />
-      {blueprintsLoading === true &&
-        <Loading />
-        ||
-        (blueprintsError !== null &&
-          <EmptyState
-            title={formatMessage(messages.errorTitle)}
-            message={blueprintsError.message}
-          />
-          ||
-          (blueprints.length > 0 &&
-            <BlueprintListView
-              blueprints={blueprints.map(blueprint => blueprint.present)}
-              setNotifications={this.setNotifications}
-              handleShowModalExport={this.handleShowModalExport}
-              handleShowModalDelete={this.handleShowModalDelete}
-              handleShowModalCreateImage={this.handleShowModalCreateImage}
-            />
-            ||
-            (blueprintFilters.filterValues.length === 0 &&
-              <EmptyState
-                title={formatMessage(messages.emptyTitle)}
-                message={formatMessage(messages.emptyMessage)}
-              >
-                <button
-                  className="btn btn-primary btn-lg"
-                  type="button"
-                  data-toggle="modal"
-                  data-target="#cmpsr-modal-crt-blueprint"
+        {(blueprintsLoading === true && <Loading />) ||
+          ((blueprintsError !== null && (
+            <EmptyState title={formatMessage(messages.errorTitle)} message={blueprintsError.message} />
+          )) ||
+            ((blueprints.length > 0 && (
+              <BlueprintListView
+                blueprints={blueprints.map(blueprint => blueprint.present)}
+                setNotifications={this.setNotifications}
+                handleShowModalExport={this.handleShowModalExport}
+                handleShowModalDelete={this.handleShowModalDelete}
+                handleShowModalCreateImage={this.handleShowModalCreateImage}
+              />
+            )) ||
+              ((blueprintFilters.filterValues.length === 0 && (
+                <EmptyState title={formatMessage(messages.emptyTitle)} message={formatMessage(messages.emptyMessage)}>
+                  <button
+                    className="btn btn-primary btn-lg"
+                    type="button"
+                    data-toggle="modal"
+                    data-target="#cmpsr-modal-crt-blueprint"
+                  >
+                    <FormattedMessage defaultMessage="Create Blueprint" />
+                  </button>
+                </EmptyState>
+              )) || (
+                <EmptyState
+                  title={formatMessage(messages.noResultsTitle)}
+                  message={formatMessage(messages.noResultsMessage)}
                 >
-                  <FormattedMessage defaultMessage="Create Blueprint" />
-                </button>
-              </EmptyState>
-              ||
-              <EmptyState
-                title={formatMessage(messages.noResultsTitle)}
-                message={formatMessage(messages.noResultsMessage)}
-              >
-                <button
-                  className="btn btn-link btn-lg"
-                  type="button"
-                  onClick={blueprintsFilterClearValues}
-                >
-                  <FormattedMessage defaultMessage="Clear All Filters" />
-                </button>
-              </EmptyState>
-            )
-          )
-        )
-      }
+                  <button className="btn btn-link btn-lg" type="button" onClick={blueprintsFilterClearValues}>
+                    <FormattedMessage defaultMessage="Clear All Filters" />
+                  </button>
+                </EmptyState>
+              ))))}
         <CreateBlueprint blueprintNames={blueprints.map(blueprint => blueprint.present.id)} />
-        {(exportBlueprint !== undefined && exportBlueprint.visible)
-          ? <ExportBlueprint
+        {exportBlueprint !== undefined && exportBlueprint.visible ? (
+          <ExportBlueprint
             blueprint={exportBlueprint.name}
             contents={exportBlueprint.contents}
             handleHideModal={this.handleHideModalExport}
           />
-          : null}
-        {(deleteBlueprint !== undefined && deleteBlueprint.visible)
-          ? <DeleteBlueprint
+        ) : null}
+        {deleteBlueprint !== undefined && deleteBlueprint.visible ? (
+          <DeleteBlueprint
             blueprint={deleteBlueprint}
             handleDelete={this.handleDelete}
             handleHideModal={this.handleHideModalDelete}
           />
-          : null}
-        {(createImage !== undefined && createImage.visible)
-          ? <CreateImage
+        ) : null}
+        {createImage !== undefined && createImage.visible ? (
+          <CreateImage
             blueprint={createImage.blueprint}
             imageTypes={createImage.imageTypes}
             handleStartCompose={this.handleStartCompose}
@@ -241,13 +247,10 @@ class BlueprintsPage extends React.Component {
             warningEmpty={createImage.warningEmpty}
             warningUnsaved={createImage.warningUnsaved}
           />
-          : null}
-        {(manageSources !== undefined && manageSources.visible)
-          ? <ManageSources
-            handleHideModal={this.handleHideModalManageSources}
-            sources={manageSources.sources}
-          />
-          : null}
+        ) : null}
+        {manageSources !== undefined && manageSources.visible ? (
+          <ManageSources handleHideModal={this.handleHideModalManageSources} sources={manageSources.sources} />
+        ) : null}
       </Layout>
     );
   }
@@ -285,13 +288,13 @@ BlueprintsPage.propTypes = {
   blueprintsError: PropTypes.object,
   blueprintsLoading: PropTypes.bool,
   startCompose: PropTypes.func,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 const makeMapStateToProps = () => {
   const getSortedBlueprints = makeGetSortedBlueprints();
   const getFilteredBlueprints = makeGetFilteredBlueprints();
-  const mapStateToProps = (state) => {
+  const mapStateToProps = state => {
     if (getSortedBlueprints(state) !== undefined) {
       return {
         exportBlueprint: state.modals.exportBlueprint,
@@ -322,7 +325,6 @@ const makeMapStateToProps = () => {
 
   return mapStateToProps;
 };
-
 
 const mapDispatchToProps = dispatch => ({
   fetchingModalExportBlueprintContents: modalBlueprintName => {
@@ -381,7 +383,10 @@ const mapDispatchToProps = dispatch => ({
   },
   startCompose: (blueprintName, composeType) => {
     dispatch(startCompose(blueprintName, composeType));
-  },
+  }
 });
 
-export default connect(makeMapStateToProps, mapDispatchToProps)(injectIntl(BlueprintsPage));
+export default connect(
+  makeMapStateToProps,
+  mapDispatchToProps
+)(injectIntl(BlueprintsPage));

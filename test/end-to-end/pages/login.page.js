@@ -1,8 +1,8 @@
 // cockpit login credentials
 class LoginPage {
   constructor() {
-    this.username = 'root';
-    this.password = process.env.COCKPIT_PASSWORD || 'foobar';
+    this.username = "root";
+    this.password = process.env.COCKPIT_PASSWORD || "foobar";
   }
 
   // Cockpit login page

@@ -1,11 +1,11 @@
-import React from 'react';
-import {IntlProvider} from 'react-intl';
-import { shallow, mount } from 'enzyme';
-import faker from 'faker';
-import CreateImage from '../../components/Modal/CreateImage';
-import { Provider } from 'react-redux';
+import React from "react";
+import { IntlProvider } from "react-intl";
+import { shallow, mount } from "enzyme";
+import faker from "faker";
+import CreateImage from "../../components/Modal/CreateImage";
+import { Provider } from "react-redux";
 
-describe('CreateImage', () => {
+describe("CreateImage", () => {
   const fakeBlueprintName = faker.lorem.words();
   const mockState = {
     composes: {
@@ -13,37 +13,37 @@ describe('CreateImage', () => {
       queue: [],
       queueFetched: false,
       fetchingComposes: true,
-      errorState: null,
+      errorState: null
     },
     modals: {
       createImage: {
         blueprint: {
-          name: fakeBlueprintName,
+          name: fakeBlueprintName
         },
         imageTypes: [
-          { name: 'ami', enabled: true },
-          { name: 'disk-image', enabled: false },
-          { name: 'fs-image', enabled: false },
-          { name: 'iso', enabled: true },
-          { name: 'live-ostree', enabled: false },
-          { name: 'live-pxe', enabled: false },
-          { name: 'oci', enabled: false },
-          { name: 'ostree', enabled: true },
-          { name: 'qcow2', enabled: true },
-          { name: 'tar', enabled: false },
-          { name: 'vagrant', enabled: false },
-          { name: 'vhdx', enabled: true },
-          { name: 'vmdk', enabled: false },
+          { name: "ami", enabled: true },
+          { name: "disk-image", enabled: false },
+          { name: "fs-image", enabled: false },
+          { name: "iso", enabled: true },
+          { name: "live-ostree", enabled: false },
+          { name: "live-pxe", enabled: false },
+          { name: "oci", enabled: false },
+          { name: "ostree", enabled: true },
+          { name: "qcow2", enabled: true },
+          { name: "tar", enabled: false },
+          { name: "vagrant", enabled: false },
+          { name: "vhdx", enabled: true },
+          { name: "vmdk", enabled: false }
         ],
-        visible: true,
-      },
-    },
+        visible: true
+      }
+    }
   };
   const typeList = mockState.modals.createImage.imageTypes;
   const createImage = mockState.modals.createImage;
   const mockStore = { subscribe: () => null, dispatch: () => null, state: mockState, getState: () => mockState };
 
-  test('always renders a div', () => {
+  test("always renders a div", () => {
     const wrapper = shallow(
       <CreateImage
         store={mockStore}
@@ -53,12 +53,12 @@ describe('CreateImage', () => {
         warningUnsaved={createImage.warningUnsaved}
       />
     );
-    const container = wrapper.first('div');
+    const container = wrapper.first("div");
 
     expect(container.length).toBeGreaterThan(0);
   });
 
-  test('contains everything else that gets rendered', () => {
+  test("contains everything else that gets rendered", () => {
     const wrapper = shallow(
       <CreateImage
         store={mockStore}
@@ -68,16 +68,16 @@ describe('CreateImage', () => {
         warningUnsaved={createImage.warningUnsaved}
       />
     );
-    const divs = wrapper.find('div');
+    const divs = wrapper.find("div");
     const wrappingDiv = divs.first();
 
     expect(wrappingDiv.children()).toEqual(wrapper.children());
   });
 
-  test('should render correct Blueprint name passed by props', () => {
+  test("should render correct Blueprint name passed by props", () => {
     const component = mount(
       <Provider store={mockStore}>
-        <IntlProvider locale='en'>
+        <IntlProvider locale="en">
           <CreateImage
             store={mockStore}
             blueprint={createImage.blueprint}
@@ -88,17 +88,17 @@ describe('CreateImage', () => {
         </IntlProvider>
       </Provider>
     );
-    const blueprintName = component.find('.form-control-static');
+    const blueprintName = component.find(".form-control-static");
 
     expect(blueprintName.text()).toEqual(fakeBlueprintName);
   });
 
-  test('setNofifications, passed by props, should be called by clicking Create button', () => {
+  test("setNofifications, passed by props, should be called by clicking Create button", () => {
     const setNotificationsSpy = jest.fn();
     const handleStartComposeSpy = jest.fn();
     const component = mount(
       <Provider store={mockStore}>
-        <IntlProvider locale='en'>
+        <IntlProvider locale="en">
           <CreateImage
             store={mockStore}
             blueprint={createImage.blueprint}
@@ -112,22 +112,18 @@ describe('CreateImage', () => {
       </Provider>
     );
 
-    component.find('#textInput-modal-markup').simulate('change', {target: { value : 'tar'}});
-    component.find('.btn-primary').simulate('click');
+    component.find("#textInput-modal-markup").simulate("change", { target: { value: "tar" } });
+    component.find(".btn-primary").simulate("click");
 
     expect(setNotificationsSpy).toHaveBeenCalledTimes(1);
     expect(handleStartComposeSpy).toHaveBeenCalledTimes(1);
   });
 
-  test('should have a correct type render', () => {
+  test("should have a correct type render", () => {
     const component = mount(
       <Provider store={mockStore}>
-        <IntlProvider locale='en'>
-          <CreateImage
-            store={mockStore}
-            blueprint={createImage.blueprint}
-            imageTypes={typeList}
-          />
+        <IntlProvider locale="en">
+          <CreateImage store={mockStore} blueprint={createImage.blueprint} imageTypes={typeList} />
         </IntlProvider>
       </Provider>
     );
@@ -135,5 +131,4 @@ describe('CreateImage', () => {
 
     expect(renderedType).toHaveLength(14);
   });
-
 });

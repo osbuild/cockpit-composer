@@ -1,6 +1,6 @@
-import React from 'react';
-import {FormattedMessage, defineMessages, injectIntl, intlShape} from 'react-intl';
-import PropTypes from 'prop-types';
+import React from "react";
+import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
+import PropTypes from "prop-types";
 
 const messages = defineMessages({
   previousPage: {
@@ -21,7 +21,7 @@ const messages = defineMessages({
 class Pagination extends React.Component {
   constructor() {
     super();
-    this.state = { pageValue: '' }
+    this.state = { pageValue: "" };
     this.handleBlur = this.handleBlur.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -51,11 +51,11 @@ class Pagination extends React.Component {
     if (!isNaN(event.target.value) && event.target.value > 0) {
       page = event.target.value - 1;
     } else {
-      page = '';
+      page = "";
     }
     // only update the value if the value is within the range or is '' (in case
     // the user is clearing the value to type a new one)
-    if (!(page > Math.ceil((this.props.totalItems / this.props.pageSize) - 1)) || page === '') {
+    if (!(page > Math.ceil(this.props.totalItems / this.props.pageSize - 1)) || page === "") {
       this.setState({ pageValue: page });
     } else {
       event.target.select();
@@ -67,21 +67,24 @@ class Pagination extends React.Component {
   render() {
     const { formatMessage } = this.props.intl;
     const { cssClass, currentPage, totalItems, pageSize } = this.props;
-    const totalPages = Math.ceil((totalItems / pageSize) - 1);
+    const totalPages = Math.ceil(totalItems / pageSize - 1);
     const startItems = (currentPage + 1) * pageSize - pageSize + 1;
-    const endItems = currentPage === totalPages && totalItems || (currentPage + 1) * pageSize;
+    const endItems = (currentPage === totalPages && totalItems) || (currentPage + 1) * pageSize;
     let pageInput = null;
-    if (this.state.pageValue !== '') {
+    if (this.state.pageValue !== "") {
       pageInput = (
         <input
           className="pagination-pf-page form-control"
           ref="paginationPage"
-          type="text" value={this.state.pageValue + 1}
+          type="text"
+          value={this.state.pageValue + 1}
           id="cmpsr-blueprint-inputs-page"
           aria-label={formatMessage(messages.currentPage)}
-          onClick={() => { this.refs.paginationPage.select(); }}
+          onClick={() => {
+            this.refs.paginationPage.select();
+          }}
           onChange={this.handleChange}
-          onKeyPress={(e) => this.props.handlePagination(e)}
+          onKeyPress={e => this.props.handlePagination(e)}
           onBlur={this.handleBlur}
         />
       );
@@ -90,10 +93,13 @@ class Pagination extends React.Component {
         <input
           className="pagination-pf-page form-control"
           ref="paginationPage"
-          type="text" value=""
+          type="text"
+          value=""
           id="cmpsr-blueprint-inputs-page"
           aria-label={formatMessage(messages.currentPage)}
-          onClick={() => { this.refs.paginationPage.select(); }}
+          onClick={() => {
+            this.refs.paginationPage.select();
+          }}
           onChange={this.handleChange}
           onBlur={this.handleBlur}
         />
@@ -103,12 +109,8 @@ class Pagination extends React.Component {
     if (currentPage === 0) {
       previousPage = (
         <li className="disabled">
-          <a 
-            aria-disabled="true" 
-            role="button"
-            aria-label={formatMessage(messages.previousPage)}
-          >
-            <span className="i fa fa-angle-left"></span>
+          <a aria-disabled="true" role="button" aria-label={formatMessage(messages.previousPage)}>
+            <span className="i fa fa-angle-left" />
           </a>
         </li>
       );
@@ -120,9 +122,9 @@ class Pagination extends React.Component {
             role="button"
             aria-label={formatMessage(messages.previousPage)}
             data-page={currentPage - 1}
-            onClick={(e) => this.props.handlePagination(e)}
+            onClick={e => this.props.handlePagination(e)}
           >
-            <span className="i fa fa-angle-left"></span>
+            <span className="i fa fa-angle-left" />
           </a>
         </li>
       );
@@ -131,12 +133,8 @@ class Pagination extends React.Component {
     if (currentPage === totalPages) {
       nextPage = (
         <li className="disabled">
-          <a 
-            aria-disabled="true"
-            role="button"
-            aria-label={formatMessage(messages.nextPage)}
-          >
-            <span className="i fa fa-angle-right"></span>
+          <a aria-disabled="true" role="button" aria-label={formatMessage(messages.nextPage)}>
+            <span className="i fa fa-angle-right" />
           </a>
         </li>
       );
@@ -148,23 +146,21 @@ class Pagination extends React.Component {
             role="button"
             aria-label={formatMessage(messages.nextPage)}
             data-page={currentPage + 1}
-            onClick={(e) => this.props.handlePagination(e)}
+            onClick={e => this.props.handlePagination(e)}
           >
-            <span className="i fa fa-angle-right"></span>
+            <span className="i fa fa-angle-right" />
           </a>
         </li>
       );
     }
     return (
-      <nav 
-        className={`${cssClass}  content-view-pf-pagination`}
-        aria-label={formatMessage(messages.pagination)}
-      >
+      <nav className={`${cssClass}  content-view-pf-pagination`} aria-label={formatMessage(messages.pagination)}>
         <span className="sr-only">
-          <FormattedMessage 
-            defaultMessage="Current Items" 
+          <FormattedMessage
+            defaultMessage="Current Items"
             description="Label for the string: 1–50 of 125; only visible to screen readers"
-          />:
+          />
+          :
         </span>
         <FormattedMessage
           defaultMessage="{startNumber} - {endNumber} of {totalNumber}"
@@ -182,7 +178,7 @@ class Pagination extends React.Component {
             defaultMessage="{currentPage} of {totalPages}"
             values={{
               currentPage: pageInput,
-              totalPages: totalPages + 1,
+              totalPages: totalPages + 1
             }}
           />
           <ul className="pagination pagination-pf-forward" role="presentation">
@@ -190,7 +186,6 @@ class Pagination extends React.Component {
           </ul>
         </span>
       </nav>
-      
     );
   }
 }
@@ -201,7 +196,7 @@ Pagination.propTypes = {
   totalItems: PropTypes.number,
   pageSize: PropTypes.number,
   handlePagination: PropTypes.func,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
-export default (injectIntl(Pagination));
+export default injectIntl(Pagination);

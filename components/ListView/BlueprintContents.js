@@ -1,13 +1,13 @@
-import React from 'react';
-import {defineMessages, injectIntl, intlShape, FormattedMessage} from 'react-intl';
-import PropTypes from 'prop-types';
-import { Tabs, Tab } from 'patternfly-react';
-import ListView from '../../components/ListView/ListView';
-import ListItemComponents from '../../components/ListView/ListItemComponents';
-import DependencyListView from '../../components/ListView/DependencyListView';
-import EmptyState from '../../components/EmptyState/EmptyState';
-import Loading from '../../components/Loading/Loading';
-import LabelWithBadge from './LabelWithBadge';
+import React from "react";
+import { defineMessages, injectIntl, intlShape, FormattedMessage } from "react-intl";
+import PropTypes from "prop-types";
+import { Tabs, Tab } from "patternfly-react";
+import ListView from "../../components/ListView/ListView";
+import ListItemComponents from "../../components/ListView/ListItemComponents";
+import DependencyListView from "../../components/ListView/DependencyListView";
+import EmptyState from "../../components/EmptyState/EmptyState";
+import Loading from "../../components/Loading/Loading";
+import LabelWithBadge from "./LabelWithBadge";
 
 const messages = defineMessages({
   dependenciesTabTitle: {
@@ -33,52 +33,49 @@ const messages = defineMessages({
 class BlueprintContents extends React.Component {
   constructor() {
     super();
-    this.state = { activeTab: 'Components' };
+    this.state = { activeTab: "Components" };
   }
 
   render() {
     const {
-      components, dependencies, handleComponentDetails, handleRemoveComponent,
-      noEditComponent, filterClearValues, filterValues, errorState, fetchingState
+      components,
+      dependencies,
+      handleComponentDetails,
+      handleRemoveComponent,
+      noEditComponent,
+      filterClearValues,
+      filterValues,
+      errorState,
+      fetchingState
     } = this.props;
 
     const { formatMessage } = this.props.intl;
 
     return (
       <div>
-        {fetchingState === true &&
-          <Loading />
-          ||
-          (errorState !== undefined &&
+        {(fetchingState === true && <Loading />) ||
+          ((errorState !== undefined && (
             <EmptyState
               title={formatMessage(messages.emptyStateErrorTitle)}
               message={formatMessage(messages.emptyStateErrorMessage)}
             />
-            ||
-            ((components.length === 0 && filterValues.length === 0) &&
-              <div>
-                {this.props.children}
-              </div>
-              ||
+          )) ||
+            ((components.length === 0 && filterValues.length === 0 && <div>{this.props.children}</div>) || (
               <Tabs id="blueprint-tabs">
                 <Tab
                   eventKey="selected-components"
                   title={<LabelWithBadge title={formatMessage(messages.selectedTabTitle)} badge={components.length} />}
                 >
-                  {components.length === 0 &&
+                  {(components.length === 0 && (
                     <EmptyState
                       title={formatMessage(messages.emptyStateNoResultsTitle)}
                       message={formatMessage(messages.emptyStateNoResultsMessage)}
                     >
-                      <button
-                        className="btn btn-link btn-lg"
-                        type="button"
-                        onClick={() => filterClearValues([])}
-                      >
+                      <button className="btn btn-link btn-lg" type="button" onClick={() => filterClearValues([])}>
                         <FormattedMessage defaultMessage="Clear All Filters" />
                       </button>
                     </EmptyState>
-                  ||
+                  )) || (
                     <ListView className="cmpsr-blueprint__components" stacked>
                       {components.map((listItem, i) => (
                         <ListItemComponents
@@ -91,26 +88,24 @@ class BlueprintContents extends React.Component {
                         />
                       ))}
                     </ListView>
-                  }
+                  )}
                 </Tab>
                 <Tab
                   eventKey="dependencies"
-                  title={<LabelWithBadge title={formatMessage(messages.dependenciesTabTitle)} badge={dependencies.length} />}
+                  title={
+                    <LabelWithBadge title={formatMessage(messages.dependenciesTabTitle)} badge={dependencies.length} />
+                  }
                 >
-                  {dependencies.length === 0 &&
+                  {(dependencies.length === 0 && (
                     <EmptyState
                       title={formatMessage(messages.emptyStateNoResultsTitle)}
                       message={formatMessage(messages.emptyStateNoResultsMessage)}
                     >
-                      <button
-                        className="btn btn-link btn-lg"
-                        type="button"
-                        onClick={() => filterClearValues([])}
-                      >
+                      <button className="btn btn-link btn-lg" type="button" onClick={() => filterClearValues([])}>
                         <FormattedMessage defaultMessage="Clear All Filters" />
                       </button>
                     </EmptyState>
-                  ||
+                  )) || (
                     <DependencyListView
                       className="cmpsr-blueprint__dependencies"
                       listItems={dependencies}
@@ -118,12 +113,10 @@ class BlueprintContents extends React.Component {
                       handleComponentDetails={handleComponentDetails}
                       noEditComponent={noEditComponent}
                     />
-                  }
+                  )}
                 </Tab>
               </Tabs>
-            )
-          )
-        }
+            )))}
       </div>
     );
   }
@@ -140,7 +133,7 @@ BlueprintContents.propTypes = {
   filterValues: PropTypes.array,
   errorState: PropTypes.object,
   fetchingState: PropTypes.bool,
-  children: PropTypes.node,
+  children: PropTypes.node
 };
 
 export default injectIntl(BlueprintContents);

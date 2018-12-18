@@ -1,15 +1,16 @@
-import React from 'react';
-import {FormattedMessage} from 'react-intl';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { deletingCompose, cancellingCompose } from '../../core/actions/composes';
-import { 
-  setModalStopBuildVisible, setModalStopBuildState, 
-  setModalDeleteImageVisible, setModalDeleteImageState, 
-} from '../../core/actions/modals';
+import React from "react";
+import { FormattedMessage } from "react-intl";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { deletingCompose, cancellingCompose } from "../../core/actions/composes";
+import {
+  setModalStopBuildVisible,
+  setModalStopBuildState,
+  setModalDeleteImageVisible,
+  setModalDeleteImageState
+} from "../../core/actions/modals";
 
 class ListItemImages extends React.Component {
-
   constructor() {
     super();
     this.handleDelete = this.handleDelete.bind(this);
@@ -86,28 +87,31 @@ class ListItemImages extends React.Component {
                 </div>
               </div>
             </div>
-            {listItem.queue_status === 'WAITING' &&
+            {listItem.queue_status === "WAITING" && (
               <div className="list-view-pf-additional-info-item cmpsr-images__status">
                 <span className="pficon pficon-pending" aria-hidden="true" />
                 <FormattedMessage defaultMessage="Pending" />
               </div>
-            } {listItem.queue_status === 'RUNNING' &&
+            )}{" "}
+            {listItem.queue_status === "RUNNING" && (
               <div className="list-view-pf-additional-info-item cmpsr-images__status">
                 <span className="pficon pficon-in-progress" aria-hidden="true" />
                 <FormattedMessage defaultMessage="In Progress" />
               </div>
-            } {listItem.queue_status === 'FINISHED' &&
+            )}{" "}
+            {listItem.queue_status === "FINISHED" && (
               <div className="list-view-pf-additional-info-item cmpsr-images__status">
                 <span className="pficon pficon-ok" aria-hidden="true" />
                 <FormattedMessage defaultMessage="Complete" />
               </div>
-            } {listItem.queue_status === 'FAILED' &&
+            )}{" "}
+            {listItem.queue_status === "FAILED" && (
               <div className="list-view-pf-additional-info-item cmpsr-images__status">
                 <span className="pficon pficon-error-circle-o" aria-hidden="true" />
                 <FormattedMessage defaultMessage="Failed" />
               </div>
-            }
-            {listItem.queue_status === 'FINISHED' &&
+            )}
+            {listItem.queue_status === "FINISHED" && (
               <div className="list-pf-actions">
                 <a className="btn btn-default" role="button" download href={this.props.downloadUrl}>
                   <FormattedMessage defaultMessage="Download" />
@@ -120,42 +124,47 @@ class ListItemImages extends React.Component {
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="true"
-                  ><span className="fa fa-ellipsis-v"></span></button>
-                  <ul
-                    className="dropdown-menu dropdown-menu-right"
-                    aria-labelledby="dropdownKebabRight"
                   >
+                    <span className="fa fa-ellipsis-v" />
+                  </button>
+                  <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight">
                     <li>
-                      <a href="#" onClick={(e) => this.handleShowModalDeleteImage(e)}>
+                      <a href="#" onClick={e => this.handleShowModalDeleteImage(e)}>
                         <FormattedMessage defaultMessage="Delete" />
                       </a>
                     </li>
                   </ul>
                 </div>
               </div>
-            } {listItem.queue_status === 'WAITING' &&
+            )}{" "}
+            {listItem.queue_status === "WAITING" && (
               <div className="list-pf-actions">
                 <button className="btn btn-default" onClick={this.handleCancel}>
                   <FormattedMessage defaultMessage="Stop" />
                 </button>
               </div>
-            } {listItem.queue_status === 'RUNNING' &&
+            )}{" "}
+            {listItem.queue_status === "RUNNING" && (
               <div className="list-pf-actions">
                 <button className="btn btn-default" onClick={this.handleShowModalStop}>
                   <FormattedMessage defaultMessage="Stop" />
                 </button>
               </div>
-            } {listItem.queue_status === 'STOPPING' &&
+            )}{" "}
+            {listItem.queue_status === "STOPPING" && (
               <div className="list-pf-actions">
-                <em className="text-muted"><FormattedMessage defaultMessage="Stopping" /></em>
+                <em className="text-muted">
+                  <FormattedMessage defaultMessage="Stopping" />
+                </em>
               </div>
-            } {listItem.queue_status === 'FAILED' &&
+            )}{" "}
+            {listItem.queue_status === "FAILED" && (
               <div className="list-pf-actions">
                 <button className="btn btn-default" onClick={this.handleDelete}>
                   <FormattedMessage defaultMessage="Remove" />
                 </button>
               </div>
-            }
+            )}
           </div>
         </div>
       </div>
@@ -172,28 +181,31 @@ ListItemImages.propTypes = {
   setModalStopBuildVisible: PropTypes.func,
   setModalDeleteImageState: PropTypes.func,
   setModalDeleteImageVisible: PropTypes.func,
-  downloadUrl: PropTypes.string,
+  downloadUrl: PropTypes.string
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  deletingCompose: (compose) => {
+const mapDispatchToProps = dispatch => ({
+  deletingCompose: compose => {
     dispatch(deletingCompose(compose));
   },
-  cancellingCompose: (compose) => {
+  cancellingCompose: compose => {
     dispatch(cancellingCompose(compose));
   },
   setModalStopBuildState: (composeId, blueprintName) => {
     dispatch(setModalStopBuildState(composeId, blueprintName));
   },
-  setModalStopBuildVisible: (visible) => {
+  setModalStopBuildVisible: visible => {
     dispatch(setModalStopBuildVisible(visible));
   },
   setModalDeleteImageState: (composeId, blueprintName) => {
     dispatch(setModalDeleteImageState(composeId, blueprintName));
   },
-  setModalDeleteImageVisible: (visible) => {
+  setModalDeleteImageVisible: visible => {
     dispatch(setModalDeleteImageVisible(visible));
-  },
+  }
 });
 
-export default connect(null, mapDispatchToProps)(ListItemImages);
+export default connect(
+  null,
+  mapDispatchToProps
+)(ListItemImages);

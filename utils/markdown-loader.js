@@ -8,9 +8,9 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-const MarkdownIt = require('markdown-it');
-const hljs = require('highlight.js');
-const fm = require('front-matter');
+const MarkdownIt = require("markdown-it");
+const hljs = require("highlight.js");
+const fm = require("front-matter");
 
 module.exports = function markdownLoader(source) {
   this.cacheable();
@@ -22,15 +22,19 @@ module.exports = function markdownLoader(source) {
       if (lang && hljs.getLanguage(lang)) {
         try {
           return hljs.highlight(lang, str).value;
-        } catch (err) { console.error(err.stack); } // eslint-disable-line no-console
+        } catch (err) {
+          console.error(err.stack);
+        } // eslint-disable-line no-console
       }
 
       try {
         return hljs.highlightAuto(str).value;
-      } catch (err) { console.error(err.stack); } // eslint-disable-line no-console
+      } catch (err) {
+        console.error(err.stack);
+      } // eslint-disable-line no-console
 
-      return '';
-    },
+      return "";
+    }
   });
 
   const frontmatter = fm(source);

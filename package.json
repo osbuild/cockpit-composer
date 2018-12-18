@@ -51,10 +51,12 @@
     "enzyme-adapter-react-15": "^1.1.0",
     "eslint": "^5.10.0",
     "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jest": "^22.1.2",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-mocha": "^5.2.0",
+    "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-react": "^7.11.1",
     "eslint-plugin-redux-saga": "^0.10.0",
     "faker": "^4.1.0",
@@ -85,6 +87,7 @@
     "postcss-nesting": "^2.3.1",
     "postcss-selector-matches": "^2.0.1",
     "postcss-selector-not": "^2.0.0",
+    "prettier": "^1.15.3",
     "react-hot-loader": "^3.0.0-beta.2",
     "react-intl-po": "^2.2.2",
     "react-test-renderer": "^15.6.1",
@@ -136,6 +139,7 @@
   "eslintConfig": {
     "parser": "babel-eslint",
     "plugins": [
+      "prettier",
       "mocha",
       "redux-saga"
     ],
@@ -147,12 +151,18 @@
       "plugin:import/recommended",
       "plugin:redux-saga/recommended",
       "plugin:mocha/recommended",
-      "plugin:jest/recommended"
+      "plugin:jest/recommended",
+      "prettier"
     ],
     "rules": {
       "max-len": [
         "error",
-        130
+        {
+          "code": 120,
+          "ignoreStrings": true,
+          "ignoreTemplateLiterals": true,
+          "ignoreTrailingComments": true
+        }
       ],
       "no-console": 0,
       "react/jsx-filename-extension": [
@@ -162,6 +172,12 @@
             ".js",
             ".jsx"
           ]
+        }
+      ],
+      "prettier/prettier": [
+        "error",
+        {
+          "printWidth": 120
         }
       ],
       "jest/valid-expect": 0,

@@ -1,12 +1,12 @@
-import React from 'react';
-import {FormattedMessage} from 'react-intl';
+import React from "react";
+import { FormattedMessage } from "react-intl";
 
 class Loading extends React.Component {
   constructor(props) {
     super(props);
     this.enableLoadingState = this.enableLoadingState.bind(this);
     this.state = {
-      displayLoadingState: false,
+      displayLoadingState: false
     };
     this.timer = setTimeout(this.enableLoadingState, 500);
   }
@@ -16,18 +16,20 @@ class Loading extends React.Component {
   }
 
   enableLoadingState() {
-    this.setState({displayLoadingState: true});
+    this.setState({ displayLoadingState: true });
   }
 
   render() {
-    const {displayLoadingState} = this.state;
+    const { displayLoadingState } = this.state;
     if (!displayLoadingState) {
       return null;
     }
     return (
       <div className="cmpsr-loading">
-        <div className="spinner spinner-md"></div>
-        <p className="lead"><FormattedMessage defaultMessage="Loading" /></p>
+        <div className="spinner spinner-md" />
+        <p className="lead">
+          <FormattedMessage defaultMessage="Loading" />
+        </p>
       </div>
     );
   }

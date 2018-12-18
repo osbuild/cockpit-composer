@@ -1,8 +1,8 @@
 // "Blueprint Components" component in Edit Blueprint page
 class SelectedComponents {
   constructor() {
-    this.containerSelector = '.cmpsr-blueprint__components';
-    this.components = '.cmpsr-blueprint__components > .list-pf-item';
+    this.containerSelector = ".cmpsr-blueprint__components";
+    this.components = ".cmpsr-blueprint__components > .list-pf-item";
   }
 
   loading() {
@@ -13,16 +13,14 @@ class SelectedComponents {
 
   get packageList() {
     const selector = `${this.containerSelector} .list-pf-container .list-pf-title`;
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      'No package added in Selected Component'
-    );
+    browser.waitUntil(() => browser.isExisting(selector), timeout, "No package added in Selected Component");
     return $$(selector);
   }
 
   packageNameByNth(nth) {
-    return $$(this.components)[nth].$('.list-pf-title a').getText();
+    return $$(this.components)
+      [nth].$(".list-pf-title a")
+      .getText();
   }
 
   moreButtonByName(name) {
@@ -57,18 +55,18 @@ class SelectedComponents {
 
   loadingComponentExpansion(name) {
     browser.waitUntil(
-      () => browser.getAttribute(`[data-component=${name}] .list-pf-expansion`, 'class').includes('in'),
+      () => browser.getAttribute(`[data-component=${name}] .list-pf-expansion`, "class").includes("in"),
       timeout,
       `Cannot load component expansion for ${name} component in Selected Component`
-    )
+    );
   }
 
   loadingComponentCollapse(name) {
     browser.waitUntil(
-      () => browser.getAttribute(`[data-component=${name}] .list-pf-expansion`, 'class').indexOf('in') === -1,
+      () => browser.getAttribute(`[data-component=${name}] .list-pf-expansion`, "class").indexOf("in") === -1,
       timeout,
       `Cannot load component collapse for ${name} component in Selected Component`
-    )
+    );
   }
 
   componentDependenciesBadge(name) {

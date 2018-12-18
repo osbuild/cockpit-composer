@@ -73,7 +73,9 @@ describe("View Blueprint Page", function() {
         viewBlueprintPage.editBlueprintDescriptionButton.click();
         viewBlueprintPage.descriptionInputBox.setValue(updatedDescription);
         viewBlueprintPage.okButton.click();
-        expect(viewBlueprintPage.updatedBlueprintDescriptionLabel(updatedDescription).getText()).to.equal(updatedDescription);
+        expect(viewBlueprintPage.updatedBlueprintDescriptionLabel(updatedDescription).getText()).to.equal(
+          updatedDescription
+        );
       });
     });
 

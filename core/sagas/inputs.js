@@ -1,10 +1,8 @@
-import { take, call, put, takeEvery, select } from 'redux-saga/effects';
-import { fetchBlueprintInputsApi } from '../apiCalls';
-import { FETCHING_INPUTS, fetchingInputsSucceeded } from '../actions/inputs';
-import {
-  FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED,
-} from '../actions/blueprints';
-import { makeGetSortedSelectedComponents, makeGetSortedDependencies } from '../selectors';
+import { take, call, put, takeEvery, select } from "redux-saga/effects";
+import { fetchBlueprintInputsApi } from "../apiCalls";
+import { FETCHING_INPUTS, fetchingInputsSucceeded } from "../actions/inputs";
+import { FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED } from "../actions/blueprints";
+import { makeGetSortedSelectedComponents, makeGetSortedDependencies } from "../selectors";
 
 function updateInputComponentData(inputs, selectedComponents, dependencies) {
   if (selectedComponents !== undefined && selectedComponents.length > 0) {
@@ -50,10 +48,10 @@ function* fetchInputs(action) {
     const updatedResponse = yield call(updateInputComponentData, response, selectedComponents, dependencies);
     yield put(fetchingInputsSucceeded(filter, selectedInputPage, pageSize, updatedResponse));
   } catch (error) {
-    console.log('Error in fetchInputsSaga');
+    console.log("Error in fetchInputsSaga");
   }
 }
 
-export default function* () {
+export default function*() {
   yield takeEvery(FETCHING_INPUTS, fetchInputs);
 }

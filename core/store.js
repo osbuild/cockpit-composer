@@ -1,7 +1,7 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import createSagaMiddleware from 'redux-saga';
-import rootReducer from './reducers/index';
-import rootSaga from './sagas/index';
+import { createStore, applyMiddleware, compose } from "redux";
+import createSagaMiddleware from "redux-saga";
+import rootReducer from "./reducers/index";
+import rootSaga from "./sagas/index";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -11,62 +11,62 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const initialState = {
   blueprintPage: {
-    activeTab: 'Details',
+    activeTab: "Details",
     editDescriptionVisible: false,
-    activeComponent: '',
-    activeComponentParent: '',
-    activeComponentStatus: 'view',
+    activeComponent: "",
+    activeComponentParent: "",
+    activeComponentStatus: "view"
   },
   inputs: {
     selectedInputPage: 0,
     pageSize: 50,
     selectedInput: {
-      component: '',
-      parent: '',
-      status: '',
+      component: "",
+      parent: "",
+      status: ""
     },
     inputFilters: {
-        field: 'name',
-        value: '',
-    },
+      field: "name",
+      value: ""
+    }
   },
   blueprints: {
     blueprintList: [],
     fetchingBlueprints: true,
-    errorState: null,
+    errorState: null
   },
   composes: {
     composeList: [],
     queue: [],
     queueFetched: false,
     fetchingComposes: true,
-    errorState: null,
+    errorState: null
   },
   modals: {
     createImage: {
       blueprint: {},
       imageTypes: [],
-      visible: false,
+      visible: false
     },
     stopBuild: {
-      composeId: '',
-      blueprintName: '',
-      visible: false,
+      composeId: "",
+      blueprintName: "",
+      visible: false
     },
     deleteImage: {
-      composeId: '',
-      blueprintName: '',
-      visible: false,
+      composeId: "",
+      blueprintName: "",
+      visible: false
     },
     exportBlueprint: {
-      name: '',
+      name: "",
       contents: [],
-      visible: false,
+      visible: false
     },
     deleteBlueprint: {
-      name: '',
-      id: '',
-      visible: false,
+      name: "",
+      id: "",
+      visible: false
     },
     createBlueprint: {
       showErrorName: false,
@@ -74,85 +74,79 @@ const initialState = {
       inlineError: false,
       checkErrors: true,
       blueprint: {
-        name: '',
-        description: '',
+        name: "",
+        description: "",
         modules: [],
-        packages: [],
-      },
+        packages: []
+      }
     },
     pendingChanges: {
       componentUpdates: {
         past: [],
         present: [],
-        future: [],
-      },
+        future: []
+      }
     },
     manageSources: {
       sources: [],
-      visible: false,
-    },
+      visible: false
+    }
   },
   sort: {
     blueprints: {
-      key: 'name',
-      value: 'DESC',
+      key: "name",
+      value: "DESC"
     },
     components: {
-      key: 'name',
-      value: 'DESC',
+      key: "name",
+      value: "DESC"
     },
     dependencies: {
-      key: 'name',
-      value: 'DESC',
-    },
+      key: "name",
+      value: "DESC"
+    }
   },
   filter: {
     blueprints: {
       filterValues: [],
       filterTypes: [
         {
-          id: 'name',
-          title: 'Name',
-          placeholder: 'Filter by Name',
-          filterType: 'text'
+          id: "name",
+          title: "Name",
+          placeholder: "Filter by Name",
+          filterType: "text"
         }
       ],
-      defaultFilterType: 'name'
+      defaultFilterType: "name"
     },
     components: {
       filterValues: [],
       filterTypes: [
         {
-          id: 'name',
-          title: 'Name',
-          placeholder: 'Filter by Name',
-          filterType: 'text'
+          id: "name",
+          title: "Name",
+          placeholder: "Filter by Name",
+          filterType: "text"
         },
         {
-          id: 'version',
-          title: 'Version',
-          placeholder: 'Filter by Version',
-          filterType: 'text'
+          id: "version",
+          title: "Version",
+          placeholder: "Filter by Version",
+          filterType: "text"
         },
         {
-          id: 'release',
-          title: 'Release',
-          placeholder: 'Filter by Release',
-          filterType: 'text'
+          id: "release",
+          title: "Release",
+          placeholder: "Filter by Release",
+          filterType: "text"
         }
       ],
-      defaultFilterType: 'name'
-    },
-  },
+      defaultFilterType: "name"
+    }
+  }
 };
 
-const store = createStore(
-  rootReducer,
-  initialState,
-  composeEnhancers(
-    applyMiddleware(sagaMiddleware)
-  )
-);
+const store = createStore(rootReducer, initialState, composeEnhancers(applyMiddleware(sagaMiddleware)));
 sagaMiddleware.run(rootSaga);
 
 export default store;

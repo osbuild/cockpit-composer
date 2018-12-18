@@ -1,34 +1,37 @@
-import { createSelector } from 'reselect';
+import { createSelector } from "reselect";
 
-const getPastLength = (blueprint) => {
+const getPastLength = blueprint => {
   const pastLength = blueprint.past.length;
   return pastLength;
 };
 
-export const makeGetPastLength = () => createSelector(
-  [getPastLength],
-  (pastLength) => pastLength
-);
+export const makeGetPastLength = () =>
+  createSelector(
+    [getPastLength],
+    pastLength => pastLength
+  );
 
-const getFutureLength = (blueprint) => {
+const getFutureLength = blueprint => {
   const futureLength = blueprint.future.length;
   return futureLength;
 };
 
-export const makeGetFutureLength = () => createSelector(
-  [getFutureLength],
-  (futureLength) => futureLength
-);
+export const makeGetFutureLength = () =>
+  createSelector(
+    [getFutureLength],
+    futureLength => futureLength
+  );
 
 const getBlueprintById = (state, blueprintId) => {
   const blueprintById = state.blueprints.blueprintList.find(blueprint => blueprint.present.id === blueprintId);
   return blueprintById;
 };
 
-export const makeGetBlueprintById = () => createSelector(
-  [getBlueprintById],
-  (blueprint) => blueprint
-);
+export const makeGetBlueprintById = () =>
+  createSelector(
+    [getBlueprintById],
+    blueprint => blueprint
+  );
 
 const getSortedSelectedComponents = (state, blueprint) => {
   const selectedPackages = blueprint.packages.map(item => item.name);
@@ -48,17 +51,18 @@ const getSortedSelectedComponents = (state, blueprint) => {
   const key = state.sort.components.key;
   const value = state.sort.components.value;
   sortedSelectedComponents.sort((a, b) => {
-    if (a[key] > b[key]) return value === 'DESC' ? 1 : -1;
-    if (b[key] > a[key]) return value === 'DESC' ? -1 : 1;
+    if (a[key] > b[key]) return value === "DESC" ? 1 : -1;
+    if (b[key] > a[key]) return value === "DESC" ? -1 : 1;
     return 0;
   });
   return sortedSelectedComponents;
 };
 
-export const makeGetSortedSelectedComponents = () => createSelector(
-  [getSortedSelectedComponents],
-  (selectedComponents) => selectedComponents
-);
+export const makeGetSortedSelectedComponents = () =>
+  createSelector(
+    [getSortedSelectedComponents],
+    selectedComponents => selectedComponents
+  );
 
 const getSortedDependencies = (state, blueprint) => {
   const selectedPackages = blueprint.packages.map(item => item.name);
@@ -76,26 +80,29 @@ const getSortedDependencies = (state, blueprint) => {
   const key = state.sort.dependencies.key;
   const value = state.sort.dependencies.value;
   sortedDependencies.sort((a, b) => {
-    if (a[key] > b[key]) return value === 'DESC' ? 1 : -1;
-    if (b[key] > a[key]) return value === 'DESC' ? -1 : 1;
+    if (a[key] > b[key]) return value === "DESC" ? 1 : -1;
+    if (b[key] > a[key]) return value === "DESC" ? -1 : 1;
     return 0;
   });
   return sortedDependencies;
 };
 
-export const makeGetSortedDependencies = () => createSelector(
-  [getSortedDependencies],
-  (dependencies) => dependencies
-);
+export const makeGetSortedDependencies = () =>
+  createSelector(
+    [getSortedDependencies],
+    dependencies => dependencies
+  );
 
 const getFilteredComponents = (state, components) => {
   let filteredComponents = [];
   const filters = state.filter.components.filterValues;
   if (filters && filters.length !== 0) {
-    filteredComponents  = components.filter((component) => {
-      return filters.filter((filter) => {
-        return !component[filter.key].includes(filter.value);
-      }).length == 0
+    filteredComponents = components.filter(component => {
+      return (
+        filters.filter(filter => {
+          return !component[filter.key].includes(filter.value);
+        }).length == 0
+      );
     });
   } else {
     filteredComponents = components;
@@ -103,36 +110,40 @@ const getFilteredComponents = (state, components) => {
   return filteredComponents;
 };
 
-export const makeGetFilteredComponents = () => createSelector(
-  [getFilteredComponents],
-  (filteredComponents) => filteredComponents
-);
+export const makeGetFilteredComponents = () =>
+  createSelector(
+    [getFilteredComponents],
+    filteredComponents => filteredComponents
+  );
 
-const getSortedBlueprints = (state) => {
+const getSortedBlueprints = state => {
   const sortedBlueprints = state.blueprints.blueprintList;
   const key = state.sort.blueprints.key;
   const value = state.sort.blueprints.value;
   sortedBlueprints.sort((a, b) => {
-    if (a.present[key] > b.present[key]) return value === 'DESC' ? 1 : -1;
-    if (b.present[key] > a.present[key]) return value === 'DESC' ? -1 : 1;
+    if (a.present[key] > b.present[key]) return value === "DESC" ? 1 : -1;
+    if (b.present[key] > a.present[key]) return value === "DESC" ? -1 : 1;
     return 0;
   });
   return sortedBlueprints;
 };
 
-export const makeGetSortedBlueprints = () => createSelector(
-  [getSortedBlueprints],
-  (blueprints) => blueprints
-);
+export const makeGetSortedBlueprints = () =>
+  createSelector(
+    [getSortedBlueprints],
+    blueprints => blueprints
+  );
 
 const getFilteredBlueprints = (state, blueprints) => {
   let filteredBlueprints = [];
   const filters = state.filter.blueprints.filterValues;
   if (filters && filters.length !== 0) {
-    filteredBlueprints  = blueprints.filter((blueprint) => {
-      return filters.filter((filter) => {
-        return !blueprint.present[filter.key].includes(filter.value);
-      }).length == 0
+    filteredBlueprints = blueprints.filter(blueprint => {
+      return (
+        filters.filter(filter => {
+          return !blueprint.present[filter.key].includes(filter.value);
+        }).length == 0
+      );
     });
   } else {
     filteredBlueprints = blueprints;
@@ -140,10 +151,11 @@ const getFilteredBlueprints = (state, blueprints) => {
   return filteredBlueprints;
 };
 
-export const makeGetFilteredBlueprints = () => createSelector(
-  [getFilteredBlueprints],
-  (filteredBlueprints) => filteredBlueprints
-);
+export const makeGetFilteredBlueprints = () =>
+  createSelector(
+    [getFilteredBlueprints],
+    filteredBlueprints => filteredBlueprints
+  );
 
 const getBlueprintComposes = (state, blueprint) => {
   const composes = state.composes.composeList.filter(compose => compose.blueprint === blueprint.name);
@@ -154,7 +166,8 @@ const getBlueprintComposes = (state, blueprint) => {
   return composes;
 };
 
-export const makeGetBlueprintComposes = () => createSelector(
-  [getBlueprintComposes],
-  (composes) => composes
-);
+export const makeGetBlueprintComposes = () =>
+  createSelector(
+    [getBlueprintComposes],
+    composes => composes
+  );

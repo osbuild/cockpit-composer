@@ -1,8 +1,8 @@
 /* global $ */
 
-import React from 'react';
-import {FormattedMessage} from 'react-intl';
-import PropTypes from 'prop-types';
+import React from "react";
+import { FormattedMessage } from "react-intl";
+import PropTypes from "prop-types";
 
 class ListItemChanges extends React.Component {
   constructor() {
@@ -19,7 +19,7 @@ class ListItemChanges extends React.Component {
     const newitem = newProps.listItem;
     const parent = this.props.listItemParent;
     if (olditem !== newitem) {
-      if ($(`#${parent} [data-name='${newitem.name}']`).hasClass('list-view-pf-expand-active')) {
+      if ($(`#${parent} [data-name='${newitem.name}']`).hasClass("list-view-pf-expand-active")) {
         this.setState({ expanded: true });
       } else {
         this.setState({ expanded: false });
@@ -29,7 +29,7 @@ class ListItemChanges extends React.Component {
 
   handleExpandComponent(event) {
     // the user clicked a list item in the blueprint contents area to expand or collapse
-    if (!$(event.target).is('button, a, input, .fa-ellipsis-v')) {
+    if (!$(event.target).is("button, a, input, .fa-ellipsis-v")) {
       const expandState = !this.state.expanded;
       this.setState({ expanded: expandState });
     }
@@ -39,11 +39,10 @@ class ListItemChanges extends React.Component {
     const { listItem } = this.props;
 
     return (
-      <div className={`list-pf-item ${this.state.expanded ? 'active' : ''}`}>
-
+      <div className={`list-pf-item ${this.state.expanded ? "active" : ""}`}>
         <div className="list-pf-container" onClick={this.handleExpandComponent}>
           <div className="list-pf-chevron">
-            <span className={`fa ${this.state.expanded ? 'fa-angle-down' : 'fa-angle-right'}`} />
+            <span className={`fa ${this.state.expanded ? "fa-angle-down" : "fa-angle-right"}`} />
           </div>
 
           <div className="list-pf-content list-pf-content-flex ">
@@ -56,16 +55,14 @@ class ListItemChanges extends React.Component {
                       commitNumber: this.props.number
                     }}
                   />
-                  <span className="cmpsr-list-item__text--muted text-muted pull-right">
-                    {listItem.time}
-                  </span>
+                  <span className="cmpsr-list-item__text--muted text-muted pull-right">{listItem.time}</span>
                 </div>
                 <div className="list-pf-description">{listItem.message}</div>
               </div>
             </div>
           </div>
         </div>
-        <div className={`list-pf-expansion collapse ${this.state.expanded ? 'in' : ''}`}>
+        <div className={`list-pf-expansion collapse ${this.state.expanded ? "in" : ""}`}>
           <div className="list-pf-container" tabIndex="0">
             <div className="list-pf-content">
               <div className="container-fluid ">
@@ -74,7 +71,9 @@ class ListItemChanges extends React.Component {
                     <ul className="list-group">
                       <li className="list-group-item">
                         <div className="row">
-                          <div className="col-sm-3"><FormattedMessage defaultMessage="Added" /></div>
+                          <div className="col-sm-3">
+                            <FormattedMessage defaultMessage="Added" />
+                          </div>
                           <div className="col-sm-9">
                             <div className="row">
                               <div className="col-xs-12">
@@ -89,7 +88,9 @@ class ListItemChanges extends React.Component {
                       </li>
                       <li className="list-group-item">
                         <div className="row">
-                          <div className="col-sm-3"><FormattedMessage defaultMessage="Removed" /></div>
+                          <div className="col-sm-3">
+                            <FormattedMessage defaultMessage="Removed" />
+                          </div>
                           <div className="col-sm-9">
                             <div className="row">
                               <div className="col-xs-12">
@@ -114,7 +115,7 @@ class ListItemChanges extends React.Component {
 ListItemChanges.propTypes = {
   listItem: PropTypes.object,
   listItemParent: PropTypes.string,
-  number: PropTypes.number,
+  number: PropTypes.number
 };
 
 export default ListItemChanges;

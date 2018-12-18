@@ -6,11 +6,7 @@ class ExportPage {
   }
 
   loading() {
-    browser.waitUntil(
-      () => browser.isExisting(this.containerSelector),
-      timeout,
-      'Cannot pop up Export dialog'
-    );
+    browser.waitUntil(() => browser.isExisting(this.containerSelector), timeout, "Cannot pop up Export dialog");
   }
 
   get contentsTextarea() {
@@ -24,7 +20,7 @@ class ExportPage {
   }
 
   get closeButton() {
-    const selector = 'span=Close';
+    const selector = "span=Close";
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
@@ -34,7 +30,7 @@ class ExportPage {
   }
 
   get copyButton() {
-    const selector = 'span=Copy';
+    const selector = "span=Copy";
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
