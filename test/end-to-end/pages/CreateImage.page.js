@@ -6,11 +6,7 @@ class CreateImagePage {
   }
 
   loading() {
-    browser.waitUntil(
-      () => browser.isExisting(this.containerSelector),
-      timeout,
-      `Cannot open Create Image dialog`
-    );
+    browser.waitUntil(() => browser.isExisting(this.containerSelector), timeout, `Cannot open Create Image dialog`);
   }
 
   get blueprintNameLabel() {
@@ -30,7 +26,7 @@ class CreateImagePage {
       timeout,
       `Select Option in Create Image dialog cannot be found`
     );
-    return $$(selector); 
+    return $$(selector);
   }
 
   get imageTypeSelect() {
@@ -40,21 +36,17 @@ class CreateImagePage {
       timeout,
       `Image Type select in Create Image dialog cannot be found`
     );
-    return $(selector); 
+    return $(selector);
   }
 
   get helpButton() {
     const selector = `${this.containerSelector} .pficon-help`;
-    browser.waitUntil(
-      () => browser.isVisible(selector),
-      timeout,
-      `Help button in Create Image dialog cannot be found`
-    );
+    browser.waitUntil(() => browser.isVisible(selector), timeout, `Help button in Create Image dialog cannot be found`);
     return $(selector);
   }
 
   get helpMessage() {
-    const selector = '[id="CreateImageInfotip"] .popover-content'
+    const selector = '[id="CreateImageInfotip"] .popover-content';
     browser.waitUntil(
       () => browser.isVisible(selector),
       timeout,
@@ -74,12 +66,8 @@ class CreateImagePage {
   }
 
   get cancelButton() {
-    const selector = $(this.containerSelector).$('span=Cancel');
-    browser.waitUntil(
-      () => selector.isVisible(),
-      timeout,
-      `Cancel button in Create Image dialog cannot be found`
-    );
+    const selector = $(this.containerSelector).$("span=Cancel");
+    browser.waitUntil(() => selector.isVisible(), timeout, `Cancel button in Create Image dialog cannot be found`);
     return selector;
   }
 }

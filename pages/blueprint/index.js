@@ -1,46 +1,61 @@
 /* global welderApiPort:false */
 
-import React from 'react';
-import {FormattedMessage, defineMessages, injectIntl, intlShape} from 'react-intl';
-import cockpit from 'cockpit'; // eslint-disable-line import/no-unresolved
-import PropTypes from 'prop-types';
-import Link from '../../components/Link';
-import Layout from '../../components/Layout';
-import { Tab, Tabs } from 'patternfly-react';
-import BlueprintContents from '../../components/ListView/BlueprintContents';
-import ComponentDetailsView from '../../components/ListView/ComponentDetailsView';
-import CreateImage from '../../components/Modal/CreateImage';
-import ExportBlueprint from '../../components/Modal/ExportBlueprint';
-import StopBuild from '../../components/Modal/StopBuild';
-import DeleteImage from '../../components/Modal/DeleteImage';
-import EmptyState from '../../components/EmptyState/EmptyState';
-import BlueprintToolbar from '../../components/Toolbar/BlueprintToolbar';
-import ListView from '../../components/ListView/ListView';
-import ListItemImages from '../../components/ListView/ListItemImages';
-import ListItemChanges from '../../components/ListView/ListItemChanges';
-import { connect } from 'react-redux';
+import React from "react";
+import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
+import cockpit from "cockpit"; // eslint-disable-line import/no-unresolved
+import PropTypes from "prop-types";
+import Link from "../../components/Link";
+import Layout from "../../components/Layout";
+import { Tab, Tabs } from "patternfly-react";
+import BlueprintContents from "../../components/ListView/BlueprintContents";
+import ComponentDetailsView from "../../components/ListView/ComponentDetailsView";
+import CreateImage from "../../components/Modal/CreateImage";
+import ExportBlueprint from "../../components/Modal/ExportBlueprint";
+import StopBuild from "../../components/Modal/StopBuild";
+import DeleteImage from "../../components/Modal/DeleteImage";
+import EmptyState from "../../components/EmptyState/EmptyState";
+import BlueprintToolbar from "../../components/Toolbar/BlueprintToolbar";
+import ListView from "../../components/ListView/ListView";
+import ListItemImages from "../../components/ListView/ListItemImages";
+import ListItemChanges from "../../components/ListView/ListItemChanges";
+import { connect } from "react-redux";
+import { fetchingBlueprintContents, setBlueprintDescription } from "../../core/actions/blueprints";
+import { fetchingComposes, startCompose } from "../../core/actions/composes";
 import {
-  fetchingBlueprintContents,
-  setBlueprintDescription,
-} from '../../core/actions/blueprints';
+  setModalExportBlueprintVisible,
+  setModalCreateImageVisible,
+  setModalCreateImageHidden,
+  setModalStopBuildVisible,
+  setModalStopBuildState,
+  setModalDeleteImageVisible,
+  setModalDeleteImageState
+} from "../../core/actions/modals";
 import {
-  fetchingComposes, startCompose,
-} from '../../core/actions/composes';
+  setEditDescriptionVisible,
+  setEditDescriptionValue,
+  setActiveComponent,
+  setActiveComponentStatus,
+  setActiveComponentParent,
+  setActiveTab
+} from "../../core/actions/blueprintPage";
 import {
-  setModalExportBlueprintVisible, setModalCreateImageVisible, setModalCreateImageHidden,
-  setModalStopBuildVisible, setModalStopBuildState, setModalDeleteImageVisible, setModalDeleteImageState,
-} from '../../core/actions/modals';
+  componentsSortSetKey,
+  componentsSortSetValue,
+  dependenciesSortSetKey,
+  dependenciesSortSetValue
+} from "../../core/actions/sort";
 import {
-  setEditDescriptionVisible, setEditDescriptionValue,
-  setActiveComponent, setActiveComponentStatus, setActiveComponentParent,
-  setActiveTab,
-} from '../../core/actions/blueprintPage';
+  componentsFilterAddValue,
+  componentsFilterRemoveValue,
+  componentsFilterClearValues
+} from "../../core/actions/filter";
 import {
-  componentsSortSetKey, componentsSortSetValue, dependenciesSortSetKey, dependenciesSortSetValue,
-} from '../../core/actions/sort';
-import { componentsFilterAddValue, componentsFilterRemoveValue, componentsFilterClearValues } from '../../core/actions/filter';
-import { makeGetBlueprintById, makeGetSortedSelectedComponents, makeGetSortedDependencies,
-  makeGetFilteredComponents, makeGetBlueprintComposes } from '../../core/selectors';
+  makeGetBlueprintById,
+  makeGetSortedSelectedComponents,
+  makeGetSortedDependencies,
+  makeGetFilteredComponents,
+  makeGetBlueprintComposes
+} from "../../core/selectors";
 
 const messages = defineMessages({
   blueprint: {
@@ -90,7 +105,7 @@ class BlueprintPage extends React.Component {
 
   componentWillMount() {
     if (this.props.blueprint.components === undefined) {
-      this.props.fetchingBlueprintContents(this.props.route.params.blueprint.replace(/\s/g, '-'));
+      this.props.fetchingBlueprintContents(this.props.route.params.blueprint.replace(/\s/g, "-"));
     }
     if (this.props.composesLoading === true) {
       this.props.fetchingComposes();
@@ -126,9 +141,9 @@ class BlueprintPage extends React.Component {
     this.props.setEditDescriptionVisible(state);
     if (state) {
       this.props.setEditDescriptionValue(this.props.blueprint.description);
-    } else if (action === 'commit') {
+    } else if (action === "commit") {
       this.props.setBlueprintDescription(this.props.blueprint, this.props.blueprintPage.editDescriptionValue);
-    } else if (action === 'cancel') {
+    } else if (action === "cancel") {
       // cancel action
     }
   }
@@ -159,12 +174,12 @@ class BlueprintPage extends React.Component {
 
   handleHideModalStop() {
     this.props.setModalStopBuildVisible(false);
-    this.props.setModalStopBuildState('', '');
+    this.props.setModalStopBuildState("", "");
   }
 
   handleHideModalDeleteImage() {
     this.props.setModalDeleteImageVisible(false);
-    this.props.setModalDeleteImageState('', '');
+    this.props.setModalDeleteImageState("", "");
   }
 
   handleStartCompose(blueprintName, composeType) {
@@ -173,59 +188,79 @@ class BlueprintPage extends React.Component {
 
   downloadUrl(compose) {
     // NOTE: this only works when welderApiPort is a unix socket
-    const query = window.btoa(JSON.stringify({
+    const query = window.btoa(
+      JSON.stringify({
         payload: "http-stream2",
         unix: welderApiPort,
-        method: 'GET',
+        method: "GET",
         path: `/api/v0/compose/image/${compose.id}`,
         superuser: "try"
-    }));
+      })
+    );
 
     return `/cockpit/channel/${cockpit.transport.csrf_token}?${query}`;
   }
 
   render() {
     if (this.props.blueprint.components === undefined) {
-      this.props.fetchingBlueprintContents(this.props.route.params.blueprint.replace(/\s/g, '-'));
-      return <div></div>;
+      this.props.fetchingBlueprintContents(this.props.route.params.blueprint.replace(/\s/g, "-"));
+      return <div />;
     }
     const {
-      blueprint, exportModalVisible, createImage, stopBuild, deleteImage, 
-      selectedComponents, dependencies, componentsFilters, composeList,
+      blueprint,
+      exportModalVisible,
+      createImage,
+      stopBuild,
+      deleteImage,
+      selectedComponents,
+      dependencies,
+      componentsFilters,
+      composeList
     } = this.props;
     const {
-      editDescriptionValue, editDescriptionVisible,
-      activeComponent, activeComponentParent, activeComponentStatus,
+      editDescriptionValue,
+      editDescriptionVisible,
+      activeComponent,
+      activeComponentParent,
+      activeComponentStatus
     } = this.props.blueprintPage;
     const { formatMessage } = this.props.intl;
 
     var changes;
     if (this.state.changes.length > 0) {
-        changes = (
-          <div className="col-sm-6 col-lg-8">
-            <div className="cmpsr-summary-listview">
-              <p><strong>Changes</strong></p>
-              <div className="list-pf cmpsr-list-pf list-pf-stacked cmpsr-list-pf__compacted cmpsr-blueprint__changes">
-                {this.state.changes.map((change, i) => (
-                  <ListItemChanges
-                    listItem={change}
-                    number={this.state.changes.length - i}
-                    listItemParent="cmpsr-blueprint__changes"
-                    key={i}
-                  />
-                ))}
-              </div>
+      changes = (
+        <div className="col-sm-6 col-lg-8">
+          <div className="cmpsr-summary-listview">
+            <p>
+              <strong>Changes</strong>
+            </p>
+            <div className="list-pf cmpsr-list-pf list-pf-stacked cmpsr-list-pf__compacted cmpsr-blueprint__changes">
+              {this.state.changes.map((change, i) => (
+                <ListItemChanges
+                  listItem={change}
+                  number={this.state.changes.length - i}
+                  listItemParent="cmpsr-blueprint__changes"
+                  key={i}
+                />
+              ))}
             </div>
           </div>
-        );
+        </div>
+      );
     }
 
     return (
       <Layout className="container-fluid" ref="layout">
         <header className="cmpsr-header">
           <ol className="breadcrumb">
-            <li><Link to="/blueprints"><FormattedMessage defaultMessage="Back to Blueprints" /></Link></li>
-            <li className="active"><strong>{this.props.route.params.blueprint}</strong></li>
+            <li>
+              <Link to="/blueprints">
+                <FormattedMessage defaultMessage="Back to Blueprints" />
+              </Link>
+            </li>
+            <li className="active">
+              <strong>{this.props.route.params.blueprint}</strong>
+            </li>
           </ol>
           <div className="cmpsr-header__actions">
             <ul className="list-inline">
@@ -241,7 +276,7 @@ class BlueprintPage extends React.Component {
                   data-toggle="modal"
                   data-target="#cmpsr-modal-crt-image"
                   type="button"
-                  onClick={(e) => this.handleShowModalCreateImage(e, blueprint)}
+                  onClick={e => this.handleShowModalCreateImage(e, blueprint)}
                 >
                   <FormattedMessage defaultMessage="Create Image" />
                 </button>
@@ -259,11 +294,19 @@ class BlueprintPage extends React.Component {
                     <span className="fa fa-ellipsis-v" />
                   </button>
                   <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
-                    {selectedComponents.length &&
-                      <li><a href="#" onClick={this.handleShowModalExport}><FormattedMessage defaultMessage="Export" /></a></li>
-                    ||
-                      <li className="disabled"><a><FormattedMessage defaultMessage="Export" /></a></li>
-                    }
+                    {(selectedComponents.length && (
+                      <li>
+                        <a href="#" onClick={this.handleShowModalExport}>
+                          <FormattedMessage defaultMessage="Export" />
+                        </a>
+                      </li>
+                    )) || (
+                      <li className="disabled">
+                        <a>
+                          <FormattedMessage defaultMessage="Export" />
+                        </a>
+                      </li>
+                    )}
                   </ul>
                 </div>
               </li>
@@ -281,10 +324,14 @@ class BlueprintPage extends React.Component {
             <div className="tab-container row">
               <div className="col-sm-6 col-lg-4">
                 <dl className="dl-horizontal mt-">
-                  <dt><FormattedMessage defaultMessage="Name" /></dt>
+                  <dt>
+                    <FormattedMessage defaultMessage="Name" />
+                  </dt>
                   <dd>{blueprint.name}</dd>
-                  <dt><FormattedMessage defaultMessage="Description" /></dt>
-                  {(editDescriptionVisible &&
+                  <dt>
+                    <FormattedMessage defaultMessage="Description" />
+                  </dt>
+                  {(editDescriptionVisible && (
                     <dd>
                       <div className="input-group">
                         <input
@@ -294,21 +341,31 @@ class BlueprintPage extends React.Component {
                           onChange={this.handleChangeDescription}
                         />
                         <span className="input-group-btn">
-                          <button className="btn btn-link" type="button" onClick={() => this.handleEditDescription('commit')}>
+                          <button
+                            className="btn btn-link"
+                            type="button"
+                            onClick={() => this.handleEditDescription("commit")}
+                          >
                             <span className="fa fa-check" />
                           </button>
-                          <button className="btn btn-link" type="button" onClick={() => this.handleEditDescription('cancel')}>
+                          <button
+                            className="btn btn-link"
+                            type="button"
+                            onClick={() => this.handleEditDescription("cancel")}
+                          >
                             <span className="pficon pficon-close" />
                           </button>
                         </span>
                       </div>
-                    </dd>) ||
+                    </dd>
+                  )) || (
                     <dd onClick={() => this.handleEditDescription()}>
                       {blueprint.description}
                       <button className="btn btn-link" type="button">
                         <span className="pficon pficon-edit" />
                       </button>
-                    </dd>}
+                    </dd>
+                  )}
                 </dl>
               </div>
               {changes}
@@ -316,7 +373,7 @@ class BlueprintPage extends React.Component {
           </Tab>
           <Tab eventKey="selected-components" title={formatMessage(messages.selectedComponentsTitle)}>
             <div className="row">
-              {(activeComponent === '' &&
+              {(activeComponent === "" && (
                 <div className="col-sm-12">
                   <BlueprintToolbar
                     emptyState={
@@ -353,8 +410,8 @@ class BlueprintPage extends React.Component {
                       </Link>
                     </EmptyState>
                   </BlueprintContents>
-                </div>)
-                ||
+                </div>
+              )) || (
                 <div className="col-sm-12 cmpsr-component-details--view">
                   <h3 className="cmpsr-panel__title cmpsr-panel__title--main">
                     <FormattedMessage defaultMessage="Component Details" />
@@ -367,12 +424,12 @@ class BlueprintPage extends React.Component {
                     handleComponentDetails={this.handleComponentDetails}
                   />
                 </div>
-              }
+              )}
             </div>
           </Tab>
           <Tab eventKey="images" title={formatMessage(messages.imagesTitle)}>
             <div className="tab-container">
-              {(composeList.length === 0 &&
+              {(composeList.length === 0 && (
                 <EmptyState
                   title={formatMessage(messages.noImagesTitle)}
                   message={formatMessage(messages.noImagesMessage)}
@@ -383,11 +440,12 @@ class BlueprintPage extends React.Component {
                     data-toggle="modal"
                     data-target="#cmpsr-modal-crt-image"
                     type="button"
-                    onClick={(e) => this.handleShowModalCreateImage(e, blueprint)}
+                    onClick={e => this.handleShowModalCreateImage(e, blueprint)}
                   >
                     <FormattedMessage defaultMessage="Create Image" />
                   </button>
-                </EmptyState>) ||
+                </EmptyState>
+              )) || (
                 <ListView className="cmpsr-images" stacked>
                   {composeList.map((compose, i) => (
                     <ListItemImages
@@ -398,12 +456,13 @@ class BlueprintPage extends React.Component {
                       key={i}
                     />
                   ))}
-                </ListView>}
+                </ListView>
+              )}
             </div>
           </Tab>
         </Tabs>
-        {createImage.visible
-          ? <CreateImage
+        {createImage.visible ? (
+          <CreateImage
             blueprint={blueprint}
             imageTypes={createImage.imageTypes}
             setNotifications={this.setNotifications}
@@ -412,28 +471,28 @@ class BlueprintPage extends React.Component {
             warningEmpty={createImage.warningEmpty}
             warningUnsaved={createImage.warningUnsaved}
           />
-          : null}
-        {exportModalVisible
-          ? <ExportBlueprint
+        ) : null}
+        {exportModalVisible ? (
+          <ExportBlueprint
             blueprint={blueprint.name}
             contents={blueprint.components}
             handleHideModal={this.handleHideModalExport}
           />
-          : null}
-        {stopBuild.visible
-          ? <StopBuild
+        ) : null}
+        {stopBuild.visible ? (
+          <StopBuild
             composeId={stopBuild.composeId}
             blueprintName={stopBuild.blueprintName}
             handleHideModal={this.handleHideModalStop}
           />
-          : null}
-        {deleteImage.visible
-          ? <DeleteImage
+        ) : null}
+        {deleteImage.visible ? (
+          <DeleteImage
             composeId={deleteImage.composeId}
             blueprintName={deleteImage.blueprintName}
             handleHideModal={this.handleHideModalDeleteImage}
           />
-          : null}
+        ) : null}
       </Layout>
     );
   }
@@ -480,7 +539,7 @@ BlueprintPage.propTypes = {
   startCompose: PropTypes.func,
   blueprintContentsError: PropTypes.object,
   blueprintContentsFetching: PropTypes.bool,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 const makeMapStateToProps = () => {
@@ -490,8 +549,8 @@ const makeMapStateToProps = () => {
   const getFilteredComponents = makeGetFilteredComponents();
   const getBlueprintComposes = makeGetBlueprintComposes();
   const mapStateToProps = (state, props) => {
-    if (getBlueprintById(state, props.route.params.blueprint.replace(/\s/g, '-')) !== undefined) {
-      const fetchedBlueprint = getBlueprintById(state, props.route.params.blueprint.replace(/\s/g, '-'));
+    if (getBlueprintById(state, props.route.params.blueprint.replace(/\s/g, "-")) !== undefined) {
+      const fetchedBlueprint = getBlueprintById(state, props.route.params.blueprint.replace(/\s/g, "-"));
       return {
         blueprint: fetchedBlueprint.present,
         selectedComponents: getFilteredComponents(state, getSortedSelectedComponents(state, fetchedBlueprint.present)),
@@ -508,8 +567,7 @@ const makeMapStateToProps = () => {
         componentsFilters: state.filter.components,
         blueprintContentsError: fetchedBlueprint.errorState,
         blueprintContentsFetching:
-          fetchedBlueprint.present.components === undefined &&
-          fetchedBlueprint.errorState === undefined ? true : false,
+          fetchedBlueprint.present.components === undefined && fetchedBlueprint.errorState === undefined ? true : false
       };
     }
     return {
@@ -526,13 +584,13 @@ const makeMapStateToProps = () => {
       componentsSortKey: state.sort.components.key,
       componentsSortValue: state.sort.components.value,
       componentsFilters: state.filter.components,
-      blueprintContentsError: {},
+      blueprintContentsError: {}
     };
   };
   return mapStateToProps;
 };
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   fetchingBlueprintContents: blueprintId => {
     dispatch(fetchingBlueprintContents(blueprintId));
   },
@@ -542,25 +600,25 @@ const mapDispatchToProps = (dispatch) => ({
   setBlueprintDescription: (blueprint, description) => {
     dispatch(setBlueprintDescription(blueprint, description));
   },
-  setEditDescriptionValue: (value) => {
+  setEditDescriptionValue: value => {
     dispatch(setEditDescriptionValue(value));
   },
-  setEditDescriptionVisible: (visible) => {
+  setEditDescriptionVisible: visible => {
     dispatch(setEditDescriptionVisible(visible));
   },
-  setActiveTab: (activeTab) => {
+  setActiveTab: activeTab => {
     dispatch(setActiveTab(activeTab));
   },
-  setActiveComponent: (component) => {
+  setActiveComponent: component => {
     dispatch(setActiveComponent(component));
   },
-  setActiveComponentParent: (componentParent) => {
+  setActiveComponentParent: componentParent => {
     dispatch(setActiveComponentParent(componentParent));
   },
-  setActiveComponentStatus: (componentStatus) => {
+  setActiveComponentStatus: componentStatus => {
     dispatch(setActiveComponentStatus(componentStatus));
   },
-  setModalExportBlueprintVisible: (visible) => {
+  setModalExportBlueprintVisible: visible => {
     dispatch(setModalExportBlueprintVisible(visible));
   },
   setModalCreateImageVisible: modalVisible => {
@@ -572,13 +630,13 @@ const mapDispatchToProps = (dispatch) => ({
   setModalStopBuildState: (composeId, blueprintName) => {
     dispatch(setModalStopBuildState(composeId, blueprintName));
   },
-  setModalStopBuildVisible: (visible) => {
+  setModalStopBuildVisible: visible => {
     dispatch(setModalStopBuildVisible(visible));
   },
   setModalDeleteImageState: (composeId, blueprintName) => {
     dispatch(setModalDeleteImageState(composeId, blueprintName));
   },
-  setModalDeleteImageVisible: (visible) => {
+  setModalDeleteImageVisible: visible => {
     dispatch(setModalDeleteImageVisible(visible));
   },
   componentsSortSetKey: key => {
@@ -604,7 +662,10 @@ const mapDispatchToProps = (dispatch) => ({
   },
   startCompose: (blueprintName, composeType) => {
     dispatch(startCompose(blueprintName, composeType));
-  },
+  }
 });
 
-export default connect(makeMapStateToProps, mapDispatchToProps)(injectIntl(BlueprintPage));
+export default connect(
+  makeMapStateToProps,
+  mapDispatchToProps
+)(injectIntl(BlueprintPage));

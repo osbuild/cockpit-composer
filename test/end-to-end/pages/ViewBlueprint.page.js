@@ -9,12 +9,12 @@ class ViewBlueprintPage {
     browser.waitUntil(
       () => browser.getText('h1[class="cmpsr-title__item"]') === this.name,
       timeout,
-      'Cannot load View Blueprint page'
+      "Cannot load View Blueprint page"
     );
   }
 
   get backToBlueprintsLink() {
-    const selector = 'span=Back to Blueprints';
+    const selector = "span=Back to Blueprints";
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
@@ -34,7 +34,7 @@ class ViewBlueprintPage {
   }
 
   get editBlueprintButton() {
-    const selector = 'span=Edit Blueprint';
+    const selector = "span=Edit Blueprint";
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
@@ -56,7 +56,7 @@ class ViewBlueprintPage {
   }
 
   get moreButton() {
-    const selector = '.cmpsr-header__actions .fa-ellipsis-v';
+    const selector = ".cmpsr-header__actions .fa-ellipsis-v";
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
@@ -86,7 +86,7 @@ class ViewBlueprintPage {
   }
 
   get detailsTab() {
-    const selector = '=Details';
+    const selector = "=Details";
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
@@ -125,7 +125,7 @@ class ViewBlueprintPage {
   }
 
   get editBlueprintDescriptionButton() {
-    const selector = '.pficon-edit';
+    const selector = ".pficon-edit";
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
@@ -145,7 +145,7 @@ class ViewBlueprintPage {
   }
 
   get okButton() {
-    const selector = '.fa-check';
+    const selector = ".fa-check";
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
@@ -155,7 +155,7 @@ class ViewBlueprintPage {
   }
 
   get cancelButton() {
-    const selector = '.btn-link .pficon-close';
+    const selector = ".btn-link .pficon-close";
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
@@ -165,7 +165,7 @@ class ViewBlueprintPage {
   }
 
   get selectedComponentsTab() {
-    const selector = '=Selected Components';
+    const selector = "=Selected Components";
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
@@ -185,7 +185,7 @@ class ViewBlueprintPage {
   }
 
   get imagesTab() {
-    const selector = '=Images';
+    const selector = "=Images";
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
@@ -195,7 +195,7 @@ class ViewBlueprintPage {
   }
 
   get noImageMessageLabel() {
-    const selector = 'p=No images have been created from this blueprint.';
+    const selector = "p=No images have been created from this blueprint.";
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
@@ -205,7 +205,7 @@ class ViewBlueprintPage {
   }
 
   get imageNameLabel() {
-    const selector = '.cmpsr-images .list-pf-title';
+    const selector = ".cmpsr-images .list-pf-title";
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
@@ -225,7 +225,7 @@ class ViewBlueprintPage {
   }
 
   get pendingLabel() {
-    const selector = 'span=Pending';
+    const selector = "span=Pending";
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
@@ -235,7 +235,7 @@ class ViewBlueprintPage {
   }
 
   get pendingIcon() {
-    const selector = '.cmpsr-images .pficon-pending';
+    const selector = ".cmpsr-images .pficon-pending";
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
@@ -245,7 +245,7 @@ class ViewBlueprintPage {
   }
 
   get completeLebel() {
-    const selector = 'span=Complete';
+    const selector = "span=Complete";
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
@@ -255,7 +255,7 @@ class ViewBlueprintPage {
   }
 
   get completeIcon() {
-    const selector = '.cmpsr-images .pficon-ok';
+    const selector = ".cmpsr-images .pficon-ok";
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
@@ -265,7 +265,7 @@ class ViewBlueprintPage {
   }
 
   get imageMoreButton() {
-    const selector = '.cmpsr-images .fa-ellipsis-v';
+    const selector = ".cmpsr-images .fa-ellipsis-v";
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,

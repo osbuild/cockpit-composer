@@ -1,11 +1,11 @@
 /* global $ */
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import {FormattedMessage, defineMessages, injectIntl, intlShape} from 'react-intl';
-import SourcesList from '../../components/Sources/SourcesList';
-import EmptyState from '../../components/EmptyState/EmptyState';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
+import SourcesList from "../../components/Sources/SourcesList";
+import EmptyState from "../../components/EmptyState/EmptyState";
 
 const messages = defineMessages({
   errorStateTitle: {
@@ -25,10 +25,9 @@ class ManageSources extends React.Component {
   }
 
   componentDidMount() {
-    $(this.modal).modal('show');
-    $(this.modal).on('hidden.bs.modal', this.props.handleHideModal);
+    $(this.modal).modal("show");
+    $(this.modal).on("hidden.bs.modal", this.props.handleHideModal);
   }
-
 
   render() {
     const { formatMessage } = this.props.intl;
@@ -38,7 +37,9 @@ class ManageSources extends React.Component {
       <div
         className="modal fade"
         id="cmpsr-modal-manage-sources"
-        ref={(c) => { this.modal = c; }}
+        ref={c => {
+          this.modal = c;
+        }}
         tabIndex="-1"
         role="dialog"
         aria-labelledby="myModalLabel"
@@ -52,7 +53,7 @@ class ManageSources extends React.Component {
                 data-dismiss="modal"
                 aria-label={formatMessage(messages.closeButtonLabel)}
               >
-                <span className="pficon pficon-close"></span>
+                <span className="pficon pficon-close" />
               </button>
               <h4 className="modal-title" id="myModalLabel">
                 <FormattedMessage
@@ -62,12 +63,12 @@ class ManageSources extends React.Component {
               </h4>
             </div>
             <div className="modal-body">
-              {this.props.sources.length === 0 &&
+              {(this.props.sources.length === 0 && (
                 <EmptyState
                   title={formatMessage(messages.errorStateTitle)}
                   message={formatMessage(messages.errorStateMessage)}
                 />
-              ||
+              )) || (
                 <div>
                   <h5>
                     <FormattedMessage
@@ -76,26 +77,22 @@ class ManageSources extends React.Component {
                     />
                   </h5>
                   <SourcesList sources={systemSources} />
-                  {customSources.length > 0 &&
+                  {customSources.length > 0 && (
                     <h5>
                       <FormattedMessage
                         defaultMessage="Custom Sources"
                         description="Custom sources are additional repositories that were added by the user"
                       />
                     </h5>
-                  }
-                  {customSources.length > 0 &&
-                    <SourcesList sources={customSources} />
-                  }
+                  )}
+                  {customSources.length > 0 && <SourcesList sources={customSources} />}
                 </div>
-              }
+              )}
             </div>
             <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-default"
-                data-dismiss="modal"
-              ><FormattedMessage defaultMessage="Close" /></button>
+              <button type="button" className="btn btn-default" data-dismiss="modal">
+                <FormattedMessage defaultMessage="Close" />
+              </button>
             </div>
           </div>
         </div>
@@ -107,10 +104,10 @@ class ManageSources extends React.Component {
 ManageSources.propTypes = {
   sources: PropTypes.array,
   handleHideModal: PropTypes.func,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 const mapStateToProps = state => ({
-  modals: state.modals,
+  modals: state.modals
 });
 
 export default connect(mapStateToProps)(injectIntl(ManageSources));

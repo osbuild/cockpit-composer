@@ -5,7 +5,7 @@ class EditBlueprintPage {
   }
 
   loading() {
-    browser.waitForText('.cmpsr-list-pf__compacted', timeout);
+    browser.waitForText(".cmpsr-list-pf__compacted", timeout);
   }
 
   backToBlueprintsPage() {
@@ -17,7 +17,7 @@ class EditBlueprintPage {
     );
     // browser.click() does not work with Edge due to "Element is Obscured" error.
     // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/5238133/
-    browser.execute((backToBlueprintsLink) => {
+    browser.execute(backToBlueprintsLink => {
       document.querySelector(backToBlueprintsLink).click();
       return true;
     }, selector);
@@ -28,41 +28,41 @@ class EditBlueprintPage {
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
-      'blueprint name in Edit Blueprint page does not exist'
+      "blueprint name in Edit Blueprint page does not exist"
     );
     return $(selector);
   }
 
   get pendingChangeLink() {
-    return $('span*=Pending Change');
+    return $("span*=Pending Change");
   }
 
   get commitButton() {
-    const selector = '.cmpsr-header__actions .btn-primary';
+    const selector = ".cmpsr-header__actions .btn-primary";
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
-      'Commit button in Edit Blueprint page does not exist'
+      "Commit button in Edit Blueprint page does not exist"
     );
     return $(selector);
   }
 
   get discardChangeButton() {
-    const selector = '.cmpsr-header__actions .btn-default';
+    const selector = ".cmpsr-header__actions .btn-default";
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
-      'Discard Change button in Edit Blueprint page does not exist'
+      "Discard Change button in Edit Blueprint page does not exist"
     );
     return $(selector);
   }
 
   get createImageButton() {
-    const selector = 'span=Create Image';
+    const selector = "span=Create Image";
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
-      'Create Image button in Edit Blueprint page does not exist'
+      "Create Image button in Edit Blueprint page does not exist"
     );
     return $(selector);
   }
@@ -72,13 +72,13 @@ class EditBlueprintPage {
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
-      'Discard Change button in Edit Blueprint page does not exist'
+      "Discard Change button in Edit Blueprint page does not exist"
     );
     return $(selector);
   }
 
   get blueprintNameLabel() {
-    const selector = '.cmpsr-title__item';
+    const selector = ".cmpsr-title__item";
     browser.waitUntil(
       () => browser.isVisible(selector),
       timeout,
@@ -98,11 +98,11 @@ class EditBlueprintPage {
   }
 
   get filterContentLabel() {
-    return '.toolbar-pf-results .label-info span';
+    return ".toolbar-pf-results .label-info span";
   }
 
   get xLabelButton() {
-    const selector = '.toolbar-pf-results .pficon-close';
+    const selector = ".toolbar-pf-results .pficon-close";
     browser.waitUntil(
       () => browser.isVisible(selector),
       timeout,
@@ -112,7 +112,7 @@ class EditBlueprintPage {
   }
 
   get clearAllFiltersLink() {
-    return $('.toolbar-pf-results ul li a span');
+    return $(".toolbar-pf-results ul li a span");
   }
 
   get nthPageBox() {
@@ -146,7 +146,7 @@ class EditBlueprintPage {
   }
 
   get packageList() {
-    const selector = '.cmpsr-list-pf__compacted .list-pf-title';
+    const selector = ".cmpsr-list-pf__compacted .list-pf-title";
     browser.waitUntil(
       () => browser.isVisible(selector),
       timeout,
@@ -156,17 +156,20 @@ class EditBlueprintPage {
   }
 
   get sortAscButton() {
-    return $('.fa-sort-alpha-asc');
+    return $(".fa-sort-alpha-asc");
   }
 
   get sortDescButton() {
-    return $('.fa-sort-alpha-desc');
+    return $(".fa-sort-alpha-desc");
   }
 
   get undoButton() {
     const selector = '[data-button="undo"]';
     browser.waitUntil(
-      () => $(selector).getAttribute('class').indexOf('disabled') === -1,
+      () =>
+        $(selector)
+          .getAttribute("class")
+          .indexOf("disabled") === -1,
       timeout,
       `Undo button in Edit Blueprint page cannot be found by selector ${selector}`
     );
@@ -176,7 +179,10 @@ class EditBlueprintPage {
   get redoButton() {
     const selector = '[data-button="redo"]';
     browser.waitUntil(
-      () => $(selector).getAttribute('class').indexOf('disabled') === -1,
+      () =>
+        $(selector)
+          .getAttribute("class")
+          .indexOf("disabled") === -1,
       timeout,
       `Redo button in Edit Blueprint page cannot be found by selector ${selector}`
     );

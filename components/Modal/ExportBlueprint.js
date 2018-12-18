@@ -1,19 +1,18 @@
 /* global $ */
 
-import React from 'react';
-import {FormattedMessage} from 'react-intl';
-import PropTypes from 'prop-types';
+import React from "react";
+import { FormattedMessage } from "react-intl";
+import PropTypes from "prop-types";
 
 class ExportBlueprint extends React.Component {
-
   componentDidMount() {
-    $(this.modal).modal('show');
-    $(this.modal).on('hidden.bs.modal', this.props.handleHideModal);
+    $(this.modal).modal("show");
+    $(this.modal).on("hidden.bs.modal", this.props.handleHideModal);
   }
 
   handleCopy() {
     this.blueprint_contents_text.select();
-    document.execCommand('copy');
+    document.execCommand("copy");
   }
 
   render() {
@@ -21,7 +20,9 @@ class ExportBlueprint extends React.Component {
       <div
         className="modal fade"
         id="cmpsr-modal-export"
-        ref={(c) => { this.modal = c; }}
+        ref={c => {
+          this.modal = c;
+        }}
         tabIndex="-1"
         role="dialog"
         aria-labelledby="myModalLabel"
@@ -30,30 +31,27 @@ class ExportBlueprint extends React.Component {
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <button
-                type="button"
-                className="close"
-                data-dismiss="modal"
-              >
-                <span className="pficon pficon-close"></span>
+              <button type="button" className="close" data-dismiss="modal">
+                <span className="pficon pficon-close" />
               </button>
-              <h4 className="modal-title" id="myModalLabel"><FormattedMessage defaultMessage="Export Blueprint" /></h4>
+              <h4 className="modal-title" id="myModalLabel">
+                <FormattedMessage defaultMessage="Export Blueprint" />
+              </h4>
             </div>
             <div className="modal-body">
-              <form className="form-horizontal" onKeyPress={(e) => this.handleEnterKey(e)}>
+              <form className="form-horizontal" onKeyPress={e => this.handleEnterKey(e)}>
                 <div className="form-group">
-                  <label
-                    className="col-sm-3 control-label"
-                  ><FormattedMessage defaultMessage="Blueprint" /></label>
+                  <label className="col-sm-3 control-label">
+                    <FormattedMessage defaultMessage="Blueprint" />
+                  </label>
                   <div className="col-sm-9">
                     <p className="form-control-static">{this.props.blueprint}</p>
                   </div>
                 </div>
                 <div className="form-group">
-                  <label
-                    className="col-sm-3 control-label"
-                    htmlFor="textInput-modal-markup"
-                  ><FormattedMessage defaultMessage="Export as" /></label>
+                  <label className="col-sm-3 control-label" htmlFor="textInput-modal-markup">
+                    <FormattedMessage defaultMessage="Export as" />
+                  </label>
                   <div className="col-sm-9">
                     <select className="form-control">
                       <FormattedMessage defaultMessage="Text" tagName="option" />
@@ -61,21 +59,22 @@ class ExportBlueprint extends React.Component {
                   </div>
                 </div>
                 <div className="form-group">
-                  <label
-                    className="col-sm-3 control-label"
-                    htmlFor="textInput2-modal-markup"
-                  ><FormattedMessage defaultMessage="Contents" /></label>
-                  {this.props.contents &&
+                  <label className="col-sm-3 control-label" htmlFor="textInput2-modal-markup">
+                    <FormattedMessage defaultMessage="Contents" />
+                  </label>
+                  {(this.props.contents && (
                     <div className="col-sm-9">
                       <textarea
                         readOnly
                         id="textInput2-modal-markup"
-                        ref={(c) => { this.blueprint_contents_text = c; }}
+                        ref={c => {
+                          this.blueprint_contents_text = c;
+                        }}
                         className="form-control"
                         rows="10"
-                        value={this.props.contents.map((comp) => (
-                          `${comp.name}-${comp.version}-${comp.release}`
-                        )).join('\n')}
+                        value={this.props.contents
+                          .map(comp => `${comp.name}-${comp.version}-${comp.release}`)
+                          .join("\n")}
                       />
                       <p>
                         <FormattedMessage
@@ -86,20 +85,18 @@ class ExportBlueprint extends React.Component {
                         />
                       </p>
                     </div>
-                    ||
+                  )) || (
                     <div className="col-sm-1">
-                      <div className="spinner"></div>
+                      <div className="spinner" />
                     </div>
-                  }
+                  )}
                 </div>
               </form>
             </div>
             <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-default"
-                data-dismiss="modal"
-              ><FormattedMessage defaultMessage="Close" /></button>
+              <button type="button" className="btn btn-default" data-dismiss="modal">
+                <FormattedMessage defaultMessage="Close" />
+              </button>
               <button type="button" className="btn btn-primary" onClick={() => this.handleCopy()}>
                 <FormattedMessage defaultMessage="Copy" />
               </button>
@@ -114,7 +111,7 @@ class ExportBlueprint extends React.Component {
 ExportBlueprint.propTypes = {
   blueprint: PropTypes.string,
   contents: PropTypes.array,
-  handleHideModal: PropTypes.func,
+  handleHideModal: PropTypes.func
 };
 
 export default ExportBlueprint;

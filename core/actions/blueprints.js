@@ -1,101 +1,101 @@
-export const CREATING_BLUEPRINT = 'CREATING_BLUEPRINT';
+export const CREATING_BLUEPRINT = "CREATING_BLUEPRINT";
 export const creatingBlueprint = (events, blueprint) => ({
   type: CREATING_BLUEPRINT,
   payload: {
     events,
-    blueprint,
-  },
+    blueprint
+  }
 });
 
-export const CREATING_BLUEPRINT_SUCCEEDED = 'CREATING_BLUEPRINT_SUCCEEDED';
-export const creatingBlueprintSucceeded = (blueprint) => ({
+export const CREATING_BLUEPRINT_SUCCEEDED = "CREATING_BLUEPRINT_SUCCEEDED";
+export const creatingBlueprintSucceeded = blueprint => ({
   type: CREATING_BLUEPRINT_SUCCEEDED,
   payload: {
-    blueprint,
-  },
+    blueprint
+  }
 });
 
-export const FETCHING_BLUEPRINTS = 'FETCHING_BLUEPRINTS';
+export const FETCHING_BLUEPRINTS = "FETCHING_BLUEPRINTS";
 export const fetchingBlueprints = () => ({
-  type: FETCHING_BLUEPRINTS,
+  type: FETCHING_BLUEPRINTS
 });
 
-export const FETCHING_BLUEPRINT_NAMES_SUCCEEDED = 'FETCHING_BLUEPRINT_NAMES_SUCCEEDED';
+export const FETCHING_BLUEPRINT_NAMES_SUCCEEDED = "FETCHING_BLUEPRINT_NAMES_SUCCEEDED";
 export const fetchingBlueprintNamesSucceeded = () => ({
-  type: FETCHING_BLUEPRINT_NAMES_SUCCEEDED,
+  type: FETCHING_BLUEPRINT_NAMES_SUCCEEDED
 });
 
-export const FETCHING_BLUEPRINTS_SUCCEEDED = 'FETCHING_BLUEPRINTS_SUCCEEDED';
+export const FETCHING_BLUEPRINTS_SUCCEEDED = "FETCHING_BLUEPRINTS_SUCCEEDED";
 export const fetchingBlueprintsSucceeded = (blueprint, pendingChanges) => ({
   type: FETCHING_BLUEPRINTS_SUCCEEDED,
   payload: {
     blueprint,
-    pendingChanges,
-  },
+    pendingChanges
+  }
 });
 
-export const FETCHING_BLUEPRINT_CONTENTS = 'FETCHING_BLUEPRINT_CONTENTS';
-export const fetchingBlueprintContents = (blueprintId) => ({
+export const FETCHING_BLUEPRINT_CONTENTS = "FETCHING_BLUEPRINT_CONTENTS";
+export const fetchingBlueprintContents = blueprintId => ({
   type: FETCHING_BLUEPRINT_CONTENTS,
   payload: {
-    blueprintId,
-  },
+    blueprintId
+  }
 });
 
-export const FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED = 'FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED';
+export const FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED = "FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED";
 export const fetchingBlueprintContentsSucceeded = (blueprintPast, blueprintPresent, pendingChanges) => ({
   type: FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED,
   payload: {
     blueprintPast,
     blueprintPresent,
-    pendingChanges,
-  },
+    pendingChanges
+  }
 });
 
-export const SET_BLUEPRINT = 'SET_BLUEPRINT';
-export const setBlueprint = (blueprint) => ({
+export const SET_BLUEPRINT = "SET_BLUEPRINT";
+export const setBlueprint = blueprint => ({
   type: SET_BLUEPRINT,
   payload: {
-    blueprint,
-  },
+    blueprint
+  }
 });
 
-export const SET_BLUEPRINT_COMMENT = 'SET_BLUEPRINT_COMMENT';
+export const SET_BLUEPRINT_COMMENT = "SET_BLUEPRINT_COMMENT";
 export const setBlueprintComment = (blueprint, comment) => ({
   type: SET_BLUEPRINT_COMMENT,
   payload: {
     blueprint,
-    comment,
-  },
+    comment
+  }
 });
 
-export const SET_BLUEPRINT_DESCRIPTION = 'SET_BLUEPRINT_DESCRIPTION';
+export const SET_BLUEPRINT_DESCRIPTION = "SET_BLUEPRINT_DESCRIPTION";
 export const setBlueprintDescription = (blueprint, description) => ({
   type: SET_BLUEPRINT_DESCRIPTION,
   payload: {
     blueprint,
-    description,
-  },
+    description
+  }
 });
 
-export const SET_BLUEPRINT_DESCRIPTION_SUCCEEDED = 'SET_BLUEPRINT_DESCRIPTION_SUCCEEDED';
-export const setBlueprintDescriptionSucceeded = (blueprint) => ({
+export const SET_BLUEPRINT_DESCRIPTION_SUCCEEDED = "SET_BLUEPRINT_DESCRIPTION_SUCCEEDED";
+export const setBlueprintDescriptionSucceeded = blueprint => ({
   type: SET_BLUEPRINT_DESCRIPTION_SUCCEEDED,
   payload: {
-    blueprint,
-  },
+    blueprint
+  }
 });
 
-export const ADD_BLUEPRINT_COMPONENT = 'ADD_BLUEPRINT_COMPONENT';
+export const ADD_BLUEPRINT_COMPONENT = "ADD_BLUEPRINT_COMPONENT";
 export const addBlueprintComponent = (blueprint, component) => ({
   type: ADD_BLUEPRINT_COMPONENT,
   payload: {
     blueprint,
-    component,
-  },
+    component
+  }
 });
 
-export const ADD_BLUEPRINT_COMPONENT_SUCCEEDED = 'ADD_BLUEPRINT_COMPONENT_SUCCEEDED';
+export const ADD_BLUEPRINT_COMPONENT_SUCCEEDED = "ADD_BLUEPRINT_COMPONENT_SUCCEEDED";
 export const addBlueprintComponentSucceeded = (blueprintId, components, packages, modules, pendingChange) => ({
   type: ADD_BLUEPRINT_COMPONENT_SUCCEEDED,
   payload: {
@@ -103,20 +103,20 @@ export const addBlueprintComponentSucceeded = (blueprintId, components, packages
     components,
     packages,
     modules,
-    pendingChange,
-  },
+    pendingChange
+  }
 });
 
-export const REMOVE_BLUEPRINT_COMPONENT = 'REMOVE_BLUEPRINT_COMPONENT';
+export const REMOVE_BLUEPRINT_COMPONENT = "REMOVE_BLUEPRINT_COMPONENT";
 export const removeBlueprintComponent = (blueprint, component) => ({
   type: REMOVE_BLUEPRINT_COMPONENT,
   payload: {
     blueprint,
-    component,
-  },
+    component
+  }
 });
 
-export const REMOVE_BLUEPRINT_COMPONENT_SUCCEEDED = 'REMOVE_BLUEPRINT_COMPONENT_SUCCEEDED';
+export const REMOVE_BLUEPRINT_COMPONENT_SUCCEEDED = "REMOVE_BLUEPRINT_COMPONENT_SUCCEEDED";
 export const removeBlueprintComponentSucceeded = (blueprintId, components, packages, modules, pendingChange) => ({
   type: REMOVE_BLUEPRINT_COMPONENT_SUCCEEDED,
   payload: {
@@ -124,79 +124,79 @@ export const removeBlueprintComponentSucceeded = (blueprintId, components, packa
     components,
     packages,
     modules,
-    pendingChange,
-  },
+    pendingChange
+  }
 });
 
-export const DELETING_BLUEPRINT = 'DELETING_BLUEPRINT';
-export const deletingBlueprint = (blueprintId) => ({
+export const DELETING_BLUEPRINT = "DELETING_BLUEPRINT";
+export const deletingBlueprint = blueprintId => ({
   type: DELETING_BLUEPRINT,
   payload: {
-    blueprintId,
-  },
+    blueprintId
+  }
 });
 
-export const DELETING_BLUEPRINT_SUCCEEDED = 'DELETING_BLUEPRINT_SUCCEEDED';
-export const deletingBlueprintSucceeded = (blueprintId) => ({
+export const DELETING_BLUEPRINT_SUCCEEDED = "DELETING_BLUEPRINT_SUCCEEDED";
+export const deletingBlueprintSucceeded = blueprintId => ({
   type: DELETING_BLUEPRINT_SUCCEEDED,
   payload: {
-    blueprintId,
-  },
+    blueprintId
+  }
 });
 
-export const BLUEPRINTS_FAILURE = 'BLUEPRINTS_FAILURE';
-export const blueprintsFailure = (error) => ({
+export const BLUEPRINTS_FAILURE = "BLUEPRINTS_FAILURE";
+export const blueprintsFailure = error => ({
   type: BLUEPRINTS_FAILURE,
   payload: {
-    error,
-  },
+    error
+  }
 });
 
-export const BLUEPRINT_CONTENTS_FAILURE = 'BLUEPRINT_CONTENTS_FAILURE';
+export const BLUEPRINT_CONTENTS_FAILURE = "BLUEPRINT_CONTENTS_FAILURE";
 export const blueprintContentsFailure = (error, blueprintId) => ({
   type: BLUEPRINT_CONTENTS_FAILURE,
   payload: {
     error,
     blueprintId
-  },
+  }
 });
 
-export const UNDO = 'UNDO';
-export const undo = (blueprintId) => ({
+export const UNDO = "UNDO";
+export const undo = blueprintId => ({
   type: UNDO,
   payload: {
-    blueprintId,
-  },
+    blueprintId
+  }
 });
 
-export const REDO = 'REDO';
-export const redo = (blueprintId) => ({
+export const REDO = "REDO";
+export const redo = blueprintId => ({
   type: REDO,
   payload: {
-    blueprintId,
-  },
+    blueprintId
+  }
 });
 
-export const DELETE_HISTORY = 'DELETE_HISTORY';
-export const deleteHistory = (blueprintId) => ({
+export const DELETE_HISTORY = "DELETE_HISTORY";
+export const deleteHistory = blueprintId => ({
   type: DELETE_HISTORY,
   payload: {
-    blueprintId,
-  },
+    blueprintId
+  }
 });
 
-export const COMMIT_TO_WORKSPACE = 'COMMIT_TO_WORKSPACE';
-export const commitToWorkspace = (blueprintId) => ({
+export const COMMIT_TO_WORKSPACE = "COMMIT_TO_WORKSPACE";
+export const commitToWorkspace = blueprintId => ({
   type: COMMIT_TO_WORKSPACE,
   payload: {
-    blueprintId,
-  },
+    blueprintId
+  }
 });
 
-export const DELETE_WORKSPACE = 'DELETE_WORKSPACE';
-export const deleteWorkspace = (blueprintId) => ({
+export const DELETE_WORKSPACE = "DELETE_WORKSPACE";
+export const deleteWorkspace = blueprintId => ({
   type: DELETE_WORKSPACE,
   payload: {
-    blueprintId,
-  },
+    blueprintId
+  }
 });

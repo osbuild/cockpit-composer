@@ -5,7 +5,7 @@ class BlueprintsPage {
   }
 
   loading() {
-    const selector = '.list-view-pf-view';
+    const selector = ".list-view-pf-view";
     browser.waitUntil(
       () => browser.isVisible(selector),
       timeout,
@@ -15,7 +15,7 @@ class BlueprintsPage {
   }
 
   get sortAscButton() {
-    const selector = '.fa-sort-alpha-asc';
+    const selector = ".fa-sort-alpha-asc";
     browser.waitUntil(
       () => browser.isVisible(selector),
       timeout,
@@ -25,7 +25,7 @@ class BlueprintsPage {
   }
 
   get sortDescButton() {
-    const selector = '.fa-sort-alpha-desc';
+    const selector = ".fa-sort-alpha-desc";
     browser.waitUntil(
       () => browser.isVisible(selector),
       timeout,
@@ -36,7 +36,7 @@ class BlueprintsPage {
 
   get createBlueprintButton() {
     // const selector = '[data-target="#cmpsr-modal-crt-blueprint"]';
-    const selector = 'span=Create Blueprint';
+    const selector = "span=Create Blueprint";
     browser.waitUntil(
       () => browser.isVisible(selector),
       timeout,
@@ -56,7 +56,7 @@ class BlueprintsPage {
   }
 
   get clearAllFiltersLink() {
-    const selector = 'span=Clear All Filters';
+    const selector = "span=Clear All Filters";
     browser.waitUntil(
       () => browser.isVisible(selector),
       timeout,
@@ -66,7 +66,7 @@ class BlueprintsPage {
   }
 
   get filterContentLabel() {
-    const selector = '.filter-pf-active-label + .list-inline .label';
+    const selector = ".filter-pf-active-label + .list-inline .label";
     browser.waitUntil(
       () => browser.isVisible(selector),
       timeout,
@@ -76,7 +76,7 @@ class BlueprintsPage {
   }
 
   get filterContentLabelCloseButton() {
-    const selector = '.filter-pf-active-label + .list-inline .pficon-close';
+    const selector = ".filter-pf-active-label + .list-inline .pficon-close";
     browser.waitUntil(
       () => browser.isVisible(selector),
       timeout,
@@ -86,15 +86,15 @@ class BlueprintsPage {
   }
 
   waitForActiveFiltersExist() {
-    browser.waitForExist('p=Active Filters:', timeout)
+    browser.waitForExist("p=Active Filters:", timeout);
   }
 
   waitForActiveFiltersNotExist() {
-    browser.waitForExist('p=Active Filters:', timeout, true)
+    browser.waitForExist("p=Active Filters:", timeout, true);
   }
 
   get blueprintListView() {
-    return '.list-view-pf-view .list-group-item';
+    return ".list-view-pf-view .list-group-item";
   }
 }
 

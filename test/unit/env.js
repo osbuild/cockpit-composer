@@ -1,13 +1,13 @@
-import jQuery from 'jquery';
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-15';
+import jQuery from "jquery";
+import Enzyme from "enzyme";
+import Adapter from "enzyme-adapter-react-15";
 
 Enzyme.configure({ adapter: new Adapter() });
 
 global.$ = global.jQuery = jQuery;
-require('bootstrap');
-global.welderApiHost = 'localhost';
-global.welderApiScheme = 'HTTP';
+require("bootstrap");
+global.welderApiHost = "localhost";
+global.welderApiScheme = "HTTP";
 global.welderApiRelative = false;
 global.welderApiPort = 4000;
 
@@ -23,11 +23,11 @@ const localStorageMock = (() => {
     },
     clear() {
       store = {};
-    },
+    }
   };
 })();
 
-Object.defineProperty(window, 'localStorage', {
-  value: localStorageMock,
+Object.defineProperty(window, "localStorage", {
+  value: localStorageMock
 });
 // </mockLocalStorage>

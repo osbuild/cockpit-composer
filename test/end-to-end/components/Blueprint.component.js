@@ -26,7 +26,7 @@ class Blueprint {
   }
 
   get blueprintNameList() {
-    const selector = '.list-group-item-heading';
+    const selector = ".list-group-item-heading";
     browser.waitUntil(
       () => browser.isVisible(selector),
       timeout,
@@ -73,7 +73,7 @@ class Blueprint {
   }
 
   get exportOption() {
-    const selector = $(this.containerSelector).$('span=Export');
+    const selector = $(this.containerSelector).$("span=Export");
     browser.waitUntil(
       () => selector.isVisible(),
       timeout,
@@ -83,7 +83,7 @@ class Blueprint {
   }
 
   get deleteOption() {
-    const selector = $(this.containerSelector).$('span=Delete');
+    const selector = $(this.containerSelector).$("span=Delete");
     browser.waitUntil(
       () => selector.isVisible(),
       timeout,

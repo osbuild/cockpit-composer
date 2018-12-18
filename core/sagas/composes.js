@@ -1,32 +1,42 @@
-import { delay } from 'redux-saga'
-import { call, all, put, takeEvery } from 'redux-saga/effects';
+import { delay } from "redux-saga";
+import { call, all, put, takeEvery } from "redux-saga/effects";
 import {
-  startComposeApi, fetchImageStatusApi, fetchComposeQueueApi, fetchComposeFinishedApi, fetchComposeFailedApi,
-  deleteComposeApi, cancelComposeApi
-} from '../apiCalls';
+  startComposeApi,
+  fetchImageStatusApi,
+  fetchComposeQueueApi,
+  fetchComposeFinishedApi,
+  fetchComposeFailedApi,
+  deleteComposeApi,
+  cancelComposeApi
+} from "../apiCalls";
 
 import {
-   START_COMPOSE,
-   fetchingComposeStatusSucceeded,
-   FETCHING_COMPOSES, fetchingComposeSucceeded,
-   composesFailure, CANCELLING_COMPOSE, DELETING_COMPOSE, deletingComposeSucceeded, 
-   deletingComposeFailure, cancellingComposeSucceeded, cancellingComposeFailure,
-   FETCHING_QUEUE, fetchingQueueSucceeded
-} from '../actions/composes';
-
+  START_COMPOSE,
+  fetchingComposeStatusSucceeded,
+  FETCHING_COMPOSES,
+  fetchingComposeSucceeded,
+  composesFailure,
+  CANCELLING_COMPOSE,
+  DELETING_COMPOSE,
+  deletingComposeSucceeded,
+  deletingComposeFailure,
+  cancellingComposeSucceeded,
+  cancellingComposeFailure,
+  FETCHING_QUEUE,
+  fetchingQueueSucceeded
+} from "../actions/composes";
 
 function* startCompose(action) {
   try {
-    const {blueprintName, composeType} = action.payload;
+    const { blueprintName, composeType } = action.payload;
     const response = yield call(startComposeApi, blueprintName, composeType);
     const statusResponse = yield call(fetchImageStatusApi, response.build_id);
     yield put(fetchingComposeSucceeded(statusResponse.uuids[0]));
     if (statusResponse.uuids[0].queue_status === "WAITING" || statusResponse.uuids[0].queue_status === "RUNNING") {
       yield* pollComposeStatus(statusResponse.uuids[0]);
     }
-  }
-  catch (error) {
-    console.log('startComposeError');
+  } catch (error) {
+    console.log("startComposeError");
     yield put(composesFailure(error));
   }
 }
@@ -36,7 +46,7 @@ function* pollComposeStatus(compose) {
     let polledCompose = compose;
     while (polledCompose.queue_status === "WAITING" || polledCompose.queue_status === "RUNNING") {
       const response = yield call(fetchImageStatusApi, polledCompose.id);
-      polledCompose = response.uuids[0];      
+      polledCompose = response.uuids[0];
       if (polledCompose !== undefined) {
         yield put(fetchingComposeStatusSucceeded(polledCompose));
         yield call(delay, 60000);
@@ -46,7 +56,7 @@ function* pollComposeStatus(compose) {
       }
     }
   } catch (error) {
-    console.log('pollComposeStatusError');
+    console.log("pollComposeStatusError");
     yield put(composesFailure(error));
   }
 }
@@ -62,31 +72,31 @@ function* fetchComposes() {
       yield all(queue.map(compose => pollComposeStatus(compose)));
     }
   } catch (error) {
-    console.log('fetchComposesError');
+    console.log("fetchComposesError");
     yield put(composesFailure(error));
   }
 }
 
 function* deleteCompose(action) {
   try {
-    const {composeId} = action.payload;
+    const { composeId } = action.payload;
     const response = yield call(deleteComposeApi, composeId);
     yield put(deletingComposeSucceeded(response, composeId));
     yield* fetchComposes();
   } catch (error) {
-    console.log('errorDeleteComposeSaga');
+    console.log("errorDeleteComposeSaga");
     yield put(deletingComposeFailure(error));
   }
 }
 
 function* cancelCompose(action) {
   try {
-    const {composeId} = action.payload;
+    const { composeId } = action.payload;
     const response = yield call(cancelComposeApi, composeId);
     yield put(cancellingComposeSucceeded(response, composeId));
     yield* fetchComposes();
   } catch (error) {
-    console.log('errorCancelComposeSaga');
+    console.log("errorCancelComposeSaga");
     yield put(cancellingComposeFailure(error));
   }
 }
@@ -96,12 +106,12 @@ function* fetchQueue() {
     const queue = yield call(fetchComposeQueueApi);
     yield put(fetchingQueueSucceeded(queue));
   } catch (error) {
-    console.log('fetchQueueError');
+    console.log("fetchQueueError");
     yield put(composesFailure(error));
   }
 }
 
-export default function* () {
+export default function*() {
   yield takeEvery(START_COMPOSE, startCompose);
   yield takeEvery(FETCHING_COMPOSES, fetchComposes);
   yield takeEvery(DELETING_COMPOSE, deleteCompose);

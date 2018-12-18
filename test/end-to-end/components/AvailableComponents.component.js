@@ -1,10 +1,10 @@
 // "Available Components" component in Edit Blueprint page
 class AvailableComponents {
-  constructor(n=0) {
-    if(n !== 0) {
-      this.containerSelector = `.cmpsr-list-pf__compacted .list-pf-item:nth-child(${n})`
+  constructor(n = 0) {
+    if (n !== 0) {
+      this.containerSelector = `.cmpsr-list-pf__compacted .list-pf-item:nth-child(${n})`;
     } else {
-      this.containerSelector = '.cmpsr-list-pf__compacted .list-pf-item';
+      this.containerSelector = ".cmpsr-list-pf__compacted .list-pf-item";
     }
   }
 
@@ -17,7 +17,7 @@ class AvailableComponents {
     );
     // browser.click() does not work with Edge due to "Element is Obscured" error.
     // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/5238133/
-    browser.execute((plusButton) => {
+    browser.execute(plusButton => {
       document.querySelector(plusButton).click();
       return true;
     }, selector);
@@ -36,7 +36,7 @@ class AvailableComponents {
   addPackageByName(name) {
     // browser.click() does not work with Edge due to "Element is Obscured" error.
     // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/5238133/
-    browser.execute((plusButton) => {
+    browser.execute(plusButton => {
       document.querySelector(plusButton).click();
       return true;
     }, `[data-input=${name}] .fa-plus`);
@@ -45,7 +45,7 @@ class AvailableComponents {
   removePackageByName(name) {
     // browser.click() does not work with Edge due to "Element is Obscured" error.
     // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/5238133/
-    browser.execute((plusButton) => {
+    browser.execute(plusButton => {
       document.querySelector(plusButton).click();
       return true;
     }, `[data-input=${name}] .fa-minus`);

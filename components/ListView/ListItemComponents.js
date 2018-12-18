@@ -1,12 +1,12 @@
 /* global $ */
 
-import React from 'react';
-import {FormattedMessage} from 'react-intl';
-import PropTypes from 'prop-types';
-import ComponentTypeIcons from '../../components/ListView/ComponentTypeIcons';
-import ComponentSummaryList from '../../components/ListView/ComponentSummaryList';
-import MetadataApi from '../../data/MetadataApi';
-import constants from '../../core/constants';
+import React from "react";
+import { FormattedMessage } from "react-intl";
+import PropTypes from "prop-types";
+import ComponentTypeIcons from "../../components/ListView/ComponentTypeIcons";
+import ComponentSummaryList from "../../components/ListView/ComponentSummaryList";
+import MetadataApi from "../../data/MetadataApi";
+import constants from "../../core/constants";
 
 class ListItemComponents extends React.Component {
   constructor() {
@@ -22,7 +22,7 @@ class ListItemComponents extends React.Component {
     const newitem = newProps.listItem;
     const parent = this.props.listItemParent;
     if (olditem !== newitem) {
-      if ($(`.${parent} [data-name='${newitem.name}']`).hasClass('list-view-pf-expand-active')) {
+      if ($(`.${parent} [data-name='${newitem.name}']`).hasClass("list-view-pf-expand-active")) {
         this.setState({ expanded: true });
       } else {
         this.setState({ expanded: false });
@@ -34,7 +34,9 @@ class ListItemComponents extends React.Component {
     const p = new Promise((resolve, reject) => {
       Promise.all([MetadataApi.getData(constants.get_modules_info + component.name)])
         .then(data => {
-          const filteredDependencies = data[0].modules[0].dependencies.filter(dependency => dependency.name !== component.name);
+          const filteredDependencies = data[0].modules[0].dependencies.filter(
+            dependency => dependency.name !== component.name
+          );
           this.setState({ dependencies: filteredDependencies });
           resolve();
         })
@@ -48,7 +50,7 @@ class ListItemComponents extends React.Component {
 
   handleExpandComponent(event) {
     // the user clicked a list item in the blueprint contents area to expand or collapse
-    if (!$(event.target).is('button, a, input, .fa-ellipsis-v')) {
+    if (!$(event.target).is("button, a, input, .fa-ellipsis-v")) {
       const expandState = !this.state.expanded;
       this.setState({ expanded: expandState });
       if (expandState === true && this.state.dependencies.length === 0) {
@@ -60,10 +62,10 @@ class ListItemComponents extends React.Component {
   render() {
     const { listItem } = this.props;
     return (
-      <div className={`list-pf-item ${this.state.expanded ? 'active' : ''}`} data-component={listItem.name}>
+      <div className={`list-pf-item ${this.state.expanded ? "active" : ""}`} data-component={listItem.name}>
         <div className="list-pf-container" onClick={e => this.handleExpandComponent(e)}>
           <div className="list-pf-chevron">
-            <span className={`fa ${this.state.expanded ? 'fa-angle-down' : 'fa-angle-right'}`} />
+            <span className={`fa ${this.state.expanded ? "fa-angle-down" : "fa-angle-right"}`} />
           </div>
           <div className="list-pf-select">
             <input type="checkbox" />
@@ -79,7 +81,10 @@ class ListItemComponents extends React.Component {
             <div className="list-pf-content-wrapper">
               <div className="list-pf-main-content">
                 <div className="list-pf-title text-overflow-pf">
-                  <a href="#" onClick={e => this.props.handleComponentDetails(e, listItem, this.props.componentDetailsParent)}>
+                  <a
+                    href="#"
+                    onClick={e => this.props.handleComponentDetails(e, listItem, this.props.componentDetailsParent)}
+                  >
                     {listItem.name}
                   </a>
                 </div>
@@ -104,7 +109,7 @@ class ListItemComponents extends React.Component {
                 </div>
               </div>
             </div>
-            {this.props.noEditComponent !== true &&
+            {this.props.noEditComponent !== true && (
               <div className="list-pf-actions">
                 <div className="dropdown pull-right dropdown-kebab-pf">
                   <button
@@ -129,7 +134,9 @@ class ListItemComponents extends React.Component {
                     <li>
                       <a
                         href="#"
-                        onClick={e => this.props.handleComponentDetails(e, listItem, this.props.componentDetailsParent, 'edit')}
+                        onClick={e =>
+                          this.props.handleComponentDetails(e, listItem, this.props.componentDetailsParent, "edit")
+                        }
                       >
                         <FormattedMessage defaultMessage="Edit" />
                       </a>
@@ -142,25 +149,34 @@ class ListItemComponents extends React.Component {
                     </li>
                   </ul>
                 </div>
-              </div>}
+              </div>
+            )}
           </div>
         </div>
 
-        <div className={`list-pf-expansion collapse ${this.state.expanded ? 'in' : ''}`}>
+        <div className={`list-pf-expansion collapse ${this.state.expanded ? "in" : ""}`}>
           <div className="list-pf-container" tabIndex="0">
             <div className="list-pf-content">
               <div className="container-fluid ">
                 <div className="row">
                   <div className="col-md-6">
                     <dl className="dl-horizontal clearfix">
-                      <dt><FormattedMessage defaultMessage="Version" /></dt>
+                      <dt>
+                        <FormattedMessage defaultMessage="Version" />
+                      </dt>
                       <dd>{listItem.version ? listItem.version : <span>&nbsp;</span>}</dd>
-                      <dt><FormattedMessage defaultMessage="Release" /></dt>
+                      <dt>
+                        <FormattedMessage defaultMessage="Release" />
+                      </dt>
                       <dd>{listItem.release ? listItem.release : <span>&nbsp;</span>}</dd>
                       <dt>URL</dt>
-                      {(listItem.homepage != null &&
-                        <dd><a target="_blank" href={listItem.homepage}>{listItem.homepage}</a></dd>) ||
-                        <dd>&nbsp;</dd>}
+                      {(listItem.homepage != null && (
+                        <dd>
+                          <a target="_blank" href={listItem.homepage}>
+                            {listItem.homepage}
+                          </a>
+                        </dd>
+                      )) || <dd>&nbsp;</dd>}
                     </dl>
                   </div>
                   <div className="col-md-6">
@@ -183,7 +199,7 @@ ListItemComponents.propTypes = {
   handleComponentDetails: PropTypes.func,
   handleRemoveComponent: PropTypes.func,
   noEditComponent: PropTypes.bool,
-  isDependency: PropTypes.bool,
+  isDependency: PropTypes.bool
 };
 
 export default ListItemComponents;
