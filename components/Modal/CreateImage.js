@@ -3,10 +3,10 @@
 import React from "react";
 import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
 import PropTypes from "prop-types";
-import NotificationsApi from "../../data/NotificationsApi";
-import BlueprintApi from "../../data/BlueprintApi";
 import { Button, OverlayTrigger, Popover, Icon, Alert } from "patternfly-react";
 import { connect } from "react-redux";
+import NotificationsApi from "../../data/NotificationsApi";
+import BlueprintApi from "../../data/BlueprintApi";
 import { setBlueprint } from "../../core/actions/blueprints";
 import { fetchingQueue, clearQueue } from "../../core/actions/composes";
 

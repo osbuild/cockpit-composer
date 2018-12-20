@@ -1,8 +1,8 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
-import FilterInput from "../../components/Toolbar/FilterInput";
-import ToolbarLayout from "../../components/Toolbar/ToolbarLayout";
+import FilterInput from "./FilterInput";
+import ToolbarLayout from "./ToolbarLayout";
 
 const BlueprintsToolbar = props => (
   <ToolbarLayout

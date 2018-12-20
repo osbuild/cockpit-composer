@@ -3,8 +3,8 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
-import ComponentTypeIcons from "../../components/ListView/ComponentTypeIcons";
-import ComponentSummaryList from "../../components/ListView/ComponentSummaryList";
+import ComponentTypeIcons from "./ComponentTypeIcons";
+import ComponentSummaryList from "./ComponentSummaryList";
 import MetadataApi from "../../data/MetadataApi";
 import constants from "../../core/constants";
 

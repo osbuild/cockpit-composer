@@ -6,6 +6,7 @@ Enzyme.configure({ adapter: new Adapter() });
 
 global.$ = global.jQuery = jQuery;
 require("bootstrap");
+
 global.welderApiHost = "localhost";
 global.welderApiScheme = "HTTP";
 global.welderApiRelative = false;

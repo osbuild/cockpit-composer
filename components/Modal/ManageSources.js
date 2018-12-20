@@ -4,8 +4,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
-import SourcesList from "../../components/Sources/SourcesList";
-import EmptyState from "../../components/EmptyState/EmptyState";
+import SourcesList from "../Sources/SourcesList";
+import EmptyState from "../EmptyState/EmptyState";
 
 const messages = defineMessages({
   errorStateTitle: {

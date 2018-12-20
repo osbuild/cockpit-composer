@@ -1,8 +1,8 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
-import ListView from "../../components/ListView/ListView";
-import ListItemComponents from "../../components/ListView/ListItemComponents";
+import ListView from "./ListView";
+import ListItemComponents from "./ListItemComponents";
 
 class DependencyListView extends React.Component {
   componentWillMount() {}

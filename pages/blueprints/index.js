@@ -1,6 +1,7 @@
 import React from "react";
 import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import Layout from "../../components/Layout";
 import BlueprintListView from "../../components/ListView/BlueprintListView";
 import CreateBlueprint from "../../components/Modal/CreateBlueprint";
@@ -11,7 +12,6 @@ import ManageSources from "../../components/Modal/ManageSources";
 import EmptyState from "../../components/EmptyState/EmptyState";
 import Loading from "../../components/Loading/Loading";
 import BlueprintsToolbar from "../../components/Toolbar/BlueprintsToolbar";
-import { connect } from "react-redux";
 import { deletingBlueprint, fetchingBlueprints } from "../../core/actions/blueprints";
 import {
   fetchingModalExportBlueprintContents,

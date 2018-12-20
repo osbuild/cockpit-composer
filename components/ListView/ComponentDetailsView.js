@@ -3,9 +3,9 @@
 import React from "react";
 import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
 import PropTypes from "prop-types";
-import ComponentTypeIcons from "../../components/ListView/ComponentTypeIcons";
 import { Tabs, Tab } from "patternfly-react";
-import DependencyListView from "../../components/ListView/DependencyListView";
+import ComponentTypeIcons from "./ComponentTypeIcons";
+import DependencyListView from "./DependencyListView";
 import MetadataApi from "../../data/MetadataApi";
 import LabelWithBadge from "./LabelWithBadge";
 

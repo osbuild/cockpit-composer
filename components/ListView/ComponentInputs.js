@@ -3,7 +3,7 @@
 import React from "react";
 import { defineMessages, injectIntl, intlShape } from "react-intl";
 import PropTypes from "prop-types";
-import ComponentTypeIcons from "../../components/ListView/ComponentTypeIcons";
+import ComponentTypeIcons from "./ComponentTypeIcons";
 
 const messages = defineMessages({
   hideDetails: {

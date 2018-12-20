@@ -4,9 +4,10 @@ import React from "react";
 import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
 import cockpit from "cockpit"; // eslint-disable-line import/no-unresolved
 import PropTypes from "prop-types";
+import { Tab, Tabs } from "patternfly-react";
+import { connect } from "react-redux";
 import Link from "../../components/Link";
 import Layout from "../../components/Layout";
-import { Tab, Tabs } from "patternfly-react";
 import BlueprintContents from "../../components/ListView/BlueprintContents";
 import ComponentDetailsView from "../../components/ListView/ComponentDetailsView";
 import CreateImage from "../../components/Modal/CreateImage";
@@ -18,7 +19,6 @@ import BlueprintToolbar from "../../components/Toolbar/BlueprintToolbar";
 import ListView from "../../components/ListView/ListView";
 import ListItemImages from "../../components/ListView/ListItemImages";
 import ListItemChanges from "../../components/ListView/ListItemChanges";
-import { connect } from "react-redux";
 import { fetchingBlueprintContents, setBlueprintDescription } from "../../core/actions/blueprints";
 import { fetchingComposes, startCompose } from "../../core/actions/composes";
 import {

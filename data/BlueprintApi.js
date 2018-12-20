@@ -1,6 +1,6 @@
 import constants from "../core/constants";
-import MetadataApi from "../data/MetadataApi";
-import NotificationsApi from "../data/NotificationsApi";
+import MetadataApi from "./MetadataApi";
+import NotificationsApi from "./NotificationsApi";
 import history from "../core/history";
 import utils from "../core/utils";
 
