@@ -3,6 +3,7 @@
 import React from "react";
 import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import Link from "../../components/Link";
 import Layout from "../../components/Layout";
 import BlueprintContents from "../../components/ListView/BlueprintContents";
@@ -17,12 +18,10 @@ import Loading from "../../components/Loading/Loading";
 import BlueprintToolbar from "../../components/Toolbar/BlueprintToolbar";
 import BlueprintApi from "../../data/BlueprintApi";
 import NotificationsApi from "../../data/NotificationsApi";
-import { connect } from "react-redux";
 import {
   fetchingBlueprintContents,
   setBlueprint,
   addBlueprintComponent,
-  committingBlueprint,
   removeBlueprintComponent,
   undo,
   redo,
@@ -242,7 +241,7 @@ class EditBlueprintPage extends React.Component {
       // if source is the details view, then metadata is already known and passed with component
       this.props.addBlueprintComponent(this.props.blueprint, component);
     }
-    // update input component data to match the blueprint component data
+    // update input component data to matc      "import/named": 0,h the blueprint component data
     this.updateInputComponentsOnChange(component);
     // TODO if inputs also lists dependencies, should these be indicated as
     // included in the list of available components?
@@ -816,7 +815,6 @@ EditBlueprintPage.propTypes = {
   selectedInput: PropTypes.object,
   fetchingBlueprintContents: PropTypes.func,
   setBlueprint: PropTypes.func,
-  committingBlueprint: PropTypes.func,
   removeBlueprintComponent: PropTypes.func,
   fetchingInputs: PropTypes.func,
   setInputComponents: PropTypes.func,
@@ -932,9 +930,6 @@ const mapDispatchToProps = dispatch => ({
   },
   deleteFilter: () => {
     dispatch(deleteFilter());
-  },
-  committingBlueprint: blueprint => {
-    dispatch(committingBlueprint(blueprint));
   },
   setModalActive: modalActive => {
     dispatch(setModalActive(modalActive));

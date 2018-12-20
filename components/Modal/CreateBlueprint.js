@@ -3,8 +3,8 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
-import BlueprintApi from "../../data/BlueprintApi";
 import { connect } from "react-redux";
+import BlueprintApi from "../../data/BlueprintApi";
 import {
   setModalCreateBlueprintErrorNameVisible,
   setModalCreateBlueprintErrorDuplicateVisible,

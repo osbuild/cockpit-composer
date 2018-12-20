@@ -2,8 +2,8 @@ import React from "react";
 import { IntlProvider } from "react-intl";
 import { shallow, mount } from "enzyme";
 import faker from "faker";
-import CreateImage from "../../components/Modal/CreateImage";
 import { Provider } from "react-redux";
+import CreateImage from "../../components/Modal/CreateImage";
 
 describe("CreateImage", () => {
   const fakeBlueprintName = faker.lorem.words();

@@ -2,11 +2,11 @@ import React from "react";
 import { defineMessages, injectIntl, intlShape, FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
 import { Tabs, Tab } from "patternfly-react";
-import ListView from "../../components/ListView/ListView";
-import ListItemComponents from "../../components/ListView/ListItemComponents";
-import DependencyListView from "../../components/ListView/DependencyListView";
-import EmptyState from "../../components/EmptyState/EmptyState";
-import Loading from "../../components/Loading/Loading";
+import ListView from "./ListView";
+import ListItemComponents from "./ListItemComponents";
+import DependencyListView from "./DependencyListView";
+import EmptyState from "../EmptyState/EmptyState";
+import Loading from "../Loading/Loading";
 import LabelWithBadge from "./LabelWithBadge";
 
 const messages = defineMessages({

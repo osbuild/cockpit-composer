@@ -41,7 +41,7 @@ module.exports = function routesLoader(source) {
   for (const route of routes) {
     const keys = [];
     const pattern = toRegExp(route.path, keys);
-    const require =
+    const required =
       route.chunk && route.chunk === "main"
         ? module => `Promise.resolve(require('${escape(module)}').default)`
         : module => `new Promise(function (resolve, reject) {
@@ -61,7 +61,7 @@ module.exports = function routesLoader(source) {
     if (route.data) {
       output.push(`    data: ${JSON.stringify(route.data)},\n`);
     }
-    output.push(`    load() {\n      return ${require(route.page)};\n    },\n`);
+    output.push(`    load() {\n      return ${required(route.page)};\n    },\n`);
     output.push("  },\n");
   }
 

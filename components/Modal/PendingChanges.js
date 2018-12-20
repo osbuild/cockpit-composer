@@ -4,8 +4,8 @@ import React from "react";
 import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { setBlueprintComment } from "../../core/actions/blueprints";
 import { Button, OverlayTrigger, Popover, Icon, Alert } from "patternfly-react";
+import { setBlueprintComment } from "../../core/actions/blueprints";
 
 const messages = defineMessages({
   previousSessionInfotip: {

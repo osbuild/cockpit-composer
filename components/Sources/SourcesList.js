@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { FormattedMessage } from "react-intl";
-import SourcesListItem from "../../components/Sources/SourcesListItem";
+import SourcesListItem from "./SourcesListItem";
 
 class SourcesList extends React.PureComponent {
   render() {

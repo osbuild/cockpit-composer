@@ -1,7 +1,7 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
-import ComponentTypeIcons from "../../components/ListView/ComponentTypeIcons";
+import ComponentTypeIcons from "./ComponentTypeIcons";
 
 class ComponentSummaryList extends React.Component {
   constructor() {

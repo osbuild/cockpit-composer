@@ -1,8 +1,8 @@
 import React from "react";
 import { IntlProvider } from "react-intl";
 import { shallow, mount } from "enzyme";
-import BlueprintsPage from "../../pages/blueprints/index";
 import { Provider } from "react-redux";
+import BlueprintsPage from "../../pages/blueprints/index";
 
 describe("Home page", () => {
   const mockCreateImage = {
