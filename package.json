@@ -165,7 +165,8 @@
       "plugin:redux-saga/recommended",
       "plugin:mocha/recommended",
       "plugin:jest/recommended",
-      "prettier"
+      "prettier",
+      "prettier/react"
     ],
     "rules": {
       "max-len": [
@@ -225,9 +226,6 @@
       "react/require-default-props": 0,
       "react/forbid-prop-types": 0,
       "react/no-string-refs": 0,
-      "react/jsx-tag-spacing": 0,
-      "react/jsx-closing-tag-location": 0,
-      "react/jsx-one-expression-per-line": 0,
       "react/prop-types": 0,
       "react/self-closing-comp": 0,
       "react/button-has-type": 0,
