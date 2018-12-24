@@ -267,13 +267,10 @@ class PendingChanges extends React.Component {
 }
 
 PendingChanges.propTypes = {
-  comment: PropTypes.string,
   blueprint: PropTypes.object,
-  contents: PropTypes.array,
   handleHideModal: PropTypes.func,
   setBlueprintComment: PropTypes.func,
   handleCommit: PropTypes.func,
-  modals: PropTypes.object,
   intl: intlShape.isRequired
 };
 const mapStateToProps = state => ({

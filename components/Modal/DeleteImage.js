@@ -74,7 +74,6 @@ DeleteImage.propTypes = {
   blueprintName: PropTypes.string,
   composeId: PropTypes.string,
   handleHideModal: PropTypes.func,
-  handleDelete: PropTypes.func,
   deletingCompose: PropTypes.func
 };
 
