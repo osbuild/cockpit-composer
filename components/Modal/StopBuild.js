@@ -74,7 +74,6 @@ StopBuild.propTypes = {
   blueprintName: PropTypes.string,
   composeId: PropTypes.string,
   handleHideModal: PropTypes.func,
-  handleCancel: PropTypes.func,
   cancellingCompose: PropTypes.func
 };
 

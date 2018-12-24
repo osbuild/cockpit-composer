@@ -15,8 +15,7 @@ class SourcesListItem extends React.PureComponent {
 }
 
 SourcesListItem.propTypes = {
-  source: PropTypes.object,
-  editable: PropTypes.bool
+  source: PropTypes.object
 };
 
 export default SourcesListItem;
