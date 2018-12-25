@@ -19,7 +19,7 @@
     "react-intl": "2.7.2",
     "react-redux": "5.1.1",
     "redux": "3.7.2",
-    "redux-saga": "0.15.3",
+    "redux-saga": "0.15.6",
     "reselect": "3.0.1",
     "whatwg-fetch": "1.1.1"
   },
