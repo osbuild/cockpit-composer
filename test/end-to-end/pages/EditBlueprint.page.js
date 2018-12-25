@@ -182,6 +182,26 @@ class EditBlueprintPage {
     );
     return $(`${selector} span`);
   }
+
+  get selectedComponentsTabBadge() {
+    const selector = '[data-badge="Selected Components"]';
+    browser.waitUntil(
+      () => browser.isVisible(selector),
+      timeout,
+      `Selected Components tab badge in Edit Blueprint page cannot be found by selector ${selector}`
+    );
+    return $(selector);
+  }
+
+  get dependenciesTabBadge() {
+    const selector = '[data-badge="Dependencies"]';
+    browser.waitUntil(
+      () => browser.isVisible(selector),
+      timeout,
+      `Dependencies tab badge in Edit Blueprint page cannot be found by selector ${selector}`
+    );
+    return $(selector);
+  }
 }
 
 module.exports = EditBlueprintPage;

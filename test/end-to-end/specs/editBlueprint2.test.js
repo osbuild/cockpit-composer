@@ -7,6 +7,7 @@ const blueprintsPage = require('../pages/blueprints.page');
 const EditBlueprintPage = require('../pages/EditBlueprint.page');
 const AvailableComponents = require('../components/AvailableComponents.component');
 const selectedComponents = require('../components/selectedComponents.component');
+const dependencies = require('../components/dependencies.component');
 
 describe('Edit Blueprint Page', function(){
   const name = faker.lorem.slug();
@@ -112,6 +113,80 @@ describe('Edit Blueprint Page', function(){
           `Cannot add package ${packageName} into blueprint ${name}`
         );
         expect(selectedComponents.packageList.map(item => item.getText())).to.include(packageName);
+      });
+    });
+
+    describe('Selected Components Tab', function(){
+      const packageName = 'bash';
+      before(function(){
+        // get package name which will be removed
+        const removedPackageName = selectedComponents.packageNameByNth(0);
+        // remove added package
+        selectedComponents.moreButtonByName(removedPackageName).click();
+        browser.keys('ArrowDown'); // View
+        browser.keys('ArrowDown'); // Edit
+        browser.keys('ArrowDown'); // Remove
+        browser.keys('Enter');
+        // add cockpit-bridge into selected component
+        editBlueprintPage.filterBox.setValue(packageName);
+        browser.keys('Enter');
+        browser.waitForExist(editBlueprintPage.filterContentLabel, timeout);
+        // add package to blueprint
+        const availableComponent = new AvailableComponents();
+        availableComponent.addPackageByName(packageName);
+        selectedComponents.loading();
+        browser.waitUntil(
+          () => selectedComponents.packageList.map(item => item.getText()).includes(packageName),
+          timeout,
+          `Cannot add package ${packageName} into blueprint ${name}`
+        );
+      });
+
+      it('The bedge should show the correct selected package number', function(){
+        const totalSelectedComponents = selectedComponents.packageList.length;
+        expect(editBlueprintPage.selectedComponentsTabBadge.getText()).to.equal(totalSelectedComponents.toString());
+      });
+
+      describe('Component expansion test', function(){
+        before(function(){
+          selectedComponents.angleRightButton(packageName).click();
+          selectedComponents.loadingComponentExpansion(packageName);
+        });
+
+        after(function(){
+          selectedComponents.angleDownButton(packageName).click();
+          selectedComponents.loadingComponentCollapse(packageName);
+        })
+
+        it('should expand compotent and have "Show All" link', function(){
+          expect(selectedComponents.showAllLink(packageName).getText()).to.equal('Show All');
+        });
+
+        it('should change to "Show Less" link by clicking "Show All" link', function(){
+          selectedComponents.showAllLink(packageName).click();
+          expect(selectedComponents.showLessLink(packageName).getText()).to.equal('Show Less');
+        });
+
+        it('should show all dependencies by clicking Show All link', function(){
+          const totalDeps = selectedComponents.componentDependenciesBadge(packageName).getText();
+          expect(selectedComponents.componentDependenciesList(packageName).length.toString()).to.equal(totalDeps);
+        });
+
+        it('should change to "Show All" link by clicking "Show Less" link', function(){
+          selectedComponents.showLessLink(packageName).click();
+          expect(selectedComponents.showLessLink(packageName).getText()).to.equal('Show All');
+        });
+      });
+    });
+
+    describe('Dependencies Tab', function(){
+      before(function(){
+        editBlueprintPage.dependenciesTabBadge.click();
+      });
+
+      it('The bedge should show the correct selected package number', function(){
+        const totalDependencies = dependencies.depencenciesList.length;
+        expect(editBlueprintPage.dependenciesTabBadge.getText()).to.equal(totalDependencies.toString());
       });
     });
   });

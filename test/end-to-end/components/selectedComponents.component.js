@@ -34,6 +34,82 @@ class SelectedComponents {
     );
     return $(selector);
   }
+
+  angleRightButton(name) {
+    const selector = `[data-component=${name}] .fa-angle-right`;
+    browser.waitUntil(
+      () => browser.isExisting(selector),
+      timeout,
+      `> button inside ${name} component in Selected Component cannot be found by selector ${selector}`
+    );
+    return $(selector);
+  }
+
+  angleDownButton(name) {
+    const selector = `[data-component=${name}] .fa-angle-down`;
+    browser.waitUntil(
+      () => browser.isExisting(selector),
+      timeout,
+      `v button inside ${name} component in Selected Component cannot be found by selector ${selector}`
+    );
+    return $(selector);
+  }
+
+  loadingComponentExpansion(name) {
+    browser.waitUntil(
+      () => browser.getAttribute(`[data-component=${name}] .list-pf-expansion`, 'class').includes('in'),
+      timeout,
+      `Cannot load component expansion for ${name} component in Selected Component`
+    )
+  }
+
+  loadingComponentCollapse(name) {
+    browser.waitUntil(
+      () => browser.getAttribute(`[data-component=${name}] .list-pf-expansion`, 'class').indexOf('in') === -1,
+      timeout,
+      `Cannot load component collapse for ${name} component in Selected Component`
+    )
+  }
+
+  componentDependenciesBadge(name) {
+    const selector = `[data-component=${name}] .badge`;
+    browser.waitUntil(
+      () => browser.isExisting(selector),
+      timeout,
+      `Dependencies badge inside ${name} component in Selected Component cannot be found by selector ${selector}`
+    );
+    return $(selector);
+  }
+
+  componentDependenciesList(name) {
+    const selector = `[data-component=${name}] .cmpsr-list-pf__compacted .list-pf-item`;
+    browser.waitUntil(
+      () => browser.isExisting(selector),
+      timeout,
+      `Dependencies list inside ${name} component in Selected Component cannot be found by selector ${selector}`
+    );
+    return $$(selector);
+  }
+
+  showAllLink(name) {
+    const selector = `[data-component=${name}] .cmpsr-summary-listview .pull-right span`;
+    browser.waitUntil(
+      () => browser.isExisting(selector),
+      timeout,
+      `"Show All" link inside ${name} component in Selected Component cannot be found by selector ${selector}`
+    );
+    return $(selector);
+  }
+
+  showLessLink(name) {
+    const selector = `[data-component=${name}] .cmpsr-summary-listview .pull-right span`;
+    browser.waitUntil(
+      () => browser.isExisting(selector),
+      timeout,
+      `"Show Less" link inside ${name} component in Selected Component cannot be found by selector ${selector}`
+    );
+    return $(selector);
+  }
 }
 
 module.exports = new SelectedComponents();
