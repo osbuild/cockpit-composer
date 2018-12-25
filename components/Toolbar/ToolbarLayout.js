@@ -31,7 +31,7 @@ class ToolbarLayout extends React.Component {
                   );
                 })}
               </Filter.List>
-              <button className="btn-link" onClick={filterClearValues}>
+              <button type="button" className="btn-link" onClick={filterClearValues}>
                 <FormattedMessage defaultMessage="Clear All Filters" />
               </button>
             </Toolbar.Results>

@@ -542,7 +542,11 @@ class EditBlueprintPage extends React.Component {
               )}
               {(numPendingChanges > 0 && (
                 <li>
-                  <button className="btn btn-primary" onClick={e => this.handleShowModal(e, "modalPendingChanges")}>
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={e => this.handleShowModal(e, "modalPendingChanges")}
+                  >
                     <FormattedMessage defaultMessage="Commit" />
                   </button>
                 </li>

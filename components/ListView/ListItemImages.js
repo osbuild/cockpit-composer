@@ -139,14 +139,14 @@ class ListItemImages extends React.Component {
             )}{" "}
             {listItem.queue_status === "WAITING" && (
               <div className="list-pf-actions">
-                <button className="btn btn-default" onClick={this.handleCancel}>
+                <button type="button" className="btn btn-default" onClick={this.handleCancel}>
                   <FormattedMessage defaultMessage="Stop" />
                 </button>
               </div>
             )}{" "}
             {listItem.queue_status === "RUNNING" && (
               <div className="list-pf-actions">
-                <button className="btn btn-default" onClick={this.handleShowModalStop}>
+                <button type="button" className="btn btn-default" onClick={this.handleShowModalStop}>
                   <FormattedMessage defaultMessage="Stop" />
                 </button>
               </div>
@@ -160,7 +160,7 @@ class ListItemImages extends React.Component {
             )}{" "}
             {listItem.queue_status === "FAILED" && (
               <div className="list-pf-actions">
-                <button className="btn btn-default" onClick={this.handleDelete}>
+                <button type="button" className="btn btn-default" onClick={this.handleDelete}>
                   <FormattedMessage defaultMessage="Remove" />
                 </button>
               </div>
