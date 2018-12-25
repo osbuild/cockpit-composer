@@ -223,6 +223,7 @@
           "assignment": false
         }
       ],
+      "jsx-a11y/anchor-is-valid": 0,
       "react/require-default-props": 0,
       "react/forbid-prop-types": 0,
       "react/no-string-refs": 0,
@@ -235,9 +236,7 @@
       "react/jsx-curly-brace-presence": 0,
       "react/jsx-max-props-per-line": 0,
       "react/sort-comp": 0,
-      "react/jsx-no-target-blank": 0,
       "react/no-access-state-in-setstate": 0,
-      "jsx-a11y/anchor-is-valid": 0,
       "jsx-a11y/click-events-have-key-events": 0,
       "jsx-a11y/no-noninteractive-element-interactions": 0,
       "jsx-a11y/mouse-events-have-key-events": 0,
