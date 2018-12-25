@@ -172,7 +172,7 @@ class ListItemComponents extends React.Component {
                       <dt>URL</dt>
                       {(listItem.homepage != null && (
                         <dd>
-                          <a target="_blank" href={listItem.homepage}>
+                          <a target="_blank" rel="noopener noreferrer" href={listItem.homepage}>
                             {listItem.homepage}
                           </a>
                         </dd>

@@ -82,7 +82,10 @@ class ComponentDetailsView extends React.Component {
           // when status === "available" a form displays with a menu for selecting a specific version
           // availableBuilds is an array listing each option
           // TODO - include other metadata that's defined in builds
-          const availableBuilds = data[0][1].map(i => ({ version: i.source.version, release: i.release }));
+          const availableBuilds = data[0][1].map(i => ({
+            version: i.source.version,
+            release: i.release
+          }));
           this.setState({ availableBuilds });
           if (this.props.status === "editSelected") {
             this.setBuildIndex(availableBuilds, data[0][0]);
@@ -119,7 +122,10 @@ class ComponentDetailsView extends React.Component {
     // get available builds and set default value
     Promise.all([MetadataApi.getAvailableBuilds(component)])
       .then(data => {
-        const availableBuilds = data[0].map(i => ({ version: i.source.version, release: i.release }));
+        const availableBuilds = data[0].map(i => ({
+          version: i.source.version,
+          release: i.release
+        }));
         this.setState({ availableBuilds });
         this.setBuildIndex(availableBuilds, component);
       })
@@ -345,7 +351,7 @@ class ComponentDetailsView extends React.Component {
                 </dt>
                 {(this.state.componentData.homepage !== null && (
                   <dd>
-                    <a target="_blank" href={this.state.componentData.homepage}>
+                    <a target="_blank" rel="noopener noreferrer" href={this.state.componentData.homepage}>
                       {this.state.componentData.homepage}
                     </a>
                   </dd>
