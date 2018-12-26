@@ -21,7 +21,7 @@ class ToolbarLayout extends React.Component {
           <div className="toolbar-pf-actions">{children}</div>
           {filters.filterValues && filters.filterValues.length !== 0 && (
             <Toolbar.Results>
-              <Filter.ActiveLabel>{"Active Filters:"}</Filter.ActiveLabel>
+              <Filter.ActiveLabel>Active Filters:</Filter.ActiveLabel>
               <Filter.List>
                 {filters.filterValues.map((item, index) => {
                   return (

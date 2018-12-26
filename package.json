@@ -230,7 +230,6 @@
       "react/prop-types": 0,
       "react/no-array-index-key": 0,
       "react/jsx-key": 0,
-      "react/jsx-curly-brace-presence": 0,
       "react/jsx-max-props-per-line": 0,
       "jsx-a11y/click-events-have-key-events": 0,
       "jsx-a11y/no-noninteractive-element-interactions": 0,
