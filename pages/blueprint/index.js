@@ -98,8 +98,7 @@ class BlueprintPage extends React.Component {
     this.downloadUrl = this.downloadUrl.bind(this);
 
     this.state = {
-      changes: [],
-      images: []
+      changes: []
     };
   }
 
