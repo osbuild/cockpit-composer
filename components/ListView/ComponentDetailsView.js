@@ -27,7 +27,6 @@ class ComponentDetailsView extends React.Component {
     this.state = {
       selectedBuildIndex: 0,
       availableBuilds: [],
-      activeTab: "Details",
       parents: [],
       dependencies: [],
       componentData: {},
@@ -48,7 +47,6 @@ class ComponentDetailsView extends React.Component {
   componentWillReceiveProps(newProps) {
     this.updateBreadcrumb(newProps);
     this.getMetadata(newProps.component, newProps.status);
-    this.setState({ activeTab: "Details" });
     // this needs to be updated when Edit in the li is enabled,
     // in that case, status can be "editSelected"
     if (newProps.status !== "editSelected") {

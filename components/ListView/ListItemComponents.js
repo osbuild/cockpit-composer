@@ -1,5 +1,3 @@
-/* global $ */
-
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
@@ -11,7 +9,7 @@ import constants from "../../core/constants";
 class ListItemComponents extends React.Component {
   constructor() {
     super();
-    this.state = { expanded: false, dependencies: [], showAllDeps: false };
+    this.state = { expanded: false, dependencies: [] };
   }
 
   componentWillReceiveProps(newProps) {

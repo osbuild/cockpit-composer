@@ -30,97 +30,90 @@ const messages = defineMessages({
   }
 });
 
-class BlueprintContents extends React.Component {
-  constructor() {
-    super();
-    this.state = { activeTab: "Components" };
-  }
+const BlueprintContents = props => {
+  const {
+    components,
+    dependencies,
+    handleComponentDetails,
+    handleRemoveComponent,
+    noEditComponent,
+    filterClearValues,
+    filterValues,
+    errorState,
+    fetchingState
+  } = props;
 
-  render() {
-    const {
-      components,
-      dependencies,
-      handleComponentDetails,
-      handleRemoveComponent,
-      noEditComponent,
-      filterClearValues,
-      filterValues,
-      errorState,
-      fetchingState
-    } = this.props;
+  const { formatMessage } = props.intl;
 
-    const { formatMessage } = this.props.intl;
-
-    return (
-      <div>
-        {(fetchingState === true && <Loading />) ||
-          ((errorState !== undefined && (
-            <EmptyState
-              title={formatMessage(messages.emptyStateErrorTitle)}
-              message={formatMessage(messages.emptyStateErrorMessage)}
-            />
-          )) ||
-            ((components.length === 0 && filterValues.length === 0 && <div>{this.props.children}</div>) || (
-              <Tabs id="blueprint-tabs">
-                <Tab
-                  eventKey="selected-components"
-                  title={<LabelWithBadge title={formatMessage(messages.selectedTabTitle)} badge={components.length} />}
-                >
-                  {(components.length === 0 && (
-                    <EmptyState
-                      title={formatMessage(messages.emptyStateNoResultsTitle)}
-                      message={formatMessage(messages.emptyStateNoResultsMessage)}
-                    >
-                      <button className="btn btn-link btn-lg" type="button" onClick={() => filterClearValues([])}>
-                        <FormattedMessage defaultMessage="Clear All Filters" />
-                      </button>
-                    </EmptyState>
-                  )) || (
-                    <ListView className="cmpsr-blueprint__components" stacked>
-                      {components.map((listItem, i) => (
-                        <ListItemComponents
-                          listItemParent="cmpsr-blueprint__components"
-                          listItem={listItem}
-                          key={i}
-                          handleRemoveComponent={handleRemoveComponent}
-                          handleComponentDetails={handleComponentDetails}
-                          noEditComponent={noEditComponent}
-                        />
-                      ))}
-                    </ListView>
-                  )}
-                </Tab>
-                <Tab
-                  eventKey="dependencies"
-                  title={
-                    <LabelWithBadge title={formatMessage(messages.dependenciesTabTitle)} badge={dependencies.length} />
-                  }
-                >
-                  {(dependencies.length === 0 && (
-                    <EmptyState
-                      title={formatMessage(messages.emptyStateNoResultsTitle)}
-                      message={formatMessage(messages.emptyStateNoResultsMessage)}
-                    >
-                      <button className="btn btn-link btn-lg" type="button" onClick={() => filterClearValues([])}>
-                        <FormattedMessage defaultMessage="Clear All Filters" />
-                      </button>
-                    </EmptyState>
-                  )) || (
-                    <DependencyListView
-                      className="cmpsr-blueprint__dependencies"
-                      listItems={dependencies}
-                      handleRemoveComponent={handleRemoveComponent}
-                      handleComponentDetails={handleComponentDetails}
-                      noEditComponent={noEditComponent}
-                    />
-                  )}
-                </Tab>
-              </Tabs>
-            )))}
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      {(fetchingState === true && <Loading />) ||
+        ((errorState !== undefined && (
+          <EmptyState
+            title={formatMessage(messages.emptyStateErrorTitle)}
+            message={formatMessage(messages.emptyStateErrorMessage)}
+          />
+        )) ||
+          ((components.length === 0 && filterValues.length === 0 && <div>{props.children}</div>) || (
+            <Tabs id="blueprint-tabs">
+              <Tab
+                eventKey="selected-components"
+                title={<LabelWithBadge title={formatMessage(messages.selectedTabTitle)} badge={components.length} />}
+              >
+                {(components.length === 0 && (
+                  <EmptyState
+                    title={formatMessage(messages.emptyStateNoResultsTitle)}
+                    message={formatMessage(messages.emptyStateNoResultsMessage)}
+                  >
+                    <button className="btn btn-link btn-lg" type="button" onClick={() => filterClearValues([])}>
+                      <FormattedMessage defaultMessage="Clear All Filters" />
+                    </button>
+                  </EmptyState>
+                )) || (
+                  <ListView className="cmpsr-blueprint__components" stacked>
+                    {components.map((listItem, i) => (
+                      <ListItemComponents
+                        listItemParent="cmpsr-blueprint__components"
+                        listItem={listItem}
+                        key={i}
+                        handleRemoveComponent={handleRemoveComponent}
+                        handleComponentDetails={handleComponentDetails}
+                        noEditComponent={noEditComponent}
+                      />
+                    ))}
+                  </ListView>
+                )}
+              </Tab>
+              <Tab
+                eventKey="dependencies"
+                title={
+                  <LabelWithBadge title={formatMessage(messages.dependenciesTabTitle)} badge={dependencies.length} />
+                }
+              >
+                {(dependencies.length === 0 && (
+                  <EmptyState
+                    title={formatMessage(messages.emptyStateNoResultsTitle)}
+                    message={formatMessage(messages.emptyStateNoResultsMessage)}
+                  >
+                    <button className="btn btn-link btn-lg" type="button" onClick={() => filterClearValues([])}>
+                      <FormattedMessage defaultMessage="Clear All Filters" />
+                    </button>
+                  </EmptyState>
+                )) || (
+                  <DependencyListView
+                    className="cmpsr-blueprint__dependencies"
+                    listItems={dependencies}
+                    handleRemoveComponent={handleRemoveComponent}
+                    handleComponentDetails={handleComponentDetails}
+                    noEditComponent={noEditComponent}
+                  />
+                )}
+              </Tab>
+            </Tabs>
+          )))}
+    </div>
+  );
+};
 
 BlueprintContents.propTypes = {
   components: PropTypes.array,
