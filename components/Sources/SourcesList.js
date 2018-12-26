@@ -23,7 +23,7 @@ class SourcesList extends React.PureComponent {
           </thead>
           <tbody>
             {this.props.sources.map((source, i) => (
-              <SourcesListItem source={source} i={i} />
+              <SourcesListItem source={source} key={i} i={i} />
             ))}
           </tbody>
         </table>
