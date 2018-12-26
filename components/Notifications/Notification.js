@@ -32,10 +32,6 @@ class Notification extends React.PureComponent {
     this.clearTimeouts();
   }
 
-  clearTimeouts() {
-    this.timeouts.forEach(clearTimeout);
-  }
-
   setFade(fade) {
     if (fade === true) {
       this.timeouts.push(
@@ -45,6 +41,10 @@ class Notification extends React.PureComponent {
         }, 8000)
       );
     }
+  }
+
+  clearTimeouts() {
+    this.timeouts.forEach(clearTimeout);
   }
 
   stopFade() {
