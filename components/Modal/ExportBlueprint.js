@@ -47,11 +47,13 @@ class ExportBlueprint extends React.Component {
             <div className="modal-body">
               <form className="form-horizontal">
                 <div className="form-group">
-                  <label className="col-sm-3 control-label">
+                  <label className="col-sm-3 control-label" htmlFor="blueprint-name">
                     <FormattedMessage defaultMessage="Blueprint" />
                   </label>
                   <div className="col-sm-9">
-                    <p className="form-control-static">{this.props.blueprint}</p>
+                    <p className="form-control-static" id="blueprint-name">
+                      {this.props.blueprint}
+                    </p>
                   </div>
                 </div>
                 <div className="form-group">
