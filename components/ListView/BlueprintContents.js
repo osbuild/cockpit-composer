@@ -71,11 +71,11 @@ const BlueprintContents = props => {
                   </EmptyState>
                 )) || (
                   <ListView className="cmpsr-blueprint__components" stacked>
-                    {components.map((listItem, i) => (
+                    {components.map(listItem => (
                       <ListItemComponents
                         listItemParent="cmpsr-blueprint__components"
                         listItem={listItem}
-                        key={i}
+                        key={listItem.name}
                         handleRemoveComponent={handleRemoveComponent}
                         handleComponentDetails={handleComponentDetails}
                         noEditComponent={noEditComponent}

@@ -12,8 +12,8 @@ class BlueprintListView extends React.PureComponent {
     const { blueprints } = this.props; // eslint-disable-line no-use-before-define
     return (
       <div className="list-group list-view-pf list-view-pf-view">
-        {blueprints.map((blueprint, i) => (
-          <div className="list-group-item" key={i} data-blueprint={blueprint.name}>
+        {blueprints.map(blueprint => (
+          <div className="list-group-item" key={blueprint.name} data-blueprint={blueprint.name}>
             <div className="list-view-pf-actions">
               <Link to={`/edit/${blueprint.name}`} className="btn btn-default">
                 <FormattedMessage defaultMessage="Edit Blueprint" />

@@ -110,8 +110,8 @@ class Notification extends React.PureComponent {
               <span className="fa fa-ellipsis-v" />
             </button>
             <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight">
-              {notification.kebab.map((action, i) => (
-                <li key={i}>{action}</li>
+              {notification.kebab.map(action => (
+                <li key={action}>{action}</li>
               ))}
               <li>
                 <a href="#" onClick={e => this.handleClose(e, this.props.id)}>
