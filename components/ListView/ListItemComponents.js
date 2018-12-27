@@ -49,9 +49,8 @@ class ListItemComponents extends React.Component {
   handleExpandComponent(event) {
     // the user clicked a list item in the blueprint contents area to expand or collapse
     if (!$(event.target).is("button, a, input, .fa-ellipsis-v")) {
-      const expandState = !this.state.expanded;
-      this.setState({ expanded: expandState });
-      if (expandState === true && this.state.dependencies.length === 0) {
+      this.setState(prevState => ({ expanded: prevState.expanded }));
+      if (!this.state.expanded === true && this.state.dependencies.length === 0) {
         this.getDependencies(this.props.listItem);
       }
     }
@@ -61,7 +60,7 @@ class ListItemComponents extends React.Component {
     const { listItem } = this.props;
     return (
       <div className={`list-pf-item ${this.state.expanded ? "active" : ""}`} data-component={listItem.name}>
-        <div className="list-pf-container" onClick={e => this.handleExpandComponent(e)}>
+        <div className="list-pf-container" onClick={e => this.handleExpandComponent(e)} role="presentation">
           <div className="list-pf-chevron">
             <span className={`fa ${this.state.expanded ? "fa-angle-down" : "fa-angle-right"}`} />
           </div>

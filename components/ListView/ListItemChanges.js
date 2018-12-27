@@ -1,5 +1,3 @@
-/* global $ */
-
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
@@ -30,8 +28,7 @@ class ListItemChanges extends React.Component {
   handleExpandComponent(event) {
     // the user clicked a list item in the blueprint contents area to expand or collapse
     if (!$(event.target).is("button, a, input, .fa-ellipsis-v")) {
-      const expandState = !this.state.expanded;
-      this.setState({ expanded: expandState });
+      this.setState(prevState => ({ expanded: prevState.expanded }));
     }
   }
 
@@ -40,7 +37,7 @@ class ListItemChanges extends React.Component {
 
     return (
       <div className={`list-pf-item ${this.state.expanded ? "active" : ""}`}>
-        <div className="list-pf-container" onClick={this.handleExpandComponent}>
+        <div className="list-pf-container" onClick={this.handleExpandComponent} role="presentation">
           <div className="list-pf-chevron">
             <span className={`fa ${this.state.expanded ? "fa-angle-down" : "fa-angle-right"}`} />
           </div>
