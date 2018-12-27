@@ -142,6 +142,12 @@ class BlueprintPage extends React.Component {
     }
   }
 
+  handleEnterKey(event, action) {
+    if (event.which === 13 || event.keyCode === 13) {
+      this.handleEditDescription(action);
+    }
+  }
+
   handleChangeDescription(event) {
     this.props.setEditDescriptionValue(event.target.value);
   }
@@ -310,6 +316,7 @@ class BlueprintPage extends React.Component {
                           className="form-control"
                           value={editDescriptionValue}
                           onChange={this.handleChangeDescription}
+                          onKeyPress={e => this.handleEnterKey(e, "commit")}
                         />
                         <span className="input-group-btn">
                           <button
@@ -330,7 +337,7 @@ class BlueprintPage extends React.Component {
                       </div>
                     </dd>
                   )) || (
-                    <dd onClick={() => this.handleEditDescription()}>
+                    <dd onClick={() => this.handleEditDescription()} role="presentation">
                       {blueprint.description}
                       <button className="btn btn-link" type="button">
                         <span className="pficon pficon-edit" />

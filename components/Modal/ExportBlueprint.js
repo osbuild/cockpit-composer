@@ -15,6 +15,12 @@ class ExportBlueprint extends React.Component {
     document.execCommand("copy");
   }
 
+  handleEnterKey(event) {
+    if (event.which === 13 || event.keyCode === 13) {
+      this.handleCopy();
+    }
+  }
+
   render() {
     return (
       <div
@@ -39,7 +45,7 @@ class ExportBlueprint extends React.Component {
               </h4>
             </div>
             <div className="modal-body">
-              <form className="form-horizontal" onKeyPress={e => this.handleEnterKey(e)}>
+              <form className="form-horizontal">
                 <div className="form-group">
                   <label className="col-sm-3 control-label">
                     <FormattedMessage defaultMessage="Blueprint" />
@@ -75,6 +81,7 @@ class ExportBlueprint extends React.Component {
                         value={this.props.contents
                           .map(comp => `${comp.name}-${comp.version}-${comp.release}`)
                           .join("\n")}
+                        onKeyPress={e => this.handleEnterKey(e)}
                       />
                       <p>
                         <FormattedMessage
