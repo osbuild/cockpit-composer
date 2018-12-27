@@ -156,7 +156,7 @@ class CreateBlueprint extends React.Component {
                   </strong>
                 </div>
               )}
-              <form className="form-horizontal" onKeyPress={e => this.handleEnterKey(e)}>
+              <form className="form-horizontal">
                 <p className="fields-status-pf">
                   <FormattedMessage
                     defaultMessage="The fields marked with {val} are required."
@@ -185,6 +185,7 @@ class CreateBlueprint extends React.Component {
                       }}
                       onChange={e => this.handleChange(e, "name")}
                       onBlur={e => this.handleErrors(e.target.value)}
+                      onKeyPress={e => this.handleEnterKey(e)}
                     />
                     {createBlueprint.errorNameVisible && (
                       <span className="help-block">
@@ -214,6 +215,7 @@ class CreateBlueprint extends React.Component {
                       className="form-control"
                       value={createBlueprint.blueprint.description}
                       onChange={e => this.handleChange(e, "description")}
+                      onKeyPress={e => this.handleEnterKey(e)}
                     />
                   </div>
                 </div>
