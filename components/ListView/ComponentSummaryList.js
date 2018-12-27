@@ -11,8 +11,7 @@ class ComponentSummaryList extends React.Component {
 
   handleShowAll(event) {
     // the user clicked a list item in the blueprint contents area to expand or collapse
-    const showState = !this.state.showAll;
-    this.setState({ showAll: showState });
+    this.setState(prevState => ({ showAll: !prevState.showAll }));
     event.preventDefault();
     event.stopPropagation();
   }
@@ -35,8 +34,8 @@ class ComponentSummaryList extends React.Component {
           </a>
         </p>
         <div className="list-pf cmpsr-list-pf__compacted">
-          {listItems.map((listItem, i) => (
-            <div className="list-pf-item" key={i}>
+          {listItems.map(listItem => (
+            <div className="list-pf-item" key={listItem.name}>
               <div className="list-pf-container">
                 <div className="list-pf-content list-pf-content-flex ">
                   <div className="list-pf-left">

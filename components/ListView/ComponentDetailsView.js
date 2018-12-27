@@ -134,10 +134,9 @@ class ComponentDetailsView extends React.Component {
 
   handleVersionSelect(event) {
     this.setState({ selectedBuildIndex: event.target.value });
-    const builds = this.state.availableBuilds;
-    const componentData = this.state.componentData;
-    componentData.version = builds[event.target.value].version;
-    componentData.release = builds[event.target.value].release;
+    const { availableBuilds, componentData } = this.state;
+    componentData.version = availableBuilds[event.target.value].version;
+    componentData.release = availableBuilds[event.target.value].release;
     // TODO any data that we display that's defined in builds should be added here
     this.setState({ componentData });
   }
@@ -183,7 +182,7 @@ class ComponentDetailsView extends React.Component {
                 </a>
               </li>
               {this.state.parents.map((parent, i) => (
-                <li key={i}>
+                <li key={parent.name}>
                   <a href="#" onClick={e => this.props.handleComponentDetails(e, parent, this.state.parents[i - 1])}>
                     {parent.name}
                   </a>
@@ -298,7 +297,7 @@ class ComponentDetailsView extends React.Component {
                     onChange={this.handleVersionSelect}
                   >
                     {this.state.availableBuilds.map((build, i) => (
-                      <option key={i} value={i}>
+                      <option key={`${build.version}-${build.release}`} value={i}>
                         {build.version}-{build.release}
                       </option>
                     ))}

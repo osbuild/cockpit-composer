@@ -147,8 +147,8 @@ class CreateImage extends React.Component {
                         {formatMessage(messages.selectOne)}
                       </option>
                       {this.props.imageTypes !== undefined &&
-                        this.props.imageTypes.map((type, i) => (
-                          <option key={i} value={type.name} disabled={!type.enabled}>
+                        this.props.imageTypes.map(type => (
+                          <option key={type.name} value={type.name} disabled={!type.enabled}>
                             {type.label}
                           </option>
                         ))}

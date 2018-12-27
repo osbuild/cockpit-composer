@@ -125,8 +125,15 @@ class PendingChanges extends React.Component {
                       }}
                     />
                     <ul className="list-group">
-                      {this.props.blueprint.localPendingChanges.map((componentUpdated, index) => (
-                        <li className="list-group-item" key={index}>
+                      {this.props.blueprint.localPendingChanges.map(componentUpdated => (
+                        <li
+                          className="list-group-item"
+                          key={
+                            !componentUpdated.componentNew
+                              ? `remove-${componentUpdated.componentOld}`
+                              : `add-${componentUpdated.componentNew}`
+                          }
+                        >
                           {componentUpdated.componentNew && componentUpdated.componentOld && (
                             <div className="row">
                               <div className="col-sm-3">
@@ -210,16 +217,14 @@ class PendingChanges extends React.Component {
                             <div className="col-sm-3">Added</div>
                             <div className="col-sm-9">
                               <ul className="list-unstyled">
-                                {this.props.blueprint.workspacePendingChanges.addedChanges.map(
-                                  (componentUpdated, index) => (
-                                    <li key={index}>
-                                      <strong>
-                                        {Object.values(componentUpdated.new)[0].name}-
-                                        {Object.values(componentUpdated.new)[0].version}
-                                      </strong>
-                                    </li>
-                                  )
-                                )}
+                                {this.props.blueprint.workspacePendingChanges.addedChanges.map(componentUpdated => (
+                                  <li key={componentUpdated.new.Package.name}>
+                                    <strong>
+                                      {Object.values(componentUpdated.new)[0].name}-
+                                      {Object.values(componentUpdated.new)[0].version}
+                                    </strong>
+                                  </li>
+                                ))}
                               </ul>
                             </div>
                           </div>
@@ -231,16 +236,14 @@ class PendingChanges extends React.Component {
                             <div className="col-sm-3">Removed</div>
                             <div className="col-sm-9">
                               <ul className="list-unstyled">
-                                {this.props.blueprint.workspacePendingChanges.deletedChanges.map(
-                                  (componentUpdated, index) => (
-                                    <li key={index}>
-                                      <strong>
-                                        {Object.values(componentUpdated.old)[0].name}-
-                                        {Object.values(componentUpdated.old)[0].version}
-                                      </strong>
-                                    </li>
-                                  )
-                                )}
+                                {this.props.blueprint.workspacePendingChanges.deletedChanges.map(componentUpdated => (
+                                  <li key={componentUpdated.old.Package.name}>
+                                    <strong>
+                                      {Object.values(componentUpdated.old)[0].name}-
+                                      {Object.values(componentUpdated.old)[0].version}
+                                    </strong>
+                                  </li>
+                                ))}
                               </ul>
                             </div>
                           </div>

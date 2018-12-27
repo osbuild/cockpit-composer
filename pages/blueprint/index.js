@@ -18,7 +18,6 @@ import EmptyState from "../../components/EmptyState/EmptyState";
 import BlueprintToolbar from "../../components/Toolbar/BlueprintToolbar";
 import ListView from "../../components/ListView/ListView";
 import ListItemImages from "../../components/ListView/ListItemImages";
-import ListItemChanges from "../../components/ListView/ListItemChanges";
 import { fetchingBlueprintContents, setBlueprintDescription } from "../../core/actions/blueprints";
 import { fetchingComposes, startCompose } from "../../core/actions/composes";
 import {
@@ -96,10 +95,6 @@ class BlueprintPage extends React.Component {
     this.handleChangeDescription = this.handleChangeDescription.bind(this);
     this.handleStartCompose = this.handleStartCompose.bind(this);
     this.downloadUrl = this.downloadUrl.bind(this);
-
-    this.state = {
-      changes: []
-    };
   }
 
   componentWillMount() {
@@ -225,29 +220,6 @@ class BlueprintPage extends React.Component {
     } = this.props.blueprintPage;
     const { formatMessage } = this.props.intl;
 
-    var changes;
-    if (this.state.changes.length > 0) {
-      changes = (
-        <div className="col-sm-6 col-lg-8">
-          <div className="cmpsr-summary-listview">
-            <p>
-              <strong>Changes</strong>
-            </p>
-            <div className="list-pf cmpsr-list-pf list-pf-stacked cmpsr-list-pf__compacted cmpsr-blueprint__changes">
-              {this.state.changes.map((change, i) => (
-                <ListItemChanges
-                  listItem={change}
-                  number={this.state.changes.length - i}
-                  listItemParent="cmpsr-blueprint__changes"
-                  key={i}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      );
-    }
-
     return (
       <Layout className="container-fluid" ref="layout">
         <header className="cmpsr-header">
@@ -367,7 +339,6 @@ class BlueprintPage extends React.Component {
                   )}
                 </dl>
               </div>
-              {changes}
             </div>
           </Tab>
           <Tab eventKey="selected-components" title={formatMessage(messages.selectedComponentsTitle)}>
@@ -446,13 +417,13 @@ class BlueprintPage extends React.Component {
                 </EmptyState>
               )) || (
                 <ListView className="cmpsr-images" stacked>
-                  {composeList.map((compose, i) => (
+                  {composeList.map(compose => (
                     <ListItemImages
                       listItemParent="cmpsr-images"
                       blueprint={this.props.route.params.blueprint}
                       listItem={compose}
                       downloadUrl={this.downloadUrl(compose)}
-                      key={i}
+                      key={compose.id}
                     />
                   ))}
                 </ListView>

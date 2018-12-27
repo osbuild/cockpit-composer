@@ -23,9 +23,9 @@ class ToolbarLayout extends React.Component {
             <Toolbar.Results>
               <Filter.ActiveLabel>Active Filters:</Filter.ActiveLabel>
               <Filter.List>
-                {filters.filterValues.map((item, index) => {
+                {filters.filterValues.map(item => {
                   return (
-                    <Filter.Item key={index} onRemove={this.handleRemoveFilter} filterData={item}>
+                    <Filter.Item key={`${item.key}-${item.value}`} onRemove={this.handleRemoveFilter} filterData={item}>
                       {item.key}: {item.value}
                     </Filter.Item>
                   );

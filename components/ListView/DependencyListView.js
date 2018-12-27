@@ -19,12 +19,12 @@ class DependencyListView extends React.Component {
           />
         </div>
         <ListView className={this.props.className} stacked>
-          {this.props.listItems.map((listItem, i) => (
+          {this.props.listItems.map(listItem => (
             <ListItemComponents
               listItemParent={this.props.id}
               isDependency
               listItem={listItem}
-              key={i}
+              key={listItem.name}
               noEditComponent={this.props.noEditComponent}
               handleRemoveComponent={this.props.handleRemoveComponent}
               handleComponentDetails={this.props.handleComponentDetails}

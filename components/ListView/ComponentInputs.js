@@ -102,8 +102,12 @@ class ComponentInputs extends React.Component {
 
     return (
       <div className="list-pf cmpsr-list-inputs cmpsr-list-pf__compacted list-pf-stacked">
-        {components.map((component, i) => (
-          <div key={i} className={`list-pf-item ${component.active ? "active" : ""}`} data-input={component.name}>
+        {components.map(component => (
+          <div
+            key={component.summary ? component.name : `${component.name}-M`}
+            className={`list-pf-item ${component.active ? "active" : ""}`}
+            data-input={component.name}
+          >
             <div
               className="list-pf-container"
               tabIndex="0"
