@@ -152,7 +152,7 @@ class ListItemComponents extends React.Component {
         </div>
 
         <div className={`list-pf-expansion collapse ${this.state.expanded ? "in" : ""}`}>
-          <div className="list-pf-container" tabIndex="0">
+          <div className="list-pf-container">
             <div className="list-pf-content">
               <div className="container-fluid ">
                 <div className="row">
