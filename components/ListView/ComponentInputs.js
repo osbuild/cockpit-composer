@@ -110,6 +110,7 @@ class ComponentInputs extends React.Component {
           >
             <div
               className="list-pf-container"
+              role="menuitem"
               tabIndex="0"
               data-toggle="tooltip"
               data-trigger="manual"
@@ -119,7 +120,6 @@ class ComponentInputs extends React.Component {
                 component.active ? formatMessage(messages.hideDetails) : formatMessage(messages.showDetails)
               }
               onClick={e => this.props.handleComponentDetails(e, component)}
-              role="presentation"
             >
               <div className="list-pf-content list-pf-content-flex ">
                 <div className="list-pf-left">
