@@ -96,6 +96,13 @@ class ComponentInputs extends React.Component {
     });
   }
 
+  handleEnterKey(event, component) {
+    if (event.which === 13 || event.keyCode === 13) {
+      const { handleComponentDetails } = this.props;
+      handleComponentDetails(event, component);
+    }
+  }
+
   render() {
     const { components } = this.props;
     const { formatMessage } = this.props.intl;
@@ -120,6 +127,7 @@ class ComponentInputs extends React.Component {
                 component.active ? formatMessage(messages.hideDetails) : formatMessage(messages.showDetails)
               }
               onClick={e => this.props.handleComponentDetails(e, component)}
+              onKeyPress={e => this.handleEnterKey(e, component)}
             >
               <div className="list-pf-content list-pf-content-flex ">
                 <div className="list-pf-left">
