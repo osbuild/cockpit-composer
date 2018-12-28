@@ -218,15 +218,26 @@ class CreateImage extends React.Component {
 }
 
 CreateImage.propTypes = {
-  blueprint: PropTypes.object,
-  composeQueue: PropTypes.array,
+  blueprint: PropTypes.shape({
+    changed: PropTypes.bool,
+    description: PropTypes.string,
+    groups: PropTypes.array,
+    id: PropTypes.string,
+    localPendingChanges: PropTypes.array,
+    modules: PropTypes.array,
+    name: PropTypes.string,
+    packages: PropTypes.arrayOf(PropTypes.object),
+    version: PropTypes.string,
+    workspacePendingChanges: PropTypes.object
+  }),
+  composeQueue: PropTypes.arrayOf(PropTypes.object),
   composeQueueFetched: PropTypes.bool,
   handleStartCompose: PropTypes.func,
   fetchingQueue: PropTypes.func,
   clearQueue: PropTypes.func,
   handleHideModal: PropTypes.func,
   setNotifications: PropTypes.func,
-  imageTypes: PropTypes.array,
+  imageTypes: PropTypes.arrayOf(PropTypes.object),
   warningEmpty: PropTypes.bool,
   warningUnsaved: PropTypes.bool,
   setBlueprint: PropTypes.func,

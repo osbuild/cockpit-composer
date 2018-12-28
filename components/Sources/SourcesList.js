@@ -33,7 +33,7 @@ class SourcesList extends React.PureComponent {
 }
 
 SourcesList.propTypes = {
-  sources: PropTypes.array
+  sources: PropTypes.arrayOf(PropTypes.object)
 };
 
 export default SourcesList;

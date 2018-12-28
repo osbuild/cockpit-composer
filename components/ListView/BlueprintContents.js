@@ -116,15 +116,20 @@ const BlueprintContents = props => {
 };
 
 BlueprintContents.propTypes = {
-  components: PropTypes.array,
-  dependencies: PropTypes.array,
+  components: PropTypes.arrayOf(PropTypes.object),
+  dependencies: PropTypes.arrayOf(PropTypes.object),
   handleComponentDetails: PropTypes.func,
   handleRemoveComponent: PropTypes.func,
   intl: intlShape.isRequired,
   noEditComponent: PropTypes.bool,
   filterClearValues: PropTypes.func,
-  filterValues: PropTypes.array,
-  errorState: PropTypes.object,
+  filterValues: PropTypes.arrayOf(PropTypes.object),
+  errorState: PropTypes.shape({
+    message: PropTypes.string,
+    options: PropTypes.object,
+    problem: PropTypes.string,
+    url: PropTypes.string
+  }),
   fetchingState: PropTypes.bool,
   children: PropTypes.node
 };

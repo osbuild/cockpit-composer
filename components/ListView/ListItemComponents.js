@@ -190,9 +190,30 @@ class ListItemComponents extends React.Component {
 }
 
 ListItemComponents.propTypes = {
-  listItem: PropTypes.object,
+  listItem: PropTypes.shape({
+    arch: PropTypes.string,
+    epoch: PropTypes.number,
+    inBlueprint: PropTypes.bool,
+    name: PropTypes.string,
+    release: PropTypes.string,
+    ui_type: PropTypes.string,
+    userSelected: PropTypes.bool,
+    version: PropTypes.string
+  }),
   listItemParent: PropTypes.string,
-  componentDetailsParent: PropTypes.object,
+  componentDetailsParent: PropTypes.shape({
+    active: PropTypes.bool,
+    group_type: PropTypes.string,
+    inBlueprint: PropTypes.bool,
+    name: PropTypes.string,
+    release: PropTypes.string,
+    releaseSelected: PropTypes.string,
+    summary: PropTypes.string,
+    ui_type: PropTypes.string,
+    userSelected: PropTypes.bool,
+    version: PropTypes.string,
+    versionSelected: PropTypes.string
+  }),
   handleComponentDetails: PropTypes.func,
   handleRemoveComponent: PropTypes.func,
   noEditComponent: PropTypes.bool,

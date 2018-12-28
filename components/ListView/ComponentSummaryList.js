@@ -61,7 +61,7 @@ class ComponentSummaryList extends React.Component {
 }
 
 ComponentSummaryList.propTypes = {
-  listItems: PropTypes.array,
+  listItems: PropTypes.arrayOf(PropTypes.object),
   isDependency: PropTypes.bool
 };
 

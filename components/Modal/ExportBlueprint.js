@@ -119,7 +119,7 @@ class ExportBlueprint extends React.Component {
 
 ExportBlueprint.propTypes = {
   blueprint: PropTypes.string,
-  contents: PropTypes.array,
+  contents: PropTypes.arrayOf(PropTypes.object),
   handleHideModal: PropTypes.func
 };
 

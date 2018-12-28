@@ -15,7 +15,11 @@ class SourcesListItem extends React.PureComponent {
 }
 
 SourcesListItem.propTypes = {
-  source: PropTypes.object,
+  source: PropTypes.shape({
+    url: PropTypes.string,
+    name: PropTypes.string,
+    type: PropTypes.string
+  }),
   i: PropTypes.number
 };
 

@@ -102,7 +102,7 @@ class ManageSources extends React.Component {
 }
 
 ManageSources.propTypes = {
-  sources: PropTypes.array,
+  sources: PropTypes.arrayOf(PropTypes.object),
   handleHideModal: PropTypes.func,
   intl: intlShape.isRequired
 };

@@ -82,7 +82,9 @@ class ErrorPage extends React.Component {
 }
 
 ErrorPage.propTypes = {
-  error: PropTypes.object,
+  error: PropTypes.shape({
+    status: PropTypes.number
+  }),
   intl: intlShape.isRequired
 };
 

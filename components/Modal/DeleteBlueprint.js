@@ -65,7 +65,11 @@ class DeleteBlueprint extends React.Component {
 }
 
 DeleteBlueprint.propTypes = {
-  blueprint: PropTypes.object,
+  blueprint: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    visible: PropTypes.bool
+  }),
   handleHideModal: PropTypes.func,
   handleDelete: PropTypes.func
 };

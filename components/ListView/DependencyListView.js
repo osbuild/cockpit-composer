@@ -39,11 +39,23 @@ class DependencyListView extends React.Component {
 
 DependencyListView.propTypes = {
   id: PropTypes.string,
-  listItems: PropTypes.array,
+  listItems: PropTypes.arrayOf(PropTypes.object),
   noEditComponent: PropTypes.bool,
   handleComponentDetails: PropTypes.func,
   handleRemoveComponent: PropTypes.func,
-  componentDetailsParent: PropTypes.object,
+  componentDetailsParent: PropTypes.shape({
+    active: PropTypes.bool,
+    group_type: PropTypes.string,
+    inBlueprint: PropTypes.bool,
+    name: PropTypes.string,
+    release: PropTypes.string,
+    releaseSelected: PropTypes.string,
+    summary: PropTypes.string,
+    ui_type: PropTypes.string,
+    userSelected: PropTypes.bool,
+    version: PropTypes.string,
+    versionSelected: PropTypes.string
+  }),
   className: PropTypes.string
 };
 

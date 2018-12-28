@@ -73,7 +73,11 @@ class FilterInput extends React.Component {
 
 FilterInput.propTypes = {
   emptyState: PropTypes.bool,
-  filters: PropTypes.object,
+  filters: PropTypes.shape({
+    defaultFilterType: PropTypes.string,
+    filterTypes: PropTypes.arrayOf(PropTypes.object),
+    filterValues: PropTypes.arrayOf(PropTypes.object)
+  }),
   filterAddValue: PropTypes.func
 };
 

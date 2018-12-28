@@ -182,7 +182,7 @@ class ComponentInputs extends React.Component {
 }
 
 ComponentInputs.propTypes = {
-  components: PropTypes.array,
+  components: PropTypes.arrayOf(PropTypes.object),
   handleComponentDetails: PropTypes.func,
   handleAddComponent: PropTypes.func,
   handleRemoveComponent: PropTypes.func,

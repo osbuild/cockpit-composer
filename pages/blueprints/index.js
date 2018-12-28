@@ -270,19 +270,43 @@ BlueprintsPage.propTypes = {
   setModalManageSourcesVisible: PropTypes.func,
   fetchingModalManageSourcesContents: PropTypes.func,
   fetchingBlueprints: PropTypes.func,
-  blueprints: PropTypes.array,
-  exportBlueprint: PropTypes.object,
-  deleteBlueprint: PropTypes.object,
-  createImage: PropTypes.object,
-  manageSources: PropTypes.object,
+  blueprints: PropTypes.arrayOf(PropTypes.object),
+  exportBlueprint: PropTypes.shape({
+    contents: PropTypes.arrayOf(PropTypes.object),
+    name: PropTypes.string,
+    visible: PropTypes.bool
+  }),
+  deleteBlueprint: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    visible: PropTypes.bool
+  }),
+  createImage: PropTypes.shape({
+    blueprint: PropTypes.object,
+    imageTypes: PropTypes.arrayOf(PropTypes.object),
+    visible: PropTypes.bool
+  }),
+  manageSources: PropTypes.shape({
+    sources: PropTypes.arrayOf(PropTypes.object),
+    visible: PropTypes.bool
+  }),
   blueprintSortKey: PropTypes.string,
   blueprintSortValue: PropTypes.string,
-  blueprintFilters: PropTypes.object,
+  blueprintFilters: PropTypes.shape({
+    defaultFilterType: PropTypes.string,
+    filterTypes: PropTypes.arrayOf(PropTypes.object),
+    filterValues: PropTypes.arrayOf(PropTypes.object)
+  }),
   blueprintsSortSetValue: PropTypes.func,
   blueprintsFilterAddValue: PropTypes.func,
   blueprintsFilterRemoveValue: PropTypes.func,
   blueprintsFilterClearValues: PropTypes.func,
-  blueprintsError: PropTypes.object,
+  blueprintsError: PropTypes.shape({
+    message: PropTypes.string,
+    options: PropTypes.object,
+    problem: PropTypes.string,
+    url: PropTypes.string
+  }),
   blueprintsLoading: PropTypes.bool,
   startCompose: PropTypes.func,
   intl: intlShape.isRequired
