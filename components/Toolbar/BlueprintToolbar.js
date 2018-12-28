@@ -79,7 +79,21 @@ const BlueprintToolbar = props => (
 );
 
 BlueprintToolbar.propTypes = {
-  handleHistory: PropTypes.func
+  handleHistory: PropTypes.func,
+  filters: PropTypes.object,
+  filterAddValue: PropTypes.func,
+  filterRemoveValue: PropTypes.func,
+  filterClearValues: PropTypes.func,
+  emptyState: PropTypes.bool,
+  componentsSortKey: PropTypes.string,
+  componentsSortSetValue: PropTypes.func,
+  componentsSortValue: PropTypes.string,
+  dependenciesSortSetValue: PropTypes.func,
+  undo: PropTypes.func,
+  pastLength: PropTypes.number,
+  futureLength: PropTypes.number,
+  redo: PropTypes.func,
+  blueprintId: PropTypes.string
 };
 
 export default BlueprintToolbar;
