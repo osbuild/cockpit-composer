@@ -72,7 +72,11 @@ const BlueprintsToolbar = props => (
 );
 
 BlueprintsToolbar.propTypes = {
-  filters: PropTypes.object,
+  filters: PropTypes.shape({
+    defaultFilterType: PropTypes.string,
+    filterTypes: PropTypes.arrayOf(PropTypes.object),
+    filterValues: PropTypes.arrayOf(PropTypes.object)
+  }),
   filterRemoveValue: PropTypes.func,
   filterAddValue: PropTypes.func,
   filterClearValues: PropTypes.func,

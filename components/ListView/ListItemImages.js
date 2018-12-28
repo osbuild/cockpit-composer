@@ -173,7 +173,17 @@ class ListItemImages extends React.Component {
 }
 
 ListItemImages.propTypes = {
-  listItem: PropTypes.object,
+  listItem: PropTypes.shape({
+    blueprint: PropTypes.string,
+    compose_type: PropTypes.string,
+    id: PropTypes.string,
+    image_size: PropTypes.number,
+    job_created: PropTypes.number,
+    job_finished: PropTypes.number,
+    job_started: PropTypes.number,
+    queue_status: PropTypes.string,
+    version: PropTypes.string
+  }),
   blueprint: PropTypes.string,
   deletingCompose: PropTypes.func,
   cancellingCompose: PropTypes.func,

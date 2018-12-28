@@ -43,7 +43,11 @@ class ToolbarLayout extends React.Component {
 }
 
 ToolbarLayout.propTypes = {
-  filters: PropTypes.object,
+  filters: PropTypes.shape({
+    defaultFilterType: PropTypes.string,
+    filterTypes: PropTypes.arrayOf(PropTypes.object),
+    filterValues: PropTypes.arrayOf(PropTypes.object)
+  }),
   filterRemoveValue: PropTypes.func,
   filterClearValues: PropTypes.func,
   children: PropTypes.node

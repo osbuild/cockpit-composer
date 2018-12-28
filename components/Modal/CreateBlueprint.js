@@ -256,13 +256,22 @@ class CreateBlueprint extends React.Component {
 }
 
 CreateBlueprint.propTypes = {
-  blueprintNames: PropTypes.array,
+  blueprintNames: PropTypes.arrayOf(PropTypes.string),
   setModalCreateBlueprintErrorNameVisible: PropTypes.func,
   setModalCreateBlueprintErrorDuplicateVisible: PropTypes.func,
   setModalCreateBlueprintErrorInline: PropTypes.func,
   setModalCreateBlueprintCheckErrors: PropTypes.func,
   setModalCreateBlueprintBlueprint: PropTypes.func,
-  createBlueprint: PropTypes.object,
+  createBlueprint: PropTypes.shape({
+    blueprint: PropTypes.object,
+    checkErrors: PropTypes.bool,
+    errorDuplicateVisible: PropTypes.bool,
+    errorInline: PropTypes.bool,
+    errorNameVisible: PropTypes.bool,
+    inlineError: PropTypes.bool,
+    showErrorDuplicate: PropTypes.bool,
+    showErrorName: PropTypes.bool
+  }),
   creatingBlueprintSucceeded: PropTypes.func
 };
 

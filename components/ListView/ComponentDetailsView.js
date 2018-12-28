@@ -384,7 +384,18 @@ class ComponentDetailsView extends React.Component {
 }
 
 ComponentDetailsView.propTypes = {
-  component: PropTypes.object,
+  component: PropTypes.shape({
+    arch: PropTypes.string,
+    epoch: PropTypes.number,
+    homepage: PropTypes.string,
+    inBlueprint: PropTypes.bool,
+    name: PropTypes.string,
+    release: PropTypes.string,
+    summary: PropTypes.string,
+    ui_type: PropTypes.string,
+    userSelected: PropTypes.bool,
+    version: PropTypes.string
+  }),
   status: PropTypes.string,
   parent: PropTypes.string,
   handleComponentDetails: PropTypes.func,

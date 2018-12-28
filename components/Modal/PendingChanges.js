@@ -270,7 +270,18 @@ class PendingChanges extends React.Component {
 }
 
 PendingChanges.propTypes = {
-  blueprint: PropTypes.object,
+  blueprint: PropTypes.shape({
+    components: PropTypes.arrayOf(PropTypes.object),
+    description: PropTypes.string,
+    groups: PropTypes.array,
+    id: PropTypes.string,
+    localPendingChanges: PropTypes.arrayOf(PropTypes.object),
+    modules: PropTypes.array,
+    name: PropTypes.string,
+    packages: PropTypes.arrayOf(PropTypes.object),
+    version: PropTypes.string,
+    workspacePendingChanges: PropTypes.object
+  }),
   handleHideModal: PropTypes.func,
   setBlueprintComment: PropTypes.func,
   handleCommit: PropTypes.func,

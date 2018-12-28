@@ -78,8 +78,7 @@ class BlueprintListView extends React.PureComponent {
 
 BlueprintListView.propTypes = {
   handleShowModalDelete: PropTypes.func,
-  blueprints: PropTypes.array,
-  setNotifications: PropTypes.func,
+  blueprints: PropTypes.arrayOf(PropTypes.object),
   handleShowModalExport: PropTypes.func,
   handleShowModalCreateImage: PropTypes.func
 };

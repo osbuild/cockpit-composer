@@ -476,32 +476,72 @@ class BlueprintPage extends React.Component {
 }
 
 BlueprintPage.propTypes = {
-  route: PropTypes.object,
+  route: PropTypes.shape({
+    keys: PropTypes.arrayOf(PropTypes.object),
+    load: PropTypes.func,
+    page: PropTypes.string,
+    params: PropTypes.object,
+    path: PropTypes.string,
+    pattern: PropTypes.object
+  }),
   fetchingBlueprintContents: PropTypes.func,
-  blueprint: PropTypes.object,
+  blueprint: PropTypes.shape({
+    components: PropTypes.arrayOf(PropTypes.object),
+    description: PropTypes.string,
+    groups: PropTypes.array,
+    id: PropTypes.string,
+    localPendingChanges: PropTypes.arrayOf(PropTypes.object),
+    modules: PropTypes.array,
+    name: PropTypes.string,
+    packages: PropTypes.arrayOf(PropTypes.object),
+    version: PropTypes.string,
+    workspacePendingChanges: PropTypes.object
+  }),
   fetchingComposes: PropTypes.func,
   composesLoading: PropTypes.bool,
-  composeList: PropTypes.array,
+  composeList: PropTypes.arrayOf(PropTypes.object),
   setActiveTab: PropTypes.func,
   setEditDescriptionValue: PropTypes.func,
   setEditDescriptionVisible: PropTypes.func,
   setActiveComponent: PropTypes.func,
   setActiveComponentParent: PropTypes.func,
   setModalExportBlueprintVisible: PropTypes.func,
-  blueprintPage: PropTypes.object,
+  blueprintPage: PropTypes.shape({
+    activeComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    activeComponentParent: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    activeComponentStatus: PropTypes.string,
+    activeTab: PropTypes.string,
+    editDescriptionVisible: PropTypes.bool
+  }),
   setBlueprintDescription: PropTypes.func,
   exportModalVisible: PropTypes.bool,
-  stopBuild: PropTypes.object,
-  deleteImage: PropTypes.object,
-  createImage: PropTypes.object,
+  stopBuild: PropTypes.shape({
+    blueprintName: PropTypes.string,
+    composeId: PropTypes.string,
+    visible: PropTypes.bool
+  }),
+  deleteImage: PropTypes.shape({
+    blueprintName: PropTypes.string,
+    composeId: PropTypes.string,
+    visible: PropTypes.bool
+  }),
+  createImage: PropTypes.shape({
+    blueprint: PropTypes.object,
+    imageTypes: PropTypes.arrayOf(PropTypes.object),
+    visible: PropTypes.bool
+  }),
   dependenciesSortSetValue: PropTypes.func,
   componentsSortSetValue: PropTypes.func,
-  componentsFilters: PropTypes.object,
+  componentsFilters: PropTypes.shape({
+    defaultFilterType: PropTypes.string,
+    filterTypes: PropTypes.arrayOf(PropTypes.object),
+    filterValues: PropTypes.arrayOf(PropTypes.object)
+  }),
   componentsFilterAddValue: PropTypes.func,
   componentsFilterRemoveValue: PropTypes.func,
   componentsFilterClearValues: PropTypes.func,
-  selectedComponents: PropTypes.array,
-  dependencies: PropTypes.array,
+  selectedComponents: PropTypes.arrayOf(PropTypes.object),
+  dependencies: PropTypes.arrayOf(PropTypes.object),
   componentsSortKey: PropTypes.string,
   componentsSortValue: PropTypes.string,
   setModalCreateImageVisible: PropTypes.func,
@@ -511,7 +551,12 @@ BlueprintPage.propTypes = {
   setModalDeleteImageVisible: PropTypes.func,
   setModalDeleteImageState: PropTypes.func,
   startCompose: PropTypes.func,
-  blueprintContentsError: PropTypes.object,
+  blueprintContentsError: PropTypes.shape({
+    message: PropTypes.string,
+    options: PropTypes.object,
+    problem: PropTypes.string,
+    url: PropTypes.string
+  }),
   blueprintContentsFetching: PropTypes.bool,
   intl: intlShape.isRequired
 };

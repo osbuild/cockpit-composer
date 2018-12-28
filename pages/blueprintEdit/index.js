@@ -811,12 +811,45 @@ class EditBlueprintPage extends React.Component {
 }
 
 EditBlueprintPage.propTypes = {
-  route: PropTypes.object,
-  blueprint: PropTypes.object,
-  createImage: PropTypes.object,
-  inputs: PropTypes.object,
+  route: PropTypes.shape({
+    keys: PropTypes.arrayOf(PropTypes.object),
+    load: PropTypes.func,
+    page: PropTypes.string,
+    params: PropTypes.object,
+    path: PropTypes.string,
+    pattern: PropTypes.object
+  }),
+  blueprint: PropTypes.shape({
+    components: PropTypes.arrayOf(PropTypes.object),
+    description: PropTypes.string,
+    groups: PropTypes.array,
+    id: PropTypes.string,
+    localPendingChanges: PropTypes.arrayOf(PropTypes.object),
+    modules: PropTypes.array,
+    name: PropTypes.string,
+    packages: PropTypes.arrayOf(PropTypes.object),
+    version: PropTypes.string,
+    workspacePendingChanges: PropTypes.object
+  }),
+  createImage: PropTypes.shape({
+    blueprint: PropTypes.object,
+    imageTypes: PropTypes.arrayOf(PropTypes.object),
+    visible: PropTypes.bool
+  }),
+  inputs: PropTypes.shape({
+    inputComponents: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.object)),
+    inputFilters: PropTypes.object,
+    pageSize: PropTypes.number,
+    selectedInput: PropTypes.object,
+    selectedInputPage: PropTypes.number,
+    totalInputs: PropTypes.number
+  }),
   modalActive: PropTypes.string,
-  selectedInput: PropTypes.object,
+  selectedInput: PropTypes.shape({
+    component: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    parent: PropTypes.string,
+    status: PropTypes.string
+  }),
   fetchingBlueprintContents: PropTypes.func,
   setBlueprint: PropTypes.func,
   removeBlueprintComponent: PropTypes.func,
@@ -833,11 +866,15 @@ EditBlueprintPage.propTypes = {
   setModalCreateImageHidden: PropTypes.func,
   dependenciesSortSetValue: PropTypes.func,
   componentsSortSetValue: PropTypes.func,
-  selectedComponents: PropTypes.array,
-  dependencies: PropTypes.array,
+  selectedComponents: PropTypes.arrayOf(PropTypes.object),
+  dependencies: PropTypes.arrayOf(PropTypes.object),
   componentsSortKey: PropTypes.string,
   componentsSortValue: PropTypes.string,
-  componentsFilters: PropTypes.object,
+  componentsFilters: PropTypes.shape({
+    defaultFilterType: PropTypes.string,
+    filterTypes: PropTypes.arrayOf(PropTypes.object),
+    filterValues: PropTypes.arrayOf(PropTypes.object)
+  }),
   componentsFilterAddValue: PropTypes.func,
   componentsFilterRemoveValue: PropTypes.func,
   componentsFilterClearValues: PropTypes.func,
@@ -849,7 +886,12 @@ EditBlueprintPage.propTypes = {
   deleteWorkspace: PropTypes.func,
   deleteHistory: PropTypes.func,
   startCompose: PropTypes.func,
-  blueprintContentsError: PropTypes.object,
+  blueprintContentsError: PropTypes.shape({
+    message: PropTypes.string,
+    options: PropTypes.object,
+    problem: PropTypes.string,
+    url: PropTypes.string
+  }),
   blueprintContentsFetching: PropTypes.bool,
   intl: intlShape.isRequired
 };

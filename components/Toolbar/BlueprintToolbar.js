@@ -80,7 +80,11 @@ const BlueprintToolbar = props => (
 
 BlueprintToolbar.propTypes = {
   handleHistory: PropTypes.func,
-  filters: PropTypes.object,
+  filters: PropTypes.shape({
+    defaultFilterType: PropTypes.string,
+    filterTypes: PropTypes.arrayOf(PropTypes.object),
+    filterValues: PropTypes.arrayOf(PropTypes.object)
+  }),
   filterAddValue: PropTypes.func,
   filterRemoveValue: PropTypes.func,
   filterClearValues: PropTypes.func,
