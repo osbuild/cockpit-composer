@@ -72,9 +72,16 @@ const BlueprintsToolbar = props => (
 );
 
 BlueprintsToolbar.propTypes = {
+  filters: PropTypes.object,
+  filterRemoveValue: PropTypes.func,
+  filterAddValue: PropTypes.func,
+  filterClearValues: PropTypes.func,
   sortSetValue: PropTypes.func,
   errorState: PropTypes.bool,
-  handleShowModalManageSources: PropTypes.func
+  handleShowModalManageSources: PropTypes.func,
+  emptyState: PropTypes.bool,
+  sortKey: PropTypes.string,
+  sortValue: PropTypes.string
 };
 
 export default BlueprintsToolbar;

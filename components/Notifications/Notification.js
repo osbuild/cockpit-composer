@@ -133,7 +133,9 @@ class Notification extends React.PureComponent {
 }
 
 Notification.propTypes = {
-  notification: PropTypes.object
+  notification: PropTypes.object,
+  setNotifications: PropTypes.func,
+  id: PropTypes.string
 };
 
 export default Notification;
