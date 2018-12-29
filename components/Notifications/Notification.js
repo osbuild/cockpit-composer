@@ -88,7 +88,6 @@ class Notification extends React.PureComponent {
       <div
         className={`toast-pf alert ${modifier} ${notification.dismiss && "alert-dismissable"}`}
         id={`cmpsr-toast-${this.props.id}`}
-        ref="notification"
         onMouseOver={() => this.stopFade()}
         onFocus={() => this.stopFade()}
         onMouseOut={() => this.setFade(notification.fade)}
