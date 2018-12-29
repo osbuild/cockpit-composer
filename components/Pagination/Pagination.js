@@ -34,8 +34,8 @@ class Pagination extends React.Component {
     this.setState({ pageValue: newProps.currentPage });
     // If the input has focus when the page value is updated, then select the
     // text
-    if (this.refs.paginationPage === document.activeElement) {
-      this.refs.paginationPage.select();
+    if (this.paginationPage === document.activeElement) {
+      this.paginationPage.select();
     }
   }
 
@@ -51,11 +51,11 @@ class Pagination extends React.Component {
     if (!isNaN(event.target.value) && event.target.value > 0) {
       page = event.target.value - 1;
     } else {
-      page = "";
+      page = 0;
     }
     // only update the value if the value is within the range or is '' (in case
     // the user is clearing the value to type a new one)
-    if (!(page > Math.ceil(this.props.totalItems / this.props.pageSize - 1)) || page === "") {
+    if (!(page > Math.ceil(this.props.totalItems / this.props.pageSize - 1))) {
       this.setState({ pageValue: page });
     } else {
       event.target.select();
@@ -70,41 +70,22 @@ class Pagination extends React.Component {
     const totalPages = Math.ceil(totalItems / pageSize - 1);
     const startItems = (currentPage + 1) * pageSize - pageSize + 1;
     const endItems = (currentPage === totalPages && totalItems) || (currentPage + 1) * pageSize;
-    let pageInput = null;
-    if (this.state.pageValue !== "") {
-      pageInput = (
-        <input
-          className="pagination-pf-page form-control"
-          ref="paginationPage"
-          type="text"
-          value={this.state.pageValue + 1}
-          id="cmpsr-blueprint-inputs-page"
-          aria-label={formatMessage(messages.currentPage)}
-          onClick={() => {
-            this.refs.paginationPage.select();
-          }}
-          onChange={this.handleChange}
-          onKeyPress={e => this.props.handlePagination(e)}
-          onBlur={this.handleBlur}
-        />
-      );
-    } else {
-      pageInput = (
-        <input
-          className="pagination-pf-page form-control"
-          ref="paginationPage"
-          type="text"
-          value=""
-          id="cmpsr-blueprint-inputs-page"
-          aria-label={formatMessage(messages.currentPage)}
-          onClick={() => {
-            this.refs.paginationPage.select();
-          }}
-          onChange={this.handleChange}
-          onBlur={this.handleBlur}
-        />
-      );
-    }
+    const pageInput = (
+      <input
+        className="pagination-pf-page form-control"
+        ref={c => (this.paginationPage = c)}
+        type="text"
+        value={this.state.pageValue + 1}
+        id="cmpsr-blueprint-inputs-page"
+        aria-label={formatMessage(messages.currentPage)}
+        onClick={() => {
+          this.paginationPage.select();
+        }}
+        onChange={this.handleChange}
+        onKeyPress={e => this.props.handlePagination(e)}
+        onBlur={this.handleBlur}
+      />
+    );
     let previousPage = null;
     if (currentPage === 0) {
       previousPage = (

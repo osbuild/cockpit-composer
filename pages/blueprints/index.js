@@ -85,7 +85,7 @@ class BlueprintsPage extends React.Component {
   }
 
   setNotifications() {
-    this.refs.layout.setNotifications();
+    this.layout.setNotifications();
   }
 
   handleDelete(event, blueprint) {
@@ -175,7 +175,7 @@ class BlueprintsPage extends React.Component {
     } = this.props;
     const { formatMessage } = this.props.intl;
     return (
-      <Layout className="container-fluid" ref="layout">
+      <Layout className="container-fluid" ref={c => (this.layout = c)}>
         <BlueprintsToolbar
           emptyState={blueprints.length === 0 && blueprintFilters.filterValues.length === 0}
           errorState={blueprintsError !== null}

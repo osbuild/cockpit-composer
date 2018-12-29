@@ -113,7 +113,7 @@ class BlueprintPage extends React.Component {
   }
 
   setNotifications() {
-    this.refs.layout.setNotifications();
+    this.layout.setNotifications();
   }
 
   handleTabChanged(key) {
@@ -227,7 +227,7 @@ class BlueprintPage extends React.Component {
     const { formatMessage } = this.props.intl;
 
     return (
-      <Layout className="container-fluid" ref="layout">
+      <Layout className="container-fluid" ref={c => (this.layout = c)}>
         <header className="cmpsr-header">
           <ol className="breadcrumb">
             <li>
