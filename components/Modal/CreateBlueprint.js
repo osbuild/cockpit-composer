@@ -275,6 +275,17 @@ CreateBlueprint.propTypes = {
   creatingBlueprintSucceeded: PropTypes.func
 };
 
+CreateBlueprint.defaultProps = {
+  blueprintNames: [],
+  setModalCreateBlueprintErrorNameVisible: function() {},
+  setModalCreateBlueprintErrorDuplicateVisible: function() {},
+  setModalCreateBlueprintErrorInline: function() {},
+  setModalCreateBlueprintCheckErrors: function() {},
+  setModalCreateBlueprintBlueprint: function() {},
+  createBlueprint: {},
+  creatingBlueprintSucceeded: function() {}
+};
+
 const mapStateToProps = state => ({
   createBlueprint: state.modals.createBlueprint
 });

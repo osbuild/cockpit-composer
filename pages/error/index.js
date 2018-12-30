@@ -88,4 +88,8 @@ ErrorPage.propTypes = {
   intl: intlShape.isRequired
 };
 
+ErrorPage.defaultProps = {
+  error: {}
+};
+
 export default injectIntl(ErrorPage);

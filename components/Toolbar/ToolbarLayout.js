@@ -53,4 +53,11 @@ ToolbarLayout.propTypes = {
   children: PropTypes.node
 };
 
+ToolbarLayout.defaultProps = {
+  filters: {},
+  filterRemoveValue: function() {},
+  filterClearValues: function() {},
+  children: React.createElement("div")
+};
+
 export default ToolbarLayout;

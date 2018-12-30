@@ -36,4 +36,8 @@ SourcesList.propTypes = {
   sources: PropTypes.arrayOf(PropTypes.object)
 };
 
+SourcesList.defaultProps = {
+  sources: []
+};
+
 export default SourcesList;

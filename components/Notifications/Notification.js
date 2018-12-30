@@ -144,4 +144,10 @@ Notification.propTypes = {
   id: PropTypes.string
 };
 
+Notification.defaultProps = {
+  notification: {},
+  setNotifications: function() {},
+  id: ""
+};
+
 export default Notification;

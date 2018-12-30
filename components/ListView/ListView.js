@@ -14,4 +14,11 @@ ListView.propTypes = {
   className: PropTypes.string
 };
 
+ListView.defaultProps = {
+  id: "",
+  children: React.createElement("div"),
+  stacked: true,
+  className: ""
+};
+
 export default ListView;

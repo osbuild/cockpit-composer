@@ -194,6 +194,18 @@ ListItemImages.propTypes = {
   downloadUrl: PropTypes.string
 };
 
+ListItemImages.defaultProps = {
+  listItem: {},
+  blueprint: "",
+  deletingCompose: function() {},
+  cancellingCompose: function() {},
+  setModalStopBuildState: function() {},
+  setModalStopBuildVisible: function() {},
+  setModalDeleteImageState: function() {},
+  setModalDeleteImageVisible: function() {},
+  downloadUrl: ""
+};
+
 const mapDispatchToProps = dispatch => ({
   deletingCompose: compose => {
     dispatch(deletingCompose(compose));

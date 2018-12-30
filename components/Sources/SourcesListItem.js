@@ -23,4 +23,9 @@ SourcesListItem.propTypes = {
   i: PropTypes.number
 };
 
+SourcesListItem.defaultProps = {
+  source: {},
+  i: 0
+};
+
 export default SourcesListItem;

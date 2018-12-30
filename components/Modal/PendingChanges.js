@@ -287,6 +287,14 @@ PendingChanges.propTypes = {
   handleCommit: PropTypes.func,
   intl: intlShape.isRequired
 };
+
+PendingChanges.defaultProps = {
+  blueprint: {},
+  handleHideModal: function() {},
+  setBlueprintComment: function() {},
+  handleCommit: function() {}
+};
+
 const mapStateToProps = state => ({
   modals: state.modals
 });

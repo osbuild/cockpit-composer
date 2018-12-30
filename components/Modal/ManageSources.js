@@ -106,6 +106,12 @@ ManageSources.propTypes = {
   handleHideModal: PropTypes.func,
   intl: intlShape.isRequired
 };
+
+ManageSources.defaultProps = {
+  sources: [],
+  handleHideModal: function() {}
+};
+
 const mapStateToProps = state => ({
   modals: state.modals
 });

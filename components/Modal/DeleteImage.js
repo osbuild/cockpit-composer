@@ -77,6 +77,13 @@ DeleteImage.propTypes = {
   deletingCompose: PropTypes.func
 };
 
+DeleteImage.defaultProps = {
+  blueprintName: "",
+  composeId: "",
+  handleHideModal: function() {},
+  deletingCompose: function() {}
+};
+
 const mapDispatchToProps = dispatch => ({
   deletingCompose: compose => {
     dispatch(deletingCompose(compose));

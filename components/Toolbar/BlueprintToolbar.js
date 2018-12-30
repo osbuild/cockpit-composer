@@ -100,4 +100,22 @@ BlueprintToolbar.propTypes = {
   blueprintId: PropTypes.string
 };
 
+BlueprintToolbar.defaultProps = {
+  handleHistory: function() {},
+  filters: {},
+  filterAddValue: function() {},
+  filterRemoveValue: function() {},
+  filterClearValues: function() {},
+  emptyState: false,
+  componentsSortKey: "",
+  componentsSortSetValue: function() {},
+  componentsSortValue: "",
+  dependenciesSortSetValue: function() {},
+  undo: function() {},
+  pastLength: 0,
+  futureLength: 0,
+  redo: function() {},
+  blueprintId: ""
+};
+
 export default BlueprintToolbar;

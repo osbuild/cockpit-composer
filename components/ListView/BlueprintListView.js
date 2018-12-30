@@ -83,4 +83,11 @@ BlueprintListView.propTypes = {
   handleShowModalCreateImage: PropTypes.func
 };
 
+BlueprintListView.defaultProps = {
+  handleShowModalDelete: function() {},
+  blueprints: [],
+  handleShowModalExport: function() {},
+  handleShowModalCreateImage: function() {}
+};
+
 export default BlueprintListView;

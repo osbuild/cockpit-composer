@@ -123,4 +123,10 @@ ExportBlueprint.propTypes = {
   handleHideModal: PropTypes.func
 };
 
+ExportBlueprint.defaultProps = {
+  blueprint: "",
+  contents: [],
+  handleHideModal: function() {}
+};
+
 export default ExportBlueprint;

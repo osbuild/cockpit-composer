@@ -180,4 +180,12 @@ Pagination.propTypes = {
   intl: intlShape.isRequired
 };
 
+Pagination.defaultProps = {
+  currentPage: 0,
+  cssClass: "",
+  totalItems: 0,
+  pageSize: 0,
+  handlePagination: function() {}
+};
+
 export default injectIntl(Pagination);

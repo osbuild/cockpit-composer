@@ -46,4 +46,10 @@ ComponentTypeIcons.propTypes = {
   componentInBlueprint: PropTypes.bool
 };
 
+ComponentTypeIcons.defaultProps = {
+  componentType: "",
+  compDetails: false,
+  componentInBlueprint: false
+};
+
 export default ComponentTypeIcons;

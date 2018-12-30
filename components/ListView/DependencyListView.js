@@ -59,4 +59,14 @@ DependencyListView.propTypes = {
   className: PropTypes.string
 };
 
+DependencyListView.defaultProps = {
+  id: "",
+  listItems: [],
+  noEditComponent: true,
+  handleComponentDetails: function() {},
+  handleRemoveComponent: function() {},
+  componentDetailsParent: {},
+  className: ""
+};
+
 export default DependencyListView;

@@ -405,4 +405,14 @@ ComponentDetailsView.propTypes = {
   intl: intlShape.isRequired
 };
 
+ComponentDetailsView.defaultProps = {
+  component: {},
+  status: "",
+  parent: "",
+  handleComponentDetails: function() {},
+  handleRemoveComponent: function() {},
+  handleAddComponent: function() {},
+  handleUpdateComponent: function() {}
+};
+
 export default injectIntl(ComponentDetailsView);

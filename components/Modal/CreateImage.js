@@ -244,6 +244,21 @@ CreateImage.propTypes = {
   intl: intlShape.isRequired
 };
 
+CreateImage.defaultProps = {
+  blueprint: {},
+  composeQueue: [],
+  composeQueueFetched: true,
+  handleStartCompose: function() {},
+  fetchingQueue: function() {},
+  clearQueue: function() {},
+  handleHideModal: function() {},
+  setNotifications: function() {},
+  imageTypes: [],
+  warningEmpty: false,
+  warningUnsaved: false,
+  setBlueprint: function() {}
+};
+
 const mapStateToProps = state => ({
   composeQueue: state.composes.queue,
   composeQueueFetched: state.composes.queueFetched
