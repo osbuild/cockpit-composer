@@ -189,4 +189,11 @@ ComponentInputs.propTypes = {
   intl: intlShape.isRequired
 };
 
+ComponentInputs.defaultProps = {
+  components: [],
+  handleComponentDetails: function() {},
+  handleAddComponent: function() {},
+  handleRemoveComponent: function() {}
+};
+
 export default injectIntl(ComponentInputs);

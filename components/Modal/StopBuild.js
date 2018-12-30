@@ -77,6 +77,13 @@ StopBuild.propTypes = {
   cancellingCompose: PropTypes.func
 };
 
+StopBuild.defaultProps = {
+  blueprintName: "",
+  composeId: "",
+  handleHideModal: function() {},
+  cancellingCompose: function() {}
+};
+
 const mapDispatchToProps = dispatch => ({
   cancellingCompose: compose => {
     dispatch(cancellingCompose(compose));

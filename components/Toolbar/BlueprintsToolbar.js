@@ -88,4 +88,17 @@ BlueprintsToolbar.propTypes = {
   sortValue: PropTypes.string
 };
 
+BlueprintsToolbar.defaultProps = {
+  filters: {},
+  filterRemoveValue: function() {},
+  filterAddValue: function() {},
+  filterClearValues: function() {},
+  sortSetValue: function() {},
+  errorState: false,
+  handleShowModalManageSources: function() {},
+  emptyState: false,
+  sortKey: "",
+  sortValue: ""
+};
+
 export default BlueprintsToolbar;

@@ -312,6 +312,37 @@ BlueprintsPage.propTypes = {
   intl: intlShape.isRequired
 };
 
+BlueprintsPage.defaultProps = {
+  deletingBlueprint: function() {},
+  setModalCreateImageVisible: function() {},
+  setModalCreateImageHidden: function() {},
+  setModalDeleteBlueprintVisible: function() {},
+  setModalDeleteBlueprintName: function() {},
+  setModalDeleteBlueprintId: function() {},
+  setModalExportBlueprintVisible: function() {},
+  setModalExportBlueprintName: function() {},
+  setModalExportBlueprintContents: function() {},
+  fetchingModalExportBlueprintContents: function() {},
+  setModalManageSourcesVisible: function() {},
+  fetchingModalManageSourcesContents: function() {},
+  fetchingBlueprints: function() {},
+  blueprints: [],
+  exportBlueprint: {},
+  deleteBlueprint: {},
+  createImage: {},
+  manageSources: {},
+  blueprintSortKey: "",
+  blueprintSortValue: "",
+  blueprintFilters: {},
+  blueprintsSortSetValue: function() {},
+  blueprintsFilterAddValue: function() {},
+  blueprintsFilterRemoveValue: function() {},
+  blueprintsFilterClearValues: function() {},
+  blueprintsError: {},
+  blueprintsLoading: false,
+  startCompose: function() {}
+};
+
 const makeMapStateToProps = () => {
   const getSortedBlueprints = makeGetSortedBlueprints();
   const getFilteredBlueprints = makeGetFilteredBlueprints();

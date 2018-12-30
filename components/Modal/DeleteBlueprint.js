@@ -74,4 +74,10 @@ DeleteBlueprint.propTypes = {
   handleDelete: PropTypes.func
 };
 
+DeleteBlueprint.defaultProps = {
+  blueprint: {},
+  handleHideModal: function() {},
+  handleDelete: function() {}
+};
+
 export default DeleteBlueprint;

@@ -16,3 +16,8 @@ LabelWithBadge.propTypes = {
   title: PropTypes.string,
   badge: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
+
+LabelWithBadge.defaultProps = {
+  title: "",
+  badge: ""
+};

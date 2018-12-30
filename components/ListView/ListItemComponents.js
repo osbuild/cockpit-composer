@@ -19,8 +19,10 @@ class ListItemComponents extends React.Component {
     const olditem = this.props.listItem;
     const newitem = newProps.listItem;
     const parent = this.props.listItemParent;
-    if (olditem !== newitem) {
-      if ($(`.${parent} [data-name='${newitem.name}']`).hasClass("list-view-pf-expand-active")) {
+    // Selected Components has listItemParent prop, but Dependencies does not.
+    // and this expanded setting just works with Selected Components.
+    if (parent && JSON.stringify(olditem) !== JSON.stringify(newitem)) {
+      if ($(`.${parent} [data-component="${newitem.name}"]`).hasClass("list-view-pf-expand-active")) {
         this.setState({ expanded: true });
       } else {
         this.setState({ expanded: false });
@@ -218,6 +220,16 @@ ListItemComponents.propTypes = {
   handleRemoveComponent: PropTypes.func,
   noEditComponent: PropTypes.bool,
   isDependency: PropTypes.bool
+};
+
+ListItemComponents.defaultProps = {
+  listItem: {},
+  listItemParent: "",
+  componentDetailsParent: {},
+  handleComponentDetails: function() {},
+  handleRemoveComponent: function() {},
+  noEditComponent: false,
+  isDependency: false
 };
 
 export default ListItemComponents;

@@ -561,6 +561,46 @@ BlueprintPage.propTypes = {
   intl: intlShape.isRequired
 };
 
+BlueprintPage.defaultProps = {
+  route: {},
+  fetchingBlueprintContents: function() {},
+  blueprint: {},
+  fetchingComposes: function() {},
+  composesLoading: false,
+  composeList: [],
+  setActiveTab: function() {},
+  setEditDescriptionValue: function() {},
+  setEditDescriptionVisible: function() {},
+  setActiveComponent: function() {},
+  setActiveComponentParent: function() {},
+  setModalExportBlueprintVisible: function() {},
+  blueprintPage: {},
+  setBlueprintDescription: function() {},
+  exportModalVisible: false,
+  stopBuild: {},
+  deleteImage: {},
+  createImage: {},
+  dependenciesSortSetValue: function() {},
+  componentsSortSetValue: function() {},
+  componentsFilters: {},
+  componentsFilterAddValue: function() {},
+  componentsFilterRemoveValue: function() {},
+  componentsFilterClearValues: function() {},
+  selectedComponents: [],
+  dependencies: [],
+  componentsSortKey: "",
+  componentsSortValue: "",
+  setModalCreateImageVisible: function() {},
+  setModalCreateImageHidden: function() {},
+  setModalStopBuildVisible: function() {},
+  setModalStopBuildState: function() {},
+  setModalDeleteImageVisible: function() {},
+  setModalDeleteImageState: function() {},
+  startCompose: function() {},
+  blueprintContentsError: {},
+  blueprintContentsFetching: false
+};
+
 const makeMapStateToProps = () => {
   const getBlueprintById = makeGetBlueprintById();
   const getSortedSelectedComponents = makeGetSortedSelectedComponents();

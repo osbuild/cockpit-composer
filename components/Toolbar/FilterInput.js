@@ -81,4 +81,10 @@ FilterInput.propTypes = {
   filterAddValue: PropTypes.func
 };
 
+FilterInput.defaultProps = {
+  emptyState: false,
+  filters: {},
+  filterAddValue: function() {}
+};
+
 export default FilterInput;

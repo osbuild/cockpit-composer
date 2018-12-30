@@ -48,7 +48,7 @@ const BlueprintContents = props => {
   return (
     <div>
       {(fetchingState === true && <Loading />) ||
-        ((errorState !== undefined && (
+        ((Object.keys(errorState).length && (
           <EmptyState
             title={formatMessage(messages.emptyStateErrorTitle)}
             message={formatMessage(messages.emptyStateErrorMessage)}
@@ -132,6 +132,19 @@ BlueprintContents.propTypes = {
   }),
   fetchingState: PropTypes.bool,
   children: PropTypes.node
+};
+
+BlueprintContents.defaultProps = {
+  components: [],
+  dependencies: [],
+  handleComponentDetails: function() {},
+  handleRemoveComponent: function() {},
+  noEditComponent: false,
+  filterClearValues: function() {},
+  filterValues: [],
+  errorState: {},
+  fetchingState: false,
+  children: React.createElement("div")
 };
 
 export default injectIntl(BlueprintContents);

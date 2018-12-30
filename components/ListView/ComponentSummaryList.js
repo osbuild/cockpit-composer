@@ -65,4 +65,9 @@ ComponentSummaryList.propTypes = {
   isDependency: PropTypes.bool
 };
 
+ComponentSummaryList.defaultProps = {
+  listItems: [],
+  isDependency: false
+};
+
 export default ComponentSummaryList;
