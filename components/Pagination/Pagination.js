@@ -21,7 +21,7 @@ const messages = defineMessages({
 class Pagination extends React.Component {
   constructor() {
     super();
-    this.state = { pageValue: "" };
+    this.state = { pageValue: 0 };
     this.handleBlur = this.handleBlur.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }

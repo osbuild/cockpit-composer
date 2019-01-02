@@ -1,8 +1,7 @@
-/* global $ */
-
 import React from "react";
 import { defineMessages, injectIntl, intlShape } from "react-intl";
 import PropTypes from "prop-types";
+import shortid from "shortid";
 import ComponentTypeIcons from "./ComponentTypeIcons";
 
 const messages = defineMessages({
@@ -111,7 +110,7 @@ class ComponentInputs extends React.Component {
       <div className="list-pf cmpsr-list-inputs cmpsr-list-pf__compacted list-pf-stacked">
         {components.map(component => (
           <div
-            key={component.summary ? component.name : `${component.name}-M`}
+            key={shortid.generate()}
             className={`list-pf-item ${component.active ? "active" : ""}`}
             data-input={component.name}
           >

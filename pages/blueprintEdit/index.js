@@ -847,7 +847,7 @@ EditBlueprintPage.propTypes = {
   modalActive: PropTypes.string,
   selectedInput: PropTypes.shape({
     component: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    parent: PropTypes.string,
+    parent: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     status: PropTypes.string
   }),
   fetchingBlueprintContents: PropTypes.func,
