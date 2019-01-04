@@ -511,7 +511,8 @@ BlueprintPage.propTypes = {
     activeComponentParent: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     activeComponentStatus: PropTypes.string,
     activeTab: PropTypes.string,
-    editDescriptionVisible: PropTypes.bool
+    editDescriptionVisible: PropTypes.bool,
+    editDescriptionValue: PropTypes.string
   }),
   setBlueprintDescription: PropTypes.func,
   exportModalVisible: PropTypes.bool,
