@@ -216,7 +216,6 @@
           ]
         }
       ],
-      "react/destructuring-assignment": 0,
       "react/jsx-wrap-multilines": [
         "error",
         {
@@ -238,6 +237,7 @@
           ]
         }
       ],
+      "react/destructuring-assignment": "off",
       "jsx-a11y/no-onchange": "off",
       "jsx-a11y/label-has-for": "off",
       "redux-saga/no-unhandled-errors": 0,

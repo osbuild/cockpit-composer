@@ -280,7 +280,8 @@ PendingChanges.propTypes = {
     name: PropTypes.string,
     packages: PropTypes.arrayOf(PropTypes.object),
     version: PropTypes.string,
-    workspacePendingChanges: PropTypes.object
+    workspacePendingChanges: PropTypes.object,
+    comment: PropTypes.string
   }),
   handleHideModal: PropTypes.func,
   setBlueprintComment: PropTypes.func,
