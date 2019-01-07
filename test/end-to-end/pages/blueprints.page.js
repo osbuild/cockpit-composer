@@ -4,14 +4,18 @@ class BlueprintsPage {
     this.name = name;
   }
 
+  get blueprintListView() {
+    return ".list-view-pf-view .list-group-item";
+  }
+
   loading() {
-    const selector = ".list-view-pf-view";
-    browser.waitUntil(
-      () => browser.isVisible(selector),
-      timeout,
-      `Loading Blueprints page failed because selector ${selector} cannot be found`
-    );
-    browser.waitForText(selector, timeout);
+    $(this.blueprintListView).waitForExist(timeout);
+    browser.waitUntil(() => $$(this.blueprintListView).length >= 3, timeout, "Loading Blueprints page failed");
+  }
+
+  filterLoading() {
+    $(this.blueprintListView).waitForExist(timeout);
+    browser.waitUntil(() => $$(this.blueprintListView).length === 1, timeout, "Filtered blueprint does not exist");
   }
 
   get sortAscButton() {
@@ -91,10 +95,6 @@ class BlueprintsPage {
 
   waitForActiveFiltersNotExist() {
     browser.waitForExist("p=Active Filters:", timeout, true);
-  }
-
-  get blueprintListView() {
-    return ".list-view-pf-view .list-group-item";
   }
 }
 
