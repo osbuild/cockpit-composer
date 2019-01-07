@@ -34,21 +34,25 @@ class AvailableComponents {
   }
 
   addPackageByName(name) {
+    const plusButton = `[data-input=${name}] .fa-plus`;
+    browser.waitForExist(plusButton, timeout);
     // browser.click() does not work with Edge due to "Element is Obscured" error.
     // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/5238133/
-    browser.execute(plusButton => {
-      document.querySelector(plusButton).click();
+    browser.execute(button => {
+      document.querySelector(button).click();
       return true;
-    }, `[data-input=${name}] .fa-plus`);
+    }, plusButton);
   }
 
   removePackageByName(name) {
+    const minusButton = `[data-input=${name}] .fa-minus`;
+    browser.waitForExist(minusButton, timeout);
     // browser.click() does not work with Edge due to "Element is Obscured" error.
     // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/5238133/
-    browser.execute(plusButton => {
-      document.querySelector(plusButton).click();
+    browser.execute(button => {
+      document.querySelector(button).click();
       return true;
-    }, `[data-input=${name}] .fa-minus`);
+    }, minusButton);
   }
 
   iconByName(name) {

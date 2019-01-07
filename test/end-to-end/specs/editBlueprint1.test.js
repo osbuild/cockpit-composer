@@ -89,6 +89,14 @@ describe("Edit Blueprint Page", function() {
         editBlueprintPage.filterBox.setValue(filterContent);
         browser.keys("Enter");
         browser.waitForExist(editBlueprintPage.filterContentLabel, timeout);
+        browser.waitUntil(
+          () =>
+            $(editBlueprintPage.filterContentLabel)
+              .getText()
+              .includes(filterContent),
+          timeout,
+          `Cannot find package - ${filterContent}`
+        );
       });
 
       it(`Filtered package name should contain "${filterContent}" and should be cleared by clicking "Clear All Filter" link`, function() {
