@@ -262,6 +262,9 @@
       "mocha": true
     }
   },
+  "prettier": {
+    "printWidth": 120
+  },
   "stylelint": {
     "extends": "stylelint-config-standard",
     "rules": {
