@@ -60,7 +60,7 @@ describe("Blueprints Page", function() {
       blueprintsPage.filterBox.setValue(name);
       browser.keys("Enter");
       blueprintsPage.waitForActiveFiltersExist();
-      blueprintsPage.loading();
+      blueprintsPage.filterLoading();
     });
 
     it("should have correct filter result and clear filter result by clicking Clear All Filters link", function() {
