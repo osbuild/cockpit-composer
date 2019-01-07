@@ -44,6 +44,14 @@ describe("Edit Blueprint Page", function() {
         editBlueprintPage.filterBox.setValue(packageName);
         browser.keys("Enter");
         browser.waitForExist(editBlueprintPage.filterContentLabel, timeout);
+        browser.waitUntil(
+          () =>
+            $(editBlueprintPage.filterContentLabel)
+              .getText()
+              .includes(packageName),
+          timeout,
+          `Cannot find package - ${packageName}`
+        );
         // add package to blueprint
         availableComponent.addPackageByName(packageName);
         selectedComponents.loading();
@@ -131,6 +139,14 @@ describe("Edit Blueprint Page", function() {
         editBlueprintPage.filterBox.setValue(packageName);
         browser.keys("Enter");
         browser.waitForExist(editBlueprintPage.filterContentLabel, timeout);
+        browser.waitUntil(
+          () =>
+            $(editBlueprintPage.filterContentLabel)
+              .getText()
+              .includes(packageName),
+          timeout,
+          `Cannot find package - ${packageName}`
+        );
         // add package to blueprint
         const availableComponent = new AvailableComponents();
         availableComponent.addPackageByName(packageName);
