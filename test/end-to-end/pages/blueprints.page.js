@@ -49,6 +49,29 @@ class BlueprintsPage {
     return $(selector);
   }
 
+  get moreButton() {
+    const selector = ".toolbar-pf-action-right .fa-ellipsis-v";
+    browser.waitUntil(
+      () => browser.isVisible(selector),
+      timeout,
+      `: button in Blueprints page cannot be found by selector ${selector}`
+    );
+    return $(selector);
+  }
+
+  get viewSourcesItem() {
+    const selector = "span=View Sources";
+    browser.waitUntil(
+      () =>
+        $(".toolbar-pf-action-right .dropdown-kebab-pf")
+          .getAttribute("class")
+          .includes("open") && browser.isVisible(selector),
+      timeout,
+      `View Sources dropdown item in Blueprints page cannot be found by selector ${selector}`
+    );
+    return $(selector);
+  }
+
   get filterBox() {
     const selector = '[id="filter-blueprints"]';
     browser.waitUntil(
