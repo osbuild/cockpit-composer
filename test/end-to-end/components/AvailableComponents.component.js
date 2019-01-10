@@ -28,7 +28,27 @@ class AvailableComponents {
     browser.waitUntil(
       () => browser.isVisible(selector),
       timeout,
-      `Package name of "Available Component" component in Edit Blueprint page cannot be found by selector ${selector}`
+      `Component name in Available Component in Edit Blueprint page cannot be found by selector ${selector}`
+    );
+    return $(selector);
+  }
+
+  nameLabelByName(name) {
+    const selector = `[data-input=${name}] .list-pf-title`;
+    browser.waitUntil(
+      () => browser.isVisible(selector),
+      timeout,
+      `Component name in Available Component in Edit Blueprint page cannot be found by selector ${selector}`
+    );
+    return $(selector);
+  }
+
+  descriptionLabelByName(name) {
+    const selector = `[data-input=${name}] .list-pf-description`;
+    browser.waitUntil(
+      () => browser.isVisible(selector),
+      timeout,
+      `Component description in Avaliable Component in Edit Blueprint page cannot be found by selector ${selector}`
     );
     return $(selector);
   }
