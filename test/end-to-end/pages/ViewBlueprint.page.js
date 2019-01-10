@@ -273,6 +273,16 @@ class ViewBlueprintPage {
     );
     return $(selector);
   }
+
+  get stopButton() {
+    const selector = "span=Stop";
+    browser.waitUntil(
+      () => browser.isExisting(selector),
+      timeout,
+      `Stop button in View Blueprint page cannot be found by selector ${selector}`
+    );
+    return $(selector);
+  }
 }
 
 module.exports = ViewBlueprintPage;

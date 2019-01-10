@@ -9,6 +9,16 @@ class CreateImagePage {
     browser.waitUntil(() => browser.isExisting(this.containerSelector), timeout, `Cannot open Create Image dialog`);
   }
 
+  get alertMessage() {
+    const selector = `${this.containerSelector} .alert-warning`;
+    browser.waitUntil(
+      () => browser.isVisible(selector),
+      timeout,
+      `Alert message cannot be found in Create Image dialog`
+    );
+    return $(selector);
+  }
+
   get blueprintNameLabel() {
     const selector = `${this.containerSelector} .form-control-static`;
     browser.waitUntil(
@@ -61,6 +71,16 @@ class CreateImagePage {
       () => browser.isExisting(selector),
       timeout,
       `Create button in Create Image dialog cannot be found`
+    );
+    return $(selector);
+  }
+
+  get commitAndCreateButton() {
+    const selector = "span=Commit and Create";
+    browser.waitUntil(
+      () => browser.isExisting(selector),
+      timeout,
+      `Commit and Create button in Create Image dialog cannot be found`
     );
     return $(selector);
   }
