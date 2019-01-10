@@ -31,7 +31,6 @@ env:
   matrix:
     - COMMAND=eslint
     - COMMAND=stylelint
-    - COMMAND=unit-test
     - COMMAND=test_rpmbuild
 script:
   - make "$COMMAND"
@@ -41,8 +40,6 @@ jobs:
       script: make po-push
       env: COMMAND=none
       if: branch = master AND type = push
-after_success:
-  - if [ "$COMMAND" == "unit-test" ]; then cat ./coverage/lcov.info | codecov; fi
 addons:
   apt:
     sources:
