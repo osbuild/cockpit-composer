@@ -77,9 +77,6 @@ eslint:
 stylelint:
 	npm run stylelint
 
-unit-test:
-	npm run test:cov
-
 buildrpm_image:
 	sudo docker build -f Dockerfile.buildrpm --cache-from welder/buildrpm:latest -t welder/buildrpm:latest .
 

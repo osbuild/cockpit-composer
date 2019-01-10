@@ -32,7 +32,6 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.11.4",
     "babel-eslint": "^10.0.1",
-    "babel-jest": "^16.0.0",
     "babel-loader": "^6.2.4",
     "babel-plugin-istanbul": "^4.1.4",
     "babel-plugin-react-intl": "^2.4.0",
@@ -48,13 +47,10 @@
     "css-loader": "^1.0.0",
     "del": "^2.2.1",
     "ejs": "^2.5.1",
-    "enzyme": "^3.5.0",
-    "enzyme-adapter-react-15": "^1.1.0",
     "eslint": "^5.10.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jest": "^22.1.2",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-mocha": "^5.2.0",
     "eslint-plugin-prettier": "^3.0.0",
@@ -66,7 +62,6 @@
     "glob": "^6.0.4",
     "highlight.js": "^9.5.0",
     "jed": "^1.1.1",
-    "jest": "^20.0.4",
     "jsel": "^1.1.6",
     "json-loader": "^0.5.4",
     "markdown-it": "^7.0.0",
@@ -101,21 +96,6 @@
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.22.3"
   },
-  "jest": {
-    "testRegex": "(/test/unit/.*\\.spec.js)$",
-    "setupFiles": [
-      "<rootDir>/test/unit/env.js"
-    ],
-    "collectCoverageFrom": [
-      "**/*.js"
-    ],
-    "coveragePathIgnorePatterns": [
-      "<rootDir>/node_modules/",
-      "<rootDir>/test/",
-      "<rootDir>/public/",
-      "<rootDir>/webpack.config.js"
-    ]
-  },
   "babel": {
     "presets": [
       "react",
@@ -140,6 +120,7 @@
   "eslintConfig": {
     "globals": {
       "browser": true,
+      "expect": true,
       "timeout": true,
       "$": true,
       "$$": true
@@ -165,7 +146,6 @@
       "plugin:import/recommended",
       "plugin:redux-saga/recommended",
       "plugin:mocha/recommended",
-      "plugin:jest/recommended",
       "prettier",
       "prettier/react"
     ],
@@ -243,22 +223,11 @@
       "redux-saga/no-unhandled-errors": 0,
       "jsx-a11y/anchor-is-valid": "off"
     },
-    "overrides": [
-      {
-        "files": [
-          "*.test.js"
-        ],
-        "rules": {
-          "jest/valid-expect": "off"
-        }
-      }
-    ],
     "env": {
       "browser": true,
       "commonjs": true,
       "es6": true,
       "node": true,
-      "jest": true,
       "mocha": true
     }
   },
@@ -281,9 +250,6 @@
     "publish": "node run publish",
     "publish:debug": "node run publish --debug",
     "start": "node run",
-    "test": "jest",
-    "test:watch": "npm test -- --watch",
-    "test:cov": "npm test -- --coverage",
     "translations:extract": "babel 'components/**/*.js' 'core/**/*.js' 'pages/**/*.js' 'data/**/*.js' main.js >/dev/null",
     "translations:json2pot": "mkdirp build/messages && rip json2pot 'build/messages/**/*.json' -o po/welder-web.pot && node utils/add-title.js ./public/manifest.json po/welder-web.pot",
     "translations:po2json": "npm run translations:extract && rip po2json 'po/*.po' -m 'build/messages/**/*.json' -o build/translations.json",
