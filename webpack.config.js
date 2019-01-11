@@ -37,7 +37,7 @@ const config = {
   // The entry point for the bundle
   entry: [
     /* The main entry point of your JavaScript application */
-    "./main.js"
+    "./src/main.js"
   ],
   // Options affecting the output of the compilation
   output: {
@@ -110,14 +110,7 @@ const config = {
     loaders: [
       {
         test: /\.jsx?$/,
-        include: [
-          path.resolve(__dirname, "./actions"),
-          path.resolve(__dirname, "./components"),
-          path.resolve(__dirname, "./core"),
-          path.resolve(__dirname, "./pages"),
-          path.resolve(__dirname, "./data"),
-          path.resolve(__dirname, "./main.js")
-        ],
+        include: [path.resolve(__dirname, "src")],
         loader: `babel-loader?${JSON.stringify(babelConfig)}`
       },
       {
@@ -135,12 +128,12 @@ const config = {
       },
       {
         test: /\.json$/,
-        exclude: [path.resolve(__dirname, "./routes.json")],
+        exclude: [path.resolve(__dirname, "./src/routes.json")],
         loader: "json-loader"
       },
       {
         test: /\.json$/,
-        include: [path.resolve(__dirname, "./routes.json")],
+        include: [path.resolve(__dirname, "./src/routes.json")],
         loaders: [`babel-loader?${JSON.stringify(babelConfig)}`, path.resolve(__dirname, "./utils/routes-loader.js")]
       },
       {

@@ -120,7 +120,7 @@ tasks.set("build", () => {
       buildVersion["build-version"] = "UNKNOWN";
     }
     const output = JSON.stringify(buildVersion);
-    fs.writeFileSync("./core/build-version.json", output, "utf8");
+    fs.writeFileSync("./src/core/build-version.json", output, "utf8");
   });
 
   return Promise.resolve()

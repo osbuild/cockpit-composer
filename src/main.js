@@ -15,9 +15,9 @@ import history from "./core/history";
 import utils from "./core/utils";
 
 // Intialize any necessary locale data, and load translated messages
-import "./build/localeLoader";
+import "../build/localeLoader";
 
-let translations = require("./build/translations.json");
+let translations = require("../build/translations.json");
 
 addLocaleData(enLocaleData);
 

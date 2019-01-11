@@ -241,8 +241,8 @@
     }
   },
   "scripts": {
-    "eslint": "eslint components core data pages test utils main.js run.js webpack.config.js",
-    "stylelint": "stylelint \"components/**/*.css\" \"pages/**/*.css\"",
+    "eslint": "eslint src test utils run.js webpack.config.js",
+    "stylelint": "stylelint \"src/components/**/*.css\" \"src/pages/**/*.css\"",
     "lint": "npm run eslint && npm run stylelint",
     "clean": "node run clean",
     "build": "node run build",
@@ -250,7 +250,7 @@
     "publish": "node run publish",
     "publish:debug": "node run publish --debug",
     "start": "node run",
-    "translations:extract": "babel 'components/**/*.js' 'core/**/*.js' 'pages/**/*.js' 'data/**/*.js' main.js >/dev/null",
+    "translations:extract": "babel src >/dev/null",
     "translations:json2pot": "mkdirp build/messages && rip json2pot 'build/messages/**/*.json' -o po/welder-web.pot && node utils/add-title.js ./public/manifest.json po/welder-web.pot",
     "translations:po2json": "npm run translations:extract && rip po2json 'po/*.po' -m 'build/messages/**/*.json' -o build/translations.json",
     "translations:pull": "node utils/run-zanata project pull -v --po-dir po --pot-dir po",
