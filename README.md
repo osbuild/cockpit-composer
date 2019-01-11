@@ -3,160 +3,149 @@
 [![Build Status](https://travis-ci.org/weldr/welder-web.svg?branch=master)](https://travis-ci.org/weldr/welder-web)
 [![codecov](https://codecov.io/gh/weldr/welder-web/branch/master/graph/badge.svg)](https://codecov.io/gh/weldr/welder-web)
 
-The web interface for Composer!
+**The web interface for Composer!**
 
+Composer generates custom images suitable for deploying systems or uploading to the cloud. It integrates into [Cockpit](https://cockpit-project.org/) as a frontend for [Lorax Composer](https://github.com/weldr/lorax/tree/lorax-composer).
 
-### Getting Started
+## Making changes on Cockpit Composer
 
-**Step 1**. Make sure that you have [Node.js](https://nodejs.org/) v6.9.1 or newer installed on your
-machine. For example:
-```shell
-nvm install 6.9.1
+Here's where to get the code:
+
+    $ git clone https://github.com/weldr/welder-web.git
+    $ cd welder-web/
+
+The remainder of the commands assume you're in the top level of the
+Cockpit Composer git repository checkout.
+
+### Getting the development dependencies
+
+On Fedora or Red Hat Enterprise Linux:
+
+* First install Cockpit on your local machine as described in: https://cockpit-project.org/running.html.
+* Next install and start lorax-composer:
 ```
-Or if it's installed, make sure you're using it:
-```shell
-nvm use 6.9.1
-```
-
-**Step 2**. Clone this repository and install its dependencies:
-
-```shell
-$ git clone -o upstream -b master --single-branch https://github.com/weldr/welder-web
-$ cd welder-web/
-$ npm install                   # Install project dependencies listed in package.json
-```
-
-**Step 3**. Compile and launch your app by running:
-
-```shell
-$ node run build
-$ node run                      # Same as `npm start` or `node run start`
+    $ sudo yum install lorax-compose
+    $ sudo systemctl start lorax-composer
 ```
 
-You can also test your app in release (production) mode by running `node run start --release` or
-with HMR and React Hot Loader disabled by running `node run start --no-hmr`. The app should become
-available at [http://localhost:3000/](http://localhost:3000/).
-
-You can also enable code instrumentation with istanbul by specifying
-`node run build --with-coverage` or `node run --with-coverage`. This is needed if you want to
-collect code coverage from end-to-end tests. Don't use `--with-coverage` when running the unit tests.
-`jest` provides its own instrumentation and it will break if we do double instrumentation.
-Disabled by default!
-
-
-### How to Test
-
-#### Unit Test
-
-The unit tests are powered by [Jest](https://facebook.github.io/jest/) and [Enzyme](http://airbnb.io/enzyme/)
-
-```shell
-$ npm run lint                  # Check JavaScript and CSS code for potential issues
-$ npm run test                  # Run unit tests. Or, `npm run test:watch`
+* Cockpit Composer uses Node.js during development. Node.js is not used at runtime. To make changes on Cockpit you'll want to install Node.js, NPM.
+```
+    $ sudo yum install nodejs npm
 ```
 
-#### End-to-End Test
+In addition, for testing, the following dependencies are required:
+
+    $ sudo yum install curl expect \
+        libvirt libvirt-client libvirt-daemon libvirt-python \
+        python python-libguestfs python-lxml libguestfs-xfs \
+        python3 libvirt-python3 \
+        libguestfs-tools qemu qemu-kvm rpm-build jq
+
+### Building
+
+Run
+
+    $ make
+
+to build everything. You can only run `make` from the top-level and it will always rebuild the Cockpit Composer.
+
+Cockpit Composer is built using [React](https://reactjs.org/). For inspecting the React component hierarchy, including component props and state, you can run
+
+    $ npm run build:debug
+
+### Running end to end test
 
 [End-to-End Test Running Guide](test/end-to-end/README.md).
 
-**NOTE:** all tests are executed in
-[Cockpit](https://github.com/cockpit-project/cockpit)'s CI on every commit and
-every pull request.
+### Running eslint
 
-### How to Deploy
+Cockpit Composer uses [ESLint](https://eslint.org/) to automatically check
+JavaScript code style in `.js` files.
 
-Update `publish` script in the [`run.js`](run.js) file with your full Firebase project name as found
-in your [Firebase console](https://console.firebase.google.com/). Note that this may have an
-additional identifier suffix than the shorter name you've provided. Then run:
+The linter is executed within every build as a webpack preloader.
 
-```shell
-$ node run publish              # Build and publish the website to Firebase, same as `npm run publish`
-```
+For developer convenience, the ESLint can be started explicitly by:
 
-The first time you publish, you will be prompted to authenticate with Google and generate an
-authentication token in order for the publish script to continue.
+    $ npm run eslint
 
-![publish](https://koistya.github.io/files/react-static-boilerplate-publish.gif)
+Rules configuration can be found in the `package.json` file.
 
-If you need just to build the project without publishing it, run:
+### Working on your local machine
 
-```shell
-$ node run build                # Or, `node run build --release` for production build
-```
+It's easy to set up your local Linux machine for rapid development of Cockpit Composer's JavaScript code. Run this command from your top level Cockpit Composer checkout directory, and make sure to run it as the same user that you'll use to log into Cockpit Composer below.
 
-### Building a Docker image
+    $ mkdir -p ~/.local/share/cockpit
+    $ ln -s $(pwd)/public ~/.local/share/cockpit/welder
 
-To build the Cockpit Composer application as a Docker image see
-[`README.docker`](README.docker)
+This will cause cockpit to read JavaScript and HTML files directly from the built package output directory instead of using the installed Cockpit UI files.
 
-### License
+Now you can log into Cockpit Composer on your local Linux machine at the following address. Use the same user and password that you used to log into your Linux desktop.
 
-This source code is licensed under the MIT license found in the [`LICENSE.txt`](LICENSE.txt) file.
+https://localhost:9090/welder
 
-### Application internals
-
-&nbsp; &nbsp; ✓ Includes [Patternfly](http://www.patternfly.org/) CSS & some React implementations of Patternfly components<br>
-&nbsp; &nbsp; ✓ Modern JavaScript syntax ([ES2015](http://babeljs.io/docs/learn-es2015/)+) via [Babel](http://babeljs.io/), modern CSS syntax via [PostCSS](https://github.com/postcss/postcss)<br>
-&nbsp; &nbsp; ✓ Component-based UI architecture via [React](http://facebook.github.io/react/), [Webpack](https://webpack.github.io/) and [CSS Modules](https://github.com/css-modules/css-modules)<br>
-&nbsp; &nbsp; ✓ Application state management /w time-travel debugging via [Redux](http://redux.js.org/) (see [`main.js`](main.js), [`core/store.js`](core/store.js))<br>
-&nbsp; &nbsp; ✓ Routing and navigation via [`path-to-regexp`](https://github.com/pillarjs/path-to-regexp) and [`history`](https://github.com/mjackson/history) (see [`main.js`](main.js), [`core/router.js`](core/router.js), [`utils/routes-loader.js`](utils/routes-loader.js))<br>
-&nbsp; &nbsp; ✓ [Code-splitting](https://github.com/webpack/docs/wiki/code-splitting) and async chunk loading via [Webpack](https://webpack.github.io/) and [ES6 System.import()](http://www.2ality.com/2014/09/es6-modules-final.html)<br>
-&nbsp; &nbsp; ✓ Hot Module Replacement ([HMR](https://webpack.github.io/docs/hot-module-replacement.html)) /w [React Hot Loader](http://gaearon.github.io/react-hot-loader/)<br>
-&nbsp; &nbsp; ✓ Cross-device testing with [Browsersync](https://browsersync.io/) (see [`run.js#start`](run.js))<br>
+After every change to your sources, run `make` to update all the webpacks, and reload cockpit in your browser.
 
 ### Directory Layout
 
 ```shell
 .
 ├── /components/                # Shared or generic UI components
-│   ├── /CardView/              # CardView component
 │   ├── /Layout/                # Website layout component
-│   ├── /Link  /                # Link component to be used insted of <a>
+│   ├── /Link/                  # Link component to be used insted of <a>
 │   └── /...                    # etc.
 ├── /core/                      # Core framework
+│   ├── /actions/               # Redux actions
+│   ├── /reducers/              # Redux reducers
+│   ├── /sagas/                 # Redux saga files
+│   ├── /apiCalls.js            # All API calls to lorax-composer
+│   ├── /constants.js           # lorax-composer API path
 │   ├── /history.js             # Handles client-side navigation
 │   ├── /router.js              # Handles routing and data fetching
-│   └── /store.js               # Application state manager (Redux)
+│   ├── /selectors.js           # Simple “selector” for Redux
+│   ├── /store.js               # Application state manager (Redux)
+│   └── /utils.js               # Utility for group API URL
+├── /data/                      # Provide API for internal use
+│   ├── /BlueprintApi.js        # Blueprint API
+│   ├── /MetadataApi.js         # Metadata API
+│   └── /NotificationsApi.js    # Notification API
 ├── /node_modules/              # 3rd-party libraries and utilities
 ├── /pages/                     # React components for web pages
-│   ├── /app/                   # App page
-│   ├── /error/                 # Error page
+│   ├── /blueprint/             # Blueprint page
 │   ├── /blueprints/            # Blueprints page
-│   └── /...                    # etc.
-├── /public/                    # Static files such as favicon.ico etc.
+│   ├── /blueprintEdit/         # Edit blueprint page
+│   └── /error/                 # Error page
+├── /public/                    # Static files
 │   ├── /dist/                  # The folder for compiled output
-│   ├── favicon.ico             # Application icon to be displayed in bookmarks
-│   ├── robots.txt              # Instructions for search engine crawlers
-│   └── /...                    # etc.
-├── /test/                      # Unit and integration tests
+│   ├── /js/                    # Javascript files included in index.ejs
+│   ├── /custom.css             # CSS file included in index.ejs
+│   ├── /manifest.json          # manifest file for Cockpit integration
+│   └── /index.ejs              # Template for index.html
+├── /test/                      # End to end test
 ├── /utils/                     # Utility and helper classes
+│── .tasks                      # Tasks triggered by Cockpit bot
+│── .travis.yml                 # Travis CI settings
+│── cockpit-composer.spec.in    # Cockpit-composer spec file
+│── Dockerfile.buildrpm         # Dockerfile for building RPM on Travis
+│── io.weldr.cockpit-composer.metainfo.xml         # Makes Composer appear on Cockpit's "Applications" page
 │── main.js                     # React application entry point
+│── Makefile                    # Makefile
 │── package.json                # The list of project dependencies and NPM scripts
 │── routes.json                 # This list of application routes
+│── rpmversion.sh               # Generate the version and release strings for spec file
 │── run.js                      # Build automation script, e.g. `node run build`
-└── webpack.config.js           # Bundling and optimization settings for Webpack
+|── webpack.config.js           # Bundling and optimization settings for Webpack
+└── zanata.xml                  # zanata settings
 ```
 
-### Cockpit Package
+### Cockpit API
 
-This project can also be used through cockpit as a cockpit package.
-
-```
-npm install && node run build
-mkdir -p ~/.local/share/cockpit
-ln -s /path/to/welder-web/public ~/.local/share/cockpit/welder
-```
-
-Then you if you log into cockpit as the user that owns ```~```, you can use the app from cockpit.
-
-To keep this working all code should follow the following rules.
+To keep Cockpit Composer working with Cockpit API all code should follow the following rules.
 
  * All urls in the html and javascript need to use relative paths.
  * All requests to the API should be made using ```utils.apiFetch```. Any non API ```fetch``` requests
    must use ```credentials: 'same-origin'``` so that cookies are included with those ajax requests.
  * Use hashes for navigation within the SPA so that cockpit can keep the top level location display
    up to date.
-
 
 ### Package as an RPM/SRPM
 
@@ -193,7 +182,7 @@ Zanata as gettext-style .po files and converts the .po files back to JSON.
 language, and if translations are available, these translations are provided to react-intl's `<IntlProvider>`. react-intl
 then displays translated strings where possible.
 
-### Making A New Release Of cockpit-composer
+## Making A New Release Of cockpit-composer
 
 When the project is ready for a new release, do the following:
 
@@ -209,5 +198,9 @@ to build a new release of cockpit-composer.
 
 Finally, import the new `.srpm` into the appropriate RHEL release.
 
+## License
+
+This source code is licensed under the MIT license found in the [`LICENSE.txt`](LICENSE.txt) file.
+
 ---
-Made with ♥ by the Welder [team](https://github.com/orgs/weldr/people) and its contributors
+Made with ♥ by the [Welder team](https://github.com/orgs/weldr/people), [Cockpit team](https://github.com/orgs/cockpit-project/people) team, and its contributors
