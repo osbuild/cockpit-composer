@@ -23,7 +23,6 @@ export function createBlueprintApi(blueprint) {
 export function fetchBlueprintContentsApi(blueprintName) {
   return utils
     .apiFetch(constants.get_blueprints_deps + blueprintName)
-    .then(response => response.blueprints[0])
     .catch(e => console.log("Error getting blueprint contents", e));
 }
 
