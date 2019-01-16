@@ -34,20 +34,11 @@ export const makeGetBlueprintById = () =>
   );
 
 const getSortedSelectedComponents = (state, blueprint) => {
-  const selectedPackages = blueprint.packages.map(item => item.name);
-  const selectedModules = blueprint.modules.map(item => item.name);
-  const selectedComponentNames = selectedPackages.concat(selectedModules);
-
   const components = blueprint.components;
   if (components === undefined) {
     return [];
   }
-
-  const sortedSelectedComponents = components.filter(component => selectedComponentNames.includes(component.name));
-  sortedSelectedComponents.map(component => {
-    component.inBlueprint = true; // eslint-disable-line no-param-reassign
-    component.userSelected = true;
-  });
+  const sortedSelectedComponents = components.filter(component => component.userSelected === true);
   const key = state.sort.components.key;
   const value = state.sort.components.value;
   sortedSelectedComponents.sort((a, b) => {
@@ -65,18 +56,11 @@ export const makeGetSortedSelectedComponents = () =>
   );
 
 const getSortedDependencies = (state, blueprint) => {
-  const selectedPackages = blueprint.packages.map(item => item.name);
-  const selectedModules = blueprint.modules.map(item => item.name);
-  const selectedComponentNames = selectedPackages.concat(selectedModules);
   const dependencies = blueprint.components;
   if (dependencies === undefined) {
     return [];
   }
-
-  const sortedDependencies = dependencies.filter(dependency => !selectedComponentNames.includes(dependency.name));
-  sortedDependencies.map(dependency => {
-    dependency.inBlueprint = true; // eslint-disable-line no-param-reassign
-  });
+  const sortedDependencies = dependencies.filter(dependency => dependency.userSelected !== true);
   const key = state.sort.dependencies.key;
   const value = state.sort.dependencies.value;
   sortedDependencies.sort((a, b) => {
@@ -170,4 +154,59 @@ export const makeGetBlueprintComposes = () =>
   createSelector(
     [getBlueprintComposes],
     composes => composes
+  );
+
+const getSelectedInputs = (state, components) => {
+  const inputComponents = state.inputs.inputComponents;
+  const page = state.inputs.selectedInputPage;
+  const selectedComponent = state.inputs.selectedInput.component;
+  if (components !== undefined && inputComponents !== undefined && inputComponents.length > 0) {
+    inputComponents[page].forEach(input => {
+      input.inBlueprint = false; // eslint-disable-line no-param-reassign
+      input.userSelected = false; // eslint-disable-line no-param-reassign
+      input.active = false; // eslint-disable-line no-param-reassign
+      if (selectedComponent.name !== undefined && input.name === selectedComponent.name) {
+        input.active = true; // eslint-disable-line no-param-reassign
+      }
+      if (components.length > 0) {
+        components.map(component => {
+          if (component.name === input.name) {
+            input.inBlueprint = component.inBlueprint; // eslint-disable-line no-param-reassign
+            input.userSelected = component.userSelected; // eslint-disable-line no-param-reassign
+          }
+        });
+      }
+    });
+  }
+  return inputComponents;
+};
+
+export const makeGetSelectedInputs = () =>
+  createSelector(
+    [getSelectedInputs],
+    inputComponents => inputComponents
+  );
+
+const getSelectedDeps = (state, dependencies, components) => {
+  if (components !== undefined && dependencies !== undefined && dependencies.length > 0) {
+    dependencies.forEach(dep => {
+      dep.inBlueprint = false; // eslint-disable-line no-param-reassign
+      dep.userSelected = false; // eslint-disable-line no-param-reassign
+      if (components.length > 0) {
+        components.map(component => {
+          if (component.name === dep.name) {
+            dep.inBlueprint = component.inBlueprint; // eslint-disable-line no-param-reassign
+            dep.userSelected = component.userSelected; // eslint-disable-line no-param-reassign
+          }
+        });
+      }
+    });
+  }
+  return dependencies;
+};
+
+export const makeGetSelectedDeps = () =>
+  createSelector(
+    [getSelectedDeps],
+    dependencies => dependencies
   );

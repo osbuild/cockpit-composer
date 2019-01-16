@@ -21,10 +21,9 @@ const ComponentTypeIcons = props => {
   }
   if (props.componentInBlueprint === true) {
     indicator = "list-pf-icon-bordered";
-    // TODO - Identify icon as belonging to dependency in the blueprint
-    // if (props.isDependency) {
-    //   indicator += ' list-pf-icon-bordered-dotted';
-    // }
+    if (props.isSelected !== true) {
+      indicator += " list-pf-icon-bordered-dotted list-pf-icon-bordered-gray";
+    }
   }
 
   return (
@@ -43,13 +42,15 @@ const ComponentTypeIcons = props => {
 ComponentTypeIcons.propTypes = {
   componentType: PropTypes.string,
   compDetails: PropTypes.bool,
-  componentInBlueprint: PropTypes.bool
+  componentInBlueprint: PropTypes.bool,
+  isSelected: PropTypes.bool
 };
 
 ComponentTypeIcons.defaultProps = {
   componentType: "",
   compDetails: false,
-  componentInBlueprint: false
+  componentInBlueprint: false,
+  isSelected: false
 };
 
 export default ComponentTypeIcons;

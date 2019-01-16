@@ -1,52 +1,55 @@
-import { take, call, put, takeEvery, select } from "redux-saga/effects";
-import { fetchBlueprintInputsApi } from "../apiCalls";
-import { FETCHING_INPUTS, fetchingInputsSucceeded } from "../actions/inputs";
-import { FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED } from "../actions/blueprints";
-import { makeGetSortedSelectedComponents, makeGetSortedDependencies } from "../selectors";
+import { call, put, takeEvery, takeLatest, select } from "redux-saga/effects";
+import { fetchBlueprintInputsApi, fetchComponentDetailsApi, fetchDepsApi } from "../apiCalls";
+import {
+  FETCHING_INPUTS,
+  fetchingInputsSucceeded,
+  FETCHING_INPUT_DETAILS,
+} from "../actions/inputs";
 
-function updateInputComponentData(inputs, selectedComponents, dependencies) {
-  if (selectedComponents !== undefined && selectedComponents.length > 0) {
-    inputs[0].forEach(input => {
-      selectedComponents.map(component => {
-        if (component.name === input.name) {
-          input.inBlueprint = true; // eslint-disable-line no-param-reassign
-          input.userSelected = true; // eslint-disable-line no-param-reassign
-          input.versionSelected = component.version; // eslint-disable-line no-param-reassign
-          input.releaseSelected = component.release; // eslint-disable-line no-param-reassign
-        }
-      });
-      dependencies.map(dependency => {
-        if (dependency.name === input.name) {
-          input.inBlueprint = true; // eslint-disable-line no-param-reassign
-          input.userSelected = false; // eslint-disable-line no-param-reassign
-          input.versionSelected = dependency.version; // eslint-disable-line no-param-reassign
-          input.releaseSelected = dependency.release; // eslint-disable-line no-param-reassign
-        }
-      });
-    });
-  }
-  return inputs;
+function flattenInputs(response) {
+  // duplicate inputs exist when more than one build is available
+  // flatten duplicate inputs to a single item
+  let previousInputs = {};
+  let flattened = response.filter(item => {
+    let build = {
+      version: item.builds[0].source.version,
+      release: item.builds[0].release
+    };
+    if (previousInputs.hasOwnProperty(item.name)) {
+      // update the previousInput object with this item"s version/release
+      // to make the default version/release the latest
+      previousInputs[item.name] = Object.assign(previousInputs[item.name], build);
+      // and remove this item from the list
+      return false;
+    } else {
+      delete item.builds;
+      item = Object.assign(item, build);
+    }
+    previousInputs[item.name] = item;
+    return true;
+  });
+  return flattened;
 }
 
 function* fetchInputs(action) {
   try {
-    const { filter, selectedInputPage, pageSize, componentData } = action.payload;
-
-    let selectedComponents = componentData;
-    let dependencies = [];
-    if (selectedComponents === undefined) {
-      const blueprintResponse = yield take(FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED);
-      const { blueprintPresent } = blueprintResponse.payload;
-      const getSortedSelectedComponents = makeGetSortedSelectedComponents();
-      selectedComponents = yield select(getSortedSelectedComponents, blueprintPresent);
-      const getSortedDependencies = makeGetSortedDependencies();
-      dependencies = yield select(getSortedDependencies, blueprintPresent);
-    }
-
+    const { filter, selectedInputPage, pageSize } = action.payload;
     const filter_value = `/*${filter.value}*`.replace("**", "*");
     const response = yield call(fetchBlueprintInputsApi, filter_value, selectedInputPage, pageSize);
-    const updatedResponse = yield call(updateInputComponentData, response, selectedComponents, dependencies);
-    yield put(fetchingInputsSucceeded(filter, selectedInputPage, pageSize, updatedResponse));
+    const total = response[1];
+    const inputNames = response[0].map(input => input.name).join(",");
+    const inputs = yield call(fetchComponentDetailsApi, inputNames);
+    const updatedInputs = flattenInputs(inputs).map(input => {
+      const inputData = Object.assign(
+        {},
+        {
+          ui_type: "RPM"
+        },
+        input
+      );
+      return inputData;
+    });
+    yield put(fetchingInputsSucceeded(filter, selectedInputPage, pageSize, updatedInputs, total));
   } catch (error) {
     console.log("Error in fetchInputsSaga");
   }
@@ -54,4 +57,5 @@ function* fetchInputs(action) {
 
 export default function*() {
   yield takeEvery(FETCHING_INPUTS, fetchInputs);
+  yield takeLatest(FETCHING_INPUT_DETAILS, fetchInputDetails);
 }
