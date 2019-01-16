@@ -115,17 +115,19 @@ export function deleteWorkspaceApi(blueprintId) {
 }
 
 export function commitToWorkspaceApi(blueprint) {
-  return utils.apiFetch(
-    constants.post_blueprints_workspace,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
+  return utils
+    .apiFetch(
+      constants.post_blueprints_workspace,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(blueprint)
       },
-      body: JSON.stringify(blueprint)
-    },
-    true
-  );
+      true
+    )
+    .catch(e => console.log("Error committing to workspace", e));
 }
 
 export function fetchDiffWorkspaceApi(blueprintId) {
@@ -139,32 +141,6 @@ export function fetchDiffWorkspaceApi(blueprintId) {
         console.log("Error fetching diff", e);
         reject();
       });
-  });
-  return p;
-}
-
-export function depsolveComponentsApi(packages, modules) {
-  const p = new Promise((resolve, reject) => {
-    const packageNames = packages.map(item => item.name);
-    const moduleNames = modules.map(item => item.name);
-    const names = packageNames.concat(moduleNames);
-    let dependencies = [];
-    if (names.length > 0) {
-      utils
-        .apiFetch(constants.get_projects_deps + names)
-        .then(depData => {
-          // bdcs-api v0.3.0 includes module (component) and dependency NEVRAs
-          // tagging all dependencies a "RPM" for now
-          dependencies = BlueprintApi.setType(depData.projects, "RPM");
-          resolve(dependencies);
-        })
-        .catch(e => {
-          console.log("getBlueprint: Error getting component and dependency metadata", e);
-          reject();
-        });
-    } else {
-      resolve(dependencies);
-    }
   });
   return p;
 }

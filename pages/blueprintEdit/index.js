@@ -21,13 +21,11 @@ import NotificationsApi from "../../data/NotificationsApi";
 import {
   fetchingBlueprintContents,
   setBlueprint,
-  addBlueprintComponent,
-  removeBlueprintComponent,
+  updateBlueprintComponents,
   undo,
   redo,
-  commitToWorkspace,
-  deleteWorkspace,
-  deleteHistory
+  deleteHistory,
+  fetchingCompDeps
 } from "../../core/actions/blueprints";
 import {
   fetchingInputs,
@@ -202,92 +200,116 @@ class EditBlueprintPage extends React.Component {
       .catch(e => console.log(`Error in blueprint commit: ${e}`));
   }
 
-  handleAddComponent(event, source, component) {
-    // the user clicked Add in the sidebar, e.g. source === "input"
-    // or the user clicked Add in the details view
-    component.inBlueprint = true; // eslint-disable-line no-param-reassign
-    component.userSelected = true; // eslint-disable-line no-param-reassign
-    if (component !== undefined) {
-      if (source === "input") {
-        $(event.currentTarget).tooltip("hide");
-      }
-      // if source is the details view, then metadata is already known and passed with component
-      this.props.addBlueprintComponent(this.props.blueprint, component);
-    }
-    // update input component data to matc      "import/named": 0,h the blueprint component data
-    this.updateInputComponentsOnChange(component);
-    // TODO if inputs also lists dependencies, should these be indicated as
-    // included in the list of available components?
-    this.props.setSelectedInput("");
-    this.props.setSelectedInputStatus("");
-    // remove the inline message above the list of inputs
-    this.clearInputAlert();
-    event.preventDefault();
-    event.stopPropagation();
-  }
-
-  handleUpdateComponent(event, component) {
-    // the user clicked Edit in the details view and saved updates to the component version
-    // find component in blueprint components
-    // update blueprint component with saved updates
-    this.hideComponentDetails();
-    // update input component with committed Updates
-    this.updateInputComponentsOnChange(component);
-    // update the blueprint object that's used during commit
-    event.preventDefault();
-    event.stopPropagation();
-
-    this.props.commitToWorkspace(this.props.blueprint.id);
-  }
-
-  handleRemoveComponent(event, component) {
-    // the user clicked Remove for a component in the blueprint component list
-    // or the component details view
-    // hide the details view
-    this.hideComponentDetails();
-    // update input component data
-    this.updateInputComponentsOnChange(component, "remove");
-    // update the list of blueprint components to not include the removed component
-    this.props.removeBlueprintComponent(this.props.blueprint, component);
-    event.preventDefault();
-    event.stopPropagation();
-  }
-
-  updateInputComponentsOnChange(component, remove) {
-    let inputs = this.props.inputs.inputComponents.slice(0);
-    inputs = this.removeInputActive(inputs);
-    if (remove === "remove") {
-      // set inBlueprint to false for the selected component
-      // in the list of available inputs
-      inputs = this.removeBlueprintComponent(component, inputs);
-      this.props.setInputComponents(inputs);
+  handleAddComponent(event, component, version) {
+    this.props.clearSelectedInput();
+    const addedPackage = {
+      name: component.name,
+      version: version
+    };
+    const pendingChange = {
+      componentOld: null,
+      componentNew: component.name + "-" + version
+    };
+    let pendingChanges = this.props.blueprint.localPendingChanges;
+    const prevChange = pendingChanges.find(change => change.componentOld === pendingChange.componentNew);
+    // removing then adding a component of the same version results in no change listed
+    // if a different version of this component was removed, that change and this change will
+    // still be listed as separate changes
+    // but if a previous change exists where the same component version was removed...
+    if (prevChange !== undefined) {
+      // then filter that previous change, and don't add this change
+      pendingChanges = pendingChanges.filter(component => component !== prevChange);
     } else {
-      // set inBlueprint to true for the selected component
-      // in the list of available inputs
-      const input = this.findInput(component, inputs);
-      const page = input[0];
-      const index = input[1];
-      if (index >= 0) {
-        // the page where the component is listed might not be defined (e.g.
-        // the user filtered to find a component)
-        inputs = this.updateInputComponentData(inputs, page, [component]);
-        this.props.setInputComponents(inputs);
-      }
+      pendingChanges = [pendingChange].concat(pendingChanges);
     }
+    const packages = this.props.blueprint.packages.concat(addedPackage);
+    const modules = this.props.blueprint.modules;
+    const addedComponent = Object.assign({}, component, {
+      version: version,
+      userSelected: true,
+      inBlueprint: true
+    });
+    // for now, just adding the component to the state
+    // component info will load after committing the change to the workspace and reloading the blueprint
+    const components = this.props.blueprint.components.concat(addedComponent);
+    this.props.updateBlueprintComponents(this.props.blueprint.id, components, packages, modules, pendingChanges);
+    event.preventDefault();
+    event.stopPropagation();
   }
 
-  removeBlueprintComponent(component, inputs) {
-    const [page, index] = this.findInput(component, inputs);
-    // get page and index of component; if component is included in the array
-    // of inputs, then update metadata for the input component
-    if (index >= 0) {
-      inputs[page][index].inBlueprint = false; // eslint-disable-line no-param-reassign
-      inputs[page][index].userSelected = false; // eslint-disable-line no-param-reassign
-      delete inputs[page][index].versionSelected; // eslint-disable-line no-param-reassign
-      delete inputs[page][index].releaseSelected; // eslint-disable-line no-param-reassign
+  handleUpdateComponent(event, name, version) {
+    this.props.clearSelectedInput();
+    const oldVersion = this.props.blueprint.components.find(component => component.name === name).version;
+    const updatedPackage = {
+      name: name,
+      version: version
+    };
+    let pendingChange = {
+      componentOld: name + "-" + oldVersion,
+      componentNew: name + "-" + version
+    };
+    let pendingChanges = this.props.blueprint.localPendingChanges;
+    const prevChange = pendingChanges.find(change => change.componentNew === pendingChange.componentOld);
+    // if this component was added or updated in this session...
+    if (prevChange !== undefined) {
+      // then only list this component once in the list of changes,
+      // where the change shows the old version of the previous change
+      pendingChange.componentOld = prevChange.componentOld;
+      pendingChanges = pendingChanges.filter(component => component !== prevChange);
     }
+    if (prevChange === undefined || pendingChange.componentOld !== pendingChange.componentNew) {
+      pendingChanges = [pendingChange].concat(pendingChanges);
+    }
+    const packages = this.props.blueprint.packages
+      .filter(item => item.name !== updatedPackage.name)
+      .concat(updatedPackage);
+    const modules = this.props.blueprint.modules;
+    const components = this.props.blueprint.components.map(component => {
+      if (component.name === name) {
+        const componentData = Object.assign({}, component, {
+          name: name,
+          version: version,
+          userSelected: true,
+          inBlueprint: true
+        });
+        return componentData;
+      } else {
+        return component;
+      }
+    });
+    this.props.updateBlueprintComponents(this.props.blueprint.id, components, packages, modules, pendingChanges);
+    event.preventDefault();
+    event.stopPropagation();
+  }
 
-    return inputs;
+  handleRemoveComponent(event, name) {
+    this.props.clearSelectedInput();
+    const version = this.props.blueprint.components.find(component => component.name === name).version;
+
+    let pendingChange = {
+      componentOld: name + "-" + version,
+      componentNew: null
+    };
+    let pendingChanges = this.props.blueprint.localPendingChanges;
+    const prevChange = pendingChanges.find(change => change.componentNew === pendingChange.componentOld);
+    // if this component was updated in this session...
+    if (prevChange !== undefined) {
+      // then only list this component once in the list of changes,
+      // where the change shows the old version of the previous change
+      pendingChange.componentOld = prevChange.componentOld;
+      pendingChanges = pendingChanges.filter(component => component !== prevChange);
+      // but if this component was added in this session (i.e. componentOld === null)
+      // then neither change should be listed
+    }
+    if (prevChange === undefined || prevChange.componentOld !== null) {
+      pendingChanges = [pendingChange].concat(pendingChanges);
+    }
+    const packages = this.props.blueprint.packages.filter(pack => pack.name !== name);
+    const modules = this.props.blueprint.modules.filter(module => module.name !== name);
+    const components = this.props.blueprint.components.filter(component => component.name !== name);
+    this.props.updateBlueprintComponents(this.props.blueprint.id, components, packages, modules, pendingChanges);
+    event.preventDefault();
+    event.stopPropagation();
   }
 
   handleComponentDetails(event, component) {
@@ -341,25 +363,20 @@ class EditBlueprintPage extends React.Component {
   }
 
   handleDiscardChanges() {
-    this.props.deleteHistory(this.props.blueprint.id);
-    const workspaceChanges =
-      this.props.blueprint.workspacePendingChanges.addedChanges.length +
-      this.props.blueprint.workspacePendingChanges.deletedChanges.length;
-    if (workspaceChanges > 0) {
-      this.props.deleteWorkspace(this.props.blueprint.id);
-    } else {
-      this.props.commitToWorkspace(this.props.blueprint.id);
-    }
+    const workspaceChanges = this.props.blueprint.workspacePendingChanges.length;
+    const reload = workspaceChanges > 0 ? true : false;
+    this.props.deleteHistory(this.props.blueprint.id, reload);
+    // only fetch blueprint contents if workspace changes existed
+    // when this blueprint originally loaded
   }
 
   handleUndo() {
-    const workspaceChanges =
-      this.props.blueprint.workspacePendingChanges.addedChanges.length +
-      this.props.blueprint.workspacePendingChanges.deletedChanges.length;
-    if (this.props.pastLength === 1 && workspaceChanges > 0) {
-      this.handleDiscardChanges();
+    const workspaceChanges = this.props.blueprint.workspacePendingChanges.length;
+    if (this.props.pastLength === 1) {
+      const reload = workspaceChanges > 0 ? true : false;
+      this.props.deleteHistory(this.props.blueprint.id, reload);
     } else {
-      this.props.undo(this.props.blueprint.id);
+      this.props.undo(this.props.blueprint.id, false);
     }
   }
 
@@ -752,7 +769,7 @@ EditBlueprintPage.propTypes = {
   fetchingBlueprintContents: PropTypes.func,
   fetchingCompDeps: PropTypes.func,
   setBlueprint: PropTypes.func,
-  removeBlueprintComponent: PropTypes.func,
+  updateBlueprintComponents: PropTypes.func,
   fetchingInputs: PropTypes.func,
   fetchingDepDetails: PropTypes.func,
   setSelectedInputPage: PropTypes.func,
@@ -760,7 +777,6 @@ EditBlueprintPage.propTypes = {
   clearSelectedInput: PropTypes.func,
   setSelectedInputParent: PropTypes.func,
   deleteFilter: PropTypes.func,
-  addBlueprintComponent: PropTypes.func,
   setModalActive: PropTypes.func,
   setModalCreateImageVisible: PropTypes.func,
   setModalCreateImageHidden: PropTypes.func,
@@ -782,8 +798,6 @@ EditBlueprintPage.propTypes = {
   futureLength: PropTypes.number,
   undo: PropTypes.func,
   redo: PropTypes.func,
-  commitToWorkspace: PropTypes.func,
-  deleteWorkspace: PropTypes.func,
   deleteHistory: PropTypes.func,
   startCompose: PropTypes.func,
   blueprintContentsError: PropTypes.shape({
@@ -806,8 +820,8 @@ EditBlueprintPage.defaultProps = {
   selectedInput: {},
   fetchingBlueprintContents: function() {},
   setBlueprint: function() {},
-  removeBlueprintComponent: function() {},
   fetchingCompDeps: function() {},
+  updateBlueprintComponents: function() {},
   fetchingInputs: function() {},
   fetchingDepDetails: function() {},
   setSelectedInputPage: function() {},
@@ -816,7 +830,6 @@ EditBlueprintPage.defaultProps = {
   setSelectedInputParent: function() {},
   selectedInputDeps: undefined,
   deleteFilter: function() {},
-  addBlueprintComponent: function() {},
   setModalActive: function() {},
   setModalCreateImageVisible: function() {},
   setModalCreateImageHidden: function() {},
@@ -834,8 +847,6 @@ EditBlueprintPage.defaultProps = {
   futureLength: 0,
   undo: function() {},
   redo: function() {},
-  commitToWorkspace: function() {},
-  deleteWorkspace: function() {},
   deleteHistory: function() {},
   startCompose: function() {},
   blueprintContentsError: {},
@@ -911,11 +922,8 @@ const mapDispatchToProps = dispatch => ({
   setBlueprint: blueprint => {
     dispatch(setBlueprint(blueprint));
   },
-  addBlueprintComponent: (blueprint, component) => {
-    dispatch(addBlueprintComponent(blueprint, component));
-  },
-  removeBlueprintComponent: (blueprint, component) => {
-    dispatch(removeBlueprintComponent(blueprint, component));
+  updateBlueprintComponents: (blueprintId, components, packages, modules, pendingChange) => {
+    dispatch(updateBlueprintComponents(blueprintId, components, packages, modules, pendingChange));
   },
   setSelectedInput: selectedInput => {
     dispatch(setSelectedInput(selectedInput));
@@ -962,20 +970,14 @@ const mapDispatchToProps = dispatch => ({
   componentsFilterClearValues: value => {
     dispatch(componentsFilterClearValues(value));
   },
-  undo: blueprintId => {
-    dispatch(undo(blueprintId));
+  undo: (blueprintId, reload) => {
+    dispatch(undo(blueprintId, reload));
   },
-  redo: blueprintId => {
-    dispatch(redo(blueprintId));
+  redo: (blueprintId, reload) => {
+    dispatch(redo(blueprintId, reload));
   },
-  deleteHistory: blueprintId => {
-    dispatch(deleteHistory(blueprintId));
-  },
-  commitToWorkspace: blueprintId => {
-    dispatch(commitToWorkspace(blueprintId));
-  },
-  deleteWorkspace: blueprintId => {
-    dispatch(deleteWorkspace(blueprintId));
+  deleteHistory: (blueprintId, reload) => {
+    dispatch(deleteHistory(blueprintId, reload));
   },
   fetchingCompDeps: (component, blueprintId) => {
     dispatch(fetchingCompDeps(component, blueprintId));

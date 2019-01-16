@@ -6,14 +6,15 @@ import {
   FETCHING_BLUEPRINTS_SUCCEEDED,
   FETCHING_BLUEPRINT_NAMES_SUCCEEDED,
   FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED,
-  ADD_BLUEPRINT_COMPONENT_SUCCEEDED,
-  REMOVE_BLUEPRINT_COMPONENT_SUCCEEDED,
+  UPDATE_BLUEPRINT_COMPONENTS,
   SET_BLUEPRINT,
   SET_BLUEPRINT_DESCRIPTION_SUCCEEDED,
   SET_BLUEPRINT_COMMENT,
   DELETING_BLUEPRINT_SUCCEEDED,
   BLUEPRINTS_FAILURE,
-  BLUEPRINT_CONTENTS_FAILURE
+  BLUEPRINT_CONTENTS_FAILURE,
+  RELOADING_BLUEPRINT_CONTENTS_SUCCEEDED,
+  SET_COMP_DEPS
 } from "../actions/blueprints";
 
 const blueprints = (state = [], action) => {
@@ -85,7 +86,7 @@ const blueprints = (state = [], action) => {
           })
         ]
       });
-    case ADD_BLUEPRINT_COMPONENT_SUCCEEDED:
+    case UPDATE_BLUEPRINT_COMPONENTS:
       return Object.assign({}, state, {
         blueprintList: [
           ...state.blueprintList.map(blueprint => {
@@ -96,21 +97,7 @@ const blueprints = (state = [], action) => {
                   components: action.payload.components,
                   packages: action.payload.packages,
                   modules: action.payload.modules,
-                  localPendingChanges: blueprint.present.localPendingChanges.some(component => {
-                    return (
-                      (component.componentNew === action.payload.pendingChange.componentOld &&
-                        component.componentNew !== null) ||
-                      (component.componentOld === action.payload.pendingChange.componentNew &&
-                        component.componentOld !== null)
-                    );
-                  })
-                    ? blueprint.present.localPendingChanges.filter(component => {
-                        return (
-                          component.componentNew != action.payload.pendingChange.componentOld ||
-                          component.componentOld != action.payload.pendingChange.componentNew
-                        );
-                      })
-                    : [action.payload.pendingChange].concat(blueprint.present.localPendingChanges)
+                  localPendingChanges: action.payload.pendingChange
                 })
               });
             }
@@ -118,32 +105,16 @@ const blueprints = (state = [], action) => {
           })
         ]
       });
-    case REMOVE_BLUEPRINT_COMPONENT_SUCCEEDED:
+    case RELOADING_BLUEPRINT_CONTENTS_SUCCEEDED:
       return Object.assign({}, state, {
         blueprintList: [
           ...state.blueprintList.map(blueprint => {
-            if (blueprint.present.id === action.payload.blueprintId) {
+            if (blueprint.present.id === action.payload.blueprint.id) {
               return Object.assign({}, blueprint, {
-                past: blueprint.past.concat([blueprint.present]),
                 present: Object.assign({}, blueprint.present, {
-                  components: action.payload.components,
-                  packages: action.payload.packages,
-                  modules: action.payload.modules,
-                  localPendingChanges: blueprint.present.localPendingChanges.some(component => {
-                    return (
-                      (component.componentNew === action.payload.pendingChange.componentOld &&
-                        component.componentNew !== null) ||
-                      (component.componentOld === action.payload.pendingChange.componentNew &&
-                        component.componentOld !== null)
-                    );
-                  })
-                    ? blueprint.present.localPendingChanges.filter(component => {
-                        return (
-                          component.componentNew != action.payload.pendingChange.componentOld ||
-                          component.componentOld != action.payload.pendingChange.componentNew
-                        );
-                      })
-                    : [action.payload.pendingChange].concat(blueprint.present.localPendingChanges)
+                  components: action.payload.blueprint.components,
+                  packages: action.payload.blueprint.packages,
+                  modules: action.payload.blueprint.modules
                 })
               });
             }
@@ -250,10 +221,34 @@ const blueprints = (state = [], action) => {
               return Object.assign({}, blueprint, {
                 present: Object.assign({}, blueprint.past.shift(), {
                   localPendingChanges: [],
-                  workspacePendingChanges: { addedChanges: [], deletedChanges: [] }
+                  workspacePendingChanges: []
                 }),
                 past: [],
-                future: []
+                future: blueprint.future.concat([blueprint.present]).concat(blueprint.past.reverse())
+              });
+            }
+            return blueprint;
+          })
+        ]
+      });
+    case SET_COMP_DEPS:
+      return Object.assign({}, state, {
+        blueprintList: [
+          ...state.blueprintList.map(blueprint => {
+            if (blueprint.present.id === action.payload.blueprintId) {
+              return Object.assign({}, blueprint, {
+                present: Object.assign({}, blueprint.present, {
+                  components: [
+                    ...blueprint.present.components.map(component => {
+                      if (component.name === action.payload.component.name) {
+                        return Object.assign({}, component, {
+                          dependencies: action.payload.component.dependencies
+                        });
+                      }
+                      return component;
+                    })
+                  ]
+                })
               });
             }
             return blueprint;

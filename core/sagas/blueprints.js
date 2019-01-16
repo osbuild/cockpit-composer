@@ -3,13 +3,14 @@ import {
   fetchBlueprintInfoApi,
   fetchBlueprintNamesApi,
   fetchBlueprintContentsApi,
+  fetchComponentDetailsApi,
   deleteBlueprintApi,
   setBlueprintDescriptionApi,
   createBlueprintApi,
-  depsolveComponentsApi,
   commitToWorkspaceApi,
   fetchDiffWorkspaceApi,
-  deleteWorkspaceApi
+  deleteWorkspaceApi,
+  fetchDepsApi
 } from "../apiCalls";
 import {
   FETCHING_BLUEPRINTS,
@@ -17,24 +18,23 @@ import {
   fetchingBlueprintNamesSucceeded,
   FETCHING_BLUEPRINT_CONTENTS,
   fetchingBlueprintContentsSucceeded,
+  reloadingBlueprintContentsSucceeded,
   CREATING_BLUEPRINT,
   creatingBlueprintSucceeded,
-  ADD_BLUEPRINT_COMPONENT,
-  ADD_BLUEPRINT_COMPONENT_SUCCEEDED,
-  addBlueprintComponentSucceeded,
-  REMOVE_BLUEPRINT_COMPONENT,
-  REMOVE_BLUEPRINT_COMPONENT_SUCCEEDED,
-  removeBlueprintComponentSucceeded,
+  UPDATE_BLUEPRINT_COMPONENTS,
   SET_BLUEPRINT_DESCRIPTION,
   setBlueprintDescriptionSucceeded,
   DELETING_BLUEPRINT,
   deletingBlueprintSucceeded,
-  COMMIT_TO_WORKSPACE,
-  DELETE_WORKSPACE,
+  DELETE_HISTORY,
+  UNDO,
+  REDO,
   blueprintsFailure,
-  blueprintContentsFailure
+  blueprintContentsFailure,
+  FETCHING_COMP_DEPS,
+  setCompDeps
 } from "../actions/blueprints";
-import { makeGetBlueprintById } from "../selectors";
+import { makeGetBlueprintById, makeGetSelectedDeps } from "../selectors";
 
 function* fetchBlueprintsFromName(blueprintName) {
   const response = yield call(fetchBlueprintInfoApi, blueprintName);
@@ -146,6 +146,26 @@ function* generateComponents(blueprintData) {
   return components;
 }
 
+function* reloadBlueprintContents(blueprintId) {
+  // after updating components or deleting the workspace changes,
+  // get the latest depsolved blueprint components
+  try {
+    const blueprintData = yield call(fetchBlueprintContentsApi, blueprintId);
+    let components = [];
+    if (blueprintData.dependencies.length > 0) {
+      components = yield call(generateComponents, blueprintData);
+    }
+    const blueprint = Object.assign({}, blueprintData.blueprint, {
+      components: components,
+      id: blueprintId
+    });
+    yield put(reloadingBlueprintContentsSucceeded(blueprint));
+  } catch (error) {
+    console.log("Error in fetchBlueprintContentsSaga");
+    yield put(blueprintContentsFailure(error, blueprintId));
+  }
+}
+
 function* setBlueprintDescription(action) {
   try {
     const { blueprint, description } = action.payload;
@@ -192,58 +212,23 @@ function* createBlueprint(action) {
   }
 }
 
-function* addComponent(action) {
-  try {
-    const { blueprint, component } = action.payload;
-
-    const addedPackage = Object.assign(
-      {},
-      {},
-      {
-        name: component.name,
-        version: component.version
-      }
-    );
-    const pendingChange = {
-      componentOld: null,
-      componentNew: component.name + "-" + component.version + "-" + component.release
-    };
-
-    const packages = blueprint.packages.concat(addedPackage);
-    const modules = blueprint.modules;
-    const components = yield call(depsolveComponentsApi, packages, modules);
-
-    yield put(addBlueprintComponentSucceeded(blueprint.id, components, packages, modules, pendingChange));
-  } catch (error) {
-    console.log("errorAddComponentSaga");
-    yield put(blueprintsFailure(error));
-  }
-}
-
-function* removeComponent(action) {
-  try {
-    const { blueprint, component } = action.payload;
-
-    const pendingChange = {
-      componentOld: component.name + "-" + component.version + "-" + component.release,
-      componentNew: null
-    };
-    const packages = blueprint.packages.filter(pack => pack.name !== component.name);
-    const modules = blueprint.modules.filter(module => module.name !== component.name);
-    const components = yield call(depsolveComponentsApi, packages, modules);
-    yield put(removeBlueprintComponentSucceeded(blueprint.id, components, packages, modules, pendingChange));
-  } catch (error) {
-    console.log("errorRemoveComponentSaga");
-    yield put(blueprintsFailure(error));
-  }
-}
-
 function* commitToWorkspace(action) {
   try {
-    const { blueprintId } = action.payload;
+    const { blueprintId, reload } = action.payload;
     const getBlueprintById = makeGetBlueprintById();
     const blueprint = yield select(getBlueprintById, blueprintId);
-    yield call(commitToWorkspaceApi, blueprint.present);
+    const blueprintData = {
+      name: blueprint.present.name,
+      description: blueprint.present.description,
+      modules: blueprint.present.modules,
+      packages: blueprint.present.packages,
+      version: blueprint.present.version,
+      groups: blueprint.present.groups
+    };
+    yield call(commitToWorkspaceApi, blueprintData);
+    if (reload !== false) {
+      yield call(reloadBlueprintContents, blueprintId);
+    }
   } catch (error) {
     console.log("commitToWorkspaceError");
     yield put(blueprintsFailure(error));
@@ -252,24 +237,57 @@ function* commitToWorkspace(action) {
 
 function* deleteWorkspace(action) {
   try {
-    const { blueprintId } = action.payload;
+    const { blueprintId, reload } = action.payload;
     yield call(deleteWorkspaceApi, blueprintId);
-    const blueprint = yield call(fetchBlueprintInfoApi, blueprintId);
-    let blueprintPast = [];
-    let blueprintPresent = null;
-    let workspacePendingChanges = {
-      addedChanges: [],
-      deletedChanges: []
-    };
-    const blueprintDepsolved = yield call(fetchBlueprintContentsApi, blueprint.name);
-    blueprintPresent = Object.assign({}, blueprintDepsolved, {
-      localPendingChanges: [],
-      workspacePendingChanges: workspacePendingChanges
-    });
-    yield put(fetchingBlueprintContentsSucceeded(blueprintPast, blueprintPresent, workspacePendingChanges));
+    if (reload !== false) {
+      yield call(reloadBlueprintContents, blueprintId);
+    }
   } catch (error) {
     console.log("deleteWorkspaceError");
-    yield put(blueprintsFailure(error));
+    yield put(blueprintsFailure("failed delete workspace"));
+  }
+}
+
+function* fetchCompDeps(action) {
+  try {
+    const { component, blueprintId } = action.payload;
+    const response = yield call(fetchDepsApi, component.name);
+    let responseIndex;
+    if (response[0].builds) {
+      responseIndex = response.findIndex(item => {
+        return item.builds[0].release === component.release && item.builds[0].source.version === component.version;
+      });
+    } else {
+      responseIndex = 0;
+    }
+    const deps = response[responseIndex].dependencies.filter(item => item.name !== component.name);
+    const updatedDeps = deps.map(dep => {
+      const depData = Object.assign(
+        {},
+        {
+          ui_type: "RPM"
+        },
+        dep
+      );
+      delete depData.epoch;
+      delete depData.arch;
+      return depData;
+    });
+    const getBlueprintById = makeGetBlueprintById();
+    const blueprint = yield select(getBlueprintById, blueprintId);
+    const components = blueprint.present.components;
+    const getSelectedDeps = makeGetSelectedDeps();
+    const selectedDeps = yield select(getSelectedDeps, updatedDeps, components);
+    const updatedComp = Object.assign(
+      {},
+      {
+        name: component.name,
+        dependencies: selectedDeps
+      }
+    );
+    yield put(setCompDeps(updatedComp, blueprintId));
+  } catch (error) {
+    console.log("Error in fetchInputDeps");
   }
 }
 
@@ -278,12 +296,10 @@ export default function*() {
   yield takeEvery(FETCHING_BLUEPRINT_CONTENTS, fetchBlueprintContents);
   yield takeEvery(SET_BLUEPRINT_DESCRIPTION, setBlueprintDescription);
   yield takeEvery(DELETING_BLUEPRINT, deleteBlueprint);
-  yield takeEvery(ADD_BLUEPRINT_COMPONENT_SUCCEEDED, commitToWorkspace);
-  yield takeEvery(REMOVE_BLUEPRINT_COMPONENT_SUCCEEDED, commitToWorkspace);
-  yield takeEvery(COMMIT_TO_WORKSPACE, commitToWorkspace);
-  yield takeEvery(DELETE_WORKSPACE, deleteWorkspace);
-  yield takeEvery(ADD_BLUEPRINT_COMPONENT, addComponent);
-  yield takeEvery(REMOVE_BLUEPRINT_COMPONENT, removeComponent);
+  yield takeEvery(UPDATE_BLUEPRINT_COMPONENTS, commitToWorkspace);
+  yield takeEvery(UNDO, commitToWorkspace);
+  yield takeEvery(REDO, commitToWorkspace);
+  yield takeEvery(DELETE_HISTORY, deleteWorkspace);
   yield takeEvery(FETCHING_BLUEPRINTS, fetchBlueprints);
   yield takeEvery(FETCHING_COMP_DEPS, fetchCompDeps);
 }

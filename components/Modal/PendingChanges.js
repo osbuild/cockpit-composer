@@ -130,8 +130,8 @@ class PendingChanges extends React.Component {
                           className="list-group-item"
                           key={
                             !componentUpdated.componentNew
-                              ? `remove-${componentUpdated.componentOld}`
-                              : `add-${componentUpdated.componentNew}`
+                              ? componentUpdated.componentOld
+                              : componentUpdated.componentNew
                           }
                         >
                           {componentUpdated.componentNew && componentUpdated.componentOld && (
@@ -164,7 +164,7 @@ class PendingChanges extends React.Component {
                                 </strong>
                               </div>
                             </div>
-                          )}{" "}
+                          )}
                           {componentUpdated.componentNew && !componentUpdated.componentOld && (
                             <div className="row">
                               <div className="col-sm-3">
@@ -177,7 +177,7 @@ class PendingChanges extends React.Component {
                                 <strong>{componentUpdated.componentNew}</strong>
                               </div>
                             </div>
-                          )}{" "}
+                          )}
                           {componentUpdated.componentOld && !componentUpdated.componentNew && (
                             <div className="row">
                               <div className="col-sm-3">

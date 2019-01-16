@@ -61,8 +61,7 @@ const BlueprintToolbar = props => (
             className="btn btn-link"
             type="button"
             onClick={() => {
-              props.redo(props.blueprintId);
-              props.handleHistory();
+              props.redo(props.blueprintId, false);
             }}
             data-button="redo"
           >
@@ -79,7 +78,6 @@ const BlueprintToolbar = props => (
 );
 
 BlueprintToolbar.propTypes = {
-  handleHistory: PropTypes.func,
   filters: PropTypes.shape({
     defaultFilterType: PropTypes.string,
     filterTypes: PropTypes.arrayOf(PropTypes.object),
@@ -101,7 +99,6 @@ BlueprintToolbar.propTypes = {
 };
 
 BlueprintToolbar.defaultProps = {
-  handleHistory: function() {},
   filters: {},
   filterAddValue: function() {},
   filterRemoveValue: function() {},
