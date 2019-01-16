@@ -285,4 +285,5 @@ export default function*() {
   yield takeEvery(ADD_BLUEPRINT_COMPONENT, addComponent);
   yield takeEvery(REMOVE_BLUEPRINT_COMPONENT, removeComponent);
   yield takeEvery(FETCHING_BLUEPRINTS, fetchBlueprints);
+  yield takeEvery(FETCHING_COMP_DEPS, fetchCompDeps);
 }

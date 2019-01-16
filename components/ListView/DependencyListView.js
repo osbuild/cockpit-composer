@@ -21,7 +21,7 @@ class DependencyListView extends React.Component {
         <ListView className={this.props.className} stacked>
           {this.props.listItems.map(listItem => (
             <ListItemComponents
-              listItemParent={this.props.id}
+              listItemParent={this.props.className}
               isDependency
               listItem={listItem}
               key={listItem.name}
@@ -29,6 +29,7 @@ class DependencyListView extends React.Component {
               handleRemoveComponent={this.props.handleRemoveComponent}
               handleComponentDetails={this.props.handleComponentDetails}
               componentDetailsParent={this.props.componentDetailsParent}
+              fetchDetails={this.props.fetchDetails}
             />
           ))}
         </ListView>
@@ -38,7 +39,6 @@ class DependencyListView extends React.Component {
 }
 
 DependencyListView.propTypes = {
-  id: PropTypes.string,
   listItems: PropTypes.arrayOf(PropTypes.object),
   noEditComponent: PropTypes.bool,
   handleComponentDetails: PropTypes.func,
@@ -56,17 +56,18 @@ DependencyListView.propTypes = {
     version: PropTypes.string,
     versionSelected: PropTypes.string
   }),
-  className: PropTypes.string
+  className: PropTypes.string,
+  fetchDetails: PropTypes.func
 };
 
 DependencyListView.defaultProps = {
-  id: "",
   listItems: [],
   noEditComponent: true,
   handleComponentDetails: function() {},
   handleRemoveComponent: function() {},
   componentDetailsParent: {},
-  className: ""
+  className: "",
+  fetchDetails: function() {}
 };
 
 export default DependencyListView;

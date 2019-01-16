@@ -27,6 +27,19 @@ export const fetchingInputDetails = component => ({
     component
   }
 });
+export const FETCHING_INPUT_DEPS = "FETCHING_INPUT_DEPS";
+export const fetchingInputDeps = component => ({
+  type: FETCHING_INPUT_DEPS,
+  payload: {
+    component
+  }
+});
+export const FETCHING_DEP_DETAILS = "FETCHING_DEP_DETAILS";
+export const fetchingDepDetails = (component, blueprintId) => ({
+  type: FETCHING_DEP_DETAILS,
+  payload: {
+    component,
+    blueprintId
   }
 });
 
@@ -46,11 +59,16 @@ export const setSelectedInput = selectedInput => ({
   }
 });
 
-export const SET_SELECTED_INPUT_STATUS = "SET_SELECTED_INPUT_STATUS";
-export const setSelectedInputStatus = selectedInputStatus => ({
-  type: SET_SELECTED_INPUT_STATUS,
+export const CLEAR_SELECTED_INPUT = "CLEAR_SELECTED_INPUT";
+export const clearSelectedInput = () => ({
+  type: CLEAR_SELECTED_INPUT
+});
+
+export const SET_SELECTED_INPUT_DEPS = "SET_SELECTED_INPUT_DEPS";
+export const setSelectedInputDeps = dependencies => ({
+  type: SET_SELECTED_INPUT_DEPS,
   payload: {
-    selectedInputStatus
+    dependencies
   }
 });
 
@@ -59,6 +77,14 @@ export const setSelectedInputParent = selectedInputParent => ({
   type: SET_SELECTED_INPUT_PARENT,
   payload: {
     selectedInputParent
+  }
+});
+
+export const SET_DEP_DETAILS = "SET_DEP_DETAILS";
+export const setDepDetails = depDetails => ({
+  type: SET_DEP_DETAILS,
+  payload: {
+    depDetails
   }
 });
 

@@ -3,49 +3,30 @@ import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
 import ComponentTypeIcons from "./ComponentTypeIcons";
 import ComponentSummaryList from "./ComponentSummaryList";
-import MetadataApi from "../../data/MetadataApi";
-import constants from "../../core/constants";
 
 class ListItemComponents extends React.Component {
   constructor() {
     super();
-    this.state = { expanded: false, dependencies: [] };
+    this.state = { expanded: false };
   }
 
   componentWillReceiveProps(newProps) {
     // compare old value to new value, and if this component is getting new data,
     // then get the current expand state of the new value as it is in the old dom
     // and apply that expand state to this component
-    const olditem = this.props.listItem;
-    const newitem = newProps.listItem;
+    const olditem = this.props.listItem.name;
+    const newitem = newProps.listItem.name;
     const parent = this.props.listItemParent;
-    // Selected Components has listItemParent prop, but Dependencies does not.
-    // and this expanded setting just works with Selected Components.
-    if (parent && JSON.stringify(olditem) !== JSON.stringify(newitem)) {
-      if ($(`.${parent} [data-component="${newitem.name}"]`).hasClass("list-view-pf-expand-active")) {
+    if (olditem !== newitem) {
+      if ($(`.${parent} [data-component="${newitem.name}"]`).hasClass("active")) {
         this.setState({ expanded: true });
       } else {
         this.setState({ expanded: false });
       }
     }
-  }
-
-  getDependencies(component) {
-    const p = new Promise((resolve, reject) => {
-      Promise.all([MetadataApi.getData(constants.get_modules_info + component.name)])
-        .then(data => {
-          const filteredDependencies = data[0].modules[0].dependencies.filter(
-            dependency => dependency.name !== component.name
-          );
-          this.setState({ dependencies: filteredDependencies });
-          resolve();
-        })
-        .catch(e => {
-          console.log(`getDependencies: Error getting dependencies: ${e}`);
-          reject();
-        });
-    });
-    return p;
+    if (this.state.expanded === true && newProps.listItem.dependencies === undefined) {
+      this.props.fetchDetails(newProps.listItem);
+    }
   }
 
   handleExpandComponent(event) {
@@ -53,19 +34,20 @@ class ListItemComponents extends React.Component {
     if (!$(event.target).is("button, a, input, .fa-ellipsis-v")) {
       const expandState = !this.state.expanded;
       this.setState(prevState => ({ expanded: !prevState.expanded }));
-      if (expandState === true && this.state.dependencies.length === 0) {
-        this.getDependencies(this.props.listItem);
+      if (expandState === true && this.props.listItem.dependencies === undefined) {
+        this.props.fetchDetails(this.props.listItem);
       }
     }
   }
 
   render() {
-    const { listItem } = this.props;
+    const { listItem, noEditComponent, handleComponentDetails, handleRemoveComponent } = this.props;
+    const { expanded } = this.state;
     return (
-      <div className={`list-pf-item ${this.state.expanded ? "active" : ""}`} data-component={listItem.name}>
+      <div className={`list-pf-item ${expanded ? "active" : ""}`} data-component={listItem.name}>
         <div className="list-pf-container" onClick={e => this.handleExpandComponent(e)} role="presentation">
           <div className="list-pf-chevron">
-            <span className={`fa ${this.state.expanded ? "fa-angle-down" : "fa-angle-right"}`} />
+            <span className={`fa ${expanded ? "fa-angle-down" : "fa-angle-right"}`} />
           </div>
           <div className="list-pf-select">
             <input type="checkbox" />
@@ -75,16 +57,13 @@ class ListItemComponents extends React.Component {
               <ComponentTypeIcons
                 componentType={listItem.ui_type}
                 componentInBlueprint={listItem.inBlueprint}
-                isDependency={this.props.isDependency}
+                isSelected={listItem.userSelected}
               />
             </div>
             <div className="list-pf-content-wrapper">
               <div className="list-pf-main-content">
                 <div className="list-pf-title text-overflow-pf">
-                  <a
-                    href="#"
-                    onClick={e => this.props.handleComponentDetails(e, listItem, this.props.componentDetailsParent)}
-                  >
+                  <a href="#" onClick={e => handleComponentDetails(e, listItem)}>
                     {listItem.name}
                   </a>
                 </div>
@@ -109,7 +88,7 @@ class ListItemComponents extends React.Component {
                 </div>
               </div>
             </div>
-            {this.props.noEditComponent !== true && (
+            {noEditComponent !== true && (
               <div className="list-pf-actions">
                 <div className="dropdown pull-right dropdown-kebab-pf">
                   <button
@@ -124,37 +103,24 @@ class ListItemComponents extends React.Component {
                   </button>
                   <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight9">
                     <li>
-                      <a
-                        href="#"
-                        onClick={e => this.props.handleComponentDetails(e, listItem, this.props.componentDetailsParent)}
-                      >
+                      <a href="#" onClick={e => handleComponentDetails(e, listItem)}>
                         <FormattedMessage defaultMessage="View" />
                       </a>
                     </li>
-                    <li>
-                      <a
-                        href="#"
-                        onClick={e =>
-                          this.props.handleComponentDetails(e, listItem, this.props.componentDetailsParent, "edit")
-                        }
-                      >
-                        <FormattedMessage defaultMessage="Edit" />
-                      </a>
-                    </li>
-                    <li role="separator" className="divider" />
-                    <li>
-                      <a href="#" onClick={e => this.props.handleRemoveComponent(e, listItem)}>
-                        <FormattedMessage defaultMessage="Remove" />
-                      </a>
-                    </li>
+                    {listItem.inBlueprint && listItem.userSelected && (
+                      <li>
+                        <a href="#" onClick={e => handleRemoveComponent(e, listItem.name)}>
+                          <FormattedMessage defaultMessage="Remove" />
+                        </a>
+                      </li>
+                    )}
                   </ul>
                 </div>
               </div>
             )}
           </div>
         </div>
-
-        <div className={`list-pf-expansion collapse ${this.state.expanded ? "in" : ""}`}>
+        <div className={`list-pf-expansion collapse ${expanded ? "in" : ""}`}>
           <div className="list-pf-container">
             <div className="list-pf-content">
               <div className="container-fluid ">
@@ -180,7 +146,7 @@ class ListItemComponents extends React.Component {
                     </dl>
                   </div>
                   <div className="col-md-6">
-                    {this.state.dependencies.length > 0 && <ComponentSummaryList listItems={this.state.dependencies} />}
+                    {listItem.dependencies && <ComponentSummaryList listItems={listItem.dependencies} />}
                   </div>
                 </div>
               </div>
@@ -201,7 +167,8 @@ ListItemComponents.propTypes = {
     release: PropTypes.string,
     ui_type: PropTypes.string,
     userSelected: PropTypes.bool,
-    version: PropTypes.string
+    version: PropTypes.string,
+    dependencies: PropTypes.arrayOf(PropTypes.object)
   }),
   listItemParent: PropTypes.string,
   componentDetailsParent: PropTypes.shape({
@@ -220,7 +187,7 @@ ListItemComponents.propTypes = {
   handleComponentDetails: PropTypes.func,
   handleRemoveComponent: PropTypes.func,
   noEditComponent: PropTypes.bool,
-  isDependency: PropTypes.bool
+  fetchDetails: PropTypes.func
 };
 
 ListItemComponents.defaultProps = {
@@ -230,7 +197,7 @@ ListItemComponents.defaultProps = {
   handleComponentDetails: function() {},
   handleRemoveComponent: function() {},
   noEditComponent: false,
-  isDependency: false
+  fetchDetails: function() {}
 };
 
 export default ListItemComponents;

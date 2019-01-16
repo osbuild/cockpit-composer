@@ -4,7 +4,13 @@ import {
   FETCHING_INPUTS,
   fetchingInputsSucceeded,
   FETCHING_INPUT_DETAILS,
+  FETCHING_INPUT_DEPS,
+  FETCHING_DEP_DETAILS,
+  setSelectedInput,
+  setSelectedInputDeps,
+  setDepDetails
 } from "../actions/inputs";
+import { makeGetBlueprintById, makeGetSelectedDeps } from "../selectors";
 
 function flattenInputs(response) {
   // duplicate inputs exist when more than one build is available
@@ -55,7 +61,120 @@ function* fetchInputs(action) {
   }
 }
 
+function flattenInput(response) {
+  // each response item is a different build (version, release, arch)
+  // flatten the response to a single item with an array of builds
+  let previousBuilds = {};
+  let flattened = Object.assign({}, response[0], { builds: [] });
+  response.forEach(item => {
+    let previousBuild;
+    let build = {
+      version: item.builds[0].source.version,
+      release: item.builds[0].release,
+      arch: [item.builds[0].arch]
+    };
+    if (previousBuilds.hasOwnProperty(build.version + build.release)) {
+      // if this item has the same values for release and version of a
+      // previousBuild
+      // then push arch to the array of arch's, and filter this item out
+      previousBuild = previousBuilds[build.version + build.release];
+      previousBuild.arch = previousBuild.arch.concat(build.arch);
+      return false;
+    } else {
+      // else push the build to the array of builds
+      flattened.builds = [build].concat(flattened.builds);
+    }
+    previousBuilds[build.version + build.release] = build;
+    return true;
+  });
+  return flattened;
+}
+
+// when ComponentDetailsView loads, get component details
+function* fetchInputDetails(action) {
+  try {
+    const { component } = action.payload;
+    const response = yield call(fetchComponentDetailsApi, component.name);
+    const updatedResponse = flattenInput(response);
+    const componentData = Object.assign({}, component, {
+      builds: updatedResponse.builds,
+      description: updatedResponse.description,
+      homepage: updatedResponse.homepage,
+      summary: updatedResponse.summary
+    });
+    yield put(setSelectedInput(componentData));
+  } catch (error) {
+    console.log("Error in fetchInputDetails");
+  }
+}
+
+// when ComponentDetailsView loads, get component dependencies
+function* fetchInputDeps(action) {
+  try {
+    const { component } = action.payload;
+    const response = yield call(fetchDepsApi, component.name);
+    let responseIndex;
+    if (response[0].builds) {
+      responseIndex = response.findIndex(item => {
+        return item.builds[0].release === component.release && item.builds[0].source.version === component.version;
+      });
+    } else {
+      responseIndex = 0;
+    }
+    const deps = response[responseIndex].dependencies.filter(item => item.name !== component.name);
+    const updatedDeps = deps.map(dep => {
+      const depData = Object.assign(
+        {},
+        {
+          ui_type: "RPM"
+        },
+        dep
+      );
+      delete depData.epoch;
+      delete depData.arch;
+      return depData;
+    });
+    yield put(setSelectedInputDeps(updatedDeps));
+  } catch (error) {
+    console.log("Error in fetchInputDeps");
+  }
+}
+
+// when expanding a dependency list item in ComponentDetailsView
+// get additional details to display in expanded section
+function* fetchDepDetails(action) {
+  try {
+    const { component, blueprintId } = action.payload;
+    const response = yield call(fetchDepsApi, component.name);
+    const deps = response[0].dependencies.filter(item => item.name !== component.name);
+    const updatedDeps = deps.map(dep => {
+      const depData = Object.assign({}, { ui_type: "RPM" }, dep);
+      delete depData.epoch;
+      delete depData.arch;
+      return depData;
+    });
+    const getBlueprintById = makeGetBlueprintById();
+    const blueprint = yield select(getBlueprintById, blueprintId);
+    const components = blueprint.present.components;
+
+    const getSelectedDeps = makeGetSelectedDeps();
+    const selectedDeps = yield select(getSelectedDeps, updatedDeps, components);
+
+    const depDetails = Object.assign({}, component, {
+      description: response[0].description,
+      homepage: response[0].homepage,
+      summary: response[0].summary,
+      dependencies: selectedDeps
+    });
+    yield put(setDepDetails(depDetails));
+  } catch (error) {
+    console.log("Error in fetchDepDetails");
+  }
+}
+
 export default function*() {
   yield takeEvery(FETCHING_INPUTS, fetchInputs);
   yield takeLatest(FETCHING_INPUT_DETAILS, fetchInputDetails);
+  yield takeLatest(FETCHING_INPUT_DEPS, fetchInputDeps);
+  yield takeEvery(FETCHING_DEP_DETAILS, fetchDepDetails);
 }
