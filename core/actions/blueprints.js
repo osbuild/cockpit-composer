@@ -1,8 +1,7 @@
 export const CREATING_BLUEPRINT = "CREATING_BLUEPRINT";
-export const creatingBlueprint = (events, blueprint) => ({
+export const creatingBlueprint = blueprint => ({
   type: CREATING_BLUEPRINT,
   payload: {
-    events,
     blueprint
   }
 });

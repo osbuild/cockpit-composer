@@ -95,16 +95,6 @@ class BlueprintApi {
     });
   }
 
-  handleCreateBlueprint(event, blueprint) {
-    return this.postBlueprint(blueprint)
-      .then(() => {
-        window.location.hash = history.createHref(`/edit/${blueprint.name}`);
-      })
-      .catch(e => {
-        console.log(`Error creating blueprint: ${e}`);
-      });
-  }
-
   handleCommitBlueprint(blueprint) {
     const p = new Promise((resolve, reject) => {
       this.postBlueprint(this.postedBlueprintData(blueprint))
