@@ -18,7 +18,14 @@ import EmptyState from "../../components/EmptyState/EmptyState";
 import BlueprintToolbar from "../../components/Toolbar/BlueprintToolbar";
 import ListView from "../../components/ListView/ListView";
 import ListItemImages from "../../components/ListView/ListItemImages";
-import { fetchingBlueprintContents, setBlueprintDescription } from "../../core/actions/blueprints";
+import { fetchingBlueprintContents, setBlueprintDescription, fetchingCompDeps } from "../../core/actions/blueprints";
+import {
+  clearSelectedInput,
+  setSelectedInput,
+  setSelectedInputDeps,
+  setSelectedInputParent,
+  fetchingDepDetails
+} from "../../core/actions/inputs";
 import { fetchingComposes, startCompose } from "../../core/actions/composes";
 import {
   setModalExportBlueprintVisible,
@@ -29,14 +36,7 @@ import {
   setModalDeleteImageVisible,
   setModalDeleteImageState
 } from "../../core/actions/modals";
-import {
-  setEditDescriptionVisible,
-  setEditDescriptionValue,
-  setActiveComponent,
-  setActiveComponentStatus,
-  setActiveComponentParent,
-  setActiveTab
-} from "../../core/actions/blueprintPage";
+import { setEditDescriptionVisible, setEditDescriptionValue, setActiveTab } from "../../core/actions/blueprintPage";
 import {
   componentsSortSetKey,
   componentsSortSetValue,
@@ -53,7 +53,8 @@ import {
   makeGetSortedSelectedComponents,
   makeGetSortedDependencies,
   makeGetFilteredComponents,
-  makeGetBlueprintComposes
+  makeGetBlueprintComposes,
+  makeGetSelectedDeps
 } from "../../core/selectors";
 
 const messages = defineMessages({
@@ -86,6 +87,8 @@ class BlueprintPage extends React.Component {
     this.setNotifications = this.setNotifications.bind(this);
     this.handleTabChanged = this.handleTabChanged.bind(this);
     this.handleComponentDetails = this.handleComponentDetails.bind(this);
+    this.handleComponentListItem = this.handleComponentListItem.bind(this);
+    this.handleDepListItem = this.handleDepListItem.bind(this);
     this.handleHideModalExport = this.handleHideModalExport.bind(this);
     this.handleShowModalExport = this.handleShowModalExport.bind(this);
     this.handleHideModalCreateImage = this.handleHideModalCreateImage.bind(this);
@@ -112,6 +115,10 @@ class BlueprintPage extends React.Component {
     document.title = this.props.intl.formatMessage(messages.blueprint);
   }
 
+  componentWillUnmount() {
+    this.props.clearSelectedInput();
+  }
+
   setNotifications() {
     this.layout.setNotifications();
   }
@@ -122,12 +129,20 @@ class BlueprintPage extends React.Component {
     }
   }
 
-  handleComponentDetails(event, component, parent) {
+  handleComponentDetails(event, component) {
     // the user selected a component to view more details
-    this.props.setActiveComponent(component);
-    this.props.setActiveComponentParent(parent);
+    this.props.setSelectedInput(component);
+    this.props.setSelectedInputParent([]);
     event.preventDefault();
     event.stopPropagation();
+  }
+
+  handleComponentListItem(component) {
+    this.props.fetchingCompDeps(component, this.props.blueprint.id);
+  }
+
+  handleDepListItem(component) {
+    this.props.fetchingDepDetails(component, this.props.blueprint.id);
   }
 
   handleEditDescription(action) {
@@ -215,15 +230,14 @@ class BlueprintPage extends React.Component {
       selectedComponents,
       dependencies,
       componentsFilters,
-      composeList
+      composeList,
+      selectedInput,
+      selectedInputDeps,
+      setSelectedInput,
+      setSelectedInputParent,
+      clearSelectedInput
     } = this.props;
-    const {
-      editDescriptionValue,
-      editDescriptionVisible,
-      activeComponent,
-      activeComponentParent,
-      activeComponentStatus
-    } = this.props.blueprintPage;
+    const { editDescriptionValue, editDescriptionVisible } = this.props.blueprintPage;
     const { formatMessage } = this.props.intl;
 
     return (
@@ -350,7 +364,7 @@ class BlueprintPage extends React.Component {
           </Tab>
           <Tab eventKey="selected-components" title={formatMessage(messages.selectedComponentsTitle)}>
             <div className="row">
-              {(activeComponent === "" && (
+              {(selectedInput.set === false && (
                 <div className="col-sm-12">
                   <BlueprintToolbar
                     emptyState={
@@ -375,6 +389,7 @@ class BlueprintPage extends React.Component {
                     filterValues={componentsFilters.filterValues}
                     errorState={this.props.blueprintContentsError}
                     fetchingState={this.props.blueprintContentsFetching}
+                    fetchDetails={this.handleComponentListItem}
                   >
                     <EmptyState
                       title={formatMessage(messages.emptyBlueprintTitle)}
@@ -394,11 +409,15 @@ class BlueprintPage extends React.Component {
                     <FormattedMessage defaultMessage="Component Details" />
                   </h3>
                   <ComponentDetailsView
-                    parent={this.props.route.params.blueprint}
-                    component={activeComponent}
-                    componentParent={activeComponentParent}
-                    status={activeComponentStatus}
+                    blueprint={this.props.route.params.blueprint}
+                    component={selectedInput.component}
+                    dependencies={selectedInputDeps}
+                    componentParent={selectedInput.parent}
+                    setSelectedInput={setSelectedInput}
+                    setSelectedInputParent={setSelectedInputParent}
+                    clearSelectedInput={clearSelectedInput}
                     handleComponentDetails={this.handleComponentDetails}
+                    handleDepListItem={this.handleDepListItem}
                   />
                 </div>
               )}
@@ -485,6 +504,7 @@ BlueprintPage.propTypes = {
     pattern: PropTypes.object
   }),
   fetchingBlueprintContents: PropTypes.func,
+  fetchingCompDeps: PropTypes.func,
   blueprint: PropTypes.shape({
     components: PropTypes.arrayOf(PropTypes.object),
     description: PropTypes.string,
@@ -503,18 +523,22 @@ BlueprintPage.propTypes = {
   setActiveTab: PropTypes.func,
   setEditDescriptionValue: PropTypes.func,
   setEditDescriptionVisible: PropTypes.func,
-  setActiveComponent: PropTypes.func,
-  setActiveComponentParent: PropTypes.func,
   setModalExportBlueprintVisible: PropTypes.func,
   blueprintPage: PropTypes.shape({
-    activeComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    activeComponentParent: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    activeComponentStatus: PropTypes.string,
     activeTab: PropTypes.string,
     editDescriptionVisible: PropTypes.bool,
     editDescriptionValue: PropTypes.string
   }),
   setBlueprintDescription: PropTypes.func,
+  selectedInput: PropTypes.shape({
+    component: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    parent: PropTypes.arrayOf(PropTypes.object)
+  }),
+  selectedInputDeps: PropTypes.arrayOf(PropTypes.object),
+  setSelectedInput: PropTypes.func,
+  clearSelectedInput: PropTypes.func,
+  setSelectedInputParent: PropTypes.func,
+  fetchingDepDetails: PropTypes.func,
   exportModalVisible: PropTypes.bool,
   stopBuild: PropTypes.shape({
     blueprintName: PropTypes.string,
@@ -572,8 +596,6 @@ BlueprintPage.defaultProps = {
   setActiveTab: function() {},
   setEditDescriptionValue: function() {},
   setEditDescriptionVisible: function() {},
-  setActiveComponent: function() {},
-  setActiveComponentParent: function() {},
   setModalExportBlueprintVisible: function() {},
   blueprintPage: {},
   setBlueprintDescription: function() {},
@@ -591,6 +613,13 @@ BlueprintPage.defaultProps = {
   dependencies: [],
   componentsSortKey: "",
   componentsSortValue: "",
+  fetchingCompDeps: function() {},
+  selectedInput: {},
+  selectedInputDeps: undefined,
+  setSelectedInput: function() {},
+  clearSelectedInput: function() {},
+  setSelectedInputParent: function() {},
+  fetchingDepDetails: function() {},
   setModalCreateImageVisible: function() {},
   setModalCreateImageHidden: function() {},
   setModalStopBuildVisible: function() {},
@@ -607,6 +636,7 @@ const makeMapStateToProps = () => {
   const getSortedSelectedComponents = makeGetSortedSelectedComponents();
   const getSortedDependencies = makeGetSortedDependencies();
   const getFilteredComponents = makeGetFilteredComponents();
+  const getSelectedDeps = makeGetSelectedDeps();
   const getBlueprintComposes = makeGetBlueprintComposes();
   const mapStateToProps = (state, props) => {
     if (getBlueprintById(state, props.route.params.blueprint.replace(/\s/g, "-")) !== undefined) {
@@ -618,6 +648,12 @@ const makeMapStateToProps = () => {
         composeList: getBlueprintComposes(state, fetchedBlueprint.present),
         composesLoading: state.composes.fetchingComposes,
         blueprintPage: state.blueprintPage,
+        selectedInput: state.inputs.selectedInput,
+        selectedInputDeps: getSelectedDeps(
+          state,
+          state.inputs.selectedInput.component.dependencies,
+          fetchedBlueprint.present.components
+        ),
         exportModalVisible: state.modals.exportBlueprint.visible,
         createImage: state.modals.createImage,
         stopBuild: state.modals.stopBuild,
@@ -669,14 +705,17 @@ const mapDispatchToProps = dispatch => ({
   setActiveTab: activeTab => {
     dispatch(setActiveTab(activeTab));
   },
-  setActiveComponent: component => {
-    dispatch(setActiveComponent(component));
+  setSelectedInput: selectedInput => {
+    dispatch(setSelectedInput(selectedInput));
   },
-  setActiveComponentParent: componentParent => {
-    dispatch(setActiveComponentParent(componentParent));
+  setSelectedInputDeps: dependencies => {
+    dispatch(setSelectedInputDeps(dependencies));
   },
-  setActiveComponentStatus: componentStatus => {
-    dispatch(setActiveComponentStatus(componentStatus));
+  setSelectedInputParent: selectedInputParent => {
+    dispatch(setSelectedInputParent(selectedInputParent));
+  },
+  clearSelectedInput: () => {
+    dispatch(clearSelectedInput());
   },
   setModalExportBlueprintVisible: visible => {
     dispatch(setModalExportBlueprintVisible(visible));
@@ -719,6 +758,12 @@ const mapDispatchToProps = dispatch => ({
   },
   componentsFilterClearValues: value => {
     dispatch(componentsFilterClearValues(value));
+  },
+  fetchingCompDeps: (component, blueprintId) => {
+    dispatch(fetchingCompDeps(component, blueprintId));
+  },
+  fetchingDepDetails: (component, blueprintId) => {
+    dispatch(fetchingDepDetails(component, blueprintId));
   },
   startCompose: (blueprintName, composeType) => {
     dispatch(startCompose(blueprintName, composeType));
