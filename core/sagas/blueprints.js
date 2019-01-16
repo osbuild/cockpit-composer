@@ -55,38 +55,95 @@ function* fetchBlueprints() {
 function* fetchBlueprintContents(action) {
   try {
     const { blueprintId } = action.payload;
-    let blueprintPast = [];
-    let blueprintPresent = null;
-    const blueprint = yield call(fetchBlueprintInfoApi, blueprintId);
-    const blueprintResponse = yield call(fetchBlueprintContentsApi, blueprint.name);
-    let workspacePendingChanges = {
-      addedChanges: [],
-      deletedChanges: []
-    };
-    if (blueprint.changed === true) {
-      const workspaceChanges = yield call(fetchDiffWorkspaceApi, blueprintId);
-      const addedChanges = workspaceChanges.diff.filter(componentUpdated => componentUpdated.old === null);
-      const deletedChanges = workspaceChanges.diff.filter(componentUpdated => componentUpdated.new === null);
-      workspacePendingChanges = {
-        addedChanges: addedChanges,
-        deletedChanges: deletedChanges
-      };
-      blueprintPast = [
-        Object.assign({}, blueprintResponse, {
-          localPendingChanges: [],
-          workspacePendingChanges: { addedChanges: [], deletedChanges: [] }
-        })
-      ];
+    const blueprintData = yield call(fetchBlueprintContentsApi, blueprintId);
+    let components = [];
+    if (blueprintData.dependencies.length > 0) {
+      components = yield call(generateComponents, blueprintData);
     }
-    blueprintPresent = Object.assign({}, blueprintResponse, {
+    const workspaceChanges = yield call(fetchDiffWorkspaceApi, blueprintId);
+    let pastComponents;
+    let workspacePendingChanges = [];
+    if (workspaceChanges.diff.length > 0) {
+      workspacePendingChanges = workspaceChanges.diff.map(change => {
+        return {
+          componentOld: change.old === null ? null : change.old.Package,
+          componentNew: change.new === null ? null : change.new.Package
+        };
+      });
+      pastComponents = generatePastComponents(workspaceChanges, blueprintData.blueprint.packages);
+    }
+    const blueprint = Object.assign({}, blueprintData.blueprint, {
+      components: components,
+      id: blueprintId,
       localPendingChanges: [],
       workspacePendingChanges: workspacePendingChanges
     });
-    yield put(fetchingBlueprintContentsSucceeded(blueprintPast, blueprintPresent, workspacePendingChanges));
+    const pastBlueprint = pastComponents
+      ? [
+          Object.assign({}, blueprint, pastComponents, {
+            workspacePendingChanges: []
+          })
+        ]
+      : [];
+    yield put(fetchingBlueprintContentsSucceeded(blueprint, pastBlueprint));
   } catch (error) {
     console.log("Error in fetchBlueprintContentsSaga");
     yield put(blueprintContentsFailure(error, action.payload.blueprintId));
   }
+}
+
+function generatePastComponents(workspaceChanges, packages) {
+  const updatedPackages = workspaceChanges.diff.filter(change => change.old !== null).map(change => change.old.Package);
+  const originalPackages = packages.filter(originalPackage => {
+    const addedPackage = workspaceChanges.diff.find(
+      change => change.old === null && change.new.Package.name === originalPackage.name
+    );
+    if (addedPackage === undefined) {
+      return true;
+    }
+  });
+  const blueprintPackages = updatedPackages.concat(originalPackages);
+  const blueprintComponents = blueprintPackages.map(component => {
+    const componentData = Object.assign({}, component, {
+      inBlueprint: true,
+      userSelected: true
+    });
+    return componentData;
+  });
+  const blueprint = {
+    components: blueprintComponents,
+    packages: blueprintPackages
+  };
+  return blueprint;
+}
+
+function* generateComponents(blueprintData) {
+  // List of all components
+  const componentNames = blueprintData.dependencies.map(component => component.name);
+  // List of selected components
+  const packageNames = blueprintData.blueprint.packages.map(component => component.name);
+  const moduleNames = blueprintData.blueprint.modules.map(component => component.name);
+  const selectedComponentNames = packageNames.concat(moduleNames);
+  const componentInfo = yield call(fetchComponentDetailsApi, componentNames);
+  const components = blueprintData.dependencies.map(component => {
+    const info = componentInfo.find(item => item.name === component.name);
+    const componentData = Object.assign(
+      {},
+      {
+        name: component.name,
+        description: info.description,
+        homepage: info.homepage,
+        summary: info.summary,
+        inBlueprint: true,
+        userSelected: selectedComponentNames.includes(component.name),
+        ui_type: "RPM",
+        version: component.version,
+        release: component.release
+      }
+    );
+    return componentData;
+  });
+  return components;
 }
 
 function* setBlueprintDescription(action) {

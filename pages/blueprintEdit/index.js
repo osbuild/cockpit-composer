@@ -492,12 +492,7 @@ class EditBlueprintPage extends React.Component {
       pastLength,
       futureLength
     } = this.props;
-
-    const numPendingChanges =
-      blueprint.localPendingChanges.length +
-      blueprint.workspacePendingChanges.addedChanges.length +
-      blueprint.workspacePendingChanges.deletedChanges.length;
-
+    const numPendingChanges = blueprint.localPendingChanges.length + blueprint.workspacePendingChanges.length;
     const { formatMessage } = this.props.intl;
 
     return (
@@ -829,7 +824,7 @@ EditBlueprintPage.propTypes = {
     name: PropTypes.string,
     packages: PropTypes.arrayOf(PropTypes.object),
     version: PropTypes.string,
-    workspacePendingChanges: PropTypes.object
+    workspacePendingChanges: PropTypes.arrayOf(PropTypes.object)
   }),
   createImage: PropTypes.shape({
     blueprint: PropTypes.object,

@@ -196,8 +196,7 @@ class PendingChanges extends React.Component {
                     </ul>
                   </div>
                 )}
-                {(this.props.blueprint.workspacePendingChanges.addedChanges.length !== 0 ||
-                  this.props.blueprint.workspacePendingChanges.deletedChanges.length !== 0) && (
+                {this.props.blueprint.workspacePendingChanges.length !== 0 && (
                   <div>
                     <FormattedMessage defaultMessage="Changes made in a previous session" tagName="strong" />
                     <OverlayTrigger
@@ -211,44 +210,74 @@ class PendingChanges extends React.Component {
                       </Button>
                     </OverlayTrigger>
                     <ul className="list-group">
-                      {this.props.blueprint.workspacePendingChanges.addedChanges.length !== 0 && (
-                        <li className="list-group-item">
-                          <div className="row">
-                            <div className="col-sm-3">Added</div>
-                            <div className="col-sm-9">
-                              <ul className="list-unstyled">
-                                {this.props.blueprint.workspacePendingChanges.addedChanges.map(componentUpdated => (
-                                  <li key={componentUpdated.new.Package.name}>
-                                    <strong>
-                                      {Object.values(componentUpdated.new)[0].name}-
-                                      {Object.values(componentUpdated.new)[0].version}
-                                    </strong>
-                                  </li>
-                                ))}
-                              </ul>
+                      {this.props.blueprint.workspacePendingChanges.map(change => (
+                        <li
+                          className="list-group-item"
+                          key={!change.componentNew ? change.componentOld : change.componentNew}
+                        >
+                          {change.componentNew && change.componentOld && (
+                            <div className="row">
+                              <div className="col-sm-3">
+                                <FormattedMessage
+                                  defaultMessage="Updated"
+                                  description="Identifies the change as a component that was updated"
+                                />
+                              </div>
+                              <div className="col-sm-9">
+                                <strong>
+                                  <FormattedMessage
+                                    defaultMessage="{from} {oldVersion} {to} {newVersion}"
+                                    values={{
+                                      from: (
+                                        <span className="text-muted">
+                                          <FormattedMessage defaultMessage="from" />{" "}
+                                        </span>
+                                      ),
+                                      oldVersion: `${change.componentOld.name}-${change.componentOld.version}`,
+                                      to: (
+                                        <span className="text-muted">
+                                          <FormattedMessage defaultMessage="to" />{" "}
+                                        </span>
+                                      ),
+                                      newVersion: `${change.componentNew.name}-${change.componentNew.version}`
+                                    }}
+                                  />
+                                </strong>
+                              </div>
                             </div>
-                          </div>
-                        </li>
-                      )}{" "}
-                      {this.props.blueprint.workspacePendingChanges.deletedChanges.length !== 0 && (
-                        <li className="list-group-item">
-                          <div className="row">
-                            <div className="col-sm-3">Removed</div>
-                            <div className="col-sm-9">
-                              <ul className="list-unstyled">
-                                {this.props.blueprint.workspacePendingChanges.deletedChanges.map(componentUpdated => (
-                                  <li key={componentUpdated.old.Package.name}>
-                                    <strong>
-                                      {Object.values(componentUpdated.old)[0].name}-
-                                      {Object.values(componentUpdated.old)[0].version}
-                                    </strong>
-                                  </li>
-                                ))}
-                              </ul>
+                          )}
+                          {change.componentNew && !change.componentOld && (
+                            <div className="row">
+                              <div className="col-sm-3">
+                                <FormattedMessage
+                                  defaultMessage="Added"
+                                  description="Identifies the change as a component that was added"
+                                />
+                              </div>
+                              <div className="col-sm-9">
+                                <strong>
+                                  {change.componentNew.name}-{change.componentNew.version}
+                                </strong>
+                              </div>
                             </div>
-                          </div>
+                          )}
+                          {change.componentOld && !change.componentNew && (
+                            <div className="row">
+                              <div className="col-sm-3">
+                                <FormattedMessage
+                                  defaultMessage="Removed"
+                                  description="Identifies the change as a component that was removed"
+                                />
+                              </div>
+                              <div className="col-sm-9">
+                                <strong>
+                                  {change.componentOld.name}-{change.componentOld.version}
+                                </strong>
+                              </div>
+                            </div>
+                          )}
                         </li>
-                      )}
+                      ))}
                     </ul>
                   </div>
                 )}
