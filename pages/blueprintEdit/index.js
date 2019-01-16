@@ -815,7 +815,7 @@ EditBlueprintPage.defaultProps = {
   blueprint: {},
   createImage: {},
   inputs: {},
-  inputComponents: [],
+  inputComponents: undefined,
   modalActive: "",
   selectedInput: {},
   fetchingBlueprintContents: function() {},
