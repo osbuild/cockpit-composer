@@ -79,7 +79,9 @@ const blueprints = (state = [], action) => {
           ...state.blueprintList.map(blueprint => {
             if (blueprint.present.id === action.payload.blueprintId) {
               return Object.assign({}, blueprint, {
-                errorState: action.payload.error
+                present: Object.assign({}, blueprint.present, {
+                  errorState: action.payload.error
+                })
               });
             }
             return blueprint;
@@ -98,7 +100,8 @@ const blueprints = (state = [], action) => {
                   packages: action.payload.packages,
                   modules: action.payload.modules,
                   localPendingChanges: action.payload.pendingChange
-                })
+                }),
+                future: []
               });
             }
             return blueprint;

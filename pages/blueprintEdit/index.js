@@ -570,6 +570,8 @@ class EditBlueprintPage extends React.Component {
               errorState={this.props.blueprintContentsError}
               fetchingState={this.props.blueprintContentsFetching}
               fetchDetails={this.handleComponentListItem}
+              undo={this.handleUndo}
+              pastLength={pastLength}
             >
               <EmptyState
                 title={formatMessage(messages.addComponentTitle)}
@@ -644,30 +646,32 @@ class EditBlueprintPage extends React.Component {
                 />
               </div>
             </div>
-            {(blueprint.components === undefined || blueprint.components.length === 0) && (
-              <div className="alert alert-info alert-dismissable">
-                <button
-                  type="button"
-                  className="close"
-                  data-dismiss="alert"
-                  aria-hidden="true"
-                  aria-label="Dismiss Message"
-                >
-                  <span className="pficon pficon-close" />
-                </button>
-                <span className="pficon pficon-info" />
-                <FormattedMessage
-                  defaultMessage="{selectComponents} in this list to add to the blueprint."
-                  values={{
-                    selectComponents: (
-                      <strong>
-                        <FormattedMessage defaultMessage="Select components" />
-                      </strong>
-                    )
-                  }}
-                />
-              </div>
-            )}
+            {(blueprint.components === undefined || blueprint.components.length === 0) &&
+              Object.keys(this.props.blueprintContentsError).length === 0 &&
+              componentsFilters.filterValues.length === 0 && (
+                <div className="alert alert-info alert-dismissable">
+                  <button
+                    type="button"
+                    className="close"
+                    data-dismiss="alert"
+                    aria-hidden="true"
+                    aria-label="Dismiss Message"
+                  >
+                    <span className="pficon pficon-close" />
+                  </button>
+                  <span className="pficon pficon-info" />
+                  <FormattedMessage
+                    defaultMessage="{selectComponents} in this list to add to the blueprint."
+                    values={{
+                      selectComponents: (
+                        <strong>
+                          <FormattedMessage defaultMessage="Select components" />
+                        </strong>
+                      )
+                    }}
+                  />
+                </div>
+              )}
             <ComponentInputs
               components={inputComponents[inputs.selectedInputPage]}
               handleComponentDetails={this.handleComponentDetails}
@@ -884,9 +888,11 @@ const makeMapStateToProps = () => {
         modalActive: state.modals.modalActive,
         pastLength: getPastLength(fetchedBlueprint),
         futureLength: getFutureLength(fetchedBlueprint),
-        blueprintContentsError: fetchedBlueprint.errorState,
+        blueprintContentsError: fetchedBlueprint.present.errorState,
         blueprintContentsFetching:
-          fetchedBlueprint.present.components === undefined && fetchedBlueprint.errorState === undefined ? true : false
+          fetchedBlueprint.present.components === undefined && fetchedBlueprint.present.errorState === undefined
+            ? true
+            : false
       };
     }
     return {

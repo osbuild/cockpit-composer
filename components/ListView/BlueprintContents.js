@@ -41,7 +41,9 @@ const BlueprintContents = props => {
     filterValues,
     errorState,
     fetchingState,
-    fetchDetails
+    fetchDetails,
+    pastLength,
+    undo
   } = props;
 
   const { formatMessage } = props.intl;
@@ -49,11 +51,18 @@ const BlueprintContents = props => {
   return (
     <div>
       {(fetchingState === true && <Loading />) ||
-        ((Object.keys(errorState).length && (
+        ((Object.keys(errorState).length > 0 && (
           <EmptyState
             title={formatMessage(messages.emptyStateErrorTitle)}
             message={formatMessage(messages.emptyStateErrorMessage)}
-          />
+          >
+            <p>{errorState.msg}</p>
+            {pastLength > 0 && (
+              <button className="btn btn-link btn-lg" type="button" onClick={() => undo()}>
+                <FormattedMessage defaultMessage="Undo Last Change" />
+              </button>
+            )}
+          </EmptyState>
         )) ||
           ((components.length === 0 && filterValues.length === 0 && <div>{props.children}</div>) || (
             <Tabs id="blueprint-tabs">
@@ -135,7 +144,9 @@ BlueprintContents.propTypes = {
   }),
   fetchingState: PropTypes.bool,
   fetchDetails: PropTypes.func,
-  children: PropTypes.node
+  children: PropTypes.node,
+  pastLength: PropTypes.number,
+  undo: PropTypes.func
 };
 
 BlueprintContents.defaultProps = {
@@ -149,7 +160,9 @@ BlueprintContents.defaultProps = {
   errorState: {},
   fetchingState: false,
   fetchDetails: function() {},
-  children: React.createElement("div")
+  children: React.createElement("div"),
+  pastLength: 0,
+  undo: function() {}
 };
 
 export default injectIntl(BlueprintContents);

@@ -55,7 +55,12 @@ function* fetchBlueprints() {
 function* fetchBlueprintContents(action) {
   try {
     const { blueprintId } = action.payload;
-    const blueprintData = yield call(fetchBlueprintContentsApi, blueprintId);
+    const response = yield call(fetchBlueprintContentsApi, blueprintId);
+    console.log("blueprintData", response);
+    const blueprintData = response.blueprints[0];
+    if (response.errors.length > 0) {
+      yield put(blueprintContentsFailure(response.errors[0], blueprintId));
+    }
     let components = [];
     if (blueprintData.dependencies.length > 0) {
       components = yield call(generateComponents, blueprintData);
@@ -76,16 +81,18 @@ function* fetchBlueprintContents(action) {
       components: components,
       id: blueprintId,
       localPendingChanges: [],
-      workspacePendingChanges: workspacePendingChanges
+      workspacePendingChanges: workspacePendingChanges,
+      errorState: response.errors[0]
     });
     const pastBlueprint = pastComponents
       ? [
           Object.assign({}, blueprint, pastComponents, {
-            workspacePendingChanges: []
+            workspacePendingChanges: [],
+            errorState: {}
           })
         ]
       : [];
-    yield put(fetchingBlueprintContentsSucceeded(blueprint, pastBlueprint));
+    yield put(fetchingBlueprintContentsSucceeded(blueprint, pastBlueprint, response.errors[0]));
   } catch (error) {
     console.log("Error in fetchBlueprintContentsSaga");
     yield put(blueprintContentsFailure(error, action.payload.blueprintId));
@@ -150,16 +157,21 @@ function* reloadBlueprintContents(blueprintId) {
   // after updating components or deleting the workspace changes,
   // get the latest depsolved blueprint components
   try {
-    const blueprintData = yield call(fetchBlueprintContentsApi, blueprintId);
+    const response = yield call(fetchBlueprintContentsApi, blueprintId);
+    const blueprintData = response.blueprints[0];
+    if (response.errors.length > 0) {
+      yield put(blueprintContentsFailure(response.errors[0], blueprintId));
+    }
     let components = [];
     if (blueprintData.dependencies.length > 0) {
       components = yield call(generateComponents, blueprintData);
     }
     const blueprint = Object.assign({}, blueprintData.blueprint, {
       components: components,
-      id: blueprintId
+      id: blueprintId,
+      errorState: response.errors[0]
     });
-    yield put(reloadingBlueprintContentsSucceeded(blueprint));
+    yield put(reloadingBlueprintContentsSucceeded(blueprint, response.errors[0]));
   } catch (error) {
     console.log("Error in fetchBlueprintContentsSaga");
     yield put(blueprintContentsFailure(error, blueprintId));
