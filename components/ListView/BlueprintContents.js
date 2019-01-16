@@ -40,7 +40,8 @@ const BlueprintContents = props => {
     filterClearValues,
     filterValues,
     errorState,
-    fetchingState
+    fetchingState,
+    fetchDetails
   } = props;
 
   const { formatMessage } = props.intl;
@@ -79,6 +80,7 @@ const BlueprintContents = props => {
                         handleRemoveComponent={handleRemoveComponent}
                         handleComponentDetails={handleComponentDetails}
                         noEditComponent={noEditComponent}
+                        fetchDetails={fetchDetails}
                       />
                     ))}
                   </ListView>
@@ -106,6 +108,7 @@ const BlueprintContents = props => {
                     handleRemoveComponent={handleRemoveComponent}
                     handleComponentDetails={handleComponentDetails}
                     noEditComponent={noEditComponent}
+                    fetchDetails={fetchDetails}
                   />
                 )}
               </Tab>
@@ -131,6 +134,7 @@ BlueprintContents.propTypes = {
     url: PropTypes.string
   }),
   fetchingState: PropTypes.bool,
+  fetchDetails: PropTypes.func,
   children: PropTypes.node
 };
 
@@ -144,6 +148,7 @@ BlueprintContents.defaultProps = {
   filterValues: [],
   errorState: {},
   fetchingState: false,
+  fetchDetails: function() {},
   children: React.createElement("div")
 };
 

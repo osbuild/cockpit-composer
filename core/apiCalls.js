@@ -42,6 +42,14 @@ export function fetchComponentDetailsApi(componentNames) {
     .catch(e => console.log("Error getting component details", e));
 }
 
+export function fetchDepsApi(componentNames) {
+  const details = utils
+    .apiFetch(constants.get_modules_info + componentNames)
+    .then(response => {
+      return response.modules;
+    })
+    .catch(e => console.log("Error getting dependencies", e));
+  return details;
 }
 
 export function fetchBlueprintNamesApi() {

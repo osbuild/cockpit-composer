@@ -21,8 +21,11 @@ const initialState = {
     selectedInputPage: 0,
     pageSize: 50,
     selectedInput: {
-      component: "",
-      parent: "",
+      set: false,
+      component: {
+        dependencies: undefined
+      },
+      parent: [],
       status: ""
     },
     inputFilters: {

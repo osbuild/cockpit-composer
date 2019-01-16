@@ -41,8 +41,8 @@ class ComponentSummaryList extends React.Component {
                   <div className="list-pf-left">
                     <ComponentTypeIcons
                       componentType={listItem.ui_type}
-                      componentInBlueprint
-                      isDependency={this.props.isDependency}
+                      componentInBlueprint={listItem.inBlueprint}
+                      isSelected={listItem.userSelected}
                     />
                   </div>
                   <div className="list-pf-content-wrapper">
@@ -61,13 +61,11 @@ class ComponentSummaryList extends React.Component {
 }
 
 ComponentSummaryList.propTypes = {
-  listItems: PropTypes.arrayOf(PropTypes.object),
-  isDependency: PropTypes.bool
+  listItems: PropTypes.arrayOf(PropTypes.object)
 };
 
 ComponentSummaryList.defaultProps = {
-  listItems: [],
-  isDependency: false
+  listItems: []
 };
 
 export default ComponentSummaryList;

@@ -32,10 +32,12 @@ import {
 import {
   fetchingInputs,
   setSelectedInputPage,
+  clearSelectedInput,
   setSelectedInput,
-  setSelectedInputStatus,
+  setSelectedInputDeps,
   setSelectedInputParent,
-  deleteFilter
+  deleteFilter,
+  fetchingDepDetails
 } from "../../core/actions/inputs";
 import { setModalActive, setModalCreateImageVisible, setModalCreateImageHidden } from "../../core/actions/modals";
 import {
@@ -56,7 +58,9 @@ import {
   makeGetSortedDependencies,
   makeGetFutureLength,
   makeGetPastLength,
-  makeGetFilteredComponents
+  makeGetFilteredComponents,
+  makeGetSelectedInputs,
+  makeGetSelectedDeps
 } from "../../core/selectors";
 
 const messages = defineMessages({
@@ -87,6 +91,8 @@ class EditBlueprintPage extends React.Component {
     this.handleUpdateComponent = this.handleUpdateComponent.bind(this);
     this.handleRemoveComponent = this.handleRemoveComponent.bind(this);
     this.handleComponentDetails = this.handleComponentDetails.bind(this);
+    this.handleComponentListItem = this.handleComponentListItem.bind(this);
+    this.handleDepListItem = this.handleDepListItem.bind(this);
     this.handleHideModalCreateImage = this.handleHideModalCreateImage.bind(this);
     this.handleHideModal = this.handleHideModal.bind(this);
     this.handleShowModal = this.handleShowModal.bind(this);
@@ -103,10 +109,6 @@ class EditBlueprintPage extends React.Component {
     } else {
       this.props.fetchingInputs(this.props.inputs.inputFilters, 0, 50);
     }
-    this.props.setSelectedInputPage(0);
-    this.props.setSelectedInput("");
-    this.props.setSelectedInputParent("");
-    this.props.setSelectedInputStatus("");
   }
 
   componentDidMount() {
@@ -115,6 +117,7 @@ class EditBlueprintPage extends React.Component {
 
   componentWillUnmount() {
     this.props.deleteFilter();
+    this.props.clearSelectedInput();
   }
 
   setNotifications() {
@@ -287,91 +290,25 @@ class EditBlueprintPage extends React.Component {
     return inputs;
   }
 
-  handleComponentDetails(event, component, parent, mode) {
-    // the user selected a component in the sidebar to view more details on the right
-    // remove the active state from the current selected component
-    let inputs = this.props.inputs.inputComponents.slice(0);
-    inputs = this.removeInputActive(inputs);
-    if (component !== this.props.selectedInput.component) {
+  handleComponentDetails(event, component) {
+    // the user selected a component to view more details on the right
+    if (component.name !== this.props.selectedInput.component.name) {
       // if the user did not click on the current selected component:
-      // set state for selected component
       this.props.setSelectedInput(component);
-      this.props.setSelectedInputParent(parent);
-      // if the selected component is in the list of inputs
-      // then set active to true so that it is highlighted
-      const [page, index] = this.findInput(component, inputs);
-      if (index >= 0) {
-        inputs[page][index].active = true;
-      }
-      this.props.setInputComponents(inputs);
-      // set activeComponentStatus
-      if (mode === "edit") {
-        // if I clicked Edit in list item kebab
-        this.props.setSelectedInputStatus("editSelected");
-      } else if (parent === undefined || parent === "") {
-        // if parent is not defined (i.e. I clicked a component in the input list
-        // or component list, or I clicked the first component in the breadcrumb)
-        if (component.userSelected === true) {
-          // and component is selected by the user to be in the blueprint,
-          // then set state to selected
-          this.props.setSelectedInputStatus("selected");
-        } else if (component.inBlueprint === true) {
-          // and component is automatically pulled into the blueprint as a dependency,
-          // then set state to selected-child
-          this.props.setSelectedInputStatus("selected-child");
-        } else {
-          // and component is not in the blueprint, then set state to available
-          this.props.setSelectedInputStatus("available");
-        }
-      } else {
-        // if parent is defined (i.e. I clicked a component listed in the details view)
-        if (this.props.selectedInput.status === "selected") {
-          // and state is selected, then state should be selected-child
-          this.props.setSelectedInputStatus("selected-child");
-        } else if (this.props.selectedInput.status === "available") {
-          // and state is available, then state should be available-child
-          this.props.setSelectedInputStatus("available-child");
-        }
-        // if parent is defined
-        // and state is selected-child or available-child, then state should be unchanged
-      }
+      this.props.setSelectedInputParent([]);
     } else {
       // if the user clicked on the current selected component:
-      this.props.setInputComponents(inputs);
-      this.hideComponentDetails();
+      this.props.clearSelectedInput();
     }
     event.preventDefault();
     event.stopPropagation();
   }
 
-  hideComponentDetails() {
-    this.props.setSelectedInput("");
-    this.props.setSelectedInputParent("");
-    this.props.setSelectedInputStatus("");
+  handleComponentListItem(component) {
+    this.props.fetchingCompDeps(component, this.props.blueprint.id);
   }
-
-  removeInputActive(inputs) {
-    if (this.props.selectedInput.component !== "") {
-      // remove the active state from list of inputs
-      const [page, index] = this.findInput(this.props.selectedInput.component, inputs);
-      if (index >= 0) {
-        inputs[page][index].active = false; // eslint-disable-line no-param-reassign
-      }
-    }
-    return inputs;
-  }
-
-  findInput(component, inputs) {
-    let page;
-    let index = -1;
-    for (page = 0; page < inputs.length; page++) {
-      // get the index of the component, and the index of the page
-      index = inputs[page].map(input => input.name).indexOf(component.name);
-      if (index >= 0) {
-        break;
-      }
-    }
-    return [page, index];
+  handleDepListItem(component) {
+    this.props.fetchingDepDetails(component, this.props.blueprint.id);
   }
 
   // handle show/hide of modal dialogs
@@ -448,7 +385,11 @@ class EditBlueprintPage extends React.Component {
       componentsSortValue,
       componentsFilters,
       pastLength,
-      futureLength
+      futureLength,
+      selectedInputDeps,
+      setSelectedInput,
+      setSelectedInputParent,
+      clearSelectedInput
     } = this.props;
     const numPendingChanges = blueprint.localPendingChanges.length + blueprint.workspacePendingChanges.length;
     const { formatMessage } = this.props.intl;
@@ -570,7 +511,7 @@ class EditBlueprintPage extends React.Component {
             <h1 className="cmpsr-title__item">{blueprintDisplayName}</h1>
           </div>
         </header>
-        {(inputs.selectedInput !== undefined && inputs.selectedInput.component === "" && (
+        {(inputs.selectedInput.set === false && (
           <h3 className="cmpsr-panel__title cmpsr-panel__title--main">
             <FormattedMessage defaultMessage="Blueprint Components" />
           </h3>
@@ -579,7 +520,7 @@ class EditBlueprintPage extends React.Component {
             <FormattedMessage defaultMessage="Component Details" />
           </h3>
         )}
-        {(inputs.selectedInput !== undefined && inputs.selectedInput.component === "" && (
+        {(inputs.selectedInput.set === false && (
           <div className="cmpsr-panel__body cmpsr-panel__body--main">
             {componentsSortKey !== undefined && componentsSortValue !== undefined && (
               <BlueprintToolbar
@@ -611,6 +552,7 @@ class EditBlueprintPage extends React.Component {
               filterValues={componentsFilters.filterValues}
               errorState={this.props.blueprintContentsError}
               fetchingState={this.props.blueprintContentsFetching}
+              fetchDetails={this.handleComponentListItem}
             >
               <EmptyState
                 title={formatMessage(messages.addComponentTitle)}
@@ -619,13 +561,17 @@ class EditBlueprintPage extends React.Component {
             </BlueprintContents>
           </div>
         )) ||
-          (inputs.selectedInput !== undefined && (
+          (inputs.selectedInput.set === true && (
             <ComponentDetailsView
-              parent={blueprintDisplayName}
+              blueprint={blueprintDisplayName}
               component={inputs.selectedInput.component}
+              dependencies={selectedInputDeps}
               componentParent={inputs.selectedInput.parent}
-              status={inputs.selectedInput.status}
+              setSelectedInput={setSelectedInput}
+              setSelectedInputParent={setSelectedInputParent}
+              clearSelectedInput={clearSelectedInput}
               handleComponentDetails={this.handleComponentDetails}
+              handleDepListItem={this.handleDepListItem}
               handleAddComponent={this.handleAddComponent}
               handleUpdateComponent={this.handleUpdateComponent}
               handleRemoveComponent={this.handleRemoveComponent}
@@ -800,16 +746,18 @@ EditBlueprintPage.propTypes = {
   modalActive: PropTypes.string,
   selectedInput: PropTypes.shape({
     component: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    parent: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    status: PropTypes.string
+    parent: PropTypes.arrayOf(PropTypes.object)
   }),
+  selectedInputDeps: PropTypes.arrayOf(PropTypes.object),
   fetchingBlueprintContents: PropTypes.func,
+  fetchingCompDeps: PropTypes.func,
   setBlueprint: PropTypes.func,
   removeBlueprintComponent: PropTypes.func,
   fetchingInputs: PropTypes.func,
+  fetchingDepDetails: PropTypes.func,
   setSelectedInputPage: PropTypes.func,
   setSelectedInput: PropTypes.func,
-  setSelectedInputStatus: PropTypes.func,
+  clearSelectedInput: PropTypes.func,
   setSelectedInputParent: PropTypes.func,
   deleteFilter: PropTypes.func,
   addBlueprintComponent: PropTypes.func,
@@ -859,11 +807,14 @@ EditBlueprintPage.defaultProps = {
   fetchingBlueprintContents: function() {},
   setBlueprint: function() {},
   removeBlueprintComponent: function() {},
+  fetchingCompDeps: function() {},
   fetchingInputs: function() {},
+  fetchingDepDetails: function() {},
   setSelectedInputPage: function() {},
   setSelectedInput: function() {},
-  setSelectedInputStatus: function() {},
+  clearSelectedInput: function() {},
   setSelectedInputParent: function() {},
+  selectedInputDeps: undefined,
   deleteFilter: function() {},
   addBlueprintComponent: function() {},
   setModalActive: function() {},
@@ -899,6 +850,7 @@ const makeMapStateToProps = () => {
   const getPastLength = makeGetPastLength();
   const getFutureLength = makeGetFutureLength();
   const getSelectedInputs = makeGetSelectedInputs();
+  const getSelectedDeps = makeGetSelectedDeps();
   const mapStateToProps = (state, props) => {
     if (getBlueprintById(state, props.route.params.blueprint.replace(/\s/g, "-")) !== undefined) {
       const fetchedBlueprint = getBlueprintById(state, props.route.params.blueprint.replace(/\s/g, "-"));
@@ -913,6 +865,11 @@ const makeMapStateToProps = () => {
         inputs: state.inputs,
         inputComponents: getSelectedInputs(state, fetchedBlueprint.present.components),
         selectedInput: state.inputs.selectedInput,
+        selectedInputDeps: getSelectedDeps(
+          state,
+          state.inputs.selectedInput.component.dependencies,
+          fetchedBlueprint.present.components
+        ),
         modalActive: state.modals.modalActive,
         pastLength: getPastLength(fetchedBlueprint),
         futureLength: getFutureLength(fetchedBlueprint),
@@ -963,11 +920,14 @@ const mapDispatchToProps = dispatch => ({
   setSelectedInput: selectedInput => {
     dispatch(setSelectedInput(selectedInput));
   },
-  setSelectedInputStatus: selectedInputStatus => {
-    dispatch(setSelectedInputStatus(selectedInputStatus));
+  setSelectedInputDeps: dependencies => {
+    dispatch(setSelectedInputDeps(dependencies));
   },
   setSelectedInputParent: selectedInputParent => {
     dispatch(setSelectedInputParent(selectedInputParent));
+  },
+  clearSelectedInput: () => {
+    dispatch(clearSelectedInput());
   },
   deleteFilter: () => {
     dispatch(deleteFilter());
@@ -1016,6 +976,12 @@ const mapDispatchToProps = dispatch => ({
   },
   deleteWorkspace: blueprintId => {
     dispatch(deleteWorkspace(blueprintId));
+  },
+  fetchingCompDeps: (component, blueprintId) => {
+    dispatch(fetchingCompDeps(component, blueprintId));
+  },
+  fetchingDepDetails: (component, blueprintId) => {
+    dispatch(fetchingDepDetails(component, blueprintId));
   },
   startCompose: (blueprintName, composeType) => {
     dispatch(startCompose(blueprintName, composeType));
