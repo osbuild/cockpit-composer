@@ -153,7 +153,7 @@ class ComponentInputs extends React.Component {
                       data-placement="top"
                       title=""
                       data-original-title="Remove Component from Blueprint"
-                      onClick={e => this.props.handleRemoveComponent(e, component)}
+                      onClick={e => this.props.handleRemoveComponent(e, component.name)}
                     >
                       <span className="fa fa-minus" />
                     </a>
@@ -169,7 +169,7 @@ class ComponentInputs extends React.Component {
                       data-original-title={`Add Component<br />
                             Version&nbsp;<strong>${component.version}</strong>
                             Release&nbsp;<strong>${component.release}</strong>`}
-                      onClick={e => this.props.handleAddComponent(e, "input", component)}
+                      onClick={e => this.props.handleAddComponent(e, component, component.version)}
                     >
                       <span className="fa fa-plus" />
                     </a>

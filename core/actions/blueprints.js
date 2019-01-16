@@ -42,12 +42,19 @@ export const fetchingBlueprintContents = blueprintId => ({
 });
 
 export const FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED = "FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED";
-export const fetchingBlueprintContentsSucceeded = (blueprintPast, blueprintPresent, pendingChanges) => ({
+export const fetchingBlueprintContentsSucceeded = (blueprint, pastBlueprint) => ({
   type: FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED,
   payload: {
-    blueprintPast,
-    blueprintPresent,
-    pendingChanges
+    blueprint,
+    pastBlueprint
+  }
+});
+
+export const RELOADING_BLUEPRINT_CONTENTS_SUCCEEDED = "RELOADING_BLUEPRINT_CONTENTS_SUCCEEDED";
+export const reloadingBlueprintContentsSucceeded = blueprint => ({
+  type: RELOADING_BLUEPRINT_CONTENTS_SUCCEEDED,
+  payload: {
+    blueprint
   }
 });
 
@@ -85,39 +92,9 @@ export const setBlueprintDescriptionSucceeded = blueprint => ({
   }
 });
 
-export const ADD_BLUEPRINT_COMPONENT = "ADD_BLUEPRINT_COMPONENT";
-export const addBlueprintComponent = (blueprint, component) => ({
-  type: ADD_BLUEPRINT_COMPONENT,
-  payload: {
-    blueprint,
-    component
-  }
-});
-
-export const ADD_BLUEPRINT_COMPONENT_SUCCEEDED = "ADD_BLUEPRINT_COMPONENT_SUCCEEDED";
-export const addBlueprintComponentSucceeded = (blueprintId, components, packages, modules, pendingChange) => ({
-  type: ADD_BLUEPRINT_COMPONENT_SUCCEEDED,
-  payload: {
-    blueprintId,
-    components,
-    packages,
-    modules,
-    pendingChange
-  }
-});
-
-export const REMOVE_BLUEPRINT_COMPONENT = "REMOVE_BLUEPRINT_COMPONENT";
-export const removeBlueprintComponent = (blueprint, component) => ({
-  type: REMOVE_BLUEPRINT_COMPONENT,
-  payload: {
-    blueprint,
-    component
-  }
-});
-
-export const REMOVE_BLUEPRINT_COMPONENT_SUCCEEDED = "REMOVE_BLUEPRINT_COMPONENT_SUCCEEDED";
-export const removeBlueprintComponentSucceeded = (blueprintId, components, packages, modules, pendingChange) => ({
-  type: REMOVE_BLUEPRINT_COMPONENT_SUCCEEDED,
+export const UPDATE_BLUEPRINT_COMPONENTS = "UPDATE_BLUEPRINT_COMPONENTS";
+export const updateBlueprintComponents = (blueprintId, components, packages, modules, pendingChange) => ({
+  type: UPDATE_BLUEPRINT_COMPONENTS,
   payload: {
     blueprintId,
     components,
@@ -161,34 +138,29 @@ export const blueprintContentsFailure = (error, blueprintId) => ({
 });
 
 export const UNDO = "UNDO";
-export const undo = blueprintId => ({
+export const undo = (blueprintId, reload) => ({
   type: UNDO,
   payload: {
-    blueprintId
+    blueprintId,
+    reload
   }
 });
 
 export const REDO = "REDO";
-export const redo = blueprintId => ({
+export const redo = (blueprintId, reload) => ({
   type: REDO,
   payload: {
-    blueprintId
+    blueprintId,
+    reload
   }
 });
 
 export const DELETE_HISTORY = "DELETE_HISTORY";
-export const deleteHistory = blueprintId => ({
+export const deleteHistory = (blueprintId, reload) => ({
   type: DELETE_HISTORY,
   payload: {
-    blueprintId
-  }
-});
-
-export const COMMIT_TO_WORKSPACE = "COMMIT_TO_WORKSPACE";
-export const commitToWorkspace = blueprintId => ({
-  type: COMMIT_TO_WORKSPACE,
-  payload: {
-    blueprintId
+    blueprintId,
+    reload
   }
 });
 
@@ -196,6 +168,24 @@ export const DELETE_WORKSPACE = "DELETE_WORKSPACE";
 export const deleteWorkspace = blueprintId => ({
   type: DELETE_WORKSPACE,
   payload: {
+    blueprintId
+  }
+});
+
+export const FETCHING_COMP_DEPS = "FETCHING_COMP_DEPS";
+export const fetchingCompDeps = (component, blueprintId) => ({
+  type: FETCHING_COMP_DEPS,
+  payload: {
+    component,
+    blueprintId
+  }
+});
+
+export const SET_COMP_DEPS = "SET_COMP_DEPS";
+export const setCompDeps = (component, blueprintId) => ({
+  type: SET_COMP_DEPS,
+  payload: {
+    component,
     blueprintId
   }
 });
