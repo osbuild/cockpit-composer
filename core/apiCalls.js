@@ -1,6 +1,5 @@
 import constants from "./constants";
 import BlueprintApi from "../data/BlueprintApi";
-import MetadataApi from "../data/MetadataApi";
 import utils from "./utils";
 import history from "./history";
 
@@ -30,32 +29,19 @@ export function fetchBlueprintContentsApi(blueprintName) {
 
 export function fetchBlueprintInputsApi(filter, selectedInputPage, pageSize) {
   const page = selectedInputPage * pageSize;
-  const p = new Promise((resolve, reject) => {
-    // /modules/list looks like:
-    // {"modules":[{"name":"389-ds-base","group_type":"rpm"},{"name":"389-ds-base-libs","group_type":"rpm"}, ...]}
-    utils
-      .apiFetch(`${constants.get_modules_list + filter}?limit=${pageSize}&offset=${page}`)
-      .then(data => {
-        const total = data.total;
-        let components = data.modules;
-        const componentNames = MetadataApi.getNames(components);
-        Promise.all([MetadataApi.getData(constants.get_projects_info + componentNames)])
-          .then(result => {
-            components = MetadataApi.updateInputMetadata(components, result[0], true);
-            components.map(i => {
-              i.ui_type = "RPM";
-              return i;
-            }); // eslint-disable-line no-param-reassign
-            resolve([components, total]);
-          })
-          .catch(e => console.log(`Error getting blueprint metadata: ${e}`));
-      })
-      .catch(e => {
-        console.log("Failed to get inputs during blueprint edit", e);
-        reject();
-      });
-  });
-  return p;
+  return utils
+    .apiFetch(`${constants.get_modules_list + filter}?limit=${pageSize}&offset=${page}`)
+    .then(response => [response.modules, response.total])
+    .catch(e => console.log("Error getting blueprint inputs", e));
+}
+
+export function fetchComponentDetailsApi(componentNames) {
+  return utils
+    .apiFetch(constants.get_projects_info + componentNames)
+    .then(response => response.projects)
+    .catch(e => console.log("Error getting component details", e));
+}
+
 }
 
 export function fetchBlueprintNamesApi() {

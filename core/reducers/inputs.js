@@ -1,17 +1,16 @@
 import {
   FETCHING_INPUTS_SUCCEEDED,
   SET_SELECTED_INPUT_PAGE,
+  CLEAR_SELECTED_INPUT,
   SET_SELECTED_INPUT,
-  SET_SELECTED_INPUT_STATUS,
   SET_SELECTED_INPUT_PARENT,
-  SET_INPUT_COMPONENTS,
+  SET_SELECTED_INPUT_DEPS,
+  SET_DEP_DETAILS,
   DELETE_FILTER
 } from "../actions/inputs";
 
 const inputs = (state = [], action) => {
   switch (action.type) {
-    case SET_INPUT_COMPONENTS:
-      return Object.assign({}, state, { inputComponents: action.payload.inputComponents });
     case FETCHING_INPUTS_SUCCEEDED:
       return Object.assign({}, state, {
         inputFilters: action.payload.filter,
@@ -20,28 +19,62 @@ const inputs = (state = [], action) => {
             ? state.inputComponents
                 .slice(0, action.payload.selectedInputPage)
                 .concat(
-                  [action.payload.inputs[0]].concat(
+                  [action.payload.inputs].concat(
                     Array(
-                      Math.ceil(action.payload.inputs[1] / action.payload.pageSize - 1) -
-                        action.payload.selectedInputPage
+                      Math.ceil(action.payload.total / action.payload.pageSize - 1) - action.payload.selectedInputPage
                     ).fill([])
                   )
                 )
-            : [action.payload.inputs[0]].concat(
-                Array(Math.ceil(action.payload.inputs[1] / action.payload.pageSize - 1)).fill([])
+            : [action.payload.inputs].concat(
+                Array(Math.ceil(action.payload.total / action.payload.pageSize - 1)).fill([])
               ),
-        totalInputs: action.payload.inputs[1],
+        totalInputs: action.payload.total,
         pageSize: action.payload.pageSize
       });
     case SET_SELECTED_INPUT_PAGE:
       return Object.assign({}, state, { selectedInputPage: action.payload.selectedInputPage });
+    case CLEAR_SELECTED_INPUT:
+      return Object.assign({}, state, {
+        selectedInput: Object.assign({}, state.selectedInput, {
+          set: false,
+          component: {
+            name: undefined,
+            dependencies: undefined
+          },
+          parent: []
+        })
+      });
     case SET_SELECTED_INPUT:
       return Object.assign({}, state, {
-        selectedInput: Object.assign({}, state.selectedInput, { component: action.payload.selectedInput })
+        selectedInput: Object.assign({}, state.selectedInput, {
+          set: true,
+          // if same component, keep it and just add additional properties
+          component:
+            state.selectedInput.component.name === action.payload.selectedInput.name
+              ? Object.assign({}, state.selectedInput.component, action.payload.selectedInput)
+              : Object.assign({}, action.payload.selectedInput)
+        })
       });
-    case SET_SELECTED_INPUT_STATUS:
+    case SET_SELECTED_INPUT_DEPS:
       return Object.assign({}, state, {
-        selectedInput: Object.assign({}, state.selectedInput, { status: action.payload.selectedInputStatus })
+        selectedInput: Object.assign({}, state.selectedInput, {
+          component: Object.assign({}, state.selectedInput.component, { dependencies: action.payload.dependencies })
+        })
+      });
+    case SET_DEP_DETAILS:
+      return Object.assign({}, state, {
+        selectedInput: Object.assign({}, state.selectedInput, {
+          component: Object.assign({}, state.selectedInput.component, {
+            dependencies: [
+              ...state.selectedInput.component.dependencies.map(dep => {
+                if (dep.name === action.payload.depDetails.name) {
+                  return Object.assign({}, dep, action.payload.depDetails);
+                }
+                return dep;
+              })
+            ]
+          })
+        })
       });
     case SET_SELECTED_INPUT_PARENT:
       return Object.assign({}, state, {

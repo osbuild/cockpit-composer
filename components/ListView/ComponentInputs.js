@@ -130,7 +130,11 @@ class ComponentInputs extends React.Component {
             >
               <div className="list-pf-content list-pf-content-flex ">
                 <div className="list-pf-left">
-                  <ComponentTypeIcons componentType={component.ui_type} componentInBlueprint={component.inBlueprint} />
+                  <ComponentTypeIcons
+                    componentType={component.ui_type}
+                    componentInBlueprint={component.inBlueprint}
+                    isSelected={component.userSelected}
+                  />
                 </div>
                 <div className="list-pf-content-wrapper">
                   <div className="list-pf-main-content">
@@ -139,7 +143,7 @@ class ComponentInputs extends React.Component {
                   </div>
                 </div>
                 <div className="list-pf-actions">
-                  {(component.inBlueprint === true && (
+                  {(component.inBlueprint === true && component.userSelected === true && (
                     <a
                       href="#"
                       className="btn btn-link"

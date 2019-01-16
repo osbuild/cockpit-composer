@@ -1,30 +1,32 @@
 export const FETCHING_INPUTS = "FETCHING_INPUTS";
-export const fetchingInputs = (filter, selectedInputPage, pageSize, componentData) => ({
+export const fetchingInputs = (filter, selectedInputPage, pageSize) => ({
   type: FETCHING_INPUTS,
   payload: {
     filter,
     selectedInputPage,
-    pageSize,
-    componentData
+    pageSize
   }
 });
 
 export const FETCHING_INPUTS_SUCCEEDED = "FETCHING_INPUTS_SUCCEEDED";
-export const fetchingInputsSucceeded = (filter, selectedInputPage, pageSize, inputs) => ({
+export const fetchingInputsSucceeded = (filter, selectedInputPage, pageSize, inputs, total) => ({
   type: FETCHING_INPUTS_SUCCEEDED,
   payload: {
     filter,
     selectedInputPage,
     pageSize,
-    inputs
+    inputs,
+    total
   }
 });
 
-export const SET_INPUT_COMPONENTS = "SET_INPUT_COMPONENTS";
-export const setInputComponents = inputComponents => ({
-  type: SET_INPUT_COMPONENTS,
+export const FETCHING_INPUT_DETAILS = "FETCHING_INPUT_DETAILS";
+export const fetchingInputDetails = component => ({
+  type: FETCHING_INPUT_DETAILS,
   payload: {
-    inputComponents
+    component
+  }
+});
   }
 });
 

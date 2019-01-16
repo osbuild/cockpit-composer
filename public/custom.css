@@ -384,6 +384,9 @@ the "-" that would display instead of the sr-only "to" */
 .list-pf-icon-bordered-dotted {
   border-style: dotted;
 }
+.list-pf-icon-bordered-gray {
+  border-color: #949494;
+}
 
 /* tab contents */
 .tab-container {

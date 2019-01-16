@@ -31,7 +31,6 @@ import {
 } from "../../core/actions/blueprints";
 import {
   fetchingInputs,
-  setInputComponents,
   setSelectedInputPage,
   setSelectedInput,
   setSelectedInputStatus,
@@ -91,7 +90,6 @@ class EditBlueprintPage extends React.Component {
     this.handleHideModalCreateImage = this.handleHideModalCreateImage.bind(this);
     this.handleHideModal = this.handleHideModal.bind(this);
     this.handleShowModal = this.handleShowModal.bind(this);
-    this.handleHistory = this.handleHistory.bind(this);
     this.handleDiscardChanges = this.handleDiscardChanges.bind(this);
     this.handleUndo = this.handleUndo.bind(this);
     this.handleStartCompose = this.handleStartCompose.bind(this);
@@ -101,9 +99,9 @@ class EditBlueprintPage extends React.Component {
     // get blueprint, get inputs; then update inputs
     if (this.props.blueprint.components === undefined) {
       this.props.fetchingBlueprintContents(this.props.route.params.blueprint.replace(/\s/g, "-"));
-      this.props.fetchingInputs(this.props.inputs.inputFilters, 0, 50, undefined);
+      this.props.fetchingInputs(this.props.inputs.inputFilters, 0, 50);
     } else {
-      this.props.fetchingInputs(this.props.inputs.inputFilters, 0, 50, this.props.blueprint.components);
+      this.props.fetchingInputs(this.props.inputs.inputFilters, 0, 50);
     }
     this.props.setSelectedInputPage(0);
     this.props.setSelectedInput("");
@@ -129,36 +127,12 @@ class EditBlueprintPage extends React.Component {
         field: "name",
         value: event.target.value
       };
-      this.props.fetchingInputs(filter, 0, this.props.inputs.pageSize, this.props.selectedComponents);
+      this.props.fetchingInputs(filter, 0, this.props.inputs.pageSize);
       this.props.setSelectedInputPage(0);
       // TODO handle the case where no results are returned
       $("#cmpsr-blueprint-input-filter").blur();
       event.preventDefault();
     }
-  }
-
-  updateInputComponentData(inputs, page, componentData) {
-    // updates the input component data to match the blueprint component data
-    // where componentData represents either a single blueprint component
-    // or the entire set of blueprint components
-    if (componentData === undefined) {
-      componentData = this.props.selectedComponents; // eslint-disable-line no-param-reassign
-    }
-    let updatedInputs = inputs;
-    if (componentData.length > 0) {
-      updatedInputs = componentData.map(component => {
-        const index = inputs[page].map(input => input.name).indexOf(component.name);
-        if (index >= 0) {
-          inputs[page][index].inBlueprint = true; // eslint-disable-line no-param-reassign
-          inputs[page][index].userSelected = true; // eslint-disable-line no-param-reassign
-          inputs[page][index].versionSelected = component.version; // eslint-disable-line no-param-reassign
-          inputs[page][index].releaseSelected = component.release; // eslint-disable-line no-param-reassign
-        }
-        return inputs;
-      });
-      updatedInputs = updatedInputs[0];
-    }
-    return updatedInputs;
   }
 
   handleClearFilters(event) {
@@ -167,7 +141,7 @@ class EditBlueprintPage extends React.Component {
       value: ""
     };
     this.props.deleteFilter();
-    this.props.fetchingInputs(filter, 0, this.props.inputs.pageSize, this.props.blueprint.components);
+    this.props.fetchingInputs(filter, 0, this.props.inputs.pageSize);
     $("#cmpsr-blueprint-input-filter").val("");
     event.preventDefault();
     event.stopPropagation();
@@ -196,13 +170,9 @@ class EditBlueprintPage extends React.Component {
     this.props.setSelectedInputPage(page);
     const filter = this.props.inputs.inputFilters;
     // check if filters are set to determine current input set
-    if (this.props.inputs.inputComponents.slice(0)[page].length === 0) {
-      this.props.fetchingInputs(filter, page, this.props.inputs.pageSize, this.props.selectedComponents);
+    if (this.props.inputComponents.slice(0)[page].length === 0) {
+      this.props.fetchingInputs(filter, page, this.props.inputs.pageSize);
     }
-  }
-
-  clearInputAlert() {
-    $("#cmpsr-blueprint-inputs .alert").remove();
   }
 
   handleCommit() {
@@ -433,17 +403,6 @@ class EditBlueprintPage extends React.Component {
     e.stopPropagation();
   }
 
-  handleHistory() {
-    setTimeout(() => {
-      this.props.fetchingInputs(
-        this.props.inputs.inputFilters,
-        this.props.inputs.selectedInputPage,
-        this.props.inputs.pageSize,
-        this.props.selectedComponents
-      );
-    }, 50);
-  }
-
   handleDiscardChanges() {
     this.props.deleteHistory(this.props.blueprint.id);
     const workspaceChanges =
@@ -454,7 +413,6 @@ class EditBlueprintPage extends React.Component {
     } else {
       this.props.commitToWorkspace(this.props.blueprint.id);
     }
-    this.handleHistory();
   }
 
   handleUndo() {
@@ -465,7 +423,6 @@ class EditBlueprintPage extends React.Component {
       this.handleDiscardChanges();
     } else {
       this.props.undo(this.props.blueprint.id);
-      this.handleHistory();
     }
   }
 
@@ -483,6 +440,7 @@ class EditBlueprintPage extends React.Component {
       blueprint,
       selectedComponents,
       dependencies,
+      inputComponents,
       inputs,
       createImage,
       modalActive,
@@ -640,7 +598,6 @@ class EditBlueprintPage extends React.Component {
                 dependenciesSortSetValue={this.props.dependenciesSortSetValue}
                 undo={this.handleUndo}
                 redo={this.props.redo}
-                handleHistory={this.handleHistory}
                 pastLength={pastLength}
                 futureLength={futureLength}
               />
@@ -677,7 +634,7 @@ class EditBlueprintPage extends React.Component {
         <h3 className="cmpsr-panel__title cmpsr-panel__title--sidebar">
           <FormattedMessage defaultMessage="Available Components" />
         </h3>
-        {(inputs.inputComponents !== undefined && (
+        {(inputComponents !== undefined && (
           <div className="cmpsr-panel__body cmpsr-panel__body--sidebar">
             <div className="toolbar-pf">
               <form className="toolbar-pf-actions">
@@ -749,7 +706,7 @@ class EditBlueprintPage extends React.Component {
               </div>
             )}
             <ComponentInputs
-              components={inputs.inputComponents[inputs.selectedInputPage]}
+              components={inputComponents[inputs.selectedInputPage]}
               handleComponentDetails={this.handleComponentDetails}
               handleAddComponent={this.handleAddComponent}
               handleRemoveComponent={this.handleRemoveComponent}
@@ -839,6 +796,7 @@ EditBlueprintPage.propTypes = {
     selectedInputPage: PropTypes.number,
     totalInputs: PropTypes.number
   }),
+  inputComponents: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.object)),
   modalActive: PropTypes.string,
   selectedInput: PropTypes.shape({
     component: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
@@ -849,7 +807,6 @@ EditBlueprintPage.propTypes = {
   setBlueprint: PropTypes.func,
   removeBlueprintComponent: PropTypes.func,
   fetchingInputs: PropTypes.func,
-  setInputComponents: PropTypes.func,
   setSelectedInputPage: PropTypes.func,
   setSelectedInput: PropTypes.func,
   setSelectedInputStatus: PropTypes.func,
@@ -896,13 +853,13 @@ EditBlueprintPage.defaultProps = {
   blueprint: {},
   createImage: {},
   inputs: {},
+  inputComponents: [],
   modalActive: "",
   selectedInput: {},
   fetchingBlueprintContents: function() {},
   setBlueprint: function() {},
   removeBlueprintComponent: function() {},
   fetchingInputs: function() {},
-  setInputComponents: function() {},
   setSelectedInputPage: function() {},
   setSelectedInput: function() {},
   setSelectedInputStatus: function() {},
@@ -941,6 +898,7 @@ const makeMapStateToProps = () => {
   const getFilteredComponents = makeGetFilteredComponents();
   const getPastLength = makeGetPastLength();
   const getFutureLength = makeGetFutureLength();
+  const getSelectedInputs = makeGetSelectedInputs();
   const mapStateToProps = (state, props) => {
     if (getBlueprintById(state, props.route.params.blueprint.replace(/\s/g, "-")) !== undefined) {
       const fetchedBlueprint = getBlueprintById(state, props.route.params.blueprint.replace(/\s/g, "-"));
@@ -953,6 +911,7 @@ const makeMapStateToProps = () => {
         componentsFilters: state.filter.components,
         createImage: state.modals.createImage,
         inputs: state.inputs,
+        inputComponents: getSelectedInputs(state, fetchedBlueprint.present.components),
         selectedInput: state.inputs.selectedInput,
         modalActive: state.modals.modalActive,
         pastLength: getPastLength(fetchedBlueprint),
@@ -971,6 +930,7 @@ const makeMapStateToProps = () => {
       componentsFilters: state.filter.components,
       createImage: state.modals.createImage,
       inputs: state.inputs,
+      inputComponents: state.inputs.inputComponents,
       selectedInput: state.inputs.selectedInput,
       modalActive: state.modals.modalActive,
       pastLength: 0,
@@ -985,11 +945,8 @@ const mapDispatchToProps = dispatch => ({
   fetchingBlueprintContents: blueprintId => {
     dispatch(fetchingBlueprintContents(blueprintId));
   },
-  fetchingInputs: (filter, selectedInputPage, pageSize, componentData) => {
-    dispatch(fetchingInputs(filter, selectedInputPage, pageSize, componentData));
-  },
-  setInputComponents: inputComponents => {
-    dispatch(setInputComponents(inputComponents));
+  fetchingInputs: (filter, selectedInputPage, pageSize) => {
+    dispatch(fetchingInputs(filter, selectedInputPage, pageSize));
   },
   setSelectedInputPage: selectedInputPage => {
     dispatch(setSelectedInputPage(selectedInputPage));
