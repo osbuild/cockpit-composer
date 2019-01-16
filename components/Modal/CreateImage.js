@@ -228,7 +228,7 @@ CreateImage.propTypes = {
     name: PropTypes.string,
     packages: PropTypes.arrayOf(PropTypes.object),
     version: PropTypes.string,
-    workspacePendingChanges: PropTypes.object
+    workspacePendingChanges: PropTypes.arrayOf(PropTypes.object)
   }),
   composeQueue: PropTypes.arrayOf(PropTypes.object),
   composeQueueFetched: PropTypes.bool,

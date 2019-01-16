@@ -64,10 +64,10 @@ const blueprints = (state = [], action) => {
     case FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED:
       return Object.assign({}, state, {
         blueprintList: [
-          ...state.blueprintList.filter(blueprint => blueprint.present.id !== action.payload.blueprintPresent.id),
+          ...state.blueprintList.filter(blueprint => blueprint.present.id !== action.payload.blueprint.id),
           {
-            past: action.payload.blueprintPast,
-            present: action.payload.blueprintPresent,
+            past: action.payload.pastBlueprint,
+            present: action.payload.blueprint,
             future: []
           }
         ]
