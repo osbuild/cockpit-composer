@@ -213,7 +213,7 @@ class PendingChanges extends React.Component {
                       {this.props.blueprint.workspacePendingChanges.map(change => (
                         <li
                           className="list-group-item"
-                          key={!change.componentNew ? change.componentOld : change.componentNew}
+                          key={!change.componentNew ? change.componentOld.name : change.componentNew.name}
                         >
                           {change.componentNew && change.componentOld && (
                             <div className="row">
@@ -309,7 +309,7 @@ PendingChanges.propTypes = {
     name: PropTypes.string,
     packages: PropTypes.arrayOf(PropTypes.object),
     version: PropTypes.string,
-    workspacePendingChanges: PropTypes.object,
+    workspacePendingChanges: PropTypes.arrayOf(PropTypes.object),
     comment: PropTypes.string
   }),
   handleHideModal: PropTypes.func,
