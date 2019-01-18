@@ -39,11 +39,13 @@ if (userLanguage in translations) {
   messages = translations[userLanguage];
 }
 
+const locale_lang = userLanguage.includes("_") ? userLanguage.replace("_", "-") : userLanguage;
+
 function renderComponent(component) {
   ReactDOM.render(
     <Provider store={store}>
       {messages !== undefined ? (
-        <IntlProvider locale={userLanguage} messages={messages}>
+        <IntlProvider locale={locale_lang} messages={messages}>
           {component}
         </IntlProvider>
       ) : (
