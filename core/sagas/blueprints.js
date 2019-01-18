@@ -56,7 +56,6 @@ function* fetchBlueprintContents(action) {
   try {
     const { blueprintId } = action.payload;
     const response = yield call(fetchBlueprintContentsApi, blueprintId);
-    console.log("blueprintData", response);
     const blueprintData = response.blueprints[0];
     if (response.errors.length > 0) {
       yield put(blueprintContentsFailure(response.errors[0], blueprintId));
