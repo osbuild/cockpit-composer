@@ -2,7 +2,7 @@ import React from "react";
 import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Layout from "../../components/Layout";
+import Layout from "../../components/Layout/Layout";
 import BlueprintListView from "../../components/ListView/BlueprintListView";
 import CreateBlueprint from "../../components/Modal/CreateBlueprint";
 import ExportBlueprint from "../../components/Modal/ExportBlueprint";

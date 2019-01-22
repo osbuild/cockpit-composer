@@ -2,7 +2,7 @@ import React from "react";
 import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
 import PropTypes from "prop-types";
 import history from "../../core/history";
-import Link from "../../components/Link";
+import Link from "../../components/Link/Link";
 import s from "./styles.css";
 
 const messages = defineMessages({

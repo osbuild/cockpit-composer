@@ -6,8 +6,8 @@ import cockpit from "cockpit"; // eslint-disable-line import/no-unresolved
 import PropTypes from "prop-types";
 import { Tab, Tabs } from "patternfly-react";
 import { connect } from "react-redux";
-import Link from "../../components/Link";
-import Layout from "../../components/Layout";
+import Link from "../../components/Link/Link";
+import Layout from "../../components/Layout/Layout";
 import BlueprintContents from "../../components/ListView/BlueprintContents";
 import ComponentDetailsView from "../../components/ListView/ComponentDetailsView";
 import CreateImage from "../../components/Modal/CreateImage";
