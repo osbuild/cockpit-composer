@@ -24,7 +24,7 @@ On Fedora or Red Hat Enterprise Linux:
 * First install Cockpit on your local machine as described in: https://cockpit-project.org/running.html.
 * Next install and start lorax-composer:
 ```
-    $ sudo yum install lorax-compose
+    $ sudo yum install lorax-composer
     $ sudo systemctl start lorax-composer
 ```
 
