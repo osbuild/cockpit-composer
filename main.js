@@ -1,4 +1,3 @@
-import "babel-polyfill";
 import "whatwg-fetch";
 
 import React from "react";
@@ -8,31 +7,28 @@ import enLocaleData from "react-intl/locale-data/en";
 import FastClick from "fastclick";
 import { Provider } from "react-redux";
 import "bootstrap";
+import cockpit from "cockpit";
 
 import store from "./core/store";
 import router from "./core/router";
 import history from "./core/history";
-import utils from "./core/utils";
 
 // Intialize any necessary locale data, and load translated messages
-import "./build/localeLoader";
+const translations = require("./build/translations.json");
 
-let translations = require("./build/translations.json");
-
+const languages = [...new Set(Object.keys(translations).map(lang => lang.split("_")[0]))];
+for (let lang of languages) {
+  const localData = require(`react-intl/locale-data/${lang}`); // eslint-disable-line import/no-dynamic-require
+  addLocaleData(localData);
+}
+// still need english
 addLocaleData(enLocaleData);
 
 let routes = require("./routes.json");
 // Loaded with utils/routes-loader.js
 const container = document.getElementById("main");
 
-// Check if we have translations for the user's language
-let userLanguage;
-if (utils.inCockpit) {
-  var cockpit = require("cockpit"); // eslint-disable-line global-require, import/no-unresolved
-  userLanguage = cockpit.language;
-} else {
-  userLanguage = navigator.language.split("-")[0];
-}
+const userLanguage = cockpit.language;
 
 let messages = undefined;
 if (userLanguage in translations) {
@@ -74,11 +70,3 @@ render(history.getCurrentLocation());
 // and the firing of a click event on mobile browsers
 // https://github.com/ftlabs/fastclick
 FastClick.attach(document.body);
-
-// Enable Hot Module Replacement (HMR)
-if (module.hot) {
-  module.hot.accept("./routes.json", () => {
-    routes = require("./routes.json"); // eslint-disable-line global-require
-    render(history.getCurrentLocation());
-  });
-}

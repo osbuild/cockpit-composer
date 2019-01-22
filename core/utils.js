@@ -85,11 +85,11 @@ function apiFetch(url, options, skipDecode) {
   });
 }
 
-const module = { apiFetch };
+const api = { apiFetch };
 if (window.location.href.indexOf("cockpit") > -1) {
   cockpit = require("cockpit"); // eslint-disable-line global-require, import/no-unresolved
-  module.apiFetch = cockpitFetch;
-  module.inCockpit = true;
+  api.apiFetch = cockpitFetch;
+  api.inCockpit = true;
 }
 
-export default module;
+export default api;

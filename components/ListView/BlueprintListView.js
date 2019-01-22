@@ -1,7 +1,7 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
-import Link from "../Link";
+import Link from "../Link/Link";
 
 class BlueprintListView extends React.PureComponent {
   constructor() {
