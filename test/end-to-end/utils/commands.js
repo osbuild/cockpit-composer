@@ -32,33 +32,29 @@ module.exports = {
     // open edit blueprint page
     const editBlueprintPage = new EditBlueprintPage(name);
     editBlueprintPage.loading();
-    // generate a random page number between 1 to max page which is fetched from web page
-    // Edge returns '\n of xxxx\n', but others return just 'of xxxx'
-    const pagination = $(".pagination-cmpsr-pages")
-      .getText()
-      .replace(/^\s+|\s+$/g, "");
-    const totalPage = parseInt(pagination.split(" ")[1], 10);
-    // go to a random page by inputing random number and pressing enter key
-    const randomPageNum = Math.floor(Math.random() * totalPage) + 1;
-    editBlueprintPage.nthPageBox.setValue(randomPageNum);
     browser.keys("Enter");
     // make sure new availabe components for new page loaded
     editBlueprintPage.loading();
-    console.log(`Random Page Number: ${randomPageNum}`);
-    // add nth package to selected components
-    const nth = Math.floor(Math.random() * 50) + 1;
-    const availableComponent = new AvailableComponents(nth);
-    const packageName = availableComponent.nameLabel.getText();
-    const s = ["th", "st", "nd", "rd"];
-    const v = nth % 100;
-    console.log(`Add the ${nth + (s[(v - 20) % 10] || s[v] || s[0])} package "${packageName}" to blueprint`);
-    availableComponent.addPackageByNth();
+    const filterContent = "httpd";
+    editBlueprintPage.filterBox.setValue(filterContent);
+    browser.keys("Enter");
+    browser.waitForExist(editBlueprintPage.filterContentLabel, timeout);
+    browser.waitUntil(
+      () =>
+        $(editBlueprintPage.filterContentLabel)
+          .getText()
+          .includes(filterContent),
+      timeout,
+      `Cannot find package - ${filterContent}`
+    );
+    const availableComponent = new AvailableComponents();
+    availableComponent.addPackageByName(filterContent);
     // make sure the package added into selected components
     selectedComponents.loading();
     browser.waitUntil(
-      () => selectedComponents.packageList.map(item => item.getText()).includes(packageName),
+      () => selectedComponents.packageList.map(item => item.getText()).includes(filterContent),
       timeout,
-      `Cannot add package ${packageName} into blueprint ${name}`
+      `Cannot add package ${filterContent} into blueprint ${name}`
     );
     editBlueprintPage.commitButton.click();
     // pop up Changes Pending Commit dialog
