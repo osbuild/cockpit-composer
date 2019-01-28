@@ -1,7 +1,7 @@
 ---
 # yamllint disable rule:line-length
 sudo: required
-dist: trusty
+dist: xenial
 services:
   - docker
 language: node_js
