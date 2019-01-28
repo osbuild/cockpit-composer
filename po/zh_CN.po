@@ -1,4 +1,5 @@
 # Ludek Janda <ljanda@redhat.com>, 2018. #zanata
+# Xiaofeng Wang <xiaofwan@redhat.com>, 2019. #zanata
 #, fuzzy
 msgid ""
 msgstr ""
@@ -8,53 +9,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "MIME-Version: 1.0\n"
 "X-Generator: Zanata 4.6.2\n"
-"PO-Revision-Date: 2018-10-17 09:24+0000\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
+"PO-Revision-Date: 2019-01-22 03:45+0000\n"
+"Last-Translator: Xiaofeng Wang <xiaofwan@redhat.com>\n"
 "Language-Team: Chinese (China)\n"
 "Language: zh_CN\n"
 
 #: build/messages/components/Modal/PendingChanges.json
-#. [components.Modal.PendingChanges.parenthetical] - Describes the sort order of the pending changes
+#. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
 #. (most recent first)
 msgid "(most recent first)"
 msgstr "（最近的在前）"
 
 #: build/messages/components/Modal/CreateImage.json
-#. [components.Modal.CreateImage.485442669]
+#. [components.Modal.485442669]
 #. defaultMessage is:
 #. 1 build is in progress
 msgid "1 build is in progress"
 msgstr "1 构建进行中"
 
 #: build/messages/components/Modal/CreateBlueprint.json
-#. [components.Modal.CreateBlueprint.4177685254]
+#. [components.Modal.4177685254]
 #. defaultMessage is:
 #. A blueprint name is required.
 msgid "A blueprint name is required."
 msgstr "需要一个蓝图（blueprint）名"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
-#. [components.ListView.ComponentDetailsView.3099331554]
+#. [components.ListView.3099331554]
 #. defaultMessage is:
 #. Add
 msgid "Add"
 msgstr "添加"
 
 #: build/messages/pages/blueprintEdit/index.json
-#. [pages.blueprintEdit.index.addComponentTitle]
+#. [pages.blueprintEdit.addComponentTitle]
 #. defaultMessage is:
 #. Add Blueprint Components
 msgid "Add Blueprint Components"
 msgstr "添加蓝图组件"
 
 # translation auto-copied from project Drools Workbench, version 6.0.0, document org.drools/drools-wb-guided-rule-editor-client/org/drools/workbench/screens/guided/rule/client/resources/i18n/Constants, author xi.huang
-#: build/messages/components/ListView/ListItemChanges.json
 #: build/messages/components/Modal/PendingChanges.json
-#. [components.ListView.ListItemChanges.1362724042]
-#. defaultMessage is:
-#. Added
-#. [components.Modal.PendingChanges.1362724042] - Identifies the change as a component that was added
+#. [components.Modal.1362724042] - Identifies the change as a component that was added
 #. defaultMessage is:
 #. Added
 msgid "Added"
@@ -63,69 +60,62 @@ msgstr "已添加的"
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/components/Modal/ManageSources.json
 #: build/messages/pages/blueprints/index.json
-#. [components.ListView.BlueprintContents.emptyStateErrorTitle]
+#. [components.ListView.emptyStateErrorTitle]
 #. defaultMessage is:
 #. An Error Occurred
-#. [components.Modal.ManageSources.errorStateTitle]
+#. [components.Modal.errorStateTitle]
 #. defaultMessage is:
 #. An Error Occurred
-#. [pages.blueprints.index.errorTitle]
+#. [pages.blueprints.errorTitle]
 #. defaultMessage is:
 #. An Error Occurred
 msgid "An Error Occurred"
 msgstr "发生了错误"
 
 #: build/messages/components/ListView/BlueprintContents.json
-#. [components.ListView.BlueprintContents.emptyStateErrorMessage]
+#. [components.ListView.emptyStateErrorMessage]
 #. defaultMessage is:
 #. An error occurred while trying to get blueprint contents.
 msgid "An error occurred while trying to get blueprint contents."
 msgstr "在获取蓝图内容时出错。"
 
 #: build/messages/components/Modal/ManageSources.json
-#. [components.Modal.ManageSources.errorStateMessage]
+#. [components.Modal.errorStateMessage]
 #. defaultMessage is:
 #. An error occurred while trying to get sources.
 msgid "An error occurred while trying to get sources."
 msgstr "在获取源时出错。"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
-#. [components.ListView.ComponentDetailsView.668376819]
+#. [components.ListView.668376819]
 #. defaultMessage is:
 #. Apply Change
 msgid "Apply Change"
 msgstr "应用改变"
 
-#: build/messages/components/Modal/CreateImage.json
-#. [components.Modal.CreateImage.1857500869]
-#. defaultMessage is:
-#. Architecture
-msgid "Architecture"
-msgstr "架构"
-
 #: build/messages/components/Modal/DeleteBlueprint.json
-#. [components.Modal.DeleteBlueprint.4140003068]
+#. [components.Modal.4140003068]
 #. defaultMessage is:
 #. Are you sure you want to delete the blueprint {name}?
 msgid "Are you sure you want to delete the blueprint {name}?"
 msgstr "您确定要删除蓝图 {name}?"
 
 #: build/messages/components/Modal/DeleteImage.json
-#. [components.Modal.DeleteImage.1346739796]
+#. [components.Modal.1346739796]
 #. defaultMessage is:
 #. Are you sure you want to delete the image for {blueprintName}?
 msgid "Are you sure you want to delete the image for {blueprintName}?"
 msgstr "您确定要为 {blueprintName} 删除镜像?"
 
 #: build/messages/components/Modal/StopBuild.json
-#. [components.Modal.StopBuild.234116272]
+#. [components.Modal.234116272]
 #. defaultMessage is:
 #. Are you sure you want to stop the build process for {blueprintName}?
 msgid "Are you sure you want to stop the build process for {blueprintName}?"
 msgstr "您确定要停止 {blueprintName} 的构建过程?"
 
 #: build/messages/pages/blueprintEdit/index.json
-#. [pages.blueprintEdit.index.2346760817]
+#. [pages.blueprintEdit.2346760817]
 #. defaultMessage is:
 #. Available Components
 msgid "Available Components"
@@ -133,24 +123,24 @@ msgstr "可用的组件"
 
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
-#. [pages.blueprint.index.3126044146]
+#. [pages.blueprint.3126044146]
 #. defaultMessage is:
 #. Back to Blueprints
-#. [pages.blueprintEdit.index.3126044146]
+#. [pages.blueprintEdit.3126044146]
 #. defaultMessage is:
 #. Back to Blueprints
 msgid "Back to Blueprints"
 msgstr "返回到蓝图"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
-#. [components.ListView.ComponentDetailsView.3057400647]
+#. [components.ListView.3057400647]
 #. defaultMessage is:
 #. Back to {parent}
 msgid "Back to {parent}"
 msgstr "回到 {parent}"
 
 #: build/messages/components/ListView/ListItemImages.json
-#. [components.ListView.ListItemImages.2943300373]
+#. [components.ListView.2943300373]
 #. defaultMessage is:
 #. Based on Version {version}
 msgid "Based on Version {version}"
@@ -161,40 +151,40 @@ msgstr "基于版本 {version}"
 #: build/messages/components/Modal/PendingChanges.json
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
-#. [components.Modal.CreateImage.1281198655]
+#. [components.Modal.1281198655]
 #. defaultMessage is:
 #. Blueprint
-#. [components.Modal.ExportBlueprint.1281198655]
+#. [components.Modal.1281198655]
 #. defaultMessage is:
 #. Blueprint
-#. [components.Modal.PendingChanges.blueprint]
+#. [components.Modal.blueprint]
 #. defaultMessage is:
 #. Blueprint
-#. [pages.blueprint.index.blueprint]
+#. [pages.blueprint.blueprint]
 #. defaultMessage is:
 #. Blueprint
-#. [pages.blueprintEdit.index.blueprintTitle]
+#. [pages.blueprintEdit.blueprintTitle]
 #. defaultMessage is:
 #. Blueprint
 msgid "Blueprint"
 msgstr "蓝图"
 
 #: build/messages/pages/blueprintEdit/index.json
-#. [pages.blueprintEdit.index.711554923]
+#. [pages.blueprintEdit.711554923]
 #. defaultMessage is:
 #. Blueprint Components
 msgid "Blueprint Components"
 msgstr "蓝图组件"
 
 #: build/messages/pages/blueprints/index.json
-#. [pages.blueprints.index.blueprintsTitle]
+#. [pages.blueprints.blueprintsTitle]
 #. defaultMessage is:
 #. Blueprints
 msgid "Blueprints"
 msgstr "Blueprints"
 
 #: build/messages/pages/blueprintEdit/index.json
-#. [pages.blueprintEdit.index.addComponentMessage]
+#. [pages.blueprintEdit.addComponentMessage]
 #. defaultMessage is:
 #. Browse or search for components, then add them to the blueprint.
 msgid "Browse or search for components, then add them to the blueprint."
@@ -205,40 +195,40 @@ msgstr "浏览或搜索组件，然后把它们添加到蓝图中。"
 #: build/messages/components/Modal/DeleteBlueprint.json
 #: build/messages/components/Modal/DeleteImage.json
 #: build/messages/components/Modal/StopBuild.json
-#. [components.Modal.CreateBlueprint.3528672691]
+#. [components.Modal.3528672691]
 #. defaultMessage is:
 #. Cancel
-#. [components.Modal.CreateImage.3528672691]
+#. [components.Modal.3528672691]
 #. defaultMessage is:
 #. Cancel
-#. [components.Modal.DeleteBlueprint.3528672691]
+#. [components.Modal.3528672691]
 #. defaultMessage is:
 #. Cancel
-#. [components.Modal.DeleteImage.3528672691]
+#. [components.Modal.3528672691]
 #. defaultMessage is:
 #. Cancel
-#. [components.Modal.StopBuild.3528672691]
+#. [components.Modal.3528672691]
 #. defaultMessage is:
 #. Cancel
 msgid "Cancel"
 msgstr "取消"
 
 #: build/messages/components/Modal/PendingChanges.json
-#. [components.Modal.PendingChanges.2208777537]
+#. [components.Modal.2208777537]
 #. defaultMessage is:
 #. Changes Pending Commit
 msgid "Changes Pending Commit"
 msgstr "所做出的修改需要等待提交后才会有效"
 
 #: build/messages/components/Modal/PendingChanges.json
-#. [components.Modal.PendingChanges.683130131]
+#. [components.Modal.683130131]
 #. defaultMessage is:
 #. Changes made in a previous session
 msgid "Changes made in a previous session"
 msgstr "在前一个会话中做的修改"
 
 #: build/messages/components/Modal/PendingChanges.json
-#. [components.Modal.PendingChanges.previousSessionInfotip]
+#. [components.Modal.previousSessionInfotip]
 #. defaultMessage is:
 #. Changes made in a previous session are not listed in the order they were made. If you choose to undo these changes, they are undone as a group.
 msgid ""
@@ -250,46 +240,46 @@ msgstr "在前一个会话中所做的修改不会以修改的顺序列出。如
 #: build/messages/components/Toolbar/ToolbarLayout.json
 #: build/messages/pages/blueprintEdit/index.json
 #: build/messages/pages/blueprints/index.json
-#. [components.ListView.BlueprintContents.1312249312]
+#. [components.ListView.1312249312]
 #. defaultMessage is:
 #. Clear All Filters
-#. [components.Toolbar.ToolbarLayout.1312249312]
+#. [components.Toolbar.1312249312]
 #. defaultMessage is:
 #. Clear All Filters
-#. [pages.blueprintEdit.index.1312249312]
+#. [pages.blueprintEdit.1312249312]
 #. defaultMessage is:
 #. Clear All Filters
-#. [pages.blueprints.index.1312249312]
+#. [pages.blueprints.1312249312]
 #. defaultMessage is:
 #. Clear All Filters
 msgid "Clear All Filters"
-msgstr "清除所有过滤器"
+msgstr "清除所有过滤条件"
 
 #: build/messages/components/Modal/ExportBlueprint.json
 #: build/messages/components/Modal/ManageSources.json
 #: build/messages/components/Modal/ManageSources.json
 #: build/messages/components/Modal/PendingChanges.json
 #: build/messages/components/Notifications/Notification.json
-#. [components.Modal.ExportBlueprint.2324218928]
+#. [components.Modal.2324218928]
 #. defaultMessage is:
 #. Close
-#. [components.Modal.ManageSources.closeButtonLabel]
+#. [components.Modal.closeButtonLabel]
 #. defaultMessage is:
 #. Close
-#. [components.Modal.ManageSources.2324218928]
+#. [components.Modal.2324218928]
 #. defaultMessage is:
 #. Close
-#. [components.Modal.PendingChanges.closeButtonLabel]
+#. [components.Modal.closeButtonLabel]
 #. defaultMessage is:
 #. Close
-#. [components.Notifications.Notification.2324218928]
+#. [components.Notifications.2324218928]
 #. defaultMessage is:
 #. Close
 msgid "Close"
 msgstr "关闭"
 
 #: build/messages/components/Modal/PendingChanges.json
-#. [components.Modal.PendingChanges.2299254306]
+#. [components.Modal.2299254306]
 #. defaultMessage is:
 #. Comment
 msgid "Comment"
@@ -297,31 +287,24 @@ msgstr "注释"
 
 #: build/messages/components/Modal/PendingChanges.json
 #: build/messages/pages/blueprintEdit/index.json
-#. [components.Modal.PendingChanges.commitButtonLabel]
+#. [components.Modal.commitButtonLabel]
 #. defaultMessage is:
 #. Commit
-#. [pages.blueprintEdit.index.1951088698]
+#. [pages.blueprintEdit.1951088698]
 #. defaultMessage is:
 #. Commit
 msgid "Commit"
 msgstr "提交"
 
 #: build/messages/components/Modal/CreateImage.json
-#. [components.Modal.CreateImage.4244040826]
+#. [components.Modal.4244040826]
 #. defaultMessage is:
 #. Commit and Create
 msgid "Commit and Create"
-msgstr "提交和创建"
-
-#: build/messages/components/ListView/ListItemChanges.json
-#. [components.ListView.ListItemChanges.1076233378]
-#. defaultMessage is:
-#. Commit {commitNumber}
-msgid "Commit {commitNumber}"
-msgstr "提交"
+msgstr "提交并创建"
 
 #: build/messages/components/ListView/ListItemImages.json
-#. [components.ListView.ListItemImages.1275749364]
+#. [components.ListView.1275749364]
 #. defaultMessage is:
 #. Complete
 msgid "Complete"
@@ -329,38 +312,38 @@ msgstr "完成"
 
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
-#. [pages.blueprint.index.3540308269]
+#. [pages.blueprint.3540308269]
 #. defaultMessage is:
 #. Component Details
-#. [pages.blueprintEdit.index.3540308269]
+#. [pages.blueprintEdit.3540308269]
 #. defaultMessage is:
 #. Component Details
 msgid "Component Details"
-msgstr "组建详情"
+msgstr "组件详情"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
-#. [components.ListView.ComponentDetailsView.2104464527]
+#. [components.ListView.2104464527]
 #. defaultMessage is:
 #. Component Options
 msgid "Component Options"
 msgstr "组件选项"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
-#. [components.ListView.ComponentDetailsView.2279094754]
+#. [components.ListView.2279094754]
 #. defaultMessage is:
 #. Components
 msgid "Components"
 msgstr "组件"
 
 #: build/messages/components/Modal/ExportBlueprint.json
-#. [components.Modal.ExportBlueprint.956699920]
+#. [components.Modal.956699920]
 #. defaultMessage is:
 #. Contents
 msgid "Contents"
 msgstr "内容"
 
 #: build/messages/components/Modal/ExportBlueprint.json
-#. [components.Modal.ExportBlueprint.383867403]
+#. [components.Modal.383867403]
 #. defaultMessage is:
 #. Copy
 msgid "Copy"
@@ -368,10 +351,10 @@ msgstr "复制"
 
 #: build/messages/components/Modal/CreateBlueprint.json
 #: build/messages/components/Modal/CreateImage.json
-#. [components.Modal.CreateBlueprint.4120989039]
+#. [components.Modal.4120989039]
 #. defaultMessage is:
 #. Create
-#. [components.Modal.CreateImage.4120989039]
+#. [components.Modal.4120989039]
 #. defaultMessage is:
 #. Create
 msgid "Create"
@@ -380,13 +363,13 @@ msgstr "创建"
 #: build/messages/components/Modal/CreateBlueprint.json
 #: build/messages/components/Toolbar/BlueprintsToolbar.json
 #: build/messages/pages/blueprints/index.json
-#. [components.Modal.CreateBlueprint.536838868]
+#. [components.Modal.536838868]
 #. defaultMessage is:
 #. Create Blueprint
-#. [components.Toolbar.BlueprintsToolbar.536838868]
+#. [components.Toolbar.536838868]
 #. defaultMessage is:
 #. Create Blueprint
-#. [pages.blueprints.index.536838868]
+#. [pages.blueprints.536838868]
 #. defaultMessage is:
 #. Create Blueprint
 msgid "Create Blueprint"
@@ -396,23 +379,23 @@ msgstr "创建蓝图"
 #: build/messages/components/Modal/CreateImage.json
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
-#. [components.ListView.BlueprintListView.2482064138]
+#. [components.ListView.2482064138]
 #. defaultMessage is:
 #. Create Image
-#. [components.Modal.CreateImage.2482064138]
+#. [components.Modal.2482064138]
 #. defaultMessage is:
 #. Create Image
-#. [pages.blueprint.index.2482064138]
+#. [pages.blueprint.2482064138]
 #. defaultMessage is:
 #. Create Image
-#. [pages.blueprintEdit.index.2482064138]
+#. [pages.blueprintEdit.2482064138]
 #. defaultMessage is:
 #. Create Image
 msgid "Create Image"
 msgstr "创建镜像"
 
 #: build/messages/pages/blueprints/index.json
-#. [pages.blueprints.index.emptyMessage]
+#. [pages.blueprints.emptyMessage]
 #. defaultMessage is:
 #. Create a blueprint to define the contents that will be included in the images you create. Images can be produced in a variety of output formats.
 msgid ""
@@ -421,42 +404,42 @@ msgid ""
 msgstr "创建蓝图来定义将要包括在所创建镜像中的内容。镜像可以被创建为不同的输出格式。"
 
 #: build/messages/components/Pagination/Pagination.json
-#. [components.Pagination.Pagination.2925773048] - Label for the string: 1–50 of 125; only visible to screen readers
+#. [components.Pagination.2925773048] - Label for the string: 1–50 of 125; only visible to screen readers
 #. defaultMessage is:
 #. Current Items
 msgid "Current Items"
 msgstr "当前项"
 
 #: build/messages/components/Pagination/Pagination.json
-#. [components.Pagination.Pagination.currentPage] - Label of form input for setting current page number
+#. [components.Pagination.currentPage] - Label of form input for setting current page number
 #. defaultMessage is:
 #. Current Page
 msgid "Current Page"
 msgstr "当前页"
 
 #: build/messages/components/Modal/ManageSources.json
-#. [components.Modal.ManageSources.3535450089] - Custom sources are additional repositories that were added by the user
+#. [components.Modal.3535450089] - Custom sources are additional repositories that were added by the user
 #. defaultMessage is:
 #. Custom Sources
 msgid "Custom Sources"
 msgstr "自定义源"
 
 #: build/messages/components/ListView/ListItemImages.json
-#. [components.ListView.ListItemImages.3751098589]
+#. [components.ListView.3751098589]
 #. defaultMessage is:
 #. Date Created {date}
 msgid "Date Created {date}"
-msgstr "创建日期"
+msgstr "创建日期 {date}"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
-#. [components.ListView.ComponentDetailsView.1305464942]
+#. [components.ListView.1305464942]
 #. defaultMessage is:
 #. Debug
 msgid "Debug"
 msgstr "调试"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
-#. [components.ListView.ComponentDetailsView.1222345317]
+#. [components.ListView.1222345317]
 #. defaultMessage is:
 #. Default
 msgid "Default"
@@ -465,27 +448,27 @@ msgstr "默认"
 #: build/messages/components/ListView/BlueprintListView.json
 #: build/messages/components/ListView/ListItemImages.json
 #: build/messages/components/Modal/DeleteBlueprint.json
-#. [components.ListView.BlueprintListView.3645414921]
+#. [components.ListView.3645414921]
 #. defaultMessage is:
 #. Delete
-#. [components.ListView.ListItemImages.3645414921]
+#. [components.ListView.3645414921]
 #. defaultMessage is:
 #. Delete
-#. [components.Modal.DeleteBlueprint.3645414921]
+#. [components.Modal.3645414921]
 #. defaultMessage is:
 #. Delete
 msgid "Delete"
 msgstr "删除"
 
 #: build/messages/components/Modal/DeleteBlueprint.json
-#. [components.Modal.DeleteBlueprint.3153775112]
+#. [components.Modal.3153775112]
 #. defaultMessage is:
 #. Delete Blueprint
 msgid "Delete Blueprint"
 msgstr "删除蓝图"
 
 #: build/messages/components/Modal/DeleteImage.json
-#. [components.Modal.DeleteImage.1731766393]
+#. [components.Modal.1731766393]
 #. defaultMessage is:
 #. Delete Image
 msgid "Delete Image"
@@ -494,45 +477,38 @@ msgstr "删除镜像"
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ComponentSummaryList.json
-#. [components.ListView.BlueprintContents.dependenciesTabTitle]
+#. [components.ListView.dependenciesTabTitle]
 #. defaultMessage is:
 #. Dependencies
-#. [components.ListView.ComponentDetailsView.dependencies]
+#. [components.ListView.dependencies]
 #. defaultMessage is:
 #. Dependencies
-#. [components.ListView.ComponentSummaryList.3727965333]
+#. [components.ListView.3727965333]
 #. defaultMessage is:
 #. Dependencies
 msgid "Dependencies"
-msgstr "相依性"
-
-#: build/messages/components/ListView/ListItemLabel.json
-#. [components.ListView.ListItemLabel.2051291306]
-#. defaultMessage is:
-#. Dependency
-msgid "Dependency"
-msgstr "相依性"
+msgstr "依赖"
 
 #: build/messages/components/Modal/CreateBlueprint.json
 #: build/messages/pages/blueprint/index.json
-#. [components.Modal.CreateBlueprint.3374163063]
+#. [components.Modal.3374163063]
 #. defaultMessage is:
 #. Description
-#. [pages.blueprint.index.3374163063]
+#. [pages.blueprint.3374163063]
 #. defaultMessage is:
 #. Description
 msgid "Description"
 msgstr "描述"
 
 #: build/messages/pages/blueprintEdit/index.json
-#. [pages.blueprintEdit.index.1936836258]
+#. [pages.blueprintEdit.1936836258]
 #. defaultMessage is:
 #. Discard Changes
 msgid "Discard Changes"
 msgstr "放弃更改"
 
 #: build/messages/components/ListView/ListItemImages.json
-#. [components.ListView.ListItemImages.1982430146]
+#. [components.ListView.1982430146]
 #. defaultMessage is:
 #. Download
 msgid "Download"
@@ -540,10 +516,10 @@ msgstr "下载"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ListItemComponents.json
-#. [components.ListView.ComponentDetailsView.197077183]
+#. [components.ListView.197077183]
 #. defaultMessage is:
 #. Edit
-#. [components.ListView.ListItemComponents.197077183]
+#. [components.ListView.197077183]
 #. defaultMessage is:
 #. Edit
 msgid "Edit"
@@ -552,27 +528,27 @@ msgstr "编辑"
 #: build/messages/components/ListView/BlueprintListView.json
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
-#. [components.ListView.BlueprintListView.1602740985]
+#. [components.ListView.1602740985]
 #. defaultMessage is:
 #. Edit Blueprint
-#. [pages.blueprint.index.1602740985]
+#. [pages.blueprint.1602740985]
 #. defaultMessage is:
 #. Edit Blueprint
-#. [pages.blueprintEdit.index.1602740985]
+#. [pages.blueprintEdit.1602740985]
 #. defaultMessage is:
 #. Edit Blueprint
 msgid "Edit Blueprint"
 msgstr "编辑蓝图"
 
 #: build/messages/pages/blueprint/index.json
-#. [pages.blueprint.index.emptyBlueprintTitle]
+#. [pages.blueprint.emptyBlueprintTitle]
 #. defaultMessage is:
 #. Empty Blueprint
 msgid "Empty Blueprint"
 msgstr "空蓝图"
 
 #: build/messages/pages/error/index.json
-#. [pages.error.index.errorMessage]
+#. [pages.error.errorMessage]
 #. defaultMessage is:
 #. Error
 msgid "Error"
@@ -581,55 +557,55 @@ msgstr "错误"
 #: build/messages/components/ListView/BlueprintListView.json
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
-#. [components.ListView.BlueprintListView.3590336714]
+#. [components.ListView.3590336714]
 #. defaultMessage is:
 #. Export
-#. [pages.blueprint.index.3590336714]
+#. [pages.blueprint.3590336714]
 #. defaultMessage is:
 #. Export
-#. [pages.blueprintEdit.index.3590336714]
+#. [pages.blueprintEdit.3590336714]
 #. defaultMessage is:
 #. Export
 msgid "Export"
 msgstr "导出"
 
 #: build/messages/components/Modal/ExportBlueprint.json
-#. [components.Modal.ExportBlueprint.386209032]
+#. [components.Modal.386209032]
 #. defaultMessage is:
 #. Export Blueprint
 msgid "Export Blueprint"
 msgstr "导出蓝图"
 
 #: build/messages/components/Modal/ExportBlueprint.json
-#. [components.Modal.ExportBlueprint.3658760324]
+#. [components.Modal.3658760324]
 #. defaultMessage is:
 #. Export as
 msgid "Export as"
 msgstr "导出为"
 
 #: build/messages/components/ListView/ListItemImages.json
-#. [components.ListView.ListItemImages.2753020605]
+#. [components.ListView.2753020605]
 #. defaultMessage is:
 #. Failed
 msgid "Failed"
-msgstr "已失败"
+msgstr "失败"
 
 #: build/messages/pages/blueprintEdit/index.json
-#. [pages.blueprintEdit.index.filterByLabel]
+#. [pages.blueprintEdit.filterByLabel]
 #. defaultMessage is:
 #. Filter Available Components by Name
 msgid "Filter Available Components by Name"
 msgstr "根据名称过滤可用的组件"
 
 #: build/messages/pages/blueprintEdit/index.json
-#. [pages.blueprintEdit.index.filterByPlaceholder]
+#. [pages.blueprintEdit.filterByPlaceholder]
 #. defaultMessage is:
 #. Filter By Name...
 msgid "Filter By Name..."
 msgstr "根据名称过滤..."
 
 #: build/messages/pages/error/index.json
-#. [pages.error.index.2333299345]
+#. [pages.error.2333299345]
 #. defaultMessage is:
 #. Go back
 msgid "Go back"
@@ -637,24 +613,24 @@ msgstr "回退"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ComponentInputs.json
-#. [components.ListView.ComponentDetailsView.hideDetails]
+#. [components.ListView.hideDetails]
 #. defaultMessage is:
 #. Hide Details
-#. [components.ListView.ComponentInputs.hideDetails]
+#. [components.ListView.hideDetails]
 #. defaultMessage is:
 #. Hide Details
 msgid "Hide Details"
 msgstr "隐藏详情"
 
 #: build/messages/components/Modal/CreateImage.json
-#. [components.Modal.CreateImage.380558550]
+#. [components.Modal.380558550]
 #. defaultMessage is:
 #. Image Type
 msgid "Image Type"
 msgstr "镜像类型"
 
 #: build/messages/pages/blueprint/index.json
-#. [pages.blueprint.index.imagesTitle]
+#. [pages.blueprint.imagesTitle]
 #. defaultMessage is:
 #. Images
 msgid "Images"
@@ -662,21 +638,21 @@ msgstr "镜像"
 
 # translation auto-copied from project evolution, version 3.8.5, document evolution-3.8
 #: build/messages/components/ListView/ListItemImages.json
-#. [components.ListView.ListItemImages.3045064456]
+#. [components.ListView.3045064456]
 #. defaultMessage is:
 #. In Progress
 msgid "In Progress"
 msgstr "进行中"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
-#. [components.ListView.ComponentDetailsView.3274047346]
+#. [components.ListView.3274047346]
 #. defaultMessage is:
 #. Install Profile
 msgid "Install Profile"
 msgstr "安装档案"
 
 #: build/messages/components/Loading/Loading.json
-#. [components.Loading.Loading.2617450248]
+#. [components.Loading.2617450248]
 #. defaultMessage is:
 #. Loading
 msgid "Loading"
@@ -684,46 +660,46 @@ msgstr "载入"
 
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/pages/blueprints/index.json
-#. [components.ListView.BlueprintContents.emptyStateNoResultsMessage]
+#. [components.ListView.emptyStateNoResultsMessage]
 #. defaultMessage is:
 #. Modify your filter criteria to get results.
-#. [pages.blueprints.index.noResultsMessage]
+#. [pages.blueprints.noResultsMessage]
 #. defaultMessage is:
 #. Modify your filter criteria to get results.
 msgid "Modify your filter criteria to get results."
-msgstr "修改过滤条件以获得所需结果。"
+msgstr "修改过滤条件以获得所需结果"
 
 #: build/messages/components/Modal/CreateBlueprint.json
 #: build/messages/components/Sources/SourcesList.json
 #: build/messages/pages/blueprint/index.json
-#. [components.Modal.CreateBlueprint.636461959]
+#. [components.Modal.636461959]
 #. defaultMessage is:
 #. Name
-#. [components.Sources.SourcesList.636461959] - Name of source
+#. [components.Sources.636461959] - Name of source
 #. defaultMessage is:
 #. Name
-#. [pages.blueprint.index.636461959]
+#. [pages.blueprint.636461959]
 #. defaultMessage is:
 #. Name
 msgid "Name"
 msgstr "名称"
 
 #: build/messages/pages/blueprintEdit/index.json
-#. [pages.blueprintEdit.index.3059610115]
+#. [pages.blueprintEdit.3059610115]
 #. defaultMessage is:
 #. Name: {name}
 msgid "Name: {name}"
-msgstr "名称"
+msgstr "名称 {name}"
 
 #: build/messages/pages/blueprints/index.json
-#. [pages.blueprints.index.emptyTitle]
+#. [pages.blueprints.emptyTitle]
 #. defaultMessage is:
 #. No Blueprints
 msgid "No Blueprints"
 msgstr "没有蓝图"
 
 #: build/messages/pages/blueprint/index.json
-#. [pages.blueprint.index.noImagesTitle]
+#. [pages.blueprint.noImagesTitle]
 #. defaultMessage is:
 #. No Images
 msgid "No Images"
@@ -731,24 +707,24 @@ msgstr "没有镜像"
 
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/pages/blueprints/index.json
-#. [components.ListView.BlueprintContents.emptyStateNoResultsTitle]
+#. [components.ListView.emptyStateNoResultsTitle]
 #. defaultMessage is:
 #. No Results Match the Filter Criteria
-#. [pages.blueprints.index.noResultsTitle]
+#. [pages.blueprints.noResultsTitle]
 #. defaultMessage is:
 #. No Results Match the Filter Criteria
 msgid "No Results Match the Filter Criteria"
 msgstr "没有匹配过滤条件的结果"
 
 #: build/messages/pages/blueprint/index.json
-#. [pages.blueprint.index.noImagesMessage]
+#. [pages.blueprint.noImagesMessage]
 #. defaultMessage is:
 #. No images have been created from this blueprint.
 msgid "No images have been created from this blueprint."
 msgstr "没有从这个蓝图创建的镜像。"
 
 #: build/messages/components/ListView/DependencyListView.json
-#. [components.ListView.DependencyListView.1983535507]
+#. [components.ListView.1983535507]
 #. defaultMessage is:
 #. One or more dependencies have multiple variations that could be used.
 #. A default variation was automatically selected.
@@ -764,14 +740,14 @@ msgstr ""
 "                            点一个带有标记的依赖关系来查看其它可用的选项。"
 
 #: build/messages/components/Modal/PendingChanges.json
-#. [components.Modal.PendingChanges.1475836573]
+#. [components.Modal.1475836573]
 #. defaultMessage is:
 #. Only changes to selected components are shown.
 msgid "Only changes to selected components are shown."
 msgstr "只显示对所选组件的改变。"
 
 #: build/messages/pages/error/index.json
-#. [pages.error.index.oupsTitle]
+#. [pages.error.oupsTitle]
 #. defaultMessage is:
 #. Oups, something went wrong
 msgid "Oups, something went wrong"
@@ -779,21 +755,21 @@ msgstr "抱歉，什么地方出现问题"
 
 # ctx::sourcefile::404 error page
 #: build/messages/pages/error/index.json
-#. [pages.error.index.pageNotFoundMessage]
+#. [pages.error.pageNotFoundMessage]
 #. defaultMessage is:
 #. Page Not Found
 msgid "Page Not Found"
 msgstr "没有找到页"
 
 #: build/messages/pages/error/index.json
-#. [pages.error.index.pageNotFoundTitle]
+#. [pages.error.pageNotFoundTitle]
 #. defaultMessage is:
 #. Page not found
 msgid "Page not found"
 msgstr "没有找到页"
 
 #: build/messages/components/Pagination/Pagination.json
-#. [components.Pagination.Pagination.pagination]
+#. [components.Pagination.pagination]
 #. defaultMessage is:
 #. Pagination
 msgid "Pagination"
@@ -801,14 +777,14 @@ msgstr "分页"
 
 # translation auto-copied from project Satellite6 Hammer CLI Foreman, version 6.1, document hammer-cli-foreman
 #: build/messages/components/ListView/ListItemImages.json
-#. [components.ListView.ListItemImages.1102534324]
+#. [components.ListView.1102534324]
 #. defaultMessage is:
 #. Pending
 msgid "Pending"
 msgstr "待发布"
 
 #: build/messages/components/Modal/PendingChanges.json
-#. [components.Modal.PendingChanges.433458873]
+#. [components.Modal.433458873]
 #. defaultMessage is:
 #. Pending Changes
 msgid "Pending Changes"
@@ -816,71 +792,67 @@ msgstr "改变待生效"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ListItemComponents.json
-#. [components.ListView.ComponentDetailsView.423140743]
+#. [components.ListView.423140743]
 #. defaultMessage is:
 #. Release
-#. [components.ListView.ListItemComponents.423140743]
+#. [components.ListView.423140743]
 #. defaultMessage is:
 #. Release
 msgid "Release"
-msgstr "释放"
+msgstr "发布"
 
 #: build/messages/components/ListView/ListItemComponents.json
-#. [components.ListView.ListItemComponents.3825820359]
+#. [components.ListView.3825820359]
 #. defaultMessage is:
 #. Release {release}
 msgid "Release {release}"
-msgstr "释放"
+msgstr "发布 {release}"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ListItemComponents.json
 #: build/messages/components/ListView/ListItemImages.json
-#. [components.ListView.ComponentDetailsView.2703758654]
+#. [components.ListView.2703758654]
 #. defaultMessage is:
 #. Remove
-#. [components.ListView.ListItemComponents.2703758654]
+#. [components.ListView.2703758654]
 #. defaultMessage is:
 #. Remove
-#. [components.ListView.ListItemImages.2703758654]
+#. [components.ListView.2703758654]
 #. defaultMessage is:
 #. Remove
 msgid "Remove"
 msgstr "删除"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
-#. [components.ListView.ComponentDetailsView.removeFromBlueprint]
+#. [components.ListView.removeFromBlueprint]
 #. defaultMessage is:
 #. Remove from Blueprint
 msgid "Remove from Blueprint"
 msgstr "从蓝图中删除"
 
-#: build/messages/components/ListView/ListItemChanges.json
 #: build/messages/components/Modal/PendingChanges.json
-#. [components.ListView.ListItemChanges.2291868453]
-#. defaultMessage is:
-#. Removed
-#. [components.Modal.PendingChanges.2291868453] - Identifies the change as a component that was removed
+#. [components.Modal.2291868453] - Identifies the change as a component that was removed
 #. defaultMessage is:
 #. Removed
 msgid "Removed"
 msgstr "已删除的（Removed）"
 
 #: build/messages/components/Modal/CreateBlueprint.json
-#. [components.Modal.CreateBlueprint.128739785]
+#. [components.Modal.128739785]
 #. defaultMessage is:
 #. Required information is missing.
 msgid "Required information is missing."
 msgstr "缺少需要的信息。"
 
 #: build/messages/pages/blueprintEdit/index.json
-#. [pages.blueprintEdit.index.1513086105]
+#. [pages.blueprintEdit.1513086105]
 #. defaultMessage is:
 #. Select components
 msgid "Select components"
 msgstr "选择组件"
 
 #: build/messages/components/Modal/CreateImage.json
-#. [components.Modal.CreateImage.selectOne]
+#. [components.Modal.selectOne]
 #. defaultMessage is:
 #. Select one
 msgid "Select one"
@@ -888,136 +860,136 @@ msgstr "选择全部"
 
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/pages/blueprint/index.json
-#. [components.ListView.BlueprintContents.selectedTabTitle]
+#. [components.ListView.selectedTabTitle]
 #. defaultMessage is:
 #. Selected Components
-#. [pages.blueprint.index.selectedComponentsTitle]
+#. [pages.blueprint.selectedComponentsTitle]
 #. defaultMessage is:
 #. Selected Components
 msgid "Selected Components"
 msgstr "选择的组件"
 
 #: build/messages/components/ListView/ComponentSummaryList.json
-#. [components.ListView.ComponentSummaryList.1256153657]
+#. [components.ListView.1256153657]
 #. defaultMessage is:
 #. Show All
 msgid "Show All"
 msgstr "显示全部"
 
 #: build/messages/components/ListView/ComponentInputs.json
-#. [components.ListView.ComponentInputs.showDetails]
+#. [components.ListView.showDetails]
 #. defaultMessage is:
 #. Show Details and More Options
 msgid "Show Details and More Options"
 msgstr "显示详情及更多选项"
 
 #: build/messages/components/ListView/ComponentSummaryList.json
-#. [components.ListView.ComponentSummaryList.2354351315]
+#. [components.ListView.2354351315]
 #. defaultMessage is:
 #. Show Less
 msgid "Show Less"
 msgstr "显示更少"
 
 #: build/messages/components/Pagination/Pagination.json
-#. [components.Pagination.Pagination.nextPage]
+#. [components.Pagination.nextPage]
 #. defaultMessage is:
 #. Show Next Page
 msgid "Show Next Page"
 msgstr "显示下一页"
 
 #: build/messages/components/Pagination/Pagination.json
-#. [components.Pagination.Pagination.previousPage]
+#. [components.Pagination.previousPage]
 #. defaultMessage is:
 #. Show Previous Page
 msgid "Show Previous Page"
 msgstr "显示上一页"
 
 #: build/messages/components/Sources/SourcesList.json
-#. [components.Sources.SourcesList.3503331186] - The path or url to the source repository
+#. [components.Sources.3503331186] - The path or url to the source repository
 #. defaultMessage is:
 #. Source Path
 msgid "Source Path"
 msgstr "源路径"
 
 #: build/messages/components/Modal/ManageSources.json
-#. [components.Modal.ManageSources.3025955497] - Sources provide the contents from which components are selected
+#. [components.Modal.3025955497] - Sources provide the contents from which components are selected
 #. defaultMessage is:
 #. Sources
 msgid "Sources"
-msgstr "来源"
+msgstr "源"
 
 #: build/messages/components/Modal/CreateBlueprint.json
-#. [components.Modal.CreateBlueprint.540971304]
+#. [components.Modal.540971304]
 #. defaultMessage is:
 #. Specify a new blueprint name.
 msgid "Specify a new blueprint name."
 msgstr "指定新的蓝图名称。"
 
 #: build/messages/components/ListView/ListItemImages.json
-#. [components.ListView.ListItemImages.2989081855]
+#. [components.ListView.2989081855]
 #. defaultMessage is:
 #. Stop
 msgid "Stop"
 msgstr "停止"
 
 #: build/messages/components/Modal/StopBuild.json
-#. [components.Modal.StopBuild.1162993432]
+#. [components.Modal.1162993432]
 #. defaultMessage is:
 #. Stop Build
 msgid "Stop Build"
 msgstr "停止构建"
 
 #: build/messages/components/ListView/ListItemImages.json
-#. [components.ListView.ListItemImages.2434115730]
+#. [components.ListView.2434115730]
 #. defaultMessage is:
 #. Stopping
 msgid "Stopping"
 msgstr "停止"
 
 #: build/messages/components/Modal/ManageSources.json
-#. [components.Modal.ManageSources.766860407] - System sources are configured repositories that were found on the host machine
+#. [components.Modal.766860407] - System sources are configured repositories that were found on the host machine
 #. defaultMessage is:
 #. System Sources
 msgid "System Sources"
 msgstr "系统源"
 
 #: build/messages/components/Modal/ExportBlueprint.json
-#. [components.Modal.ExportBlueprint.3495336243]
+#. [components.Modal.3495336243]
 #. defaultMessage is:
 #. Text
 msgid "Text"
 msgstr "文本"
 
 #: build/messages/components/Modal/StopBuild.json
-#. [components.Modal.StopBuild.3426018028]
+#. [components.Modal.3426018028]
 #. defaultMessage is:
 #. The build process cannot resume after it stops.
 msgid "The build process cannot resume after it stops."
 msgstr "构建过程停止后将不能恢复。"
 
 #: build/messages/components/Modal/CreateBlueprint.json
-#. [components.Modal.CreateBlueprint.216946930]
+#. [components.Modal.216946930]
 #. defaultMessage is:
 #. The fields marked with {val} are required.
 msgid "The fields marked with {val} are required."
 msgstr "标记为 {val} 的项是必需的。"
 
 #: build/messages/components/Modal/CreateBlueprint.json
-#. [components.Modal.CreateBlueprint.2580689893]
+#. [components.Modal.2580689893]
 #. defaultMessage is:
 #. The name {name} already exists.
 msgid "The name {name} already exists."
 msgstr "名称 {name} 已存在。"
 
 #: build/messages/pages/error/index.json
-#. [pages.error.index.26562577]
+#. [pages.error.26562577]
 #. defaultMessage is:
 #. The page you're looking for does not exist or an another error occurred.
 msgid "The page you're looking for does not exist or an another error occurred."
 msgstr "您查看的页不存在，或存在其它错误。"
 
 #: build/messages/pages/blueprint/index.json
-#. [pages.blueprint.index.emptyBlueprintMessage]
+#. [pages.blueprint.emptyBlueprintMessage]
 #. defaultMessage is:
 #. There are no components listed in the blueprint. Edit the blueprint to add components.
 msgid ""
@@ -1027,17 +999,17 @@ msgstr "在蓝图中没有组件列表。编辑蓝图来添加组件。"
 
 #: build/messages/components/Modal/DeleteBlueprint.json
 #: build/messages/components/Modal/DeleteImage.json
-#. [components.Modal.DeleteBlueprint.181468144]
+#. [components.Modal.181468144]
 #. defaultMessage is:
 #. This action cannot be undone.
-#. [components.Modal.DeleteImage.181468144]
+#. [components.Modal.181468144]
 #. defaultMessage is:
 #. This action cannot be undone.
 msgid "This action cannot be undone."
 msgstr "这个操作不能逆转。"
 
 #: build/messages/components/Modal/CreateImage.json
-#. [components.Modal.CreateImage.warningUnsaved]
+#. [components.Modal.warningUnsaved]
 #. defaultMessage is:
 #. This blueprint has changes that are not committed. These changes will be committed before the image is created.
 msgid ""
@@ -1046,14 +1018,14 @@ msgid ""
 msgstr "这个蓝图带有没有提交的改变。这些改变会在镜像创建前提交。"
 
 #: build/messages/components/Modal/CreateImage.json
-#. [components.Modal.CreateImage.1766703173]
+#. [components.Modal.1766703173]
 #. defaultMessage is:
 #. This blueprint is empty.
 msgid "This blueprint is empty."
 msgstr "这个蓝图为空。"
 
 #: build/messages/components/Modal/CreateImage.json
-#. [components.Modal.CreateImage.infotip]
+#. [components.Modal.infotip]
 #. defaultMessage is:
 #. This process can take a while. Images are built in the order they are started.
 msgid ""
@@ -1063,38 +1035,38 @@ msgstr "这个过程会需要一定时间。镜像会以开始的时间顺序构
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/Sources/SourcesList.json
-#. [components.ListView.ComponentDetailsView.1952810469]
+#. [components.ListView.1952810469]
 #. defaultMessage is:
 #. Type
-#. [components.Sources.SourcesList.1952810469] - Type of source
+#. [components.Sources.1952810469] - Type of source
 #. defaultMessage is:
 #. Type
 msgid "Type"
 msgstr "类型"
 
 #: build/messages/components/ListView/ListItemImages.json
-#. [components.ListView.ListItemImages.860864899]
+#. [components.ListView.860864899]
 #. defaultMessage is:
 #. Type {type}
 msgid "Type {type}"
-msgstr "类型"
+msgstr "类型 {type}"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
-#. [components.ListView.ComponentDetailsView.1324178587]
+#. [components.ListView.1324178587]
 #. defaultMessage is:
 #. URL
 msgid "URL"
 msgstr "URL"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
-#. [components.ListView.ComponentDetailsView.1458938618]
+#. [components.ListView.1458938618]
 #. defaultMessage is:
 #. Update
 msgid "Update"
 msgstr "更新"
 
 #: build/messages/components/Modal/PendingChanges.json
-#. [components.Modal.PendingChanges.562988552] - Identifies the change as a component that was updated
+#. [components.Modal.562988552] - Identifies the change as a component that was updated
 #. defaultMessage is:
 #. Updated
 msgid "Updated"
@@ -1102,171 +1074,164 @@ msgstr "已更新"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ListItemComponents.json
-#. [components.ListView.ComponentDetailsView.602883748]
+#. [components.ListView.602883748]
 #. defaultMessage is:
 #. Version
-#. [components.ListView.ListItemComponents.602883748]
+#. [components.ListView.602883748]
 #. defaultMessage is:
 #. Version
 msgid "Version"
 msgstr "版本"
 
 #: build/messages/components/ListView/ListItemComponents.json
-#. [components.ListView.ListItemComponents.4013222233]
+#. [components.ListView.4013222233]
 #. defaultMessage is:
 #. Version {version}
 msgid "Version {version}"
-msgstr "版本"
+msgstr "版本 {version}"
 
 #: build/messages/components/ListView/ListItemComponents.json
-#. [components.ListView.ListItemComponents.3097747573]
+#. [components.ListView.3097747573]
 #. defaultMessage is:
 #. View
 msgid "View"
 msgstr "查看"
 
 #: build/messages/components/Toolbar/BlueprintsToolbar.json
-#. [components.Toolbar.BlueprintsToolbar.3713868073] - User action for displaying the list of source repositories
+#. [components.Toolbar.3713868073] - User action for displaying the list of source repositories
 #. defaultMessage is:
 #. View Sources
 msgid "View Sources"
 msgstr "查看源"
 
 #: build/messages/components/Modal/PendingChanges.json
-#. [components.Modal.PendingChanges.2755325844]
+#. [components.Modal.2755325844]
 #. defaultMessage is:
 #. from
 msgid "from"
 msgstr "从"
 
 #: build/messages/pages/error/index.json
-#. [pages.error.index.2054225650]
+#. [pages.error.2054225650]
 #. defaultMessage is:
 #. home page
 msgid "home page"
 msgstr "主页"
 
 #: build/messages/components/Modal/PendingChanges.json
-#. [components.Modal.PendingChanges.152217691]
+#. [components.Modal.152217691]
 #. defaultMessage is:
 #. to
 msgid "to"
 msgstr "到"
 
-#: build/messages/components/Modal/CreateImage.json
-#. [components.Modal.CreateImage.282502245]
-#. defaultMessage is:
-#. x86_64
-msgid "x86_64"
-msgstr "x86_64"
-
 #: build/messages/data/NotificationsApi.json
-#. [data.NotificationsApi.4273735599]
+#. [data.4273735599]
 #. defaultMessage is:
 #. {blueprint} Blueprint changes are committed.
 msgid "{blueprint} Blueprint changes are committed."
 msgstr "{blueprint} 蓝图改变已提交。"
 
 #: build/messages/data/NotificationsApi.json
-#. [data.NotificationsApi.477516828]
+#. [data.477516828]
 #. defaultMessage is:
 #. {blueprint} Commit failed.
 msgid "{blueprint} Commit failed."
 msgstr "{blueprint} 提交失败。"
 
 #: build/messages/data/NotificationsApi.json
-#. [data.NotificationsApi.1829299735]
+#. [data.1829299735]
 #. defaultMessage is:
 #. {blueprint} Committing blueprint.
 msgid "{blueprint} Committing blueprint."
 msgstr "{blueprint} 提交蓝图。"
 
 #: build/messages/data/NotificationsApi.json
-#. [data.NotificationsApi.3947958753]
+#. [data.3947958753]
 #. defaultMessage is:
 #. {blueprint} Image creation failed.
 msgid "{blueprint} Image creation failed."
 msgstr "{blueprint} 镜像创建失败。"
 
 #: build/messages/data/NotificationsApi.json
-#. [data.NotificationsApi.705169148]
+#. [data.705169148]
 #. defaultMessage is:
 #. {blueprint} Image creation has been added to the queue.
 msgid "{blueprint} Image creation has been added to the queue."
 msgstr "{blueprint} 镜像创建已被添加到队列中。"
 
 #: build/messages/data/NotificationsApi.json
-#. [data.NotificationsApi.1726548071]
+#. [data.1726548071]
 #. defaultMessage is:
 #. {blueprint} Image creation has started.
 msgid "{blueprint} Image creation has started."
 msgstr "{blueprint} 镜像创建已开始。"
 
 #: build/messages/data/NotificationsApi.json
-#. [data.NotificationsApi.210196387]
+#. [data.210196387]
 #. defaultMessage is:
 #. {blueprint} Image creation is complete.
 msgid "{blueprint} Image creation is complete."
 msgstr "{blueprint} 镜像创建完成。"
 
 #: build/messages/components/Modal/CreateImage.json
-#. [components.Modal.CreateImage.2122759296]
+#. [components.Modal.2122759296]
 #. defaultMessage is:
 #. {builds, plural, one {# build is waiting} other {# builds are waiting}}
 msgid "{builds, plural, one {# build is waiting} other {# builds are waiting}}"
 msgstr "其他"
 
 #: build/messages/components/Modal/ExportBlueprint.json
-#. [components.Modal.ExportBlueprint.1557505074]
+#. [components.Modal.1557505074]
 #. defaultMessage is:
 #. {count} total components
 msgid "{count} total components"
 msgstr "{count} 组件总数"
 
 #: build/messages/components/Pagination/Pagination.json
-#. [components.Pagination.Pagination.3506832526]
+#. [components.Pagination.3506832526]
 #. defaultMessage is:
 #. {currentPage} of {totalPages}
 msgid "{currentPage} of {totalPages}"
 msgstr "$1 的 $0"
 
 #: build/messages/components/Modal/PendingChanges.json
-#. [components.Modal.PendingChanges.3908981070]
+#. [components.Modal.3908981070]
 #. defaultMessage is:
 #. {from} {oldVersion} {to} {newVersion}
 msgid "{from} {oldVersion} {to} {newVersion}"
 msgstr "{from} {oldVersion} {to} {newVersion}"
 
 #: build/messages/pages/error/index.json
-#. [pages.error.index.526995878]
+#. [pages.error.526995878]
 #. defaultMessage is:
 #. {goBack}, or head over to the {homePage} to choose a new direction.
 msgid "{goBack}, or head over to the {homePage} to choose a new direction."
 msgstr "{goBack}，或返回 {homePage} 以重新选择。"
 
 #: build/messages/components/Modal/PendingChanges.json
-#. [components.Modal.PendingChanges.3141775911]
+#. [components.Modal.3141775911]
 #. defaultMessage is:
 #. {heading} {parenthetical}
 msgid "{heading} {parenthetical}"
 msgstr "{heading} {parenthetical}"
 
 #: build/messages/pages/blueprintEdit/index.json
-#. [pages.blueprintEdit.index.4031669927]
+#. [pages.blueprintEdit.4031669927]
 #. defaultMessage is:
 #. {pendingChanges, plural, one {# Pending Change} other {# Pending Changes}}
 msgid "{pendingChanges, plural, one {# Pending Change} other {# Pending Changes}}"
 msgstr "其他"
 
 #: build/messages/pages/blueprintEdit/index.json
-#. [pages.blueprintEdit.index.3140434516]
+#. [pages.blueprintEdit.3140434516]
 #. defaultMessage is:
 #. {selectComponents} in this list to add to the blueprint.
 msgid "{selectComponents} in this list to add to the blueprint."
 msgstr "在列表中 {selectComponents} 以添加到蓝图中。"
 
 #: build/messages/components/Pagination/Pagination.json
-#. [components.Pagination.Pagination.3363928156]
+#. [components.Pagination.3363928156]
 #. defaultMessage is:
 #. {startNumber} - {endNumber} of {totalNumber}
 msgid "{startNumber} - {endNumber} of {totalNumber}"
@@ -1274,4 +1239,4 @@ msgstr "$1 的 $0"
 
 #: ./public/manifest.json
 msgid "Image Builder"
-msgstr "图像生成器"
+msgstr "镜像生成器"
