@@ -32,6 +32,7 @@ env:
     - COMMAND=eslint
     - COMMAND=stylelint
     - COMMAND=test_rpmbuild
+    - COMMAND=npm_audit
 script:
   - make "$COMMAND"
 jobs:
