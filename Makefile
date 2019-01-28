@@ -120,3 +120,8 @@ upload-pot: po-push
 download-po: po-pull
 
 .PHONY: tag local-clean vm check
+
+
+.PHONY: npm_audit
+npm_audit:
+	npm audit
