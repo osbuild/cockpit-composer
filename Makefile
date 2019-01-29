@@ -13,7 +13,6 @@ BUILD_RUN = npm run build
 endif
 
 all: npm-install
-	npm run translations:po2json
 	NODE_ENV=$(NODE_ENV) $(BUILD_RUN)
 
 npm-install-zanata: npm-install
