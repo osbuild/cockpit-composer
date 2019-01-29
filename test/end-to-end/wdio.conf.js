@@ -236,7 +236,13 @@ exports.config = {
    * Function to be executed after a test (in Mocha/Jasmine) or a step (in Cucumber) ends.
    * @param {Object} test test details
    */
-  afterTest: function(test) {
+  // afterTest: function(test) {
+  // },
+  /**
+   * Hook that gets executed after the suite has ended
+   * @param {Object} suite suite details
+   */
+  afterSuite: function(suite) {
     const coverageData = browser.execute("return window.__coverage__;");
     if (coverageData.value !== null) {
       const strCoverage = JSON.stringify(coverageData.value);
@@ -253,12 +259,6 @@ exports.config = {
       fs.writeFileSync(`${covOutDir}coverage-${hash}.json`, strCoverage);
     }
   },
-  /**
-   * Hook that gets executed after the suite has ended
-   * @param {Object} suite suite details
-   */
-  // afterSuite: function (suite) {
-  // },
   /**
    * Runs after a WebdriverIO command gets executed
    * @param {String} commandName hook command name
