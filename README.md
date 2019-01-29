@@ -114,6 +114,7 @@ After every change to your sources, run `make` to update all the webpacks, and r
 │   ├── /blueprints/            # Blueprints page
 │   ├── /blueprintEdit/         # Edit blueprint page
 │   └── /error/                 # Error page
+├── /po/                        # Translated result by Zanata
 ├── /public/                    # Static files
 │   ├── /dist/                  # The folder for compiled output
 │   ├── /js/                    # Javascript files included in index.ejs
@@ -124,6 +125,7 @@ After every change to your sources, run `make` to update all the webpacks, and r
 ├── /utils/                     # Utility and helper classes
 │── .tasks                      # Tasks triggered by Cockpit bot
 │── .travis.yml                 # Travis CI settings
+│── babel.config.js             # babel configurations
 │── cockpit-composer.spec.in    # Cockpit-composer spec file
 │── Dockerfile.buildrpm         # Dockerfile for building RPM on Travis
 │── io.weldr.cockpit-composer.metainfo.xml         # Makes Composer appear on Cockpit's "Applications" page
@@ -132,7 +134,6 @@ After every change to your sources, run `make` to update all the webpacks, and r
 │── package.json                # The list of project dependencies and NPM scripts
 │── routes.json                 # This list of application routes
 │── rpmversion.sh               # Generate the version and release strings for spec file
-│── run.js                      # Build automation script, e.g. `node run build`
 |── webpack.config.js           # Bundling and optimization settings for Webpack
 └── zanata.xml                  # zanata settings
 ```
@@ -203,4 +204,4 @@ Finally, import the new `.srpm` into the appropriate RHEL release.
 This source code is licensed under the MIT license found in the [`LICENSE.txt`](LICENSE.txt) file.
 
 ---
-Made with ♥ by the [Welder team](https://github.com/orgs/weldr/people), [Cockpit team](https://github.com/orgs/cockpit-project/people) team, and its contributors
+Made with ♥ by the [Welder team](https://github.com/orgs/weldr/people), [Cockpit team](https://github.com/orgs/cockpit-project/people), and contributors
