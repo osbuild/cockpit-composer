@@ -15,6 +15,8 @@ module.exports = {
     loginPage.loadingCockpitLoginPage();
     loginPage.usernameBox.setValue(loginPage.username);
     loginPage.passwordBox.setValue(loginPage.password);
+    // only for non-root user
+    loginPage.username !== "root" && loginPage.authorizedCheckbox.click();
     loginPage.loginButton.click();
     // switch to Image Builder frame
     browser.frame(loginPage.imageBuilderIframe);
