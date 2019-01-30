@@ -1,7 +1,7 @@
 // cockpit login credentials
 class LoginPage {
   constructor() {
-    this.username = "root";
+    this.username = process.env.COCKPIT_USERNAME || "root";
     this.password = process.env.COCKPIT_PASSWORD || "foobar";
   }
 
@@ -31,6 +31,16 @@ class LoginPage {
       () => browser.isVisible(selector),
       timeout,
       `Password input box in Cockpit Login page cannot be found by selector ${selector}`
+    );
+    return $(selector);
+  }
+
+  get authorizedCheckbox() {
+    const selector = '[id="authorized-input"]';
+    browser.waitUntil(
+      () => browser.isVisible(selector),
+      timeout,
+      `Authorized input checkbox in Cockpit Login page cannot be found by selector ${selector}`
     );
     return $(selector);
   }
