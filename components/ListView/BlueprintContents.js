@@ -144,7 +144,7 @@ BlueprintContents.propTypes = {
   }),
   fetchingState: PropTypes.bool,
   fetchDetails: PropTypes.func,
-  children: PropTypes.node,
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.element)]),
   pastLength: PropTypes.number,
   undo: PropTypes.func
 };
