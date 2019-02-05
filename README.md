@@ -1,7 +1,7 @@
 # Cockpit Composer
 
 [![Build Status](https://travis-ci.org/weldr/welder-web.svg?branch=master)](https://travis-ci.org/weldr/welder-web)
-[![codecov](https://codecov.io/gh/weldr/welder-web/branch/master/graph/badge.svg)](https://codecov.io/gh/weldr/welder-web)
+[![codecov](https://codecov.io/gh/weldr/welder-web/branch/master/graph/badge.svg)](https://codecov.io/gh/weldr/welder-web) [![Greenkeeper badge](https://badges.greenkeeper.io/weldr/welder-web.svg)](https://greenkeeper.io/)
 
 **The web interface for Composer!**
 
