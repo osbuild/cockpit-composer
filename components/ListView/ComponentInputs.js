@@ -169,7 +169,7 @@ class ComponentInputs extends React.Component {
                       data-original-title={`Add Component<br />
                             Version&nbsp;<strong>${component.version}</strong>
                             Release&nbsp;<strong>${component.release}</strong>`}
-                      onClick={e => this.props.handleAddComponent(e, component, component.version)}
+                      onClick={e => this.props.handleAddComponent(e, component, "*")}
                     >
                       <span className="fa fa-plus" />
                     </a>
