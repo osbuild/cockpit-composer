@@ -583,6 +583,7 @@ class EditBlueprintPage extends React.Component {
           (inputs.selectedInput.set === true && (
             <ComponentDetailsView
               blueprint={blueprintDisplayName}
+              selectedComponents={blueprint.packages.concat(blueprint.modules)}
               component={inputs.selectedInput.component}
               dependencies={selectedInputDeps}
               componentParent={inputs.selectedInput.parent}

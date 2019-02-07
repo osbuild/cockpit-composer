@@ -64,6 +64,8 @@ function* fetchInputs(action) {
 function flattenInput(response) {
   // each response item is a different build (version, release, arch)
   // flatten the response to a single item with an array of builds
+  // only keep the latest release per version
+  // for each version, include wildcard options
   let previousBuilds = {};
   let flattened = Object.assign({}, response[0], { builds: [] });
   response.forEach(item => {
@@ -73,21 +75,45 @@ function flattenInput(response) {
       release: item.builds[0].release,
       arch: [item.builds[0].arch]
     };
-    if (previousBuilds.hasOwnProperty(build.version + build.release)) {
-      // if this item has the same values for release and version of a
-      // previousBuild
-      // then push arch to the array of arch's, and filter this item out
-      previousBuild = previousBuilds[build.version + build.release];
+    if (previousBuilds.hasOwnProperty(build.version)) {
+      // if this item has the same version value as a
+      // previousBuild replace the release value (this is assumed to be the latest)
+      // then push arch to the array of arch's and filter this item out
+      previousBuild = previousBuilds[build.version];
       previousBuild.arch = previousBuild.arch.concat(build.arch);
+      previousBuild.release = build.release;
       return false;
     } else {
       // else push the build to the array of builds
       flattened.builds = [build].concat(flattened.builds);
     }
-    previousBuilds[build.version + build.release] = build;
+    previousBuilds[build.version] = build;
     return true;
   });
+  flattened.builds = addWildcardVersions(flattened.builds);
   return flattened;
+}
+
+function addWildcardVersions(builds) {
+  let wildcardBuilds = {};
+  builds.forEach(item => {
+    item.depsolveVersion = item.version;
+
+    let parts = item.version.split(".");
+    for (let i = 0; i < parts.length; i += 1) {
+      let wildcard = parts
+        .slice(0, i)
+        .concat("*")
+        .join(".");
+
+      if (!(wildcard in wildcardBuilds)) {
+        wildcardBuilds[wildcard] = Object.assign({}, item, { version: wildcard });
+      }
+    }
+    wildcardBuilds[item.version] = Object.assign({}, item);
+  });
+
+  return Object.values(wildcardBuilds);
 }
 
 // when ComponentDetailsView loads, get component details
