@@ -34,7 +34,8 @@ class ComponentDetailsView extends React.Component {
   constructor() {
     super();
     this.state = {
-      selectedBuildIndex: undefined
+      selectedBuildIndex: undefined,
+      savedVersion: undefined
     };
     this.setBuildIndex = this.setBuildIndex.bind(this);
     this.handleVersionSelect = this.handleVersionSelect.bind(this);
@@ -56,7 +57,6 @@ class ComponentDetailsView extends React.Component {
 
   componentDidUpdate(prevProps) {
     this.initializeBootstrapElements();
-    // this.setBuildIndex();
     if (this.props.component.name !== prevProps.component.name) {
       this.props.fetchingInputDetails(this.props.component);
       this.setState({ selectedBuildIndex: undefined }); // eslint-disable-line react/no-did-update-set-state
@@ -69,17 +69,22 @@ class ComponentDetailsView extends React.Component {
   }
 
   setBuildIndex() {
-    // filter available builds by component version/release to find object in array,
-    // then get index of that object
-    const { component } = this.props;
+    // if component is not in the blueprint, then default to the first option ("*")
+    // if component is in the blueprint, then set selectedBuildIndex to the object with the current selected version
+    const { component, selectedComponents } = this.props;
     let index = this.state.selectedBuildIndex;
     if (component.builds !== undefined && index === undefined) {
-      const selectedBuild = component.builds.filter(
-        obj => obj.version === component.version && obj.release === component.release
-      )[0];
-      index = component.builds.indexOf(selectedBuild);
-      this.setState({ selectedBuildIndex: index });
-      this.handleSelectedBuildDeps(index);
+      if (component.userSelected === true) {
+        const selectedVersion = selectedComponents.find(selected => selected.name === component.name).version;
+        const selectedBuild = component.builds.filter(obj => obj.version === selectedVersion)[0];
+        index = component.builds.indexOf(selectedBuild);
+        this.setState({ selectedBuildIndex: index });
+        this.setState({ savedVersion: selectedVersion });
+        this.handleSelectedBuildDeps(index);
+      } else {
+        this.setState({ selectedBuildIndex: 0 });
+        this.handleSelectedBuildDeps(0);
+      }
     }
   }
 
@@ -98,7 +103,7 @@ class ComponentDetailsView extends React.Component {
     // update dependencies for selected component build
     const selectedComponentBuild = Object.assign({}, component, {
       release: component.builds[index].release,
-      version: component.builds[index].version
+      version: component.builds[index].depsolveVersion
     });
     this.props.fetchingInputDeps(selectedComponentBuild);
   }
@@ -198,8 +203,7 @@ class ComponentDetailsView extends React.Component {
                   component.userSelected &&
                   component.builds !== undefined &&
                   selectedBuildIndex !== undefined &&
-                  (component.builds[selectedBuildIndex].version !== component.version ||
-                    component.builds[selectedBuildIndex].release !== component.release)) && (
+                  component.builds[selectedBuildIndex].version !== this.state.savedVersion) && (
                   <li>
                     <button
                       className="btn btn-primary"
@@ -262,7 +266,7 @@ class ComponentDetailsView extends React.Component {
             <form className="form-horizontal">
               <div className="form-group">
                 <label className="col-sm-3 col-md-2 control-label" htmlFor="cmpsr-compon__version-select">
-                  <FormattedMessage defaultMessage="Version" /> <FormattedMessage defaultMessage="Release" />
+                  <FormattedMessage defaultMessage="Version" />
                 </label>
                 <div className="col-sm-8 col-md-9">
                   <select
@@ -272,8 +276,8 @@ class ComponentDetailsView extends React.Component {
                     onChange={this.handleVersionSelect}
                   >
                     {component.builds.map((build, i) => (
-                      <option key={`${build.version}-${build.release}`} value={i}>
-                        {build.version}-{build.release}
+                      <option key={build.version} value={i}>
+                        {build.version}
                       </option>
                     ))}
                   </select>
@@ -297,7 +301,7 @@ class ComponentDetailsView extends React.Component {
                 </dt>
                 {((component.builds === undefined || selectedBuildIndex === undefined) && (
                   <dd>{component.version}</dd>
-                )) || <dd>{component.builds[selectedBuildIndex].version}</dd>}
+                )) || <dd>{component.builds[selectedBuildIndex].depsolveVersion}</dd>}
                 <dt>
                   <FormattedMessage defaultMessage="Release" />
                 </dt>
@@ -362,6 +366,7 @@ ComponentDetailsView.propTypes = {
     userSelected: PropTypes.bool,
     version: PropTypes.string
   }),
+  selectedComponents: PropTypes.arrayOf(PropTypes.object),
   blueprint: PropTypes.string,
   componentParent: PropTypes.arrayOf(PropTypes.object),
   handleRemoveComponent: PropTypes.func,
@@ -379,6 +384,7 @@ ComponentDetailsView.propTypes = {
 
 ComponentDetailsView.defaultProps = {
   component: {},
+  selectedComponents: [],
   blueprint: "",
   componentParent: [],
   handleRemoveComponent: undefined,
