@@ -277,7 +277,7 @@ class ComponentDetailsView extends React.Component {
                   >
                     {component.builds.map((build, i) => (
                       <option key={build.version} value={i}>
-                        {build.version}
+                        {build.version} {build.version === "*" && "(latest version)"}
                       </option>
                     ))}
                   </select>
