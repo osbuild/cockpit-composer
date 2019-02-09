@@ -239,7 +239,8 @@ class EditBlueprintPage extends React.Component {
 
   handleUpdateComponent(event, name, version) {
     this.props.clearSelectedInput();
-    const oldVersion = this.props.blueprint.components.find(component => component.name === name).version;
+    const selectedComponents = this.props.blueprint.packages.concat(this.props.blueprint.modules);
+    const oldVersion = selectedComponents.find(component => component.name === name).version;
     const updatedPackage = {
       name: name,
       version: version
@@ -284,7 +285,8 @@ class EditBlueprintPage extends React.Component {
 
   handleRemoveComponent(event, name) {
     this.props.clearSelectedInput();
-    const version = this.props.blueprint.components.find(component => component.name === name).version;
+    const selectedComponents = this.props.blueprint.packages.concat(this.props.blueprint.modules);
+    const version = selectedComponents.find(component => component.name === name).version;
 
     let pendingChange = {
       componentOld: name + "-" + version,
