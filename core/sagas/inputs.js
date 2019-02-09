@@ -95,46 +95,25 @@ function flattenInput(response) {
 }
 
 function addWildcardVersions(builds) {
-  // create a new array of builds that includes wildcard versions
-  let wildcardBuilds = [];
+  let wildcardBuilds = {};
   builds.forEach(item => {
     item.depsolveVersion = item.version;
-    let newBuilds = [item];
-    const wildcardVersion = createWildcardVersion(item.version);
-    // add this version if it doesn't exist already in wildcardBuilds
-    const versionIndex = wildcardBuilds.findIndex(build => build.version === wildcardVersion);
-    if (versionIndex === -1) {
-      const wildcardBuild = Object.assign({}, item, {
-        version: wildcardVersion
-      });
-      newBuilds.unshift(wildcardBuild);
-    }
-    // if wildcardVersion has a period, repeat this step for each period
-    const versionValues = wildcardVersion.split(".");
-    versionValues.pop();
-    for (let index = 0; index < versionValues.length; index++) {
-      const newWildcardVersion = createWildcardVersion(newBuilds[0].version);
-      const versionIndex = wildcardBuilds.findIndex(build => build.version === newWildcardVersion);
-      if (versionIndex === -1) {
-        const newWildcardBuild = Object.assign({}, item, {
-          version: newWildcardVersion
-        });
-        newBuilds.unshift(newWildcardBuild);
+
+    let parts = item.version.split(".");
+    for (let i = 0; i < parts.length; i += 1) {
+      let wildcard = parts
+        .slice(0, i)
+        .concat("*")
+        .join(".");
+
+      if (!(wildcard in wildcardBuilds)) {
+        wildcardBuilds[wildcard] = Object.assign({}, item, { version: wildcard });
       }
     }
-    wildcardBuilds = wildcardBuilds.concat(newBuilds);
+    wildcardBuilds[item.version] = Object.assign({}, item);
   });
-  return wildcardBuilds;
-}
 
-function createWildcardVersion(version) {
-  const versionValues = version.split(".");
-  if (versionValues.pop() === "*") {
-    versionValues.pop();
-  } // removes the last 2 values if the last is "*", or just removes the last
-  versionValues.push("*"); // replaces the removed value(s) with a wildcard
-  let wildcardVersion = versionValues.join(".");
-  return wildcardVersion;
+  return Object.values(wildcardBuilds);
 }
 
 // when ComponentDetailsView loads, get component details
