@@ -10,6 +10,12 @@ const messages = defineMessages({
   },
   showDetails: {
     defaultMessage: "Show Details and More Options"
+  },
+  addComponent: {
+    defaultMessage: "Add latest version"
+  },
+  removeComponent: {
+    defaultMessage: "Remove Component from Blueprint"
   }
 });
 
@@ -152,7 +158,7 @@ class ComponentInputs extends React.Component {
                       data-html="true"
                       data-placement="top"
                       title=""
-                      data-original-title="Remove Component from Blueprint"
+                      data-original-title={formatMessage(messages.removeComponent)}
                       onClick={e => this.props.handleRemoveComponent(e, component.name)}
                     >
                       <span className="fa fa-minus" />
@@ -166,9 +172,8 @@ class ComponentInputs extends React.Component {
                       data-html="true"
                       data-placement="top"
                       title=""
-                      data-original-title={`Add Component<br />
-                            Version&nbsp;<strong>${component.version}</strong>
-                            Release&nbsp;<strong>${component.release}</strong>`}
+                      data-original-title={`${formatMessage(messages.addComponent)}<br />
+                            (${component.version})`}
                       onClick={e => this.props.handleAddComponent(e, component, "*")}
                     >
                       <span className="fa fa-plus" />
