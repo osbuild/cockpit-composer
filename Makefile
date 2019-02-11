@@ -35,9 +35,9 @@ install: all
 	cp io.weldr.cockpit-composer.metainfo.xml /usr/share/metainfo/
 
 # this requires a built source tree and avoids having to install anything system-wide
-devel-install: $(WEBPACK_TEST)
+devel-install:
 	mkdir -p ~/.local/share/cockpit
-	ln -s `pwd`/public ~/.local/share/cockpit/$(PACKAGE_NAME)
+	ln -s `pwd`/public/dist ~/.local/share/cockpit/welder
 
 dist-gzip: NODE_ENV=production
 dist-gzip: all $(PACKAGE_NAME).spec
@@ -123,7 +123,7 @@ update-po:
 upload-pot: po-push
 download-po: po-pull
 
-.PHONY: tag local-clean vm check
+.PHONY: tag local-clean vm check devel-install
 
 
 .PHONY: npm_audit
