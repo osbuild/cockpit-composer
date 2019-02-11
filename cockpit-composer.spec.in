@@ -32,3 +32,5 @@ cp io.weldr.cockpit-composer.metainfo.xml %{buildroot}/%{_datadir}/metainfo/
 %license LICENSE.txt
 %{_datadir}/cockpit/welder
 %{_datadir}/metainfo/*
+
+%changelog
