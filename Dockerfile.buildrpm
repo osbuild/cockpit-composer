@@ -4,7 +4,7 @@ LABEL maintainer="Xiaofeng Wang" \
       baseimage="Fedora:latest" \
       description="A cockpit-composer RPM builder container running on Fedora"
 
-RUN dnf install -y make cmake rpm-build which gnupg tar xz curl jq nodejs python gcc gcc-c++ && dnf clean all
+RUN dnf install -y make cmake rpm-build which gnupg tar xz curl jq nodejs python gcc gcc-c++ libappstream-glib && dnf clean all
 
 WORKDIR /welder
 CMD ["make", "rpm", "srpm"]

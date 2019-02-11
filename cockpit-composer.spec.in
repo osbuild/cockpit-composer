@@ -8,6 +8,7 @@ URL:            http://weldr.io/
 Source0:        https://github.com/weldr/welder-web/releases/download/%{version}/cockpit-composer-%{version}.tar.gz
 
 BuildArch:      noarch
+BuildRequires:  libappstream-glib
 
 Requires:       cockpit
 Requires:       lorax-composer
@@ -25,6 +26,7 @@ Composer GUI for Cockpit and lorax-composer
 mkdir -p %{buildroot}/%{_datadir}/cockpit/welder
 cp -r public/dist/* %{buildroot}/%{_datadir}/cockpit/welder
 mkdir -p %{buildroot}/%{_datadir}/metainfo/
+appstream-util validate-relax --nonet io.weldr.cockpit-composer.metainfo.xml
 cp io.weldr.cockpit-composer.metainfo.xml %{buildroot}/%{_datadir}/metainfo/
 
 %files
