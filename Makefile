@@ -42,7 +42,7 @@ devel-install:
 dist-gzip: NODE_ENV=production
 dist-gzip: all $(PACKAGE_NAME).spec
 	mkdir -p $(PACKAGE_NAME)-$(VERSION)
-	cp -r public/ LICENSE.txt README.md $(PACKAGE_NAME).spec io.weldr.cockpit-composer.metainfo.xml $(PACKAGE_NAME)-$(VERSION)
+	cp -r public/ test/ LICENSE.txt README.md $(PACKAGE_NAME).spec io.weldr.cockpit-composer.metainfo.xml $(PACKAGE_NAME)-$(VERSION)
 	tar -czf $(PACKAGE_NAME)-$(VERSION).tar.gz $(PACKAGE_NAME)-$(VERSION)
 	rm -rf $(PACKAGE_NAME)-$(VERSION)
 
