@@ -25,21 +25,6 @@ class BlueprintApi {
     return p;
   }
 
-  handleEditDescription(blueprint, description) {
-    const updatedBlueprint = Object.assign({}, blueprint, { description: description });
-    const p = new Promise((resolve, reject) => {
-      this.postBlueprint(this.postedBlueprintData(updatedBlueprint))
-        .then(() => {
-          resolve();
-        })
-        .catch(e => {
-          console.log(`Error updating blueprint description: ${e}`);
-          reject();
-        });
-    });
-    return p;
-  }
-
   postedBlueprintData(blueprint) {
     const blueprintData = {
       name: blueprint.name,

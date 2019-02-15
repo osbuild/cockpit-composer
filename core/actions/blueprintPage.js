@@ -6,14 +6,6 @@ export const setEditDescriptionVisible = visible => ({
   }
 });
 
-export const SET_EDIT_DESCRIPTION_VALUE = "SET_EDIT_DESCRIPTION_VALUE";
-export const setEditDescriptionValue = value => ({
-  type: SET_EDIT_DESCRIPTION_VALUE,
-  payload: {
-    value
-  }
-});
-
 export const SET_ACTIVE_TAB = "SET_ACTIVE_TAB";
 export const setActiveTab = activeTab => ({
   type: SET_ACTIVE_TAB,

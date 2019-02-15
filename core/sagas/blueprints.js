@@ -1,11 +1,11 @@
 import { call, put, takeEvery, select } from "redux-saga/effects";
+import BlueprintApi from "../../data/BlueprintApi";
 import {
   fetchBlueprintInfoApi,
   fetchBlueprintNamesApi,
   fetchBlueprintContentsApi,
   fetchComponentDetailsApi,
   deleteBlueprintApi,
-  setBlueprintDescriptionApi,
   createBlueprintApi,
   commitToWorkspaceApi,
   fetchDiffWorkspaceApi,
@@ -177,24 +177,35 @@ function* reloadBlueprintContents(blueprintId) {
   }
 }
 
+function* getBlueprintHistory(blueprintId) {
+  const getBlueprintById = makeGetBlueprintById();
+  const blueprintHistory = yield select(getBlueprintById, blueprintId);
+  const oldestBlueprint = blueprintHistory.past[0] ? blueprintHistory.past[0] : blueprintHistory.present;
+  return [oldestBlueprint, blueprintHistory.present];
+}
+
 function* setBlueprintDescription(action) {
   try {
     const { blueprint, description } = action.payload;
-    // get blueprint history
-    const getBlueprintById = makeGetBlueprintById();
-    const blueprintHistory = yield select(getBlueprintById, blueprint.id);
-    const blueprintToPost = blueprintHistory.past[0] ? blueprintHistory.past[0] : blueprintHistory.present;
-    // post the oldest blueprint with the updated description
-    yield call(setBlueprintDescriptionApi, blueprintToPost, description);
-    // get updated blueprint info
+    // commit the oldest blueprint with the updated hostname
+    const blueprintHistory = yield call(getBlueprintHistory, blueprint.id);
+    const blueprintToPost = BlueprintApi.postedBlueprintData(
+      Object.assign({}, blueprintHistory[0], {
+        description: description
+      })
+    );
+    yield call(BlueprintApi.postBlueprint, blueprintToPost);
+    // get updated blueprint info (i.e. version)
     const response = yield call(fetchBlueprintInfoApi, blueprint.name);
     yield put(setBlueprintDescriptionSucceeded(response));
     // post present blueprint object to workspace
-    const workspace = Object.assign({}, blueprintHistory.present, {
-      description: description,
-      version: response.version
-    });
-    yield call(commitToWorkspaceApi, workspace);
+    if (response.changed === true) {
+      const workspace = Object.assign({}, blueprintHistory[1], {
+        version: response.version,
+        description: description
+      });
+      yield call(commitToWorkspaceApi, workspace);
+    }
   } catch (error) {
     console.log("Error in setBlueprintDescription");
     yield put(blueprintsFailure(error));

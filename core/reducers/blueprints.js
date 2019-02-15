@@ -8,6 +8,7 @@ import {
   FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED,
   UPDATE_BLUEPRINT_COMPONENTS,
   SET_BLUEPRINT,
+  SET_BLUEPRINT_DESCRIPTION,
   SET_BLUEPRINT_DESCRIPTION_SUCCEEDED,
   SET_BLUEPRINT_COMMENT,
   DELETING_BLUEPRINT_SUCCEEDED,
@@ -150,6 +151,21 @@ const blueprints = (state = [], action) => {
             if (blueprint.present.id === action.payload.blueprint.id) {
               return Object.assign({}, blueprint, {
                 present: Object.assign({}, blueprint.present, { comment: action.payload.comment })
+              });
+            }
+            return blueprint;
+          })
+        ]
+      });
+    case SET_BLUEPRINT_DESCRIPTION:
+      return Object.assign({}, state, {
+        blueprintList: [
+          ...state.blueprintList.map(blueprint => {
+            if (blueprint.present.id === action.payload.blueprint.id) {
+              return Object.assign({}, blueprint, {
+                present: Object.assign({}, blueprint.present, {
+                  description: action.payload.description
+                })
               });
             }
             return blueprint;
