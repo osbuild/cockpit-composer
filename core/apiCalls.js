@@ -92,10 +92,6 @@ export function fetchModalCreateImageTypesApi() {
   return imageTypes;
 }
 
-export function setBlueprintDescriptionApi(blueprint, description) {
-  BlueprintApi.handleEditDescription(blueprint, description);
-}
-
 export function deleteBlueprintApi(blueprint) {
   const deletedBlueprint = Promise.all([BlueprintApi.deleteBlueprint(blueprint)]).then(() => blueprint);
   return deletedBlueprint;

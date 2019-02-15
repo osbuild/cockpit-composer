@@ -407,6 +407,11 @@ the "-" that would display instead of the sr-only "to" */
   padding-top: 40px;
 }
 
+/* inline edit */
+.form-control-pf-editable .sr-only + .pficon-edit {
+  margin-left: 0;
+}
+
 /* tables */
 .cmpsr-table-actions {
   width: 1%;

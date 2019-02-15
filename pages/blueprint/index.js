@@ -19,6 +19,7 @@ import BlueprintToolbar from "../../components/Toolbar/BlueprintToolbar";
 import ListView from "../../components/ListView/ListView";
 import ListItemImages from "../../components/ListView/ListItemImages";
 import { fetchingBlueprintContents, setBlueprintDescription, fetchingCompDeps } from "../../core/actions/blueprints";
+import TextInlineEdit from "../../components/Form/TextInlineEdit";
 import {
   clearSelectedInput,
   setSelectedInput,
@@ -36,7 +37,7 @@ import {
   setModalDeleteImageVisible,
   setModalDeleteImageState
 } from "../../core/actions/modals";
-import { setEditDescriptionVisible, setEditDescriptionValue, setActiveTab } from "../../core/actions/blueprintPage";
+import { setEditDescriptionVisible, setActiveTab } from "../../core/actions/blueprintPage";
 import {
   componentsSortSetKey,
   componentsSortSetValue,
@@ -78,6 +79,12 @@ const messages = defineMessages({
   },
   selectedComponentsTitle: {
     defaultMessage: "Selected Components"
+  },
+  descriptionButtonLabel: {
+    defaultMessage: "Edit description"
+  },
+  descriptionInputLabel: {
+    defaultMessage: "Description"
   }
 });
 
@@ -95,7 +102,7 @@ class BlueprintPage extends React.Component {
     this.handleShowModalCreateImage = this.handleShowModalCreateImage.bind(this);
     this.handleHideModalStop = this.handleHideModalStop.bind(this);
     this.handleHideModalDeleteImage = this.handleHideModalDeleteImage.bind(this);
-    this.handleChangeDescription = this.handleChangeDescription.bind(this);
+    this.handleEditDescription = this.handleEditDescription.bind(this);
     this.handleStartCompose = this.handleStartCompose.bind(this);
     this.downloadUrl = this.downloadUrl.bind(this);
   }
@@ -145,26 +152,12 @@ class BlueprintPage extends React.Component {
     this.props.fetchingDepDetails(component, this.props.blueprint.id);
   }
 
-  handleEditDescription(action) {
+  handleEditDescription(action, value) {
     const state = !this.props.blueprintPage.editDescriptionVisible;
     this.props.setEditDescriptionVisible(state);
-    if (state) {
-      this.props.setEditDescriptionValue(this.props.blueprint.description);
-    } else if (action === "commit") {
-      this.props.setBlueprintDescription(this.props.blueprint, this.props.blueprintPage.editDescriptionValue);
-    } else if (action === "cancel") {
-      // cancel action
+    if (!state && action === "commit") {
+      this.props.setBlueprintDescription(this.props.blueprint, value);
     }
-  }
-
-  handleEnterKey(event, action) {
-    if (event.which === 13 || event.keyCode === 13) {
-      this.handleEditDescription(action);
-    }
-  }
-
-  handleChangeDescription(event) {
-    this.props.setEditDescriptionValue(event.target.value);
   }
 
   // handle show/hide of modal dialogs
@@ -237,7 +230,7 @@ class BlueprintPage extends React.Component {
       setSelectedInputParent,
       clearSelectedInput
     } = this.props;
-    const { editDescriptionValue, editDescriptionVisible } = this.props.blueprintPage;
+    const { editDescriptionVisible } = this.props.blueprintPage;
     const { formatMessage } = this.props.intl;
 
     return (
@@ -313,52 +306,21 @@ class BlueprintPage extends React.Component {
         <Tabs id="blueprint-tabs">
           <Tab eventKey="details" title="Details">
             <div className="tab-container row">
-              <div className="col-sm-6 col-lg-4">
-                <dl className="dl-horizontal mt-">
-                  <dt>
-                    <FormattedMessage defaultMessage="Name" />
-                  </dt>
-                  <dd>{blueprint.name}</dd>
-                  <dt>
-                    <FormattedMessage defaultMessage="Description" />
-                  </dt>
-                  {(editDescriptionVisible && (
-                    <dd>
-                      <div className="input-group">
-                        <input
-                          type="text"
-                          className="form-control"
-                          value={editDescriptionValue}
-                          onChange={this.handleChangeDescription}
-                          onKeyPress={e => this.handleEnterKey(e, "commit")}
-                        />
-                        <span className="input-group-btn">
-                          <button
-                            className="btn btn-link"
-                            type="button"
-                            onClick={() => this.handleEditDescription("commit")}
-                          >
-                            <span className="fa fa-check" />
-                          </button>
-                          <button
-                            className="btn btn-link"
-                            type="button"
-                            onClick={() => this.handleEditDescription("cancel")}
-                          >
-                            <span className="pficon pficon-close" />
-                          </button>
-                        </span>
-                      </div>
-                    </dd>
-                  )) || (
-                    <dd onClick={() => this.handleEditDescription()} role="presentation">
-                      {blueprint.description}
-                      <button className="btn btn-link" type="button">
-                        <span className="pficon pficon-edit" />
-                      </button>
-                    </dd>
-                  )}
-                </dl>
+              <div className="col-sm-12">
+                <div className="form-horizontal">
+                  <form className="form-group" onSubmit={() => this.handleEditDescription("commit")}>
+                    <span className="col-sm-2 control-label">{formatMessage(messages.descriptionInputLabel)}</span>
+                    <TextInlineEdit
+                      className="col-sm-10"
+                      editVisible={editDescriptionVisible}
+                      handleChange={this.handleChangeDescription}
+                      handleEdit={this.handleEditDescription}
+                      buttonLabel={formatMessage(messages.descriptionButtonLabel)}
+                      inputLabel={formatMessage(messages.descriptionInputLabel)}
+                      value={blueprint.description}
+                    />
+                  </form>
+                </div>
               </div>
             </div>
           </Tab>
@@ -521,13 +483,11 @@ BlueprintPage.propTypes = {
   composesLoading: PropTypes.bool,
   composeList: PropTypes.arrayOf(PropTypes.object),
   setActiveTab: PropTypes.func,
-  setEditDescriptionValue: PropTypes.func,
   setEditDescriptionVisible: PropTypes.func,
   setModalExportBlueprintVisible: PropTypes.func,
   blueprintPage: PropTypes.shape({
     activeTab: PropTypes.string,
-    editDescriptionVisible: PropTypes.bool,
-    editDescriptionValue: PropTypes.string
+    editDescriptionVisible: PropTypes.bool
   }),
   setBlueprintDescription: PropTypes.func,
   selectedInput: PropTypes.shape({
@@ -594,7 +554,6 @@ BlueprintPage.defaultProps = {
   composesLoading: false,
   composeList: [],
   setActiveTab: function() {},
-  setEditDescriptionValue: function() {},
   setEditDescriptionVisible: function() {},
   setModalExportBlueprintVisible: function() {},
   blueprintPage: {},
@@ -695,9 +654,6 @@ const mapDispatchToProps = dispatch => ({
   },
   setBlueprintDescription: (blueprint, description) => {
     dispatch(setBlueprintDescription(blueprint, description));
-  },
-  setEditDescriptionValue: value => {
-    dispatch(setEditDescriptionValue(value));
   },
   setEditDescriptionVisible: visible => {
     dispatch(setEditDescriptionVisible(visible));
