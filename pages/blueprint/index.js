@@ -333,7 +333,11 @@ class BlueprintPage extends React.Component {
             <div className="tab-container row">
               <div className="col-sm-12">
                 <div className="form-horizontal">
-                  <form className="form-group" onSubmit={() => this.handleEditDescription("commit")}>
+                  <form
+                    className="form-group"
+                    data-form="description"
+                    onSubmit={() => this.handleEditDescription("commit")}
+                  >
                     <span className="col-sm-2 control-label">{formatMessage(messages.descriptionInputLabel)}</span>
                     <TextInlineEdit
                       className="col-sm-10"
@@ -344,7 +348,7 @@ class BlueprintPage extends React.Component {
                       value={blueprint.description}
                     />
                   </form>
-                  <form className="form-group" onSubmit={() => this.handleEditHostname("commit")}>
+                  <form className="form-group" data-form="hostname" onSubmit={() => this.handleEditHostname("commit")}>
                     <span className="col-sm-2 control-label">{formatMessage(messages.hostnameInputLabel)}</span>
                     <TextInlineEdit
                       className="col-sm-10"

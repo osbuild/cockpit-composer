@@ -95,18 +95,8 @@ class ViewBlueprintPage {
     return $(selector);
   }
 
-  get detailsTabBlueprintNameLabel() {
-    const selector = `dd=${this.name}`;
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `blueprint name under "Details" tab in View Blueprint page cannot be found by selector ${selector}`
-    );
-    return $(selector);
-  }
-
   get detailsTabBlueprintDescriptionLabel() {
-    const selector = `dd=${this.description}`;
+    const selector = `span=${this.description}`;
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
@@ -117,15 +107,15 @@ class ViewBlueprintPage {
 
   updatedBlueprintDescriptionLabel(selector) {
     browser.waitUntil(
-      () => browser.isExisting(`dd=${selector}`),
+      () => browser.isExisting(`span=${selector}`),
       timeout,
       `blueprint description under "Details" tab in View Blueprint page cannot be found by selector ${selector}`
     );
-    return $(`dd=${selector}`);
+    return $(`span=${selector}`);
   }
 
   get editBlueprintDescriptionButton() {
-    const selector = ".pficon-edit";
+    const selector = '[data-form="description"] .pficon-edit';
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
@@ -135,7 +125,7 @@ class ViewBlueprintPage {
   }
 
   get descriptionInputBox() {
-    const selector = '[id="blueprint-tabs-pane-details"] .form-control';
+    const selector = '[data-form="description"] .form-control';
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
@@ -145,7 +135,7 @@ class ViewBlueprintPage {
   }
 
   get okButton() {
-    const selector = ".fa-check";
+    const selector = '[data-form="description"] .form-control-pf-save';
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
@@ -155,7 +145,7 @@ class ViewBlueprintPage {
   }
 
   get cancelButton() {
-    const selector = ".btn-link .pficon-close";
+    const selector = '[data-form="description"] .form-control-pf-cancel';
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
