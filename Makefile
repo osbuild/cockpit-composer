@@ -95,6 +95,7 @@ local-clean:
 $(VM_IMAGE): local-clean rpm bots
 	# VM running cockpit, composer, and end to end test container
 	bots/image-customize -v \
+		-r "echo $(BROWSER) > /tmp/BROWSER" \
 		-i `pwd`/$(PACKAGE_NAME)-*.noarch.rpm \
 		-s $(CURDIR)/test/vm.install \
 		$(TEST_OS)
