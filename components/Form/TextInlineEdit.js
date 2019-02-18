@@ -51,7 +51,6 @@ class TextInlineEdit extends React.Component {
   }
 
   handleEdit(action) {
-    this.props.handleChange(this.textInput.current.value);
     this.props.handleEdit(action, this.textInput.current.value);
   }
 
@@ -117,7 +116,6 @@ class TextInlineEdit extends React.Component {
 TextInlineEdit.propTypes = {
   className: PropTypes.string,
   editVisible: PropTypes.bool,
-  handleChange: PropTypes.func,
   handleEdit: PropTypes.func,
   buttonLabel: PropTypes.string,
   inputLabel: PropTypes.string,
@@ -128,7 +126,6 @@ TextInlineEdit.propTypes = {
 TextInlineEdit.defaultProps = {
   className: "",
   editVisible: false,
-  handleChange: function() {},
   handleEdit: function() {},
   buttonLabel: "",
   inputLabel: "",

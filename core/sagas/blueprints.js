@@ -22,6 +22,8 @@ import {
   CREATING_BLUEPRINT,
   creatingBlueprintSucceeded,
   UPDATE_BLUEPRINT_COMPONENTS,
+  SET_BLUEPRINT_HOSTNAME,
+  setBlueprintHostnameSucceeded,
   SET_BLUEPRINT_DESCRIPTION,
   setBlueprintDescriptionSucceeded,
   DELETING_BLUEPRINT,
@@ -184,6 +186,36 @@ function* getBlueprintHistory(blueprintId) {
   return [oldestBlueprint, blueprintHistory.present];
 }
 
+function* setBlueprintHostname(action) {
+  try {
+    const { blueprint, hostname } = action.payload;
+    // commit the oldest blueprint with the updated hostname
+    const blueprintHistory = yield call(getBlueprintHistory, blueprint.id);
+    const blueprintToPost = BlueprintApi.postedBlueprintData(
+      Object.assign({}, blueprintHistory[0], {
+        customizations: Object.assign({}, blueprintHistory[0].customizations, { hostname: hostname })
+      })
+    );
+    yield call(BlueprintApi.postBlueprint, blueprintToPost);
+    // get updated blueprint info (i.e. version)
+    const response = yield call(fetchBlueprintInfoApi, blueprint.name);
+    yield put(setBlueprintHostnameSucceeded(response));
+    // post present blueprint object to workspace
+    if (response.changed === true) {
+      const workspace = Object.assign({}, blueprintHistory[1], {
+        version: response.version,
+        customizations: Object.assign({}, blueprintHistory[1].customizations, {
+          hostname: hostname
+        })
+      });
+      yield call(commitToWorkspaceApi, workspace);
+    }
+  } catch (error) {
+    console.log("Error in setBlueprintHostname");
+    yield put(blueprintsFailure(error));
+  }
+}
+
 function* setBlueprintDescription(action) {
   try {
     const { blueprint, description } = action.payload;
@@ -247,6 +279,9 @@ function* commitToWorkspace(action) {
       version: blueprint.present.version,
       groups: blueprint.present.groups
     };
+    if (blueprint.present.customizations !== undefined) {
+      blueprintData.customizations = blueprint.present.customizations;
+    }
     yield call(commitToWorkspaceApi, blueprintData);
     if (reload !== false) {
       yield call(reloadBlueprintContents, blueprintId);
@@ -316,6 +351,7 @@ function* fetchCompDeps(action) {
 export default function*() {
   yield takeEvery(CREATING_BLUEPRINT, createBlueprint);
   yield takeEvery(FETCHING_BLUEPRINT_CONTENTS, fetchBlueprintContents);
+  yield takeEvery(SET_BLUEPRINT_HOSTNAME, setBlueprintHostname);
   yield takeEvery(SET_BLUEPRINT_DESCRIPTION, setBlueprintDescription);
   yield takeEvery(DELETING_BLUEPRINT, deleteBlueprint);
   yield takeEvery(UPDATE_BLUEPRINT_COMPONENTS, commitToWorkspace);
