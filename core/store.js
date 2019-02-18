@@ -12,7 +12,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const initialState = {
   blueprintPage: {
     activeTab: "Details",
-    editDescriptionVisible: false
+    editDescriptionVisible: false,
+    editHostnameVisible: false
   },
   inputs: {
     selectedInputPage: 0,

@@ -75,6 +75,23 @@ export const setBlueprintComment = (blueprint, comment) => ({
   }
 });
 
+export const SET_BLUEPRINT_HOSTNAME = "SET_BLUEPRINT_HOSTNAME";
+export const setBlueprintHostname = (blueprint, hostname) => ({
+  type: SET_BLUEPRINT_HOSTNAME,
+  payload: {
+    blueprint,
+    hostname
+  }
+});
+
+export const SET_BLUEPRINT_HOSTNAME_SUCCEEDED = "SET_BLUEPRINT_HOSTNAME_SUCCEEDED";
+export const setBlueprintHostnameSucceeded = blueprint => ({
+  type: SET_BLUEPRINT_HOSTNAME_SUCCEEDED,
+  payload: {
+    blueprint
+  }
+});
+
 export const SET_BLUEPRINT_DESCRIPTION = "SET_BLUEPRINT_DESCRIPTION";
 export const setBlueprintDescription = (blueprint, description) => ({
   type: SET_BLUEPRINT_DESCRIPTION,

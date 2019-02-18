@@ -8,6 +8,8 @@ import {
   FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED,
   UPDATE_BLUEPRINT_COMPONENTS,
   SET_BLUEPRINT,
+  SET_BLUEPRINT_HOSTNAME,
+  SET_BLUEPRINT_HOSTNAME_SUCCEEDED,
   SET_BLUEPRINT_DESCRIPTION,
   SET_BLUEPRINT_DESCRIPTION_SUCCEEDED,
   SET_BLUEPRINT_COMMENT,
@@ -151,6 +153,57 @@ const blueprints = (state = [], action) => {
             if (blueprint.present.id === action.payload.blueprint.id) {
               return Object.assign({}, blueprint, {
                 present: Object.assign({}, blueprint.present, { comment: action.payload.comment })
+              });
+            }
+            return blueprint;
+          })
+        ]
+      });
+    case SET_BLUEPRINT_HOSTNAME:
+      return Object.assign({}, state, {
+        blueprintList: [
+          ...state.blueprintList.map(blueprint => {
+            if (blueprint.present.id === action.payload.blueprint.id) {
+              return Object.assign({}, blueprint, {
+                present: Object.assign({}, blueprint.present, {
+                  customizations: Object.assign({}, blueprint.present.customizations, {
+                    hostname: action.payload.hostname
+                  })
+                })
+              });
+            }
+            return blueprint;
+          })
+        ]
+      });
+    case SET_BLUEPRINT_HOSTNAME_SUCCEEDED:
+      return Object.assign({}, state, {
+        blueprintList: [
+          ...state.blueprintList.map(blueprint => {
+            if (blueprint.present.id === action.payload.blueprint.id) {
+              return Object.assign({}, blueprint, {
+                past: blueprint.past.map(pastBlueprint => {
+                  return Object.assign({}, pastBlueprint, {
+                    version: action.payload.blueprint.version,
+                    customizations: Object.assign({}, pastBlueprint.customizations, {
+                      hostname: action.payload.blueprint.customizations.hostname
+                    })
+                  });
+                }),
+                present: Object.assign({}, blueprint.present, {
+                  version: action.payload.blueprint.version,
+                  customizations: Object.assign({}, blueprint.present.customizations, {
+                    hostname: action.payload.blueprint.customizations.hostname
+                  })
+                }),
+                future: blueprint.future.map(futureBlueprint => {
+                  return Object.assign({}, futureBlueprint, {
+                    version: action.payload.blueprint.version,
+                    customizations: Object.assign({}, futureBlueprint.customizations, {
+                      hostname: action.payload.blueprint.customizations.hostname
+                    })
+                  });
+                })
               });
             }
             return blueprint;

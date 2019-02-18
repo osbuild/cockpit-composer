@@ -6,6 +6,14 @@ export const setEditDescriptionVisible = visible => ({
   }
 });
 
+export const SET_EDIT_HOSTNAME_VISIBLE = "SET_EDIT_HOSTNAME_VISIBLE";
+export const setEditHostnameVisible = visible => ({
+  type: SET_EDIT_HOSTNAME_VISIBLE,
+  payload: {
+    visible
+  }
+});
+
 export const SET_ACTIVE_TAB = "SET_ACTIVE_TAB";
 export const setActiveTab = activeTab => ({
   type: SET_ACTIVE_TAB,

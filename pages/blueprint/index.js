@@ -18,8 +18,13 @@ import EmptyState from "../../components/EmptyState/EmptyState";
 import BlueprintToolbar from "../../components/Toolbar/BlueprintToolbar";
 import ListView from "../../components/ListView/ListView";
 import ListItemImages from "../../components/ListView/ListItemImages";
-import { fetchingBlueprintContents, setBlueprintDescription, fetchingCompDeps } from "../../core/actions/blueprints";
 import TextInlineEdit from "../../components/Form/TextInlineEdit";
+import {
+  fetchingBlueprintContents,
+  setBlueprintDescription,
+  setBlueprintHostname,
+  fetchingCompDeps
+} from "../../core/actions/blueprints";
 import {
   clearSelectedInput,
   setSelectedInput,
@@ -37,7 +42,7 @@ import {
   setModalDeleteImageVisible,
   setModalDeleteImageState
 } from "../../core/actions/modals";
-import { setEditDescriptionVisible, setActiveTab } from "../../core/actions/blueprintPage";
+import { setEditDescriptionVisible, setEditHostnameVisible, setActiveTab } from "../../core/actions/blueprintPage";
 import {
   componentsSortSetKey,
   componentsSortSetValue,
@@ -85,6 +90,12 @@ const messages = defineMessages({
   },
   descriptionInputLabel: {
     defaultMessage: "Description"
+  },
+  hostnameButtonLabel: {
+    defaultMessage: "Edit hostname"
+  },
+  hostnameInputLabel: {
+    defaultMessage: "Hostname"
   }
 });
 
@@ -103,6 +114,7 @@ class BlueprintPage extends React.Component {
     this.handleHideModalStop = this.handleHideModalStop.bind(this);
     this.handleHideModalDeleteImage = this.handleHideModalDeleteImage.bind(this);
     this.handleEditDescription = this.handleEditDescription.bind(this);
+    this.handleEditHostname = this.handleEditHostname.bind(this);
     this.handleStartCompose = this.handleStartCompose.bind(this);
     this.downloadUrl = this.downloadUrl.bind(this);
   }
@@ -115,6 +127,7 @@ class BlueprintPage extends React.Component {
       this.props.fetchingComposes();
     }
     this.props.setEditDescriptionVisible(false);
+    this.props.setEditHostnameVisible(false);
     this.props.setModalExportBlueprintVisible(false);
   }
 
@@ -157,6 +170,14 @@ class BlueprintPage extends React.Component {
     this.props.setEditDescriptionVisible(state);
     if (!state && action === "commit") {
       this.props.setBlueprintDescription(this.props.blueprint, value);
+    }
+  }
+
+  handleEditHostname(action, value) {
+    const state = !this.props.blueprintPage.editHostnameVisible;
+    this.props.setEditHostnameVisible(state);
+    if (!state && action === "commit") {
+      this.props.setBlueprintHostname(this.props.blueprint, value);
     }
   }
 
@@ -230,8 +251,12 @@ class BlueprintPage extends React.Component {
       setSelectedInputParent,
       clearSelectedInput
     } = this.props;
-    const { editDescriptionVisible } = this.props.blueprintPage;
+    const { editDescriptionVisible, editHostnameVisible } = this.props.blueprintPage;
     const { formatMessage } = this.props.intl;
+    let hostname = "";
+    if (blueprint.customizations !== undefined && blueprint.customizations.hostname !== undefined) {
+      hostname = blueprint.customizations.hostname;
+    }
 
     return (
       <Layout className="container-fluid" ref={c => (this.layout = c)}>
@@ -313,11 +338,21 @@ class BlueprintPage extends React.Component {
                     <TextInlineEdit
                       className="col-sm-10"
                       editVisible={editDescriptionVisible}
-                      handleChange={this.handleChangeDescription}
                       handleEdit={this.handleEditDescription}
                       buttonLabel={formatMessage(messages.descriptionButtonLabel)}
                       inputLabel={formatMessage(messages.descriptionInputLabel)}
                       value={blueprint.description}
+                    />
+                  </form>
+                  <form className="form-group" onSubmit={() => this.handleEditHostname("commit")}>
+                    <span className="col-sm-2 control-label">{formatMessage(messages.hostnameInputLabel)}</span>
+                    <TextInlineEdit
+                      className="col-sm-10"
+                      editVisible={editHostnameVisible}
+                      handleEdit={this.handleEditHostname}
+                      buttonLabel={formatMessage(messages.hostnameButtonLabel)}
+                      inputLabel={formatMessage(messages.hostnameInputLabel)}
+                      value={hostname}
                     />
                   </form>
                 </div>
@@ -477,19 +512,26 @@ BlueprintPage.propTypes = {
     name: PropTypes.string,
     packages: PropTypes.arrayOf(PropTypes.object),
     version: PropTypes.string,
-    workspacePendingChanges: PropTypes.arrayOf(PropTypes.object)
+    workspacePendingChanges: PropTypes.arrayOf(PropTypes.object),
+    customizations: PropTypes.shape({
+      hostname: PropTypes.string,
+      user: PropTypes.arrayOf(PropTypes.object)
+    })
   }),
   fetchingComposes: PropTypes.func,
   composesLoading: PropTypes.bool,
   composeList: PropTypes.arrayOf(PropTypes.object),
   setActiveTab: PropTypes.func,
   setEditDescriptionVisible: PropTypes.func,
+  setEditHostnameVisible: PropTypes.func,
   setModalExportBlueprintVisible: PropTypes.func,
   blueprintPage: PropTypes.shape({
     activeTab: PropTypes.string,
-    editDescriptionVisible: PropTypes.bool
+    editDescriptionVisible: PropTypes.bool,
+    editHostnameVisible: PropTypes.bool
   }),
   setBlueprintDescription: PropTypes.func,
+  setBlueprintHostname: PropTypes.func,
   selectedInput: PropTypes.shape({
     component: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     parent: PropTypes.arrayOf(PropTypes.object)
@@ -555,9 +597,11 @@ BlueprintPage.defaultProps = {
   composeList: [],
   setActiveTab: function() {},
   setEditDescriptionVisible: function() {},
+  setEditHostnameVisible: function() {},
   setModalExportBlueprintVisible: function() {},
   blueprintPage: {},
   setBlueprintDescription: function() {},
+  setBlueprintHostname: function() {},
   exportModalVisible: false,
   stopBuild: {},
   deleteImage: {},
@@ -657,6 +701,12 @@ const mapDispatchToProps = dispatch => ({
   },
   setEditDescriptionVisible: visible => {
     dispatch(setEditDescriptionVisible(visible));
+  },
+  setBlueprintHostname: (blueprint, hostname) => {
+    dispatch(setBlueprintHostname(blueprint, hostname));
+  },
+  setEditHostnameVisible: visible => {
+    dispatch(setEditHostnameVisible(visible));
   },
   setActiveTab: activeTab => {
     dispatch(setActiveTab(activeTab));
