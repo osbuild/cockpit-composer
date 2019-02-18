@@ -1,7 +1,12 @@
 #!/bin/sh
 # image-customize script to enable cockpit in test VMs
 # The application RPM will be installed separately
-set -eu
+set -eux
+
+# Update lorax-composer using the updates-testing repository
+if grep -isq fedora /etc/redhat-release && grep -isq firefox /tmp/BROWSER; then
+    dnf install -y lorax-composer --enablerepo=updates-testing
+fi
 
 # Allow cockpit port (9090) in INPUT chain
 # Do not reload firewall rule during image generation
