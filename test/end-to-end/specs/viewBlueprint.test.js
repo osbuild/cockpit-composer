@@ -53,10 +53,6 @@ describe("View Blueprint Page", function() {
     });
 
     describe('"Details" tab', function() {
-      it(`blueprint name under "Details" tab should be "${name}"`, function() {
-        expect(viewBlueprintPage.detailsTabBlueprintNameLabel.getText()).to.equal(name);
-      });
-
       it(`blueprint description under "Details" tab should be "${description}"`, function() {
         expect(viewBlueprintPage.detailsTabBlueprintDescriptionLabel.getText()).to.equal(description);
       });
