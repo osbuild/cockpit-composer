@@ -14,6 +14,14 @@ export const setEditHostnameVisible = visible => ({
   }
 });
 
+export const SET_EDIT_HOSTNAME_INVALID = "SET_EDIT_HOSTNAME_INVALID";
+export const setEditHostnameInvalid = invalid => ({
+  type: SET_EDIT_HOSTNAME_INVALID,
+  payload: {
+    invalid
+  }
+});
+
 export const SET_ACTIVE_TAB = "SET_ACTIVE_TAB";
 export const setActiveTab = activeTab => ({
   type: SET_ACTIVE_TAB,

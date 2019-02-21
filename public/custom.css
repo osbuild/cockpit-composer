@@ -412,6 +412,13 @@ the "-" that would display instead of the sr-only "to" */
   margin-left: 0;
 }
 
+.form-control-pf-editable > .form-control-pf-value {
+  text-align: left;
+}
+.form-control-pf-editable > .form-control-pf-value > span {
+  word-break: break-all;
+}
+
 /* tables */
 .cmpsr-table-actions {
   width: 1%;

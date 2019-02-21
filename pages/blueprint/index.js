@@ -42,7 +42,12 @@ import {
   setModalDeleteImageVisible,
   setModalDeleteImageState
 } from "../../core/actions/modals";
-import { setEditDescriptionVisible, setEditHostnameVisible, setActiveTab } from "../../core/actions/blueprintPage";
+import {
+  setEditDescriptionVisible,
+  setEditHostnameVisible,
+  setEditHostnameInvalid,
+  setActiveTab
+} from "../../core/actions/blueprintPage";
 import {
   componentsSortSetKey,
   componentsSortSetValue,
@@ -96,6 +101,13 @@ const messages = defineMessages({
   },
   hostnameInputLabel: {
     defaultMessage: "Hostname"
+  },
+  hostnameHelp: {
+    defaultMessage:
+      "Valid characters for hostname are letters from a to z, the digits from 0 to 9, and the hyphen (-). A hostname may not start with a hyphen."
+  },
+  hostnameHelpEmpty: {
+    defaultMessage: "If no hostname is provided, the hostname will be determined by the OS."
   }
 });
 
@@ -115,6 +127,7 @@ class BlueprintPage extends React.Component {
     this.handleHideModalDeleteImage = this.handleHideModalDeleteImage.bind(this);
     this.handleEditDescription = this.handleEditDescription.bind(this);
     this.handleEditHostname = this.handleEditHostname.bind(this);
+    this.handleEditHostnameValue = this.handleEditHostnameValue.bind(this);
     this.handleStartCompose = this.handleStartCompose.bind(this);
     this.downloadUrl = this.downloadUrl.bind(this);
   }
@@ -179,6 +192,13 @@ class BlueprintPage extends React.Component {
     if (!state && action === "commit") {
       this.props.setBlueprintHostname(this.props.blueprint, value);
     }
+  }
+
+  handleEditHostnameValue(value) {
+    const validCharacters = value.length === 0 || /^(\d|\w|-|\.){0,252}$/.test(value);
+    const validElements = value.split(".").every(element => element.length < 63);
+    const invalid = !validCharacters || !validElements || value.startsWith("-") || value.endsWith(".") ? true : false;
+    this.props.setEditHostnameInvalid(invalid);
   }
 
   // handle show/hide of modal dialogs
@@ -251,7 +271,7 @@ class BlueprintPage extends React.Component {
       setSelectedInputParent,
       clearSelectedInput
     } = this.props;
-    const { editDescriptionVisible, editHostnameVisible } = this.props.blueprintPage;
+    const { editDescriptionVisible, editHostnameVisible, editHostnameInvalid } = this.props.blueprintPage;
     const { formatMessage } = this.props.intl;
     let hostname = "";
     if (blueprint.customizations !== undefined && blueprint.customizations.hostname !== undefined) {
@@ -348,15 +368,23 @@ class BlueprintPage extends React.Component {
                       value={blueprint.description}
                     />
                   </form>
-                  <form className="form-group" data-form="hostname" onSubmit={() => this.handleEditHostname("commit")}>
+                  <form
+                    className={`form-group ${editHostnameInvalid ? "has-error" : ""}`}
+                    data-form="hostname"
+                    onSubmit={() => this.handleEditHostname("commit")}
+                  >
                     <span className="col-sm-2 control-label">{formatMessage(messages.hostnameInputLabel)}</span>
                     <TextInlineEdit
                       className="col-sm-10"
                       editVisible={editHostnameVisible}
                       handleEdit={this.handleEditHostname}
+                      validateValue={this.handleEditHostnameValue}
                       buttonLabel={formatMessage(messages.hostnameButtonLabel)}
                       inputLabel={formatMessage(messages.hostnameInputLabel)}
                       value={hostname}
+                      invalid={editHostnameInvalid}
+                      helpblock={formatMessage(messages.hostnameHelp)}
+                      helpblockNoValue={formatMessage(messages.hostnameHelpEmpty)}
                     />
                   </form>
                 </div>
@@ -528,11 +556,13 @@ BlueprintPage.propTypes = {
   setActiveTab: PropTypes.func,
   setEditDescriptionVisible: PropTypes.func,
   setEditHostnameVisible: PropTypes.func,
+  setEditHostnameInvalid: PropTypes.func,
   setModalExportBlueprintVisible: PropTypes.func,
   blueprintPage: PropTypes.shape({
     activeTab: PropTypes.string,
     editDescriptionVisible: PropTypes.bool,
-    editHostnameVisible: PropTypes.bool
+    editHostnameVisible: PropTypes.bool,
+    editHostnameInvalid: PropTypes.bool
   }),
   setBlueprintDescription: PropTypes.func,
   setBlueprintHostname: PropTypes.func,
@@ -602,6 +632,7 @@ BlueprintPage.defaultProps = {
   setActiveTab: function() {},
   setEditDescriptionVisible: function() {},
   setEditHostnameVisible: function() {},
+  setEditHostnameInvalid: function() {},
   setModalExportBlueprintVisible: function() {},
   blueprintPage: {},
   setBlueprintDescription: function() {},
@@ -711,6 +742,9 @@ const mapDispatchToProps = dispatch => ({
   },
   setEditHostnameVisible: visible => {
     dispatch(setEditHostnameVisible(visible));
+  },
+  setEditHostnameInvalid: invalid => {
+    dispatch(setEditHostnameInvalid(invalid));
   },
   setActiveTab: activeTab => {
     dispatch(setActiveTab(activeTab));
