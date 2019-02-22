@@ -21,3 +21,4 @@ bots
 .nyc_output
 screen_error
 wdio_report
+composer.covered
