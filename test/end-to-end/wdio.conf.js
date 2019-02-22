@@ -212,8 +212,9 @@ exports.config = {
    * Hook that gets executed before the suite starts
    * @param {Object} suite suite details
    */
-  // beforeSuite: function (suite) {
-  // },
+  beforeSuite: function(suite) {
+    browser.reload();
+  },
   /**
    * Function to be executed before a test (in Mocha/Jasmine) or a step (in Cucumber) starts.
    * @param {Object} test test details
