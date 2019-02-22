@@ -80,6 +80,7 @@
   },
   "eslintConfig": {
     "globals": {
+      "cockpit": true,
       "browser": true,
       "expect": true,
       "timeout": true,
