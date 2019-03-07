@@ -24,10 +24,10 @@ Composer GUI for Cockpit and lorax-composer
 
 %install
 mkdir -p %{buildroot}/%{_datadir}/cockpit/welder
-cp -r public/dist/* %{buildroot}/%{_datadir}/cockpit/welder
+cp -a public/dist/* %{buildroot}/%{_datadir}/cockpit/welder
 mkdir -p %{buildroot}/%{_datadir}/metainfo/
 appstream-util validate-relax --nonet io.weldr.cockpit-composer.metainfo.xml
-cp io.weldr.cockpit-composer.metainfo.xml %{buildroot}/%{_datadir}/metainfo/
+cp -a io.weldr.cockpit-composer.metainfo.xml %{buildroot}/%{_datadir}/metainfo/
 
 %files
 %doc README.md
