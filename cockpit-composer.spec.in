@@ -14,7 +14,8 @@ Requires:       cockpit
 Requires:       lorax-composer
 
 %description
-Composer GUI for Cockpit and lorax-composer
+Composer generates custom images suitable for deploying systems or uploading to
+the cloud. It integrates into Cockpit as a frontend for Lorax Composer.
 
 %prep
 %setup -q -n cockpit-composer-%{version}
