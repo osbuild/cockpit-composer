@@ -143,11 +143,18 @@ exports.config = {
   // Test reporter for stdout.
   // The only one supported by default is 'dot'
   // see also: http://webdriver.io/guide/reporters/dot.html
-  reporters: ["dot", "spec", "mochawesome"],
+  reporters: ["dot", "spec", "mochawesome", "junit"],
 
   reporterOptions: {
     outputDir: "wdio_report", //json file will be written to this directory
-    mochawesome_filename: "report.json"
+    mochawesome_filename: "report.json",
+    junit: {
+      outputFileFormat: {
+        single: function(config) {
+          return "xunit_report.xml";
+        }
+      }
+    }
   },
   //
   // Options to be passed to Mocha.
