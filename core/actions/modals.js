@@ -207,6 +207,26 @@ export function appendModalPendingChangesComponentUpdates(componentUpdate) {
   };
 }
 
+export const SET_MODAL_CREATE_USER_DATA = "SET_MODAL_CREATE_USER_DATA";
+export function setModalUserAccountData(data) {
+  return {
+    type: SET_MODAL_CREATE_USER_DATA,
+    payload: {
+      data
+    }
+  };
+}
+
+export const SET_MODAL_CREATE_USER_VISIBLE = "SET_MODAL_CREATE_USER_VISIBLE";
+export function setModalUserAccountVisible(visible) {
+  return {
+    type: SET_MODAL_CREATE_USER_VISIBLE,
+    payload: {
+      visible
+    }
+  };
+}
+
 export const SET_MODAL_MANAGE_SOURCES_VISIBLE = "SET_MODAL_MANAGE_SOURCES_VISIBLE";
 export function setModalManageSourcesVisible(visible) {
   return {

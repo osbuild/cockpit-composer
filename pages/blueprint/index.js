@@ -1,4 +1,5 @@
 /* global welderApiPort:false */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 
 import React from "react";
 import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
@@ -10,6 +11,7 @@ import Link from "../../components/Link/Link";
 import Layout from "../../components/Layout/Layout";
 import BlueprintContents from "../../components/ListView/BlueprintContents";
 import ComponentDetailsView from "../../components/ListView/ComponentDetailsView";
+import UserAccount from "../../components/Modal/UserAccount";
 import CreateImage from "../../components/Modal/CreateImage";
 import ExportBlueprint from "../../components/Modal/ExportBlueprint";
 import StopBuild from "../../components/Modal/StopBuild";
@@ -23,6 +25,7 @@ import {
   fetchingBlueprintContents,
   setBlueprintDescription,
   setBlueprintHostname,
+  setBlueprintUsers,
   fetchingCompDeps
 } from "../../core/actions/blueprints";
 import {
@@ -34,6 +37,8 @@ import {
 } from "../../core/actions/inputs";
 import { fetchingComposes, startCompose } from "../../core/actions/composes";
 import {
+  setModalUserAccountVisible,
+  setModalUserAccountData,
   setModalExportBlueprintVisible,
   setModalCreateImageVisible,
   setModalCreateImageHidden,
@@ -108,6 +113,12 @@ const messages = defineMessages({
   },
   hostnameHelpEmpty: {
     defaultMessage: "If no hostname is provided, the hostname will be determined by the OS."
+  },
+  userEdit: {
+    defaultMessage: "Edit User Account"
+  },
+  userDelete: {
+    defaultMessage: "Delete User Account"
   }
 });
 
@@ -119,6 +130,8 @@ class BlueprintPage extends React.Component {
     this.handleComponentDetails = this.handleComponentDetails.bind(this);
     this.handleComponentListItem = this.handleComponentListItem.bind(this);
     this.handleDepListItem = this.handleDepListItem.bind(this);
+    this.handleShowModalUserAccount = this.handleShowModalUserAccount.bind(this);
+    this.handleShowModalEditUser = this.handleShowModalEditUser.bind(this);
     this.handleHideModalExport = this.handleHideModalExport.bind(this);
     this.handleShowModalExport = this.handleShowModalExport.bind(this);
     this.handleHideModalCreateImage = this.handleHideModalCreateImage.bind(this);
@@ -128,6 +141,8 @@ class BlueprintPage extends React.Component {
     this.handleEditDescription = this.handleEditDescription.bind(this);
     this.handleEditHostname = this.handleEditHostname.bind(this);
     this.handleEditHostnameValue = this.handleEditHostnameValue.bind(this);
+    this.handlePostUser = this.handlePostUser.bind(this);
+    this.handleDeleteUser = this.handleDeleteUser.bind(this);
     this.handleStartCompose = this.handleStartCompose.bind(this);
     this.downloadUrl = this.downloadUrl.bind(this);
   }
@@ -201,7 +216,62 @@ class BlueprintPage extends React.Component {
     this.props.setEditHostnameInvalid(invalid);
   }
 
+  handlePostUser(password) {
+    let user = Object.assign(
+      {},
+      {
+        name: this.props.userAccount.name
+      },
+      { ...(this.props.userAccount.description && { description: this.props.userAccount.description }) },
+      { ...(this.props.userAccount.key && { key: this.props.userAccount.key }) },
+      { ...(this.props.userAccount.groups.includes("wheel") && { groups: ["wheel"] }) }
+    );
+    if (password) {
+      user.password = password;
+    }
+    let users = [];
+    if (this.props.blueprint.customizations !== undefined && this.props.blueprint.customizations.user !== undefined) {
+      users = this.props.blueprint.customizations.user;
+    }
+    if (this.props.userAccount.editUser !== "") {
+      const userIndex = users.findIndex(user => user.name === this.props.userAccount.editUser);
+      users = users
+        .slice(0, userIndex)
+        .concat([user])
+        .concat(users.slice(userIndex + 1));
+    } else {
+      users = users.concat(user);
+    }
+    this.props.setBlueprintUsers(this.props.blueprint.id, users);
+    $("#cmpsr-modal-crt-blueprint").modal("hide");
+  }
+
+  handleDeleteUser(userName) {
+    const users = this.props.blueprint.customizations.user.filter(user => user.name !== userName);
+    this.props.setBlueprintUsers(this.props.blueprint.id, users);
+  }
+
   // handle show/hide of modal dialogs
+  handleShowModalUserAccount(e) {
+    this.props.setModalUserAccountVisible(true);
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
+  handleShowModalEditUser(e, user) {
+    const userInfo = Object.assign({}, user);
+    userInfo.editUser = user.name;
+    userInfo.disabledSubmit = false;
+    userInfo.dynamicName = false;
+    // the previously encrypted password is stored in component state
+    // this property is for storing a new password that needs to be encrypted
+    userInfo.password = "";
+    this.props.setModalUserAccountData(userInfo);
+    this.props.setModalUserAccountVisible(true);
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
   handleHideModalExport() {
     this.props.setModalExportBlueprintVisible(false);
   }
@@ -258,6 +328,7 @@ class BlueprintPage extends React.Component {
     const {
       blueprint,
       exportModalVisible,
+      userAccount,
       createImage,
       stopBuild,
       deleteImage,
@@ -276,6 +347,10 @@ class BlueprintPage extends React.Component {
     let hostname = "";
     if (blueprint.customizations !== undefined && blueprint.customizations.hostname !== undefined) {
       hostname = blueprint.customizations.hostname;
+    }
+    let users = [];
+    if (blueprint.customizations !== undefined && blueprint.customizations.user !== undefined) {
+      users = blueprint.customizations.user;
     }
 
     return (
@@ -358,7 +433,7 @@ class BlueprintPage extends React.Component {
                     data-form="description"
                     onSubmit={() => this.handleEditDescription("commit")}
                   >
-                    <span className="col-sm-2 control-label">{formatMessage(messages.descriptionInputLabel)}</span>
+                    <label className="col-sm-2 control-label">{formatMessage(messages.descriptionInputLabel)}</label>
                     <TextInlineEdit
                       className="col-sm-10"
                       editVisible={editDescriptionVisible}
@@ -373,7 +448,7 @@ class BlueprintPage extends React.Component {
                     data-form="hostname"
                     onSubmit={() => this.handleEditHostname("commit")}
                   >
-                    <span className="col-sm-2 control-label">{formatMessage(messages.hostnameInputLabel)}</span>
+                    <label className="col-sm-2 control-label">{formatMessage(messages.hostnameInputLabel)}</label>
                     <TextInlineEdit
                       className="col-sm-10"
                       editVisible={editHostnameVisible}
@@ -387,6 +462,74 @@ class BlueprintPage extends React.Component {
                       helpblockNoValue={formatMessage(messages.hostnameHelpEmpty)}
                     />
                   </form>
+                  <div className="form-group">
+                    <label className="col-sm-2 control-label">
+                      <FormattedMessage defaultMessage="Users" />
+                    </label>
+                    <div className="col-sm-10">
+                      {users !== undefined && users.length > 0 && (
+                        <div>
+                          <table className="table table-striped table-bordered table-hover">
+                            <thead>
+                              <tr>
+                                <th>Full name</th>
+                                <th>User name</th>
+                                <th>Server administrator</th>
+                                <th>Password</th>
+                                <th>SSH key</th>
+                                <th className="cmpsr-table-actions" />
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {users.map(user => (
+                                <tr key={user.name}>
+                                  <td>{user.description}</td>
+                                  <td>{user.name}</td>
+                                  <td>
+                                    {user.groups !== undefined && user.groups.includes("wheel") && (
+                                      <span className="fa fa-check" />
+                                    )}
+                                  </td>
+                                  <td>{user.password && <span className="fa fa-check" />}</td>
+                                  <td>
+                                    {user.key !== undefined && (
+                                      <span>
+                                        <span className="fa fa-check" />
+                                        {` `}
+                                        {user.key.split(" ")[2] || ""}
+                                      </span>
+                                    )}
+                                  </td>
+                                  <td className="cmpsr-table-actions">
+                                    <button
+                                      className="btn btn-default"
+                                      type="button"
+                                      aria-label={`${formatMessage(messages.userEdit)} ${user.name}`}
+                                      onClick={e => this.handleShowModalEditUser(e, user)}
+                                    >
+                                      <span className="pficon pficon-edit" />
+                                    </button>
+                                    {` `}
+                                    <button
+                                      className="btn btn-default"
+                                      type="button"
+                                      aria-label={`${formatMessage(messages.userDelete)} ${user.name}`}
+                                      onClick={() => this.handleDeleteUser(user.name)}
+                                    >
+                                      <span className="pficon pficon-delete" />
+                                    </button>
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      )}
+                      <button className="btn btn-default" type="button" onClick={this.handleShowModalUserAccount}>
+                        <FormattedMessage defaultMessage="Create User Account" />
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -497,6 +640,7 @@ class BlueprintPage extends React.Component {
             warningUnsaved={createImage.warningUnsaved}
           />
         ) : null}
+        {userAccount.visible ? <UserAccount handlePostUser={this.handlePostUser} users={users} /> : null}
         {exportModalVisible ? (
           <ExportBlueprint
             blueprint={blueprint.name}
@@ -558,6 +702,9 @@ BlueprintPage.propTypes = {
   setEditHostnameVisible: PropTypes.func,
   setEditHostnameInvalid: PropTypes.func,
   setModalExportBlueprintVisible: PropTypes.func,
+  setModalUserAccountVisible: PropTypes.func,
+  setModalUserAccountData: PropTypes.func,
+  setBlueprintUsers: PropTypes.func,
   blueprintPage: PropTypes.shape({
     activeTab: PropTypes.string,
     editDescriptionVisible: PropTypes.bool,
@@ -590,6 +737,15 @@ BlueprintPage.propTypes = {
     blueprint: PropTypes.object,
     imageTypes: PropTypes.arrayOf(PropTypes.object),
     visible: PropTypes.bool
+  }),
+  userAccount: PropTypes.shape({
+    name: PropTypes.string,
+    description: PropTypes.string,
+    password: PropTypes.string,
+    key: PropTypes.string,
+    groups: PropTypes.arrayOf(PropTypes.string),
+    visible: PropTypes.bool,
+    editUser: PropTypes.string
   }),
   dependenciesSortSetValue: PropTypes.func,
   componentsSortSetValue: PropTypes.func,
@@ -634,6 +790,9 @@ BlueprintPage.defaultProps = {
   setEditHostnameVisible: function() {},
   setEditHostnameInvalid: function() {},
   setModalExportBlueprintVisible: function() {},
+  setModalUserAccountVisible: function() {},
+  setModalUserAccountData: function() {},
+  setBlueprintUsers: function() {},
   blueprintPage: {},
   setBlueprintDescription: function() {},
   setBlueprintHostname: function() {},
@@ -641,6 +800,7 @@ BlueprintPage.defaultProps = {
   stopBuild: {},
   deleteImage: {},
   createImage: {},
+  userAccount: {},
   dependenciesSortSetValue: function() {},
   componentsSortSetValue: function() {},
   componentsFilters: {},
@@ -694,6 +854,7 @@ const makeMapStateToProps = () => {
         ),
         exportModalVisible: state.modals.exportBlueprint.visible,
         createImage: state.modals.createImage,
+        userAccount: state.modals.userAccount,
         stopBuild: state.modals.stopBuild,
         deleteImage: state.modals.deleteImage,
         componentsSortKey: state.sort.components.key,
@@ -713,6 +874,7 @@ const makeMapStateToProps = () => {
       blueprintPage: state.blueprintPage,
       exportModalVisible: state.modals.exportBlueprint.visible,
       createImage: state.modals.createImage,
+      userAccount: state.modals.userAccount,
       stopBuild: state.modals.stopBuild,
       deleteImage: state.modals.deleteImage,
       componentsSortKey: state.sort.components.key,
@@ -746,6 +908,9 @@ const mapDispatchToProps = dispatch => ({
   setEditHostnameInvalid: invalid => {
     dispatch(setEditHostnameInvalid(invalid));
   },
+  setBlueprintUsers: (blueprintId, users) => {
+    dispatch(setBlueprintUsers(blueprintId, users));
+  },
   setActiveTab: activeTab => {
     dispatch(setActiveTab(activeTab));
   },
@@ -763,6 +928,12 @@ const mapDispatchToProps = dispatch => ({
   },
   setModalExportBlueprintVisible: visible => {
     dispatch(setModalExportBlueprintVisible(visible));
+  },
+  setModalUserAccountVisible: visible => {
+    dispatch(setModalUserAccountVisible(visible));
+  },
+  setModalUserAccountData: data => {
+    dispatch(setModalUserAccountData(data));
   },
   setModalCreateImageVisible: modalVisible => {
     dispatch(setModalCreateImageVisible(modalVisible));

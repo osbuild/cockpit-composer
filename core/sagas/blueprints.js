@@ -22,6 +22,8 @@ import {
   CREATING_BLUEPRINT,
   creatingBlueprintSucceeded,
   UPDATE_BLUEPRINT_COMPONENTS,
+  SET_BLUEPRINT_USERS,
+  setBlueprintUsersSucceeded,
   SET_BLUEPRINT_HOSTNAME,
   setBlueprintHostnameSucceeded,
   SET_BLUEPRINT_DESCRIPTION,
@@ -194,6 +196,36 @@ function* getBlueprintHistory(blueprintId) {
   return [oldestBlueprint, blueprintHistory.present];
 }
 
+function* setBlueprintUsers(action) {
+  try {
+    const { blueprintId, users } = action.payload;
+    // commit the oldest blueprint with the updated users
+    const blueprintHistory = yield call(getBlueprintHistory, blueprintId);
+    const blueprintToPost = BlueprintApi.postedBlueprintData(
+      Object.assign({}, blueprintHistory[0], {
+        customizations: Object.assign({}, blueprintHistory[0].customizations, { user: users })
+      })
+    );
+    yield call(BlueprintApi.postBlueprint, blueprintToPost);
+    // get updated blueprint info (i.e. version)
+    const response = yield call(fetchBlueprintInfoApi, blueprintId);
+    yield put(setBlueprintUsersSucceeded(response));
+    // post present blueprint object to workspace
+    if (response.changed === true) {
+      const workspace = Object.assign({}, blueprintHistory[1], {
+        version: response.version,
+        customizations: Object.assign({}, blueprintHistory[1].customizations, {
+          user: users
+        })
+      });
+      yield call(commitToWorkspaceApi, workspace);
+    }
+  } catch (error) {
+    console.log("Error in setBlueprintHostname");
+    yield put(blueprintsFailure(error));
+  }
+}
+
 function* setBlueprintHostname(action) {
   try {
     const { blueprint, hostname } = action.payload;
@@ -359,6 +391,7 @@ function* fetchCompDeps(action) {
 export default function*() {
   yield takeEvery(CREATING_BLUEPRINT, createBlueprint);
   yield takeEvery(FETCHING_BLUEPRINT_CONTENTS, fetchBlueprintContents);
+  yield takeEvery(SET_BLUEPRINT_USERS, setBlueprintUsers);
   yield takeEvery(SET_BLUEPRINT_HOSTNAME, setBlueprintHostname);
   yield takeEvery(SET_BLUEPRINT_DESCRIPTION, setBlueprintDescription);
   yield takeEvery(DELETING_BLUEPRINT, deleteBlueprint);
