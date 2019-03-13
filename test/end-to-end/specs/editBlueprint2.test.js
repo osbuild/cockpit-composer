@@ -199,7 +199,7 @@ describe("Edit Blueprint Page", function() {
   });
 
   describe("Component Details", function() {
-    const packageName = "sudo";
+    const packageName = "tmux";
     const bashComponent = new AvailableComponents();
     const componentDetails = new DetailsComponent(packageName);
 
@@ -251,7 +251,7 @@ describe("Edit Blueprint Page", function() {
     const CreateImagePage = require("../pages/CreateImage.page");
     const createImagePage = new CreateImagePage(name);
     const bashComponent = new AvailableComponents();
-    const packageName = "sudo";
+    const packageName = "tmux";
     const componentDetails = new DetailsComponent(packageName);
 
     before(function() {
