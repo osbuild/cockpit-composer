@@ -91,6 +91,19 @@ const initialState = {
     manageSources: {
       sources: [],
       visible: false
+    },
+    userAccount: {
+      name: "",
+      description: "",
+      password: "",
+      key: "",
+      groups: [],
+      showDuplicateUser: false,
+      showInvalidName: false,
+      showInvalidPassword: false,
+      dynamicName: true,
+      visible: false,
+      editUser: ""
     }
   },
   sort: {

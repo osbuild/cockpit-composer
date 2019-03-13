@@ -18,6 +18,8 @@ import {
   SET_MODAL_STOP_BUILD_VISIBLE,
   SET_MODAL_STOP_BUILD_STATE,
   FETCHING_MODAL_CREATE_COMPOSTION_TYPES_SUCCESS,
+  SET_MODAL_CREATE_USER_VISIBLE,
+  SET_MODAL_CREATE_USER_DATA,
   SET_MODAL_MANAGE_SOURCES_VISIBLE,
   SET_MODAL_MANAGE_SOURCES_CONTENTS,
   MODAL_MANAGE_SOURCES_FAILURE
@@ -158,6 +160,21 @@ const modalExportBlueprint = (state = [], action) => {
   }
 };
 
+const modalUserAccount = (state = [], action) => {
+  switch (action.type) {
+    case SET_MODAL_CREATE_USER_VISIBLE:
+      return Object.assign({}, state, {
+        userAccount: Object.assign({}, state.userAccount, { visible: action.payload.visible })
+      });
+    case SET_MODAL_CREATE_USER_DATA:
+      return Object.assign({}, state, {
+        userAccount: Object.assign({}, state.userAccount, action.payload.data)
+      });
+    default:
+      return state;
+  }
+};
+
 const modalManageSources = (state = [], action) => {
   switch (action.type) {
     case SET_MODAL_MANAGE_SOURCES_CONTENTS:
@@ -220,6 +237,10 @@ const modals = (state = [], action) => {
       return modalExportBlueprint(state, action);
     case SET_MODAL_EXPORT_BLUEPRINT_VISIBLE:
       return modalExportBlueprint(state, action);
+    case SET_MODAL_CREATE_USER_VISIBLE:
+      return modalUserAccount(state, action);
+    case SET_MODAL_CREATE_USER_DATA:
+      return modalUserAccount(state, action);
     case SET_MODAL_MANAGE_SOURCES_CONTENTS:
       return modalManageSources(state, action);
     case SET_MODAL_MANAGE_SOURCES_VISIBLE:
