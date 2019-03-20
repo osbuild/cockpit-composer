@@ -133,7 +133,7 @@ function* generateComponents(blueprintData) {
   const moduleNames = blueprintData.blueprint.modules.map(component => component.name);
   const selectedComponentNames = packageNames.concat(moduleNames);
   const componentInfo = yield call(fetchComponentDetailsApi, componentNames);
-  const components = blueprintData.dependencies.map(component => {
+  const components = flattenComponents(blueprintData.dependencies).map(component => {
     const info = componentInfo.find(item => item.name === component.name);
     const componentData = Object.assign(
       {},
@@ -152,6 +152,14 @@ function* generateComponents(blueprintData) {
     return componentData;
   });
   return components;
+}
+
+function flattenComponents(components) {
+  let previousComponents = {};
+  let flattened = components.filter(component => {
+    return previousComponents.hasOwnProperty(component.name) ? false : (previousComponents[component.name] = true);
+  });
+  return flattened;
 }
 
 function* reloadBlueprintContents(blueprintId) {
