@@ -17,6 +17,10 @@ job release-srpm
 
 # Do fedora builds for the tag, using tarball
 job release-koji master
+job release-koji f30
 
 job release-github
 job release-copr @weldr/welder-web
+
+# Create a Bodhi update for stable Fedora releases
+job release-bodhi F30
