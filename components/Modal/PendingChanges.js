@@ -200,7 +200,11 @@ class PendingChanges extends React.Component {
                   <div>
                     <FormattedMessage defaultMessage="Changes made in a previous session" tagName="strong" />
                     <OverlayTrigger
-                      overlay={<Popover>{formatMessage(messages.previousSessionInfotip)}</Popover>}
+                      overlay={
+                        <Popover id="previous-session-changes-popover">
+                          {formatMessage(messages.previousSessionInfotip)}
+                        </Popover>
+                      }
                       placement="right"
                       trigger={["click"]}
                       rootClose
