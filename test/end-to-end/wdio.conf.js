@@ -5,7 +5,7 @@ const crypto = require("crypto");
 
 // const commands = require('./utils/commands');
 
-const mochaTimeout = process.env.DEBUG_TEST === "true" ? 99999999 : 120000;
+const mochaTimeout = parseInt(process.env.MOCHA_TIMEOUT) || 120000;
 
 exports.config = {
   //
@@ -99,11 +99,11 @@ exports.config = {
   baseUrl: process.env.BASE_URL || "http://localhost:9090",
   //
   // Default timeout for all waitFor* commands.
-  waitforTimeout: 120000,
+  waitforTimeout: parseInt(process.env.WAITFOR_TIMEOUT) || 120000,
   //
   // Default timeout in milliseconds for request
   // if Selenium Grid doesn't send response
-  connectionRetryTimeout: 120000,
+  connectionRetryTimeout: parseInt(process.env.CONNECTION_TIMEOUT) || 120000,
   //
   // Default request retries count
   connectionRetryCount: 3,
