@@ -16,7 +16,7 @@
     "patternfly": "3.59.1",
     "patternfly-react": "1.19.1",
     "prop-types": "15.7.2",
-    "react": "16.8.5",
+    "react": "16.8.6",
     "react-dom": "16.8.4",
     "react-intl": "2.8.0",
     "react-redux": "5.1.1",
