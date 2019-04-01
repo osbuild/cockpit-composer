@@ -36,7 +36,7 @@ function* startCompose(action) {
       yield* pollComposeStatus(statusResponse.uuids[0]);
     }
   } catch (error) {
-    console.log("startComposeError");
+    console.log("startComposeError", error);
     yield put(composesFailure(error));
   }
 }
@@ -56,7 +56,7 @@ function* pollComposeStatus(compose) {
       }
     }
   } catch (error) {
-    console.log("pollComposeStatusError");
+    console.log("pollComposeStatusError", error);
     yield put(composesFailure(error));
   }
 }
@@ -72,7 +72,7 @@ function* fetchComposes() {
       yield all(queue.map(compose => pollComposeStatus(compose)));
     }
   } catch (error) {
-    console.log("fetchComposesError");
+    console.log("fetchComposesError", error);
     yield put(composesFailure(error));
   }
 }
@@ -84,7 +84,7 @@ function* deleteCompose(action) {
     yield put(deletingComposeSucceeded(response, composeId));
     yield* fetchComposes();
   } catch (error) {
-    console.log("errorDeleteComposeSaga");
+    console.log("errorDeleteComposeSaga", error);
     yield put(deletingComposeFailure(error));
   }
 }
@@ -96,7 +96,7 @@ function* cancelCompose(action) {
     yield put(cancellingComposeSucceeded(response, composeId));
     yield* fetchComposes();
   } catch (error) {
-    console.log("errorCancelComposeSaga");
+    console.log("errorCancelComposeSaga", error);
     yield put(cancellingComposeFailure(error));
   }
 }
@@ -106,7 +106,7 @@ function* fetchQueue() {
     const queue = yield call(fetchComposeQueueApi);
     yield put(fetchingQueueSucceeded(queue));
   } catch (error) {
-    console.log("fetchQueueError");
+    console.log("fetchQueueError", error);
     yield put(composesFailure(error));
   }
 }

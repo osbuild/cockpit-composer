@@ -57,7 +57,7 @@ function* fetchInputs(action) {
     });
     yield put(fetchingInputsSucceeded(filter, selectedInputPage, pageSize, updatedInputs, total));
   } catch (error) {
-    console.log("Error in fetchInputsSaga");
+    console.log("Error in fetchInputsSaga", error);
   }
 }
 
@@ -130,7 +130,7 @@ function* fetchInputDetails(action) {
     });
     yield put(setSelectedInput(componentData));
   } catch (error) {
-    console.log("Error in fetchInputDetails");
+    console.log("Error in fetchInputDetails", error);
   }
 }
 
@@ -162,7 +162,7 @@ function* fetchInputDeps(action) {
     });
     yield put(setSelectedInputDeps(updatedDeps));
   } catch (error) {
-    console.log("Error in fetchInputDeps");
+    console.log("Error in fetchInputDeps", error);
   }
 }
 
@@ -194,7 +194,7 @@ function* fetchDepDetails(action) {
     });
     yield put(setDepDetails(depDetails));
   } catch (error) {
-    console.log("Error in fetchDepDetails");
+    console.log("Error in fetchDepDetails", error);
   }
 }
 

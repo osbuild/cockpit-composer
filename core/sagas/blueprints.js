@@ -52,7 +52,7 @@ function* fetchBlueprints() {
     yield put(fetchingBlueprintNamesSucceeded());
     yield* blueprintNames.map(blueprintName => fetchBlueprintsFromName(blueprintName));
   } catch (error) {
-    console.log("errorloadBlueprintsSaga");
+    console.log("errorloadBlueprintsSaga", error);
     yield put(blueprintsFailure(error));
   }
 }
@@ -98,7 +98,7 @@ function* fetchBlueprintContents(action) {
       : [];
     yield put(fetchingBlueprintContentsSucceeded(blueprint, pastBlueprint, response.errors[0]));
   } catch (error) {
-    console.log("Error in fetchBlueprintContentsSaga");
+    console.log("Error in fetchBlueprintContentsSaga", error);
     yield put(blueprintContentsFailure(error, action.payload.blueprintId));
   }
 }
@@ -185,7 +185,7 @@ function* reloadBlueprintContents(blueprintId) {
     });
     yield put(reloadingBlueprintContentsSucceeded(blueprint, response.errors[0]));
   } catch (error) {
-    console.log("Error in fetchBlueprintContentsSaga");
+    console.log("Error in fetchBlueprintContentsSaga", error);
     yield put(blueprintContentsFailure(error, blueprintId));
   }
 }
@@ -202,7 +202,7 @@ function* fetchModalBlueprintContents(action) {
     }
     yield put(setModalExportBlueprintContents(components));
   } catch (error) {
-    console.log("Error in loadModalBlueprintSaga");
+    console.log("Error in loadModalBlueprintSaga", error);
   }
 }
 
@@ -238,7 +238,7 @@ function* setBlueprintUsers(action) {
       yield call(commitToWorkspaceApi, workspace);
     }
   } catch (error) {
-    console.log("Error in setBlueprintHostname");
+    console.log("Error in setBlueprintHostname", error);
     yield put(blueprintsFailure(error));
   }
 }
@@ -268,7 +268,7 @@ function* setBlueprintHostname(action) {
       yield call(commitToWorkspaceApi, workspace);
     }
   } catch (error) {
-    console.log("Error in setBlueprintHostname");
+    console.log("Error in setBlueprintHostname", error);
     yield put(blueprintsFailure(error));
   }
 }
@@ -296,7 +296,7 @@ function* setBlueprintDescription(action) {
       yield call(commitToWorkspaceApi, workspace);
     }
   } catch (error) {
-    console.log("Error in setBlueprintDescription");
+    console.log("Error in setBlueprintDescription", error);
     yield put(blueprintsFailure(error));
   }
 }
@@ -307,7 +307,7 @@ function* deleteBlueprint(action) {
     const response = yield call(deleteBlueprintApi, blueprintId);
     yield put(deletingBlueprintSucceeded(response));
   } catch (error) {
-    console.log("errorDeleteBlueprintsSaga");
+    console.log("errorDeleteBlueprintsSaga", error);
     yield put(blueprintsFailure(error));
   }
 }
@@ -318,7 +318,7 @@ function* createBlueprint(action) {
     yield call(createBlueprintApi, blueprint);
     yield put(creatingBlueprintSucceeded(blueprint));
   } catch (error) {
-    console.log("errorCreateBlueprintSaga");
+    console.log("errorCreateBlueprintSaga", error);
     yield put(blueprintsFailure(error));
   }
 }
@@ -344,7 +344,7 @@ function* commitToWorkspace(action) {
       yield call(reloadBlueprintContents, blueprintId);
     }
   } catch (error) {
-    console.log("commitToWorkspaceError");
+    console.log("commitToWorkspaceError", error);
     yield put(blueprintsFailure(error));
   }
 }
@@ -357,7 +357,7 @@ function* deleteWorkspace(action) {
       yield call(reloadBlueprintContents, blueprintId);
     }
   } catch (error) {
-    console.log("deleteWorkspaceError");
+    console.log("deleteWorkspaceError", error);
     yield put(blueprintsFailure("failed delete workspace"));
   }
 }
@@ -401,7 +401,7 @@ function* fetchCompDeps(action) {
     );
     yield put(setCompDeps(updatedComp, blueprintId));
   } catch (error) {
-    console.log("Error in fetchInputDeps");
+    console.log("Error in fetchInputDeps", error);
   }
 }
 
