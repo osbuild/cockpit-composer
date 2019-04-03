@@ -1,8 +1,7 @@
 import { call, put, takeEvery } from "redux-saga/effects";
-import { fetchModalCreateImageTypesApi, fetchSourceInfoApi } from "../apiCalls";
+import { fetchSourceInfoApi } from "../apiCalls";
 
 import {
-  fetchingModalCreateImageTypesSuccess,
   FETCHING_MODAL_MANAGE_SOURCES_CONTENTS,
   setModalManageSourcesContents,
   modalManageSourcesFailure
@@ -18,16 +17,6 @@ function* fetchModalManageSourcesContents() {
   }
 }
 
-function* fetchModalCreateImageTypes() {
-  try {
-    const response = yield call(fetchModalCreateImageTypesApi);
-    yield put(fetchingModalCreateImageTypesSuccess(response));
-  } catch (error) {
-    console.log("Error in loadModalBlueprintSaga");
-  }
-}
-
 export default function*() {
   yield takeEvery(FETCHING_MODAL_MANAGE_SOURCES_CONTENTS, fetchModalManageSourcesContents);
-  yield* fetchModalCreateImageTypes();
 }

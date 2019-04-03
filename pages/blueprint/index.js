@@ -35,13 +35,11 @@ import {
   setSelectedInputParent,
   fetchingDepDetails
 } from "../../core/actions/inputs";
-import { fetchingComposes, startCompose } from "../../core/actions/composes";
+import { fetchingComposes } from "../../core/actions/composes";
 import {
   setModalUserAccountVisible,
   setModalUserAccountData,
   setModalExportBlueprintVisible,
-  setModalCreateImageVisible,
-  setModalCreateImageHidden,
   setModalStopBuildVisible,
   setModalStopBuildState,
   setModalDeleteImageVisible,
@@ -125,7 +123,6 @@ const messages = defineMessages({
 class BlueprintPage extends React.Component {
   constructor() {
     super();
-    this.setNotifications = this.setNotifications.bind(this);
     this.handleTabChanged = this.handleTabChanged.bind(this);
     this.handleComponentDetails = this.handleComponentDetails.bind(this);
     this.handleComponentListItem = this.handleComponentListItem.bind(this);
@@ -134,8 +131,6 @@ class BlueprintPage extends React.Component {
     this.handleShowModalEditUser = this.handleShowModalEditUser.bind(this);
     this.handleHideModalExport = this.handleHideModalExport.bind(this);
     this.handleShowModalExport = this.handleShowModalExport.bind(this);
-    this.handleHideModalCreateImage = this.handleHideModalCreateImage.bind(this);
-    this.handleShowModalCreateImage = this.handleShowModalCreateImage.bind(this);
     this.handleHideModalStop = this.handleHideModalStop.bind(this);
     this.handleHideModalDeleteImage = this.handleHideModalDeleteImage.bind(this);
     this.handleEditDescription = this.handleEditDescription.bind(this);
@@ -143,7 +138,6 @@ class BlueprintPage extends React.Component {
     this.handleEditHostnameValue = this.handleEditHostnameValue.bind(this);
     this.handlePostUser = this.handlePostUser.bind(this);
     this.handleDeleteUser = this.handleDeleteUser.bind(this);
-    this.handleStartCompose = this.handleStartCompose.bind(this);
     this.downloadUrl = this.downloadUrl.bind(this);
   }
 
@@ -165,10 +159,6 @@ class BlueprintPage extends React.Component {
 
   componentWillUnmount() {
     this.props.clearSelectedInput();
-  }
-
-  setNotifications() {
-    this.layout.setNotifications();
   }
 
   handleTabChanged(key) {
@@ -281,16 +271,6 @@ class BlueprintPage extends React.Component {
     e.stopPropagation();
   }
 
-  handleHideModalCreateImage() {
-    this.props.setModalCreateImageHidden();
-  }
-
-  handleShowModalCreateImage(e, blueprint) {
-    this.props.setModalCreateImageVisible(blueprint);
-    e.preventDefault();
-    e.stopPropagation();
-  }
-
   handleHideModalStop() {
     this.props.setModalStopBuildVisible(false);
     this.props.setModalStopBuildState("", "");
@@ -299,10 +279,6 @@ class BlueprintPage extends React.Component {
   handleHideModalDeleteImage() {
     this.props.setModalDeleteImageVisible(false);
     this.props.setModalDeleteImageState("", "");
-  }
-
-  handleStartCompose(blueprintName, composeType) {
-    this.props.startCompose(blueprintName, composeType);
   }
 
   downloadUrl(compose) {
@@ -329,7 +305,6 @@ class BlueprintPage extends React.Component {
       blueprint,
       exportModalVisible,
       userAccount,
-      createImage,
       stopBuild,
       deleteImage,
       selectedComponents,
@@ -340,7 +315,8 @@ class BlueprintPage extends React.Component {
       selectedInputDeps,
       setSelectedInput,
       setSelectedInputParent,
-      clearSelectedInput
+      clearSelectedInput,
+      imageTypes
     } = this.props;
     const { editDescriptionVisible, editHostnameVisible, editHostnameInvalid } = this.props.blueprintPage;
     const { formatMessage } = this.props.intl;
@@ -374,16 +350,7 @@ class BlueprintPage extends React.Component {
                 </Link>
               </li>
               <li>
-                <button
-                  className="btn btn-default"
-                  id="cmpsr-btn-crt-image"
-                  data-toggle="modal"
-                  data-target="#cmpsr-modal-crt-image"
-                  type="button"
-                  onClick={e => this.handleShowModalCreateImage(e, blueprint)}
-                >
-                  <FormattedMessage defaultMessage="Create Image" />
-                </button>
+                <CreateImage blueprint={blueprint} imageTypes={imageTypes} layout={this.layout} />
               </li>
               <li>
                 <div className="dropdown dropdown-kebab-pf">
@@ -602,16 +569,7 @@ class BlueprintPage extends React.Component {
                   title={formatMessage(messages.noImagesTitle)}
                   message={formatMessage(messages.noImagesMessage)}
                 >
-                  <button
-                    className="btn btn-default"
-                    id="cmpsr-btn-crt-image"
-                    data-toggle="modal"
-                    data-target="#cmpsr-modal-crt-image"
-                    type="button"
-                    onClick={e => this.handleShowModalCreateImage(e, blueprint)}
-                  >
-                    <FormattedMessage defaultMessage="Create Image" />
-                  </button>
+                  <CreateImage blueprint={blueprint} imageTypes={imageTypes} layout={this.layout} />
                 </EmptyState>
               )) || (
                 <ListView className="cmpsr-images" stacked>
@@ -629,17 +587,6 @@ class BlueprintPage extends React.Component {
             </div>
           </Tab>
         </Tabs>
-        {createImage.visible ? (
-          <CreateImage
-            blueprint={blueprint}
-            imageTypes={createImage.imageTypes}
-            setNotifications={this.setNotifications}
-            handleStartCompose={this.handleStartCompose}
-            handleHideModal={this.handleHideModalCreateImage}
-            warningEmpty={createImage.warningEmpty}
-            warningUnsaved={createImage.warningUnsaved}
-          />
-        ) : null}
         {userAccount.visible ? <UserAccount handlePostUser={this.handlePostUser} users={users} /> : null}
         {exportModalVisible ? (
           <ExportBlueprint
@@ -735,7 +682,6 @@ BlueprintPage.propTypes = {
   }),
   createImage: PropTypes.shape({
     blueprint: PropTypes.object,
-    imageTypes: PropTypes.arrayOf(PropTypes.object),
     visible: PropTypes.bool
   }),
   userAccount: PropTypes.shape({
@@ -761,13 +707,10 @@ BlueprintPage.propTypes = {
   dependencies: PropTypes.arrayOf(PropTypes.object),
   componentsSortKey: PropTypes.string,
   componentsSortValue: PropTypes.string,
-  setModalCreateImageVisible: PropTypes.func,
-  setModalCreateImageHidden: PropTypes.func,
   setModalStopBuildVisible: PropTypes.func,
   setModalStopBuildState: PropTypes.func,
   setModalDeleteImageVisible: PropTypes.func,
   setModalDeleteImageState: PropTypes.func,
-  startCompose: PropTypes.func,
   blueprintContentsError: PropTypes.shape({
     message: PropTypes.string,
     options: PropTypes.object,
@@ -775,7 +718,8 @@ BlueprintPage.propTypes = {
     url: PropTypes.string
   }),
   blueprintContentsFetching: PropTypes.bool,
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
+  imageTypes: PropTypes.arrayOf(PropTypes.object)
 };
 
 BlueprintPage.defaultProps = {
@@ -818,15 +762,13 @@ BlueprintPage.defaultProps = {
   clearSelectedInput: function() {},
   setSelectedInputParent: function() {},
   fetchingDepDetails: function() {},
-  setModalCreateImageVisible: function() {},
-  setModalCreateImageHidden: function() {},
   setModalStopBuildVisible: function() {},
   setModalStopBuildState: function() {},
   setModalDeleteImageVisible: function() {},
   setModalDeleteImageState: function() {},
-  startCompose: function() {},
   blueprintContentsError: {},
-  blueprintContentsFetching: false
+  blueprintContentsFetching: false,
+  imageTypes: []
 };
 
 const makeMapStateToProps = () => {
@@ -855,6 +797,7 @@ const makeMapStateToProps = () => {
         exportModalVisible: state.modals.exportBlueprint.visible,
         createImage: state.modals.createImage,
         userAccount: state.modals.userAccount,
+        imageTypes: state.composes.composeTypes,
         stopBuild: state.modals.stopBuild,
         deleteImage: state.modals.deleteImage,
         componentsSortKey: state.sort.components.key,
@@ -875,6 +818,7 @@ const makeMapStateToProps = () => {
       exportModalVisible: state.modals.exportBlueprint.visible,
       createImage: state.modals.createImage,
       userAccount: state.modals.userAccount,
+      imageTypes: state.composes.composeTypes,
       stopBuild: state.modals.stopBuild,
       deleteImage: state.modals.deleteImage,
       componentsSortKey: state.sort.components.key,
@@ -935,12 +879,6 @@ const mapDispatchToProps = dispatch => ({
   setModalUserAccountData: data => {
     dispatch(setModalUserAccountData(data));
   },
-  setModalCreateImageVisible: modalVisible => {
-    dispatch(setModalCreateImageVisible(modalVisible));
-  },
-  setModalCreateImageHidden: () => {
-    dispatch(setModalCreateImageHidden());
-  },
   setModalStopBuildState: (composeId, blueprintName) => {
     dispatch(setModalStopBuildState(composeId, blueprintName));
   },
@@ -979,9 +917,6 @@ const mapDispatchToProps = dispatch => ({
   },
   fetchingDepDetails: (component, blueprintId) => {
     dispatch(fetchingDepDetails(component, blueprintId));
-  },
-  startCompose: (blueprintName, composeType) => {
-    dispatch(startCompose(blueprintName, composeType));
   }
 });
 

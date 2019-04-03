@@ -37,7 +37,7 @@ import {
   deleteFilter,
   fetchingDepDetails
 } from "../../core/actions/inputs";
-import { setModalActive, setModalCreateImageVisible, setModalCreateImageHidden } from "../../core/actions/modals";
+import { setModalActive } from "../../core/actions/modals";
 import {
   componentsSortSetKey,
   componentsSortSetValue,
@@ -49,7 +49,6 @@ import {
   componentsFilterRemoveValue,
   componentsFilterClearValues
 } from "../../core/actions/filter";
-import { startCompose } from "../../core/actions/composes";
 import {
   makeGetBlueprintById,
   makeGetSortedSelectedComponents,
@@ -91,12 +90,10 @@ class EditBlueprintPage extends React.Component {
     this.handleComponentDetails = this.handleComponentDetails.bind(this);
     this.handleComponentListItem = this.handleComponentListItem.bind(this);
     this.handleDepListItem = this.handleDepListItem.bind(this);
-    this.handleHideModalCreateImage = this.handleHideModalCreateImage.bind(this);
     this.handleHideModal = this.handleHideModal.bind(this);
     this.handleShowModal = this.handleShowModal.bind(this);
     this.handleDiscardChanges = this.handleDiscardChanges.bind(this);
     this.handleUndo = this.handleUndo.bind(this);
-    this.handleStartCompose = this.handleStartCompose.bind(this);
   }
 
   componentWillMount() {
@@ -339,10 +336,7 @@ class EditBlueprintPage extends React.Component {
   handleHideModal() {
     this.props.setModalActive(null);
   }
-  handleHideModalCreateImage() {
-    this.props.setModalActive(null);
-    this.props.setModalCreateImageHidden();
-  }
+
   handleShowModal(e, modalType) {
     switch (modalType) {
       case "modalPendingChanges":
@@ -351,10 +345,6 @@ class EditBlueprintPage extends React.Component {
         break;
       case "modalExportBlueprint":
         this.props.setModalActive("modalExportBlueprint");
-        break;
-      case "modalCreateImage":
-        this.props.setModalCreateImageVisible(this.props.blueprint);
-        this.props.setModalActive("modalCreateImage");
         break;
       default:
         this.props.setModalActive(null);
@@ -382,10 +372,6 @@ class EditBlueprintPage extends React.Component {
     }
   }
 
-  handleStartCompose(blueprintName, composeType) {
-    this.props.startCompose(blueprintName, composeType);
-  }
-
   render() {
     if (this.props.blueprint.id === undefined) {
       this.props.fetchingBlueprintContents(this.props.route.params.blueprint.replace(/\s/g, "-"));
@@ -396,9 +382,9 @@ class EditBlueprintPage extends React.Component {
       blueprint,
       selectedComponents,
       dependencies,
+      imageTypes,
       inputComponents,
       inputs,
-      createImage,
       modalActive,
       componentsSortKey,
       componentsSortValue,
@@ -484,16 +470,7 @@ class EditBlueprintPage extends React.Component {
                 </li>
               )}
               <li className="list__subgroup-item--first">
-                <button
-                  className="btn btn-default"
-                  id="cmpsr-btn-crt-image"
-                  data-toggle="modal"
-                  data-target="#cmpsr-modal-crt-image"
-                  type="button"
-                  onClick={e => this.handleShowModal(e, "modalCreateImage")}
-                >
-                  <FormattedMessage defaultMessage="Create Image" />
-                </button>
+                <CreateImage blueprint={blueprint} imageTypes={imageTypes} layout={this.layout} />
               </li>
               <li>
                 <div className="dropdown dropdown-kebab-pf">
@@ -701,17 +678,6 @@ class EditBlueprintPage extends React.Component {
             <Loading />
           </div>
         )}
-        {modalActive === "modalCreateImage" ? (
-          <CreateImage
-            blueprint={createImage.blueprint}
-            imageTypes={createImage.imageTypes}
-            handleStartCompose={this.handleStartCompose}
-            handleHideModal={this.handleHideModalCreateImage}
-            setNotifications={this.setNotifications}
-            warningEmpty={createImage.warningEmpty}
-            warningUnsaved={createImage.warningUnsaved}
-          />
-        ) : null}
         {modalActive === "modalExportBlueprint" ? (
           <ExportBlueprint
             blueprint={blueprint.name}
@@ -753,11 +719,6 @@ EditBlueprintPage.propTypes = {
     version: PropTypes.string,
     workspacePendingChanges: PropTypes.arrayOf(PropTypes.object)
   }),
-  createImage: PropTypes.shape({
-    blueprint: PropTypes.object,
-    imageTypes: PropTypes.arrayOf(PropTypes.object),
-    visible: PropTypes.bool
-  }),
   inputs: PropTypes.shape({
     inputComponents: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.object)),
     inputFilters: PropTypes.object,
@@ -785,8 +746,6 @@ EditBlueprintPage.propTypes = {
   setSelectedInputParent: PropTypes.func,
   deleteFilter: PropTypes.func,
   setModalActive: PropTypes.func,
-  setModalCreateImageVisible: PropTypes.func,
-  setModalCreateImageHidden: PropTypes.func,
   dependenciesSortSetValue: PropTypes.func,
   componentsSortSetValue: PropTypes.func,
   selectedComponents: PropTypes.arrayOf(PropTypes.object),
@@ -806,7 +765,6 @@ EditBlueprintPage.propTypes = {
   undo: PropTypes.func,
   redo: PropTypes.func,
   deleteHistory: PropTypes.func,
-  startCompose: PropTypes.func,
   blueprintContentsError: PropTypes.shape({
     message: PropTypes.string,
     options: PropTypes.object,
@@ -814,13 +772,13 @@ EditBlueprintPage.propTypes = {
     url: PropTypes.string
   }),
   blueprintContentsFetching: PropTypes.bool,
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
+  imageTypes: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 EditBlueprintPage.defaultProps = {
   route: {},
   blueprint: {},
-  createImage: {},
   inputs: {},
   inputComponents: undefined,
   modalActive: "",
@@ -838,8 +796,6 @@ EditBlueprintPage.defaultProps = {
   selectedInputDeps: undefined,
   deleteFilter: function() {},
   setModalActive: function() {},
-  setModalCreateImageVisible: function() {},
-  setModalCreateImageHidden: function() {},
   dependenciesSortSetValue: function() {},
   componentsSortSetValue: function() {},
   selectedComponents: [],
@@ -855,7 +811,6 @@ EditBlueprintPage.defaultProps = {
   undo: function() {},
   redo: function() {},
   deleteHistory: function() {},
-  startCompose: function() {},
   blueprintContentsError: {},
   blueprintContentsFetching: false
 };
@@ -879,7 +834,7 @@ const makeMapStateToProps = () => {
         componentsSortKey: state.sort.components.key,
         componentsSortValue: state.sort.components.value,
         componentsFilters: state.filter.components,
-        createImage: state.modals.createImage,
+        imageTypes: state.composes.composeTypes,
         inputs: state.inputs,
         inputComponents: getSelectedInputs(state, fetchedBlueprint.present.components),
         selectedInput: state.inputs.selectedInput,
@@ -905,7 +860,7 @@ const makeMapStateToProps = () => {
       componentsSortKey: state.sort.components.key,
       componentsSortValue: state.sort.components.value,
       componentsFilters: state.filter.components,
-      createImage: state.modals.createImage,
+      imageTypes: state.composes.composeTypes,
       inputs: state.inputs,
       inputComponents: state.inputs.inputComponents,
       selectedInput: state.inputs.selectedInput,
@@ -952,12 +907,6 @@ const mapDispatchToProps = dispatch => ({
   setModalActive: modalActive => {
     dispatch(setModalActive(modalActive));
   },
-  setModalCreateImageVisible: modalVisible => {
-    dispatch(setModalCreateImageVisible(modalVisible));
-  },
-  setModalCreateImageHidden: () => {
-    dispatch(setModalCreateImageHidden());
-  },
   componentsSortSetKey: key => {
     dispatch(componentsSortSetKey(key));
   },
@@ -993,9 +942,6 @@ const mapDispatchToProps = dispatch => ({
   },
   fetchingDepDetails: (component, blueprintId) => {
     dispatch(fetchingDepDetails(component, blueprintId));
-  },
-  startCompose: (blueprintName, composeType) => {
-    dispatch(startCompose(blueprintName, composeType));
   }
 });
 

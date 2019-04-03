@@ -69,7 +69,7 @@ export function fetchBlueprintInfoApi(blueprintName) {
   return blueprintFetch;
 }
 
-export function fetchModalCreateImageTypesApi() {
+export function fetchComposeTypesApi() {
   const imageTypeLabels = {
     ami: "Amazon Machine Image Disk (.ami)",
     "ext4-filesystem": "Ext4 File System Image (.img)",
