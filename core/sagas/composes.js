@@ -3,6 +3,7 @@ import { call, all, put, takeEvery } from "redux-saga/effects";
 import {
   startComposeApi,
   fetchImageStatusApi,
+  fetchComposeTypesApi,
   fetchComposeQueueApi,
   fetchComposeFinishedApi,
   fetchComposeFailedApi,
@@ -14,6 +15,7 @@ import {
   START_COMPOSE,
   fetchingComposeStatusSucceeded,
   FETCHING_COMPOSES,
+  fetchingComposeTypesSucceeded,
   fetchingComposeSucceeded,
   composesFailure,
   CANCELLING_COMPOSE,
@@ -111,7 +113,18 @@ function* fetchQueue() {
   }
 }
 
+function* fetchComposeTypes() {
+  try {
+    console.info("fetchComposeTypes");
+    const response = yield call(fetchComposeTypesApi);
+    yield put(fetchingComposeTypesSucceeded(response));
+  } catch (error) {
+    console.log("Error in loadImageTypesSaga");
+  }
+}
+
 export default function*() {
+  yield* fetchComposeTypes();
   yield takeEvery(START_COMPOSE, startCompose);
   yield takeEvery(FETCHING_COMPOSES, fetchComposes);
   yield takeEvery(DELETING_COMPOSE, deleteCompose);

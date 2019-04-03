@@ -2,6 +2,7 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
 import Link from "../Link/Link";
+import CreateImage from "../Modal/CreateImage";
 
 class BlueprintListView extends React.PureComponent {
   constructor() {
@@ -9,7 +10,7 @@ class BlueprintListView extends React.PureComponent {
   }
 
   render() {
-    const { blueprints } = this.props; // eslint-disable-line no-use-before-define
+    const { blueprints, imageTypes, layout } = this.props;
     return (
       <div className="list-group list-view-pf list-view-pf-view">
         {blueprints.map(blueprint => (
@@ -18,13 +19,7 @@ class BlueprintListView extends React.PureComponent {
               <Link to={`/edit/${blueprint.name}`} className="btn btn-default">
                 <FormattedMessage defaultMessage="Edit Blueprint" />
               </Link>
-              <button
-                type="button"
-                className="btn btn-default"
-                onClick={e => this.props.handleShowModalCreateImage(e, blueprint)}
-              >
-                <FormattedMessage defaultMessage="Create Image" />
-              </button>
+              <CreateImage blueprint={blueprint} imageTypes={imageTypes} layout={layout} />
               <div className="dropdown pull-right dropdown-kebab-pf">
                 <button
                   className="btn btn-link dropdown-toggle"
@@ -80,14 +75,17 @@ BlueprintListView.propTypes = {
   handleShowModalDelete: PropTypes.func,
   blueprints: PropTypes.arrayOf(PropTypes.object),
   handleShowModalExport: PropTypes.func,
-  handleShowModalCreateImage: PropTypes.func
+  imageTypes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  layout: PropTypes.shape({
+    setNotifications: PropTypes.func
+  })
 };
 
 BlueprintListView.defaultProps = {
   handleShowModalDelete: function() {},
   blueprints: [],
   handleShowModalExport: function() {},
-  handleShowModalCreateImage: function() {}
+  layout: {}
 };
 
 export default BlueprintListView;

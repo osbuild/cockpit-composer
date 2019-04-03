@@ -58,16 +58,6 @@ export function setModalCreateBlueprintBlueprint(blueprint) {
   };
 }
 
-export const FETCHING_MODAL_CREATE_COMPOSTION_TYPES_SUCCESS = "FETCHING_MODAL_CREATE_COMPOSTION_TYPES_SUCCESS";
-export function fetchingModalCreateImageTypesSuccess(imageTypes) {
-  return {
-    type: FETCHING_MODAL_CREATE_COMPOSTION_TYPES_SUCCESS,
-    payload: {
-      imageTypes
-    }
-  };
-}
-
 export const SET_MODAL_EXPORT_BLUEPRINT_NAME = "SET_MODAL_EXPORT_BLUEPRINT_NAME";
 export function setModalExportBlueprintName(blueprintName) {
   return {
@@ -135,23 +125,6 @@ export function setModalDeleteBlueprintVisible(visible) {
     payload: {
       visible
     }
-  };
-}
-
-export const SET_MODAL_CREATE_IMAGE_VISIBLE = "SET_MODAL_CREATE_IMAGE_VISIBLE";
-export function setModalCreateImageVisible(blueprint) {
-  return {
-    type: SET_MODAL_CREATE_IMAGE_VISIBLE,
-    payload: {
-      blueprint
-    }
-  };
-}
-
-export const SET_MODAL_CREATE_IMAGE_HIDDEN = "SET_MODAL_CREATE_IMAGE_HIDDEN";
-export function setModalCreateImageHidden() {
-  return {
-    type: SET_MODAL_CREATE_IMAGE_HIDDEN
   };
 }
 

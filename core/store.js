@@ -37,6 +37,7 @@ const initialState = {
     errorState: null
   },
   composes: {
+    composeTypes: [],
     composeList: [],
     queue: [],
     queueFetched: false,
@@ -44,11 +45,6 @@ const initialState = {
     errorState: null
   },
   modals: {
-    createImage: {
-      blueprint: {},
-      imageTypes: [],
-      visible: false
-    },
     stopBuild: {
       composeId: "",
       blueprintName: "",

@@ -1,4 +1,5 @@
 import {
+  FETCHING_COMPOSE_TYPES_SUCCEEDED,
   FETCHING_COMPOSE_SUCCEEDED,
   FETCHING_COMPOSE_STATUS_SUCCEEDED,
   COMPOSES_FAILURE,
@@ -17,6 +18,11 @@ function removeCompose(array, composeId) {
 
 const compose = (state = [], action) => {
   switch (action.type) {
+    case FETCHING_COMPOSE_TYPES_SUCCEEDED:
+      console.info("reducers");
+      return Object.assign({}, state, {
+        composeTypes: action.payload.composeTypes
+      });
     case FETCHING_COMPOSE_STATUS_SUCCEEDED:
       // Check composes for one that matches the id then replace it with its up-to-date version
       return Object.assign({}, state, {
