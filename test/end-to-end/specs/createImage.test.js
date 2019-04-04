@@ -49,7 +49,7 @@ describe("Create Image Page", function() {
       "Azure Disk Image (.vhd)",
       "VMware Virtual Machine Disk (.vmdk)"
     ];
-    if (process.env.TEST_OS === "rhel-7-6") {
+    if (process.env.TEST_OS && process.env.TEST_OS.startsWith("rhel-7-")) {
       expectedSelectOption = [
         "Select one",
         "Ext4 File System Image (.img)",
