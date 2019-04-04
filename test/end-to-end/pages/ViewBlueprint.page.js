@@ -154,6 +154,56 @@ class ViewBlueprintPage {
     return $(selector);
   }
 
+  detailsTabHostnameLabel(hostname) {
+    const selector = `span=${hostname}`;
+    browser.waitUntil(
+      () => browser.isExisting(selector),
+      timeout,
+      `blueprint hostname under "Details" tab in View Blueprint page cannot be found by selector ${selector}`
+    );
+    return $(selector);
+  }
+
+  get editHostnameButton() {
+    const selector = '[data-form="hostname"] .pficon-edit';
+    browser.waitUntil(
+      () => browser.isExisting(selector),
+      timeout,
+      `edit hostname button under "Details" tab in View Blueprint page cannot be found by selector ${selector}`
+    );
+    return $(selector);
+  }
+
+  get hostnameInputBox() {
+    const selector = '[data-form="hostname"] .form-control';
+    browser.waitUntil(
+      () => browser.isExisting(selector),
+      timeout,
+      `blueprint hostname input box under "Details" tab in View Blueprint page cannot be found by selector ${selector}`
+    );
+    return $(selector);
+  }
+
+  get okHostnameButton() {
+    const selector = '[data-form="hostname"] .form-control-pf-save';
+    browser.waitUntil(
+      () => browser.isExisting(selector),
+      timeout,
+      `ok button for hostname edit under "Details" tab in View Blueprint page cannot be found by selector ${selector}`
+    );
+    return $(selector);
+  }
+
+  get cancelHostnameButton() {
+    const selector = '[data-form="hostname"] .form-control-pf-cancel';
+    browser.waitUntil(
+      () => browser.isExisting(selector),
+      timeout,
+      `cancel button for hostname under "Details" tab in View Blueprint page cannot be found by selector ${selector}`
+    );
+    return $(selector);
+  }
+
   get selectedComponentsTab() {
     const selector = "=Selected Components";
     browser.waitUntil(
