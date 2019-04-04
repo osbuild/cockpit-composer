@@ -82,5 +82,21 @@ module.exports = {
     deleteBlueprintPage.loading();
     deleteBlueprintPage.deleteButton.click();
     browser.waitForExist(deleteBlueprintPage.containerSelector, timeout, true);
+  },
+
+  apiFetchTest: function(endpoint, options = { body: "" }) {
+    options.path = endpoint;
+    return browser.executeAsync(
+      function(endpoint, options, done) {
+        const t0 = performance.now();
+        const testHttp = cockpit.http("/run/weldr/api.socket", { superuser: "try" });
+        testHttp
+          .request(options)
+          .then(data => done({ success: true, data: data, latency: performance.now() - t0 }))
+          .catch(err => done({ success: false, data: err }));
+      },
+      endpoint,
+      options
+    );
   }
 };
