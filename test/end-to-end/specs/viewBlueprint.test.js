@@ -73,6 +73,69 @@ describe("View Blueprint Page", function() {
           updatedDescription
         );
       });
+
+      it("hostname should be added", function() {
+        const hostname = faker.lorem.slug();
+        viewBlueprintPage.editHostnameButton.click();
+        viewBlueprintPage.hostnameInputBox.setValue(hostname);
+        viewBlueprintPage.okHostnameButton.click();
+        // UI should get updated
+        expect(viewBlueprintPage.detailsTabHostnameLabel(hostname).getText()).to.equal(hostname);
+
+        // get dependencies from API
+        const endpoint = `/api/v0/blueprints/info/${name}`;
+        const result = commands.apiFetchTest(endpoint).value;
+        // result looks like:
+        // https://github.com/weldr/lorax/blob/b57de934681056aa4f9bd480a34136cf340f510a/src/pylorax/api/v0.py#L66
+        const result_hostname = JSON.parse(result.data).blueprints[0].customizations.hostname;
+        // new hostname should be stored
+        expect(result_hostname).to.equal(hostname);
+      });
+
+      it("hostname should be updated", function() {
+        const hostname = faker.lorem.slug();
+        viewBlueprintPage.editHostnameButton.click();
+        viewBlueprintPage.hostnameInputBox.setValue(hostname);
+        viewBlueprintPage.okHostnameButton.click();
+        // UI should get updated
+        expect(viewBlueprintPage.detailsTabHostnameLabel(hostname).getText()).to.equal(hostname);
+
+        // get dependencies from API
+        const endpoint = `/api/v0/blueprints/info/${name}`;
+        const result = commands.apiFetchTest(endpoint).value;
+        // result looks like:
+        // https://github.com/weldr/lorax/blob/b57de934681056aa4f9bd480a34136cf340f510a/src/pylorax/api/v0.py#L66
+        const result_hostname = JSON.parse(result.data).blueprints[0].customizations.hostname;
+        // new hostname should be stored
+        expect(result_hostname).to.equal(hostname);
+      });
+
+      it("hostname should not get updated by clicking X button", function() {
+        // set a new hostname in this test
+        const hostname = faker.lorem.slug();
+        viewBlueprintPage.editHostnameButton.click();
+        viewBlueprintPage.hostnameInputBox.setValue(hostname);
+        viewBlueprintPage.okHostnameButton.click();
+        // update hostname and click X button
+        viewBlueprintPage.editHostnameButton.click();
+        viewBlueprintPage.hostnameInputBox.setValue(faker.lorem.slug());
+        viewBlueprintPage.cancelHostnameButton.click();
+        // UI should get updated
+        expect(viewBlueprintPage.detailsTabHostnameLabel(hostname).getText()).to.equal(hostname);
+      });
+
+      it("disable OK button and show error input box if hostname has invalid character", function() {
+        viewBlueprintPage.editHostnameButton.click();
+        // input ?, invalid hostname character
+        viewBlueprintPage.hostnameInputBox.setValue("?");
+        // OK button should be disabled
+        expect(viewBlueprintPage.okHostnameButton.getAttribute("type")).to.equal("button");
+        expect(viewBlueprintPage.okHostnameButton.getAttribute("disabled")).to.equal("true");
+        // input box should be an error box
+        expect(browser.getAttribute('[data-form="hostname"]', "class")).to.include("has-error");
+        // cancel edit to clear environment
+        viewBlueprintPage.cancelHostnameButton.click();
+      });
     });
 
     describe("Edit Blueprint", function() {
