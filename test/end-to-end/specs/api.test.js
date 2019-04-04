@@ -14,25 +14,9 @@ describe("lorax-composer api sanity test", function() {
     blueprintsPage.loading();
   });
 
-  function apiFetchTest(endpoint, options = { body: "" }) {
-    options.path = endpoint;
-    return browser.executeAsync(
-      function(endpoint, options, done) {
-        const t0 = performance.now();
-        const testHttp = cockpit.http("/run/weldr/api.socket", { superuser: "try" });
-        testHttp
-          .request(options)
-          .then(data => done({ success: true, data: data, latency: performance.now() - t0 }))
-          .catch(err => done({ success: false, data: err }));
-      },
-      endpoint,
-      options
-    );
-  }
-
   it("/api/v0/blueprints/list", function() {
     const endpoint = "/api/v0/blueprints/list";
-    const result = apiFetchTest(endpoint).value;
+    const result = commands.apiFetchTest(endpoint).value;
     if (result.success) {
       console.log(`API - "/api/v0/blueprints/list" response time: ${result.latency} millisecond`);
     } else {

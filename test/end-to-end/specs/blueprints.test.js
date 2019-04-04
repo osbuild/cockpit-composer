@@ -54,6 +54,33 @@ describe("Blueprints Page", function() {
     expect(defaultArray.reverse().every((value, index) => value === sortedArray[index])).to.be.true;
   });
 
+  it("should export all dependencies packages", function() {
+    const ExportPage = require("../pages/Export.page");
+    const exportPage = new ExportPage(name);
+    blueprintComponent.moreDropdownMenu.click();
+    blueprintComponent.exportOption.click();
+    exportPage.loading();
+    exportPage.contentsTextarea.waitForValue(timeout);
+    // getText() does not work on Edge, but works on Firefox and Chrome
+    // the copied content should replace '\n' with space because
+    // the text in blueprint description box does not include '\n', but space
+    const blueprintManifest = exportPage.contentsTextarea.getValue().replace(/\n/g, " ");
+    // have to close Export page to make aftertest() work
+    exportPage.closeButton.click();
+    browser.waitForExist(exportPage.containerSelector, timeout, true);
+
+    // get dependencies from API
+    const endpoint = `/api/v0/blueprints/depsolve/${name}`;
+    const result = commands.apiFetchTest(endpoint).value;
+    // result looks like:
+    // https://github.com/weldr/lorax/blob/db7b1e4fcd7c71d98ebdbf8335aa17e276d48e8e/src/pylorax/api/v0.py#L349
+    const deps_array = JSON.parse(result.data).blueprints[0].dependencies;
+    const deps_str = deps_array.map(x => `${x.name}-${x.version}-${x.release}`).join(" ");
+
+    // compare dependencies coming from UI and from API
+    expect(blueprintManifest).to.equal(deps_str);
+  });
+
   describe("Filter by name", function() {
     beforeEach(function() {
       addContext(this, `filter blueprint by name ${name}`);
