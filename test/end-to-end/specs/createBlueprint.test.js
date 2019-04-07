@@ -18,11 +18,11 @@ describe("Create Blueprints Page", function() {
   });
 
   afterEach(function() {
-    const isOpen = browser.getAttribute(createBlueprintPage.containerSelector, "style").includes("display: block;");
+    const isOpen = browser.isExisting(createBlueprintPage.containerSelector);
     if (isOpen) {
       createBlueprintPage.cancelButton.click();
       browser.waitUntil(
-        () => browser.getAttribute(createBlueprintPage.containerSelector, "style").includes("display: none;"),
+        () => !browser.isExisting(createBlueprintPage.containerSelector),
         timeout,
         "Cannot close Create Blueprint dialog"
       );
@@ -36,11 +36,9 @@ describe("Create Blueprints Page", function() {
     expect(createBlueprintPage.helpBlock.getText()).to.equal("A blueprint name is required.");
   });
 
-  it("Alert message should look good - clicking create button", function() {
-    addContext(this, "create blueprint without name (clicking create button)");
-    createBlueprintPage.nameBox.click();
-    createBlueprintPage.createButton.click();
-    expect(createBlueprintPage.alert.getText()).to.equal("Required information is missing.");
+  it("Create button should be disabled when create blueprint dialog does not have name", function() {
+    addContext(this, "cannot create blueprint without name");
+    expect(createBlueprintPage.createButton.getAttribute("disabled")).to.equal("true");
   });
 
   it("Duplicated blueprint name help message should be in place", function() {
@@ -67,10 +65,10 @@ describe("Create Blueprints Page", function() {
   it("should close by clicking X button", function() {
     createBlueprintPage.clickXButton();
     browser.waitUntil(
-      () => browser.getAttribute(createBlueprintPage.containerSelector, "style").includes("display: none;"),
+      () => !browser.isExisting(createBlueprintPage.containerSelector),
       timeout,
       "Cannot close Create Blueprint dialog"
     );
-    expect(browser.getAttribute(createBlueprintPage.containerSelector, "style").includes("display: none;")).to.be.true;
+    expect(!browser.isExisting(createBlueprintPage.containerSelector));
   });
 });

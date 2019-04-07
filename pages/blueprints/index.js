@@ -162,6 +162,7 @@ class BlueprintsPage extends React.Component {
     return (
       <Layout className="container-fluid" ref={c => (this.layout = c)}>
         <BlueprintsToolbar
+          blueprintNames={blueprints.map(blueprint => blueprint.present.id)}
           emptyState={blueprints.length === 0 && blueprintFilters.filterValues.length === 0}
           errorState={blueprintsError !== null}
           filters={blueprintFilters}
@@ -189,14 +190,7 @@ class BlueprintsPage extends React.Component {
             )) ||
               ((blueprintFilters.filterValues.length === 0 && (
                 <EmptyState title={formatMessage(messages.emptyTitle)} message={formatMessage(messages.emptyMessage)}>
-                  <button
-                    className="btn btn-primary btn-lg"
-                    type="button"
-                    data-toggle="modal"
-                    data-target="#cmpsr-modal-crt-blueprint"
-                  >
-                    <FormattedMessage defaultMessage="Create Blueprint" />
-                  </button>
+                  <CreateBlueprint blueprintNames={blueprints.map(blueprint => blueprint.present.id)} />
                 </EmptyState>
               )) || (
                 <EmptyState
@@ -208,7 +202,6 @@ class BlueprintsPage extends React.Component {
                   </button>
                 </EmptyState>
               ))))}
-        <CreateBlueprint blueprintNames={blueprints.map(blueprint => blueprint.present.id)} />
         {exportBlueprint !== undefined && exportBlueprint.visible ? (
           <ExportBlueprint
             blueprint={exportBlueprint.name}

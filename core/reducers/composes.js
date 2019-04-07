@@ -19,7 +19,6 @@ function removeCompose(array, composeId) {
 const compose = (state = [], action) => {
   switch (action.type) {
     case FETCHING_COMPOSE_TYPES_SUCCEEDED:
-      console.info("reducers");
       return Object.assign({}, state, {
         composeTypes: action.payload.composeTypes
       });

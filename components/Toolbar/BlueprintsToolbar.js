@@ -3,6 +3,7 @@ import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
 import FilterInput from "./FilterInput";
 import ToolbarLayout from "./ToolbarLayout";
+import CreateBlueprint from "../Modal/CreateBlueprint";
 
 const BlueprintsToolbar = props => (
   <ToolbarLayout
@@ -35,15 +36,7 @@ const BlueprintsToolbar = props => (
     </div>
     <div className="toolbar-pf-action-right">
       <div className="form-group">
-        <button
-          className="btn btn-default"
-          type="button"
-          data-toggle="modal"
-          data-target="#cmpsr-modal-crt-blueprint"
-          disabled={props.errorState}
-        >
-          <FormattedMessage defaultMessage="Create Blueprint" />
-        </button>
+        <CreateBlueprint blueprintNames={props.blueprintNames} disabled={props.errorState} />
         <div className="dropdown btn-group dropdown-kebab-pf">
           <button
             className="btn btn-link dropdown-toggle"
@@ -72,6 +65,7 @@ const BlueprintsToolbar = props => (
 );
 
 BlueprintsToolbar.propTypes = {
+  blueprintNames: PropTypes.arrayOf(PropTypes.string).isRequired,
   filters: PropTypes.shape({
     defaultFilterType: PropTypes.string,
     filterTypes: PropTypes.arrayOf(PropTypes.object),

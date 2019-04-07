@@ -115,7 +115,6 @@ function* fetchQueue() {
 
 function* fetchComposeTypes() {
   try {
-    console.info("fetchComposeTypes");
     const response = yield call(fetchComposeTypesApi);
     yield put(fetchingComposeTypesSucceeded(response));
   } catch (error) {
