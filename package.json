@@ -178,7 +178,8 @@
       "jsx-a11y/no-onchange": "off",
       "jsx-a11y/label-has-for": "off",
       "redux-saga/no-unhandled-errors": 0,
-      "jsx-a11y/anchor-is-valid": "off"
+      "jsx-a11y/anchor-is-valid": "off",
+      "jsx-a11y/no-autofocus": "off"
     },
     "env": {
       "browser": true,
