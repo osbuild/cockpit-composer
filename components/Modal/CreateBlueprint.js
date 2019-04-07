@@ -3,11 +3,7 @@ import { Modal } from "patternfly-react";
 import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import {
-  setModalCreateBlueprintErrorInline,
-  setModalCreateBlueprintCheckErrors,
-  setModalCreateBlueprintBlueprint
-} from "../../core/actions/modals";
+import { setModalCreateBlueprintErrorInline, setModalCreateBlueprintBlueprint } from "../../core/actions/modals";
 import { creatingBlueprint } from "../../core/actions/blueprints";
 
 class CreateBlueprint extends React.Component {
@@ -44,7 +40,6 @@ class CreateBlueprint extends React.Component {
           <CreateBlueprintModal
             blueprintNames={this.props.blueprintNames}
             setModalCreateBlueprintErrorInline={this.props.setModalCreateBlueprintErrorInline}
-            setModalCreateBlueprintCheckErrors={this.props.setModalCreateBlueprintCheckErrors}
             setModalCreateBlueprintBlueprint={this.props.setModalCreateBlueprintBlueprint}
             createBlueprint={this.props.createBlueprint}
             creatingBlueprint={this.props.creatingBlueprint}
@@ -61,7 +56,8 @@ class CreateBlueprintModal extends React.Component {
     super(props);
     this.state = {
       errorNameEmpty: false,
-      errorNameDuplicate: false
+      errorNameDuplicate: false,
+      checkErrors: true
     };
   }
 
@@ -99,14 +95,10 @@ class CreateBlueprintModal extends React.Component {
   }
 
   handleCreateBlueprint(blueprint) {
-    this.close();
+    this.props.close();
     const updatedBlueprint = blueprint;
     updatedBlueprint.id = updatedBlueprint.name.replace(/\s/g, "-");
     this.props.creatingBlueprint(updatedBlueprint);
-  }
-
-  errorChecking(state) {
-    this.props.setModalCreateBlueprintCheckErrors(state);
   }
 
   dismissErrors() {
@@ -127,7 +119,7 @@ class CreateBlueprintModal extends React.Component {
   }
 
   handleErrorName(blueprintName) {
-    if (blueprintName === "" && this.props.createBlueprint.checkErrors) {
+    if (blueprintName === "" && this.state.checkErrors) {
       setTimeout(() => {
         this.setState({ errorNameEmpty: true });
       }, 200);
@@ -146,7 +138,7 @@ class CreateBlueprintModal extends React.Component {
           <Modal.CloseButton
             onClick={() => {
               this.dismissErrors();
-              this.props.close();
+              this.close();
             }}
           />
           <Modal.Title>
@@ -238,8 +230,8 @@ class CreateBlueprintModal extends React.Component {
           <button
             type="button"
             className="btn btn-default"
-            onMouseEnter={() => this.errorChecking(false)}
-            onMouseLeave={() => this.errorChecking(true)}
+            onMouseEnter={() => this.setState({ checkErrors: false })}
+            onMouseLeave={() => this.setState({ checkErrors: true })}
             onClick={e => {
               this.props.close();
               this.dismissErrors(e);
@@ -276,11 +268,9 @@ CreateBlueprintModal.propTypes = {
   close: PropTypes.func.isRequired,
   blueprintNames: PropTypes.arrayOf(PropTypes.string).isRequired,
   setModalCreateBlueprintErrorInline: PropTypes.func.isRequired,
-  setModalCreateBlueprintCheckErrors: PropTypes.func.isRequired,
   setModalCreateBlueprintBlueprint: PropTypes.func.isRequired,
   createBlueprint: PropTypes.shape({
     blueprint: PropTypes.object,
-    checkErrors: PropTypes.bool,
     errorInline: PropTypes.bool,
     inlineError: PropTypes.bool
   }).isRequired,
@@ -291,11 +281,9 @@ CreateBlueprint.propTypes = {
   blueprintNames: PropTypes.arrayOf(PropTypes.string),
   disabled: PropTypes.bool,
   setModalCreateBlueprintErrorInline: PropTypes.func,
-  setModalCreateBlueprintCheckErrors: PropTypes.func,
   setModalCreateBlueprintBlueprint: PropTypes.func,
   createBlueprint: PropTypes.shape({
     blueprint: PropTypes.object,
-    checkErrors: PropTypes.bool,
     errorInline: PropTypes.bool,
     inlineError: PropTypes.bool
   }),
@@ -306,7 +294,6 @@ CreateBlueprint.defaultProps = {
   blueprintNames: [],
   disabled: false,
   setModalCreateBlueprintErrorInline: function() {},
-  setModalCreateBlueprintCheckErrors: function() {},
   setModalCreateBlueprintBlueprint: function() {},
   createBlueprint: {},
   creatingBlueprint: function() {}
@@ -319,9 +306,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   setModalCreateBlueprintErrorInline: inlineError => {
     dispatch(setModalCreateBlueprintErrorInline(inlineError));
-  },
-  setModalCreateBlueprintCheckErrors: checkErrors => {
-    dispatch(setModalCreateBlueprintCheckErrors(checkErrors));
   },
   setModalCreateBlueprintBlueprint: blueprint => {
     dispatch(setModalCreateBlueprintBlueprint(blueprint));

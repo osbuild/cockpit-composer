@@ -18,16 +18,6 @@ export function setModalCreateBlueprintErrorInline(errorInline) {
   };
 }
 
-export const SET_MODAL_CREATE_BLUEPRINT_CHECK_ERRORS = "SET_MODAL_CREATE_BLUEPRINT_CHECK_ERRORS";
-export function setModalCreateBlueprintCheckErrors(checkErrors) {
-  return {
-    type: SET_MODAL_CREATE_BLUEPRINT_CHECK_ERRORS,
-    payload: {
-      checkErrors
-    }
-  };
-}
-
 export const SET_MODAL_CREATE_BLUEPRINT_BLUEPRINT = "SET_MODAL_CREATE_BLUEPRINT_BLUEPRINT";
 export function setModalCreateBlueprintBlueprint(blueprint) {
   return {

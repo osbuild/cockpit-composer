@@ -67,7 +67,6 @@ const initialState = {
     },
     createBlueprint: {
       inlineError: false,
-      checkErrors: true,
       blueprint: {
         name: "",
         description: "",
