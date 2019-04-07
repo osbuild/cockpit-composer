@@ -72,7 +72,6 @@ class CreateBlueprintModal extends React.Component {
   }
 
   componentDidUpdate() {
-    this.unbind();
     this.bindAutofocus();
   }
 
@@ -84,17 +83,12 @@ class CreateBlueprintModal extends React.Component {
       packages: []
     };
     this.props.setModalCreateBlueprintBlueprint(initialBlueprint);
-    this.unbind();
   }
 
   bindAutofocus() {
     $("#cmpsr-modal-crt-blueprint").on("shown.bs.modal", () => {
       $("#textInput-modal-markup").focus();
     });
-  }
-
-  unbind() {
-    $("#cmpsr-modal-crt-image .btn-primary").off("shown.bs.modal");
   }
 
   handleChange(e, prop) {
