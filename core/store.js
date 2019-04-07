@@ -65,14 +65,6 @@ const initialState = {
       id: "",
       visible: false
     },
-    createBlueprint: {
-      blueprint: {
-        name: "",
-        description: "",
-        modules: [],
-        packages: []
-      }
-    },
     pendingChanges: {
       componentUpdates: {
         past: [],
