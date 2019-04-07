@@ -226,25 +226,15 @@ class CreateBlueprintModal extends React.Component {
           >
             <FormattedMessage defaultMessage="Cancel" />
           </button>
-          {((this.state.name === "" || this.state.errorNameDuplicate) && (
-            <button
-              id="create-blueprint-modal-create-button"
-              type="button"
-              className="btn btn-primary"
-              onClick={() => this.setState({ errorInline: true })}
-            >
-              <FormattedMessage defaultMessage="Create" />
-            </button>
-          )) || (
-            <button
-              id="create-blueprint-modal-create-button"
-              type="button"
-              className="btn btn-primary"
-              onClick={() => this.handleCreateBlueprint()}
-            >
-              <FormattedMessage defaultMessage="Create" />
-            </button>
-          )}
+          <button
+            id="create-blueprint-modal-create-button"
+            type="button"
+            className="btn btn-primary"
+            disabled={this.state.name == "" || this.state.errorNameDuplicate}
+            onClick={() => this.handleCreateBlueprint()}
+          >
+            <FormattedMessage defaultMessage="Create" />
+          </button>
         </Modal.Footer>
       </Modal>
     );
