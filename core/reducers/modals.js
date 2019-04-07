@@ -6,7 +6,6 @@ import {
   SET_MODAL_DELETE_BLUEPRINT_NAME,
   SET_MODAL_DELETE_BLUEPRINT_ID,
   SET_MODAL_DELETE_BLUEPRINT_VISIBLE,
-  SET_MODAL_CREATE_BLUEPRINT_BLUEPRINT,
   SET_MODAL_DELETE_IMAGE_VISIBLE,
   SET_MODAL_DELETE_IMAGE_STATE,
   SET_MODAL_STOP_BUILD_VISIBLE,
@@ -17,17 +16,6 @@ import {
   SET_MODAL_MANAGE_SOURCES_CONTENTS,
   MODAL_MANAGE_SOURCES_FAILURE
 } from "../actions/modals";
-
-const modalCreateBlueprint = (state = [], action) => {
-  switch (action.type) {
-    case SET_MODAL_CREATE_BLUEPRINT_BLUEPRINT:
-      return Object.assign({}, state, {
-        createBlueprint: Object.assign({}, state.createBlueprint, { blueprint: action.payload.blueprint })
-      });
-    default:
-      return state;
-  }
-};
 
 const modalStopBuild = (state = [], action) => {
   switch (action.type) {
@@ -144,8 +132,6 @@ const modals = (state = [], action) => {
   switch (action.type) {
     case SET_MODAL_ACTIVE:
       return Object.assign({}, state, { modalActive: action.payload.modalActive });
-    case SET_MODAL_CREATE_BLUEPRINT_BLUEPRINT:
-      return modalCreateBlueprint(state, action);
     case SET_MODAL_DELETE_BLUEPRINT_NAME:
       return modalDeleteBlueprint(state, action);
     case SET_MODAL_DELETE_BLUEPRINT_ID:

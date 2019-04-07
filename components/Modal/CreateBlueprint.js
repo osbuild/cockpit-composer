@@ -3,7 +3,6 @@ import { Modal } from "patternfly-react";
 import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { setModalCreateBlueprintBlueprint } from "../../core/actions/modals";
 import { creatingBlueprint } from "../../core/actions/blueprints";
 
 class CreateBlueprint extends React.Component {
@@ -39,8 +38,6 @@ class CreateBlueprint extends React.Component {
         {this.state.showModal && (
           <CreateBlueprintModal
             blueprintNames={this.props.blueprintNames}
-            setModalCreateBlueprintBlueprint={this.props.setModalCreateBlueprintBlueprint}
-            createBlueprint={this.props.createBlueprint}
             creatingBlueprint={this.props.creatingBlueprint}
             close={this.close}
           />
@@ -57,24 +54,17 @@ class CreateBlueprintModal extends React.Component {
       errorNameEmpty: false,
       errorNameDuplicate: false,
       checkErrors: true,
-      errorInline: false
-    };
-  }
-
-  componentWillUnmount() {
-    const initialBlueprint = {
+      errorInline: false,
       name: "",
       description: "",
       modules: [],
       packages: []
     };
-    this.props.setModalCreateBlueprintBlueprint(initialBlueprint);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(e, prop) {
-    const o = Object.assign({}, this.props.createBlueprint.blueprint);
-    o[prop] = e.target.value;
-    this.props.setModalCreateBlueprintBlueprint(o);
+    this.setState({ [prop]: e.target.value });
     if (prop === "name") {
       this.dismissErrors();
       this.handleErrorDuplicate(e.target.value);
@@ -83,21 +73,32 @@ class CreateBlueprintModal extends React.Component {
 
   handleEnterKey(event) {
     if (event.which === 13 || event.keyCode === 13) {
-      this.handleErrors(this.props.createBlueprint.blueprint.name);
+      this.handleErrors(this.state.name);
       setTimeout(() => {
         if (this.state.errorNameEmpty || this.state.errorNameDuplicate) {
           this.setState({ errorInline: true });
         } else {
-          this.handleCreateBlueprint(this.props.createBlueprint.blueprint);
+          const blueprint = {
+            name: this.state.name,
+            description: this.state.description,
+            modules: this.state.modules,
+            packages: this.state.packages
+          };
+          this.handleCreateBlueprint(blueprint);
         }
       }, 300);
     }
   }
 
-  handleCreateBlueprint(blueprint) {
+  handleCreateBlueprint() {
     this.props.close();
-    const updatedBlueprint = blueprint;
-    updatedBlueprint.id = updatedBlueprint.name.replace(/\s/g, "-");
+    const updatedBlueprint = {
+      name: this.state.name,
+      description: this.state.description,
+      modules: this.state.modules,
+      packages: this.state.packages,
+      id: this.state.name.replace(/\s/g, "-")
+    };
     this.props.creatingBlueprint(updatedBlueprint);
   }
 
@@ -126,7 +127,6 @@ class CreateBlueprintModal extends React.Component {
   }
 
   render() {
-    const { createBlueprint } = this.props;
     return (
       <Modal show onHide={this.props.close} id="cmpsr-modal-crt-blueprint">
         <Modal.Header>
@@ -173,7 +173,7 @@ class CreateBlueprintModal extends React.Component {
                   type="text"
                   id="textInput-modal-markup"
                   className="form-control"
-                  value={createBlueprint.blueprint.name}
+                  value={this.state.name}
                   onFocus={e => {
                     this.dismissErrors();
                     this.handleErrorDuplicate(e.target.value);
@@ -192,7 +192,7 @@ class CreateBlueprintModal extends React.Component {
                     <FormattedMessage
                       defaultMessage="The name {name} already exists."
                       values={{
-                        name: createBlueprint.blueprint.name
+                        name: this.state.name
                       }}
                     />
                   </span>
@@ -208,7 +208,7 @@ class CreateBlueprintModal extends React.Component {
                   type="text"
                   id="textInput2-modal-markup"
                   className="form-control"
-                  value={createBlueprint.blueprint.description}
+                  value={this.state.description}
                   onChange={e => this.handleChange(e, "description")}
                   onKeyPress={e => this.handleEnterKey(e)}
                 />
@@ -226,7 +226,7 @@ class CreateBlueprintModal extends React.Component {
           >
             <FormattedMessage defaultMessage="Cancel" />
           </button>
-          {((createBlueprint.blueprint.name === "" || this.state.errorNameDuplicate) && (
+          {((this.state.name === "" || this.state.errorNameDuplicate) && (
             <button
               id="create-blueprint-modal-create-button"
               type="button"
@@ -240,7 +240,7 @@ class CreateBlueprintModal extends React.Component {
               id="create-blueprint-modal-create-button"
               type="button"
               className="btn btn-primary"
-              onClick={() => this.handleCreateBlueprint(createBlueprint.blueprint)}
+              onClick={() => this.handleCreateBlueprint()}
             >
               <FormattedMessage defaultMessage="Create" />
             </button>
@@ -254,39 +254,24 @@ class CreateBlueprintModal extends React.Component {
 CreateBlueprintModal.propTypes = {
   close: PropTypes.func.isRequired,
   blueprintNames: PropTypes.arrayOf(PropTypes.string).isRequired,
-  setModalCreateBlueprintBlueprint: PropTypes.func.isRequired,
-  createBlueprint: PropTypes.shape({
-    blueprint: PropTypes.object
-  }).isRequired,
   creatingBlueprint: PropTypes.func.isRequired
 };
 
 CreateBlueprint.propTypes = {
   blueprintNames: PropTypes.arrayOf(PropTypes.string),
   disabled: PropTypes.bool,
-  setModalCreateBlueprintBlueprint: PropTypes.func,
-  createBlueprint: PropTypes.shape({
-    blueprint: PropTypes.object
-  }),
   creatingBlueprint: PropTypes.func
 };
 
 CreateBlueprint.defaultProps = {
   blueprintNames: [],
   disabled: false,
-  setModalCreateBlueprintBlueprint: function() {},
-  createBlueprint: {},
   creatingBlueprint: function() {}
 };
 
-const mapStateToProps = state => ({
-  createBlueprint: state.modals.createBlueprint
-});
+const mapStateToProps = () => ({});
 
 const mapDispatchToProps = dispatch => ({
-  setModalCreateBlueprintBlueprint: blueprint => {
-    dispatch(setModalCreateBlueprintBlueprint(blueprint));
-  },
   creatingBlueprint: blueprint => {
     dispatch(creatingBlueprint(blueprint));
   }
