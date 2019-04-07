@@ -8,16 +8,6 @@ export function setModalActive(modalActive) {
   };
 }
 
-export const SET_MODAL_CREATE_BLUEPRINT_ERROR_INLINE = "SET_MODAL_CREATE_BLUEPRINT_ERROR_INLINE";
-export function setModalCreateBlueprintErrorInline(errorInline) {
-  return {
-    type: SET_MODAL_CREATE_BLUEPRINT_ERROR_INLINE,
-    payload: {
-      errorInline
-    }
-  };
-}
-
 export const SET_MODAL_CREATE_BLUEPRINT_BLUEPRINT = "SET_MODAL_CREATE_BLUEPRINT_BLUEPRINT";
 export function setModalCreateBlueprintBlueprint(blueprint) {
   return {

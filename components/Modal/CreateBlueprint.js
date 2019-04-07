@@ -3,7 +3,7 @@ import { Modal } from "patternfly-react";
 import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { setModalCreateBlueprintErrorInline, setModalCreateBlueprintBlueprint } from "../../core/actions/modals";
+import { setModalCreateBlueprintBlueprint } from "../../core/actions/modals";
 import { creatingBlueprint } from "../../core/actions/blueprints";
 
 class CreateBlueprint extends React.Component {
@@ -39,7 +39,6 @@ class CreateBlueprint extends React.Component {
         {this.state.showModal && (
           <CreateBlueprintModal
             blueprintNames={this.props.blueprintNames}
-            setModalCreateBlueprintErrorInline={this.props.setModalCreateBlueprintErrorInline}
             setModalCreateBlueprintBlueprint={this.props.setModalCreateBlueprintBlueprint}
             createBlueprint={this.props.createBlueprint}
             creatingBlueprint={this.props.creatingBlueprint}
@@ -57,7 +56,8 @@ class CreateBlueprintModal extends React.Component {
     this.state = {
       errorNameEmpty: false,
       errorNameDuplicate: false,
-      checkErrors: true
+      checkErrors: true,
+      errorInline: false
     };
   }
 
@@ -86,7 +86,7 @@ class CreateBlueprintModal extends React.Component {
       this.handleErrors(this.props.createBlueprint.blueprint.name);
       setTimeout(() => {
         if (this.state.errorNameEmpty || this.state.errorNameDuplicate) {
-          this.showInlineError();
+          this.setState({ errorInline: true });
         } else {
           this.handleCreateBlueprint(this.props.createBlueprint.blueprint);
         }
@@ -102,8 +102,7 @@ class CreateBlueprintModal extends React.Component {
   }
 
   dismissErrors() {
-    this.setState({ errorNameEmpty: false, errorNameDuplicate: false });
-    this.props.setModalCreateBlueprintErrorInline(false);
+    this.setState({ errorNameEmpty: false, errorNameDuplicate: false, errorInline: false });
   }
 
   handleErrors(blueprintName) {
@@ -126,27 +125,18 @@ class CreateBlueprintModal extends React.Component {
     }
   }
 
-  showInlineError() {
-    this.props.setModalCreateBlueprintErrorInline(true);
-  }
-
   render() {
     const { createBlueprint } = this.props;
     return (
       <Modal show onHide={this.props.close} id="cmpsr-modal-crt-blueprint">
         <Modal.Header>
-          <Modal.CloseButton
-            onClick={() => {
-              this.dismissErrors();
-              this.close();
-            }}
-          />
+          <Modal.CloseButton onClick={this.props.close} />
           <Modal.Title>
             <FormattedMessage defaultMessage="Create Blueprint" />
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {createBlueprint.errorInline && this.state.errorNameEmpty && (
+          {this.state.errorInline && this.state.errorNameEmpty && (
             <div className="alert alert-danger">
               <span className="pficon pficon-error-circle-o" />
               <strong>
@@ -154,7 +144,7 @@ class CreateBlueprintModal extends React.Component {
               </strong>
             </div>
           )}
-          {createBlueprint.errorInline && this.state.errorNameDuplicate && (
+          {this.state.errorInline && this.state.errorNameDuplicate && (
             <div className="alert alert-danger">
               <span className="pficon pficon-error-circle-o" />
               <strong>
@@ -232,10 +222,7 @@ class CreateBlueprintModal extends React.Component {
             className="btn btn-default"
             onMouseEnter={() => this.setState({ checkErrors: false })}
             onMouseLeave={() => this.setState({ checkErrors: true })}
-            onClick={e => {
-              this.props.close();
-              this.dismissErrors(e);
-            }}
+            onClick={this.props.close}
           >
             <FormattedMessage defaultMessage="Cancel" />
           </button>
@@ -244,7 +231,7 @@ class CreateBlueprintModal extends React.Component {
               id="create-blueprint-modal-create-button"
               type="button"
               className="btn btn-primary"
-              onClick={e => this.showInlineError(e)}
+              onClick={() => this.setState({ errorInline: true })}
             >
               <FormattedMessage defaultMessage="Create" />
             </button>
@@ -267,12 +254,9 @@ class CreateBlueprintModal extends React.Component {
 CreateBlueprintModal.propTypes = {
   close: PropTypes.func.isRequired,
   blueprintNames: PropTypes.arrayOf(PropTypes.string).isRequired,
-  setModalCreateBlueprintErrorInline: PropTypes.func.isRequired,
   setModalCreateBlueprintBlueprint: PropTypes.func.isRequired,
   createBlueprint: PropTypes.shape({
-    blueprint: PropTypes.object,
-    errorInline: PropTypes.bool,
-    inlineError: PropTypes.bool
+    blueprint: PropTypes.object
   }).isRequired,
   creatingBlueprint: PropTypes.func.isRequired
 };
@@ -280,12 +264,9 @@ CreateBlueprintModal.propTypes = {
 CreateBlueprint.propTypes = {
   blueprintNames: PropTypes.arrayOf(PropTypes.string),
   disabled: PropTypes.bool,
-  setModalCreateBlueprintErrorInline: PropTypes.func,
   setModalCreateBlueprintBlueprint: PropTypes.func,
   createBlueprint: PropTypes.shape({
-    blueprint: PropTypes.object,
-    errorInline: PropTypes.bool,
-    inlineError: PropTypes.bool
+    blueprint: PropTypes.object
   }),
   creatingBlueprint: PropTypes.func
 };
@@ -293,7 +274,6 @@ CreateBlueprint.propTypes = {
 CreateBlueprint.defaultProps = {
   blueprintNames: [],
   disabled: false,
-  setModalCreateBlueprintErrorInline: function() {},
   setModalCreateBlueprintBlueprint: function() {},
   createBlueprint: {},
   creatingBlueprint: function() {}
@@ -304,9 +284,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setModalCreateBlueprintErrorInline: inlineError => {
-    dispatch(setModalCreateBlueprintErrorInline(inlineError));
-  },
   setModalCreateBlueprintBlueprint: blueprint => {
     dispatch(setModalCreateBlueprintBlueprint(blueprint));
   },
