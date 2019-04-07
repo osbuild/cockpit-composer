@@ -6,8 +6,6 @@ import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
-  setModalCreateBlueprintErrorNameVisible,
-  setModalCreateBlueprintErrorDuplicateVisible,
   setModalCreateBlueprintErrorInline,
   setModalCreateBlueprintCheckErrors,
   setModalCreateBlueprintBlueprint
@@ -17,7 +15,9 @@ import { creatingBlueprint } from "../../core/actions/blueprints";
 class CreateBlueprint extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { showModal: false };
+    this.state = {
+      showModal: false
+    };
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
   }
@@ -45,8 +45,6 @@ class CreateBlueprint extends React.Component {
         {this.state.showModal && (
           <CreateBlueprintModal
             blueprintNames={this.props.blueprintNames}
-            setModalCreateBlueprintErrorNameVisible={this.props.setModalCreateBlueprintErrorNameVisible}
-            setModalCreateBlueprintErrorDuplicateVisible={this.props.setModalCreateBlueprintErrorDuplicateVisible}
             setModalCreateBlueprintErrorInline={this.props.setModalCreateBlueprintErrorInline}
             setModalCreateBlueprintCheckErrors={this.props.setModalCreateBlueprintCheckErrors}
             setModalCreateBlueprintBlueprint={this.props.setModalCreateBlueprintBlueprint}
@@ -61,6 +59,14 @@ class CreateBlueprint extends React.Component {
 }
 
 class CreateBlueprintModal extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      errorNameEmpty: false,
+      errorNameDuplicate: false
+    };
+  }
+
   componentDidMount() {
     this.bindAutofocus();
   }
@@ -105,7 +111,7 @@ class CreateBlueprintModal extends React.Component {
     if (event.which === 13 || event.keyCode === 13) {
       this.handleErrors(this.props.createBlueprint.blueprint.name);
       setTimeout(() => {
-        if (this.props.createBlueprint.errorNameVisible || this.props.createBlueprint.errorDuplicateVisible) {
+        if (this.state.errorNameEmpty || this.state.errorNameDuplicate) {
           this.showInlineError();
         } else {
           this.handleCreateBlueprint(this.props.createBlueprint.blueprint);
@@ -126,9 +132,8 @@ class CreateBlueprintModal extends React.Component {
   }
 
   dismissErrors() {
+    this.setState({ errorNameEmpty: false, errorNameDuplicate: false });
     this.props.setModalCreateBlueprintErrorInline(false);
-    this.props.setModalCreateBlueprintErrorNameVisible(false);
-    this.props.setModalCreateBlueprintErrorDuplicateVisible(false);
   }
 
   handleErrors(blueprintName) {
@@ -139,14 +144,14 @@ class CreateBlueprintModal extends React.Component {
   handleErrorDuplicate(blueprintName) {
     const nameNoSpaces = blueprintName.replace(/\s+/g, "-");
     if (this.props.blueprintNames.includes(nameNoSpaces)) {
-      this.props.setModalCreateBlueprintErrorDuplicateVisible(true);
+      this.setState({ errorNameDuplicate: true });
     }
   }
 
   handleErrorName(blueprintName) {
     if (blueprintName === "" && this.props.createBlueprint.checkErrors) {
       setTimeout(() => {
-        this.props.setModalCreateBlueprintErrorNameVisible(true);
+        this.setState({ errorNameEmpty: true });
       }, 200);
     }
   }
@@ -171,7 +176,7 @@ class CreateBlueprintModal extends React.Component {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {createBlueprint.errorInline && createBlueprint.errorNameVisible && (
+          {createBlueprint.errorInline && this.state.errorNameEmpty && (
             <div className="alert alert-danger">
               <span className="pficon pficon-error-circle-o" />
               <strong>
@@ -179,7 +184,7 @@ class CreateBlueprintModal extends React.Component {
               </strong>
             </div>
           )}
-          {createBlueprint.errorInline && createBlueprint.errorDuplicateVisible && (
+          {createBlueprint.errorInline && this.state.errorNameDuplicate && (
             <div className="alert alert-danger">
               <span className="pficon pficon-error-circle-o" />
               <strong>
@@ -197,9 +202,7 @@ class CreateBlueprintModal extends React.Component {
               />
             </p>
             <div
-              className={`form-group ${
-                createBlueprint.errorNameVisible || createBlueprint.errorDuplicateVisible ? "has-error" : ""
-              }`}
+              className={`form-group ${this.state.errorNameEmpty || this.state.errorNameDuplicate ? "has-error" : ""}`}
             >
               <label className="col-sm-3 control-label required-pf" htmlFor="textInput-modal-markup">
                 <FormattedMessage defaultMessage="Name" />
@@ -218,12 +221,12 @@ class CreateBlueprintModal extends React.Component {
                   onBlur={e => this.handleErrors(e.target.value)}
                   onKeyPress={e => this.handleEnterKey(e)}
                 />
-                {createBlueprint.errorNameVisible && (
+                {this.state.errorNameEmpty && (
                   <span className="help-block">
                     <FormattedMessage defaultMessage="A blueprint name is required." />
                   </span>
                 )}
-                {createBlueprint.errorDuplicateVisible && (
+                {this.state.errorNameDuplicate && (
                   <span className="help-block">
                     <FormattedMessage
                       defaultMessage="The name {name} already exists."
@@ -265,7 +268,7 @@ class CreateBlueprintModal extends React.Component {
           >
             <FormattedMessage defaultMessage="Cancel" />
           </button>
-          {((createBlueprint.blueprint.name === "" || createBlueprint.errorDuplicateVisible) && (
+          {((createBlueprint.blueprint.name === "" || this.state.errorNameDuplicate) && (
             <button
               id="create-blueprint-modal-create-button"
               type="button"
@@ -293,20 +296,14 @@ class CreateBlueprintModal extends React.Component {
 CreateBlueprintModal.propTypes = {
   close: PropTypes.func.isRequired,
   blueprintNames: PropTypes.arrayOf(PropTypes.string).isRequired,
-  setModalCreateBlueprintErrorNameVisible: PropTypes.func.isRequired,
-  setModalCreateBlueprintErrorDuplicateVisible: PropTypes.func.isRequired,
   setModalCreateBlueprintErrorInline: PropTypes.func.isRequired,
   setModalCreateBlueprintCheckErrors: PropTypes.func.isRequired,
   setModalCreateBlueprintBlueprint: PropTypes.func.isRequired,
   createBlueprint: PropTypes.shape({
     blueprint: PropTypes.object,
     checkErrors: PropTypes.bool,
-    errorDuplicateVisible: PropTypes.bool,
     errorInline: PropTypes.bool,
-    errorNameVisible: PropTypes.bool,
-    inlineError: PropTypes.bool,
-    showErrorDuplicate: PropTypes.bool,
-    showErrorName: PropTypes.bool
+    inlineError: PropTypes.bool
   }).isRequired,
   creatingBlueprint: PropTypes.func.isRequired
 };
@@ -314,20 +311,14 @@ CreateBlueprintModal.propTypes = {
 CreateBlueprint.propTypes = {
   blueprintNames: PropTypes.arrayOf(PropTypes.string),
   disabled: PropTypes.bool,
-  setModalCreateBlueprintErrorNameVisible: PropTypes.func,
-  setModalCreateBlueprintErrorDuplicateVisible: PropTypes.func,
   setModalCreateBlueprintErrorInline: PropTypes.func,
   setModalCreateBlueprintCheckErrors: PropTypes.func,
   setModalCreateBlueprintBlueprint: PropTypes.func,
   createBlueprint: PropTypes.shape({
     blueprint: PropTypes.object,
     checkErrors: PropTypes.bool,
-    errorDuplicateVisible: PropTypes.bool,
     errorInline: PropTypes.bool,
-    errorNameVisible: PropTypes.bool,
-    inlineError: PropTypes.bool,
-    showErrorDuplicate: PropTypes.bool,
-    showErrorName: PropTypes.bool
+    inlineError: PropTypes.bool
   }),
   creatingBlueprint: PropTypes.func
 };
@@ -335,8 +326,6 @@ CreateBlueprint.propTypes = {
 CreateBlueprint.defaultProps = {
   blueprintNames: [],
   disabled: false,
-  setModalCreateBlueprintErrorNameVisible: function() {},
-  setModalCreateBlueprintErrorDuplicateVisible: function() {},
   setModalCreateBlueprintErrorInline: function() {},
   setModalCreateBlueprintCheckErrors: function() {},
   setModalCreateBlueprintBlueprint: function() {},
@@ -349,12 +338,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setModalCreateBlueprintErrorNameVisible: nameErrorVisible => {
-    dispatch(setModalCreateBlueprintErrorNameVisible(nameErrorVisible));
-  },
-  setModalCreateBlueprintErrorDuplicateVisible: duplicateErrorVisible => {
-    dispatch(setModalCreateBlueprintErrorDuplicateVisible(duplicateErrorVisible));
-  },
   setModalCreateBlueprintErrorInline: inlineError => {
     dispatch(setModalCreateBlueprintErrorInline(inlineError));
   },

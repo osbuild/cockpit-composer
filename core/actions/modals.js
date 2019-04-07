@@ -8,26 +8,6 @@ export function setModalActive(modalActive) {
   };
 }
 
-export const SET_MODAL_CREATE_BLUEPRINT_ERROR_NAME_VISIBLE = "SET_MODAL_CREATE_BLUEPRINT_ERROR_NAME_VISIBLE";
-export function setModalCreateBlueprintErrorNameVisible(errorNameVisible) {
-  return {
-    type: SET_MODAL_CREATE_BLUEPRINT_ERROR_NAME_VISIBLE,
-    payload: {
-      errorNameVisible
-    }
-  };
-}
-
-export const SET_MODAL_CREATE_BLUEPRINT_ERROR_DUPLICATE_VISIBLE = "SET_MODAL_CREATE_BLUEPRINT_ERROR_DUPLICATE_VISIBLE";
-export function setModalCreateBlueprintErrorDuplicateVisible(errorDuplicateVisible) {
-  return {
-    type: SET_MODAL_CREATE_BLUEPRINT_ERROR_DUPLICATE_VISIBLE,
-    payload: {
-      errorDuplicateVisible
-    }
-  };
-}
-
 export const SET_MODAL_CREATE_BLUEPRINT_ERROR_INLINE = "SET_MODAL_CREATE_BLUEPRINT_ERROR_INLINE";
 export function setModalCreateBlueprintErrorInline(errorInline) {
   return {
