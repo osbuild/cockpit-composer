@@ -1,13 +1,12 @@
 // Create Blueprint Page
 class CreateBlueprintPage {
   constructor() {
-    this.containerSelector = '[id="cmpsr-modal-crt-blueprint"]';
+    this.containerSelector = '[role="dialog"] [id="cmpsr-modal-crt-blueprint"]';
   }
 
   loading() {
-    // sometimes the style attribute is style="display: block; padding-right: 12px;"
     browser.waitUntil(
-      () => browser.getAttribute(this.containerSelector, "style").includes("display: block;"),
+      () => browser.isExisting(this.containerSelector),
       timeout,
       "Cannot pop up Create Blueprint dialog"
     );
@@ -34,7 +33,7 @@ class CreateBlueprintPage {
   }
 
   get createButton() {
-    const selector = "span=Create";
+    const selector = '[id="create-blueprint-modal-create-button"]';
     browser.waitUntil(
       () => browser.isVisible(selector),
       timeout,
