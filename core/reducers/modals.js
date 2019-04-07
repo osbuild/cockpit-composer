@@ -6,7 +6,6 @@ import {
   SET_MODAL_DELETE_BLUEPRINT_NAME,
   SET_MODAL_DELETE_BLUEPRINT_ID,
   SET_MODAL_DELETE_BLUEPRINT_VISIBLE,
-  SET_MODAL_CREATE_BLUEPRINT_ERROR_INLINE,
   SET_MODAL_CREATE_BLUEPRINT_BLUEPRINT,
   SET_MODAL_DELETE_IMAGE_VISIBLE,
   SET_MODAL_DELETE_IMAGE_STATE,
@@ -21,10 +20,6 @@ import {
 
 const modalCreateBlueprint = (state = [], action) => {
   switch (action.type) {
-    case SET_MODAL_CREATE_BLUEPRINT_ERROR_INLINE:
-      return Object.assign({}, state, {
-        createBlueprint: Object.assign({}, state.createBlueprint, { errorInline: action.payload.errorInline })
-      });
     case SET_MODAL_CREATE_BLUEPRINT_BLUEPRINT:
       return Object.assign({}, state, {
         createBlueprint: Object.assign({}, state.createBlueprint, { blueprint: action.payload.blueprint })
@@ -149,8 +144,6 @@ const modals = (state = [], action) => {
   switch (action.type) {
     case SET_MODAL_ACTIVE:
       return Object.assign({}, state, { modalActive: action.payload.modalActive });
-    case SET_MODAL_CREATE_BLUEPRINT_ERROR_INLINE:
-      return modalCreateBlueprint(state, action);
     case SET_MODAL_CREATE_BLUEPRINT_BLUEPRINT:
       return modalCreateBlueprint(state, action);
     case SET_MODAL_DELETE_BLUEPRINT_NAME:
