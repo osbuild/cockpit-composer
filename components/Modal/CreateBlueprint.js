@@ -1,5 +1,3 @@
-/* global $ */
-
 import React from "react";
 import { Modal } from "patternfly-react";
 import { FormattedMessage } from "react-intl";
@@ -67,14 +65,6 @@ class CreateBlueprintModal extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.bindAutofocus();
-  }
-
-  componentDidUpdate() {
-    this.bindAutofocus();
-  }
-
   componentWillUnmount() {
     const initialBlueprint = {
       name: "",
@@ -83,12 +73,6 @@ class CreateBlueprintModal extends React.Component {
       packages: []
     };
     this.props.setModalCreateBlueprintBlueprint(initialBlueprint);
-  }
-
-  bindAutofocus() {
-    $("#cmpsr-modal-crt-blueprint").on("shown.bs.modal", () => {
-      $("#textInput-modal-markup").focus();
-    });
   }
 
   handleChange(e, prop) {
@@ -203,6 +187,7 @@ class CreateBlueprintModal extends React.Component {
               </label>
               <div className="col-sm-9">
                 <input
+                  autoFocus
                   type="text"
                   id="textInput-modal-markup"
                   className="form-control"
