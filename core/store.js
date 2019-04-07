@@ -66,8 +66,6 @@ const initialState = {
       visible: false
     },
     createBlueprint: {
-      showErrorName: false,
-      showErrorDuplicate: false,
       inlineError: false,
       checkErrors: true,
       blueprint: {
