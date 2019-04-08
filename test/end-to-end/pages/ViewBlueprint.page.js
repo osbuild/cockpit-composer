@@ -204,6 +204,68 @@ class ViewBlueprintPage {
     return $(selector);
   }
 
+  get createUserAccountButton() {
+    const selector = `span=Create User Account`;
+    browser.waitUntil(
+      () => browser.isExisting(selector),
+      timeout,
+      `Create User Account button under "Details" tab in View Blueprint page cannot be found by selector ${selector}`
+    );
+    return $(selector);
+  }
+
+  fullNameCell(name) {
+    const selector = `[data-tr=${name}] [data-td=fullname]`;
+    browser.waitUntil(
+      () => browser.isExisting(selector),
+      timeout,
+      `Full name cell under "Details" tab in View Blueprint page cannot be found by selector ${selector}`
+    );
+    return $(selector);
+  }
+
+  userNameCell(name) {
+    const selector = `[data-tr=${name}] [data-td=username]`;
+    browser.waitUntil(
+      () => browser.isExisting(selector),
+      timeout,
+      `User name cell under "Details" tab in View Blueprint page cannot be found by selector ${selector}`
+    );
+    return $(selector);
+  }
+
+  administratorCell(name) {
+    return `[data-tr=${name}] [data-td=groups] span`;
+  }
+
+  passwordCell(name) {
+    return `[data-tr=${name}] [data-td=password] span`;
+  }
+
+  sshKeyCell(name) {
+    return `[data-tr=${name}] [data-td=sshkey] span`;
+  }
+
+  editUserButton(name) {
+    const selector = `[data-tr=${name}] [data-btn="edit"]`;
+    browser.waitUntil(
+      () => browser.isExisting(selector),
+      timeout,
+      `Edit user button in user ${name} row cannot be found by selector ${selector}`
+    );
+    return $(selector);
+  }
+
+  moreUserButton(name) {
+    const selector = `[data-tr=${name}] [data-btn="more"]`;
+    browser.waitUntil(
+      () => browser.isExisting(selector),
+      timeout,
+      `: button in user ${name} row cannot be found by selector ${selector}`
+    );
+    return $(selector);
+  }
+
   get selectedComponentsTab() {
     const selector = "=Selected Components";
     browser.waitUntil(
