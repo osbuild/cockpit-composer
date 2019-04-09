@@ -455,16 +455,16 @@ class BlueprintPage extends React.Component {
                             </thead>
                             <tbody>
                               {users.map(user => (
-                                <tr key={user.name}>
-                                  <td>{user.description}</td>
-                                  <td>{user.name}</td>
-                                  <td>
+                                <tr key={user.name} data-tr={user.name}>
+                                  <td data-td="fullname">{user.description}</td>
+                                  <td data-td="username">{user.name}</td>
+                                  <td data-td="groups">
                                     {user.groups !== undefined && user.groups.includes("wheel") && (
                                       <span className="fa fa-check" />
                                     )}
                                   </td>
-                                  <td>{user.password && <span className="fa fa-check" />}</td>
-                                  <td>
+                                  <td data-td="password">{user.password && <span className="fa fa-check" />}</td>
+                                  <td data-td="sshkey">
                                     {user.key !== undefined && (
                                       <span>
                                         <span className="fa fa-check" />
@@ -479,6 +479,7 @@ class BlueprintPage extends React.Component {
                                       type="button"
                                       aria-label={`${formatMessage(messages.userEdit)} ${user.name}`}
                                       onClick={e => this.handleShowModalEditUser(e, user)}
+                                      data-btn="edit"
                                     >
                                       <span className="pficon pficon-edit" />
                                     </button>
@@ -488,6 +489,7 @@ class BlueprintPage extends React.Component {
                                         aria-label={`${formatMessage(messages.userKebab)} ${user.name}`}
                                         className="btn btn-link dropdown-toggle"
                                         type="button"
+                                        data-btn="more"
                                         id="dropdownKebab"
                                         data-toggle="dropdown"
                                         aria-haspopup="true"
