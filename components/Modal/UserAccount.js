@@ -196,7 +196,7 @@ class UserAccount extends React.Component {
     return (
       <div
         className="modal fade"
-        id="cmpsr-modal-crt-blueprint"
+        id="cmpsr-modal-user-account"
         ref={c => {
           this.modal = c;
         }}
