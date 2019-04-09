@@ -53,6 +53,9 @@ class Password extends React.Component {
     }
     if (event.target.value === this.state.passwordTwo) {
       this.setState({ displayWarningMatch: false });
+      if (event.target.value === "") {
+        this.props.setValidPassword(event.target.value);
+      }
     }
   }
 
