@@ -191,7 +191,7 @@ class UserAccount extends React.Component {
     const disabledSubmit =
       userAccount.showDuplicateUser ||
       userAccount.showInvalidName ||
-      userAccount.length === 0 ||
+      userAccount.name.length === 0 ||
       userAccount.showInvalidPassword;
     return (
       <div
