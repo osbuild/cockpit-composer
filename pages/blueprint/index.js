@@ -243,7 +243,7 @@ class BlueprintPage extends React.Component {
       users = users.concat(user);
     }
     this.props.setBlueprintUsers(this.props.blueprint.id, users);
-    $("#cmpsr-modal-crt-blueprint").modal("hide");
+    $("#cmpsr-modal-user-account").modal("hide");
   }
 
   handleDeleteUser(userName) {
