@@ -59,6 +59,22 @@ describe("Create Image Page", function() {
         "TAR Archive (.tar)"
       ];
     }
+    if (process.env.TEST_OS && process.env.TEST_OS.startsWith("rhel-8")) {
+      expectedSelectOption = [
+        "Select one",
+        "alibaba",
+        "Amazon Machine Image Disk (.ami)",
+        "Ext4 File System Image (.img)",
+        "google",
+        "Live Bootable ISO (.iso)",
+        "OpenStack Image (.qcow2)",
+        "Raw Partitioned Disk Image (.img)",
+        "QEMU QCOW2 Image (.qcow2)",
+        "TAR Archive (.tar)",
+        "Azure Disk Image (.vhd)",
+        "VMware Virtual Machine Disk (.vmdk)"
+      ];
+    }
     const selectOption = createImagePage.selectOption.map(item => item.getText());
     expect(selectOption).to.deep.equal(expectedSelectOption);
   });
