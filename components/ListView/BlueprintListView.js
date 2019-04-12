@@ -3,6 +3,7 @@ import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
 import Link from "../Link/Link";
 import CreateImage from "../Modal/CreateImage";
+import DeleteBlueprint from "../Modal/DeleteBlueprint";
 
 class BlueprintListView extends React.PureComponent {
   constructor() {
@@ -46,9 +47,7 @@ class BlueprintListView extends React.PureComponent {
                     </li>
                   )}
                   <li>
-                    <a href="#" onClick={e => this.props.handleShowModalDelete(e, blueprint)}>
-                      <FormattedMessage defaultMessage="Delete" />
-                    </a>
+                    <DeleteBlueprint blueprint={blueprint} />
                   </li>
                 </ul>
               </div>
@@ -72,7 +71,6 @@ class BlueprintListView extends React.PureComponent {
 }
 
 BlueprintListView.propTypes = {
-  handleShowModalDelete: PropTypes.func,
   blueprints: PropTypes.arrayOf(PropTypes.object),
   handleShowModalExport: PropTypes.func,
   imageTypes: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -82,7 +80,6 @@ BlueprintListView.propTypes = {
 };
 
 BlueprintListView.defaultProps = {
-  handleShowModalDelete: function() {},
   blueprints: [],
   handleShowModalExport: function() {},
   layout: {}
