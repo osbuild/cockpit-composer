@@ -142,6 +142,9 @@
 .cmpsr-list-pf .list-pf-main-content {
   flex-basis: 100%;
 }
+.list-view-pf-main-info > .list-pf-icon {
+  margin-right: 20px;
+}
 .cmpsr-list-pf .list-pf-additional-content {
   flex-basis: 100%;
   flex-shrink: 0;
