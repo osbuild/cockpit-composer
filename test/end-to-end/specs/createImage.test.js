@@ -36,47 +36,11 @@ describe("Create Image Page", function() {
     expect(createImagePage.createButton.isEnabled()).to.be.false;
   });
 
-  it("Image Type should be a list of type", function() {
-    let expectedSelectOption = [
-      "Select one",
-      "Amazon Machine Image Disk (.ami)",
-      "Ext4 File System Image (.img)",
-      "Live Bootable ISO (.iso)",
-      "OpenStack Image (.qcow2)",
-      "Raw Partitioned Disk Image (.img)",
-      "QEMU QCOW2 Image (.qcow2)",
-      "TAR Archive (.tar)",
-      "Azure Disk Image (.vhd)",
-      "VMware Virtual Machine Disk (.vmdk)"
-    ];
-    if (process.env.TEST_OS && process.env.TEST_OS.startsWith("rhel-7-")) {
-      expectedSelectOption = [
-        "Select one",
-        "Ext4 File System Image (.img)",
-        "Live Bootable ISO (.iso)",
-        "Raw Partitioned Disk Image (.img)",
-        "QEMU QCOW2 Image (.qcow2)",
-        "TAR Archive (.tar)"
-      ];
-    }
-    if (process.env.TEST_OS && process.env.TEST_OS.startsWith("rhel-8")) {
-      expectedSelectOption = [
-        "Select one",
-        "alibaba",
-        "Amazon Machine Image Disk (.ami)",
-        "Ext4 File System Image (.img)",
-        "google",
-        "Live Bootable ISO (.iso)",
-        "OpenStack Image (.qcow2)",
-        "Raw Partitioned Disk Image (.img)",
-        "QEMU QCOW2 Image (.qcow2)",
-        "TAR Archive (.tar)",
-        "Azure Disk Image (.vhd)",
-        "VMware Virtual Machine Disk (.vmdk)"
-      ];
-    }
+  it("Image Type should be include .iso and .qcow2", function() {
     const selectOption = createImagePage.selectOption.map(item => item.getText());
-    expect(selectOption).to.deep.equal(expectedSelectOption);
+    expect(selectOption)
+      .to.include("Live Bootable ISO (.iso)")
+      .and.include("QEMU QCOW2 Image (.qcow2)");
   });
 
   it("should show correct help message by clicking ?", function() {
