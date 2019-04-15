@@ -1,13 +1,12 @@
 // Delete Blueprint Page
 class DeleteBlueprintPage {
   constructor() {
-    this.containerSelector = '[id="cmpsr-modal-delete"]';
+    this.containerSelector = '[role="dialog"] [id="cmpsr-modal-delete"]';
   }
 
   loading() {
-    // sometimes the style attribute is style="display: block; padding-right: 12px;"
     browser.waitUntil(
-      () => browser.getAttribute(this.containerSelector, "style").includes("display: block;"),
+      () => browser.isExisting(this.containerSelector),
       timeout,
       "Cannot pop up Delete Blueprint dialog"
     );
