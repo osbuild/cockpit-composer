@@ -25,7 +25,9 @@ const constants = {
   delete_blueprint: "/api/v0/blueprints/delete/",
   delete_workspace: "/api/v0/blueprints/workspace/",
   get_sources_list: "/api/v0/projects/source/list",
-  get_sources_info: "/api/v0/projects/source/info/"
+  get_sources_info: "/api/v0/projects/source/info/",
+  post_source: "/api/v0/projects/source/new",
+  delete_source: "/api/v0/projects/source/delete/"
 };
 
 export default constants;

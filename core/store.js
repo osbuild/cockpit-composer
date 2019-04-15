@@ -73,8 +73,9 @@ const initialState = {
       }
     },
     manageSources: {
-      sources: [],
-      visible: false
+      fetchingSources: true,
+      sources: {},
+      error: {}
     },
     userAccount: {
       name: "",
