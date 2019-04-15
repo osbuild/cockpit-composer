@@ -9,8 +9,9 @@ import {
   SET_MODAL_STOP_BUILD_STATE,
   SET_MODAL_CREATE_USER_VISIBLE,
   SET_MODAL_CREATE_USER_DATA,
-  SET_MODAL_MANAGE_SOURCES_VISIBLE,
   SET_MODAL_MANAGE_SOURCES_CONTENTS,
+  ADD_MODAL_MANAGE_SOURCES_ENTRY,
+  REMOVE_MODAL_MANAGE_SOURCES_ENTRY,
   MODAL_MANAGE_SOURCES_FAILURE
 } from "../actions/modals";
 
@@ -90,16 +91,21 @@ const modalManageSources = (state = [], action) => {
       return Object.assign({}, state, {
         manageSources: Object.assign({}, state.manageSources, {
           sources: action.payload.sources.sources,
-          error: action.payload.sources.errors
+          errors: action.payload.sources.errors,
+          fetchingSources: false
         })
       });
-    case SET_MODAL_MANAGE_SOURCES_VISIBLE:
+    case ADD_MODAL_MANAGE_SOURCES_ENTRY:
       return Object.assign({}, state, {
-        manageSources: Object.assign({}, state.manageSources, { visible: action.payload.visible })
+        manageSources: Object.assign({}, state.manageSources, { fetchingSources: true })
+      });
+    case REMOVE_MODAL_MANAGE_SOURCES_ENTRY:
+      return Object.assign({}, state, {
+        manageSources: Object.assign({}, state.manageSources, { fetchingSources: true })
       });
     case MODAL_MANAGE_SOURCES_FAILURE:
       return Object.assign({}, state, {
-        manageSources: Object.assign({}, state.manageSources, { error: action.payload.error })
+        manageSources: Object.assign({}, state.manageSources, { error: action.payload.error, fetchingSources: false })
       });
     default:
       return state;
@@ -130,7 +136,9 @@ const modals = (state = [], action) => {
       return modalUserAccount(state, action);
     case SET_MODAL_MANAGE_SOURCES_CONTENTS:
       return modalManageSources(state, action);
-    case SET_MODAL_MANAGE_SOURCES_VISIBLE:
+    case ADD_MODAL_MANAGE_SOURCES_ENTRY:
+      return modalManageSources(state, action);
+    case REMOVE_MODAL_MANAGE_SOURCES_ENTRY:
       return modalManageSources(state, action);
     case MODAL_MANAGE_SOURCES_FAILURE:
       return modalManageSources(state, action);

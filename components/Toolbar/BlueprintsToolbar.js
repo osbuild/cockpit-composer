@@ -1,9 +1,9 @@
 import React from "react";
-import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
 import FilterInput from "./FilterInput";
 import ToolbarLayout from "./ToolbarLayout";
 import CreateBlueprint from "../Modal/CreateBlueprint";
+import ManageSources from "../Modal/ManageSources";
 
 const BlueprintsToolbar = props => (
   <ToolbarLayout
@@ -50,12 +50,7 @@ const BlueprintsToolbar = props => (
           </button>
           <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
             <li>
-              <a href="#" onClick={e => props.handleShowModalManageSources(e)}>
-                <FormattedMessage
-                  defaultMessage="View Sources"
-                  description="User action for displaying the list of source repositories"
-                />
-              </a>
+              <ManageSources manageSources={props.manageSources} />
             </li>
           </ul>
         </div>
@@ -76,10 +71,14 @@ BlueprintsToolbar.propTypes = {
   filterClearValues: PropTypes.func,
   sortSetValue: PropTypes.func,
   errorState: PropTypes.bool,
-  handleShowModalManageSources: PropTypes.func,
   emptyState: PropTypes.bool,
   sortKey: PropTypes.string,
-  sortValue: PropTypes.string
+  sortValue: PropTypes.string,
+  manageSources: PropTypes.shape({
+    fetchingSources: PropTypes.bool,
+    sources: PropTypes.objectOf(PropTypes.object),
+    error: PropTypes.object
+  })
 };
 
 BlueprintsToolbar.defaultProps = {
@@ -89,10 +88,10 @@ BlueprintsToolbar.defaultProps = {
   filterClearValues: function() {},
   sortSetValue: function() {},
   errorState: false,
-  handleShowModalManageSources: function() {},
   emptyState: false,
   sortKey: "",
-  sortValue: ""
+  sortValue: "",
+  manageSources: {}
 };
 
 export default BlueprintsToolbar;

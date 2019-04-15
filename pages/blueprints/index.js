@@ -6,7 +6,6 @@ import Layout from "../../components/Layout/Layout";
 import BlueprintListView from "../../components/ListView/BlueprintListView";
 import CreateBlueprint from "../../components/Modal/CreateBlueprint";
 import ExportBlueprint from "../../components/Modal/ExportBlueprint";
-import ManageSources from "../../components/Modal/ManageSources";
 import EmptyState from "../../components/EmptyState/EmptyState";
 import Loading from "../../components/Loading/Loading";
 import BlueprintsToolbar from "../../components/Toolbar/BlueprintsToolbar";
@@ -16,7 +15,6 @@ import {
   setModalExportBlueprintName,
   setModalExportBlueprintContents,
   setModalExportBlueprintVisible,
-  setModalManageSourcesVisible,
   fetchingModalManageSourcesContents
 } from "../../core/actions/modals";
 import { blueprintsSortSetKey, blueprintsSortSetValue } from "../../core/actions/sort";
@@ -57,14 +55,13 @@ class BlueprintsPage extends React.Component {
     this.setNotifications = this.setNotifications.bind(this);
     this.handleHideModalExport = this.handleHideModalExport.bind(this);
     this.handleShowModalExport = this.handleShowModalExport.bind(this);
-    this.handleHideModalManageSources = this.handleHideModalManageSources.bind(this);
-    this.handleShowModalManageSources = this.handleShowModalManageSources.bind(this);
     this.handleStartCompose = this.handleStartCompose.bind(this);
   }
 
   componentWillMount() {
     if (this.props.blueprintsLoading === true) {
       this.props.fetchingBlueprints();
+      this.props.fetchingModalManageSourcesContents();
     }
   }
 
@@ -103,17 +100,6 @@ class BlueprintsPage extends React.Component {
     e.stopPropagation();
   }
 
-  handleHideModalManageSources() {
-    this.props.setModalManageSourcesVisible(false);
-  }
-
-  handleShowModalManageSources(e) {
-    this.props.fetchingModalManageSourcesContents();
-    this.props.setModalManageSourcesVisible(true);
-    e.preventDefault();
-    e.stopPropagation();
-  }
-
   render() {
     const {
       blueprints,
@@ -144,7 +130,7 @@ class BlueprintsPage extends React.Component {
           sortKey={blueprintSortKey}
           sortValue={blueprintSortValue}
           sortSetValue={blueprintsSortSetValue}
-          handleShowModalManageSources={this.handleShowModalManageSources}
+          manageSources={manageSources}
         />
         {(blueprintsLoading === true && <Loading />) ||
           ((blueprintsError !== null && (
@@ -180,9 +166,6 @@ class BlueprintsPage extends React.Component {
             handleHideModal={this.handleHideModalExport}
           />
         ) : null}
-        {manageSources !== undefined && manageSources.visible ? (
-          <ManageSources handleHideModal={this.handleHideModalManageSources} sources={manageSources.sources} />
-        ) : null}
       </Layout>
     );
   }
@@ -193,7 +176,6 @@ BlueprintsPage.propTypes = {
   setModalExportBlueprintName: PropTypes.func,
   setModalExportBlueprintContents: PropTypes.func,
   fetchingModalExportBlueprintContents: PropTypes.func,
-  setModalManageSourcesVisible: PropTypes.func,
   fetchingModalManageSourcesContents: PropTypes.func,
   fetchingBlueprints: PropTypes.func,
   blueprints: PropTypes.arrayOf(PropTypes.object),
@@ -203,8 +185,9 @@ BlueprintsPage.propTypes = {
     visible: PropTypes.bool
   }),
   manageSources: PropTypes.shape({
-    sources: PropTypes.arrayOf(PropTypes.object),
-    visible: PropTypes.bool
+    fetchingSources: PropTypes.bool,
+    sources: PropTypes.objectOf(PropTypes.object),
+    error: PropTypes.object
   }),
   blueprintSortKey: PropTypes.string,
   blueprintSortValue: PropTypes.string,
@@ -234,7 +217,6 @@ BlueprintsPage.defaultProps = {
   setModalExportBlueprintName: function() {},
   setModalExportBlueprintContents: function() {},
   fetchingModalExportBlueprintContents: function() {},
-  setModalManageSourcesVisible: function() {},
   fetchingModalManageSourcesContents: function() {},
   fetchingBlueprints: function() {},
   blueprints: [],
@@ -304,9 +286,6 @@ const mapDispatchToProps = dispatch => ({
   },
   fetchingModalManageSourcesContents: () => {
     dispatch(fetchingModalManageSourcesContents());
-  },
-  setModalManageSourcesVisible: modalVisible => {
-    dispatch(setModalManageSourcesVisible(modalVisible));
   },
   blueprintsSortSetKey: key => {
     dispatch(blueprintsSortSetKey(key));

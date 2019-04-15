@@ -130,16 +130,6 @@ export function setModalUserAccountVisible(visible) {
   };
 }
 
-export const SET_MODAL_MANAGE_SOURCES_VISIBLE = "SET_MODAL_MANAGE_SOURCES_VISIBLE";
-export function setModalManageSourcesVisible(visible) {
-  return {
-    type: SET_MODAL_MANAGE_SOURCES_VISIBLE,
-    payload: {
-      visible
-    }
-  };
-}
-
 export const SET_MODAL_MANAGE_SOURCES_CONTENTS = "SET_MODAL_MANAGE_SOURCES_CONTENTS";
 export function setModalManageSourcesContents(sources) {
   return {
@@ -163,6 +153,26 @@ export function modalManageSourcesFailure(error) {
     type: MODAL_MANAGE_SOURCES_FAILURE,
     payload: {
       error
+    }
+  };
+}
+
+export const ADD_MODAL_MANAGE_SOURCES_ENTRY = "ADD_MODAL_MANAGE_SOURCES_ENTRY";
+export function addModalManageSourcesEntry(source) {
+  return {
+    type: ADD_MODAL_MANAGE_SOURCES_ENTRY,
+    payload: {
+      source
+    }
+  };
+}
+
+export const REMOVE_MODAL_MANAGE_SOURCES_ENTRY = "REMOVE_MODAL_MANAGE_SOURCES_ENTRY";
+export function removeModalManageSourcesEntry(sourceName) {
+  return {
+    type: REMOVE_MODAL_MANAGE_SOURCES_ENTRY,
+    payload: {
+      sourceName
     }
   };
 }

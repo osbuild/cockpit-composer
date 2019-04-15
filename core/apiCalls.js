@@ -155,6 +155,30 @@ export function fetchSourceInfoApi(sourceName) {
   return sourceFetch;
 }
 
+export function addSourceApi(source) {
+  return utils.apiFetch(
+    constants.post_source,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(source)
+    },
+    true
+  );
+}
+
+export function deleteSourceApi(sourceName) {
+  return utils.apiFetch(
+    constants.delete_source + sourceName,
+    {
+      method: "DELETE"
+    },
+    true
+  );
+}
+
 export function startComposeApi(blueprintName, composeType) {
   const requestBody = {
     blueprint_name: blueprintName,

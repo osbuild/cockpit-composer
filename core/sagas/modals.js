@@ -1,10 +1,12 @@
 import { call, put, takeEvery } from "redux-saga/effects";
-import { fetchSourceInfoApi } from "../apiCalls";
+import { fetchSourceInfoApi, addSourceApi, deleteSourceApi } from "../apiCalls";
 
 import {
   FETCHING_MODAL_MANAGE_SOURCES_CONTENTS,
   setModalManageSourcesContents,
-  modalManageSourcesFailure
+  modalManageSourcesFailure,
+  ADD_MODAL_MANAGE_SOURCES_ENTRY,
+  REMOVE_MODAL_MANAGE_SOURCES_ENTRY
 } from "../actions/modals";
 
 function* fetchModalManageSourcesContents() {
@@ -17,6 +19,41 @@ function* fetchModalManageSourcesContents() {
   }
 }
 
+function* addModalManageSourcesEntry(action) {
+  try {
+    const { source } = action.payload;
+    let deleteResponse;
+    let addResponse;
+    if (source.editNameOriginal !== "" && source.editNameOriginal !== source.name) {
+      deleteResponse = yield call(deleteSourceApi, source.editNameOriginal);
+      if (deleteResponse) {
+        addResponse = yield call(addSourceApi, source);
+      }
+    } else {
+      addResponse = yield call(addSourceApi, source);
+    }
+    if (addResponse) {
+      yield call(fetchModalManageSourcesContents);
+    }
+  } catch (error) {
+    console.log("Error adding source. ", error);
+    yield put(modalManageSourcesFailure(error));
+  }
+}
+
+function* removeModalManageSourcesEntry(action) {
+  try {
+    const { sourceName } = action.payload;
+    yield call(deleteSourceApi, sourceName);
+    yield call(fetchModalManageSourcesContents);
+  } catch (error) {
+    console.log("Error deleting source. ", error);
+    yield put(modalManageSourcesFailure(error));
+  }
+}
+
 export default function*() {
   yield takeEvery(FETCHING_MODAL_MANAGE_SOURCES_CONTENTS, fetchModalManageSourcesContents);
+  yield takeEvery(ADD_MODAL_MANAGE_SOURCES_ENTRY, addModalManageSourcesEntry);
+  yield takeEvery(REMOVE_MODAL_MANAGE_SOURCES_ENTRY, removeModalManageSourcesEntry);
 }
