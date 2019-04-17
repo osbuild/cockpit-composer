@@ -12,7 +12,7 @@ class SourcesPage {
   }
 
   get title() {
-    const selector = `${this.containerSelector} [id="myModalLabel"] span`;
+    const selector = `${this.containerSelector} [id="title-manage-sources"] span`;
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,

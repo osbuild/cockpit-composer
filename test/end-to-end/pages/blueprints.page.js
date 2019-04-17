@@ -60,7 +60,7 @@ class BlueprintsPage {
   }
 
   get viewSourcesItem() {
-    const selector = "span=View Sources";
+    const selector = "span=Manage Sources";
     browser.waitUntil(
       () =>
         $(".toolbar-pf-action-right .dropdown-kebab-pf")
