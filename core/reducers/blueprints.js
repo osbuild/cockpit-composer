@@ -46,7 +46,8 @@ const blueprints = (state = [], action) => {
       });
     case FETCHING_BLUEPRINT_NAMES_SUCCEEDED:
       return Object.assign({}, state, {
-        fetchingBlueprints: false
+        fetchingBlueprints: false,
+        blueprintNames: action.payload.blueprints
       });
     // The following reducers filter the blueprint out of the state and add the new version if
     // the blueprint contains component data or is not found in the state
@@ -55,6 +56,7 @@ const blueprints = (state = [], action) => {
         !state.blueprintList.some(blueprint => blueprint.present.id === action.payload.blueprint.id)
         ? Object.assign({}, state, {
             fetchingBlueprints: false,
+            blueprintNames: [],
             blueprintList: [
               ...state.blueprintList.filter(blueprint => blueprint.present.id !== action.payload.blueprint.id),
               {

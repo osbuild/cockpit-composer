@@ -49,7 +49,7 @@ function* fetchBlueprintsFromName(blueprintName) {
 function* fetchBlueprints() {
   try {
     const blueprintNames = yield call(fetchBlueprintNamesApi);
-    yield put(fetchingBlueprintNamesSucceeded());
+    yield put(fetchingBlueprintNamesSucceeded(blueprintNames));
     yield* blueprintNames.map(blueprintName => fetchBlueprintsFromName(blueprintName));
   } catch (error) {
     console.log("errorloadBlueprintsSaga", error);
