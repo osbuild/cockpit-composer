@@ -133,7 +133,7 @@ class ManageSourcesModal extends React.Component {
       warningDuplicateUrl: false,
       editName: ""
     };
-    this.handleShowAddEntry = this.handleShowAddEntry.bind(this);
+    this.handleShowForm = this.handleShowForm.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleValidateName = this.handleValidateName.bind(this);
     this.handleValidateUrl = this.handleValidateUrl.bind(this);
@@ -159,9 +159,9 @@ class ManageSourcesModal extends React.Component {
     }
   }
 
-  handleShowAddEntry(e, state) {
-    this.setState({ addEntry: state });
-    if (state) {
+  handleShowForm(e, showForm) {
+    this.setState({ addEntry: showForm });
+    if (showForm) {
       this.setState({
         editName: ""
       });
@@ -196,15 +196,13 @@ class ManageSourcesModal extends React.Component {
   }
 
   handleValidateName(name) {
-    let sources = Object.assign({}, this.props.manageSources.sources);
-    const duplicateName = sources.hasOwnProperty(name);
+    const duplicateName = this.props.manageSources.hasOwnProperty(name);
     this.setState({ warningDuplicateName: duplicateName });
   }
 
   handleValidateUrl(url) {
-    let sourceUrls = Object.values(this.props.manageSources.sources).map(source => source.url);
-    const duplicateUrl = !sourceUrls.every(sourceUrl => sourceUrl !== url);
-    this.setState({ warningDuplicateUrl: duplicateUrl });
+    const sourceUrls = Object.values(this.props.manageSources.sources).map(source => source.url);
+    this.setState({ warningDuplicateUrl: !sourceUrls.every(sourceUrl => sourceUrl !== url) });
   }
 
   handleEditSource(name) {
@@ -395,7 +393,7 @@ class ManageSourcesModal extends React.Component {
                         type="button"
                         autoFocus={this.state.editName === ""}
                         className="btn btn-primary pull-right"
-                        onClick={e => this.handleShowAddEntry(e, true)}
+                        onClick={e => this.handleShowForm(e, true)}
                         value={formatMessage(messages.add)}
                       />
                     </div>
@@ -407,7 +405,6 @@ class ManageSourcesModal extends React.Component {
                     {customSources.length > 0 &&
                       customSources.map(source => (
                         <SourcesListItem
-                          editable
                           source={source}
                           key={source.name}
                           edited={this.state.editName}
@@ -436,7 +433,7 @@ class ManageSourcesModal extends React.Component {
                   {` `}
                 </div>
               )}
-              <button type="button" className="btn btn-default" onClick={e => this.handleShowAddEntry(e, false)}>
+              <button type="button" className="btn btn-default" onClick={e => this.handleShowForm(e, false)}>
                 {formatMessage(messages.cancel)}
               </button>
               {` `}
