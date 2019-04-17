@@ -131,10 +131,7 @@ class ManageSourcesModal extends React.Component {
       check_gpg: false,
       warningDuplicateName: false,
       warningDuplicateUrl: false,
-      editNameOriginal: "",
-      editNameNew: ""
-      // editNameOriginal is used for deleting the original entry
-      // editNameNew is used for managing focus
+      editName: ""
     };
     this.handleShowAddEntry = this.handleShowAddEntry.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -166,7 +163,7 @@ class ManageSourcesModal extends React.Component {
     this.setState({ addEntry: state });
     if (state) {
       this.setState({
-        editNameOriginal: ""
+        editName: ""
       });
     } else {
       this.props.clearError({});
@@ -191,9 +188,6 @@ class ManageSourcesModal extends React.Component {
     }
     if (input === "name") {
       this.handleValidateName(value);
-      if (this.state.editNameOriginal !== "") {
-        this.setState({ editNameNew: value });
-      }
     }
     if (input === "url") {
       this.handleValidateUrl(value);
@@ -203,9 +197,6 @@ class ManageSourcesModal extends React.Component {
 
   handleValidateName(name) {
     let sources = Object.assign({}, this.props.manageSources.sources);
-    if (this.state.editNameOriginal !== "") {
-      delete sources[name];
-    }
     const duplicateName = sources.hasOwnProperty(name);
     this.setState({ warningDuplicateName: duplicateName });
   }
@@ -219,7 +210,7 @@ class ManageSourcesModal extends React.Component {
   handleEditSource(name) {
     this.setState({
       addEntry: true,
-      editNameOriginal: name,
+      editName: name,
       name: name,
       type: this.props.manageSources.sources[name].type,
       url: this.props.manageSources.sources[name].url,
@@ -235,8 +226,7 @@ class ManageSourcesModal extends React.Component {
       url: this.state.url,
       type: this.state.type,
       check_ssl: this.state.check_ssl,
-      check_gpg: this.state.check_gpg,
-      editNameOriginal: this.state.editNameOriginal
+      check_gpg: this.state.check_gpg
     };
     this.props.addSource(source);
   }
@@ -281,6 +271,7 @@ class ManageSourcesModal extends React.Component {
                 aria-describedby="textInput1-modal-source-help"
                 aria-required="true"
                 aria-invalid={this.state.warningDuplicateName}
+                readOnly={this.state.editName !== "" ? true : false}
                 value={this.state.name}
                 onChange={e => this.handleChange(e, "name")}
               />
@@ -383,7 +374,7 @@ class ManageSourcesModal extends React.Component {
                 description="Sources provide the contents from which components are selected"
               />
             )) ||
-              ((this.state.editNameOriginal === "" && <FormattedMessage defaultMessage="Add Source" />) || (
+              ((this.state.editName === "" && <FormattedMessage defaultMessage="Add Source" />) || (
                 <FormattedMessage defaultMessage="Edit Source" />
               ))}
           </Modal.Title>
@@ -402,7 +393,7 @@ class ManageSourcesModal extends React.Component {
                     <div className="cmpsr-header__actions">
                       <input
                         type="button"
-                        autoFocus={this.state.editNameOriginal === ""}
+                        autoFocus={this.state.editName === ""}
                         className="btn btn-primary pull-right"
                         onClick={e => this.handleShowAddEntry(e, true)}
                         value={formatMessage(messages.add)}
@@ -419,7 +410,7 @@ class ManageSourcesModal extends React.Component {
                           editable
                           source={source}
                           key={source.name}
-                          edited={this.state.editNameNew}
+                          edited={this.state.editName}
                           edit={this.handleEditSource}
                           remove={this.props.removeSource}
                         />
@@ -456,7 +447,7 @@ class ManageSourcesModal extends React.Component {
                 disabled={disabledSubmit}
                 onClick={() => this.handleSubmitSource()}
               >
-                {(this.state.editNameOriginal === "" && formatMessage(messages.save)) || formatMessage(messages.update)}
+                {(this.state.editName === "" && formatMessage(messages.save)) || formatMessage(messages.update)}
               </button>
             </>
           )}

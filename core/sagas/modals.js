@@ -22,16 +22,7 @@ function* fetchModalManageSourcesContents() {
 function* addModalManageSourcesEntry(action) {
   try {
     const { source } = action.payload;
-    let deleteResponse;
-    let addResponse;
-    if (source.editNameOriginal !== "" && source.editNameOriginal !== source.name) {
-      deleteResponse = yield call(deleteSourceApi, source.editNameOriginal);
-      if (deleteResponse) {
-        addResponse = yield call(addSourceApi, source);
-      }
-    } else {
-      addResponse = yield call(addSourceApi, source);
-    }
+    const addResponse = yield call(addSourceApi, source);
     if (addResponse) {
       yield call(fetchModalManageSourcesContents);
     }
