@@ -115,6 +115,9 @@ const messages = defineMessages({
   userEdit: {
     defaultMessage: "Edit User Account"
   },
+  userKebab: {
+    defaultMessage: "User Account Actions"
+  },
   userDelete: {
     defaultMessage: "Delete User Account"
   }
@@ -236,9 +239,11 @@ class BlueprintPage extends React.Component {
     $("#cmpsr-modal-user-account").modal("hide");
   }
 
-  handleDeleteUser(userName) {
+  handleDeleteUser(userName, e) {
     const users = this.props.blueprint.customizations.user.filter(user => user.name !== userName);
     this.props.setBlueprintUsers(this.props.blueprint.id, users);
+    e.preventDefault();
+    e.stopPropagation();
   }
 
   // handle show/hide of modal dialogs
@@ -477,14 +482,26 @@ class BlueprintPage extends React.Component {
                                       <span className="pficon pficon-edit" />
                                     </button>
                                     {` `}
-                                    <button
-                                      className="btn btn-default"
-                                      type="button"
-                                      aria-label={`${formatMessage(messages.userDelete)} ${user.name}`}
-                                      onClick={() => this.handleDeleteUser(user.name)}
-                                    >
-                                      <span className="pficon pficon-delete" />
-                                    </button>
+                                    <div className="dropdown btn-group dropdown-kebab-pf">
+                                      <button
+                                        aria-label={`${formatMessage(messages.userKebab)} ${user.name}`}
+                                        className="btn btn-link dropdown-toggle"
+                                        type="button"
+                                        id="dropdownKebab"
+                                        data-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false"
+                                      >
+                                        <span className="fa fa-ellipsis-v" />
+                                      </button>
+                                      <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
+                                        <li>
+                                          <a href="#" onClick={e => this.handleDeleteUser(user.name, e)}>
+                                            {formatMessage(messages.userDelete)}
+                                          </a>
+                                        </li>
+                                      </ul>
+                                    </div>
                                   </td>
                                 </tr>
                               ))}
