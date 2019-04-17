@@ -4,10 +4,13 @@ import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-i
 
 const messages = defineMessages({
   edit: {
-    defaultMessage: "Edit source"
+    defaultMessage: "Edit Source"
+  },
+  kebab: {
+    defaultMessage: "Source Actions"
   },
   remove: {
-    defaultMessage: "Remove source"
+    defaultMessage: "Remove Source"
   },
   baseurl: {
     defaultMessage: "yum repository"
@@ -58,7 +61,7 @@ class SourcesListItem extends React.Component {
             {(this.props.editable && (
               <div className="list-pf-actions">
                 <button
-                  aria-label={formatMessage(messages.edit)}
+                  aria-label={`${formatMessage(messages.edit)} ${source.name}`}
                   className="btn btn-default"
                   type="button"
                   ref={this.editButton}
@@ -66,14 +69,26 @@ class SourcesListItem extends React.Component {
                 >
                   <span aria-hidden="true" className="pficon pficon-edit" />
                 </button>
-                <button
-                  aria-label={formatMessage(messages.remove)}
-                  className="btn btn-default"
-                  type="button"
-                  onClick={() => this.props.remove(source.name)}
-                >
-                  <span aria-hidden="true" className="pficon pficon-delete" />
-                </button>
+                <div className="dropdown btn-group dropdown-kebab-pf">
+                  <button
+                    aria-label={`${formatMessage(messages.kebab)} ${source.name}`}
+                    className="btn btn-link dropdown-toggle"
+                    type="button"
+                    id="dropdownKebab"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <span className="fa fa-ellipsis-v" />
+                  </button>
+                  <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
+                    <li>
+                      <a href="#" onClick={() => this.props.remove(source.name)}>
+                        {formatMessage(messages.remove)}
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
             )) || (
               <div className="list-pf-actions">
