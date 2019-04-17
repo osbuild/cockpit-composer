@@ -58,7 +58,7 @@ class SourcesListItem extends React.Component {
               </div>
               <div className="list-pf-additional-content text-muted">{source.url}</div>
             </div>
-            {(this.props.editable && (
+            {(this.props.edit && (
               <div className="list-pf-actions">
                 <button
                   aria-label={`${formatMessage(messages.edit)} ${source.name}`}
@@ -114,7 +114,6 @@ SourcesListItem.propTypes = {
     type: PropTypes.string
   }),
   key: PropTypes.string,
-  editable: PropTypes.bool,
   edited: PropTypes.string,
   edit: PropTypes.func,
   remove: PropTypes.func,
@@ -124,10 +123,9 @@ SourcesListItem.propTypes = {
 SourcesListItem.defaultProps = {
   source: {},
   key: "",
-  editable: false,
   edited: "",
-  edit: function() {},
-  remove: function() {}
+  edit: undefined,
+  remove: undefined
 };
 
 export default injectIntl(SourcesListItem);
