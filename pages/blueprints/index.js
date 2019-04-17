@@ -38,8 +38,20 @@ const messages = defineMessages({
   emptyTitle: {
     defaultMessage: "No Blueprints"
   },
-  errorTitle: {
+  errorGenericTitle: {
     defaultMessage: "An Error Occurred"
+  },
+  errorInactiveTitle: {
+    defaultMessage: "Image Building Service is Not Active"
+  },
+  errorInactivePrimary: {
+    defaultMessage: "Start"
+  },
+  errorInactiveSecondary: {
+    defaultMessage: "Troubleshoot"
+  },
+  errorInactiveCheckbox: {
+    defaultMessage: "Automatically start lorax-composer on boot"
   },
   noResultsMessage: {
     defaultMessage: "Modify your filter criteria to get results."
@@ -50,12 +62,17 @@ const messages = defineMessages({
 });
 
 class BlueprintsPage extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.state = {
+      enableService: true
+    };
     this.setNotifications = this.setNotifications.bind(this);
     this.handleHideModalExport = this.handleHideModalExport.bind(this);
     this.handleShowModalExport = this.handleShowModalExport.bind(this);
     this.handleStartCompose = this.handleStartCompose.bind(this);
+    this.startService = this.startService.bind(this);
+    this.goToServicePage = this.goToServicePage.bind(this);
   }
 
   componentWillMount() {
@@ -100,6 +117,25 @@ class BlueprintsPage extends React.Component {
     e.stopPropagation();
   }
 
+  startService(e) {
+    if (!e || e.button !== 0) return;
+    let argv;
+    if (this.state.enableService) {
+      argv = ["systemctl", "enable", "--now", "lorax-composer.socket"];
+    } else {
+      argv = ["systemctl", "start", "lorax-composer.socket"];
+    }
+    cockpit
+      .spawn(argv, { superuser: "require", err: "message" })
+      .then(() => this.props.fetchingBlueprints())
+      .catch(err => console.error("Failed to start lorax-composer.socket:", JSON.stringify(err)));
+  }
+
+  goToServicePage(e) {
+    if (!e || e.button !== 0) return;
+    cockpit.jump("/system/services#/lorax-composer.service");
+  }
+
   render() {
     const {
       blueprints,
@@ -133,9 +169,39 @@ class BlueprintsPage extends React.Component {
           manageSources={manageSources}
         />
         {(blueprintsLoading === true && <Loading />) ||
-          ((blueprintsError !== null && (
-            <EmptyState title={formatMessage(messages.errorTitle)} message={blueprintsError.message} />
-          )) ||
+          ((blueprintsError !== null &&
+            ((blueprintsError.message === "not-found" && (
+              <EmptyState title={formatMessage(messages.errorInactiveTitle)} icon="fa fa-exclamation-circle">
+                <>
+                  <div className="checkbox">
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={this.state.enableService}
+                        onChange={e => this.setState({ enableService: e.target.checked })}
+                      />
+                      {formatMessage(messages.errorInactiveCheckbox)}
+                    </label>
+                  </div>
+                  <div className="blank-slate-pf-main-action">
+                    <button className="btn btn-primary btn-lg" type="button" onClick={this.startService}>
+                      {formatMessage(messages.errorInactivePrimary)}
+                    </button>
+                  </div>
+                  <div className="blank-slate-pf-secondary-action">
+                    <button className="btn btn-default" type="button" onClick={this.goToServicePage}>
+                      {formatMessage(messages.errorInactiveSecondary)}
+                    </button>
+                  </div>
+                </>
+              </EmptyState>
+            )) || (
+              <EmptyState
+                title={formatMessage(messages.errorGenericTitle)}
+                icon="fa fa-exclamation-circle"
+                message={blueprintsError.message}
+              />
+            ))) ||
             ((blueprints.length > 0 && (
               <BlueprintListView
                 blueprints={blueprints.map(blueprint => blueprint.present)}

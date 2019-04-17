@@ -3,6 +3,7 @@ import {
   REDO,
   DELETE_HISTORY,
   CREATING_BLUEPRINT_SUCCEEDED,
+  FETCHING_BLUEPRINTS,
   FETCHING_BLUEPRINTS_SUCCEEDED,
   FETCHING_BLUEPRINT_NAMES_SUCCEEDED,
   FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED,
@@ -37,6 +38,11 @@ const blueprints = (state = [], action) => {
             future: []
           }
         ]
+      });
+    case FETCHING_BLUEPRINTS:
+      return Object.assign({}, state, {
+        fetchingBlueprints: true,
+        errorState: null
       });
     case FETCHING_BLUEPRINT_NAMES_SUCCEEDED:
       return Object.assign({}, state, {
