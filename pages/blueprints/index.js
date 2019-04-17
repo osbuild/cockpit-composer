@@ -315,7 +315,9 @@ const makeMapStateToProps = () => {
         blueprintSortValue: state.sort.blueprints.value,
         blueprintFilters: state.filter.blueprints,
         blueprintsError: state.blueprints.errorState,
-        blueprintsLoading: state.blueprints.fetchingBlueprints
+        blueprintsLoading:
+          state.blueprints.fetchingBlueprints ||
+          (state.blueprints.blueprintNames.length > 0 && state.blueprints.blueprintList.length === 0)
       };
     }
     return {
