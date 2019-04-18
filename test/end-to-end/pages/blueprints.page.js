@@ -67,7 +67,7 @@ class BlueprintsPage {
           .getAttribute("class")
           .includes("open") && browser.isVisible(selector),
       timeout,
-      `View Sources dropdown item in Blueprints page cannot be found by selector ${selector}`
+      `Manage Sources dropdown item in Blueprints page cannot be found by selector ${selector}`
     );
     return $(selector);
   }
