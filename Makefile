@@ -123,6 +123,8 @@ bots:
 update-po:
 upload-pot: po-push
 download-po: po-pull
+clean-po:
+	rm po/*.po
 
 .PHONY: tag local-clean vm check devel-install
 
