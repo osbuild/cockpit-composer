@@ -265,6 +265,7 @@ class ManageSourcesModal extends React.Component {
               <input
                 autoFocus
                 type="text"
+                id="textInput1-modal-source"
                 className="form-control"
                 aria-describedby="textInput1-modal-source-help"
                 aria-required="true"

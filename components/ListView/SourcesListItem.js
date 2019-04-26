@@ -38,7 +38,7 @@ class SourcesListItem extends React.Component {
     const type = source.type.substring("yum-".length);
     const { formatMessage } = this.props.intl;
     return (
-      <div className="list-pf-item" key={key}>
+      <div className="list-pf-item" key={key} data-source={source.name}>
         <div className="list-pf-container">
           <div className="list-pf-content list-pf-content-flex">
             <div className="list-pf-left">
