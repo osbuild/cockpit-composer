@@ -220,6 +220,7 @@ class BlueprintPage extends React.Component {
       { ...(this.props.userAccount.groups.includes("wheel") && { groups: ["wheel"] }) }
     );
     if (password) {
+      password = password.replace(/\r?\n|\r/g, "");
       user.password = password;
     }
     let users = [];
