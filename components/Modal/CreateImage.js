@@ -134,7 +134,8 @@ class CreateImageModal extends React.Component {
     );
 
     const warningEmpty = this.props.blueprint.packages.length === 0 && this.props.blueprint.modules.length === 0;
-    const warningUnsaved = this.props.blueprint.changed === true || this.props.blueprint.localPendingChanges.length > 0;
+    const warningUnsaved =
+      this.props.blueprint.workspacePendingChanges.length > 0 || this.props.blueprint.localPendingChanges.length > 0;
     const warnings = (
       <React.Fragment>
         {warningEmpty && (
