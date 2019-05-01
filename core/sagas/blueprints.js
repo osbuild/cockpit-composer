@@ -75,8 +75,8 @@ function* fetchBlueprintContents(action) {
     if (workspaceChanges.diff.length > 0) {
       workspacePendingChanges = workspaceChanges.diff.map(change => {
         return {
-          componentOld: change.old === null ? null : change.old.Package,
-          componentNew: change.new === null ? null : change.new.Package
+          componentOld: change.old === null ? null : change.old.Package ? change.old.Package : change.old.Module,
+          componentNew: change.new === null ? null : change.new.Package ? change.new.Package : change.new.Module
         };
       });
       pastComponents = generatePastComponents(workspaceChanges, blueprintData.blueprint.packages);
@@ -104,7 +104,9 @@ function* fetchBlueprintContents(action) {
 }
 
 function generatePastComponents(workspaceChanges, packages) {
-  const updatedPackages = workspaceChanges.diff.filter(change => change.old !== null).map(change => change.old.Package);
+  const updatedPackages = workspaceChanges.diff
+    .filter(change => change.old !== null)
+    .map(change => (change.old.Package ? change.old.Package : change.old.Module));
   const originalPackages = packages.filter(originalPackage => {
     const addedPackage = workspaceChanges.diff.find(
       change => change.old === null && change.new.Package.name === originalPackage.name
