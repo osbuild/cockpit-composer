@@ -17,10 +17,6 @@ fi
 # Install nodejs if it does not exist
 which node > /dev/null 2>&1 || yum install -y nodejs
 
-# Kernel 4.x ONLY
-# Set SELinux to permissive to make lorax-composer happy
-[[ $(uname -r) == 4* ]] && sed -i 's/^SELINUX=.*/SELINUX=permissive/g' /etc/selinux/config && cat /etc/selinux/config
-
 # Add Fedora repos (base, modular and updates) in RHEL 7.6
 if [[ $(grep -ihs "Red Hat Enterprise Linux" /etc/redhat-release) == *Red*7* ]]; then
     cat << EOF >> /etc/yum.repos.d/fedora.repo
