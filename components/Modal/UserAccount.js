@@ -182,7 +182,12 @@ class UserAccount extends React.Component {
   }
 
   encryptPassword(password) {
-    return cockpit.spawn(["openssl", "passwd", "-6", "-stdin"], { err: "message" }).input(password);
+    return cockpit
+      .script(
+        "$(which /usr/libexec/platform-python 2>/dev/null || which python3 2>/dev/null || which python) -c 'import sys, crypt; print(crypt.crypt(sys.stdin.readline().strip(), crypt.mksalt(crypt.METHOD_SHA512)))'",
+        { err: "message" }
+      )
+      .input(password);
   }
 
   render() {
