@@ -133,6 +133,90 @@ describe("Create User Account Page", function() {
       expect(viewBlueprintPage.fullNameCell(username).getText()).to.equal("zzz");
     });
 
+    it("password should get updated", function() {
+      const newPassword = "456rty$%^RTY";
+      viewBlueprintPage.editUserButton(username).click();
+      createUserAccount.loading();
+      createUserAccount.setNewPasswordButton.click();
+      createUserAccount.passwordBox.setValue(newPassword);
+      createUserAccount.confirmPasswordBox.setValue(newPassword);
+      createUserAccount.updateButton.click();
+      browser.waitForExist(createUserAccount.containerSelector, timeout, true);
+
+      // get blueprint info from API
+      const endpoint = `/api/v0/blueprints/info/${name}`;
+      const result = commands.apiFetchTest(endpoint).value;
+      // result looks like:
+      // https://github.com/weldr/lorax/blob/b57de934681056aa4f9bd480a34136cf340f510a/src/pylorax/api/v0.py#L66
+      const resultPassword = JSON.parse(result.data).blueprints[0].customizations.user[0].password;
+      const lastIndex = resultPassword.lastIndexOf("$");
+      const salt = resultPassword.substring(0, lastIndex);
+      const pyinvoke = `$(which /usr/libexec/platform-python 2>/dev/null || which python3 2>/dev/null || which python) -c 'import sys, crypt; print(crypt.crypt(sys.stdin.readline().strip(), "${salt}"))'`;
+
+      const expectedPassword = browser.executeAsync(
+        function(password, pyinvoke, done) {
+          cockpit
+            .script(pyinvoke, { err: "message" })
+            .input(password)
+            .then(data => done(data));
+        },
+        newPassword,
+        pyinvoke
+      );
+      expect(expectedPassword.value.trim()).to.equal(resultPassword);
+    });
+
+    it("password should be removed", function() {
+      viewBlueprintPage.editUserButton(username).click();
+      createUserAccount.loading();
+      createUserAccount.removePasswordButton.click();
+      createUserAccount.updateButton.click();
+      browser.waitForExist(createUserAccount.containerSelector, timeout, true);
+
+      // get blueprint info from API
+      const endpoint = `/api/v0/blueprints/info/${name}`;
+      const result = commands.apiFetchTest(endpoint).value;
+      // result looks like:
+      // https://github.com/weldr/lorax/blob/b57de934681056aa4f9bd480a34136cf340f510a/src/pylorax/api/v0.py#L66
+      const resultPassword = JSON.parse(result.data).blueprints[0].customizations.user[0].password;
+
+      expect(resultPassword).to.be.undefined;
+      expect(browser.isExisting(viewBlueprintPage.passwordCell(username))).to.be.false;
+    });
+
+    it("password should be create again", function() {
+      const newPassword = "456rty$%^RTY";
+      viewBlueprintPage.editUserButton(username).click();
+      createUserAccount.loading();
+      createUserAccount.setPasswordButton.click();
+      createUserAccount.passwordBox.setValue(newPassword);
+      createUserAccount.confirmPasswordBox.setValue(newPassword);
+      createUserAccount.updateButton.click();
+      browser.waitForExist(createUserAccount.containerSelector, timeout, true);
+
+      // get blueprint info from API
+      const endpoint = `/api/v0/blueprints/info/${name}`;
+      const result = commands.apiFetchTest(endpoint).value;
+      // result looks like:
+      // https://github.com/weldr/lorax/blob/b57de934681056aa4f9bd480a34136cf340f510a/src/pylorax/api/v0.py#L66
+      const resultPassword = JSON.parse(result.data).blueprints[0].customizations.user[0].password;
+      const lastIndex = resultPassword.lastIndexOf("$");
+      const salt = resultPassword.substring(0, lastIndex);
+      const pyinvoke = `$(which /usr/libexec/platform-python 2>/dev/null || which python3 2>/dev/null || which python) -c 'import sys, crypt; print(crypt.crypt(sys.stdin.readline().strip(), "${salt}"))'`;
+
+      const expectedPassword = browser.executeAsync(
+        function(password, pyinvoke, done) {
+          cockpit
+            .script(pyinvoke, { err: "message" })
+            .input(password)
+            .then(data => done(data));
+        },
+        newPassword,
+        pyinvoke
+      );
+      expect(expectedPassword.value.trim()).to.equal(resultPassword);
+    });
+
     describe("warning message test", function() {
       beforeEach(function() {
         viewBlueprintPage.createUserAccountButton.click();
