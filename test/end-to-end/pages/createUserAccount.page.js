@@ -99,6 +99,36 @@ class CreateUserAccount {
     return $(selector);
   }
 
+  get setNewPasswordButton() {
+    const selector = "span=Set New Password";
+    browser.waitUntil(
+      () => browser.isExisting(selector),
+      timeout,
+      `Set New Password button in Edit User Account dialog cannot get focused by selector ${selector}`
+    );
+    return $(selector);
+  }
+
+  get removePasswordButton() {
+    const selector = "span=Remove Password";
+    browser.waitUntil(
+      () => browser.isExisting(selector),
+      timeout,
+      `Remove Password button in Edit User Account dialog cannot get focused by selector ${selector}`
+    );
+    return $(selector);
+  }
+
+  get setPasswordButton() {
+    const selector = "span=Set Password";
+    browser.waitUntil(
+      () => browser.isExisting(selector),
+      timeout,
+      `Set Password button in Edit User Account dialog cannot get focused by selector ${selector}`
+    );
+    return $(selector);
+  }
+
   get sshKeyBox() {
     const selector = `${this.containerSelector} [id="textInput5-modal-user"]`;
     browser.waitUntil(
@@ -125,6 +155,16 @@ class CreateUserAccount {
       () => browser.isExisting(selector),
       timeout,
       `Cancel button in Create User Account dialog cannot be found by selector ${selector}`
+    );
+    return $(selector);
+  }
+
+  get updateButton() {
+    const selector = "span=Update";
+    browser.waitUntil(
+      () => browser.isExisting(selector),
+      timeout,
+      `Update button in Create User Account dialog cannot be found by selector ${selector}`
     );
     return $(selector);
   }
