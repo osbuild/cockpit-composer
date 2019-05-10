@@ -17,9 +17,6 @@ fi
 # Install nodejs if it does not exist
 which node > /dev/null 2>&1 || yum install -y nodejs
 
-# mock compose creation calls to backend for testing purposes
-sed -i "s|\"/api/v0/compose\"|\"/api/v0/compose?test=2\"|" /usr/share/cockpit/welder/main.js
-
 # disable https in cockpit and use http instead
 printf "[WebService]\\nAllowUnencrypted=true\\n" > /etc/cockpit/cockpit.conf
 

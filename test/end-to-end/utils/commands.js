@@ -48,7 +48,7 @@ module.exports = {
     browser.keys("Enter");
     // make sure new availabe components for new page loaded
     editBlueprintPage.loading();
-    const filterContent = "httpd";
+    const filterContent = "openssh-server";
     editBlueprintPage.filterBox.setValue(filterContent);
     browser.keys("Enter");
     browser.waitForExist(editBlueprintPage.filterContentLabel, timeout);

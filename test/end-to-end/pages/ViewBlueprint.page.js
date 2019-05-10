@@ -347,11 +347,14 @@ class ViewBlueprintPage {
   }
 
   get completeLebel() {
+    // image building needs times to complete, so increase timeout to 40 minutes
+    // and checking interval to 2 seconds
     const selector = "span=Complete";
     browser.waitUntil(
       () => browser.isExisting(selector),
-      timeout,
-      `Complete label under Images tab in View Blueprint page cannot be found by selector ${selector}`
+      timeout * 20,
+      `Complete label under Images tab in View Blueprint page cannot be found by selector ${selector}`,
+      2000
     );
     return $(selector);
   }
@@ -372,6 +375,16 @@ class ViewBlueprintPage {
       () => browser.isExisting(selector),
       timeout,
       `: button under Images tab in View Blueprint page cannot be found by selector ${selector}`
+    );
+    return $(selector);
+  }
+
+  get imageDownloadButton() {
+    const selector = '.list-pf-actions [download=""]';
+    browser.waitUntil(
+      () => browser.isExisting(selector),
+      timeout,
+      `Download button under Images tab in View Blueprint page cannot be found by selector ${selector}`
     );
     return $(selector);
   }
