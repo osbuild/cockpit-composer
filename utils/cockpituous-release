@@ -20,7 +20,7 @@ job release-koji master
 job release-koji f30
 
 job release-github
-job release-copr @weldr/welder-web
+job release-copr @weldr/cockpit-composer
 
 # Create a Bodhi update for stable Fedora releases
 job release-bodhi F30

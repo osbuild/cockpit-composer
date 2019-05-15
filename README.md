@@ -1,7 +1,7 @@
 # Cockpit Composer
 
-[![Build Status](https://travis-ci.org/weldr/welder-web.svg?branch=master)](https://travis-ci.org/weldr/welder-web)
-[![codecov](https://codecov.io/gh/weldr/welder-web/branch/master/graph/badge.svg)](https://codecov.io/gh/weldr/welder-web)
+[![Build Status](https://travis-ci.org/weldr/cockpit-composer.svg?branch=master)](https://travis-ci.org/weldr/cockpit-composer)
+[![codecov](https://codecov.io/gh/weldr/cockpit-composer/branch/master/graph/badge.svg)](https://codecov.io/gh/weldr/cockpit-composer)
 
 **The web interface for Composer!**
 
@@ -11,8 +11,8 @@ Composer generates custom images suitable for deploying systems or uploading to 
 
 Here's where to get the code:
 
-    $ git clone https://github.com/weldr/welder-web.git
-    $ cd welder-web/
+    $ git clone https://github.com/weldr/cockpit-composer.git
+    $ cd cockpit-composer/
 
 The remainder of the commands assume you're in the top level of the
 Cockpit Composer git repository checkout.
