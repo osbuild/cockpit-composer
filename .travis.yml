@@ -14,7 +14,7 @@ before_install:
   - |
         git config --global user.email "travis@welder.web"
         git config --global user.name "Travis CI"
-        git remote add welder https://github.com/weldr/welder-web.git
+        git remote add welder https://github.com/weldr/cockpit-composer.git
         git fetch welder
         git log -1 --pretty=format:%H welder/master
         git rebase welder/master

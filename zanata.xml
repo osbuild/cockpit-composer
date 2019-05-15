@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <config xmlns="http://zanata.org/namespace/config">
   <url>https://fedora.zanata.org/</url>
-  <project>welder-web</project>
+  <project>cockpit-composer</project>
   <project-version>master</project-version>
   <project-type>gettext</project-type>
 </config>
