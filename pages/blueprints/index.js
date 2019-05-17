@@ -172,28 +172,26 @@ class BlueprintsPage extends React.Component {
           ((blueprintsError !== null &&
             ((blueprintsError.message === "not-found" && (
               <EmptyState title={formatMessage(messages.errorInactiveTitle)} icon="fa fa-exclamation-circle">
-                <>
-                  <div className="checkbox">
-                    <label>
-                      <input
-                        type="checkbox"
-                        checked={this.state.enableService}
-                        onChange={e => this.setState({ enableService: e.target.checked })}
-                      />
-                      {formatMessage(messages.errorInactiveCheckbox)}
-                    </label>
-                  </div>
-                  <div className="blank-slate-pf-main-action">
-                    <button className="btn btn-primary btn-lg" type="button" onClick={this.startService}>
-                      {formatMessage(messages.errorInactivePrimary)}
-                    </button>
-                  </div>
-                  <div className="blank-slate-pf-secondary-action">
-                    <button className="btn btn-default" type="button" onClick={this.goToServicePage}>
-                      {formatMessage(messages.errorInactiveSecondary)}
-                    </button>
-                  </div>
-                </>
+                <div className="checkbox">
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={this.state.enableService}
+                      onChange={e => this.setState({ enableService: e.target.checked })}
+                    />
+                    {formatMessage(messages.errorInactiveCheckbox)}
+                  </label>
+                </div>
+                <div className="blank-slate-pf-main-action">
+                  <button className="btn btn-primary btn-lg" type="button" onClick={this.startService}>
+                    {formatMessage(messages.errorInactivePrimary)}
+                  </button>
+                </div>
+                <div className="blank-slate-pf-secondary-action">
+                  <button className="btn btn-default" type="button" onClick={this.goToServicePage}>
+                    {formatMessage(messages.errorInactiveSecondary)}
+                  </button>
+                </div>
               </EmptyState>
             )) || (
               <EmptyState

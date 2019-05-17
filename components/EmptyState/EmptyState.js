@@ -23,7 +23,7 @@ class EmptyState extends React.PureComponent {
 EmptyState.propTypes = {
   title: PropTypes.string.isRequired,
   message: PropTypes.string,
-  children: PropTypes.element,
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.element)]),
   icon: PropTypes.string
 };
 
