@@ -46,6 +46,7 @@ function* fetchBlueprintsFromName(blueprintName) {
   yield put(fetchingBlueprintsSucceeded(response));
 }
 
+// need to test what happens when there are no blueprints
 function* fetchBlueprints() {
   try {
     const blueprintNames = yield call(fetchBlueprintNamesApi);
