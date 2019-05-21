@@ -580,7 +580,11 @@ body {
 /* disabled state */
 /* disable pointer events for both <a> and <button> */
 .btn.disabled, fieldset[disabled] .btn {
-    pointer-events: none;
+  pointer-events: none;
+}
+/* enable pointer events for disabled button that has a tooltip */
+.disabled.cmpsr-has-tooltip {
+  pointer-events: initial;
 }
 
 [data-toggle] {
