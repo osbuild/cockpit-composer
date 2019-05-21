@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
 import cockpit from "cockpit";
-import { Button, OverlayTrigger, Tooltip } from "patternfly-react";
+import { Alert, Button, OverlayTrigger, Tooltip } from "patternfly-react";
 import EmptyState from "./EmptyState";
 
 const messages = defineMessages({
@@ -33,6 +33,7 @@ class EmptyStateInactive extends React.Component {
     super(props);
     this.state = {
       enableService: true,
+      enableServiceFailure: "",
       allowed: true,
       user: ""
     };
@@ -66,6 +67,7 @@ class EmptyStateInactive extends React.Component {
       .spawn(argv, { superuser: "require", err: "message" })
       .then(() => this.props.fetchingBlueprints())
       .catch(err => {
+        this.setState({ enableServiceFailure: err.message });
         console.error("Failed to start lorax-composer.socket:", JSON.stringify(err));
       });
   }
@@ -101,23 +103,34 @@ class EmptyStateInactive extends React.Component {
       </Button>
     );
     return (
-      <EmptyState title={formatMessage(messages.errorInactiveTitle)} icon="fa fa-exclamation-circle">
-        <div className="checkbox">
-          <label>
-            <input
-              type="checkbox"
-              checked={this.state.enableService}
-              onChange={e => this.setState({ enableService: e.target.checked })}
-              disabled={!allowed}
-            />
-            {formatMessage(messages.errorInactiveCheckbox)}
-          </label>
-        </div>
-        <div className="blank-slate-pf-main-action">{startButton}</div>
-        <div className="blank-slate-pf-secondary-action">
-          <Button onClick={this.goToServicePage}>{formatMessage(messages.errorInactiveSecondary)}</Button>
-        </div>
-      </EmptyState>
+      <>
+        {this.state.enableServiceFailure !== "" && (
+          <Alert className="cmpsr-alert-blank-slate">
+            <strong>{formatMessage(messages.alertTitleEnableServiceFailure)}</strong>
+            {` `}
+            {formatMessage(messages.alertMessagePreface)}
+            {`: `}
+            {this.state.enableServiceFailure}
+          </Alert>
+        )}
+        <EmptyState title={formatMessage(messages.errorInactiveTitle)} icon="fa fa-exclamation-circle">
+          <div className="checkbox">
+            <label>
+              <input
+                type="checkbox"
+                checked={this.state.enableService}
+                onChange={e => this.setState({ enableService: e.target.checked })}
+                disabled={!allowed}
+              />
+              {formatMessage(messages.errorInactiveCheckbox)}
+            </label>
+          </div>
+          <div className="blank-slate-pf-main-action">{startButton}</div>
+          <div className="blank-slate-pf-secondary-action">
+            <Button onClick={this.goToServicePage}>{formatMessage(messages.errorInactiveSecondary)}</Button>
+          </div>
+        </EmptyState>
+      </>
     );
   }
 }
