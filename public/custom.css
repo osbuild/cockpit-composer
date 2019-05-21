@@ -546,8 +546,15 @@ body {
 }
 
 /* empty state */
-.blank-slate-pf {
+.blank-slate-pf, .cmpsr-alert-blank-slate {
   margin-top: 30px;
+}
+.cmpsr-alert-blank-slate + .blank-slate-pf {
+  margin-top: 0
+}
+
+.cmpsr-alert-blank-slate {
+  margin-bottom: 5px;
 }
 
 /* notifications */
