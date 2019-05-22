@@ -98,7 +98,7 @@ class ManageSources extends React.Component {
   render() {
     return (
       <>
-        <a href="#" onClick={this.open}>
+        <a href="#" onClick={!this.props.disabled && this.open}>
           <FormattedMessage
             defaultMessage="Manage Sources"
             description="User action for displaying the list of source repositories"
@@ -460,6 +460,7 @@ ManageSources.propTypes = {
     sources: PropTypes.objectOf(PropTypes.object),
     error: PropTypes.object
   }),
+  disabled: PropTypes.bool,
   removeModalManageSourcesEntry: PropTypes.func,
   addModalManageSourcesEntry: PropTypes.func,
   modalManageSourcesFailure: PropTypes.func,
@@ -468,6 +469,7 @@ ManageSources.propTypes = {
 
 ManageSources.defaultProps = {
   manageSources: {},
+  disabled: false,
   removeModalManageSourcesEntry: function() {},
   addModalManageSourcesEntry: function() {},
   modalManageSourcesFailure: function() {}
