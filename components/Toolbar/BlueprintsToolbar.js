@@ -49,8 +49,8 @@ const BlueprintsToolbar = props => (
             <span className="fa fa-ellipsis-v" />
           </button>
           <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
-            <li>
-              <ManageSources manageSources={props.manageSources} />
+            <li className={props.errorState ? "disabled" : ""}>
+              <ManageSources manageSources={props.manageSources} disabled={props.errorState} />
             </li>
           </ul>
         </div>
