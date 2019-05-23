@@ -1,4 +1,5 @@
 # Ludek Janda <ljanda@redhat.com>, 2018. #zanata
+# Tony Fu <tfu@redhat.com>, 2019. #zanata
 # Xiaofeng Wang <xiaofwan@redhat.com>, 2019. #zanata
 #, fuzzy
 msgid ""
@@ -9,8 +10,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "MIME-Version: 1.0\n"
 "X-Generator: Zanata 4.6.2\n"
-"PO-Revision-Date: 2019-01-22 03:45+0000\n"
-"Last-Translator: Xiaofeng Wang <xiaofwan@redhat.com>\n"
+"PO-Revision-Date: 2019-05-21 05:15+0000\n"
+"Last-Translator: Tony Fu <tfu@redhat.com>\n"
 "Language-Team: Chinese (China)\n"
 "Language: zh_CN\n"
 
@@ -35,6 +36,20 @@ msgstr "1 构建进行中"
 msgid "A blueprint name is required."
 msgstr "需要一个蓝图（blueprint）名"
 
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.2310857819]
+#. defaultMessage is:
+#. A password is defined for this account.
+msgid "A password is defined for this account."
+msgstr "为这个账户定义了一个密码"
+
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.2362836873]
+#. defaultMessage is:
+#. A password is not defined for this account.
+msgid "A password is not defined for this account."
+msgstr "没有为这个账户定义密码"
+
 #: build/messages/components/ListView/ComponentDetailsView.json
 #. [components.ListView.3099331554]
 #. defaultMessage is:
@@ -48,6 +63,13 @@ msgstr "添加"
 #. Add Blueprint Components
 msgid "Add Blueprint Components"
 msgstr "添加蓝图组件"
+
+#: build/messages/components/ListView/ComponentInputs.json
+#. [components.ListView.addComponent]
+#. defaultMessage is:
+#. Add latest version
+msgid "Add latest version"
+msgstr "添加最新版本"
 
 # translation auto-copied from project Drools Workbench, version 6.0.0, document org.drools/drools-wb-guided-rule-editor-client/org/drools/workbench/screens/guided/rule/client/resources/i18n/Constants, author xi.huang
 #: build/messages/components/Modal/PendingChanges.json
@@ -133,11 +155,11 @@ msgid "Back to Blueprints"
 msgstr "返回到蓝图"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
-#. [components.ListView.3057400647]
+#. [components.ListView.3448229549]
 #. defaultMessage is:
-#. Back to {parent}
-msgid "Back to {parent}"
-msgstr "回到 {parent}"
+#. Back to {blueprint}
+msgid "Back to {blueprint}"
+msgstr "返回到 {blueprint}"
 
 #: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.2943300373]
@@ -190,11 +212,19 @@ msgstr "Blueprints"
 msgid "Browse or search for components, then add them to the blueprint."
 msgstr "浏览或搜索组件，然后把它们添加到蓝图中。"
 
+#: build/messages/components/Form/TextInlineEdit.json
 #: build/messages/components/Modal/CreateBlueprint.json
 #: build/messages/components/Modal/CreateImage.json
 #: build/messages/components/Modal/DeleteBlueprint.json
 #: build/messages/components/Modal/DeleteImage.json
 #: build/messages/components/Modal/StopBuild.json
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Form.cancel]
+#. defaultMessage is:
+#. Cancel
+#. [components.Modal.3528672691]
+#. defaultMessage is:
+#. Cancel
 #. [components.Modal.3528672691]
 #. defaultMessage is:
 #. Cancel
@@ -328,12 +358,12 @@ msgstr "组件详情"
 msgid "Component Options"
 msgstr "组件选项"
 
-#: build/messages/components/ListView/ComponentDetailsView.json
-#. [components.ListView.2279094754]
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.createPasswordTwo]
 #. defaultMessage is:
-#. Components
-msgid "Components"
-msgstr "组件"
+#. Confirm password
+msgid "Confirm password"
+msgstr "确认密码"
 
 #: build/messages/components/Modal/ExportBlueprint.json
 #. [components.Modal.956699920]
@@ -351,6 +381,10 @@ msgstr "复制"
 
 #: build/messages/components/Modal/CreateBlueprint.json
 #: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.4120989039]
+#. defaultMessage is:
+#. Create
 #. [components.Modal.4120989039]
 #. defaultMessage is:
 #. Create
@@ -361,38 +395,29 @@ msgid "Create"
 msgstr "创建"
 
 #: build/messages/components/Modal/CreateBlueprint.json
-#: build/messages/components/Toolbar/BlueprintsToolbar.json
-#: build/messages/pages/blueprints/index.json
 #. [components.Modal.536838868]
-#. defaultMessage is:
-#. Create Blueprint
-#. [components.Toolbar.536838868]
-#. defaultMessage is:
-#. Create Blueprint
-#. [pages.blueprints.536838868]
 #. defaultMessage is:
 #. Create Blueprint
 msgid "Create Blueprint"
 msgstr "创建蓝图"
 
-#: build/messages/components/ListView/BlueprintListView.json
 #: build/messages/components/Modal/CreateImage.json
-#: build/messages/pages/blueprint/index.json
-#: build/messages/pages/blueprintEdit/index.json
-#. [components.ListView.2482064138]
-#. defaultMessage is:
-#. Create Image
 #. [components.Modal.2482064138]
-#. defaultMessage is:
-#. Create Image
-#. [pages.blueprint.2482064138]
-#. defaultMessage is:
-#. Create Image
-#. [pages.blueprintEdit.2482064138]
 #. defaultMessage is:
 #. Create Image
 msgid "Create Image"
 msgstr "创建镜像"
+
+#: build/messages/components/Modal/UserAccount.json
+#: build/messages/pages/blueprint/index.json
+#. [components.Modal.modalTitleCreate]
+#. defaultMessage is:
+#. Create User Account
+#. [pages.blueprint.531338943]
+#. defaultMessage is:
+#. Create User Account
+msgid "Create User Account"
+msgstr "创建用户账户"
 
 #: build/messages/pages/blueprints/index.json
 #. [pages.blueprints.emptyMessage]
@@ -431,26 +456,8 @@ msgstr "自定义源"
 msgid "Date Created {date}"
 msgstr "创建日期 {date}"
 
-#: build/messages/components/ListView/ComponentDetailsView.json
-#. [components.ListView.1305464942]
-#. defaultMessage is:
-#. Debug
-msgid "Debug"
-msgstr "调试"
-
-#: build/messages/components/ListView/ComponentDetailsView.json
-#. [components.ListView.1222345317]
-#. defaultMessage is:
-#. Default
-msgid "Default"
-msgstr "默认"
-
-#: build/messages/components/ListView/BlueprintListView.json
 #: build/messages/components/ListView/ListItemImages.json
 #: build/messages/components/Modal/DeleteBlueprint.json
-#. [components.ListView.3645414921]
-#. defaultMessage is:
-#. Delete
 #. [components.ListView.3645414921]
 #. defaultMessage is:
 #. Delete
@@ -474,6 +481,13 @@ msgstr "删除蓝图"
 msgid "Delete Image"
 msgstr "删除镜像"
 
+#: build/messages/pages/blueprint/index.json
+#. [pages.blueprint.userDelete]
+#. defaultMessage is:
+#. Delete User Account
+msgid "Delete User Account"
+msgstr "删除用户账户"
+
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ComponentSummaryList.json
@@ -494,7 +508,7 @@ msgstr "依赖"
 #. [components.Modal.3374163063]
 #. defaultMessage is:
 #. Description
-#. [pages.blueprint.3374163063]
+#. [pages.blueprint.descriptionInputLabel]
 #. defaultMessage is:
 #. Description
 msgid "Description"
@@ -514,17 +528,6 @@ msgstr "放弃更改"
 msgid "Download"
 msgstr "下载"
 
-#: build/messages/components/ListView/ComponentDetailsView.json
-#: build/messages/components/ListView/ListItemComponents.json
-#. [components.ListView.197077183]
-#. defaultMessage is:
-#. Edit
-#. [components.ListView.197077183]
-#. defaultMessage is:
-#. Edit
-msgid "Edit"
-msgstr "编辑"
-
 #: build/messages/components/ListView/BlueprintListView.json
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
@@ -539,6 +542,31 @@ msgstr "编辑"
 #. Edit Blueprint
 msgid "Edit Blueprint"
 msgstr "编辑蓝图"
+
+#: build/messages/components/Modal/UserAccount.json
+#: build/messages/pages/blueprint/index.json
+#. [components.Modal.modalTitleEdit]
+#. defaultMessage is:
+#. Edit User Account
+#. [pages.blueprint.userEdit]
+#. defaultMessage is:
+#. Edit User Account
+msgid "Edit User Account"
+msgstr "编辑用户账户"
+
+#: build/messages/pages/blueprint/index.json
+#. [pages.blueprint.descriptionButtonLabel]
+#. defaultMessage is:
+#. Edit description
+msgid "Edit description"
+msgstr "编辑描述"
+
+#: build/messages/pages/blueprint/index.json
+#. [pages.blueprint.hostnameButtonLabel]
+#. defaultMessage is:
+#. Edit hostname
+msgid "Edit hostname"
+msgstr "编辑主机名"
 
 #: build/messages/pages/blueprint/index.json
 #. [pages.blueprint.emptyBlueprintTitle]
@@ -604,6 +632,13 @@ msgstr "根据名称过滤可用的组件"
 msgid "Filter By Name..."
 msgstr "根据名称过滤..."
 
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.1182120637]
+#. defaultMessage is:
+#. Full name
+msgid "Full name"
+msgstr "全名"
+
 #: build/messages/pages/error/index.json
 #. [pages.error.2333299345]
 #. defaultMessage is:
@@ -621,6 +656,20 @@ msgstr "回退"
 #. Hide Details
 msgid "Hide Details"
 msgstr "隐藏详情"
+
+#: build/messages/pages/blueprint/index.json
+#. [pages.blueprint.hostnameInputLabel]
+#. defaultMessage is:
+#. Hostname
+msgid "Hostname"
+msgstr "主机名"
+
+#: build/messages/pages/blueprint/index.json
+#. [pages.blueprint.hostnameHelpEmpty]
+#. defaultMessage is:
+#. If no hostname is provided, the hostname will be determined by the OS.
+msgid "If no hostname is provided, the hostname will be determined by the OS."
+msgstr "如果没有提供主机名，则主机名将由 OS 决定。"
 
 #: build/messages/components/Modal/CreateImage.json
 #. [components.Modal.380558550]
@@ -644,13 +693,6 @@ msgstr "镜像"
 msgid "In Progress"
 msgstr "进行中"
 
-#: build/messages/components/ListView/ComponentDetailsView.json
-#. [components.ListView.3274047346]
-#. defaultMessage is:
-#. Install Profile
-msgid "Install Profile"
-msgstr "安装档案"
-
 #: build/messages/components/Loading/Loading.json
 #. [components.Loading.2617450248]
 #. defaultMessage is:
@@ -671,14 +713,10 @@ msgstr "修改过滤条件以获得所需结果"
 
 #: build/messages/components/Modal/CreateBlueprint.json
 #: build/messages/components/Sources/SourcesList.json
-#: build/messages/pages/blueprint/index.json
 #. [components.Modal.636461959]
 #. defaultMessage is:
 #. Name
 #. [components.Sources.636461959] - Name of source
-#. defaultMessage is:
-#. Name
-#. [pages.blueprint.636461959]
 #. defaultMessage is:
 #. Name
 msgid "Name"
@@ -691,12 +729,26 @@ msgstr "名称"
 msgid "Name: {name}"
 msgstr "名称 {name}"
 
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.editPasswordOne]
+#. defaultMessage is:
+#. New password
+msgid "New password"
+msgstr "新密码"
+
 #: build/messages/pages/blueprints/index.json
 #. [pages.blueprints.emptyTitle]
 #. defaultMessage is:
 #. No Blueprints
 msgid "No Blueprints"
 msgstr "没有蓝图"
+
+#: build/messages/components/ListView/ComponentDetailsView.json
+#. [components.ListView.noDepsTitle]
+#. defaultMessage is:
+#. No Dependencies
+msgid "No Dependencies"
+msgstr "无依赖"
 
 #: build/messages/pages/blueprint/index.json
 #. [pages.blueprint.noImagesTitle]
@@ -775,6 +827,38 @@ msgstr "没有找到页"
 msgid "Pagination"
 msgstr "分页"
 
+#: build/messages/components/Modal/UserAccount.json
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.createPasswordOne]
+#. defaultMessage is:
+#. Password
+#. [components.Modal.2237029987]
+#. defaultMessage is:
+#. Password
+msgid "Password"
+msgstr "密码"
+
+#: build/messages/components/Form/Password.json
+#. [components.Form.rejectedPassword]
+#. defaultMessage is:
+#. Password is not acceptable
+msgid "Password is not acceptable"
+msgstr "不接受该密码"
+
+#: build/messages/components/Form/Password.json
+#. [components.Form.weakPassword]
+#. defaultMessage is:
+#. Password is too weak
+msgid "Password is too weak"
+msgstr "密码太弱"
+
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.sshKeyHelp]
+#. defaultMessage is:
+#. Paste the contents of your public SSH key file here.
+msgid "Paste the contents of your public SSH key file here."
+msgstr "在这里粘贴 SSH 公钥文件内容"
+
 # translation auto-copied from project Satellite6 Hammer CLI Foreman, version 6.1, document hammer-cli-foreman
 #: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.1102534324]
@@ -823,6 +907,20 @@ msgstr "发布 {release}"
 msgid "Remove"
 msgstr "删除"
 
+#: build/messages/components/ListView/ComponentInputs.json
+#. [components.ListView.removeComponent]
+#. defaultMessage is:
+#. Remove Component from Blueprint
+msgid "Remove Component from Blueprint"
+msgstr "从 Blueprint 中删除组件"
+
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.2822116526]
+#. defaultMessage is:
+#. Remove Password
+msgid "Remove Password"
+msgstr "删除密码"
+
 #: build/messages/components/ListView/ComponentDetailsView.json
 #. [components.ListView.removeFromBlueprint]
 #. defaultMessage is:
@@ -843,6 +941,27 @@ msgstr "已删除的（Removed）"
 #. Required information is missing.
 msgid "Required information is missing."
 msgstr "缺少需要的信息。"
+
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.106035384]
+#. defaultMessage is:
+#. Role
+msgid "Role"
+msgstr "角色"
+
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.229369250]
+#. defaultMessage is:
+#. SSH key
+msgid "SSH key"
+msgstr "SSH 密钥"
+
+#: build/messages/components/Form/TextInlineEdit.json
+#. [components.Form.save]
+#. defaultMessage is:
+#. Save
+msgid "Save"
+msgstr "保存"
 
 #: build/messages/pages/blueprintEdit/index.json
 #. [pages.blueprintEdit.1513086105]
@@ -868,6 +987,27 @@ msgstr "选择全部"
 #. Selected Components
 msgid "Selected Components"
 msgstr "选择的组件"
+
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.122879380]
+#. defaultMessage is:
+#. Server administrator
+msgid "Server administrator"
+msgstr "服务器管理员"
+
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.1110245255]
+#. defaultMessage is:
+#. Set New Password
+msgid "Set New Password"
+msgstr "设置新密码"
+
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.3696648021]
+#. defaultMessage is:
+#. Set Password
+msgid "Set Password"
+msgstr "设置密码"
 
 #: build/messages/components/ListView/ComponentSummaryList.json
 #. [components.ListView.1256153657]
@@ -968,6 +1108,10 @@ msgid "The build process cannot resume after it stops."
 msgstr "构建过程停止后将不能恢复。"
 
 #: build/messages/components/Modal/CreateBlueprint.json
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.216946930]
+#. defaultMessage is:
+#. The fields marked with {val} are required.
 #. [components.Modal.216946930]
 #. defaultMessage is:
 #. The fields marked with {val} are required.
@@ -987,6 +1131,22 @@ msgstr "名称 {name} 已存在。"
 #. The page you're looking for does not exist or an another error occurred.
 msgid "The page you're looking for does not exist or an another error occurred."
 msgstr "您查看的页不存在，或存在其它错误。"
+
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.2405281428]
+#. defaultMessage is:
+#. The user name can only consist of letters from a-z, digits, dots, dashes and underscores.
+msgid ""
+"The user name can only consist of letters from a-z, digits, dots, dashes "
+"and underscores."
+msgstr "用户名只能包括字母 a-z、数字、点、短横线和下划线"
+
+#: build/messages/components/Form/Password.json
+#. [components.Form.2330477961]
+#. defaultMessage is:
+#. The values entered for password do not match.
+msgid "The values entered for password do not match."
+msgstr "为密码输入的值不匹配。"
 
 #: build/messages/pages/blueprint/index.json
 #. [pages.blueprint.emptyBlueprintMessage]
@@ -1024,6 +1184,13 @@ msgstr "这个蓝图带有没有提交的改变。这些改变会在镜像创建
 msgid "This blueprint is empty."
 msgstr "这个蓝图为空。"
 
+#: build/messages/components/ListView/ComponentDetailsView.json
+#. [components.ListView.noDepsMessage]
+#. defaultMessage is:
+#. This component has no dependencies.
+msgid "This component has no dependencies."
+msgstr "这个组件没有依赖软件包"
+
 #: build/messages/components/Modal/CreateImage.json
 #. [components.Modal.infotip]
 #. defaultMessage is:
@@ -1032,6 +1199,13 @@ msgid ""
 "This process can take a while. Images are built in the order they are "
 "started."
 msgstr "这个过程会需要一定时间。镜像会以开始的时间顺序构建。"
+
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.3707489178]
+#. defaultMessage is:
+#. This user name already exists.
+msgid "This user name already exists."
+msgstr "这个用户名已存在。"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/Sources/SourcesList.json
@@ -1058,8 +1232,15 @@ msgstr "类型 {type}"
 msgid "URL"
 msgstr "URL"
 
-#: build/messages/components/ListView/ComponentDetailsView.json
-#. [components.ListView.1458938618]
+#: build/messages/components/ListView/BlueprintContents.json
+#. [components.ListView.3158548332]
+#. defaultMessage is:
+#. Undo Last Change
+msgid "Undo Last Change"
+msgstr "恢复最后的改变"
+
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.1458938618]
 #. defaultMessage is:
 #. Update
 msgid "Update"
@@ -1071,6 +1252,29 @@ msgstr "更新"
 #. Updated
 msgid "Updated"
 msgstr "已更新"
+
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.529605439]
+#. defaultMessage is:
+#. User name
+msgid "User name"
+msgstr "用户名"
+
+#: build/messages/pages/blueprint/index.json
+#. [pages.blueprint.443046426]
+#. defaultMessage is:
+#. Users
+msgid "Users"
+msgstr "用户"
+
+#: build/messages/pages/blueprint/index.json
+#. [pages.blueprint.hostnameHelp]
+#. defaultMessage is:
+#. Valid characters for hostname are letters from a to z, the digits from 0 to 9, and the hyphen (-). A hostname may not start with a hyphen.
+msgid ""
+"Valid characters for hostname are letters from a to z, the digits from 0 to "
+"9, and the hyphen (-). A hostname may not start with a hyphen."
+msgstr "主机名只能包括字母 a 到 z、数字 0 到 9、短横线 (-)。主机名不能以短横线开始。"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ListItemComponents.json
