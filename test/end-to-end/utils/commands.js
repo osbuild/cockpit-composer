@@ -22,6 +22,17 @@ module.exports = {
     browser.frame(loginPage.imageBuilderIframe);
   },
 
+  startLoraxIfItDoesNotStart: function() {
+    if (blueprintsPage.createBlueprintButton.getAttribute("disabled") === "true") {
+      const isAutostart = blueprintsPage.autostartCheckbox.isSelected();
+      if (!isAutostart) {
+        blueprintsPage.autostartCheckbox.click();
+      }
+      blueprintsPage.serviceStartButton.click();
+      blueprintsPage.loading();
+    }
+  },
+
   newBlueprint: function(name, description) {
     // on Blueprints page
     blueprintsPage.loading();

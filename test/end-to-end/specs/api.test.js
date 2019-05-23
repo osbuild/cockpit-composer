@@ -9,9 +9,19 @@ const acceptable = 10000;
 describe("lorax-composer api sanity test", function() {
   before(function() {
     commands.login();
+    commands.startLoraxIfItDoesNotStart();
     // Edge does not support the following command so have to keep default timeout(3 seconds)
     // browser.timeouts({ script: timeout });
     blueprintsPage.loading();
+  });
+
+  it("lorax-composer.socket should be enabled", function() {
+    const status = browser.executeAsync(function(done) {
+      cockpit
+        .script("systemctl is-enabled lorax-composer.socket", { superuser: "require", err: "message" })
+        .then(data => done(data));
+    });
+    expect(status.value.trim()).to.equal("enabled");
   });
 
   it("/api/v0/blueprints/list", function() {

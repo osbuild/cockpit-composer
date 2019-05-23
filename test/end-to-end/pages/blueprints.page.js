@@ -9,7 +9,7 @@ class BlueprintsPage {
   }
 
   loading() {
-    $(this.blueprintListView).waitForExist(timeout);
+    $(this.blueprintListView).waitForExist(timeout * 4);
     browser.waitUntil(() => $$(this.blueprintListView).length >= 3, timeout, "Loading Blueprints page failed");
   }
 
@@ -39,10 +39,9 @@ class BlueprintsPage {
   }
 
   get createBlueprintButton() {
-    // const selector = '[data-target="#cmpsr-modal-crt-blueprint"]';
-    const selector = "span=Create Blueprint";
+    const selector = '[id="cmpsr-btn-crt-blueprint"]';
     browser.waitUntil(
-      () => browser.isVisible(selector),
+      () => browser.isExisting(selector),
       timeout,
       `Create Blueprint button in Blueprints page cannot be found by selector ${selector}`
     );
@@ -118,6 +117,26 @@ class BlueprintsPage {
 
   waitForActiveFiltersNotExist() {
     browser.waitForExist("p=Active Filters:", timeout, true);
+  }
+
+  get serviceStartButton() {
+    const selector = ".blank-slate-pf-main-action button";
+    browser.waitUntil(
+      () => browser.isExisting(selector),
+      timeout,
+      `Start button in Blueprints page cannot be found by selector ${selector}`
+    );
+    return $(selector);
+  }
+
+  get autostartCheckbox() {
+    const selector = ".blank-slate-pf .checkbox label input";
+    browser.waitUntil(
+      () => browser.isExisting(selector),
+      timeout,
+      `Autostart on boot checkbox in Blueprints page cannot be found by selector ${selector}`
+    );
+    return $(selector);
   }
 }
 

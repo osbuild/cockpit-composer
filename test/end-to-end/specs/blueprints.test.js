@@ -8,6 +8,7 @@ const Blueprint = require("../components/Blueprint.component");
 describe("Blueprints Page", function() {
   before(function() {
     commands.login();
+    commands.startLoraxIfItDoesNotStart();
   });
 
   let name, description, blueprintComponent;

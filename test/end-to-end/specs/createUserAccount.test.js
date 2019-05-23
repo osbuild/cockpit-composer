@@ -15,6 +15,7 @@ describe("Create User Account Page", function() {
 
   before(function() {
     commands.login();
+    commands.startLoraxIfItDoesNotStart();
     commands.newBlueprint(name, description);
     blueprintComponent.blueprintNameLink.click();
     viewBlueprintPage.loading();

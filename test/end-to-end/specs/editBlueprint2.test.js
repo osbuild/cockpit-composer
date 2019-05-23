@@ -17,6 +17,7 @@ describe("Edit Blueprint Page", function() {
 
   before(function() {
     commands.login();
+    commands.startLoraxIfItDoesNotStart();
     commands.newBlueprint(name, description);
     blueprintComponent.editBlueprintButton.click();
     editBlueprintPage.loading();

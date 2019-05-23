@@ -6,6 +6,7 @@ const sourcesPage = require("../pages/sources.page");
 describe("Sources Page", function() {
   before(function() {
     commands.login();
+    commands.startLoraxIfItDoesNotStart();
     blueprintsPage.moreButton.click();
     blueprintsPage.viewSourcesItem.click();
     sourcesPage.loading();

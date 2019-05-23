@@ -72,7 +72,7 @@ sed -i "s|\"/api/v0/compose\"|\"/api/v0/compose?test=2\"|" /usr/share/cockpit/we
 # disable https in cockpit and use http instead
 printf "[WebService]\\nAllowUnencrypted=true\\n" > /etc/cockpit/cockpit.conf
 
-# Make cockpit.socket and lorax-composer auto-start when system started
+# Make cockpit.socket auto-start when system started
 # Do not start it during image generation
+# Do not auto start lorax-composer because it will be enabled in test
 systemctl enable cockpit.socket
-systemctl enable lorax-composer

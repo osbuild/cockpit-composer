@@ -32,21 +32,6 @@ done;
         machine.execute(script=WAIT_EDGE_RUNNING)
 
 
-# lorax-composer in Fedora retruns: "db_supported":true
-# lorax-composer in RHEL returns: "db_supported": true
-def wait_for_composer_running(machine):
-    WAIT_COMPOSER_RUNNING = """#!/bin/sh
-until curl --unix-socket /run/weldr/api.socket \
-http://localhost:4000/api/status | grep '"db_supported": *true'; do
-sleep 1;
-done;
-"""
-    with testvm.Timeout(
-            seconds=300,
-            error_message="Timeout while waiting for composer to start"):
-        machine.execute(script=WAIT_COMPOSER_RUNNING)
-
-
 def run_webdriver_tests(machine, env=[]):
     """ Execute end to end test on the machine with the passed environment
         variables. For example:
@@ -112,7 +97,6 @@ def run_e2e(verbose, image, browser, cpus, memory, sit):
             composer.dhcp_server(range=['10.111.112.10', '10.111.112.10'])
 
         wait_for_selenium_running(composer, "10.111.112.10")
-        wait_for_composer_running(composer)
         if selenium and 'MicrosoftEdge' in browser:
             wait_for_edge_running(composer, "10.111.112.10")
 

@@ -16,6 +16,7 @@ describe("Edit Blueprint Page", function() {
 
   before(function() {
     commands.login();
+    commands.startLoraxIfItDoesNotStart();
   });
 
   after(function() {

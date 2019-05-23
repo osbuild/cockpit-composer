@@ -15,6 +15,7 @@ describe("Create Image Page", function() {
   const createImagePage = new CreateImagePage(name);
   before(function() {
     commands.login();
+    commands.startLoraxIfItDoesNotStart();
     addContext(this, `create new blueprint with name, ${name}, and description, ${description}`);
     commands.newBlueprint(name, description);
     blueprintComponent.createImageButton.click();

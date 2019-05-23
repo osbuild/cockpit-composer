@@ -8,6 +8,7 @@ describe("Create Blueprints Page", function() {
   let blueprintNameList; // used by duplicated blueprint name checking
   before(function() {
     commands.login();
+    commands.startLoraxIfItDoesNotStart();
     blueprintsPage.loading();
     blueprintNameList = $$(blueprintsPage.blueprintListView).map(item => item.getAttribute("data-blueprint"));
   });
