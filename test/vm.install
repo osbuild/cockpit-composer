@@ -17,55 +17,6 @@ fi
 # Install nodejs if it does not exist
 which node > /dev/null 2>&1 || yum install -y nodejs
 
-# Add Fedora repos (base, modular and updates) in RHEL 7.6
-if [[ $(grep -ihs "Red Hat Enterprise Linux" /etc/redhat-release) == *Red*7* ]]; then
-    cat << EOF >> /etc/yum.repos.d/fedora.repo
-[fedora]
-name=Fedora 29 - \$basearch
-failovermethod=priority
-#baseurl=http://download.fedoraproject.org/pub/fedora/linux/releases/29/Everything/\$basearch/os/
-metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-29&arch=\$basearch
-enabled=1
-metadata_expire=7d
-repo_gpgcheck=0
-type=rpm
-gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-29-\$basearch
-skip_if_unavailable=False
-EOF
-
-    cat << EOF >> /etc/yum.repos.d/fedora-modular.repo 
-[fedora-modular]
-name=Fedora Modular 29 - \$basearch
-failovermethod=priority
-#baseurl=http://download.fedoraproject.org/pub/fedora/linux/releases/29/Modular/\$basearch/os/
-metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-modular-29&arch=\$basearch
-enabled=1
-#metadata_expire=7d
-repo_gpgcheck=0
-type=rpm
-gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-29-\$basearch
-skip_if_unavailable=False
-EOF
-
-    cat << EOF >> /etc/yum.repos.d/fedora-updates.repo 
-[updates]
-name=Fedora 29 - \$basearch - Updates
-failovermethod=priority
-#baseurl=http://download.fedoraproject.org/pub/fedora/linux/updates/29/Everything/\$basearch/
-metalink=https://mirrors.fedoraproject.org/metalink?repo=updates-released-f29&arch=\$basearch
-enabled=1
-repo_gpgcheck=0
-type=rpm
-gpgcheck=1
-metadata_expire=6h
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-29-\$basearch
-skip_if_unavailable=False
-EOF
-
-fi
-
 # mock compose creation calls to backend for testing purposes
 sed -i "s|\"/api/v0/compose\"|\"/api/v0/compose?test=2\"|" /usr/share/cockpit/welder/main.js
 
