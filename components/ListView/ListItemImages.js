@@ -9,14 +9,17 @@ import {
   setModalDeleteImageVisible,
   setModalDeleteImageState
 } from "../../core/actions/modals";
+import * as composer from "../../core/composer";
 
 class ListItemImages extends React.Component {
   constructor() {
     super();
+    this.state = { logsExpanded: false };
     this.handleDelete = this.handleDelete.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
     this.handleShowModalStop = this.handleShowModalStop.bind(this);
     this.handleShowModalDeleteImage = this.handleShowModalDeleteImage.bind(this);
+    this.handleLogsShow = this.handleLogsShow.bind(this);
   }
 
   // maps to Remove button for FAILED
@@ -43,13 +46,46 @@ class ListItemImages extends React.Component {
     this.props.setModalDeleteImageVisible(true);
   }
 
+  handleLogsShow() {
+    this.setState(prevState => ({ logsExpanded: !prevState.logsExpanded, fetchingLogs: !prevState.logsExpanded }));
+    composer.getComposeLog(this.props.listItem.id).then(
+      logs => {
+        this.setState({ logsContent: logs, fetchingLogs: false });
+      },
+      () => {
+        this.setState({
+          logsContent: <FormattedMessage defaultMessage="No log available" />,
+          fetchingLogs: false
+        });
+      }
+    );
+  }
+
   render() {
     const { listItem } = this.props;
     const timestamp = new Date(listItem.job_created * 1000);
     const formattedTime = timestamp.toDateString();
+    const moreButton = (
+      <button className="btn btn-link" onClick={this.handleLogsShow} type="button">
+        {this.state.logsExpanded && <FormattedMessage defaultMessage="Hide logs" />}
+        {!this.state.logsExpanded && <FormattedMessage defaultMessage="Show logs" />}
+      </button>
+    );
+    let logsSection;
+    if (this.state.logsExpanded) {
+      if (this.state.fetchingLogs) {
+        logsSection = (
+          <div>
+            <div className="spinner spinner-sm pull-left" aria-hidden="true" />
+            <FormattedMessage defaultMessage="Loading log messages" />
+          </div>
+        );
+      } else logsSection = <pre>{this.state.logsContent}</pre>;
+    }
+
     return (
       <div className="list-pf-item">
-        <div className="list-pf-container">
+        <div className="list-pf-container image-container">
           <div className="list-pf-content list-pf-content-flex">
             <div className="list-pf-left">
               <span className="pficon pficon-builder-image list-pf-icon-small" aria-hidden="true" />
@@ -97,18 +133,21 @@ class ListItemImages extends React.Component {
               <div className="list-view-pf-additional-info-item cmpsr-images__status">
                 <span className="pficon pficon-in-progress" aria-hidden="true" />
                 <FormattedMessage defaultMessage="In Progress" />
+                {moreButton}
               </div>
             )}{" "}
             {listItem.queue_status === "FINISHED" && (
               <div className="list-view-pf-additional-info-item cmpsr-images__status">
                 <span className="pficon pficon-ok" aria-hidden="true" />
                 <FormattedMessage defaultMessage="Complete" />
+                {moreButton}
               </div>
             )}{" "}
             {listItem.queue_status === "FAILED" && (
               <div className="list-view-pf-additional-info-item cmpsr-images__status">
                 <span className="pficon pficon-error-circle-o" aria-hidden="true" />
                 <FormattedMessage defaultMessage="Failed" />
+                {moreButton}
               </div>
             )}
             {listItem.queue_status === "FINISHED" && (
@@ -167,6 +206,7 @@ class ListItemImages extends React.Component {
             )}
           </div>
         </div>
+        {logsSection}
       </div>
     );
   }
