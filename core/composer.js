@@ -207,3 +207,7 @@ export function getFinishedComposes() {
 export function getFailedComposes() {
   return get("/api/v0/compose/failed").then(data => data.failed);
 }
+
+export function getComposeLog(uuid) {
+  return get("/api/v0/compose/log/" + encodeURIComponent(uuid), { replyFormat: "raw" });
+}

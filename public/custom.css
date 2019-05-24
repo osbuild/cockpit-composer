@@ -609,3 +609,9 @@ textarea.form-control[readonly] {
   background-color: inherit;
   color: inherit;
 }
+
+.list-pf-container.image-container {
+  position: sticky;
+  top: 0;
+  background: #fff;
+}
