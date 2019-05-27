@@ -16,38 +16,28 @@ export function createBlueprintApi(blueprint) {
       },
       true
     )
-    .then(() => (window.location.hash = history.createHref(`/edit/${blueprint.name}`)))
-    .catch(e => console.log(`Error creating blueprint: ${e}`));
+    .then(() => (window.location.hash = history.createHref(`/edit/${blueprint.name}`)));
 }
 
 export function fetchBlueprintContentsApi(blueprintName) {
-  return utils
-    .apiFetch(constants.get_blueprints_deps + blueprintName)
-    .catch(e => console.log("Error getting blueprint contents", e));
+  return utils.apiFetch(constants.get_blueprints_deps + blueprintName);
 }
 
 export function fetchBlueprintInputsApi(filter, selectedInputPage, pageSize) {
   const page = selectedInputPage * pageSize;
   return utils
     .apiFetch(`${constants.get_modules_list + filter}?limit=${pageSize}&offset=${page}`)
-    .then(response => [response.modules, response.total])
-    .catch(e => console.log("Error getting blueprint inputs", e));
+    .then(response => [response.modules, response.total]);
 }
 
 export function fetchComponentDetailsApi(componentNames) {
-  return utils
-    .apiFetch(constants.get_projects_info + componentNames)
-    .then(response => response.projects)
-    .catch(e => console.log("Error getting component details", e));
+  return utils.apiFetch(constants.get_projects_info + componentNames).then(response => response.projects);
 }
 
 export function fetchDepsApi(componentNames) {
-  const details = utils
-    .apiFetch(constants.get_modules_info + componentNames)
-    .then(response => {
-      return response.modules;
-    })
-    .catch(e => console.log("Error getting dependencies", e));
+  const details = utils.apiFetch(constants.get_modules_info + componentNames).then(response => {
+    return response.modules;
+  });
   return details;
 }
 
@@ -81,14 +71,11 @@ export function fetchComposeTypesApi() {
     vhd: "Azure Disk Image (.vhd)",
     vmdk: "VMware Virtual Machine Disk (.vmdk)"
   };
-  const imageTypes = utils
-    .apiFetch(constants.get_image_types)
-    .then(data =>
-      data.types.map(type => {
-        return Object.assign({}, type, { label: imageTypeLabels[type.name] || type.name });
-      })
-    )
-    .catch(e => console.log("Error getting component types", e));
+  const imageTypes = utils.apiFetch(constants.get_image_types).then(data =>
+    data.types.map(type => {
+      return Object.assign({}, type, { label: imageTypeLabels[type.name] || type.name });
+    })
+  );
   return imageTypes;
 }
 
@@ -98,31 +85,27 @@ export function deleteBlueprintApi(blueprint) {
 }
 
 export function deleteWorkspaceApi(blueprintId) {
-  return utils
-    .apiFetch(
-      constants.delete_workspace + blueprintId,
-      {
-        method: "DELETE"
-      },
-      true
-    )
-    .catch(e => console.log("Error deleting workspace", e));
+  return utils.apiFetch(
+    constants.delete_workspace + blueprintId,
+    {
+      method: "DELETE"
+    },
+    true
+  );
 }
 
 export function commitToWorkspaceApi(blueprint) {
-  return utils
-    .apiFetch(
-      constants.post_blueprints_workspace,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(blueprint)
+  return utils.apiFetch(
+    constants.post_blueprints_workspace,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
       },
-      true
-    )
-    .catch(e => console.log("Error committing to workspace", e));
+      body: JSON.stringify(blueprint)
+    },
+    true
+  );
 }
 
 export function fetchDiffWorkspaceApi(blueprintId) {
@@ -141,17 +124,10 @@ export function fetchDiffWorkspaceApi(blueprintId) {
 }
 
 export function fetchSourceInfoApi(sourceName) {
-  const sourceFetch = utils
-    .apiFetch(constants.get_sources_info + sourceName)
-    .then(sourceData => {
-      if (sourceData) {
-        return sourceData;
-      }
-      return null;
-    })
-    .catch(e => {
-      console.log("Error fetching sources", e);
-    });
+  const sourceFetch = utils.apiFetch(constants.get_sources_info + sourceName).then(sourceData => {
+    if (sourceData) return sourceData;
+    return null;
+  });
   return sourceFetch;
 }
 
@@ -202,53 +178,37 @@ export function startComposeApi(blueprintName, composeType) {
 }
 
 export function cancelComposeApi(compose) {
-  return utils
-    .apiFetch(
-      constants.cancel_compose + compose,
-      {
-        method: "DELETE"
-      },
-      true
-    )
-    .catch(e => console.log("Error canceling compose", e));
+  return utils.apiFetch(
+    constants.cancel_compose + compose,
+    {
+      method: "DELETE"
+    },
+    true
+  );
 }
 
 export function deleteComposeApi(compose) {
-  return utils
-    .apiFetch(
-      constants.delete_compose + compose,
-      {
-        method: "DELETE"
-      },
-      true
-    )
-    .catch(e => console.log("Error deleting compose", e));
+  return utils.apiFetch(
+    constants.delete_compose + compose,
+    {
+      method: "DELETE"
+    },
+    true
+  );
 }
 
 export function fetchImageStatusApi(uuid) {
-  return utils
-    .apiFetch(constants.get_image_status + uuid)
-    .then(data => data)
-    .catch(e => console.log("Error fetching image status", e));
+  return utils.apiFetch(constants.get_image_status + uuid).then(data => data);
 }
 
 export function fetchComposeQueueApi() {
-  return utils
-    .apiFetch(constants.get_compose_queue)
-    .then(data => data.new.concat(data.run))
-    .catch(e => console.log("Error fetching queued composes", e));
+  return utils.apiFetch(constants.get_compose_queue).then(data => data.new.concat(data.run));
 }
 
 export function fetchComposeFinishedApi() {
-  return utils
-    .apiFetch(constants.get_compose_finished)
-    .then(data => data.finished)
-    .catch(e => console.log("Error fetching finished composes", e));
+  return utils.apiFetch(constants.get_compose_finished).then(data => data.finished);
 }
 
 export function fetchComposeFailedApi() {
-  return utils
-    .apiFetch(constants.get_compose_failed)
-    .then(data => data.failed)
-    .catch(e => console.log("Error fetching failed composes", e));
+  return utils.apiFetch(constants.get_compose_failed).then(data => data.failed);
 }
