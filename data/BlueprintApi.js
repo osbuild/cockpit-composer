@@ -1,4 +1,3 @@
-import constants from "../core/constants";
 import NotificationsApi from "./NotificationsApi";
 import utils from "../core/utils";
 
@@ -42,7 +41,7 @@ class BlueprintApi {
 
   postBlueprint(blueprint) {
     return utils.apiFetch(
-      constants.post_blueprints_new,
+      "/api/v0/blueprints/new",
       {
         method: "POST",
         headers: {
@@ -59,7 +58,7 @@ class BlueprintApi {
     // and reload details in UI
     const p = new Promise((resolve, reject) => {
       utils
-        .apiFetch(constants.get_blueprints_deps + blueprint.name.replace(/\s/g, "-"))
+        .apiFetch("/api/v0/blueprints/depsolve/" + blueprint.name.replace(/\s/g, "-"))
         .then(data => {
           const updatedBlueprint = Object.assign({}, blueprint, {
             version: data.blueprints[0].blueprint.version
@@ -77,7 +76,7 @@ class BlueprintApi {
   deleteBlueprint(blueprints) {
     // /api/v0/blueprints/delete/<blueprint>
     return utils.apiFetch(
-      constants.delete_blueprint + blueprints,
+      "/api/v0/blueprints/delete/" + blueprints,
       {
         method: "DELETE"
       },

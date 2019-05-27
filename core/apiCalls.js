@@ -1,4 +1,3 @@
-import constants from "./constants";
 import BlueprintApi from "../data/BlueprintApi";
 import utils from "./utils";
 import history from "./history";
@@ -6,7 +5,7 @@ import history from "./history";
 export function createBlueprintApi(blueprint) {
   return utils
     .apiFetch(
-      constants.post_blueprints_new,
+      "/api/v0/blueprints/new",
       {
         method: "POST",
         headers: {
@@ -20,34 +19,34 @@ export function createBlueprintApi(blueprint) {
 }
 
 export function fetchBlueprintContentsApi(blueprintName) {
-  return utils.apiFetch(constants.get_blueprints_deps + blueprintName);
+  return utils.apiFetch("/api/v0/blueprints/depsolve/" + blueprintName);
 }
 
 export function fetchBlueprintInputsApi(filter, selectedInputPage, pageSize) {
   const page = selectedInputPage * pageSize;
   return utils
-    .apiFetch(`${constants.get_modules_list + filter}?limit=${pageSize}&offset=${page}`)
+    .apiFetch(`/api/v0/modules/list${filter}?limit=${pageSize}&offset=${page}`)
     .then(response => [response.modules, response.total]);
 }
 
 export function fetchComponentDetailsApi(componentNames) {
-  return utils.apiFetch(constants.get_projects_info + componentNames).then(response => response.projects);
+  return utils.apiFetch("/api/v0/projects/info/" + componentNames).then(response => response.projects);
 }
 
 export function fetchDepsApi(componentNames) {
-  const details = utils.apiFetch(constants.get_modules_info + componentNames).then(response => {
+  const details = utils.apiFetch("/api/v0/modules/info/" + componentNames).then(response => {
     return response.modules;
   });
   return details;
 }
 
 export function fetchBlueprintNamesApi() {
-  const blueprintNames = utils.apiFetch(constants.get_blueprints_list).then(response => response.blueprints);
+  const blueprintNames = utils.apiFetch("/api/v0/blueprints/list").then(response => response.blueprints);
   return blueprintNames;
 }
 
 export function fetchBlueprintInfoApi(blueprintName) {
-  const blueprintFetch = utils.apiFetch(constants.get_blueprints_info + blueprintName).then(blueprintdata => {
+  const blueprintFetch = utils.apiFetch("/api/v0/blueprints/info/" + blueprintName).then(blueprintdata => {
     if (blueprintdata.blueprints.length > 0) {
       let blueprint = blueprintdata.blueprints[0];
       blueprint.changed = blueprintdata.changes[0].changed;
@@ -71,7 +70,7 @@ export function fetchComposeTypesApi() {
     vhd: "Azure Disk Image (.vhd)",
     vmdk: "VMware Virtual Machine Disk (.vmdk)"
   };
-  const imageTypes = utils.apiFetch(constants.get_image_types).then(data =>
+  const imageTypes = utils.apiFetch("/api/v0/compose/types").then(data =>
     data.types.map(type => {
       return Object.assign({}, type, { label: imageTypeLabels[type.name] || type.name });
     })
@@ -86,7 +85,7 @@ export function deleteBlueprintApi(blueprint) {
 
 export function deleteWorkspaceApi(blueprintId) {
   return utils.apiFetch(
-    constants.delete_workspace + blueprintId,
+    "/api/v0/blueprints/workspace/" + blueprintId,
     {
       method: "DELETE"
     },
@@ -96,7 +95,7 @@ export function deleteWorkspaceApi(blueprintId) {
 
 export function commitToWorkspaceApi(blueprint) {
   return utils.apiFetch(
-    constants.post_blueprints_workspace,
+    "/api/v0/blueprints/workspace",
     {
       method: "POST",
       headers: {
@@ -124,7 +123,7 @@ export function fetchDiffWorkspaceApi(blueprintId) {
 }
 
 export function fetchSourceInfoApi(sourceName) {
-  const sourceFetch = utils.apiFetch(constants.get_sources_info + sourceName).then(sourceData => {
+  const sourceFetch = utils.apiFetch("/api/v0/projects/source/info/" + sourceName).then(sourceData => {
     if (sourceData) return sourceData;
     return null;
   });
@@ -133,7 +132,7 @@ export function fetchSourceInfoApi(sourceName) {
 
 export function addSourceApi(source) {
   return utils.apiFetch(
-    constants.post_source,
+    "/api/v0/projects/source/new",
     {
       method: "POST",
       headers: {
@@ -147,7 +146,7 @@ export function addSourceApi(source) {
 
 export function deleteSourceApi(sourceName) {
   return utils.apiFetch(
-    constants.delete_source + sourceName,
+    "/api/v0/projects/source/delete/" + sourceName,
     {
       method: "DELETE"
     },
@@ -163,7 +162,7 @@ export function startComposeApi(blueprintName, composeType) {
   };
   return utils
     .apiFetch(
-      constants.post_compose_start,
+      "/api/v0/compose",
       {
         method: "POST",
         headers: {
@@ -179,7 +178,7 @@ export function startComposeApi(blueprintName, composeType) {
 
 export function cancelComposeApi(compose) {
   return utils.apiFetch(
-    constants.cancel_compose + compose,
+    "/api/v0/compose/cancel/" + compose,
     {
       method: "DELETE"
     },
@@ -189,7 +188,7 @@ export function cancelComposeApi(compose) {
 
 export function deleteComposeApi(compose) {
   return utils.apiFetch(
-    constants.delete_compose + compose,
+    "/api/v0/compose/delete/" + compose,
     {
       method: "DELETE"
     },
@@ -198,17 +197,17 @@ export function deleteComposeApi(compose) {
 }
 
 export function fetchImageStatusApi(uuid) {
-  return utils.apiFetch(constants.get_image_status + uuid).then(data => data);
+  return utils.apiFetch("/api/v0/compose/status/" + uuid).then(data => data);
 }
 
 export function fetchComposeQueueApi() {
-  return utils.apiFetch(constants.get_compose_queue).then(data => data.new.concat(data.run));
+  return utils.apiFetch("/api/v0/compose/queue").then(data => data.new.concat(data.run));
 }
 
 export function fetchComposeFinishedApi() {
-  return utils.apiFetch(constants.get_compose_finished).then(data => data.finished);
+  return utils.apiFetch("/api/v0/compose/finished").then(data => data.finished);
 }
 
 export function fetchComposeFailedApi() {
-  return utils.apiFetch(constants.get_compose_failed).then(data => data.failed);
+  return utils.apiFetch("/api/v0/compose/failed").then(data => data.failed);
 }
