@@ -98,7 +98,7 @@ class ManageSources extends React.Component {
   render() {
     return (
       <>
-        <a href="#" onClick={!this.props.disabled && this.open}>
+        <a href="#" onClick={!this.props.disabled ? this.open : undefined}>
           <FormattedMessage
             defaultMessage="Manage Sources"
             description="User action for displaying the list of source repositories"
