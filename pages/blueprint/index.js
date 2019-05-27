@@ -157,7 +157,8 @@ class BlueprintPage extends React.Component {
   }
 
   componentDidMount() {
-    document.title = this.props.intl.formatMessage(messages.blueprint);
+    const { formatMessage } = this.props.intl;
+    document.title = formatMessage(messages.blueprint);
   }
 
   componentWillUnmount() {

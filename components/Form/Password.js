@@ -93,14 +93,15 @@ class Password extends React.Component {
 
   validateQuality(password) {
     const dfd = cockpit.defer();
+    const { formatMessage } = this.props.intl;
     cockpit
       .spawn("/usr/bin/pwscore", { err: "message" })
       .input(password)
       .done(content => {
         const quality = parseInt(content, 10);
         if (quality === 0) {
-          this.passwordQualityFail(this.props.intl.formatMessage(messages.weakPassword));
-          dfd.reject(new Error(this.props.intl.formatMessage(messages.weakPassword)));
+          this.passwordQualityFail(formatMessage(messages.weakPassword));
+          dfd.reject(new Error(formatMessage(messages.weakPassword)));
         } else if (quality <= 33) {
           this.passwordQualityPass("weak", password);
           dfd.resolve("weak");
@@ -116,8 +117,8 @@ class Password extends React.Component {
         }
       })
       .fail(ex => {
-        this.passwordQualityFail(ex.message || this.props.intl.formatMessage(messages.rejectedPassword));
-        dfd.reject(new Error(ex.message || this.props.intl.formatMessage(messages.rejectedPassword)));
+        this.passwordQualityFail(ex.message || formatMessage(messages.rejectedPassword));
+        dfd.reject(new Error(ex.message || formatMessage(messages.rejectedPassword)));
       });
     return dfd.promise();
   }

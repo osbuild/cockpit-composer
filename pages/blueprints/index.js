@@ -67,7 +67,8 @@ class BlueprintsPage extends React.Component {
   }
 
   componentDidMount() {
-    document.title = this.props.intl.formatMessage(messages.blueprintsTitle);
+    const { formatMessage } = this.props.intl;
+    document.title = formatMessage(messages.blueprintsTitle);
   }
 
   setNotifications() {
