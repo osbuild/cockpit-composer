@@ -44,9 +44,6 @@ const plugins = [
     },
     {
       from: "./public/manifest.json"
-    },
-    {
-      from: "./public/js/config.js"
     }
   ]),
   // main.js has to be injected into body and after <div id="main"></div>
