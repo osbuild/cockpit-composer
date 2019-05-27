@@ -127,8 +127,3 @@ clean-po:
 	rm po/*.po
 
 .PHONY: tag local-clean vm check devel-install
-
-
-.PHONY: npm_audit
-npm_audit:
-	npm audit
