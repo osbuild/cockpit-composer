@@ -27,10 +27,11 @@ class ErrorPage extends React.Component {
   }
 
   componentDidMount() {
+    const { formatMessage } = this.props.intl;
     document.title =
       this.props.error && this.props.error.status === 404
-        ? this.props.intl.formatMessage(messages.pageNotFoundMessage)
-        : this.props.intl.formatMessage(messages.errorMessage);
+        ? formatMessage(messages.pageNotFoundMessage)
+        : formatMessage(messages.errorMessage);
   }
 
   goBack(event) {
