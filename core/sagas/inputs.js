@@ -40,7 +40,7 @@ function flattenInputs(response) {
 function* fetchInputs(action) {
   try {
     const { filter, selectedInputPage, pageSize } = action.payload;
-    const filter_value = `/*${filter.value}*`.replace("**", "*");
+    const filter_value = `*${filter.value}*`.replace("**", "*");
     const response = yield call(fetchBlueprintInputsApi, filter_value, selectedInputPage, pageSize);
     const total = response[1];
     const inputNames = response[0].map(input => input.name).join(",");
