@@ -108,18 +108,7 @@ export function commitToWorkspaceApi(blueprint) {
 }
 
 export function fetchDiffWorkspaceApi(blueprintId) {
-  const p = new Promise((resolve, reject) => {
-    utils
-      .apiFetch("/api/v0/blueprints/diff/" + blueprintId + "/NEWEST/WORKSPACE")
-      .then(data => {
-        resolve(data);
-      })
-      .catch(e => {
-        console.log("Error fetching diff", e);
-        reject();
-      });
-  });
-  return p;
+  return utils.apiFetch("/api/v0/blueprints/diff/" + blueprintId + "/NEWEST/WORKSPACE");
 }
 
 export function fetchSourceInfoApi(sourceName) {
@@ -172,8 +161,7 @@ export function startComposeApi(blueprintName, composeType) {
       },
       true
     )
-    .then(data => JSON.parse(data))
-    .catch(e => console.log("Error starting compose", e));
+    .then(data => JSON.parse(data));
 }
 
 export function cancelComposeApi(compose) {
