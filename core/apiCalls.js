@@ -25,7 +25,7 @@ export function fetchBlueprintContentsApi(blueprintName) {
 export function fetchBlueprintInputsApi(filter, selectedInputPage, pageSize) {
   const page = selectedInputPage * pageSize;
   return utils
-    .apiFetch(`/api/v0/modules/list${filter}?limit=${pageSize}&offset=${page}`)
+    .apiFetch(`/api/v0/modules/list/${filter}?limit=${pageSize}&offset=${page}`)
     .then(response => [response.modules, response.total]);
 }
 
