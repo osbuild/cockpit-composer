@@ -1,4 +1,3 @@
-/* global welderApiPort:false */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 
 import React from "react";
@@ -289,11 +288,10 @@ class BlueprintPage extends React.Component {
   }
 
   downloadUrl(compose) {
-    // NOTE: this only works when welderApiPort is a unix socket
     const query = window.btoa(
       JSON.stringify({
         payload: "http-stream2",
-        unix: welderApiPort,
+        unix: "/run/weldr/api.socket",
         method: "GET",
         path: `/api/v0/compose/image/${compose.id}`,
         superuser: "try"
