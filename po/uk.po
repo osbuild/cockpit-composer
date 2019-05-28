@@ -36,6 +36,20 @@ msgstr "Виконуємо 1 збирання"
 msgid "A blueprint name is required."
 msgstr "Слід вказати назву проекту."
 
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.2310857819]
+#. defaultMessage is:
+#. A password is defined for this account.
+msgid "A password is defined for this account."
+msgstr ""
+
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.2362836873]
+#. defaultMessage is:
+#. A password is not defined for this account.
+msgid "A password is not defined for this account."
+msgstr ""
+
 #: build/messages/components/ListView/ComponentDetailsView.json
 #. [components.ListView.3099331554]
 #. defaultMessage is:
@@ -205,7 +219,11 @@ msgstr ""
 #: build/messages/components/Modal/DeleteBlueprint.json
 #: build/messages/components/Modal/DeleteImage.json
 #: build/messages/components/Modal/StopBuild.json
+#: build/messages/components/Modal/UserAccount.json
 #. [components.Form.cancel]
+#. defaultMessage is:
+#. Cancel
+#. [components.Modal.3528672691]
 #. defaultMessage is:
 #. Cancel
 #. [components.Modal.3528672691]
@@ -343,6 +361,13 @@ msgstr "Подробиці щодо компонента"
 msgid "Component Options"
 msgstr "Параметри компонента"
 
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.createPasswordTwo]
+#. defaultMessage is:
+#. Confirm password
+msgid "Confirm password"
+msgstr ""
+
 #: build/messages/components/Modal/ExportBlueprint.json
 #. [components.Modal.956699920]
 #. defaultMessage is:
@@ -359,6 +384,10 @@ msgstr "Копіювати"
 
 #: build/messages/components/Modal/CreateBlueprint.json
 #: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.4120989039]
+#. defaultMessage is:
+#. Create
 #. [components.Modal.4120989039]
 #. defaultMessage is:
 #. Create
@@ -369,38 +398,29 @@ msgid "Create"
 msgstr "Створити"
 
 #: build/messages/components/Modal/CreateBlueprint.json
-#: build/messages/components/Toolbar/BlueprintsToolbar.json
-#: build/messages/pages/blueprints/index.json
 #. [components.Modal.536838868]
-#. defaultMessage is:
-#. Create Blueprint
-#. [components.Toolbar.536838868]
-#. defaultMessage is:
-#. Create Blueprint
-#. [pages.blueprints.536838868]
 #. defaultMessage is:
 #. Create Blueprint
 msgid "Create Blueprint"
 msgstr "Створити проект"
 
-#: build/messages/components/ListView/BlueprintListView.json
 #: build/messages/components/Modal/CreateImage.json
-#: build/messages/pages/blueprint/index.json
-#: build/messages/pages/blueprintEdit/index.json
-#. [components.ListView.2482064138]
-#. defaultMessage is:
-#. Create Image
 #. [components.Modal.2482064138]
-#. defaultMessage is:
-#. Create Image
-#. [pages.blueprint.2482064138]
-#. defaultMessage is:
-#. Create Image
-#. [pages.blueprintEdit.2482064138]
 #. defaultMessage is:
 #. Create Image
 msgid "Create Image"
 msgstr "Створити зображення"
+
+#: build/messages/components/Modal/UserAccount.json
+#: build/messages/pages/blueprint/index.json
+#. [components.Modal.modalTitleCreate]
+#. defaultMessage is:
+#. Create User Account
+#. [pages.blueprint.531338943]
+#. defaultMessage is:
+#. Create User Account
+msgid "Create User Account"
+msgstr ""
 
 #: build/messages/pages/blueprints/index.json
 #. [pages.blueprints.emptyMessage]
@@ -441,12 +461,8 @@ msgstr "Нетипові джерела"
 msgid "Date Created {date}"
 msgstr "Дата створення — {date}"
 
-#: build/messages/components/ListView/BlueprintListView.json
 #: build/messages/components/ListView/ListItemImages.json
 #: build/messages/components/Modal/DeleteBlueprint.json
-#. [components.ListView.3645414921]
-#. defaultMessage is:
-#. Delete
 #. [components.ListView.3645414921]
 #. defaultMessage is:
 #. Delete
@@ -469,6 +485,13 @@ msgstr "Вилучити проект"
 #. Delete Image
 msgid "Delete Image"
 msgstr "Вилучити зображення"
+
+#: build/messages/pages/blueprint/index.json
+#. [pages.blueprint.userDelete]
+#. defaultMessage is:
+#. Delete User Account
+msgid "Delete User Account"
+msgstr ""
 
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/components/ListView/ComponentDetailsView.json
@@ -524,6 +547,17 @@ msgstr "Отримати"
 #. Edit Blueprint
 msgid "Edit Blueprint"
 msgstr "Змінити проект"
+
+#: build/messages/components/Modal/UserAccount.json
+#: build/messages/pages/blueprint/index.json
+#. [components.Modal.modalTitleEdit]
+#. defaultMessage is:
+#. Edit User Account
+#. [pages.blueprint.userEdit]
+#. defaultMessage is:
+#. Edit User Account
+msgid "Edit User Account"
+msgstr ""
 
 #: build/messages/pages/blueprint/index.json
 #. [pages.blueprint.descriptionButtonLabel]
@@ -602,6 +636,13 @@ msgstr "Фільтрувати доступні компоненти за наз
 #. Filter By Name...
 msgid "Filter By Name..."
 msgstr "Фільтрувати за назвою…"
+
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.1182120637]
+#. defaultMessage is:
+#. Full name
+msgid "Full name"
+msgstr ""
 
 #: build/messages/pages/error/index.json
 #. [pages.error.2333299345]
@@ -694,6 +735,13 @@ msgstr "Назва"
 msgid "Name: {name}"
 msgstr "Назва: {name}"
 
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.editPasswordOne]
+#. defaultMessage is:
+#. New password
+msgid "New password"
+msgstr ""
+
 #: build/messages/pages/blueprints/index.json
 #. [pages.blueprints.emptyTitle]
 #. defaultMessage is:
@@ -785,6 +833,38 @@ msgstr "Сторінку не знайдено"
 msgid "Pagination"
 msgstr "Нумерація сторінок"
 
+#: build/messages/components/Modal/UserAccount.json
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.createPasswordOne]
+#. defaultMessage is:
+#. Password
+#. [components.Modal.2237029987]
+#. defaultMessage is:
+#. Password
+msgid "Password"
+msgstr ""
+
+#: build/messages/components/Form/Password.json
+#. [components.Form.rejectedPassword]
+#. defaultMessage is:
+#. Password is not acceptable
+msgid "Password is not acceptable"
+msgstr ""
+
+#: build/messages/components/Form/Password.json
+#. [components.Form.weakPassword]
+#. defaultMessage is:
+#. Password is too weak
+msgid "Password is too weak"
+msgstr ""
+
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.sshKeyHelp]
+#. defaultMessage is:
+#. Paste the contents of your public SSH key file here.
+msgid "Paste the contents of your public SSH key file here."
+msgstr ""
+
 #: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.1102534324]
 #. defaultMessage is:
@@ -839,6 +919,13 @@ msgstr "Вилучити"
 msgid "Remove Component from Blueprint"
 msgstr "Вилучити компонент з проекту"
 
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.2822116526]
+#. defaultMessage is:
+#. Remove Password
+msgid "Remove Password"
+msgstr ""
+
 #: build/messages/components/ListView/ComponentDetailsView.json
 #. [components.ListView.removeFromBlueprint]
 #. defaultMessage is:
@@ -859,6 +946,20 @@ msgstr "Вилучено"
 #. Required information is missing.
 msgid "Required information is missing."
 msgstr "Не вказано обов'язкових даних."
+
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.106035384]
+#. defaultMessage is:
+#. Role
+msgid "Role"
+msgstr ""
+
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.229369250]
+#. defaultMessage is:
+#. SSH key
+msgid "SSH key"
+msgstr ""
 
 #: build/messages/components/Form/TextInlineEdit.json
 #. [components.Form.save]
@@ -891,6 +992,27 @@ msgstr "Виберіть один"
 #. Selected Components
 msgid "Selected Components"
 msgstr "Вибрані компоненти"
+
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.122879380]
+#. defaultMessage is:
+#. Server administrator
+msgid "Server administrator"
+msgstr ""
+
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.1110245255]
+#. defaultMessage is:
+#. Set New Password
+msgid "Set New Password"
+msgstr ""
+
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.3696648021]
+#. defaultMessage is:
+#. Set Password
+msgid "Set Password"
+msgstr ""
 
 #: build/messages/components/ListView/ComponentSummaryList.json
 #. [components.ListView.1256153657]
@@ -991,6 +1113,10 @@ msgid "The build process cannot resume after it stops."
 msgstr "Після зупинення процесу збирання його вже не можна поновити."
 
 #: build/messages/components/Modal/CreateBlueprint.json
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.216946930]
+#. defaultMessage is:
+#. The fields marked with {val} are required.
 #. [components.Modal.216946930]
 #. defaultMessage is:
 #. The fields marked with {val} are required.
@@ -1010,6 +1136,22 @@ msgstr "Назву {name} вже використано."
 #. The page you're looking for does not exist or an another error occurred.
 msgid "The page you're looking for does not exist or an another error occurred."
 msgstr "Сторінки, яку ви шукаєте, не існує або сталася якась інша помилка."
+
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.2405281428]
+#. defaultMessage is:
+#. The user name can only consist of letters from a-z, digits, dots, dashes and underscores.
+msgid ""
+"The user name can only consist of letters from a-z, digits, dots, dashes "
+"and underscores."
+msgstr ""
+
+#: build/messages/components/Form/Password.json
+#. [components.Form.2330477961]
+#. defaultMessage is:
+#. The values entered for password do not match.
+msgid "The values entered for password do not match."
+msgstr ""
 
 #: build/messages/pages/blueprint/index.json
 #. [pages.blueprint.emptyBlueprintMessage]
@@ -1069,6 +1211,13 @@ msgstr ""
 "Ця процедура може бути тривалою. Образи буде зібрано у порядку їхнього "
 "започатковування."
 
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.3707489178]
+#. defaultMessage is:
+#. This user name already exists.
+msgid "This user name already exists."
+msgstr ""
+
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/Sources/SourcesList.json
 #. [components.ListView.1952810469]
@@ -1101,12 +1250,33 @@ msgstr "Адреса"
 msgid "Undo Last Change"
 msgstr "Скасувати останню зміну"
 
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.1458938618]
+#. defaultMessage is:
+#. Update
+msgid "Update"
+msgstr ""
+
 #: build/messages/components/Modal/PendingChanges.json
 #. [components.Modal.562988552] - Identifies the change as a component that was updated
 #. defaultMessage is:
 #. Updated
 msgid "Updated"
 msgstr "Оновлено"
+
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.529605439]
+#. defaultMessage is:
+#. User name
+msgid "User name"
+msgstr ""
+
+#: build/messages/pages/blueprint/index.json
+#. [pages.blueprint.443046426]
+#. defaultMessage is:
+#. Users
+msgid "Users"
+msgstr ""
 
 #: build/messages/pages/blueprint/index.json
 #. [pages.blueprint.hostnameHelp]

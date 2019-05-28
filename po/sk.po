@@ -1,11 +1,12 @@
+# David Shea <dshea@redhat.com>, 2019. #zanata
 # Matej Marusak <mmarusak@redhat.com>, 2019. #zanata
 #, fuzzy
 msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2\n"
-"PO-Revision-Date: 2019-04-18 09:19+0000\n"
-"Last-Translator: Matej Marusak <mmarusak@redhat.com>\n"
+"PO-Revision-Date: 2019-05-27 09:02+0000\n"
+"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Slovak\n"
 "Language: sk\n"
 "X-Generator: Zanata 4.6.2\n"

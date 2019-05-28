@@ -15,46 +15,63 @@ msgstr ""
 "Language: ru\n"
 
 #: build/messages/components/Modal/PendingChanges.json
-#. [components.Modal.PendingChanges.parenthetical] - Describes the sort order of the pending changes
+#. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
 #. (most recent first)
 msgid "(most recent first)"
 msgstr "(Самый недавний в начале)"
 
 #: build/messages/components/Modal/CreateImage.json
-#. [components.Modal.CreateImage.485442669]
+#. [components.Modal.485442669]
 #. defaultMessage is:
 #. 1 build is in progress
 msgid "1 build is in progress"
 msgstr "1 сборка продолжается"
 
 #: build/messages/components/Modal/CreateBlueprint.json
-#. [components.Modal.CreateBlueprint.4177685254]
+#. [components.Modal.4177685254]
 #. defaultMessage is:
 #. A blueprint name is required.
 msgid "A blueprint name is required."
 msgstr "Требуется название проекта."
 
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.2310857819]
+#. defaultMessage is:
+#. A password is defined for this account.
+msgid "A password is defined for this account."
+msgstr ""
+
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.2362836873]
+#. defaultMessage is:
+#. A password is not defined for this account.
+msgid "A password is not defined for this account."
+msgstr ""
+
 #: build/messages/components/ListView/ComponentDetailsView.json
-#. [components.ListView.ComponentDetailsView.3099331554]
+#. [components.ListView.3099331554]
 #. defaultMessage is:
 #. Add
 msgid "Add"
 msgstr "Добавить"
 
 #: build/messages/pages/blueprintEdit/index.json
-#. [pages.blueprintEdit.index.addComponentTitle]
+#. [pages.blueprintEdit.addComponentTitle]
 #. defaultMessage is:
 #. Add Blueprint Components
 msgid "Add Blueprint Components"
 msgstr "Добавить компоненты Blueprint"
 
-#: build/messages/components/ListView/ListItemChanges.json
-#: build/messages/components/Modal/PendingChanges.json
-#. [components.ListView.ListItemChanges.1362724042]
+#: build/messages/components/ListView/ComponentInputs.json
+#. [components.ListView.addComponent]
 #. defaultMessage is:
-#. Added
-#. [components.Modal.PendingChanges.1362724042] - Identifies the change as a component that was added
+#. Add latest version
+msgid "Add latest version"
+msgstr ""
+
+#: build/messages/components/Modal/PendingChanges.json
+#. [components.Modal.1362724042] - Identifies the change as a component that was added
 #. defaultMessage is:
 #. Added
 msgid "Added"
@@ -63,69 +80,62 @@ msgstr "Добавлено"
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/components/Modal/ManageSources.json
 #: build/messages/pages/blueprints/index.json
-#. [components.ListView.BlueprintContents.emptyStateErrorTitle]
+#. [components.ListView.emptyStateErrorTitle]
 #. defaultMessage is:
 #. An Error Occurred
-#. [components.Modal.ManageSources.errorStateTitle]
+#. [components.Modal.errorStateTitle]
 #. defaultMessage is:
 #. An Error Occurred
-#. [pages.blueprints.index.errorTitle]
+#. [pages.blueprints.errorTitle]
 #. defaultMessage is:
 #. An Error Occurred
 msgid "An Error Occurred"
 msgstr "Произошла ошибка"
 
 #: build/messages/components/ListView/BlueprintContents.json
-#. [components.ListView.BlueprintContents.emptyStateErrorMessage]
+#. [components.ListView.emptyStateErrorMessage]
 #. defaultMessage is:
 #. An error occurred while trying to get blueprint contents.
 msgid "An error occurred while trying to get blueprint contents."
 msgstr "Произошла ошибка при попытке получить содержание чертежа."
 
 #: build/messages/components/Modal/ManageSources.json
-#. [components.Modal.ManageSources.errorStateMessage]
+#. [components.Modal.errorStateMessage]
 #. defaultMessage is:
 #. An error occurred while trying to get sources.
 msgid "An error occurred while trying to get sources."
 msgstr "Произошла ошибка при попытке получить источники."
 
 #: build/messages/components/ListView/ComponentDetailsView.json
-#. [components.ListView.ComponentDetailsView.668376819]
+#. [components.ListView.668376819]
 #. defaultMessage is:
 #. Apply Change
 msgid "Apply Change"
 msgstr "Применить изменения"
 
-#: build/messages/components/Modal/CreateImage.json
-#. [components.Modal.CreateImage.1857500869]
-#. defaultMessage is:
-#. Architecture
-msgid "Architecture"
-msgstr "Архитектура"
-
 #: build/messages/components/Modal/DeleteBlueprint.json
-#. [components.Modal.DeleteBlueprint.4140003068]
+#. [components.Modal.4140003068]
 #. defaultMessage is:
 #. Are you sure you want to delete the blueprint {name}?
 msgid "Are you sure you want to delete the blueprint {name}?"
 msgstr "Вы действительно хотите удалить чертеж {name}?"
 
 #: build/messages/components/Modal/DeleteImage.json
-#. [components.Modal.DeleteImage.1346739796]
+#. [components.Modal.1346739796]
 #. defaultMessage is:
 #. Are you sure you want to delete the image for {blueprintName}?
 msgid "Are you sure you want to delete the image for {blueprintName}?"
 msgstr "Вы действительно хотите удалить изображение для {blueprintName}?"
 
 #: build/messages/components/Modal/StopBuild.json
-#. [components.Modal.StopBuild.234116272]
+#. [components.Modal.234116272]
 #. defaultMessage is:
 #. Are you sure you want to stop the build process for {blueprintName}?
 msgid "Are you sure you want to stop the build process for {blueprintName}?"
 msgstr "Вы действительно хотите остановить процесс сборки для {blueprintName}?"
 
 #: build/messages/pages/blueprintEdit/index.json
-#. [pages.blueprintEdit.index.2346760817]
+#. [pages.blueprintEdit.2346760817]
 #. defaultMessage is:
 #. Available Components
 msgid "Available Components"
@@ -133,24 +143,24 @@ msgstr "Доступные компоненты"
 
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
-#. [pages.blueprint.index.3126044146]
+#. [pages.blueprint.3126044146]
 #. defaultMessage is:
 #. Back to Blueprints
-#. [pages.blueprintEdit.index.3126044146]
+#. [pages.blueprintEdit.3126044146]
 #. defaultMessage is:
 #. Back to Blueprints
 msgid "Back to Blueprints"
 msgstr "Назад к чертежам"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
-#. [components.ListView.ComponentDetailsView.3057400647]
+#. [components.ListView.3448229549]
 #. defaultMessage is:
-#. Back to {parent}
-msgid "Back to {parent}"
-msgstr "Вернуться к {parent}"
+#. Back to {blueprint}
+msgid "Back to {blueprint}"
+msgstr ""
 
 #: build/messages/components/ListView/ListItemImages.json
-#. [components.ListView.ListItemImages.2943300373]
+#. [components.ListView.2943300373]
 #. defaultMessage is:
 #. Based on Version {version}
 msgid "Based on Version {version}"
@@ -161,84 +171,92 @@ msgstr "На основе версии {version}"
 #: build/messages/components/Modal/PendingChanges.json
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
-#. [components.Modal.CreateImage.1281198655]
+#. [components.Modal.1281198655]
 #. defaultMessage is:
 #. Blueprint
-#. [components.Modal.ExportBlueprint.1281198655]
+#. [components.Modal.1281198655]
 #. defaultMessage is:
 #. Blueprint
-#. [components.Modal.PendingChanges.blueprint]
+#. [components.Modal.blueprint]
 #. defaultMessage is:
 #. Blueprint
-#. [pages.blueprint.index.blueprint]
+#. [pages.blueprint.blueprint]
 #. defaultMessage is:
 #. Blueprint
-#. [pages.blueprintEdit.index.blueprintTitle]
+#. [pages.blueprintEdit.blueprintTitle]
 #. defaultMessage is:
 #. Blueprint
 msgid "Blueprint"
 msgstr "светокопия"
 
 #: build/messages/pages/blueprintEdit/index.json
-#. [pages.blueprintEdit.index.711554923]
+#. [pages.blueprintEdit.711554923]
 #. defaultMessage is:
 #. Blueprint Components
 msgid "Blueprint Components"
 msgstr "Компоненты Blueprint"
 
 #: build/messages/pages/blueprints/index.json
-#. [pages.blueprints.index.blueprintsTitle]
+#. [pages.blueprints.blueprintsTitle]
 #. defaultMessage is:
 #. Blueprints
 msgid "Blueprints"
 msgstr "светокопий"
 
 #: build/messages/pages/blueprintEdit/index.json
-#. [pages.blueprintEdit.index.addComponentMessage]
+#. [pages.blueprintEdit.addComponentMessage]
 #. defaultMessage is:
 #. Browse or search for components, then add them to the blueprint.
 msgid "Browse or search for components, then add them to the blueprint."
 msgstr "Просмотрите или найдите компоненты, а затем добавьте их в проект."
 
+#: build/messages/components/Form/TextInlineEdit.json
 #: build/messages/components/Modal/CreateBlueprint.json
 #: build/messages/components/Modal/CreateImage.json
 #: build/messages/components/Modal/DeleteBlueprint.json
 #: build/messages/components/Modal/DeleteImage.json
 #: build/messages/components/Modal/StopBuild.json
-#. [components.Modal.CreateBlueprint.3528672691]
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Form.cancel]
 #. defaultMessage is:
 #. Cancel
-#. [components.Modal.CreateImage.3528672691]
+#. [components.Modal.3528672691]
 #. defaultMessage is:
 #. Cancel
-#. [components.Modal.DeleteBlueprint.3528672691]
+#. [components.Modal.3528672691]
 #. defaultMessage is:
 #. Cancel
-#. [components.Modal.DeleteImage.3528672691]
+#. [components.Modal.3528672691]
 #. defaultMessage is:
 #. Cancel
-#. [components.Modal.StopBuild.3528672691]
+#. [components.Modal.3528672691]
+#. defaultMessage is:
+#. Cancel
+#. [components.Modal.3528672691]
+#. defaultMessage is:
+#. Cancel
+#. [components.Modal.3528672691]
 #. defaultMessage is:
 #. Cancel
 msgid "Cancel"
 msgstr "Отмена"
 
 #: build/messages/components/Modal/PendingChanges.json
-#. [components.Modal.PendingChanges.2208777537]
+#. [components.Modal.2208777537]
 #. defaultMessage is:
 #. Changes Pending Commit
 msgid "Changes Pending Commit"
 msgstr "Изменения в ожидании"
 
 #: build/messages/components/Modal/PendingChanges.json
-#. [components.Modal.PendingChanges.683130131]
+#. [components.Modal.683130131]
 #. defaultMessage is:
 #. Changes made in a previous session
 msgid "Changes made in a previous session"
 msgstr "Изменения, сделанные в предыдущем сеансе"
 
 #: build/messages/components/Modal/PendingChanges.json
-#. [components.Modal.PendingChanges.previousSessionInfotip]
+#. [components.Modal.previousSessionInfotip]
 #. defaultMessage is:
 #. Changes made in a previous session are not listed in the order they were made. If you choose to undo these changes, they are undone as a group.
 msgid ""
@@ -253,16 +271,16 @@ msgstr ""
 #: build/messages/components/Toolbar/ToolbarLayout.json
 #: build/messages/pages/blueprintEdit/index.json
 #: build/messages/pages/blueprints/index.json
-#. [components.ListView.BlueprintContents.1312249312]
+#. [components.ListView.1312249312]
 #. defaultMessage is:
 #. Clear All Filters
-#. [components.Toolbar.ToolbarLayout.1312249312]
+#. [components.Toolbar.1312249312]
 #. defaultMessage is:
 #. Clear All Filters
-#. [pages.blueprintEdit.index.1312249312]
+#. [pages.blueprintEdit.1312249312]
 #. defaultMessage is:
 #. Clear All Filters
-#. [pages.blueprints.index.1312249312]
+#. [pages.blueprints.1312249312]
 #. defaultMessage is:
 #. Clear All Filters
 msgid "Clear All Filters"
@@ -274,26 +292,26 @@ msgstr "Очистить все фильтры"
 #: build/messages/components/Modal/ManageSources.json
 #: build/messages/components/Modal/PendingChanges.json
 #: build/messages/components/Notifications/Notification.json
-#. [components.Modal.ExportBlueprint.2324218928]
+#. [components.Modal.2324218928]
 #. defaultMessage is:
 #. Close
-#. [components.Modal.ManageSources.closeButtonLabel]
+#. [components.Modal.closeButtonLabel]
 #. defaultMessage is:
 #. Close
-#. [components.Modal.ManageSources.2324218928]
+#. [components.Modal.2324218928]
 #. defaultMessage is:
 #. Close
-#. [components.Modal.PendingChanges.closeButtonLabel]
+#. [components.Modal.closeButtonLabel]
 #. defaultMessage is:
 #. Close
-#. [components.Notifications.Notification.2324218928]
+#. [components.Notifications.2324218928]
 #. defaultMessage is:
 #. Close
 msgid "Close"
 msgstr "Закрыть"
 
 #: build/messages/components/Modal/PendingChanges.json
-#. [components.Modal.PendingChanges.2299254306]
+#. [components.Modal.2299254306]
 #. defaultMessage is:
 #. Comment
 msgid "Comment"
@@ -301,31 +319,24 @@ msgstr "Комментарий"
 
 #: build/messages/components/Modal/PendingChanges.json
 #: build/messages/pages/blueprintEdit/index.json
-#. [components.Modal.PendingChanges.commitButtonLabel]
+#. [components.Modal.commitButtonLabel]
 #. defaultMessage is:
 #. Commit
-#. [pages.blueprintEdit.index.1951088698]
+#. [pages.blueprintEdit.1951088698]
 #. defaultMessage is:
 #. Commit
 msgid "Commit"
 msgstr "Сохранить"
 
 #: build/messages/components/Modal/CreateImage.json
-#. [components.Modal.CreateImage.4244040826]
+#. [components.Modal.4244040826]
 #. defaultMessage is:
 #. Commit and Create
 msgid "Commit and Create"
 msgstr "Commit and Create"
 
-#: build/messages/components/ListView/ListItemChanges.json
-#. [components.ListView.ListItemChanges.1076233378]
-#. defaultMessage is:
-#. Commit {commitNumber}
-msgid "Commit {commitNumber}"
-msgstr "совершить {commitNumber}"
-
 #: build/messages/components/ListView/ListItemImages.json
-#. [components.ListView.ListItemImages.1275749364]
+#. [components.ListView.1275749364]
 #. defaultMessage is:
 #. Complete
 msgid "Complete"
@@ -333,39 +344,38 @@ msgstr "Завершить"
 
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
-#. [pages.blueprint.index.3540308269]
+#. [pages.blueprint.3540308269]
 #. defaultMessage is:
 #. Component Details
-#. [pages.blueprintEdit.index.3540308269]
+#. [pages.blueprintEdit.3540308269]
 #. defaultMessage is:
 #. Component Details
 msgid "Component Details"
 msgstr "Детали компонента"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
-#. [components.ListView.ComponentDetailsView.2104464527]
+#. [components.ListView.2104464527]
 #. defaultMessage is:
 #. Component Options
 msgid "Component Options"
 msgstr "Параметры компонента"
 
-# translation auto-copied from project [RHEL] [CLUSTER] High Availability Add-On Overview  (was Cluster Suite Overview), version 5.9, document RHCS_Component_Summary
-#: build/messages/components/ListView/ComponentDetailsView.json
-#. [components.ListView.ComponentDetailsView.2279094754]
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.createPasswordTwo]
 #. defaultMessage is:
-#. Components
-msgid "Components"
-msgstr "Компоненты"
+#. Confirm password
+msgid "Confirm password"
+msgstr ""
 
 #: build/messages/components/Modal/ExportBlueprint.json
-#. [components.Modal.ExportBlueprint.956699920]
+#. [components.Modal.956699920]
 #. defaultMessage is:
 #. Contents
 msgid "Contents"
 msgstr "Содержание"
 
 #: build/messages/components/Modal/ExportBlueprint.json
-#. [components.Modal.ExportBlueprint.383867403]
+#. [components.Modal.383867403]
 #. defaultMessage is:
 #. Copy
 msgid "Copy"
@@ -373,51 +383,46 @@ msgstr "Копировать"
 
 #: build/messages/components/Modal/CreateBlueprint.json
 #: build/messages/components/Modal/CreateImage.json
-#. [components.Modal.CreateBlueprint.4120989039]
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.4120989039]
 #. defaultMessage is:
 #. Create
-#. [components.Modal.CreateImage.4120989039]
+#. [components.Modal.4120989039]
+#. defaultMessage is:
+#. Create
+#. [components.Modal.4120989039]
 #. defaultMessage is:
 #. Create
 msgid "Create"
 msgstr "Создать"
 
 #: build/messages/components/Modal/CreateBlueprint.json
-#: build/messages/components/Toolbar/BlueprintsToolbar.json
-#: build/messages/pages/blueprints/index.json
-#. [components.Modal.CreateBlueprint.536838868]
-#. defaultMessage is:
-#. Create Blueprint
-#. [components.Toolbar.BlueprintsToolbar.536838868]
-#. defaultMessage is:
-#. Create Blueprint
-#. [pages.blueprints.index.536838868]
+#. [components.Modal.536838868]
 #. defaultMessage is:
 #. Create Blueprint
 msgid "Create Blueprint"
 msgstr "Создать проект"
 
-#: build/messages/components/ListView/BlueprintListView.json
 #: build/messages/components/Modal/CreateImage.json
-#: build/messages/pages/blueprint/index.json
-#: build/messages/pages/blueprintEdit/index.json
-#. [components.ListView.BlueprintListView.2482064138]
-#. defaultMessage is:
-#. Create Image
-#. [components.Modal.CreateImage.2482064138]
-#. defaultMessage is:
-#. Create Image
-#. [pages.blueprint.index.2482064138]
-#. defaultMessage is:
-#. Create Image
-#. [pages.blueprintEdit.index.2482064138]
+#. [components.Modal.2482064138]
 #. defaultMessage is:
 #. Create Image
 msgid "Create Image"
 msgstr "Создать изображение"
 
+#: build/messages/components/Modal/UserAccount.json
+#: build/messages/pages/blueprint/index.json
+#. [components.Modal.modalTitleCreate]
+#. defaultMessage is:
+#. Create User Account
+#. [pages.blueprint.531338943]
+#. defaultMessage is:
+#. Create User Account
+msgid "Create User Account"
+msgstr ""
+
 #: build/messages/pages/blueprints/index.json
-#. [pages.blueprints.index.emptyMessage]
+#. [pages.blueprints.emptyMessage]
 #. defaultMessage is:
 #. Create a blueprint to define the contents that will be included in the images you create. Images can be produced in a variety of output formats.
 msgid ""
@@ -429,104 +434,86 @@ msgstr ""
 "форматах вывода."
 
 #: build/messages/components/Pagination/Pagination.json
-#. [components.Pagination.Pagination.2925773048] - Label for the string: 1–50 of 125; only visible to screen readers
+#. [components.Pagination.2925773048] - Label for the string: 1–50 of 125; only visible to screen readers
 #. defaultMessage is:
 #. Current Items
 msgid "Current Items"
 msgstr "Текущие"
 
 #: build/messages/components/Pagination/Pagination.json
-#. [components.Pagination.Pagination.currentPage] - Label of form input for setting current page number
+#. [components.Pagination.currentPage] - Label of form input for setting current page number
 #. defaultMessage is:
 #. Current Page
 msgid "Current Page"
 msgstr "Текущая страница"
 
 #: build/messages/components/Modal/ManageSources.json
-#. [components.Modal.ManageSources.3535450089] - Custom sources are additional repositories that were added by the user
+#. [components.Modal.3535450089] - Custom sources are additional repositories that were added by the user
 #. defaultMessage is:
 #. Custom Sources
 msgid "Custom Sources"
 msgstr "Пользовательские источники"
 
 #: build/messages/components/ListView/ListItemImages.json
-#. [components.ListView.ListItemImages.3751098589]
+#. [components.ListView.3751098589]
 #. defaultMessage is:
 #. Date Created {date}
 msgid "Date Created {date}"
 msgstr "Дата создания {date}"
 
-#: build/messages/components/ListView/ComponentDetailsView.json
-#. [components.ListView.ComponentDetailsView.1305464942]
-#. defaultMessage is:
-#. Debug
-msgid "Debug"
-msgstr "Отладка"
-
-#: build/messages/components/ListView/ComponentDetailsView.json
-#. [components.ListView.ComponentDetailsView.1222345317]
-#. defaultMessage is:
-#. Default
-msgid "Default"
-msgstr "По умолчанию"
-
-#: build/messages/components/ListView/BlueprintListView.json
 #: build/messages/components/ListView/ListItemImages.json
 #: build/messages/components/Modal/DeleteBlueprint.json
-#. [components.ListView.BlueprintListView.3645414921]
+#. [components.ListView.3645414921]
 #. defaultMessage is:
 #. Delete
-#. [components.ListView.ListItemImages.3645414921]
-#. defaultMessage is:
-#. Delete
-#. [components.Modal.DeleteBlueprint.3645414921]
+#. [components.Modal.3645414921]
 #. defaultMessage is:
 #. Delete
 msgid "Delete"
 msgstr "Удалить"
 
 #: build/messages/components/Modal/DeleteBlueprint.json
-#. [components.Modal.DeleteBlueprint.3153775112]
+#. [components.Modal.3153775112]
 #. defaultMessage is:
 #. Delete Blueprint
 msgid "Delete Blueprint"
 msgstr "Удалить проект"
 
 #: build/messages/components/Modal/DeleteImage.json
-#. [components.Modal.DeleteImage.1731766393]
+#. [components.Modal.1731766393]
 #. defaultMessage is:
 #. Delete Image
 msgid "Delete Image"
 msgstr "Удалить изображение"
 
+#: build/messages/pages/blueprint/index.json
+#. [pages.blueprint.userDelete]
+#. defaultMessage is:
+#. Delete User Account
+msgid "Delete User Account"
+msgstr ""
+
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ComponentSummaryList.json
-#. [components.ListView.BlueprintContents.dependenciesTabTitle]
+#. [components.ListView.dependenciesTabTitle]
 #. defaultMessage is:
 #. Dependencies
-#. [components.ListView.ComponentDetailsView.dependencies]
+#. [components.ListView.dependencies]
 #. defaultMessage is:
 #. Dependencies
-#. [components.ListView.ComponentSummaryList.3727965333]
+#. [components.ListView.3727965333]
 #. defaultMessage is:
 #. Dependencies
 msgid "Dependencies"
 msgstr "Зависимости"
 
-#: build/messages/components/ListView/ListItemLabel.json
-#. [components.ListView.ListItemLabel.2051291306]
-#. defaultMessage is:
-#. Dependency
-msgid "Dependency"
-msgstr "Зависимость"
-
 #: build/messages/components/Modal/CreateBlueprint.json
 #: build/messages/pages/blueprint/index.json
-#. [components.Modal.CreateBlueprint.3374163063]
+#. [components.Modal.3374163063]
 #. defaultMessage is:
 #. Description
-#. [pages.blueprint.index.3374163063]
+#. [pages.blueprint.descriptionInputLabel]
 #. defaultMessage is:
 #. Description
 msgid "Description"
@@ -534,54 +521,68 @@ msgstr "Описание"
 
 # translation auto-copied from project Customer Portal Translations, version PortalCaseManagementStrings, document PortalCaseManagementStrings, author ypoyarko
 #: build/messages/pages/blueprintEdit/index.json
-#. [pages.blueprintEdit.index.1936836258]
+#. [pages.blueprintEdit.1936836258]
 #. defaultMessage is:
 #. Discard Changes
 msgid "Discard Changes"
 msgstr "Отменить"
 
 #: build/messages/components/ListView/ListItemImages.json
-#. [components.ListView.ListItemImages.1982430146]
+#. [components.ListView.1982430146]
 #. defaultMessage is:
 #. Download
 msgid "Download"
 msgstr "Загрузить"
 
-#: build/messages/components/ListView/ComponentDetailsView.json
-#: build/messages/components/ListView/ListItemComponents.json
-#. [components.ListView.ComponentDetailsView.197077183]
-#. defaultMessage is:
-#. Edit
-#. [components.ListView.ListItemComponents.197077183]
-#. defaultMessage is:
-#. Edit
-msgid "Edit"
-msgstr "Правка"
-
 #: build/messages/components/ListView/BlueprintListView.json
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
-#. [components.ListView.BlueprintListView.1602740985]
+#. [components.ListView.1602740985]
 #. defaultMessage is:
 #. Edit Blueprint
-#. [pages.blueprint.index.1602740985]
+#. [pages.blueprint.1602740985]
 #. defaultMessage is:
 #. Edit Blueprint
-#. [pages.blueprintEdit.index.1602740985]
+#. [pages.blueprintEdit.1602740985]
 #. defaultMessage is:
 #. Edit Blueprint
 msgid "Edit Blueprint"
 msgstr "Изменить схему"
 
+#: build/messages/components/Modal/UserAccount.json
 #: build/messages/pages/blueprint/index.json
-#. [pages.blueprint.index.emptyBlueprintTitle]
+#. [components.Modal.modalTitleEdit]
+#. defaultMessage is:
+#. Edit User Account
+#. [pages.blueprint.userEdit]
+#. defaultMessage is:
+#. Edit User Account
+msgid "Edit User Account"
+msgstr ""
+
+#: build/messages/pages/blueprint/index.json
+#. [pages.blueprint.descriptionButtonLabel]
+#. defaultMessage is:
+#. Edit description
+msgid "Edit description"
+msgstr ""
+
+#: build/messages/pages/blueprint/index.json
+#. [pages.blueprint.hostnameButtonLabel]
+#. defaultMessage is:
+#. Edit hostname
+msgid "Edit hostname"
+msgstr ""
+
+#: build/messages/pages/blueprint/index.json
+#. [pages.blueprint.emptyBlueprintTitle]
 #. defaultMessage is:
 #. Empty Blueprint
 msgid "Empty Blueprint"
 msgstr "Пустой план"
 
 #: build/messages/pages/error/index.json
-#. [pages.error.index.errorMessage]
+#. [pages.error.errorMessage]
 #. defaultMessage is:
 #. Error
 msgid "Error"
@@ -590,55 +591,62 @@ msgstr "Ошибка"
 #: build/messages/components/ListView/BlueprintListView.json
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
-#. [components.ListView.BlueprintListView.3590336714]
+#. [components.ListView.3590336714]
 #. defaultMessage is:
 #. Export
-#. [pages.blueprint.index.3590336714]
+#. [pages.blueprint.3590336714]
 #. defaultMessage is:
 #. Export
-#. [pages.blueprintEdit.index.3590336714]
+#. [pages.blueprintEdit.3590336714]
 #. defaultMessage is:
 #. Export
 msgid "Export"
 msgstr "Экспорт"
 
 #: build/messages/components/Modal/ExportBlueprint.json
-#. [components.Modal.ExportBlueprint.386209032]
+#. [components.Modal.386209032]
 #. defaultMessage is:
 #. Export Blueprint
 msgid "Export Blueprint"
 msgstr "Экспортный план"
 
 #: build/messages/components/Modal/ExportBlueprint.json
-#. [components.Modal.ExportBlueprint.3658760324]
+#. [components.Modal.3658760324]
 #. defaultMessage is:
 #. Export as
 msgid "Export as"
 msgstr "Экспорт как"
 
 #: build/messages/components/ListView/ListItemImages.json
-#. [components.ListView.ListItemImages.2753020605]
+#. [components.ListView.2753020605]
 #. defaultMessage is:
 #. Failed
 msgid "Failed"
 msgstr "Сбой"
 
 #: build/messages/pages/blueprintEdit/index.json
-#. [pages.blueprintEdit.index.filterByLabel]
+#. [pages.blueprintEdit.filterByLabel]
 #. defaultMessage is:
 #. Filter Available Components by Name
 msgid "Filter Available Components by Name"
 msgstr "Фильтровать имеющиеся компоненты по имени"
 
 #: build/messages/pages/blueprintEdit/index.json
-#. [pages.blueprintEdit.index.filterByPlaceholder]
+#. [pages.blueprintEdit.filterByPlaceholder]
 #. defaultMessage is:
 #. Filter By Name...
 msgid "Filter By Name..."
 msgstr "Фильтровать по имени ..."
 
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.1182120637]
+#. defaultMessage is:
+#. Full name
+msgid "Full name"
+msgstr ""
+
 #: build/messages/pages/error/index.json
-#. [pages.error.index.2333299345]
+#. [pages.error.2333299345]
 #. defaultMessage is:
 #. Go back
 msgid "Go back"
@@ -646,24 +654,38 @@ msgstr "Назад"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ComponentInputs.json
-#. [components.ListView.ComponentDetailsView.hideDetails]
+#. [components.ListView.hideDetails]
 #. defaultMessage is:
 #. Hide Details
-#. [components.ListView.ComponentInputs.hideDetails]
+#. [components.ListView.hideDetails]
 #. defaultMessage is:
 #. Hide Details
 msgid "Hide Details"
 msgstr "Скрыть подробности"
 
+#: build/messages/pages/blueprint/index.json
+#. [pages.blueprint.hostnameInputLabel]
+#. defaultMessage is:
+#. Hostname
+msgid "Hostname"
+msgstr ""
+
+#: build/messages/pages/blueprint/index.json
+#. [pages.blueprint.hostnameHelpEmpty]
+#. defaultMessage is:
+#. If no hostname is provided, the hostname will be determined by the OS.
+msgid "If no hostname is provided, the hostname will be determined by the OS."
+msgstr ""
+
 #: build/messages/components/Modal/CreateImage.json
-#. [components.Modal.CreateImage.380558550]
+#. [components.Modal.380558550]
 #. defaultMessage is:
 #. Image Type
 msgid "Image Type"
 msgstr "Тип изображения"
 
 #: build/messages/pages/blueprint/index.json
-#. [pages.blueprint.index.imagesTitle]
+#. [pages.blueprint.imagesTitle]
 #. defaultMessage is:
 #. Images
 msgid "Images"
@@ -671,21 +693,14 @@ msgstr "Образы"
 
 # translation auto-copied from project evolution, version 3.8.5, document evolution-3.8
 #: build/messages/components/ListView/ListItemImages.json
-#. [components.ListView.ListItemImages.3045064456]
+#. [components.ListView.3045064456]
 #. defaultMessage is:
 #. In Progress
 msgid "In Progress"
 msgstr "Выполняется"
 
-#: build/messages/components/ListView/ComponentDetailsView.json
-#. [components.ListView.ComponentDetailsView.3274047346]
-#. defaultMessage is:
-#. Install Profile
-msgid "Install Profile"
-msgstr "Установить профиль"
-
 #: build/messages/components/Loading/Loading.json
-#. [components.Loading.Loading.2617450248]
+#. [components.Loading.2617450248]
 #. defaultMessage is:
 #. Loading
 msgid "Loading"
@@ -693,10 +708,10 @@ msgstr "Загружается"
 
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/pages/blueprints/index.json
-#. [components.ListView.BlueprintContents.emptyStateNoResultsMessage]
+#. [components.ListView.emptyStateNoResultsMessage]
 #. defaultMessage is:
 #. Modify your filter criteria to get results.
-#. [pages.blueprints.index.noResultsMessage]
+#. [pages.blueprints.noResultsMessage]
 #. defaultMessage is:
 #. Modify your filter criteria to get results.
 msgid "Modify your filter criteria to get results."
@@ -704,35 +719,45 @@ msgstr "Измените критерии фильтра, чтобы получ�
 
 #: build/messages/components/Modal/CreateBlueprint.json
 #: build/messages/components/Sources/SourcesList.json
-#: build/messages/pages/blueprint/index.json
-#. [components.Modal.CreateBlueprint.636461959]
+#. [components.Modal.636461959]
 #. defaultMessage is:
 #. Name
-#. [components.Sources.SourcesList.636461959] - Name of source
-#. defaultMessage is:
-#. Name
-#. [pages.blueprint.index.636461959]
+#. [components.Sources.636461959] - Name of source
 #. defaultMessage is:
 #. Name
 msgid "Name"
 msgstr "Имя"
 
 #: build/messages/pages/blueprintEdit/index.json
-#. [pages.blueprintEdit.index.3059610115]
+#. [pages.blueprintEdit.3059610115]
 #. defaultMessage is:
 #. Name: {name}
 msgid "Name: {name}"
 msgstr "Название: {name}"
 
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.editPasswordOne]
+#. defaultMessage is:
+#. New password
+msgid "New password"
+msgstr ""
+
 #: build/messages/pages/blueprints/index.json
-#. [pages.blueprints.index.emptyTitle]
+#. [pages.blueprints.emptyTitle]
 #. defaultMessage is:
 #. No Blueprints
 msgid "No Blueprints"
 msgstr "Нет чертежей"
 
+#: build/messages/components/ListView/ComponentDetailsView.json
+#. [components.ListView.noDepsTitle]
+#. defaultMessage is:
+#. No Dependencies
+msgid "No Dependencies"
+msgstr ""
+
 #: build/messages/pages/blueprint/index.json
-#. [pages.blueprint.index.noImagesTitle]
+#. [pages.blueprint.noImagesTitle]
 #. defaultMessage is:
 #. No Images
 msgid "No Images"
@@ -740,24 +765,24 @@ msgstr "Нет изображений"
 
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/pages/blueprints/index.json
-#. [components.ListView.BlueprintContents.emptyStateNoResultsTitle]
+#. [components.ListView.emptyStateNoResultsTitle]
 #. defaultMessage is:
 #. No Results Match the Filter Criteria
-#. [pages.blueprints.index.noResultsTitle]
+#. [pages.blueprints.noResultsTitle]
 #. defaultMessage is:
 #. No Results Match the Filter Criteria
 msgid "No Results Match the Filter Criteria"
 msgstr "Нет результатов Соответствие критериям фильтра"
 
 #: build/messages/pages/blueprint/index.json
-#. [pages.blueprint.index.noImagesMessage]
+#. [pages.blueprint.noImagesMessage]
 #. defaultMessage is:
 #. No images have been created from this blueprint.
 msgid "No images have been created from this blueprint."
 msgstr "Из этого чертежа не было создано никаких изображений."
 
 #: build/messages/components/ListView/DependencyListView.json
-#. [components.ListView.DependencyListView.1983535507]
+#. [components.ListView.1983535507]
 #. defaultMessage is:
 #. One or more dependencies have multiple variations that could be used.
 #. A default variation was automatically selected.
@@ -773,14 +798,14 @@ msgstr ""
 "флажковую зависимость, чтобы просмотреть другие доступные параметры."
 
 #: build/messages/components/Modal/PendingChanges.json
-#. [components.Modal.PendingChanges.1475836573]
+#. [components.Modal.1475836573]
 #. defaultMessage is:
 #. Only changes to selected components are shown.
 msgid "Only changes to selected components are shown."
 msgstr "Отображаются только изменения выбранных компонентов."
 
 #: build/messages/pages/error/index.json
-#. [pages.error.index.oupsTitle]
+#. [pages.error.oupsTitle]
 #. defaultMessage is:
 #. Oups, something went wrong
 msgid "Oups, something went wrong"
@@ -788,36 +813,68 @@ msgstr "Oups, что-то пошло не так"
 
 # ctx::sourcefile::404 error page
 #: build/messages/pages/error/index.json
-#. [pages.error.index.pageNotFoundMessage]
+#. [pages.error.pageNotFoundMessage]
 #. defaultMessage is:
 #. Page Not Found
 msgid "Page Not Found"
 msgstr "Страница не найдена"
 
 #: build/messages/pages/error/index.json
-#. [pages.error.index.pageNotFoundTitle]
+#. [pages.error.pageNotFoundTitle]
 #. defaultMessage is:
 #. Page not found
 msgid "Page not found"
 msgstr "Страница не найдена"
 
 #: build/messages/components/Pagination/Pagination.json
-#. [components.Pagination.Pagination.pagination]
+#. [components.Pagination.pagination]
 #. defaultMessage is:
 #. Pagination
 msgid "Pagination"
 msgstr "пагинация"
 
+#: build/messages/components/Modal/UserAccount.json
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.createPasswordOne]
+#. defaultMessage is:
+#. Password
+#. [components.Modal.2237029987]
+#. defaultMessage is:
+#. Password
+msgid "Password"
+msgstr ""
+
+#: build/messages/components/Form/Password.json
+#. [components.Form.rejectedPassword]
+#. defaultMessage is:
+#. Password is not acceptable
+msgid "Password is not acceptable"
+msgstr ""
+
+#: build/messages/components/Form/Password.json
+#. [components.Form.weakPassword]
+#. defaultMessage is:
+#. Password is too weak
+msgid "Password is too weak"
+msgstr ""
+
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.sshKeyHelp]
+#. defaultMessage is:
+#. Paste the contents of your public SSH key file here.
+msgid "Paste the contents of your public SSH key file here."
+msgstr ""
+
 # translation auto-copied from project Satellite6 Hammer CLI Foreman, version 6.1, document hammer-cli-foreman
 #: build/messages/components/ListView/ListItemImages.json
-#. [components.ListView.ListItemImages.1102534324]
+#. [components.ListView.1102534324]
 #. defaultMessage is:
 #. Pending
 msgid "Pending"
 msgstr "Ожидание"
 
 #: build/messages/components/Modal/PendingChanges.json
-#. [components.Modal.PendingChanges.433458873]
+#. [components.Modal.433458873]
 #. defaultMessage is:
 #. Pending Changes
 msgid "Pending Changes"
@@ -825,17 +882,17 @@ msgstr "Ожидающие изменения"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ListItemComponents.json
-#. [components.ListView.ComponentDetailsView.423140743]
+#. [components.ListView.423140743]
 #. defaultMessage is:
 #. Release
-#. [components.ListView.ListItemComponents.423140743]
+#. [components.ListView.423140743]
 #. defaultMessage is:
 #. Release
 msgid "Release"
 msgstr "Релиз"
 
 #: build/messages/components/ListView/ListItemComponents.json
-#. [components.ListView.ListItemComponents.3825820359]
+#. [components.ListView.3825820359]
 #. defaultMessage is:
 #. Release {release}
 msgid "Release {release}"
@@ -844,52 +901,83 @@ msgstr "Релиз {release}"
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ListItemComponents.json
 #: build/messages/components/ListView/ListItemImages.json
-#. [components.ListView.ComponentDetailsView.2703758654]
+#. [components.ListView.2703758654]
 #. defaultMessage is:
 #. Remove
-#. [components.ListView.ListItemComponents.2703758654]
+#. [components.ListView.2703758654]
 #. defaultMessage is:
 #. Remove
-#. [components.ListView.ListItemImages.2703758654]
+#. [components.ListView.2703758654]
 #. defaultMessage is:
 #. Remove
 msgid "Remove"
 msgstr "Удалить зону"
 
+#: build/messages/components/ListView/ComponentInputs.json
+#. [components.ListView.removeComponent]
+#. defaultMessage is:
+#. Remove Component from Blueprint
+msgid "Remove Component from Blueprint"
+msgstr ""
+
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.2822116526]
+#. defaultMessage is:
+#. Remove Password
+msgid "Remove Password"
+msgstr ""
+
 #: build/messages/components/ListView/ComponentDetailsView.json
-#. [components.ListView.ComponentDetailsView.removeFromBlueprint]
+#. [components.ListView.removeFromBlueprint]
 #. defaultMessage is:
 #. Remove from Blueprint
 msgid "Remove from Blueprint"
 msgstr "Удалить из проекта"
 
-#: build/messages/components/ListView/ListItemChanges.json
 #: build/messages/components/Modal/PendingChanges.json
-#. [components.ListView.ListItemChanges.2291868453]
-#. defaultMessage is:
-#. Removed
-#. [components.Modal.PendingChanges.2291868453] - Identifies the change as a component that was removed
+#. [components.Modal.2291868453] - Identifies the change as a component that was removed
 #. defaultMessage is:
 #. Removed
 msgid "Removed"
 msgstr "Удалены"
 
 #: build/messages/components/Modal/CreateBlueprint.json
-#. [components.Modal.CreateBlueprint.128739785]
+#. [components.Modal.128739785]
 #. defaultMessage is:
 #. Required information is missing.
 msgid "Required information is missing."
 msgstr "Необходимая информация отсутствует."
 
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.106035384]
+#. defaultMessage is:
+#. Role
+msgid "Role"
+msgstr ""
+
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.229369250]
+#. defaultMessage is:
+#. SSH key
+msgid "SSH key"
+msgstr ""
+
+#: build/messages/components/Form/TextInlineEdit.json
+#. [components.Form.save]
+#. defaultMessage is:
+#. Save
+msgid "Save"
+msgstr ""
+
 #: build/messages/pages/blueprintEdit/index.json
-#. [pages.blueprintEdit.index.1513086105]
+#. [pages.blueprintEdit.1513086105]
 #. defaultMessage is:
 #. Select components
 msgid "Select components"
 msgstr "Выберите компоненты"
 
 #: build/messages/components/Modal/CreateImage.json
-#. [components.Modal.CreateImage.selectOne]
+#. [components.Modal.selectOne]
 #. defaultMessage is:
 #. Select one
 msgid "Select one"
@@ -897,136 +985,177 @@ msgstr "Выберите один"
 
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/pages/blueprint/index.json
-#. [components.ListView.BlueprintContents.selectedTabTitle]
+#. [components.ListView.selectedTabTitle]
 #. defaultMessage is:
 #. Selected Components
-#. [pages.blueprint.index.selectedComponentsTitle]
+#. [pages.blueprint.selectedComponentsTitle]
 #. defaultMessage is:
 #. Selected Components
 msgid "Selected Components"
 msgstr "Выбранные компоненты"
 
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.122879380]
+#. defaultMessage is:
+#. Server administrator
+msgid "Server administrator"
+msgstr ""
+
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.1110245255]
+#. defaultMessage is:
+#. Set New Password
+msgid "Set New Password"
+msgstr ""
+
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.3696648021]
+#. defaultMessage is:
+#. Set Password
+msgid "Set Password"
+msgstr ""
+
 #: build/messages/components/ListView/ComponentSummaryList.json
-#. [components.ListView.ComponentSummaryList.1256153657]
+#. [components.ListView.1256153657]
 #. defaultMessage is:
 #. Show All
 msgid "Show All"
 msgstr "Показать все"
 
 #: build/messages/components/ListView/ComponentInputs.json
-#. [components.ListView.ComponentInputs.showDetails]
+#. [components.ListView.showDetails]
 #. defaultMessage is:
 #. Show Details and More Options
 msgid "Show Details and More Options"
 msgstr "Показать детали и дополнительные параметры"
 
 #: build/messages/components/ListView/ComponentSummaryList.json
-#. [components.ListView.ComponentSummaryList.2354351315]
+#. [components.ListView.2354351315]
 #. defaultMessage is:
 #. Show Less
 msgid "Show Less"
 msgstr "Показывай меньше"
 
 #: build/messages/components/Pagination/Pagination.json
-#. [components.Pagination.Pagination.nextPage]
+#. [components.Pagination.nextPage]
 #. defaultMessage is:
 #. Show Next Page
 msgid "Show Next Page"
 msgstr "Показать следующую страницу"
 
 #: build/messages/components/Pagination/Pagination.json
-#. [components.Pagination.Pagination.previousPage]
+#. [components.Pagination.previousPage]
 #. defaultMessage is:
 #. Show Previous Page
 msgid "Show Previous Page"
 msgstr "Показать предыдущую страницу"
 
 #: build/messages/components/Sources/SourcesList.json
-#. [components.Sources.SourcesList.3503331186] - The path or url to the source repository
+#. [components.Sources.3503331186] - The path or url to the source repository
 #. defaultMessage is:
 #. Source Path
 msgid "Source Path"
 msgstr "Путь к источнику"
 
 #: build/messages/components/Modal/ManageSources.json
-#. [components.Modal.ManageSources.3025955497] - Sources provide the contents from which components are selected
+#. [components.Modal.3025955497] - Sources provide the contents from which components are selected
 #. defaultMessage is:
 #. Sources
 msgid "Sources"
 msgstr "Источники"
 
 #: build/messages/components/Modal/CreateBlueprint.json
-#. [components.Modal.CreateBlueprint.540971304]
+#. [components.Modal.540971304]
 #. defaultMessage is:
 #. Specify a new blueprint name.
 msgid "Specify a new blueprint name."
 msgstr "Укажите новое название проекта."
 
 #: build/messages/components/ListView/ListItemImages.json
-#. [components.ListView.ListItemImages.2989081855]
+#. [components.ListView.2989081855]
 #. defaultMessage is:
 #. Stop
 msgid "Stop"
 msgstr "Остановить"
 
 #: build/messages/components/Modal/StopBuild.json
-#. [components.Modal.StopBuild.1162993432]
+#. [components.Modal.1162993432]
 #. defaultMessage is:
 #. Stop Build
 msgid "Stop Build"
 msgstr "Прекратить сборку"
 
 #: build/messages/components/ListView/ListItemImages.json
-#. [components.ListView.ListItemImages.2434115730]
+#. [components.ListView.2434115730]
 #. defaultMessage is:
 #. Stopping
 msgid "Stopping"
 msgstr "остановка"
 
 #: build/messages/components/Modal/ManageSources.json
-#. [components.Modal.ManageSources.766860407] - System sources are configured repositories that were found on the host machine
+#. [components.Modal.766860407] - System sources are configured repositories that were found on the host machine
 #. defaultMessage is:
 #. System Sources
 msgid "System Sources"
 msgstr "Системные источники"
 
 #: build/messages/components/Modal/ExportBlueprint.json
-#. [components.Modal.ExportBlueprint.3495336243]
+#. [components.Modal.3495336243]
 #. defaultMessage is:
 #. Text
 msgid "Text"
 msgstr "Текст"
 
 #: build/messages/components/Modal/StopBuild.json
-#. [components.Modal.StopBuild.3426018028]
+#. [components.Modal.3426018028]
 #. defaultMessage is:
 #. The build process cannot resume after it stops.
 msgid "The build process cannot resume after it stops."
 msgstr "Процесс сборки не может возобновиться после его остановки."
 
 #: build/messages/components/Modal/CreateBlueprint.json
-#. [components.Modal.CreateBlueprint.216946930]
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.216946930]
+#. defaultMessage is:
+#. The fields marked with {val} are required.
+#. [components.Modal.216946930]
 #. defaultMessage is:
 #. The fields marked with {val} are required.
 msgid "The fields marked with {val} are required."
 msgstr "Поля, отмеченные {val} являются обязательными."
 
 #: build/messages/components/Modal/CreateBlueprint.json
-#. [components.Modal.CreateBlueprint.2580689893]
+#. [components.Modal.2580689893]
 #. defaultMessage is:
 #. The name {name} already exists.
 msgid "The name {name} already exists."
 msgstr "Имя {name} уже существует."
 
 #: build/messages/pages/error/index.json
-#. [pages.error.index.26562577]
+#. [pages.error.26562577]
 #. defaultMessage is:
 #. The page you're looking for does not exist or an another error occurred.
 msgid "The page you're looking for does not exist or an another error occurred."
 msgstr "Страница, которую вы ищете, не существует или произошла другая ошибка."
 
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.2405281428]
+#. defaultMessage is:
+#. The user name can only consist of letters from a-z, digits, dots, dashes and underscores.
+msgid ""
+"The user name can only consist of letters from a-z, digits, dots, dashes "
+"and underscores."
+msgstr ""
+
+#: build/messages/components/Form/Password.json
+#. [components.Form.2330477961]
+#. defaultMessage is:
+#. The values entered for password do not match.
+msgid "The values entered for password do not match."
+msgstr ""
+
 #: build/messages/pages/blueprint/index.json
-#. [pages.blueprint.index.emptyBlueprintMessage]
+#. [pages.blueprint.emptyBlueprintMessage]
 #. defaultMessage is:
 #. There are no components listed in the blueprint. Edit the blueprint to add components.
 msgid ""
@@ -1036,17 +1165,17 @@ msgstr "В проекте нет компонентов. Отредактиру�
 
 #: build/messages/components/Modal/DeleteBlueprint.json
 #: build/messages/components/Modal/DeleteImage.json
-#. [components.Modal.DeleteBlueprint.181468144]
+#. [components.Modal.181468144]
 #. defaultMessage is:
 #. This action cannot be undone.
-#. [components.Modal.DeleteImage.181468144]
+#. [components.Modal.181468144]
 #. defaultMessage is:
 #. This action cannot be undone.
 msgid "This action cannot be undone."
 msgstr "Это действие не может быть отменено."
 
 #: build/messages/components/Modal/CreateImage.json
-#. [components.Modal.CreateImage.warningUnsaved]
+#. [components.Modal.warningUnsaved]
 #. defaultMessage is:
 #. This blueprint has changes that are not committed. These changes will be committed before the image is created.
 msgid ""
@@ -1057,14 +1186,21 @@ msgstr ""
 "зафиксированы до создания изображения."
 
 #: build/messages/components/Modal/CreateImage.json
-#. [components.Modal.CreateImage.1766703173]
+#. [components.Modal.1766703173]
 #. defaultMessage is:
 #. This blueprint is empty.
 msgid "This blueprint is empty."
 msgstr "Этот проект пуст."
 
+#: build/messages/components/ListView/ComponentDetailsView.json
+#. [components.ListView.noDepsMessage]
+#. defaultMessage is:
+#. This component has no dependencies.
+msgid "This component has no dependencies."
+msgstr ""
+
 #: build/messages/components/Modal/CreateImage.json
-#. [components.Modal.CreateImage.infotip]
+#. [components.Modal.infotip]
 #. defaultMessage is:
 #. This process can take a while. Images are built in the order they are started.
 msgid ""
@@ -1074,212 +1210,242 @@ msgstr ""
 "Этот процесс может занять некоторое время. Изображения создаются в том "
 "порядке, в котором они запускаются."
 
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.3707489178]
+#. defaultMessage is:
+#. This user name already exists.
+msgid "This user name already exists."
+msgstr ""
+
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/Sources/SourcesList.json
-#. [components.ListView.ComponentDetailsView.1952810469]
+#. [components.ListView.1952810469]
 #. defaultMessage is:
 #. Type
-#. [components.Sources.SourcesList.1952810469] - Type of source
+#. [components.Sources.1952810469] - Type of source
 #. defaultMessage is:
 #. Type
 msgid "Type"
 msgstr "Тип"
 
 #: build/messages/components/ListView/ListItemImages.json
-#. [components.ListView.ListItemImages.860864899]
+#. [components.ListView.860864899]
 #. defaultMessage is:
 #. Type {type}
 msgid "Type {type}"
 msgstr "Тип {type}"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
-#. [components.ListView.ComponentDetailsView.1324178587]
+#. [components.ListView.1324178587]
 #. defaultMessage is:
 #. URL
 msgid "URL"
 msgstr "Ссылка (URL)"
 
-#: build/messages/components/ListView/ComponentDetailsView.json
-#. [components.ListView.ComponentDetailsView.1458938618]
+#: build/messages/components/ListView/BlueprintContents.json
+#. [components.ListView.3158548332]
+#. defaultMessage is:
+#. Undo Last Change
+msgid "Undo Last Change"
+msgstr ""
+
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.1458938618]
 #. defaultMessage is:
 #. Update
 msgid "Update"
 msgstr "Обновить"
 
 #: build/messages/components/Modal/PendingChanges.json
-#. [components.Modal.PendingChanges.562988552] - Identifies the change as a component that was updated
+#. [components.Modal.562988552] - Identifies the change as a component that was updated
 #. defaultMessage is:
 #. Updated
 msgid "Updated"
 msgstr "Обновлено"
 
+#: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.529605439]
+#. defaultMessage is:
+#. User name
+msgid "User name"
+msgstr ""
+
+#: build/messages/pages/blueprint/index.json
+#. [pages.blueprint.443046426]
+#. defaultMessage is:
+#. Users
+msgid "Users"
+msgstr ""
+
+#: build/messages/pages/blueprint/index.json
+#. [pages.blueprint.hostnameHelp]
+#. defaultMessage is:
+#. Valid characters for hostname are letters from a to z, the digits from 0 to 9, and the hyphen (-). A hostname may not start with a hyphen.
+msgid ""
+"Valid characters for hostname are letters from a to z, the digits from 0 to "
+"9, and the hyphen (-). A hostname may not start with a hyphen."
+msgstr ""
+
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ListItemComponents.json
-#. [components.ListView.ComponentDetailsView.602883748]
+#. [components.ListView.602883748]
 #. defaultMessage is:
 #. Version
-#. [components.ListView.ListItemComponents.602883748]
+#. [components.ListView.602883748]
 #. defaultMessage is:
 #. Version
 msgid "Version"
 msgstr "Версия"
 
 #: build/messages/components/ListView/ListItemComponents.json
-#. [components.ListView.ListItemComponents.4013222233]
+#. [components.ListView.4013222233]
 #. defaultMessage is:
 #. Version {version}
 msgid "Version {version}"
 msgstr "Версия {version}"
 
 #: build/messages/components/ListView/ListItemComponents.json
-#. [components.ListView.ListItemComponents.3097747573]
+#. [components.ListView.3097747573]
 #. defaultMessage is:
 #. View
 msgid "View"
 msgstr "Просмотр"
 
 #: build/messages/components/Toolbar/BlueprintsToolbar.json
-#. [components.Toolbar.BlueprintsToolbar.3713868073] - User action for displaying the list of source repositories
+#. [components.Toolbar.3713868073] - User action for displaying the list of source repositories
 #. defaultMessage is:
 #. View Sources
 msgid "View Sources"
 msgstr "Просмотр источников"
 
 #: build/messages/components/Modal/PendingChanges.json
-#. [components.Modal.PendingChanges.2755325844]
+#. [components.Modal.2755325844]
 #. defaultMessage is:
 #. from
 msgid "from"
 msgstr "от"
 
 #: build/messages/pages/error/index.json
-#. [pages.error.index.2054225650]
+#. [pages.error.2054225650]
 #. defaultMessage is:
 #. home page
 msgid "home page"
 msgstr "главная страница"
 
 #: build/messages/components/Modal/PendingChanges.json
-#. [components.Modal.PendingChanges.152217691]
+#. [components.Modal.152217691]
 #. defaultMessage is:
 #. to
 msgid "to"
 msgstr "в"
 
-#: build/messages/components/Modal/CreateImage.json
-#. [components.Modal.CreateImage.282502245]
-#. defaultMessage is:
-#. x86_64
-msgid "x86_64"
-msgstr "x86_64"
-
 #: build/messages/data/NotificationsApi.json
-#. [data.NotificationsApi.4273735599]
+#. [data.4273735599]
 #. defaultMessage is:
 #. {blueprint} Blueprint changes are committed.
 msgid "{blueprint} Blueprint changes are committed."
 msgstr "{blueprint} Изменения в плане выполнены."
 
 #: build/messages/data/NotificationsApi.json
-#. [data.NotificationsApi.477516828]
+#. [data.477516828]
 #. defaultMessage is:
 #. {blueprint} Commit failed.
 msgid "{blueprint} Commit failed."
 msgstr "{blueprint} Ошибка коммита."
 
 #: build/messages/data/NotificationsApi.json
-#. [data.NotificationsApi.1829299735]
+#. [data.1829299735]
 #. defaultMessage is:
 #. {blueprint} Committing blueprint.
 msgid "{blueprint} Committing blueprint."
 msgstr "{blueprint} Фиксирующий план."
 
 #: build/messages/data/NotificationsApi.json
-#. [data.NotificationsApi.3947958753]
+#. [data.3947958753]
 #. defaultMessage is:
 #. {blueprint} Image creation failed.
 msgid "{blueprint} Image creation failed."
 msgstr "{blueprint} Не удалось создать изображение."
 
 #: build/messages/data/NotificationsApi.json
-#. [data.NotificationsApi.705169148]
+#. [data.705169148]
 #. defaultMessage is:
 #. {blueprint} Image creation has been added to the queue.
 msgid "{blueprint} Image creation has been added to the queue."
 msgstr "{blueprint} В очередь добавлено создание изображения."
 
 #: build/messages/data/NotificationsApi.json
-#. [data.NotificationsApi.1726548071]
+#. [data.1726548071]
 #. defaultMessage is:
 #. {blueprint} Image creation has started.
 msgid "{blueprint} Image creation has started."
 msgstr "{blueprint} Началось создание изображения."
 
 #: build/messages/data/NotificationsApi.json
-#. [data.NotificationsApi.210196387]
+#. [data.210196387]
 #. defaultMessage is:
 #. {blueprint} Image creation is complete.
 msgid "{blueprint} Image creation is complete."
 msgstr "{blueprint} Создание изображения завершено."
 
 #: build/messages/components/Modal/CreateImage.json
-#. [components.Modal.CreateImage.2122759296]
+#. [components.Modal.2122759296]
 #. defaultMessage is:
 #. {builds, plural, one {# build is waiting} other {# builds are waiting}}
 msgid "{builds, plural, one {# build is waiting} other {# builds are waiting}}"
 msgstr "{builds, plural, one {# build is waiting} Другой {# builds are waiting}}"
 
 #: build/messages/components/Modal/ExportBlueprint.json
-#. [components.Modal.ExportBlueprint.1557505074]
+#. [components.Modal.1557505074]
 #. defaultMessage is:
 #. {count} total components
 msgid "{count} total components"
 msgstr "{count} общие компоненты"
 
 #: build/messages/components/Pagination/Pagination.json
-#. [components.Pagination.Pagination.3506832526]
+#. [components.Pagination.3506832526]
 #. defaultMessage is:
 #. {currentPage} of {totalPages}
 msgid "{currentPage} of {totalPages}"
 msgstr "{currentPage} из {totalPages}"
 
 #: build/messages/components/Modal/PendingChanges.json
-#. [components.Modal.PendingChanges.3908981070]
+#. [components.Modal.3908981070]
 #. defaultMessage is:
 #. {from} {oldVersion} {to} {newVersion}
 msgid "{from} {oldVersion} {to} {newVersion}"
 msgstr "{from} {oldVersion} {to} {newVersion}"
 
 #: build/messages/pages/error/index.json
-#. [pages.error.index.526995878]
+#. [pages.error.526995878]
 #. defaultMessage is:
 #. {goBack}, or head over to the {homePage} to choose a new direction.
 msgid "{goBack}, or head over to the {homePage} to choose a new direction."
 msgstr "{goBack}, или перейти к {homePage} выбрать новое направление."
 
 #: build/messages/components/Modal/PendingChanges.json
-#. [components.Modal.PendingChanges.3141775911]
+#. [components.Modal.3141775911]
 #. defaultMessage is:
 #. {heading} {parenthetical}
 msgid "{heading} {parenthetical}"
 msgstr "{heading} {parenthetical}"
 
 #: build/messages/pages/blueprintEdit/index.json
-#. [pages.blueprintEdit.index.4031669927]
+#. [pages.blueprintEdit.4031669927]
 #. defaultMessage is:
 #. {pendingChanges, plural, one {# Pending Change} other {# Pending Changes}}
 msgid "{pendingChanges, plural, one {# Pending Change} other {# Pending Changes}}"
 msgstr "{pendingChanges, plural, one {# Pending Change} Другой {# Pending Changes}}"
 
 #: build/messages/pages/blueprintEdit/index.json
-#. [pages.blueprintEdit.index.3140434516]
+#. [pages.blueprintEdit.3140434516]
 #. defaultMessage is:
 #. {selectComponents} in this list to add to the blueprint.
 msgid "{selectComponents} in this list to add to the blueprint."
 msgstr "{selectComponents} в этом списке, чтобы добавить к проекту."
 
 #: build/messages/components/Pagination/Pagination.json
-#. [components.Pagination.Pagination.3363928156]
+#. [components.Pagination.3363928156]
 #. defaultMessage is:
 #. {startNumber} - {endNumber} of {totalNumber}
 msgid "{startNumber} - {endNumber} of {totalNumber}"
