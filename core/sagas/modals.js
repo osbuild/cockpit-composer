@@ -1,5 +1,5 @@
 import { call, put, takeEvery } from "redux-saga/effects";
-import { fetchSourceInfoApi, addSourceApi, deleteSourceApi } from "../apiCalls";
+import * as composer from "../composer";
 
 import {
   FETCHING_MODAL_MANAGE_SOURCES_CONTENTS,
@@ -11,7 +11,7 @@ import {
 
 function* fetchModalManageSourcesContents() {
   try {
-    const response = yield call(fetchSourceInfoApi, "*");
+    const response = yield call(composer.getSourceInfo, "*");
     yield put(setModalManageSourcesContents(response));
   } catch (error) {
     console.log("Error fetching sources. ", error);
@@ -22,7 +22,7 @@ function* fetchModalManageSourcesContents() {
 function* addModalManageSourcesEntry(action) {
   try {
     const { source } = action.payload;
-    const addResponse = yield call(addSourceApi, source);
+    const addResponse = yield call(composer.newSource, source);
     if (addResponse) {
       yield call(fetchModalManageSourcesContents);
     }
@@ -35,7 +35,7 @@ function* addModalManageSourcesEntry(action) {
 function* removeModalManageSourcesEntry(action) {
   try {
     const { sourceName } = action.payload;
-    yield call(deleteSourceApi, sourceName);
+    yield call(composer.deleteSource, sourceName);
     yield call(fetchModalManageSourcesContents);
   } catch (error) {
     console.log("Error deleting source. ", error);
