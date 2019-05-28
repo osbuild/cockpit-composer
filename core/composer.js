@@ -67,34 +67,38 @@ function _delete(path) {
  * Wrappers for composer API calls
  */
 
-export function createBlueprintApi(blueprint) {
+export function newBlueprint(blueprint) {
   return post("/api/v0/blueprints/new", blueprint);
 }
 
-export function fetchBlueprintContentsApi(blueprintName) {
+export function depsolveBlueprint(blueprintName) {
   return get("/api/v0/blueprints/depsolve/" + encodeURIComponent(blueprintName));
 }
 
-export function fetchBlueprintInputsApi(filter, selectedInputPage, pageSize) {
+export function listModules(filter, selectedInputPage, pageSize) {
   const page = selectedInputPage * pageSize;
   return get("/api/v0/modules/list/" + encodeURIComponent(filter), { limit: pageSize, offset: page }).then(response => {
     return [response.modules, response.total];
   });
 }
 
-export function fetchComponentDetailsApi(componentNames) {
+/*
+ * Next two functions have a different name from their API route, because the
+ * routes are confusing.
+ */
+export function getComponentInfo(componentNames) {
   return get("/api/v0/projects/info/" + encodeURIComponent(componentNames)).then(response => response.projects);
 }
 
-export function fetchDepsApi(componentNames) {
+export function getComponentDependencies(componentNames) {
   return get("/api/v0/modules/info/" + encodeURIComponent(componentNames)).then(response => response.modules);
 }
 
-export function fetchBlueprintNamesApi() {
+export function listBlueprints() {
   return get("/api/v0/blueprints/list").then(response => response.blueprints);
 }
 
-export function fetchBlueprintInfoApi(blueprintName) {
+export function getBlueprintInfo(blueprintName) {
   return get("/api/v0/blueprints/info/" + encodeURIComponent(blueprintName)).then(blueprintdata => {
     if (blueprintdata.blueprints.length > 0) {
       let blueprint = blueprintdata.blueprints[0];
@@ -105,7 +109,7 @@ export function fetchBlueprintInfoApi(blueprintName) {
   });
 }
 
-export function fetchComposeTypesApi() {
+export function getComposeTypes() {
   const imageTypeLabels = {
     ami: "Amazon Machine Image Disk (.ami)",
     "ext4-filesystem": "Ext4 File System Image (.img)",
@@ -125,35 +129,35 @@ export function fetchComposeTypesApi() {
   return imageTypes;
 }
 
-export function deleteBlueprintApi(blueprint) {
+export function deleteBlueprint(blueprint) {
   return _delete("/api/v0/blueprints/delete/" + encodeURIComponent(blueprint)).then(() => blueprint);
 }
 
-export function deleteWorkspaceApi(blueprintId) {
+export function deleteWorkspace(blueprintId) {
   return _delete("/api/v0/blueprints/workspace/" + encodeURIComponent(blueprintId));
 }
 
-export function commitToWorkspaceApi(blueprint) {
+export function commitToWorkspace(blueprint) {
   return post("/api/v0/blueprints/workspace", blueprint);
 }
 
-export function fetchDiffWorkspaceApi(blueprintId) {
+export function diffBlueprintToWorkspace(blueprintId) {
   return get("/api/v0/blueprints/diff/" + encodeURIComponent(blueprintId) + "/NEWEST/WORKSPACE");
 }
 
-export function fetchSourceInfoApi(sourceName) {
+export function getSourceInfo(sourceName) {
   return get("/api/v0/projects/source/info/" + encodeURIComponent(sourceName));
 }
 
-export function addSourceApi(source) {
+export function newSource(source) {
   return post("/api/v0/projects/source/new", source);
 }
 
-export function deleteSourceApi(sourceName) {
+export function deleteSource(sourceName) {
   return _delete("/api/v0/projects/source/delete/" + encodeURIComponent(sourceName));
 }
 
-export function startComposeApi(blueprintName, composeType) {
+export function startCompose(blueprintName, composeType) {
   return post("/api/v0/compose", {
     blueprint_name: blueprintName,
     compose_type: composeType,
@@ -161,26 +165,26 @@ export function startComposeApi(blueprintName, composeType) {
   });
 }
 
-export function cancelComposeApi(compose) {
+export function cancelCompose(compose) {
   return _delete("/api/v0/compose/cancel/" + encodeURIComponent(compose));
 }
 
-export function deleteComposeApi(compose) {
+export function deleteCompose(compose) {
   return _delete("/api/v0/compose/delete/" + encodeURIComponent(compose));
 }
 
-export function fetchImageStatusApi(uuid) {
+export function getComposeStatus(uuid) {
   return get("/api/v0/compose/status/" + encodeURIComponent(uuid));
 }
 
-export function fetchComposeQueueApi() {
+export function getQueuedComposes() {
   return get("/api/v0/compose/queue").then(data => data.new.concat(data.run));
 }
 
-export function fetchComposeFinishedApi() {
+export function getFinishedComposes() {
   return get("/api/v0/compose/finished").then(data => data.finished);
 }
 
-export function fetchComposeFailedApi() {
+export function getFailedComposes() {
   return get("/api/v0/compose/failed").then(data => data.failed);
 }

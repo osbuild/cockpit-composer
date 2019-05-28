@@ -1,5 +1,5 @@
 import { call, put, takeEvery, takeLatest, select } from "redux-saga/effects";
-import { fetchBlueprintInputsApi, fetchComponentDetailsApi, fetchDepsApi } from "../apiCalls";
+import * as composer from "../composer";
 import {
   FETCHING_INPUTS,
   fetchingInputsSucceeded,
@@ -41,10 +41,10 @@ function* fetchInputs(action) {
   try {
     const { filter, selectedInputPage, pageSize } = action.payload;
     const filter_value = `*${filter.value}*`.replace("**", "*");
-    const response = yield call(fetchBlueprintInputsApi, filter_value, selectedInputPage, pageSize);
+    const response = yield call(composer.listModules, filter_value, selectedInputPage, pageSize);
     const total = response[1];
     const inputNames = response[0].map(input => input.name).join(",");
-    const inputs = yield call(fetchComponentDetailsApi, inputNames);
+    const inputs = yield call(composer.getComponentInfo, inputNames);
     const updatedInputs = flattenInputs(inputs).map(input => {
       const inputData = Object.assign(
         {},
@@ -120,7 +120,7 @@ function addWildcardVersions(builds) {
 function* fetchInputDetails(action) {
   try {
     const { component } = action.payload;
-    const response = yield call(fetchComponentDetailsApi, component.name);
+    const response = yield call(composer.getComponentInfo, component.name);
     const updatedResponse = flattenInput(response);
     const componentData = Object.assign({}, component, {
       builds: updatedResponse.builds,
@@ -138,7 +138,7 @@ function* fetchInputDetails(action) {
 function* fetchInputDeps(action) {
   try {
     const { component } = action.payload;
-    const response = yield call(fetchDepsApi, component.name);
+    const response = yield call(composer.getComponentDependencies, component.name);
     let responseIndex;
     if (response[0].builds) {
       responseIndex = response.findIndex(item => {
@@ -171,7 +171,7 @@ function* fetchInputDeps(action) {
 function* fetchDepDetails(action) {
   try {
     const { component, blueprintId } = action.payload;
-    const response = yield call(fetchDepsApi, component.name);
+    const response = yield call(composer.getComponentDependencies, component.name);
     const deps = response[0].dependencies.filter(item => item.name !== component.name);
     const updatedDeps = deps.map(dep => {
       const depData = Object.assign({}, { ui_type: "RPM" }, dep);

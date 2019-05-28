@@ -1,15 +1,6 @@
 import { delay } from "redux-saga";
 import { call, all, put, takeEvery } from "redux-saga/effects";
-import {
-  startComposeApi,
-  fetchImageStatusApi,
-  fetchComposeTypesApi,
-  fetchComposeQueueApi,
-  fetchComposeFinishedApi,
-  fetchComposeFailedApi,
-  deleteComposeApi,
-  cancelComposeApi
-} from "../apiCalls";
+import * as composer from "../composer";
 
 import {
   START_COMPOSE,
@@ -31,8 +22,8 @@ import {
 function* startCompose(action) {
   try {
     const { blueprintName, composeType } = action.payload;
-    const response = yield call(startComposeApi, blueprintName, composeType);
-    const statusResponse = yield call(fetchImageStatusApi, response.build_id);
+    const response = yield call(composer.startCompose, blueprintName, composeType);
+    const statusResponse = yield call(composer.getComposeStatus, response.build_id);
     yield put(fetchingComposeSucceeded(statusResponse.uuids[0]));
     if (statusResponse.uuids[0].queue_status === "WAITING" || statusResponse.uuids[0].queue_status === "RUNNING") {
       yield* pollComposeStatus(statusResponse.uuids[0]);
@@ -47,7 +38,7 @@ function* pollComposeStatus(compose) {
   try {
     let polledCompose = compose;
     while (polledCompose.queue_status === "WAITING" || polledCompose.queue_status === "RUNNING") {
-      const response = yield call(fetchImageStatusApi, polledCompose.id);
+      const response = yield call(composer.getComposeStatus, polledCompose.id);
       polledCompose = response.uuids[0];
       if (polledCompose !== undefined) {
         yield put(fetchingComposeStatusSucceeded(polledCompose));
@@ -65,9 +56,9 @@ function* pollComposeStatus(compose) {
 
 function* fetchComposes() {
   try {
-    const queue = yield call(fetchComposeQueueApi);
-    const finished = yield call(fetchComposeFinishedApi);
-    const failed = yield call(fetchComposeFailedApi);
+    const queue = yield call(composer.getQueuedComposes);
+    const finished = yield call(composer.getFinishedComposes);
+    const failed = yield call(composer.getFailedComposes);
     const composes = queue.concat(finished, failed);
     yield all(composes.map(compose => put(fetchingComposeSucceeded(compose))));
     if (queue.length >= 1) {
@@ -82,7 +73,7 @@ function* fetchComposes() {
 function* deleteCompose(action) {
   try {
     const { composeId } = action.payload;
-    const response = yield call(deleteComposeApi, composeId);
+    const response = yield call(composer.deleteCompose, composeId);
     yield put(deletingComposeSucceeded(response, composeId));
     yield* fetchComposes();
   } catch (error) {
@@ -94,7 +85,7 @@ function* deleteCompose(action) {
 function* cancelCompose(action) {
   try {
     const { composeId } = action.payload;
-    const response = yield call(cancelComposeApi, composeId);
+    const response = yield call(composer.cancelCompose, composeId);
     yield put(cancellingComposeSucceeded(response, composeId));
     yield* fetchComposes();
   } catch (error) {
@@ -105,7 +96,7 @@ function* cancelCompose(action) {
 
 function* fetchQueue() {
   try {
-    const queue = yield call(fetchComposeQueueApi);
+    const queue = yield call(composer.getQueuedComposes);
     yield put(fetchingQueueSucceeded(queue));
   } catch (error) {
     console.log("fetchQueueError", error);
@@ -115,7 +106,7 @@ function* fetchQueue() {
 
 function* fetchComposeTypes() {
   try {
-    const response = yield call(fetchComposeTypesApi);
+    const response = yield call(composer.getComposeTypes);
     yield put(fetchingComposeTypesSucceeded(response));
   } catch (error) {
     console.log("Error in loadImageTypesSaga");

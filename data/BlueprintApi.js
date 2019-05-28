@@ -1,5 +1,5 @@
 import NotificationsApi from "./NotificationsApi";
-import { createBlueprintApi, fetchBlueprintContentsApi } from "../core/apiCalls";
+import * as composer from "../core/composer";
 
 class BlueprintApi {
   constructor() {
@@ -7,7 +7,8 @@ class BlueprintApi {
   }
 
   handleCommitBlueprint(blueprint) {
-    return createBlueprintApi(this.postedBlueprintData(blueprint))
+    return composer
+      .newBlueprint(this.postedBlueprintData(blueprint))
       .then(() => {
         NotificationsApi.closeNotification(undefined, "committing");
         NotificationsApi.displayNotification(blueprint.name, "committed");
@@ -37,7 +38,8 @@ class BlueprintApi {
   reloadBlueprintDetails(blueprint) {
     // retrieve blueprint details that were updated during save (i.e. version)
     // and reload details in UI
-    return fetchBlueprintContentsApi(blueprint.name.replace(/\s/g, "-"))
+    return composer
+      .depsolveBlueprint(blueprint.name.replace(/\s/g, "-"))
       .then(data => {
         return Object.assign({}, blueprint, {
           version: data.blueprints[0].blueprint.version

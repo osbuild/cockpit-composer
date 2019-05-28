@@ -1,17 +1,6 @@
 import { call, put, takeEvery, select } from "redux-saga/effects";
 import BlueprintApi from "../../data/BlueprintApi";
-import {
-  fetchBlueprintInfoApi,
-  fetchBlueprintNamesApi,
-  fetchBlueprintContentsApi,
-  fetchComponentDetailsApi,
-  deleteBlueprintApi,
-  createBlueprintApi,
-  commitToWorkspaceApi,
-  fetchDiffWorkspaceApi,
-  deleteWorkspaceApi,
-  fetchDepsApi
-} from "../apiCalls";
+import * as composer from "../composer";
 import {
   FETCHING_BLUEPRINTS,
   fetchingBlueprintsSucceeded,
@@ -42,14 +31,14 @@ import { FETCHING_MODAL_EXPORT_BLUEPRINT_CONTENTS, setModalExportBlueprintConten
 import { makeGetBlueprintById, makeGetSelectedDeps } from "../selectors";
 
 function* fetchBlueprintsFromName(blueprintName) {
-  const response = yield call(fetchBlueprintInfoApi, blueprintName);
+  const response = yield call(composer.getBlueprintInfo, blueprintName);
   yield put(fetchingBlueprintsSucceeded(response));
 }
 
 // need to test what happens when there are no blueprints
 function* fetchBlueprints() {
   try {
-    const blueprintNames = yield call(fetchBlueprintNamesApi);
+    const blueprintNames = yield call(composer.listBlueprints);
     yield put(fetchingBlueprintNamesSucceeded(blueprintNames));
     yield* blueprintNames.map(blueprintName => fetchBlueprintsFromName(blueprintName));
   } catch (error) {
@@ -61,7 +50,7 @@ function* fetchBlueprints() {
 function* fetchBlueprintContents(action) {
   try {
     const { blueprintId } = action.payload;
-    const response = yield call(fetchBlueprintContentsApi, blueprintId);
+    const response = yield call(composer.depsolveBlueprint, blueprintId);
     const blueprintData = response.blueprints[0];
     if (response.errors.length > 0) {
       yield put(blueprintContentsFailure(response.errors[0], blueprintId));
@@ -70,7 +59,7 @@ function* fetchBlueprintContents(action) {
     if (blueprintData.dependencies.length > 0) {
       components = yield call(generateComponents, blueprintData);
     }
-    const workspaceChanges = yield call(fetchDiffWorkspaceApi, blueprintId);
+    const workspaceChanges = yield call(composer.diffBlueprintToWorkspace, blueprintId);
     let pastComponents;
     let workspacePendingChanges = [];
     if (workspaceChanges.diff.length > 0) {
@@ -138,7 +127,7 @@ function* generateComponents(blueprintData) {
   const packageNames = blueprintData.blueprint.packages.map(component => component.name);
   const moduleNames = blueprintData.blueprint.modules.map(component => component.name);
   const selectedComponentNames = packageNames.concat(moduleNames);
-  const componentInfo = yield call(fetchComponentDetailsApi, componentNames);
+  const componentInfo = yield call(composer.getComponentInfo, componentNames);
   const components = flattenComponents(blueprintData.dependencies).map(component => {
     const info = componentInfo.find(item => item.name === component.name);
     const componentData = Object.assign(
@@ -172,7 +161,7 @@ function* reloadBlueprintContents(blueprintId) {
   // after updating components or deleting the workspace changes,
   // get the latest depsolved blueprint components
   try {
-    const response = yield call(fetchBlueprintContentsApi, blueprintId);
+    const response = yield call(composer.depsolveBlueprint, blueprintId);
     const blueprintData = response.blueprints[0];
     if (response.errors.length > 0) {
       yield put(blueprintContentsFailure(response.errors[0], blueprintId));
@@ -197,7 +186,7 @@ function* fetchModalBlueprintContents(action) {
   // fetches contents for Export modal on Blueprints page
   try {
     const { blueprintName } = action.payload;
-    const response = yield call(fetchBlueprintContentsApi, blueprintName);
+    const response = yield call(composer.depsolveBlueprint, blueprintName);
     const blueprintData = response.blueprints[0];
     let components = [];
     if (blueprintData.dependencies.length > 0) {
@@ -226,9 +215,9 @@ function* setBlueprintUsers(action) {
         customizations: Object.assign({}, blueprintHistory[0].customizations, { user: users })
       })
     );
-    yield call(createBlueprintApi, blueprintToPost);
+    yield call(composer.newBlueprint, blueprintToPost);
     // get updated blueprint info (i.e. version)
-    const response = yield call(fetchBlueprintInfoApi, blueprintId);
+    const response = yield call(composer.getBlueprintInfo, blueprintId);
     yield put(setBlueprintUsersSucceeded(response));
     // post present blueprint object to workspace
     if (response.changed === true) {
@@ -238,7 +227,7 @@ function* setBlueprintUsers(action) {
           user: users
         })
       });
-      yield call(commitToWorkspaceApi, workspace);
+      yield call(composer.commitToWorkspace, workspace);
     }
   } catch (error) {
     console.log("Error in setBlueprintHostname", error);
@@ -256,9 +245,9 @@ function* setBlueprintHostname(action) {
         customizations: Object.assign({}, blueprintHistory[0].customizations, { hostname: hostname })
       })
     );
-    yield call(createBlueprintApi, blueprintToPost);
+    yield call(composer.newBlueprint, blueprintToPost);
     // get updated blueprint info (i.e. version)
-    const response = yield call(fetchBlueprintInfoApi, blueprint.name);
+    const response = yield call(composer.getBlueprintInfo, blueprint.name);
     yield put(setBlueprintHostnameSucceeded(response));
     // post present blueprint object to workspace
     if (response.changed === true) {
@@ -268,7 +257,7 @@ function* setBlueprintHostname(action) {
           hostname: hostname
         })
       });
-      yield call(commitToWorkspaceApi, workspace);
+      yield call(composer.commitToWorkspace, workspace);
     }
   } catch (error) {
     console.log("Error in setBlueprintHostname", error);
@@ -286,9 +275,9 @@ function* setBlueprintDescription(action) {
         description: description
       })
     );
-    yield call(createBlueprintApi, blueprintToPost);
+    yield call(composer.newBlueprint, blueprintToPost);
     // get updated blueprint info (i.e. version)
-    const response = yield call(fetchBlueprintInfoApi, blueprint.name);
+    const response = yield call(composer.getBlueprintInfo, blueprint.name);
     yield put(setBlueprintDescriptionSucceeded(response));
     // post present blueprint object to workspace
     if (response.changed === true) {
@@ -296,7 +285,7 @@ function* setBlueprintDescription(action) {
         version: response.version,
         description: description
       });
-      yield call(commitToWorkspaceApi, workspace);
+      yield call(composer.commitToWorkspace, workspace);
     }
   } catch (error) {
     console.log("Error in setBlueprintDescription", error);
@@ -307,7 +296,7 @@ function* setBlueprintDescription(action) {
 function* deleteBlueprint(action) {
   try {
     const { blueprintId } = action.payload;
-    const response = yield call(deleteBlueprintApi, blueprintId);
+    const response = yield call(composer.deleteBlueprint, blueprintId);
     yield put(deletingBlueprintSucceeded(response));
   } catch (error) {
     console.log("errorDeleteBlueprintsSaga", error);
@@ -318,7 +307,7 @@ function* deleteBlueprint(action) {
 function* createBlueprint(action) {
   try {
     const { blueprint } = action.payload;
-    yield call(createBlueprintApi, blueprint);
+    yield call(composer.newBlueprint, blueprint);
     yield put(creatingBlueprintSucceeded(blueprint));
   } catch (error) {
     console.log("errorCreateBlueprintSaga", error);
@@ -342,7 +331,7 @@ function* commitToWorkspace(action) {
     if (blueprint.present.customizations !== undefined) {
       blueprintData.customizations = blueprint.present.customizations;
     }
-    yield call(commitToWorkspaceApi, blueprintData);
+    yield call(composer.commitToWorkspace, blueprintData);
     if (reload !== false) {
       yield call(reloadBlueprintContents, blueprintId);
     }
@@ -355,7 +344,7 @@ function* commitToWorkspace(action) {
 function* deleteWorkspace(action) {
   try {
     const { blueprintId, reload } = action.payload;
-    yield call(deleteWorkspaceApi, blueprintId);
+    yield call(composer.deleteWorkspace, blueprintId);
     if (reload !== false) {
       yield call(reloadBlueprintContents, blueprintId);
     }
@@ -368,7 +357,7 @@ function* deleteWorkspace(action) {
 function* fetchCompDeps(action) {
   try {
     const { component, blueprintId } = action.payload;
-    const response = yield call(fetchDepsApi, component.name);
+    const response = yield call(composer.getComponentDependencies, component.name);
     let responseIndex;
     if (response[0].builds) {
       responseIndex = response.findIndex(item => {
