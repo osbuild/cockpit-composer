@@ -226,7 +226,7 @@ function* setBlueprintUsers(action) {
         customizations: Object.assign({}, blueprintHistory[0].customizations, { user: users })
       })
     );
-    yield call(BlueprintApi.postBlueprint, blueprintToPost);
+    yield call(createBlueprintApi, blueprintToPost);
     // get updated blueprint info (i.e. version)
     const response = yield call(fetchBlueprintInfoApi, blueprintId);
     yield put(setBlueprintUsersSucceeded(response));
@@ -256,7 +256,7 @@ function* setBlueprintHostname(action) {
         customizations: Object.assign({}, blueprintHistory[0].customizations, { hostname: hostname })
       })
     );
-    yield call(BlueprintApi.postBlueprint, blueprintToPost);
+    yield call(createBlueprintApi, blueprintToPost);
     // get updated blueprint info (i.e. version)
     const response = yield call(fetchBlueprintInfoApi, blueprint.name);
     yield put(setBlueprintHostnameSucceeded(response));
@@ -286,7 +286,7 @@ function* setBlueprintDescription(action) {
         description: description
       })
     );
-    yield call(BlueprintApi.postBlueprint, blueprintToPost);
+    yield call(createBlueprintApi, blueprintToPost);
     // get updated blueprint info (i.e. version)
     const response = yield call(fetchBlueprintInfoApi, blueprint.name);
     yield put(setBlueprintDescriptionSucceeded(response));
