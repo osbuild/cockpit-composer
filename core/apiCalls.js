@@ -1,34 +1,101 @@
-import utils from "./utils";
+import cockpit from "cockpit";
+
+let cockpitHttp = cockpit.http("/run/weldr/api.socket", { superuser: "try" });
+
+/*
+ * Send a request to the composer API. `options` contain the same options that
+ * cockpit.http() expects.
+ *
+ * All responses are expected to be either empty or valid JSON.
+ */
+function request(options) {
+  /*
+   * Wrap this in an additional Promise. The promise returned by
+   * cockpit.http.request() doesn't propagate exceptions thrown in a .catch
+   * handler. Thus, we need to reject() manually.
+   */
+  return new Promise((resolve, reject) => {
+    cockpitHttp
+      .request(options)
+      .then(data => resolve(data ? JSON.parse(data) : data))
+      .catch(error =>
+        reject({
+          problem: error.problem,
+          message: error.message,
+          options: options
+        })
+      );
+  });
+}
+
+/*
+ * Send a GET request to the composer API.
+ */
+function get(path, params) {
+  return request({
+    path: path,
+    params: params,
+    body: ""
+  });
+}
+
+/*
+ * Send a POST request to the composer API. `object` will be turned into a JSON
+ * payload.
+ */
+function post(path, object) {
+  return request({
+    method: "POST",
+    path: path,
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(object)
+  });
+}
+
+/*
+ * Send a DELETE request to the composer API.
+ */
+function _delete(path) {
+  return request({
+    method: "DELETE",
+    path: path,
+    body: ""
+  });
+}
+
+/*
+ * Wrappers for composer API calls
+ */
 
 export function createBlueprintApi(blueprint) {
-  return utils.post("/api/v0/blueprints/new", blueprint);
+  return post("/api/v0/blueprints/new", blueprint);
 }
 
 export function fetchBlueprintContentsApi(blueprintName) {
-  return utils.get("/api/v0/blueprints/depsolve/" + encodeURIComponent(blueprintName));
+  return get("/api/v0/blueprints/depsolve/" + encodeURIComponent(blueprintName));
 }
 
 export function fetchBlueprintInputsApi(filter, selectedInputPage, pageSize) {
   const page = selectedInputPage * pageSize;
-  return utils
-    .get("/api/v0/modules/list/" + encodeURIComponent(filter), { limit: pageSize, offset: page })
-    .then(response => [response.modules, response.total]);
+  return get("/api/v0/modules/list/" + encodeURIComponent(filter), { limit: pageSize, offset: page }).then(response => {
+    return [response.modules, response.total];
+  });
 }
 
 export function fetchComponentDetailsApi(componentNames) {
-  return utils.get("/api/v0/projects/info/" + encodeURIComponent(componentNames)).then(response => response.projects);
+  return get("/api/v0/projects/info/" + encodeURIComponent(componentNames)).then(response => response.projects);
 }
 
 export function fetchDepsApi(componentNames) {
-  return utils.get("/api/v0/modules/info/" + encodeURIComponent(componentNames)).then(response => response.modules);
+  return get("/api/v0/modules/info/" + encodeURIComponent(componentNames)).then(response => response.modules);
 }
 
 export function fetchBlueprintNamesApi() {
-  return utils.get("/api/v0/blueprints/list").then(response => response.blueprints);
+  return get("/api/v0/blueprints/list").then(response => response.blueprints);
 }
 
 export function fetchBlueprintInfoApi(blueprintName) {
-  return utils.get("/api/v0/blueprints/info/" + encodeURIComponent(blueprintName)).then(blueprintdata => {
+  return get("/api/v0/blueprints/info/" + encodeURIComponent(blueprintName)).then(blueprintdata => {
     if (blueprintdata.blueprints.length > 0) {
       let blueprint = blueprintdata.blueprints[0];
       blueprint.changed = blueprintdata.changes[0].changed;
@@ -50,7 +117,7 @@ export function fetchComposeTypesApi() {
     vhd: "Azure Disk Image (.vhd)",
     vmdk: "VMware Virtual Machine Disk (.vmdk)"
   };
-  const imageTypes = utils.get("/api/v0/compose/types").then(data =>
+  const imageTypes = get("/api/v0/compose/types").then(data =>
     data.types.map(type => {
       return Object.assign({}, type, { label: imageTypeLabels[type.name] || type.name });
     })
@@ -59,35 +126,35 @@ export function fetchComposeTypesApi() {
 }
 
 export function deleteBlueprintApi(blueprint) {
-  return utils._delete("/api/v0/blueprints/delete/" + encodeURIComponent(blueprint)).then(() => blueprint);
+  return _delete("/api/v0/blueprints/delete/" + encodeURIComponent(blueprint)).then(() => blueprint);
 }
 
 export function deleteWorkspaceApi(blueprintId) {
-  return utils._delete("/api/v0/blueprints/workspace/" + encodeURIComponent(blueprintId));
+  return _delete("/api/v0/blueprints/workspace/" + encodeURIComponent(blueprintId));
 }
 
 export function commitToWorkspaceApi(blueprint) {
-  return utils.post("/api/v0/blueprints/workspace", blueprint);
+  return post("/api/v0/blueprints/workspace", blueprint);
 }
 
 export function fetchDiffWorkspaceApi(blueprintId) {
-  return utils.get("/api/v0/blueprints/diff/" + encodeURIComponent(blueprintId) + "/NEWEST/WORKSPACE");
+  return get("/api/v0/blueprints/diff/" + encodeURIComponent(blueprintId) + "/NEWEST/WORKSPACE");
 }
 
 export function fetchSourceInfoApi(sourceName) {
-  return utils.get("/api/v0/projects/source/info/" + encodeURIComponent(sourceName));
+  return get("/api/v0/projects/source/info/" + encodeURIComponent(sourceName));
 }
 
 export function addSourceApi(source) {
-  return utils.post("/api/v0/projects/source/new", source);
+  return post("/api/v0/projects/source/new", source);
 }
 
 export function deleteSourceApi(sourceName) {
-  return utils._delete("/api/v0/projects/source/delete/" + encodeURIComponent(sourceName));
+  return _delete("/api/v0/projects/source/delete/" + encodeURIComponent(sourceName));
 }
 
 export function startComposeApi(blueprintName, composeType) {
-  return utils.post("/api/v0/compose", {
+  return post("/api/v0/compose", {
     blueprint_name: blueprintName,
     compose_type: composeType,
     branch: "master"
@@ -95,25 +162,25 @@ export function startComposeApi(blueprintName, composeType) {
 }
 
 export function cancelComposeApi(compose) {
-  return utils._delete("/api/v0/compose/cancel/" + encodeURIComponent(compose));
+  return _delete("/api/v0/compose/cancel/" + encodeURIComponent(compose));
 }
 
 export function deleteComposeApi(compose) {
-  return utils._delete("/api/v0/compose/delete/" + encodeURIComponent(compose));
+  return _delete("/api/v0/compose/delete/" + encodeURIComponent(compose));
 }
 
 export function fetchImageStatusApi(uuid) {
-  return utils.get("/api/v0/compose/status/" + encodeURIComponent(uuid));
+  return get("/api/v0/compose/status/" + encodeURIComponent(uuid));
 }
 
 export function fetchComposeQueueApi() {
-  return utils.get("/api/v0/compose/queue").then(data => data.new.concat(data.run));
+  return get("/api/v0/compose/queue").then(data => data.new.concat(data.run));
 }
 
 export function fetchComposeFinishedApi() {
-  return utils.get("/api/v0/compose/finished").then(data => data.finished);
+  return get("/api/v0/compose/finished").then(data => data.finished);
 }
 
 export function fetchComposeFailedApi() {
-  return utils.get("/api/v0/compose/failed").then(data => data.failed);
+  return get("/api/v0/compose/failed").then(data => data.failed);
 }
