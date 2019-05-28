@@ -4,6 +4,7 @@ import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { creatingBlueprint } from "../../core/actions/blueprints";
+import history from "../../core/history";
 
 class CreateBlueprint extends React.Component {
   constructor(props) {
@@ -100,6 +101,7 @@ class CreateBlueprintModal extends React.Component {
       id: this.state.name.replace(/\s/g, "-")
     };
     this.props.creatingBlueprint(updatedBlueprint);
+    window.location.hash = history.createHref(`/edit/${this.state.name}`);
   }
 
   dismissErrors() {

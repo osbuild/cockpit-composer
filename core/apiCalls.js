@@ -1,10 +1,7 @@
 import utils from "./utils";
-import history from "./history";
 
 export function createBlueprintApi(blueprint) {
-  return utils
-    .post("/api/v0/blueprints/new", blueprint)
-    .then(() => (window.location.hash = history.createHref(`/edit/${blueprint.name}`)));
+  return utils.post("/api/v0/blueprints/new", blueprint);
 }
 
 export function fetchBlueprintContentsApi(blueprintName) {
