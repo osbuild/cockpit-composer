@@ -40,17 +40,7 @@ class BlueprintApi {
   }
 
   postBlueprint(blueprint) {
-    return utils.apiFetch(
-      "/api/v0/blueprints/new",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(blueprint)
-      },
-      true
-    );
+    return utils.post("/api/v0/blueprints/new", blueprint);
   }
 
   reloadBlueprintDetails(blueprint) {
@@ -58,7 +48,7 @@ class BlueprintApi {
     // and reload details in UI
     const p = new Promise((resolve, reject) => {
       utils
-        .apiFetch("/api/v0/blueprints/depsolve/" + blueprint.name.replace(/\s/g, "-"))
+        .get("/api/v0/blueprints/depsolve/" + blueprint.name.replace(/\s/g, "-"))
         .then(data => {
           const updatedBlueprint = Object.assign({}, blueprint, {
             version: data.blueprints[0].blueprint.version
@@ -71,17 +61,6 @@ class BlueprintApi {
         });
     });
     return p;
-  }
-
-  deleteBlueprint(blueprints) {
-    // /api/v0/blueprints/delete/<blueprint>
-    return utils.apiFetch(
-      "/api/v0/blueprints/delete/" + blueprints,
-      {
-        method: "DELETE"
-      },
-      true
-    );
   }
 }
 

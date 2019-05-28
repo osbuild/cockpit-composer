@@ -1,38 +1,66 @@
 import cockpit from "cockpit";
 
-let http = cockpit.http("/run/weldr/api.socket", { superuser: "try" });
+let cockpitHttp = cockpit.http("/run/weldr/api.socket", { superuser: "try" });
 
-function apiFetch(url, options, skipDecode) {
-  if (!options) {
-    options = {};
-  } // eslint-disable-line no-param-reassign
-  if (!options.method) {
-    options.method = "GET";
-  } // eslint-disable-line no-param-reassign
-  if (!options.body) {
-    options.body = "";
-  } // eslint-disable-line no-param-reassign
-
-  options.path = url; // eslint-disable-line no-param-reassign
-
+/*
+ * Send a request to the composer API. `options` contain the same options that
+ * cockpit.http() expects.
+ *
+ * All responses are expected to be either empty or valid JSON.
+ */
+function request(options) {
   /*
    * Wrap this in an additional Promise. The promise returned by
    * cockpit.http.request() doesn't propagate exceptions thrown in a .catch
    * handler. Thus, we need to reject() manually.
    */
   return new Promise((resolve, reject) => {
-    http
+    cockpitHttp
       .request(options)
-      .then(data => (skipDecode ? resolve(data) : resolve(JSON.parse(data))))
+      .then(data => resolve(data ? JSON.parse(data) : data))
       .catch(error =>
         reject({
           problem: error.problem,
           message: error.message,
-          url: url,
           options: options
         })
       );
   });
 }
 
-export default { apiFetch };
+/*
+ * Send a GET request to the composer API.
+ */
+function get(path, params) {
+  return request({
+    path: path,
+    params: params,
+    body: ""
+  });
+}
+
+/*
+ * Send a POST request to the composer API. `object` will be turned into a JSON
+ * payload.
+ */
+function post(path, object) {
+  return request({
+    method: "POST",
+    path: path,
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(object)
+  });
+}
+
+/*
+ * Send a DELETE request to the composer API.
+ */
+function _delete(path) {
+  return request({
+    method: "DELETE",
+    path: path,
+    body: ""
+  });
+}
+
+export default { request, get, post, _delete };
