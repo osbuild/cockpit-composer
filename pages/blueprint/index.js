@@ -38,7 +38,6 @@ import { fetchingComposes } from "../../core/actions/composes";
 import {
   setModalUserAccountVisible,
   setModalUserAccountData,
-  setModalExportBlueprintVisible,
   setModalStopBuildVisible,
   setModalStopBuildState,
   setModalDeleteImageVisible,
@@ -131,8 +130,6 @@ class BlueprintPage extends React.Component {
     this.handleDepListItem = this.handleDepListItem.bind(this);
     this.handleShowModalUserAccount = this.handleShowModalUserAccount.bind(this);
     this.handleShowModalEditUser = this.handleShowModalEditUser.bind(this);
-    this.handleHideModalExport = this.handleHideModalExport.bind(this);
-    this.handleShowModalExport = this.handleShowModalExport.bind(this);
     this.handleHideModalStop = this.handleHideModalStop.bind(this);
     this.handleHideModalDeleteImage = this.handleHideModalDeleteImage.bind(this);
     this.handleEditDescription = this.handleEditDescription.bind(this);
@@ -152,7 +149,6 @@ class BlueprintPage extends React.Component {
     }
     this.props.setEditDescriptionVisible(false);
     this.props.setEditHostnameVisible(false);
-    this.props.setModalExportBlueprintVisible(false);
   }
 
   componentDidMount() {
@@ -268,15 +264,6 @@ class BlueprintPage extends React.Component {
     e.stopPropagation();
   }
 
-  handleHideModalExport() {
-    this.props.setModalExportBlueprintVisible(false);
-  }
-  handleShowModalExport(e) {
-    this.props.setModalExportBlueprintVisible(true);
-    e.preventDefault();
-    e.stopPropagation();
-  }
-
   handleHideModalStop() {
     this.props.setModalStopBuildVisible(false);
     this.props.setModalStopBuildState("", "");
@@ -308,7 +295,6 @@ class BlueprintPage extends React.Component {
     }
     const {
       blueprint,
-      exportModalVisible,
       userAccount,
       stopBuild,
       deleteImage,
@@ -370,19 +356,9 @@ class BlueprintPage extends React.Component {
                     <span className="fa fa-ellipsis-v" />
                   </button>
                   <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
-                    {(selectedComponents.length && (
-                      <li>
-                        <a href="#" onClick={this.handleShowModalExport}>
-                          <FormattedMessage defaultMessage="Export" />
-                        </a>
-                      </li>
-                    )) || (
-                      <li className="disabled">
-                        <a>
-                          <FormattedMessage defaultMessage="Export" />
-                        </a>
-                      </li>
-                    )}
+                    <li>
+                      <ExportBlueprint blueprint={blueprint} />
+                    </li>
                   </ul>
                 </div>
               </li>
@@ -607,13 +583,6 @@ class BlueprintPage extends React.Component {
           </Tab>
         </Tabs>
         {userAccount.visible ? <UserAccount handlePostUser={this.handlePostUser} users={users} /> : null}
-        {exportModalVisible ? (
-          <ExportBlueprint
-            blueprint={blueprint.name}
-            contents={blueprint.components}
-            handleHideModal={this.handleHideModalExport}
-          />
-        ) : null}
         {stopBuild.visible ? (
           <StopBuild
             composeId={stopBuild.composeId}
@@ -667,7 +636,6 @@ BlueprintPage.propTypes = {
   setEditDescriptionVisible: PropTypes.func,
   setEditHostnameVisible: PropTypes.func,
   setEditHostnameInvalid: PropTypes.func,
-  setModalExportBlueprintVisible: PropTypes.func,
   setModalUserAccountVisible: PropTypes.func,
   setModalUserAccountData: PropTypes.func,
   setBlueprintUsers: PropTypes.func,
@@ -688,7 +656,6 @@ BlueprintPage.propTypes = {
   clearSelectedInput: PropTypes.func,
   setSelectedInputParent: PropTypes.func,
   fetchingDepDetails: PropTypes.func,
-  exportModalVisible: PropTypes.bool,
   stopBuild: PropTypes.shape({
     blueprintName: PropTypes.string,
     composeId: PropTypes.string,
@@ -752,14 +719,12 @@ BlueprintPage.defaultProps = {
   setEditDescriptionVisible: function() {},
   setEditHostnameVisible: function() {},
   setEditHostnameInvalid: function() {},
-  setModalExportBlueprintVisible: function() {},
   setModalUserAccountVisible: function() {},
   setModalUserAccountData: function() {},
   setBlueprintUsers: function() {},
   blueprintPage: {},
   setBlueprintDescription: function() {},
   setBlueprintHostname: function() {},
-  exportModalVisible: false,
   stopBuild: {},
   deleteImage: {},
   createImage: {},
@@ -813,7 +778,6 @@ const makeMapStateToProps = () => {
           state.inputs.selectedInput.component.dependencies,
           fetchedBlueprint.present.components
         ),
-        exportModalVisible: state.modals.exportBlueprint.visible,
         createImage: state.modals.createImage,
         userAccount: state.modals.userAccount,
         imageTypes: state.composes.composeTypes,
@@ -834,7 +798,6 @@ const makeMapStateToProps = () => {
       composeList: [],
       composesLoading: state.composes.fetchingComposes,
       blueprintPage: state.blueprintPage,
-      exportModalVisible: state.modals.exportBlueprint.visible,
       createImage: state.modals.createImage,
       userAccount: state.modals.userAccount,
       imageTypes: state.composes.composeTypes,
@@ -888,9 +851,6 @@ const mapDispatchToProps = dispatch => ({
   },
   clearSelectedInput: () => {
     dispatch(clearSelectedInput());
-  },
-  setModalExportBlueprintVisible: visible => {
-    dispatch(setModalExportBlueprintVisible(visible));
   },
   setModalUserAccountVisible: visible => {
     dispatch(setModalUserAccountVisible(visible));

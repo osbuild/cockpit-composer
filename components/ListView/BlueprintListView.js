@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import Link from "../Link/Link";
 import CreateImage from "../Modal/CreateImage";
 import DeleteBlueprint from "../Modal/DeleteBlueprint";
+import ExportBlueprint from "../Modal/ExportBlueprint";
 
 class BlueprintListView extends React.PureComponent {
   constructor() {
@@ -33,19 +34,9 @@ class BlueprintListView extends React.PureComponent {
                   <span className="fa fa-ellipsis-v" />
                 </button>
                 <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight9">
-                  {(blueprint.modules.length === 0 && blueprint.packages.length === 0 && (
-                    <li className="disabled">
-                      <a aria-disabled="true">
-                        <FormattedMessage defaultMessage="Export" />
-                      </a>
-                    </li>
-                  )) || (
-                    <li>
-                      <a href="#" onClick={e => this.props.handleShowModalExport(e, blueprint.name)}>
-                        <FormattedMessage defaultMessage="Export" />
-                      </a>
-                    </li>
-                  )}
+                  <li>
+                    <ExportBlueprint blueprint={blueprint} />
+                  </li>
                   <li>
                     <DeleteBlueprint blueprint={blueprint} />
                   </li>
@@ -72,7 +63,6 @@ class BlueprintListView extends React.PureComponent {
 
 BlueprintListView.propTypes = {
   blueprints: PropTypes.arrayOf(PropTypes.object),
-  handleShowModalExport: PropTypes.func,
   imageTypes: PropTypes.arrayOf(PropTypes.object).isRequired,
   layout: PropTypes.shape({
     setNotifications: PropTypes.func
@@ -81,7 +71,6 @@ BlueprintListView.propTypes = {
 
 BlueprintListView.defaultProps = {
   blueprints: [],
-  handleShowModalExport: function() {},
   layout: {}
 };
 

@@ -55,11 +55,6 @@ const initialState = {
       blueprintName: "",
       visible: false
     },
-    exportBlueprint: {
-      name: "",
-      contents: [],
-      visible: false
-    },
     deleteBlueprint: {
       name: "",
       id: "",
