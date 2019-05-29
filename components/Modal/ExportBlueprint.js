@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Modal } from "patternfly-react";
 import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
-import { fetchingBlueprintExportContents } from "../../core/actions/blueprints";
+import { fetchingBlueprintContents } from "../../core/actions/blueprints";
 
 class ExportBlueprint extends React.Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class ExportBlueprint extends React.Component {
   open(e) {
     e.preventDefault();
     e.stopPropagation();
-    this.props.fetchingBlueprintExportContents(this.props.blueprint.name);
+    this.props.fetchingBlueprintContents(this.props.blueprint.name);
     this.setState({ showModal: true });
   }
 
@@ -76,7 +76,7 @@ class ExportBlueprint extends React.Component {
                 <label className="col-sm-3 control-label" htmlFor="textInput2-modal-markup">
                   <FormattedMessage defaultMessage="Contents" />
                 </label>
-                {(this.props.blueprint.exportContents && (
+                {(this.props.blueprint.components && (
                   <div className="col-sm-9">
                     <textarea
                       readOnly
@@ -86,7 +86,7 @@ class ExportBlueprint extends React.Component {
                       }}
                       className="form-control"
                       rows="10"
-                      value={this.props.blueprint.exportContents
+                      value={this.props.blueprint.components
                         .map(comp => `${comp.name}-${comp.version}-${comp.release}`)
                         .join("\n")}
                       onKeyPress={e => this.handleEnterKey(e)}
@@ -95,7 +95,7 @@ class ExportBlueprint extends React.Component {
                       <FormattedMessage
                         defaultMessage="{count} total components"
                         values={{
-                          count: this.props.blueprint.exportContents.length
+                          count: this.props.blueprint.components.length
                         }}
                       />
                     </p>
@@ -123,23 +123,23 @@ class ExportBlueprint extends React.Component {
 }
 
 ExportBlueprint.propTypes = {
-  fetchingBlueprintExportContents: PropTypes.func,
+  fetchingBlueprintContents: PropTypes.func,
   blueprint: PropTypes.shape({
     name: PropTypes.string,
-    exportContents: PropTypes.arrayOf(PropTypes.object)
+    components: PropTypes.arrayOf(PropTypes.object)
   })
 };
 
 ExportBlueprint.defaultProps = {
-  fetchingBlueprintExportContents: function() {},
+  fetchingBlueprintContents: function() {},
   blueprint: {}
 };
 
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = dispatch => ({
-  fetchingBlueprintExportContents: blueprint => {
-    dispatch(fetchingBlueprintExportContents(blueprint));
+  fetchingBlueprintContents: blueprint => {
+    dispatch(fetchingBlueprintContents(blueprint));
   }
 });
 

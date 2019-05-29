@@ -53,14 +53,6 @@ export const fetchingBlueprintContentsSucceeded = (blueprint, pastBlueprint) => 
   }
 });
 
-export const FETCHING_BLUEPRINT_EXPORT_CONTENTS = "FETCHING_BLUEPRINT_EXPORT_CONTENTS";
-export const fetchingBlueprintExportContents = blueprintName => ({
-  type: FETCHING_BLUEPRINT_EXPORT_CONTENTS,
-  payload: {
-    blueprintName
-  }
-});
-
 export const RELOADING_BLUEPRINT_CONTENTS_SUCCEEDED = "RELOADING_BLUEPRINT_CONTENTS_SUCCEEDED";
 export const reloadingBlueprintContentsSucceeded = blueprint => ({
   type: RELOADING_BLUEPRINT_CONTENTS_SUCCEEDED,
@@ -74,15 +66,6 @@ export const setBlueprint = blueprint => ({
   type: SET_BLUEPRINT,
   payload: {
     blueprint
-  }
-});
-
-export const SET_BLUEPRINT_EXPORT_CONTENTS = "SET_BLUEPRINT_EXPORT_CONTENTS";
-export const setBlueprintExportContents = (exportContents, blueprintId) => ({
-  type: SET_BLUEPRINT_EXPORT_CONTENTS,
-  payload: {
-    exportContents,
-    blueprintId
   }
 });
 
