@@ -40,13 +40,7 @@ class ExportBlueprint extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <a
-          href="#"
-          className={
-            this.props.blueprint.modules.length === 0 && this.props.blueprint.packages.length === 0 ? "disabled" : ""
-          }
-          onClick={this.open}
-        >
+        <a href="#" onClick={this.open}>
           <FormattedMessage defaultMessage="Export" />
         </a>
         <Modal show={this.state.showModal} onHide={this.close} id="cmpsr-modal-export" aria-labelledby="title-export">
@@ -132,9 +126,7 @@ ExportBlueprint.propTypes = {
   fetchingBlueprintExportContents: PropTypes.func,
   blueprint: PropTypes.shape({
     name: PropTypes.string,
-    exportContents: PropTypes.arrayOf(PropTypes.object),
-    packages: PropTypes.arrayOf(PropTypes.object),
-    modules: PropTypes.arrayOf(PropTypes.object)
+    exportContents: PropTypes.arrayOf(PropTypes.object)
   })
 };
 
