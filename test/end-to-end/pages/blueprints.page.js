@@ -9,7 +9,7 @@ class BlueprintsPage {
   }
 
   loading() {
-    $(this.blueprintListView).waitForExist(timeout * 4);
+    $(this.blueprintListView).waitForExist(timeout);
     browser.waitUntil(() => $$(this.blueprintListView).length >= 3, timeout, "Loading Blueprints page failed");
   }
 

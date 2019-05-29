@@ -25,5 +25,14 @@ printf "[WebService]\\nAllowUnencrypted=true\\n" > /etc/cockpit/cockpit.conf
 
 # Make cockpit.socket auto-start when system started
 # Do not start it during image generation
-# Do not auto start lorax-composer because it will be enabled in test
 systemctl enable cockpit.socket
+
+# Start lorax-composer to init its db, but do not "enable" it
+# Tests expect the service to not run, it checks the "start service" button
+systemctl start lorax-composer
+
+# wait for lorax-composer initialization before running test
+until curl --unix-socket /run/weldr/api.socket \
+    http://localhost:4000/api/status | grep '"db_supported": *true'; do
+sleep 1;
+done;
