@@ -5,19 +5,12 @@ import { connect } from "react-redux";
 import Layout from "../../components/Layout/Layout";
 import BlueprintListView from "../../components/ListView/BlueprintListView";
 import CreateBlueprint from "../../components/Modal/CreateBlueprint";
-import ExportBlueprint from "../../components/Modal/ExportBlueprint";
 import EmptyState from "../../components/EmptyState/EmptyState";
 import EmptyStateInactive from "../../components/EmptyState/EmptyStateInactive";
 import Loading from "../../components/Loading/Loading";
 import BlueprintsToolbar from "../../components/Toolbar/BlueprintsToolbar";
 import { fetchingBlueprints } from "../../core/actions/blueprints";
-import {
-  fetchingModalExportBlueprintContents,
-  setModalExportBlueprintName,
-  setModalExportBlueprintContents,
-  setModalExportBlueprintVisible,
-  fetchingModalManageSourcesContents
-} from "../../core/actions/modals";
+import { fetchingModalManageSourcesContents } from "../../core/actions/modals";
 import { blueprintsSortSetKey, blueprintsSortSetValue } from "../../core/actions/sort";
 import {
   blueprintsFilterAddValue,
@@ -54,8 +47,6 @@ class BlueprintsPage extends React.Component {
   constructor(props) {
     super(props);
     this.setNotifications = this.setNotifications.bind(this);
-    this.handleHideModalExport = this.handleHideModalExport.bind(this);
-    this.handleShowModalExport = this.handleShowModalExport.bind(this);
     this.handleStartCompose = this.handleStartCompose.bind(this);
   }
 
@@ -79,33 +70,9 @@ class BlueprintsPage extends React.Component {
     this.props.startCompose(blueprintName, composeType);
   }
 
-  // handle show/hide of modal dialogs
-  handleHideModalExport() {
-    this.props.setModalExportBlueprintVisible(false);
-    this.props.setModalExportBlueprintName("");
-    this.props.setModalExportBlueprintContents([]);
-  }
-
-  handleShowModalExport(e, blueprint) {
-    // This implementation of the dialog only provides a text option, and it's
-    // automatically selected. Eventually, the following code should move to a
-    // separate function that is called when the user selects the text option
-
-    // display the dialog, a spinner will display while contents are undefined
-    this.props.setModalExportBlueprintName(blueprint);
-    this.props.setModalExportBlueprintContents(undefined);
-    const blueprintName = blueprint.replace(/\s/g, "-");
-    // run depsolving against blueprint to get contents for dialog
-    this.props.fetchingModalExportBlueprintContents(blueprintName);
-    this.props.setModalExportBlueprintVisible(true);
-    e.preventDefault();
-    e.stopPropagation();
-  }
-
   render() {
     const {
       blueprints,
-      exportBlueprint,
       manageSources,
       blueprintSortKey,
       blueprintSortValue,
@@ -149,7 +116,6 @@ class BlueprintsPage extends React.Component {
               <BlueprintListView
                 blueprints={blueprints.map(blueprint => blueprint.present)}
                 setNotifications={this.setNotifications}
-                handleShowModalExport={this.handleShowModalExport}
                 imageTypes={imageTypes}
                 layout={this.layout}
               />
@@ -168,31 +134,15 @@ class BlueprintsPage extends React.Component {
                   </button>
                 </EmptyState>
               ))))}
-        {exportBlueprint !== undefined && exportBlueprint.visible ? (
-          <ExportBlueprint
-            blueprint={exportBlueprint.name}
-            contents={exportBlueprint.contents}
-            handleHideModal={this.handleHideModalExport}
-          />
-        ) : null}
       </Layout>
     );
   }
 }
 
 BlueprintsPage.propTypes = {
-  setModalExportBlueprintVisible: PropTypes.func,
-  setModalExportBlueprintName: PropTypes.func,
-  setModalExportBlueprintContents: PropTypes.func,
-  fetchingModalExportBlueprintContents: PropTypes.func,
   fetchingModalManageSourcesContents: PropTypes.func,
   fetchingBlueprints: PropTypes.func,
   blueprints: PropTypes.arrayOf(PropTypes.object),
-  exportBlueprint: PropTypes.shape({
-    contents: PropTypes.arrayOf(PropTypes.object),
-    name: PropTypes.string,
-    visible: PropTypes.bool
-  }),
   manageSources: PropTypes.shape({
     fetchingSources: PropTypes.bool,
     sources: PropTypes.objectOf(PropTypes.object),
@@ -222,14 +172,9 @@ BlueprintsPage.propTypes = {
 };
 
 BlueprintsPage.defaultProps = {
-  setModalExportBlueprintVisible: function() {},
-  setModalExportBlueprintName: function() {},
-  setModalExportBlueprintContents: function() {},
-  fetchingModalExportBlueprintContents: function() {},
   fetchingModalManageSourcesContents: function() {},
   fetchingBlueprints: function() {},
   blueprints: [],
-  exportBlueprint: {},
   manageSources: {},
   blueprintSortKey: "",
   blueprintSortValue: "",
@@ -250,7 +195,6 @@ const makeMapStateToProps = () => {
   const mapStateToProps = state => {
     if (getSortedBlueprints(state) !== undefined) {
       return {
-        exportBlueprint: state.modals.exportBlueprint,
         imageTypes: state.composes.composeTypes,
         manageSources: state.modals.manageSources,
         blueprints: getFilteredBlueprints(state, getSortedBlueprints(state)),
@@ -262,7 +206,6 @@ const makeMapStateToProps = () => {
       };
     }
     return {
-      exportBlueprint: state.modals.exportBlueprint,
       imageTypes: state.composes.composeTypes,
       manageSources: state.modals.manageSources,
       blueprints: state.blueprints.blueprintList,
@@ -278,20 +221,8 @@ const makeMapStateToProps = () => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchingModalExportBlueprintContents: modalBlueprintName => {
-    dispatch(fetchingModalExportBlueprintContents(modalBlueprintName));
-  },
   fetchingBlueprints: () => {
     dispatch(fetchingBlueprints());
-  },
-  setModalExportBlueprintName: modalBlueprintName => {
-    dispatch(setModalExportBlueprintName(modalBlueprintName));
-  },
-  setModalExportBlueprintContents: modalBlueprintContents => {
-    dispatch(setModalExportBlueprintContents(modalBlueprintContents));
-  },
-  setModalExportBlueprintVisible: modalVisible => {
-    dispatch(setModalExportBlueprintVisible(modalVisible));
   },
   fetchingModalManageSourcesContents: () => {
     dispatch(fetchingModalManageSourcesContents());

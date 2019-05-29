@@ -17,6 +17,7 @@ import {
   SET_BLUEPRINT_DESCRIPTION,
   SET_BLUEPRINT_DESCRIPTION_SUCCEEDED,
   SET_BLUEPRINT_COMMENT,
+  SET_BLUEPRINT_EXPORT_CONTENTS,
   DELETING_BLUEPRINT_SUCCEEDED,
   BLUEPRINTS_FAILURE,
   BLUEPRINT_CONTENTS_FAILURE,
@@ -159,6 +160,17 @@ const blueprintList = (state = [], action) => {
           if (blueprint.present.id === action.payload.blueprint.id) {
             return Object.assign({}, blueprint, {
               present: Object.assign({}, blueprint.present, { comment: action.payload.comment })
+            });
+          }
+          return blueprint;
+        })
+      ];
+    case SET_BLUEPRINT_EXPORT_CONTENTS:
+      return [
+        ...state.map(blueprint => {
+          if (blueprint.present.id === action.payload.blueprintId) {
+            return Object.assign({}, blueprint, {
+              present: Object.assign({}, blueprint.present, { exportContents: action.payload.exportContents })
             });
           }
           return blueprint;
