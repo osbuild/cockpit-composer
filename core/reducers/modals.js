@@ -1,8 +1,5 @@
 import {
   SET_MODAL_ACTIVE,
-  SET_MODAL_EXPORT_BLUEPRINT_NAME,
-  SET_MODAL_EXPORT_BLUEPRINT_CONTENTS,
-  SET_MODAL_EXPORT_BLUEPRINT_VISIBLE,
   SET_MODAL_DELETE_IMAGE_VISIBLE,
   SET_MODAL_DELETE_IMAGE_STATE,
   SET_MODAL_STOP_BUILD_VISIBLE,
@@ -45,25 +42,6 @@ const modalDeleteImage = (state = [], action) => {
     case SET_MODAL_DELETE_IMAGE_VISIBLE:
       return Object.assign({}, state, {
         deleteImage: Object.assign({}, state.deleteImage, { visible: action.payload.visible })
-      });
-    default:
-      return state;
-  }
-};
-
-const modalExportBlueprint = (state = [], action) => {
-  switch (action.type) {
-    case SET_MODAL_EXPORT_BLUEPRINT_NAME:
-      return Object.assign({}, state, {
-        exportBlueprint: Object.assign({}, state.exportBlueprint, { name: action.payload.blueprintName })
-      });
-    case SET_MODAL_EXPORT_BLUEPRINT_CONTENTS:
-      return Object.assign({}, state, {
-        exportBlueprint: Object.assign({}, state.exportBlueprint, { contents: action.payload.blueprintContents })
-      });
-    case SET_MODAL_EXPORT_BLUEPRINT_VISIBLE:
-      return Object.assign({}, state, {
-        exportBlueprint: Object.assign({}, state.exportBlueprint, { visible: action.payload.visible })
       });
     default:
       return state;
@@ -124,12 +102,6 @@ const modals = (state = [], action) => {
       return modalDeleteImage(state, action);
     case SET_MODAL_DELETE_IMAGE_VISIBLE:
       return modalDeleteImage(state, action);
-    case SET_MODAL_EXPORT_BLUEPRINT_NAME:
-      return modalExportBlueprint(state, action);
-    case SET_MODAL_EXPORT_BLUEPRINT_CONTENTS:
-      return modalExportBlueprint(state, action);
-    case SET_MODAL_EXPORT_BLUEPRINT_VISIBLE:
-      return modalExportBlueprint(state, action);
     case SET_MODAL_CREATE_USER_VISIBLE:
       return modalUserAccount(state, action);
     case SET_MODAL_CREATE_USER_DATA:

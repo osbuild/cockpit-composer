@@ -18,46 +18,6 @@ export function setModalCreateBlueprintBlueprint(blueprint) {
   };
 }
 
-export const SET_MODAL_EXPORT_BLUEPRINT_NAME = "SET_MODAL_EXPORT_BLUEPRINT_NAME";
-export function setModalExportBlueprintName(blueprintName) {
-  return {
-    type: SET_MODAL_EXPORT_BLUEPRINT_NAME,
-    payload: {
-      blueprintName
-    }
-  };
-}
-
-export const SET_MODAL_EXPORT_BLUEPRINT_VISIBLE = "SET_MODAL_EXPORT_BLUEPRINT_VISIBLE";
-export function setModalExportBlueprintVisible(visible) {
-  return {
-    type: SET_MODAL_EXPORT_BLUEPRINT_VISIBLE,
-    payload: {
-      visible
-    }
-  };
-}
-
-export const SET_MODAL_EXPORT_BLUEPRINT_CONTENTS = "SET_MODAL_EXPORT_BLUEPRINT_CONTENTS";
-export function setModalExportBlueprintContents(blueprintContents) {
-  return {
-    type: SET_MODAL_EXPORT_BLUEPRINT_CONTENTS,
-    payload: {
-      blueprintContents
-    }
-  };
-}
-
-export const FETCHING_MODAL_EXPORT_BLUEPRINT_CONTENTS = "FETCHING_MODAL_EXPORT_BLUEPRINT_CONTENTS";
-export function fetchingModalExportBlueprintContents(blueprintName) {
-  return {
-    type: FETCHING_MODAL_EXPORT_BLUEPRINT_CONTENTS,
-    payload: {
-      blueprintName
-    }
-  };
-}
-
 export const SET_MODAL_STOP_BUILD_STATE = "SET_MODAL_STOP_BUILD_STATE";
 export function setModalStopBuildState(composeId, blueprintName) {
   return {

@@ -344,9 +344,6 @@ class EditBlueprintPage extends React.Component {
         // this.getComponentUpdates();
         this.props.setModalActive("modalPendingChanges");
         break;
-      case "modalExportBlueprint":
-        this.props.setModalActive("modalExportBlueprint");
-        break;
       default:
         this.props.setModalActive(null);
         break;
@@ -486,19 +483,9 @@ class EditBlueprintPage extends React.Component {
                     <span className="fa fa-ellipsis-v" />
                   </button>
                   <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
-                    {(selectedComponents.length && (
-                      <li>
-                        <a href="#" onClick={e => this.handleShowModal(e, "modalExportBlueprint")}>
-                          <FormattedMessage defaultMessage="Export" />
-                        </a>
-                      </li>
-                    )) || (
-                      <li className="disabled">
-                        <a>
-                          <FormattedMessage defaultMessage="Export" />
-                        </a>
-                      </li>
-                    )}
+                    <li>
+                      <ExportBlueprint blueprint={blueprint} />
+                    </li>
                   </ul>
                 </div>
               </li>
@@ -679,13 +666,6 @@ class EditBlueprintPage extends React.Component {
             <Loading />
           </div>
         )}
-        {modalActive === "modalExportBlueprint" ? (
-          <ExportBlueprint
-            blueprint={blueprint.name}
-            contents={blueprint.components}
-            handleHideModal={this.handleHideModal}
-          />
-        ) : null}
         {modalActive === "modalPendingChanges" ? (
           <PendingChanges
             handleCommit={this.handleCommit}

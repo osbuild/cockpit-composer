@@ -1,13 +1,29 @@
-/* global $ */
-
 import React from "react";
+import { connect } from "react-redux";
+import { Modal } from "patternfly-react";
 import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
+import { fetchingBlueprintExportContents } from "../../core/actions/blueprints";
 
 class ExportBlueprint extends React.Component {
-  componentDidMount() {
-    $(this.modal).modal("show");
-    $(this.modal).on("hidden.bs.modal", this.props.handleHideModal);
+  constructor(props) {
+    super(props);
+    this.state = {
+      showModal: false
+    };
+    this.open = this.open.bind(this);
+    this.close = this.close.bind(this);
+  }
+
+  open(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    this.props.fetchingBlueprintExportContents(this.props.blueprint.name);
+    this.setState({ showModal: true });
+  }
+
+  close() {
+    this.setState({ showModal: false });
   }
 
   handleCopy() {
@@ -23,110 +39,119 @@ class ExportBlueprint extends React.Component {
 
   render() {
     return (
-      <div
-        className="modal fade"
-        id="cmpsr-modal-export"
-        ref={c => {
-          this.modal = c;
-        }}
-        tabIndex="-1"
-        role="dialog"
-        aria-labelledby="myModalLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <button type="button" className="close" data-dismiss="modal">
-                <span className="pficon pficon-close" />
-              </button>
-              <h4 className="modal-title" id="myModalLabel">
-                <FormattedMessage defaultMessage="Export Blueprint" />
-              </h4>
-            </div>
-            <div className="modal-body">
-              <form className="form-horizontal">
-                <div className="form-group">
-                  <label className="col-sm-3 control-label" htmlFor="blueprint-name">
-                    <FormattedMessage defaultMessage="Blueprint" />
-                  </label>
+      <React.Fragment>
+        <a
+          href="#"
+          className={
+            this.props.blueprint.modules.length === 0 && this.props.blueprint.packages.length === 0 ? "disabled" : ""
+          }
+          onClick={this.open}
+        >
+          <FormattedMessage defaultMessage="Export Blueprint" />
+        </a>
+        <Modal show={this.state.showModal} onHide={this.close} id="cmpsr-modal-export">
+          <Modal.Header>
+            <Modal.CloseButton onClick={this.close} />
+            <Modal.Title>
+              <FormattedMessage defaultMessage="Export Blueprint" />
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <form className="form-horizontal">
+              <div className="form-group">
+                <label className="col-sm-3 control-label" htmlFor="blueprint-name">
+                  <FormattedMessage defaultMessage="Blueprint" />
+                </label>
+                <div className="col-sm-9">
+                  <p className="form-control-static" id="blueprint-name">
+                    {this.props.blueprint.name}
+                  </p>
+                </div>
+              </div>
+              <div className="form-group">
+                <label className="col-sm-3 control-label" htmlFor="textInput-modal-markup">
+                  <FormattedMessage defaultMessage="Export as" />
+                </label>
+                <div className="col-sm-9">
+                  <select className="form-control">
+                    <FormattedMessage defaultMessage="Text" tagName="option" />
+                  </select>
+                </div>
+              </div>
+              <div className="form-group">
+                <label className="col-sm-3 control-label" htmlFor="textInput2-modal-markup">
+                  <FormattedMessage defaultMessage="Contents" />
+                </label>
+                {(this.props.blueprint.exportContents && (
                   <div className="col-sm-9">
-                    <p className="form-control-static" id="blueprint-name">
-                      {this.props.blueprint}
+                    <textarea
+                      readOnly
+                      id="textInput2-modal-markup"
+                      ref={c => {
+                        this.blueprint_contents_text = c;
+                      }}
+                      className="form-control"
+                      rows="10"
+                      value={this.props.blueprint.exportContents
+                        .map(comp => `${comp.name}-${comp.version}-${comp.release}`)
+                        .join("\n")}
+                      onKeyPress={e => this.handleEnterKey(e)}
+                    />
+                    <p>
+                      <FormattedMessage
+                        defaultMessage="{count} total components"
+                        values={{
+                          count: this.props.blueprint.exportContents.length
+                        }}
+                      />
                     </p>
                   </div>
-                </div>
-                <div className="form-group">
-                  <label className="col-sm-3 control-label" htmlFor="textInput-modal-markup">
-                    <FormattedMessage defaultMessage="Export as" />
-                  </label>
-                  <div className="col-sm-9">
-                    <select className="form-control">
-                      <FormattedMessage defaultMessage="Text" tagName="option" />
-                    </select>
+                )) || (
+                  <div className="col-sm-1">
+                    <div className="spinner" />
                   </div>
-                </div>
-                <div className="form-group">
-                  <label className="col-sm-3 control-label" htmlFor="textInput2-modal-markup">
-                    <FormattedMessage defaultMessage="Contents" />
-                  </label>
-                  {(this.props.contents && (
-                    <div className="col-sm-9">
-                      <textarea
-                        readOnly
-                        id="textInput2-modal-markup"
-                        ref={c => {
-                          this.blueprint_contents_text = c;
-                        }}
-                        className="form-control"
-                        rows="10"
-                        value={this.props.contents
-                          .map(comp => `${comp.name}-${comp.version}-${comp.release}`)
-                          .join("\n")}
-                        onKeyPress={e => this.handleEnterKey(e)}
-                      />
-                      <p>
-                        <FormattedMessage
-                          defaultMessage="{count} total components"
-                          values={{
-                            count: this.props.contents.length
-                          }}
-                        />
-                      </p>
-                    </div>
-                  )) || (
-                    <div className="col-sm-1">
-                      <div className="spinner" />
-                    </div>
-                  )}
-                </div>
-              </form>
-            </div>
-            <div className="modal-footer">
-              <button type="button" className="btn btn-default" data-dismiss="modal">
-                <FormattedMessage defaultMessage="Close" />
-              </button>
-              <button type="button" className="btn btn-primary" onClick={() => this.handleCopy()}>
-                <FormattedMessage defaultMessage="Copy" />
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+                )}
+              </div>
+            </form>
+          </Modal.Body>
+          <Modal.Footer>
+            <button type="button" className="btn btn-default" onClick={this.close}>
+              <FormattedMessage defaultMessage="Close" />
+            </button>
+            <button type="button" className="btn btn-primary" onClick={() => this.handleCopy()}>
+              <FormattedMessage defaultMessage="Copy" />
+            </button>
+          </Modal.Footer>
+        </Modal>
+      </React.Fragment>
     );
   }
 }
 
 ExportBlueprint.propTypes = {
-  blueprint: PropTypes.string,
-  contents: PropTypes.arrayOf(PropTypes.object),
-  handleHideModal: PropTypes.func
+  fetchingBlueprintExportContents: PropTypes.func,
+  blueprint: PropTypes.shape({
+    name: PropTypes.string,
+    exportContents: PropTypes.arrayOf(PropTypes.object),
+    packages: PropTypes.arrayOf(PropTypes.object),
+    modules: PropTypes.arrayOf(PropTypes.object)
+  })
 };
 
 ExportBlueprint.defaultProps = {
-  blueprint: "",
-  contents: [],
-  handleHideModal: function() {}
+  fetchingBlueprintExportContents: function() {},
+  blueprint: {}
 };
 
-export default ExportBlueprint;
+const mapStateToProps = () => ({});
+
+const mapDispatchToProps = dispatch => ({
+  fetchingBlueprintExportContents: blueprint => {
+    dispatch(fetchingBlueprintExportContents(blueprint));
+  }
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ExportBlueprint);
