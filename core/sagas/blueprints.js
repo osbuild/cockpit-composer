@@ -25,9 +25,7 @@ import {
   blueprintsFailure,
   blueprintContentsFailure,
   FETCHING_COMP_DEPS,
-  setCompDeps,
-  FETCHING_BLUEPRINT_EXPORT_CONTENTS,
-  setBlueprintExportContents
+  setCompDeps
 } from "../actions/blueprints";
 import { makeGetBlueprintById, makeGetSelectedDeps } from "../selectors";
 
@@ -180,22 +178,6 @@ function* reloadBlueprintContents(blueprintId) {
   } catch (error) {
     console.log("Error in fetchBlueprintContentsSaga", error);
     yield put(blueprintContentsFailure(error, blueprintId));
-  }
-}
-
-function* fetchBlueprintExportContents(action) {
-  // fetches contents for Export modal on Blueprints page
-  try {
-    const { blueprintName } = action.payload;
-    const response = yield call(composer.depsolveBlueprint, blueprintName);
-    const blueprintData = response.blueprints[0];
-    let components = [];
-    if (blueprintData.dependencies.length > 0) {
-      components = yield call(generateComponents, blueprintData);
-    }
-    yield put(setBlueprintExportContents(components, blueprintName));
-  } catch (error) {
-    console.log("Error in loadModalBlueprintSaga", error);
   }
 }
 
@@ -401,7 +383,6 @@ function* fetchCompDeps(action) {
 export default function*() {
   yield takeEvery(CREATING_BLUEPRINT, createBlueprint);
   yield takeEvery(FETCHING_BLUEPRINT_CONTENTS, fetchBlueprintContents);
-  yield takeEvery(FETCHING_BLUEPRINT_EXPORT_CONTENTS, fetchBlueprintExportContents);
   yield takeEvery(SET_BLUEPRINT_USERS, setBlueprintUsers);
   yield takeEvery(SET_BLUEPRINT_HOSTNAME, setBlueprintHostname);
   yield takeEvery(SET_BLUEPRINT_DESCRIPTION, setBlueprintDescription);
