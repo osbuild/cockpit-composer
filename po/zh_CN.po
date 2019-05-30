@@ -1,6 +1,5 @@
-# Ludek Janda <ljanda@redhat.com>, 2018. #zanata
+# David Shea <dshea@redhat.com>, 2019. #zanata
 # Tony Fu <tfu@redhat.com>, 2019. #zanata
-# Xiaofeng Wang <xiaofwan@redhat.com>, 2019. #zanata
 #, fuzzy
 msgid ""
 msgstr ""
@@ -10,7 +9,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "MIME-Version: 1.0\n"
 "X-Generator: Zanata 4.6.2\n"
-"PO-Revision-Date: 2019-05-21 05:15+0000\n"
+"PO-Revision-Date: 2019-05-30 01:22+0000\n"
 "Last-Translator: Tony Fu <tfu@redhat.com>\n"
 "Language-Team: Chinese (China)\n"
 "Language: zh_CN\n"
@@ -64,6 +63,21 @@ msgstr "添加"
 msgid "Add Blueprint Components"
 msgstr "添加蓝图组件"
 
+#: build/messages/components/Modal/ManageSources.json
+#: build/messages/components/Modal/ManageSources.json
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.add]
+#. defaultMessage is:
+#. Add Source
+#. [components.Modal.save]
+#. defaultMessage is:
+#. Add Source
+#. [components.Modal.2130684444]
+#. defaultMessage is:
+#. Add Source
+msgid "Add Source"
+msgstr "添加源"
+
 #: build/messages/components/ListView/ComponentInputs.json
 #. [components.ListView.addComponent]
 #. defaultMessage is:
@@ -88,11 +102,20 @@ msgstr "已添加的"
 #. [components.Modal.errorStateTitle]
 #. defaultMessage is:
 #. An Error Occurred
-#. [pages.blueprints.errorTitle]
+#. [pages.blueprints.errorGenericTitle]
 #. defaultMessage is:
 #. An Error Occurred
 msgid "An Error Occurred"
 msgstr "发生了错误"
+
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.1417078254]
+#. defaultMessage is:
+#. An error occurred when saving the source. Check that the path is valid and try again.
+msgid ""
+"An error occurred when saving the source. Check that the path is valid and "
+"try again."
+msgstr "在保存源时发生错误。检查路径是有效的并重试。"
 
 #: build/messages/components/ListView/BlueprintContents.json
 #. [components.ListView.emptyStateErrorMessage]
@@ -135,6 +158,13 @@ msgstr "您确定要为 {blueprintName} 删除镜像?"
 #. Are you sure you want to stop the build process for {blueprintName}?
 msgid "Are you sure you want to stop the build process for {blueprintName}?"
 msgstr "您确定要停止 {blueprintName} 的构建过程?"
+
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+#. [components.EmptyState.errorInactiveCheckbox]
+#. defaultMessage is:
+#. Automatically start lorax-composer on boot
+msgid "Automatically start lorax-composer on boot"
+msgstr "在引导时自动启动 lorax-composer"
 
 #: build/messages/pages/blueprintEdit/index.json
 #. [pages.blueprintEdit.2346760817]
@@ -217,6 +247,7 @@ msgstr "浏览或搜索组件，然后把它们添加到蓝图中。"
 #: build/messages/components/Modal/CreateImage.json
 #: build/messages/components/Modal/DeleteBlueprint.json
 #: build/messages/components/Modal/DeleteImage.json
+#: build/messages/components/Modal/ManageSources.json
 #: build/messages/components/Modal/StopBuild.json
 #: build/messages/components/Modal/UserAccount.json
 #. [components.Form.cancel]
@@ -232,6 +263,9 @@ msgstr "浏览或搜索组件，然后把它们添加到蓝图中。"
 #. defaultMessage is:
 #. Cancel
 #. [components.Modal.3528672691]
+#. defaultMessage is:
+#. Cancel
+#. [components.Modal.cancel]
 #. defaultMessage is:
 #. Cancel
 #. [components.Modal.3528672691]
@@ -265,6 +299,20 @@ msgid ""
 "Changes made in a previous session are not listed in the order they were "
 "made. If you choose to undo these changes, they are undone as a group."
 msgstr "在前一个会话中所做的修改不会以修改的顺序列出。如果您选择取消这些修改，它们会做为一个组来取消。"
+
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.check_gpg]
+#. defaultMessage is:
+#. Check GPG key
+msgid "Check GPG key"
+msgstr "检查 GPG 密钥"
+
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.check_ssl]
+#. defaultMessage is:
+#. Check SSL certificate
+msgid "Check SSL certificate"
+msgstr "检查 SSL 证书"
 
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/components/Toolbar/ToolbarLayout.json
@@ -442,13 +490,6 @@ msgstr "当前项"
 msgid "Current Page"
 msgstr "当前页"
 
-#: build/messages/components/Modal/ManageSources.json
-#. [components.Modal.3535450089] - Custom sources are additional repositories that were added by the user
-#. defaultMessage is:
-#. Custom Sources
-msgid "Custom Sources"
-msgstr "自定义源"
-
 #: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.3751098589]
 #. defaultMessage is:
@@ -542,6 +583,17 @@ msgstr "下载"
 #. Edit Blueprint
 msgid "Edit Blueprint"
 msgstr "编辑蓝图"
+
+#: build/messages/components/ListView/SourcesListItem.json
+#: build/messages/components/Modal/ManageSources.json
+#. [components.ListView.edit]
+#. defaultMessage is:
+#. Edit Source
+#. [components.Modal.215316199]
+#. defaultMessage is:
+#. Edit Source
+msgid "Edit Source"
+msgstr "编辑源"
 
 #: build/messages/components/Modal/UserAccount.json
 #: build/messages/pages/blueprint/index.json
@@ -671,6 +723,13 @@ msgstr "主机名"
 msgid "If no hostname is provided, the hostname will be determined by the OS."
 msgstr "如果没有提供主机名，则主机名将由 OS 决定。"
 
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+#. [components.EmptyState.errorInactiveTitle]
+#. defaultMessage is:
+#. Image Building Service is Not Active
+msgid "Image Building Service is Not Active"
+msgstr "镜像构建服务没有被激活"
+
 #: build/messages/components/Modal/CreateImage.json
 #. [components.Modal.380558550]
 #. defaultMessage is:
@@ -700,6 +759,20 @@ msgstr "进行中"
 msgid "Loading"
 msgstr "载入"
 
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.357938285] - User action for displaying the list of source repositories
+#. defaultMessage is:
+#. Manage Sources
+msgid "Manage Sources"
+msgstr "管理源"
+
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+#. [components.EmptyState.alertMessagePreface]
+#. defaultMessage is:
+#. Message
+msgid "Message"
+msgstr "信息"
+
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/pages/blueprints/index.json
 #. [components.ListView.emptyStateNoResultsMessage]
@@ -712,11 +785,11 @@ msgid "Modify your filter criteria to get results."
 msgstr "修改过滤条件以获得所需结果"
 
 #: build/messages/components/Modal/CreateBlueprint.json
-#: build/messages/components/Sources/SourcesList.json
+#: build/messages/components/Modal/ManageSources.json
 #. [components.Modal.636461959]
 #. defaultMessage is:
 #. Name
-#. [components.Sources.636461959] - Name of source
+#. [components.Modal.name] - Name of source
 #. defaultMessage is:
 #. Name
 msgid "Name"
@@ -921,6 +994,13 @@ msgstr "从 Blueprint 中删除组件"
 msgid "Remove Password"
 msgstr "删除密码"
 
+#: build/messages/components/ListView/SourcesListItem.json
+#. [components.ListView.remove]
+#. defaultMessage is:
+#. Remove Source
+msgid "Remove Source"
+msgstr "删除源"
+
 #: build/messages/components/ListView/ComponentDetailsView.json
 #. [components.ListView.removeFromBlueprint]
 #. defaultMessage is:
@@ -963,6 +1043,20 @@ msgstr "SSH 密钥"
 msgid "Save"
 msgstr "保存"
 
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.1820273720]
+#. defaultMessage is:
+#. Saving source
+msgid "Saving source"
+msgstr "保存源"
+
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.security]
+#. defaultMessage is:
+#. Security
+msgid "Security"
+msgstr "安全"
+
 #: build/messages/pages/blueprintEdit/index.json
 #. [pages.blueprintEdit.1513086105]
 #. defaultMessage is:
@@ -971,6 +1065,10 @@ msgid "Select components"
 msgstr "选择组件"
 
 #: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.selectOne]
+#. defaultMessage is:
+#. Select one
 #. [components.Modal.selectOne]
 #. defaultMessage is:
 #. Select one
@@ -1044,11 +1142,18 @@ msgstr "显示下一页"
 msgid "Show Previous Page"
 msgstr "显示上一页"
 
-#: build/messages/components/Sources/SourcesList.json
-#. [components.Sources.3503331186] - The path or url to the source repository
+#: build/messages/components/ListView/SourcesListItem.json
+#. [components.ListView.kebab]
 #. defaultMessage is:
-#. Source Path
-msgid "Source Path"
+#. Source Actions
+msgid "Source Actions"
+msgstr "源操作"
+
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.sourcePath] - The path or url to the source repository
+#. defaultMessage is:
+#. Source path
+msgid "Source path"
 msgstr "源路径"
 
 #: build/messages/components/Modal/ManageSources.json
@@ -1058,12 +1163,30 @@ msgstr "源路径"
 msgid "Sources"
 msgstr "源"
 
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.infotip]
+#. defaultMessage is:
+#. Sources are used for resolving blueprint dependencies and for composing images. When adding custom sources you must make sure that the packages in the source do not conflict with any other package sources, otherwise resolving dependencies and composing images will fail.
+msgid ""
+"Sources are used for resolving blueprint dependencies and for composing "
+"images. When adding custom sources you must make sure that the packages in "
+"the source do not conflict with any other package sources, otherwise "
+"resolving dependencies and composing images will fail."
+msgstr "用来解决蓝图依赖性以及组装镜像的源。当添加自定义的源时，需要确保源中的软件包与其他的软件包源没有冲突，否则解决依赖性并组装镜像时会出错。"
+
 #: build/messages/components/Modal/CreateBlueprint.json
 #. [components.Modal.540971304]
 #. defaultMessage is:
 #. Specify a new blueprint name.
 msgid "Specify a new blueprint name."
 msgstr "指定新的蓝图名称。"
+
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+#. [components.EmptyState.errorInactivePrimary]
+#. defaultMessage is:
+#. Start
+msgid "Start"
+msgstr "开始"
 
 #: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.2989081855]
@@ -1086,11 +1209,11 @@ msgstr "停止构建"
 msgid "Stopping"
 msgstr "停止"
 
-#: build/messages/components/Modal/ManageSources.json
-#. [components.Modal.766860407] - System sources are configured repositories that were found on the host machine
+#: build/messages/components/ListView/SourcesListItem.json
+#. [components.ListView.3639476303] - System sources are configured repositories that were found on the host machine
 #. defaultMessage is:
-#. System Sources
-msgid "System Sources"
+#. System source
+msgid "System source"
 msgstr "系统源"
 
 #: build/messages/components/Modal/ExportBlueprint.json
@@ -1108,7 +1231,11 @@ msgid "The build process cannot resume after it stops."
 msgstr "构建过程停止后将不能恢复。"
 
 #: build/messages/components/Modal/CreateBlueprint.json
+#: build/messages/components/Modal/ManageSources.json
 #: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.216946930]
+#. defaultMessage is:
+#. The fields marked with {val} are required.
 #. [components.Modal.216946930]
 #. defaultMessage is:
 #. The fields marked with {val} are required.
@@ -1132,6 +1259,13 @@ msgstr "名称 {name} 已存在。"
 msgid "The page you're looking for does not exist or an another error occurred."
 msgstr "您查看的页不存在，或存在其它错误。"
 
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+#. [components.EmptyState.alertTitleEnableServiceFailure]
+#. defaultMessage is:
+#. The service lorax-composer was not started.
+msgid "The service lorax-composer was not started."
+msgstr "lorax-composer 服务没有启动。"
+
 #: build/messages/components/Modal/UserAccount.json
 #. [components.Modal.2405281428]
 #. defaultMessage is:
@@ -1140,6 +1274,13 @@ msgid ""
 "The user name can only consist of letters from a-z, digits, dots, dashes "
 "and underscores."
 msgstr "用户名只能包括字母 a-z、数字、点、短横线和下划线"
+
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+#. [components.EmptyState.1947371795]
+#. defaultMessage is:
+#. The user {userName} is not permitted to start services.
+msgid "The user {userName} is not permitted to start services."
+msgstr "用户 {userName} 没有启动服务的权限。"
 
 #: build/messages/components/Form/Password.json
 #. [components.Form.2330477961]
@@ -1200,6 +1341,20 @@ msgid ""
 "started."
 msgstr "这个过程会需要一定时间。镜像会以开始的时间顺序构建。"
 
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.2969976976]
+#. defaultMessage is:
+#. This source name already exists.
+msgid "This source name already exists."
+msgstr "这个源名已存在。"
+
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.1932541555]
+#. defaultMessage is:
+#. This source path already exists.
+msgid "This source path already exists."
+msgstr "这个源路径已存在。"
+
 #: build/messages/components/Modal/UserAccount.json
 #. [components.Modal.3707489178]
 #. defaultMessage is:
@@ -1207,16 +1362,30 @@ msgstr "这个过程会需要一定时间。镜像会以开始的时间顺序构
 msgid "This user name already exists."
 msgstr "这个用户名已存在。"
 
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+#. [components.EmptyState.errorInactiveSecondary]
+#. defaultMessage is:
+#. Troubleshoot
+msgid "Troubleshoot"
+msgstr "故障排除"
+
 #: build/messages/components/ListView/ComponentDetailsView.json
-#: build/messages/components/Sources/SourcesList.json
+#: build/messages/components/Modal/ManageSources.json
 #. [components.ListView.1952810469]
 #. defaultMessage is:
 #. Type
-#. [components.Sources.1952810469] - Type of source
+#. [components.Modal.type] - Type of source
 #. defaultMessage is:
 #. Type
 msgid "Type"
 msgstr "类型"
+
+#: build/messages/components/ListView/SourcesListItem.json
+#. [components.ListView.1508102472]
+#. defaultMessage is:
+#. Type {sourceType}
+msgid "Type {sourceType}"
+msgstr "类型 {sourceType}"
 
 #: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.860864899]
@@ -1246,12 +1415,26 @@ msgstr "恢复最后的改变"
 msgid "Update"
 msgstr "更新"
 
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.update]
+#. defaultMessage is:
+#. Update Source
+msgid "Update Source"
+msgstr "更新源"
+
 #: build/messages/components/Modal/PendingChanges.json
 #. [components.Modal.562988552] - Identifies the change as a component that was updated
 #. defaultMessage is:
 #. Updated
 msgid "Updated"
 msgstr "已更新"
+
+#: build/messages/pages/blueprint/index.json
+#. [pages.blueprint.userKebab]
+#. defaultMessage is:
+#. User Account Actions
+msgid "User Account Actions"
+msgstr "用户账户操作"
 
 #: build/messages/components/Modal/UserAccount.json
 #. [components.Modal.529605439]
@@ -1301,13 +1484,6 @@ msgstr "版本 {version}"
 msgid "View"
 msgstr "查看"
 
-#: build/messages/components/Toolbar/BlueprintsToolbar.json
-#. [components.Toolbar.3713868073] - User action for displaying the list of source repositories
-#. defaultMessage is:
-#. View Sources
-msgid "View Sources"
-msgstr "查看源"
-
 #: build/messages/components/Modal/PendingChanges.json
 #. [components.Modal.2755325844]
 #. defaultMessage is:
@@ -1322,12 +1498,45 @@ msgstr "从"
 msgid "home page"
 msgstr "主页"
 
+#: build/messages/components/ListView/SourcesListItem.json
+#: build/messages/components/Modal/ManageSources.json
+#. [components.ListView.metalink]
+#. defaultMessage is:
+#. metalink
+#. [components.Modal.typeMetalink]
+#. defaultMessage is:
+#. metalink
+msgid "metalink"
+msgstr "metalink"
+
+#: build/messages/components/ListView/SourcesListItem.json
+#: build/messages/components/Modal/ManageSources.json
+#. [components.ListView.mirrorlist]
+#. defaultMessage is:
+#. mirrorlist
+#. [components.Modal.typeMirrorlist]
+#. defaultMessage is:
+#. mirrorlist
+msgid "mirrorlist"
+msgstr "mirrorlist"
+
 #: build/messages/components/Modal/PendingChanges.json
 #. [components.Modal.152217691]
 #. defaultMessage is:
 #. to
 msgid "to"
 msgstr "到"
+
+#: build/messages/components/ListView/SourcesListItem.json
+#: build/messages/components/Modal/ManageSources.json
+#. [components.ListView.baseurl]
+#. defaultMessage is:
+#. yum repository
+#. [components.Modal.typeRepo]
+#. defaultMessage is:
+#. yum repository
+msgid "yum repository"
+msgstr "yum repository"
 
 #: build/messages/data/NotificationsApi.json
 #. [data.4273735599]
