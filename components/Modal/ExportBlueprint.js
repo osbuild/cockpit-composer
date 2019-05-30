@@ -109,10 +109,10 @@ class ExportBlueprint extends React.Component {
             </form>
           </Modal.Body>
           <Modal.Footer>
-            <button type="button" className="btn btn-default" onClick={this.close}>
+            <button type="button" className="btn btn-default" data-btn="close-export" onClick={this.close}>
               <FormattedMessage defaultMessage="Close" />
             </button>
-            <button type="button" className="btn btn-primary" onClick={() => this.handleCopy()}>
+            <button type="button" className="btn btn-primary" data-btn="copy-export" onClick={() => this.handleCopy()}>
               <FormattedMessage defaultMessage="Copy" />
             </button>
           </Modal.Footer>

@@ -173,6 +173,7 @@ describe("Edit Blueprint Page", function() {
 
       afterEach(function() {
         createImagePage.cancelButton.click();
+        browser.waitForExist(createImagePage.containerSelector, timeout, true);
       });
 
       it("Create Image dialog should pop up", function() {
