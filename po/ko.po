@@ -1,4 +1,5 @@
-# Ludek Janda <ljanda@redhat.com>, 2018. #zanata
+# David Shea <dshea@redhat.com>, 2019. #zanata
+# Eun-Ju Kim <eukim@redhat.com>, 2019. #zanata
 #, fuzzy
 msgid ""
 msgstr ""
@@ -8,8 +9,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "MIME-Version: 1.0\n"
 "X-Generator: Zanata 4.6.2\n"
-"PO-Revision-Date: 2018-10-25 01:09+0000\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
+"PO-Revision-Date: 2019-05-29 10:56+0000\n"
+"Last-Translator: Eun-Ju Kim <eukim@redhat.com>\n"
 "Language-Team: Korean\n"
 "Language: ko\n"
 
@@ -32,7 +33,7 @@ msgstr "1 개의 빌드가 진행 중입니다."
 #. defaultMessage is:
 #. A blueprint name is required.
 msgid "A blueprint name is required."
-msgstr "청사진 이름이 필요합니다."
+msgstr "블루프린트 이름이 필요합니다."
 
 #: build/messages/components/Modal/UserAccount.json
 #. [components.Modal.2310857819]
@@ -60,14 +61,29 @@ msgstr "추가"
 #. defaultMessage is:
 #. Add Blueprint Components
 msgid "Add Blueprint Components"
-msgstr "청사진 구성 요소 추가"
+msgstr "블루프린트 구성 요소 추가"
+
+#: build/messages/components/Modal/ManageSources.json
+#: build/messages/components/Modal/ManageSources.json
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.add]
+#. defaultMessage is:
+#. Add Source
+#. [components.Modal.save]
+#. defaultMessage is:
+#. Add Source
+#. [components.Modal.2130684444]
+#. defaultMessage is:
+#. Add Source
+msgid "Add Source"
+msgstr "소스 추가 "
 
 #: build/messages/components/ListView/ComponentInputs.json
 #. [components.ListView.addComponent]
 #. defaultMessage is:
 #. Add latest version
 msgid "Add latest version"
-msgstr ""
+msgstr "최신 버전 추가 "
 
 #: build/messages/components/Modal/PendingChanges.json
 #. [components.Modal.1362724042] - Identifies the change as a component that was added
@@ -85,18 +101,27 @@ msgstr "추가됨:"
 #. [components.Modal.errorStateTitle]
 #. defaultMessage is:
 #. An Error Occurred
-#. [pages.blueprints.errorTitle]
+#. [pages.blueprints.errorGenericTitle]
 #. defaultMessage is:
 #. An Error Occurred
 msgid "An Error Occurred"
 msgstr "오류가 발생했습니다 "
+
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.1417078254]
+#. defaultMessage is:
+#. An error occurred when saving the source. Check that the path is valid and try again.
+msgid ""
+"An error occurred when saving the source. Check that the path is valid and "
+"try again."
+msgstr ""
 
 #: build/messages/components/ListView/BlueprintContents.json
 #. [components.ListView.emptyStateErrorMessage]
 #. defaultMessage is:
 #. An error occurred while trying to get blueprint contents.
 msgid "An error occurred while trying to get blueprint contents."
-msgstr "청사진 내용을 가져 오는 도중 오류가 발생했습니다."
+msgstr "블루프린트 내용을 가져 오는 도중 오류가 발생했습니다."
 
 #: build/messages/components/Modal/ManageSources.json
 #. [components.Modal.errorStateMessage]
@@ -117,7 +142,7 @@ msgstr "변경 사항 적용"
 #. defaultMessage is:
 #. Are you sure you want to delete the blueprint {name}?
 msgid "Are you sure you want to delete the blueprint {name}?"
-msgstr " 청사진 {name}을/를 정말로 삭제하시겠습니까?"
+msgstr "블루프린트 {name}을/를 정말로 삭제하시겠습니까?"
 
 #: build/messages/components/Modal/DeleteImage.json
 #. [components.Modal.1346739796]
@@ -132,6 +157,13 @@ msgstr " {blueprintName}의 이미지를 정말로 삭제하시겠습니까?"
 #. Are you sure you want to stop the build process for {blueprintName}?
 msgid "Are you sure you want to stop the build process for {blueprintName}?"
 msgstr " {blueprintName}의 빌드 프로세스를 중지하시겠습니까? "
+
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+#. [components.EmptyState.errorInactiveCheckbox]
+#. defaultMessage is:
+#. Automatically start lorax-composer on boot
+msgid "Automatically start lorax-composer on boot"
+msgstr ""
 
 #: build/messages/pages/blueprintEdit/index.json
 #. [pages.blueprintEdit.2346760817]
@@ -149,7 +181,7 @@ msgstr "사용 가능한 구성 요소"
 #. defaultMessage is:
 #. Back to Blueprints
 msgid "Back to Blueprints"
-msgstr "청사진으로 돌아 가기"
+msgstr "블루프린트로 돌아 가기"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #. [components.ListView.3448229549]
@@ -186,34 +218,35 @@ msgstr "{version} 버전 기반"
 #. defaultMessage is:
 #. Blueprint
 msgid "Blueprint"
-msgstr "청사진"
+msgstr "블루프린트"
 
 #: build/messages/pages/blueprintEdit/index.json
 #. [pages.blueprintEdit.711554923]
 #. defaultMessage is:
 #. Blueprint Components
 msgid "Blueprint Components"
-msgstr "청사진 구성 요소"
+msgstr "블루프린트 구성 요소"
 
 #: build/messages/pages/blueprints/index.json
 #. [pages.blueprints.blueprintsTitle]
 #. defaultMessage is:
 #. Blueprints
 msgid "Blueprints"
-msgstr "청사진"
+msgstr "블루프린트"
 
 #: build/messages/pages/blueprintEdit/index.json
 #. [pages.blueprintEdit.addComponentMessage]
 #. defaultMessage is:
 #. Browse or search for components, then add them to the blueprint.
 msgid "Browse or search for components, then add them to the blueprint."
-msgstr "구성 요소를 찾아 보거나 검색 한 다음 청사진에 추가하십시오."
+msgstr "구성 요소를 찾아 보거나 검색 한 다음 블루프린트에 추가하십시오."
 
 #: build/messages/components/Form/TextInlineEdit.json
 #: build/messages/components/Modal/CreateBlueprint.json
 #: build/messages/components/Modal/CreateImage.json
 #: build/messages/components/Modal/DeleteBlueprint.json
 #: build/messages/components/Modal/DeleteImage.json
+#: build/messages/components/Modal/ManageSources.json
 #: build/messages/components/Modal/StopBuild.json
 #: build/messages/components/Modal/UserAccount.json
 #. [components.Form.cancel]
@@ -229,6 +262,9 @@ msgstr "구성 요소를 찾아 보거나 검색 한 다음 청사진에 추가�
 #. defaultMessage is:
 #. Cancel
 #. [components.Modal.3528672691]
+#. defaultMessage is:
+#. Cancel
+#. [components.Modal.cancel]
 #. defaultMessage is:
 #. Cancel
 #. [components.Modal.3528672691]
@@ -262,6 +298,20 @@ msgid ""
 "Changes made in a previous session are not listed in the order they were "
 "made. If you choose to undo these changes, they are undone as a group."
 msgstr "이전 세션에서 변경한 사항은 변경된 순서대로 나열되지 않습니다. 이러한 변경 사항을 실행 취소하면 그룹으로 실행 취소됩니다."
+
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.check_gpg]
+#. defaultMessage is:
+#. Check GPG key
+msgid "Check GPG key"
+msgstr ""
+
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.check_ssl]
+#. defaultMessage is:
+#. Check SSL certificate
+msgid "Check SSL certificate"
+msgstr ""
 
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/components/Toolbar/ToolbarLayout.json
@@ -396,7 +446,7 @@ msgstr "생성"
 #. defaultMessage is:
 #. Create Blueprint
 msgid "Create Blueprint"
-msgstr "청사진 만들기"
+msgstr "블루프린트 만들기"
 
 #: build/messages/components/Modal/CreateImage.json
 #. [components.Modal.2482064138]
@@ -423,7 +473,7 @@ msgstr ""
 msgid ""
 "Create a blueprint to define the contents that will be included in the "
 "images you create. Images can be produced in a variety of output formats."
-msgstr "생성한 이미지에 포함할 내용을 정의하기 위해 청사진을 만듭니다. 이미지는 다양한 출력 형식으로 생성할 수 있습니다."
+msgstr "생성한 이미지에 포함할 내용을 정의하기 위해 블루프린트를 만듭니다. 이미지는 다양한 출력 형식으로 생성할 수 있습니다."
 
 #: build/messages/components/Pagination/Pagination.json
 #. [components.Pagination.2925773048] - Label for the string: 1–50 of 125; only visible to screen readers
@@ -438,13 +488,6 @@ msgstr "현재 항목"
 #. Current Page
 msgid "Current Page"
 msgstr "현재 페이지"
-
-#: build/messages/components/Modal/ManageSources.json
-#. [components.Modal.3535450089] - Custom sources are additional repositories that were added by the user
-#. defaultMessage is:
-#. Custom Sources
-msgid "Custom Sources"
-msgstr "사용자 정의 소스"
 
 #: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.3751098589]
@@ -469,7 +512,7 @@ msgstr "삭제"
 #. defaultMessage is:
 #. Delete Blueprint
 msgid "Delete Blueprint"
-msgstr "청사진 삭제"
+msgstr "블루프린트 삭제"
 
 #: build/messages/components/Modal/DeleteImage.json
 #. [components.Modal.1731766393]
@@ -539,7 +582,18 @@ msgstr "다운로드 "
 #. defaultMessage is:
 #. Edit Blueprint
 msgid "Edit Blueprint"
-msgstr "청사진 편집"
+msgstr "블루프린트 편집"
+
+#: build/messages/components/ListView/SourcesListItem.json
+#: build/messages/components/Modal/ManageSources.json
+#. [components.ListView.edit]
+#. defaultMessage is:
+#. Edit Source
+#. [components.Modal.215316199]
+#. defaultMessage is:
+#. Edit Source
+msgid "Edit Source"
+msgstr ""
 
 #: build/messages/components/Modal/UserAccount.json
 #: build/messages/pages/blueprint/index.json
@@ -571,7 +625,7 @@ msgstr ""
 #. defaultMessage is:
 #. Empty Blueprint
 msgid "Empty Blueprint"
-msgstr "청사진이 비어있음 "
+msgstr "블루프린트가 비어있음 "
 
 #: build/messages/pages/error/index.json
 #. [pages.error.errorMessage]
@@ -600,7 +654,7 @@ msgstr "내보내기 "
 #. defaultMessage is:
 #. Export Blueprint
 msgid "Export Blueprint"
-msgstr "청사진 내보내기 "
+msgstr "블루프린트 내보내기 "
 
 #: build/messages/components/Modal/ExportBlueprint.json
 #. [components.Modal.3658760324]
@@ -669,6 +723,13 @@ msgstr ""
 msgid "If no hostname is provided, the hostname will be determined by the OS."
 msgstr ""
 
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+#. [components.EmptyState.errorInactiveTitle]
+#. defaultMessage is:
+#. Image Building Service is Not Active
+msgid "Image Building Service is Not Active"
+msgstr ""
+
 #: build/messages/components/Modal/CreateImage.json
 #. [components.Modal.380558550]
 #. defaultMessage is:
@@ -697,6 +758,20 @@ msgstr "진행 중 "
 msgid "Loading"
 msgstr "로딩 중 "
 
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.357938285] - User action for displaying the list of source repositories
+#. defaultMessage is:
+#. Manage Sources
+msgid "Manage Sources"
+msgstr ""
+
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+#. [components.EmptyState.alertMessagePreface]
+#. defaultMessage is:
+#. Message
+msgid "Message"
+msgstr ""
+
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/pages/blueprints/index.json
 #. [components.ListView.emptyStateNoResultsMessage]
@@ -709,11 +784,11 @@ msgid "Modify your filter criteria to get results."
 msgstr "원하는 검색 결과를 얻으려면 필터를 수정하십시오."
 
 #: build/messages/components/Modal/CreateBlueprint.json
-#: build/messages/components/Sources/SourcesList.json
+#: build/messages/components/Modal/ManageSources.json
 #. [components.Modal.636461959]
 #. defaultMessage is:
 #. Name
-#. [components.Sources.636461959] - Name of source
+#. [components.Modal.name] - Name of source
 #. defaultMessage is:
 #. Name
 msgid "Name"
@@ -738,7 +813,7 @@ msgstr ""
 #. defaultMessage is:
 #. No Blueprints
 msgid "No Blueprints"
-msgstr "청사진 없음"
+msgstr "블루프린트 없음"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #. [components.ListView.noDepsTitle]
@@ -770,7 +845,7 @@ msgstr "검색 기준과 일치하는 결과가 없습니다."
 #. defaultMessage is:
 #. No images have been created from this blueprint.
 msgid "No images have been created from this blueprint."
-msgstr "이 청사진에서 생성된 이미지가 없습니다."
+msgstr "이 블루프린트에서 생성된 이미지가 없습니다."
 
 #: build/messages/components/ListView/DependencyListView.json
 #. [components.ListView.1983535507]
@@ -916,12 +991,19 @@ msgstr ""
 msgid "Remove Password"
 msgstr ""
 
+#: build/messages/components/ListView/SourcesListItem.json
+#. [components.ListView.remove]
+#. defaultMessage is:
+#. Remove Source
+msgid "Remove Source"
+msgstr ""
+
 #: build/messages/components/ListView/ComponentDetailsView.json
 #. [components.ListView.removeFromBlueprint]
 #. defaultMessage is:
 #. Remove from Blueprint
 msgid "Remove from Blueprint"
-msgstr "청사진에서 삭제 "
+msgstr "블루프린트에서 삭제 "
 
 #: build/messages/components/Modal/PendingChanges.json
 #. [components.Modal.2291868453] - Identifies the change as a component that was removed
@@ -958,6 +1040,20 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.1820273720]
+#. defaultMessage is:
+#. Saving source
+msgid "Saving source"
+msgstr ""
+
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.security]
+#. defaultMessage is:
+#. Security
+msgid "Security"
+msgstr ""
+
 #: build/messages/pages/blueprintEdit/index.json
 #. [pages.blueprintEdit.1513086105]
 #. defaultMessage is:
@@ -966,6 +1062,10 @@ msgid "Select components"
 msgstr "구성 요소 선택"
 
 #: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.selectOne]
+#. defaultMessage is:
+#. Select one
 #. [components.Modal.selectOne]
 #. defaultMessage is:
 #. Select one
@@ -1039,12 +1139,19 @@ msgstr "다음 페이지보기"
 msgid "Show Previous Page"
 msgstr "이전 페이지보기 "
 
-#: build/messages/components/Sources/SourcesList.json
-#. [components.Sources.3503331186] - The path or url to the source repository
+#: build/messages/components/ListView/SourcesListItem.json
+#. [components.ListView.kebab]
 #. defaultMessage is:
-#. Source Path
-msgid "Source Path"
-msgstr "소스 경로 "
+#. Source Actions
+msgid "Source Actions"
+msgstr ""
+
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.sourcePath] - The path or url to the source repository
+#. defaultMessage is:
+#. Source path
+msgid "Source path"
+msgstr ""
 
 #: build/messages/components/Modal/ManageSources.json
 #. [components.Modal.3025955497] - Sources provide the contents from which components are selected
@@ -1053,12 +1160,30 @@ msgstr "소스 경로 "
 msgid "Sources"
 msgstr "소스 "
 
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.infotip]
+#. defaultMessage is:
+#. Sources are used for resolving blueprint dependencies and for composing images. When adding custom sources you must make sure that the packages in the source do not conflict with any other package sources, otherwise resolving dependencies and composing images will fail.
+msgid ""
+"Sources are used for resolving blueprint dependencies and for composing "
+"images. When adding custom sources you must make sure that the packages in "
+"the source do not conflict with any other package sources, otherwise "
+"resolving dependencies and composing images will fail."
+msgstr ""
+
 #: build/messages/components/Modal/CreateBlueprint.json
 #. [components.Modal.540971304]
 #. defaultMessage is:
 #. Specify a new blueprint name.
 msgid "Specify a new blueprint name."
-msgstr "새 청사진 이름을 지정하십시오."
+msgstr "새 블루프린트 이름을 지정하십시오."
+
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+#. [components.EmptyState.errorInactivePrimary]
+#. defaultMessage is:
+#. Start
+msgid "Start"
+msgstr ""
 
 #: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.2989081855]
@@ -1081,12 +1206,12 @@ msgstr "빌드 중지"
 msgid "Stopping"
 msgstr "중지 중 "
 
-#: build/messages/components/Modal/ManageSources.json
-#. [components.Modal.766860407] - System sources are configured repositories that were found on the host machine
+#: build/messages/components/ListView/SourcesListItem.json
+#. [components.ListView.3639476303] - System sources are configured repositories that were found on the host machine
 #. defaultMessage is:
-#. System Sources
-msgid "System Sources"
-msgstr "시스템 소스"
+#. System source
+msgid "System source"
+msgstr ""
 
 #: build/messages/components/Modal/ExportBlueprint.json
 #. [components.Modal.3495336243]
@@ -1103,7 +1228,11 @@ msgid "The build process cannot resume after it stops."
 msgstr "빌드 프로세스가 중지 된 후에 다시 시작할 수 없습니다."
 
 #: build/messages/components/Modal/CreateBlueprint.json
+#: build/messages/components/Modal/ManageSources.json
 #: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.216946930]
+#. defaultMessage is:
+#. The fields marked with {val} are required.
 #. [components.Modal.216946930]
 #. defaultMessage is:
 #. The fields marked with {val} are required.
@@ -1127,6 +1256,13 @@ msgstr "{name} 이름이 이미 있습니다."
 msgid "The page you're looking for does not exist or an another error occurred."
 msgstr "찾으시는 페이지가 존재하지 않거나 다른 오류가 발생했습니다."
 
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+#. [components.EmptyState.alertTitleEnableServiceFailure]
+#. defaultMessage is:
+#. The service lorax-composer was not started.
+msgid "The service lorax-composer was not started."
+msgstr ""
+
 #: build/messages/components/Modal/UserAccount.json
 #. [components.Modal.2405281428]
 #. defaultMessage is:
@@ -1134,6 +1270,13 @@ msgstr "찾으시는 페이지가 존재하지 않거나 다른 오류가 발생
 msgid ""
 "The user name can only consist of letters from a-z, digits, dots, dashes "
 "and underscores."
+msgstr ""
+
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+#. [components.EmptyState.1947371795]
+#. defaultMessage is:
+#. The user {userName} is not permitted to start services.
+msgid "The user {userName} is not permitted to start services."
 msgstr ""
 
 #: build/messages/components/Form/Password.json
@@ -1150,7 +1293,7 @@ msgstr ""
 msgid ""
 "There are no components listed in the blueprint. Edit the blueprint to add "
 "components."
-msgstr "청사진에 나열된 구성 요소가 없습니다. 청사진을 편집하여 구성 요소를 추가하십시오."
+msgstr "블루프린트에 나열된 구성 요소가 없습니다. 블루프린트를 편집하여 구성 요소를 추가하십시오."
 
 #: build/messages/components/Modal/DeleteBlueprint.json
 #: build/messages/components/Modal/DeleteImage.json
@@ -1170,14 +1313,14 @@ msgstr "이 작업은 실행 취소할 수 없습니다."
 msgid ""
 "This blueprint has changes that are not committed. These changes will be "
 "committed before the image is created."
-msgstr "이 청사진에는 커밋되지 않은 변경 사항이 있습니다. 이러한 변경 사항은 이미지가 작성되기 전에 커밋됩니다."
+msgstr "이 블루프린트에는 커밋되지 않은 변경 사항이 있습니다. 이러한 변경 사항은 이미지가 작성되기 전에 커밋됩니다."
 
 #: build/messages/components/Modal/CreateImage.json
 #. [components.Modal.1766703173]
 #. defaultMessage is:
 #. This blueprint is empty.
 msgid "This blueprint is empty."
-msgstr "이 청사진은 비어 있습니다."
+msgstr "이 블루프린트는 비어 있습니다."
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #. [components.ListView.noDepsMessage]
@@ -1195,6 +1338,20 @@ msgid ""
 "started."
 msgstr "이 프로세스는 몇 분 정도 시간이 걸릴 수 있습니다. 이미지는 시작된 순서대로 빌드됩니다."
 
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.2969976976]
+#. defaultMessage is:
+#. This source name already exists.
+msgid "This source name already exists."
+msgstr ""
+
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.1932541555]
+#. defaultMessage is:
+#. This source path already exists.
+msgid "This source path already exists."
+msgstr ""
+
 #: build/messages/components/Modal/UserAccount.json
 #. [components.Modal.3707489178]
 #. defaultMessage is:
@@ -1202,16 +1359,30 @@ msgstr "이 프로세스는 몇 분 정도 시간이 걸릴 수 있습니다. �
 msgid "This user name already exists."
 msgstr ""
 
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+#. [components.EmptyState.errorInactiveSecondary]
+#. defaultMessage is:
+#. Troubleshoot
+msgid "Troubleshoot"
+msgstr ""
+
 #: build/messages/components/ListView/ComponentDetailsView.json
-#: build/messages/components/Sources/SourcesList.json
+#: build/messages/components/Modal/ManageSources.json
 #. [components.ListView.1952810469]
 #. defaultMessage is:
 #. Type
-#. [components.Sources.1952810469] - Type of source
+#. [components.Modal.type] - Type of source
 #. defaultMessage is:
 #. Type
 msgid "Type"
 msgstr "유형"
+
+#: build/messages/components/ListView/SourcesListItem.json
+#. [components.ListView.1508102472]
+#. defaultMessage is:
+#. Type {sourceType}
+msgid "Type {sourceType}"
+msgstr ""
 
 #: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.860864899]
@@ -1241,12 +1412,26 @@ msgstr ""
 msgid "Update"
 msgstr "업데이트"
 
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.update]
+#. defaultMessage is:
+#. Update Source
+msgid "Update Source"
+msgstr ""
+
 #: build/messages/components/Modal/PendingChanges.json
 #. [components.Modal.562988552] - Identifies the change as a component that was updated
 #. defaultMessage is:
 #. Updated
 msgid "Updated"
 msgstr "업데이트됨"
+
+#: build/messages/pages/blueprint/index.json
+#. [pages.blueprint.userKebab]
+#. defaultMessage is:
+#. User Account Actions
+msgid "User Account Actions"
+msgstr ""
 
 #: build/messages/components/Modal/UserAccount.json
 #. [components.Modal.529605439]
@@ -1297,13 +1482,6 @@ msgstr "버전 {version}"
 msgid "View"
 msgstr "보기 "
 
-#: build/messages/components/Toolbar/BlueprintsToolbar.json
-#. [components.Toolbar.3713868073] - User action for displaying the list of source repositories
-#. defaultMessage is:
-#. View Sources
-msgid "View Sources"
-msgstr "소스보기"
-
 #: build/messages/components/Modal/PendingChanges.json
 #. [components.Modal.2755325844]
 #. defaultMessage is:
@@ -1318,6 +1496,28 @@ msgstr "에서 "
 msgid "home page"
 msgstr "홈페이지"
 
+#: build/messages/components/ListView/SourcesListItem.json
+#: build/messages/components/Modal/ManageSources.json
+#. [components.ListView.metalink]
+#. defaultMessage is:
+#. metalink
+#. [components.Modal.typeMetalink]
+#. defaultMessage is:
+#. metalink
+msgid "metalink"
+msgstr ""
+
+#: build/messages/components/ListView/SourcesListItem.json
+#: build/messages/components/Modal/ManageSources.json
+#. [components.ListView.mirrorlist]
+#. defaultMessage is:
+#. mirrorlist
+#. [components.Modal.typeMirrorlist]
+#. defaultMessage is:
+#. mirrorlist
+msgid "mirrorlist"
+msgstr ""
+
 #: build/messages/components/Modal/PendingChanges.json
 #. [components.Modal.152217691]
 #. defaultMessage is:
@@ -1325,12 +1525,23 @@ msgstr "홈페이지"
 msgid "to"
 msgstr "에"
 
+#: build/messages/components/ListView/SourcesListItem.json
+#: build/messages/components/Modal/ManageSources.json
+#. [components.ListView.baseurl]
+#. defaultMessage is:
+#. yum repository
+#. [components.Modal.typeRepo]
+#. defaultMessage is:
+#. yum repository
+msgid "yum repository"
+msgstr ""
+
 #: build/messages/data/NotificationsApi.json
 #. [data.4273735599]
 #. defaultMessage is:
 #. {blueprint} Blueprint changes are committed.
 msgid "{blueprint} Blueprint changes are committed."
-msgstr "{blueprint} 청사진 변경 사항이 커밋되었습니다."
+msgstr "{blueprint} 블루프린트 변경 사항이 커밋되었습니다."
 
 #: build/messages/data/NotificationsApi.json
 #. [data.477516828]
@@ -1344,7 +1555,7 @@ msgstr "{blueprint} 커밋에 실패했습니다. "
 #. defaultMessage is:
 #. {blueprint} Committing blueprint.
 msgid "{blueprint} Committing blueprint."
-msgstr "{blueprint} 청사진을 커밋하고 있습니다."
+msgstr "{blueprint} 블루프린트를 커밋하고 있습니다."
 
 #: build/messages/data/NotificationsApi.json
 #. [data.3947958753]
@@ -1428,7 +1639,7 @@ msgstr "{pendingChanges, plural, one {# Pending Change} other {# Pending Changes
 #. defaultMessage is:
 #. {selectComponents} in this list to add to the blueprint.
 msgid "{selectComponents} in this list to add to the blueprint."
-msgstr "이 목록에서 청사진에 추가할 {selectComponents} 실행 "
+msgstr "이 목록에서 블루프린트에 추가할 {selectComponents} 실행 "
 
 #: build/messages/components/Pagination/Pagination.json
 #. [components.Pagination.3363928156]
