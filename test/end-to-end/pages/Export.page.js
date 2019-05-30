@@ -20,7 +20,7 @@ class ExportPage {
   }
 
   get closeButton() {
-    const selector = "span=Close";
+    const selector = '[data-btn="close-export"]';
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
@@ -30,7 +30,7 @@ class ExportPage {
   }
 
   get copyButton() {
-    const selector = "span=Copy";
+    const selector = '[data-btn="copy-export"]';
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
