@@ -5,7 +5,7 @@ const crypto = require("crypto");
 
 // const commands = require('./utils/commands');
 
-const mochaTimeout = parseInt(process.env.MOCHA_TIMEOUT) || 120000;
+const mochaTimeout = parseInt(process.env.MOCHA_TIMEOUT) || 300000;
 
 exports.config = {
   //
