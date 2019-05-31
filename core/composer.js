@@ -3,12 +3,19 @@ import cockpit from "cockpit";
 let cockpitHttp = cockpit.http("/run/weldr/api.socket", { superuser: "try" });
 
 /*
- * Send a request to the composer API. `options` contain the same options that
- * cockpit.http() expects.
+ * Send a request to the composer API.
+ *
+ * `options` can contain `path`, `params`, `headers`, `body`, and
+ * `replyFormat`. The ones that have the same name as cockpit.http options
+ * correspond to them and are passed along.
+ *
+ * `replyFormat` can be set to "json" (the default) or "raw".
  *
  * All responses are expected to be either empty or valid JSON.
  */
 function request(options) {
+  var replyFormat = options.replyFormat || "json";
+
   /*
    * Wrap this in an additional Promise. The promise returned by
    * cockpit.http.request() doesn't propagate exceptions thrown in a .catch
@@ -16,8 +23,18 @@ function request(options) {
    */
   return new Promise((resolve, reject) => {
     cockpitHttp
-      .request(options)
-      .then(data => resolve(data ? JSON.parse(data) : data))
+      .request({
+        method: options.method,
+        path: options.path,
+        params: options.params,
+        headers: options.headers,
+        body: options.body
+      })
+      .then(data => {
+        if (replyFormat === "json") resolve(JSON.parse(data));
+        else if (replyFormat === "raw") resolve(data);
+        else throw new Error(`invalid replyFormat: '${replyFormat}'`);
+      })
       .catch(error =>
         reject({
           problem: error.problem,
@@ -31,11 +48,11 @@ function request(options) {
 /*
  * Send a GET request to the composer API.
  */
-function get(path, params) {
+function get(path, options) {
   return request({
-    path: path,
-    params: params,
-    body: ""
+    body: "",
+    ...options,
+    path: path
   });
 }
 
@@ -43,8 +60,9 @@ function get(path, params) {
  * Send a POST request to the composer API. `object` will be turned into a JSON
  * payload.
  */
-function post(path, object) {
+function post(path, object, options) {
   return request({
+    ...options,
     method: "POST",
     path: path,
     headers: { "Content-Type": "application/json" },
@@ -55,8 +73,9 @@ function post(path, object) {
 /*
  * Send a DELETE request to the composer API.
  */
-function _delete(path) {
+function _delete(path, options) {
   return request({
+    ...options,
     method: "DELETE",
     path: path,
     body: ""
@@ -77,9 +96,9 @@ export function depsolveBlueprint(blueprintName) {
 
 export function listModules(filter, selectedInputPage, pageSize) {
   const page = selectedInputPage * pageSize;
-  return get("/api/v0/modules/list/" + encodeURIComponent(filter), { limit: pageSize, offset: page }).then(response => {
-    return [response.modules, response.total];
-  });
+  return get("/api/v0/modules/list/" + encodeURIComponent(filter), { params: { limit: pageSize, offset: page } }).then(
+    response => [response.modules, response.total]
+  );
 }
 
 /*
