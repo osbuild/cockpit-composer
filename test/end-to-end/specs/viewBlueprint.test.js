@@ -176,6 +176,7 @@ describe("View Blueprint Page", function() {
         // back to view blueprint page for pasting
         viewBlueprintPage.selectedComponentsTab.click();
         // paste blueprint manifest here to test copy function
+        viewBlueprintPage.selectedComponentFilter.click();
         viewBlueprintPage.selectedComponentFilter.setValue(["Control", "v"]);
         viewBlueprintPage.selectedComponentFilter.waitForValue(timeout);
         expect(viewBlueprintPage.selectedComponentFilter.getValue()).to.equal(blueprintManifest);
