@@ -1,6 +1,7 @@
 const faker = require("faker");
 const addContext = require("mochawesome/addContext");
 const commands = require("../utils/commands");
+const wdioConfig = require("../wdio.conf.js");
 
 const Blueprint = require("../components/Blueprint.component");
 const blueprintsPage = require("../pages/blueprints.page");
@@ -173,13 +174,15 @@ describe("View Blueprint Page", function() {
         exportPage.copyButton.click();
         exportPage.closeButton.click();
         browser.waitForExist(exportPage.containerSelector, timeout, true);
-        // back to view blueprint page for pasting
-        viewBlueprintPage.selectedComponentsTab.click();
-        // paste blueprint manifest here to test copy function
-        viewBlueprintPage.selectedComponentFilter.click();
-        viewBlueprintPage.selectedComponentFilter.setValue(["Control", "v"]);
-        viewBlueprintPage.selectedComponentFilter.waitForValue(timeout);
-        expect(viewBlueprintPage.selectedComponentFilter.getValue()).to.equal(blueprintManifest);
+        if (wdioConfig.config.capabilities[0].browserName !== "MicrosoftEdge") {
+          // back to view blueprint page for pasting
+          viewBlueprintPage.selectedComponentsTab.click();
+          // paste blueprint manifest here to test copy function
+          viewBlueprintPage.selectedComponentFilter.click();
+          viewBlueprintPage.selectedComponentFilter.setValue(["Control", "v"]);
+          viewBlueprintPage.selectedComponentFilter.waitForValue(timeout);
+          expect(viewBlueprintPage.selectedComponentFilter.getValue()).to.equal(blueprintManifest);
+        }
       });
     });
   });
