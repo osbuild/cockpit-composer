@@ -212,7 +212,7 @@ class BlueprintPage extends React.Component {
         name: this.props.userAccount.name
       },
       { ...(this.props.userAccount.description && { description: this.props.userAccount.description }) },
-      { ...(this.props.userAccount.key && { key: this.props.userAccount.key }) },
+      { ...(this.props.userAccount.key && { key: this.props.userAccount.key.trim() }) },
       { ...(this.props.userAccount.groups.includes("wheel") && { groups: ["wheel"] }) }
     );
     if (password) {
