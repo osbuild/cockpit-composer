@@ -13,7 +13,7 @@ RELEASE_SRPM="_release/srpm"
 cat ~/.fedora-password | kinit cockpit@FEDORAPROJECT.ORG
 
 job release-source
-job release-srpm
+job release-srpm -V
 
 # Do fedora builds for the tag, using tarball
 job release-koji master
