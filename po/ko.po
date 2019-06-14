@@ -9,7 +9,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "MIME-Version: 1.0\n"
 "X-Generator: Zanata 4.6.2\n"
-"PO-Revision-Date: 2019-05-29 10:56+0000\n"
+"PO-Revision-Date: 2019-06-10 02:36+0000\n"
 "Last-Translator: Eun-Ju Kim <eukim@redhat.com>\n"
 "Language-Team: Korean\n"
 "Language: ko\n"
@@ -40,14 +40,14 @@ msgstr "블루프린트 이름이 필요합니다."
 #. defaultMessage is:
 #. A password is defined for this account.
 msgid "A password is defined for this account."
-msgstr ""
+msgstr "이 계정에 암호가 지정되어 있습니다. "
 
 #: build/messages/components/Modal/UserAccount.json
 #. [components.Modal.2362836873]
 #. defaultMessage is:
 #. A password is not defined for this account.
 msgid "A password is not defined for this account."
-msgstr ""
+msgstr "이 계정에 암호가 지정되어 있지 않습니다. "
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #. [components.ListView.3099331554]
@@ -114,7 +114,7 @@ msgstr "오류가 발생했습니다 "
 msgid ""
 "An error occurred when saving the source. Check that the path is valid and "
 "try again."
-msgstr ""
+msgstr "소스를 저장할 때 오류가 발생했습니다. 경로가 유효한지 확인한 후 다시 시도해 보십시오. "
 
 #: build/messages/components/ListView/BlueprintContents.json
 #. [components.ListView.emptyStateErrorMessage]
@@ -163,7 +163,7 @@ msgstr " {blueprintName}의 빌드 프로세스를 중지하시겠습니까? "
 #. defaultMessage is:
 #. Automatically start lorax-composer on boot
 msgid "Automatically start lorax-composer on boot"
-msgstr ""
+msgstr "부팅시 lorax-composer 자동 실행 "
 
 #: build/messages/pages/blueprintEdit/index.json
 #. [pages.blueprintEdit.2346760817]
@@ -188,7 +188,7 @@ msgstr "블루프린트로 돌아 가기"
 #. defaultMessage is:
 #. Back to {blueprint}
 msgid "Back to {blueprint}"
-msgstr ""
+msgstr "{blueprint}로 되돌아 가기 "
 
 #: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.2943300373]
@@ -304,14 +304,14 @@ msgstr "이전 세션에서 변경한 사항은 변경된 순서대로 나열되
 #. defaultMessage is:
 #. Check GPG key
 msgid "Check GPG key"
-msgstr ""
+msgstr "GPG 키 확인 "
 
 #: build/messages/components/Modal/ManageSources.json
 #. [components.Modal.check_ssl]
 #. defaultMessage is:
 #. Check SSL certificate
 msgid "Check SSL certificate"
-msgstr ""
+msgstr "SSL 인증서 확인 "
 
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/components/Toolbar/ToolbarLayout.json
@@ -410,7 +410,7 @@ msgstr "구성 요소 옵션"
 #. defaultMessage is:
 #. Confirm password
 msgid "Confirm password"
-msgstr ""
+msgstr "암호 확인"
 
 #: build/messages/components/Modal/ExportBlueprint.json
 #. [components.Modal.956699920]
@@ -464,7 +464,7 @@ msgstr "이미지 만들기"
 #. defaultMessage is:
 #. Create User Account
 msgid "Create User Account"
-msgstr ""
+msgstr "사용자 계정 만들기 "
 
 #: build/messages/pages/blueprints/index.json
 #. [pages.blueprints.emptyMessage]
@@ -526,7 +526,7 @@ msgstr "이미지 삭제"
 #. defaultMessage is:
 #. Delete User Account
 msgid "Delete User Account"
-msgstr ""
+msgstr "사용자 계정 삭제 "
 
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/components/ListView/ComponentDetailsView.json
@@ -593,7 +593,7 @@ msgstr "블루프린트 편집"
 #. defaultMessage is:
 #. Edit Source
 msgid "Edit Source"
-msgstr ""
+msgstr "소스 편집 "
 
 #: build/messages/components/Modal/UserAccount.json
 #: build/messages/pages/blueprint/index.json
@@ -604,21 +604,21 @@ msgstr ""
 #. defaultMessage is:
 #. Edit User Account
 msgid "Edit User Account"
-msgstr ""
+msgstr "사용자 계정 편집 "
 
 #: build/messages/pages/blueprint/index.json
 #. [pages.blueprint.descriptionButtonLabel]
 #. defaultMessage is:
 #. Edit description
 msgid "Edit description"
-msgstr ""
+msgstr "설명 편집 "
 
 #: build/messages/pages/blueprint/index.json
 #. [pages.blueprint.hostnameButtonLabel]
 #. defaultMessage is:
 #. Edit hostname
 msgid "Edit hostname"
-msgstr ""
+msgstr "호스트이름 편집 "
 
 #: build/messages/pages/blueprint/index.json
 #. [pages.blueprint.emptyBlueprintTitle]
@@ -634,16 +634,8 @@ msgstr "블루프린트가 비어있음 "
 msgid "Error"
 msgstr "오류"
 
-#: build/messages/components/ListView/BlueprintListView.json
-#: build/messages/pages/blueprint/index.json
-#: build/messages/pages/blueprintEdit/index.json
-#. [components.ListView.3590336714]
-#. defaultMessage is:
-#. Export
-#. [pages.blueprint.3590336714]
-#. defaultMessage is:
-#. Export
-#. [pages.blueprintEdit.3590336714]
+#: build/messages/components/Modal/ExportBlueprint.json
+#. [components.Modal.3590336714]
 #. defaultMessage is:
 #. Export
 msgid "Export"
@@ -689,7 +681,7 @@ msgstr "이름으로 필터링 ..."
 #. defaultMessage is:
 #. Full name
 msgid "Full name"
-msgstr ""
+msgstr "성명 "
 
 #: build/messages/pages/error/index.json
 #. [pages.error.2333299345]
@@ -709,26 +701,33 @@ msgstr "뒤로 이동"
 msgid "Hide Details"
 msgstr "세부 정보 숨기기"
 
+#: build/messages/components/ListView/ListItemImages.json
+#. [components.ListView.199688839]
+#. defaultMessage is:
+#. Hide logs
+msgid "Hide logs"
+msgstr "로그 숨기기 "
+
 #: build/messages/pages/blueprint/index.json
 #. [pages.blueprint.hostnameInputLabel]
 #. defaultMessage is:
 #. Hostname
 msgid "Hostname"
-msgstr ""
+msgstr "호스트 이름 "
 
 #: build/messages/pages/blueprint/index.json
 #. [pages.blueprint.hostnameHelpEmpty]
 #. defaultMessage is:
 #. If no hostname is provided, the hostname will be determined by the OS.
 msgid "If no hostname is provided, the hostname will be determined by the OS."
-msgstr ""
+msgstr "호스트이름이 지정되어 있지 않을 경우 OS가 호스트 이름을 지정합니다. "
 
 #: build/messages/components/EmptyState/EmptyStateInactive.json
 #. [components.EmptyState.errorInactiveTitle]
 #. defaultMessage is:
 #. Image Building Service is Not Active
 msgid "Image Building Service is Not Active"
-msgstr ""
+msgstr "이미지 빌드 서비스가 활성화되어 있지 않습니다 "
 
 #: build/messages/components/Modal/CreateImage.json
 #. [components.Modal.380558550]
@@ -758,19 +757,26 @@ msgstr "진행 중 "
 msgid "Loading"
 msgstr "로딩 중 "
 
+#: build/messages/components/ListView/ListItemImages.json
+#. [components.ListView.2878778279]
+#. defaultMessage is:
+#. Loading log messages
+msgid "Loading log messages"
+msgstr "로그 메세지 로딩 중 "
+
 #: build/messages/components/Modal/ManageSources.json
 #. [components.Modal.357938285] - User action for displaying the list of source repositories
 #. defaultMessage is:
 #. Manage Sources
 msgid "Manage Sources"
-msgstr ""
+msgstr "소스 관리 "
 
 #: build/messages/components/EmptyState/EmptyStateInactive.json
 #. [components.EmptyState.alertMessagePreface]
 #. defaultMessage is:
 #. Message
 msgid "Message"
-msgstr ""
+msgstr "메세지"
 
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/pages/blueprints/index.json
@@ -806,7 +812,7 @@ msgstr "이름: {name}"
 #. defaultMessage is:
 #. New password
 msgid "New password"
-msgstr ""
+msgstr "새 암호"
 
 #: build/messages/pages/blueprints/index.json
 #. [pages.blueprints.emptyTitle]
@@ -820,7 +826,7 @@ msgstr "블루프린트 없음"
 #. defaultMessage is:
 #. No Dependencies
 msgid "No Dependencies"
-msgstr ""
+msgstr "종속성 없음 "
 
 #: build/messages/pages/blueprint/index.json
 #. [pages.blueprint.noImagesTitle]
@@ -846,6 +852,13 @@ msgstr "검색 기준과 일치하는 결과가 없습니다."
 #. No images have been created from this blueprint.
 msgid "No images have been created from this blueprint."
 msgstr "이 블루프린트에서 생성된 이미지가 없습니다."
+
+#: build/messages/components/ListView/ListItemImages.json
+#. [components.ListView.1893974769]
+#. defaultMessage is:
+#. No log available
+msgid "No log available"
+msgstr "사용 가능한 로그가 없음 "
 
 #: build/messages/components/ListView/DependencyListView.json
 #. [components.ListView.1983535507]
@@ -907,28 +920,28 @@ msgstr "페이지 매김 "
 #. defaultMessage is:
 #. Password
 msgid "Password"
-msgstr ""
+msgstr "암호 "
 
 #: build/messages/components/Form/Password.json
 #. [components.Form.rejectedPassword]
 #. defaultMessage is:
 #. Password is not acceptable
 msgid "Password is not acceptable"
-msgstr ""
+msgstr "암호가 허용되지 않습니다 "
 
 #: build/messages/components/Form/Password.json
 #. [components.Form.weakPassword]
 #. defaultMessage is:
 #. Password is too weak
 msgid "Password is too weak"
-msgstr ""
+msgstr "암호가 너무 취약합니다 "
 
 #: build/messages/components/Modal/UserAccount.json
 #. [components.Modal.sshKeyHelp]
 #. defaultMessage is:
 #. Paste the contents of your public SSH key file here.
 msgid "Paste the contents of your public SSH key file here."
-msgstr ""
+msgstr "SSH 공개키 파일 내용을 여기에 붙여넣기합니다. "
 
 #: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.1102534324]
@@ -982,21 +995,21 @@ msgstr "제거 "
 #. defaultMessage is:
 #. Remove Component from Blueprint
 msgid "Remove Component from Blueprint"
-msgstr ""
+msgstr "블루프린트에서 구성 요소 제거 "
 
 #: build/messages/components/Modal/UserAccount.json
 #. [components.Modal.2822116526]
 #. defaultMessage is:
 #. Remove Password
 msgid "Remove Password"
-msgstr ""
+msgstr "암호 제거 "
 
 #: build/messages/components/ListView/SourcesListItem.json
 #. [components.ListView.remove]
 #. defaultMessage is:
 #. Remove Source
 msgid "Remove Source"
-msgstr ""
+msgstr "소스 제거 "
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #. [components.ListView.removeFromBlueprint]
@@ -1024,35 +1037,35 @@ msgstr "필수 정보가 없습니다. "
 #. defaultMessage is:
 #. Role
 msgid "Role"
-msgstr ""
+msgstr "역할"
 
 #: build/messages/components/Modal/UserAccount.json
 #. [components.Modal.229369250]
 #. defaultMessage is:
 #. SSH key
 msgid "SSH key"
-msgstr ""
+msgstr "SSH 키 "
 
 #: build/messages/components/Form/TextInlineEdit.json
 #. [components.Form.save]
 #. defaultMessage is:
 #. Save
 msgid "Save"
-msgstr ""
+msgstr "저장 "
 
 #: build/messages/components/Modal/ManageSources.json
 #. [components.Modal.1820273720]
 #. defaultMessage is:
 #. Saving source
 msgid "Saving source"
-msgstr ""
+msgstr "소스 저장 중 "
 
 #: build/messages/components/Modal/ManageSources.json
 #. [components.Modal.security]
 #. defaultMessage is:
 #. Security
 msgid "Security"
-msgstr ""
+msgstr "보안"
 
 #: build/messages/pages/blueprintEdit/index.json
 #. [pages.blueprintEdit.1513086105]
@@ -1088,21 +1101,21 @@ msgstr "선택된 구성 요소"
 #. defaultMessage is:
 #. Server administrator
 msgid "Server administrator"
-msgstr ""
+msgstr "서버 관리자 "
 
 #: build/messages/components/Modal/UserAccount.json
 #. [components.Modal.1110245255]
 #. defaultMessage is:
 #. Set New Password
 msgid "Set New Password"
-msgstr ""
+msgstr "새 암호 설정 "
 
 #: build/messages/components/Modal/UserAccount.json
 #. [components.Modal.3696648021]
 #. defaultMessage is:
 #. Set Password
 msgid "Set Password"
-msgstr ""
+msgstr "암호 설정 "
 
 #: build/messages/components/ListView/ComponentSummaryList.json
 #. [components.ListView.1256153657]
@@ -1139,19 +1152,26 @@ msgstr "다음 페이지보기"
 msgid "Show Previous Page"
 msgstr "이전 페이지보기 "
 
+#: build/messages/components/ListView/ListItemImages.json
+#. [components.ListView.3676174248]
+#. defaultMessage is:
+#. Show logs
+msgid "Show logs"
+msgstr "로그 보기 "
+
 #: build/messages/components/ListView/SourcesListItem.json
 #. [components.ListView.kebab]
 #. defaultMessage is:
 #. Source Actions
 msgid "Source Actions"
-msgstr ""
+msgstr "소스 작업 "
 
 #: build/messages/components/Modal/ManageSources.json
 #. [components.Modal.sourcePath] - The path or url to the source repository
 #. defaultMessage is:
 #. Source path
 msgid "Source path"
-msgstr ""
+msgstr "소스 경로 "
 
 #: build/messages/components/Modal/ManageSources.json
 #. [components.Modal.3025955497] - Sources provide the contents from which components are selected
@@ -1170,6 +1190,8 @@ msgid ""
 "the source do not conflict with any other package sources, otherwise "
 "resolving dependencies and composing images will fail."
 msgstr ""
+"블루프린트 종속성을 해결하고 이미지를 조합하기 위한 소스입니다. 사용자 정의 소스를 추가할 때 소스의 패키지가 다른 패키지 소스와 "
+"충돌하지 않도록 합니다. 그렇지 않으면 종속성을 해결하고 이미지를 구성할 때 오류가 발생합니다. "
 
 #: build/messages/components/Modal/CreateBlueprint.json
 #. [components.Modal.540971304]
@@ -1183,7 +1205,7 @@ msgstr "새 블루프린트 이름을 지정하십시오."
 #. defaultMessage is:
 #. Start
 msgid "Start"
-msgstr ""
+msgstr "시작 "
 
 #: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.2989081855]
@@ -1211,7 +1233,7 @@ msgstr "중지 중 "
 #. defaultMessage is:
 #. System source
 msgid "System source"
-msgstr ""
+msgstr "시스템 소스 "
 
 #: build/messages/components/Modal/ExportBlueprint.json
 #. [components.Modal.3495336243]
@@ -1261,7 +1283,7 @@ msgstr "찾으시는 페이지가 존재하지 않거나 다른 오류가 발생
 #. defaultMessage is:
 #. The service lorax-composer was not started.
 msgid "The service lorax-composer was not started."
-msgstr ""
+msgstr "lorax-composer 서비스가 시작되지 않았습니다. "
 
 #: build/messages/components/Modal/UserAccount.json
 #. [components.Modal.2405281428]
@@ -1270,21 +1292,21 @@ msgstr ""
 msgid ""
 "The user name can only consist of letters from a-z, digits, dots, dashes "
 "and underscores."
-msgstr ""
+msgstr "사용자 이름에는 a~z 문자, 숫자, 점, 대시, 밑줄만 사용할 수 있습니다. "
 
 #: build/messages/components/EmptyState/EmptyStateInactive.json
 #. [components.EmptyState.1947371795]
 #. defaultMessage is:
 #. The user {userName} is not permitted to start services.
 msgid "The user {userName} is not permitted to start services."
-msgstr ""
+msgstr "사용자 {userName}는 서비스를 시작할 수 있는 권한이 없습니다. "
 
 #: build/messages/components/Form/Password.json
 #. [components.Form.2330477961]
 #. defaultMessage is:
 #. The values entered for password do not match.
 msgid "The values entered for password do not match."
-msgstr ""
+msgstr "암호로 입력한 값이 일치하지 않습니다. "
 
 #: build/messages/pages/blueprint/index.json
 #. [pages.blueprint.emptyBlueprintMessage]
@@ -1327,7 +1349,7 @@ msgstr "이 블루프린트는 비어 있습니다."
 #. defaultMessage is:
 #. This component has no dependencies.
 msgid "This component has no dependencies."
-msgstr ""
+msgstr "이 구성 요소에는 종속 패키지가 없습니다. "
 
 #: build/messages/components/Modal/CreateImage.json
 #. [components.Modal.infotip]
@@ -1343,28 +1365,28 @@ msgstr "이 프로세스는 몇 분 정도 시간이 걸릴 수 있습니다. �
 #. defaultMessage is:
 #. This source name already exists.
 msgid "This source name already exists."
-msgstr ""
+msgstr "이 소스 이름이 이미 존재합니다. "
 
 #: build/messages/components/Modal/ManageSources.json
 #. [components.Modal.1932541555]
 #. defaultMessage is:
 #. This source path already exists.
 msgid "This source path already exists."
-msgstr ""
+msgstr "이 소스 경로가 이미 존재합니다. "
 
 #: build/messages/components/Modal/UserAccount.json
 #. [components.Modal.3707489178]
 #. defaultMessage is:
 #. This user name already exists.
 msgid "This user name already exists."
-msgstr ""
+msgstr "이 사용자 이름이 이미 존재합니다. "
 
 #: build/messages/components/EmptyState/EmptyStateInactive.json
 #. [components.EmptyState.errorInactiveSecondary]
 #. defaultMessage is:
 #. Troubleshoot
 msgid "Troubleshoot"
-msgstr ""
+msgstr "문제 해결"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/Modal/ManageSources.json
@@ -1382,7 +1404,7 @@ msgstr "유형"
 #. defaultMessage is:
 #. Type {sourceType}
 msgid "Type {sourceType}"
-msgstr ""
+msgstr "유형 {sourceType}"
 
 #: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.860864899]
@@ -1403,7 +1425,7 @@ msgstr "URL"
 #. defaultMessage is:
 #. Undo Last Change
 msgid "Undo Last Change"
-msgstr ""
+msgstr "마지막 변경 사항 취소 "
 
 #: build/messages/components/Modal/UserAccount.json
 #. [components.Modal.1458938618]
@@ -1417,7 +1439,7 @@ msgstr "업데이트"
 #. defaultMessage is:
 #. Update Source
 msgid "Update Source"
-msgstr ""
+msgstr "소스 업데이트 "
 
 #: build/messages/components/Modal/PendingChanges.json
 #. [components.Modal.562988552] - Identifies the change as a component that was updated
@@ -1431,21 +1453,21 @@ msgstr "업데이트됨"
 #. defaultMessage is:
 #. User Account Actions
 msgid "User Account Actions"
-msgstr ""
+msgstr "사용자 계정 작업 "
 
 #: build/messages/components/Modal/UserAccount.json
 #. [components.Modal.529605439]
 #. defaultMessage is:
 #. User name
 msgid "User name"
-msgstr ""
+msgstr "사용자 이름 "
 
 #: build/messages/pages/blueprint/index.json
 #. [pages.blueprint.443046426]
 #. defaultMessage is:
 #. Users
 msgid "Users"
-msgstr ""
+msgstr "사용자"
 
 #: build/messages/pages/blueprint/index.json
 #. [pages.blueprint.hostnameHelp]
@@ -1455,6 +1477,8 @@ msgid ""
 "Valid characters for hostname are letters from a to z, the digits from 0 to "
 "9, and the hyphen (-). A hostname may not start with a hyphen."
 msgstr ""
+"호스트 이름으로 a~z 문자 0~9의 숫자 및 하이픈 (-)을 사용할 수 있습니다. 하이픈으로 시작하는 호스트 이름을 사용할 수 "
+"없습니다."
 
 # auto translated by TM merge from project: Customer Portal Drupal, version: cp-drupal, DocId: node/2357861/Red_Hat_Mobile_Application_Platform_Product_Life_Cycle.field_page_body][0][value.html
 #: build/messages/components/ListView/ComponentDetailsView.json
@@ -1505,7 +1529,7 @@ msgstr "홈페이지"
 #. defaultMessage is:
 #. metalink
 msgid "metalink"
-msgstr ""
+msgstr "metalink"
 
 #: build/messages/components/ListView/SourcesListItem.json
 #: build/messages/components/Modal/ManageSources.json
@@ -1516,7 +1540,7 @@ msgstr ""
 #. defaultMessage is:
 #. mirrorlist
 msgid "mirrorlist"
-msgstr ""
+msgstr "mirrorlist"
 
 #: build/messages/components/Modal/PendingChanges.json
 #. [components.Modal.152217691]
@@ -1534,7 +1558,7 @@ msgstr "에"
 #. defaultMessage is:
 #. yum repository
 msgid "yum repository"
-msgstr ""
+msgstr "yum repository"
 
 #: build/messages/data/NotificationsApi.json
 #. [data.4273735599]

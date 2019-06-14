@@ -9,7 +9,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "MIME-Version: 1.0\n"
 "X-Generator: Zanata 4.6.2\n"
-"PO-Revision-Date: 2019-05-29 12:04+0000\n"
+"PO-Revision-Date: 2019-06-11 10:48+0000\n"
 "Last-Translator: corina roe <croe@redhat.com>\n"
 "Language-Team: French\n"
 "Language: fr\n"
@@ -642,16 +642,8 @@ msgstr "Vider le modèle"
 msgid "Error"
 msgstr "Erreur"
 
-#: build/messages/components/ListView/BlueprintListView.json
-#: build/messages/pages/blueprint/index.json
-#: build/messages/pages/blueprintEdit/index.json
-#. [components.ListView.3590336714]
-#. defaultMessage is:
-#. Export
-#. [pages.blueprint.3590336714]
-#. defaultMessage is:
-#. Export
-#. [pages.blueprintEdit.3590336714]
+#: build/messages/components/Modal/ExportBlueprint.json
+#. [components.Modal.3590336714]
 #. defaultMessage is:
 #. Export
 msgid "Export"
@@ -718,6 +710,13 @@ msgstr "Retour en arrière"
 msgid "Hide Details"
 msgstr "Cacher les détails"
 
+#: build/messages/components/ListView/ListItemImages.json
+#. [components.ListView.199688839]
+#. defaultMessage is:
+#. Hide logs
+msgid "Hide logs"
+msgstr "Cacher les journaux"
+
 #: build/messages/pages/blueprint/index.json
 #. [pages.blueprint.hostnameInputLabel]
 #. defaultMessage is:
@@ -767,6 +766,13 @@ msgstr "En cours"
 #. Loading
 msgid "Loading"
 msgstr "Chargement"
+
+#: build/messages/components/ListView/ListItemImages.json
+#. [components.ListView.2878778279]
+#. defaultMessage is:
+#. Loading log messages
+msgid "Loading log messages"
+msgstr "Chargement des messages de journalisation"
 
 #: build/messages/components/Modal/ManageSources.json
 #. [components.Modal.357938285] - User action for displaying the list of source repositories
@@ -856,6 +862,13 @@ msgstr "Aucun résultat correspondant au critère de filtrage"
 #. No images have been created from this blueprint.
 msgid "No images have been created from this blueprint."
 msgstr "Aucune image n'a été créée à partir de ce modèle"
+
+#: build/messages/components/ListView/ListItemImages.json
+#. [components.ListView.1893974769]
+#. defaultMessage is:
+#. No log available
+msgid "No log available"
+msgstr "Aucun journal disponible"
 
 #: build/messages/components/ListView/DependencyListView.json
 #. [components.ListView.1983535507]
@@ -1153,6 +1166,13 @@ msgstr "Afficher la page suivante"
 #. Show Previous Page
 msgid "Show Previous Page"
 msgstr "Afficher la page précédente"
+
+#: build/messages/components/ListView/ListItemImages.json
+#. [components.ListView.3676174248]
+#. defaultMessage is:
+#. Show logs
+msgid "Show logs"
+msgstr "Afficher les journaux"
 
 #: build/messages/components/ListView/SourcesListItem.json
 #. [components.ListView.kebab]
