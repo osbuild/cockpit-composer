@@ -9,7 +9,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "MIME-Version: 1.0\n"
 "X-Generator: Zanata 4.6.2\n"
-"PO-Revision-Date: 2019-05-30 01:22+0000\n"
+"PO-Revision-Date: 2019-06-14 12:38+0000\n"
 "Last-Translator: Tony Fu <tfu@redhat.com>\n"
 "Language-Team: Chinese (China)\n"
 "Language: zh_CN\n"
@@ -634,16 +634,8 @@ msgstr "空蓝图"
 msgid "Error"
 msgstr "错误"
 
-#: build/messages/components/ListView/BlueprintListView.json
-#: build/messages/pages/blueprint/index.json
-#: build/messages/pages/blueprintEdit/index.json
-#. [components.ListView.3590336714]
-#. defaultMessage is:
-#. Export
-#. [pages.blueprint.3590336714]
-#. defaultMessage is:
-#. Export
-#. [pages.blueprintEdit.3590336714]
+#: build/messages/components/Modal/ExportBlueprint.json
+#. [components.Modal.3590336714]
 #. defaultMessage is:
 #. Export
 msgid "Export"
@@ -709,6 +701,13 @@ msgstr "回退"
 msgid "Hide Details"
 msgstr "隐藏详情"
 
+#: build/messages/components/ListView/ListItemImages.json
+#. [components.ListView.199688839]
+#. defaultMessage is:
+#. Hide logs
+msgid "Hide logs"
+msgstr "隐藏日志"
+
 #: build/messages/pages/blueprint/index.json
 #. [pages.blueprint.hostnameInputLabel]
 #. defaultMessage is:
@@ -758,6 +757,13 @@ msgstr "进行中"
 #. Loading
 msgid "Loading"
 msgstr "载入"
+
+#: build/messages/components/ListView/ListItemImages.json
+#. [components.ListView.2878778279]
+#. defaultMessage is:
+#. Loading log messages
+msgid "Loading log messages"
+msgstr "加载日志信息"
 
 #: build/messages/components/Modal/ManageSources.json
 #. [components.Modal.357938285] - User action for displaying the list of source repositories
@@ -847,6 +853,13 @@ msgstr "没有匹配过滤条件的结果"
 #. No images have been created from this blueprint.
 msgid "No images have been created from this blueprint."
 msgstr "没有从这个蓝图创建的镜像。"
+
+#: build/messages/components/ListView/ListItemImages.json
+#. [components.ListView.1893974769]
+#. defaultMessage is:
+#. No log available
+msgid "No log available"
+msgstr "无日志"
 
 #: build/messages/components/ListView/DependencyListView.json
 #. [components.ListView.1983535507]
@@ -1141,6 +1154,13 @@ msgstr "显示下一页"
 #. Show Previous Page
 msgid "Show Previous Page"
 msgstr "显示上一页"
+
+#: build/messages/components/ListView/ListItemImages.json
+#. [components.ListView.3676174248]
+#. defaultMessage is:
+#. Show logs
+msgid "Show logs"
+msgstr "显示日志"
 
 #: build/messages/components/ListView/SourcesListItem.json
 #. [components.ListView.kebab]
