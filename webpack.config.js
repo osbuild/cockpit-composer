@@ -24,21 +24,8 @@ const plugins = [
     $: "jquery",
     jQuery: "jquery"
   }),
-  // copy patternfly assets
+  // copy our assets
   new CopyWebpackPlugin([
-    {
-      from: { glob: "./node_modules/patternfly/dist/fonts/*.*" },
-      to: "./fonts",
-      flatten: true
-    },
-    {
-      from: "./node_modules/patternfly/dist/css/patternfly.min.css",
-      to: "./css"
-    },
-    {
-      from: "./node_modules/patternfly/dist/css/patternfly-additions.min.css",
-      to: "./css"
-    },
     {
       from: "./public/custom.css"
     },
