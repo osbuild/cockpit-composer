@@ -1,6 +1,6 @@
-# David Shea <dshea@redhat.com>, 2018. #zanata
-# Ludek Janda <ljanda@redhat.com>, 2018. #zanata
+# David Shea <dshea@redhat.com>, 2019. #zanata
 # Keiko Moriguchi <kemorigu@redhat.com>, 2019. #zanata
+# Lars Karlitski <lars@karlitski.net>, 2019. #zanata
 #, fuzzy
 msgid ""
 msgstr ""
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "MIME-Version: 1.0\n"
 "X-Generator: Zanata 4.6.2\n"
-"PO-Revision-Date: 2019-05-24 03:31+0000\n"
+"PO-Revision-Date: 2019-06-18 05:57+0000\n"
 "Last-Translator: Keiko Moriguchi <kemorigu@redhat.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -64,6 +64,21 @@ msgstr "追加する"
 msgid "Add Blueprint Components"
 msgstr "ブループリントコンポーネントの追加"
 
+#: build/messages/components/Modal/ManageSources.json
+#: build/messages/components/Modal/ManageSources.json
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.add]
+#. defaultMessage is:
+#. Add Source
+#. [components.Modal.save]
+#. defaultMessage is:
+#. Add Source
+#. [components.Modal.2130684444]
+#. defaultMessage is:
+#. Add Source
+msgid "Add Source"
+msgstr "ソースの追加"
+
 #: build/messages/components/ListView/ComponentInputs.json
 #. [components.ListView.addComponent]
 #. defaultMessage is:
@@ -87,11 +102,20 @@ msgstr "追加"
 #. [components.Modal.errorStateTitle]
 #. defaultMessage is:
 #. An Error Occurred
-#. [pages.blueprints.errorTitle]
+#. [pages.blueprints.errorGenericTitle]
 #. defaultMessage is:
 #. An Error Occurred
 msgid "An Error Occurred"
 msgstr "エラーが発生しました"
+
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.1417078254]
+#. defaultMessage is:
+#. An error occurred when saving the source. Check that the path is valid and try again.
+msgid ""
+"An error occurred when saving the source. Check that the path is valid and "
+"try again."
+msgstr "ソースを保存する際にエラーが発生しました。パスが有効かどうか確認し、再試行してください。"
 
 #: build/messages/components/ListView/BlueprintContents.json
 #. [components.ListView.emptyStateErrorMessage]
@@ -134,6 +158,13 @@ msgstr "{blueprintName} のイメージを削除してもよろしいですか?"
 #. Are you sure you want to stop the build process for {blueprintName}?
 msgid "Are you sure you want to stop the build process for {blueprintName}?"
 msgstr "{blueprintName} のビルドプロセスを終了してもよろしいですか?"
+
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+#. [components.EmptyState.errorInactiveCheckbox]
+#. defaultMessage is:
+#. Automatically start lorax-composer on boot
+msgid "Automatically start lorax-composer on boot"
+msgstr "起動時に lorax-composer を自動開始"
 
 #: build/messages/pages/blueprintEdit/index.json
 #. [pages.blueprintEdit.2346760817]
@@ -216,6 +247,7 @@ msgstr "コンポーネントを閲覧または検索した後、ブループリ
 #: build/messages/components/Modal/CreateImage.json
 #: build/messages/components/Modal/DeleteBlueprint.json
 #: build/messages/components/Modal/DeleteImage.json
+#: build/messages/components/Modal/ManageSources.json
 #: build/messages/components/Modal/StopBuild.json
 #: build/messages/components/Modal/UserAccount.json
 #. [components.Form.cancel]
@@ -231,6 +263,9 @@ msgstr "コンポーネントを閲覧または検索した後、ブループリ
 #. defaultMessage is:
 #. Cancel
 #. [components.Modal.3528672691]
+#. defaultMessage is:
+#. Cancel
+#. [components.Modal.cancel]
 #. defaultMessage is:
 #. Cancel
 #. [components.Modal.3528672691]
@@ -264,6 +299,20 @@ msgid ""
 "Changes made in a previous session are not listed in the order they were "
 "made. If you choose to undo these changes, they are undone as a group."
 msgstr "前回のセッションでの変更点は、変更順に表示されていません。これらの変更点を元に戻す場合は、グループとして戻します。"
+
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.check_gpg]
+#. defaultMessage is:
+#. Check GPG key
+msgid "Check GPG key"
+msgstr "GPG 鍵の確認"
+
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.check_ssl]
+#. defaultMessage is:
+#. Check SSL certificate
+msgid "Check SSL certificate"
+msgstr "SSL 証明書の確認"
 
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/components/Toolbar/ToolbarLayout.json
@@ -441,13 +490,6 @@ msgstr "現在のアイテム"
 msgid "Current Page"
 msgstr "現在のページ"
 
-#: build/messages/components/Modal/ManageSources.json
-#. [components.Modal.3535450089] - Custom sources are additional repositories that were added by the user
-#. defaultMessage is:
-#. Custom Sources
-msgid "Custom Sources"
-msgstr "カスタムソース"
-
 #: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.3751098589]
 #. defaultMessage is:
@@ -542,6 +584,17 @@ msgstr "ダウンロード"
 msgid "Edit Blueprint"
 msgstr "ブループリントの編集"
 
+#: build/messages/components/ListView/SourcesListItem.json
+#: build/messages/components/Modal/ManageSources.json
+#. [components.ListView.edit]
+#. defaultMessage is:
+#. Edit Source
+#. [components.Modal.215316199]
+#. defaultMessage is:
+#. Edit Source
+msgid "Edit Source"
+msgstr "ソースの編集"
+
 #: build/messages/components/Modal/UserAccount.json
 #: build/messages/pages/blueprint/index.json
 #. [components.Modal.modalTitleEdit]
@@ -581,16 +634,8 @@ msgstr "ブループリントを空にします"
 msgid "Error"
 msgstr "エラー"
 
-#: build/messages/components/ListView/BlueprintListView.json
-#: build/messages/pages/blueprint/index.json
-#: build/messages/pages/blueprintEdit/index.json
-#. [components.ListView.3590336714]
-#. defaultMessage is:
-#. Export
-#. [pages.blueprint.3590336714]
-#. defaultMessage is:
-#. Export
-#. [pages.blueprintEdit.3590336714]
+#: build/messages/components/Modal/ExportBlueprint.json
+#. [components.Modal.3590336714]
 #. defaultMessage is:
 #. Export
 msgid "Export"
@@ -656,6 +701,13 @@ msgstr "戻る"
 msgid "Hide Details"
 msgstr "詳細非表示"
 
+#: build/messages/components/ListView/ListItemImages.json
+#. [components.ListView.199688839]
+#. defaultMessage is:
+#. Hide logs
+msgid "Hide logs"
+msgstr "ログを隠す"
+
 #: build/messages/pages/blueprint/index.json
 #. [pages.blueprint.hostnameInputLabel]
 #. defaultMessage is:
@@ -669,6 +721,13 @@ msgstr "ホスト名"
 #. If no hostname is provided, the hostname will be determined by the OS.
 msgid "If no hostname is provided, the hostname will be determined by the OS."
 msgstr "ホスト名が提供されない場合は、OS がホスト名を決定します。"
+
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+#. [components.EmptyState.errorInactiveTitle]
+#. defaultMessage is:
+#. Image Building Service is Not Active
+msgid "Image Building Service is Not Active"
+msgstr "Image Building Service はアクティブではありません"
 
 #: build/messages/components/Modal/CreateImage.json
 #. [components.Modal.380558550]
@@ -699,6 +758,27 @@ msgstr "処理中"
 msgid "Loading"
 msgstr "読み込み中"
 
+#: build/messages/components/ListView/ListItemImages.json
+#. [components.ListView.2878778279]
+#. defaultMessage is:
+#. Loading log messages
+msgid "Loading log messages"
+msgstr "ログメッセージをロード中"
+
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.357938285] - User action for displaying the list of source repositories
+#. defaultMessage is:
+#. Manage Sources
+msgid "Manage Sources"
+msgstr "ソースの管理"
+
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+#. [components.EmptyState.alertMessagePreface]
+#. defaultMessage is:
+#. Message
+msgid "Message"
+msgstr "メッセージ"
+
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/pages/blueprints/index.json
 #. [components.ListView.emptyStateNoResultsMessage]
@@ -711,11 +791,11 @@ msgid "Modify your filter criteria to get results."
 msgstr "結果を取得するために絞り込みの基準を修正。"
 
 #: build/messages/components/Modal/CreateBlueprint.json
-#: build/messages/components/Sources/SourcesList.json
+#: build/messages/components/Modal/ManageSources.json
 #. [components.Modal.636461959]
 #. defaultMessage is:
 #. Name
-#. [components.Sources.636461959] - Name of source
+#. [components.Modal.name] - Name of source
 #. defaultMessage is:
 #. Name
 msgid "Name"
@@ -773,6 +853,13 @@ msgstr "絞り込みの基準と一致する結果がありません。"
 #. No images have been created from this blueprint.
 msgid "No images have been created from this blueprint."
 msgstr "このブループリントからイメージは作成されていません。"
+
+#: build/messages/components/ListView/ListItemImages.json
+#. [components.ListView.1893974769]
+#. defaultMessage is:
+#. No log available
+msgid "No log available"
+msgstr "利用できるログはありません"
 
 #: build/messages/components/ListView/DependencyListView.json
 #. [components.ListView.1983535507]
@@ -918,6 +1005,13 @@ msgstr "ブループリントから内容を削除"
 msgid "Remove Password"
 msgstr "パスワードを削除"
 
+#: build/messages/components/ListView/SourcesListItem.json
+#. [components.ListView.remove]
+#. defaultMessage is:
+#. Remove Source
+msgid "Remove Source"
+msgstr "ソースの削除"
+
 #: build/messages/components/ListView/ComponentDetailsView.json
 #. [components.ListView.removeFromBlueprint]
 #. defaultMessage is:
@@ -960,6 +1054,20 @@ msgstr "SSH キー"
 msgid "Save"
 msgstr "保存"
 
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.1820273720]
+#. defaultMessage is:
+#. Saving source
+msgid "Saving source"
+msgstr "ソースの保存"
+
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.security]
+#. defaultMessage is:
+#. Security
+msgid "Security"
+msgstr "セキュリティー"
+
 #: build/messages/pages/blueprintEdit/index.json
 #. [pages.blueprintEdit.1513086105]
 #. defaultMessage is:
@@ -968,6 +1076,10 @@ msgid "Select components"
 msgstr "コンポーネントの選択"
 
 #: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.selectOne]
+#. defaultMessage is:
+#. Select one
 #. [components.Modal.selectOne]
 #. defaultMessage is:
 #. Select one
@@ -1041,11 +1153,25 @@ msgstr "次のページに進みます"
 msgid "Show Previous Page"
 msgstr "前のページに戻ります"
 
-#: build/messages/components/Sources/SourcesList.json
-#. [components.Sources.3503331186] - The path or url to the source repository
+#: build/messages/components/ListView/ListItemImages.json
+#. [components.ListView.3676174248]
 #. defaultMessage is:
-#. Source Path
-msgid "Source Path"
+#. Show logs
+msgid "Show logs"
+msgstr "ログの表示"
+
+#: build/messages/components/ListView/SourcesListItem.json
+#. [components.ListView.kebab]
+#. defaultMessage is:
+#. Source Actions
+msgid "Source Actions"
+msgstr "ソースの動作"
+
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.sourcePath] - The path or url to the source repository
+#. defaultMessage is:
+#. Source path
+msgid "Source path"
 msgstr "ソースパス"
 
 #: build/messages/components/Modal/ManageSources.json
@@ -1055,12 +1181,32 @@ msgstr "ソースパス"
 msgid "Sources"
 msgstr "ソース"
 
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.infotip]
+#. defaultMessage is:
+#. Sources are used for resolving blueprint dependencies and for composing images. When adding custom sources you must make sure that the packages in the source do not conflict with any other package sources, otherwise resolving dependencies and composing images will fail.
+msgid ""
+"Sources are used for resolving blueprint dependencies and for composing "
+"images. When adding custom sources you must make sure that the packages in "
+"the source do not conflict with any other package sources, otherwise "
+"resolving dependencies and composing images will fail."
+msgstr ""
+"ソースは、ブループリントの依存関係の解決とイメージの作成に使われます。カスタムソースを追加する場合は、ソースのパッケージが、他のパッケージソースと競合し"
+"ない点を確認してください。競合する場合、依存関係の解決とイメージの作成は失敗します。"
+
 #: build/messages/components/Modal/CreateBlueprint.json
 #. [components.Modal.540971304]
 #. defaultMessage is:
 #. Specify a new blueprint name.
 msgid "Specify a new blueprint name."
 msgstr "新規ブループリント名を指定します。"
+
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+#. [components.EmptyState.errorInactivePrimary]
+#. defaultMessage is:
+#. Start
+msgid "Start"
+msgstr "スタート"
 
 #: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.2989081855]
@@ -1083,11 +1229,11 @@ msgstr "ビルドを終了"
 msgid "Stopping"
 msgstr "終了中"
 
-#: build/messages/components/Modal/ManageSources.json
-#. [components.Modal.766860407] - System sources are configured repositories that were found on the host machine
+#: build/messages/components/ListView/SourcesListItem.json
+#. [components.ListView.3639476303] - System sources are configured repositories that were found on the host machine
 #. defaultMessage is:
-#. System Sources
-msgid "System Sources"
+#. System source
+msgid "System source"
 msgstr "システムソース"
 
 #: build/messages/components/Modal/ExportBlueprint.json
@@ -1105,7 +1251,11 @@ msgid "The build process cannot resume after it stops."
 msgstr "ビルドプロセス終了後に再開することはできません。"
 
 #: build/messages/components/Modal/CreateBlueprint.json
+#: build/messages/components/Modal/ManageSources.json
 #: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.216946930]
+#. defaultMessage is:
+#. The fields marked with {val} are required.
 #. [components.Modal.216946930]
 #. defaultMessage is:
 #. The fields marked with {val} are required.
@@ -1129,6 +1279,13 @@ msgstr "名前 {name} はすでに存在します。"
 msgid "The page you're looking for does not exist or an another error occurred."
 msgstr "お探しのページは削除されたか、別のエラーが発生しました。"
 
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+#. [components.EmptyState.alertTitleEnableServiceFailure]
+#. defaultMessage is:
+#. The service lorax-composer was not started.
+msgid "The service lorax-composer was not started."
+msgstr "サービス lorax-composer はスタートしませんでした。"
+
 #: build/messages/components/Modal/UserAccount.json
 #. [components.Modal.2405281428]
 #. defaultMessage is:
@@ -1137,6 +1294,13 @@ msgid ""
 "The user name can only consist of letters from a-z, digits, dots, dashes "
 "and underscores."
 msgstr "ユーザー名は a〜z の文字、数字、ドット、ダッシュ、およびアンダースコアだけで構成されます。"
+
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+#. [components.EmptyState.1947371795]
+#. defaultMessage is:
+#. The user {userName} is not permitted to start services.
+msgid "The user {userName} is not permitted to start services."
+msgstr "ユーザー {userName} は、サービスをスタートすることを許可されていません。"
 
 #: build/messages/components/Form/Password.json
 #. [components.Form.2330477961]
@@ -1197,6 +1361,20 @@ msgid ""
 "started."
 msgstr "この処理には数分かかることがあります。イメージは開始順にビルドされます。"
 
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.2969976976]
+#. defaultMessage is:
+#. This source name already exists.
+msgid "This source name already exists."
+msgstr "このソース名はすでに存在します。"
+
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.1932541555]
+#. defaultMessage is:
+#. This source path already exists.
+msgid "This source path already exists."
+msgstr "このソースパスはすでに存在します。"
+
 #: build/messages/components/Modal/UserAccount.json
 #. [components.Modal.3707489178]
 #. defaultMessage is:
@@ -1204,16 +1382,30 @@ msgstr "この処理には数分かかることがあります。イメージは
 msgid "This user name already exists."
 msgstr "このユーザー名はすでに存在します。"
 
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+#. [components.EmptyState.errorInactiveSecondary]
+#. defaultMessage is:
+#. Troubleshoot
+msgid "Troubleshoot"
+msgstr "トラブルシュート"
+
 #: build/messages/components/ListView/ComponentDetailsView.json
-#: build/messages/components/Sources/SourcesList.json
+#: build/messages/components/Modal/ManageSources.json
 #. [components.ListView.1952810469]
 #. defaultMessage is:
 #. Type
-#. [components.Sources.1952810469] - Type of source
+#. [components.Modal.type] - Type of source
 #. defaultMessage is:
 #. Type
 msgid "Type"
 msgstr "タイプ"
+
+#: build/messages/components/ListView/SourcesListItem.json
+#. [components.ListView.1508102472]
+#. defaultMessage is:
+#. Type {sourceType}
+msgid "Type {sourceType}"
+msgstr "タイプ {sourceType}"
 
 #: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.860864899]
@@ -1243,12 +1435,26 @@ msgstr "前回の変更点の取り消し"
 msgid "Update"
 msgstr "更新"
 
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.update]
+#. defaultMessage is:
+#. Update Source
+msgid "Update Source"
+msgstr "ソースの更新"
+
 #: build/messages/components/Modal/PendingChanges.json
 #. [components.Modal.562988552] - Identifies the change as a component that was updated
 #. defaultMessage is:
 #. Updated
 msgid "Updated"
 msgstr "更新済み"
+
+#: build/messages/pages/blueprint/index.json
+#. [pages.blueprint.userKebab]
+#. defaultMessage is:
+#. User Account Actions
+msgid "User Account Actions"
+msgstr "ユーザーアカウントの動作"
 
 #: build/messages/components/Modal/UserAccount.json
 #. [components.Modal.529605439]
@@ -1298,13 +1504,6 @@ msgstr "バージョン {version}"
 msgid "View"
 msgstr "表示"
 
-#: build/messages/components/Toolbar/BlueprintsToolbar.json
-#. [components.Toolbar.3713868073] - User action for displaying the list of source repositories
-#. defaultMessage is:
-#. View Sources
-msgid "View Sources"
-msgstr "ソースを表示"
-
 #: build/messages/components/Modal/PendingChanges.json
 #. [components.Modal.2755325844]
 #. defaultMessage is:
@@ -1319,12 +1518,45 @@ msgstr "(バージョン) から"
 msgid "home page"
 msgstr "ホームページ"
 
+#: build/messages/components/ListView/SourcesListItem.json
+#: build/messages/components/Modal/ManageSources.json
+#. [components.ListView.metalink]
+#. defaultMessage is:
+#. metalink
+#. [components.Modal.typeMetalink]
+#. defaultMessage is:
+#. metalink
+msgid "metalink"
+msgstr "metalink"
+
+#: build/messages/components/ListView/SourcesListItem.json
+#: build/messages/components/Modal/ManageSources.json
+#. [components.ListView.mirrorlist]
+#. defaultMessage is:
+#. mirrorlist
+#. [components.Modal.typeMirrorlist]
+#. defaultMessage is:
+#. mirrorlist
+msgid "mirrorlist"
+msgstr "mirrorlist"
+
 #: build/messages/components/Modal/PendingChanges.json
 #. [components.Modal.152217691]
 #. defaultMessage is:
 #. to
 msgid "to"
 msgstr "(バージョン) へ"
+
+#: build/messages/components/ListView/SourcesListItem.json
+#: build/messages/components/Modal/ManageSources.json
+#. [components.ListView.baseurl]
+#. defaultMessage is:
+#. yum repository
+#. [components.Modal.typeRepo]
+#. defaultMessage is:
+#. yum repository
+msgid "yum repository"
+msgstr "Yum リポジトリー"
 
 #: build/messages/data/NotificationsApi.json
 #. [data.4273735599]
