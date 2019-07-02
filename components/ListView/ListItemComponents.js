@@ -164,10 +164,12 @@ ListItemComponents.propTypes = {
     epoch: PropTypes.number,
     inBlueprint: PropTypes.bool,
     name: PropTypes.string,
+    summary: PropTypes.string,
     release: PropTypes.string,
     ui_type: PropTypes.string,
     userSelected: PropTypes.bool,
     version: PropTypes.string,
+    homepage: PropTypes.arrayOf(PropTypes.string),
     dependencies: PropTypes.arrayOf(PropTypes.object)
   }),
   listItemParent: PropTypes.string,
