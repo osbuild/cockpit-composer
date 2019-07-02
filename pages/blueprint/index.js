@@ -648,6 +648,7 @@ BlueprintPage.propTypes = {
   setBlueprintDescription: PropTypes.func,
   setBlueprintHostname: PropTypes.func,
   selectedInput: PropTypes.shape({
+    set: PropTypes.bool,
     component: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     parent: PropTypes.arrayOf(PropTypes.object)
   }),

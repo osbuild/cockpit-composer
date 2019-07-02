@@ -133,12 +133,15 @@ class Notification extends React.PureComponent {
 
 Notification.propTypes = {
   notification: PropTypes.shape({
+    kebab: PropTypes.arrayOf(PropTypes.string),
     dismiss: PropTypes.bool,
     fade: PropTypes.bool,
     id: PropTypes.string,
     label: PropTypes.string,
     message: PropTypes.object,
-    type: PropTypes.string
+    type: PropTypes.string,
+    action: PropTypes.object,
+    input: PropTypes.object
   }),
   setNotifications: PropTypes.func,
   id: PropTypes.string

@@ -362,9 +362,11 @@ ComponentDetailsView.propTypes = {
     name: PropTypes.string,
     release: PropTypes.string,
     summary: PropTypes.string,
+    description: PropTypes.string,
     ui_type: PropTypes.string,
     userSelected: PropTypes.bool,
-    version: PropTypes.string
+    version: PropTypes.string,
+    builds: PropTypes.arrayOf(PropTypes.object)
   }),
   selectedComponents: PropTypes.arrayOf(PropTypes.object),
   blueprint: PropTypes.string,
