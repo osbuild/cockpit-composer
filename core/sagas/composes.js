@@ -6,8 +6,9 @@ import {
   START_COMPOSE,
   fetchingComposeStatusSucceeded,
   FETCHING_COMPOSES,
-  fetchingComposeTypesSucceeded,
   fetchingComposeSucceeded,
+  FETCHING_COMPOSE_TYPES,
+  fetchingComposeTypesSucceeded,
   composesFailure,
   CANCELLING_COMPOSE,
   DELETING_COMPOSE,
@@ -114,7 +115,7 @@ function* fetchComposeTypes() {
 }
 
 export default function*() {
-  yield* fetchComposeTypes();
+  yield takeEvery(FETCHING_COMPOSE_TYPES, fetchComposeTypes);
   yield takeEvery(START_COMPOSE, startCompose);
   yield takeEvery(FETCHING_COMPOSES, fetchComposes);
   yield takeEvery(DELETING_COMPOSE, deleteCompose);

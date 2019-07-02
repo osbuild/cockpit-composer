@@ -17,7 +17,6 @@ import {
   blueprintsFilterRemoveValue,
   blueprintsFilterClearValues
 } from "../../core/actions/filter";
-import { startCompose } from "../../core/actions/composes";
 import { makeGetSortedBlueprints, makeGetFilteredBlueprints } from "../../core/selectors";
 
 const messages = defineMessages({
@@ -47,7 +46,6 @@ class BlueprintsPage extends React.Component {
   constructor(props) {
     super(props);
     this.setNotifications = this.setNotifications.bind(this);
-    this.handleStartCompose = this.handleStartCompose.bind(this);
   }
 
   componentWillMount() {
@@ -66,10 +64,6 @@ class BlueprintsPage extends React.Component {
     this.layout.setNotifications();
   }
 
-  handleStartCompose(blueprintName, composeType) {
-    this.props.startCompose(blueprintName, composeType);
-  }
-
   render() {
     const {
       blueprints,
@@ -82,8 +76,7 @@ class BlueprintsPage extends React.Component {
       blueprintsFilterRemoveValue,
       blueprintsFilterClearValues,
       blueprintsError,
-      blueprintsLoading,
-      imageTypes
+      blueprintsLoading
     } = this.props;
     const { formatMessage } = this.props.intl;
     return (
@@ -116,7 +109,6 @@ class BlueprintsPage extends React.Component {
               <BlueprintListView
                 blueprints={blueprints.map(blueprint => blueprint.present)}
                 setNotifications={this.setNotifications}
-                imageTypes={imageTypes}
                 layout={this.layout}
               />
             )) ||
@@ -166,9 +158,7 @@ BlueprintsPage.propTypes = {
     url: PropTypes.string
   }),
   blueprintsLoading: PropTypes.bool,
-  startCompose: PropTypes.func,
-  intl: intlShape.isRequired,
-  imageTypes: PropTypes.arrayOf(PropTypes.object)
+  intl: intlShape.isRequired
 };
 
 BlueprintsPage.defaultProps = {
@@ -184,9 +174,7 @@ BlueprintsPage.defaultProps = {
   blueprintsFilterRemoveValue: function() {},
   blueprintsFilterClearValues: function() {},
   blueprintsError: {},
-  blueprintsLoading: false,
-  startCompose: function() {},
-  imageTypes: []
+  blueprintsLoading: false
 };
 
 const makeMapStateToProps = () => {
@@ -195,7 +183,6 @@ const makeMapStateToProps = () => {
   const mapStateToProps = state => {
     if (getSortedBlueprints(state) !== undefined) {
       return {
-        imageTypes: state.composes.composeTypes,
         manageSources: state.modals.manageSources,
         blueprints: getFilteredBlueprints(state, getSortedBlueprints(state)),
         blueprintSortKey: state.sort.blueprints.key,
@@ -206,7 +193,6 @@ const makeMapStateToProps = () => {
       };
     }
     return {
-      imageTypes: state.composes.composeTypes,
       manageSources: state.modals.manageSources,
       blueprints: state.blueprints.blueprintList,
       blueprintSortKey: state.sort.blueprints.key,
@@ -241,9 +227,6 @@ const mapDispatchToProps = dispatch => ({
   },
   blueprintsFilterClearValues: value => {
     dispatch(blueprintsFilterClearValues(value));
-  },
-  startCompose: (blueprintName, composeType) => {
-    dispatch(startCompose(blueprintName, composeType));
   }
 });
 

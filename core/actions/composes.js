@@ -42,6 +42,11 @@ export const fetchingComposeStatusSucceeded = compose => ({
   }
 });
 
+export const FETCHING_COMPOSE_TYPES = "FETCHING_COMPOSE_TYPES";
+export const fetchingComposeTypes = () => ({
+  type: FETCHING_COMPOSE_TYPES
+});
+
 export const FETCHING_COMPOSE_TYPES_SUCCEEDED = "FETCHING_COMPOSE_TYPES_SUCCEEDED";
 export const fetchingComposeTypesSucceeded = composeTypes => ({
   type: FETCHING_COMPOSE_TYPES_SUCCEEDED,

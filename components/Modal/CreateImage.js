@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import NotificationsApi from "../../data/NotificationsApi";
 import BlueprintApi from "../../data/BlueprintApi";
 import { setBlueprint } from "../../core/actions/blueprints";
-import { fetchingQueue, clearQueue, startCompose } from "../../core/actions/composes";
+import { fetchingQueue, clearQueue, startCompose, fetchingComposeTypes } from "../../core/actions/composes";
 
 const messages = defineMessages({
   infotip: {
@@ -34,6 +34,9 @@ class CreateImageModal extends React.Component {
   }
 
   componentWillMount() {
+    if (this.props.imageTypes.length === 0) {
+      this.props.fetchingComposeTypes();
+    }
     if (this.props.composeQueueFetched === false) {
       this.props.fetchingQueue();
     }
@@ -236,6 +239,7 @@ CreateImageModal.propTypes = {
   fetchingQueue: PropTypes.func.isRequired,
   clearQueue: PropTypes.func.isRequired,
   imageTypes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  fetchingComposeTypes: PropTypes.func.isRequired,
   setBlueprint: PropTypes.func.isRequired,
   intl: intlShape.isRequired,
   startCompose: PropTypes.func.isRequired,
@@ -275,6 +279,7 @@ class CreateImage extends React.Component {
             fetchingQueue={this.props.fetchingQueue}
             clearQueue={this.props.clearQueue}
             imageTypes={this.props.imageTypes}
+            fetchingComposeTypes={this.props.fetchingComposeTypes}
             setBlueprint={this.props.setBlueprint}
             intl={this.props.intl}
             startCompose={this.props.startCompose}
@@ -305,6 +310,7 @@ CreateImage.propTypes = {
   fetchingQueue: PropTypes.func,
   clearQueue: PropTypes.func,
   imageTypes: PropTypes.arrayOf(PropTypes.object),
+  fetchingComposeTypes: PropTypes.func,
   setBlueprint: PropTypes.func,
   intl: intlShape.isRequired,
   startCompose: PropTypes.func,
@@ -320,6 +326,7 @@ CreateImage.defaultProps = {
   fetchingQueue: function() {},
   clearQueue: function() {},
   imageTypes: [],
+  fetchingComposeTypes: function() {},
   setBlueprint: function() {},
   startCompose: function() {},
   layout: {}
@@ -327,12 +334,16 @@ CreateImage.defaultProps = {
 
 const mapStateToProps = state => ({
   composeQueue: state.composes.queue,
-  composeQueueFetched: state.composes.queueFetched
+  composeQueueFetched: state.composes.queueFetched,
+  imageTypes: state.composes.composeTypes
 });
 
 const mapDispatchToProps = dispatch => ({
   setBlueprint: blueprint => {
     dispatch(setBlueprint(blueprint));
+  },
+  fetchingComposeTypes: () => {
+    dispatch(fetchingComposeTypes());
   },
   fetchingQueue: () => {
     dispatch(fetchingQueue());

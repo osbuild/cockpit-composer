@@ -380,7 +380,6 @@ class EditBlueprintPage extends React.Component {
       blueprint,
       selectedComponents,
       dependencies,
-      imageTypes,
       inputComponents,
       inputs,
       modalActive,
@@ -468,7 +467,7 @@ class EditBlueprintPage extends React.Component {
                 </li>
               )}
               <li className="list__subgroup-item--first">
-                <CreateImage blueprint={blueprint} imageTypes={imageTypes} layout={this.layout} />
+                <CreateImage blueprint={blueprint} layout={this.layout} />
               </li>
               <li>
                 <div className="dropdown dropdown-kebab-pf">
@@ -753,8 +752,7 @@ EditBlueprintPage.propTypes = {
     url: PropTypes.string
   }),
   blueprintContentsFetching: PropTypes.bool,
-  intl: intlShape.isRequired,
-  imageTypes: PropTypes.arrayOf(PropTypes.object).isRequired
+  intl: intlShape.isRequired
 };
 
 EditBlueprintPage.defaultProps = {
@@ -815,7 +813,6 @@ const makeMapStateToProps = () => {
         componentsSortKey: state.sort.components.key,
         componentsSortValue: state.sort.components.value,
         componentsFilters: state.filter.components,
-        imageTypes: state.composes.composeTypes,
         inputs: state.inputs,
         inputComponents: getSelectedInputs(state, fetchedBlueprint.present.components),
         selectedInput: state.inputs.selectedInput,
@@ -841,7 +838,6 @@ const makeMapStateToProps = () => {
       componentsSortKey: state.sort.components.key,
       componentsSortValue: state.sort.components.value,
       componentsFilters: state.filter.components,
-      imageTypes: state.composes.composeTypes,
       inputs: state.inputs,
       inputComponents: state.inputs.inputComponents,
       selectedInput: state.inputs.selectedInput,
