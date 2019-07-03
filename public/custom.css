@@ -231,7 +231,7 @@
   margin-left: 0;
 }
 .cmpsr-list-sources .list-pf-actions {
-  flex-basis: 100px;
+  flex-basis: 150px;
   margin-left: 0;
 }
 @media (min-width: 640px) {

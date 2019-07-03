@@ -409,6 +409,7 @@ class ManageSourcesModal extends React.Component {
                           source={source}
                           key={source.name}
                           edited={this.state.editName}
+                          fetching={manageSources.fetchingSources}
                           edit={this.handleEditSource}
                           remove={this.props.removeSource}
                         />
