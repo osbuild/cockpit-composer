@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
+import { Spinner } from "patternfly-react";
 
 const messages = defineMessages({
   edit: {
@@ -58,39 +59,48 @@ class SourcesListItem extends React.Component {
               </div>
               <div className="list-pf-additional-content text-muted">{source.url}</div>
             </div>
-            {(this.props.edit && (
-              <div className="list-pf-actions">
-                <button
-                  aria-label={`${formatMessage(messages.edit)} ${source.name}`}
-                  className="btn btn-default"
-                  type="button"
-                  ref={this.editButton}
-                  onClick={() => this.props.edit(source.name)}
-                >
-                  <span aria-hidden="true" className="pficon pficon-edit" />
-                </button>
-                <div className="dropdown btn-group dropdown-kebab-pf">
+            {this.props.edit ? (
+              !this.props.fetching ? (
+                <div className="list-pf-actions">
                   <button
-                    aria-label={`${formatMessage(messages.kebab)} ${source.name}`}
-                    className="btn btn-link dropdown-toggle"
+                    aria-label={`${formatMessage(messages.edit)} ${source.name}`}
+                    className="btn btn-default"
                     type="button"
-                    id="dropdownKebab"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
+                    ref={this.editButton}
+                    onClick={() => this.props.edit(source.name)}
                   >
-                    <span className="fa fa-ellipsis-v" />
+                    <span aria-hidden="true" className="pficon pficon-edit" />
                   </button>
-                  <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
-                    <li>
-                      <a href="#" onClick={() => this.props.remove(source.name)}>
-                        {formatMessage(messages.remove)}
-                      </a>
-                    </li>
-                  </ul>
+                  <div className="dropdown btn-group dropdown-kebab-pf">
+                    <button
+                      aria-label={`${formatMessage(messages.kebab)} ${source.name}`}
+                      className="btn btn-link dropdown-toggle"
+                      type="button"
+                      id="dropdownKebab"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <span className="fa fa-ellipsis-v" />
+                    </button>
+                    <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
+                      <li>
+                        <a href="#" onClick={() => this.props.remove(source.name)}>
+                          {formatMessage(messages.remove)}
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-              </div>
-            )) || (
+              ) : (
+                <div className="list-pf-actions">
+                  <em className="text-muted">
+                    <Spinner loading size="xs" inline />
+                    <FormattedMessage defaultMessage="Removing source" />
+                  </em>
+                </div>
+              )
+            ) : (
               <div className="list-pf-actions">
                 <em className="text-muted">
                   <FormattedMessage
@@ -115,6 +125,7 @@ SourcesListItem.propTypes = {
   }),
   key: PropTypes.string,
   edited: PropTypes.string,
+  fetching: PropTypes.string,
   edit: PropTypes.func,
   remove: PropTypes.func,
   intl: intlShape.isRequired
@@ -124,6 +135,7 @@ SourcesListItem.defaultProps = {
   source: {},
   key: "",
   edited: "",
+  fetching: false,
   edit: undefined,
   remove: undefined
 };
