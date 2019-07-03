@@ -35,7 +35,10 @@ if (userLanguage in translations) {
   messages = translations[userLanguage];
 }
 
-const locale_lang = userLanguage.includes("_") ? userLanguage.replace("_", "-") : userLanguage;
+let locale_lang = "en";
+if (userLanguage) {
+  locale_lang = userLanguage.includes("_") ? userLanguage.replace("_", "-") : userLanguage;
+}
 
 function renderComponent(component) {
   ReactDOM.render(
