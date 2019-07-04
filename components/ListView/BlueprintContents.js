@@ -56,7 +56,7 @@ const BlueprintContents = props => {
             title={formatMessage(messages.emptyStateErrorTitle)}
             message={formatMessage(messages.emptyStateErrorMessage)}
           >
-            <p>{errorState.message}</p>
+            <p>{errorState.msg}</p>
             {pastLength > 0 && (
               <button className="btn btn-link btn-lg" type="button" onClick={() => undo()}>
                 <FormattedMessage defaultMessage="Undo Last Change" />
