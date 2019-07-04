@@ -137,7 +137,7 @@ BlueprintContents.propTypes = {
   filterClearValues: PropTypes.func,
   filterValues: PropTypes.arrayOf(PropTypes.object),
   errorState: PropTypes.shape({
-    message: PropTypes.string,
+    msg: PropTypes.string,
     options: PropTypes.object,
     problem: PropTypes.string,
     url: PropTypes.string
