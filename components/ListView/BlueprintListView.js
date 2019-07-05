@@ -12,7 +12,7 @@ class BlueprintListView extends React.PureComponent {
   }
 
   render() {
-    const { blueprints, imageTypes, layout } = this.props;
+    const { blueprints, layout } = this.props;
     return (
       <div className="list-group list-view-pf list-view-pf-view">
         {blueprints.map(blueprint => (
@@ -21,7 +21,7 @@ class BlueprintListView extends React.PureComponent {
               <Link to={`/edit/${blueprint.name}`} className="btn btn-default">
                 <FormattedMessage defaultMessage="Edit Blueprint" />
               </Link>
-              <CreateImage blueprint={blueprint} imageTypes={imageTypes} layout={layout} />
+              <CreateImage blueprint={blueprint} layout={layout} />
               <div className="dropdown pull-right dropdown-kebab-pf">
                 <button
                   className="btn btn-link dropdown-toggle"
@@ -63,7 +63,6 @@ class BlueprintListView extends React.PureComponent {
 
 BlueprintListView.propTypes = {
   blueprints: PropTypes.arrayOf(PropTypes.object),
-  imageTypes: PropTypes.arrayOf(PropTypes.object).isRequired,
   layout: PropTypes.shape({
     setNotifications: PropTypes.func
   })

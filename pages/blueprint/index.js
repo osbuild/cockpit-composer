@@ -306,8 +306,7 @@ class BlueprintPage extends React.Component {
       selectedInputDeps,
       setSelectedInput,
       setSelectedInputParent,
-      clearSelectedInput,
-      imageTypes
+      clearSelectedInput
     } = this.props;
     const { editDescriptionVisible, editHostnameVisible, editHostnameInvalid } = this.props.blueprintPage;
     const { formatMessage } = this.props.intl;
@@ -341,7 +340,7 @@ class BlueprintPage extends React.Component {
                 </Link>
               </li>
               <li>
-                <CreateImage blueprint={blueprint} imageTypes={imageTypes} layout={this.layout} />
+                <CreateImage blueprint={blueprint} layout={this.layout} />
               </li>
               <li>
                 <div className="dropdown dropdown-kebab-pf">
@@ -564,7 +563,7 @@ class BlueprintPage extends React.Component {
                   title={formatMessage(messages.noImagesTitle)}
                   message={formatMessage(messages.noImagesMessage)}
                 >
-                  <CreateImage blueprint={blueprint} imageTypes={imageTypes} layout={this.layout} />
+                  <CreateImage blueprint={blueprint} layout={this.layout} />
                 </EmptyState>
               )) || (
                 <ListView className="cmpsr-images" stacked>
@@ -705,8 +704,7 @@ BlueprintPage.propTypes = {
     url: PropTypes.string
   }),
   blueprintContentsFetching: PropTypes.bool,
-  intl: intlShape.isRequired,
-  imageTypes: PropTypes.arrayOf(PropTypes.object)
+  intl: intlShape.isRequired
 };
 
 BlueprintPage.defaultProps = {
@@ -752,8 +750,7 @@ BlueprintPage.defaultProps = {
   setModalDeleteImageVisible: function() {},
   setModalDeleteImageState: function() {},
   blueprintContentsError: {},
-  blueprintContentsFetching: false,
-  imageTypes: []
+  blueprintContentsFetching: false
 };
 
 const makeMapStateToProps = () => {
@@ -781,7 +778,6 @@ const makeMapStateToProps = () => {
         ),
         createImage: state.modals.createImage,
         userAccount: state.modals.userAccount,
-        imageTypes: state.composes.composeTypes,
         stopBuild: state.modals.stopBuild,
         deleteImage: state.modals.deleteImage,
         componentsSortKey: state.sort.components.key,
@@ -801,7 +797,6 @@ const makeMapStateToProps = () => {
       blueprintPage: state.blueprintPage,
       createImage: state.modals.createImage,
       userAccount: state.modals.userAccount,
-      imageTypes: state.composes.composeTypes,
       stopBuild: state.modals.stopBuild,
       deleteImage: state.modals.deleteImage,
       componentsSortKey: state.sort.components.key,
