@@ -255,7 +255,7 @@ class CreateBlueprintModal extends React.Component {
             id="create-blueprint-modal-create-button"
             type="button"
             className="btn btn-primary"
-            disabled={this.state.name.length === 0 || this.nameContainsError()}
+            disabled={this.nameContainsError()}
             onClick={() => this.handleCreateBlueprint()}
           >
             <FormattedMessage defaultMessage="Create" />
