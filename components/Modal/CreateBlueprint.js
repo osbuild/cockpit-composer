@@ -57,7 +57,7 @@ class CreateBlueprintModal extends React.Component {
       errorNameDuplicate: false,
       errorNameSpace: false,
       errorNameInvalid: false,
-      errorNameInvalidChar: "",
+      errorNameInvalidChar: [],
       errorInline: false,
       name: "",
       description: "",
@@ -114,7 +114,7 @@ class CreateBlueprintModal extends React.Component {
       errorNameSpace: false,
       errorInline: false,
       errorNameInvalid: false,
-      errorNameInvalidChar: ""
+      errorNameInvalidChar: []
     });
   }
 
@@ -122,16 +122,19 @@ class CreateBlueprintModal extends React.Component {
     if (blueprintName.length === 0 && this.state.checkErrors) {
       this.setState({ errorNameEmpty: true });
     } else {
-      const invalidCharsRegex = /[^a-zA-Z0-9._-]/;
-      const nameInvalidChars = blueprintName.search(invalidCharsRegex);
+      // Creates array of unique invalid chars in blueprint name
+      const invalidCharsRegex = /[^a-zA-Z0-9._-\s]/g;
+      const nameInvalidChars = Array.from(new Set(blueprintName.match(invalidCharsRegex)));
       const nameContainsSpace = /\s/.test(blueprintName);
 
-      if (nameInvalidChars !== -1 && !nameContainsSpace) {
+      if (nameInvalidChars.length !== 0) {
         this.setState({ errorNameInvalid: true });
-        this.setState({ errorNameInvalidChar: blueprintName[nameInvalidChars] });
-      } else if (nameContainsSpace) {
+        this.setState({ errorNameInvalidChar: nameInvalidChars });
+      }
+      if (nameContainsSpace) {
         this.setState({ errorNameSpace: true });
-      } else if (this.props.blueprintNames.includes(blueprintName)) {
+      }
+      if (this.props.blueprintNames.includes(blueprintName)) {
         this.setState({ errorNameDuplicate: true });
       }
     }
@@ -206,17 +209,43 @@ class CreateBlueprintModal extends React.Component {
                       }}
                     />
                   )}
-                  {this.state.errorNameSpace && (
+                  {this.state.errorNameSpace && !this.state.errorNameInvalid && (
                     <FormattedMessage defaultMessage="Blueprint names cannot contain spaces." />
                   )}
-                  {this.state.errorNameInvalid && (
-                    <FormattedMessage
-                      defaultMessage="Blueprint names cannot contain {invalidChar}."
-                      values={{
-                        invalidChar: this.state.errorNameInvalidChar
-                      }}
-                    />
-                  )}
+                  {!this.state.errorNameSpace &&
+                    this.state.errorNameInvalid &&
+                    (this.state.errorNameInvalidChar.length === 1 ? (
+                      <FormattedMessage
+                        defaultMessage="Blueprint names cannot contain the character: {invalidChar}"
+                        values={{
+                          invalidChar: this.state.errorNameInvalidChar
+                        }}
+                      />
+                    ) : (
+                      <FormattedMessage
+                        defaultMessage="Blueprint names cannot contain the characters: {invalidChar}"
+                        values={{
+                          invalidChar: this.state.errorNameInvalidChar.join(" ")
+                        }}
+                      />
+                    ))}
+                  {this.state.errorNameSpace &&
+                    this.state.errorNameInvalid &&
+                    (this.state.errorNameInvalidChar.length === 1 ? (
+                      <FormattedMessage
+                        defaultMessage="Blueprint names cannot contain spaces or the character: {invalidChar}"
+                        values={{
+                          invalidChar: this.state.errorNameInvalidChar
+                        }}
+                      />
+                    ) : (
+                      <FormattedMessage
+                        defaultMessage="Blueprint names cannot contain spaces or the characters: {invalidChar}"
+                        values={{
+                          invalidChar: this.state.errorNameInvalidChar.join(" ")
+                        }}
+                      />
+                    ))}
                 </span>
               </div>
             </div>
