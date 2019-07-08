@@ -122,7 +122,7 @@ class CreateBlueprintModal extends React.Component {
     if (blueprintName.length === 0 && this.state.checkErrors) {
       this.setState({ errorNameEmpty: true });
     } else {
-      const invalidCharsRegex = /[^a-zA-Z0-9_,.:+*-]/;
+      const invalidCharsRegex = /[^a-zA-Z0-9._-]/;
       const nameInvalidChars = blueprintName.search(invalidCharsRegex);
       const nameContainsSpace = /\s/.test(blueprintName);
 
@@ -138,16 +138,12 @@ class CreateBlueprintModal extends React.Component {
   }
 
   nameContainsError() {
-    if (
+    return (
       this.state.errorNameEmpty ||
       this.state.errorNameDuplicate ||
       this.state.errorNameSpace ||
       this.state.errorNameInvalid
-    ) {
-      return true;
-    } else {
-      return false;
-    }
+    );
   }
 
   render() {

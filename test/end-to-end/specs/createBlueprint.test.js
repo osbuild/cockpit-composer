@@ -39,6 +39,7 @@ describe("Create Blueprints Page", function() {
 
   it("Create button should be disabled when create blueprint dialog does not have name", function() {
     addContext(this, "cannot create blueprint without name");
+    createBlueprintPage.createButton.click();
     expect(createBlueprintPage.createButton.getAttribute("disabled")).to.equal("true");
   });
 
