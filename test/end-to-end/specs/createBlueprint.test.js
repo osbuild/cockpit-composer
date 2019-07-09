@@ -44,6 +44,15 @@ describe("Create Blueprints Page", function() {
     expect(createBlueprintPage.createButton.getAttribute("disabled")).to.equal("true");
   });
 
+  it("Invalid character for blueprint name should not be allowed", function() {
+    const invalidName = "`~!@#$%^&*()=+[]{}\\|;:'\",<>/?";
+    createBlueprintPage.nameBox.setValue(invalidName);
+    createBlueprintPage.helpBlock.waitForVisible(timeout);
+    expect(createBlueprintPage.helpBlock.getText()).to.equal(
+      "Blueprint names cannot contain the characters: ` ~ ! @ # $ % ^ & * ( ) = + [ ] { } \\ | ; : ' \" , < > / ?"
+    );
+  });
+
   it("Duplicated blueprint name help message should be in place", function() {
     // WORKAROUND: issue setValue() doesn't clear input before setting new value
     // https://github.com/webdriverio/webdriverio/issues/1140
