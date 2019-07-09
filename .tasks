@@ -12,6 +12,3 @@ if [ $chance -gt 9 ]; then
     bots/npm-trigger
     bots/po-trigger
 fi
-
-# Find those issues and propose to do them
-bots/issue-scan
