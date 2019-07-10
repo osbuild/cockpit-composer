@@ -144,6 +144,8 @@
 }
 .cmpsr-title__item {
   margin: 0 10px 0 0;
+}
+h1.cmpsr-title__item {
   font-size: var(--pf-global--FontSize--2xl);
 }
 
@@ -635,4 +637,11 @@ body {
 }
 .container-fluid {
   padding: 0 20px;
+}
+
+.fields-status-pf {
+  color: var(--pf-global--Color--200);
+}
+.text-muted {
+  color: var(--pf-global--Color--200);
 }
