@@ -32,9 +32,11 @@
 .cmpsr-panel__title--sidebar {
   grid-area: inputsTitle;
   margin-right: -1px;
+  margin-left: 20px;
 }
 .cmpsr-panel__title--main {
   grid-area: editTitle;
+  margin-right: 20px;
 }
 .cmpsr-panel__body {
   border-width: 0 1px 1px;
@@ -44,10 +46,12 @@
 .cmpsr-panel__body--sidebar {
   grid-area: inputs;
   margin-right: -1px;
+  margin-left: 20px;
 }
 .cmpsr-panel__body--main {
   grid-area: edit;
   background: var(--pf-global--BackgroundColor--100);
+  margin-right: 20px;
 }
 /* Blueprint Edit panel contents */
 .cmpsr-grid__wrapper .cmpsr-panel__body {
@@ -623,4 +627,12 @@ textarea.form-control[readonly] {
   position: sticky;
   top: 0;
   background: #fff;
+}
+
+/* PF4 styles for PF3 classes */
+body {
+  background: var(--pf-global--BackgroundColor--100);
+}
+.container-fluid {
+  padding: 0 20px;
 }
