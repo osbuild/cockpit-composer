@@ -47,6 +47,7 @@
 }
 .cmpsr-panel__body--main {
   grid-area: edit;
+  background: var(--pf-global--BackgroundColor--100);
 }
 /* Blueprint Edit panel contents */
 .cmpsr-grid__wrapper .cmpsr-panel__body {
@@ -139,6 +140,7 @@
 }
 .cmpsr-title__item {
   margin: 0 10px 0 0;
+  font-size: var(--pf-global--FontSize--2xl);
 }
 
 /* List view */
@@ -303,6 +305,10 @@ the "-" that would display instead of the sr-only "to" */
   top: 10px;
   margin: 0 20px;
 }
+.label-info {
+  background-color: var(--pf-global--link--Color);
+}
+
 /* Expanded list item contents (i.e. component summary) */
 .list-pf-container .list-pf {
   max-height: 300px;
@@ -317,9 +323,9 @@ the "-" that would display instead of the sr-only "to" */
 /*Component details*/
 .pf-icon-small {
     font-size: 1.7rem;
-    height: 30px;
-    line-height: 30px;
-    width: 30px;
+    height: 2.2rem;
+    line-height: 2.2rem;
+    width: 2.2rem;
     display: -webkit-inline-box;
     display: inline-flex;
     -webkit-box-pack: center;
@@ -580,9 +586,12 @@ body {
 }
 
 /* nav-tabs-pf */
- .nav-tabs .badge {
-   display: inline;
- }
+#blueprint-tabs .nav-tabs {
+  margin-top: var(--pf-global--spacer--sm);
+}
+.nav-tabs .badge {
+  display: inline;
+}
 
 /* disabled state */
 /* disable pointer events for both <a> and <button> */
