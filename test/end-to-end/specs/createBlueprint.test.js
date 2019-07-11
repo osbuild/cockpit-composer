@@ -44,13 +44,49 @@ describe("Create Blueprints Page", function() {
     expect(createBlueprintPage.createButton.getAttribute("disabled")).to.equal("true");
   });
 
-  it("Invalid character for blueprint name should not be allowed", function() {
-    const invalidName = "`~!@#$%^&*()=+[]{}\\|;:'\",<>/?";
-    createBlueprintPage.nameBox.setValue(invalidName);
-    createBlueprintPage.helpBlock.waitForVisible(timeout);
-    expect(createBlueprintPage.helpBlock.getText()).to.equal(
-      "Blueprint names cannot contain the characters: ` ~ ! @ # $ % ^ & * ( ) = + [ ] { } \\ | ; : ' \" , < > / ?"
-    );
+  it("Create button should be enabled when create blueprint dialog has a valid name", function() {
+    const validName = "-_.";
+    createBlueprintPage.nameBox.setValue(validName);
+    createBlueprintPage.descriptionBox.click();
+    expect(createBlueprintPage.createButton.getAttribute("disabled")).to.equal(null);
+  });
+
+  describe("Invalid blueprint name help box should display when name contains ", function() {
+    const invalidNameWithSpaces = "- _ .";
+    const invalidNameWithChar = "-_.$";
+    const invalidNameWithChars = "/*-_.";
+    const invalidNameWithSpacesAndChar = "-_.= ";
+    const invalidNameWithSpacesAndChars = "-_. ! '";
+
+    it("spaces", function() {
+      createBlueprintPage.nameBox.setValue(invalidNameWithSpaces);
+      createBlueprintPage.helpBlock.waitForVisible(timeout);
+      expect(createBlueprintPage.helpBlock.getText()).to.equal("Blueprint names cannot contain spaces.");
+    });
+    it("an invalid character", function() {
+      createBlueprintPage.nameBox.setValue(invalidNameWithChar);
+      createBlueprintPage.helpBlock.waitForVisible(timeout);
+      expect(createBlueprintPage.helpBlock.getText()).to.equal("Blueprint names cannot contain the character: $");
+    });
+    it("multiple invalid characters", function() {
+      createBlueprintPage.nameBox.setValue(invalidNameWithChars);
+      createBlueprintPage.helpBlock.waitForVisible(timeout);
+      expect(createBlueprintPage.helpBlock.getText()).to.equal("Blueprint names cannot contain the characters: / *");
+    });
+    it("spaces or an invalid character", function() {
+      createBlueprintPage.nameBox.setValue(invalidNameWithSpacesAndChar);
+      createBlueprintPage.helpBlock.waitForVisible(timeout);
+      expect(createBlueprintPage.helpBlock.getText()).to.equal(
+        "Blueprint names cannot contain spaces or the character: ="
+      );
+    });
+    it("spaces or multiple invalid characters", function() {
+      createBlueprintPage.nameBox.setValue(invalidNameWithSpacesAndChars);
+      createBlueprintPage.helpBlock.waitForVisible(timeout);
+      expect(createBlueprintPage.helpBlock.getText()).to.equal(
+        "Blueprint names cannot contain spaces or the characters: ! '"
+      );
+    });
   });
 
   it("Duplicated blueprint name help message should be in place", function() {
