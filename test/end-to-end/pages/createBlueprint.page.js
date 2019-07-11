@@ -2,6 +2,7 @@
 class CreateBlueprintPage {
   constructor() {
     this.containerSelector = '[role="dialog"] [id="cmpsr-modal-crt-blueprint"]';
+    this.helpBlockSelector = `${this.containerSelector}  .help-block`;
   }
 
   loading() {
@@ -78,7 +79,7 @@ class CreateBlueprintPage {
   }
 
   get helpBlock() {
-    const selector = `${this.containerSelector}  .help-block`;
+    const selector = this.helpBlockSelector;
     browser.waitUntil(
       () => browser.isVisible(selector),
       timeout,
