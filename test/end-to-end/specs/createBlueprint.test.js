@@ -44,10 +44,10 @@ describe("Create Blueprints Page", function() {
     expect(createBlueprintPage.createButton.getAttribute("disabled")).to.equal("true");
   });
 
-  it("Create button should be enabled when create blueprint dialog has a valid name", function() {
+  it("Create button should be enabled without a help box notification when create blueprint dialog has a valid name", function() {
     const validName = "-_.";
     createBlueprintPage.nameBox.setValue(validName);
-    createBlueprintPage.descriptionBox.click();
+    $(createBlueprintPage.helpBlockSelector).waitForVisible(timeout, true);
     expect(createBlueprintPage.createButton.getAttribute("disabled")).to.equal(null);
   });
 
