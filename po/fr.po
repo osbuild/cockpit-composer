@@ -1,4 +1,5 @@
 # David Shea <dshea@redhat.com>, 2019. #zanata
+# Lars Karlitski <lars@karlitski.net>, 2019. #zanata
 # corina roe <croe@redhat.com>, 2019. #zanata
 #, fuzzy
 msgid ""
@@ -9,8 +10,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "MIME-Version: 1.0\n"
 "X-Generator: Zanata 4.6.2\n"
-"PO-Revision-Date: 2019-06-11 10:48+0000\n"
-"Last-Translator: corina roe <croe@redhat.com>\n"
+"PO-Revision-Date: 2019-07-16 07:50+0000\n"
+"Last-Translator: Lars Karlitski <lars@karlitski.net>\n"
 "Language-Team: French\n"
 "Language: fr\n"
 
@@ -229,6 +230,49 @@ msgstr "Modèle"
 #. Blueprint Components
 msgid "Blueprint Components"
 msgstr "Composants du Modèle"
+
+#: build/messages/components/Modal/CreateBlueprint.json
+#. [components.Modal.2544705954]
+#. defaultMessage is:
+#. Blueprint names cannot contain spaces or the character: {invalidChar}
+msgid "Blueprint names cannot contain spaces or the character: {invalidChar}"
+msgstr ""
+"Le noms de topologie ne peuvent pas contenir d'espaces ou de caractère : "
+"{invalidChar}"
+
+#: build/messages/components/Modal/CreateBlueprint.json
+#. [components.Modal.1134732033]
+#. defaultMessage is:
+#. Blueprint names cannot contain spaces or the characters: {invalidChar}
+msgid "Blueprint names cannot contain spaces or the characters: {invalidChar}"
+msgstr ""
+"Le noms de topologie ne peuvent pas contenir d'espaces ou de caractères : "
+"{invalidChar}"
+
+#: build/messages/components/Modal/CreateBlueprint.json
+#. [components.Modal.2803906810]
+#. defaultMessage is:
+#. Blueprint names cannot contain spaces.
+msgid "Blueprint names cannot contain spaces."
+msgstr "Le noms de modèles (topologie) ne peuvent pas contenir d'espaces."
+
+#: build/messages/components/Modal/CreateBlueprint.json
+#. [components.Modal.2781854456]
+#. defaultMessage is:
+#. Blueprint names cannot contain the character: {invalidChar}
+msgid "Blueprint names cannot contain the character: {invalidChar}"
+msgstr ""
+"Le noms de modèles (topologie) ne peuvent pas contenir le caractère : "
+"{invalidChar}"
+
+#: build/messages/components/Modal/CreateBlueprint.json
+#. [components.Modal.3918401128]
+#. defaultMessage is:
+#. Blueprint names cannot contain the characters: {invalidChar}
+msgid "Blueprint names cannot contain the characters: {invalidChar}"
+msgstr ""
+"Le noms de modèles (topologie) ne peuvent pas contenir les caractères : "
+"{invalidChar}"
 
 #: build/messages/pages/blueprints/index.json
 #. [pages.blueprints.blueprintsTitle]
@@ -1039,6 +1083,13 @@ msgstr "Supprimer du modèle"
 #. Removed
 msgid "Removed"
 msgstr "Retiré"
+
+#: build/messages/components/ListView/SourcesListItem.json
+#. [components.ListView.2663433025]
+#. defaultMessage is:
+#. Removing source
+msgid "Removing source"
+msgstr "Supprimer la source"
 
 #: build/messages/components/Modal/CreateBlueprint.json
 #. [components.Modal.128739785]
