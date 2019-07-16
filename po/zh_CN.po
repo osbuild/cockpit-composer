@@ -9,7 +9,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "MIME-Version: 1.0\n"
 "X-Generator: Zanata 4.6.2\n"
-"PO-Revision-Date: 2019-06-14 12:38+0000\n"
+"PO-Revision-Date: 2019-07-15 03:30+0000\n"
 "Last-Translator: Tony Fu <tfu@redhat.com>\n"
 "Language-Team: Chinese (China)\n"
 "Language: zh_CN\n"
@@ -228,12 +228,47 @@ msgstr "蓝图"
 msgid "Blueprint Components"
 msgstr "蓝图组件"
 
+#: build/messages/components/Modal/CreateBlueprint.json
+#. [components.Modal.2544705954]
+#. defaultMessage is:
+#. Blueprint names cannot contain spaces or the character: {invalidChar}
+msgid "Blueprint names cannot contain spaces or the character: {invalidChar}"
+msgstr "蓝图名不能包括空格和以下字符 : {invalidChar}"
+
+#: build/messages/components/Modal/CreateBlueprint.json
+#. [components.Modal.1134732033]
+#. defaultMessage is:
+#. Blueprint names cannot contain spaces or the characters: {invalidChar}
+msgid "Blueprint names cannot contain spaces or the characters: {invalidChar}"
+msgstr "蓝图名不能包括空格和以下字符 : {invalidChar}"
+
+#: build/messages/components/Modal/CreateBlueprint.json
+#. [components.Modal.2803906810]
+#. defaultMessage is:
+#. Blueprint names cannot contain spaces.
+msgid "Blueprint names cannot contain spaces."
+msgstr "蓝图名不能包括空格。"
+
+#: build/messages/components/Modal/CreateBlueprint.json
+#. [components.Modal.2781854456]
+#. defaultMessage is:
+#. Blueprint names cannot contain the character: {invalidChar}
+msgid "Blueprint names cannot contain the character: {invalidChar}"
+msgstr "蓝图名不能包括以下字符 : {invalidChar}"
+
+#: build/messages/components/Modal/CreateBlueprint.json
+#. [components.Modal.3918401128]
+#. defaultMessage is:
+#. Blueprint names cannot contain the characters: {invalidChar}
+msgid "Blueprint names cannot contain the characters: {invalidChar}"
+msgstr "蓝图名不能包括以下字符 : {invalidChar}"
+
 #: build/messages/pages/blueprints/index.json
 #. [pages.blueprints.blueprintsTitle]
 #. defaultMessage is:
 #. Blueprints
 msgid "Blueprints"
-msgstr "Blueprints"
+msgstr "蓝图"
 
 #: build/messages/pages/blueprintEdit/index.json
 #. [pages.blueprintEdit.addComponentMessage]
@@ -1027,6 +1062,13 @@ msgstr "从蓝图中删除"
 #. Removed
 msgid "Removed"
 msgstr "已删除的（Removed）"
+
+#: build/messages/components/ListView/SourcesListItem.json
+#. [components.ListView.2663433025]
+#. defaultMessage is:
+#. Removing source
+msgid "Removing source"
+msgstr "删除源"
 
 #: build/messages/components/Modal/CreateBlueprint.json
 #. [components.Modal.128739785]
