@@ -74,10 +74,16 @@ class BlueprintsPage {
   get filterBox() {
     const selector = '[id="filter-blueprints"]';
     browser.waitUntil(
-      () => browser.isVisible(selector),
+      () => browser.isExisting(selector),
       timeout,
       `Filter box in Blueprints page cannot be found by selector ${selector}`
     );
+    if (!browser.isVisible(selector)) {
+      browser.execute(filterBox => {
+        document.querySelector(filterBox).scrollIntoView();
+        return true;
+      }, selector);
+    }
     return $(selector);
   }
 

@@ -208,6 +208,19 @@ class EditBlueprintPage {
     );
     return $(selector);
   }
+
+  clickDependenciesTabBadge() {
+    const selector = '[data-badge="Dependencies"]';
+    browser.waitUntil(
+      () => browser.isExisting(selector),
+      timeout,
+      `Dependencies tab badge in Edit Blueprint page cannot be found by selector ${selector}`
+    );
+    browser.execute(tabBadge => {
+      document.querySelector(tabBadge).click();
+      return true;
+    }, selector);
+  }
 }
 
 module.exports = EditBlueprintPage;

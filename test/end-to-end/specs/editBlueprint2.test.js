@@ -163,7 +163,7 @@ describe("Edit Blueprint Page", function() {
       });
 
       after(function() {
-        selectedComponents.angleDownButton(packageName).click();
+        selectedComponents.clickAngleDownButton(packageName);
         selectedComponents.loadingComponentCollapse(packageName);
       });
 
@@ -190,7 +190,7 @@ describe("Edit Blueprint Page", function() {
 
   describe("Dependencies Tab", function() {
     before(function() {
-      editBlueprintPage.dependenciesTabBadge.click();
+      editBlueprintPage.clickDependenciesTabBadge();
     });
 
     it("The bedge should show the correct selected package number", function() {
@@ -216,7 +216,7 @@ describe("Edit Blueprint Page", function() {
         timeout,
         `Cannot find package - ${packageName}`
       );
-      bashComponent.nameLabelByName(packageName).click();
+      bashComponent.clickNameLabelByName(packageName);
       browser.waitUntil(() => componentDetails.componentDescriptionLabel.getText() !== "", timeout);
     });
 
@@ -267,7 +267,7 @@ describe("Edit Blueprint Page", function() {
         timeout,
         `Cannot find package - ${packageName}`
       );
-      bashComponent.nameLabelByName(packageName).click();
+      bashComponent.clickNameLabelByName(packageName);
       browser.waitUntil(() => componentDetails.componentDescriptionLabel.getText() !== "", timeout);
       componentDetails.addButton.click();
       browser.waitUntil(
