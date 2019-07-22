@@ -43,14 +43,17 @@ class SelectedComponents {
     return $(selector);
   }
 
-  angleDownButton(name) {
+  clickAngleDownButton(name) {
     const selector = `[data-component=${name}] .fa-angle-down`;
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
       `v button inside ${name} component in Selected Component cannot be found by selector ${selector}`
     );
-    return $(selector);
+    browser.execute(angleDownButton => {
+      document.querySelector(angleDownButton).click();
+      return true;
+    }, selector);
   }
 
   loadingComponentExpansion(name) {

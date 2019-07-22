@@ -36,11 +36,24 @@ class AvailableComponents {
   nameLabelByName(name) {
     const selector = `[data-input=${name}] .list-pf-title`;
     browser.waitUntil(
-      () => browser.isVisible(selector),
+      () => browser.isExisting(selector),
       timeout,
       `Component name in Available Component in Edit Blueprint page cannot be found by selector ${selector}`
     );
     return $(selector);
+  }
+
+  clickNameLabelByName(name) {
+    const selector = `[data-input=${name}] .list-pf-title`;
+    browser.waitUntil(
+      () => browser.isExisting(selector),
+      timeout,
+      `Component name in Available Component in Edit Blueprint page cannot be found by selector ${selector}`
+    );
+    browser.execute(nameLabel => {
+      document.querySelector(nameLabel).click();
+      return true;
+    }, selector);
   }
 
   descriptionLabelByName(name) {
