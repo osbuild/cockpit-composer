@@ -1,4 +1,5 @@
 import cockpit from "cockpit";
+import providerSettings from "../data/providers";
 
 let cockpitHttp = cockpit.http("/run/weldr/api.socket", { superuser: "try" });
 
@@ -179,38 +180,43 @@ export function deleteSource(sourceName) {
   return _delete("/api/v0/projects/source/delete/" + encodeURIComponent(sourceName));
 }
 
-export function startCompose(blueprintName, composeType) {
-  return post("/api/v0/compose", {
+export function startCompose(blueprintName, composeType, uploadSettings) {
+  return post("/api/v1/compose", {
     blueprint_name: blueprintName,
     compose_type: composeType,
+    upload: uploadSettings,
     branch: "master"
   });
 }
 
 export function cancelCompose(compose) {
-  return _delete("/api/v0/compose/cancel/" + encodeURIComponent(compose));
+  return _delete("/api/v1/compose/cancel/" + encodeURIComponent(compose));
 }
 
 export function deleteCompose(compose) {
-  return _delete("/api/v0/compose/delete/" + encodeURIComponent(compose));
+  return _delete("/api/v1/compose/delete/" + encodeURIComponent(compose));
 }
 
 export function getComposeStatus(uuid) {
-  return get("/api/v0/compose/status/" + encodeURIComponent(uuid));
+  return get("/api/v1/compose/status/" + encodeURIComponent(uuid));
 }
 
 export function getQueuedComposes() {
-  return get("/api/v0/compose/queue").then(data => data.new.concat(data.run));
+  return get("/api/v1/compose/queue").then(data => data.new.concat(data.run));
 }
 
 export function getFinishedComposes() {
-  return get("/api/v0/compose/finished").then(data => data.finished);
+  return get("/api/v1/compose/finished").then(data => data.finished);
 }
 
 export function getFailedComposes() {
-  return get("/api/v0/compose/failed").then(data => data.failed);
+  return get("/api/v1/compose/failed").then(data => data.failed);
 }
 
 export function getComposeLog(uuid) {
-  return get("/api/v0/compose/log/" + encodeURIComponent(uuid), { replyFormat: "raw" });
+  return get("/api/v1/compose/log/" + encodeURIComponent(uuid), { replyFormat: "raw" });
+}
+
+export function getUploadProviders() {
+  return providerSettings;
 }

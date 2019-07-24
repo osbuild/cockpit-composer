@@ -10,16 +10,18 @@ import {
   setModalDeleteImageState
 } from "../../core/actions/modals";
 import * as composer from "../../core/composer";
+import ListItemUploads from "./ListItemUploads";
 
 class ListItemImages extends React.Component {
   constructor() {
     super();
-    this.state = { logsExpanded: false };
+    this.state = { logsExpanded: false, uploadsExpanded: false };
     this.handleDelete = this.handleDelete.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
     this.handleShowModalStop = this.handleShowModalStop.bind(this);
     this.handleShowModalDeleteImage = this.handleShowModalDeleteImage.bind(this);
     this.handleLogsShow = this.handleLogsShow.bind(this);
+    this.handleUploadsShow = this.handleUploadsShow.bind(this);
   }
 
   // maps to Remove button for FAILED
@@ -60,17 +62,30 @@ class ListItemImages extends React.Component {
       }
     );
   }
+  handleUploadsShow() {
+    this.setState(prevState => ({ uploadsExpanded: !prevState.uploadsExpanded }));
+  }
 
   render() {
     const { listItem } = this.props;
     const timestamp = new Date(listItem.job_created * 1000);
     const formattedTime = timestamp.toDateString();
-    const moreButton = (
+    const logButton = (
       <button className="btn btn-link" onClick={this.handleLogsShow} type="button">
         {this.state.logsExpanded && <FormattedMessage defaultMessage="Hide logs" />}
         {!this.state.logsExpanded && <FormattedMessage defaultMessage="Show logs" />}
       </button>
     );
+    let uploadsButton;
+    if (listItem.uploads !== undefined && listItem.uploads.length > 0) {
+      uploadsButton = (
+        <button className="btn btn-link" onClick={this.handleUploadsShow} type="button">
+          {this.state.uploadsExpanded && <FormattedMessage defaultMessage="Hide uploads" />}
+          {!this.state.uploadsExpanded && <FormattedMessage defaultMessage="Show uploads" />}
+        </button>
+      );
+    }
+
     let logsSection;
     if (this.state.logsExpanded) {
       if (this.state.fetchingLogs) {
@@ -81,6 +96,11 @@ class ListItemImages extends React.Component {
           </div>
         );
       } else logsSection = <pre>{this.state.logsContent}</pre>;
+    }
+
+    let uploadsSection;
+    if (this.state.uploadsExpanded) {
+      uploadsSection = <ListItemUploads uploads={this.props.listItem.uploads} />;
     }
 
     return (
@@ -133,21 +153,22 @@ class ListItemImages extends React.Component {
               <div className="list-view-pf-additional-info-item cmpsr-images__status">
                 <span className="pficon pficon-in-progress" aria-hidden="true" />
                 <FormattedMessage defaultMessage="In Progress" />
-                {moreButton}
+                {logButton}
               </div>
             )}{" "}
             {listItem.queue_status === "FINISHED" && (
               <div className="list-view-pf-additional-info-item cmpsr-images__status">
                 <span className="pficon pficon-ok" aria-hidden="true" />
                 <FormattedMessage defaultMessage="Complete" />
-                {moreButton}
+                {logButton}
+                {uploadsButton}
               </div>
             )}{" "}
             {listItem.queue_status === "FAILED" && (
               <div className="list-view-pf-additional-info-item cmpsr-images__status">
                 <span className="pficon pficon-error-circle-o" aria-hidden="true" />
                 <FormattedMessage defaultMessage="Failed" />
-                {moreButton}
+                {logButton}
               </div>
             )}
             {listItem.queue_status === "FINISHED" && (
@@ -207,6 +228,7 @@ class ListItemImages extends React.Component {
           </div>
         </div>
         {logsSection}
+        {uploadsSection}
       </div>
     );
   }
@@ -222,6 +244,7 @@ ListItemImages.propTypes = {
     job_finished: PropTypes.number,
     job_started: PropTypes.number,
     queue_status: PropTypes.string,
+    uploads: PropTypes.arrayOf(PropTypes.object),
     version: PropTypes.string
   }),
   blueprint: PropTypes.string,
