@@ -1,4 +1,5 @@
 # David Shea <dshea@redhat.com>, 2019. #zanata
+# Hiroshi Yamanaka <hyamanak@redhat.com>, 2019. #zanata
 # Keiko Moriguchi <kemorigu@redhat.com>, 2019. #zanata
 # Lars Karlitski <lars@karlitski.net>, 2019. #zanata
 #, fuzzy
@@ -10,8 +11,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "MIME-Version: 1.0\n"
 "X-Generator: Zanata 4.6.2\n"
-"PO-Revision-Date: 2019-06-18 05:57+0000\n"
-"Last-Translator: Keiko Moriguchi <kemorigu@redhat.com>\n"
+"PO-Revision-Date: 2019-07-19 12:46+0000\n"
+"Last-Translator: Hiroshi Yamanaka <hyamanak@redhat.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
 
@@ -227,6 +228,41 @@ msgstr "ブループリント"
 #. Blueprint Components
 msgid "Blueprint Components"
 msgstr "ブループリントコンポーネント"
+
+#: build/messages/components/Modal/CreateBlueprint.json
+#. [components.Modal.2544705954]
+#. defaultMessage is:
+#. Blueprint names cannot contain spaces or the character: {invalidChar}
+msgid "Blueprint names cannot contain spaces or the character: {invalidChar}"
+msgstr "ブループリント名には、スペースや以下の文字を含めることはできません: {invalidChar}"
+
+#: build/messages/components/Modal/CreateBlueprint.json
+#. [components.Modal.1134732033]
+#. defaultMessage is:
+#. Blueprint names cannot contain spaces or the characters: {invalidChar}
+msgid "Blueprint names cannot contain spaces or the characters: {invalidChar}"
+msgstr "ブループリント名には、スペースや以下の文字を含めることはできません: {invalidChar}"
+
+#: build/messages/components/Modal/CreateBlueprint.json
+#. [components.Modal.2803906810]
+#. defaultMessage is:
+#. Blueprint names cannot contain spaces.
+msgid "Blueprint names cannot contain spaces."
+msgstr "ブループリントには、スペースを含めることはできません。"
+
+#: build/messages/components/Modal/CreateBlueprint.json
+#. [components.Modal.2781854456]
+#. defaultMessage is:
+#. Blueprint names cannot contain the character: {invalidChar}
+msgid "Blueprint names cannot contain the character: {invalidChar}"
+msgstr "ブループリント名には、以下の文字を含めることはできません: {invalidChar}"
+
+#: build/messages/components/Modal/CreateBlueprint.json
+#. [components.Modal.3918401128]
+#. defaultMessage is:
+#. Blueprint names cannot contain the characters: {invalidChar}
+msgid "Blueprint names cannot contain the characters: {invalidChar}"
+msgstr "ブループリント名には、以下の文字を含めることはできません: {invalidChar}"
 
 #: build/messages/pages/blueprints/index.json
 #. [pages.blueprints.blueprintsTitle]
@@ -1025,6 +1061,13 @@ msgstr "ブループリントから削除"
 #. Removed
 msgid "Removed"
 msgstr "削除済み"
+
+#: build/messages/components/ListView/SourcesListItem.json
+#. [components.ListView.2663433025]
+#. defaultMessage is:
+#. Removing source
+msgid "Removing source"
+msgstr "ソースの削除中"
 
 #: build/messages/components/Modal/CreateBlueprint.json
 #. [components.Modal.128739785]
