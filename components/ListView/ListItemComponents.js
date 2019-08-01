@@ -49,9 +49,6 @@ class ListItemComponents extends React.Component {
           <div className="list-pf-chevron">
             <span className={`fa ${expanded ? "fa-angle-down" : "fa-angle-right"}`} />
           </div>
-          <div className="list-pf-select">
-            <input type="checkbox" />
-          </div>
           <div className="list-pf-content list-pf-content-flex ">
             <div className="list-pf-left">
               <ComponentTypeIcons
