@@ -47,8 +47,7 @@ import {
 import {
   setEditDescriptionVisible,
   setEditHostnameVisible,
-  setEditHostnameInvalid,
-  setActiveTab
+  setEditHostnameInvalid
 } from "../../core/actions/blueprintPage";
 import {
   componentsSortSetKey,
@@ -128,7 +127,6 @@ const messages = defineMessages({
 class BlueprintPage extends React.Component {
   constructor() {
     super();
-    this.handleTabChanged = this.handleTabChanged.bind(this);
     this.handleComponentDetails = this.handleComponentDetails.bind(this);
     this.handleComponentListItem = this.handleComponentListItem.bind(this);
     this.handleDepListItem = this.handleDepListItem.bind(this);
@@ -162,12 +160,6 @@ class BlueprintPage extends React.Component {
 
   componentWillUnmount() {
     this.props.clearSelectedInput();
-  }
-
-  handleTabChanged(key) {
-    if (this.props.blueprintPage.activeTab !== key) {
-      this.props.setActiveTab(key);
-    }
   }
 
   handleComponentDetails(event, component) {
@@ -628,7 +620,6 @@ BlueprintPage.propTypes = {
   fetchingComposes: PropTypes.func,
   composesLoading: PropTypes.bool,
   composeList: PropTypes.arrayOf(PropTypes.object),
-  setActiveTab: PropTypes.func,
   setEditDescriptionVisible: PropTypes.func,
   setEditHostnameVisible: PropTypes.func,
   setEditHostnameInvalid: PropTypes.func,
@@ -636,7 +627,7 @@ BlueprintPage.propTypes = {
   setModalUserAccountData: PropTypes.func,
   setBlueprintUsers: PropTypes.func,
   blueprintPage: PropTypes.shape({
-    activeTab: PropTypes.string,
+    editDescriptionVisible: PropTypes.bool,
     editHostnameVisible: PropTypes.bool,
     editHostnameInvalid: PropTypes.bool
   }),
@@ -710,7 +701,6 @@ BlueprintPage.defaultProps = {
   fetchingComposes: function() {},
   composesLoading: false,
   composeList: [],
-  setActiveTab: function() {},
   setEditDescriptionVisible: function() {},
   setEditHostnameVisible: function() {},
   setEditHostnameInvalid: function() {},
@@ -828,9 +818,6 @@ const mapDispatchToProps = dispatch => ({
   },
   setBlueprintUsers: (blueprintId, users) => {
     dispatch(setBlueprintUsers(blueprintId, users));
-  },
-  setActiveTab: activeTab => {
-    dispatch(setActiveTab(activeTab));
   },
   setSelectedInput: selectedInput => {
     dispatch(setSelectedInput(selectedInput));
