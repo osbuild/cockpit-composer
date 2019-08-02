@@ -1,8 +1,7 @@
 import {
   SET_EDIT_DESCRIPTION_VISIBLE,
   SET_EDIT_HOSTNAME_VISIBLE,
-  SET_EDIT_HOSTNAME_INVALID,
-  SET_ACTIVE_TAB
+  SET_EDIT_HOSTNAME_INVALID
 } from "../actions/blueprintPage";
 
 const blueprintPage = (state = [], action) => {
@@ -13,8 +12,6 @@ const blueprintPage = (state = [], action) => {
       return Object.assign({}, state, { editHostnameVisible: action.payload.visible });
     case SET_EDIT_HOSTNAME_INVALID:
       return Object.assign({}, state, { editHostnameInvalid: action.payload.invalid });
-    case SET_ACTIVE_TAB:
-      return Object.assign({}, state, { activeTab: action.payload.activeTab });
     default:
       return state;
   }

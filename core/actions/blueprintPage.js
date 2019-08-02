@@ -22,14 +22,6 @@ export const setEditHostnameInvalid = invalid => ({
   }
 });
 
-export const SET_ACTIVE_TAB = "SET_ACTIVE_TAB";
-export const setActiveTab = activeTab => ({
-  type: SET_ACTIVE_TAB,
-  payload: {
-    activeTab
-  }
-});
-
 export const SET_ACTIVE_COMPONENT = "SET_ACTIVE_COMPONENT";
 export const setActiveComponent = component => ({
   type: SET_ACTIVE_COMPONENT,
