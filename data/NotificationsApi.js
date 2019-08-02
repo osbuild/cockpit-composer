@@ -39,9 +39,10 @@ class NotificationsApi {
           message: (
             <span>
               <FormattedMessage
-                defaultMessage="{blueprint} Image creation has been added to the queue."
+                defaultMessage="{blueprint} Image creation has been added to the {queue}."
                 values={{
-                  blueprint: <strong>{blueprint}:</strong>
+                  blueprint: <strong>{blueprint}:</strong>,
+                  queue: <a href={"#blueprint/" + blueprint + "/images"}>queue</a>
                 }}
               />
             </span>
