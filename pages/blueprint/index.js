@@ -310,6 +310,8 @@ class BlueprintPage extends React.Component {
     if (blueprint.customizations !== undefined && blueprint.customizations.user !== undefined) {
       users = blueprint.customizations.user;
     }
+    const pathSuffix = cockpit.location.path[cockpit.location.path.length - 1];
+    const activeKey = ["customizations", "packages", "images"].includes(pathSuffix) ? pathSuffix : undefined;
 
     return (
       <Layout className="container-fluid" ref={c => (this.layout = c)}>
@@ -374,7 +376,11 @@ class BlueprintPage extends React.Component {
             </p>
           </div>
         </header>
-        <Tabs id="blueprint-tabs">
+        <Tabs
+          activeKey={activeKey}
+          onSelect={eventId => cockpit.location.go(["blueprint", blueprint.name, eventId])}
+          id="blueprint-tabs"
+        >
           <Tab eventKey="customizations" title={formatMessage(messages.customizationsTitle)}>
             <div className="tab-container row">
               <div className="col-sm-12">
