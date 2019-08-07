@@ -88,8 +88,11 @@ const messages = defineMessages({
   noImagesMessage: {
     defaultMessage: "No images have been created from this blueprint."
   },
-  selectedComponentsTitle: {
-    defaultMessage: "Selected Components"
+  customizationsTitle: {
+    defaultMessage: "Customizations"
+  },
+  packagesTitle: {
+    defaultMessage: "Packages"
   },
   descriptionButtonLabel: {
     defaultMessage: "Edit description"
@@ -336,7 +339,7 @@ class BlueprintPage extends React.Component {
             <ul className="list-inline">
               <li>
                 <Link to={`/edit/${this.props.route.params.blueprint}`} className="btn btn-default">
-                  <FormattedMessage defaultMessage="Edit Blueprint" />
+                  <FormattedMessage defaultMessage="Edit Packages" />
                 </Link>
               </li>
               <li>
@@ -371,7 +374,7 @@ class BlueprintPage extends React.Component {
           </div>
         </header>
         <Tabs id="blueprint-tabs">
-          <Tab eventKey="details" title="Details">
+          <Tab eventKey="customizations" title={formatMessage(messages.customizationsTitle)}>
             <div className="tab-container row">
               <div className="col-sm-12">
                 <div className="form-horizontal">
@@ -495,7 +498,7 @@ class BlueprintPage extends React.Component {
               </div>
             </div>
           </Tab>
-          <Tab eventKey="selected-components" title={formatMessage(messages.selectedComponentsTitle)}>
+          <Tab eventKey="packages" title={formatMessage(messages.packagesTitle)}>
             <div className="row">
               {(selectedInput.set === false && (
                 <div className="col-sm-12">
@@ -530,7 +533,7 @@ class BlueprintPage extends React.Component {
                     >
                       <Link to={`/edit/${this.props.route.params.blueprint}`}>
                         <button className="btn btn-default btn-primary" type="button">
-                          <FormattedMessage defaultMessage="Edit Blueprint" />
+                          <FormattedMessage defaultMessage="Edit Packages" />
                         </button>
                       </Link>
                     </EmptyState>

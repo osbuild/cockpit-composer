@@ -288,7 +288,7 @@ class ComponentDetailsView extends React.Component {
         )}
         <div>
           <Tabs id="blueprint-tabs">
-            <Tab eventKey="details" title="Details">
+            <Tab eventKey="customizations" title="Customizations">
               <h4 className="cmpsr-title">{component.summary}</h4>
               <p>{component.description}</p>
               <dl className="dl-horizontal">
