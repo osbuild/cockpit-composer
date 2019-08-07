@@ -49,13 +49,13 @@ describe("View Blueprint Page", function() {
         expect(viewBlueprintPage.headerBlueprintDescriptionLabel.getText()).to.equal(description);
       });
 
-      it('"Details" tab should be active by default', function() {
+      it('"Customizations" tab should be active by default', function() {
         expect(viewBlueprintPage.detailsTab.getAttribute("aria-selected")).to.equal("true");
       });
     });
 
-    describe('"Details" tab', function() {
-      it(`blueprint description under "Details" tab should be "${description}"`, function() {
+    describe('"Customizations" tab', function() {
+      it(`blueprint description under "Customizations" tab should be "${description}"`, function() {
         expect(viewBlueprintPage.detailsTabBlueprintDescriptionLabel.getText()).to.equal(description);
       });
 

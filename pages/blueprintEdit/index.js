@@ -415,7 +415,7 @@ class EditBlueprintPage extends React.Component {
             </li>
             <li className="active">
               <strong>
-                <FormattedMessage defaultMessage="Edit Blueprint" />
+                <FormattedMessage defaultMessage="Edit Packages" />
               </strong>
             </li>
           </ol>

@@ -100,7 +100,7 @@ class ViewBlueprintPage {
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
-      `blueprint description under "Details" tab in View Blueprint page cannot be found by selector ${selector}`
+      `blueprint description under "Customizations" tab in View Blueprint page cannot be found by selector ${selector}`
     );
     return $(selector);
   }
@@ -109,7 +109,7 @@ class ViewBlueprintPage {
     browser.waitUntil(
       () => browser.isExisting(`span=${selector}`),
       timeout,
-      `blueprint description under "Details" tab in View Blueprint page cannot be found by selector ${selector}`
+      `blueprint description under "Customizations" tab in View Blueprint page cannot be found by selector ${selector}`
     );
     return $(`span=${selector}`);
   }
@@ -119,7 +119,7 @@ class ViewBlueprintPage {
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
-      `edit blueprint description button under "Details" tab in View Blueprint page cannot be found by selector ${selector}`
+      `edit blueprint description button under "Customizations" tab in View Blueprint page cannot be found by selector ${selector}`
     );
     return $(selector);
   }
@@ -129,7 +129,7 @@ class ViewBlueprintPage {
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
-      `blueprint description input box under "Details" tab in View Blueprint page cannot be found by selector ${selector}`
+      `blueprint description input box under "Customizations" tab in View Blueprint page cannot be found by selector ${selector}`
     );
     return $(selector);
   }
@@ -139,7 +139,7 @@ class ViewBlueprintPage {
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
-      `ok button under "Details" tab in View Blueprint page cannot be found by selector ${selector}`
+      `ok button under "Customizations" tab in View Blueprint page cannot be found by selector ${selector}`
     );
     return $(selector);
   }
@@ -149,7 +149,7 @@ class ViewBlueprintPage {
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
-      `cancel button under "Details" tab in View Blueprint page cannot be found by selector ${selector}`
+      `cancel button under "Customizations" tab in View Blueprint page cannot be found by selector ${selector}`
     );
     return $(selector);
   }
@@ -159,7 +159,7 @@ class ViewBlueprintPage {
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
-      `blueprint hostname under "Details" tab in View Blueprint page cannot be found by selector ${selector}`
+      `blueprint hostname under "Customizations" tab in View Blueprint page cannot be found by selector ${selector}`
     );
     return $(selector);
   }
@@ -169,7 +169,7 @@ class ViewBlueprintPage {
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
-      `edit hostname button under "Details" tab in View Blueprint page cannot be found by selector ${selector}`
+      `edit hostname button under "Customizations" tab in View Blueprint page cannot be found by selector ${selector}`
     );
     return $(selector);
   }
@@ -179,7 +179,7 @@ class ViewBlueprintPage {
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
-      `blueprint hostname input box under "Details" tab in View Blueprint page cannot be found by selector ${selector}`
+      `blueprint hostname input box under "Customizations" tab in View Blueprint page cannot be found by selector ${selector}`
     );
     return $(selector);
   }
@@ -189,7 +189,7 @@ class ViewBlueprintPage {
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
-      `ok button for hostname edit under "Details" tab in View Blueprint page cannot be found by selector ${selector}`
+      `ok button for hostname edit under "Customizations" tab in View Blueprint page cannot be found by selector ${selector}`
     );
     return $(selector);
   }
@@ -199,7 +199,7 @@ class ViewBlueprintPage {
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
-      `cancel button for hostname under "Details" tab in View Blueprint page cannot be found by selector ${selector}`
+      `cancel button for hostname under "Customizations" tab in View Blueprint page cannot be found by selector ${selector}`
     );
     return $(selector);
   }
@@ -209,7 +209,7 @@ class ViewBlueprintPage {
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
-      `Create User Account button under "Details" tab in View Blueprint page cannot be found by selector ${selector}`
+      `Create User Account button under "Customizations" tab in View Blueprint page cannot be found by selector ${selector}`
     );
     return $(selector);
   }
@@ -219,7 +219,7 @@ class ViewBlueprintPage {
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
-      `Full name cell under "Details" tab in View Blueprint page cannot be found by selector ${selector}`
+      `Full name cell under "Customizations" tab in View Blueprint page cannot be found by selector ${selector}`
     );
     return $(selector);
   }
@@ -229,7 +229,7 @@ class ViewBlueprintPage {
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
-      `User name cell under "Details" tab in View Blueprint page cannot be found by selector ${selector}`
+      `User name cell under "Customizations" tab in View Blueprint page cannot be found by selector ${selector}`
     );
     return $(selector);
   }

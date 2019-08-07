@@ -19,7 +19,7 @@ class BlueprintListView extends React.PureComponent {
           <div className="list-group-item" key={blueprint.name} data-blueprint={blueprint.name}>
             <div className="list-view-pf-actions">
               <Link to={`/edit/${blueprint.name}`} className="btn btn-default">
-                <FormattedMessage defaultMessage="Edit Blueprint" />
+                <FormattedMessage defaultMessage="Edit Packages" />
               </Link>
               <CreateImage blueprint={blueprint} layout={layout} />
               <div className="dropdown pull-right dropdown-kebab-pf">
