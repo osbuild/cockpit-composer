@@ -12,6 +12,7 @@ import BlueprintContents from "../../components/ListView/BlueprintContents";
 import ComponentDetailsView from "../../components/ListView/ComponentDetailsView";
 import UserAccount from "../../components/Modal/UserAccount";
 import CreateImage from "../../components/Modal/CreateImage";
+import EditDescription from "../../components/Modal/EditDescription";
 import ExportBlueprint from "../../components/Modal/ExportBlueprint";
 import StopBuild from "../../components/Modal/StopBuild";
 import DeleteImage from "../../components/Modal/DeleteImage";
@@ -185,12 +186,8 @@ class BlueprintPage extends React.Component {
     this.props.fetchingDepDetails(component, this.props.blueprint.id);
   }
 
-  handleEditDescription(action, value) {
-    const state = !this.props.blueprintPage.editDescriptionVisible;
-    this.props.setEditDescriptionVisible(state);
-    if (!state && action === "commit") {
-      this.props.setBlueprintDescription(this.props.blueprint, value);
-    }
+  handleEditDescription(value) {
+    this.props.setBlueprintDescription(this.props.blueprint, value);
   }
 
   handleEditHostname(action, value) {
@@ -311,7 +308,7 @@ class BlueprintPage extends React.Component {
       setSelectedInputParent,
       clearSelectedInput
     } = this.props;
-    const { editDescriptionVisible, editHostnameVisible, editHostnameInvalid } = this.props.blueprintPage;
+    const { editHostnameVisible, editHostnameInvalid } = this.props.blueprintPage;
     const { formatMessage } = this.props.intl;
     let hostname = "";
     if (blueprint.customizations !== undefined && blueprint.customizations.hostname !== undefined) {
@@ -359,6 +356,12 @@ class BlueprintPage extends React.Component {
                   </button>
                   <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
                     <li>
+                      <EditDescription
+                        description={blueprint.description}
+                        handleEditDescription={this.handleEditDescription}
+                      />
+                    </li>
+                    <li>
                       <ExportBlueprint blueprint={blueprint} />
                     </li>
                   </ul>
@@ -369,7 +372,13 @@ class BlueprintPage extends React.Component {
           <div className="cmpsr-title">
             <h1 className="cmpsr-title__item">{this.props.route.params.blueprint}</h1>
             <p className="cmpsr-title__item">
-              {blueprint.description && <span className="text-muted">{blueprint.description}</span>}
+              {blueprint.description && (
+                <EditDescription
+                  descriptionAsLink
+                  description={blueprint.description}
+                  handleEditDescription={this.handleEditDescription}
+                />
+              )}
             </p>
           </div>
         </header>
@@ -378,21 +387,6 @@ class BlueprintPage extends React.Component {
             <div className="tab-container row">
               <div className="col-sm-12">
                 <div className="form-horizontal">
-                  <form
-                    className="form-group"
-                    data-form="description"
-                    onSubmit={() => this.handleEditDescription("commit")}
-                  >
-                    <label className="col-sm-2 control-label">{formatMessage(messages.descriptionInputLabel)}</label>
-                    <TextInlineEdit
-                      className="col-sm-10"
-                      editVisible={editDescriptionVisible}
-                      handleEdit={this.handleEditDescription}
-                      buttonLabel={formatMessage(messages.descriptionButtonLabel)}
-                      inputLabel={formatMessage(messages.descriptionInputLabel)}
-                      value={blueprint.description}
-                    />
-                  </form>
                   <form
                     className={`form-group ${editHostnameInvalid ? "has-error" : ""}`}
                     data-form="hostname"
@@ -643,7 +637,6 @@ BlueprintPage.propTypes = {
   setBlueprintUsers: PropTypes.func,
   blueprintPage: PropTypes.shape({
     activeTab: PropTypes.string,
-    editDescriptionVisible: PropTypes.bool,
     editHostnameVisible: PropTypes.bool,
     editHostnameInvalid: PropTypes.bool
   }),
