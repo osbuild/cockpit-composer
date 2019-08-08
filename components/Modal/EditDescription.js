@@ -27,7 +27,7 @@ class EditDescription extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <a href="#" onClick={this.open}>
+        <a href="#" onClick={this.open} className={this.props.descriptionAsLink ? "text-muted" : ""}>
           {(this.props.descriptionAsLink && this.props.description) || (
             <FormattedMessage defaultMessage="Edit description" />
           )}
