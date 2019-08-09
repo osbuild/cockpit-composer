@@ -2,7 +2,7 @@ const loginPage = require("../pages/login.page");
 const blueprintsPage = require("../pages/blueprints.page");
 const createBlueprintPage = require("../pages/createBlueprint.page");
 const deleteBlueprintPage = require("../pages/deleteBlueprint.page");
-const EditBlueprintPage = require("../pages/EditBlueprint.page");
+const EditPackagesPage = require("../pages/EditPackages.page");
 const Blueprint = require("../components/Blueprint.component");
 const AvailableComponents = require("../components/AvailableComponents.component");
 const selectedComponents = require("../components/selectedComponents.component");
@@ -43,18 +43,18 @@ module.exports = {
     createBlueprintPage.descriptionBox.setValue(description);
     createBlueprintPage.createButton.click();
     // open edit blueprint page
-    const editBlueprintPage = new EditBlueprintPage(name);
-    editBlueprintPage.loading();
+    const editPackagesPage = new EditPackagesPage(name);
+    editPackagesPage.loading();
     browser.keys("Enter");
     // make sure new availabe components for new page loaded
-    editBlueprintPage.loading();
+    editPackagesPage.loading();
     const filterContent = "openssh-server";
-    editBlueprintPage.filterBox.setValue(filterContent);
+    editPackagesPage.filterBox.setValue(filterContent);
     browser.keys("Enter");
-    browser.waitForExist(editBlueprintPage.filterContentLabel, timeout);
+    browser.waitForExist(editPackagesPage.filterContentLabel, timeout);
     browser.waitUntil(
       () =>
-        $(editBlueprintPage.filterContentLabel)
+        $(editPackagesPage.filterContentLabel)
           .getText()
           .includes(filterContent),
       timeout,
@@ -69,7 +69,7 @@ module.exports = {
       timeout,
       `Cannot add package ${filterContent} into blueprint ${name}`
     );
-    editBlueprintPage.commitButton.click();
+    editPackagesPage.commitButton.click();
     // pop up Changes Pending Commit dialog
     pendingCommitPage.loading();
     pendingCommitPage.commit();
@@ -81,7 +81,7 @@ module.exports = {
     toastNotificationPage.close();
     browser.waitForExist('[id="cmpsr-toast-0"]', timeout, true);
     // go back to Blueprints page by clicking "Back To Blueprints" button
-    editBlueprintPage.backToBlueprintsPage();
+    editPackagesPage.backToBlueprintsPage();
     blueprintsPage.loading();
   },
 

@@ -50,30 +50,13 @@ describe("View Blueprint Page", function() {
       });
 
       it('"Customizations" tab should be active by default', function() {
-        expect(viewBlueprintPage.detailsTab.getAttribute("aria-selected")).to.equal("true");
+        expect(viewBlueprintPage.customizationsTab.getAttribute("aria-selected")).to.equal("true");
       });
     });
 
     describe('"Customizations" tab', function() {
       it(`blueprint description under "Customizations" tab should be "${description}"`, function() {
-        expect(viewBlueprintPage.detailsTabBlueprintDescriptionLabel.getText()).to.equal(description);
-      });
-
-      it("click X button => blueprint description not updated", function() {
-        viewBlueprintPage.editBlueprintDescriptionButton.click();
-        viewBlueprintPage.descriptionInputBox.setValue(faker.lorem.sentence());
-        viewBlueprintPage.cancelButton.click();
-        expect(viewBlueprintPage.detailsTabBlueprintDescriptionLabel.getText()).to.equal(description);
-      });
-
-      it("blueprint description should be updated", function() {
-        const updatedDescription = faker.lorem.sentence();
-        viewBlueprintPage.editBlueprintDescriptionButton.click();
-        viewBlueprintPage.descriptionInputBox.setValue(updatedDescription);
-        viewBlueprintPage.okButton.click();
-        expect(viewBlueprintPage.updatedBlueprintDescriptionLabel(updatedDescription).getText()).to.equal(
-          updatedDescription
-        );
+        expect(viewBlueprintPage.customizationsTabBlueprintDescriptionLabel.getText()).to.equal(description);
       });
 
       it("hostname should be added", function() {
@@ -82,7 +65,7 @@ describe("View Blueprint Page", function() {
         viewBlueprintPage.hostnameInputBox.setValue(hostname);
         viewBlueprintPage.okHostnameButton.click();
         // UI should get updated
-        expect(viewBlueprintPage.detailsTabHostnameLabel(hostname).getText()).to.equal(hostname);
+        expect(viewBlueprintPage.customizationsTabHostnameLabel(hostname).getText()).to.equal(hostname);
 
         // get dependencies from API
         const endpoint = `/api/v0/blueprints/info/${name}`;
@@ -100,7 +83,7 @@ describe("View Blueprint Page", function() {
         viewBlueprintPage.hostnameInputBox.setValue(hostname);
         viewBlueprintPage.okHostnameButton.click();
         // UI should get updated
-        expect(viewBlueprintPage.detailsTabHostnameLabel(hostname).getText()).to.equal(hostname);
+        expect(viewBlueprintPage.customizationsTabHostnameLabel(hostname).getText()).to.equal(hostname);
 
         // get dependencies from API
         const endpoint = `/api/v0/blueprints/info/${name}`;
@@ -123,7 +106,7 @@ describe("View Blueprint Page", function() {
         viewBlueprintPage.hostnameInputBox.setValue(faker.lorem.slug());
         viewBlueprintPage.cancelHostnameButton.click();
         // UI should get updated
-        expect(viewBlueprintPage.detailsTabHostnameLabel(hostname).getText()).to.equal(hostname);
+        expect(viewBlueprintPage.customizationsTabHostnameLabel(hostname).getText()).to.equal(hostname);
       });
 
       it("disable OK button and show error input box if hostname has invalid character", function() {
@@ -141,21 +124,21 @@ describe("View Blueprint Page", function() {
     });
 
     describe("Edit Blueprint", function() {
-      const EditBlueprintPage = require("../pages/EditBlueprint.page");
-      const editBlueprintPage = new EditBlueprintPage(name);
+      const EditPackagesPage = require("../pages/EditPackages.page");
+      const editPackagesPage = new EditPackagesPage(name);
 
       before(function() {
-        viewBlueprintPage.editBlueprintButton.click();
-        editBlueprintPage.loading();
+        viewBlueprintPage.editPackagesButton.click();
+        editPackagesPage.loading();
       });
 
       after(function() {
-        editBlueprintPage.blueprintNameLink.click();
+        editPackagesPage.blueprintNameLink.click();
         viewBlueprintPage.loading();
       });
 
       it("should go to Edit Blueprint page by clicking Edit Blueprint button", function() {
-        expect(editBlueprintPage.blueprintNameLabel.getText()).to.equal(name);
+        expect(editPackagesPage.blueprintNameLabel.getText()).to.equal(name);
       });
     });
 
