@@ -33,12 +33,12 @@ class ViewBlueprintPage {
     return $(selector);
   }
 
-  get editBlueprintButton() {
-    const selector = "span=Edit Blueprint";
+  get editPackagesButton() {
+    const selector = "span=Edit Packages";
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
-      `Edit Blueprint button in View Blueprint page cannot be found by selector ${selector}`
+      `Edit Packages button in View Blueprint page cannot be found by selector ${selector}`
     );
     return $(selector);
   }
@@ -85,41 +85,22 @@ class ViewBlueprintPage {
     return $(selector);
   }
 
-  get detailsTab() {
-    const selector = "=Details";
+  get customizationsTab() {
+    const selector = "=Customizations";
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
-      `Details tab in View Blueprint page cannot be found by selector ${selector}`
+      `Customizations tab in View Blueprint page cannot be found by selector ${selector}`
     );
     return $(selector);
   }
 
-  get detailsTabBlueprintDescriptionLabel() {
-    const selector = `span=${this.description}`;
+  get customizationsTabBlueprintDescriptionLabel() {
+    const selector = `a=${this.description}`;
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
-      `blueprint description under "Customizations" tab in View Blueprint page cannot be found by selector ${selector}`
-    );
-    return $(selector);
-  }
-
-  updatedBlueprintDescriptionLabel(selector) {
-    browser.waitUntil(
-      () => browser.isExisting(`span=${selector}`),
-      timeout,
-      `blueprint description under "Customizations" tab in View Blueprint page cannot be found by selector ${selector}`
-    );
-    return $(`span=${selector}`);
-  }
-
-  get editBlueprintDescriptionButton() {
-    const selector = '[data-form="description"] .pficon-edit';
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `edit blueprint description button under "Customizations" tab in View Blueprint page cannot be found by selector ${selector}`
+      `blueprint description in View Blueprint page header cannot be found by selector ${selector}`
     );
     return $(selector);
   }
@@ -154,7 +135,7 @@ class ViewBlueprintPage {
     return $(selector);
   }
 
-  detailsTabHostnameLabel(hostname) {
+  customizationsTabHostnameLabel(hostname) {
     const selector = `span=${hostname}`;
     browser.waitUntil(
       () => browser.isExisting(selector),
@@ -266,12 +247,12 @@ class ViewBlueprintPage {
     return $(selector);
   }
 
-  get selectedComponentsTab() {
-    const selector = "=Selected Components";
+  get packagesTab() {
+    const selector = "=Packages";
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
-      `Selected Components tab in View Blueprint page cannot be found by selector ${selector}`
+      `Packages tab in View Blueprint page cannot be found by selector ${selector}`
     );
     return $(selector);
   }

@@ -3,7 +3,7 @@ const commands = require("../utils/commands");
 
 const Blueprint = require("../components/Blueprint.component");
 const blueprintsPage = require("../pages/blueprints.page");
-const EditBlueprintPage = require("../pages/EditBlueprint.page");
+const EditPackagesPage = require("../pages/EditPackages.page");
 const AvailableComponents = require("../components/AvailableComponents.component");
 const selectedComponents = require("../components/selectedComponents.component");
 const dependencies = require("../components/dependencies.component");
@@ -13,18 +13,18 @@ describe("Edit Blueprint Page", function() {
   const name = faker.lorem.slug();
   const description = faker.lorem.sentence();
   const blueprintComponent = new Blueprint(name);
-  const editBlueprintPage = new EditBlueprintPage(name);
+  const editPackagesPage = new EditPackagesPage(name);
 
   before(function() {
     commands.login();
     commands.startLoraxIfItDoesNotStart();
     commands.newBlueprint(name, description);
-    blueprintComponent.editBlueprintButton.click();
-    editBlueprintPage.loading();
+    blueprintComponent.editPackagesButton.click();
+    editPackagesPage.loading();
   });
 
   after(function() {
-    editBlueprintPage.backToBlueprintsPage();
+    editPackagesPage.backToBlueprintsPage();
     blueprintsPage.loading();
     commands.deleteBlueprint(name);
     blueprintsPage.loading();
@@ -34,12 +34,12 @@ describe("Edit Blueprint Page", function() {
     const availableComponent = new AvailableComponents();
     const packageName = "cockpit-bridge";
     before(function() {
-      editBlueprintPage.filterBox.setValue(packageName);
+      editPackagesPage.filterBox.setValue(packageName);
       browser.keys("Enter");
-      browser.waitForExist(editBlueprintPage.filterContentLabel, timeout);
+      browser.waitForExist(editPackagesPage.filterContentLabel, timeout);
       browser.waitUntil(
         () =>
-          $(editBlueprintPage.filterContentLabel)
+          $(editPackagesPage.filterContentLabel)
             .getText()
             .includes(packageName),
         timeout,
@@ -74,16 +74,16 @@ describe("Edit Blueprint Page", function() {
 
     it("blueprint with reverse order by clicking A->Z sort button", function() {
       const defaultArray = selectedComponents.packageList.map(item => item.getText());
-      editBlueprintPage.sortAscButton.click();
-      editBlueprintPage.sortDescButton.waitForVisible(timeout);
+      editPackagesPage.sortAscButton.click();
+      editPackagesPage.sortDescButton.waitForVisible(timeout);
       const sortedArray = selectedComponents.packageList.map(item => item.getText());
       expect(defaultArray.reverse().every((value, index) => value === sortedArray[index])).to.be.true;
     });
 
     it("blueprint with reverse order by clicking Z->A sort button", function() {
       const defaultArray = selectedComponents.packageList.map(item => item.getText());
-      editBlueprintPage.sortDescButton.click();
-      editBlueprintPage.sortAscButton.waitForVisible(timeout);
+      editPackagesPage.sortDescButton.click();
+      editPackagesPage.sortAscButton.waitForVisible(timeout);
       const sortedArray = selectedComponents.packageList.map(item => item.getText());
       expect(defaultArray.reverse().every((value, index) => value === sortedArray[index])).to.be.true;
     });
@@ -93,7 +93,7 @@ describe("Edit Blueprint Page", function() {
     });
 
     it("Undo button should work", function() {
-      editBlueprintPage.undoButton.click();
+      editPackagesPage.undoButton.click();
       browser.waitUntil(
         () => selectedComponents.packageList.map(item => item.getText()).indexOf(packageName) === -1,
         timeout,
@@ -107,7 +107,7 @@ describe("Edit Blueprint Page", function() {
     });
 
     it("Redo button should work", function() {
-      editBlueprintPage.redoButton.click();
+      editPackagesPage.redoButton.click();
       browser.waitUntil(
         () => selectedComponents.packageList.map(item => item.getText()).includes(packageName),
         timeout,
@@ -129,12 +129,12 @@ describe("Edit Blueprint Page", function() {
       browser.keys("ArrowDown"); // Remove
       browser.keys("Enter");
       // add cockpit-bridge into selected component
-      editBlueprintPage.filterBox.setValue(packageName);
+      editPackagesPage.filterBox.setValue(packageName);
       browser.keys("Enter");
-      browser.waitForExist(editBlueprintPage.filterContentLabel, timeout);
+      browser.waitForExist(editPackagesPage.filterContentLabel, timeout);
       browser.waitUntil(
         () =>
-          $(editBlueprintPage.filterContentLabel)
+          $(editPackagesPage.filterContentLabel)
             .getText()
             .includes(packageName),
         timeout,
@@ -153,7 +153,7 @@ describe("Edit Blueprint Page", function() {
 
     it("The bedge should show the correct selected package number", function() {
       const totalSelectedComponents = selectedComponents.packageList.length;
-      expect(editBlueprintPage.selectedComponentsTabBadge.getText()).to.equal(totalSelectedComponents.toString());
+      expect(editPackagesPage.selectedComponentsTabBadge.getText()).to.equal(totalSelectedComponents.toString());
     });
 
     describe("Component expansion test", function() {
@@ -190,12 +190,12 @@ describe("Edit Blueprint Page", function() {
 
   describe("Dependencies Tab", function() {
     before(function() {
-      editBlueprintPage.clickDependenciesTabBadge();
+      editPackagesPage.clickDependenciesTabBadge();
     });
 
     it("The bedge should show the correct selected package number", function() {
       const totalDependencies = dependencies.depencenciesList.length;
-      expect(editBlueprintPage.dependenciesTabBadge.getText()).to.equal(totalDependencies.toString());
+      expect(editPackagesPage.dependenciesTabBadge.getText()).to.equal(totalDependencies.toString());
     });
   });
 
@@ -205,12 +205,12 @@ describe("Edit Blueprint Page", function() {
     const componentDetails = new DetailsComponent(packageName);
 
     before(function() {
-      editBlueprintPage.filterBox.setValue(packageName);
+      editPackagesPage.filterBox.setValue(packageName);
       browser.keys("Enter");
-      browser.waitForExist(editBlueprintPage.filterContentLabel, timeout);
+      browser.waitForExist(editPackagesPage.filterContentLabel, timeout);
       browser.waitUntil(
         () =>
-          $(editBlueprintPage.filterContentLabel)
+          $(editPackagesPage.filterContentLabel)
             .getText()
             .includes(packageName),
         timeout,
@@ -256,12 +256,12 @@ describe("Edit Blueprint Page", function() {
     const componentDetails = new DetailsComponent(packageName);
 
     before(function() {
-      editBlueprintPage.filterBox.setValue(packageName);
+      editPackagesPage.filterBox.setValue(packageName);
       browser.keys("Enter");
-      browser.waitForExist(editBlueprintPage.filterContentLabel, timeout);
+      browser.waitForExist(editPackagesPage.filterContentLabel, timeout);
       browser.waitUntil(
         () =>
-          $(editBlueprintPage.filterContentLabel)
+          $(editPackagesPage.filterContentLabel)
             .getText()
             .includes(packageName),
         timeout,
@@ -275,7 +275,7 @@ describe("Edit Blueprint Page", function() {
         timeout,
         `Cannot add package ${packageName} into blueprint`
       );
-      editBlueprintPage.createImageButton.click();
+      editPackagesPage.createImageButton.click();
       createImagePage.loading();
     });
 

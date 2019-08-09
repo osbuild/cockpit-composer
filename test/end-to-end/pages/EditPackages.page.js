@@ -1,5 +1,5 @@
 // Edit Blueprint Page
-class EditBlueprintPage {
+class EditPackagesPage {
   constructor(name) {
     this.name = name;
   }
@@ -223,4 +223,4 @@ class EditBlueprintPage {
   }
 }
 
-module.exports = EditBlueprintPage;
+module.exports = EditPackagesPage;

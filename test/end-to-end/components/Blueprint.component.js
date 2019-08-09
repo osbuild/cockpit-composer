@@ -35,7 +35,7 @@ class Blueprint {
     return selector;
   }
 
-  get editBlueprintButton() {
+  get editPackagesButton() {
     const selector = `${this.containerSelector} a[href="#/edit/${this.name}"]`;
     browser.waitUntil(
       () => browser.isVisible(selector),

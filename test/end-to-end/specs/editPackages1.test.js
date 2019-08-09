@@ -4,7 +4,7 @@ const commands = require("../utils/commands");
 
 const Blueprint = require("../components/Blueprint.component");
 const blueprintsPage = require("../pages/blueprints.page");
-const EditBlueprintPage = require("../pages/EditBlueprint.page");
+const EditPackagesPage = require("../pages/EditPackages.page");
 const AvailableComponents = require("../components/AvailableComponents.component");
 const selectedComponents = require("../components/selectedComponents.component");
 
@@ -12,7 +12,7 @@ describe("Edit Blueprint Page", function() {
   const name = faker.lorem.slug();
   const description = faker.lorem.sentence();
   const blueprintComponent = new Blueprint(name);
-  const editBlueprintPage = new EditBlueprintPage(name);
+  const editPackagesPage = new EditPackagesPage(name);
 
   before(function() {
     commands.login();
@@ -28,12 +28,12 @@ describe("Edit Blueprint Page", function() {
     before(function() {
       addContext(this, `create new blueprint with name, ${name}, and description, ${description}`);
       commands.newBlueprint(name, description);
-      blueprintComponent.editBlueprintButton.click();
-      editBlueprintPage.loading();
+      blueprintComponent.editPackagesButton.click();
+      editPackagesPage.loading();
     });
 
     after(function() {
-      editBlueprintPage.backToBlueprintsPage();
+      editPackagesPage.backToBlueprintsPage();
       blueprintsPage.loading();
     });
 
@@ -41,7 +41,7 @@ describe("Edit Blueprint Page", function() {
       it(`blueprint link should be linked to "#/blueprint/${name}"`, function() {
         // href attribute retruns: https://localhost:9090/cockpit/
         // $5d3f0c4e73267bcf41ad3452b142173cba11c63a2ebcd1ee50a02441ebf9d8eb/welder/index.html#/blueprint/example-atlas
-        expect(editBlueprintPage.blueprintNameLink.getAttribute("href")).to.include(`#/blueprint/${name}`);
+        expect(editPackagesPage.blueprintNameLink.getAttribute("href")).to.include(`#/blueprint/${name}`);
       });
 
       it("pending changes should not exist by default", function() {
@@ -53,33 +53,33 @@ describe("Edit Blueprint Page", function() {
         //  sessionId: '0799484d6ac6200127bd8fac088b0773',
         //  value: null,
         //  selector: 'span*=Pending Change' }
-        expect(editBlueprintPage.pendingChangeLink.value).to.be.null;
+        expect(editPackagesPage.pendingChangeLink.value).to.be.null;
       });
 
       it(`title should be blueprint name "${name}"`, function() {
-        expect(editBlueprintPage.blueprintNameLabel.getText()).to.equal(name);
+        expect(editPackagesPage.blueprintNameLabel.getText()).to.equal(name);
       });
 
       it("Commit button should be disabled by default", function() {
-        expect(editBlueprintPage.commitButton.getAttribute("class")).to.include("disabled");
+        expect(editPackagesPage.commitButton.getAttribute("class")).to.include("disabled");
       });
 
       it("Discard Changes button should be disabled by default", function() {
-        expect(editBlueprintPage.discardChangeButton.getAttribute("class")).to.include("disabled");
+        expect(editPackagesPage.discardChangeButton.getAttribute("class")).to.include("disabled");
       });
 
       it("> button should work", function() {
-        const pageNumber = editBlueprintPage.nthPageBox.getValue();
-        editBlueprintPage.nextButton.click();
-        editBlueprintPage.loading();
-        expect(parseInt(editBlueprintPage.nthPageBox.getValue(), 10)).to.equal(parseInt(pageNumber, 10) + 1);
+        const pageNumber = editPackagesPage.nthPageBox.getValue();
+        editPackagesPage.nextButton.click();
+        editPackagesPage.loading();
+        expect(parseInt(editPackagesPage.nthPageBox.getValue(), 10)).to.equal(parseInt(pageNumber, 10) + 1);
       });
 
       it("< button should work", function() {
-        const pageNumber = editBlueprintPage.nthPageBox.getValue();
-        editBlueprintPage.previousButton.click();
-        editBlueprintPage.loading();
-        expect(parseInt(editBlueprintPage.nthPageBox.getValue(), 10)).to.equal(parseInt(pageNumber, 10) - 1);
+        const pageNumber = editPackagesPage.nthPageBox.getValue();
+        editPackagesPage.previousButton.click();
+        editPackagesPage.loading();
+        expect(parseInt(editPackagesPage.nthPageBox.getValue(), 10)).to.equal(parseInt(pageNumber, 10) - 1);
       });
     });
 
@@ -87,12 +87,12 @@ describe("Edit Blueprint Page", function() {
       const filterContent = "cockpit-bridge";
       const filterLabel = `Name: ${filterContent}`;
       beforeEach(function() {
-        editBlueprintPage.filterBox.setValue(filterContent);
+        editPackagesPage.filterBox.setValue(filterContent);
         browser.keys("Enter");
-        browser.waitForExist(editBlueprintPage.filterContentLabel, timeout);
+        browser.waitForExist(editPackagesPage.filterContentLabel, timeout);
         browser.waitUntil(
           () =>
-            $(editBlueprintPage.filterContentLabel)
+            $(editPackagesPage.filterContentLabel)
               .getText()
               .includes(filterContent),
           timeout,
@@ -102,25 +102,25 @@ describe("Edit Blueprint Page", function() {
 
       it(`Filtered package name should contain "${filterContent}" and should be cleared by clicking "Clear All Filter" link`, function() {
         addContext(this, `Filtered package name should contain "${filterContent}"`);
-        const packageNameList = editBlueprintPage.packageList.map(item => item.getText());
+        const packageNameList = editPackagesPage.packageList.map(item => item.getText());
         expect(packageNameList)
           .to.be.an("array")
           .that.includes(filterContent);
         // another test on clear filter
         addContext(this, "All filters should be cleared by clicking Clear All Filter link");
-        editBlueprintPage.clearAllFiltersLink.click();
-        editBlueprintPage.loading();
-        expect($(editBlueprintPage.filterContentLabel).value).to.be.null;
+        editPackagesPage.clearAllFiltersLink.click();
+        editPackagesPage.loading();
+        expect($(editPackagesPage.filterContentLabel).value).to.be.null;
       });
 
       it(`Filter content label should be "${filterLabel}" and should be cleared by clicking X button`, function() {
         addContext(this, `Filter content label should be "${filterLabel}"`);
-        expect($(editBlueprintPage.filterContentLabel).getText()).to.equal(filterLabel);
+        expect($(editPackagesPage.filterContentLabel).getText()).to.equal(filterLabel);
         // another test on clear filter
         addContext(this, "Filter content label should be cleared by clicking X button");
-        editBlueprintPage.xLabelButton.click();
-        editBlueprintPage.loading();
-        expect($(editBlueprintPage.filterContentLabel).value).to.be.null;
+        editPackagesPage.xLabelButton.click();
+        editPackagesPage.loading();
+        expect($(editPackagesPage.filterContentLabel).value).to.be.null;
       });
     });
 
@@ -128,9 +128,9 @@ describe("Edit Blueprint Page", function() {
       const availableComponent = new AvailableComponents();
       const packageName = "cockpit-bridge";
       before(function() {
-        editBlueprintPage.filterBox.setValue(packageName);
+        editPackagesPage.filterBox.setValue(packageName);
         browser.keys("Enter");
-        browser.waitForExist(editBlueprintPage.filterContentLabel, timeout);
+        browser.waitForExist(editPackagesPage.filterContentLabel, timeout);
       });
 
       after(function() {
@@ -167,7 +167,7 @@ describe("Edit Blueprint Page", function() {
       const CreateImagePage = require("../pages/CreateImage.page");
       const createImagePage = new CreateImagePage(name);
       beforeEach(function() {
-        editBlueprintPage.createImageButton.click();
+        editPackagesPage.createImageButton.click();
         createImagePage.loading();
       });
 
@@ -185,7 +185,7 @@ describe("Edit Blueprint Page", function() {
       const ExportPage = require("../pages/Export.page");
       const exportPage = new ExportPage(name);
       beforeEach(function() {
-        editBlueprintPage.moreButton.click();
+        editPackagesPage.moreButton.click();
         browser.keys("ArrowDown");
         browser.keys("Enter");
         exportPage.loading();
@@ -226,34 +226,34 @@ describe("Edit Blueprint Page", function() {
       });
 
       after(function() {
-        editBlueprintPage.discardChangeButton.click();
+        editPackagesPage.discardChangeButton.click();
         browser.waitUntil(
-          () => editBlueprintPage.discardChangeButton.getAttribute("class").includes("disabled"),
+          () => editPackagesPage.discardChangeButton.getAttribute("class").includes("disabled"),
           timeout
         );
       });
 
       describe("Page element checking", function() {
         it("should show pending changes", function() {
-          expect(editBlueprintPage.pendingChangeLink.isExisting()).to.be.true;
+          expect(editPackagesPage.pendingChangeLink.isExisting()).to.be.true;
         });
 
         it('should show "2 Pending Changes"', function() {
-          expect(editBlueprintPage.pendingChangeLink.getText()).to.equal("2 Pending Changes");
+          expect(editPackagesPage.pendingChangeLink.getText()).to.equal("2 Pending Changes");
         });
 
         it("Commit button should be enabled", function() {
-          expect(editBlueprintPage.commitButton.getAttribute("class")).to.not.include("disabled");
+          expect(editPackagesPage.commitButton.getAttribute("class")).to.not.include("disabled");
         });
 
         it("Discard Changes button should enabled", function() {
-          expect(editBlueprintPage.discardChangeButton.getAttribute("class")).to.not.include("disabled");
+          expect(editPackagesPage.discardChangeButton.getAttribute("class")).to.not.include("disabled");
         });
       });
 
       describe("Changes Pending Commit Page", function() {
         before(function() {
-          editBlueprintPage.pendingChangeLink.click();
+          editPackagesPage.pendingChangeLink.click();
           pendingCommitPage.loading();
         });
 
@@ -295,12 +295,12 @@ describe("Edit Blueprint Page", function() {
           pendingCommitPage.xButton.click();
           browser.waitForExist(pendingCommitPage.containerSelector, timeout, true);
           // go back to blueprints page
-          editBlueprintPage.backToBlueprintsPage();
+          editPackagesPage.backToBlueprintsPage();
           blueprintsPage.loading();
           // go to edit blueprint page again
-          blueprintComponent.editBlueprintButton.click();
-          editBlueprintPage.loading();
-          editBlueprintPage.commitButton.click();
+          blueprintComponent.editPackagesButton.click();
+          editPackagesPage.loading();
+          editPackagesPage.commitButton.click();
           // pop up Changes Pending Commit dialog
           pendingCommitPage.loading();
           // still have to pending changes here
