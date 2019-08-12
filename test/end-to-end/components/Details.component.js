@@ -56,7 +56,7 @@ class DetailsComponent {
   }
 
   get componentDescriptionLabel() {
-    const selector = '[id="blueprint-tabs-pane-customizations"] .cmpsr-title';
+    const selector = '[id="blueprint-tabs-pane-details"] .cmpsr-title';
     browser.waitUntil(
       () => $(selector).isExisting(),
       timeout,
