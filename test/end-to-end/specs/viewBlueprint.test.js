@@ -123,6 +123,54 @@ describe("View Blueprint Page", function() {
       });
     });
 
+    describe("Edit description", function() {
+      const editDescriptionPage = require("../pages/editDescription.page");
+      it("should show correct description", function() {
+        viewBlueprintPage.moreButton.click();
+        browser.keys("ArrowDown");
+        browser.keys("Enter");
+        editDescriptionPage.loading();
+        expect(editDescriptionPage.descriptionInputBox.getValue()).to.equal(description);
+        editDescriptionPage.cancelButton.click();
+        browser.waitUntil(
+          () => !browser.isExisting(editDescriptionPage.containerSelector),
+          timeout,
+          "Cannot close Edit Description dialog"
+        );
+      });
+
+      it("should not update blueprint description after clicking X button", function() {
+        viewBlueprintPage.moreButton.click();
+        browser.keys("ArrowDown");
+        browser.keys("Enter");
+        editDescriptionPage.loading();
+        editDescriptionPage.xButton.click();
+        browser.waitUntil(
+          () => !browser.isExisting(editDescriptionPage.containerSelector),
+          timeout,
+          "Cannot close Edit Description dialog"
+        );
+        expect(viewBlueprintPage.headerBlueprintDescriptionLabel.getText()).to.equal(description);
+      });
+
+      it("should update blueprint description after apply", function() {
+        viewBlueprintPage.moreButton.click();
+        browser.keys("ArrowDown");
+        browser.keys("Enter");
+        editDescriptionPage.loading();
+
+        const newDescription = faker.lorem.sentence();
+        editDescriptionPage.descriptionInputBox.setValue(newDescription);
+        editDescriptionPage.saveButton.click();
+        browser.waitUntil(
+          () => !browser.isExisting(editDescriptionPage.containerSelector),
+          timeout,
+          "Cannot close Edit Description dialog"
+        );
+        expect(viewBlueprintPage.headerBlueprintDescriptionLabel.getText()).to.equal(newDescription);
+      });
+    });
+
     describe("Edit Blueprint", function() {
       const EditPackagesPage = require("../pages/EditPackages.page");
       const editPackagesPage = new EditPackagesPage(name);
@@ -148,6 +196,7 @@ describe("View Blueprint Page", function() {
       it("should copy correct blueprint manifest", function() {
         viewBlueprintPage.moreButton.click();
         browser.keys("ArrowDown");
+        browser.keys("ArrowDown");
         browser.keys("Enter");
         exportPage.loading();
         // getText() does not work here on Edge, but works on Firefox and Chrome
@@ -159,7 +208,7 @@ describe("View Blueprint Page", function() {
         browser.waitForExist(exportPage.containerSelector, timeout, true);
         if (wdioConfig.config.capabilities[0].browserName !== "MicrosoftEdge") {
           // back to view blueprint page for pasting
-          viewBlueprintPage.selectedComponentsTab.click();
+          viewBlueprintPage.packagesTab.click();
           // paste blueprint manifest here to test copy function
           viewBlueprintPage.selectedComponentFilter.click();
           viewBlueprintPage.selectedComponentFilter.setValue(["Control", "v"]);

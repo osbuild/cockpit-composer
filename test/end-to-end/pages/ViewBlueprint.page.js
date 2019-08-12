@@ -105,36 +105,6 @@ class ViewBlueprintPage {
     return $(selector);
   }
 
-  get descriptionInputBox() {
-    const selector = '[data-form="description"] .form-control';
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `blueprint description input box under "Customizations" tab in View Blueprint page cannot be found by selector ${selector}`
-    );
-    return $(selector);
-  }
-
-  get okButton() {
-    const selector = '[data-form="description"] .form-control-pf-save';
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `ok button under "Customizations" tab in View Blueprint page cannot be found by selector ${selector}`
-    );
-    return $(selector);
-  }
-
-  get cancelButton() {
-    const selector = '[data-form="description"] .form-control-pf-cancel';
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `cancel button under "Customizations" tab in View Blueprint page cannot be found by selector ${selector}`
-    );
-    return $(selector);
-  }
-
   customizationsTabHostnameLabel(hostname) {
     const selector = `span=${hostname}`;
     browser.waitUntil(
