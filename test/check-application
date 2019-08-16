@@ -54,7 +54,9 @@ def run_webdriver_tests(machine, env=[]):
 
 def run_e2e(verbose, image, browser, cpus, memory, sit):
     # settings on composer VM
-    network = testvm.VirtNetwork(0)
+
+    # When Windows in use, we need rtl8139, for anything else we want virtio-net-pci
+    network = testvm.VirtNetwork(0, image="windows-10" if "edge" in browser else image)
     composer = testvm.VirtMachine(verbose=verbose, image=image,
                                   networking=network.host(),
                                   memory_mb=memory, cpus=cpus)
