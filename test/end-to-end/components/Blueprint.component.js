@@ -46,7 +46,7 @@ class Blueprint {
   }
 
   get createImageButton() {
-    const selector = `${this.containerSelector} button[class="btn btn-default"]`;
+    const selector = `${this.containerSelector} button[id="create-image-button"]`;
     browser.waitUntil(
       () => browser.isVisible(selector),
       timeout,
