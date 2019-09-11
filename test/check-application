@@ -93,7 +93,18 @@ def run_e2e(verbose, image, browser, cpus, memory, sit):
         composer.wait_boot()
         composer.set_address("10.111.113.1/20")
         composer.upload(["end-to-end"], "/root/")
-        composer.execute("cd /root/end-to-end && npm install", timeout=600)
+
+        # use the same NPM registry as the host
+        registry = subprocess.check_output(["npm", "config", "get", "registry"], universal_newlines=True).strip()
+        extra_ca_certs = os.getenv("NODE_EXTRA_CA_CERTS")
+        if extra_ca_certs:
+            composer.upload([extra_ca_certs], "/tmp/npm_ca_certs")
+            env_cmd = "NODE_EXTRA_CA_CERTS=/tmp/npm_ca_certs"
+        else:
+            env_cmd = ""
+        composer.execute("cd /root/end-to-end && npm config set registry '%s' && "
+                         "%s npm install" % (registry, env_cmd),
+                         timeout=600)
 
         if selenium and 'MicrosoftEdge' in browser:
             composer.dhcp_server(range=['10.111.112.10', '10.111.112.10'])
