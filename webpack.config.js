@@ -47,8 +47,7 @@ const plugins = [
 
 module.exports = {
   mode: mode,
-  // redux-saga uses generators, babel compiles using regenerator runtime included in @babel/polyfill
-  entry: ["@babel/polyfill", "./main.js"],
+  entry: "./main.js",
   plugins: plugins,
   output: output,
   devtool: devtool,

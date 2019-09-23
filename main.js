@@ -1,3 +1,7 @@
+import "core-js/stable";
+// redux-saga uses generators, use regenerator-runtime/runtime to transform generators
+import "regenerator-runtime/runtime";
+
 import "whatwg-fetch";
 
 import React from "react";
