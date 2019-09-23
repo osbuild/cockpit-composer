@@ -1,7 +1,7 @@
 module.exports = {
   presets: [
     [
-      "@babel/env",
+      "@babel/preset-env",
       {
         targets: {
           chrome: "57",

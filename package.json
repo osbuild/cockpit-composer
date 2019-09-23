@@ -7,8 +7,8 @@
     "npm": ">=5.0"
   },
   "dependencies": {
-    "@babel/polyfill": "7.6.0",
     "bootstrap": "3.4.1",
+    "core-js": "3.2.1",
     "fastclick": "1.0.6",
     "history": "3.3.0",
     "jquery": "3.4.1",
@@ -20,6 +20,7 @@
     "react-redux": "5.1.1",
     "redux": "3.7.2",
     "redux-saga": "0.15.6",
+    "regenerator-runtime": "0.13.3",
     "reselect": "3.0.1",
     "shortid": "2.2.15",
     "whatwg-fetch": "1.1.1"
