@@ -16,7 +16,7 @@ class Blueprint {
   }
 
   get blueprintDescriptionText() {
-    const selector = `${this.containerSelector} .list-group-item-text`;
+    const selector = `${this.containerSelector} [data-description]`;
     browser.waitUntil(
       () => browser.isVisible(selector),
       timeout,
@@ -26,7 +26,7 @@ class Blueprint {
   }
 
   get blueprintNameList() {
-    const selector = ".list-group-item-heading";
+    const selector = "[data-blueprint]";
     browser.waitUntil(
       () => browser.isVisible(selector),
       timeout,
@@ -56,7 +56,7 @@ class Blueprint {
   }
 
   get moreDropdownMenu() {
-    const selector = `${this.containerSelector} [id="dropdownKebabRight9"]`;
+    const selector = `${this.containerSelector} [id="${this.name}-kebab"]`;
     // : button
     browser.waitUntil(
       () => browser.isVisible(selector),
