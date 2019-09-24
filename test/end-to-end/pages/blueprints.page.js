@@ -5,7 +5,7 @@ class BlueprintsPage {
   }
 
   get blueprintListView() {
-    return ".list-view-pf-view .list-group-item";
+    return ".pf-c-data-list .pf-c-data-list__item";
   }
 
   loading() {

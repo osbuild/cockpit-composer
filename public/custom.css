@@ -646,6 +646,37 @@ body {
   color: var(--pf-global--Color--200);
 }
 
+/* PF4 DataList customizations */
+
+.cc-c-data-list__item-icon {
+  flex: 0 0 1rem;
+  margin-right: var(--pf-c-data-list__item-control--MarginRight);
+  padding-top: var(--pf-c-data-list__cell--PaddingTop);
+} /* sets size and spacing for custom icon column */
+
+.pf-c-data-list__item-action.cc-m-nowrap {
+    flex-wrap: nowrap;
+} /* prevents actions from wrapping */
+
+@media screen and (max-width: 62rem) {
+  .cc-m-nowrap-on-lg .pf-c-data-list__item-content {
+    display: grid;
+    width: 100%;
+    grid-template-columns: auto 1fr;
+    padding-bottom: 0;
+  }
+  .cc-m-nowrap-on-lg .pf-c-data-list__cell {
+    padding-bottom: var(--pf-global--spacer--xs);
+  }
+  .cc-m-nowrap-on-lg .pf-c-data-list__cell + .pf-c-data-list__cell {
+    margin-left: 0;
+    padding-top: 0;
+  }
+  .cc-m-nowrap-on-lg .pf-c-data-list__cell:last-child {
+    padding-bottom: var(--pf-global--spacer--md);
+  }
+} /* changes with media query for when contents start to wrap */
+
 @font-face {
   font-family: "RedHatDisplay";
   src: url("../../static/fonts/RedHatDisplay-Regular.woff2");

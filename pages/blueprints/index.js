@@ -3,7 +3,7 @@ import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-i
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Layout from "../../components/Layout/Layout";
-import BlueprintListView from "../../components/ListView/BlueprintListView";
+import BlueprintsDataList from "../../components/ListView/BlueprintsDataList";
 import CreateBlueprint from "../../components/Modal/CreateBlueprint";
 import EmptyState from "../../components/EmptyState/EmptyState";
 import EmptyStateInactive from "../../components/EmptyState/EmptyStateInactive";
@@ -106,10 +106,11 @@ class BlueprintsPage extends React.Component {
               />
             ))) ||
             ((blueprints.length > 0 && (
-              <BlueprintListView
+              <BlueprintsDataList
                 blueprints={blueprints.map(blueprint => blueprint.present)}
                 setNotifications={this.setNotifications}
                 layout={this.layout}
+                ariaLabel={formatMessage(messages.blueprintsTitle)}
               />
             )) ||
               ((blueprintFilters.filterValues.length === 0 && (
