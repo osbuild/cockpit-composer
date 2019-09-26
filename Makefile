@@ -29,15 +29,15 @@ npm-install:
 	npm install
 
 install: all
-	mkdir -p /usr/share/cockpit/welder
-	cp -r public/* /usr/share/cockpit/welder
+	mkdir -p /usr/share/cockpit/composer
+	cp -r public/* /usr/share/cockpit/composer
 	mkdir -p /usr/share/metainfo/
 	cp io.weldr.cockpit-composer.metainfo.xml /usr/share/metainfo/
 
 # this requires a built source tree and avoids having to install anything system-wide
 devel-install:
 	mkdir -p ~/.local/share/cockpit
-	ln -s `pwd`/public/dist ~/.local/share/cockpit/welder
+	ln -s `pwd`/public/dist ~/.local/share/cockpit/composer
 
 dist-gzip: NODE_ENV=production
 dist-gzip: all $(PACKAGE_NAME).spec
@@ -86,7 +86,7 @@ buildrpm_image:
 	sudo docker build -f Dockerfile.buildrpm --cache-from welder/buildrpm:latest -t welder/buildrpm:latest .
 
 test_rpmbuild: buildrpm_image
-	sudo docker run --rm --name buildrpm -v `pwd`:/welder welder/buildrpm:latest make rpm srpm
+	sudo docker run --rm --name buildrpm -v `pwd`:/composer welder/buildrpm:latest make rpm srpm
 
 local-clean:
 	rm -rf test/images tmp $(PACKAGE_NAME).spec $(PACKAGE_NAME)*.rpm $(PACKAGE_NAME)*.tar.gz test/end-to-end/wdio_report

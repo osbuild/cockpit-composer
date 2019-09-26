@@ -24,8 +24,8 @@ the cloud. It integrates into Cockpit as a frontend for Lorax Composer.
 # Nothing to build
 
 %install
-mkdir -p %{buildroot}/%{_datadir}/cockpit/welder
-cp -a public/dist/* %{buildroot}/%{_datadir}/cockpit/welder
+mkdir -p %{buildroot}/%{_datadir}/cockpit/composer
+cp -a public/dist/* %{buildroot}/%{_datadir}/cockpit/composer
 mkdir -p %{buildroot}/%{_datadir}/metainfo/
 appstream-util validate-relax --nonet io.weldr.cockpit-composer.metainfo.xml
 cp -a io.weldr.cockpit-composer.metainfo.xml %{buildroot}/%{_datadir}/metainfo/
@@ -33,7 +33,7 @@ cp -a io.weldr.cockpit-composer.metainfo.xml %{buildroot}/%{_datadir}/metainfo/
 %files
 %doc README.md
 %license LICENSE.txt
-%{_datadir}/cockpit/welder
+%{_datadir}/cockpit/composer
 %{_datadir}/metainfo/*
 
 %changelog

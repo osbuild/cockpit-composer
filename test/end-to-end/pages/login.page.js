@@ -57,7 +57,7 @@ class LoginPage {
 
   // Image Builder iframe
   get imageBuilderIframe() {
-    const selector = 'iframe[name="cockpit1:localhost/welder"]';
+    const selector = 'iframe[name="cockpit1:localhost/composer"]';
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,

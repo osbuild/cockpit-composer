@@ -75,13 +75,13 @@ Rules configuration can be found in the `package.json` file.
 It's easy to set up your local Linux machine for rapid development of Cockpit Composer's JavaScript code. Run this command from your top level Cockpit Composer checkout directory, and make sure to run it as the same user that you'll use to log into Cockpit Composer below.
 
     $ mkdir -p ~/.local/share/cockpit
-    $ ln -s $(pwd)/public ~/.local/share/cockpit/welder
+    $ ln -s $(pwd)/public ~/.local/share/cockpit/composer
 
 This will cause cockpit to read JavaScript and HTML files directly from the built package output directory instead of using the installed Cockpit UI files.
 
 Now you can log into Cockpit Composer on your local Linux machine at the following address. Use the same user and password that you used to log into your Linux desktop.
 
-https://localhost:9090/welder
+https://localhost:9090/composer
 
 After every change to your sources, run `make` to update all the webpacks, and reload cockpit in your browser.
 

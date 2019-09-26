@@ -13,5 +13,5 @@
     </p>
   </description>
   <extends>org.cockpit_project.cockpit</extends>
-  <launchable type="cockpit-manifest">welder</launchable>
+  <launchable type="cockpit-manifest">composer</launchable>
 </component>
