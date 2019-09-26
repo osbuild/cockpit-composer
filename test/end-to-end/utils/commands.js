@@ -11,7 +11,7 @@ const ToastNotificationPage = require("../pages/ToastNotification.page");
 
 module.exports = {
   login: function() {
-    browser.url("/welder");
+    browser.url("/composer");
     loginPage.loadingCockpitLoginPage();
     loginPage.usernameBox.setValue(loginPage.username);
     loginPage.passwordBox.setValue(loginPage.password);

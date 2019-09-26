@@ -6,5 +6,5 @@ LABEL maintainer="Xiaofeng Wang" \
 
 RUN dnf install -y make cmake rpm-build which gnupg tar xz curl jq nodejs python gcc gcc-c++ libappstream-glib && dnf clean all
 
-WORKDIR /welder
+WORKDIR /composer
 CMD ["make", "rpm", "srpm"]
