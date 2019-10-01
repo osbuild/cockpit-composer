@@ -282,7 +282,6 @@ class BlueprintPage extends React.Component {
 
   render() {
     if (this.props.blueprint.components === undefined) {
-      this.props.fetchingBlueprintContents(this.props.route.params.blueprint.replace(/\s/g, "-"));
       return <div />;
     }
     const {
