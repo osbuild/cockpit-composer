@@ -106,7 +106,7 @@ vm: $(VM_IMAGE)
 
 # run the end to end test
 check: $(VM_IMAGE)
-	PYTHONPATH=`pwd`/bots/machine test/check-application -v -b $(BROWSER) -C 2 -M 2048 $(TEST_OS)
+	PYTHONPATH=`pwd`/bots/machine test/check-application -v -b $(BROWSER) -C 2 $(TEST_OS)
 
 # debug end to end test
 debug-check:

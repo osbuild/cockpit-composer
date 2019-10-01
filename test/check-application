@@ -67,7 +67,7 @@ def run_e2e(verbose, image, browser, cpus, memory, sit):
     if 'edge' in browser:
         windows = testvm.VirtMachine(image='windows-10', verbose=verbose,
                                      networking=network.host(),
-                                     memory_mb=4096, cpus=4)
+                                     memory_mb=6144, cpus=4)
         # wdio.conf.js needs key word MicrosoftEdge for edge browser
         browser = 'MicrosoftEdge'
     else:
@@ -177,7 +177,7 @@ def main():
     parser = argparse.ArgumentParser(description='Run end to end test')
     parser.add_argument('-v', '--verbose', action='store_true',
                         help='Display verbose details')
-    parser.add_argument('-M', '--memory', type=int, default=1024,
+    parser.add_argument('-M', '--memory', type=int, default=3072,
                         help='Memory (in MiB) of the target machine')
     parser.add_argument('-C', '--cpus', type=int, default=1,
                         help='Number of cpus in the target machine')
