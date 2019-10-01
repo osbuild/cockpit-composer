@@ -372,7 +372,6 @@ class EditBlueprintPage extends React.Component {
 
   render() {
     if (this.props.blueprint.id === undefined) {
-      this.props.fetchingBlueprintContents(this.props.route.params.blueprint.replace(/\s/g, "-"));
       return <div />;
     }
     const blueprintDisplayName = this.props.route.params.blueprint;
