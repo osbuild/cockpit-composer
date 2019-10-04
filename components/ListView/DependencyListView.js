@@ -4,9 +4,7 @@ import PropTypes from "prop-types";
 import ListView from "./ListView";
 import ListItemComponents from "./ListItemComponents";
 
-class DependencyListView extends React.Component {
-  componentWillMount() {}
-
+class DependencyListView extends React.PureComponent {
   render() {
     return (
       <div>
@@ -21,7 +19,6 @@ class DependencyListView extends React.Component {
         <ListView className={this.props.className} stacked>
           {this.props.listItems.map(listItem => (
             <ListItemComponents
-              listItemParent={this.props.className}
               isDependency
               listItem={listItem}
               key={listItem.name}

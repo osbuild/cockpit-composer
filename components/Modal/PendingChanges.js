@@ -39,11 +39,8 @@ class PendingChanges extends React.Component {
     this.handleCommitChanges = this.handleCommitChanges.bind(this);
   }
 
-  componentWillMount() {
-    this.setState({ comment: this.props.blueprint.comment });
-  }
-
   componentDidMount() {
+    this.setState({ comment: this.props.blueprint.comment });
     $(this.modal).modal("show");
     $(this.modal).on("hidden.bs.modal", this.props.handleHideModal);
   }

@@ -54,7 +54,7 @@ class EditDescriptionModal extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.setState({ description: this.props.description });
   }
 

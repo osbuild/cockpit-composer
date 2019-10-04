@@ -96,7 +96,9 @@ class EditBlueprintPage extends React.Component {
     this.handleUndo = this.handleUndo.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
+    const { formatMessage } = this.props.intl;
+    document.title = formatMessage(messages.blueprintTitle);
     // get blueprint, get inputs; then update inputs
     if (this.props.blueprint.components === undefined) {
       this.props.fetchingBlueprintContents(this.props.route.params.blueprint.replace(/\s/g, "-"));
@@ -104,11 +106,6 @@ class EditBlueprintPage extends React.Component {
     } else {
       this.props.fetchingInputs(this.props.inputs.inputFilters, 0, 50);
     }
-  }
-
-  componentDidMount() {
-    const { formatMessage } = this.props.intl;
-    document.title = formatMessage(messages.blueprintTitle);
   }
 
   componentWillUnmount() {

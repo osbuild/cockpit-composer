@@ -14,7 +14,7 @@ class FilterInput extends React.Component {
     this.selectFilterType = this.selectFilterType.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.setState({ currentFilterId: this.props.filters.defaultFilterType });
   }
 
@@ -46,23 +46,25 @@ class FilterInput extends React.Component {
         <div className="filter-pf-fields">
           <div className="form-group toolbar-pf-filter">
             <div className="input-group">
-              {filters.filterTypes.length > 1 && (
+              {currentFilterType !== undefined && filters.filterTypes.length > 1 && (
                 <Filter.TypeSelector
                   filterTypes={filters.filterTypes}
                   currentFilterType={currentFilterType}
                   onFilterTypeSelected={this.selectFilterType}
                 />
               )}
-              <input
-                onChange={this.handleChangeFilter}
-                disabled={emptyState}
-                type="text"
-                className="form-control"
-                id="filter-blueprints"
-                value={this.state.filterValue}
-                placeholder={`${currentFilterType.placeholder}...`}
-                aria-label={currentFilterType.placeholder}
-              />
+              {currentFilterType !== undefined && (
+                <input
+                  onChange={this.handleChangeFilter}
+                  disabled={emptyState}
+                  type="text"
+                  className="form-control"
+                  id="filter-blueprints"
+                  value={this.state.filterValue}
+                  placeholder={`${currentFilterType.placeholder}...`}
+                  aria-label={currentFilterType.placeholder}
+                />
+              )}
             </div>
           </div>
         </div>
