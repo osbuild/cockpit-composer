@@ -26,17 +26,20 @@ class Pagination extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.setState({ pageValue: this.props.currentPage });
   }
 
-  componentWillReceiveProps(newProps) {
-    this.setState({ pageValue: newProps.currentPage });
-    // If the input has focus when the page value is updated, then select the
-    // text
+  componentDidUpdate() {
     if (this.paginationPage === document.activeElement) {
       this.paginationPage.select();
     }
+  }
+
+  static getDerivedStateFromProps(newProps, prevState) {
+    if (prevState.pageValue !== newProps.currentPage) {
+      return { pageValue: newProps.currentPage };
+    } else return null;
   }
 
   handleBlur() {

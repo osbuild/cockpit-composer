@@ -33,7 +33,7 @@ class CreateImageModal extends React.Component {
     this.setNotifications = this.setNotifications.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     if (this.props.imageTypes.length === 0) {
       this.props.fetchingComposeTypes();
     }

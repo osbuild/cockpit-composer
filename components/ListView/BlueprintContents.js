@@ -83,7 +83,6 @@ const BlueprintContents = props => {
                   <ListView className="cmpsr-blueprint__components" stacked>
                     {components.map(listItem => (
                       <ListItemComponents
-                        listItemParent="cmpsr-blueprint__components"
                         listItem={listItem}
                         key={listItem.name}
                         handleRemoveComponent={handleRemoveComponent}

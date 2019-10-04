@@ -9,7 +9,7 @@ class Notification extends React.PureComponent {
     this.timeouts = [];
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.setFade(this.props.notification.fade);
     if (this.props.notification.type === "process") {
       this.timeouts.push(
@@ -24,8 +24,8 @@ class Notification extends React.PureComponent {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setFade(nextProps.notification.fade);
+  componentDidUpdate() {
+    this.setFade(this.props.notification.fade);
   }
 
   componentWillUnmount() {

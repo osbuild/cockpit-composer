@@ -10,7 +10,7 @@ class Layout extends React.Component {
     this.setNotifications = this.setNotifications.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.setNotifications();
   }
 

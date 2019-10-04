@@ -142,7 +142,10 @@ class BlueprintPage extends React.Component {
     this.downloadUrl = this.downloadUrl.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
+    const { formatMessage } = this.props.intl;
+    document.title = formatMessage(messages.blueprint);
+
     if (this.props.blueprint.components === undefined) {
       this.props.fetchingBlueprintContents(this.props.route.params.blueprint.replace(/\s/g, "-"));
     }
@@ -151,11 +154,6 @@ class BlueprintPage extends React.Component {
     }
     this.props.setEditDescriptionVisible(false);
     this.props.setEditHostnameVisible(false);
-  }
-
-  componentDidMount() {
-    const { formatMessage } = this.props.intl;
-    document.title = formatMessage(messages.blueprint);
   }
 
   componentWillUnmount() {

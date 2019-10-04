@@ -48,16 +48,14 @@ class BlueprintsPage extends React.Component {
     this.setNotifications = this.setNotifications.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
+    const { formatMessage } = this.props.intl;
+    document.title = formatMessage(messages.blueprintsTitle);
+
     if (this.props.blueprintsLoading === true) {
       this.props.fetchingBlueprints();
       this.props.fetchingModalManageSourcesContents();
     }
-  }
-
-  componentDidMount() {
-    const { formatMessage } = this.props.intl;
-    document.title = formatMessage(messages.blueprintsTitle);
   }
 
   setNotifications() {

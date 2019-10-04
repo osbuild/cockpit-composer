@@ -10,22 +10,9 @@ class ListItemComponents extends React.Component {
     this.state = { expanded: false };
   }
 
-  componentWillReceiveProps(newProps) {
-    // compare old value to new value, and if this component is getting new data,
-    // then get the current expand state of the new value as it is in the old dom
-    // and apply that expand state to this component
-    const olditem = this.props.listItem.name;
-    const newitem = newProps.listItem.name;
-    const parent = this.props.listItemParent;
-    if (olditem !== newitem) {
-      if ($(`.${parent} [data-component="${newitem.name}"]`).hasClass("active")) {
-        this.setState({ expanded: true });
-      } else {
-        this.setState({ expanded: false });
-      }
-    }
-    if (this.state.expanded === true && newProps.listItem.dependencies === undefined) {
-      this.props.fetchDetails(newProps.listItem);
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.expanded === true && this.props.listItem.dependencies === undefined) {
+      this.props.fetchDetails(this.props.listItem);
     }
   }
 
@@ -169,7 +156,6 @@ ListItemComponents.propTypes = {
     homepage: PropTypes.string,
     dependencies: PropTypes.arrayOf(PropTypes.object)
   }),
-  listItemParent: PropTypes.string,
   componentDetailsParent: PropTypes.shape({
     active: PropTypes.bool,
     group_type: PropTypes.string,
@@ -191,7 +177,6 @@ ListItemComponents.propTypes = {
 
 ListItemComponents.defaultProps = {
   listItem: {},
-  listItemParent: "",
   componentDetailsParent: {},
   handleComponentDetails: function() {},
   handleRemoveComponent: function() {},
