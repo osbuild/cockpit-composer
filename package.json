@@ -17,7 +17,7 @@
     "jquery": "3.4.1",
     "patternfly-react": "1.19.1",
     "prop-types": "15.7.2",
-    "react": "16.9.0",
+    "react": "16.10.2",
     "react-dom": "16.10.1",
     "react-intl": "2.9.0",
     "react-redux": "5.1.1",
