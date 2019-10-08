@@ -1,39 +1,34 @@
 import React from "react";
-import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
-import ListView from "./ListView";
-import ListItemComponents from "./ListItemComponents";
+import { DataList } from "@patternfly/react-core";
+import ComponentsDataListItem from "./ComponentsDataListItem";
 
-class DependencyListView extends React.PureComponent {
-  render() {
-    return (
-      <div>
-        <div className="alert alert-warning alert-dismissable hidden">
-          <span className="pficon pficon-warning-triangle-o" />
-          <FormattedMessage
-            defaultMessage="One or more dependencies have multiple variations that could be used.
-                            A default variation was automatically selected.
-                            Click a flagged dependency to see other options available."
-          />
-        </div>
-        <ListView className={this.props.className} stacked>
-          {this.props.listItems.map(listItem => (
-            <ListItemComponents
-              isDependency
-              listItem={listItem}
-              key={listItem.name}
-              noEditComponent={this.props.noEditComponent}
-              handleRemoveComponent={this.props.handleRemoveComponent}
-              handleComponentDetails={this.props.handleComponentDetails}
-              componentDetailsParent={this.props.componentDetailsParent}
-              fetchDetails={this.props.fetchDetails}
-            />
-          ))}
-        </ListView>
-      </div>
-    );
-  }
-}
+const DependencyListView = props => {
+  const {
+    ariaLabel,
+    listItems,
+    handleRemoveComponent,
+    handleComponentDetails,
+    noEditComponent,
+    fetchDetails,
+    componentDetailsParent
+  } = props;
+  return (
+    <DataList aria-label={ariaLabel} className="cc-m-nowrap-on-xl">
+      {listItems.map(listItem => (
+        <ComponentsDataListItem
+          listItem={listItem}
+          key={listItem.name}
+          handleRemoveComponent={handleRemoveComponent}
+          handleComponentDetails={handleComponentDetails}
+          noEditComponent={noEditComponent}
+          fetchDetails={fetchDetails}
+          componentDetailsParent={componentDetailsParent}
+        />
+      ))}
+    </DataList>
+  );
+};
 
 DependencyListView.propTypes = {
   listItems: PropTypes.arrayOf(PropTypes.object),
@@ -53,8 +48,8 @@ DependencyListView.propTypes = {
     version: PropTypes.string,
     versionSelected: PropTypes.string
   }),
-  className: PropTypes.string,
-  fetchDetails: PropTypes.func
+  fetchDetails: PropTypes.func,
+  ariaLabel: PropTypes.string
 };
 
 DependencyListView.defaultProps = {
@@ -63,8 +58,8 @@ DependencyListView.defaultProps = {
   handleComponentDetails: function() {},
   handleRemoveComponent: function() {},
   componentDetailsParent: {},
-  className: "",
-  fetchDetails: function() {}
+  fetchDetails: function() {},
+  ariaLabel: ""
 };
 
 export default DependencyListView;

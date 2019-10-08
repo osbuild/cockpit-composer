@@ -677,6 +677,57 @@ body {
   }
 } /* changes with media query for when contents start to wrap */
 
+@media screen and (max-width: 75rem) {
+  .cc-m-nowrap-on-xl .pf-c-data-list__item-content {
+    display: grid;
+    width: 100%;
+    grid-template-columns: auto 1fr;
+    padding-bottom: 0;
+  }
+  .cc-m-nowrap-on-xl .pf-c-data-list__cell {
+    padding-bottom: var(--pf-global--spacer--xs);
+  }
+  .cc-m-nowrap-on-xl .pf-c-data-list__cell + .pf-c-data-list__cell {
+    margin-left: 0;
+    padding-top: 0;
+  }
+  .cc-m-nowrap-on-xl .pf-c-data-list__cell:last-child {
+    padding-bottom: var(--pf-global--spacer--md);
+  }
+} /* changes with media query for when contents start to wrap */
+
+/* customizations for Components list view */
+/* Defines different grid areas when list item contents have display:grid (up to lg breakpoint) */
+/* Defines different flex properties when list item contents have display:flex */
+.cc-component .pf-c-data-list__item-content {
+  grid-template-areas:
+    "name name" 
+    "version release";
+  grid-template-columns: minmax(auto,50%) 1fr;
+  flex-wrap: nowrap;
+}
+.cc-component .pf-c-data-list__cell:not(:last-child) {
+  margin-right: var(--pf-global--spacer--md);
+}
+.cc-component__name.pf-c-data-list__cell {
+  grid-area: name;
+  flex: 0 0 calc(55% - var(--pf-c-data-list__cell-cell--MarginRight));
+}
+.cc-component__version.pf-c-data-list__cell {
+  grid-area: version;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 0 0 calc(15% - var(--pf-c-data-list__cell-cell--MarginRight));
+}
+.cc-component__release.pf-c-data-list__cell {
+  grid-area: release;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 0 0 30%;
+}
+
 @font-face {
   font-family: "RedHatDisplay";
   src: url("../../static/fonts/RedHatDisplay-Regular.woff2");
