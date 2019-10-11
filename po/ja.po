@@ -11,8 +11,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "MIME-Version: 1.0\n"
 "X-Generator: Zanata 4.6.2\n"
-"PO-Revision-Date: 2019-07-19 12:46+0000\n"
-"Last-Translator: Hiroshi Yamanaka <hyamanak@redhat.com>\n"
+"PO-Revision-Date: 2019-10-07 10:44+0000\n"
+"Last-Translator: Keiko Moriguchi <kemorigu@redhat.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
 
@@ -283,10 +283,14 @@ msgstr "コンポーネントを閲覧または検索した後、ブループリ
 #: build/messages/components/Modal/CreateImage.json
 #: build/messages/components/Modal/DeleteBlueprint.json
 #: build/messages/components/Modal/DeleteImage.json
+#: build/messages/components/Modal/EditDescription.json
 #: build/messages/components/Modal/ManageSources.json
 #: build/messages/components/Modal/StopBuild.json
 #: build/messages/components/Modal/UserAccount.json
 #. [components.Form.cancel]
+#. defaultMessage is:
+#. Cancel
+#. [components.Modal.3528672691]
 #. defaultMessage is:
 #. Cancel
 #. [components.Modal.3528672691]
@@ -526,6 +530,13 @@ msgstr "現在のアイテム"
 msgid "Current Page"
 msgstr "現在のページ"
 
+#: build/messages/pages/blueprint/index.json
+#. [pages.blueprint.customizationsTitle]
+#. defaultMessage is:
+#. Customizations
+msgid "Customizations"
+msgstr "カスタマイズ"
+
 #: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.3751098589]
 #. defaultMessage is:
@@ -581,7 +592,11 @@ msgid "Dependencies"
 msgstr "依存性"
 
 #: build/messages/components/Modal/CreateBlueprint.json
+#: build/messages/components/Modal/EditDescription.json
 #: build/messages/pages/blueprint/index.json
+#. [components.Modal.3374163063]
+#. defaultMessage is:
+#. Description
 #. [components.Modal.3374163063]
 #. defaultMessage is:
 #. Description
@@ -605,20 +620,27 @@ msgstr "変更の破棄"
 msgid "Download"
 msgstr "ダウンロード"
 
-#: build/messages/components/ListView/BlueprintListView.json
+#: build/messages/components/Modal/EditDescription.json
+#. [components.Modal.1237611265]
+#. defaultMessage is:
+#. Edit Description
+msgid "Edit Description"
+msgstr "説明の編集"
+
+#: build/messages/components/ListView/BlueprintsDataList.json
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
-#. [components.ListView.1602740985]
+#. [components.ListView.3855913088]
 #. defaultMessage is:
-#. Edit Blueprint
-#. [pages.blueprint.1602740985]
+#. Edit Packages
+#. [pages.blueprint.3855913088]
 #. defaultMessage is:
-#. Edit Blueprint
-#. [pages.blueprintEdit.1602740985]
+#. Edit Packages
+#. [pages.blueprintEdit.3855913088]
 #. defaultMessage is:
-#. Edit Blueprint
-msgid "Edit Blueprint"
-msgstr "ブループリントの編集"
+#. Edit Packages
+msgid "Edit Packages"
+msgstr "パッケージの編集"
 
 #: build/messages/components/ListView/SourcesListItem.json
 #: build/messages/components/Modal/ManageSources.json
@@ -642,7 +664,11 @@ msgstr "ソースの編集"
 msgid "Edit User Account"
 msgstr "ユーザーアカウントの編集"
 
+#: build/messages/components/Modal/EditDescription.json
 #: build/messages/pages/blueprint/index.json
+#. [components.Modal.2044423701]
+#. defaultMessage is:
+#. Edit description
 #. [pages.blueprint.descriptionButtonLabel]
 #. defaultMessage is:
 #. Edit description
@@ -927,6 +953,13 @@ msgstr "選択されたコンポーネントへの変更点のみを表示"
 msgid "Oups, something went wrong"
 msgstr "エラー。問題が発生しました。"
 
+#: build/messages/pages/blueprint/index.json
+#. [pages.blueprint.packagesTitle]
+#. defaultMessage is:
+#. Packages
+msgid "Packages"
+msgstr "パッケージ"
+
 #: build/messages/pages/error/index.json
 #. [pages.error.pageNotFoundMessage]
 #. defaultMessage is:
@@ -1091,7 +1124,11 @@ msgid "SSH key"
 msgstr "SSH キー"
 
 #: build/messages/components/Form/TextInlineEdit.json
+#: build/messages/components/Modal/EditDescription.json
 #. [components.Form.save]
+#. defaultMessage is:
+#. Save
+#. [components.Modal.1115770113]
 #. defaultMessage is:
 #. Save
 msgid "Save"
@@ -1130,11 +1167,7 @@ msgid "Select one"
 msgstr "1 つ選択"
 
 #: build/messages/components/ListView/BlueprintContents.json
-#: build/messages/pages/blueprint/index.json
 #. [components.ListView.selectedTabTitle]
-#. defaultMessage is:
-#. Selected Components
-#. [pages.blueprint.selectedComponentsTitle]
 #. defaultMessage is:
 #. Selected Components
 msgid "Selected Components"
@@ -1547,6 +1580,13 @@ msgstr "バージョン {version}"
 msgid "View"
 msgstr "表示"
 
+#: build/messages/components/ListView/BlueprintsDataList.json
+#. [components.ListView.actions]
+#. defaultMessage is:
+#. actions
+msgid "actions"
+msgstr "動作"
+
 #: build/messages/components/Modal/PendingChanges.json
 #. [components.Modal.2755325844]
 #. defaultMessage is:
@@ -1630,11 +1670,11 @@ msgid "{blueprint} Image creation failed."
 msgstr "{blueprint} イメージの作成に失敗しました。"
 
 #: build/messages/data/NotificationsApi.json
-#. [data.705169148]
+#. [data.3040107790]
 #. defaultMessage is:
-#. {blueprint} Image creation has been added to the queue.
-msgid "{blueprint} Image creation has been added to the queue."
-msgstr "{blueprint} イメージの作成がキューに追加されました。"
+#. {blueprint} Image creation has been added to the {queue}.
+msgid "{blueprint} Image creation has been added to the {queue}."
+msgstr "{blueprint} イメージの作成が {queue} に追加されました。"
 
 #: build/messages/data/NotificationsApi.json
 #. [data.1726548071]
