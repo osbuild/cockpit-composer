@@ -10,8 +10,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "MIME-Version: 1.0\n"
 "X-Generator: Zanata 4.6.2\n"
-"PO-Revision-Date: 2019-07-16 07:50+0000\n"
-"Last-Translator: Lars Karlitski <lars@karlitski.net>\n"
+"PO-Revision-Date: 2019-10-08 08:44+0000\n"
+"Last-Translator: corina roe <croe@redhat.com>\n"
 "Language-Team: French\n"
 "Language: fr\n"
 
@@ -293,10 +293,14 @@ msgstr "Naviguez ou cherchez les composants, puis ajoutez les au modèle."
 #: build/messages/components/Modal/CreateImage.json
 #: build/messages/components/Modal/DeleteBlueprint.json
 #: build/messages/components/Modal/DeleteImage.json
+#: build/messages/components/Modal/EditDescription.json
 #: build/messages/components/Modal/ManageSources.json
 #: build/messages/components/Modal/StopBuild.json
 #: build/messages/components/Modal/UserAccount.json
 #. [components.Form.cancel]
+#. defaultMessage is:
+#. Cancel
+#. [components.Modal.3528672691]
 #. defaultMessage is:
 #. Cancel
 #. [components.Modal.3528672691]
@@ -542,6 +546,13 @@ msgstr "Éléments actuels"
 msgid "Current Page"
 msgstr "Page actuelle"
 
+#: build/messages/pages/blueprint/index.json
+#. [pages.blueprint.customizationsTitle]
+#. defaultMessage is:
+#. Customizations
+msgid "Customizations"
+msgstr "Personnalisations"
+
 #: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.3751098589]
 #. defaultMessage is:
@@ -597,7 +608,11 @@ msgid "Dependencies"
 msgstr "Dépendances"
 
 #: build/messages/components/Modal/CreateBlueprint.json
+#: build/messages/components/Modal/EditDescription.json
 #: build/messages/pages/blueprint/index.json
+#. [components.Modal.3374163063]
+#. defaultMessage is:
+#. Description
 #. [components.Modal.3374163063]
 #. defaultMessage is:
 #. Description
@@ -621,20 +636,27 @@ msgstr "Abandonner les modifications"
 msgid "Download"
 msgstr "Télécharger"
 
-#: build/messages/components/ListView/BlueprintListView.json
+#: build/messages/components/Modal/EditDescription.json
+#. [components.Modal.1237611265]
+#. defaultMessage is:
+#. Edit Description
+msgid "Edit Description"
+msgstr "Modifier la description"
+
+#: build/messages/components/ListView/BlueprintsDataList.json
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
-#. [components.ListView.1602740985]
+#. [components.ListView.3855913088]
 #. defaultMessage is:
-#. Edit Blueprint
-#. [pages.blueprint.1602740985]
+#. Edit Packages
+#. [pages.blueprint.3855913088]
 #. defaultMessage is:
-#. Edit Blueprint
-#. [pages.blueprintEdit.1602740985]
+#. Edit Packages
+#. [pages.blueprintEdit.3855913088]
 #. defaultMessage is:
-#. Edit Blueprint
-msgid "Edit Blueprint"
-msgstr "Modifier le modèle"
+#. Edit Packages
+msgid "Edit Packages"
+msgstr "Modifier les paquets"
 
 #: build/messages/components/ListView/SourcesListItem.json
 #: build/messages/components/Modal/ManageSources.json
@@ -658,7 +680,11 @@ msgstr "Modifier la source"
 msgid "Edit User Account"
 msgstr "Modifier un compte d'utilisateur"
 
+#: build/messages/components/Modal/EditDescription.json
 #: build/messages/pages/blueprint/index.json
+#. [components.Modal.2044423701]
+#. defaultMessage is:
+#. Edit description
 #. [pages.blueprint.descriptionButtonLabel]
 #. defaultMessage is:
 #. Edit description
@@ -947,6 +973,13 @@ msgstr "Seuls les changements apportés aux composants sélectionnés sont affic
 msgid "Oups, something went wrong"
 msgstr "Zut, quelque chose ne va pas"
 
+#: build/messages/pages/blueprint/index.json
+#. [pages.blueprint.packagesTitle]
+#. defaultMessage is:
+#. Packages
+msgid "Packages"
+msgstr "Paquets"
+
 # ctx::sourcefile::404 error page
 #: build/messages/pages/error/index.json
 #. [pages.error.pageNotFoundMessage]
@@ -1113,7 +1146,11 @@ msgid "SSH key"
 msgstr "Clé SSH"
 
 #: build/messages/components/Form/TextInlineEdit.json
+#: build/messages/components/Modal/EditDescription.json
 #. [components.Form.save]
+#. defaultMessage is:
+#. Save
+#. [components.Modal.1115770113]
 #. defaultMessage is:
 #. Save
 msgid "Save"
@@ -1152,11 +1189,7 @@ msgid "Select one"
 msgstr "En sélectionner un"
 
 #: build/messages/components/ListView/BlueprintContents.json
-#: build/messages/pages/blueprint/index.json
 #. [components.ListView.selectedTabTitle]
-#. defaultMessage is:
-#. Selected Components
-#. [pages.blueprint.selectedComponentsTitle]
 #. defaultMessage is:
 #. Selected Components
 msgid "Selected Components"
@@ -1582,6 +1615,13 @@ msgstr "Version  {version}"
 msgid "View"
 msgstr "Affichage"
 
+#: build/messages/components/ListView/BlueprintsDataList.json
+#. [components.ListView.actions]
+#. defaultMessage is:
+#. actions
+msgid "actions"
+msgstr "Actions"
+
 #: build/messages/components/Modal/PendingChanges.json
 #. [components.Modal.2755325844]
 #. defaultMessage is:
@@ -1665,11 +1705,11 @@ msgid "{blueprint} Image creation failed."
 msgstr "{version} La création de l'image a échoué."
 
 #: build/messages/data/NotificationsApi.json
-#. [data.705169148]
+#. [data.3040107790]
 #. defaultMessage is:
-#. {blueprint} Image creation has been added to the queue.
-msgid "{blueprint} Image creation has been added to the queue."
-msgstr "{version} La création de l'image a été ajoutée à la file d'attente."
+#. {blueprint} Image creation has been added to the {queue}.
+msgid "{blueprint} Image creation has been added to the {queue}."
+msgstr "{version} La création de l'image a été ajoutée à la {file d'attente}."
 
 #: build/messages/data/NotificationsApi.json
 #. [data.1726548071]
