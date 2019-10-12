@@ -20,7 +20,7 @@
     "react": "16.10.2",
     "react-dom": "16.10.1",
     "react-intl": "2.9.0",
-    "react-redux": "5.1.1",
+    "react-redux": "5.1.2",
     "redux": "3.7.2",
     "redux-saga": "0.15.6",
     "regenerator-runtime": "0.13.3",
