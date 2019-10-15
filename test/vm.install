@@ -15,7 +15,7 @@ if type firewall-cmd >/dev/null 2>&1; then
 fi
 
 # Install nodejs if it does not exist
-which node > /dev/null 2>&1 || yum install -y nodejs
+command -v node > /dev/null 2>&1 || $(command -v dnf || command -v yum) install -y nodejs
 
 # disable https in cockpit and use http instead
 printf "[WebService]\\nAllowUnencrypted=true\\n" > /etc/cockpit/cockpit.conf
