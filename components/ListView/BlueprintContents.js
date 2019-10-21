@@ -80,7 +80,11 @@ const BlueprintContents = props => {
                     </button>
                   </EmptyState>
                 )) || (
-                  <DataList aria-label={formatMessage(messages.selectedTabTitle)} className="cc-m-nowrap-on-xl">
+                  <DataList
+                    data-list="components"
+                    aria-label={formatMessage(messages.selectedTabTitle)}
+                    className="cc-m-nowrap-on-xl cc-components"
+                  >
                     {components.map(listItem => (
                       <ComponentsDataListItem
                         listItem={listItem}
@@ -112,7 +116,6 @@ const BlueprintContents = props => {
                 )) || (
                   <DependencyListView
                     ariaLabel={formatMessage(messages.dependenciesTabTitle)}
-                    className="cmpsr-blueprint__dependencies"
                     listItems={dependencies}
                     handleComponentDetails={handleComponentDetails}
                     noEditComponent={noEditComponent}

@@ -66,7 +66,7 @@ class DetailsComponent {
   }
 
   get depencenciesList() {
-    const selector = `${this.containerSelector} .list-pf-item`;
+    const selector = `${this.containerSelector} [data-component]`;
     browser.waitUntil(() => browser.isExisting(selector), timeout, "No dependencies loaded in component details");
     return $$(selector);
   }

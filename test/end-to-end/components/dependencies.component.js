@@ -1,7 +1,7 @@
 // "Dependencies" tab in Edit Blueprint page
 class Dependencies {
   constructor() {
-    this.containerSelector = ".cmpsr-blueprint__dependencies";
+    this.containerSelector = '[data-list="dependencies"]';
   }
 
   loading() {
@@ -11,7 +11,7 @@ class Dependencies {
   }
 
   get depencenciesList() {
-    const selector = `${this.containerSelector} .list-pf-item`;
+    const selector = `${this.containerSelector} [data-component]`;
     browser.waitUntil(() => browser.isExisting(selector), timeout, "No dependencies in Selected Component");
     return $$(selector);
   }
