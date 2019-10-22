@@ -432,13 +432,12 @@ class ManageSourcesModal extends React.Component {
                 <div className="pull-left">
                   <Spinner loading size="xs" inline />
                   <FormattedMessage defaultMessage="Saving source" />
-                  {` `}
                 </div>
               )}
               <button type="button" className="btn btn-default" onClick={e => this.handleShowForm(e, false)}>
                 {formatMessage(messages.cancel)}
               </button>
-              {` `}
+
               <button
                 type="submit"
                 className="btn btn-primary"

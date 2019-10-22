@@ -339,7 +339,7 @@ class UserAccount extends React.Component {
                               >
                                 <FormattedMessage defaultMessage="Set New Password" />
                               </button>
-                              {` `}
+
                               <button
                                 type="button"
                                 className="btn btn-default"
