@@ -449,7 +449,7 @@ class BlueprintPage extends React.Component {
                                     >
                                       <span className="pficon pficon-edit" />
                                     </button>
-                                    {` `}
+
                                     <div className="dropdown btn-group dropdown-kebab-pf">
                                       <button
                                         aria-label={`${formatMessage(messages.userKebab)} ${user.name}`}
