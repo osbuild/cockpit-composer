@@ -302,28 +302,14 @@ the "-" that would display instead of the sr-only "to" */
 .cmpsr-panel__body--sidebar {
   background-color: #fafafa;
 }
-.cmpsr-panel__body--sidebar .list-pf {
-  margin-top: 20px;
-  background-color: #fff;
+.cmpsr-panel__body--sidebar .pf-c-data-list {
+  margin: -1px 0;
 }
 .cmpsr-panel__body--sidebar .alert {
-  position: relative;
-  top: 10px;
-  margin: 0 20px;
+  margin: 10px 20px;
 }
 .label-info {
   background-color: var(--pf-global--link--Color);
-}
-
-/* Expanded list item contents (i.e. component summary) */
-.list-pf-container .list-pf {
-  max-height: 300px;
-  overflow: auto;
-}
-.list-pf-container dd {
-  overflow: hidden;
-  -o-text-overflow: ellipsis;
-     text-overflow: ellipsis;
 }
 
 /*Component details*/
@@ -422,20 +408,6 @@ the "-" that would display instead of the sr-only "to" */
   }
 }
 
-/* compacted list view */
-/* used in sidebar and expanded list items */
-.cmpsr-list-pf__compacted {
-  margin-bottom: 20px;
-}
-.cmpsr-list-pf__compacted .list-pf-item:hover {
-  background: #f5f5f5;
-}
-.cmpsr-list-pf__compacted .list-pf-container {
-  padding: 5px 10px;
-}
-.list-pf-container .cmpsr-list-pf__compacted .list-pf-container {
-  border-top-width: 0;
-}
 .list-pf-icon-bordered-dotted {
   border-style: dotted;
 }
@@ -647,6 +619,18 @@ body {
 }
 
 /* PF4 DataList customizations */
+
+.pf-c-data-list.cc-m-compact {
+  --pf-c-data-list__cell--PaddingTop: var(--pf-global--spacer--sm);
+  --pf-c-data-list__cell--PaddingBottom: var(--pf-global--spacer--sm);
+  --pf-c-data-list__item-content--PaddingBottom: var(--pf-global--spacer--sm);
+  --pf-c-data-list__item-control--MarginRight: var(--pf-global--spacer--md);
+  --pf-c-data-list__item-action--MarginLeft: var(--pf-global--spacer--sm);
+  --pf-c-data-list__item-row--PaddingRight: var(--pf-global--spacer--md);
+  --pf-c-data-list__item-row--PaddingLeft: var(--pf-global--spacer--md);
+  --pf-c-data-list__item-action--PaddingTop: var(--pf-global--spacer--sm);
+  --pf-c-data-list__item-action--PaddingBottom: var(--pf-global--spacer--sm);
+}
 
 .cc-c-data-list__item-icon {
   flex: 0 0 1rem;

@@ -61,6 +61,9 @@ import {
 } from "../../core/selectors";
 
 const messages = defineMessages({
+  listTitleAvailableComps: {
+    defaultMessage: "Available Components"
+  },
   addComponentTitle: {
     defaultMessage: "Add Blueprint Components"
   },
@@ -560,7 +563,7 @@ class EditBlueprintPage extends React.Component {
             />
           ))}
         <h3 className="cmpsr-panel__title cmpsr-panel__title--sidebar">
-          <FormattedMessage defaultMessage="Available Components" />
+          {formatMessage(messages.listTitleAvailableComps)}
         </h3>
         {(inputComponents !== undefined && (
           <div className="cmpsr-panel__body cmpsr-panel__body--sidebar">
@@ -636,6 +639,7 @@ class EditBlueprintPage extends React.Component {
                 </div>
               )}
             <ComponentInputs
+              label={formatMessage(messages.listTitleAvailableComps)}
               components={inputComponents[inputs.selectedInputPage]}
               handleComponentDetails={this.handleComponentDetails}
               handleAddComponent={this.handleAddComponent}

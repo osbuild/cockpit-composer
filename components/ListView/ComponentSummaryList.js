@@ -1,7 +1,23 @@
 import React from "react";
-import { FormattedMessage } from "react-intl";
+import { defineMessages, injectIntl, intlShape, FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
+import {
+  Split,
+  SplitItem,
+  Button,
+  DataList,
+  DataListItem,
+  DataListItemRow,
+  DataListCell,
+  DataListItemCells
+} from "@patternfly/react-core";
 import ComponentTypeIcons from "./ComponentTypeIcons";
+
+const messages = defineMessages({
+  dependencies: {
+    defaultMessage: "Dependencies"
+  }
+});
 
 class ComponentSummaryList extends React.Component {
   constructor() {
@@ -18,54 +34,62 @@ class ComponentSummaryList extends React.Component {
 
   render() {
     const listItems = this.state.showAll ? this.props.listItems : this.props.listItems.slice(0, 5);
+    const { formatMessage } = this.props.intl;
     return (
-      <div className="cmpsr-summary-listview">
-        <p>
-          <strong>
-            <FormattedMessage defaultMessage="Dependencies" />
-          </strong>
-          <span className="badge">{this.props.listItems.length}</span>
-          <a href="#" className="pull-right" onClick={e => this.handleShowAll(e)}>
-            {this.state.showAll ? (
-              <FormattedMessage defaultMessage="Show Less" />
-            ) : (
-              <FormattedMessage defaultMessage="Show All" />
-            )}
-          </a>
-        </p>
-        <div className="list-pf cmpsr-list-pf__compacted">
+      <div className="cc-component-summary__deps pf-l-flex pf-m-column">
+        <Split gutter="md" className="pf-m-spacer-sm">
+          <SplitItem isFilled>
+            <strong>
+              <FormattedMessage defaultMessage="Dependencies" />
+            </strong>
+            <span className="badge">{this.props.listItems.length}</span>
+          </SplitItem>
+          <SplitItem>
+            <Button variant="link" isInline onClick={e => this.handleShowAll(e)}>
+              {this.state.showAll ? (
+                <FormattedMessage defaultMessage="Show Less" />
+              ) : (
+                <FormattedMessage defaultMessage="Show All" />
+              )}
+            </Button>
+          </SplitItem>
+        </Split>
+        <DataList aria-label={formatMessage(messages.dependencies)} className="cc-m-compact">
           {listItems.map(listItem => (
-            <div className="list-pf-item" key={listItem.name}>
-              <div className="list-pf-container">
-                <div className="list-pf-content list-pf-content-flex ">
-                  <div className="list-pf-left">
-                    <ComponentTypeIcons
-                      componentType={listItem.ui_type}
-                      componentInBlueprint={listItem.inBlueprint}
-                      isSelected={listItem.userSelected}
-                    />
-                  </div>
-                  <div className="list-pf-content-wrapper">
-                    <div className="list-pf-main-content">
-                      <div className="list-pf-description ">{listItem.name}</div>
-                    </div>
-                  </div>
+            <DataListItem key={listItem.name} aria-labelledby={`${this.props.parent}-${listItem.name}`}>
+              <DataListItemRow>
+                <div className="cc-c-data-list__item-icon">
+                  <ComponentTypeIcons
+                    componentType={listItem.ui_type}
+                    componentInBlueprint={listItem.inBlueprint}
+                    isSelected={listItem.userSelected}
+                  />
                 </div>
-              </div>
-            </div>
+                <DataListItemCells
+                  dataListCells={[
+                    <DataListCell key="primary" id={`${this.props.parent}-${listItem.name}`}>
+                      {listItem.name}
+                    </DataListCell>
+                  ]}
+                />
+              </DataListItemRow>
+            </DataListItem>
           ))}
-        </div>
+        </DataList>
       </div>
     );
   }
 }
 
 ComponentSummaryList.propTypes = {
-  listItems: PropTypes.arrayOf(PropTypes.object)
+  listItems: PropTypes.arrayOf(PropTypes.object),
+  parent: PropTypes.string,
+  intl: intlShape.isRequired
 };
 
 ComponentSummaryList.defaultProps = {
-  listItems: []
+  listItems: [],
+  parent: ""
 };
 
-export default ComponentSummaryList;
+export default injectIntl(ComponentSummaryList);

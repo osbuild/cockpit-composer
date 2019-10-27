@@ -5,7 +5,7 @@ class EditPackagesPage {
   }
 
   loading() {
-    browser.waitForText(".cmpsr-list-pf__compacted", timeout);
+    browser.waitForText("[data-list='inputs']", timeout);
   }
 
   backToBlueprintsPage() {
@@ -146,7 +146,7 @@ class EditPackagesPage {
   }
 
   get packageList() {
-    const selector = ".cmpsr-list-pf__compacted .list-pf-title";
+    const selector = "[data-list='inputs'] [data-input-name]";
     browser.waitUntil(
       () => browser.isVisible(selector),
       timeout,

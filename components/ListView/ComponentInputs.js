@@ -2,6 +2,15 @@ import React from "react";
 import { defineMessages, injectIntl, intlShape } from "react-intl";
 import PropTypes from "prop-types";
 import shortid from "shortid";
+import {
+  DataList,
+  DataListItem,
+  DataListItemRow,
+  DataListCell,
+  DataListItemCells,
+  Tooltip,
+  TooltipPosition
+} from "@patternfly/react-core";
 import ComponentTypeIcons from "./ComponentTypeIcons";
 
 const messages = defineMessages({
@@ -19,178 +28,91 @@ const messages = defineMessages({
   }
 });
 
-class ComponentInputs extends React.Component {
-  componentDidMount() {
-    this.initializeBootstrapElements();
-    this.bindTooltipShow();
-    this.bindHideTooltip();
-    this.bindTooltipMouseleave();
-  }
-
-  componentDidUpdate() {
-    this.unbind();
-    this.initializeBootstrapElements();
-    this.bindTooltipShow();
-    this.bindHideTooltip();
-    this.bindTooltipMouseleave();
-    this.hideTooltip("all");
-  }
-
-  componentWillUnmount() {
-    this.unbind();
-    this.hideTooltip("all");
-  }
-
-  bindTooltipShow() {
-    $(".cmpsr-list-inputs")
-      .off()
-      .on("mouseenter focus", '[data-toggle="tooltip"]', event => {
-        // prevent li tooltip from flashing when focus moves to the <a>
-        event.stopPropagation();
-        // hide tooltip for other list items
-        if ($(event.currentTarget).hasClass("list-pf-container")) {
-          $('.list-pf-container[data-toggle="tooltip"]')
-            .not(event.target)
-            .tooltip("hide");
-        }
-        // hide tooltip for component list item if hovering over an action
-        if ($(event.currentTarget).parent(".list-pf-actions").length) {
-          this.hideTooltip("parent");
-        }
-        $(event.currentTarget).tooltip("show");
-      });
-  }
-
-  bindHideTooltip() {
-    $(".cmpsr-list-inputs").on("blur mousedown", '[data-toggle="tooltip"]', event => {
-      // prevent focus event so that tooltip doesn't display again on click
-      event.preventDefault();
-      this.hideTooltip(event.currentTarget);
-    });
-  }
-
-  bindTooltipMouseleave() {
-    $(".cmpsr-list-inputs").on("mouseleave", '[data-toggle="tooltip"]', event => {
-      this.hideTooltip(event.currentTarget);
-      if ($(event.currentTarget).parent(".list-pf-actions").length) {
-        $(event.currentTarget)
-          .parents(".list-pf-container")
-          .tooltip("show");
-      }
-    });
-  }
-
-  unbind() {
-    $(".list-pf-actions").off("mouseenter focus mouseleave blur mousedown");
-  }
-
-  hideTooltip(target) {
-    if (target === "all") {
-      $('.cmpsr-list-inputs [data-toggle="tooltip"][aria-describedby]').tooltip("hide");
-    } else if (target === "parent") {
-      $('.list-pf-container[data-toggle="tooltip"][aria-describedby]').tooltip("hide");
-    } else {
-      $(target).tooltip("hide");
-    }
-  }
-
-  initializeBootstrapElements() {
-    // Initialize Boostrap-tooltip
-    $('[data-toggle="tooltip"]').tooltip({
-      trigger: "manual"
-    });
-  }
-
-  handleEnterKey(event, component) {
-    if (event.which === 13 || event.keyCode === 13) {
-      const { handleComponentDetails } = this.props;
-      handleComponentDetails(event, component);
-    }
-  }
-
+class ComponentInputs extends React.PureComponent {
   render() {
-    const { components } = this.props;
+    const { components, label } = this.props;
     const { formatMessage } = this.props.intl;
 
     return (
-      <div className="list-pf cmpsr-list-inputs cmpsr-list-pf__compacted list-pf-stacked">
+      <DataList aria-label={label} data-list="inputs" className="cc-m-compact">
         {components.map(component => (
-          <div
+          <DataListItem
             key={shortid.generate()}
-            className={`list-pf-item ${component.active ? "active" : ""}`}
+            aria-labelledby={`${component.name}-input`}
+            className={component.active ? "active" : ""}
             data-input={component.name}
           >
-            <div
-              className="list-pf-container"
-              role="menuitem"
-              tabIndex="0"
-              data-toggle="tooltip"
-              data-trigger="manual"
-              data-placement="top"
-              title=""
-              data-original-title={
-                component.active ? formatMessage(messages.hideDetails) : formatMessage(messages.showDetails)
-              }
-              onClick={e => this.props.handleComponentDetails(e, component)}
-              onKeyPress={e => this.handleEnterKey(e, component)}
-            >
-              <div className="list-pf-content list-pf-content-flex ">
-                <div className="list-pf-left">
-                  <ComponentTypeIcons
-                    componentType={component.ui_type}
-                    componentInBlueprint={component.inBlueprint}
-                    isSelected={component.userSelected}
-                  />
-                </div>
-                <div className="list-pf-content-wrapper">
-                  <div className="list-pf-main-content">
-                    <div className="list-pf-title ">{component.name}</div>
-                    <div className="list-pf-description ">{component.summary}</div>
-                  </div>
-                </div>
-                <div className="list-pf-actions">
-                  {(component.inBlueprint === true && component.userSelected === true && (
+            <DataListItemRow>
+              <div className="cc-c-data-list__item-icon">
+                <ComponentTypeIcons
+                  componentType={component.ui_type}
+                  componentInBlueprint={component.inBlueprint}
+                  isSelected={component.userSelected}
+                />
+              </div>
+              <DataListItemCells
+                dataListCells={[
+                  <DataListCell key="primary">
+                    <div>
+                      <Tooltip
+                        position={TooltipPosition.top}
+                        content={
+                          component.active ? formatMessage(messages.hideDetails) : formatMessage(messages.showDetails)
+                        }
+                      >
+                        <a href="#" onClick={e => this.props.handleComponentDetails(e, component)}>
+                          <strong id={`${component.name}-input`} data-input-name>
+                            {component.name}
+                          </strong>
+                        </a>
+                      </Tooltip>
+                    </div>
+                    <div data-input-description>{component.summary}</div>
+                  </DataListCell>
+                ]}
+              />
+              <div className="pf-c-data-list__item-action">
+                {(component.inBlueprint === true && component.userSelected === true && (
+                  <Tooltip position={TooltipPosition.top} content={formatMessage(messages.removeComponent)}>
                     <a
                       href="#"
                       className="btn btn-link"
-                      data-toggle="tooltip"
-                      data-trigger="manual"
-                      data-html="true"
-                      data-placement="top"
-                      title=""
-                      data-original-title={formatMessage(messages.removeComponent)}
                       onClick={e => this.props.handleRemoveComponent(e, component.name)}
                     >
                       <span className="fa fa-minus" />
                     </a>
-                  )) || (
+                  </Tooltip>
+                )) || (
+                  <Tooltip
+                    position={TooltipPosition.top}
+                    content={
+                      <div>
+                        {formatMessage(messages.addComponent)}
+                        <br />({component.version})
+                      </div>
+                    }
+                  >
                     <a
                       href="#"
                       className="btn btn-link"
-                      data-toggle="tooltip"
-                      data-trigger="manual"
-                      data-html="true"
-                      data-placement="top"
-                      title=""
-                      data-original-title={`${formatMessage(messages.addComponent)}<br />
-                            (${component.version})`}
                       onClick={e => this.props.handleAddComponent(e, component, "*")}
                     >
                       <span className="fa fa-plus" />
                     </a>
-                  )}
-                </div>
+                  </Tooltip>
+                )}
               </div>
-            </div>
-          </div>
+            </DataListItemRow>
+          </DataListItem>
         ))}
-      </div>
+      </DataList>
     );
   }
 }
 
 ComponentInputs.propTypes = {
   components: PropTypes.arrayOf(PropTypes.object),
+  label: PropTypes.string,
   handleComponentDetails: PropTypes.func,
   handleAddComponent: PropTypes.func,
   handleRemoveComponent: PropTypes.func,
@@ -199,6 +121,7 @@ ComponentInputs.propTypes = {
 
 ComponentInputs.defaultProps = {
   components: [],
+  label: "",
   handleComponentDetails: function() {},
   handleAddComponent: function() {},
   handleRemoveComponent: function() {}
