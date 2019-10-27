@@ -2,9 +2,9 @@
 class AvailableComponents {
   constructor(n = 0) {
     if (n !== 0) {
-      this.containerSelector = `.cmpsr-list-pf__compacted .list-pf-item:nth-child(${n})`;
+      this.containerSelector = `[data-list='inputs'] [data-input]:nth-child(${n})`;
     } else {
-      this.containerSelector = ".cmpsr-list-pf__compacted .list-pf-item";
+      this.containerSelector = "[data-list='inputs'] [data-input]";
     }
   }
 
@@ -24,7 +24,7 @@ class AvailableComponents {
   }
 
   get nameLabel() {
-    const selector = `${this.containerSelector} .list-pf-title`;
+    const selector = `${this.containerSelector} [data-input-name]`;
     browser.waitUntil(
       () => browser.isVisible(selector),
       timeout,
@@ -34,7 +34,7 @@ class AvailableComponents {
   }
 
   nameLabelByName(name) {
-    const selector = `[data-input=${name}] .list-pf-title`;
+    const selector = `[data-input=${name}] [data-input-name]`;
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
@@ -44,7 +44,7 @@ class AvailableComponents {
   }
 
   clickNameLabelByName(name) {
-    const selector = `[data-input=${name}] .list-pf-title`;
+    const selector = `[data-input=${name}] [data-input-name]`;
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
@@ -57,7 +57,7 @@ class AvailableComponents {
   }
 
   descriptionLabelByName(name) {
-    const selector = `[data-input=${name}] .list-pf-description`;
+    const selector = `[data-input=${name}] [data-input-description]`;
     browser.waitUntil(
       () => browser.isVisible(selector),
       timeout,

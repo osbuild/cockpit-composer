@@ -85,7 +85,7 @@ class SelectedComponents {
   }
 
   componentDependenciesList(name) {
-    const selector = `[data-component=${name}] .cmpsr-list-pf__compacted .list-pf-item`;
+    const selector = `[data-component=${name}] .cc-m-compact .pf-c-data-list__item`;
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
@@ -95,7 +95,7 @@ class SelectedComponents {
   }
 
   showAllLink(name) {
-    const selector = `[data-component=${name}] .cmpsr-summary-listview .pull-right span`;
+    const selector = `[data-component=${name}] .cc-component-summary__deps button`;
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
@@ -105,7 +105,7 @@ class SelectedComponents {
   }
 
   showLessLink(name) {
-    const selector = `[data-component=${name}] .cmpsr-summary-listview .pull-right span`;
+    const selector = `[data-component=${name}] .cc-component-summary__deps button`;
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
