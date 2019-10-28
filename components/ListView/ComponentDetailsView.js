@@ -1,9 +1,8 @@
-/* global $ */
-
 import React from "react";
 import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
 import PropTypes from "prop-types";
 import { Tabs, Tab } from "patternfly-react";
+import { Tooltip, TooltipPosition } from "@patternfly/react-core";
 import { connect } from "react-redux";
 import ComponentTypeIcons from "./ComponentTypeIcons";
 import DependencyListView from "./DependencyListView";
@@ -46,7 +45,6 @@ class ComponentDetailsView extends React.Component {
   }
 
   componentDidMount() {
-    this.initializeBootstrapElements();
     this.props.fetchingInputDetails(this.props.component);
     if (this.props.handleUpdateComponent) {
       this.setBuildIndex();
@@ -56,7 +54,6 @@ class ComponentDetailsView extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    this.initializeBootstrapElements();
     if (this.props.component.name !== prevProps.component.name) {
       this.props.fetchingInputDetails(this.props.component);
       this.setState({ selectedBuildIndex: undefined }); // eslint-disable-line react/no-did-update-set-state
@@ -86,11 +83,6 @@ class ComponentDetailsView extends React.Component {
         this.handleSelectedBuildDeps(0);
       }
     }
-  }
-
-  initializeBootstrapElements() {
-    // Initialize Boostrap-tooltip
-    $('[data-toggle="tooltip"]').tooltip();
   }
 
   handleVersionSelect(event) {
@@ -218,31 +210,23 @@ class ComponentDetailsView extends React.Component {
                 )}
               {handleRemoveComponent !== undefined && (component.inBlueprint && component.userSelected) && (
                 <li>
-                  <button
-                    className="btn btn-default"
-                    type="button"
-                    data-toggle="tooltip"
-                    data-placement="bottom"
-                    title=""
-                    data-original-title={formatMessage(messages.removeFromBlueprint)}
-                    onClick={e => handleRemoveComponent(e, component.name)}
-                  >
-                    <FormattedMessage defaultMessage="Remove" />
-                  </button>
+                  <Tooltip position={TooltipPosition.bottom} content={formatMessage(messages.removeFromBlueprint)}>
+                    <button
+                      className="btn btn-default"
+                      type="button"
+                      onClick={e => handleRemoveComponent(e, component.name)}
+                    >
+                      <FormattedMessage defaultMessage="Remove" />
+                    </button>
+                  </Tooltip>
                 </li>
               )}
               <li>
-                <button
-                  type="button"
-                  className="close"
-                  data-toggle="tooltip"
-                  data-placement="bottom"
-                  title=""
-                  data-original-title={formatMessage(messages.hideDetails)}
-                  onClick={e => this.handleCloseDetails(e)}
-                >
-                  <span className="pficon pficon-close" />
-                </button>
+                <Tooltip position={TooltipPosition.bottom} content={formatMessage(messages.hideDetails)}>
+                  <button type="button" className="close" onClick={e => this.handleCloseDetails(e)}>
+                    <span className="pficon pficon-close" />
+                  </button>
+                </Tooltip>
               </li>
             </ul>
           </div>
