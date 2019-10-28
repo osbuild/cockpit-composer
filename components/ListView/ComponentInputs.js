@@ -28,7 +28,8 @@ const messages = defineMessages({
   }
 });
 
-class ComponentInputs extends React.PureComponent {
+// eslint-disable-next-line react/prefer-stateless-function
+class ComponentInputs extends React.Component {
   render() {
     const { components, label } = this.props;
     const { formatMessage } = this.props.intl;
