@@ -117,7 +117,7 @@ class ListItemImages extends React.Component {
                   <FormattedMessage
                     defaultMessage="Type {type}"
                     values={{
-                      type: <strong>{listItem.compose_type}</strong>
+                      type: <strong data-image-type={listItem.compose_type}>{listItem.compose_type}</strong>
                     }}
                   />
                 </div>

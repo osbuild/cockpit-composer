@@ -268,7 +268,7 @@ class ViewBlueprintPage {
   }
 
   imageTypeLabel(type) {
-    const selector = `strong=${type}`;
+    const selector = `[data-image-type=${type}]`;
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
