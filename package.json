@@ -11,7 +11,7 @@
     "@patternfly/react-core": "3.112.3",
     "@patternfly/react-icons": "3.14.12",
     "bootstrap": "3.4.1",
-    "core-js": "3.3.2",
+    "core-js": "3.3.5",
     "fastclick": "1.0.6",
     "history": "3.3.0",
     "jquery": "3.4.1",
