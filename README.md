@@ -72,10 +72,10 @@ Rules configuration can be found in the `package.json` file.
 
 ### Working on your local machine
 
-It's easy to set up your local Linux machine for rapid development of Cockpit Composer's JavaScript code. Run this command from your top level Cockpit Composer checkout directory, and make sure to run it as the same user that you'll use to log into Cockpit Composer below.
+It's easy to set up your local Linux machine for rapid development of Cockpit Composer's JavaScript code. After building, run this command from your top level Cockpit Composer checkout directory, and make sure to run it as the same user that you'll use to log into Cockpit Composer below.
 
     $ mkdir -p ~/.local/share/cockpit
-    $ ln -s $(pwd)/public ~/.local/share/cockpit/composer
+    $ ln -s $(pwd)/public/dist ~/.local/share/cockpit/composer
 
 This will cause cockpit to read JavaScript and HTML files directly from the built package output directory instead of using the installed Cockpit UI files.
 
