@@ -77,11 +77,11 @@
   "eslintConfig": {
     "globals": {
       "cockpit": true,
-      "browser": true,
+      "browser": false,
       "expect": true,
       "timeout": true,
-      "$": true,
-      "$$": true
+      "$": false,
+      "$$": false
     },
     "parser": "babel-eslint",
     "parserOptions": {

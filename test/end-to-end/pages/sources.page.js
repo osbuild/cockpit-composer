@@ -5,202 +5,93 @@ class SourcesPage {
   }
 
   loading() {
-    browser.waitUntil(
-      () => browser.isExisting(this.containerSelector),
-      timeout,
-      `Loading Blueprints page failed because selector ${this.containerSelector} cannot be found`
-    );
+    browser.waitUntil(() => $(`${this.containerSelector} .cmpsr-list-sources`).getText() !== "", timeout);
   }
 
   get title() {
-    const selector = `${this.containerSelector} [id="title-manage-sources"] span`;
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `Title in Sources dialog cannot be found by selector ${selector}`
-    );
-    return $(selector);
-  }
-
-  get xButton() {
-    const selector = `${this.containerSelector} button[class="close"]`;
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `X button in Sources dialog cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $(`${this.containerSelector} [id="title-manage-sources"] span`).element();
   }
 
   get addSourceButton() {
-    const selector = `${this.containerSelector} [value="Add Source"]`;
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `Add Source button in Sources dialog cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $(`${this.containerSelector} [value="Add Source"]`).element();
   }
 
   get sourceNameList() {
-    const selector = ".cmpsr-list-sources .list-pf-item .list-pf-title";
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `Source name in Sources dialog cannot be found by selector ${selector}`
-    );
-    return $$(selector);
+    return $$(".cmpsr-list-sources .list-pf-item .list-pf-title");
+  }
+
+  sourceItem(name) {
+    return $(`${this.containerSelector} [data-source=${name}]`);
+    // return $(`${this.containerSelector} [data-source=${name}]`).element();
   }
 
   sourceName(name) {
-    const selector = `${this.containerSelector} [data-source=${name}] .list-pf-title`;
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `Source name in Sources dialog cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $(`${this.containerSelector} [data-source=${name}] .list-pf-title`).element();
   }
 
   sourceUrl(name) {
-    const selector = `${this.containerSelector} [data-source=${name}] .list-pf-additional-content`;
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `Source URL in Sources dialog cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $(`${this.containerSelector} [data-source=${name}] .list-pf-additional-content`).element();
   }
 
   sourceType(name) {
-    const selector = `${this.containerSelector} [data-source=${name}] .list-pf-description span strong`;
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `Source type in Sources dialog cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $(`${this.containerSelector} [data-source=${name}] .list-pf-description span strong`).element();
   }
 
   editButton(name) {
-    const selector = `${this.containerSelector} [data-source=${name}] [aria-label="Edit Source ${name}"]`;
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `Edit button in Sources dialog cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $(`${this.containerSelector} [data-source=${name}] [aria-label="Edit Source ${name}"]`).element();
+  }
+
+  dropDownMenu(name) {
+    return $(`${this.containerSelector} [data-source=${name}] .dropdown-kebab-pf`).element();
   }
 
   moreButton(name) {
-    const selector = `${this.containerSelector} [data-source=${name}] [aria-label="Source Actions ${name}"]`;
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `: button in Sources dialog cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $(`${this.containerSelector} [data-source=${name}] [aria-label="Source Actions ${name}"]`).element();
+  }
+
+  removeSourceItem(name) {
+    return $(`${this.containerSelector} [data-source=${name}] ul li a`).element();
   }
 
   get closeButton() {
-    const selector = `${this.containerSelector} .modal-footer button span`;
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `Close button in Sources dialog cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $(`${this.containerSelector} .modal-footer button span`).element();
   }
 
   // Add source
   get sourceNameInput() {
-    const selector = `${this.addSourceContainerSelector} [id="textInput1-modal-source"]`;
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `Name input box in Add Sources dialog cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $(`${this.addSourceContainerSelector} [id="textInput1-modal-source"]`).element();
   }
 
   get sourcePathInput() {
-    const selector = `${this.addSourceContainerSelector} [id="textInput2-modal-source"]`;
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `Source path input box in Add Sources dialog cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $(`${this.addSourceContainerSelector} [id="textInput2-modal-source"]`).element();
   }
 
   get duplicatedPathWarning() {
-    const selector = `${this.addSourceContainerSelector} [id="textInput2-modal-source-help"]`;
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `Warning for duplicated path in Add Sources dialog cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $(`${this.addSourceContainerSelector} [id="textInput2-modal-source-help"]`).element();
   }
 
   get sourceTypeSelect() {
-    const selector = `${this.addSourceContainerSelector} [id="textInput3-modal-source"]`;
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `Source type select in Add Sources dialog cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $(`${this.addSourceContainerSelector} [id="textInput3-modal-source"]`).element();
   }
 
   get checkSSLCertificateCheckbox() {
-    const selector = `${this.addSourceContainerSelector} [id="checkboxInput4-modal-source"]`;
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `SSL certificate checkbox in Add Sources dialog cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $(`${this.addSourceContainerSelector} [id="checkboxInput4-modal-source"]`).element();
   }
 
   get checkGPGKeyCheckbox() {
-    const selector = `${this.addSourceContainerSelector} [id="checkboxInput5-modal-source"]`;
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `GPG Key checkbox in Add Sources dialog cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $(`${this.addSourceContainerSelector} [id="checkboxInput5-modal-source"]`).element();
   }
 
   get addButton() {
-    const selector = "button=Add Source";
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `Add Source button in Add Sources dialog cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $("button=Add Source").element();
   }
 
   get updateButton() {
-    const selector = "button=Update Source";
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `Update Source button in Add Sources dialog cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $("button=Update Source").element();
   }
 
   get cancelButton() {
-    const selector = "button=Cancel";
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `Cancel button in Add Sources dialog cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $("button=Cancel").element();
   }
 }
 

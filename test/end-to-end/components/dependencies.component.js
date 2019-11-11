@@ -1,4 +1,3 @@
-// "Dependencies" tab in Edit Blueprint page
 class Dependencies {
   constructor() {
     this.containerSelector = '[data-list="dependencies"]';
@@ -12,7 +11,7 @@ class Dependencies {
 
   get depencenciesList() {
     const selector = `${this.containerSelector} [data-component]`;
-    browser.waitUntil(() => browser.isExisting(selector), timeout, "No dependencies in Selected Component");
+    browser.waitUntil(() => $(selector).isExisting(), timeout);
     return $$(selector);
   }
 }

@@ -1,32 +1,18 @@
-// Toast Notification Commit Page
 class ToastNotificationPage {
   constructor(name) {
     this.containerSelector = `[id="cmpsr-toast-${name}"]`;
   }
 
   loading() {
-    const selector = `${this.containerSelector} .pficon-ok`;
-    browser.waitForVisible(selector, timeout);
+    $(`${this.containerSelector} .pficon-ok`).waitForDisplayed(timeout);
   }
 
   loadingInfoNotification() {
-    const selector = `${this.containerSelector} .pficon-info`;
-    browser.waitForVisible(selector, timeout);
+    $(`${this.containerSelector} .pficon-info`).waitForDisplayed(timeout);
   }
 
-  close() {
-    const selector = `${this.containerSelector} .pficon-close`;
-    browser.waitUntil(
-      () => browser.isVisible(selector),
-      timeout,
-      `X button in Toast Notification dialog cannot be found by selector ${selector}`
-    );
-    // browser.click() does not work with Edge due to "Element is Obscured" error.
-    // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/5238133/
-    browser.execute(closeButton => {
-      document.querySelector(closeButton).click();
-      return true;
-    }, selector);
+  get closeButton() {
+    return $(`${this.containerSelector} .pficon-close`).element();
   }
 }
 

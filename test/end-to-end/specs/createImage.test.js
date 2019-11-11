@@ -1,10 +1,6 @@
-const faker = require("faker");
-const addContext = require("mochawesome/addContext");
-const commands = require("../utils/commands");
-
-const Blueprint = require("../components/Blueprint.component");
-const blueprintsPage = require("../pages/blueprints.page");
-const CreateImagePage = require("../pages/CreateImage.page");
+import faker from "faker";
+import Blueprint from "../components/Blueprint.component";
+import createImagePage from "../pages/createImage.page";
 
 describe("Create Image Page", function() {
   // blueprint name cannot contain space due to issue https://github.com/weldr/cockpit-composer/issues/317
@@ -12,21 +8,16 @@ describe("Create Image Page", function() {
   const name = faker.lorem.slug();
   const description = faker.lorem.sentence();
   const blueprintComponent = new Blueprint(name);
-  const createImagePage = new CreateImagePage(name);
   before(function() {
-    commands.login();
-    commands.startLoraxIfItDoesNotStart();
-    addContext(this, `create new blueprint with name, ${name}, and description, ${description}`);
-    commands.newBlueprint(name, description);
+    browser.newBlueprint(name, description);
     blueprintComponent.createImageButton.click();
     createImagePage.loading();
   });
 
   after(function() {
     createImagePage.cancelButton.click();
-    browser.waitForExist(createImagePage.containerSelector, timeout, true);
-    commands.deleteBlueprint(name);
-    blueprintsPage.loading();
+    $(createImagePage.containerSelector).waitForExist(timeout, true);
+    browser.deleteBlueprint(name);
   });
 
   it(`blueprint name should be ${name}`, function() {

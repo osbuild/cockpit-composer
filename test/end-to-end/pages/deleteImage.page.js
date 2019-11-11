@@ -7,40 +7,24 @@ class DeleteImagePage {
   loading() {
     // sometimes the style attribute is style="display: block; padding-right: 12px;"
     browser.waitUntil(
-      () => browser.getAttribute(this.containerSelector, "style").includes("display: block;"),
-      timeout,
-      "Cannot pop up Delete Image dialog"
+      () =>
+        $(this.containerSelector)
+          .getAttribute("style")
+          .includes("display: block;"),
+      timeout
     );
   }
 
   get messageLabel() {
-    const selector = `${this.containerSelector} .modal-body .lead span`;
-    browser.waitUntil(
-      () => browser.isVisible(selector),
-      timeout,
-      `Delete Image button in Delete Image dialog cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $(`${this.containerSelector} .modal-body .lead span`).element();
   }
 
   get deleteImageButton() {
-    const selector = `${this.containerSelector} .btn-danger`;
-    browser.waitUntil(
-      () => browser.isVisible(selector),
-      timeout,
-      `Delete Image button in Delete Image dialog cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $(`${this.containerSelector} .btn-danger`).element();
   }
 
   get cancelButton() {
-    const selector = `${this.containerSelector} .btn-default`;
-    browser.waitUntil(
-      () => browser.isVisible(selector),
-      timeout,
-      `Cancel button in Delete Image dialog cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $(`${this.containerSelector} .btn-default`).element();
   }
 }
 
