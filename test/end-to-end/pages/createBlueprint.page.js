@@ -6,86 +6,35 @@ class CreateBlueprintPage {
   }
 
   loading() {
-    browser.waitUntil(
-      () => browser.isExisting(this.containerSelector),
-      timeout,
-      "Cannot pop up Create Blueprint dialog"
-    );
+    $(this.containerSelector).waitForDisplayed(timeout);
   }
 
   get nameBox() {
-    const selector = '[id="textInput-modal-markup"]';
-    browser.waitUntil(
-      () => browser.hasFocus(selector),
-      timeout,
-      `Username input box in Create Blueprint dialog cannot get focused by selector ${selector}`
-    );
-    return $(selector);
+    return $('[id="textInput-modal-markup"]').element();
   }
 
   get descriptionBox() {
-    const selector = '[id="textInput2-modal-markup"]';
-    browser.waitUntil(
-      () => browser.isVisible(selector),
-      timeout,
-      `Description input box in Create Blueprint dialog cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $('[id="textInput2-modal-markup"]').element();
   }
 
   get createButton() {
-    const selector = '[id="create-blueprint-modal-create-button"]';
-    browser.waitUntil(
-      () => browser.isVisible(selector),
-      timeout,
-      `Create button in Create Blueprint dialog cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $('[id="create-blueprint-modal-create-button"]').element();
   }
 
   get cancelButton() {
-    const selector = "span=Cancel";
-    browser.waitUntil(
-      () => browser.isVisible(selector),
-      timeout,
-      `Cancel button in Create Blueprint dialog cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $("span=Cancel").element();
   }
 
-  clickXButton() {
-    const selector = `${this.containerSelector} .close`;
-    browser.waitUntil(
-      () => browser.isVisible(selector),
-      timeout,
-      `X button in Create Blueprint dialog cannot be found by selector ${selector}`
-    );
-    // browser.click() does not work with Edge due to "Element is Obscured" error.
-    // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/5238133/
-    browser.execute(xButton => {
-      document.querySelector(xButton).click();
-      return true;
-    }, selector);
+  get xButton() {
+    return $(`${this.containerSelector} .close`).element();
   }
 
   get alert() {
-    const selector = `${this.containerSelector} .alert-danger strong`;
-    browser.waitUntil(
-      () => browser.isVisible(selector),
-      timeout,
-      `Required information is missing error message in Create Blueprint dialog cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $(`${this.containerSelector} .alert-danger strong`).element();
   }
 
   get helpBlock() {
-    const selector = this.helpBlockSelector;
-    browser.waitUntil(
-      () => browser.isVisible(selector),
-      timeout,
-      `A blueprint name is required error message in Create Blueprint dialog cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $(this.helpBlockSelector).element();
   }
 }
 

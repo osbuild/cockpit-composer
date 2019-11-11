@@ -1,36 +1,18 @@
-// Edit Blueprint Page
 class EditPackagesPage {
   constructor(name) {
     this.name = name;
   }
 
   loading() {
-    browser.waitForText("[data-list='inputs']", timeout);
+    browser.waitUntil(() => $("[data-list='inputs']").getText() !== "", timeout);
   }
 
-  backToBlueprintsPage() {
-    const selector = 'a[href="#/blueprints"]';
-    browser.waitUntil(
-      () => browser.isVisible(selector),
-      timeout,
-      `Back to Blueprint Link in Blueprints page cannot be found by selector ${selector}`
-    );
-    // browser.click() does not work with Edge due to "Element is Obscured" error.
-    // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/5238133/
-    browser.execute(backToBlueprintsLink => {
-      document.querySelector(backToBlueprintsLink).click();
-      return true;
-    }, selector);
+  get backToBlueprintsPageLink() {
+    return $('a[href="#/blueprints"]').element();
   }
 
   get blueprintNameLink() {
-    const selector = `=${this.name}`;
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      "blueprint name in Edit Blueprint page does not exist"
-    );
-    return $(selector);
+    return $(`=${this.name}`);
   }
 
   get pendingChangeLink() {
@@ -38,77 +20,43 @@ class EditPackagesPage {
   }
 
   get commitButton() {
-    const selector = ".cmpsr-header__actions .btn-primary";
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      "Commit button in Edit Blueprint page does not exist"
-    );
-    return $(selector);
+    return $(".cmpsr-header__actions .btn-primary").element();
   }
 
   get discardChangeButton() {
-    const selector = ".cmpsr-header__actions .btn-default";
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      "Discard Change button in Edit Blueprint page does not exist"
-    );
-    return $(selector);
+    return $(".cmpsr-header__actions .btn-default").element();
   }
 
   get createImageButton() {
-    const selector = "span=Create Image";
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      "Create Image button in Edit Blueprint page does not exist"
-    );
-    return $(selector);
+    return $("span=Create Image").element();
   }
 
   get moreButton() {
-    const selector = '.cmpsr-header__actions [id="dropdownKebab"]';
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      "Discard Change button in Edit Blueprint page does not exist"
-    );
-    return $(selector);
+    return $('.cmpsr-header__actions [id="dropdownKebab"]').element();
+  }
+
+  get dropDownMenu() {
+    return $(".cmpsr-header__actions .dropdown-kebab-pf").element();
+  }
+
+  get exportItem() {
+    return $("span=Export").element();
   }
 
   get blueprintNameLabel() {
-    const selector = ".cmpsr-title__item";
-    browser.waitUntil(
-      () => browser.isVisible(selector),
-      timeout,
-      `blueprint name label in Edit Blueprint page cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $(".cmpsr-title__item").element();
   }
 
   get filterBox() {
-    const selector = '[id="cmpsr-blueprint-input-filter"]';
-    browser.waitUntil(
-      () => browser.isVisible(selector),
-      timeout,
-      `Filter input box in Edit Blueprint page cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $('[id="cmpsr-blueprint-input-filter"]').element();
   }
 
   get filterContentLabel() {
-    return ".toolbar-pf-results .label-info span";
+    return $(".toolbar-pf-results .label-info span");
   }
 
   get xLabelButton() {
-    const selector = ".toolbar-pf-results .pficon-close";
-    browser.waitUntil(
-      () => browser.isVisible(selector),
-      timeout,
-      `X label button in Edit Blueprint page cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $(".toolbar-pf-results .pficon-close").element();
   }
 
   get clearAllFiltersLink() {
@@ -116,43 +64,19 @@ class EditPackagesPage {
   }
 
   get nthPageBox() {
-    const selector = '[id="cmpsr-blueprint-inputs-page"]';
-    browser.waitUntil(
-      () => browser.isVisible(selector),
-      timeout,
-      `nth page box in Edit Blueprint page cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $('[id="cmpsr-blueprint-inputs-page"]').element();
   }
 
   get previousButton() {
-    const selector = '[aria-label="Show Previous Page"]';
-    browser.waitUntil(
-      () => browser.isVisible(selector),
-      timeout,
-      `< button in Edit Blueprint page cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $('[aria-label="Show Previous Page"]').element();
   }
 
   get nextButton() {
-    const selector = '[aria-label="Show Next Page"]';
-    browser.waitUntil(
-      () => browser.isVisible(selector),
-      timeout,
-      `> button in Edit Blueprint page cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $('[aria-label="Show Next Page"]').element();
   }
 
   get packageList() {
-    const selector = "[data-list='inputs'] [data-input-name]";
-    browser.waitUntil(
-      () => browser.isVisible(selector),
-      timeout,
-      `available package list in Edit Blueprint page cannot be found by selector ${selector}`
-    );
-    return $$(selector);
+    return $$("[data-list='inputs'] [data-input-name]");
   }
 
   get sortAscButton() {
@@ -170,8 +94,7 @@ class EditPackagesPage {
         $(selector)
           .getAttribute("class")
           .indexOf("disabled") === -1,
-      timeout,
-      `Undo button in Edit Blueprint page cannot be found by selector ${selector}`
+      timeout
     );
     return $(`${selector} span`);
   }
@@ -183,43 +106,17 @@ class EditPackagesPage {
         $(selector)
           .getAttribute("class")
           .indexOf("disabled") === -1,
-      timeout,
-      `Redo button in Edit Blueprint page cannot be found by selector ${selector}`
+      timeout
     );
     return $(`${selector} span`);
   }
 
   get selectedComponentsTabBadge() {
-    const selector = '[data-badge="Selected Components"]';
-    browser.waitUntil(
-      () => browser.isVisible(selector),
-      timeout,
-      `Selected Components tab badge in Edit Blueprint page cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $('[data-badge="Selected Components"]').element();
   }
 
   get dependenciesTabBadge() {
-    const selector = '[data-badge="Dependencies"]';
-    browser.waitUntil(
-      () => browser.isVisible(selector),
-      timeout,
-      `Dependencies tab badge in Edit Blueprint page cannot be found by selector ${selector}`
-    );
-    return $(selector);
-  }
-
-  clickDependenciesTabBadge() {
-    const selector = '[data-badge="Dependencies"]';
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `Dependencies tab badge in Edit Blueprint page cannot be found by selector ${selector}`
-    );
-    browser.execute(tabBadge => {
-      document.querySelector(tabBadge).click();
-      return true;
-    }, selector);
+    return $('[data-badge="Dependencies"]').element();
   }
 }
 

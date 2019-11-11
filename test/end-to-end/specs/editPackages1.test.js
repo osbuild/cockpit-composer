@@ -1,12 +1,10 @@
-const faker = require("faker");
-const addContext = require("mochawesome/addContext");
-const commands = require("../utils/commands");
+import faker from "faker";
 
-const Blueprint = require("../components/Blueprint.component");
-const blueprintsPage = require("../pages/blueprints.page");
-const EditPackagesPage = require("../pages/EditPackages.page");
-const AvailableComponents = require("../components/AvailableComponents.component");
-const selectedComponents = require("../components/selectedComponents.component");
+import Blueprint from "../components/Blueprint.component";
+import blueprintsPage from "../pages/blueprints.page";
+import EditPackagesPage from "../pages/EditPackages.page";
+import AvailableComponents from "../components/AvailableComponents.component";
+import selectedComponents from "../components/selectedComponents.component";
 
 describe("Edit Blueprint Page", function() {
   const name = faker.lorem.slug();
@@ -14,26 +12,19 @@ describe("Edit Blueprint Page", function() {
   const blueprintComponent = new Blueprint(name);
   const editPackagesPage = new EditPackagesPage(name);
 
-  before(function() {
-    commands.login();
-    commands.startLoraxIfItDoesNotStart();
-  });
-
   after(function() {
-    commands.deleteBlueprint(name);
-    blueprintsPage.loading();
+    browser.deleteBlueprint(name);
   });
 
   describe("Run test on a new blueprint", function() {
     before(function() {
-      addContext(this, `create new blueprint with name, ${name}, and description, ${description}`);
-      commands.newBlueprint(name, description);
+      browser.newBlueprint(name, description);
       blueprintComponent.editPackagesButton.click();
       editPackagesPage.loading();
     });
 
     after(function() {
-      editPackagesPage.backToBlueprintsPage();
+      editPackagesPage.backToBlueprintsPageLink.click();
       blueprintsPage.loading();
     });
 
@@ -45,15 +36,7 @@ describe("Edit Blueprint Page", function() {
       });
 
       it("pending changes should not exist by default", function() {
-        addContext(this, "if it does not exist, the value property of element object should be null");
-        //{ type: 'NoSuchElement',
-        //   message:
-        //   'An element could not be located on the page using the given search parameters.',
-        //  state: 'failure',
-        //  sessionId: '0799484d6ac6200127bd8fac088b0773',
-        //  value: null,
-        //  selector: 'span*=Pending Change' }
-        expect(editPackagesPage.pendingChangeLink.value).to.be.null;
+        expect(editPackagesPage.pendingChangeLink.isExisting()).to.be.false;
       });
 
       it(`title should be blueprint name "${name}"`, function() {
@@ -69,17 +52,17 @@ describe("Edit Blueprint Page", function() {
       });
 
       it("> button should work", function() {
-        const pageNumber = editPackagesPage.nthPageBox.getValue();
+        const pageNumber = editPackagesPage.nthPageBox.getAttribute("value");
         editPackagesPage.nextButton.click();
         editPackagesPage.loading();
-        expect(parseInt(editPackagesPage.nthPageBox.getValue(), 10)).to.equal(parseInt(pageNumber, 10) + 1);
+        expect(parseInt(editPackagesPage.nthPageBox.getAttribute("value"), 10)).to.equal(parseInt(pageNumber, 10) + 1);
       });
 
       it("< button should work", function() {
-        const pageNumber = editPackagesPage.nthPageBox.getValue();
+        const pageNumber = editPackagesPage.nthPageBox.getAttribute("value");
         editPackagesPage.previousButton.click();
         editPackagesPage.loading();
-        expect(parseInt(editPackagesPage.nthPageBox.getValue(), 10)).to.equal(parseInt(pageNumber, 10) - 1);
+        expect(parseInt(editPackagesPage.nthPageBox.getAttribute("value"), 10)).to.equal(parseInt(pageNumber, 10) - 1);
       });
     });
 
@@ -87,40 +70,35 @@ describe("Edit Blueprint Page", function() {
       const filterContent = "cockpit-bridge";
       const filterLabel = `Name: ${filterContent}`;
       beforeEach(function() {
-        editPackagesPage.filterBox.setValue(filterContent);
-        browser.keys("Enter");
-        browser.waitForExist(editPackagesPage.filterContentLabel, timeout);
+        editPackagesPage.filterBox.setInputValue(filterContent);
+        editPackagesPage.filterBox.sendKey("\uE007");
+        editPackagesPage.filterContentLabel.waitForDisplayed(timeout);
         browser.waitUntil(
           () =>
             $(editPackagesPage.filterContentLabel)
               .getText()
               .includes(filterContent),
-          timeout,
-          `Cannot find package - ${filterContent}`
+          timeout
         );
       });
 
       it(`Filtered package name should contain "${filterContent}" and should be cleared by clicking "Clear All Filter" link`, function() {
-        addContext(this, `Filtered package name should contain "${filterContent}"`);
         const packageNameList = editPackagesPage.packageList.map(item => item.getText());
         expect(packageNameList)
           .to.be.an("array")
           .that.includes(filterContent);
         // another test on clear filter
-        addContext(this, "All filters should be cleared by clicking Clear All Filter link");
         editPackagesPage.clearAllFiltersLink.click();
         editPackagesPage.loading();
-        expect($(editPackagesPage.filterContentLabel).value).to.be.null;
+        expect(editPackagesPage.filterContentLabel.isExisting()).to.be.false;
       });
 
       it(`Filter content label should be "${filterLabel}" and should be cleared by clicking X button`, function() {
-        addContext(this, `Filter content label should be "${filterLabel}"`);
-        expect($(editPackagesPage.filterContentLabel).getText()).to.equal(filterLabel);
+        expect(editPackagesPage.filterContentLabel.getText()).to.equal(filterLabel);
         // another test on clear filter
-        addContext(this, "Filter content label should be cleared by clicking X button");
         editPackagesPage.xLabelButton.click();
         editPackagesPage.loading();
-        expect($(editPackagesPage.filterContentLabel).value).to.be.null;
+        expect(editPackagesPage.filterContentLabel.isExisting()).to.be.false;
       });
     });
 
@@ -128,18 +106,24 @@ describe("Edit Blueprint Page", function() {
       const availableComponent = new AvailableComponents();
       const packageName = "cockpit-bridge";
       before(function() {
-        editPackagesPage.filterBox.setValue(packageName);
-        browser.keys("Enter");
-        browser.waitForExist(editPackagesPage.filterContentLabel, timeout);
+        editPackagesPage.filterBox.setInputValue(packageName);
+        editPackagesPage.filterBox.sendKey("\uE007");
+        editPackagesPage.filterContentLabel.waitForDisplayed(timeout);
+        browser.waitUntil(
+          () =>
+            $(editPackagesPage.filterContentLabel)
+              .getText()
+              .includes(packageName),
+          timeout
+        );
       });
 
       after(function() {
-        availableComponent.removePackageByName(packageName);
+        availableComponent.removePackageByName(packageName).click();
         selectedComponents.loading();
         browser.waitUntil(
           () => selectedComponents.packageList.map(item => item.getText()).indexOf(packageName) === -1,
-          timeout,
-          `Cannot add package ${packageName} into blueprint ${name}`
+          timeout
         );
       });
 
@@ -151,12 +135,11 @@ describe("Edit Blueprint Page", function() {
 
       it("Selected package icon should have blue border", function() {
         // add package to blueprint
-        availableComponent.addPackageByName(packageName);
+        availableComponent.addPackageByName(packageName).click();
         selectedComponents.loading();
         browser.waitUntil(
           () => selectedComponents.packageList.map(item => item.getText()).includes(packageName),
-          timeout,
-          `Cannot add package ${packageName} into blueprint ${name}`
+          timeout
         );
         // icon should be blue bordered
         expect(availableComponent.iconByName(packageName).getAttribute("class")).to.include("list-pf-icon-bordered");
@@ -164,8 +147,7 @@ describe("Edit Blueprint Page", function() {
     });
 
     describe("Create Image button test", function() {
-      const CreateImagePage = require("../pages/CreateImage.page");
-      const createImagePage = new CreateImagePage(name);
+      const createImagePage = require("../pages/createImage.page");
       beforeEach(function() {
         editPackagesPage.createImageButton.click();
         createImagePage.loading();
@@ -173,31 +155,36 @@ describe("Edit Blueprint Page", function() {
 
       afterEach(function() {
         createImagePage.cancelButton.click();
-        browser.waitForExist(createImagePage.containerSelector, timeout, true);
+        $(createImagePage.containerSelector).waitForExist(timeout, true);
       });
 
       it("Create Image dialog should pop up", function() {
-        expect(browser.isExisting(createImagePage.containerSelector)).to.be.true;
+        expect($(createImagePage.containerSelector).isExisting()).to.be.true;
       });
     });
 
     describe("Export dropdown item test", function() {
-      const ExportPage = require("../pages/Export.page");
-      const exportPage = new ExportPage(name);
+      const exportPage = require("../pages/export.page");
       beforeEach(function() {
         editPackagesPage.moreButton.click();
-        browser.keys("ArrowDown");
-        browser.keys("Enter");
+        browser.waitUntil(
+          () =>
+            editPackagesPage.dropDownMenu.getAttribute("class").includes("open") &&
+            editPackagesPage.exportItem.isDisplayed(),
+          timeout
+        );
+        editPackagesPage.exportItem.click();
         exportPage.loading();
       });
 
       afterEach(function() {
+        exportPage.closeButton.waitForClickable();
         exportPage.closeButton.click();
-        browser.waitForExist(exportPage.containerSelector, timeout, true);
+        $(exportPage.containerSelector).waitForExist(timeout, true);
       });
 
       it("Export dialog should pop up", function() {
-        expect(browser.isExisting(exportPage.containerSelector)).to.be.true;
+        expect($(exportPage.containerSelector).isExisting()).to.be.true;
       });
     });
 
@@ -209,19 +196,24 @@ describe("Edit Blueprint Page", function() {
         removedPackageName = selectedComponents.packageNameByNth(0);
         // remove added package
         selectedComponents.moreButtonByName(removedPackageName).click();
-        browser.keys("ArrowDown"); // View
-        browser.keys("ArrowDown"); // Edit
-        browser.keys("ArrowDown"); // Remove
-        browser.keys("Enter");
+        browser.waitUntil(
+          () =>
+            selectedComponents
+              .dropDownMenu(removedPackageName)
+              .getAttribute("class")
+              .includes("open") && selectedComponents.removeItem(removedPackageName).isDisplayed(),
+          timeout
+        );
+        selectedComponents.removeItem(removedPackageName).click();
+        $(selectedComponents.containerSelector).waitForExist(timeout, true);
         // add a new package
         const availableComponent = new AvailableComponents(1);
         addedPackageName = availableComponent.nameLabel.getText();
-        availableComponent.addPackageByNth();
+        availableComponent.addPackageByNth.click();
         // make sure the package added into selected components
         browser.waitUntil(
           () => selectedComponents.packageList.map(item => item.getText()).includes(addedPackageName),
-          timeout,
-          `Cannot add package ${addedPackageName} into blueprint ${name}`
+          timeout
         );
       });
 
@@ -259,7 +251,7 @@ describe("Edit Blueprint Page", function() {
 
         after(function() {
           pendingCommitPage.closeButton.click();
-          browser.waitForExist(pendingCommitPage.containerSelector, timeout, true);
+          $(pendingCommitPage.containerSelector).waitForExist(timeout, true);
         });
 
         it('info message should be "Only changes to selected components are shown."', function() {
@@ -293,9 +285,9 @@ describe("Edit Blueprint Page", function() {
         it("should not commit changes if not clicking Commit button", function() {
           // not commit changes
           pendingCommitPage.xButton.click();
-          browser.waitForExist(pendingCommitPage.containerSelector, timeout, true);
+          $(pendingCommitPage.containerSelector).waitForExist(timeout, true);
           // go back to blueprints page
-          editPackagesPage.backToBlueprintsPage();
+          editPackagesPage.backToBlueprintsPageLink.click();
           blueprintsPage.loading();
           // go to edit blueprint page again
           blueprintComponent.editPackagesButton.click();

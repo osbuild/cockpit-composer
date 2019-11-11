@@ -1,11 +1,9 @@
-const faker = require("faker");
-const addContext = require("mochawesome/addContext");
-const commands = require("../utils/commands");
+import faker from "faker";
 
-const Blueprint = require("../components/Blueprint.component");
-const blueprintsPage = require("../pages/blueprints.page");
-const ViewBlueprintPage = require("../pages/ViewBlueprint.page");
-const createUserAccount = require("../pages/createUserAccount.page");
+import Blueprint from "../components/Blueprint.component";
+import blueprintsPage from "../pages/blueprints.page";
+import ViewBlueprintPage from "../pages/ViewBlueprint.page";
+import createUserAccount from "../pages/createUserAccount.page";
 
 describe("Create User Account Page", function() {
   const name = faker.lorem.slug();
@@ -14,9 +12,7 @@ describe("Create User Account Page", function() {
   const viewBlueprintPage = new ViewBlueprintPage(name, description);
 
   before(function() {
-    commands.login();
-    commands.startLoraxIfItDoesNotStart();
-    commands.newBlueprint(name, description);
+    browser.newBlueprint(name, description);
     blueprintComponent.blueprintNameLink.click();
     viewBlueprintPage.loading();
   });
@@ -24,13 +20,12 @@ describe("Create User Account Page", function() {
   after(function() {
     viewBlueprintPage.backToBlueprintsLink.click();
     blueprintsPage.loading();
-    commands.deleteBlueprint(name);
-    blueprintsPage.loading();
+    browser.deleteBlueprint(name);
   });
 
   describe("Check created user", function() {
-    const firstname = faker.name.firstName();
-    const lastname = faker.name.lastName();
+    const firstname = faker.lorem.word();
+    const lastname = faker.lorem.word();
     const username = `${firstname}${lastname}`;
     const fullname = `${firstname} ${lastname}`;
     const password = "123qwe!@#QWE";
@@ -38,29 +33,35 @@ describe("Create User Account Page", function() {
       "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDhbIOLUndK2150PwjZqxEmYC/b0z1isMFUXyJ0n2Pl0gJoFk28WDJ4tNMBraqAGyxqHv2YyqaJEY54ne0Pb085b9+0bOiBWp7rRhzRUwOdYrMRYE6zAow4lPPKVu0cY/a2uIzXmGz6meK7nSZ3g+0cfsfs2z6vJ/ip/tgbNM6XCSmI63N0QezEUy8dxDLrA0C4PrTq3QPMF+lvi8njt6B/k6f3AzqcsIldN0MULBI3Hp98cjBkmhFS4ZFZ/EAe6ePPOezVorAxC/C/X/76mcbsJpEke9Cn0EPPbCODIa+tVXyZRYCK0l4pU4h5ShinQI0yvYA9Y3NcFyChRk25RAuR cockpit-composer@localhost.localhost";
 
     before(function() {
-      addContext(this, `create new user account with name, ${username}, and fullname, ${fullname}`);
       viewBlueprintPage.createUserAccountButton.click();
       createUserAccount.loading();
-      createUserAccount.userNameBox.setValue(username);
-      createUserAccount.fullNameBox.setValue(fullname);
+      do {
+        createUserAccount.userNameBox.setInputValue(username);
+      } while (createUserAccount.userNameBox.getAttribute("value") !== username);
+      createUserAccount.fullNameBox.setInputValue(fullname);
       createUserAccount.roleCheckbox.click();
-      createUserAccount.passwordBox.setValue(password);
-      createUserAccount.confirmPasswordBox.setValue(password);
-      createUserAccount.sshKeyBox.setValue(sshKey);
+      createUserAccount.passwordBox.setInputValue(password);
+      createUserAccount.confirmPasswordBox.setInputValue(password);
+      createUserAccount.sshKeyBox.setInputValue(sshKey);
       createUserAccount.createButton.click();
-      browser.waitForExist(createUserAccount.containerSelector, timeout, true);
-      browser.waitForExist(`[data-tr=${username}] [data-td=username]`);
+      $(createUserAccount.containerSelector).waitForExist(timeout, true);
+      viewBlueprintPage.userAccountSelector(username).waitForExist(timeout);
     });
 
     after(function() {
       viewBlueprintPage.moreUserButton(username).click();
       browser.waitUntil(
-        () => viewBlueprintPage.moreUserButton(username).getAttribute("aria-expanded") === "true",
+        () =>
+          viewBlueprintPage
+            .dropDownMenu(username)
+            .getAttribute("class")
+            .includes("open") && viewBlueprintPage.deleteUserAccountItem(username).isDisplayed(),
         timeout
       );
-      browser.keys("ArrowDown");
-      browser.keys("Enter");
-      browser.waitForExist(`[data-tr=${username}] [data-td=username]`, timeout, true);
+      viewBlueprintPage.moreUserButton(username).sendKey("\uE015");
+      viewBlueprintPage.deleteUserAccountItem(username).sendKey("\uE007");
+      viewBlueprintPage.userAccountSelector(username).waitForExist(timeout, true);
+      // browser.waitForExist(`[data-tr=${username}] [data-td=username]`, timeout, true);
     });
 
     it(`Username should be ${username}`, function() {
@@ -72,21 +73,22 @@ describe("Create User Account Page", function() {
     });
 
     it("Server administrator cell should be checked", function() {
-      expect(browser.isExisting(viewBlueprintPage.administratorCell(username))).to.be.true;
+      expect(viewBlueprintPage.administratorCell(username).isExisting()).to.be.true;
     });
 
     it("Password cell should be checked", function() {
-      expect(browser.isExisting(viewBlueprintPage.passwordCell(username))).to.be.true;
+      expect(viewBlueprintPage.passwordCell(username).isExisting()).to.be.true;
     });
 
     it("SSH Key cell should be checked", function() {
-      expect(browser.isExisting(viewBlueprintPage.sshKeyCell(username))).to.be.true;
+      expect(viewBlueprintPage.sshKeyCell(username).isExisting()).to.be.true;
     });
 
     it("SSH Key cell should show hostname if it exists in ssh public key", function() {
       // Edge returns " cockpit-composer@localhost.localhost" from getText()
       expect(
-        $(viewBlueprintPage.sshKeyCell(username))
+        viewBlueprintPage
+          .sshKeyCell(username)
           .getText()
           .trim()
       ).to.equal("cockpit-composer@localhost.localhost");
@@ -95,7 +97,7 @@ describe("Create User Account Page", function() {
     it("should have the same password hash value", function() {
       // get blueprint info from API
       const endpoint = `/api/v0/blueprints/info/${name}`;
-      const result = commands.apiFetchTest(endpoint).value;
+      const result = browser.apiFetchTest(endpoint);
       // result looks like:
       // https://github.com/weldr/lorax/blob/b57de934681056aa4f9bd480a34136cf340f510a/src/pylorax/api/v0.py#L66
       const resultPassword = JSON.parse(result.data).blueprints[0].customizations.user[0].password;
@@ -113,25 +115,33 @@ describe("Create User Account Page", function() {
         password,
         pyinvoke
       );
-      expect(expectedPassword.value.trim()).to.equal(resultPassword);
+      expect(expectedPassword.trim()).to.equal(resultPassword);
     });
 
     it("Full name should not get updated when clicking X button", function() {
       viewBlueprintPage.editUserButton(username).click();
       createUserAccount.loading();
-      createUserAccount.fullNameBox.setValue("zzz");
-      createUserAccount.clickXButton();
-      browser.waitForExist(createUserAccount.containerSelector, timeout, true);
+      const valueLength = createUserAccount.fullNameBox.getAttribute("value").length;
+      for (let x = 0; x < valueLength; x++) {
+        createUserAccount.fullNameBox.sendKey("\uE003");
+      }
+      createUserAccount.fullNameBox.setInputValue("zzz");
+      createUserAccount.xButton.click();
+      $(createUserAccount.containerSelector).waitForExist(timeout, true);
       expect(viewBlueprintPage.fullNameCell(username).getText()).to.equal(fullname);
     });
 
     it("Full name should get updated", function() {
       viewBlueprintPage.editUserButton(username).click();
       createUserAccount.loading();
-      createUserAccount.fullNameBox.setValue("zzz");
-      createUserAccount.createButton.click();
-      browser.waitForExist(createUserAccount.containerSelector, timeout, true);
-      expect(viewBlueprintPage.fullNameCell(username).getText()).to.equal("zzz");
+      const valueLength = createUserAccount.fullNameBox.getAttribute("value").length;
+      for (let x = 0; x < valueLength; x++) {
+        createUserAccount.fullNameBox.sendKey("\uE003");
+      }
+      createUserAccount.fullNameBox.setInputValue("zzz");
+      createUserAccount.updateButton.click();
+      $(createUserAccount.containerSelector).waitForExist(timeout, true);
+      expect(viewBlueprintPage.fullNameCell(username).getText()).to.include("zzz");
     });
 
     it("password should get updated", function() {
@@ -139,14 +149,17 @@ describe("Create User Account Page", function() {
       viewBlueprintPage.editUserButton(username).click();
       createUserAccount.loading();
       createUserAccount.setNewPasswordButton.click();
-      createUserAccount.passwordBox.setValue(newPassword);
-      createUserAccount.confirmPasswordBox.setValue(newPassword);
+      createUserAccount.passwordBox.setInputValue(newPassword);
+      createUserAccount.confirmPasswordBox.setInputValue(newPassword);
+      // have to pause here for Firefox only (chrome and edge work great here)
+      // the Update will be disabled(password verification has not done yet) if no pause here
+      browser.pause(2000);
       createUserAccount.updateButton.click();
-      browser.waitForExist(createUserAccount.containerSelector, timeout, true);
+      $(createUserAccount.containerSelector).waitForExist(5000, true);
 
       // get blueprint info from API
       const endpoint = `/api/v0/blueprints/info/${name}`;
-      const result = commands.apiFetchTest(endpoint).value;
+      const result = browser.apiFetchTest(endpoint);
       // result looks like:
       // https://github.com/weldr/lorax/blob/b57de934681056aa4f9bd480a34136cf340f510a/src/pylorax/api/v0.py#L66
       const resultPassword = JSON.parse(result.data).blueprints[0].customizations.user[0].password;
@@ -164,7 +177,7 @@ describe("Create User Account Page", function() {
         newPassword,
         pyinvoke
       );
-      expect(expectedPassword.value.trim()).to.equal(resultPassword);
+      expect(expectedPassword.trim()).to.equal(resultPassword);
     });
 
     it("password should be removed", function() {
@@ -172,17 +185,17 @@ describe("Create User Account Page", function() {
       createUserAccount.loading();
       createUserAccount.removePasswordButton.click();
       createUserAccount.updateButton.click();
-      browser.waitForExist(createUserAccount.containerSelector, timeout, true);
+      $(createUserAccount.containerSelector).waitForExist(5000, true);
 
       // get blueprint info from API
       const endpoint = `/api/v0/blueprints/info/${name}`;
-      const result = commands.apiFetchTest(endpoint).value;
+      const result = browser.apiFetchTest(endpoint);
       // result looks like:
       // https://github.com/weldr/lorax/blob/b57de934681056aa4f9bd480a34136cf340f510a/src/pylorax/api/v0.py#L66
       const resultPassword = JSON.parse(result.data).blueprints[0].customizations.user[0].password;
 
       expect(resultPassword).to.be.undefined;
-      expect(browser.isExisting(viewBlueprintPage.passwordCell(username))).to.be.false;
+      expect(viewBlueprintPage.passwordCell(username).isExisting()).to.be.false;
     });
 
     it("password should be create again", function() {
@@ -190,14 +203,17 @@ describe("Create User Account Page", function() {
       viewBlueprintPage.editUserButton(username).click();
       createUserAccount.loading();
       createUserAccount.setPasswordButton.click();
-      createUserAccount.passwordBox.setValue(newPassword);
-      createUserAccount.confirmPasswordBox.setValue(newPassword);
+      createUserAccount.passwordBox.setInputValue(newPassword);
+      createUserAccount.confirmPasswordBox.setInputValue(newPassword);
+      // have to pause here for Firefox only (chrome and edge work great here)
+      // the Update will be disabled(password verification has not done yet) if no pause here
+      browser.pause(2000);
       createUserAccount.updateButton.click();
-      browser.waitForExist(createUserAccount.containerSelector, timeout, true);
+      $(createUserAccount.containerSelector).waitForExist(5000, true);
 
       // get blueprint info from API
       const endpoint = `/api/v0/blueprints/info/${name}`;
-      const result = commands.apiFetchTest(endpoint).value;
+      const result = browser.apiFetchTest(endpoint);
       // result looks like:
       // https://github.com/weldr/lorax/blob/b57de934681056aa4f9bd480a34136cf340f510a/src/pylorax/api/v0.py#L66
       const resultPassword = JSON.parse(result.data).blueprints[0].customizations.user[0].password;
@@ -215,7 +231,7 @@ describe("Create User Account Page", function() {
         newPassword,
         pyinvoke
       );
-      expect(expectedPassword.value.trim()).to.equal(resultPassword);
+      expect(expectedPassword.trim()).to.equal(resultPassword);
     });
 
     describe("warning message test", function() {
@@ -226,24 +242,26 @@ describe("Create User Account Page", function() {
 
       afterEach(function() {
         createUserAccount.cancelButton.click();
-        browser.waitForExist(createUserAccount.containerSelector, timeout, true);
+        $(createUserAccount.containerSelector).waitForExist(5000, true);
       });
 
       it("should show duplicated name warning message", function() {
-        createUserAccount.userNameBox.setValue(username);
+        createUserAccount.userNameBox.setInputValue(username);
         expect(createUserAccount.userErrorLabel.getText()).to.equal("This user name already exists.");
         expect(createUserAccount.createButton.getAttribute("disabled")).to.equal("true");
       });
 
       it("User name should be auto-filled according to Full name", function() {
-        createUserAccount.fullNameBox.setValue("x y");
-        expect(createUserAccount.userNameBox.getValue()).to.equal("xy");
+        do {
+          createUserAccount.fullNameBox.setInputValue("x y");
+        } while (createUserAccount.fullNameBox.getAttribute("value") !== "x y");
+        expect(createUserAccount.userNameBox.getAttribute("value")).to.equal("xy");
       });
 
       it("should show password error message", function() {
-        createUserAccount.fullNameBox.setValue("x y");
-        createUserAccount.passwordBox.setValue("aaa");
-        createUserAccount.confirmPasswordBox.setValue("bbb");
+        createUserAccount.fullNameBox.setInputValue("x y");
+        createUserAccount.passwordBox.setInputValue("aaa");
+        createUserAccount.confirmPasswordBox.setInputValue("bbb");
         expect(createUserAccount.passwordErrorLabel1.getText()).to.equal(
           "Password quality check failed: The password is a palindrome"
         );

@@ -1,13 +1,12 @@
-const faker = require("faker");
-const commands = require("../utils/commands");
+import faker from "faker";
 
-const Blueprint = require("../components/Blueprint.component");
-const blueprintsPage = require("../pages/blueprints.page");
-const EditPackagesPage = require("../pages/EditPackages.page");
-const AvailableComponents = require("../components/AvailableComponents.component");
-const selectedComponents = require("../components/selectedComponents.component");
-const dependencies = require("../components/dependencies.component");
-const DetailsComponent = require("../components/Details.component");
+import Blueprint from "../components/Blueprint.component";
+import blueprintsPage from "../pages/blueprints.page";
+import EditPackagesPage from "../pages/EditPackages.page";
+import AvailableComponents from "../components/AvailableComponents.component";
+import selectedComponents from "../components/selectedComponents.component";
+import dependencies from "../components/dependencies.component";
+import DetailsComponent from "../components/Details.component";
 
 describe("Edit Blueprint Page", function() {
   const name = faker.lorem.slug();
@@ -16,52 +15,46 @@ describe("Edit Blueprint Page", function() {
   const editPackagesPage = new EditPackagesPage(name);
 
   before(function() {
-    commands.login();
-    commands.startLoraxIfItDoesNotStart();
-    commands.newBlueprint(name, description);
+    browser.newBlueprint(name, description);
     blueprintComponent.editPackagesButton.click();
     editPackagesPage.loading();
   });
 
   after(function() {
-    editPackagesPage.backToBlueprintsPage();
+    editPackagesPage.backToBlueprintsPageLink.click();
     blueprintsPage.loading();
-    commands.deleteBlueprint(name);
-    blueprintsPage.loading();
+    browser.deleteBlueprint(name);
   });
 
   describe("Sort, Redo and Undo", function() {
     const availableComponent = new AvailableComponents();
     const packageName = "cockpit-bridge";
     before(function() {
-      editPackagesPage.filterBox.setValue(packageName);
-      browser.keys("Enter");
-      browser.waitForExist(editPackagesPage.filterContentLabel, timeout);
+      editPackagesPage.filterBox.setInputValue(packageName);
+      editPackagesPage.filterBox.sendKey("\uE007");
+      editPackagesPage.filterContentLabel.waitForDisplayed(timeout);
       browser.waitUntil(
         () =>
           $(editPackagesPage.filterContentLabel)
             .getText()
             .includes(packageName),
-        timeout,
-        `Cannot find package - ${packageName}`
+        timeout
       );
       // add package to blueprint
-      availableComponent.addPackageByName(packageName);
+      availableComponent.addPackageByName(packageName).click();
       selectedComponents.loading();
       browser.waitUntil(
         () => selectedComponents.packageList.map(item => item.getText()).includes(packageName),
-        timeout,
-        `Cannot add package ${packageName} into blueprint ${name}`
+        timeout
       );
     });
 
     after(function() {
-      availableComponent.removePackageByName(packageName);
+      availableComponent.removePackageByName(packageName).click();
       selectedComponents.loading();
       browser.waitUntil(
         () => selectedComponents.packageList.map(item => item.getText()).indexOf(packageName) === -1,
-        timeout,
-        `Cannot add package ${packageName} into blueprint ${name}`
+        timeout
       );
     });
 
@@ -75,7 +68,7 @@ describe("Edit Blueprint Page", function() {
     it("blueprint with reverse order by clicking A->Z sort button", function() {
       const defaultArray = selectedComponents.packageList.map(item => item.getText());
       editPackagesPage.sortAscButton.click();
-      editPackagesPage.sortDescButton.waitForVisible(timeout);
+      editPackagesPage.sortDescButton.waitForDisplayed(timeout);
       const sortedArray = selectedComponents.packageList.map(item => item.getText());
       expect(defaultArray.reverse().every((value, index) => value === sortedArray[index])).to.be.true;
     });
@@ -83,35 +76,33 @@ describe("Edit Blueprint Page", function() {
     it("blueprint with reverse order by clicking Z->A sort button", function() {
       const defaultArray = selectedComponents.packageList.map(item => item.getText());
       editPackagesPage.sortDescButton.click();
-      editPackagesPage.sortAscButton.waitForVisible(timeout);
+      editPackagesPage.sortAscButton.waitForDisplayed(timeout);
       const sortedArray = selectedComponents.packageList.map(item => item.getText());
       expect(defaultArray.reverse().every((value, index) => value === sortedArray[index])).to.be.true;
     });
 
     it("Redo butto should be disabled", function() {
-      expect(browser.getAttribute('[data-button="redo"]', "class")).to.include("disabled");
+      expect($('[data-button="redo"]').getAttribute("class")).to.include("disabled");
     });
 
     it("Undo button should work", function() {
       editPackagesPage.undoButton.click();
       browser.waitUntil(
         () => selectedComponents.packageList.map(item => item.getText()).indexOf(packageName) === -1,
-        timeout,
-        `Cannot add package ${packageName} into blueprint ${name}`
+        timeout
       );
       expect(selectedComponents.packageList.map(item => item.getText())).to.not.include(packageName);
     });
 
     it("Undo butto should be disabled", function() {
-      expect(browser.getAttribute('[data-button="undo"]', "class")).to.include("disabled");
+      expect($('[data-button="undo"]').getAttribute("class")).to.include("disabled");
     });
 
     it("Redo button should work", function() {
       editPackagesPage.redoButton.click();
       browser.waitUntil(
         () => selectedComponents.packageList.map(item => item.getText()).includes(packageName),
-        timeout,
-        `Cannot add package ${packageName} into blueprint ${name}`
+        timeout
       );
       expect(selectedComponents.packageList.map(item => item.getText())).to.include(packageName);
     });
@@ -124,30 +115,40 @@ describe("Edit Blueprint Page", function() {
       const removedPackageName = selectedComponents.packageNameByNth(0);
       // remove added package
       selectedComponents.moreButtonByName(removedPackageName).click();
-      browser.keys("ArrowDown"); // View
-      browser.keys("ArrowDown"); // Edit
-      browser.keys("ArrowDown"); // Remove
-      browser.keys("Enter");
+      browser.waitUntil(
+        () =>
+          selectedComponents
+            .dropDownMenu(removedPackageName)
+            .getAttribute("class")
+            .includes("open") && selectedComponents.removeItem(removedPackageName).isDisplayed(),
+        timeout
+      );
+      selectedComponents.removeItem(removedPackageName).click();
+      $(selectedComponents.containerSelector).waitForExist(timeout, true);
       // add cockpit-bridge into selected component
-      editPackagesPage.filterBox.setValue(packageName);
-      browser.keys("Enter");
-      browser.waitForExist(editPackagesPage.filterContentLabel, timeout);
+      if (browser.capabilities.browserName.toLowerCase().includes("edge")) {
+        const valueLength = editPackagesPage.filterBox.getAttribute("value").length;
+        for (let x = 0; x < valueLength; x++) {
+          editPackagesPage.filterBox.sendKey("\uE003");
+        }
+      }
+      editPackagesPage.filterBox.setInputValue(packageName);
+      editPackagesPage.filterBox.sendKey("\uE007");
+      editPackagesPage.filterContentLabel.waitForDisplayed(timeout);
       browser.waitUntil(
         () =>
           $(editPackagesPage.filterContentLabel)
             .getText()
             .includes(packageName),
-        timeout,
-        `Cannot find package - ${packageName}`
+        timeout
       );
       // add package to blueprint
       const availableComponent = new AvailableComponents();
-      availableComponent.addPackageByName(packageName);
+      availableComponent.addPackageByName(packageName).click();
       selectedComponents.loading();
       browser.waitUntil(
         () => selectedComponents.packageList.map(item => item.getText()).includes(packageName),
-        timeout,
-        `Cannot add package ${packageName} into blueprint ${name}`
+        timeout
       );
     });
 
@@ -163,7 +164,7 @@ describe("Edit Blueprint Page", function() {
       });
 
       after(function() {
-        selectedComponents.clickAngleDownButton(packageName);
+        selectedComponents.angleDownButton(packageName).click();
         selectedComponents.loadingComponentCollapse(packageName);
       });
 
@@ -190,7 +191,7 @@ describe("Edit Blueprint Page", function() {
 
   describe("Dependencies Tab", function() {
     before(function() {
-      editPackagesPage.clickDependenciesTabBadge();
+      editPackagesPage.dependenciesTabBadge.click();
     });
 
     it("The bedge should show the correct selected package number", function() {
@@ -205,18 +206,23 @@ describe("Edit Blueprint Page", function() {
     const componentDetails = new DetailsComponent(packageName);
 
     before(function() {
-      editPackagesPage.filterBox.setValue(packageName);
-      browser.keys("Enter");
-      browser.waitForExist(editPackagesPage.filterContentLabel, timeout);
+      if (browser.capabilities.browserName.toLowerCase().includes("edge")) {
+        const valueLength = editPackagesPage.filterBox.getAttribute("value").length;
+        for (let x = 0; x < valueLength; x++) {
+          editPackagesPage.filterBox.sendKey("\uE003");
+        }
+      }
+      editPackagesPage.filterBox.setInputValue(packageName);
+      editPackagesPage.filterBox.sendKey("\uE007");
+      editPackagesPage.filterContentLabel.waitForDisplayed(timeout);
       browser.waitUntil(
         () =>
           $(editPackagesPage.filterContentLabel)
             .getText()
             .includes(packageName),
-        timeout,
-        `Cannot find package - ${packageName}`
+        timeout
       );
-      bashComponent.clickNameLabelByName(packageName);
+      bashComponent.nameLabelByName(packageName).click();
       browser.waitUntil(() => componentDetails.componentDescriptionLabel.getText() !== "", timeout);
     });
 
@@ -249,31 +255,34 @@ describe("Edit Blueprint Page", function() {
   });
 
   describe("Commit and Create", function() {
-    const CreateImagePage = require("../pages/CreateImage.page");
-    const createImagePage = new CreateImagePage(name);
+    const createImagePage = require("../pages/createImage.page");
     const bashComponent = new AvailableComponents();
     const packageName = "tmux";
     const componentDetails = new DetailsComponent(packageName);
 
     before(function() {
-      editPackagesPage.filterBox.setValue(packageName);
-      browser.keys("Enter");
-      browser.waitForExist(editPackagesPage.filterContentLabel, timeout);
+      if (browser.capabilities.browserName.toLowerCase().includes("edge")) {
+        const valueLength = editPackagesPage.filterBox.getAttribute("value").length;
+        for (let x = 0; x < valueLength; x++) {
+          editPackagesPage.filterBox.sendKey("\uE003");
+        }
+      }
+      editPackagesPage.filterBox.setInputValue(packageName);
+      editPackagesPage.filterBox.sendKey("\uE007");
+      editPackagesPage.filterContentLabel.waitForDisplayed(timeout);
       browser.waitUntil(
         () =>
           $(editPackagesPage.filterContentLabel)
             .getText()
             .includes(packageName),
-        timeout,
-        `Cannot find package - ${packageName}`
+        timeout
       );
-      bashComponent.clickNameLabelByName(packageName);
+      bashComponent.nameLabelByName(packageName).click();
       browser.waitUntil(() => componentDetails.componentDescriptionLabel.getText() !== "", timeout);
       componentDetails.addButton.click();
       browser.waitUntil(
         () => selectedComponents.packageList.map(item => item.getText()).includes(packageName),
-        timeout,
-        `Cannot add package ${packageName} into blueprint`
+        timeout
       );
       editPackagesPage.createImageButton.click();
       createImagePage.loading();
@@ -281,7 +290,7 @@ describe("Edit Blueprint Page", function() {
 
     after(function() {
       createImagePage.cancelButton.click();
-      browser.waitForExist(createImagePage.containerSelector, timeout, true);
+      $(createImagePage.containerSelector).waitForExist(timeout, true);
     });
 
     it("should show a correct alert message in Create Image dialog", function() {

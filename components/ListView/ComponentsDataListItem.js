@@ -86,17 +86,13 @@ class ComponentsDataListItem extends React.Component {
                 key="secondary"
                 className="cc-component__version pf-u-display-flex-on-xl pf-u-flex-direction-column"
               >
-                <FormattedMessage defaultMessage="Version" />
-                {` `}
-                <strong>{listItem.version}</strong>
+                <FormattedMessage defaultMessage="Version" /> <strong>{listItem.version}</strong>
               </DataListCell>,
               <DataListCell
                 key="tertiary"
                 className="cc-component__release pf-u-display-flex-on-xl pf-u-flex-direction-column"
               >
-                <FormattedMessage defaultMessage="Release" />
-                {` `}
-                <strong>{listItem.release}</strong>
+                <FormattedMessage defaultMessage="Release" /> <strong>{listItem.release}</strong>
               </DataListCell>
             ]}
           />

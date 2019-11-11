@@ -1,4 +1,3 @@
-const loginPage = require("../pages/login.page");
 const blueprintsPage = require("../pages/blueprints.page");
 const createBlueprintPage = require("../pages/createBlueprint.page");
 const deleteBlueprintPage = require("../pages/deleteBlueprint.page");
@@ -10,26 +9,79 @@ const pendingCommitPage = require("../pages/pendingCommit.page");
 const ToastNotificationPage = require("../pages/ToastNotification.page");
 
 module.exports = {
+  element: function() {
+    this.waitForDisplayed(timeout, false, `!!!!Cannot locate element ${this}!!!!`);
+    return this;
+  },
+
+  setInputValue: function(value) {
+    // Edge does not work with "setValue"
+    // work around https://github.com/webdriverio/webdriverio/issues/3324#issuecomment-460087037
+    if (browser.capabilities.browserName.toLowerCase().includes("edge")) {
+      browser.elementSendKeys(this.elementId, "", value.split());
+    } else {
+      this.setValue(value);
+    }
+  },
+
+  sendKey: function(unicode) {
+    if (browser.capabilities.browserName.toLowerCase().includes("edge")) {
+      browser.elementSendKeys(this.elementId, "", [unicode]);
+    } else {
+      browser.elementSendKeys(this.elementId, unicode);
+    }
+  },
+
   login: function() {
+    const username = process.env.COCKPIT_USERNAME || "root";
+    const password = process.env.COCKPIT_PASSWORD || "foobar";
+
     browser.url("/composer");
-    loginPage.loadingCockpitLoginPage();
-    loginPage.usernameBox.setValue(loginPage.username);
-    loginPage.passwordBox.setValue(loginPage.password);
-    // only for non-root user
-    loginPage.username !== "root" && loginPage.authorizedCheckbox.click();
-    loginPage.loginButton.click();
-    // switch to Image Builder frame
-    browser.frame(loginPage.imageBuilderIframe);
+    // wait for page loaded
+    $('[id="badge"]').waitForDisplayed(timeout);
+    // username and password
+    $('input[id="login-user-input"]')
+      .element()
+      .setInputValue(username);
+    $('input[id="login-password-input"]')
+      .element()
+      .setInputValue(password);
+    // enable "Reuse my password for privileged tasks" only for non-root user
+    username !== "root" &&
+      $('[id="authorized-input"]')
+        .element()
+        .click();
+    // "Log In"
+    $('button[id="login-button"]')
+      .element()
+      .click();
+  },
+
+  switchToComposerFrame: function() {
+    $('iframe[name="cockpit1:localhost/composer"]').waitForDisplayed(timeout);
+    let iframe = $('iframe[name="cockpit1:localhost/composer"]');
+    // work around for Edge https://github.com/webdriverio/webdriverio/issues/3880
+    if (browser.capabilities.browserName.toLowerCase().includes("edge")) {
+      iframe = "cockpit1:localhost/composer";
+    }
+    browser.switchToFrame(iframe);
   },
 
   startLoraxIfItDoesNotStart: function() {
-    if (blueprintsPage.createBlueprintButton.getAttribute("disabled") === "true") {
-      const isAutostart = blueprintsPage.autostartCheckbox.isSelected();
-      if (!isAutostart) {
-        blueprintsPage.autostartCheckbox.click();
+    if (process.env.TRY_RUN !== "true") {
+      try {
+        blueprintsPage.serviceStartButton.waitForDisplayed();
+        const isAutostart = blueprintsPage.autostartCheckbox.isSelected();
+        if (!isAutostart) {
+          blueprintsPage.autostartCheckbox.click();
+        }
+        blueprintsPage.serviceStartButton.click();
+        $(blueprintsPage.blueprintListView).waitForExist(timeout * 2);
+        blueprintsPage.loading();
+      } catch (e) {
+        console.error(e);
+        blueprintsPage.loading();
       }
-      blueprintsPage.serviceStartButton.click();
-      blueprintsPage.loading();
     }
   },
 
@@ -39,49 +91,42 @@ module.exports = {
     blueprintsPage.createBlueprintButton.click();
     // pop up create blueprint dialog
     createBlueprintPage.loading();
-    createBlueprintPage.nameBox.setValue(name);
-    createBlueprintPage.descriptionBox.setValue(description);
+    createBlueprintPage.nameBox.setInputValue(name);
+    createBlueprintPage.descriptionBox.setInputValue(description);
     createBlueprintPage.createButton.click();
     // open edit blueprint page
     const editPackagesPage = new EditPackagesPage(name);
     editPackagesPage.loading();
-    browser.keys("Enter");
     // make sure new availabe components for new page loaded
-    editPackagesPage.loading();
     const filterContent = "openssh-server";
-    editPackagesPage.filterBox.setValue(filterContent);
-    browser.keys("Enter");
-    browser.waitForExist(editPackagesPage.filterContentLabel, timeout);
+    editPackagesPage.filterBox.setInputValue(filterContent);
+    editPackagesPage.filterBox.sendKey("\uE007");
+    editPackagesPage.filterContentLabel.waitForDisplayed(timeout);
     browser.waitUntil(
       () =>
         $(editPackagesPage.filterContentLabel)
           .getText()
           .includes(filterContent),
-      timeout,
-      `Cannot find package - ${filterContent}`
+      timeout
     );
     const availableComponent = new AvailableComponents();
-    availableComponent.addPackageByName(filterContent);
+    availableComponent.addPackageByName(filterContent).click();
     // make sure the package added into selected components
     selectedComponents.loading();
-    browser.waitUntil(
-      () => selectedComponents.packageList.map(item => item.getText()).includes(filterContent),
-      timeout,
-      `Cannot add package ${filterContent} into blueprint ${name}`
-    );
+    selectedComponents.packageByName(filterContent).waitForExist(timeout);
     editPackagesPage.commitButton.click();
     // pop up Changes Pending Commit dialog
     pendingCommitPage.loading();
-    pendingCommitPage.commit();
+    pendingCommitPage.commitButton.click();
     // wait for Changes Pending Commit dialog fades out
-    browser.waitForExist(pendingCommitPage.containerSelector, timeout, true);
+    $(pendingCommitPage.containerSelector).waitForExist(timeout, true);
     // wait for Toast Notification dialog fades out
     const toastNotificationPage = new ToastNotificationPage("committed");
     toastNotificationPage.loading();
-    toastNotificationPage.close();
-    browser.waitForExist('[id="cmpsr-toast-0"]', timeout, true);
+    toastNotificationPage.closeButton.click();
+    $(toastNotificationPage.containerSelector).waitForExist(timeout, true);
     // go back to Blueprints page by clicking "Back To Blueprints" button
-    editPackagesPage.backToBlueprintsPage();
+    editPackagesPage.backToBlueprintsPageLink.click();
     blueprintsPage.loading();
   },
 
@@ -91,8 +136,11 @@ module.exports = {
     blueprintComponent.moreDropdownMenu.click();
     blueprintComponent.deleteOption.click();
     deleteBlueprintPage.loading();
-    deleteBlueprintPage.deleteButton.click();
-    browser.waitForExist(deleteBlueprintPage.containerSelector, timeout, true);
+    deleteBlueprintPage.deleteButton.waitForClickable();
+    // deleteBlueprintPage.deleteButton.click() is not stable enough to close export page
+    deleteBlueprintPage.deleteButton.sendKey("\uE007");
+    $(deleteBlueprintPage.containerSelector).waitForExist(timeout, true);
+    blueprintsPage.loading();
   },
 
   apiFetchTest: function(endpoint, options = { body: "" }) {

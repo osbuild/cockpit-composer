@@ -1,11 +1,8 @@
-const faker = require("faker");
-const addContext = require("mochawesome/addContext");
-const commands = require("../utils/commands");
-const wdioConfig = require("../wdio.conf.js");
+import faker from "faker";
 
-const Blueprint = require("../components/Blueprint.component");
-const blueprintsPage = require("../pages/blueprints.page");
-const ViewBlueprintPage = require("../pages/ViewBlueprint.page");
+import Blueprint from "../components/Blueprint.component";
+import blueprintsPage from "../pages/blueprints.page";
+import ViewBlueprintPage from "../pages/ViewBlueprint.page";
 
 describe("View Blueprint Page", function() {
   const name = faker.lorem.slug();
@@ -13,20 +10,13 @@ describe("View Blueprint Page", function() {
   const blueprintComponent = new Blueprint(name);
   const viewBlueprintPage = new ViewBlueprintPage(name, description);
 
-  before(function() {
-    commands.login();
-    commands.startLoraxIfItDoesNotStart();
-  });
-
   after(function() {
-    commands.deleteBlueprint(name);
-    blueprintsPage.loading();
+    browser.deleteBlueprint(name);
   });
 
   describe("Run test on a new blueprint", function() {
     before(function() {
-      addContext(this, `create new blueprint with name, ${name}, and description, ${description}`);
-      commands.newBlueprint(name, description);
+      browser.newBlueprint(name, description);
       blueprintComponent.blueprintNameLink.click();
       viewBlueprintPage.loading();
     });
@@ -62,14 +52,14 @@ describe("View Blueprint Page", function() {
       it("hostname should be added", function() {
         const hostname = faker.lorem.slug();
         viewBlueprintPage.editHostnameButton.click();
-        viewBlueprintPage.hostnameInputBox.setValue(hostname);
+        viewBlueprintPage.hostnameInputBox.setInputValue(hostname);
         viewBlueprintPage.okHostnameButton.click();
         // UI should get updated
         expect(viewBlueprintPage.customizationsTabHostnameLabel(hostname).getText()).to.equal(hostname);
 
         // get dependencies from API
         const endpoint = `/api/v0/blueprints/info/${name}`;
-        const result = commands.apiFetchTest(endpoint).value;
+        const result = browser.apiFetchTest(endpoint);
         // result looks like:
         // https://github.com/weldr/lorax/blob/b57de934681056aa4f9bd480a34136cf340f510a/src/pylorax/api/v0.py#L66
         const result_hostname = JSON.parse(result.data).blueprints[0].customizations.hostname;
@@ -80,14 +70,14 @@ describe("View Blueprint Page", function() {
       it("hostname should be updated", function() {
         const hostname = faker.lorem.slug();
         viewBlueprintPage.editHostnameButton.click();
-        viewBlueprintPage.hostnameInputBox.setValue(hostname);
+        viewBlueprintPage.hostnameInputBox.setInputValue(hostname);
         viewBlueprintPage.okHostnameButton.click();
         // UI should get updated
         expect(viewBlueprintPage.customizationsTabHostnameLabel(hostname).getText()).to.equal(hostname);
 
         // get dependencies from API
         const endpoint = `/api/v0/blueprints/info/${name}`;
-        const result = commands.apiFetchTest(endpoint).value;
+        const result = browser.apiFetchTest(endpoint);
         // result looks like:
         // https://github.com/weldr/lorax/blob/b57de934681056aa4f9bd480a34136cf340f510a/src/pylorax/api/v0.py#L66
         const result_hostname = JSON.parse(result.data).blueprints[0].customizations.hostname;
@@ -99,11 +89,11 @@ describe("View Blueprint Page", function() {
         // set a new hostname in this test
         const hostname = faker.lorem.slug();
         viewBlueprintPage.editHostnameButton.click();
-        viewBlueprintPage.hostnameInputBox.setValue(hostname);
+        viewBlueprintPage.hostnameInputBox.setInputValue(hostname);
         viewBlueprintPage.okHostnameButton.click();
         // update hostname and click X button
         viewBlueprintPage.editHostnameButton.click();
-        viewBlueprintPage.hostnameInputBox.setValue(faker.lorem.slug());
+        viewBlueprintPage.hostnameInputBox.setInputValue(faker.lorem.slug());
         viewBlueprintPage.cancelHostnameButton.click();
         // UI should get updated
         expect(viewBlueprintPage.customizationsTabHostnameLabel(hostname).getText()).to.equal(hostname);
@@ -112,12 +102,12 @@ describe("View Blueprint Page", function() {
       it("disable OK button and show error input box if hostname has invalid character", function() {
         viewBlueprintPage.editHostnameButton.click();
         // input ?, invalid hostname character
-        viewBlueprintPage.hostnameInputBox.setValue("?");
+        viewBlueprintPage.hostnameInputBox.setInputValue("?");
         // OK button should be disabled
         expect(viewBlueprintPage.okHostnameButton.getAttribute("type")).to.equal("button");
         expect(viewBlueprintPage.okHostnameButton.getAttribute("disabled")).to.equal("true");
         // input box should be an error box
-        expect(browser.getAttribute('[data-form="hostname"]', "class")).to.include("has-error");
+        expect($('[data-form="hostname"]').getAttribute("class")).to.include("has-error");
         // cancel edit to clear environment
         viewBlueprintPage.cancelHostnameButton.click();
       });
@@ -127,46 +117,45 @@ describe("View Blueprint Page", function() {
       const editDescriptionPage = require("../pages/editDescription.page");
       it("should show correct description", function() {
         viewBlueprintPage.moreButton.click();
-        browser.keys("ArrowDown");
-        browser.keys("Enter");
+        viewBlueprintPage.editDescriptionItem.click();
         editDescriptionPage.loading();
-        expect(editDescriptionPage.descriptionInputBox.getValue()).to.equal(description);
+        expect(editDescriptionPage.descriptionInputBox.getAttribute("value")).to.equal(description);
         editDescriptionPage.cancelButton.click();
-        browser.waitUntil(
-          () => !browser.isExisting(editDescriptionPage.containerSelector),
-          timeout,
-          "Cannot close Edit Description dialog"
-        );
+        $(editDescriptionPage.containerSelector).waitForExist(timeout, true);
       });
 
       it("should not update blueprint description after clicking X button", function() {
         viewBlueprintPage.moreButton.click();
-        browser.keys("ArrowDown");
-        browser.keys("Enter");
+        viewBlueprintPage.editDescriptionItem.click();
         editDescriptionPage.loading();
+
+        const newDescription = faker.lorem.sentence();
+        if (browser.capabilities.browserName.toLowerCase().includes("edge")) {
+          const valueLength = editDescriptionPage.descriptionInputBox.getAttribute("value").length;
+          for (let x = 0; x < valueLength; x++) {
+            editDescriptionPage.descriptionInputBox.sendKey("\uE003");
+          }
+        }
+        editDescriptionPage.descriptionInputBox.setInputValue(newDescription);
         editDescriptionPage.xButton.click();
-        browser.waitUntil(
-          () => !browser.isExisting(editDescriptionPage.containerSelector),
-          timeout,
-          "Cannot close Edit Description dialog"
-        );
+        $(editDescriptionPage.containerSelector).waitForExist(timeout, true);
         expect(viewBlueprintPage.headerBlueprintDescriptionLabel.getText()).to.equal(description);
       });
 
       it("should update blueprint description after apply", function() {
-        viewBlueprintPage.moreButton.click();
-        browser.keys("ArrowDown");
-        browser.keys("Enter");
+        viewBlueprintPage.headerBlueprintDescriptionLabel.click();
         editDescriptionPage.loading();
 
         const newDescription = faker.lorem.sentence();
-        editDescriptionPage.descriptionInputBox.setValue(newDescription);
+        if (browser.capabilities.browserName.toLowerCase().includes("edge")) {
+          const valueLength = editDescriptionPage.descriptionInputBox.getAttribute("value").length;
+          for (let x = 0; x < valueLength; x++) {
+            editDescriptionPage.descriptionInputBox.sendKey("\uE003");
+          }
+        }
+        editDescriptionPage.descriptionInputBox.setInputValue(newDescription);
         editDescriptionPage.saveButton.click();
-        browser.waitUntil(
-          () => !browser.isExisting(editDescriptionPage.containerSelector),
-          timeout,
-          "Cannot close Edit Description dialog"
-        );
+        $(editDescriptionPage.containerSelector).waitForExist(timeout, true);
         expect(viewBlueprintPage.headerBlueprintDescriptionLabel.getText()).to.equal(newDescription);
       });
     });
@@ -191,30 +180,36 @@ describe("View Blueprint Page", function() {
     });
 
     describe("Export Blueprint", function() {
-      const ExportPage = require("../pages/Export.page");
-      const exportPage = new ExportPage(name);
+      const exportPage = require("../pages/export.page");
       it("should copy correct blueprint manifest", function() {
         viewBlueprintPage.moreButton.click();
-        browser.keys("ArrowDown");
-        browser.keys("ArrowDown");
-        browser.keys("Enter");
+        viewBlueprintPage.exportItem.click();
         exportPage.loading();
         // getText() does not work here on Edge, but works on Firefox and Chrome
         // the copied content should replace '\n' with space because
         // the text in blueprint description box does not include '\n', but space
-        const blueprintManifest = exportPage.contentsTextarea.getValue().replace(/\n/g, " ");
+        let blueprintManifest;
+        if (browser.capabilities.browserName.toLowerCase().includes("edge")) {
+          blueprintManifest = exportPage.contentsTextarea.getAttribute("value").replace(/\n/g, " ");
+        } else {
+          blueprintManifest = exportPage.contentsTextarea.getText().replace(/\n/g, " ");
+        }
+        exportPage.copyButton.waitForClickable(timeout);
         exportPage.copyButton.click();
         exportPage.closeButton.click();
-        browser.waitForExist(exportPage.containerSelector, timeout, true);
-        if (wdioConfig.config.capabilities[0].browserName !== "MicrosoftEdge") {
-          // back to view blueprint page for pasting
-          viewBlueprintPage.packagesTab.click();
-          // paste blueprint manifest here to test copy function
-          viewBlueprintPage.selectedComponentFilter.click();
+        $(exportPage.containerSelector).waitForExist(timeout, true);
+
+        // back to view blueprint page for pasting
+        viewBlueprintPage.packagesTab.click();
+        // paste blueprint manifest here to test copy function
+        viewBlueprintPage.selectedComponentFilter.click();
+        if (browser.capabilities.browserName.toLowerCase().includes("edge")) {
+          browser.elementSendKeys(viewBlueprintPage.selectedComponentFilter.elementId, "", ["\uE009", "v"]);
+        } else {
           viewBlueprintPage.selectedComponentFilter.setValue(["Control", "v"]);
-          viewBlueprintPage.selectedComponentFilter.waitForValue(timeout);
-          expect(viewBlueprintPage.selectedComponentFilter.getValue()).to.equal(blueprintManifest);
         }
+        browser.waitUntil(() => viewBlueprintPage.selectedComponentFilter.getAttribute("value") !== "", timeout);
+        expect(viewBlueprintPage.selectedComponentFilter.getAttribute("value")).to.equal(blueprintManifest);
       });
     });
   });

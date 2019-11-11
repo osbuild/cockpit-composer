@@ -1,4 +1,3 @@
-// "Blueprint Components" component in Edit Blueprint page
 class SelectedComponents {
   constructor() {
     this.containerSelector = '[data-list="components"]';
@@ -7,14 +6,18 @@ class SelectedComponents {
 
   loading() {
     // wait for blank slate disappear
-    browser.waitForExist('[id="blueprint-tabs"]', timeout);
-    browser.waitForText(this.containerSelector, timeout);
+    $('[id="blueprint-tabs"]').waitForDisplayed(timeout);
+    browser.waitUntil(() => $(this.containerSelector).getText() !== "", timeout);
   }
 
   get packageList() {
     const selector = `${this.containerSelector} [data-component] [data-component-name]`;
-    browser.waitUntil(() => browser.isExisting(selector), timeout, "No package added in Selected Component");
+    browser.waitUntil(() => $(selector).isExisting(), timeout, "No package added in Selected Component");
     return $$(selector);
+  }
+
+  packageByName(name) {
+    return $(`[data-component="${name}"]`);
   }
 
   packageNameByNth(nth) {
@@ -24,94 +27,56 @@ class SelectedComponents {
   }
 
   moreButtonByName(name) {
-    const selector = `[data-component=${name}] .fa-ellipsis-v`;
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `: button inside ${name} component in Selected Component cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $(`[data-component=${name}] .fa-ellipsis-v`).element();
+  }
+
+  dropDownMenu(name) {
+    return $(`[data-component=${name}] .dropdown-kebab-pf`).element();
+  }
+
+  removeItem(name) {
+    return $(`[data-component=${name}]`)
+      .$("span=Remove")
+      .element();
   }
 
   angleRightButton(name) {
-    const selector = `#${name}-toggle[aria-expanded="false"]`;
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `> button inside ${name} component in Selected Component cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $(`#${name}-toggle[aria-expanded="false"]`).element();
   }
 
-  clickAngleDownButton(name) {
-    const selector = `#${name}-toggle[aria-expanded="true"]`;
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `v button inside ${name} component in Selected Component cannot be found by selector ${selector}`
-    );
-    browser.execute(angleDownButton => {
-      document.querySelector(angleDownButton).click();
-      return true;
-    }, selector);
+  angleDownButton(name) {
+    return $(`#${name}-toggle[aria-expanded="true"]`).element();
   }
 
   loadingComponentExpansion(name) {
-    const selector = `[data-component=${name}].pf-m-expanded .pf-c-data-list__expandable-content`;
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `Cannot load component expansion for ${name} component in Selected Component`
-    );
+    $(`[data-component=${name}].pf-m-expanded .pf-c-data-list__expandable-content`).waitForExist(timeout);
   }
 
   loadingComponentCollapse(name) {
     const selector = `[data-component=${name}]`;
     browser.waitUntil(
-      () => browser.getAttribute(selector, "class").indexOf("pf-m-expanded") === -1,
-      timeout,
-      `Cannot load component collapse for ${name} component in Selected Component`
+      () =>
+        $(selector)
+          .getAttribute("class")
+          .indexOf("pf-m-expanded") === -1,
+      timeout
     );
   }
 
   componentDependenciesBadge(name) {
-    const selector = `[data-component=${name}] .badge`;
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `Dependencies badge inside ${name} component in Selected Component cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $(`[data-component=${name}] .badge`).element();
   }
 
   componentDependenciesList(name) {
-    const selector = `[data-component=${name}] .cc-m-compact .pf-c-data-list__item`;
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `Dependencies list inside ${name} component in Selected Component cannot be found by selector ${selector}`
-    );
-    return $$(selector);
+    return $$(`[data-component=${name}] .cc-m-compact .pf-c-data-list__item`);
   }
 
   showAllLink(name) {
-    const selector = `[data-component=${name}] .cc-component-summary__deps button`;
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `"Show All" link inside ${name} component in Selected Component cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $(`[data-component=${name}] .cc-component-summary__deps button`).element();
   }
 
   showLessLink(name) {
-    const selector = `[data-component=${name}] .cc-component-summary__deps button`;
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `"Show Less" link inside ${name} component in Selected Component cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $(`[data-component=${name}] .cc-component-summary__deps button`).element();
   }
 }
 

@@ -1,11 +1,7 @@
 // Blueprints Page
 class BlueprintsPage {
-  constructor(name) {
-    this.name = name;
-  }
-
-  get blueprintListView() {
-    return ".pf-c-data-list .pf-c-data-list__item";
+  constructor() {
+    this.blueprintListView = ".pf-c-data-list .pf-c-data-list__item";
   }
 
   loading() {
@@ -19,130 +15,55 @@ class BlueprintsPage {
   }
 
   get sortAscButton() {
-    const selector = ".fa-sort-alpha-asc";
-    browser.waitUntil(
-      () => browser.isVisible(selector),
-      timeout,
-      `Create Blueprint button in Blueprints page cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $(".fa-sort-alpha-asc").element();
   }
 
   get sortDescButton() {
-    const selector = ".fa-sort-alpha-desc";
-    browser.waitUntil(
-      () => browser.isVisible(selector),
-      timeout,
-      `Create Blueprint button in Blueprints page cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $(".fa-sort-alpha-desc").element();
   }
 
   get createBlueprintButton() {
-    const selector = '[id="cmpsr-btn-crt-blueprint"]';
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `Create Blueprint button in Blueprints page cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $('[id="cmpsr-btn-crt-blueprint"]').element();
   }
 
   get moreButton() {
-    const selector = ".toolbar-pf-action-right .fa-ellipsis-v";
-    browser.waitUntil(
-      () => browser.isVisible(selector),
-      timeout,
-      `: button in Blueprints page cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $(".toolbar-pf-action-right .fa-ellipsis-v").element();
   }
 
-  get viewSourcesItem() {
-    const selector = "span=Manage Sources";
-    browser.waitUntil(
-      () =>
-        $(".toolbar-pf-action-right .dropdown-kebab-pf")
-          .getAttribute("class")
-          .includes("open") && browser.isVisible(selector),
-      timeout,
-      `Manage Sources dropdown item in Blueprints page cannot be found by selector ${selector}`
-    );
-    return $(selector);
+  get dropDownMenu() {
+    return $(".toolbar-pf-action-right .dropdown-kebab-pf").element();
+  }
+
+  get manageSourcesItem() {
+    return $("span=Manage Sources").element();
   }
 
   get filterBox() {
-    const selector = '[id="filter-blueprints"]';
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `Filter box in Blueprints page cannot be found by selector ${selector}`
-    );
-    if (!browser.isVisible(selector)) {
-      browser.execute(filterBox => {
-        document.querySelector(filterBox).scrollIntoView();
-        return true;
-      }, selector);
-    }
-    return $(selector);
+    return $('[id="filter-blueprints"]').element();
   }
 
   get clearAllFiltersLink() {
-    const selector = "span=Clear All Filters";
-    browser.waitUntil(
-      () => browser.isVisible(selector),
-      timeout,
-      `Clear All Filters link in Blueprints page cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $("span=Clear All Filters").element();
   }
 
   get filterContentLabel() {
-    const selector = ".filter-pf-active-label + .list-inline .label";
-    browser.waitUntil(
-      () => browser.isVisible(selector),
-      timeout,
-      `A label showing filter content in Blueprints page cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $(".filter-pf-active-label + .list-inline .label").element();
   }
 
   get filterContentLabelCloseButton() {
-    const selector = ".filter-pf-active-label + .list-inline .pficon-close";
-    browser.waitUntil(
-      () => browser.isVisible(selector),
-      timeout,
-      `X button of filter content label in Blueprints page cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $(".filter-pf-active-label + .list-inline .pficon-close").element();
   }
 
-  waitForActiveFiltersExist() {
-    browser.waitForExist("p=Active Filters:", timeout);
-  }
-
-  waitForActiveFiltersNotExist() {
-    browser.waitForExist("p=Active Filters:", timeout, true);
+  get activeFiltersLabel() {
+    return $("p=Active Filters:").element();
   }
 
   get serviceStartButton() {
-    const selector = ".blank-slate-pf-main-action button";
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `Start button in Blueprints page cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $(".blank-slate-pf-main-action button").element();
   }
 
   get autostartCheckbox() {
-    const selector = ".blank-slate-pf .checkbox label input";
-    browser.waitUntil(
-      () => browser.isExisting(selector),
-      timeout,
-      `Autostart on boot checkbox in Blueprints page cannot be found by selector ${selector}`
-    );
-    return $(selector);
+    return $(".blank-slate-pf .checkbox label input").element();
   }
 }
 

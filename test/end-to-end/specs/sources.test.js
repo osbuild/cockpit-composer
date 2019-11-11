@@ -1,28 +1,25 @@
-const commands = require("../utils/commands");
-const wdioConfig = require("../wdio.conf.js");
-
-const blueprintsPage = require("../pages/blueprints.page");
-const sourcesPage = require("../pages/sources.page");
+import blueprintsPage from "../pages/blueprints.page";
+import sourcesPage from "../pages/sources.page";
 
 describe("Sources Page", function() {
   const repo = "https://download.opensuse.org/repositories/shells:/fish:/release:/3/Fedora_29/";
   const repoName = "fish";
   describe("System source checking", function() {
     before(function() {
-      commands.login();
-      commands.startLoraxIfItDoesNotStart();
       blueprintsPage.moreButton.click();
-      blueprintsPage.viewSourcesItem.click();
+      browser.waitUntil(
+        () =>
+          blueprintsPage.dropDownMenu.getAttribute("class").includes("open") &&
+          blueprintsPage.manageSourcesItem.isDisplayed(),
+        timeout
+      );
+      blueprintsPage.manageSourcesItem.click();
       sourcesPage.loading();
     });
 
     after(function() {
       sourcesPage.closeButton.click();
-      browser.waitUntil(
-        () => !browser.isExisting(sourcesPage.containerSelector),
-        timeout,
-        "Cannot close Sources dialog"
-      );
+      $(sourcesPage.containerSelector).waitForExist(timeout, true);
     });
 
     it("should show correct title", function() {
@@ -32,18 +29,17 @@ describe("Sources Page", function() {
     it("should have correct system source name", function() {
       // get system source list from API
       const endpoint = "/api/v0/projects/source/list";
-      const result = commands.apiFetchTest(endpoint).value;
+      const result = browser.apiFetchTest(endpoint);
       // result looks like:
       // https://github.com/weldr/lorax/blob/b57de934681056aa4f9bd480a34136cf340f510a/src/pylorax/api/v0.py#L513
-      const resultSources = JSON.parse(result.data).sources;
+      const resultSources = JSON.parse(result.data).sources.sort();
 
-      const nameList = sourcesPage.sourceNameList.map(source => source.getText());
+      const nameList = sourcesPage.sourceNameList.map(source => source.getText()).sort();
       expect(nameList).deep.equal(resultSources);
     });
     describe("* valication test", function() {
       beforeEach(function() {
         sourcesPage.addSourceButton.click();
-        sourcesPage.sourceNameInput.waitForExist(timeout);
       });
 
       afterEach(function() {
@@ -51,24 +47,24 @@ describe("Sources Page", function() {
       });
 
       it("should focus on Name input box", function() {
-        expect(sourcesPage.sourceNameInput.hasFocus()).to.be.true;
+        expect(sourcesPage.sourceNameInput.isFocused()).to.be.true;
       });
 
       it("source cannot be created without name", function() {
-        sourcesPage.sourcePathInput.setValue(repo);
-        sourcesPage.sourceTypeSelect.selectByValue("yum-baseurl");
+        sourcesPage.sourcePathInput.setInputValue(repo);
+        sourcesPage.sourceTypeSelect.selectByAttribute("value", "yum-baseurl");
         expect(sourcesPage.addButton.getAttribute("disabled")).to.equal("true");
       });
 
       it("source cannot be created without path", function() {
-        sourcesPage.sourceNameInput.setValue(repoName);
-        sourcesPage.sourceTypeSelect.selectByValue("yum-baseurl");
+        sourcesPage.sourceNameInput.setInputValue(repoName);
+        sourcesPage.sourceTypeSelect.selectByAttribute("value", "yum-baseurl");
         expect(sourcesPage.addButton.getAttribute("disabled")).to.equal("true");
       });
 
       it("source cannot be created without type", function() {
-        sourcesPage.sourceNameInput.setValue(repoName);
-        sourcesPage.sourcePathInput.setValue(repo);
+        sourcesPage.sourceNameInput.setInputValue(repoName);
+        sourcesPage.sourcePathInput.setInputValue(repo);
         expect(sourcesPage.addButton.getAttribute("disabled")).to.equal("true");
       });
     });
@@ -76,39 +72,41 @@ describe("Sources Page", function() {
     describe("edit source test", function() {
       before(function() {
         // Due to issue #651, all tests in this suite will be skipped on Edge
-        if (wdioConfig.config.capabilities[0].browserName === "MicrosoftEdge") {
+        if (browser.capabilities.browserName.toLowerCase().includes("edge")) {
           this.skip();
         } else {
           sourcesPage.addSourceButton.click();
-          sourcesPage.sourceNameInput.waitForExist(timeout);
-          sourcesPage.sourceNameInput.setValue(repoName);
-          sourcesPage.sourcePathInput.setValue(repo);
-          sourcesPage.sourceTypeSelect.selectByValue("yum-baseurl");
+          sourcesPage.sourceNameInput.setInputValue(repoName);
+          sourcesPage.sourcePathInput.setInputValue(repo);
+          sourcesPage.sourceTypeSelect.selectByAttribute("value", "yum-baseurl");
           sourcesPage.addButton.click();
-          browser.waitUntil(() => browser.isExisting(`[data-source=${repoName}]`), timeout, "Cannot add source");
+          sourcesPage.sourceItem(repoName).waitForDisplayed(timeout);
         }
       });
 
       after(function() {
-        if (wdioConfig.config.capabilities[0].browserName === "MicrosoftEdge") {
-          this.skip();
+        if (browser.capabilities.browserName.toLowerCase().includes("edge")) {
+          return;
         } else {
-          if (sourcesPage.cancelButton.isExisting()) {
+          try {
+            sourcesPage.cancelButton.waitForDisplayed(1000);
             sourcesPage.cancelButton.click();
+          } catch (e) {
+            console.error(e);
+            sourcesPage.loading();
           }
           sourcesPage.moreButton(repoName).click();
           browser.waitUntil(
-            () => sourcesPage.moreButton(repoName).getAttribute("aria-expanded") === "true",
-            timeout,
-            "cannot open dropdown menu"
+            () =>
+              sourcesPage
+                .dropDownMenu(repoName)
+                .getAttribute("class")
+                .includes("open") && sourcesPage.removeSourceItem(repoName).isDisplayed(),
+            timeout
           );
-          browser.keys("ArrowDown");
-          browser.keys("Enter");
-          browser.waitUntil(
-            () => !browser.isExisting(`[data-source=${repoName}]`),
-            timeout * 2,
-            "Cannot delete source"
-          );
+          sourcesPage.moreButton(repoName).sendKey("\uE015");
+          sourcesPage.removeSourceItem(repoName).sendKey("\uE007");
+          sourcesPage.sourceItem(repoName).waitForExist(timeout * 2, true);
         }
       });
 
@@ -127,7 +125,7 @@ describe("Sources Page", function() {
       it("check source from API", function() {
         // get system source list from API
         const endpoint = `/api/v0/projects/source/info/${repoName}`;
-        const result = commands.apiFetchTest(endpoint).value;
+        const result = browser.apiFetchTest(endpoint);
         // result looks like:
         // https://github.com/weldr/lorax/blob/b57de934681056aa4f9bd480a34136cf340f510a/src/pylorax/api/v0.py#L529
         const resultSources = JSON.parse(result.data).sources[repoName];
@@ -148,7 +146,7 @@ describe("Sources Page", function() {
 
         // get system source list from API
         const endpoint = `/api/v0/projects/source/info/${repoName}`;
-        const result = commands.apiFetchTest(endpoint).value;
+        const result = browser.apiFetchTest(endpoint);
         // result looks like:
         // https://github.com/weldr/lorax/blob/b57de934681056aa4f9bd480a34136cf340f510a/src/pylorax/api/v0.py#L529
         const resultSources = JSON.parse(result.data).sources[repoName];
@@ -162,10 +160,9 @@ describe("Sources Page", function() {
 
       it("cannot add source with duplicated path", function() {
         sourcesPage.addSourceButton.click();
-        sourcesPage.sourceNameInput.waitForExist(timeout);
-        sourcesPage.sourceNameInput.setValue(repoName);
-        sourcesPage.sourcePathInput.setValue(repo);
-        sourcesPage.sourceTypeSelect.selectByValue("yum-baseurl");
+        sourcesPage.sourceNameInput.setInputValue(repoName);
+        sourcesPage.sourcePathInput.setInputValue(repo);
+        sourcesPage.sourceTypeSelect.selectByAttribute("value", "yum-baseurl");
 
         expect(sourcesPage.addButton.getAttribute("disabled")).to.equal("true");
         expect(sourcesPage.duplicatedPathWarning.getText()).to.equal("This source path already exists.");
