@@ -135,10 +135,13 @@ export function getComposeTypes() {
     "live-iso": "Live Bootable ISO (.iso)",
     "partitioned-disk": "Raw Partitioned Disk Image (.img)",
     qcow2: "QEMU QCOW2 Image (.qcow2)",
-    openstack: "OpenStack Image (.qcow2)",
+    openstack: "OpenStack (.qcow2)",
     tar: "TAR Archive (.tar)",
     vhd: "Azure Disk Image (.vhd)",
-    vmdk: "VMware Virtual Machine Disk (.vmdk)"
+    vmdk: "VMware Virtual Machine Disk (.vmdk)",
+    alibaba: "Alibaba Machine Image (.qcow2)",
+    google: "Google Compute Engine Image (.tar.gz)",
+    "hyper-v": "Hyper-V Virtual Machine Disk (.vhdx)"
   };
   const imageTypes = get("/api/v0/compose/types").then(data =>
     data.types.map(type => {
