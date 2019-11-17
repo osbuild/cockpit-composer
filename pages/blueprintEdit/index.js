@@ -372,7 +372,7 @@ class EditBlueprintPage extends React.Component {
 
   render() {
     if (this.props.blueprint.id === undefined) {
-      return <div />;
+      return <Loading />;
     }
     const blueprintDisplayName = this.props.route.params.blueprint;
     const {
@@ -791,7 +791,7 @@ EditBlueprintPage.defaultProps = {
   redo: function() {},
   deleteHistory: function() {},
   blueprintContentsError: {},
-  blueprintContentsFetching: false
+  blueprintContentsFetching: true
 };
 
 const makeMapStateToProps = () => {
