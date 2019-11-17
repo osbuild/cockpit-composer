@@ -51,11 +51,8 @@ function* fetchBlueprintContents(action) {
     const { blueprintId } = action.payload;
     const response = yield call(composer.depsolveBlueprint, blueprintId);
     const blueprintData = response.blueprints[0];
-    if (response.errors.length > 0) {
-      yield put(blueprintContentsFailure(response.errors[0], blueprintId));
-    }
     let components = [];
-    if (blueprintData.dependencies.length > 0) {
+    if (blueprintData.blueprint.packages.length > 0 || blueprintData.blueprint.modules.length > 0) {
       components = yield call(generateComponents, blueprintData);
     }
     const workspaceChanges = yield call(composer.diffBlueprintToWorkspace, blueprintId);
@@ -120,14 +117,23 @@ function generatePastComponents(workspaceChanges, packages) {
 }
 
 function* generateComponents(blueprintData) {
-  // List of all components
-  const componentNames = blueprintData.dependencies.map(component => component.name);
   // List of selected components
   const packageNames = blueprintData.blueprint.packages.map(component => component.name);
   const moduleNames = blueprintData.blueprint.modules.map(component => component.name);
   const selectedComponentNames = packageNames.concat(moduleNames);
+  // List of all components
+  let componentNames = [];
+  let componentsRaw = [];
+  if (blueprintData.dependencies.length > 0) {
+    componentNames = blueprintData.dependencies.map(component => component.name);
+    componentsRaw = flattenComponents(blueprintData.dependencies);
+  } else {
+    componentNames = selectedComponentNames;
+    componentsRaw = blueprintData.blueprint.packages.concat(blueprintData.blueprint.modules);
+  }
+  // Get component info
   const componentInfo = yield call(composer.getComponentInfo, componentNames);
-  const components = flattenComponents(blueprintData.dependencies).map(component => {
+  const components = componentsRaw.map(component => {
     const info = componentInfo.find(item => item.name === component.name);
     const componentData = Object.assign(
       {},
@@ -140,7 +146,7 @@ function* generateComponents(blueprintData) {
         userSelected: selectedComponentNames.includes(component.name),
         ui_type: "RPM",
         version: component.version,
-        release: component.release
+        release: component.release ? component.release : ""
       }
     );
     return componentData;
@@ -166,7 +172,7 @@ function* reloadBlueprintContents(blueprintId) {
       yield put(blueprintContentsFailure(response.errors[0], blueprintId));
     }
     let components = [];
-    if (blueprintData.dependencies.length > 0) {
+    if (blueprintData.blueprint.packages.length > 0 || blueprintData.blueprint.modules.length > 0) {
       components = yield call(generateComponents, blueprintData);
     }
     const blueprint = Object.assign({}, blueprintData.blueprint, {

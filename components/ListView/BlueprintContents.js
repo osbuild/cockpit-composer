@@ -51,20 +51,7 @@ const BlueprintContents = props => {
   return (
     <div>
       {(fetchingState === true && <Loading />) ||
-        (Object.keys(errorState).length > 0 && (
-          <EmptyState
-            title={formatMessage(messages.emptyStateErrorTitle)}
-            message={formatMessage(messages.emptyStateErrorMessage)}
-          >
-            <p>{errorState.msg}</p>
-            {pastLength > 0 && (
-              <button className="btn btn-link btn-lg" type="button" onClick={() => undo()}>
-                <FormattedMessage defaultMessage="Undo Last Change" />
-              </button>
-            )}
-          </EmptyState>
-        )) ||
-        (components.length === 0 && filterValues.length === 0 && <div>{props.children}</div>) || (
+        ((components.length === 0 && filterValues.length === 0 && <div>{props.children}</div>) || (
           <Tabs id="blueprint-tabs">
             <Tab
               eventKey="selected-components"
@@ -80,22 +67,37 @@ const BlueprintContents = props => {
                   </button>
                 </EmptyState>
               )) || (
-                <DataList
-                  data-list="components"
-                  aria-label={formatMessage(messages.selectedTabTitle)}
-                  className="cc-m-nowrap-on-xl cc-components"
-                >
-                  {components.map(listItem => (
-                    <ComponentsDataListItem
-                      listItem={listItem}
-                      key={listItem.name}
-                      handleRemoveComponent={handleRemoveComponent}
-                      handleComponentDetails={handleComponentDetails}
-                      noEditComponent={noEditComponent}
-                      fetchDetails={fetchDetails}
-                    />
-                  ))}
-                </DataList>
+                <>
+                  {Object.keys(errorState).length > 0 && (
+                    <EmptyState
+                      title={formatMessage(messages.emptyStateErrorTitle)}
+                      message={formatMessage(messages.emptyStateErrorMessage)}
+                    >
+                      <p>{errorState.msg}</p>
+                      {pastLength > 0 && (
+                        <button className="btn btn-link btn-lg" type="button" onClick={() => undo()}>
+                          <FormattedMessage defaultMessage="Undo Last Change" />
+                        </button>
+                      )}
+                    </EmptyState>
+                  )}
+                  <DataList
+                    data-list="components"
+                    aria-label={formatMessage(messages.selectedTabTitle)}
+                    className="cc-m-nowrap-on-xl cc-components"
+                  >
+                    {components.map(listItem => (
+                      <ComponentsDataListItem
+                        listItem={listItem}
+                        key={listItem.name}
+                        handleRemoveComponent={handleRemoveComponent}
+                        handleComponentDetails={handleComponentDetails}
+                        noEditComponent={noEditComponent}
+                        fetchDetails={fetchDetails}
+                      />
+                    ))}
+                  </DataList>
+                </>
               )}
             </Tab>
             <Tab
@@ -124,7 +126,7 @@ const BlueprintContents = props => {
               )}
             </Tab>
           </Tabs>
-        )}
+        ))}
     </div>
   );
 };
@@ -160,7 +162,7 @@ BlueprintContents.defaultProps = {
   filterClearValues: function() {},
   filterValues: [],
   errorState: {},
-  fetchingState: false,
+  fetchingState: true,
   fetchDetails: function() {},
   children: React.createElement("div"),
   pastLength: 0,
