@@ -1,7 +1,7 @@
 import React from "react";
 import { defineMessages, injectIntl, intlShape, FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
-import { DataList } from "@patternfly/react-core";
+import { DataList, Alert } from "@patternfly/react-core";
 import { Tabs, Tab } from "patternfly-react";
 import ComponentsDataListItem from "./ComponentsDataListItem";
 import DependencyListView from "./DependencyListView";
@@ -47,6 +47,12 @@ const BlueprintContents = props => {
   } = props;
 
   const { formatMessage } = props.intl;
+  const alertAction =
+    pastLength > 0 ? (
+      <button className="pf-c-button pf-m-link" type="button" onClick={() => undo()}>
+        <FormattedMessage defaultMessage="Undo Last Change" />
+      </button>
+    ) : null;
 
   return (
     <div>
@@ -69,17 +75,16 @@ const BlueprintContents = props => {
               )) || (
                 <>
                   {Object.keys(errorState).length > 0 && (
-                    <EmptyState
+                    <Alert
                       title={formatMessage(messages.emptyStateErrorTitle)}
-                      message={formatMessage(messages.emptyStateErrorMessage)}
+                      isInline
+                      variant="danger"
+                      action={alertAction}
+                      className="pf-u-mt-md pf-u-mb-md"
                     >
+                      <p>{formatMessage(messages.emptyStateErrorMessage)}</p>
                       <p>{errorState.msg}</p>
-                      {pastLength > 0 && (
-                        <button className="btn btn-link btn-lg" type="button" onClick={() => undo()}>
-                          <FormattedMessage defaultMessage="Undo Last Change" />
-                        </button>
-                      )}
-                    </EmptyState>
+                    </Alert>
                   )}
                   <DataList
                     data-list="components"
