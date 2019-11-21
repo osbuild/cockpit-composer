@@ -114,7 +114,8 @@ const blueprintList = (state = [], action) => {
                 components: action.payload.components,
                 packages: action.payload.packages,
                 modules: action.payload.modules,
-                localPendingChanges: action.payload.pendingChange
+                localPendingChanges: action.payload.pendingChange,
+                errorState: {}
               }),
               future: []
             });
@@ -130,7 +131,8 @@ const blueprintList = (state = [], action) => {
               present: Object.assign({}, blueprint.present, {
                 components: action.payload.blueprint.components,
                 packages: action.payload.blueprint.packages,
-                modules: action.payload.blueprint.modules
+                modules: action.payload.blueprint.modules,
+                errorState: action.payload.blueprint.errorState
               })
             });
           }

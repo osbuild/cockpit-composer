@@ -239,7 +239,7 @@ class EditBlueprintPage extends React.Component {
     this.props.clearSelectedInput();
     const selectedComponents = this.props.blueprint.packages.concat(this.props.blueprint.modules);
     const oldVersion = selectedComponents.find(component => component.name === name).version;
-    const updatedPackage = {
+    const updatedComponent = {
       name: name,
       version: version
     };
@@ -259,10 +259,13 @@ class EditBlueprintPage extends React.Component {
     if (prevChange === undefined || pendingChange.componentOld !== pendingChange.componentNew) {
       pendingChanges = [pendingChange].concat(pendingChanges);
     }
-    const packages = this.props.blueprint.packages
-      .filter(item => item.name !== updatedPackage.name)
-      .concat(updatedPackage);
-    const modules = this.props.blueprint.modules;
+    let packages = this.props.blueprint.packages;
+    let modules = this.props.blueprint.modules;
+    if (modules.some(component => component.name === name)) {
+      modules = modules.filter(item => item.name !== updatedComponent.name).concat(updatedComponent);
+    } else {
+      packages = packages.filter(item => item.name !== updatedComponent.name).concat(updatedComponent);
+    }
     const components = this.props.blueprint.components.map(component => {
       if (component.name === name) {
         const componentData = Object.assign({}, component, {
