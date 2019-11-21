@@ -107,8 +107,13 @@ const BlueprintContents = props => {
             </Tab>
             <Tab
               eventKey="dependencies"
+              disabled={Object.keys(errorState).length > 0}
               title={
-                <LabelWithBadge title={formatMessage(messages.dependenciesTabTitle)} badge={dependencies.length} />
+                <LabelWithBadge
+                  title={formatMessage(messages.dependenciesTabTitle)}
+                  badge={dependencies.length}
+                  error={Object.keys(errorState).length > 0}
+                />
               }
             >
               {(dependencies.length === 0 && (
