@@ -75,6 +75,9 @@ class ComponentDetailsView extends React.Component {
         const selectedVersion = selectedComponents.find(selected => selected.name === component.name).version;
         const selectedBuild = component.builds.filter(obj => obj.version === selectedVersion)[0];
         index = component.builds.indexOf(selectedBuild);
+        if (index === -1) {
+          index = 0;
+        }
         this.setState({ selectedBuildIndex: index });
         this.setState({ savedVersion: selectedVersion });
         this.handleSelectedBuildDeps(index);

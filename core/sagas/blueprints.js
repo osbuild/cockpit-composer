@@ -168,9 +168,6 @@ function* reloadBlueprintContents(blueprintId) {
   try {
     const response = yield call(composer.depsolveBlueprint, blueprintId);
     const blueprintData = response.blueprints[0];
-    if (response.errors.length > 0) {
-      yield put(blueprintContentsFailure(response.errors[0], blueprintId));
-    }
     let components = [];
     if (blueprintData.blueprint.packages.length > 0 || blueprintData.blueprint.modules.length > 0) {
       components = yield call(generateComponents, blueprintData);
