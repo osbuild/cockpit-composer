@@ -90,7 +90,4 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(DeleteImage);
+export default connect(null, mapDispatchToProps)(DeleteImage);

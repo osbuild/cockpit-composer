@@ -53,7 +53,10 @@ class UserAccount extends React.Component {
     $(this.modal).modal("show");
     $(this.modal).on("hidden.bs.modal", this.handleHideModal);
     if (this.props.userAccount.editUser !== "") {
-      let currentUser = Object.assign({}, this.props.users.find(user => user.name === this.props.userAccount.name));
+      let currentUser = Object.assign(
+        {},
+        this.props.users.find(user => user.name === this.props.userAccount.name)
+      );
       this.setState({ currentUser: currentUser });
     }
   }
@@ -441,7 +444,4 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(injectIntl(UserAccount));
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(UserAccount));

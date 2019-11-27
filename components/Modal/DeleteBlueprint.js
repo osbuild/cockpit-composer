@@ -95,7 +95,4 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(
-  makeMapStateToProps,
-  mapDispatchToProps
-)(injectIntl(DeleteBlueprint));
+export default connect(makeMapStateToProps, mapDispatchToProps)(injectIntl(DeleteBlueprint));

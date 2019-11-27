@@ -317,7 +317,4 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CreateBlueprint);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateBlueprint);

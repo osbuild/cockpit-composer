@@ -93,7 +93,7 @@ class BlueprintsPage extends React.Component {
           manageSources={manageSources}
         />
         {(blueprintsLoading === true && <Loading />) ||
-          ((blueprintsError !== null &&
+          (blueprintsError !== null &&
             ((blueprintsError.message === "not-found" && (
               <EmptyStateInactive fetchingBlueprints={this.props.fetchingBlueprints} />
             )) || (
@@ -103,28 +103,28 @@ class BlueprintsPage extends React.Component {
                 message={blueprintsError.message}
               />
             ))) ||
-            ((blueprints.length > 0 && (
-              <BlueprintsDataList
-                blueprints={blueprints.map(blueprint => blueprint.present)}
-                setNotifications={this.setNotifications}
-                layout={this.layout}
-                ariaLabel={formatMessage(messages.blueprintsTitle)}
-              />
-            )) ||
-              ((blueprintFilters.filterValues.length === 0 && (
-                <EmptyState title={formatMessage(messages.emptyTitle)} message={formatMessage(messages.emptyMessage)}>
-                  <CreateBlueprint blueprintNames={blueprints.map(blueprint => blueprint.present.id)} />
-                </EmptyState>
-              )) || (
-                <EmptyState
-                  title={formatMessage(messages.noResultsTitle)}
-                  message={formatMessage(messages.noResultsMessage)}
-                >
-                  <button className="btn btn-link btn-lg" type="button" onClick={blueprintsFilterClearValues}>
-                    <FormattedMessage defaultMessage="Clear All Filters" />
-                  </button>
-                </EmptyState>
-              ))))}
+          (blueprints.length > 0 && (
+            <BlueprintsDataList
+              blueprints={blueprints.map(blueprint => blueprint.present)}
+              setNotifications={this.setNotifications}
+              layout={this.layout}
+              ariaLabel={formatMessage(messages.blueprintsTitle)}
+            />
+          )) ||
+          (blueprintFilters.filterValues.length === 0 && (
+            <EmptyState title={formatMessage(messages.emptyTitle)} message={formatMessage(messages.emptyMessage)}>
+              <CreateBlueprint blueprintNames={blueprints.map(blueprint => blueprint.present.id)} />
+            </EmptyState>
+          )) || (
+            <EmptyState
+              title={formatMessage(messages.noResultsTitle)}
+              message={formatMessage(messages.noResultsMessage)}
+            >
+              <button className="btn btn-link btn-lg" type="button" onClick={blueprintsFilterClearValues}>
+                <FormattedMessage defaultMessage="Clear All Filters" />
+              </button>
+            </EmptyState>
+          )}
       </Layout>
     );
   }
@@ -229,7 +229,4 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(
-  makeMapStateToProps,
-  mapDispatchToProps
-)(injectIntl(BlueprintsPage));
+export default connect(makeMapStateToProps, mapDispatchToProps)(injectIntl(BlueprintsPage));

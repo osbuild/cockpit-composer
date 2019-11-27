@@ -90,7 +90,4 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(StopBuild);
+export default connect(null, mapDispatchToProps)(StopBuild);
