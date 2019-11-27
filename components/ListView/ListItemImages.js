@@ -267,7 +267,4 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(ListItemImages);
+export default connect(null, mapDispatchToProps)(ListItemImages);

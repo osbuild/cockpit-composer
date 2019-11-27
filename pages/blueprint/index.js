@@ -881,7 +881,4 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(
-  makeMapStateToProps,
-  mapDispatchToProps
-)(injectIntl(BlueprintPage));
+export default connect(makeMapStateToProps, mapDispatchToProps)(injectIntl(BlueprintPage));

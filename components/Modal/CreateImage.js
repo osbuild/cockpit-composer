@@ -356,7 +356,4 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(injectIntl(CreateImage));
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(CreateImage));

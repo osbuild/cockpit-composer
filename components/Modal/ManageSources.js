@@ -373,9 +373,9 @@ class ManageSourcesModal extends React.Component {
                 description="Sources provide the contents from which components are selected"
               />
             )) ||
-              ((this.state.editName === "" && <FormattedMessage defaultMessage="Add Source" />) || (
+              (this.state.editName === "" && <FormattedMessage defaultMessage="Add Source" />) || (
                 <FormattedMessage defaultMessage="Edit Source" />
-              ))}
+              )}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -509,7 +509,4 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(injectIntl(ManageSources));
+export default connect(null, mapDispatchToProps)(injectIntl(ManageSources));

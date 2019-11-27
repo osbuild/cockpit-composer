@@ -51,7 +51,7 @@ const BlueprintContents = props => {
   return (
     <div>
       {(fetchingState === true && <Loading />) ||
-        ((Object.keys(errorState).length > 0 && (
+        (Object.keys(errorState).length > 0 && (
           <EmptyState
             title={formatMessage(messages.emptyStateErrorTitle)}
             message={formatMessage(messages.emptyStateErrorMessage)}
@@ -64,67 +64,67 @@ const BlueprintContents = props => {
             )}
           </EmptyState>
         )) ||
-          ((components.length === 0 && filterValues.length === 0 && <div>{props.children}</div>) || (
-            <Tabs id="blueprint-tabs">
-              <Tab
-                eventKey="selected-components"
-                title={<LabelWithBadge title={formatMessage(messages.selectedTabTitle)} badge={components.length} />}
-              >
-                {(components.length === 0 && (
-                  <EmptyState
-                    title={formatMessage(messages.emptyStateNoResultsTitle)}
-                    message={formatMessage(messages.emptyStateNoResultsMessage)}
-                  >
-                    <button className="btn btn-link btn-lg" type="button" onClick={() => filterClearValues([])}>
-                      <FormattedMessage defaultMessage="Clear All Filters" />
-                    </button>
-                  </EmptyState>
-                )) || (
-                  <DataList
-                    data-list="components"
-                    aria-label={formatMessage(messages.selectedTabTitle)}
-                    className="cc-m-nowrap-on-xl cc-components"
-                  >
-                    {components.map(listItem => (
-                      <ComponentsDataListItem
-                        listItem={listItem}
-                        key={listItem.name}
-                        handleRemoveComponent={handleRemoveComponent}
-                        handleComponentDetails={handleComponentDetails}
-                        noEditComponent={noEditComponent}
-                        fetchDetails={fetchDetails}
-                      />
-                    ))}
-                  </DataList>
-                )}
-              </Tab>
-              <Tab
-                eventKey="dependencies"
-                title={
-                  <LabelWithBadge title={formatMessage(messages.dependenciesTabTitle)} badge={dependencies.length} />
-                }
-              >
-                {(dependencies.length === 0 && (
-                  <EmptyState
-                    title={formatMessage(messages.emptyStateNoResultsTitle)}
-                    message={formatMessage(messages.emptyStateNoResultsMessage)}
-                  >
-                    <button className="btn btn-link btn-lg" type="button" onClick={() => filterClearValues([])}>
-                      <FormattedMessage defaultMessage="Clear All Filters" />
-                    </button>
-                  </EmptyState>
-                )) || (
-                  <DependencyListView
-                    ariaLabel={formatMessage(messages.dependenciesTabTitle)}
-                    listItems={dependencies}
-                    handleComponentDetails={handleComponentDetails}
-                    noEditComponent={noEditComponent}
-                    fetchDetails={fetchDetails}
-                  />
-                )}
-              </Tab>
-            </Tabs>
-          )))}
+        (components.length === 0 && filterValues.length === 0 && <div>{props.children}</div>) || (
+          <Tabs id="blueprint-tabs">
+            <Tab
+              eventKey="selected-components"
+              title={<LabelWithBadge title={formatMessage(messages.selectedTabTitle)} badge={components.length} />}
+            >
+              {(components.length === 0 && (
+                <EmptyState
+                  title={formatMessage(messages.emptyStateNoResultsTitle)}
+                  message={formatMessage(messages.emptyStateNoResultsMessage)}
+                >
+                  <button className="btn btn-link btn-lg" type="button" onClick={() => filterClearValues([])}>
+                    <FormattedMessage defaultMessage="Clear All Filters" />
+                  </button>
+                </EmptyState>
+              )) || (
+                <DataList
+                  data-list="components"
+                  aria-label={formatMessage(messages.selectedTabTitle)}
+                  className="cc-m-nowrap-on-xl cc-components"
+                >
+                  {components.map(listItem => (
+                    <ComponentsDataListItem
+                      listItem={listItem}
+                      key={listItem.name}
+                      handleRemoveComponent={handleRemoveComponent}
+                      handleComponentDetails={handleComponentDetails}
+                      noEditComponent={noEditComponent}
+                      fetchDetails={fetchDetails}
+                    />
+                  ))}
+                </DataList>
+              )}
+            </Tab>
+            <Tab
+              eventKey="dependencies"
+              title={
+                <LabelWithBadge title={formatMessage(messages.dependenciesTabTitle)} badge={dependencies.length} />
+              }
+            >
+              {(dependencies.length === 0 && (
+                <EmptyState
+                  title={formatMessage(messages.emptyStateNoResultsTitle)}
+                  message={formatMessage(messages.emptyStateNoResultsMessage)}
+                >
+                  <button className="btn btn-link btn-lg" type="button" onClick={() => filterClearValues([])}>
+                    <FormattedMessage defaultMessage="Clear All Filters" />
+                  </button>
+                </EmptyState>
+              )) || (
+                <DependencyListView
+                  ariaLabel={formatMessage(messages.dependenciesTabTitle)}
+                  listItems={dependencies}
+                  handleComponentDetails={handleComponentDetails}
+                  noEditComponent={noEditComponent}
+                  fetchDetails={fetchDetails}
+                />
+              )}
+            </Tab>
+          </Tabs>
+        )}
     </div>
   );
 };

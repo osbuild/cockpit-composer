@@ -191,11 +191,11 @@ class ComponentDetailsView extends React.Component {
                   </li>
                 )}
               {handleUpdateComponent !== undefined &&
-                (component.inBlueprint &&
-                  component.userSelected &&
-                  component.builds !== undefined &&
-                  selectedBuildIndex !== undefined &&
-                  component.builds[selectedBuildIndex].version !== this.state.savedVersion) && (
+                component.inBlueprint &&
+                component.userSelected &&
+                component.builds !== undefined &&
+                selectedBuildIndex !== undefined &&
+                component.builds[selectedBuildIndex].version !== this.state.savedVersion && (
                   <li>
                     <button
                       className="btn btn-primary"
@@ -208,7 +208,7 @@ class ComponentDetailsView extends React.Component {
                     </button>
                   </li>
                 )}
-              {handleRemoveComponent !== undefined && (component.inBlueprint && component.userSelected) && (
+              {handleRemoveComponent !== undefined && component.inBlueprint && component.userSelected && (
                 <li>
                   <Tooltip position={TooltipPosition.bottom} content={formatMessage(messages.removeFromBlueprint)}>
                     <button
@@ -394,7 +394,4 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(injectIntl(ComponentDetailsView));
+export default connect(null, mapDispatchToProps)(injectIntl(ComponentDetailsView));

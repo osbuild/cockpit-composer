@@ -143,7 +143,4 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ExportBlueprint);
+export default connect(mapStateToProps, mapDispatchToProps)(ExportBlueprint);
