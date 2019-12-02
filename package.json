@@ -126,12 +126,6 @@
           ]
         }
       ],
-      "prettier/prettier": [
-        "error",
-        {
-          "printWidth": 120
-        }
-      ],
       "import/no-extraneous-dependencies": [
         "error",
         {
