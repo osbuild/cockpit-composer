@@ -97,8 +97,8 @@ describe("Blueprints Page", function() {
       blueprintsPage.clearAllFiltersLink.click();
       blueprintsPage.waitForActiveFiltersNotExist();
       blueprintsPage.loading();
-      // one new added blueprints + three default blueprints
-      expect($$(blueprintsPage.blueprintListView)).to.have.lengthOf.above(1);
+      // one new added blueprint
+      expect($$(blueprintsPage.blueprintListView)).to.have.lengthOf.above(0);
     });
 
     it("should have correct filter content label and clear filter result by clicking X button", function() {
@@ -106,8 +106,8 @@ describe("Blueprints Page", function() {
       blueprintsPage.filterContentLabelCloseButton.click();
       blueprintsPage.waitForActiveFiltersNotExist();
       blueprintsPage.loading();
-      // one new added blueprints + three default blueprints
-      expect($$(blueprintsPage.blueprintListView)).to.have.lengthOf.above(1);
+      // one new added blueprint
+      expect($$(blueprintsPage.blueprintListView)).to.have.lengthOf.above(0);
     });
   });
 });

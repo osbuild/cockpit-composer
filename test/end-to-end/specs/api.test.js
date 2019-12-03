@@ -33,8 +33,6 @@ describe("weldr api sanity test", function() {
       console.log('Failed to access API - "/api/v0/blueprints/list" with error: ', result.data);
     }
     expect(result.success).to.be.true;
-    // there're 3 blueprints included in composer by default
-    expect(JSON.parse(result.data).total).to.equal(3);
     expect(result.latency)
       .to.match(/^\d*(\.?\d+|\d*)$/)
       .and.be.below(acceptable);

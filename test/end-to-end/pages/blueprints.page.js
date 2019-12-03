@@ -8,9 +8,10 @@ class BlueprintsPage {
     return ".pf-c-data-list .pf-c-data-list__item";
   }
 
+  // if the create blueprint button is enabled the page has loaded
   loading() {
-    $(this.blueprintListView).waitForExist(timeout);
-    browser.waitUntil(() => $$(this.blueprintListView).length >= 3, timeout, "Loading Blueprints page failed");
+    const createBlueprintButtonSelector = "#cmpsr-btn-crt-blueprint";
+    browser.waitUntil(() => browser.isEnabled(createBlueprintButtonSelector), timeout, "Loading Blueprints page failed");
   }
 
   filterLoading() {
