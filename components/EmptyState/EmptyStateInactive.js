@@ -16,10 +16,10 @@ const messages = defineMessages({
     defaultMessage: "Troubleshoot"
   },
   errorInactiveCheckbox: {
-    defaultMessage: "Automatically start lorax-composer on boot"
+    defaultMessage: "Automatically start osbuild-composer on boot"
   },
   alertTitleEnableServiceFailure: {
-    defaultMessage: "The service lorax-composer was not started."
+    defaultMessage: "The service osbuild-composer was not started."
   },
   alertMessagePreface: {
     defaultMessage: "Message"
@@ -59,22 +59,22 @@ class EmptyStateInactive extends React.Component {
     if (!e || e.button !== 0) return;
     let argv;
     if (this.state.enableService) {
-      argv = ["systemctl", "enable", "--now", "lorax-composer.socket"];
+      argv = ["systemctl", "enable", "--now", "osbuild-composer.socket"];
     } else {
-      argv = ["systemctl", "start", "lorax-composer.socket"];
+      argv = ["systemctl", "start", "osbuild-composer.socket"];
     }
     cockpit
       .spawn(argv, { superuser: "require", err: "message" })
       .then(() => this.props.fetchingBlueprints())
       .catch(err => {
         this.setState({ enableServiceFailure: err.message });
-        console.error("Failed to start lorax-composer.socket:", JSON.stringify(err));
+        console.error("Failed to start osbuild-composer.socket:", JSON.stringify(err));
       });
   }
 
   goToServicePage(e) {
     if (!e || e.button !== 0) return;
-    cockpit.jump("/system/services#/lorax-composer.service");
+    cockpit.jump("/system/services#/osbuild-composer.service");
   }
 
   render() {
