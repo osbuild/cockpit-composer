@@ -3,11 +3,11 @@
 // but on slow/loaded nested-VM OSCI infrastructure this often takes much longer
 const acceptable = 10000;
 
-describe("lorax-composer api sanity test", function() {
-  it("lorax-composer.socket should be enabled", function() {
+describe("weldr api sanity test", function() {
+  it("weldr api socket should be enabled", function() {
     const status = browser.executeAsync(function(done) {
       cockpit
-        .script("systemctl is-enabled lorax-composer.socket", { superuser: "require", err: "message" })
+        .script("systemctl is-enabled osbuild-composer.socket", { superuser: "require", err: "message" })
         .then(data => done(data));
     });
     expect(status.trim()).to.equal("enabled");
