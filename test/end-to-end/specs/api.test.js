@@ -6,7 +6,7 @@ const blueprintsPage = require("../pages/blueprints.page");
 // but on slow/loaded nested-VM OSCI infrastructure this often takes much longer
 const acceptable = 10000;
 
-describe("lorax-composer api sanity test", function() {
+describe("weldr api sanity test", function() {
   before(function() {
     commands.login();
     commands.startLoraxIfItDoesNotStart();
@@ -15,10 +15,10 @@ describe("lorax-composer api sanity test", function() {
     blueprintsPage.loading();
   });
 
-  it("lorax-composer.socket should be enabled", function() {
+  it("weldr api socket should be enabled", function() {
     const status = browser.executeAsync(function(done) {
       cockpit
-        .script("systemctl is-enabled lorax-composer.socket", { superuser: "require", err: "message" })
+        .script("systemctl is-enabled osbuild-composer.socket", { superuser: "require", err: "message" })
         .then(data => done(data));
     });
     expect(status.value.trim()).to.equal("enabled");

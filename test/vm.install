@@ -3,11 +3,6 @@
 # The application RPM will be installed separately
 set -eux
 
-# Update lorax-composer using the updates-testing repository
-if grep -isq fedora /etc/redhat-release && grep -isq firefox /tmp/BROWSER; then
-    dnf install -y lorax-composer --enablerepo=updates-testing
-fi
-
 # Allow cockpit port (9090) in INPUT chain
 # Do not reload firewall rule during image generation
 if type firewall-cmd >/dev/null 2>&1; then
@@ -28,12 +23,9 @@ printf "[WebService]\\nAllowUnencrypted=true\\n" > /etc/cockpit/cockpit.conf
 # Do not start it during image generation
 systemctl enable cockpit.socket
 
-# Start lorax-composer to init its db, but do not "enable" it
+# Start osbuild-composer to init its db, but do not "enable" it
 # Tests expect the service to not run, it checks the "start service" button
-systemctl start lorax-composer
+systemctl start osbuild-composer
 
-# wait for lorax-composer initialization before running test
-until curl --unix-socket /run/weldr/api.socket \
-    http://localhost:4000/api/status | grep '"db_supported": *true'; do
-sleep 1;
-done;
+# TODO temporary until osbuild-composer depends on one worker
+systemctl start osbuild-worker@1

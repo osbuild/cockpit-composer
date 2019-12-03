@@ -5,7 +5,9 @@
 
 **The web interface for Composer!**
 
-Composer generates custom images suitable for deploying systems or uploading to the cloud. It integrates into [Cockpit](https://cockpit-project.org/) as a frontend for [Lorax Composer](https://github.com/weldr/lorax/tree/lorax-composer).
+Composer generates custom images suitable for deploying systems or uploading to
+the cloud. It integrates into [Cockpit](https://cockpit-project.org/) as a
+frontend for [osbuild](https://github.com/osbuild).
 
 ## Making changes on Cockpit Composer
 
@@ -22,10 +24,10 @@ Cockpit Composer git repository checkout.
 On Fedora or Red Hat Enterprise Linux:
 
 * First install Cockpit on your local machine as described in: https://cockpit-project.org/running.html.
-* Next install and start lorax-composer:
+* Next install and start osbuild-composer:
 ```
-    $ sudo yum install lorax-composer
-    $ sudo systemctl start lorax-composer
+    $ sudo yum install osbuild-composer
+    $ sudo systemctl start osbuild-composer
 ```
 
 * Cockpit Composer uses Node.js during development. Node.js is not used at runtime. To make changes on Cockpit you'll want to install Node.js, NPM.

@@ -11,11 +11,11 @@ BuildArch:      noarch
 BuildRequires:  libappstream-glib
 
 Requires:       cockpit
-Requires:       lorax-composer
+Requires:       osbuild-composer >= 4
 
 %description
 Composer generates custom images suitable for deploying systems or uploading to
-the cloud. It integrates into Cockpit as a frontend for Lorax Composer.
+the cloud. It integrates into Cockpit as a frontend for osbuild.
 
 %prep
 %setup -q -n cockpit-composer-%{version}
