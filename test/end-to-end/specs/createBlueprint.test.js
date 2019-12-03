@@ -2,10 +2,11 @@ import blueprintsPage from "../pages/blueprints.page";
 import createBlueprintPage from "../pages/createBlueprint.page";
 
 describe("Create Blueprints Page", function() {
-  let blueprintNameList; // used by duplicated blueprint name checking
+  let testBlueprintName; // used by duplicated blueprint name checking
   before(function() {
     blueprintsPage.loading();
-    blueprintNameList = $$(blueprintsPage.blueprintListView).map(item => item.getAttribute("data-blueprint"));
+    testBlueprintName = "test"
+    commands.newBlueprint(testBlueprintName, "Test");
   });
 
   beforeEach(function() {
@@ -86,12 +87,12 @@ describe("Create Blueprints Page", function() {
   });
 
   it("Duplicated blueprint name help message should be in place", function() {
-    createBlueprintPage.nameBox.setInputValue(blueprintNameList[0]);
-    expect(createBlueprintPage.helpBlock.getText()).to.equal(`The name ${blueprintNameList[0]} already exists.`);
+    createBlueprintPage.nameBox.setInputValue(testBlueprintName);
+    expect(createBlueprintPage.helpBlock.getText()).to.equal(`The name ${testBlueprintName} already exists.`);
   });
 
   it("Duplicated blueprint name alert message should be in place - pressing enter", function() {
-    createBlueprintPage.nameBox.setInputValue(blueprintNameList[0]);
+    createBlueprintPage.nameBox.setInputValue(testBlueprintName);
     createBlueprintPage.nameBox.sendKey("\uE007");
     expect(createBlueprintPage.alert.getText()).to.equal("Specify a new blueprint name.");
   });
