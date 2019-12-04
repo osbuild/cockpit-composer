@@ -57,14 +57,14 @@ class EmptyStateInactive extends React.Component {
 
   startService(e) {
     if (!e || e.button !== 0) return;
-    let argv;
+    let script;
     if (this.state.enableService) {
-      argv = ["systemctl", "enable", "--now", "osbuild-composer.socket"];
+      script = "systemctl enable --now osbuild-composer.socket && systemctl enable --now osbuild-worker@1";
     } else {
-      argv = ["systemctl", "start", "osbuild-composer.socket"];
+      script = "systemctl start osbuild-composer.socket && systemctl start osbuild-worker@1";
     }
     cockpit
-      .spawn(argv, { superuser: "require", err: "message" })
+      .script(script, { superuser: "require", err: "message" })
       .then(() => this.props.fetchingBlueprints())
       .catch(err => {
         this.setState({ enableServiceFailure: err.message });
