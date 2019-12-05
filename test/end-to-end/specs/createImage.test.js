@@ -28,10 +28,10 @@ describe("Create Image Page", function() {
     expect(createImagePage.createButton.isEnabled()).to.be.false;
   });
 
-  it("Image Type should be include .iso and .qcow2", function() {
+  it("Image Type should be include .ami and .qcow2", function() {
     const selectOption = createImagePage.selectOption.map(item => item.getText());
     expect(selectOption)
-      .to.include("Live Bootable ISO (.iso)")
+      .to.include("Amazon Machine Image Disk (.ami)")
       .and.include("QEMU QCOW2 Image (.qcow2)");
   });
 
