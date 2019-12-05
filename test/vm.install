@@ -26,6 +26,9 @@ printf "[Session]\\nIdleTimeout=0\\n" >> /etc/cockpit/cockpit.conf
 # Do not start it during image generation
 systemctl enable cockpit.socket
 
+# Disable selinux to work around https://bugzilla.redhat.com/show_bug.cgi?id=1778126
+setenforce 0
+
 # Start osbuild-composer to init its db, but do not "enable" it
 # Tests expect the service to not run, it checks the "start service" button
 systemctl start osbuild-composer
