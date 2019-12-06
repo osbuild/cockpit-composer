@@ -32,10 +32,12 @@ describe("Sources Page", function() {
       const result = browser.apiFetchTest(endpoint);
       // result looks like:
       // https://github.com/weldr/lorax/blob/b57de934681056aa4f9bd480a34136cf340f510a/src/pylorax/api/v0.py#L513
-      const expected = new Set(JSON.parse(result.data).sources);
+      const resultSources = JSON.parse(result.data).sources.sort();
 
-      const names = new Set(sourcesPage.sourceNameList.map(source => source.getText()));
-      expect(expected).deep.equal(names);
+      const nameList = sourcesPage.sourceNameList.map(source => source.getText()).sort();
+      expect(nameList).deep.equal(resultSources);
+      // const names = new Set(sourcesPage.sourceNameList.map(source => source.getText()));
+      // expect(expected).deep.equal(names);
     });
     describe("* valication test", function() {
       beforeEach(function() {
