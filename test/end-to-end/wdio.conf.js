@@ -118,7 +118,7 @@ exports.config = {
   baseUrl: process.env.BASE_URL || "http://localhost:9090",
   //
   // Default timeout for all waitFor* commands.
-  waitforTimeout: parseInt(process.env.WAITFOR_TIMEOUT) || 120000,
+  waitforTimeout: parseInt(process.env.WAITFOR_TIMEOUT) || mochaTimeout,
   //
   // Default timeout in milliseconds for request
   // if Selenium Grid doesn't send response
