@@ -180,10 +180,11 @@ export function deleteSource(sourceName) {
   return _delete("/api/v0/projects/source/delete/" + encodeURIComponent(sourceName));
 }
 
-export function startCompose(blueprintName, composeType, uploadSettings) {
+export function startCompose(blueprintName, composeType, imageSize, uploadSettings) {
   return post("/api/v1/compose", {
     blueprint_name: blueprintName,
     compose_type: composeType,
+    size: imageSize,
     upload: uploadSettings,
     branch: "master"
   });
