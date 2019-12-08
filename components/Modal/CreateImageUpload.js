@@ -20,7 +20,7 @@ import {
   WizardContextConsumer,
   WizardFooter
 } from "@patternfly/react-core";
-import { OutlinedQuestionCircleIcon } from "@patternfly/react-icons";
+import { OutlinedQuestionCircleIcon, ExclamationTriangleIcon, ExclamationCircleIcon } from "@patternfly/react-icons";
 import { defineMessages, FormattedMessage, injectIntl, intlShape } from "react-intl";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -31,6 +31,11 @@ import { fetchingQueue, clearQueue, startCompose, fetchingComposeTypes } from ".
 import { fetchingUploadProviders } from "../../core/actions/uploads";
 
 const messages = defineMessages({
+  imageSizePopover: {
+    defaultMessage:
+      "Set the size that you want the image to be when instantiated. " +
+      "The total package size and target destination of your image should be considered when setting the image size."
+  },
   infotip: {
     defaultMessage: "This process can take a while. " + "Images are built in the order they are started."
   },
@@ -43,8 +48,8 @@ const messages = defineMessages({
     id: "empty-blueprint-alert",
     defaultMessage: "This blueprint is empty."
   },
-  warningMissingFields: {
-    defaultMessage: "Required information is missing."
+  warningReview: {
+    defaultMessage: "There are one or more fields that require your attention."
   },
   selectOne: {
     defaultMessage: "Select one"
@@ -55,6 +60,16 @@ const messages = defineMessages({
   review: {
     defaultMessage:
       "Review the information below and click Finish to create the image and complete the tasks that were selected. "
+  },
+  warningSizeSmall: {
+    defaultMessage: "Minimum size is {size} GB."
+  },
+  warningSizeLarge: {
+    defaultMessage:
+      "The size specified is large. We recommend that you check whether your target destination has any restrictions on image size."
+  },
+  warningSizeEmpty: {
+    defaultMessage: "A value is required."
   }
 });
 
@@ -94,14 +109,20 @@ class CreateImageUploadModal extends React.Component {
     this.state = {
       imageType: "",
       imageName: "",
+      imageSize: "",
+      minImageSize: null,
+      maxImageSize: 2000,
       showUploadAwsStep: false,
       showReviewStep: false,
       uploadService: "",
       uploadSettings: {}
     };
+    this.getDefaultImageSize = this.getDefaultImageSize.bind(this);
     this.isPendingChange = this.isPendingChange.bind(this);
+    this.isValidImageSize = this.isValidImageSize.bind(this);
     this.missingRequiredFields = this.missingRequiredFields.bind(this);
     this.setNotifications = this.setNotifications.bind(this);
+    this.setImageSize = this.setImageSize.bind(this);
     this.setImageType = this.setImageType.bind(this);
     this.setUploadSettings = this.setUploadSettings.bind(this);
     this.handleUploadService = this.handleUploadService.bind(this);
@@ -125,6 +146,16 @@ class CreateImageUploadModal extends React.Component {
     this.props.clearQueue();
   }
 
+  getDefaultImageSize(imageType) {
+    if (imageType === "ami") {
+      return 6;
+    } else if (imageType === undefined) {
+      return null;
+    } else {
+      return 2;
+    }
+  }
+
   setNotifications() {
     this.props.layout.setNotifications();
   }
@@ -134,10 +165,19 @@ class CreateImageUploadModal extends React.Component {
     this.setState(prevState => ({ uploadSettings: Object.assign({}, prevState.uploadSettings, { [key]: value }) }));
   }
 
+  setImageSize(value) {
+    this.setState({
+      imageSize: value
+    });
+  }
+
   setImageType(imageType) {
+    const defaultImageSize = this.getDefaultImageSize(imageType);
     this.setState({
       imageType,
       imageName: "",
+      imageSize: defaultImageSize,
+      minImageSize: defaultImageSize,
       uploadService: "",
       uploadSettings: {},
       showUploadAwsStep: false,
@@ -151,6 +191,14 @@ class CreateImageUploadModal extends React.Component {
     );
   }
 
+  isValidImageSize() {
+    if (this.state.imageSize < this.state.minImageSize && this.state.imageSize !== "") {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   missingRequiredFields() {
     if (this.state.uploadService.length == 0) return true;
     if (this.state.imageName.length == 0) return true;
@@ -161,6 +209,7 @@ class CreateImageUploadModal extends React.Component {
     for (const setting in this.state.uploadSettings) {
       if (this.state.uploadSettings[setting].length == 0) return true;
     }
+    if (this.state.imageSize < this.state.minImageSize || this.state.imageSize === "") return true;
     return false;
   }
 
@@ -221,22 +270,23 @@ class CreateImageUploadModal extends React.Component {
         this.props.blueprint.name,
         this.state.imageType,
         this.state.imageName,
+        this.state.imageSize,
         this.state.uploadService,
         this.state.uploadSettings
       );
     this.props.close();
   }
 
-  handleStartCompose(blueprintName, composeType, imageName, uploadService, uploadSettings) {
+  handleStartCompose(blueprintName, composeType, imageName, imageSize, uploadService, uploadSettings) {
     const upload = {
       image_name: imageName,
       provider: uploadService,
       settings: uploadSettings
     };
     if (uploadService == "") {
-      this.props.startCompose(blueprintName, composeType);
+      this.props.startCompose(blueprintName, composeType, imageSize);
     } else {
-      this.props.startCompose(blueprintName, composeType, upload);
+      this.props.startCompose(blueprintName, composeType, imageSize, upload);
     }
   }
 
@@ -250,7 +300,16 @@ class CreateImageUploadModal extends React.Component {
   render() {
     const { formatMessage } = this.props.intl;
     const { blueprint, imageTypes, providerSettings } = this.props;
-    const { showUploadAwsStep, showReviewStep, imageName, imageType, uploadService } = this.state;
+    const {
+      showUploadAwsStep,
+      showReviewStep,
+      imageName,
+      imageType,
+      imageSize,
+      minImageSize,
+      maxImageSize,
+      uploadService
+    } = this.state;
 
     const providerCheckbox = (provider, displayName) => (
       <FormGroup
@@ -298,8 +357,14 @@ class CreateImageUploadModal extends React.Component {
               </label>
               <div className="pf-c-form__horizontal-group cc-c-popover__horizontal-group">
                 <Text id="blueprint-name">{blueprint.name}</Text>
-                <Popover id="popover-help" bodyContent={formatMessage(messages.infotip)} aria-label="process length popover">
-                  <OutlinedQuestionCircleIcon id="popover-icon" />
+                <Popover
+                  id="popover-help"
+                  bodyContent={formatMessage(messages.infotip)}
+                  aria-label="process length help"
+                >
+                  <Button variant="plain" aria-label="process length help">
+                    <OutlinedQuestionCircleIcon id="popover-icon" />
+                  </Button>
                 </Popover>
               </div>
             </div>
@@ -312,6 +377,64 @@ class CreateImageUploadModal extends React.Component {
               </FormSelect>
             </FormGroup>
             {imageType === "ami" && providerCheckbox("aws", "AWS")}
+            <div className="pf-c-form__group">
+              <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-m-justify-content-flex-start">
+                <label htmlFor="create-image-size" className="pf-l-flex__item">
+                  <span className="pf-c-form__label-text">
+                    <FormattedMessage defaultMessage="Image size" />
+                  </span>
+                  <span className="pf-c-form__label-required" aria-hidden="true">
+                    &#42;
+                  </span>
+                </label>
+                <Popover
+                  id="popover-help"
+                  bodyContent={formatMessage(messages.imageSizePopover)}
+                  aria-label="image size help"
+                >
+                  <Button variant="plain" aria-label="image size help">
+                    <OutlinedQuestionCircleIcon id="popover-icon" />
+                  </Button>
+                </Popover>
+              </div>
+              <div className="pf-c-form__horizontal-group">
+                <div className="pf-l-split pf-m-gutter">
+                  <div className="pf-l-split__item pf-m-fill">
+                    <TextInput
+                      className="pf-c-form-control"
+                      id="create-image-size"
+                      type="number"
+                      min={minImageSize}
+                      max={maxImageSize}
+                      value={imageSize}
+                      isValid={this.isValidImageSize()}
+                      onChange={this.setImageSize}
+                      aria-describedby="create-image-size-help"
+                    />
+                  </div>
+                  <div className="pf-l-split__item cc-c-form__static-text pf-u-mr-md" aria-hidden="true">
+                    GB
+                  </div>
+                </div>
+                {!this.isValidImageSize() && (
+                  <div
+                    className="pf-c-form__helper-text pf-m-error"
+                    id="help-text-simple-form-name-helper"
+                    aria-live="polite"
+                  >
+                    {formatMessage(messages.warningSizeSmall, {
+                      size: minImageSize
+                    })}
+                  </div>
+                )}
+                {imageSize > maxImageSize && (
+                  <div className="pf-c-form__helper-text" id="help-text-simple-form-name-helper" aria-live="polite">
+                    <ExclamationTriangleIcon className="cc-c-text__warning-icon" />{" "}
+                    {formatMessage(messages.warningSizeLarge)}
+                  </div>
+                )}
+              </div>
+            </div>
           </Form>
         </React.Fragment>
       )
@@ -405,23 +528,50 @@ class CreateImageUploadModal extends React.Component {
       component: (
         <React.Fragment>
           {this.missingRequiredFields() && (
-            <Alert
-              id="required-fields-alert"
-              variant="warning"
-              isInline
-              title={formatMessage(messages.warningMissingFields)}
-            />
+            <Alert id="required-fields-alert" variant="danger" isInline title={formatMessage(messages.warningReview)} />
           )}
           <TextContent>
             <Title className="cc-c-popover__horizontal-group" headingLevel="h3" size="2xl">
               <FormattedMessage defaultMessage="Create and upload image" />
-              <Popover bodyContent={formatMessage(messages.infotip)} aria-label="process length popover">
-                <OutlinedQuestionCircleIcon />
+              <Popover bodyContent={formatMessage(messages.infotip)} aria-label="process length help">
+                <Button variant="plain" aria-label="process length help">
+                  <OutlinedQuestionCircleIcon id="popover-icon" />
+                </Button>
               </Popover>
             </Title>
             <Text>{formatMessage(messages.review)}</Text>
             {providerSettings[uploadService] !== undefined && (
               <TextList component={TextListVariants.dl}>
+                <TextListItem component={TextListItemVariants.dt}>
+                  <FormattedMessage defaultMessage="Image name" />
+                </TextListItem>
+                <TextListItem component={TextListItemVariants.dd}>{imageName}</TextListItem>
+                <dt>
+                  <FormattedMessage defaultMessage="Image size" />
+                </dt>
+                <dd>
+                  {imageSize === "" && (
+                    <div>
+                      <ExclamationCircleIcon className="cc-c-text__danger-icon" />{" "}
+                      {formatMessage(messages.warningSizeEmpty)}
+                    </div>
+                  )}
+                  {imageSize !== "" && <div>{imageSize} GB</div>}
+                  {imageSize < minImageSize && imageSize !== "" && (
+                    <div>
+                      <ExclamationCircleIcon className="cc-c-text__danger-icon" />{" "}
+                      {formatMessage(messages.warningSizeSmall, {
+                        size: minImageSize
+                      })}
+                    </div>
+                  )}
+                  {imageSize > maxImageSize && (
+                    <div>
+                      <ExclamationTriangleIcon className="cc-c-text__warning-icon" />{" "}
+                      {formatMessage(messages.warningSizeLarge)}
+                    </div>
+                  )}
+                </dd>
                 {Object.keys(providerSettings[uploadService].auth).map(key => (
                   <React.Fragment key={key}>
                     <TextListItem component={TextListItemVariants.dt}>
@@ -438,10 +588,6 @@ class CreateImageUploadModal extends React.Component {
                     </TextListItem>
                   </React.Fragment>
                 ))}
-                <TextListItem component={TextListItemVariants.dt}>
-                  <FormattedMessage defaultMessage="Image name" />
-                </TextListItem>
-                <TextListItem component={TextListItemVariants.dd}>{imageName}</TextListItem>
                 {Object.keys(providerSettings[uploadService].settings).map(key => (
                   <React.Fragment key={key}>
                     <TextListItem component={TextListItemVariants.dt}>
@@ -480,7 +626,11 @@ class CreateImageUploadModal extends React.Component {
                 <Button
                   id="continue-button"
                   variant="primary"
-                  isDisabled={imageType === "" || (this.missingRequiredFields() && activeStep.name === "Review")}
+                  isDisabled={
+                    imageType === "" ||
+                    (!this.isValidImageSize() && uploadService.length === 0) ||
+                    (this.missingRequiredFields() && activeStep.name === "Review")
+                  }
                   onClick={() => this.handleNextStep(activeStep, onNext)}
                 >
                   {activeStep.name === "Image type" ? (
