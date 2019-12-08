@@ -826,6 +826,7 @@ body {
   line-height: var(--pf-global--LineHeight--md);
 }
 
+
 /* spacing below warning alert in wizard */
 .pf-c-wizard__main-body .pf-c-alert,
 .cc-c-alert__warning  {
@@ -840,4 +841,14 @@ body {
 
 .cc-c-form__required-text {
   margin-bottom: var(--pf-global--gutter);
+}
+
+.cc-c-text__warning-icon {
+  color: var(--pf-global--warning-color--100);
+  vertical-align: -0.125em;
+}
+
+.cc-c-text__danger-icon {
+  color: var(--pf-global--danger-color--100);
+  vertical-align: -0.125em;
 }
