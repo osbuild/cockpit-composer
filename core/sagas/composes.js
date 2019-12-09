@@ -22,8 +22,8 @@ import {
 
 function* startCompose(action) {
   try {
-    const { blueprintName, composeType } = action.payload;
-    const response = yield call(composer.startCompose, blueprintName, composeType);
+    const { blueprintName, composeType, uploadSettings } = action.payload;
+    const response = yield call(composer.startCompose, blueprintName, composeType, uploadSettings);
     const statusResponse = yield call(composer.getComposeStatus, response.build_id);
     yield put(fetchingComposeSucceeded(statusResponse.uuids[0]));
     if (statusResponse.uuids[0].queue_status === "WAITING" || statusResponse.uuids[0].queue_status === "RUNNING") {

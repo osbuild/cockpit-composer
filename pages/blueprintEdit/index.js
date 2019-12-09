@@ -9,7 +9,7 @@ import Layout from "../../components/Layout/Layout";
 import BlueprintContents from "../../components/ListView/BlueprintContents";
 import ComponentInputs from "../../components/ListView/ComponentInputs";
 import ComponentDetailsView from "../../components/ListView/ComponentDetailsView";
-import CreateImage from "../../components/Modal/CreateImage";
+import CreateImageUpload from "../../components/Modal/CreateImageUpload";
 import ExportBlueprint from "../../components/Modal/ExportBlueprint";
 import PendingChanges from "../../components/Modal/PendingChanges";
 import EmptyState from "../../components/EmptyState/EmptyState";
@@ -469,7 +469,7 @@ class EditBlueprintPage extends React.Component {
                 </li>
               )}
               <li className="list__subgroup-item--first">
-                <CreateImage blueprint={blueprint} layout={this.layout} />
+                <CreateImageUpload blueprint={blueprint} layout={this.layout} />
               </li>
               <li>
                 <div className="dropdown dropdown-kebab-pf">

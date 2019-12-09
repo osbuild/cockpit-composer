@@ -46,7 +46,7 @@ class ViewBlueprintPage {
   get createImageButton() {
     // cannot use 'span=Create Image' because there're two Create Image buttons
     // another one is under Image tab
-    const selector = '.cmpsr-header__actions [id="cmpsr-btn-crt-image"] span';
+    const selector = `button[id="create-image-button"]`;
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,

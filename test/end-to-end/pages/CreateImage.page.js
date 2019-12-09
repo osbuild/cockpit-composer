@@ -2,7 +2,7 @@
 class CreateImagePage {
   constructor(name) {
     this.name = name;
-    this.containerSelector = '[id="cmpsr-modal-crt-image"]';
+    this.containerSelector = '[id="create-image-wizard"]';
   }
 
   loading() {
@@ -10,7 +10,7 @@ class CreateImagePage {
   }
 
   get alertMessage() {
-    const selector = `${this.containerSelector} .alert-warning`;
+    const selector = `${this.containerSelector} .pf-c-alert__title`;
     browser.waitUntil(
       () => browser.isVisible(selector),
       timeout,
@@ -20,7 +20,7 @@ class CreateImagePage {
   }
 
   get blueprintNameLabel() {
-    const selector = `${this.containerSelector} .form-control-static`;
+    const selector = `${this.containerSelector} [id="blueprint-name"]`;
     browser.waitUntil(
       () => browser.isVisible(selector),
       timeout,
@@ -30,7 +30,7 @@ class CreateImagePage {
   }
 
   get selectOption() {
-    const selector = `${this.containerSelector} select[id="textInput-modal-markup"] option`;
+    const selector = `${this.containerSelector} select[id="image-type"] option`;
     browser.waitUntil(
       () => browser.isVisible(selector),
       timeout,
@@ -40,7 +40,7 @@ class CreateImagePage {
   }
 
   get imageTypeSelect() {
-    const selector = 'select[id="textInput-modal-markup"]';
+    const selector = 'select[id="image-type"]';
     browser.waitUntil(
       () => browser.isVisible(selector),
       timeout,
@@ -50,15 +50,15 @@ class CreateImagePage {
   }
 
   get helpButton() {
-    const selector = `${this.containerSelector} .pficon-help`;
+    const selector = `${this.containerSelector} [id="popover-icon"]`;
     browser.waitUntil(() => browser.isVisible(selector), timeout, `Help button in Create Image dialog cannot be found`);
     return $(selector);
   }
 
   get helpMessage() {
-    const selector = '[id="CreateImageInfotip"] .popover-content';
+    const selector = `.pf-c-popover__body`;
     browser.waitUntil(
-      () => browser.isVisible(selector),
+      () => browser.isExisting(selector),
       timeout,
       `Help message in Create Image dialog cannot be found`
     );
@@ -66,7 +66,7 @@ class CreateImagePage {
   }
 
   get createButton() {
-    const selector = `${this.containerSelector} .btn-primary`;
+    const selector = `${this.containerSelector} button[id="continue-button"]`;
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
@@ -86,9 +86,13 @@ class CreateImagePage {
   }
 
   get cancelButton() {
-    const selector = $(this.containerSelector).$("span=Cancel");
-    browser.waitUntil(() => selector.isVisible(), timeout, `Cancel button in Create Image dialog cannot be found`);
-    return selector;
+    const selector = `${this.containerSelector} button[id="cancel-button"]`;
+    browser.waitUntil(
+      () => browser.isVisible(selector),
+      timeout,
+      `Cancel button in Create Image dialog cannot be found`
+    );
+    return $(selector);
   }
 }
 

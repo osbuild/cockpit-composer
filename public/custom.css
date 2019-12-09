@@ -65,7 +65,7 @@
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 1;
   padding: 0;
 }
 .cmpsr-panel__body .toolbar-pf .btn-link {
@@ -755,4 +755,36 @@ body {
   font-style: normal;
   font-weight: 700;
   text-rendering: optimizeLegibility;
+}
+
+/* form group checkbox alignment fix */
+.pf-c-form__horizontal-group .pf-c-check,
+.cc-c-form__static-text {
+  padding-top: var(--pf-global--spacer--form-element);
+  padding-bottom: var(--pf-global--spacer--form-element);
+}
+
+.pf-c-form__horizontal-group .pf-c-check input[type=checkbox],
+.cc-c-form__static-text input[type=checkbox] {
+  margin-top: 0px;
+}
+
+.pf-c-form__horizontal-group .pf-c-check__label {
+  line-height: var(--pf-global--LineHeight--md);
+}
+
+/* spacing below warning alert in wizard */
+.pf-c-wizard__main-body .pf-c-alert,
+.cc-c-alert__warning  {
+  margin-bottom: var(--pf-global--gutter);
+}
+
+/* horizontal group with popover justification fix*/
+.cc-c-popover__horizontal-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cc-c-form__required-text {
+  margin-bottom: var(--pf-global--gutter);
 }

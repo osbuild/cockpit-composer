@@ -1,9 +1,10 @@
 export const START_COMPOSE = "START_COMPOSE";
-export const startCompose = (blueprintName, composeType) => ({
+export const startCompose = (blueprintName, composeType, uploadSettings) => ({
   type: START_COMPOSE,
   payload: {
     blueprintName,
-    composeType
+    composeType,
+    uploadSettings
   }
 });
 

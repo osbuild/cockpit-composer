@@ -58,7 +58,7 @@ class EditPackagesPage {
   }
 
   get createImageButton() {
-    const selector = "span=Create Image";
+    const selector = `button[id="create-image-button"]`;
     browser.waitUntil(
       () => browser.isExisting(selector),
       timeout,
