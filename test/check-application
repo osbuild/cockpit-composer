@@ -71,7 +71,7 @@ def run_e2e(verbose, image, browser, cpus, memory, sit):
         # wdio.conf.js needs key word MicrosoftEdge for edge browser
         browser = 'MicrosoftEdge'
     else:
-        selenium = testvm.VirtMachine(image="selenium", verbose=verbose,
+        selenium = testvm.VirtMachine(image="services", verbose=verbose,
                                       networking=networking_selenium)
     try:
         composer.start()
