@@ -375,7 +375,7 @@ the "-" that would display instead of the sr-only "to" */
   flex-basis: 55%;
 }
 
-.cmpsr-images__status .pficon-in-progress {
+.cc-c-data-list__item-status .pficon-in-progress {
   -webkit-animation: 1s infinite linear rotate;
           animation: 1s infinite linear rotate;
 }
@@ -597,12 +597,6 @@ textarea.form-control[readonly] {
   color: inherit;
 }
 
-.list-pf-container.image-container {
-  position: sticky;
-  top: 0;
-  background: #fff;
-}
-
 /* PF4 styles for PF3 classes */
 body {
   background: var(--pf-global--BackgroundColor--100);
@@ -632,11 +626,46 @@ body {
   --pf-c-data-list__item-action--PaddingBottom: var(--pf-global--spacer--sm);
 }
 
+.pf-c-data-list__item-row.cc-m-sticky {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  border-bottom: var(--pf-c-data-list__item-item--BorderTopWidth) solid var(--pf-c-data-list__item-item--BorderTopColor);
+}
+.pf-c-data-list__expandable-content pre {
+  border-top: none;
+}
+
+.cc-u-not-visible {
+  visibility: hidden !important;
+} /* used to visually hide elements, but still retain the spacing that they take up */
+  /* use this with aria-hidden to also hide from assistive technologies */
+
+/* expand buttons are included for all nodes, but only visible for nodes with children */
+.pf-c-data-list__item-control[aria-hidden="true"] .pf-c-button {
+  visibility: hidden;
+} 
+
 .cc-c-data-list__item-icon {
   flex: 0 0 1rem;
   margin-right: var(--pf-c-data-list__item-control--MarginRight);
   padding-top: var(--pf-c-data-list__cell--PaddingTop);
 } /* sets size and spacing for custom icon column */
+
+/* TO DO - set default values for PF variables used here */
+.cc-c-status {
+  display: grid;
+  grid-row-gap: var(--pf-global--spacer--md);
+  grid-column-gap: var(--pf-global--spacer--sm);
+  grid-template-columns: minmax(var(--pf-global--icon--FontSize--md) , min-content) auto;
+}
+.cc-c-status .cc-m-full-width {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+.cc-c-status__icon {
+  justify-self: center;
+}
 
 .pf-c-data-list__item-action.cc-m-nowrap {
     flex-wrap: nowrap;
@@ -710,6 +739,31 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   flex: 0 0 30%;
+
+} /* sets spacing for icon column */
+
+/* modifies default datalist styles to always have contents in this element stacked */
+.pf-c-data-list__item-content.cc-m-stacked {
+  display: grid;
+  width: 100%;
+  padding-top: var(--pf-c-data-list__cell--PaddingTop);
+  padding-bottom: var(--pf-global--spacer--md);
+  grid-gap: var(--pf-global--spacer--md);
+}
+.pf-c-data-list__item-content.cc-m-stacked .pf-c-data-list__cell {
+  padding-top: 0 !important;
+  padding-bottom: 0;
+  grid-column: unset;
+  grid-column-start: 1;
+}
+@media screen and (min-width: 54rem) {
+  .pf-c-data-list__item-content.cc-m-split-on-lg {
+    grid-template-columns: 50% 50%;
+    grid-gap: var(--pf-global--spacer--xs);
+  }
+  .pf-c-data-list__item-content.cc-m-split-on-lg .pf-c-data-list__cell:last-child {
+    grid-column-start: 2;
+  }
 }
 
 @font-face {

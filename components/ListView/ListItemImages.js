@@ -1,7 +1,17 @@
 import React from "react";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import {
+  Button,
+  DataListItem,
+  DataListItemRow,
+  DataListCell,
+  DataListToggle,
+  DataListContent,
+  DataListItemCells
+} from "@patternfly/react-core";
+import { BuilderImageIcon } from "@patternfly/react-icons";
 import { deletingCompose, cancellingCompose } from "../../core/actions/composes";
 import {
   setModalStopBuildVisible,
@@ -9,8 +19,57 @@ import {
   setModalDeleteImageVisible,
   setModalDeleteImageState
 } from "../../core/actions/modals";
+import Logs from "../Logs/Logs";
 import * as composer from "../../core/composer";
+import ImagesDataList from "./ImagesDataList";
 import ListItemUploads from "./ListItemUploads";
+
+const messages = defineMessages({
+  imageType: {
+    defaultMessage: "Type",
+    description: "A label for the type of image file was created"
+  },
+  imageCreated: {
+    defaultMessage: "Created",
+    description: "A label for the date that an image file was created"
+  },
+  imageSize: {
+    defaultMessage: "Size",
+    description: "A label for the size of an image file"
+  },
+  imageUploads: {
+    defaultMessage: "Image uploads",
+    description: "A label for the section that lists the upload actions initiated by the user"
+  },
+  imageActions: {
+    defaultMessage: "Actions",
+    description: "A label for the menu that displays the actions available"
+  },
+  imageLogs: {
+    defaultMessage: "Logs",
+    description: "Log content that gets generated as part of the image creation process"
+  },
+  imageStatusWaiting: {
+    defaultMessage: "Image build pending",
+    description: "Image build status when process is waiting"
+  },
+  imageStatusRunning: {
+    defaultMessage: "Image build in progress",
+    description: "Image build status when process is in progress"
+  },
+  imageStatusFinished: {
+    defaultMessage: "Image build complete",
+    description: "Image build status when process is finished"
+  },
+  imageStatusFailed: {
+    defaultMessage: "Image build failed",
+    description: "Image build status when process failed"
+  },
+  imageStatusStopping: {
+    defaultMessage: "Stopping",
+    description: "Image build status when user selected to end the process"
+  }
+});
 
 class ListItemImages extends React.Component {
   constructor() {
@@ -25,17 +84,23 @@ class ListItemImages extends React.Component {
   }
 
   // maps to Remove button for FAILED
-  handleDelete() {
+  handleDelete(e) {
+    e.preventDefault();
+    e.stopPropagation();
     this.props.deletingCompose(this.props.listItem.id);
   }
 
   // maps to Stop button for WAITING
-  handleCancel() {
+  handleCancel(e) {
+    e.preventDefault();
+    e.stopPropagation();
     this.props.cancellingCompose(this.props.listItem.id);
   }
 
   // maps to Stop button for RUNNING
-  handleShowModalStop() {
+  handleShowModalStop(e) {
+    e.preventDefault();
+    e.stopPropagation();
     this.props.setModalStopBuildState(this.props.listItem.id, this.props.blueprint);
     this.props.setModalStopBuildVisible(true);
   }
@@ -49,6 +114,7 @@ class ListItemImages extends React.Component {
   }
 
   handleLogsShow() {
+    this.setState({ uploadsExpanded: false });
     this.setState(prevState => ({ logsExpanded: !prevState.logsExpanded, fetchingLogs: !prevState.logsExpanded }));
     composer.getComposeLog(this.props.listItem.id).then(
       logs => {
@@ -63,173 +129,233 @@ class ListItemImages extends React.Component {
     );
   }
   handleUploadsShow() {
+    this.setState({ logsExpanded: false });
     this.setState(prevState => ({ uploadsExpanded: !prevState.uploadsExpanded }));
   }
 
   render() {
     const { listItem } = this.props;
+    const { formatMessage } = this.props.intl;
     const timestamp = new Date(listItem.job_created * 1000);
     const formattedTime = timestamp.toDateString();
-    const logButton = (
-      <button className="btn btn-link" onClick={this.handleLogsShow} type="button">
-        {this.state.logsExpanded && <FormattedMessage defaultMessage="Hide logs" />}
-        {!this.state.logsExpanded && <FormattedMessage defaultMessage="Show logs" />}
-      </button>
+    let actions;
+    switch (listItem.queue_status) {
+      case "FINISHED":
+        actions = (
+          <>
+            <li>
+              <a href={this.props.downloadUrl} role="button" download>
+                <FormattedMessage defaultMessage="Download" />
+              </a>
+            </li>
+            <li key="delete">
+              <a href="#" role="button" onClick={e => this.handleShowModalDeleteImage(e)}>
+                <FormattedMessage defaultMessage="Delete" />
+              </a>
+            </li>
+          </>
+        );
+        break;
+      case "RUNNING":
+        actions = (
+          <>
+            <li>
+              <a href="#" role="button" onClick={e => this.handleShowModalStop(e)}>
+                <FormattedMessage defaultMessage="Stop" />
+              </a>
+            </li>
+          </>
+        );
+        break;
+      case "WAITING":
+        actions = (
+          <>
+            <li>
+              <a href="#" role="button" onClick={e => this.handleCancel(e)}>
+                <FormattedMessage defaultMessage="Stop" />
+              </a>
+            </li>
+          </>
+        );
+        break;
+      case "FAILED":
+        actions = (
+          <>
+            <li>
+              <a href="#" role="button" onClick={e => this.handleDelete(e)}>
+                <FormattedMessage defaultMessage="Remove" />
+              </a>
+            </li>
+          </>
+        );
+        break;
+      default:
+        actions = undefined;
+        break;
+    }
+    const noLogs = listItem.queue_status === "WAITING" || listItem.queue_status === "STOPPING";
+    const logsButton = (
+      <div
+        aria-hidden={noLogs}
+        className={`pf-c-data-list__item-action ${noLogs ? "cc-u-not-visible" : ""}`}
+      >
+        <Button
+          variant={`${this.state.logsExpanded ? "primary" : "secondary"}`}
+          aria-expanded={this.state.logsExpanded}
+          aria-controls={`${listItem.id}-logs`}
+          onClick={this.handleLogsShow}
+        >
+          {formatMessage(messages.imageLogs)}
+        </Button>
+      </div>
     );
-    let uploadsButton;
-    if (listItem.uploads !== undefined && listItem.uploads.length > 0) {
-      uploadsButton = (
-        <button className="btn btn-link" onClick={this.handleUploadsShow} type="button">
-          {this.state.uploadsExpanded && <FormattedMessage defaultMessage="Hide uploads" />}
-          {!this.state.uploadsExpanded && <FormattedMessage defaultMessage="Show uploads" />}
-        </button>
+    let uploadsToggle;
+    if (listItem.uploads !== undefined) {
+      uploadsToggle = (
+        <DataListToggle
+            onClick={this.handleUploadsShow}
+            isExpanded={this.state.uploadsExpanded}
+            id="uploads-toggle"
+            aria-label={`${formatMessage(messages.imageUploads)} ${this.props.blueprint}-${listItem.version}-${listItem.compose_type}`}
+            aria-controls={`${listItem.id}-uploads`}
+            // ^ need to fix this attribute value
+            aria-hidden={!listItem.uploads.length > 0}
+            className={`${!listItem.uploads.length > 0 ? "cc-u-not-visible" : ""}`}
+          />
       );
     }
-
+    const composeStatus = () => {
+      switch (listItem.queue_status) {
+        case "WAITING":
+          return (
+            <div className="cc-c-status">
+              <div className="cc-c-status__icon">
+                <span className="pficon pficon-pending" aria-hidden="true" />
+              </div>
+              {formatMessage(messages.imageStatusWaiting)}
+            </div>
+          );
+        case "RUNNING":
+          return (
+            <div className="cc-c-status">
+              <div className="cc-c-status__icon">
+                <div className="spinner spinner-xs" />
+              </div>
+              {formatMessage(messages.imageStatusRunning)}
+            </div>
+          );
+        case "FINISHED":
+          return (
+            <div className="cc-c-status">
+              <div className="cc-c-status__icon">
+                <span className="pficon pficon-ok" aria-hidden="true" />
+              </div>
+              {formatMessage(messages.imageStatusFinished)}
+            </div>
+          );
+        case "FAILED":
+          return (
+            <div className="cc-c-status">
+              <div className="cc-c-status__icon">
+                <span className="pficon pficon-error-circle-o" aria-hidden="true" />
+              </div>
+              {formatMessage(messages.imageStatusFailed)}
+            </div>
+          );
+        case "STOPPING":
+          return (
+            <div className="cc-c-status">
+              <em className="text-muted cc-m-full-width">
+                {formatMessage(messages.imageStatusStopping)}
+              </em>
+            </div>
+          );
+        default:
+          return <></>;
+      }
+    };
     let logsSection;
     if (this.state.logsExpanded) {
-      if (this.state.fetchingLogs) {
-        logsSection = (
-          <div>
-            <div className="spinner spinner-sm pull-left" aria-hidden="true" />
-            <FormattedMessage defaultMessage="Loading log messages" />
-          </div>
-        );
-      } else logsSection = <pre>{this.state.logsContent}</pre>;
+      logsSection = <Logs logContent={this.state.logsContent} fetchingLog={this.state.fetchingLogs} />;
     }
-
     let uploadsSection;
     if (this.state.uploadsExpanded) {
-      uploadsSection = <ListItemUploads uploads={this.props.listItem.uploads} />;
+      uploadsSection = (
+        <ImagesDataList ariaLabel={formatMessage(messages.imageUploads)}>
+          {listItem.uploads.map(upload => (
+            <ListItemUploads upload={upload} key={upload.uuid} />
+          ))}
+        </ImagesDataList>
+      );
     }
+    const size = Math.round(listItem.image_size / 10000000) / 100;
 
     return (
-      <div className="list-pf-item">
-        <div className="list-pf-container image-container">
-          <div className="list-pf-content list-pf-content-flex">
-            <div className="list-pf-left">
-              <span className="pficon pficon-builder-image list-pf-icon-small" aria-hidden="true" />
-            </div>
-            <div className="list-pf-content-wrapper">
-              <div className="list-pf-main-content">
-                <div className="list-pf-title text-overflow-pf">
-                  {this.props.blueprint}-ver{listItem.version}-{listItem.compose_type}
-                </div>
-                <div className="list-pf-description">
-                  <FormattedMessage
-                    defaultMessage="Based on Version {version}"
-                    values={{
-                      version: listItem.version
-                    }}
-                  />
-                </div>
-              </div>
-              <div className="list-pf-additional-content">
-                <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked i18n">
-                  <FormattedMessage
-                    defaultMessage="Date Created {date}"
-                    values={{
-                      date: <strong>{formattedTime}</strong>
-                    }}
-                  />
-                </div>
-                <div className="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked i18n">
-                  <FormattedMessage
-                    defaultMessage="Type {type}"
-                    values={{
-                      type: <strong data-image-type={listItem.compose_type}>{listItem.compose_type}</strong>
-                    }}
-                  />
-                </div>
-              </div>
-            </div>
-            {listItem.queue_status === "WAITING" && (
-              <div className="list-view-pf-additional-info-item cmpsr-images__status">
-                <span className="pficon pficon-pending" aria-hidden="true" />
-                <FormattedMessage defaultMessage="Pending" />
-              </div>
-            )}{" "}
-            {listItem.queue_status === "RUNNING" && (
-              <div className="list-view-pf-additional-info-item cmpsr-images__status">
-                <span className="pficon pficon-in-progress" aria-hidden="true" />
-                <FormattedMessage defaultMessage="In Progress" />
-                {logButton}
-              </div>
-            )}{" "}
-            {listItem.queue_status === "FINISHED" && (
-              <div className="list-view-pf-additional-info-item cmpsr-images__status">
-                <span className="pficon pficon-ok" aria-hidden="true" />
-                <FormattedMessage defaultMessage="Complete" />
-                {logButton}
-                {uploadsButton}
-              </div>
-            )}{" "}
-            {listItem.queue_status === "FAILED" && (
-              <div className="list-view-pf-additional-info-item cmpsr-images__status">
-                <span className="pficon pficon-error-circle-o" aria-hidden="true" />
-                <FormattedMessage defaultMessage="Failed" />
-                {logButton}
-              </div>
-            )}
-            {listItem.queue_status === "FINISHED" && (
-              <div className="list-pf-actions">
-                <a className="btn btn-default" role="button" download href={this.props.downloadUrl}>
-                  <FormattedMessage defaultMessage="Download" />
-                </a>
-                <div className="dropdown pull-right dropdown-kebab-pf">
-                  <button
-                    className="btn btn-link dropdown-toggle"
-                    type="button"
-                    id="dropdownKebabRight"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="true"
-                  >
-                    <span className="fa fa-ellipsis-v" />
-                  </button>
-                  <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight">
-                    <li>
-                      <a href="#" onClick={e => this.handleShowModalDeleteImage(e)}>
-                        <FormattedMessage defaultMessage="Delete" />
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            )}{" "}
-            {listItem.queue_status === "WAITING" && (
-              <div className="list-pf-actions">
-                <button type="button" className="btn btn-default" onClick={this.handleCancel}>
-                  <FormattedMessage defaultMessage="Stop" />
-                </button>
-              </div>
-            )}{" "}
-            {listItem.queue_status === "RUNNING" && (
-              <div className="list-pf-actions">
-                <button type="button" className="btn btn-default" onClick={this.handleShowModalStop}>
-                  <FormattedMessage defaultMessage="Stop" />
-                </button>
-              </div>
-            )}{" "}
-            {listItem.queue_status === "STOPPING" && (
-              <div className="list-pf-actions">
-                <em className="text-muted">
-                  <FormattedMessage defaultMessage="Stopping" />
-                </em>
-              </div>
-            )}{" "}
-            {listItem.queue_status === "FAILED" && (
-              <div className="list-pf-actions">
-                <button type="button" className="btn btn-default" onClick={this.handleDelete}>
-                  <FormattedMessage defaultMessage="Remove" />
-                </button>
-              </div>
-            )}
+      <DataListItem aria-labelledby={`${listItem.id}-compose-name`} isExpanded={this.state.uploadsExpanded}>
+        <DataListItemRow className={`${this.state.logsExpanded ? "cc-m-sticky" : ""}`}>
+          {uploadsToggle}
+          <div className="cc-c-data-list__item-icon">
+            <BuilderImageIcon />
           </div>
-        </div>
-        {logsSection}
-        {uploadsSection}
-      </div>
+          <DataListItemCells
+            className="cc-m-stacked cc-m-split-on-lg"
+            dataListCells={[
+              <DataListCell key="primary" className="pf-l-flex pf-m-column pf-m-space-items-xs">
+                <div className="pf-l-flex__item">
+                  <strong id={`${listItem.id}-compose-name`}>
+                    {this.props.blueprint}-{listItem.version}-{listItem.compose_type}
+                  </strong>
+                </div>
+                <div className="pf-l-flex__item">
+                  <span>{formatMessage(messages.imageType)}</span> <strong>{listItem.compose_type}</strong>
+                </div>
+                <div className="pf-l-flex__item">
+                  <span>{formatMessage(messages.imageCreated)}</span> <strong>{formattedTime}</strong>
+                </div>
+                {listItem.queue_status === "FINISHED" && (
+                  <div className="pf-l-flex__item">
+                  <span>{formatMessage(messages.imageSize)}</span> <strong>{size} GB</strong>
+                </div>
+                )}
+              </DataListCell>,
+              <DataListCell key="status">{composeStatus()}</DataListCell>
+            ]}
+          />
+          <div
+            className={`pf-c-data-list__item-action ${actions === undefined ? "cc-u-not-visible" : ""}`}
+            aria-hidden={actions === undefined}
+          >
+            <div className="dropdown pull-right dropdown-kebab-pf">
+              <button
+                aria-label={formatMessage(messages.imageActions)}
+                className="btn btn-link dropdown-toggle"
+                type="button"
+                id={`${listItem.id}-actions`}
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <span className="fa fa-ellipsis-v" />
+              </button>
+              <ul className="dropdown-menu dropdown-menu-right" aria-labelledby={`${listItem.id}-actions`}>
+                {actions}
+              </ul>
+            </div>
+          </div>
+          {logsButton}
+        </DataListItemRow>
+        <DataListContent aria-label={formatMessage(messages.imageUploads)} id={`${listItem.id}-uploads`} isHidden={!this.state.uploadsExpanded} noPadding>
+          {uploadsSection}
+        </DataListContent>
+        <DataListContent
+          aria-label={formatMessage(messages.imageLogs)}
+          id={`${listItem.id}-logs`}
+          isHidden={!this.state.logsExpanded}
+          noPadding
+        >
+          {logsSection}
+        </DataListContent>
+      </DataListItem>
     );
   }
 }
@@ -254,7 +380,8 @@ ListItemImages.propTypes = {
   setModalStopBuildVisible: PropTypes.func,
   setModalDeleteImageState: PropTypes.func,
   setModalDeleteImageVisible: PropTypes.func,
-  downloadUrl: PropTypes.string
+  downloadUrl: PropTypes.string,
+  intl: intlShape.isRequired
 };
 
 ListItemImages.defaultProps = {
@@ -290,4 +417,4 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(null, mapDispatchToProps)(ListItemImages);
+export default connect(null, mapDispatchToProps)(injectIntl(ListItemImages));
