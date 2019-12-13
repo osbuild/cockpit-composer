@@ -18,8 +18,8 @@ import StopBuild from "../../components/Modal/StopBuild";
 import DeleteImage from "../../components/Modal/DeleteImage";
 import EmptyState from "../../components/EmptyState/EmptyState";
 import BlueprintToolbar from "../../components/Toolbar/BlueprintToolbar";
-import ListView from "../../components/ListView/ListView";
 import ListItemImages from "../../components/ListView/ListItemImages";
+import ImagesDataList from "../../components/ListView/ImagesDataList";
 import TextInlineEdit from "../../components/Form/TextInlineEdit";
 import {
   fetchingBlueprintContents,
@@ -558,17 +558,16 @@ class BlueprintPage extends React.Component {
                   <CreateImage blueprint={blueprint} layout={this.layout} />
                 </EmptyState>
               )) || (
-                <ListView className="cmpsr-images" stacked>
+                <ImagesDataList ariaLabel={formatMessage(messages.imagesTitle)}>
                   {composeList.map(compose => (
                     <ListItemImages
-                      listItemParent="cmpsr-images"
                       blueprint={this.props.route.params.blueprint}
                       listItem={compose}
                       downloadUrl={this.downloadUrl(compose)}
                       key={compose.id}
                     />
                   ))}
-                </ListView>
+                </ImagesDataList>
               )}
             </div>
           </Tab>
