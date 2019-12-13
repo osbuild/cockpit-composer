@@ -9,7 +9,7 @@
   "dependencies": {
     "@patternfly/patternfly": "^2.31.0",
     "@patternfly/react-core": "3.124.1",
-    "@patternfly/react-icons": "3.14.23",
+    "@patternfly/react-icons": "3.14.25",
     "bootstrap": "3.4.1",
     "core-js": "3.4.0",
     "core-js-compat": "3.4.5",
