@@ -12,6 +12,7 @@
     "del": "^5.1.0",
     "faker": "^4.1.0",
     "path": "^0.12.7",
+    "wdio-timeline-reporter": "^5.1.2",
     "webdriverio": "^5.16.6"
   },
   "devDependencies": {
