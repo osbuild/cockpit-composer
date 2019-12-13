@@ -652,7 +652,6 @@ body {
   padding-top: var(--pf-c-data-list__cell--PaddingTop);
 } /* sets size and spacing for custom icon column */
 
-/* TO DO - set default values for PF variables used here */
 .cc-c-status {
   display: grid;
   grid-row-gap: var(--pf-global--spacer--md);

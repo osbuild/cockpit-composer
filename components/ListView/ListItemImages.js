@@ -49,6 +49,10 @@ const messages = defineMessages({
     defaultMessage: "Logs",
     description: "Log content that gets generated as part of the image creation process"
   },
+  noImageLogs: {
+    defaultMessage: "No logs are available",
+    description: "The message that displays if logs were requested but are not available"
+  },
   imageStatusWaiting: {
     defaultMessage: "Image build pending",
     description: "Image build status when process is waiting"
@@ -122,7 +126,7 @@ class ListItemImages extends React.Component {
       },
       () => {
         this.setState({
-          logsContent: <FormattedMessage defaultMessage="No log available" />,
+          logsContent: this.props.intl.formatMessage(messages.noImageLogs),
           fetchingLogs: false
         });
       }
@@ -218,7 +222,6 @@ class ListItemImages extends React.Component {
             id="uploads-toggle"
             aria-label={`${formatMessage(messages.imageUploads)} ${this.props.blueprint}-${listItem.version}-${listItem.compose_type}`}
             aria-controls={`${listItem.id}-uploads`}
-            // ^ need to fix this attribute value
             aria-hidden={!listItem.uploads.length > 0}
             className={`${!listItem.uploads.length > 0 ? "cc-u-not-visible" : ""}`}
           />
