@@ -144,12 +144,12 @@ class ListItemImages extends React.Component {
         actions = (
           <>
             <li>
-              <a href={this.props.downloadUrl} role="button" download>
+              <a href={this.props.downloadUrl} role="button" data-download>
                 <FormattedMessage defaultMessage="Download" />
               </a>
             </li>
             <li key="delete">
-              <a href="#" role="button" onClick={e => this.handleShowModalDeleteImage(e)}>
+              <a href="#" role="button" onClick={e => this.handleShowModalDeleteImage(e)} data-delete>
                 <FormattedMessage defaultMessage="Delete" />
               </a>
             </li>
@@ -250,7 +250,7 @@ class ListItemImages extends React.Component {
               <div className="cc-c-status__icon">
                 <span className="pficon pficon-ok" aria-hidden="true" />
               </div>
-              {formatMessage(messages.imageStatusFinished)}
+              <span data-status>{formatMessage(messages.imageStatusFinished)}</span>
             </div>
           );
         case "FAILED":
@@ -291,7 +291,11 @@ class ListItemImages extends React.Component {
     const size = Math.round(listItem.image_size / 10000000) / 100;
 
     return (
-      <DataListItem aria-labelledby={`${listItem.id}-compose-name`} isExpanded={this.state.uploadsExpanded}>
+      <DataListItem 
+        aria-labelledby={`${listItem.id}-compose-name`}
+        isExpanded={this.state.uploadsExpanded}
+        data-image={`${this.props.blueprint}-${listItem.version}-${listItem.compose_type}`}
+      >
         <DataListItemRow className={`${this.state.logsExpanded ? "cc-m-sticky" : ""}`}>
           {uploadsToggle}
           <div className="cc-c-data-list__item-icon">
@@ -302,12 +306,13 @@ class ListItemImages extends React.Component {
             dataListCells={[
               <DataListCell key="primary" className="pf-l-flex pf-m-column pf-m-space-items-xs">
                 <div className="pf-l-flex__item">
-                  <strong id={`${listItem.id}-compose-name`}>
+                  <strong id={`${listItem.id}-compose-name`} data-image-name>
                     {this.props.blueprint}-{listItem.version}-{listItem.compose_type}
                   </strong>
                 </div>
                 <div className="pf-l-flex__item">
-                  <span>{formatMessage(messages.imageType)}</span> <strong>{listItem.compose_type}</strong>
+                  <span>{formatMessage(messages.imageType)} </span>
+                  <strong data-image-type={listItem.compose_type}>{listItem.compose_type}</strong>
                 </div>
                 <div className="pf-l-flex__item">
                   <span>{formatMessage(messages.imageCreated)}</span> <strong>{formattedTime}</strong>
@@ -370,7 +375,8 @@ ListItemImages.propTypes = {
     job_finished: PropTypes.number,
     job_started: PropTypes.number,
     queue_status: PropTypes.string,
-    version: PropTypes.string
+    version: PropTypes.string,
+    uploads: PropTypes.arrayOf(PropTypes.object)
   }),
   blueprint: PropTypes.string,
   deletingCompose: PropTypes.func,

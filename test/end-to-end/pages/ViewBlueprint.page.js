@@ -131,7 +131,7 @@ class ViewBlueprintPage {
   }
 
   get imageNameLabel() {
-    return $(".cmpsr-images .list-pf-title").element();
+    return $('[data-image-name]').element();
   }
 
   imageTypeLabel(type) {
@@ -139,7 +139,7 @@ class ViewBlueprintPage {
   }
 
   get completeLabel() {
-    return $("span=Complete");
+    return $('[data-status]').element();
   }
 
   waitForImageBuildComplete() {
@@ -154,19 +154,19 @@ class ViewBlueprintPage {
   }
 
   get completeIcon() {
-    return $(".cmpsr-images .pficon-ok").element();
+    return $('[data-list="images"] .pficon-ok').element();
   }
 
   get imageMoreButton() {
-    return $(".cmpsr-images .fa-ellipsis-v").element();
+    return $('[data-list="images"] .fa-ellipsis-v').element();
   }
 
   get deleteItem() {
-    return $("span=Delete").element();
+    return $('[data-delete]').element();
   }
 
   get imageDownloadButton() {
-    return $('.list-pf-actions [download=""]').element();
+    return $('[data-download]').element();
   }
 }
 

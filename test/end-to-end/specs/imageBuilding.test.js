@@ -58,6 +58,9 @@ describe("View Blueprint Page", function() {
     toastNotificationPage.closeButton.click();
     $(toastNotificationPage.containerSelector).waitForExist(timeout, true);
     viewBlueprintPage.imagesTab.click();
+
+    // show actions menu
+    viewBlueprintPage.imageMoreButton.click();
   });
 
   after(function() {
@@ -91,7 +94,7 @@ describe("View Blueprint Page", function() {
     // set test timeout to 20 minutes for image building case ONLY
     this.timeout(timeout * 10);
     viewBlueprintPage.waitForImageBuildComplete();
-    expect(viewBlueprintPage.completeLabel.getText()).to.equal("Complete");
+    expect(viewBlueprintPage.completeLabel.getText()).to.equal("Image build complete");
   });
 
   it("should show correct Complete icon", function() {
@@ -119,6 +122,7 @@ describe("View Blueprint Page", function() {
 
   describe("Delete Image Page", function() {
     before(function() {
+      viewBlueprintPage.imagesTab.click();
       viewBlueprintPage.imageMoreButton.click();
       viewBlueprintPage.deleteItem.click();
       deleteImagePage.loading();
