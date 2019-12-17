@@ -46,11 +46,12 @@ module.exports = {
     $('input[id="login-password-input"]')
       .element()
       .setInputValue(password);
-    // enable "Reuse my password for privileged tasks" only for non-root user
-    username !== "root" &&
-      $('[id="authorized-input"]')
-        .element()
-        .click();
+    // Always 'Reuse my password'
+    if (!browser.execute(() => document.getElementById("authorized-input").checked)) {
+        $('[id="authorized-input"]')
+          .element()
+          .click();
+    }
     // "Log In"
     $('button[id="login-button"]')
       .element()
