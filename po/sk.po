@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2\n"
-"PO-Revision-Date: 2019-05-27 09:02+0000\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
+"PO-Revision-Date: 2019-12-18 07:47+0000\n"
+"Last-Translator: Matej Marusak <mmarusak@redhat.com>\n"
 "Language-Team: Slovak\n"
 "Language: sk\n"
 "X-Generator: Zanata 4.6.2\n"
@@ -16,7 +16,7 @@ msgstr ""
 #. defaultMessage is:
 #. (most recent first)
 msgid "(most recent first)"
-msgstr ""
+msgstr "(od najnovších)"
 
 #: build/messages/components/Modal/CreateImage.json
 #. [components.Modal.485442669]
@@ -46,6 +46,17 @@ msgstr "Heslo je definované pre tento účet."
 msgid "A password is not defined for this account."
 msgstr "Heslo nie je definované pre tento účet."
 
+#: build/messages/components/ListView/ListItemImages.json
+#: build/messages/components/ListView/ListItemUploads.json
+#. [components.ListView.imageActions] - A label for the menu that displays the actions available
+#. defaultMessage is:
+#. Actions
+#. [components.ListView.uploadActions] - A label for the menu that displays the actions available
+#. defaultMessage is:
+#. Actions
+msgid "Actions"
+msgstr "Akcie"
+
 #: build/messages/components/ListView/ComponentDetailsView.json
 #. [components.ListView.3099331554]
 #. defaultMessage is:
@@ -59,6 +70,21 @@ msgstr "Pridať"
 #. Add Blueprint Components
 msgid "Add Blueprint Components"
 msgstr ""
+
+#: build/messages/components/Modal/ManageSources.json
+#: build/messages/components/Modal/ManageSources.json
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.add]
+#. defaultMessage is:
+#. Add Source
+#. [components.Modal.save]
+#. defaultMessage is:
+#. Add Source
+#. [components.Modal.2130684444]
+#. defaultMessage is:
+#. Add Source
+msgid "Add Source"
+msgstr "Pridať zdroj"
 
 #: build/messages/components/ListView/ComponentInputs.json
 #. [components.ListView.addComponent]
@@ -83,11 +109,22 @@ msgstr "Pridané"
 #. [components.Modal.errorStateTitle]
 #. defaultMessage is:
 #. An Error Occurred
-#. [pages.blueprints.errorTitle]
+#. [pages.blueprints.errorGenericTitle]
 #. defaultMessage is:
 #. An Error Occurred
 msgid "An Error Occurred"
 msgstr "Vyskytla sa chyba"
+
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.1417078254]
+#. defaultMessage is:
+#. An error occurred when saving the source. Check that the path is valid and try again.
+msgid ""
+"An error occurred when saving the source. Check that the path is valid and "
+"try again."
+msgstr ""
+"Vyskytla sa chyba počas ukladania zdroja. Skontrolujte, že cesta je platná "
+"a skúste to znovu."
 
 #: build/messages/components/ListView/BlueprintContents.json
 #. [components.ListView.emptyStateErrorMessage]
@@ -101,7 +138,7 @@ msgstr ""
 #. defaultMessage is:
 #. An error occurred while trying to get sources.
 msgid "An error occurred while trying to get sources."
-msgstr ""
+msgstr "Vyskytla sa chyba počas ziskavania zdrojov."
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #. [components.ListView.668376819]
@@ -122,7 +159,7 @@ msgstr ""
 #. defaultMessage is:
 #. Are you sure you want to delete the image for {blueprintName}?
 msgid "Are you sure you want to delete the image for {blueprintName}?"
-msgstr ""
+msgstr "Ste si istý/istá, že chcete odstrániť obraz pre {blueprintName}?"
 
 #: build/messages/components/Modal/StopBuild.json
 #. [components.Modal.234116272]
@@ -131,8 +168,15 @@ msgstr ""
 msgid "Are you sure you want to stop the build process for {blueprintName}?"
 msgstr ""
 
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+#. [components.EmptyState.errorInactiveCheckbox]
+#. defaultMessage is:
+#. Automatically start lorax-composer on boot
+msgid "Automatically start lorax-composer on boot"
+msgstr "Automaticky spustiť lorax-composer pri zavádzaní hostiteľa"
+
 #: build/messages/pages/blueprintEdit/index.json
-#. [pages.blueprintEdit.2346760817]
+#. [pages.blueprintEdit.listTitleAvailableComps]
 #. defaultMessage is:
 #. Available Components
 msgid "Available Components"
@@ -155,13 +199,6 @@ msgstr ""
 #. Back to {blueprint}
 msgid "Back to {blueprint}"
 msgstr "Späť na {blueprint}"
-
-#: build/messages/components/ListView/ListItemImages.json
-#. [components.ListView.2943300373]
-#. defaultMessage is:
-#. Based on Version {version}
-msgid "Based on Version {version}"
-msgstr ""
 
 #: build/messages/components/Modal/CreateImage.json
 #: build/messages/components/Modal/ExportBlueprint.json
@@ -193,6 +230,41 @@ msgstr ""
 msgid "Blueprint Components"
 msgstr ""
 
+#: build/messages/components/Modal/CreateBlueprint.json
+#. [components.Modal.2544705954]
+#. defaultMessage is:
+#. Blueprint names cannot contain spaces or the character: {invalidChar}
+msgid "Blueprint names cannot contain spaces or the character: {invalidChar}"
+msgstr ""
+
+#: build/messages/components/Modal/CreateBlueprint.json
+#. [components.Modal.1134732033]
+#. defaultMessage is:
+#. Blueprint names cannot contain spaces or the characters: {invalidChar}
+msgid "Blueprint names cannot contain spaces or the characters: {invalidChar}"
+msgstr ""
+
+#: build/messages/components/Modal/CreateBlueprint.json
+#. [components.Modal.2803906810]
+#. defaultMessage is:
+#. Blueprint names cannot contain spaces.
+msgid "Blueprint names cannot contain spaces."
+msgstr ""
+
+#: build/messages/components/Modal/CreateBlueprint.json
+#. [components.Modal.2781854456]
+#. defaultMessage is:
+#. Blueprint names cannot contain the character: {invalidChar}
+msgid "Blueprint names cannot contain the character: {invalidChar}"
+msgstr ""
+
+#: build/messages/components/Modal/CreateBlueprint.json
+#. [components.Modal.3918401128]
+#. defaultMessage is:
+#. Blueprint names cannot contain the characters: {invalidChar}
+msgid "Blueprint names cannot contain the characters: {invalidChar}"
+msgstr ""
+
 #: build/messages/pages/blueprints/index.json
 #. [pages.blueprints.blueprintsTitle]
 #. defaultMessage is:
@@ -212,6 +284,8 @@ msgstr ""
 #: build/messages/components/Modal/CreateImage.json
 #: build/messages/components/Modal/DeleteBlueprint.json
 #: build/messages/components/Modal/DeleteImage.json
+#: build/messages/components/Modal/EditDescription.json
+#: build/messages/components/Modal/ManageSources.json
 #: build/messages/components/Modal/StopBuild.json
 #: build/messages/components/Modal/UserAccount.json
 #. [components.Form.cancel]
@@ -227,6 +301,12 @@ msgstr ""
 #. defaultMessage is:
 #. Cancel
 #. [components.Modal.3528672691]
+#. defaultMessage is:
+#. Cancel
+#. [components.Modal.3528672691]
+#. defaultMessage is:
+#. Cancel
+#. [components.Modal.cancel]
 #. defaultMessage is:
 #. Cancel
 #. [components.Modal.3528672691]
@@ -250,7 +330,7 @@ msgstr ""
 #. defaultMessage is:
 #. Changes made in a previous session
 msgid "Changes made in a previous session"
-msgstr ""
+msgstr "Zmeny vykonané v predchádzajúcej relácií"
 
 #: build/messages/components/Modal/PendingChanges.json
 #. [components.Modal.previousSessionInfotip]
@@ -260,6 +340,20 @@ msgid ""
 "Changes made in a previous session are not listed in the order they were "
 "made. If you choose to undo these changes, they are undone as a group."
 msgstr ""
+
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.check_gpg]
+#. defaultMessage is:
+#. Check GPG key
+msgid "Check GPG key"
+msgstr "Kontrolovať GPG kľúč"
+
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.check_ssl]
+#. defaultMessage is:
+#. Check SSL certificate
+msgid "Check SSL certificate"
+msgstr "Skontrolovať SSL certifikát"
 
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/components/Toolbar/ToolbarLayout.json
@@ -308,7 +402,7 @@ msgstr "Zavrieť"
 #. defaultMessage is:
 #. Comment
 msgid "Comment"
-msgstr ""
+msgstr "Komentár"
 
 #: build/messages/components/Modal/PendingChanges.json
 #: build/messages/pages/blueprintEdit/index.json
@@ -327,13 +421,6 @@ msgstr ""
 #. Commit and Create
 msgid "Commit and Create"
 msgstr ""
-
-#: build/messages/components/ListView/ListItemImages.json
-#. [components.ListView.1275749364]
-#. defaultMessage is:
-#. Complete
-msgid "Complete"
-msgstr "Hotovo"
 
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
@@ -365,7 +452,7 @@ msgstr ""
 #. defaultMessage is:
 #. Contents
 msgid "Contents"
-msgstr ""
+msgstr "Obsah"
 
 #: build/messages/components/Modal/ExportBlueprint.json
 #. [components.Modal.383867403]
@@ -387,7 +474,7 @@ msgstr ""
 #. defaultMessage is:
 #. Create
 msgid "Create"
-msgstr ""
+msgstr "Vytvoriť"
 
 #: build/messages/components/Modal/CreateBlueprint.json
 #. [components.Modal.536838868]
@@ -401,7 +488,7 @@ msgstr ""
 #. defaultMessage is:
 #. Create Image
 msgid "Create Image"
-msgstr ""
+msgstr "Vytvoriť obraz"
 
 #: build/messages/components/Modal/UserAccount.json
 #: build/messages/pages/blueprint/index.json
@@ -412,7 +499,7 @@ msgstr ""
 #. defaultMessage is:
 #. Create User Account
 msgid "Create User Account"
-msgstr ""
+msgstr "Vytvoriť používateľský účet"
 
 #: build/messages/pages/blueprints/index.json
 #. [pages.blueprints.emptyMessage]
@@ -423,32 +510,32 @@ msgid ""
 "images you create. Images can be produced in a variety of output formats."
 msgstr ""
 
+#: build/messages/components/ListView/ListItemImages.json
+#. [components.ListView.imageCreated] - A label for the date that an image file was created
+#. defaultMessage is:
+#. Created
+msgid "Created"
+msgstr "Vytvorený"
+
 #: build/messages/components/Pagination/Pagination.json
 #. [components.Pagination.2925773048] - Label for the string: 1–50 of 125; only visible to screen readers
 #. defaultMessage is:
 #. Current Items
 msgid "Current Items"
-msgstr ""
+msgstr "Aktuálne položky"
 
 #: build/messages/components/Pagination/Pagination.json
 #. [components.Pagination.currentPage] - Label of form input for setting current page number
 #. defaultMessage is:
 #. Current Page
 msgid "Current Page"
-msgstr ""
+msgstr "Aktuálna stránka"
 
-#: build/messages/components/Modal/ManageSources.json
-#. [components.Modal.3535450089] - Custom sources are additional repositories that were added by the user
+#: build/messages/pages/blueprint/index.json
+#. [pages.blueprint.customizationsTitle]
 #. defaultMessage is:
-#. Custom Sources
-msgid "Custom Sources"
-msgstr ""
-
-#: build/messages/components/ListView/ListItemImages.json
-#. [components.ListView.3751098589]
-#. defaultMessage is:
-#. Date Created {date}
-msgid "Date Created {date}"
+#. Customizations
+msgid "Customizations"
 msgstr ""
 
 #: build/messages/components/ListView/ListItemImages.json
@@ -460,7 +547,7 @@ msgstr ""
 #. defaultMessage is:
 #. Delete
 msgid "Delete"
-msgstr ""
+msgstr "Odstrániť"
 
 #: build/messages/components/Modal/DeleteBlueprint.json
 #. [components.Modal.3153775112]
@@ -474,19 +561,23 @@ msgstr ""
 #. defaultMessage is:
 #. Delete Image
 msgid "Delete Image"
-msgstr ""
+msgstr "Vymazať obraz"
 
 #: build/messages/pages/blueprint/index.json
 #. [pages.blueprint.userDelete]
 #. defaultMessage is:
 #. Delete User Account
 msgid "Delete User Account"
-msgstr ""
+msgstr "Odstrániť používateľský účet"
 
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ComponentSummaryList.json
+#: build/messages/components/ListView/ComponentSummaryList.json
 #. [components.ListView.dependenciesTabTitle]
+#. defaultMessage is:
+#. Dependencies
+#. [components.ListView.dependencies]
 #. defaultMessage is:
 #. Dependencies
 #. [components.ListView.dependencies]
@@ -496,10 +587,14 @@ msgstr ""
 #. defaultMessage is:
 #. Dependencies
 msgid "Dependencies"
-msgstr ""
+msgstr "Závislosti"
 
 #: build/messages/components/Modal/CreateBlueprint.json
+#: build/messages/components/Modal/EditDescription.json
 #: build/messages/pages/blueprint/index.json
+#. [components.Modal.3374163063]
+#. defaultMessage is:
+#. Description
 #. [components.Modal.3374163063]
 #. defaultMessage is:
 #. Description
@@ -507,36 +602,54 @@ msgstr ""
 #. defaultMessage is:
 #. Description
 msgid "Description"
-msgstr ""
+msgstr "Popis"
 
 #: build/messages/pages/blueprintEdit/index.json
 #. [pages.blueprintEdit.1936836258]
 #. defaultMessage is:
 #. Discard Changes
 msgid "Discard Changes"
-msgstr ""
+msgstr "Zahodiť zmeny"
 
 #: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.1982430146]
 #. defaultMessage is:
 #. Download
 msgid "Download"
-msgstr ""
+msgstr "Stiahnuť"
 
-#: build/messages/components/ListView/BlueprintListView.json
+#: build/messages/components/Modal/EditDescription.json
+#. [components.Modal.1237611265]
+#. defaultMessage is:
+#. Edit Description
+msgid "Edit Description"
+msgstr "Upraviť popis"
+
+#: build/messages/components/ListView/BlueprintsDataList.json
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
-#. [components.ListView.1602740985]
+#. [components.ListView.3855913088]
 #. defaultMessage is:
-#. Edit Blueprint
-#. [pages.blueprint.1602740985]
+#. Edit Packages
+#. [pages.blueprint.3855913088]
 #. defaultMessage is:
-#. Edit Blueprint
-#. [pages.blueprintEdit.1602740985]
+#. Edit Packages
+#. [pages.blueprintEdit.3855913088]
 #. defaultMessage is:
-#. Edit Blueprint
-msgid "Edit Blueprint"
-msgstr ""
+#. Edit Packages
+msgid "Edit Packages"
+msgstr "Upraviť balíky"
+
+#: build/messages/components/ListView/SourcesListItem.json
+#: build/messages/components/Modal/ManageSources.json
+#. [components.ListView.edit]
+#. defaultMessage is:
+#. Edit Source
+#. [components.Modal.215316199]
+#. defaultMessage is:
+#. Edit Source
+msgid "Edit Source"
+msgstr "Upraviť zdroj"
 
 #: build/messages/components/Modal/UserAccount.json
 #: build/messages/pages/blueprint/index.json
@@ -547,21 +660,25 @@ msgstr ""
 #. defaultMessage is:
 #. Edit User Account
 msgid "Edit User Account"
-msgstr ""
+msgstr "Upraviť používateľský účet"
 
+#: build/messages/components/Modal/EditDescription.json
 #: build/messages/pages/blueprint/index.json
+#. [components.Modal.2044423701]
+#. defaultMessage is:
+#. Edit description
 #. [pages.blueprint.descriptionButtonLabel]
 #. defaultMessage is:
 #. Edit description
 msgid "Edit description"
-msgstr ""
+msgstr "Upraviť popis"
 
 #: build/messages/pages/blueprint/index.json
 #. [pages.blueprint.hostnameButtonLabel]
 #. defaultMessage is:
 #. Edit hostname
 msgid "Edit hostname"
-msgstr ""
+msgstr "Upraviť názov hostiteľa"
 
 #: build/messages/pages/blueprint/index.json
 #. [pages.blueprint.emptyBlueprintTitle]
@@ -575,22 +692,14 @@ msgstr ""
 #. defaultMessage is:
 #. Error
 msgid "Error"
-msgstr ""
+msgstr "Chyba"
 
-#: build/messages/components/ListView/BlueprintListView.json
-#: build/messages/pages/blueprint/index.json
-#: build/messages/pages/blueprintEdit/index.json
-#. [components.ListView.3590336714]
-#. defaultMessage is:
-#. Export
-#. [pages.blueprint.3590336714]
-#. defaultMessage is:
-#. Export
-#. [pages.blueprintEdit.3590336714]
+#: build/messages/components/Modal/ExportBlueprint.json
+#. [components.Modal.3590336714]
 #. defaultMessage is:
 #. Export
 msgid "Export"
-msgstr ""
+msgstr "Exportovať"
 
 #: build/messages/components/Modal/ExportBlueprint.json
 #. [components.Modal.386209032]
@@ -604,14 +713,7 @@ msgstr ""
 #. defaultMessage is:
 #. Export as
 msgid "Export as"
-msgstr ""
-
-#: build/messages/components/ListView/ListItemImages.json
-#. [components.ListView.2753020605]
-#. defaultMessage is:
-#. Failed
-msgid "Failed"
-msgstr ""
+msgstr "Exportovať ako"
 
 #: build/messages/pages/blueprintEdit/index.json
 #. [pages.blueprintEdit.filterByLabel]
@@ -625,14 +727,14 @@ msgstr ""
 #. defaultMessage is:
 #. Filter By Name...
 msgid "Filter By Name..."
-msgstr ""
+msgstr "Filtrovať podľa mena"
 
 #: build/messages/components/Modal/UserAccount.json
 #. [components.Modal.1182120637]
 #. defaultMessage is:
 #. Full name
 msgid "Full name"
-msgstr ""
+msgstr "Celé meno"
 
 #: build/messages/pages/error/index.json
 #. [pages.error.2333299345]
@@ -650,14 +752,14 @@ msgstr ""
 #. defaultMessage is:
 #. Hide Details
 msgid "Hide Details"
-msgstr ""
+msgstr "Skryť detaily"
 
 #: build/messages/pages/blueprint/index.json
 #. [pages.blueprint.hostnameInputLabel]
 #. defaultMessage is:
 #. Hostname
 msgid "Hostname"
-msgstr ""
+msgstr "Názov hostiteľa"
 
 #: build/messages/pages/blueprint/index.json
 #. [pages.blueprint.hostnameHelpEmpty]
@@ -666,11 +768,60 @@ msgstr ""
 msgid "If no hostname is provided, the hostname will be determined by the OS."
 msgstr ""
 
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+#. [components.EmptyState.errorInactiveTitle]
+#. defaultMessage is:
+#. Image Building Service is Not Active
+msgid "Image Building Service is Not Active"
+msgstr ""
+
 #: build/messages/components/Modal/CreateImage.json
 #. [components.Modal.380558550]
 #. defaultMessage is:
 #. Image Type
 msgid "Image Type"
+msgstr "Typ obrazu"
+
+#: build/messages/components/ListView/ListItemImages.json
+#. [components.ListView.imageStatusFinished] - Image build status when process is finished
+#. defaultMessage is:
+#. Image build complete
+msgid "Image build complete"
+msgstr ""
+
+#: build/messages/components/ListView/ListItemImages.json
+#. [components.ListView.imageStatusFailed] - Image build status when process failed
+#. defaultMessage is:
+#. Image build failed
+msgid "Image build failed"
+msgstr ""
+
+#: build/messages/components/ListView/ListItemImages.json
+#. [components.ListView.imageStatusRunning] - Image build status when process is in progress
+#. defaultMessage is:
+#. Image build in progress
+msgid "Image build in progress"
+msgstr ""
+
+#: build/messages/components/ListView/ListItemImages.json
+#. [components.ListView.imageStatusWaiting] - Image build status when process is waiting
+#. defaultMessage is:
+#. Image build pending
+msgid "Image build pending"
+msgstr ""
+
+#: build/messages/components/ListView/ListItemUploads.json
+#. [components.ListView.imageName] - The name given by the user for an image
+#. defaultMessage is:
+#. Image name
+msgid "Image name"
+msgstr "Názov obrazu"
+
+#: build/messages/components/ListView/ListItemImages.json
+#. [components.ListView.imageUploads] - A label for the section that lists the upload actions initiated by the user
+#. defaultMessage is:
+#. Image uploads
+msgid "Image uploads"
 msgstr ""
 
 #: build/messages/pages/blueprint/index.json
@@ -678,21 +829,39 @@ msgstr ""
 #. defaultMessage is:
 #. Images
 msgid "Images"
-msgstr ""
-
-#: build/messages/components/ListView/ListItemImages.json
-#. [components.ListView.3045064456]
-#. defaultMessage is:
-#. In Progress
-msgid "In Progress"
-msgstr ""
+msgstr "Obrazy"
 
 #: build/messages/components/Loading/Loading.json
 #. [components.Loading.2617450248]
 #. defaultMessage is:
 #. Loading
 msgid "Loading"
+msgstr "Načítanie"
+
+#: build/messages/components/ListView/ListItemImages.json
+#: build/messages/components/ListView/ListItemUploads.json
+#. [components.ListView.imageLogs] - Log content that gets generated as part of the image creation process
+#. defaultMessage is:
+#. Logs
+#. [components.ListView.uploadLogs] - Log content that gets generated as part of the upload process
+#. defaultMessage is:
+#. Logs
+msgid "Logs"
+msgstr "Logy"
+
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.357938285] - User action for displaying the list of source repositories
+#. defaultMessage is:
+#. Manage Sources
+msgid "Manage Sources"
 msgstr ""
+
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+#. [components.EmptyState.alertMessagePreface]
+#. defaultMessage is:
+#. Message
+msgid "Message"
+msgstr "Správa"
 
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/pages/blueprints/index.json
@@ -706,29 +875,29 @@ msgid "Modify your filter criteria to get results."
 msgstr ""
 
 #: build/messages/components/Modal/CreateBlueprint.json
-#: build/messages/components/Sources/SourcesList.json
+#: build/messages/components/Modal/ManageSources.json
 #. [components.Modal.636461959]
 #. defaultMessage is:
 #. Name
-#. [components.Sources.636461959] - Name of source
+#. [components.Modal.name] - Name of source
 #. defaultMessage is:
 #. Name
 msgid "Name"
-msgstr ""
+msgstr "Názov"
 
 #: build/messages/pages/blueprintEdit/index.json
 #. [pages.blueprintEdit.3059610115]
 #. defaultMessage is:
 #. Name: {name}
 msgid "Name: {name}"
-msgstr ""
+msgstr "Názov: {name}"
 
 #: build/messages/components/Modal/UserAccount.json
 #. [components.Modal.editPasswordOne]
 #. defaultMessage is:
 #. New password
 msgid "New password"
-msgstr ""
+msgstr "Nové heslo"
 
 #: build/messages/pages/blueprints/index.json
 #. [pages.blueprints.emptyTitle]
@@ -769,17 +938,11 @@ msgstr ""
 msgid "No images have been created from this blueprint."
 msgstr ""
 
-#: build/messages/components/ListView/DependencyListView.json
-#. [components.ListView.1983535507]
+#: build/messages/components/ListView/ListItemImages.json
+#. [components.ListView.1893974769]
 #. defaultMessage is:
-#. One or more dependencies have multiple variations that could be used.
-#. A default variation was automatically selected.
-#. Click a flagged dependency to see other options available.
-msgid ""
-"One or more dependencies have multiple variations that could be used.\n"
-"                            A default variation was automatically selected.\n"
-"                            Click a flagged dependency to see other options "
-"available."
+#. No log available
+msgid "No log available"
 msgstr ""
 
 #: build/messages/components/Modal/PendingChanges.json
@@ -796,26 +959,33 @@ msgstr ""
 msgid "Oups, something went wrong"
 msgstr ""
 
+#: build/messages/pages/blueprint/index.json
+#. [pages.blueprint.packagesTitle]
+#. defaultMessage is:
+#. Packages
+msgid "Packages"
+msgstr "Balíky"
+
 #: build/messages/pages/error/index.json
 #. [pages.error.pageNotFoundMessage]
 #. defaultMessage is:
 #. Page Not Found
 msgid "Page Not Found"
-msgstr ""
+msgstr "Stránka nenájdená"
 
 #: build/messages/pages/error/index.json
 #. [pages.error.pageNotFoundTitle]
 #. defaultMessage is:
 #. Page not found
 msgid "Page not found"
-msgstr ""
+msgstr "Stránka nenájdená"
 
 #: build/messages/components/Pagination/Pagination.json
 #. [components.Pagination.pagination]
 #. defaultMessage is:
 #. Pagination
 msgid "Pagination"
-msgstr ""
+msgstr "Stránkovanie"
 
 #: build/messages/components/Modal/UserAccount.json
 #: build/messages/components/Modal/UserAccount.json
@@ -826,7 +996,7 @@ msgstr ""
 #. defaultMessage is:
 #. Password
 msgid "Password"
-msgstr ""
+msgstr "Heslo"
 
 #: build/messages/components/Form/Password.json
 #. [components.Form.rejectedPassword]
@@ -840,20 +1010,13 @@ msgstr ""
 #. defaultMessage is:
 #. Password is too weak
 msgid "Password is too weak"
-msgstr ""
+msgstr "Heslo je príliš slabé"
 
 #: build/messages/components/Modal/UserAccount.json
 #. [components.Modal.sshKeyHelp]
 #. defaultMessage is:
 #. Paste the contents of your public SSH key file here.
 msgid "Paste the contents of your public SSH key file here."
-msgstr ""
-
-#: build/messages/components/ListView/ListItemImages.json
-#. [components.ListView.1102534324]
-#. defaultMessage is:
-#. Pending
-msgid "Pending"
 msgstr ""
 
 #: build/messages/components/Modal/PendingChanges.json
@@ -864,7 +1027,7 @@ msgid "Pending Changes"
 msgstr ""
 
 #: build/messages/components/ListView/ComponentDetailsView.json
-#: build/messages/components/ListView/ListItemComponents.json
+#: build/messages/components/ListView/ComponentsDataListItem.json
 #. [components.ListView.423140743]
 #. defaultMessage is:
 #. Release
@@ -872,17 +1035,10 @@ msgstr ""
 #. defaultMessage is:
 #. Release
 msgid "Release"
-msgstr ""
-
-#: build/messages/components/ListView/ListItemComponents.json
-#. [components.ListView.3825820359]
-#. defaultMessage is:
-#. Release {release}
-msgid "Release {release}"
-msgstr ""
+msgstr "Vydanie"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
-#: build/messages/components/ListView/ListItemComponents.json
+#: build/messages/components/ListView/ComponentsDataListItem.json
 #: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.2703758654]
 #. defaultMessage is:
@@ -894,7 +1050,7 @@ msgstr ""
 #. defaultMessage is:
 #. Remove
 msgid "Remove"
-msgstr ""
+msgstr "Odstrániť"
 
 #: build/messages/components/ListView/ComponentInputs.json
 #. [components.ListView.removeComponent]
@@ -908,7 +1064,14 @@ msgstr ""
 #. defaultMessage is:
 #. Remove Password
 msgid "Remove Password"
-msgstr ""
+msgstr "Odstrániť heslo"
+
+#: build/messages/components/ListView/SourcesListItem.json
+#. [components.ListView.remove]
+#. defaultMessage is:
+#. Remove Source
+msgid "Remove Source"
+msgstr "Odstrániť zdroj"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #. [components.ListView.removeFromBlueprint]
@@ -922,6 +1085,13 @@ msgstr ""
 #. defaultMessage is:
 #. Removed
 msgid "Removed"
+msgstr "Odstránené"
+
+#: build/messages/components/ListView/SourcesListItem.json
+#. [components.ListView.2663433025]
+#. defaultMessage is:
+#. Removing source
+msgid "Removing source"
 msgstr ""
 
 #: build/messages/components/Modal/CreateBlueprint.json
@@ -929,28 +1099,46 @@ msgstr ""
 #. defaultMessage is:
 #. Required information is missing.
 msgid "Required information is missing."
-msgstr ""
+msgstr "Chýba požadovaná informácia."
 
 #: build/messages/components/Modal/UserAccount.json
 #. [components.Modal.106035384]
 #. defaultMessage is:
 #. Role
 msgid "Role"
-msgstr ""
+msgstr "Rola"
 
 #: build/messages/components/Modal/UserAccount.json
 #. [components.Modal.229369250]
 #. defaultMessage is:
 #. SSH key
 msgid "SSH key"
-msgstr ""
+msgstr "SSH kľúč"
 
 #: build/messages/components/Form/TextInlineEdit.json
+#: build/messages/components/Modal/EditDescription.json
 #. [components.Form.save]
 #. defaultMessage is:
 #. Save
+#. [components.Modal.1115770113]
+#. defaultMessage is:
+#. Save
 msgid "Save"
-msgstr ""
+msgstr "Uložiť"
+
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.1820273720]
+#. defaultMessage is:
+#. Saving source
+msgid "Saving source"
+msgstr "Ukladá sa zdroj"
+
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.security]
+#. defaultMessage is:
+#. Security
+msgid "Security"
+msgstr "Bezpečnosť"
 
 #: build/messages/pages/blueprintEdit/index.json
 #. [pages.blueprintEdit.1513086105]
@@ -960,6 +1148,10 @@ msgid "Select components"
 msgstr ""
 
 #: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.selectOne]
+#. defaultMessage is:
+#. Select one
 #. [components.Modal.selectOne]
 #. defaultMessage is:
 #. Select one
@@ -967,11 +1159,7 @@ msgid "Select one"
 msgstr ""
 
 #: build/messages/components/ListView/BlueprintContents.json
-#: build/messages/pages/blueprint/index.json
 #. [components.ListView.selectedTabTitle]
-#. defaultMessage is:
-#. Selected Components
-#. [pages.blueprint.selectedComponentsTitle]
 #. defaultMessage is:
 #. Selected Components
 msgid "Selected Components"
@@ -989,55 +1177,69 @@ msgstr ""
 #. defaultMessage is:
 #. Set New Password
 msgid "Set New Password"
-msgstr ""
+msgstr "Nastaviť nové heslo"
 
 #: build/messages/components/Modal/UserAccount.json
 #. [components.Modal.3696648021]
 #. defaultMessage is:
 #. Set Password
 msgid "Set Password"
-msgstr ""
+msgstr "Nastaviť heslo"
 
 #: build/messages/components/ListView/ComponentSummaryList.json
 #. [components.ListView.1256153657]
 #. defaultMessage is:
 #. Show All
 msgid "Show All"
-msgstr ""
+msgstr "Zobraziť všetky"
 
 #: build/messages/components/ListView/ComponentInputs.json
 #. [components.ListView.showDetails]
 #. defaultMessage is:
 #. Show Details and More Options
 msgid "Show Details and More Options"
-msgstr ""
+msgstr "Zobraziť detaily a viac volieb"
 
 #: build/messages/components/ListView/ComponentSummaryList.json
 #. [components.ListView.2354351315]
 #. defaultMessage is:
 #. Show Less
 msgid "Show Less"
-msgstr ""
+msgstr "Zobraziť menej"
 
 #: build/messages/components/Pagination/Pagination.json
 #. [components.Pagination.nextPage]
 #. defaultMessage is:
 #. Show Next Page
 msgid "Show Next Page"
-msgstr ""
+msgstr "Zobraziť nasledujúcu stránku"
 
 #: build/messages/components/Pagination/Pagination.json
 #. [components.Pagination.previousPage]
 #. defaultMessage is:
 #. Show Previous Page
 msgid "Show Previous Page"
+msgstr "Zobraziť predošlú stránku"
+
+#: build/messages/components/ListView/ListItemImages.json
+#. [components.ListView.imageSize] - A label for the size of an image file
+#. defaultMessage is:
+#. Size
+msgid "Size"
+msgstr "Veľkosť"
+
+#: build/messages/components/ListView/SourcesListItem.json
+#. [components.ListView.kebab]
+#. defaultMessage is:
+#. Source Actions
+msgid "Source Actions"
 msgstr ""
 
-#: build/messages/components/Sources/SourcesList.json
-#. [components.Sources.3503331186] - The path or url to the source repository
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.sourcePath] - The path or url to the source repository
 #. defaultMessage is:
-#. Source Path
-msgid "Source Path"
+#. Source path
+msgid "Source path"
 msgstr ""
 
 #: build/messages/components/Modal/ManageSources.json
@@ -1047,6 +1249,17 @@ msgstr ""
 msgid "Sources"
 msgstr ""
 
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.infotip]
+#. defaultMessage is:
+#. Sources are used for resolving blueprint dependencies and for composing images. When adding custom sources you must make sure that the packages in the source do not conflict with any other package sources, otherwise resolving dependencies and composing images will fail.
+msgid ""
+"Sources are used for resolving blueprint dependencies and for composing "
+"images. When adding custom sources you must make sure that the packages in "
+"the source do not conflict with any other package sources, otherwise "
+"resolving dependencies and composing images will fail."
+msgstr ""
+
 #: build/messages/components/Modal/CreateBlueprint.json
 #. [components.Modal.540971304]
 #. defaultMessage is:
@@ -1054,12 +1267,26 @@ msgstr ""
 msgid "Specify a new blueprint name."
 msgstr ""
 
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+#. [components.EmptyState.errorInactivePrimary]
+#. defaultMessage is:
+#. Start
+msgid "Start"
+msgstr "Spustiť"
+
+#: build/messages/components/ListView/ListItemUploads.json
+#. [components.ListView.timeStarted] - A label for the date that an image upload was started
+#. defaultMessage is:
+#. Started
+msgid "Started"
+msgstr "Spustený"
+
 #: build/messages/components/ListView/ListItemImages.json
 #. [components.ListView.2989081855]
 #. defaultMessage is:
 #. Stop
 msgid "Stop"
-msgstr ""
+msgstr "Zastaviť"
 
 #: build/messages/components/Modal/StopBuild.json
 #. [components.Modal.1162993432]
@@ -1069,17 +1296,17 @@ msgid "Stop Build"
 msgstr ""
 
 #: build/messages/components/ListView/ListItemImages.json
-#. [components.ListView.2434115730]
+#. [components.ListView.imageStatusStopping] - Image build status when user selected to end the process
 #. defaultMessage is:
 #. Stopping
 msgid "Stopping"
-msgstr ""
+msgstr "Zastavuje sa"
 
-#: build/messages/components/Modal/ManageSources.json
-#. [components.Modal.766860407] - System sources are configured repositories that were found on the host machine
+#: build/messages/components/ListView/SourcesListItem.json
+#. [components.ListView.3639476303] - System sources are configured repositories that were found on the host machine
 #. defaultMessage is:
-#. System Sources
-msgid "System Sources"
+#. System source
+msgid "System source"
 msgstr ""
 
 #: build/messages/components/Modal/ExportBlueprint.json
@@ -1087,7 +1314,7 @@ msgstr ""
 #. defaultMessage is:
 #. Text
 msgid "Text"
-msgstr ""
+msgstr "Text"
 
 #: build/messages/components/Modal/StopBuild.json
 #. [components.Modal.3426018028]
@@ -1097,7 +1324,11 @@ msgid "The build process cannot resume after it stops."
 msgstr ""
 
 #: build/messages/components/Modal/CreateBlueprint.json
+#: build/messages/components/Modal/ManageSources.json
 #: build/messages/components/Modal/UserAccount.json
+#. [components.Modal.216946930]
+#. defaultMessage is:
+#. The fields marked with {val} are required.
 #. [components.Modal.216946930]
 #. defaultMessage is:
 #. The fields marked with {val} are required.
@@ -1112,13 +1343,20 @@ msgstr ""
 #. defaultMessage is:
 #. The name {name} already exists.
 msgid "The name {name} already exists."
-msgstr ""
+msgstr "Názov {name} už existuje."
 
 #: build/messages/pages/error/index.json
 #. [pages.error.26562577]
 #. defaultMessage is:
 #. The page you're looking for does not exist or an another error occurred.
 msgid "The page you're looking for does not exist or an another error occurred."
+msgstr ""
+
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+#. [components.EmptyState.alertTitleEnableServiceFailure]
+#. defaultMessage is:
+#. The service lorax-composer was not started.
+msgid "The service lorax-composer was not started."
 msgstr ""
 
 #: build/messages/components/Modal/UserAccount.json
@@ -1128,6 +1366,13 @@ msgstr ""
 msgid ""
 "The user name can only consist of letters from a-z, digits, dots, dashes "
 "and underscores."
+msgstr ""
+
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+#. [components.EmptyState.1947371795]
+#. defaultMessage is:
+#. The user {userName} is not permitted to start services.
+msgid "The user {userName} is not permitted to start services."
 msgstr ""
 
 #: build/messages/components/Form/Password.json
@@ -1189,37 +1434,66 @@ msgid ""
 "started."
 msgstr ""
 
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.2969976976]
+#. defaultMessage is:
+#. This source name already exists.
+msgid "This source name already exists."
+msgstr "Zdroj s týmto menom už existuje."
+
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.1932541555]
+#. defaultMessage is:
+#. This source path already exists.
+msgid "This source path already exists."
+msgstr ""
+
 #: build/messages/components/Modal/UserAccount.json
 #. [components.Modal.3707489178]
 #. defaultMessage is:
 #. This user name already exists.
 msgid "This user name already exists."
-msgstr ""
+msgstr "Toto používateľské meno už existuje."
+
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+#. [components.EmptyState.errorInactiveSecondary]
+#. defaultMessage is:
+#. Troubleshoot
+msgid "Troubleshoot"
+msgstr "Riešiť problém"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
-#: build/messages/components/Sources/SourcesList.json
+#: build/messages/components/ListView/ComponentTypeIcons.json
+#: build/messages/components/ListView/ListItemImages.json
+#: build/messages/components/Modal/ManageSources.json
 #. [components.ListView.1952810469]
 #. defaultMessage is:
 #. Type
-#. [components.Sources.1952810469] - Type of source
+#. [components.ListView.type]
+#. defaultMessage is:
+#. Type
+#. [components.ListView.imageType] - A label for the type of image file was created
+#. defaultMessage is:
+#. Type
+#. [components.Modal.type] - Type of source
 #. defaultMessage is:
 #. Type
 msgid "Type"
-msgstr ""
+msgstr "Typ"
 
-#: build/messages/components/ListView/ListItemImages.json
-#. [components.ListView.860864899]
+#: build/messages/components/ListView/SourcesListItem.json
+#. [components.ListView.1508102472]
 #. defaultMessage is:
-#. Type {type}
-msgid "Type {type}"
-msgstr ""
+#. Type {sourceType}
+msgid "Type {sourceType}"
+msgstr "Typ {sourceType}"
 
 #: build/messages/components/ListView/ComponentDetailsView.json
 #. [components.ListView.1324178587]
 #. defaultMessage is:
 #. URL
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: build/messages/components/ListView/BlueprintContents.json
 #. [components.ListView.3158548332]
@@ -1233,13 +1507,62 @@ msgstr ""
 #. defaultMessage is:
 #. Update
 msgid "Update"
-msgstr ""
+msgstr "Aktualizovať"
+
+#: build/messages/components/Modal/ManageSources.json
+#. [components.Modal.update]
+#. defaultMessage is:
+#. Update Source
+msgid "Update Source"
+msgstr "Aktualizovať zdroj"
 
 #: build/messages/components/Modal/PendingChanges.json
 #. [components.Modal.562988552] - Identifies the change as a component that was updated
 #. defaultMessage is:
 #. Updated
 msgid "Updated"
+msgstr "Aktualizované"
+
+#: build/messages/components/ListView/ListItemUploads.json
+#. [components.ListView.uploadStatusFinished] - Upload status when process is finished
+#. defaultMessage is:
+#. Upload complete
+msgid "Upload complete"
+msgstr ""
+
+#: build/messages/components/ListView/ListItemUploads.json
+#. [components.ListView.uploadStatusFailed] - Upload status when process failed
+#. defaultMessage is:
+#. Upload failed
+msgid "Upload failed"
+msgstr ""
+
+#: build/messages/components/ListView/ListItemUploads.json
+#. [components.ListView.uploadStatusRunning] - Upload status when process is in progress
+#. defaultMessage is:
+#. Upload in progress
+msgid "Upload in progress"
+msgstr ""
+
+#: build/messages/components/ListView/ListItemUploads.json
+#. [components.ListView.uploadStatusWaiting] - Upload status when process is waiting
+#. defaultMessage is:
+#. Upload pending
+msgid "Upload pending"
+msgstr ""
+
+#: build/messages/components/ListView/ListItemUploads.json
+#. [components.ListView.uploadType] - A label for the service to which an image was uploaded
+#. defaultMessage is:
+#. Upload type
+msgid "Upload type"
+msgstr ""
+
+#: build/messages/pages/blueprint/index.json
+#. [pages.blueprint.userKebab]
+#. defaultMessage is:
+#. User Account Actions
+msgid "User Account Actions"
 msgstr ""
 
 #: build/messages/components/Modal/UserAccount.json
@@ -1247,14 +1570,14 @@ msgstr ""
 #. defaultMessage is:
 #. User name
 msgid "User name"
-msgstr ""
+msgstr "Používateľské meno"
 
 #: build/messages/pages/blueprint/index.json
 #. [pages.blueprint.443046426]
 #. defaultMessage is:
 #. Users
 msgid "Users"
-msgstr ""
+msgstr "Používatelia"
 
 #: build/messages/pages/blueprint/index.json
 #. [pages.blueprint.hostnameHelp]
@@ -1266,7 +1589,7 @@ msgid ""
 msgstr ""
 
 #: build/messages/components/ListView/ComponentDetailsView.json
-#: build/messages/components/ListView/ListItemComponents.json
+#: build/messages/components/ListView/ComponentsDataListItem.json
 #. [components.ListView.602883748]
 #. defaultMessage is:
 #. Version
@@ -1274,49 +1597,86 @@ msgstr ""
 #. defaultMessage is:
 #. Version
 msgid "Version"
-msgstr ""
+msgstr "Verzia"
 
-#: build/messages/components/ListView/ListItemComponents.json
-#. [components.ListView.4013222233]
-#. defaultMessage is:
-#. Version {version}
-msgid "Version {version}"
-msgstr ""
-
-#: build/messages/components/ListView/ListItemComponents.json
+#: build/messages/components/ListView/ComponentsDataListItem.json
 #. [components.ListView.3097747573]
 #. defaultMessage is:
 #. View
 msgid "View"
 msgstr ""
 
-#: build/messages/components/Toolbar/BlueprintsToolbar.json
-#. [components.Toolbar.3713868073] - User action for displaying the list of source repositories
+#: build/messages/components/ListView/BlueprintsDataList.json
+#: build/messages/components/ListView/ComponentsDataListItem.json
+#. [components.ListView.actions]
 #. defaultMessage is:
-#. View Sources
-msgid "View Sources"
-msgstr ""
+#. actions
+#. [components.ListView.actions]
+#. defaultMessage is:
+#. actions
+msgid "actions"
+msgstr "akcie"
+
+#: build/messages/components/ListView/ComponentsDataListItem.json
+#. [components.ListView.details]
+#. defaultMessage is:
+#. details
+msgid "details"
+msgstr "podrobnosti"
 
 #: build/messages/components/Modal/PendingChanges.json
 #. [components.Modal.2755325844]
 #. defaultMessage is:
 #. from
 msgid "from"
-msgstr ""
+msgstr "od"
 
 #: build/messages/pages/error/index.json
 #. [pages.error.2054225650]
 #. defaultMessage is:
 #. home page
 msgid "home page"
-msgstr ""
+msgstr "Domovská stránka"
+
+#: build/messages/components/ListView/SourcesListItem.json
+#: build/messages/components/Modal/ManageSources.json
+#. [components.ListView.metalink]
+#. defaultMessage is:
+#. metalink
+#. [components.Modal.typeMetalink]
+#. defaultMessage is:
+#. metalink
+msgid "metalink"
+msgstr "metalink"
+
+#: build/messages/components/ListView/SourcesListItem.json
+#: build/messages/components/Modal/ManageSources.json
+#. [components.ListView.mirrorlist]
+#. defaultMessage is:
+#. mirrorlist
+#. [components.Modal.typeMirrorlist]
+#. defaultMessage is:
+#. mirrorlist
+msgid "mirrorlist"
+msgstr "mirrorlist"
 
 #: build/messages/components/Modal/PendingChanges.json
 #. [components.Modal.152217691]
 #. defaultMessage is:
 #. to
 msgid "to"
-msgstr ""
+msgstr "do"
+
+#: build/messages/components/ListView/SourcesListItem.json
+#: build/messages/components/Modal/ManageSources.json
+#. [components.ListView.baseurl]
+#. defaultMessage is:
+#. yum repository
+#. [components.Modal.typeRepo]
+#. defaultMessage is:
+#. yum repository
+msgid "yum repository"
+msgstr "yum repozitár"
 
 #: build/messages/data/NotificationsApi.json
 #. [data.4273735599]
@@ -1344,13 +1704,13 @@ msgstr ""
 #. defaultMessage is:
 #. {blueprint} Image creation failed.
 msgid "{blueprint} Image creation failed."
-msgstr ""
+msgstr "{blueprint} Vytvorenie obrazu zlyhalo."
 
 #: build/messages/data/NotificationsApi.json
-#. [data.705169148]
+#. [data.3040107790]
 #. defaultMessage is:
-#. {blueprint} Image creation has been added to the queue.
-msgid "{blueprint} Image creation has been added to the queue."
+#. {blueprint} Image creation has been added to the {queue}.
+msgid "{blueprint} Image creation has been added to the {queue}."
 msgstr ""
 
 #: build/messages/data/NotificationsApi.json
@@ -1386,7 +1746,7 @@ msgstr ""
 #. defaultMessage is:
 #. {currentPage} of {totalPages}
 msgid "{currentPage} of {totalPages}"
-msgstr ""
+msgstr "{currentPage} z {totalPages}"
 
 #: build/messages/components/Modal/PendingChanges.json
 #. [components.Modal.3908981070]
@@ -1407,7 +1767,7 @@ msgstr ""
 #. defaultMessage is:
 #. {heading} {parenthetical}
 msgid "{heading} {parenthetical}"
-msgstr ""
+msgstr "{heading} {parenthetical}"
 
 #: build/messages/pages/blueprintEdit/index.json
 #. [pages.blueprintEdit.4031669927]
@@ -1428,7 +1788,7 @@ msgstr ""
 #. defaultMessage is:
 #. {startNumber} - {endNumber} of {totalNumber}
 msgid "{startNumber} - {endNumber} of {totalNumber}"
-msgstr ""
+msgstr "{startNumber} - {endNumber} z {totalNumber}"
 
 #: ./public/manifest.json
 msgid "Image Builder"
