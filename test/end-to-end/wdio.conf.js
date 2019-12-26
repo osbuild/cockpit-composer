@@ -180,6 +180,7 @@ exports.config = {
   mochaOpts: {
     ui: "bdd",
     timeout: mochaTimeout,
+    retries: 2,
     compilers: ["js:@babel/register"]
   },
   //
