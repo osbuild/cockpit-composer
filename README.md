@@ -114,7 +114,7 @@ After every change to your sources, run `make` to update all the webpacks, and r
 │   ├── /blueprints/            # Blueprints page
 │   ├── /blueprintEdit/         # Edit blueprint page
 │   └── /error/                 # Error page
-├── /po/                        # Translated result by Zanata
+├── /po/                        # Translated result by Weblate
 ├── /public/                    # Static files
 │   ├── /dist/                  # The folder for compiled output
 │   ├── /js/                    # Javascript files included in index.ejs
@@ -134,8 +134,7 @@ After every change to your sources, run `make` to update all the webpacks, and r
 │── package.json                # The list of project dependencies and NPM scripts
 │── routes.json                 # This list of application routes
 │── rpmversion.sh               # Generate the version and release strings for spec file
-|── webpack.config.js           # Bundling and optimization settings for Webpack
-└── zanata.xml                  # zanata settings
+└── webpack.config.js           # Bundling and optimization settings for Webpack
 ```
 
 ### Cockpit API
@@ -160,9 +159,6 @@ $ make rpm                # Or, `make srpm`
 
 For a general guide on how to write translatable strings, see [weldr.io](http://weldr.io/Translating-welder-web-strings/)
 
-All `npm run` targets that start with `translate:` need `zanata-js` to be installed. Install it with the usual
-`npm install zanata-js`.
-
 There are a lot of parts involved in translating a string. Here's an overview of the process, from start to finish:
 
 **Step 1**. During development, the developer adds a translatable string. See [weldr.io](http://weldr.io/Translating-welder-web-strings/)
@@ -172,12 +168,12 @@ is added using [react-intl](https://github.com/yahoo/react-intl) `MessageDescrip
 **Step 2**. The developer runs `npm run translations:push`. As part of this process, [babel-plugin-react-intl-auto](https://github.com/akameco/babel-plugin-react-intl-auto)
 will add `id` attributes to all of the messages, and [babel-plugin-react-intl](https://github.com/yahoo/babel-plugin-react-intl)
 will extract all of the messages to JSON files, written to `./build/messages`. [react-intl-po](https://github.com/evenchange4/react-intl-po) is
-used to collect the JSON files into a gettext-style POT file, and the POT file is uploaded to [Zanata](https://fedora.zanata.org/).
+used to collect the JSON files into a gettext-style POT file, and the POT file is uploaded to [Weblate](https://translate.stg.fedoraproject.org/projects/cockpit-composer/).
 
-**Step 3**. Translators provide translations on Zanata.
+**Step 3**. Translators provide translations on Weblate.
 
 **Step 4**. The developer runs `npm run translations:pull` and `npm run translations:po2json`. This downloads the translations from
-Zanata as gettext-style .po files and converts the .po files back to JSON.
+Weblate as gettext-style .po files and converts the .po files back to JSON.
 
 **Step 5**. The user runs cockpit-composer. Based on the user's browser configuration, cockpit-composer determines the user's preferred
 language, and if translations are available, these translations are provided to react-intl's `<IntlProvider>`. react-intl

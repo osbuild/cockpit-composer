@@ -13,6 +13,7 @@ cockpit-composer.spec
 package-lock.json
 /po/etag-cache.json
 /po/*.pot
+tmp/weblate-repo
 bots
 /test/images
 *.tar.gz
