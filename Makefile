@@ -12,18 +12,27 @@ else
 BUILD_RUN = npm run build
 endif
 
+WEBLATE_REPO=tmp/weblate-repo
+WEBLATE_REPO_URL=https://github.com/weldr/cockpit-composer-weblate.git
+WEBLATE_REPO_BRANCH=master
+
 all: npm-install
 	NODE_ENV=$(NODE_ENV) $(BUILD_RUN)
 
-npm-install-zanata: npm-install
-	npm install --no-save zanata-js
+$(WEBLATE_REPO):
+	git clone --depth=1 -b $(WEBLATE_REPO_BRANCH) $(WEBLATE_REPO_URL) $(WEBLATE_REPO)
 
-po-pull: npm-install-zanata
-	NODE_ENV=$(NODE_ENV) npm run translations:pull
+po-pull: $(WEBLATE_REPO)
+	cp $(WEBLATE_REPO)/*.po ./po/
 	NODE_ENV=$(NODE_ENV) npm run translations:po2json
 
-po-push: npm-install-zanata
-	NODE_ENV=$(NODE_ENV) npm run translations:push
+po-push: po/cockpit-composer.pot $(WEBLATE_REPO)
+	cp ./po/cockpit-composer.pot $(WEBLATE_REPO)
+	git -C $(WEBLATE_REPO) commit -m "Update source file" -- cockpit-composer.pot
+	git -C $(WEBLATE_REPO) push
+
+po/cockpit-composer.pot: npm-install
+	NODE_ENV=$(NODE_ENV) npm run translations:json2pot
 
 npm-install:
 	npm install
