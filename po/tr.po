@@ -1,0 +1,1804 @@
+# Oğuz Ersen <oguzersen@protonmail.com>, 2020.
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2020-01-06T09:33:37.052Z\n"
+"PO-Revision-Date: 2020-01-08 02:15+0000\n"
+"Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
+"Language-Team: Turkish <https://translate.stg.fedoraproject.org/projects/"
+"cockpit-composer/master/tr/>\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+#. [components.Modal.parenthetical] - Describes the sort order of the pending changes
+#. defaultMessage is:
+#. (most recent first)
+#: build/messages/components/Modal/PendingChanges.json
+msgid "(most recent first)"
+msgstr "(en yeniler önce)"
+
+#. [components.Modal.485442669]
+#. defaultMessage is:
+#. 1 build is in progress
+#: build/messages/components/Modal/CreateImage.json
+msgid "1 build is in progress"
+msgstr "1 oluşturma işlemi devam ediyor"
+
+#. [components.Modal.4177685254]
+#. defaultMessage is:
+#. A blueprint name is required.
+#: build/messages/components/Modal/CreateBlueprint.json
+msgid "A blueprint name is required."
+msgstr "Bir plan adı gerekli."
+
+#. [components.Modal.2310857819]
+#. defaultMessage is:
+#. A password is defined for this account.
+#: build/messages/components/Modal/UserAccount.json
+msgid "A password is defined for this account."
+msgstr "Bu hesap için bir şifre tanımlı."
+
+#. [components.Modal.2362836873]
+#. defaultMessage is:
+#. A password is not defined for this account.
+#: build/messages/components/Modal/UserAccount.json
+msgid "A password is not defined for this account."
+msgstr "Bu hesap için bir şifre tanımlı değil."
+
+#. [components.ListView.imageActions] - A label for the menu that displays the actions available
+#. defaultMessage is:
+#. Actions
+#. [components.ListView.uploadActions] - A label for the menu that displays the actions available
+#. defaultMessage is:
+#. Actions
+#: build/messages/components/ListView/ListItemImages.json
+#: build/messages/components/ListView/ListItemUploads.json
+msgid "Actions"
+msgstr "Eylemler"
+
+#. [components.ListView.3099331554]
+#. defaultMessage is:
+#. Add
+#: build/messages/components/ListView/ComponentDetailsView.json
+msgid "Add"
+msgstr "Ekle"
+
+#. [pages.blueprintEdit.addComponentTitle]
+#. defaultMessage is:
+#. Add Blueprint Components
+#: build/messages/pages/blueprintEdit/index.json
+msgid "Add Blueprint Components"
+msgstr "Plan Bileşenleri Ekle"
+
+#. [components.Modal.add]
+#. defaultMessage is:
+#. Add Source
+#. [components.Modal.save]
+#. defaultMessage is:
+#. Add Source
+#. [components.Modal.2130684444]
+#. defaultMessage is:
+#. Add Source
+#: build/messages/components/Modal/ManageSources.json
+#: build/messages/components/Modal/ManageSources.json
+#: build/messages/components/Modal/ManageSources.json
+msgid "Add Source"
+msgstr "Kaynak Ekle"
+
+#. [components.ListView.addComponent]
+#. defaultMessage is:
+#. Add latest version
+#: build/messages/components/ListView/ComponentInputs.json
+msgid "Add latest version"
+msgstr "Son versiyonu ekle"
+
+#. [components.Modal.1362724042] - Identifies the change as a component that was added
+#. defaultMessage is:
+#. Added
+#: build/messages/components/Modal/PendingChanges.json
+msgid "Added"
+msgstr "Eklendi"
+
+#. [components.ListView.emptyStateErrorTitle]
+#. defaultMessage is:
+#. An Error Occurred
+#. [components.Modal.errorStateTitle]
+#. defaultMessage is:
+#. An Error Occurred
+#. [pages.blueprints.errorGenericTitle]
+#. defaultMessage is:
+#. An Error Occurred
+#: build/messages/components/ListView/BlueprintContents.json
+#: build/messages/components/Modal/ManageSources.json
+#: build/messages/pages/blueprints/index.json
+msgid "An Error Occurred"
+msgstr "Bir Hata Oluştu"
+
+#. [components.Modal.1417078254]
+#. defaultMessage is:
+#. An error occurred when saving the source. Check that the path is valid and try again.
+#: build/messages/components/Modal/ManageSources.json
+msgid "An error occurred when saving the source. Check that the path is valid and try again."
+msgstr ""
+"Kaynak kaydedilirken bir hata oluştu. Yolun geçerli olup olmadığını kontrol "
+"edin ve tekrar deneyin."
+
+#. [components.ListView.emptyStateErrorMessage]
+#. defaultMessage is:
+#. An error occurred while trying to get blueprint contents.
+#: build/messages/components/ListView/BlueprintContents.json
+msgid "An error occurred while trying to get blueprint contents."
+msgstr "Plan içeriği alınmaya çalışılırken bir hata oluştu."
+
+#. [components.Modal.errorStateMessage]
+#. defaultMessage is:
+#. An error occurred while trying to get sources.
+#: build/messages/components/Modal/ManageSources.json
+msgid "An error occurred while trying to get sources."
+msgstr "Kaynaklar alınmaya çalışılırken bir hata oluştu."
+
+#. [components.ListView.668376819]
+#. defaultMessage is:
+#. Apply Change
+#: build/messages/components/ListView/ComponentDetailsView.json
+msgid "Apply Change"
+msgstr "Değişikliği Uygula"
+
+#. [components.Modal.4140003068]
+#. defaultMessage is:
+#. Are you sure you want to delete the blueprint {name}?
+#: build/messages/components/Modal/DeleteBlueprint.json
+msgid "Are you sure you want to delete the blueprint {name}?"
+msgstr "{name} planını silmek istediğinizden emin misiniz?"
+
+#. [components.Modal.1346739796]
+#. defaultMessage is:
+#. Are you sure you want to delete the image for {blueprintName}?
+#: build/messages/components/Modal/DeleteImage.json
+msgid "Are you sure you want to delete the image for {blueprintName}?"
+msgstr "{blueprintName} için görüntüyü silmek istediğinizden emin misiniz?"
+
+#. [components.Modal.234116272]
+#. defaultMessage is:
+#. Are you sure you want to stop the build process for {blueprintName}?
+#: build/messages/components/Modal/StopBuild.json
+msgid "Are you sure you want to stop the build process for {blueprintName}?"
+msgstr ""
+"{blueprintName} için oluşturma işlemini durdurmak istediğinizden emin "
+"misiniz?"
+
+#. [components.EmptyState.errorInactiveCheckbox]
+#. defaultMessage is:
+#. Automatically start lorax-composer on boot
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+msgid "Automatically start lorax-composer on boot"
+msgstr "lorax-composer'ı başlangıçta otomatik olarak başlat"
+
+#. [pages.blueprintEdit.listTitleAvailableComps]
+#. defaultMessage is:
+#. Available Components
+#: build/messages/pages/blueprintEdit/index.json
+msgid "Available Components"
+msgstr "Mevcut Bileşenler"
+
+#. [pages.blueprint.3126044146]
+#. defaultMessage is:
+#. Back to Blueprints
+#. [pages.blueprintEdit.3126044146]
+#. defaultMessage is:
+#. Back to Blueprints
+#: build/messages/pages/blueprint/index.json
+#: build/messages/pages/blueprintEdit/index.json
+msgid "Back to Blueprints"
+msgstr "Planlara geri dön"
+
+#. [components.ListView.3448229549]
+#. defaultMessage is:
+#. Back to {blueprint}
+#: build/messages/components/ListView/ComponentDetailsView.json
+msgid "Back to {blueprint}"
+msgstr "{blueprint}'e geri dön"
+
+#. [components.Modal.1281198655]
+#. defaultMessage is:
+#. Blueprint
+#. [components.Modal.1281198655]
+#. defaultMessage is:
+#. Blueprint
+#. [components.Modal.blueprint]
+#. defaultMessage is:
+#. Blueprint
+#. [pages.blueprint.blueprint]
+#. defaultMessage is:
+#. Blueprint
+#. [pages.blueprintEdit.blueprintTitle]
+#. defaultMessage is:
+#. Blueprint
+#: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/ExportBlueprint.json
+#: build/messages/components/Modal/PendingChanges.json
+#: build/messages/pages/blueprint/index.json
+#: build/messages/pages/blueprintEdit/index.json
+msgid "Blueprint"
+msgstr "Plan"
+
+#. [pages.blueprintEdit.711554923]
+#. defaultMessage is:
+#. Blueprint Components
+#: build/messages/pages/blueprintEdit/index.json
+msgid "Blueprint Components"
+msgstr "Plan Bileşenleri"
+
+#. [components.Modal.2544705954]
+#. defaultMessage is:
+#. Blueprint names cannot contain spaces or the character: {invalidChar}
+#: build/messages/components/Modal/CreateBlueprint.json
+msgid "Blueprint names cannot contain spaces or the character: {invalidChar}"
+msgstr "Plan adları boşluk veya {invalidChar} karakterini içeremez"
+
+#. [components.Modal.1134732033]
+#. defaultMessage is:
+#. Blueprint names cannot contain spaces or the characters: {invalidChar}
+#: build/messages/components/Modal/CreateBlueprint.json
+msgid "Blueprint names cannot contain spaces or the characters: {invalidChar}"
+msgstr "Plan adları boşluk veya {invalidChar} karakterlerini içeremez"
+
+#. [components.Modal.2803906810]
+#. defaultMessage is:
+#. Blueprint names cannot contain spaces.
+#: build/messages/components/Modal/CreateBlueprint.json
+msgid "Blueprint names cannot contain spaces."
+msgstr "Plan adları boşluk içeremez."
+
+#. [components.Modal.2781854456]
+#. defaultMessage is:
+#. Blueprint names cannot contain the character: {invalidChar}
+#: build/messages/components/Modal/CreateBlueprint.json
+msgid "Blueprint names cannot contain the character: {invalidChar}"
+msgstr "Plan adları {invalidChar} karakterini içeremez"
+
+#. [components.Modal.3918401128]
+#. defaultMessage is:
+#. Blueprint names cannot contain the characters: {invalidChar}
+#: build/messages/components/Modal/CreateBlueprint.json
+msgid "Blueprint names cannot contain the characters: {invalidChar}"
+msgstr "Plan adları {invalidChar} karakterlerini içeremez"
+
+#. [pages.blueprints.blueprintsTitle]
+#. defaultMessage is:
+#. Blueprints
+#: build/messages/pages/blueprints/index.json
+msgid "Blueprints"
+msgstr "Planlar"
+
+#. [pages.blueprintEdit.addComponentMessage]
+#. defaultMessage is:
+#. Browse or search for components, then add them to the blueprint.
+#: build/messages/pages/blueprintEdit/index.json
+msgid "Browse or search for components, then add them to the blueprint."
+msgstr "Bileşenlere göz atın veya arayın, ardından bunları plana ekleyin."
+
+#. [components.Form.cancel]
+#. defaultMessage is:
+#. Cancel
+#. [components.Modal.3528672691]
+#. defaultMessage is:
+#. Cancel
+#. [components.Modal.3528672691]
+#. defaultMessage is:
+#. Cancel
+#. [components.Modal.3528672691]
+#. defaultMessage is:
+#. Cancel
+#. [components.Modal.3528672691]
+#. defaultMessage is:
+#. Cancel
+#. [components.Modal.3528672691]
+#. defaultMessage is:
+#. Cancel
+#. [components.Modal.cancel]
+#. defaultMessage is:
+#. Cancel
+#. [components.Modal.3528672691]
+#. defaultMessage is:
+#. Cancel
+#. [components.Modal.3528672691]
+#. defaultMessage is:
+#. Cancel
+#: build/messages/components/Form/TextInlineEdit.json
+#: build/messages/components/Modal/CreateBlueprint.json
+#: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/DeleteBlueprint.json
+#: build/messages/components/Modal/DeleteImage.json
+#: build/messages/components/Modal/EditDescription.json
+#: build/messages/components/Modal/ManageSources.json
+#: build/messages/components/Modal/StopBuild.json
+#: build/messages/components/Modal/UserAccount.json
+msgid "Cancel"
+msgstr "İptal"
+
+#. [components.Modal.2208777537]
+#. defaultMessage is:
+#. Changes Pending Commit
+#: build/messages/components/Modal/PendingChanges.json
+msgid "Changes Pending Commit"
+msgstr "Bekleyen İşlemi Değiştirir"
+
+#. [components.Modal.683130131]
+#. defaultMessage is:
+#. Changes made in a previous session
+#: build/messages/components/Modal/PendingChanges.json
+msgid "Changes made in a previous session"
+msgstr "Önceki bir oturumda yapılan değişiklikler"
+
+#. [components.Modal.previousSessionInfotip]
+#. defaultMessage is:
+#. Changes made in a previous session are not listed in the order they were made. If you choose to undo these changes, they are undone as a group.
+#: build/messages/components/Modal/PendingChanges.json
+msgid "Changes made in a previous session are not listed in the order they were made. If you choose to undo these changes, they are undone as a group."
+msgstr ""
+"Önceki bir oturumda yapılan değişiklikler yapıldıkları sıraya göre "
+"listelenmez. Bu değişiklikleri geri almayı seçerseniz, bunlar grup olarak "
+"geri alınır."
+
+#. [components.Modal.check_gpg]
+#. defaultMessage is:
+#. Check GPG key
+#: build/messages/components/Modal/ManageSources.json
+msgid "Check GPG key"
+msgstr "GPG anahtarını kontrol et"
+
+#. [components.Modal.check_ssl]
+#. defaultMessage is:
+#. Check SSL certificate
+#: build/messages/components/Modal/ManageSources.json
+msgid "Check SSL certificate"
+msgstr "SSL sertifikasını kontrol et"
+
+#. [components.ListView.1312249312]
+#. defaultMessage is:
+#. Clear All Filters
+#. [components.Toolbar.1312249312]
+#. defaultMessage is:
+#. Clear All Filters
+#. [pages.blueprintEdit.1312249312]
+#. defaultMessage is:
+#. Clear All Filters
+#. [pages.blueprints.1312249312]
+#. defaultMessage is:
+#. Clear All Filters
+#: build/messages/components/ListView/BlueprintContents.json
+#: build/messages/components/Toolbar/ToolbarLayout.json
+#: build/messages/pages/blueprintEdit/index.json
+#: build/messages/pages/blueprints/index.json
+msgid "Clear All Filters"
+msgstr "Tüm Filtreleri Temizle"
+
+#. [components.Modal.2324218928]
+#. defaultMessage is:
+#. Close
+#. [components.Modal.closeButtonLabel]
+#. defaultMessage is:
+#. Close
+#. [components.Modal.2324218928]
+#. defaultMessage is:
+#. Close
+#. [components.Modal.closeButtonLabel]
+#. defaultMessage is:
+#. Close
+#. [components.Notifications.2324218928]
+#. defaultMessage is:
+#. Close
+#: build/messages/components/Modal/ExportBlueprint.json
+#: build/messages/components/Modal/ManageSources.json
+#: build/messages/components/Modal/ManageSources.json
+#: build/messages/components/Modal/PendingChanges.json
+#: build/messages/components/Notifications/Notification.json
+msgid "Close"
+msgstr "Kapat"
+
+#. [components.Modal.2299254306]
+#. defaultMessage is:
+#. Comment
+#: build/messages/components/Modal/PendingChanges.json
+msgid "Comment"
+msgstr "Yorum"
+
+#. [components.Modal.commitButtonLabel]
+#. defaultMessage is:
+#. Commit
+#. [pages.blueprintEdit.1951088698]
+#. defaultMessage is:
+#. Commit
+#: build/messages/components/Modal/PendingChanges.json
+#: build/messages/pages/blueprintEdit/index.json
+msgid "Commit"
+msgstr "İşle"
+
+#. [components.Modal.4244040826]
+#. defaultMessage is:
+#. Commit and Create
+#: build/messages/components/Modal/CreateImage.json
+msgid "Commit and Create"
+msgstr "İşle ve Oluştur"
+
+#. [pages.blueprint.3540308269]
+#. defaultMessage is:
+#. Component Details
+#. [pages.blueprintEdit.3540308269]
+#. defaultMessage is:
+#. Component Details
+#: build/messages/pages/blueprint/index.json
+#: build/messages/pages/blueprintEdit/index.json
+msgid "Component Details"
+msgstr "Bileşen Ayrıntıları"
+
+#. [components.ListView.2104464527]
+#. defaultMessage is:
+#. Component Options
+#: build/messages/components/ListView/ComponentDetailsView.json
+msgid "Component Options"
+msgstr "Bileşen Seçenekleri"
+
+#. [components.Modal.createPasswordTwo]
+#. defaultMessage is:
+#. Confirm password
+#: build/messages/components/Modal/UserAccount.json
+msgid "Confirm password"
+msgstr "Parolayı onayla"
+
+#. [components.Modal.956699920]
+#. defaultMessage is:
+#. Contents
+#: build/messages/components/Modal/ExportBlueprint.json
+msgid "Contents"
+msgstr "İçindekiler"
+
+#. [components.Modal.383867403]
+#. defaultMessage is:
+#. Copy
+#: build/messages/components/Modal/ExportBlueprint.json
+msgid "Copy"
+msgstr "Kopyala"
+
+#. [components.Modal.4120989039]
+#. defaultMessage is:
+#. Create
+#. [components.Modal.4120989039]
+#. defaultMessage is:
+#. Create
+#. [components.Modal.4120989039]
+#. defaultMessage is:
+#. Create
+#: build/messages/components/Modal/CreateBlueprint.json
+#: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/UserAccount.json
+msgid "Create"
+msgstr "Oluştur"
+
+#. [components.Modal.536838868]
+#. defaultMessage is:
+#. Create Blueprint
+#: build/messages/components/Modal/CreateBlueprint.json
+msgid "Create Blueprint"
+msgstr "Plan Oluştur"
+
+#. [components.Modal.2482064138]
+#. defaultMessage is:
+#. Create Image
+#: build/messages/components/Modal/CreateImage.json
+msgid "Create Image"
+msgstr "Görüntü Oluştur"
+
+#. [components.Modal.modalTitleCreate]
+#. defaultMessage is:
+#. Create User Account
+#. [pages.blueprint.531338943]
+#. defaultMessage is:
+#. Create User Account
+#: build/messages/components/Modal/UserAccount.json
+#: build/messages/pages/blueprint/index.json
+msgid "Create User Account"
+msgstr "Kullanıcı Hesabı Oluştur"
+
+#. [pages.blueprints.emptyMessage]
+#. defaultMessage is:
+#. Create a blueprint to define the contents that will be included in the images you create. Images can be produced in a variety of output formats.
+#: build/messages/pages/blueprints/index.json
+msgid "Create a blueprint to define the contents that will be included in the images you create. Images can be produced in a variety of output formats."
+msgstr ""
+"Oluşturduğunuz görüntülere eklenecek içeriği tanımlamak için bir plan "
+"oluşturun. Görüntüler çeşitli çıkış formatlarında oluşturulabilir."
+
+#. [components.ListView.imageCreated] - A label for the date that an image file was created
+#. defaultMessage is:
+#. Created
+#: build/messages/components/ListView/ListItemImages.json
+msgid "Created"
+msgstr "Oluşturuldu"
+
+#. [components.Pagination.2925773048] - Label for the string: 1–50 of 125; only visible to screen readers
+#. defaultMessage is:
+#. Current Items
+#: build/messages/components/Pagination/Pagination.json
+msgid "Current Items"
+msgstr "Mevcut Ögeler"
+
+#. [components.Pagination.currentPage] - Label of form input for setting current page number
+#. defaultMessage is:
+#. Current Page
+#: build/messages/components/Pagination/Pagination.json
+msgid "Current Page"
+msgstr "Şu Anki Sayfa"
+
+#. [pages.blueprint.customizationsTitle]
+#. defaultMessage is:
+#. Customizations
+#: build/messages/pages/blueprint/index.json
+msgid "Customizations"
+msgstr "Özelleştirmeler"
+
+#. [components.ListView.3645414921]
+#. defaultMessage is:
+#. Delete
+#. [components.Modal.3645414921]
+#. defaultMessage is:
+#. Delete
+#: build/messages/components/ListView/ListItemImages.json
+#: build/messages/components/Modal/DeleteBlueprint.json
+msgid "Delete"
+msgstr "Sil"
+
+#. [components.Modal.3153775112]
+#. defaultMessage is:
+#. Delete Blueprint
+#: build/messages/components/Modal/DeleteBlueprint.json
+msgid "Delete Blueprint"
+msgstr "Plan Sil"
+
+#. [components.Modal.1731766393]
+#. defaultMessage is:
+#. Delete Image
+#: build/messages/components/Modal/DeleteImage.json
+msgid "Delete Image"
+msgstr "Görüntü Sil"
+
+#. [pages.blueprint.userDelete]
+#. defaultMessage is:
+#. Delete User Account
+#: build/messages/pages/blueprint/index.json
+msgid "Delete User Account"
+msgstr "Kullanıcı Hesabı Sil"
+
+#. [components.ListView.dependenciesTabTitle]
+#. defaultMessage is:
+#. Dependencies
+#. [components.ListView.dependencies]
+#. defaultMessage is:
+#. Dependencies
+#. [components.ListView.dependencies]
+#. defaultMessage is:
+#. Dependencies
+#. [components.ListView.3727965333]
+#. defaultMessage is:
+#. Dependencies
+#: build/messages/components/ListView/BlueprintContents.json
+#: build/messages/components/ListView/ComponentDetailsView.json
+#: build/messages/components/ListView/ComponentSummaryList.json
+#: build/messages/components/ListView/ComponentSummaryList.json
+msgid "Dependencies"
+msgstr "Bağımlılıklar"
+
+#. [components.Modal.3374163063]
+#. defaultMessage is:
+#. Description
+#. [components.Modal.3374163063]
+#. defaultMessage is:
+#. Description
+#. [pages.blueprint.descriptionInputLabel]
+#. defaultMessage is:
+#. Description
+#: build/messages/components/Modal/CreateBlueprint.json
+#: build/messages/components/Modal/EditDescription.json
+#: build/messages/pages/blueprint/index.json
+msgid "Description"
+msgstr "Açıklama"
+
+#. [pages.blueprintEdit.1936836258]
+#. defaultMessage is:
+#. Discard Changes
+#: build/messages/pages/blueprintEdit/index.json
+msgid "Discard Changes"
+msgstr "Değişiklikleri At"
+
+#. [components.ListView.1982430146]
+#. defaultMessage is:
+#. Download
+#: build/messages/components/ListView/ListItemImages.json
+msgid "Download"
+msgstr "İndir"
+
+#. [components.Modal.1237611265]
+#. defaultMessage is:
+#. Edit Description
+#: build/messages/components/Modal/EditDescription.json
+msgid "Edit Description"
+msgstr "Açıklamayı Düzenle"
+
+#. [components.ListView.3855913088]
+#. defaultMessage is:
+#. Edit Packages
+#. [pages.blueprint.3855913088]
+#. defaultMessage is:
+#. Edit Packages
+#. [pages.blueprintEdit.3855913088]
+#. defaultMessage is:
+#. Edit Packages
+#: build/messages/components/ListView/BlueprintsDataList.json
+#: build/messages/pages/blueprint/index.json
+#: build/messages/pages/blueprintEdit/index.json
+msgid "Edit Packages"
+msgstr "Paketleri Düzenle"
+
+#. [components.ListView.edit]
+#. defaultMessage is:
+#. Edit Source
+#. [components.Modal.215316199]
+#. defaultMessage is:
+#. Edit Source
+#: build/messages/components/ListView/SourcesListItem.json
+#: build/messages/components/Modal/ManageSources.json
+msgid "Edit Source"
+msgstr "Kaynağı Düzenle"
+
+#. [components.Modal.modalTitleEdit]
+#. defaultMessage is:
+#. Edit User Account
+#. [pages.blueprint.userEdit]
+#. defaultMessage is:
+#. Edit User Account
+#: build/messages/components/Modal/UserAccount.json
+#: build/messages/pages/blueprint/index.json
+msgid "Edit User Account"
+msgstr "Kullanıcı Hesabını Düzenle"
+
+#. [components.Modal.2044423701]
+#. defaultMessage is:
+#. Edit description
+#. [pages.blueprint.descriptionButtonLabel]
+#. defaultMessage is:
+#. Edit description
+#: build/messages/components/Modal/EditDescription.json
+#: build/messages/pages/blueprint/index.json
+msgid "Edit description"
+msgstr "Açıklamayı düzenle"
+
+#. [pages.blueprint.hostnameButtonLabel]
+#. defaultMessage is:
+#. Edit hostname
+#: build/messages/pages/blueprint/index.json
+msgid "Edit hostname"
+msgstr "Ana bilgisayar adını düzenle"
+
+#. [pages.blueprint.emptyBlueprintTitle]
+#. defaultMessage is:
+#. Empty Blueprint
+#: build/messages/pages/blueprint/index.json
+msgid "Empty Blueprint"
+msgstr "Boş Plan"
+
+#. [pages.error.errorMessage]
+#. defaultMessage is:
+#. Error
+#: build/messages/pages/error/index.json
+msgid "Error"
+msgstr "Hata"
+
+#. [components.Modal.3590336714]
+#. defaultMessage is:
+#. Export
+#: build/messages/components/Modal/ExportBlueprint.json
+msgid "Export"
+msgstr "Dışa Aktar"
+
+#. [components.Modal.386209032]
+#. defaultMessage is:
+#. Export Blueprint
+#: build/messages/components/Modal/ExportBlueprint.json
+msgid "Export Blueprint"
+msgstr "Planı Dışa Aktar"
+
+#. [components.Modal.3658760324]
+#. defaultMessage is:
+#. Export as
+#: build/messages/components/Modal/ExportBlueprint.json
+msgid "Export as"
+msgstr "Farklı dışa aktar"
+
+#. [pages.blueprintEdit.filterByLabel]
+#. defaultMessage is:
+#. Filter Available Components by Name
+#: build/messages/pages/blueprintEdit/index.json
+msgid "Filter Available Components by Name"
+msgstr "Mevcut Bileşenleri İsme Göre Filtrele"
+
+#. [pages.blueprintEdit.filterByPlaceholder]
+#. defaultMessage is:
+#. Filter By Name...
+#: build/messages/pages/blueprintEdit/index.json
+msgid "Filter By Name..."
+msgstr "İsme Göre Filtrele..."
+
+#. [components.Modal.1182120637]
+#. defaultMessage is:
+#. Full name
+#: build/messages/components/Modal/UserAccount.json
+msgid "Full name"
+msgstr "Tam isim"
+
+#. [pages.error.2333299345]
+#. defaultMessage is:
+#. Go back
+#: build/messages/pages/error/index.json
+msgid "Go back"
+msgstr "Geri git"
+
+#. [components.ListView.hideDetails]
+#. defaultMessage is:
+#. Hide Details
+#. [components.ListView.hideDetails]
+#. defaultMessage is:
+#. Hide Details
+#: build/messages/components/ListView/ComponentDetailsView.json
+#: build/messages/components/ListView/ComponentInputs.json
+msgid "Hide Details"
+msgstr "Ayrıntıları Gizle"
+
+#. [pages.blueprint.hostnameInputLabel]
+#. defaultMessage is:
+#. Hostname
+#: build/messages/pages/blueprint/index.json
+msgid "Hostname"
+msgstr "Ana bilgisayar adı"
+
+#. [pages.blueprint.hostnameHelpEmpty]
+#. defaultMessage is:
+#. If no hostname is provided, the hostname will be determined by the OS.
+#: build/messages/pages/blueprint/index.json
+msgid "If no hostname is provided, the hostname will be determined by the OS."
+msgstr ""
+"Ana bilgisayar adı belirtilmezse, ana bilgisayar adı işletim sistemi "
+"tarafından belirlenecektir."
+
+#. [components.EmptyState.errorInactiveTitle]
+#. defaultMessage is:
+#. Image Building Service is Not Active
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+msgid "Image Building Service is Not Active"
+msgstr "Görüntü Oluşturma Hizmeti Etkin Değil"
+
+#. [components.Modal.380558550]
+#. defaultMessage is:
+#. Image Type
+#: build/messages/components/Modal/CreateImage.json
+msgid "Image Type"
+msgstr "Görüntü Türü"
+
+#. [components.ListView.imageStatusFinished] - Image build status when process is finished
+#. defaultMessage is:
+#. Image build complete
+#: build/messages/components/ListView/ListItemImages.json
+msgid "Image build complete"
+msgstr "Görüntü oluşturma tamamlandı"
+
+#. [components.ListView.imageStatusFailed] - Image build status when process failed
+#. defaultMessage is:
+#. Image build failed
+#: build/messages/components/ListView/ListItemImages.json
+msgid "Image build failed"
+msgstr "Görüntü oluşturma başarısız oldu"
+
+#. [components.ListView.imageStatusRunning] - Image build status when process is in progress
+#. defaultMessage is:
+#. Image build in progress
+#: build/messages/components/ListView/ListItemImages.json
+msgid "Image build in progress"
+msgstr "Görüntü oluşturma devam ediyor"
+
+#. [components.ListView.imageStatusWaiting] - Image build status when process is waiting
+#. defaultMessage is:
+#. Image build pending
+#: build/messages/components/ListView/ListItemImages.json
+msgid "Image build pending"
+msgstr "Görüntü oluşturma beklemede"
+
+#. [components.ListView.imageName] - The name given by the user for an image
+#. defaultMessage is:
+#. Image name
+#: build/messages/components/ListView/ListItemUploads.json
+msgid "Image name"
+msgstr "Görüntü adı"
+
+#. [components.ListView.imageUploads] - A label for the section that lists the upload actions initiated by the user
+#. defaultMessage is:
+#. Image uploads
+#: build/messages/components/ListView/ListItemImages.json
+msgid "Image uploads"
+msgstr "Görüntü karşıya yüklemeleri"
+
+#. [pages.blueprint.imagesTitle]
+#. defaultMessage is:
+#. Images
+#: build/messages/pages/blueprint/index.json
+msgid "Images"
+msgstr "Görüntüler"
+
+#. [components.Loading.2617450248]
+#. defaultMessage is:
+#. Loading
+#: build/messages/components/Loading/Loading.json
+msgid "Loading"
+msgstr "Yükleniyor"
+
+#. [components.ListView.imageLogs] - Log content that gets generated as part of the image creation process
+#. defaultMessage is:
+#. Logs
+#. [components.ListView.uploadLogs] - Log content that gets generated as part of the upload process
+#. defaultMessage is:
+#. Logs
+#: build/messages/components/ListView/ListItemImages.json
+#: build/messages/components/ListView/ListItemUploads.json
+msgid "Logs"
+msgstr "Günlükler"
+
+#. [components.Modal.357938285] - User action for displaying the list of source repositories
+#. defaultMessage is:
+#. Manage Sources
+#: build/messages/components/Modal/ManageSources.json
+msgid "Manage Sources"
+msgstr "Kaynakları Yönet"
+
+#. [components.EmptyState.alertMessagePreface]
+#. defaultMessage is:
+#. Message
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+msgid "Message"
+msgstr "Mesaj"
+
+#. [components.ListView.emptyStateNoResultsMessage]
+#. defaultMessage is:
+#. Modify your filter criteria to get results.
+#. [pages.blueprints.noResultsMessage]
+#. defaultMessage is:
+#. Modify your filter criteria to get results.
+#: build/messages/components/ListView/BlueprintContents.json
+#: build/messages/pages/blueprints/index.json
+msgid "Modify your filter criteria to get results."
+msgstr "Sonuç almak için filtreleme kriterlerinizi değiştirin."
+
+#. [components.Modal.636461959]
+#. defaultMessage is:
+#. Name
+#. [components.Modal.name] - Name of source
+#. defaultMessage is:
+#. Name
+#: build/messages/components/Modal/CreateBlueprint.json
+#: build/messages/components/Modal/ManageSources.json
+msgid "Name"
+msgstr "İsim"
+
+#. [pages.blueprintEdit.3059610115]
+#. defaultMessage is:
+#. Name: {name}
+#: build/messages/pages/blueprintEdit/index.json
+msgid "Name: {name}"
+msgstr "İsim: {name}"
+
+#. [components.Modal.editPasswordOne]
+#. defaultMessage is:
+#. New password
+#: build/messages/components/Modal/UserAccount.json
+msgid "New password"
+msgstr "Yeni parola"
+
+#. [pages.blueprints.emptyTitle]
+#. defaultMessage is:
+#. No Blueprints
+#: build/messages/pages/blueprints/index.json
+msgid "No Blueprints"
+msgstr "Plan Yok"
+
+#. [components.ListView.noDepsTitle]
+#. defaultMessage is:
+#. No Dependencies
+#: build/messages/components/ListView/ComponentDetailsView.json
+msgid "No Dependencies"
+msgstr "Bağımlılık Yok"
+
+#. [pages.blueprint.noImagesTitle]
+#. defaultMessage is:
+#. No Images
+#: build/messages/pages/blueprint/index.json
+msgid "No Images"
+msgstr "Görüntü Yok"
+
+#. [components.ListView.emptyStateNoResultsTitle]
+#. defaultMessage is:
+#. No Results Match the Filter Criteria
+#. [pages.blueprints.noResultsTitle]
+#. defaultMessage is:
+#. No Results Match the Filter Criteria
+#: build/messages/components/ListView/BlueprintContents.json
+#: build/messages/pages/blueprints/index.json
+msgid "No Results Match the Filter Criteria"
+msgstr "Filtreleme Kriterlerine Uyan Sonuç Yok"
+
+#. [pages.blueprint.noImagesMessage]
+#. defaultMessage is:
+#. No images have been created from this blueprint.
+#: build/messages/pages/blueprint/index.json
+msgid "No images have been created from this blueprint."
+msgstr "Bu plandan hiç görüntü oluşturulmadı."
+
+#. [components.ListView.1893974769]
+#. defaultMessage is:
+#. No log available
+#: build/messages/components/ListView/ListItemImages.json
+msgid "No log available"
+msgstr "Günlük mevcut değil"
+
+#. [components.Modal.1475836573]
+#. defaultMessage is:
+#. Only changes to selected components are shown.
+#: build/messages/components/Modal/PendingChanges.json
+msgid "Only changes to selected components are shown."
+msgstr "Yalnızca seçilen bileşenlerde yapılan değişiklikler gösterilir."
+
+#. [pages.error.oupsTitle]
+#. defaultMessage is:
+#. Oups, something went wrong
+#: build/messages/pages/error/index.json
+msgid "Oups, something went wrong"
+msgstr "Tüh, bir şeyler ters gitti"
+
+#. [pages.blueprint.packagesTitle]
+#. defaultMessage is:
+#. Packages
+#: build/messages/pages/blueprint/index.json
+msgid "Packages"
+msgstr "Paketler"
+
+#. [pages.error.pageNotFoundMessage]
+#. defaultMessage is:
+#. Page Not Found
+#: build/messages/pages/error/index.json
+msgid "Page Not Found"
+msgstr "Sayfa Bulunamadı"
+
+#. [pages.error.pageNotFoundTitle]
+#. defaultMessage is:
+#. Page not found
+#: build/messages/pages/error/index.json
+msgid "Page not found"
+msgstr "Sayfa bulunamadı"
+
+#. [components.Pagination.pagination]
+#. defaultMessage is:
+#. Pagination
+#: build/messages/components/Pagination/Pagination.json
+msgid "Pagination"
+msgstr "Sayfalandırma"
+
+#. [components.Modal.createPasswordOne]
+#. defaultMessage is:
+#. Password
+#. [components.Modal.2237029987]
+#. defaultMessage is:
+#. Password
+#: build/messages/components/Modal/UserAccount.json
+#: build/messages/components/Modal/UserAccount.json
+msgid "Password"
+msgstr "Parola"
+
+#. [components.Form.rejectedPassword]
+#. defaultMessage is:
+#. Password is not acceptable
+#: build/messages/components/Form/Password.json
+msgid "Password is not acceptable"
+msgstr "Parola kabul edilebilir değil"
+
+#. [components.Form.weakPassword]
+#. defaultMessage is:
+#. Password is too weak
+#: build/messages/components/Form/Password.json
+msgid "Password is too weak"
+msgstr "Parola çok zayıf"
+
+#. [components.Modal.sshKeyHelp]
+#. defaultMessage is:
+#. Paste the contents of your public SSH key file here.
+#: build/messages/components/Modal/UserAccount.json
+msgid "Paste the contents of your public SSH key file here."
+msgstr "Genel SSH anahtar dosyanızın içeriğini buraya yapıştırın."
+
+#. [components.Modal.433458873]
+#. defaultMessage is:
+#. Pending Changes
+#: build/messages/components/Modal/PendingChanges.json
+msgid "Pending Changes"
+msgstr "Bekleyen Değişiklikler"
+
+#. [components.ListView.423140743]
+#. defaultMessage is:
+#. Release
+#. [components.ListView.423140743]
+#. defaultMessage is:
+#. Release
+#: build/messages/components/ListView/ComponentDetailsView.json
+#: build/messages/components/ListView/ComponentsDataListItem.json
+msgid "Release"
+msgstr "Yayınla"
+
+#. [components.ListView.2703758654]
+#. defaultMessage is:
+#. Remove
+#. [components.ListView.2703758654]
+#. defaultMessage is:
+#. Remove
+#. [components.ListView.2703758654]
+#. defaultMessage is:
+#. Remove
+#: build/messages/components/ListView/ComponentDetailsView.json
+#: build/messages/components/ListView/ComponentsDataListItem.json
+#: build/messages/components/ListView/ListItemImages.json
+msgid "Remove"
+msgstr "Kaldır"
+
+#. [components.ListView.removeComponent]
+#. defaultMessage is:
+#. Remove Component from Blueprint
+#: build/messages/components/ListView/ComponentInputs.json
+msgid "Remove Component from Blueprint"
+msgstr "Bileşeni Plandan Kaldır"
+
+#. [components.Modal.2822116526]
+#. defaultMessage is:
+#. Remove Password
+#: build/messages/components/Modal/UserAccount.json
+msgid "Remove Password"
+msgstr "Parolayı Kaldır"
+
+#. [components.ListView.remove]
+#. defaultMessage is:
+#. Remove Source
+#: build/messages/components/ListView/SourcesListItem.json
+msgid "Remove Source"
+msgstr "Kaynağı Kaldır"
+
+#. [components.ListView.removeFromBlueprint]
+#. defaultMessage is:
+#. Remove from Blueprint
+#: build/messages/components/ListView/ComponentDetailsView.json
+msgid "Remove from Blueprint"
+msgstr "Plandan Kaldır"
+
+#. [components.Modal.2291868453] - Identifies the change as a component that was removed
+#. defaultMessage is:
+#. Removed
+#: build/messages/components/Modal/PendingChanges.json
+msgid "Removed"
+msgstr "Kaldırıldı"
+
+#. [components.ListView.2663433025]
+#. defaultMessage is:
+#. Removing source
+#: build/messages/components/ListView/SourcesListItem.json
+msgid "Removing source"
+msgstr "Kaynak kaldırılıyor"
+
+#. [components.Modal.128739785]
+#. defaultMessage is:
+#. Required information is missing.
+#: build/messages/components/Modal/CreateBlueprint.json
+msgid "Required information is missing."
+msgstr "Gerekli bilgi eksik."
+
+#. [components.Modal.106035384]
+#. defaultMessage is:
+#. Role
+#: build/messages/components/Modal/UserAccount.json
+msgid "Role"
+msgstr "Rol"
+
+#. [components.Modal.229369250]
+#. defaultMessage is:
+#. SSH key
+#: build/messages/components/Modal/UserAccount.json
+msgid "SSH key"
+msgstr "SSH anahtarı"
+
+#. [components.Form.save]
+#. defaultMessage is:
+#. Save
+#. [components.Modal.1115770113]
+#. defaultMessage is:
+#. Save
+#: build/messages/components/Form/TextInlineEdit.json
+#: build/messages/components/Modal/EditDescription.json
+msgid "Save"
+msgstr "Kaydet"
+
+#. [components.Modal.1820273720]
+#. defaultMessage is:
+#. Saving source
+#: build/messages/components/Modal/ManageSources.json
+msgid "Saving source"
+msgstr "Kaynak kaydediliyor"
+
+#. [components.Modal.security]
+#. defaultMessage is:
+#. Security
+#: build/messages/components/Modal/ManageSources.json
+msgid "Security"
+msgstr "Güvenlik"
+
+#. [pages.blueprintEdit.1513086105]
+#. defaultMessage is:
+#. Select components
+#: build/messages/pages/blueprintEdit/index.json
+msgid "Select components"
+msgstr "Bileşenleri seç"
+
+#. [components.Modal.selectOne]
+#. defaultMessage is:
+#. Select one
+#. [components.Modal.selectOne]
+#. defaultMessage is:
+#. Select one
+#: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/ManageSources.json
+msgid "Select one"
+msgstr "Birini seç"
+
+#. [components.ListView.selectedTabTitle]
+#. defaultMessage is:
+#. Selected Components
+#: build/messages/components/ListView/BlueprintContents.json
+msgid "Selected Components"
+msgstr "Seçilen Bileşenler"
+
+#. [components.Modal.122879380]
+#. defaultMessage is:
+#. Server administrator
+#: build/messages/components/Modal/UserAccount.json
+msgid "Server administrator"
+msgstr "Sunucu yöneticisi"
+
+#. [components.Modal.1110245255]
+#. defaultMessage is:
+#. Set New Password
+#: build/messages/components/Modal/UserAccount.json
+msgid "Set New Password"
+msgstr "Yeni Parola Ayarla"
+
+#. [components.Modal.3696648021]
+#. defaultMessage is:
+#. Set Password
+#: build/messages/components/Modal/UserAccount.json
+msgid "Set Password"
+msgstr "Parola Ayarla"
+
+#. [components.ListView.1256153657]
+#. defaultMessage is:
+#. Show All
+#: build/messages/components/ListView/ComponentSummaryList.json
+msgid "Show All"
+msgstr "Tümünü Göster"
+
+#. [components.ListView.showDetails]
+#. defaultMessage is:
+#. Show Details and More Options
+#: build/messages/components/ListView/ComponentInputs.json
+msgid "Show Details and More Options"
+msgstr "Ayrıntıları ve Diğer Seçenekleri Göster"
+
+#. [components.ListView.2354351315]
+#. defaultMessage is:
+#. Show Less
+#: build/messages/components/ListView/ComponentSummaryList.json
+msgid "Show Less"
+msgstr "Daha Az Göster"
+
+#. [components.Pagination.nextPage]
+#. defaultMessage is:
+#. Show Next Page
+#: build/messages/components/Pagination/Pagination.json
+msgid "Show Next Page"
+msgstr "Sonraki Sayfayı Göster"
+
+#. [components.Pagination.previousPage]
+#. defaultMessage is:
+#. Show Previous Page
+#: build/messages/components/Pagination/Pagination.json
+msgid "Show Previous Page"
+msgstr "Önceki Sayfayı Göster"
+
+#. [components.ListView.imageSize] - A label for the size of an image file
+#. defaultMessage is:
+#. Size
+#: build/messages/components/ListView/ListItemImages.json
+msgid "Size"
+msgstr "Boyut"
+
+#. [components.ListView.kebab]
+#. defaultMessage is:
+#. Source Actions
+#: build/messages/components/ListView/SourcesListItem.json
+msgid "Source Actions"
+msgstr "Kaynak Eylemleri"
+
+#. [components.Modal.sourcePath] - The path or url to the source repository
+#. defaultMessage is:
+#. Source path
+#: build/messages/components/Modal/ManageSources.json
+msgid "Source path"
+msgstr "Kaynak yolu"
+
+#. [components.Modal.3025955497] - Sources provide the contents from which components are selected
+#. defaultMessage is:
+#. Sources
+#: build/messages/components/Modal/ManageSources.json
+msgid "Sources"
+msgstr "Kaynaklar"
+
+#. [components.Modal.infotip]
+#. defaultMessage is:
+#. Sources are used for resolving blueprint dependencies and for composing images. When adding custom sources you must make sure that the packages in the source do not conflict with any other package sources, otherwise resolving dependencies and composing images will fail.
+#: build/messages/components/Modal/ManageSources.json
+msgid "Sources are used for resolving blueprint dependencies and for composing images. When adding custom sources you must make sure that the packages in the source do not conflict with any other package sources, otherwise resolving dependencies and composing images will fail."
+msgstr ""
+"Kaynaklar, plan bağımlılıklarını çözümlemek ve görüntü oluşturmak için "
+"kullanılır. Özel kaynaklar eklerken, kaynaktaki paketlerin başka paket "
+"kaynaklarıyla çakışmadığından emin olmalısınız, aksi takdirde bağımlılıkları "
+"çözümleme ve görüntü oluşturma başarısız olacaktır."
+
+#. [components.Modal.540971304]
+#. defaultMessage is:
+#. Specify a new blueprint name.
+#: build/messages/components/Modal/CreateBlueprint.json
+msgid "Specify a new blueprint name."
+msgstr "Yeni bir plan adı belirtin."
+
+#. [components.EmptyState.errorInactivePrimary]
+#. defaultMessage is:
+#. Start
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+msgid "Start"
+msgstr "Başlat"
+
+#. [components.ListView.timeStarted] - A label for the date that an image upload was started
+#. defaultMessage is:
+#. Started
+#: build/messages/components/ListView/ListItemUploads.json
+msgid "Started"
+msgstr "Başlatıldı"
+
+#. [components.ListView.2989081855]
+#. defaultMessage is:
+#. Stop
+#: build/messages/components/ListView/ListItemImages.json
+msgid "Stop"
+msgstr "Durdur"
+
+#. [components.Modal.1162993432]
+#. defaultMessage is:
+#. Stop Build
+#: build/messages/components/Modal/StopBuild.json
+msgid "Stop Build"
+msgstr "Oluşturmayı Durdur"
+
+#. [components.ListView.imageStatusStopping] - Image build status when user selected to end the process
+#. defaultMessage is:
+#. Stopping
+#: build/messages/components/ListView/ListItemImages.json
+msgid "Stopping"
+msgstr "Durduruluyor"
+
+#. [components.ListView.3639476303] - System sources are configured repositories that were found on the host machine
+#. defaultMessage is:
+#. System source
+#: build/messages/components/ListView/SourcesListItem.json
+msgid "System source"
+msgstr "Sistem kaynakları"
+
+#. [components.Modal.3495336243]
+#. defaultMessage is:
+#. Text
+#: build/messages/components/Modal/ExportBlueprint.json
+msgid "Text"
+msgstr "Metin"
+
+#. [components.Modal.3426018028]
+#. defaultMessage is:
+#. The build process cannot resume after it stops.
+#: build/messages/components/Modal/StopBuild.json
+msgid "The build process cannot resume after it stops."
+msgstr "Oluşturma işlemi durduktan sonra devam edemez."
+
+#. [components.Modal.216946930]
+#. defaultMessage is:
+#. The fields marked with {val} are required.
+#. [components.Modal.216946930]
+#. defaultMessage is:
+#. The fields marked with {val} are required.
+#. [components.Modal.216946930]
+#. defaultMessage is:
+#. The fields marked with {val} are required.
+#: build/messages/components/Modal/CreateBlueprint.json
+#: build/messages/components/Modal/ManageSources.json
+#: build/messages/components/Modal/UserAccount.json
+msgid "The fields marked with {val} are required."
+msgstr "{val} ile işaretli alanlar zorunludur."
+
+#. [components.Modal.2580689893]
+#. defaultMessage is:
+#. The name {name} already exists.
+#: build/messages/components/Modal/CreateBlueprint.json
+msgid "The name {name} already exists."
+msgstr "{name} ismi zaten mevcut."
+
+#. [pages.error.26562577]
+#. defaultMessage is:
+#. The page you're looking for does not exist or an another error occurred.
+#: build/messages/pages/error/index.json
+msgid "The page you're looking for does not exist or an another error occurred."
+msgstr "Aradığınız sayfa mevcut değil veya başka bir hata oluştu."
+
+#. [components.EmptyState.alertTitleEnableServiceFailure]
+#. defaultMessage is:
+#. The service lorax-composer was not started.
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+msgid "The service lorax-composer was not started."
+msgstr "lorax-composer servisi başlatılmadı."
+
+#. [components.Modal.2405281428]
+#. defaultMessage is:
+#. The user name can only consist of letters from a-z, digits, dots, dashes and underscores.
+#: build/messages/components/Modal/UserAccount.json
+msgid "The user name can only consist of letters from a-z, digits, dots, dashes and underscores."
+msgstr ""
+"Kullanıcı adı sadece a-z arasındaki harf, rakam, nokta, tire ve alt çizgi "
+"karakterlerinden oluşabilir."
+
+#. [components.EmptyState.1947371795]
+#. defaultMessage is:
+#. The user {userName} is not permitted to start services.
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+msgid "The user {userName} is not permitted to start services."
+msgstr "{userName} kullanıcısının servisleri başlatmasına izin verilmiyor."
+
+#. [components.Form.2330477961]
+#. defaultMessage is:
+#. The values entered for password do not match.
+#: build/messages/components/Form/Password.json
+msgid "The values entered for password do not match."
+msgstr "Parola için girilen değerler eşleşmiyor."
+
+#. [pages.blueprint.emptyBlueprintMessage]
+#. defaultMessage is:
+#. There are no components listed in the blueprint. Edit the blueprint to add components.
+#: build/messages/pages/blueprint/index.json
+msgid "There are no components listed in the blueprint. Edit the blueprint to add components."
+msgstr ""
+"Planda listelenen hiçbir bileşen yok. Bileşen eklemek için planı düzenleyin."
+
+#. [components.Modal.181468144]
+#. defaultMessage is:
+#. This action cannot be undone.
+#. [components.Modal.181468144]
+#. defaultMessage is:
+#. This action cannot be undone.
+#: build/messages/components/Modal/DeleteBlueprint.json
+#: build/messages/components/Modal/DeleteImage.json
+msgid "This action cannot be undone."
+msgstr "Bu eylem geri alınamaz."
+
+#. [components.Modal.warningUnsaved]
+#. defaultMessage is:
+#. This blueprint has changes that are not committed. These changes will be committed before the image is created.
+#: build/messages/components/Modal/CreateImage.json
+msgid "This blueprint has changes that are not committed. These changes will be committed before the image is created."
+msgstr ""
+"Bu planda işlenmemiş değişiklikler var. Bu değişiklikler görüntü "
+"oluşturulmadan önce işlenecektir."
+
+#. [components.Modal.1766703173]
+#. defaultMessage is:
+#. This blueprint is empty.
+#: build/messages/components/Modal/CreateImage.json
+msgid "This blueprint is empty."
+msgstr "Bu plan boş."
+
+#. [components.ListView.noDepsMessage]
+#. defaultMessage is:
+#. This component has no dependencies.
+#: build/messages/components/ListView/ComponentDetailsView.json
+msgid "This component has no dependencies."
+msgstr "Bu bileşenin hiçbir bağımlılığı yok."
+
+#. [components.Modal.infotip]
+#. defaultMessage is:
+#. This process can take a while. Images are built in the order they are started.
+#: build/messages/components/Modal/CreateImage.json
+msgid "This process can take a while. Images are built in the order they are started."
+msgstr ""
+"Bu işlem biraz zaman alabilir. Görüntüler başlatıldıkları sırayla "
+"oluşturulur."
+
+#. [components.Modal.2969976976]
+#. defaultMessage is:
+#. This source name already exists.
+#: build/messages/components/Modal/ManageSources.json
+msgid "This source name already exists."
+msgstr "Bu kaynak adı zaten mevcut."
+
+#. [components.Modal.1932541555]
+#. defaultMessage is:
+#. This source path already exists.
+#: build/messages/components/Modal/ManageSources.json
+msgid "This source path already exists."
+msgstr "Bu kaynak yolu zaten mevcut."
+
+#. [components.Modal.3707489178]
+#. defaultMessage is:
+#. This user name already exists.
+#: build/messages/components/Modal/UserAccount.json
+msgid "This user name already exists."
+msgstr "Bu kullanıcı adı zaten mevcut."
+
+#. [components.EmptyState.errorInactiveSecondary]
+#. defaultMessage is:
+#. Troubleshoot
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+msgid "Troubleshoot"
+msgstr "Sorun giderme"
+
+#. [components.ListView.1952810469]
+#. defaultMessage is:
+#. Type
+#. [components.ListView.type]
+#. defaultMessage is:
+#. Type
+#. [components.ListView.imageType] - A label for the type of image file was created
+#. defaultMessage is:
+#. Type
+#. [components.Modal.type] - Type of source
+#. defaultMessage is:
+#. Type
+#: build/messages/components/ListView/ComponentDetailsView.json
+#: build/messages/components/ListView/ComponentTypeIcons.json
+#: build/messages/components/ListView/ListItemImages.json
+#: build/messages/components/Modal/ManageSources.json
+msgid "Type"
+msgstr "Tür"
+
+#. [components.ListView.1508102472]
+#. defaultMessage is:
+#. Type {sourceType}
+#: build/messages/components/ListView/SourcesListItem.json
+msgid "Type {sourceType}"
+msgstr "Tür: {sourceType}"
+
+#. [components.ListView.1324178587]
+#. defaultMessage is:
+#. URL
+#: build/messages/components/ListView/ComponentDetailsView.json
+msgid "URL"
+msgstr "URL"
+
+#. [components.ListView.3158548332]
+#. defaultMessage is:
+#. Undo Last Change
+#: build/messages/components/ListView/BlueprintContents.json
+msgid "Undo Last Change"
+msgstr "Son Değişikliği Geri Al"
+
+#. [components.Modal.1458938618]
+#. defaultMessage is:
+#. Update
+#: build/messages/components/Modal/UserAccount.json
+msgid "Update"
+msgstr "Güncelle"
+
+#. [components.Modal.update]
+#. defaultMessage is:
+#. Update Source
+#: build/messages/components/Modal/ManageSources.json
+msgid "Update Source"
+msgstr "Kaynağı Güncelle"
+
+#. [components.Modal.562988552] - Identifies the change as a component that was updated
+#. defaultMessage is:
+#. Updated
+#: build/messages/components/Modal/PendingChanges.json
+msgid "Updated"
+msgstr "Güncellendi"
+
+#. [components.ListView.uploadStatusFinished] - Upload status when process is finished
+#. defaultMessage is:
+#. Upload complete
+#: build/messages/components/ListView/ListItemUploads.json
+msgid "Upload complete"
+msgstr "Karşıya yükleme tamamlandı"
+
+#. [components.ListView.uploadStatusFailed] - Upload status when process failed
+#. defaultMessage is:
+#. Upload failed
+#: build/messages/components/ListView/ListItemUploads.json
+msgid "Upload failed"
+msgstr "Karşıya yükleme başarısız oldu"
+
+#. [components.ListView.uploadStatusRunning] - Upload status when process is in progress
+#. defaultMessage is:
+#. Upload in progress
+#: build/messages/components/ListView/ListItemUploads.json
+msgid "Upload in progress"
+msgstr "Karşıya yükleme devam ediyor"
+
+#. [components.ListView.uploadStatusWaiting] - Upload status when process is waiting
+#. defaultMessage is:
+#. Upload pending
+#: build/messages/components/ListView/ListItemUploads.json
+msgid "Upload pending"
+msgstr "Karşıya yükleme beklemede"
+
+#. [components.ListView.uploadType] - A label for the service to which an image was uploaded
+#. defaultMessage is:
+#. Upload type
+#: build/messages/components/ListView/ListItemUploads.json
+msgid "Upload type"
+msgstr "Karşıya yükleme türü"
+
+#. [pages.blueprint.userKebab]
+#. defaultMessage is:
+#. User Account Actions
+#: build/messages/pages/blueprint/index.json
+msgid "User Account Actions"
+msgstr "Kullanıcı Hesabı Eylemleri"
+
+#. [components.Modal.529605439]
+#. defaultMessage is:
+#. User name
+#: build/messages/components/Modal/UserAccount.json
+msgid "User name"
+msgstr "Kullanıcı adı"
+
+#. [pages.blueprint.443046426]
+#. defaultMessage is:
+#. Users
+#: build/messages/pages/blueprint/index.json
+msgid "Users"
+msgstr "Kullanıcılar"
+
+#. [pages.blueprint.hostnameHelp]
+#. defaultMessage is:
+#. Valid characters for hostname are letters from a to z, the digits from 0 to 9, and the hyphen (-). A hostname may not start with a hyphen.
+#: build/messages/pages/blueprint/index.json
+msgid "Valid characters for hostname are letters from a to z, the digits from 0 to 9, and the hyphen (-). A hostname may not start with a hyphen."
+msgstr ""
+"Ana bilgisayar adı için geçerli karakterler a-z arasındaki harfler, 0'dan "
+"9'a rakamlar ve kısa çizgi (-) karakteridir. Ana bilgisayar adı kısa çizgi "
+"ile başlayamaz."
+
+#. [components.ListView.602883748]
+#. defaultMessage is:
+#. Version
+#. [components.ListView.602883748]
+#. defaultMessage is:
+#. Version
+#: build/messages/components/ListView/ComponentDetailsView.json
+#: build/messages/components/ListView/ComponentsDataListItem.json
+msgid "Version"
+msgstr "Versiyon"
+
+#. [components.ListView.3097747573]
+#. defaultMessage is:
+#. View
+#: build/messages/components/ListView/ComponentsDataListItem.json
+msgid "View"
+msgstr "Görünüm"
+
+#. [components.ListView.actions]
+#. defaultMessage is:
+#. actions
+#. [components.ListView.actions]
+#. defaultMessage is:
+#. actions
+#: build/messages/components/ListView/BlueprintsDataList.json
+#: build/messages/components/ListView/ComponentsDataListItem.json
+msgid "actions"
+msgstr "eylemler"
+
+#. [components.ListView.details]
+#. defaultMessage is:
+#. details
+#: build/messages/components/ListView/ComponentsDataListItem.json
+msgid "details"
+msgstr "ayrıntılar"
+
+#. [components.Modal.2755325844]
+#. defaultMessage is:
+#. from
+#: build/messages/components/Modal/PendingChanges.json
+msgid "from"
+msgstr "nereden"
+
+#. [pages.error.2054225650]
+#. defaultMessage is:
+#. home page
+#: build/messages/pages/error/index.json
+msgid "home page"
+msgstr "ana sayfa"
+
+#. [components.ListView.metalink]
+#. defaultMessage is:
+#. metalink
+#. [components.Modal.typeMetalink]
+#. defaultMessage is:
+#. metalink
+#: build/messages/components/ListView/SourcesListItem.json
+#: build/messages/components/Modal/ManageSources.json
+msgid "metalink"
+msgstr "metalink"
+
+#. [components.ListView.mirrorlist]
+#. defaultMessage is:
+#. mirrorlist
+#. [components.Modal.typeMirrorlist]
+#. defaultMessage is:
+#. mirrorlist
+#: build/messages/components/ListView/SourcesListItem.json
+#: build/messages/components/Modal/ManageSources.json
+msgid "mirrorlist"
+msgstr "ayna listesi"
+
+#. [components.Modal.152217691]
+#. defaultMessage is:
+#. to
+#: build/messages/components/Modal/PendingChanges.json
+msgid "to"
+msgstr "nereye"
+
+#. [components.ListView.baseurl]
+#. defaultMessage is:
+#. yum repository
+#. [components.Modal.typeRepo]
+#. defaultMessage is:
+#. yum repository
+#: build/messages/components/ListView/SourcesListItem.json
+#: build/messages/components/Modal/ManageSources.json
+msgid "yum repository"
+msgstr "yum deposu"
+
+#. [data.4273735599]
+#. defaultMessage is:
+#. {blueprint} Blueprint changes are committed.
+#: build/messages/data/NotificationsApi.json
+msgid "{blueprint} Blueprint changes are committed."
+msgstr "{blueprint} Plan değişiklikleri işlendi."
+
+#. [data.477516828]
+#. defaultMessage is:
+#. {blueprint} Commit failed.
+#: build/messages/data/NotificationsApi.json
+msgid "{blueprint} Commit failed."
+msgstr "{blueprint} İşleme başarısız oldu."
+
+#. [data.1829299735]
+#. defaultMessage is:
+#. {blueprint} Committing blueprint.
+#: build/messages/data/NotificationsApi.json
+msgid "{blueprint} Committing blueprint."
+msgstr "{blueprint} Plan işleniyor."
+
+#. [data.3947958753]
+#. defaultMessage is:
+#. {blueprint} Image creation failed.
+#: build/messages/data/NotificationsApi.json
+msgid "{blueprint} Image creation failed."
+msgstr "{blueprint} Görüntü oluşturma başarısız oldu."
+
+#. [data.3040107790]
+#. defaultMessage is:
+#. {blueprint} Image creation has been added to the {queue}.
+#: build/messages/data/NotificationsApi.json
+msgid "{blueprint} Image creation has been added to the {queue}."
+msgstr "{blueprint} Görüntü oluşturma {queue}'ye eklendi."
+
+#. [data.1726548071]
+#. defaultMessage is:
+#. {blueprint} Image creation has started.
+#: build/messages/data/NotificationsApi.json
+msgid "{blueprint} Image creation has started."
+msgstr "{blueprint} Görüntü oluşturma başlatıldı."
+
+#. [data.210196387]
+#. defaultMessage is:
+#. {blueprint} Image creation is complete.
+#: build/messages/data/NotificationsApi.json
+msgid "{blueprint} Image creation is complete."
+msgstr "{blueprint} Görüntü oluşturma tamamlandı."
+
+#. [components.Modal.2122759296]
+#. defaultMessage is:
+#. {builds, plural, one {# build is waiting} other {# builds are waiting}}
+#: build/messages/components/Modal/CreateImage.json
+msgid "{builds, plural, one {# build is waiting} other {# builds are waiting}}"
+msgstr ""
+"{builds, plural, one {# oluşturma işlemi bekliyor} other {# oluşturma işlemi "
+"bekliyor}}"
+
+#. [components.Modal.1557505074]
+#. defaultMessage is:
+#. {count} total components
+#: build/messages/components/Modal/ExportBlueprint.json
+msgid "{count} total components"
+msgstr "{count} toplam bileşen"
+
+#. [components.Pagination.3506832526]
+#. defaultMessage is:
+#. {currentPage} of {totalPages}
+#: build/messages/components/Pagination/Pagination.json
+msgid "{currentPage} of {totalPages}"
+msgstr "{currentPage} / {totalPages}"
+
+#. [components.Modal.3908981070]
+#. defaultMessage is:
+#. {from} {oldVersion} {to} {newVersion}
+#: build/messages/components/Modal/PendingChanges.json
+msgid "{from} {oldVersion} {to} {newVersion}"
+msgstr "{from}: {oldVersion}, {to}: {newVersion}"
+
+#. [pages.error.526995878]
+#. defaultMessage is:
+#. {goBack}, or head over to the {homePage} to choose a new direction.
+#: build/messages/pages/error/index.json
+msgid "{goBack}, or head over to the {homePage} to choose a new direction."
+msgstr "{goBack}, veya yeni bir yön seçmek için {homePage}'e git."
+
+#. [components.Modal.3141775911]
+#. defaultMessage is:
+#. {heading} {parenthetical}
+#: build/messages/components/Modal/PendingChanges.json
+msgid "{heading} {parenthetical}"
+msgstr "{heading} {parenthetical}"
+
+#. [pages.blueprintEdit.4031669927]
+#. defaultMessage is:
+#. {pendingChanges, plural, one {# Pending Change} other {# Pending Changes}}
+#: build/messages/pages/blueprintEdit/index.json
+msgid "{pendingChanges, plural, one {# Pending Change} other {# Pending Changes}}"
+msgstr ""
+"{pendingChanges, plural, one {# Bekleyen Değişiklik} other {# Bekleyen "
+"Değişiklik}}"
+
+#. [pages.blueprintEdit.3140434516]
+#. defaultMessage is:
+#. {selectComponents} in this list to add to the blueprint.
+#: build/messages/pages/blueprintEdit/index.json
+msgid "{selectComponents} in this list to add to the blueprint."
+msgstr "Plana eklemek için bu listeden {selectComponents}."
+
+#. [components.Pagination.3363928156]
+#. defaultMessage is:
+#. {startNumber} - {endNumber} of {totalNumber}
+#: build/messages/components/Pagination/Pagination.json
+msgid "{startNumber} - {endNumber} of {totalNumber}"
+msgstr "{startNumber} - {endNumber} / {totalNumber}"
+
+#: ./public/manifest.json
+msgid "Image Builder"
+msgstr "Görüntü Oluşturucu"
