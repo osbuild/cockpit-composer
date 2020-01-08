@@ -32,6 +32,7 @@ po-push: po/cockpit-composer.pot $(WEBLATE_REPO)
 	git -C $(WEBLATE_REPO) push
 
 po/cockpit-composer.pot: npm-install
+	NODE_ENV=$(NODE_ENV) npm run translations:extract
 	NODE_ENV=$(NODE_ENV) npm run translations:json2pot
 
 npm-install:
