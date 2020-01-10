@@ -250,11 +250,15 @@ exports.config = {
       browser.setWindowSize(1280, 1024);
     }
     // login cockpit and enter into composer page
-    browser.login();
-    browser.switchToComposerFrame();
-    // only the first suite needs start lorax-composer
+    // only api related test uses "admin" as user name
+    // the rest of suites will use "root"
     if (suite.title === "lorax-composer api sanity test") {
+      browser.login(process.env.COCKPIT_USERNAME || "admin");
+      browser.switchToComposerFrame();
       browser.startLoraxIfItDoesNotStart();
+    } else {
+      browser.login(process.env.COCKPIT_USERNAME || "root");
+      browser.switchToComposerFrame();
     }
   },
   /**

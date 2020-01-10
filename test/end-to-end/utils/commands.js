@@ -32,8 +32,7 @@ module.exports = {
     }
   },
 
-  login: function() {
-    const username = process.env.COCKPIT_USERNAME || "admin";
+  login: function(username) {
     const password = process.env.COCKPIT_PASSWORD || "foobar";
 
     browser.url("/composer");
