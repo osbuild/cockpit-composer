@@ -4,13 +4,13 @@
 const acceptable = 10000;
 
 describe("weldr api sanity test", function() {
-  it("weldr api socket should be enabled", function() {
+  it("weldr api socket should be active", function() {
     const status = browser.executeAsync(function(done) {
       cockpit
-        .script("systemctl is-enabled osbuild-composer.socket", { superuser: "require", err: "message" })
+        .script("systemctl is-active osbuild-composer.socket", { superuser: "require", err: "message" })
         .then(data => done(data));
     });
-    expect(status.trim()).to.equal("enabled");
+    expect(status.trim()).to.equal("active");
   });
 
   it("/api/v0/blueprints/list", function() {
