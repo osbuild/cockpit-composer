@@ -253,7 +253,7 @@ exports.config = {
     browser.login();
     browser.switchToComposerFrame();
     // only the first suite needs start lorax-composer
-    if (suite.title === "lorax-composer api sanity test") {
+    if (suite.title === "weldr api sanity test") {
       browser.startLoraxIfItDoesNotStart();
     }
   },
