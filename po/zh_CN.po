@@ -1,11 +1,12 @@
 # David Shea <dshea@redhat.com>, 2019. #zanata
 # Tony Fu <tfu@redhat.com>, 2019. #zanata
 # Pany <geekpany@gmail.com>, 2020.
+# Ludek Janda <ljanda@redhat.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-01-06T09:33:37.052Z\n"
-"PO-Revision-Date: 2020-01-08 02:15+0000\n"
-"Last-Translator: Pany <geekpany@gmail.com>\n"
+"POT-Creation-Date: 2020-01-08T14:47:00.417Z\n"
+"PO-Revision-Date: 2020-01-15 06:47+0000\n"
+"Last-Translator: Ludek Janda <ljanda@redhat.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.stg.fedoraproject.org/"
 "projects/cockpit-composer/master/zh_CN/>\n"
 "Language: zh_CN\n"
@@ -13,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 3.10.1\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -41,14 +42,14 @@ msgstr "需要一个蓝图（blueprint）名称。"
 #. A password is defined for this account.
 #: build/messages/components/Modal/UserAccount.json
 msgid "A password is defined for this account."
-msgstr "为这个账户定义了一个密码"
+msgstr "为这个账户定义了一个密码。"
 
 #. [components.Modal.2362836873]
 #. defaultMessage is:
 #. A password is not defined for this account.
 #: build/messages/components/Modal/UserAccount.json
 msgid "A password is not defined for this account."
-msgstr "没有为这个账户定义密码"
+msgstr "没有为这个账户定义密码。"
 
 #. [components.ListView.imageActions] - A label for the menu that displays the actions available
 #. defaultMessage is:
@@ -59,7 +60,7 @@ msgstr "没有为这个账户定义密码"
 #: build/messages/components/ListView/ListItemImages.json
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Actions"
-msgstr ""
+msgstr "操作"
 
 #. [components.ListView.3099331554]
 #. defaultMessage is:
@@ -518,7 +519,7 @@ msgstr ""
 #. Created
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Created"
-msgstr ""
+msgstr "创建"
 
 #. [components.Pagination.2925773048] - Label for the string: 1–50 of 125; only visible to screen readers
 #. defaultMessage is:
@@ -789,42 +790,42 @@ msgstr "镜像类型"
 #. Image build complete
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Image build complete"
-msgstr ""
+msgstr "镜像构建完成"
 
 #. [components.ListView.imageStatusFailed] - Image build status when process failed
 #. defaultMessage is:
 #. Image build failed
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Image build failed"
-msgstr ""
+msgstr "镜像构建失败"
 
 #. [components.ListView.imageStatusRunning] - Image build status when process is in progress
 #. defaultMessage is:
 #. Image build in progress
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Image build in progress"
-msgstr ""
+msgstr "镜像构建进行中"
 
 #. [components.ListView.imageStatusWaiting] - Image build status when process is waiting
 #. defaultMessage is:
 #. Image build pending
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Image build pending"
-msgstr ""
+msgstr "镜像构建待处理"
 
 #. [components.ListView.imageName] - The name given by the user for an image
 #. defaultMessage is:
 #. Image name
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Image name"
-msgstr ""
+msgstr "镜像名称"
 
 #. [components.ListView.imageUploads] - A label for the section that lists the upload actions initiated by the user
 #. defaultMessage is:
 #. Image uploads
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Image uploads"
-msgstr ""
+msgstr "镜像上传"
 
 #. [pages.blueprint.imagesTitle]
 #. defaultMessage is:
@@ -849,7 +850,7 @@ msgstr "载入"
 #: build/messages/components/ListView/ListItemImages.json
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Logs"
-msgstr ""
+msgstr "日志"
 
 #. [components.Modal.357938285] - User action for displaying the list of source repositories
 #. defaultMessage is:
@@ -874,7 +875,7 @@ msgstr "信息"
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/pages/blueprints/index.json
 msgid "Modify your filter criteria to get results."
-msgstr "修改过滤条件以获得所需结果"
+msgstr "修改过滤条件以获得所需结果。"
 
 #. [components.Modal.636461959]
 #. defaultMessage is:
@@ -1019,7 +1020,7 @@ msgstr "密码太弱"
 #. Paste the contents of your public SSH key file here.
 #: build/messages/components/Modal/UserAccount.json
 msgid "Paste the contents of your public SSH key file here."
-msgstr "在这里粘贴 SSH 公钥文件内容"
+msgstr "在这里粘贴 SSH 公钥文件内容。"
 
 #. [components.Modal.433458873]
 #. defaultMessage is:
@@ -1228,7 +1229,7 @@ msgstr "显示上一页"
 #. Size
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Size"
-msgstr ""
+msgstr "大小"
 
 #. [components.ListView.kebab]
 #. defaultMessage is:
@@ -1283,7 +1284,7 @@ msgstr "开始"
 #. Started
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Started"
-msgstr ""
+msgstr "开始"
 
 #. [components.ListView.2989081855]
 #. defaultMessage is:
@@ -1371,7 +1372,7 @@ msgstr "lorax-composer 服务没有启动。"
 msgid ""
 "The user name can only consist of letters from a-z, digits, dots, dashes and "
 "underscores."
-msgstr "用户名只能包括字母 a-z、数字、点、短横线和下划线"
+msgstr "用户名只能包括字母 a-z、数字、点、短横线和下划线。"
 
 #. [components.EmptyState.1947371795]
 #. defaultMessage is:
@@ -1428,7 +1429,7 @@ msgstr "这个蓝图为空。"
 #. This component has no dependencies.
 #: build/messages/components/ListView/ComponentDetailsView.json
 msgid "This component has no dependencies."
-msgstr "这个组件没有依赖软件包"
+msgstr "这个组件没有依赖软件包。"
 
 #. [components.Modal.infotip]
 #. defaultMessage is:
@@ -1533,35 +1534,35 @@ msgstr "已更新"
 #. Upload complete
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload complete"
-msgstr ""
+msgstr "上传完成"
 
 #. [components.ListView.uploadStatusFailed] - Upload status when process failed
 #. defaultMessage is:
 #. Upload failed
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload failed"
-msgstr ""
+msgstr "上传失败"
 
 #. [components.ListView.uploadStatusRunning] - Upload status when process is in progress
 #. defaultMessage is:
 #. Upload in progress
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload in progress"
-msgstr ""
+msgstr "上传进行中"
 
 #. [components.ListView.uploadStatusWaiting] - Upload status when process is waiting
 #. defaultMessage is:
 #. Upload pending
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload pending"
-msgstr ""
+msgstr "上传待处理"
 
 #. [components.ListView.uploadType] - A label for the service to which an image was uploaded
 #. defaultMessage is:
 #. Upload type
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload type"
-msgstr ""
+msgstr "上传类型"
 
 #. [pages.blueprint.userKebab]
 #. defaultMessage is:
@@ -1628,7 +1629,7 @@ msgstr "操作"
 #. details
 #: build/messages/components/ListView/ComponentsDataListItem.json
 msgid "details"
-msgstr ""
+msgstr "详情"
 
 #. [components.Modal.2755325844]
 #. defaultMessage is:

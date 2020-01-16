@@ -1,17 +1,18 @@
 # David Shea <dshea@redhat.com>, 2019. #zanata
-#, fuzzy
+# Larry Letelier <geek@xofica.cl>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-01-06T09:33:37.052Z\n"
-"PO-Revision-Date: 2019-11-18 03:56+0000\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: Spanish\n"
+"POT-Creation-Date: 2020-01-08T14:47:00.417Z\n"
+"PO-Revision-Date: 2020-01-10 16:15+0000\n"
+"Last-Translator: Larry Letelier <geek@xofica.cl>\n"
+"Language-Team: Spanish <https://translate.stg.fedoraproject.org/projects/"
+"cockpit-composer/master/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Zanata 4.6.2\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10.1\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -39,7 +40,7 @@ msgstr "Se requiere un nombre de plano."
 #. A password is defined for this account.
 #: build/messages/components/Modal/UserAccount.json
 msgid "A password is defined for this account."
-msgstr ""
+msgstr "Una contraseña ya esta definida para esta cuenta."
 
 #. [components.Modal.2362836873]
 #. defaultMessage is:
@@ -84,14 +85,14 @@ msgstr "Agregar componentes de planos"
 #. Add Source
 #: build/messages/components/Modal/ManageSources.json
 msgid "Add Source"
-msgstr ""
+msgstr "Agregar Fuente"
 
 #. [components.ListView.addComponent]
 #. defaultMessage is:
 #. Add latest version
 #: build/messages/components/ListView/ComponentInputs.json
 msgid "Add latest version"
-msgstr ""
+msgstr "Agregar última versión"
 
 # translation auto-copied from project Drools Workbench, version 6.0.0, document org.drools/drools-wb-guided-rule-editor-client/org/drools/workbench/screens/guided/rule/client/resources/i18n/Constants, author angela.garcia
 #. [components.Modal.1362724042] - Identifies the change as a component that was added
@@ -605,7 +606,7 @@ msgstr "Dependencias"
 #: build/messages/components/Modal/EditDescription.json
 #: build/messages/pages/blueprint/index.json
 msgid "Description"
-msgstr "Descripción "
+msgstr "Descripción"
 
 # translation auto-copied from project Customer Portal Translations, version PortalCaseManagementStrings, document PortalCaseManagementStrings, author gguerrer
 #. [pages.blueprintEdit.1936836258]

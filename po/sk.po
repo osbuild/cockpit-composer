@@ -2,8 +2,8 @@
 # Matej Marusak <mmarusak@redhat.com>, 2019. #zanata, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-01-06T09:33:37.052Z\n"
-"PO-Revision-Date: 2020-01-08 02:15+0000\n"
+"POT-Creation-Date: 2020-01-08T14:47:00.417Z\n"
+"PO-Revision-Date: 2020-01-15 06:47+0000\n"
 "Last-Translator: Matej Marusak <mmarusak@redhat.com>\n"
 "Language-Team: Slovak <https://translate.stg.fedoraproject.org/projects/"
 "cockpit-composer/master/sk/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 3.10.1\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -430,7 +430,7 @@ msgstr ""
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
 msgid "Component Details"
-msgstr ""
+msgstr "Podrobnosti o súčasti"
 
 #. [components.ListView.2104464527]
 #. defaultMessage is:
@@ -444,7 +444,7 @@ msgstr ""
 #. Confirm password
 #: build/messages/components/Modal/UserAccount.json
 msgid "Confirm password"
-msgstr ""
+msgstr "Potvrdenie hesla"
 
 #. [components.Modal.956699920]
 #. defaultMessage is:
@@ -458,7 +458,7 @@ msgstr "Obsah"
 #. Copy
 #: build/messages/components/Modal/ExportBlueprint.json
 msgid "Copy"
-msgstr ""
+msgstr "Kopírovať"
 
 #. [components.Modal.4120989039]
 #. defaultMessage is:
