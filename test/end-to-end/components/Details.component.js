@@ -12,6 +12,10 @@ class DetailsComponent {
     return $(`${this.containerSelector} .cmpsr-header__actions .add span`).element();
   }
 
+  get componentOptionsBox() {
+    return $(`${this.containerSelector} .cmpsr-component-details__form`).element()
+  }
+
   get componentNameLabel() {
     return $(`${this.containerSelector} .cmpsr-title span`).element();
   }

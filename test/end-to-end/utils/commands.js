@@ -71,25 +71,21 @@ module.exports = {
   startLoraxIfItDoesNotStart: function() {
     if (process.env.TRY_RUN !== "true") {
       try {
-        blueprintsPage.serviceStartButton.waitForDisplayed();
+        blueprintsPage.serviceStartButton.waitForDisplayed(timeout/2);
         const isAutostart = blueprintsPage.autostartCheckbox.isSelected();
         if (!isAutostart) {
           blueprintsPage.autostartCheckbox.click();
         }
         blueprintsPage.serviceStartButton.click();
-        $(blueprintsPage.blueprintListView).waitForExist(timeout * 2);
-        blueprintsPage.loading();
       } catch (e) {
         console.error(e);
-        blueprintsPage.loading();
       }
     }
   },
 
-  newBlueprint: function(name, description) {
+  newBlueprint: function(name, description, createButton=blueprintsPage.createBlueprintButton) {
     // on Blueprints page
-    blueprintsPage.loading();
-    blueprintsPage.createBlueprintButton.click();
+    createButton.click();
     // pop up create blueprint dialog
     createBlueprintPage.loading();
     createBlueprintPage.nameBox.setInputValue(name);

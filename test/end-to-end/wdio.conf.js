@@ -3,6 +3,7 @@ const del = require("del");
 const fs = require("fs");
 const crypto = require("crypto");
 const { TimelineService } = require('wdio-timeline-reporter/timeline-service');
+const faker = require("faker");
 // import commands to add them as browser and element scope commands
 const commands = require("./utils/commands");
 
@@ -118,7 +119,7 @@ exports.config = {
   baseUrl: process.env.BASE_URL || "http://localhost:9090",
   //
   // Default timeout for all waitFor* commands.
-  waitforTimeout: parseInt(process.env.WAITFOR_TIMEOUT) || mochaTimeout,
+  waitforTimeout: parseInt(process.env.WAITFOR_TIMEOUT) || 120000,
   //
   // Default timeout in milliseconds for request
   // if Selenium Grid doesn't send response
@@ -216,7 +217,8 @@ exports.config = {
    * @param {Array.<Object>} capabilities list of capabilities details
    * @param {Array.<String>} specs List of spec file paths that are to be run
    */
-  before: function() {
+  before: function(capabilities, specs) {
+    console.log(specs);
     // Add commands to WebdriverIO
     Object.keys(commands).forEach(key => {
       if (key === "setInputValue" || key === "element" || key === "sendKey") {
@@ -227,6 +229,31 @@ exports.config = {
     });
     // wait a second here to make Edge happy
     browser.pause(1000);
+
+    // Add three pre-defined blueprints
+    browser.login();
+    browser.switchToComposerFrame();
+
+    if (specs[0].indexOf("api.test") !== -1) {
+      browser.startLoraxIfItDoesNotStart();
+
+    // try {
+      const blankNewButton = $('.blank-slate-pf [id="cmpsr-btn-crt-blueprint"]');
+      blankNewButton.waitForDisplayed(timeout/2);
+      const name = faker.lorem.slug();
+      const description = faker.lorem.sentence();
+      browser.newBlueprint(name, description, blankNewButton);
+
+      const preDefinedBlueprints = 2;
+      [...Array(preDefinedBlueprints)].forEach(() => {
+        const name = faker.lorem.slug();
+        const description = faker.lorem.sentence();
+        browser.newBlueprint(name, description);
+      })
+    // } catch (e) {
+    //   console.error(e);
+    // }
+    }
   },
   /**
    * Runs before a WebdriverIO command gets executed.
@@ -240,7 +267,7 @@ exports.config = {
    * Hook that gets executed before the suite starts
    * @param {Object} suite suite details
    */
-  beforeSuite: function(suite) {
+  beforeSuite: function() {
     // reset browser to keep a clean browser
     browser.reloadSession();
     // make browser window maximum
@@ -252,10 +279,6 @@ exports.config = {
     // login cockpit and enter into composer page
     browser.login();
     browser.switchToComposerFrame();
-    // only the first suite needs start lorax-composer
-    if (suite.title === "weldr api sanity test") {
-      browser.startLoraxIfItDoesNotStart();
-    }
   },
   /**
    * Function to be executed before a test (in Mocha/Jasmine) starts.

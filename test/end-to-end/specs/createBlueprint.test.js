@@ -1,20 +1,11 @@
-const faker = require("faker");
-const commands = require("../utils/commands");
-
-const blueprintsPage = require("../pages/blueprints.page");
-const createBlueprintPage = require("../pages/createBlueprint.page");
+import blueprintsPage from "../pages/blueprints.page";
+import createBlueprintPage from "../pages/createBlueprint.page";
 
 describe("Create Blueprints Page", function() {
-  const name = faker.lorem.slug();
-  const description = faker.lorem.sentence();
+  let blueprintNameList; // used by duplicated blueprint name checking
   before(function() {
     blueprintsPage.loading();
-    commands.newBlueprint(name, description);
-  });
-
-  after(function() {
-    commands.deleteBlueprint(name);
-    blueprintsPage.loading();
+    blueprintNameList = $$(blueprintsPage.blueprintListView).map(item => item.getAttribute("data-blueprint"));
   });
 
   beforeEach(function() {
@@ -95,23 +86,13 @@ describe("Create Blueprints Page", function() {
   });
 
   it("Duplicated blueprint name help message should be in place", function() {
-    // WORKAROUND: issue setValue() doesn't clear input before setting new value
-    // https://github.com/webdriverio/webdriverio/issues/1140
-    const valueLength = createBlueprintPage.nameBox.getValue().length;
-    const backSpaces = new Array(valueLength).fill("Backspace");
-    createBlueprintPage.nameBox.setValue([...backSpaces, name]);
-    expect(createBlueprintPage.helpBlock.getText()).to.equal(`The name ${name} already exists.`);
+    createBlueprintPage.nameBox.setInputValue(blueprintNameList[0]);
+    expect(createBlueprintPage.helpBlock.getText()).to.equal(`The name ${blueprintNameList[0]} already exists.`);
   });
 
   it("Duplicated blueprint name alert message should be in place - pressing enter", function() {
-    // WORKAROUND: issue setValue() doesn't clear input before setting new value
-    // https://github.com/webdriverio/webdriverio/issues/1140
-    const valueLength = createBlueprintPage.nameBox.getValue().length;
-    const backSpaces = new Array(valueLength).fill("Backspace");
-    createBlueprintPage.nameBox.setValue(backSpaces);
-    browser.keys("Enter");
-    createBlueprintPage.nameBox.setValue(name);
-    browser.keys("Enter");
+    createBlueprintPage.nameBox.setInputValue(blueprintNameList[0]);
+    createBlueprintPage.nameBox.sendKey("\uE007");
     expect(createBlueprintPage.alert.getText()).to.equal("Specify a new blueprint name.");
   });
 
