@@ -1,19 +1,20 @@
 # David Shea <dshea@redhat.com>, 2019. #zanata
 # Lars Karlitski <lars@karlitski.net>, 2019. #zanata
 # corina roe <croe@redhat.com>, 2019. #zanata
-#, fuzzy
+# Ludek Janda <ljanda@redhat.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-01-06T09:33:37.052Z\n"
-"PO-Revision-Date: 2019-10-08 08:44+0000\n"
-"Last-Translator: corina roe <croe@redhat.com>\n"
-"Language-Team: French\n"
+"POT-Creation-Date: 2020-01-08T14:47:00.417Z\n"
+"PO-Revision-Date: 2020-01-15 06:47+0000\n"
+"Last-Translator: Ludek Janda <ljanda@redhat.com>\n"
+"Language-Team: French <https://translate.stg.fedoraproject.org/projects/"
+"cockpit-composer/master/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1)\n"
-"X-Generator: Zanata 4.6.2\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.10.1\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -59,7 +60,7 @@ msgstr "Un mot de passe n'est pas exigé pour utiliser ce compte."
 #: build/messages/components/ListView/ListItemImages.json
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Actions"
-msgstr ""
+msgstr "Actions"
 
 #. [components.ListView.3099331554]
 #. defaultMessage is:
@@ -162,14 +163,15 @@ msgstr "Êtes-vous certain de vouloir supprimer le modèle  {version} ?"
 #. Are you sure you want to delete the image for {blueprintName}?
 #: build/messages/components/Modal/DeleteImage.json
 msgid "Are you sure you want to delete the image for {blueprintName}?"
-msgstr "Êtes-vous sûr de vouloir supprimer l'image de {version}?"
+msgstr "Êtes-vous sûr de vouloir supprimer l'image de {blueprintName}?"
 
 #. [components.Modal.234116272]
 #. defaultMessage is:
 #. Are you sure you want to stop the build process for {blueprintName}?
 #: build/messages/components/Modal/StopBuild.json
 msgid "Are you sure you want to stop the build process for {blueprintName}?"
-msgstr "Voulez-vous vraiment arrêter le processus de build pour {version}?"
+msgstr ""
+"Voulez-vous vraiment arrêter le processus de build pour {blueprintName}?"
 
 #. [components.EmptyState.errorInactiveCheckbox]
 #. defaultMessage is:
@@ -512,7 +514,7 @@ msgstr "Créer une image"
 #: build/messages/components/Modal/UserAccount.json
 #: build/messages/pages/blueprint/index.json
 msgid "Create User Account"
-msgstr "Créez le compte utilisateur."
+msgstr "Créez le compte utilisateur"
 
 #. [pages.blueprints.emptyMessage]
 #. defaultMessage is:
@@ -531,7 +533,7 @@ msgstr ""
 #. Created
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Created"
-msgstr ""
+msgstr "Créé"
 
 #. [components.Pagination.2925773048] - Label for the string: 1–50 of 125; only visible to screen readers
 #. defaultMessage is:
@@ -804,42 +806,42 @@ msgstr "Type d'image"
 #. Image build complete
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Image build complete"
-msgstr ""
+msgstr "Construction d'image complète"
 
 #. [components.ListView.imageStatusFailed] - Image build status when process failed
 #. defaultMessage is:
 #. Image build failed
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Image build failed"
-msgstr ""
+msgstr "La construction de l'image a échoué"
 
 #. [components.ListView.imageStatusRunning] - Image build status when process is in progress
 #. defaultMessage is:
 #. Image build in progress
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Image build in progress"
-msgstr ""
+msgstr "Image en cours de construction"
 
 #. [components.ListView.imageStatusWaiting] - Image build status when process is waiting
 #. defaultMessage is:
 #. Image build pending
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Image build pending"
-msgstr ""
+msgstr "Construction d'image en attente"
 
 #. [components.ListView.imageName] - The name given by the user for an image
 #. defaultMessage is:
 #. Image name
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Image name"
-msgstr ""
+msgstr "Nom de l'image"
 
 #. [components.ListView.imageUploads] - A label for the section that lists the upload actions initiated by the user
 #. defaultMessage is:
 #. Image uploads
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Image uploads"
-msgstr ""
+msgstr "Téléchargement d'images"
 
 #. [pages.blueprint.imagesTitle]
 #. defaultMessage is:
@@ -864,7 +866,7 @@ msgstr "Chargement"
 #: build/messages/components/ListView/ListItemImages.json
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Logs"
-msgstr ""
+msgstr "Journaux"
 
 #. [components.Modal.357938285] - User action for displaying the list of source repositories
 #. defaultMessage is:
@@ -953,7 +955,7 @@ msgstr "Aucun résultat correspondant au critère de filtrage"
 #. No images have been created from this blueprint.
 #: build/messages/pages/blueprint/index.json
 msgid "No images have been created from this blueprint."
-msgstr "Aucune image n'a été créée à partir de ce modèle"
+msgstr "Aucune image n'a été créée à partir de ce modèle."
 
 #. [components.ListView.1893974769]
 #. defaultMessage is:
@@ -1035,7 +1037,7 @@ msgstr "Le mot de passe est trop faible"
 #. Paste the contents of your public SSH key file here.
 #: build/messages/components/Modal/UserAccount.json
 msgid "Paste the contents of your public SSH key file here."
-msgstr "Collez le contenu de votre clé publique SSH ici"
+msgstr "Collez le contenu de votre clé publique SSH ici."
 
 #. [components.Modal.433458873]
 #. defaultMessage is:
@@ -1244,7 +1246,7 @@ msgstr "Afficher la page précédente"
 #. Size
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Size"
-msgstr ""
+msgstr "Taille"
 
 #. [components.ListView.kebab]
 #. defaultMessage is:
@@ -1302,7 +1304,7 @@ msgstr "Démarrer"
 #. Started
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Started"
-msgstr ""
+msgstr "Démarré"
 
 #. [components.ListView.2989081855]
 #. defaultMessage is:
@@ -1560,35 +1562,35 @@ msgstr "Actualisé"
 #. Upload complete
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload complete"
-msgstr ""
+msgstr "Chargement terminé"
 
 #. [components.ListView.uploadStatusFailed] - Upload status when process failed
 #. defaultMessage is:
 #. Upload failed
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload failed"
-msgstr ""
+msgstr "Échec de chargement"
 
 #. [components.ListView.uploadStatusRunning] - Upload status when process is in progress
 #. defaultMessage is:
 #. Upload in progress
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload in progress"
-msgstr ""
+msgstr "Chargement en cours"
 
 #. [components.ListView.uploadStatusWaiting] - Upload status when process is waiting
 #. defaultMessage is:
 #. Upload pending
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload pending"
-msgstr ""
+msgstr "Chargement en attente"
 
 #. [components.ListView.uploadType] - A label for the service to which an image was uploaded
 #. defaultMessage is:
 #. Upload type
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload type"
-msgstr ""
+msgstr "Type de téléchargement"
 
 #. [pages.blueprint.userKebab]
 #. defaultMessage is:
@@ -1656,7 +1658,7 @@ msgstr "Actions"
 #. details
 #: build/messages/components/ListView/ComponentsDataListItem.json
 msgid "details"
-msgstr ""
+msgstr "Détails"
 
 #. [components.Modal.2755325844]
 #. defaultMessage is:

@@ -2,19 +2,20 @@
 # Hiroshi Yamanaka <hyamanak@redhat.com>, 2019. #zanata
 # Keiko Moriguchi <kemorigu@redhat.com>, 2019. #zanata
 # Lars Karlitski <lars@karlitski.net>, 2019. #zanata
-#, fuzzy
+# Ludek Janda <ljanda@redhat.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-01-06T09:33:37.052Z\n"
-"PO-Revision-Date: 2019-10-07 10:44+0000\n"
-"Last-Translator: Keiko Moriguchi <kemorigu@redhat.com>\n"
-"Language-Team: Japanese\n"
+"POT-Creation-Date: 2020-01-08T14:47:00.417Z\n"
+"PO-Revision-Date: 2020-01-15 06:47+0000\n"
+"Last-Translator: Ludek Janda <ljanda@redhat.com>\n"
+"Language-Team: Japanese <https://translate.stg.fedoraproject.org/projects/"
+"cockpit-composer/master/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
-"X-Generator: Zanata 4.6.2\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.10.1\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -42,14 +43,14 @@ msgstr "ブループリント名が必要です。"
 #. A password is defined for this account.
 #: build/messages/components/Modal/UserAccount.json
 msgid "A password is defined for this account."
-msgstr "このアカウント用にパスワードを定義します。"
+msgstr "このアカウント用にパスワードが定義されています。"
 
 #. [components.Modal.2362836873]
 #. defaultMessage is:
 #. A password is not defined for this account.
 #: build/messages/components/Modal/UserAccount.json
 msgid "A password is not defined for this account."
-msgstr "このアカウント用にパスワードを定義しません。"
+msgstr "このアカウント用にパスワードが定義されていません。"
 
 #. [components.ListView.imageActions] - A label for the menu that displays the actions available
 #. defaultMessage is:
@@ -60,14 +61,14 @@ msgstr "このアカウント用にパスワードを定義しません。"
 #: build/messages/components/ListView/ListItemImages.json
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Actions"
-msgstr ""
+msgstr "動作"
 
 #. [components.ListView.3099331554]
 #. defaultMessage is:
 #. Add
 #: build/messages/components/ListView/ComponentDetailsView.json
 msgid "Add"
-msgstr "追加する"
+msgstr "追加"
 
 #. [pages.blueprintEdit.addComponentTitle]
 #. defaultMessage is:
@@ -94,14 +95,14 @@ msgstr "ソースの追加"
 #. Add latest version
 #: build/messages/components/ListView/ComponentInputs.json
 msgid "Add latest version"
-msgstr "最新バージョンを追加"
+msgstr "最新バージョンの追加"
 
 #. [components.Modal.1362724042] - Identifies the change as a component that was added
 #. defaultMessage is:
 #. Added
 #: build/messages/components/Modal/PendingChanges.json
 msgid "Added"
-msgstr "追加"
+msgstr "追加済み"
 
 #. [components.ListView.emptyStateErrorTitle]
 #. defaultMessage is:
@@ -332,7 +333,7 @@ msgstr "取り消し"
 #. Changes Pending Commit
 #: build/messages/components/Modal/PendingChanges.json
 msgid "Changes Pending Commit"
-msgstr "保留中のコミットを変更"
+msgstr "変更のコミットを保留中"
 
 #. [components.Modal.683130131]
 #. defaultMessage is:
@@ -518,16 +519,14 @@ msgstr "ユーザーアカウントの作成"
 msgid ""
 "Create a blueprint to define the contents that will be included in the "
 "images you create. Images can be produced in a variety of output formats."
-msgstr ""
-"作成するイメージに含まれるコンテンツを定義するためにブループリントを作成しま"
-"す。イメージは、様々な出力フォーマットで作成可能です。"
+msgstr "作成するイメージに含むコンテンツを定義するためにブループリントを作成します。イメージは、様々な出力フォーマットで作成可能です。"
 
 #. [components.ListView.imageCreated] - A label for the date that an image file was created
 #. defaultMessage is:
 #. Created
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Created"
-msgstr ""
+msgstr "作成済み"
 
 #. [components.Pagination.2925773048] - Label for the string: 1–50 of 125; only visible to screen readers
 #. defaultMessage is:
@@ -798,42 +797,42 @@ msgstr "イメージタイプ"
 #. Image build complete
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Image build complete"
-msgstr ""
+msgstr "イメージビルドが完了しました"
 
 #. [components.ListView.imageStatusFailed] - Image build status when process failed
 #. defaultMessage is:
 #. Image build failed
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Image build failed"
-msgstr ""
+msgstr "イメージビルドに失敗しました"
 
 #. [components.ListView.imageStatusRunning] - Image build status when process is in progress
 #. defaultMessage is:
 #. Image build in progress
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Image build in progress"
-msgstr ""
+msgstr "イメージビルドが進行中"
 
 #. [components.ListView.imageStatusWaiting] - Image build status when process is waiting
 #. defaultMessage is:
 #. Image build pending
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Image build pending"
-msgstr ""
+msgstr "イメージビルドを保留中"
 
 #. [components.ListView.imageName] - The name given by the user for an image
 #. defaultMessage is:
 #. Image name
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Image name"
-msgstr ""
+msgstr "イメージ名"
 
 #. [components.ListView.imageUploads] - A label for the section that lists the upload actions initiated by the user
 #. defaultMessage is:
 #. Image uploads
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Image uploads"
-msgstr ""
+msgstr "イメージのアップロード"
 
 # auto translated by TM merge from project: Openshift Enterprise Installation & Configuration, version: 3.9-Outsourced, DocId: week_1_2
 #. [pages.blueprint.imagesTitle]
@@ -859,7 +858,7 @@ msgstr "読み込み中"
 #: build/messages/components/ListView/ListItemImages.json
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Logs"
-msgstr ""
+msgstr "ログ"
 
 #. [components.Modal.357938285] - User action for displaying the list of source repositories
 #. defaultMessage is:
@@ -884,7 +883,7 @@ msgstr "メッセージ"
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/pages/blueprints/index.json
 msgid "Modify your filter criteria to get results."
-msgstr "結果を取得するために絞り込みの基準を修正。"
+msgstr "結果を取得するために絞り込みの基準を変更します。"
 
 #. [components.Modal.636461959]
 #. defaultMessage is:
@@ -941,7 +940,7 @@ msgstr "イメージなし"
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/pages/blueprints/index.json
 msgid "No Results Match the Filter Criteria"
-msgstr "絞り込みの基準と一致する結果がありません。"
+msgstr "絞り込みの基準と一致する結果がありません"
 
 #. [pages.blueprint.noImagesMessage]
 #. defaultMessage is:
@@ -962,14 +961,14 @@ msgstr "利用できるログはありません"
 #. Only changes to selected components are shown.
 #: build/messages/components/Modal/PendingChanges.json
 msgid "Only changes to selected components are shown."
-msgstr "選択されたコンポーネントへの変更点のみを表示"
+msgstr "選択されたコンポーネントへの変更点のみを表示します。"
 
 #. [pages.error.oupsTitle]
 #. defaultMessage is:
 #. Oups, something went wrong
 #: build/messages/pages/error/index.json
 msgid "Oups, something went wrong"
-msgstr "エラー。問題が発生しました。"
+msgstr "問題が発生しました"
 
 #. [pages.blueprint.packagesTitle]
 #. defaultMessage is:
@@ -1035,7 +1034,7 @@ msgstr "公開 SSH 鍵ファイルの内容をここに貼り付けます。"
 #. Pending Changes
 #: build/messages/components/Modal/PendingChanges.json
 msgid "Pending Changes"
-msgstr "保留中の変更"
+msgstr "変更を保留中"
 
 #. [components.ListView.423140743]
 #. defaultMessage is:
@@ -1068,14 +1067,14 @@ msgstr "削除"
 #. Remove Component from Blueprint
 #: build/messages/components/ListView/ComponentInputs.json
 msgid "Remove Component from Blueprint"
-msgstr "ブループリントから内容を削除"
+msgstr "ブループリントからコンポーネントを削除"
 
 #. [components.Modal.2822116526]
 #. defaultMessage is:
 #. Remove Password
 #: build/messages/components/Modal/UserAccount.json
 msgid "Remove Password"
-msgstr "パスワードを削除"
+msgstr "パスワードの削除"
 
 #. [components.ListView.remove]
 #. defaultMessage is:
@@ -1124,7 +1123,7 @@ msgstr "ロール"
 #. SSH key
 #: build/messages/components/Modal/UserAccount.json
 msgid "SSH key"
-msgstr "SSH キー"
+msgstr "SSH 鍵"
 
 #. [components.Form.save]
 #. defaultMessage is:
@@ -1237,7 +1236,7 @@ msgstr "前のページに戻ります"
 #. Size
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Size"
-msgstr ""
+msgstr "サイズ"
 
 #. [components.ListView.kebab]
 #. defaultMessage is:
@@ -1287,14 +1286,14 @@ msgstr "新規ブループリント名を指定します。"
 #. Start
 #: build/messages/components/EmptyState/EmptyStateInactive.json
 msgid "Start"
-msgstr "スタート"
+msgstr "開始"
 
 #. [components.ListView.timeStarted] - A label for the date that an image upload was started
 #. defaultMessage is:
 #. Started
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Started"
-msgstr ""
+msgstr "開始済み"
 
 #. [components.ListView.2989081855]
 #. defaultMessage is:
@@ -1373,7 +1372,7 @@ msgstr "お探しのページは削除されたか、別のエラーが発生し
 #. The service lorax-composer was not started.
 #: build/messages/components/EmptyState/EmptyStateInactive.json
 msgid "The service lorax-composer was not started."
-msgstr "サービス lorax-composer はスタートしませんでした。"
+msgstr "サービス lorax-composer は開始しませんでした。"
 
 #. [components.Modal.2405281428]
 #. defaultMessage is:
@@ -1391,8 +1390,7 @@ msgstr ""
 #. The user {userName} is not permitted to start services.
 #: build/messages/components/EmptyState/EmptyStateInactive.json
 msgid "The user {userName} is not permitted to start services."
-msgstr ""
-"ユーザー {userName} は、サービスをスタートすることを許可されていません。"
+msgstr "ユーザー {userName} は、サービスを開始することを許可されていません。"
 
 #. [components.Form.2330477961]
 #. defaultMessage is:
@@ -1421,7 +1419,7 @@ msgstr ""
 #: build/messages/components/Modal/DeleteBlueprint.json
 #: build/messages/components/Modal/DeleteImage.json
 msgid "This action cannot be undone."
-msgstr "このアクションは取り消せません。"
+msgstr "この動作は取り消せません。"
 
 #. [components.Modal.warningUnsaved]
 #. defaultMessage is:
@@ -1552,35 +1550,35 @@ msgstr "更新済み"
 #. Upload complete
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload complete"
-msgstr ""
+msgstr "アップロードが完了しました"
 
 #. [components.ListView.uploadStatusFailed] - Upload status when process failed
 #. defaultMessage is:
 #. Upload failed
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload failed"
-msgstr ""
+msgstr "アップロードに失敗しました"
 
 #. [components.ListView.uploadStatusRunning] - Upload status when process is in progress
 #. defaultMessage is:
 #. Upload in progress
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload in progress"
-msgstr ""
+msgstr "アップロード中"
 
 #. [components.ListView.uploadStatusWaiting] - Upload status when process is waiting
 #. defaultMessage is:
 #. Upload pending
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload pending"
-msgstr ""
+msgstr "アップロードを保留中"
 
 #. [components.ListView.uploadType] - A label for the service to which an image was uploaded
 #. defaultMessage is:
 #. Upload type
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload type"
-msgstr ""
+msgstr "アップロードタイプ"
 
 #. [pages.blueprint.userKebab]
 #. defaultMessage is:
@@ -1648,7 +1646,7 @@ msgstr "動作"
 #. details
 #: build/messages/components/ListView/ComponentsDataListItem.json
 msgid "details"
-msgstr ""
+msgstr "詳細"
 
 #. [components.Modal.2755325844]
 #. defaultMessage is:
@@ -1810,7 +1808,7 @@ msgstr ""
 #. {selectComponents} in this list to add to the blueprint.
 #: build/messages/pages/blueprintEdit/index.json
 msgid "{selectComponents} in this list to add to the blueprint."
-msgstr "このリストで {selectComponents} し、ブループリントに追加します。"
+msgstr "ブループリントに追加するため、このリストで {selectComponents} します。"
 
 #. [components.Pagination.3363928156]
 #. defaultMessage is:

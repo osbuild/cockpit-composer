@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "POT-Creation-Date: 2020-01-06T09:33:37.052Z\n"
-"PO-Revision-Date: 2020-01-08 02:15+0000\n"
+"PO-Revision-Date: 2020-01-10 16:15+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://translate.stg.fedoraproject.org/projects/"
 "cockpit-composer/master/tr/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 3.10.1\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -123,8 +123,8 @@ msgstr "Bir Hata Oluştu"
 #: build/messages/components/Modal/ManageSources.json
 msgid "An error occurred when saving the source. Check that the path is valid and try again."
 msgstr ""
-"Kaynak kaydedilirken bir hata oluştu. Yolun geçerli olup olmadığını kontrol "
-"edin ve tekrar deneyin."
+"Kaynak kaydedilirken bir hata oluştu. Konumun geçerli olup olmadığını "
+"kontrol edin ve tekrar deneyin."
 
 #. [components.ListView.emptyStateErrorMessage]
 #. defaultMessage is:
@@ -1245,7 +1245,7 @@ msgstr "Kaynak Eylemleri"
 #. Source path
 #: build/messages/components/Modal/ManageSources.json
 msgid "Source path"
-msgstr "Kaynak yolu"
+msgstr "Kaynak konumu"
 
 #. [components.Modal.3025955497] - Sources provide the contents from which components are selected
 #. defaultMessage is:
@@ -1450,7 +1450,7 @@ msgstr "Bu kaynak adı zaten mevcut."
 #. This source path already exists.
 #: build/messages/components/Modal/ManageSources.json
 msgid "This source path already exists."
-msgstr "Bu kaynak yolu zaten mevcut."
+msgstr "Bu kaynak konumu zaten mevcut."
 
 #. [components.Modal.3707489178]
 #. defaultMessage is:

@@ -1,17 +1,18 @@
 # David Shea <dshea@redhat.com>, 2019. #zanata
-#, fuzzy
+# Mike FABIAN <mfabian@redhat.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-01-06T09:33:37.052Z\n"
-"PO-Revision-Date: 2019-11-18 03:52+0000\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: German\n"
+"POT-Creation-Date: 2020-01-08T14:47:00.417Z\n"
+"PO-Revision-Date: 2020-01-15 06:47+0000\n"
+"Last-Translator: Mike FABIAN <mfabian@redhat.com>\n"
+"Language-Team: German <https://translate.stg.fedoraproject.org/projects/"
+"cockpit-composer/master/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Zanata 4.6.2\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10.1\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -39,14 +40,14 @@ msgstr "Ein Blueprint-Name ist erforderlich."
 #. A password is defined for this account.
 #: build/messages/components/Modal/UserAccount.json
 msgid "A password is defined for this account."
-msgstr ""
+msgstr "Für diesen Account ist ein Passwort definiert."
 
 #. [components.Modal.2362836873]
 #. defaultMessage is:
 #. A password is not defined for this account.
 #: build/messages/components/Modal/UserAccount.json
 msgid "A password is not defined for this account."
-msgstr ""
+msgstr "Für diesen Account ist kein Passwort definiert."
 
 #. [components.ListView.imageActions] - A label for the menu that displays the actions available
 #. defaultMessage is:
@@ -57,7 +58,7 @@ msgstr ""
 #: build/messages/components/ListView/ListItemImages.json
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Actions"
-msgstr ""
+msgstr "Aktionen"
 
 #. [components.ListView.3099331554]
 #. defaultMessage is:
@@ -84,14 +85,14 @@ msgstr "Blueprint-Komponenten hinzufügen"
 #. Add Source
 #: build/messages/components/Modal/ManageSources.json
 msgid "Add Source"
-msgstr ""
+msgstr "Quelle hinzufügen"
 
 #. [components.ListView.addComponent]
 #. defaultMessage is:
 #. Add latest version
 #: build/messages/components/ListView/ComponentInputs.json
 msgid "Add latest version"
-msgstr ""
+msgstr "Neueste Version hinzufügen"
 
 # translation auto-copied from project Drools Workbench, version 6.0.0, document org.drools/drools-wb-guided-rule-editor-client/org/drools/workbench/screens/guided/rule/client/resources/i18n/Constants, author jdimanos
 #. [components.Modal.1362724042] - Identifies the change as a component that was added
@@ -124,6 +125,8 @@ msgid ""
 "An error occurred when saving the source. Check that the path is valid and "
 "try again."
 msgstr ""
+"Beim Speichern der Quelle ist ein Fehler aufgetreten. Überprüfen Sie, dass "
+"der Pfad gültig ist und  versuchen Sie es nochmal."
 
 #. [components.ListView.emptyStateErrorMessage]
 #. defaultMessage is:
@@ -200,7 +203,7 @@ msgstr "Zurück zu den Blaupausen"
 #. Back to {blueprint}
 #: build/messages/components/ListView/ComponentDetailsView.json
 msgid "Back to {blueprint}"
-msgstr ""
+msgstr "Zurück zu {blueprint}"
 
 #. [components.Modal.1281198655]
 #. defaultMessage is:
@@ -920,7 +923,7 @@ msgstr "Keine Blaupausen"
 #. No Dependencies
 #: build/messages/components/ListView/ComponentDetailsView.json
 msgid "No Dependencies"
-msgstr ""
+msgstr "Keine Abhängigkeiten"
 
 #. [pages.blueprint.noImagesTitle]
 #. defaultMessage is:
@@ -1281,7 +1284,7 @@ msgstr "Geben Sie einen neuen Blueprint-Namen an."
 #. Start
 #: build/messages/components/EmptyState/EmptyStateInactive.json
 msgid "Start"
-msgstr ""
+msgstr "Start"
 
 #. [components.ListView.timeStarted] - A label for the date that an image upload was started
 #. defaultMessage is:
@@ -1479,7 +1482,7 @@ msgstr ""
 #. Troubleshoot
 #: build/messages/components/EmptyState/EmptyStateInactive.json
 msgid "Troubleshoot"
-msgstr ""
+msgstr "Fehler suchen"
 
 #. [components.ListView.1952810469]
 #. defaultMessage is:
