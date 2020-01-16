@@ -25,5 +25,7 @@ describe("weldr api sanity test", function() {
     expect(result.latency)
       .to.match(/^\d*(\.?\d+|\d*)$/)
       .and.be.below(acceptable);
+    // there're 3 blueprints added at before hook
+    expect(JSON.parse(result.data).total).to.be.at.least(3);
   });
 });

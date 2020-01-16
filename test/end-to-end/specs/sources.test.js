@@ -36,8 +36,6 @@ describe("Sources Page", function() {
 
       const nameList = sourcesPage.sourceNameList.map(source => source.getText()).sort();
       expect(nameList).deep.equal(resultSources);
-      // const names = new Set(sourcesPage.sourceNameList.map(source => source.getText()));
-      // expect(expected).deep.equal(names);
     });
     describe("* valication test", function() {
       beforeEach(function() {

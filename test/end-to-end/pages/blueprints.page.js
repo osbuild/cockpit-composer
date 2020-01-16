@@ -6,8 +6,8 @@ class BlueprintsPage {
 
   // if the create blueprint button is enabled the page has loaded
   loading() {
-    const createBlueprintButtonSelector = "#cmpsr-btn-crt-blueprint";
-    browser.waitUntil(() => browser.isEnabled(createBlueprintButtonSelector), timeout, "Loading Blueprints page failed");
+    $(this.blueprintListView).waitForExist(timeout);
+    browser.waitUntil(() => $$(this.blueprintListView).length >= 1, timeout, "Loading Blueprints page failed");
   }
 
   filterLoading() {
