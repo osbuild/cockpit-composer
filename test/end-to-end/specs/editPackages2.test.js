@@ -278,7 +278,7 @@ describe("Edit Blueprint Page", function() {
         timeout
       );
       bashComponent.nameLabelByName(packageName).click();
-      browser.waitUntil(() => componentDetails.componentDescriptionLabel.getText() !== "", timeout);
+      componentDetails.componentOptionsBox.waitForDisplayed(timeout);
       componentDetails.addButton.click();
       browser.waitUntil(
         () => selectedComponents.packageList.map(item => item.getText()).includes(packageName),
