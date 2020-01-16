@@ -28,14 +28,15 @@ describe("Sources Page", function() {
 
     it("should have correct system source name", function() {
       // get system source list from API
-      const endpoint = "/api/v0/projects/source/list";
+      const endpoint = "/api/v0/projects/source/info/*";
       const result = browser.apiFetchTest(endpoint);
       // result looks like:
       // https://github.com/weldr/lorax/blob/b57de934681056aa4f9bd480a34136cf340f510a/src/pylorax/api/v0.py#L513
-      const resultSources = JSON.parse(result.data).sources.sort();
+      const resultSources = JSON.parse(result.data).sources;
+      const resultSourcesList = Object.values(resultSources).map(source => source.name).sort();
 
       const nameList = sourcesPage.sourceNameList.map(source => source.getText()).sort();
-      expect(nameList).deep.equal(resultSources);
+      expect(nameList).deep.equal(resultSourcesList);
     });
     describe("* valication test", function() {
       beforeEach(function() {
