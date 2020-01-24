@@ -1,10 +1,11 @@
 # David Shea <dshea@redhat.com>, 2019. #zanata
 # Larry Letelier <geek@xofica.cl>, 2020.
+# Dennis Tobar <DENNIS.TOBAR@gmail.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-01-08T14:47:00.417Z\n"
-"PO-Revision-Date: 2020-01-10 16:15+0000\n"
-"Last-Translator: Larry Letelier <geek@xofica.cl>\n"
+"POT-Creation-Date: 2020-01-16T01:09:07.826Z\n"
+"PO-Revision-Date: 2020-01-22 11:15+0000\n"
+"Last-Translator: Dennis Tobar <DENNIS.TOBAR@gmail.com>\n"
 "Language-Team: Spanish <https://translate.stg.fedoraproject.org/projects/"
 "cockpit-composer/master/es/>\n"
 "Language: es\n"
@@ -12,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10.1\n"
+"X-Generator: Weblate 3.10.3\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -47,7 +48,7 @@ msgstr "Una contraseña ya esta definida para esta cuenta."
 #. A password is not defined for this account.
 #: build/messages/components/Modal/UserAccount.json
 msgid "A password is not defined for this account."
-msgstr ""
+msgstr "No se ha definido una contraseña para esta cuenta."
 
 #. [components.ListView.imageActions] - A label for the menu that displays the actions available
 #. defaultMessage is:
@@ -58,7 +59,7 @@ msgstr ""
 #: build/messages/components/ListView/ListItemImages.json
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Actions"
-msgstr ""
+msgstr "Acciones"
 
 #. [components.ListView.3099331554]
 #. defaultMessage is:
@@ -200,7 +201,7 @@ msgstr "Volver a Planos"
 #. Back to {blueprint}
 #: build/messages/components/ListView/ComponentDetailsView.json
 msgid "Back to {blueprint}"
-msgstr ""
+msgstr "Volver a {blueprint}"
 
 #. [components.Modal.1281198655]
 #. defaultMessage is:
@@ -350,7 +351,7 @@ msgstr ""
 #. Check GPG key
 #: build/messages/components/Modal/ManageSources.json
 msgid "Check GPG key"
-msgstr ""
+msgstr "Comprobación llave GPG"
 
 #. [components.Modal.check_ssl]
 #. defaultMessage is:
