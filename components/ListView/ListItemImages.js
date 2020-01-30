@@ -267,7 +267,8 @@ class ListItemImages extends React.Component {
         </ImagesDataList>
       );
     }
-    const size = Math.round(listItem.image_size / 10000000) / 100;
+    const gigabyte = 1024 * 1024 * 1024;
+    const size = listItem.image_size / gigabyte;
 
     return (
       <DataListItem 
