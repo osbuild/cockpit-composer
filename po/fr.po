@@ -2,19 +2,20 @@
 # Lars Karlitski <lars@karlitski.net>, 2019. #zanata
 # corina roe <croe@redhat.com>, 2019. #zanata
 # Ludek Janda <ljanda@redhat.com>, 2020.
+# Julien Humbert <julroy67@gmail.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-01-08T14:47:00.417Z\n"
-"PO-Revision-Date: 2020-01-15 06:47+0000\n"
-"Last-Translator: Ludek Janda <ljanda@redhat.com>\n"
-"Language-Team: French <https://translate.stg.fedoraproject.org/projects/"
-"cockpit-composer/master/fr/>\n"
+"POT-Creation-Date: 2020-01-24T03:27:37.794Z\n"
+"PO-Revision-Date: 2020-01-29 01:16+0000\n"
+"Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
+"Language-Team: French <https://translate.fedoraproject.org/projects/cockpit-"
+"composer/master/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.10.1\n"
+"X-Generator: Weblate 3.10.3\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -163,7 +164,7 @@ msgstr "Êtes-vous certain de vouloir supprimer le modèle  {version} ?"
 #. Are you sure you want to delete the image for {blueprintName}?
 #: build/messages/components/Modal/DeleteImage.json
 msgid "Are you sure you want to delete the image for {blueprintName}?"
-msgstr "Êtes-vous sûr de vouloir supprimer l'image de {blueprintName}?"
+msgstr "Êtes-vous sûr de vouloir supprimer l’image de {blueprintName} ?"
 
 #. [components.Modal.234116272]
 #. defaultMessage is:
@@ -171,7 +172,7 @@ msgstr "Êtes-vous sûr de vouloir supprimer l'image de {blueprintName}?"
 #: build/messages/components/Modal/StopBuild.json
 msgid "Are you sure you want to stop the build process for {blueprintName}?"
 msgstr ""
-"Voulez-vous vraiment arrêter le processus de build pour {blueprintName}?"
+"Voulez-vous vraiment arrêter le processus de build pour {blueprintName} ?"
 
 #. [components.EmptyState.errorInactiveCheckbox]
 #. defaultMessage is:
@@ -1318,7 +1319,7 @@ msgstr "Stop"
 #. Stop Build
 #: build/messages/components/Modal/StopBuild.json
 msgid "Stop Build"
-msgstr "Stop Build"
+msgstr "Arrêter le Build"
 
 #. [components.ListView.imageStatusStopping] - Image build status when user selected to end the process
 #. defaultMessage is:
@@ -1494,7 +1495,7 @@ msgstr "Ce nom d'utilisateur existe déjà."
 #. Troubleshoot
 #: build/messages/components/EmptyState/EmptyStateInactive.json
 msgid "Troubleshoot"
-msgstr "Troubleshoot"
+msgstr "Dépannage"
 
 #. [components.ListView.1952810469]
 #. defaultMessage is:
