@@ -1,19 +1,19 @@
-# Yuri Chornoivan <yurchor@ukr.net>, 2019.
+# Yuri Chornoivan <yurchor@ukr.net>, 2019, 2020.
 # David Shea <dshea@redhat.com>, 2019. #zanata
-#, fuzzy
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-01-06T09:33:37.052Z\n"
-"PO-Revision-Date: 2019-11-18 03:56+0000\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: Ukrainian\n"
+"POT-Creation-Date: 2020-01-24T03:27:37.794Z\n"
+"PO-Revision-Date: 2020-01-18 18:15+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
+"Language-Team: Ukrainian <https://translate.stg.fedoraproject.org/projects/"
+"cockpit-composer/master/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
-"X-Generator: Zanata 4.6.2\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.10.2\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -41,14 +41,14 @@ msgstr "Слід вказати назву проекту."
 #. A password is defined for this account.
 #: build/messages/components/Modal/UserAccount.json
 msgid "A password is defined for this account."
-msgstr ""
+msgstr "Для цього облікового запису визначено пароль."
 
 #. [components.Modal.2362836873]
 #. defaultMessage is:
 #. A password is not defined for this account.
 #: build/messages/components/Modal/UserAccount.json
 msgid "A password is not defined for this account."
-msgstr ""
+msgstr "Для цього облікового запису не визначено пароль."
 
 #. [components.ListView.imageActions] - A label for the menu that displays the actions available
 #. defaultMessage is:
@@ -59,7 +59,7 @@ msgstr ""
 #: build/messages/components/ListView/ListItemImages.json
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Actions"
-msgstr ""
+msgstr "Дії"
 
 #. [components.ListView.3099331554]
 #. defaultMessage is:
@@ -86,7 +86,7 @@ msgstr "Додати компоненти проекту"
 #. Add Source
 #: build/messages/components/Modal/ManageSources.json
 msgid "Add Source"
-msgstr ""
+msgstr "Додати джерело"
 
 #. [components.ListView.addComponent]
 #. defaultMessage is:
@@ -125,6 +125,8 @@ msgid ""
 "An error occurred when saving the source. Check that the path is valid and "
 "try again."
 msgstr ""
+"Під час спроби зберегти джерело сталася помилка. Перевірте, чи правильно "
+"вказано шлях і повторіть спробу."
 
 #. [components.ListView.emptyStateErrorMessage]
 #. defaultMessage is:
@@ -173,7 +175,7 @@ msgstr "Ви справді хочете припинити процес зби�
 #. Automatically start lorax-composer on boot
 #: build/messages/components/EmptyState/EmptyStateInactive.json
 msgid "Automatically start lorax-composer on boot"
-msgstr ""
+msgstr "Автоматично запускати lorax-composer при завантаженні"
 
 #. [pages.blueprintEdit.listTitleAvailableComps]
 #. defaultMessage is:
@@ -235,35 +237,35 @@ msgstr "Компоненти проекту"
 #. Blueprint names cannot contain spaces or the character: {invalidChar}
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "Blueprint names cannot contain spaces or the character: {invalidChar}"
-msgstr ""
+msgstr "Назви blueprint не можуть містити пробілів і символів {invalidChar}"
 
 #. [components.Modal.1134732033]
 #. defaultMessage is:
 #. Blueprint names cannot contain spaces or the characters: {invalidChar}
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "Blueprint names cannot contain spaces or the characters: {invalidChar}"
-msgstr ""
+msgstr "Назви blueprint не можуть містити пробілів і символів {invalidChar}"
 
 #. [components.Modal.2803906810]
 #. defaultMessage is:
 #. Blueprint names cannot contain spaces.
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "Blueprint names cannot contain spaces."
-msgstr ""
+msgstr "Назви blueprint не можуть містити пробілів."
 
 #. [components.Modal.2781854456]
 #. defaultMessage is:
 #. Blueprint names cannot contain the character: {invalidChar}
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "Blueprint names cannot contain the character: {invalidChar}"
-msgstr ""
+msgstr "Назви blueprint не можуть містити символів {invalidChar}"
 
 #. [components.Modal.3918401128]
 #. defaultMessage is:
 #. Blueprint names cannot contain the characters: {invalidChar}
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "Blueprint names cannot contain the characters: {invalidChar}"
-msgstr ""
+msgstr "Назви blueprint не можуть містити символів {invalidChar}"
 
 #. [pages.blueprints.blueprintsTitle]
 #. defaultMessage is:
@@ -350,14 +352,14 @@ msgstr ""
 #. Check GPG key
 #: build/messages/components/Modal/ManageSources.json
 msgid "Check GPG key"
-msgstr ""
+msgstr "Перевірити ключ GPG"
 
 #. [components.Modal.check_ssl]
 #. defaultMessage is:
 #. Check SSL certificate
 #: build/messages/components/Modal/ManageSources.json
 msgid "Check SSL certificate"
-msgstr ""
+msgstr "Перевірити сертифікат SSL"
 
 #. [components.ListView.1312249312]
 #. defaultMessage is:
@@ -448,7 +450,7 @@ msgstr "Параметри компонента"
 #. Confirm password
 #: build/messages/components/Modal/UserAccount.json
 msgid "Confirm password"
-msgstr ""
+msgstr "Підтвердження пароля"
 
 #. [components.Modal.956699920]
 #. defaultMessage is:
@@ -502,7 +504,7 @@ msgstr "Створити зображення"
 #: build/messages/components/Modal/UserAccount.json
 #: build/messages/pages/blueprint/index.json
 msgid "Create User Account"
-msgstr ""
+msgstr "Створення облікового запису користувача"
 
 #. [pages.blueprints.emptyMessage]
 #. defaultMessage is:
@@ -520,7 +522,7 @@ msgstr ""
 #. Created
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Created"
-msgstr ""
+msgstr "Створено"
 
 #. [components.Pagination.2925773048] - Label for the string: 1–50 of 125; only visible to screen readers
 #. defaultMessage is:
@@ -541,7 +543,7 @@ msgstr "Поточна сторінка"
 #. Customizations
 #: build/messages/pages/blueprint/index.json
 msgid "Customizations"
-msgstr ""
+msgstr "Налаштовування"
 
 #. [components.ListView.3645414921]
 #. defaultMessage is:
@@ -573,7 +575,7 @@ msgstr "Вилучити зображення"
 #. Delete User Account
 #: build/messages/pages/blueprint/index.json
 msgid "Delete User Account"
-msgstr ""
+msgstr "Вилучити обліковий запис користувача"
 
 #. [components.ListView.dependenciesTabTitle]
 #. defaultMessage is:
@@ -627,7 +629,7 @@ msgstr "Отримати"
 #. Edit Description
 #: build/messages/components/Modal/EditDescription.json
 msgid "Edit Description"
-msgstr ""
+msgstr "Змінити опис"
 
 #. [components.ListView.3855913088]
 #. defaultMessage is:
@@ -642,7 +644,7 @@ msgstr ""
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
 msgid "Edit Packages"
-msgstr ""
+msgstr "Редагувати пакунки"
 
 #. [components.ListView.edit]
 #. defaultMessage is:
@@ -653,7 +655,7 @@ msgstr ""
 #: build/messages/components/ListView/SourcesListItem.json
 #: build/messages/components/Modal/ManageSources.json
 msgid "Edit Source"
-msgstr ""
+msgstr "Редагувати джерело"
 
 #. [components.Modal.modalTitleEdit]
 #. defaultMessage is:
@@ -664,7 +666,7 @@ msgstr ""
 #: build/messages/components/Modal/UserAccount.json
 #: build/messages/pages/blueprint/index.json
 msgid "Edit User Account"
-msgstr ""
+msgstr "Редагувати обліковий запис користувача"
 
 #. [components.Modal.2044423701]
 #. defaultMessage is:
@@ -738,7 +740,7 @@ msgstr "Фільтрувати за назвою…"
 #. Full name
 #: build/messages/components/Modal/UserAccount.json
 msgid "Full name"
-msgstr ""
+msgstr "Повна назва"
 
 #. [pages.error.2333299345]
 #. defaultMessage is:
@@ -779,7 +781,7 @@ msgstr ""
 #. Image Building Service is Not Active
 #: build/messages/components/EmptyState/EmptyStateInactive.json
 msgid "Image Building Service is Not Active"
-msgstr ""
+msgstr "Служба збирання образів є неактивною"
 
 #. [components.Modal.380558550]
 #. defaultMessage is:
@@ -793,42 +795,42 @@ msgstr "Тип образу"
 #. Image build complete
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Image build complete"
-msgstr ""
+msgstr "Збирання образу завершено"
 
 #. [components.ListView.imageStatusFailed] - Image build status when process failed
 #. defaultMessage is:
 #. Image build failed
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Image build failed"
-msgstr ""
+msgstr "Не вдалося зібрати образ"
 
 #. [components.ListView.imageStatusRunning] - Image build status when process is in progress
 #. defaultMessage is:
 #. Image build in progress
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Image build in progress"
-msgstr ""
+msgstr "Виконуємо збирання образу"
 
 #. [components.ListView.imageStatusWaiting] - Image build status when process is waiting
 #. defaultMessage is:
 #. Image build pending
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Image build pending"
-msgstr ""
+msgstr "Збирання образу додано до черги"
 
 #. [components.ListView.imageName] - The name given by the user for an image
 #. defaultMessage is:
 #. Image name
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Image name"
-msgstr ""
+msgstr "Назва образу"
 
 #. [components.ListView.imageUploads] - A label for the section that lists the upload actions initiated by the user
 #. defaultMessage is:
 #. Image uploads
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Image uploads"
-msgstr ""
+msgstr "Вивантаження образів"
 
 #. [pages.blueprint.imagesTitle]
 #. defaultMessage is:
@@ -853,21 +855,21 @@ msgstr "Завантаження"
 #: build/messages/components/ListView/ListItemImages.json
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Logs"
-msgstr ""
+msgstr "Журнали"
 
 #. [components.Modal.357938285] - User action for displaying the list of source repositories
 #. defaultMessage is:
 #. Manage Sources
 #: build/messages/components/Modal/ManageSources.json
 msgid "Manage Sources"
-msgstr ""
+msgstr "Керування джерелами"
 
 #. [components.EmptyState.alertMessagePreface]
 #. defaultMessage is:
 #. Message
 #: build/messages/components/EmptyState/EmptyStateInactive.json
 msgid "Message"
-msgstr ""
+msgstr "Повідомлення"
 
 #. [components.ListView.emptyStateNoResultsMessage]
 #. defaultMessage is:
@@ -903,7 +905,7 @@ msgstr "Назва: {name}"
 #. New password
 #: build/messages/components/Modal/UserAccount.json
 msgid "New password"
-msgstr ""
+msgstr "Новий пароль"
 
 #. [pages.blueprints.emptyTitle]
 #. defaultMessage is:
@@ -949,7 +951,7 @@ msgstr "З цього проекту не було створено жодних
 #. No log available
 #: build/messages/components/ListView/ListItemImages.json
 msgid "No log available"
-msgstr ""
+msgstr "Немає доступних журналів"
 
 #. [components.Modal.1475836573]
 #. defaultMessage is:
@@ -970,7 +972,7 @@ msgstr "Оце тобі… Маємо якісь проблеми"
 #. Packages
 #: build/messages/pages/blueprint/index.json
 msgid "Packages"
-msgstr ""
+msgstr "Пакунки"
 
 #. [pages.error.pageNotFoundMessage]
 #. defaultMessage is:
@@ -1001,28 +1003,28 @@ msgstr "Нумерація сторінок"
 #. Password
 #: build/messages/components/Modal/UserAccount.json
 msgid "Password"
-msgstr ""
+msgstr "Пароль"
 
 #. [components.Form.rejectedPassword]
 #. defaultMessage is:
 #. Password is not acceptable
 #: build/messages/components/Form/Password.json
 msgid "Password is not acceptable"
-msgstr ""
+msgstr "Пароль є неприйнятним"
 
 #. [components.Form.weakPassword]
 #. defaultMessage is:
 #. Password is too weak
 #: build/messages/components/Form/Password.json
 msgid "Password is too weak"
-msgstr ""
+msgstr "Пароль є надто простим"
 
 #. [components.Modal.sshKeyHelp]
 #. defaultMessage is:
 #. Paste the contents of your public SSH key file here.
 #: build/messages/components/Modal/UserAccount.json
 msgid "Paste the contents of your public SSH key file here."
-msgstr ""
+msgstr "Сюди слід вставити вміст файла вашого відкритого ключа SSH."
 
 #. [components.Modal.433458873]
 #. defaultMessage is:
@@ -1069,14 +1071,14 @@ msgstr "Вилучити компонент з проекту"
 #. Remove Password
 #: build/messages/components/Modal/UserAccount.json
 msgid "Remove Password"
-msgstr ""
+msgstr "Вилучити пароль"
 
 #. [components.ListView.remove]
 #. defaultMessage is:
 #. Remove Source
 #: build/messages/components/ListView/SourcesListItem.json
 msgid "Remove Source"
-msgstr ""
+msgstr "Вилучити джерело"
 
 #. [components.ListView.removeFromBlueprint]
 #. defaultMessage is:
@@ -1097,7 +1099,7 @@ msgstr "Вилучено"
 #. Removing source
 #: build/messages/components/ListView/SourcesListItem.json
 msgid "Removing source"
-msgstr ""
+msgstr "Вилучаємо джерело"
 
 #. [components.Modal.128739785]
 #. defaultMessage is:
@@ -1111,14 +1113,14 @@ msgstr "Не вказано обов'язкових даних."
 #. Role
 #: build/messages/components/Modal/UserAccount.json
 msgid "Role"
-msgstr ""
+msgstr "Роль"
 
 #. [components.Modal.229369250]
 #. defaultMessage is:
 #. SSH key
 #: build/messages/components/Modal/UserAccount.json
 msgid "SSH key"
-msgstr ""
+msgstr "ключ ssh"
 
 #. [components.Form.save]
 #. defaultMessage is:
@@ -1136,14 +1138,14 @@ msgstr "Зберегти"
 #. Saving source
 #: build/messages/components/Modal/ManageSources.json
 msgid "Saving source"
-msgstr ""
+msgstr "Зберігаємо джерело"
 
 #. [components.Modal.security]
 #. defaultMessage is:
 #. Security
 #: build/messages/components/Modal/ManageSources.json
 msgid "Security"
-msgstr ""
+msgstr "Безпека"
 
 #. [pages.blueprintEdit.1513086105]
 #. defaultMessage is:
@@ -1175,21 +1177,21 @@ msgstr "Вибрані компоненти"
 #. Server administrator
 #: build/messages/components/Modal/UserAccount.json
 msgid "Server administrator"
-msgstr ""
+msgstr "Адміністратор сервера"
 
 #. [components.Modal.1110245255]
 #. defaultMessage is:
 #. Set New Password
 #: build/messages/components/Modal/UserAccount.json
 msgid "Set New Password"
-msgstr ""
+msgstr "Встановити новий пароль"
 
 #. [components.Modal.3696648021]
 #. defaultMessage is:
 #. Set Password
 #: build/messages/components/Modal/UserAccount.json
 msgid "Set Password"
-msgstr ""
+msgstr "Встановити пароль"
 
 #. [components.ListView.1256153657]
 #. defaultMessage is:
@@ -1231,21 +1233,21 @@ msgstr "Показати попередню сторінку"
 #. Size
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Size"
-msgstr ""
+msgstr "Розмір"
 
 #. [components.ListView.kebab]
 #. defaultMessage is:
 #. Source Actions
 #: build/messages/components/ListView/SourcesListItem.json
 msgid "Source Actions"
-msgstr ""
+msgstr "Дії над джерелом"
 
 #. [components.Modal.sourcePath] - The path or url to the source repository
 #. defaultMessage is:
 #. Source path
 #: build/messages/components/Modal/ManageSources.json
 msgid "Source path"
-msgstr ""
+msgstr "Шлях до джерела"
 
 #. [components.Modal.3025955497] - Sources provide the contents from which components are selected
 #. defaultMessage is:
@@ -1264,6 +1266,11 @@ msgid ""
 "the source do not conflict with any other package sources, otherwise "
 "resolving dependencies and composing images will fail."
 msgstr ""
+"Джерела використовують для визначення залежностей у blueprint та "
+"компонування образів. При додаванні нетипових джерел ви маєте переконатися, "
+"що пакунки у джерелі не конфліктують із пакунками із інших джерел пакунків. "
+"Якщо такі конфлікти виникнуть, визначення залежностей та збирання образів "
+"стане неможливим."
 
 #. [components.Modal.540971304]
 #. defaultMessage is:
@@ -1277,14 +1284,14 @@ msgstr "Вкажіть назву нового проекту."
 #. Start
 #: build/messages/components/EmptyState/EmptyStateInactive.json
 msgid "Start"
-msgstr ""
+msgstr "Запустити"
 
 #. [components.ListView.timeStarted] - A label for the date that an image upload was started
 #. defaultMessage is:
 #. Started
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Started"
-msgstr ""
+msgstr "Почато"
 
 #. [components.ListView.2989081855]
 #. defaultMessage is:
@@ -1312,7 +1319,7 @@ msgstr "Припиняємо"
 #. System source
 #: build/messages/components/ListView/SourcesListItem.json
 msgid "System source"
-msgstr ""
+msgstr "Джерело системи"
 
 #. [components.Modal.3495336243]
 #. defaultMessage is:
@@ -1363,7 +1370,7 @@ msgstr "Сторінки, яку ви шукаєте, не існує або с�
 #. The service lorax-composer was not started.
 #: build/messages/components/EmptyState/EmptyStateInactive.json
 msgid "The service lorax-composer was not started."
-msgstr ""
+msgstr "Службу lorax-composer не запущено."
 
 #. [components.Modal.2405281428]
 #. defaultMessage is:
@@ -1373,20 +1380,22 @@ msgid ""
 "The user name can only consist of letters from a-z, digits, dots, dashes and "
 "underscores."
 msgstr ""
+"Ім’я користувача може складатися лише із літер a-z, цифр, крапок, дефісів та "
+"символів підкреслювання."
 
 #. [components.EmptyState.1947371795]
 #. defaultMessage is:
 #. The user {userName} is not permitted to start services.
 #: build/messages/components/EmptyState/EmptyStateInactive.json
 msgid "The user {userName} is not permitted to start services."
-msgstr ""
+msgstr "Користувачу {userName} заборонено запускати служби."
 
 #. [components.Form.2330477961]
 #. defaultMessage is:
 #. The values entered for password do not match.
 #: build/messages/components/Form/Password.json
 msgid "The values entered for password do not match."
-msgstr ""
+msgstr "Вказані для паролів записи не збігаються."
 
 #. [pages.blueprint.emptyBlueprintMessage]
 #. defaultMessage is:
@@ -1451,28 +1460,28 @@ msgstr ""
 #. This source name already exists.
 #: build/messages/components/Modal/ManageSources.json
 msgid "This source name already exists."
-msgstr ""
+msgstr "Цю назву джерела вже використано."
 
 #. [components.Modal.1932541555]
 #. defaultMessage is:
 #. This source path already exists.
 #: build/messages/components/Modal/ManageSources.json
 msgid "This source path already exists."
-msgstr ""
+msgstr "Цей шлях до джерела вже використано."
 
 #. [components.Modal.3707489178]
 #. defaultMessage is:
 #. This user name already exists.
 #: build/messages/components/Modal/UserAccount.json
 msgid "This user name already exists."
-msgstr ""
+msgstr "Запис користувача із таким іменем уже існує."
 
 #. [components.EmptyState.errorInactiveSecondary]
 #. defaultMessage is:
 #. Troubleshoot
 #: build/messages/components/EmptyState/EmptyStateInactive.json
 msgid "Troubleshoot"
-msgstr ""
+msgstr "Діагностика проблем"
 
 #. [components.ListView.1952810469]
 #. defaultMessage is:
@@ -1498,7 +1507,7 @@ msgstr "Тип"
 #. Type {sourceType}
 #: build/messages/components/ListView/SourcesListItem.json
 msgid "Type {sourceType}"
-msgstr ""
+msgstr "Тип {sourceType}"
 
 #. [components.ListView.1324178587]
 #. defaultMessage is:
@@ -1519,14 +1528,14 @@ msgstr "Скасувати останню зміну"
 #. Update
 #: build/messages/components/Modal/UserAccount.json
 msgid "Update"
-msgstr ""
+msgstr "Оновити"
 
 #. [components.Modal.update]
 #. defaultMessage is:
 #. Update Source
 #: build/messages/components/Modal/ManageSources.json
 msgid "Update Source"
-msgstr ""
+msgstr "Оновити джерело"
 
 #. [components.Modal.562988552] - Identifies the change as a component that was updated
 #. defaultMessage is:
@@ -1540,56 +1549,56 @@ msgstr "Оновлено"
 #. Upload complete
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload complete"
-msgstr ""
+msgstr "Вивантаження завершено"
 
 #. [components.ListView.uploadStatusFailed] - Upload status when process failed
 #. defaultMessage is:
 #. Upload failed
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload failed"
-msgstr ""
+msgstr "Невдала спроба вивантаження"
 
 #. [components.ListView.uploadStatusRunning] - Upload status when process is in progress
 #. defaultMessage is:
 #. Upload in progress
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload in progress"
-msgstr ""
+msgstr "Вивантажуємо"
 
 #. [components.ListView.uploadStatusWaiting] - Upload status when process is waiting
 #. defaultMessage is:
 #. Upload pending
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload pending"
-msgstr ""
+msgstr "Очікування на вивантаження"
 
 #. [components.ListView.uploadType] - A label for the service to which an image was uploaded
 #. defaultMessage is:
 #. Upload type
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload type"
-msgstr ""
+msgstr "Тип вивантаження"
 
 #. [pages.blueprint.userKebab]
 #. defaultMessage is:
 #. User Account Actions
 #: build/messages/pages/blueprint/index.json
 msgid "User Account Actions"
-msgstr ""
+msgstr "Дії із обліковим записом користувача"
 
 #. [components.Modal.529605439]
 #. defaultMessage is:
 #. User name
 #: build/messages/components/Modal/UserAccount.json
 msgid "User name"
-msgstr ""
+msgstr "Ім'я користувача"
 
 #. [pages.blueprint.443046426]
 #. defaultMessage is:
 #. Users
 #: build/messages/pages/blueprint/index.json
 msgid "Users"
-msgstr ""
+msgstr "Користувачі"
 
 #. [pages.blueprint.hostnameHelp]
 #. defaultMessage is:
@@ -1629,14 +1638,14 @@ msgstr "Перегляд"
 #: build/messages/components/ListView/BlueprintsDataList.json
 #: build/messages/components/ListView/ComponentsDataListItem.json
 msgid "actions"
-msgstr ""
+msgstr "дії"
 
 #. [components.ListView.details]
 #. defaultMessage is:
 #. details
 #: build/messages/components/ListView/ComponentsDataListItem.json
 msgid "details"
-msgstr ""
+msgstr "подробиці"
 
 #. [components.Modal.2755325844]
 #. defaultMessage is:
@@ -1661,7 +1670,7 @@ msgstr "домашньої сторінки"
 #: build/messages/components/ListView/SourcesListItem.json
 #: build/messages/components/Modal/ManageSources.json
 msgid "metalink"
-msgstr ""
+msgstr "метапосилання"
 
 #. [components.ListView.mirrorlist]
 #. defaultMessage is:
@@ -1672,7 +1681,7 @@ msgstr ""
 #: build/messages/components/ListView/SourcesListItem.json
 #: build/messages/components/Modal/ManageSources.json
 msgid "mirrorlist"
-msgstr ""
+msgstr "список дзеркал"
 
 #. [components.Modal.152217691]
 #. defaultMessage is:
@@ -1690,7 +1699,7 @@ msgstr "до"
 #: build/messages/components/ListView/SourcesListItem.json
 #: build/messages/components/Modal/ManageSources.json
 msgid "yum repository"
-msgstr ""
+msgstr "сховище yum"
 
 #. [data.4273735599]
 #. defaultMessage is:
@@ -1725,7 +1734,7 @@ msgstr "Спроба створити образ {blueprint} завершила�
 #. {blueprint} Image creation has been added to the {queue}.
 #: build/messages/data/NotificationsApi.json
 msgid "{blueprint} Image creation has been added to the {queue}."
-msgstr ""
+msgstr "До черги додано дію щодо створення образу {queue}."
 
 #. [data.1726548071]
 #. defaultMessage is:
