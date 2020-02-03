@@ -8,7 +8,13 @@
         "index": {
             "label": "Image Builder",
             "order": 30,
-            "icon": "pficon-build"
+            "icon": "pficon-build",
+            "docs": [
+                {
+                    "label": "Creating system images",
+                    "url": "https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/composing_a_customized_rhel_system_image/creating-system-images-with-composer-web-console-interface_composing-a-customized-rhel-system-image"
+                }
+            ]
         }
     },
     "content-security-policy": "default-src 'self' 'unsafe-eval'"
