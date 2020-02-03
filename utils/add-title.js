@@ -26,4 +26,5 @@ msgstr ""
 `;
 });
 
-fs.appendFileSync(outputPOTName, potData, "utf8");
+
+fs.appendFileSync(outputPOTName, potData.join(""), "utf8");
