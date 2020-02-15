@@ -24,6 +24,9 @@ fi
 # disable https in cockpit and use http instead
 printf "[WebService]\\nAllowUnencrypted=true\\n" > /etc/cockpit/cockpit.conf
 
+# disable session timeout as some tests wait for too long
+printf "[Session]\\nIdleTimeout=0\\n" >> /etc/cockpit/cockpit.conf
+
 # Make cockpit.socket auto-start when system started
 # Do not start it during image generation
 systemctl enable cockpit.socket
