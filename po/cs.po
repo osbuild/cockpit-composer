@@ -2,16 +2,16 @@
 # Matej Marusak <mmarusak@redhat.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-01-06T09:33:37.052Z\n"
+"POT-Creation-Date: 2020-02-10T12:16:15.012Z\n"
 "PO-Revision-Date: 2020-01-08 02:15+0000\n"
 "Last-Translator: Matej Marusak <mmarusak@redhat.com>\n"
 "Language-Team: Czech <https://translate.stg.fedoraproject.org/projects/"
 "cockpit-composer/master/cs/>\n"
 "Language: cs\n"
 "Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Weblate 3.9.1\n"
-"Content-Transfer-Encoding: 8bit\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -1805,6 +1805,12 @@ msgstr "{selectComponents} v tomto seznamu pro přidání do plánku."
 #: build/messages/components/Pagination/Pagination.json
 msgid "{startNumber} - {endNumber} of {totalNumber}"
 msgstr "{startNumber} - {endNumber} z {totalNumber}"
+
+#: public/manifest.json
+#, fuzzy
+#| msgid "Create Image"
+msgid "Creating system images"
+msgstr "Vytvořit obraz"
 
 #: public/manifest.json
 msgid "Image Builder"

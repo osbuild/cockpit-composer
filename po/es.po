@@ -3,7 +3,7 @@
 # Dennis Tobar <DENNIS.TOBAR@gmail.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-01-24T03:27:37.794Z\n"
+"POT-Creation-Date: 2020-02-10T12:16:15.012Z\n"
 "PO-Revision-Date: 2020-01-22 11:15+0000\n"
 "Last-Translator: Dennis Tobar <DENNIS.TOBAR@gmail.com>\n"
 "Language-Team: Spanish <https://translate.stg.fedoraproject.org/projects/"
@@ -1803,6 +1803,12 @@ msgstr "{selectComponents} en esta lista para añadir al plano."
 #: build/messages/components/Pagination/Pagination.json
 msgid "{startNumber} - {endNumber} of {totalNumber}"
 msgstr "{startNumber} - {endNumber} de {totalNumber}"
+
+#: public/manifest.json
+#, fuzzy
+#| msgid "Create Image"
+msgid "Creating system images"
+msgstr "Crear imagen"
 
 #: public/manifest.json
 msgid "Image Builder"

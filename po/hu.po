@@ -2,7 +2,7 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-01-06T09:33:37.052Z\n"
+"POT-Creation-Date: 2020-02-10T12:16:15.012Z\n"
 "PO-Revision-Date: 2019-05-27 09:01+0000\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Hungarian\n"
@@ -1805,6 +1805,12 @@ msgstr "{selectComponents} a listában, és adja hozzá azokat a tervrajzhoz."
 #: build/messages/components/Pagination/Pagination.json
 msgid "{startNumber} - {endNumber} of {totalNumber}"
 msgstr "{startNumber} – {endNumber} / {totalNumber}"
+
+#: public/manifest.json
+#, fuzzy
+#| msgid "Create Image"
+msgid "Creating system images"
+msgstr "Kép létrehozása"
 
 #: public/manifest.json
 msgid "Image Builder"

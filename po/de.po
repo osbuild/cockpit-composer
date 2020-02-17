@@ -2,7 +2,7 @@
 # Mike FABIAN <mfabian@redhat.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-01-08T14:47:00.417Z\n"
+"POT-Creation-Date: 2020-02-10T12:16:15.012Z\n"
 "PO-Revision-Date: 2020-01-15 06:47+0000\n"
 "Last-Translator: Mike FABIAN <mfabian@redhat.com>\n"
 "Language-Team: German <https://translate.stg.fedoraproject.org/projects/"
@@ -1815,6 +1815,12 @@ msgstr "{selectComponents} in dieser Liste, um sie zum Bauplan hinzuzufügen."
 #: build/messages/components/Pagination/Pagination.json
 msgid "{startNumber} - {endNumber} of {totalNumber}"
 msgstr "{startNumber} - {endNumber} von {totalNumber}"
+
+#: public/manifest.json
+#, fuzzy
+#| msgid "Create Image"
+msgid "Creating system images"
+msgstr "Bild erstellen"
 
 #: public/manifest.json
 msgid "Image Builder"
