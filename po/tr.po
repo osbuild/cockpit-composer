@@ -1,7 +1,7 @@
 # Oğuz Ersen <oguzersen@protonmail.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-01-06T09:33:37.052Z\n"
+"POT-Creation-Date: 2020-02-10T12:16:15.012Z\n"
 "PO-Revision-Date: 2020-01-10 16:15+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://translate.stg.fedoraproject.org/projects/"
@@ -83,8 +83,6 @@ msgstr "Plan Bileşenleri Ekle"
 #. defaultMessage is:
 #. Add Source
 #: build/messages/components/Modal/ManageSources.json
-#: build/messages/components/Modal/ManageSources.json
-#: build/messages/components/Modal/ManageSources.json
 msgid "Add Source"
 msgstr "Kaynak Ekle"
 
@@ -121,7 +119,9 @@ msgstr "Bir Hata Oluştu"
 #. defaultMessage is:
 #. An error occurred when saving the source. Check that the path is valid and try again.
 #: build/messages/components/Modal/ManageSources.json
-msgid "An error occurred when saving the source. Check that the path is valid and try again."
+msgid ""
+"An error occurred when saving the source. Check that the path is valid and "
+"try again."
 msgstr ""
 "Kaynak kaydedilirken bir hata oluştu. Konumun geçerli olup olmadığını "
 "kontrol edin ve tekrar deneyin."
@@ -338,7 +338,9 @@ msgstr "Önceki bir oturumda yapılan değişiklikler"
 #. defaultMessage is:
 #. Changes made in a previous session are not listed in the order they were made. If you choose to undo these changes, they are undone as a group.
 #: build/messages/components/Modal/PendingChanges.json
-msgid "Changes made in a previous session are not listed in the order they were made. If you choose to undo these changes, they are undone as a group."
+msgid ""
+"Changes made in a previous session are not listed in the order they were "
+"made. If you choose to undo these changes, they are undone as a group."
 msgstr ""
 "Önceki bir oturumda yapılan değişiklikler yapıldıkları sıraya göre "
 "listelenmez. Bu değişiklikleri geri almayı seçerseniz, bunlar grup olarak "
@@ -393,7 +395,6 @@ msgstr "Tüm Filtreleri Temizle"
 #. defaultMessage is:
 #. Close
 #: build/messages/components/Modal/ExportBlueprint.json
-#: build/messages/components/Modal/ManageSources.json
 #: build/messages/components/Modal/ManageSources.json
 #: build/messages/components/Modal/PendingChanges.json
 #: build/messages/components/Notifications/Notification.json
@@ -508,7 +509,9 @@ msgstr "Kullanıcı Hesabı Oluştur"
 #. defaultMessage is:
 #. Create a blueprint to define the contents that will be included in the images you create. Images can be produced in a variety of output formats.
 #: build/messages/pages/blueprints/index.json
-msgid "Create a blueprint to define the contents that will be included in the images you create. Images can be produced in a variety of output formats."
+msgid ""
+"Create a blueprint to define the contents that will be included in the "
+"images you create. Images can be produced in a variety of output formats."
 msgstr ""
 "Oluşturduğunuz görüntülere eklenecek içeriği tanımlamak için bir plan "
 "oluşturun. Görüntüler çeşitli çıkış formatlarında oluşturulabilir."
@@ -587,7 +590,6 @@ msgstr "Kullanıcı Hesabı Sil"
 #. Dependencies
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/components/ListView/ComponentDetailsView.json
-#: build/messages/components/ListView/ComponentSummaryList.json
 #: build/messages/components/ListView/ComponentSummaryList.json
 msgid "Dependencies"
 msgstr "Bağımlılıklar"
@@ -999,7 +1001,6 @@ msgstr "Sayfalandırma"
 #. defaultMessage is:
 #. Password
 #: build/messages/components/Modal/UserAccount.json
-#: build/messages/components/Modal/UserAccount.json
 msgid "Password"
 msgstr "Parola"
 
@@ -1258,7 +1259,11 @@ msgstr "Kaynaklar"
 #. defaultMessage is:
 #. Sources are used for resolving blueprint dependencies and for composing images. When adding custom sources you must make sure that the packages in the source do not conflict with any other package sources, otherwise resolving dependencies and composing images will fail.
 #: build/messages/components/Modal/ManageSources.json
-msgid "Sources are used for resolving blueprint dependencies and for composing images. When adding custom sources you must make sure that the packages in the source do not conflict with any other package sources, otherwise resolving dependencies and composing images will fail."
+msgid ""
+"Sources are used for resolving blueprint dependencies and for composing "
+"images. When adding custom sources you must make sure that the packages in "
+"the source do not conflict with any other package sources, otherwise "
+"resolving dependencies and composing images will fail."
 msgstr ""
 "Kaynaklar, plan bağımlılıklarını çözümlemek ve görüntü oluşturmak için "
 "kullanılır. Özel kaynaklar eklerken, kaynaktaki paketlerin başka paket "
@@ -1354,7 +1359,8 @@ msgstr "{name} ismi zaten mevcut."
 #. defaultMessage is:
 #. The page you're looking for does not exist or an another error occurred.
 #: build/messages/pages/error/index.json
-msgid "The page you're looking for does not exist or an another error occurred."
+msgid ""
+"The page you're looking for does not exist or an another error occurred."
 msgstr "Aradığınız sayfa mevcut değil veya başka bir hata oluştu."
 
 #. [components.EmptyState.alertTitleEnableServiceFailure]
@@ -1368,7 +1374,9 @@ msgstr "lorax-composer servisi başlatılmadı."
 #. defaultMessage is:
 #. The user name can only consist of letters from a-z, digits, dots, dashes and underscores.
 #: build/messages/components/Modal/UserAccount.json
-msgid "The user name can only consist of letters from a-z, digits, dots, dashes and underscores."
+msgid ""
+"The user name can only consist of letters from a-z, digits, dots, dashes and "
+"underscores."
 msgstr ""
 "Kullanıcı adı sadece a-z arasındaki harf, rakam, nokta, tire ve alt çizgi "
 "karakterlerinden oluşabilir."
@@ -1391,7 +1399,9 @@ msgstr "Parola için girilen değerler eşleşmiyor."
 #. defaultMessage is:
 #. There are no components listed in the blueprint. Edit the blueprint to add components.
 #: build/messages/pages/blueprint/index.json
-msgid "There are no components listed in the blueprint. Edit the blueprint to add components."
+msgid ""
+"There are no components listed in the blueprint. Edit the blueprint to add "
+"components."
 msgstr ""
 "Planda listelenen hiçbir bileşen yok. Bileşen eklemek için planı düzenleyin."
 
@@ -1410,7 +1420,9 @@ msgstr "Bu eylem geri alınamaz."
 #. defaultMessage is:
 #. This blueprint has changes that are not committed. These changes will be committed before the image is created.
 #: build/messages/components/Modal/CreateImage.json
-msgid "This blueprint has changes that are not committed. These changes will be committed before the image is created."
+msgid ""
+"This blueprint has changes that are not committed. These changes will be "
+"committed before the image is created."
 msgstr ""
 "Bu planda işlenmemiş değişiklikler var. Bu değişiklikler görüntü "
 "oluşturulmadan önce işlenecektir."
@@ -1433,7 +1445,9 @@ msgstr "Bu bileşenin hiçbir bağımlılığı yok."
 #. defaultMessage is:
 #. This process can take a while. Images are built in the order they are started.
 #: build/messages/components/Modal/CreateImage.json
-msgid "This process can take a while. Images are built in the order they are started."
+msgid ""
+"This process can take a while. Images are built in the order they are "
+"started."
 msgstr ""
 "Bu işlem biraz zaman alabilir. Görüntüler başlatıldıkları sırayla "
 "oluşturulur."
@@ -1587,7 +1601,9 @@ msgstr "Kullanıcılar"
 #. defaultMessage is:
 #. Valid characters for hostname are letters from a to z, the digits from 0 to 9, and the hyphen (-). A hostname may not start with a hyphen.
 #: build/messages/pages/blueprint/index.json
-msgid "Valid characters for hostname are letters from a to z, the digits from 0 to 9, and the hyphen (-). A hostname may not start with a hyphen."
+msgid ""
+"Valid characters for hostname are letters from a to z, the digits from 0 to "
+"9, and the hyphen (-). A hostname may not start with a hyphen."
 msgstr ""
 "Ana bilgisayar adı için geçerli karakterler a-z arasındaki harfler, 0'dan "
 "9'a rakamlar ve kısa çizgi (-) karakteridir. Ana bilgisayar adı kısa çizgi "
@@ -1780,7 +1796,8 @@ msgstr "{heading} {parenthetical}"
 #. defaultMessage is:
 #. {pendingChanges, plural, one {# Pending Change} other {# Pending Changes}}
 #: build/messages/pages/blueprintEdit/index.json
-msgid "{pendingChanges, plural, one {# Pending Change} other {# Pending Changes}}"
+msgid ""
+"{pendingChanges, plural, one {# Pending Change} other {# Pending Changes}}"
 msgstr ""
 "{pendingChanges, plural, one {# Bekleyen Değişiklik} other {# Bekleyen "
 "Değişiklik}}"
@@ -1799,6 +1816,12 @@ msgstr "Plana eklemek için bu listeden {selectComponents}."
 msgid "{startNumber} - {endNumber} of {totalNumber}"
 msgstr "{startNumber} - {endNumber} / {totalNumber}"
 
-#: ./public/manifest.json
+#: public/manifest.json
+#, fuzzy
+#| msgid "Create Image"
+msgid "Creating system images"
+msgstr "Görüntü Oluştur"
+
+#: public/manifest.json
 msgid "Image Builder"
 msgstr "Görüntü Oluşturucu"
