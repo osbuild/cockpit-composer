@@ -9,20 +9,7 @@ RELEASE_SOURCE="_release/source"
 RELEASE_SPEC="cockpit-composer.spec"
 RELEASE_SRPM="_release/srpm"
 
-# Authenticate for pushing into Fedora dist-git
-cat ~/.fedora-password | kinit cockpit@FEDORAPROJECT.ORG
-
 job release-source
 job release-srpm -V
 
-# Do fedora builds for the tag, using tarball
-job release-koji master
-job release-koji f31
-job release-koji f30
-
 job release-github
-job release-copr @weldr/cockpit-composer
-
-# Create a Bodhi update for stable Fedora releases
-job release-bodhi F31
-job release-bodhi F30
