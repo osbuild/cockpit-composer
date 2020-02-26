@@ -5,8 +5,8 @@
 # Julien Humbert <julroy67@gmail.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-02-10T12:16:15.012Z\n"
-"PO-Revision-Date: 2020-02-16 09:38+0000\n"
+"POT-Creation-Date: 2020-02-17T12:46:19.361Z\n"
+"PO-Revision-Date: 2020-02-18 14:38+0000\n"
 "Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
 "Language-Team: French <https://translate.fedoraproject.org/projects/cockpit-"
 "composer/master/fr/>\n"
@@ -1833,10 +1833,8 @@ msgid "{startNumber} - {endNumber} of {totalNumber}"
 msgstr "{startNumber} - {endNumber} de {totalNumber}"
 
 #: public/manifest.json
-#, fuzzy
-#| msgid "Create Image"
 msgid "Creating system images"
-msgstr "Créer une image"
+msgstr "Création des images systèmes"
 
 #: public/manifest.json
 msgid "Image Builder"
