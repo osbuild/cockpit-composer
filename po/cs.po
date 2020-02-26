@@ -1,17 +1,17 @@
-# Pavel Borecki <pavel.borecki@gmail.com>, 2019. #zanata
+# Pavel Borecki <pavel.borecki@gmail.com>, 2019. #zanata, 2020.
 # Matej Marusak <mmarusak@redhat.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-02-10T12:16:15.012Z\n"
-"PO-Revision-Date: 2020-01-08 02:15+0000\n"
-"Last-Translator: Matej Marusak <mmarusak@redhat.com>\n"
-"Language-Team: Czech <https://translate.stg.fedoraproject.org/projects/"
-"cockpit-composer/master/cs/>\n"
+"POT-Creation-Date: 2020-02-17T12:46:19.361Z\n"
+"PO-Revision-Date: 2020-02-18 14:38+0000\n"
+"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
+"Language-Team: Czech <https://translate.fedoraproject.org/projects/cockpit-"
+"composer/master/cs/>\n"
 "Language: cs\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 3.10.3\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -1807,10 +1807,8 @@ msgid "{startNumber} - {endNumber} of {totalNumber}"
 msgstr "{startNumber} - {endNumber} z {totalNumber}"
 
 #: public/manifest.json
-#, fuzzy
-#| msgid "Create Image"
 msgid "Creating system images"
-msgstr "Vytvořit obraz"
+msgstr "Vytváření systémových obrazů"
 
 #: public/manifest.json
 msgid "Image Builder"
