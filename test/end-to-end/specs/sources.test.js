@@ -2,7 +2,7 @@ import blueprintsPage from "../pages/blueprints.page";
 import sourcesPage from "../pages/sources.page";
 
 describe("Sources Page", function() {
-  const repo = "https://download.copr.fedorainfracloud.org/results/xiaofwan/sway-copr/fedora-31-x86_64";
+  const repo = "https://download.copr.fedorainfracloud.org/results/xiaofwan/sway-copr/fedora-31-x86_64/";
   const repoName = "sway-copr";
   describe("System source checking", function() {
     before(function() {
