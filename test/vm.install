@@ -3,10 +3,8 @@
 # The application RPM will be installed separately
 set -eux
 
-# Update lorax-composer using the updates-testing repository
-if grep -isq fedora /etc/redhat-release && grep -isq firefox /tmp/BROWSER; then
-    dnf install -y lorax-composer --enablerepo=updates-testing
-fi
+# Explicitly install lorax-composer for now, we want to test against that, not osbuild yet
+dnf install -y lorax-composer
 
 # Allow cockpit port (9090) in INPUT chain
 # Do not reload firewall rule during image generation
