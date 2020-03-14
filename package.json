@@ -24,7 +24,7 @@
     "react-redux": "5.1.2",
     "redux": "3.7.2",
     "redux-saga": "0.15.6",
-    "regenerator-runtime": "0.13.3",
+    "regenerator-runtime": "0.13.5",
     "reselect": "3.0.1",
     "shortid": "2.2.15",
     "whatwg-fetch": "1.1.1"
