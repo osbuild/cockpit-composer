@@ -80,14 +80,14 @@ describe("View Blueprint Page", function() {
     browser.deleteBlueprint(name);
   });
 
-  it(`image name should contain blueprint name "${name}" and type "tar"`, function() {
+  it(`image name should contain blueprint name "${name}" and type "Tar"`, function() {
     expect(viewBlueprintPage.imageNameLabel.getText())
       .to.include(name)
-      .and.include("tar");
+      .and.include("Tar");
   });
 
-  it("image type should be tar", function() {
-    expect(viewBlueprintPage.imageTypeLabel("tar").getText()).to.equal("tar");
+  it("image type should be Tar", function() {
+    expect(viewBlueprintPage.imageTypeLabel("Tar").getText()).to.equal("Tar");
   });
 
   it('should show "Complete"', function() {
