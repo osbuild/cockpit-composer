@@ -147,7 +147,11 @@ def run_e2e(verbose, image, browser, cpus, memory, sit):
         # Download report and screenshot to environment $TEST_ATTACHMENTS
         report_dir = os.environ.get("TEST_ATTACHMENTS", os.getcwd())
         os.makedirs(report_dir, exist_ok=True)
-        composer.download_dir("/root/end-to-end/wdio_report", report_dir)
+        # Always download junit report required by gating
+        composer.download("/root/end-to-end/wdio_report/xunit_report.xml", report_dir)
+        # Download timeline report for failed only
+        if not success:
+            composer.download("/root/end-to-end/wdio_report/timeline/timeline-reporter.html", report_dir)
         # Save cockpit and lorax-composer package version information
         cmd = 'rpm -qa name="cockpit*" "lorax*" > /tmp/composer.covered'
         composer.execute(cmd, timeout=600)
