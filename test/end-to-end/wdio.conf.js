@@ -161,7 +161,7 @@ exports.config = {
     [
       "timeline",
       {
-        outputDir: reportDir,
+        outputDir: `${reportDir}/timeline`,
         fileName: "timeline-reporter.html",
         embedImages: true,
         images: {
