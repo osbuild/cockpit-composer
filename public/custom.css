@@ -812,6 +812,7 @@ body {
 
 /* form group checkbox alignment fix */
 .pf-c-form__horizontal-group .pf-c-check,
+.pf-c-form__horizontal-group .pf-c-radio,
 .cc-c-form__static-text {
   padding-top: var(--pf-global--spacer--form-element);
   padding-bottom: var(--pf-global--spacer--form-element);
@@ -837,6 +838,7 @@ body {
 .cc-c-popover__horizontal-group {
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
 }
 
 .cc-c-form__required-text {
@@ -851,4 +853,17 @@ body {
 .cc-c-text__danger-icon {
   color: var(--pf-global--danger-color--100);
   vertical-align: -0.125em;
+}
+
+/* Setting a fixed width similar to the values used in horizontal forms */
+/* var(--pf-c-form--m-horizontal--md__group--GridTemplateColumns)  */
+/* NOTE that 576px is defined as a sass variable in PF source code as min-width: $pf-global--breakpoint--sm */
+@media screen and (min-width: 576px) {
+  .pf-c-content dl.cc-m-column__fixed-width {
+    grid-template-columns: 200px 1fr;
+  }
+}
+
+.pf-c-form.pf-m-horizontal.cc-m-wide-label .pf-c-form__group {
+  grid-template-columns: 200px 1fr;
 }
