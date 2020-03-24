@@ -110,7 +110,7 @@ class CreateImageUploadModal extends React.Component {
       imageType: "",
       imageName: "",
       imageSize: "",
-      minImageSize: null,
+      minImageSize: 0,
       maxImageSize: 2000,
       showUploadAwsStep: false,
       showReviewStep: false,
@@ -123,6 +123,7 @@ class CreateImageUploadModal extends React.Component {
     this.missingRequiredFields = this.missingRequiredFields.bind(this);
     this.setNotifications = this.setNotifications.bind(this);
     this.setImageSize = this.setImageSize.bind(this);
+    this.setImageName = this.setImageName.bind(this);
     this.setImageType = this.setImageType.bind(this);
     this.setUploadSettings = this.setUploadSettings.bind(this);
     this.handleUploadService = this.handleUploadService.bind(this);
@@ -160,14 +161,21 @@ class CreateImageUploadModal extends React.Component {
     this.props.layout.setNotifications();
   }
 
-  setUploadSettings(value, event) {
-    const key = event.target.id;
+  setUploadSettings(_, event) {
+    const key = event.target.name;
+    const value = event.target.value;
     this.setState(prevState => ({ uploadSettings: Object.assign({}, prevState.uploadSettings, { [key]: value }) }));
   }
 
   setImageSize(value) {
     this.setState({
       imageSize: value
+    });
+  }
+
+  setImageName(value) {
+    this.setState({
+      imageName: value
     });
   }
 
@@ -226,6 +234,12 @@ class CreateImageUploadModal extends React.Component {
         case "aws":
           this.setState({
             uploadService: uploadService,
+            uploadSettings: {
+              accessKeyID: "",
+              secretAccessKey: "",
+              bucket: "",
+              region: ""
+            },
             showUploadAwsStep: true,
             showReviewStep: true
           });
@@ -311,23 +325,71 @@ class CreateImageUploadModal extends React.Component {
       uploadService
     } = this.state;
 
-    const providerCheckbox = (provider, displayName) => (
-      <FormGroup
-        label={this.props.intl.formatMessage({ id: `${provider}-form`, defaultMessage: "Upload image" })}
-        fieldId="provider-checkbox"
-      >
-        <Checkbox
-          value={provider}
-          isChecked={this.state.uploadService === provider}
-          onChange={this.handleUploadService}
-          label={this.props.intl.formatMessage({
-            id: `${provider}-checkbox`,
-            defaultMessage: `Upload to ${displayName}`
-          })}
-          id={`${provider}-checkbox`}
-          aria-labelledby="provider-checkbox"
-        />
-      </FormGroup>
+    const awsProviderCheckbox = (
+      <div className="pf-c-form__group">
+        <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-u-display-flex pf-m-justify-content-flex-start pf-m-nowrap">
+          <span className="pf-l-flex__item pf-c-form__label-text">
+            <FormattedMessage defaultMessage="Upload image" />
+          </span>
+          <Popover
+            id="popover-help"
+            bodyContent={
+              <TextContent>
+                <p>
+                  <FormattedMessage
+                    defaultMessage="
+                      Image Builder can upload images you create to an {bucket} in {aws} (AWS) and then import them into EC2. When the image build is complete
+                      and the upload action is successful, the image file is available in the AMI section of EC2. Most of the values required to upload
+                      the image can be found in the {console}.
+                    "
+                    values={{
+                      bucket: "S3 bucket",
+                      aws: "Amazon Web Services",
+                      console: <a href="https://console.aws.amazon.com/console/home">AWS Management Console</a>
+                    }}
+                  />
+                </p>
+                <p>
+                  <FormattedMessage
+                    defaultMessage="
+                      This upload process requires that you have an {iam} role named {vmimport} to ensure that the image can
+                      be imported from the S3 {bucket} into EC2. For more details, refer to the {role}.
+                    "
+                    values={{
+                      bucket: "bucket",
+                      vmimport: <code>vmimport</code>,
+                      iam: "Identity and Access Management (IAM)",
+                      role: (
+                        <a href="https://docs.aws.amazon.com/vm-import/latest/userguide/vmie_prereqs.html#vmimport-role">
+                          AWS Required Service Role
+                        </a>
+                      )
+                    }}
+                  />
+                </p>
+              </TextContent>
+            }
+            aria-label="Upload image help"
+          >
+            <Button variant="plain" aria-label="Upload image help">
+              <OutlinedQuestionCircleIcon id="popover-icon" />
+            </Button>
+          </Popover>
+        </div>
+        <div className="pf-c-form__horizontal-group">
+          <Checkbox
+            value="aws"
+            isChecked={this.state.uploadService === "aws"}
+            onChange={this.handleUploadService}
+            label={this.props.intl.formatMessage({
+              id: `aws-checkbox`,
+              defaultMessage: `Upload to AWS`
+            })}
+            id="aws-checkbox"
+            aria-labelledby="provider-checkbox"
+          />
+        </div>
+      </div>
     );
 
     const imageStep = {
@@ -350,11 +412,9 @@ class CreateImageUploadModal extends React.Component {
               title={formatMessage(messages.warningEmptyBlueprint)}
             />
           )}
-          <Form isHorizontal>
-            <div className="pf-c-form__group">
-              <label className="pf-c-form__label" htmlFor="blueprint-name">
-                <span className="pf-c-form__label-text">Blueprint</span>
-              </label>
+          <Form isHorizontal className="cc-m-wide-label">
+            <div className="pf-c-form__group cc-c-form__horizontal-align">
+              <span className="pf-c-form__label-text">Blueprint</span>
               <div className="pf-c-form__horizontal-group cc-c-popover__horizontal-group">
                 <Text id="blueprint-name">{blueprint.name}</Text>
                 <Popover
@@ -376,7 +436,7 @@ class CreateImageUploadModal extends React.Component {
                 ))}
               </FormSelect>
             </FormGroup>
-            {imageType === "ami" && providerCheckbox("aws", "AWS")}
+            {imageType === "ami" && awsProviderCheckbox}
             <div className="pf-c-form__group">
               <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-m-justify-content-flex-start">
                 <label htmlFor="create-image-size" className="pf-l-flex__item">
@@ -442,88 +502,228 @@ class CreateImageUploadModal extends React.Component {
       )
     };
 
-    const uploadAuth = provider => ({
+    const awsUploadAuth = {
       name: "Authentication",
       component: (
         <React.Fragment>
           <Text className="help-block cc-c-form__required-text">
             <FormattedMessage defaultMessage="All fields are required." />
           </Text>
-          {providerSettings[provider] !== undefined && (
-            <Form isHorizontal>
-              {Object.keys(providerSettings[provider].auth).map(key => (
-                <FormGroup
-                  label={formatMessage({
-                    id: `${provider}-auth`,
-                    defaultMessage: providerSettings[provider].auth[key].displayText
-                  })}
-                  fieldId={key}
-                  key={key}
+          <Form isHorizontal className="cc-m-wide-label">
+            <div className="pf-c-form__group">
+              <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-m-justify-content-flex-start pf-m-nowrap">
+                <label htmlFor="access-key-id-input" className="pf-c-form__label-text">
+                  <span className="pf-c-form__label-text">
+                    <FormattedMessage defaultMessage="Access key ID" />
+                  </span>
+                  <span className="pf-c-form__label-required" aria-hidden="true">
+                    &#42;
+                  </span>
+                </label>
+                <Popover
+                  id="popover-help"
+                  bodyContent={
+                    <FormattedMessage
+                      defaultMessage="You can create and find existing Access key IDs on the {iam} page in the AWS console."
+                      values={{
+                        iam: <strong>Identity and Access Management (IAM)</strong>
+                      }}
+                    />
+                  }
+                  aria-label="access key id help"
                 >
-                  <TextInput
-                    value={this.state.uploadSettings[key] || ""}
-                    type={providerSettings[provider].auth[key].isPassword ? "password" : "text"}
-                    id={key}
-                    key={key}
-                    onChange={this.setUploadSettings}
-                    isRequired
-                  />
-                </FormGroup>
-              ))}
-            </Form>
-          )}
+                  <Button variant="plain" aria-label="access key id help">
+                    <OutlinedQuestionCircleIcon id="popover-icon" />
+                  </Button>
+                </Popover>
+              </div>
+              <TextInput
+                className="pf-c-form-control"
+                value={this.state.uploadSettings["accessKeyID"]}
+                type="password"
+                id="access-key-id-input"
+                name="accessKeyID"
+                onChange={this.setUploadSettings}
+              />
+            </div>
+            <div className="pf-c-form__group">
+              <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-m-justify-content-flex-start pf-m-nowrap">
+                <label htmlFor="secret-access-key-input" className="pf-c-form__label-text">
+                  <span className="pf-c-form__label-text">
+                    <FormattedMessage defaultMessage="Secret access key" />
+                  </span>
+                  <span className="pf-c-form__label-required" aria-hidden="true">
+                    &#42;
+                  </span>
+                </label>
+                <Popover
+                  id="popover-help"
+                  bodyContent={
+                    <FormattedMessage
+                      defaultMessage="You can view the Secret access key only when you create a new Access key ID on the {iam} page in the AWS console."
+                      values={{
+                        iam: <strong>Identity and Access Management (IAM)</strong>
+                      }}
+                    />
+                  }
+                  aria-label="secret access key help"
+                >
+                  <Button variant="plain" aria-label="secret access key help">
+                    <OutlinedQuestionCircleIcon id="popover-icon" />
+                  </Button>
+                </Popover>
+              </div>
+              <TextInput
+                className="pf-c-form-control"
+                value={this.state.uploadSettings["secretAccessKey"]}
+                type="password"
+                id="secret-access-key-input"
+                name="secretAccessKey"
+                onChange={this.setUploadSettings}
+              />
+            </div>
+          </Form>
         </React.Fragment>
       )
-    });
+    };
 
-    const uploadSettings = provider => ({
-      name: "File upload",
+    const awsUploadSettings = {
+      name: "Destination",
       component: (
         <React.Fragment>
           <Text className="help-block cc-c-form__required-text">
             <FormattedMessage defaultMessage="All fields are required." />
           </Text>
-          {providerSettings[provider] !== undefined && (
-            <Form isHorizontal>
-              <FormGroup label={formatMessage({ id: "image-name", defaultMessage: "Image name" })} fieldId="image-name">
-                <TextInput
-                  value={imageName}
-                  type="text"
-                  id="image-name"
-                  aria-describedby="image-name"
-                  onChange={() => this.setState({ imageName: event.target.value })}
-                  isRequired
-                />
-              </FormGroup>
-              {Object.keys(providerSettings[provider].settings).map(key => (
-                <FormGroup
-                  label={formatMessage({
-                    id: `${provider}-settings`,
-                    defaultMessage: providerSettings[provider].settings[key].displayText
-                  })}
-                  fieldId={key}
-                  key={key}
+          <Form isHorizontal className="cc-m-wide-label">
+            <div className="pf-c-form__group">
+              <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-m-justify-content-flex-start pf-m-nowrap">
+                <label htmlFor="image-name-input" className="pf-c-form__label-text">
+                  <span className="pf-c-form__label-text">
+                    <FormattedMessage defaultMessage="Image name" />
+                  </span>
+                  <span className="pf-c-form__label-required" aria-hidden="true">
+                    &#42;
+                  </span>
+                </label>
+                <Popover
+                  id="popover-help"
+                  bodyContent={
+                    <React.Fragment>
+                      <FormattedMessage defaultMessage="Provide a file name to be used for the image file that will be uploaded." />
+                    </React.Fragment>
+                  }
+                  aria-label="image name help"
                 >
-                  <TextInput
-                    value={this.state.uploadSettings[key] || ""}
-                    type={providerSettings[provider].settings[key].isPassword ? "password" : "text"}
-                    id={key}
-                    key={key}
-                    onChange={this.setUploadSettings}
-                    isRequired
-                  />
-                </FormGroup>
-              ))}
-            </Form>
-          )}
+                  <Button variant="plain" aria-label="image name help">
+                    <OutlinedQuestionCircleIcon id="popover-icon" />
+                  </Button>
+                </Popover>
+              </div>
+              <TextInput
+                className="pf-c-form-control"
+                value={imageName}
+                type="text"
+                id="image-name-input"
+                onChange={this.setImageName}
+              />
+            </div>
+            <div className="pf-c-form__group">
+              <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-m-justify-content-flex-start pf-m-nowrap">
+                <label htmlFor="bucket-input" className="pf-c-form__label-text">
+                  <span className="pf-c-form__label-text">Amazon S3 bucket</span>
+                  <span className="pf-c-form__label-required" aria-hidden="true">
+                    &#42;
+                  </span>
+                </label>
+                <Popover
+                  id="bucket-popover"
+                  bodyContent={
+                    <React.Fragment>
+                      <FormattedMessage
+                        defaultMessage="
+                          Provide the S3 {bucket} name to which the image file will be uploaded before being imported into EC2. 
+                          The {bucket} must already exist in the Region where you want to import your image. You can find a list of {buckets} on the
+                          {bucketsPage} page in the {amazon} S3 storage service in the AWS console.
+                        "
+                        values={{
+                          bucket: "bucket",
+                          buckets: "buckets",
+                          bucketsPage: <strong>S3 buckets</strong>,
+                          amazon: "Amazon"
+                        }}
+                      />
+                    </React.Fragment>
+                  }
+                  aria-label="bucket help"
+                >
+                  <Button variant="plain" aria-label="bucket help">
+                    <OutlinedQuestionCircleIcon id="popover-icon" />
+                  </Button>
+                </Popover>
+              </div>
+              <TextInput
+                className="pf-c-form-control"
+                value={this.state.uploadSettings["bucket"]}
+                type="text"
+                id="bucket-input"
+                name="bucket"
+                onChange={this.setUploadSettings}
+              />
+            </div>
+            <div className="pf-c-form__group">
+              <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-m-justify-content-flex-start pf-m-nowrap">
+                <label htmlFor="region-input" className="pf-c-form__label-text">
+                  <span className="pf-c-form__label-text">
+                    <FormattedMessage defaultMessage="AWS region" />
+                  </span>
+                  <span className="pf-c-form__label-required" aria-hidden="true">
+                    &#42;
+                  </span>
+                </label>
+                <Popover
+                  id="region-popover"
+                  bodyContent={
+                    <FormattedMessage
+                      defaultMessage="
+                        Provide the AWS Region where you want to import your image. This must be the same region where the {bucket} exists. 
+                        You can find a list of regions in the {awsUserGuide}.
+                      "
+                      values={{
+                        bucket: "S3 bucket",
+                        awsUserGuide: (
+                          <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html">
+                            AWS User Guide
+                          </a>
+                        )
+                      }}
+                    />
+                  }
+                  aria-label="region help"
+                >
+                  <Button variant="plain" aria-label="region help">
+                    <OutlinedQuestionCircleIcon id="popover-icon" />
+                  </Button>
+                </Popover>
+              </div>
+              <TextInput
+                className="pf-c-form-control"
+                value={this.state.uploadSettings["region"]}
+                placeholder="E.g. eu-central-1"
+                type="text"
+                id="region-input"
+                name="region"
+                onChange={this.setUploadSettings}
+              />
+            </div>
+          </Form>
         </React.Fragment>
       )
-    });
+    };
 
-    const uploadStep = (provider, displayName) => ({
-      name: `Upload to ${displayName}`,
-      steps: [uploadAuth(provider), uploadSettings(provider)]
-    });
+    const uploadStep = {
+      name: `Upload to AWS`,
+      steps: [awsUploadAuth, awsUploadSettings]
+    };
 
     const reviewStep = {
       name: "Review",
@@ -613,11 +813,7 @@ class CreateImageUploadModal extends React.Component {
       )
     };
 
-    const steps = [
-      imageStep,
-      ...(showUploadAwsStep ? [uploadStep("aws", "AWS")] : []),
-      ...(showReviewStep ? [reviewStep] : [])
-    ];
+    const steps = [imageStep, ...(showUploadAwsStep ? [uploadStep] : []), ...(showReviewStep ? [reviewStep] : [])];
 
     const createImageUploadFooter = (
       <WizardFooter>
