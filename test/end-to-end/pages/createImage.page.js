@@ -1,7 +1,7 @@
 // Create Image Page
 class CreateImagePage {
   constructor() {
-    this.containerSelector = '[id="cmpsr-modal-crt-image"]';
+    this.containerSelector = '[id="create-image-upload-wizard"]';
   }
 
   loading() {
@@ -9,31 +9,31 @@ class CreateImagePage {
   }
 
   get alertMessage() {
-    return $(`${this.containerSelector} .alert-warning`).element();
+    return $(`${this.containerSelector} [id="pending-changes-alert"]`).element();
   }
 
   get blueprintNameLabel() {
-    return $(`${this.containerSelector} .form-control-static`).element();
+    return $(`${this.containerSelector} [id="blueprint-name"]`).element();
   }
 
   get selectOption() {
-    return $$(`${this.containerSelector} select[id="textInput-modal-markup"] option`);
+    return $$(`${this.containerSelector} select[id="image-type"] option`);
   }
 
   get imageTypeSelect() {
-    return $('select[id="textInput-modal-markup"]').element();
+    return $('select[id="image-type"]').element();
   }
 
   get helpButton() {
-    return $(`${this.containerSelector} .pficon-help`).element();
+    return $(`${this.containerSelector} [id="popover-icon"]`).element();
   }
 
   get helpMessage() {
-    return $('[id="CreateImageInfotip"] .popover-content').element();
+    return $(`[id="popover-help"]`).element();
   }
 
   get createButton() {
-    return $(`${this.containerSelector} .btn-primary`);
+    return $(`${this.containerSelector} [id="continue-button"]`);
   }
 
   get commitAndCreateButton() {
@@ -48,7 +48,7 @@ class CreateImagePage {
 
   get cancelButton() {
     return $(this.containerSelector)
-      .$("span=Cancel")
+      .$(`button[id="cancel-button"]`)
       .element();
   }
 }

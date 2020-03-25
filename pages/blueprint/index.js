@@ -11,8 +11,8 @@ import Layout from "../../components/Layout/Layout";
 import BlueprintContents from "../../components/ListView/BlueprintContents";
 import ComponentDetailsView from "../../components/ListView/ComponentDetailsView";
 import UserAccount from "../../components/Modal/UserAccount";
-import CreateImage from "../../components/Modal/CreateImage";
 import EditDescription from "../../components/Modal/EditDescription";
+import CreateImageUpload from "../../components/Modal/CreateImageUpload";
 import ExportBlueprint from "../../components/Modal/ExportBlueprint";
 import StopBuild from "../../components/Modal/StopBuild";
 import DeleteImage from "../../components/Modal/DeleteImage";
@@ -331,7 +331,7 @@ class BlueprintPage extends React.Component {
                 </Link>
               </li>
               <li>
-                <CreateImage blueprint={blueprint} layout={this.layout} />
+                <CreateImageUpload blueprint={blueprint} layout={this.layout} />
               </li>
               <li>
                 <div className="dropdown dropdown-kebab-pf">
@@ -555,7 +555,7 @@ class BlueprintPage extends React.Component {
                   title={formatMessage(messages.noImagesTitle)}
                   message={formatMessage(messages.noImagesMessage)}
                 >
-                  <CreateImage blueprint={blueprint} layout={this.layout} />
+                  <CreateImageUpload blueprint={blueprint} layout={this.layout} />
                 </EmptyState>
               )) || (
                 <ImagesDataList ariaLabel={formatMessage(messages.imagesTitle)}>
@@ -655,7 +655,7 @@ BlueprintPage.propTypes = {
     composeId: PropTypes.string,
     visible: PropTypes.bool
   }),
-  createImage: PropTypes.shape({
+  CreateImageUpload: PropTypes.shape({
     blueprint: PropTypes.object,
     visible: PropTypes.bool
   }),
@@ -714,7 +714,7 @@ BlueprintPage.defaultProps = {
   setBlueprintHostname: function() {},
   stopBuild: {},
   deleteImage: {},
-  createImage: {},
+  CreateImageUpload: {},
   userAccount: {},
   dependenciesSortSetValue: function() {},
   componentsSortSetValue: function() {},
@@ -764,7 +764,6 @@ const makeMapStateToProps = () => {
           state.inputs.selectedInput.component.dependencies,
           fetchedBlueprint.present.components
         ),
-        createImage: state.modals.createImage,
         userAccount: state.modals.userAccount,
         stopBuild: state.modals.stopBuild,
         deleteImage: state.modals.deleteImage,
@@ -783,7 +782,6 @@ const makeMapStateToProps = () => {
       composeList: [],
       composesLoading: state.composes.fetchingComposes,
       blueprintPage: state.blueprintPage,
-      createImage: state.modals.createImage,
       userAccount: state.modals.userAccount,
       stopBuild: state.modals.stopBuild,
       deleteImage: state.modals.deleteImage,
