@@ -28,7 +28,7 @@ class EditPackagesPage {
   }
 
   get createImageButton() {
-    return $("span=Create Image").element();
+    return $(`button[id="create-image-button"]`).element();
   }
 
   get moreButton() {

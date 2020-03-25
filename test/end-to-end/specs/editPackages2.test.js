@@ -295,7 +295,8 @@ describe("Edit Blueprint Page", function() {
 
     it("should show a correct alert message in Create Image dialog", function() {
       expect(createImagePage.alertMessage.getText().trim()).to.equal(
-        "This blueprint has changes that are not committed. These changes will be committed before the image is created."
+        "Warning alert:\n" +
+          "This blueprint has changes that are not committed. These changes will be committed before the image is created."
       );
     });
   });
