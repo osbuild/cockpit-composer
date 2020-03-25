@@ -6,6 +6,7 @@ import modals from "./modals";
 import sort from "./sort";
 import filter from "./filter";
 import composes from "./composes";
+import uploads from "./uploads";
 
 const rootReducer = combineReducers({
   blueprints,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   modals,
   sort,
   filter,
-  composes
+  composes,
+  uploads
 });
 
 export default rootReducer;
