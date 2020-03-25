@@ -1,4 +1,5 @@
 import cockpit from "cockpit";
+import providerSettings from "../data/providers";
 
 let cockpitHttp = cockpit.http("/run/weldr/api.socket", { superuser: "try" });
 
@@ -212,5 +213,6 @@ export function getFailedComposes() {
 }
 
 export function getComposeLog(uuid) {
-  return get("/api/v0/compose/log/" + encodeURIComponent(uuid), { replyFormat: "raw" });
+export function getUploadProviders() {
+  return providerSettings;
 }
