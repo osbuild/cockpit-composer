@@ -23,7 +23,7 @@ class ViewBlueprintPage {
   get createImageButton() {
     // cannot use 'span=Create Image' because there're two Create Image buttons
     // another one is under Image tab
-    return $('.cmpsr-header__actions [id="cmpsr-btn-crt-image"] span').element();
+    return $('.cmpsr-header__actions button[id="create-image-button"]').element();
   }
 
   get moreButton() {

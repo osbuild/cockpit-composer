@@ -74,12 +74,13 @@ const messages = defineMessages({
 class ListItemImages extends React.Component {
   constructor() {
     super();
-    this.state = { logsExpanded: false };
+    this.state = { logsExpanded: false, uploadsExpanded: false };
     this.handleDelete = this.handleDelete.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
     this.handleShowModalStop = this.handleShowModalStop.bind(this);
     this.handleShowModalDeleteImage = this.handleShowModalDeleteImage.bind(this);
     this.handleLogsShow = this.handleLogsShow.bind(this);
+    this.handleUploadsShow = this.handleUploadsShow.bind(this);
   }
 
   // maps to Remove button for FAILED

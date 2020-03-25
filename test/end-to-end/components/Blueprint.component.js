@@ -21,7 +21,7 @@ class Blueprint {
   }
 
   get createImageButton() {
-    return $(`${this.containerSelector} button[class="btn btn-default"]`).element();
+    return $(`${this.containerSelector} button[id="create-image-button"]`).element();
   }
 
   get moreDropdownMenu() {
