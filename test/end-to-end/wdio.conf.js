@@ -218,7 +218,6 @@ exports.config = {
    * @param {Array.<String>} specs List of spec file paths that are to be run
    */
   before: function(capabilities, specs) {
-    console.log(specs);
     // Add commands to WebdriverIO
     Object.keys(commands).forEach(key => {
       if (key === "setInputValue" || key === "element" || key === "sendKey") {
@@ -237,7 +236,6 @@ exports.config = {
     if (specs[0].indexOf("api.test") !== -1) {
       browser.startLoraxIfItDoesNotStart();
 
-    // try {
       const blankNewButton = $('.blank-slate-pf [id="cmpsr-btn-crt-blueprint"]');
       blankNewButton.waitForDisplayed(timeout/2);
       const name = faker.lorem.slug();
@@ -250,9 +248,6 @@ exports.config = {
         const description = faker.lorem.sentence();
         browser.newBlueprint(name, description);
       })
-    // } catch (e) {
-    //   console.error(e);
-    // }
     }
   },
   /**
@@ -261,7 +256,7 @@ exports.config = {
    * @param {Array} args arguments that command would receive
    */
   beforeCommand: function() {
-    browser.pause(100);
+    browser.pause(200);
   },
   /**
    * Hook that gets executed before the suite starts

@@ -60,7 +60,7 @@ describe("View Blueprint Page", function() {
     viewBlueprintPage.imagesTab.click();
 
     // show actions menu
-    viewBlueprintPage.imageMoreButton.click();
+    viewBlueprintPage.imageMoreButton.waitForExist(timeout);
   });
 
   after(function() {
@@ -102,8 +102,8 @@ describe("View Blueprint Page", function() {
   });
 
   it("should show correct download API in download link", function() {
+    viewBlueprintPage.imageMoreButton.click()
     const link = viewBlueprintPage.imageDownloadButton.getAttribute("href");
-    console.log(link);
     const jsonStr = link.split("?")[1];
 
     // decode base64 to json
