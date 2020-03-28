@@ -26,7 +26,7 @@ On Fedora or Red Hat Enterprise Linux:
 * First install Cockpit on your local machine as described in: https://cockpit-project.org/running.html.
 * Next install and start osbuild-composer:
 ```
-    $ sudo yum install golang-github-osbuild-composer
+    $ sudo yum install osbuild-composer
     $ sudo systemctl start osbuild-composer
 ```
 
