@@ -12,7 +12,7 @@ BuildRequires:  libappstream-glib
 
 Requires:       cockpit
 Requires:       weldr
-Suggests:       golang-github-osbuild-composer >= 7
+Suggests:       osbuild-composer >= 7
 
 %description
 Composer generates custom images suitable for deploying systems or uploading to
