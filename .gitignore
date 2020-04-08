@@ -23,3 +23,6 @@ bots
 screen_error
 wdio_report
 composer.covered
+test/common
+Test*FAIL*
+__pycache__

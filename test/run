@@ -3,7 +3,7 @@
 # arguments but with an appropriate $TEST_OS, and optionally $TEST_SCENARIO
 
 if [ -n "${TEST_SCENARIO}" ]; then
-    export BROWSER="$TEST_SCENARIO"
+    export TEST_BROWSER="$TEST_SCENARIO"
 fi
 
 make check

@@ -1,0 +1,145 @@
+#!/usr/bin/python3
+
+# checkpoint:
+# 1. create supported image
+
+import composerlib
+import testlib
+
+
+@testlib.nondestructive
+@testlib.timeout(2400)
+class TestImage(composerlib.ComposerCase):
+
+    def testBasic(self):
+        b = self.browser
+
+        self.login_and_go("/composer", authorized=True)
+        b.wait_present("#main")
+
+        # create image wizard (no upload support)
+        b.click("li[data-blueprint=httpd-server] #create-image-button")
+        b.wait_text("#create-image-upload-wizard #blueprint-name", "httpd-server")
+        # check non upload image action (Create only)
+        # group actions for select from dropdown menu
+        b.wait_visible("#image-type")
+        test_selector = "#image-type option[value='tar']"
+        b.wait_present(test_selector)
+        value_id = b.attr(test_selector, "value")
+        b.set_val("#image-type", value_id)
+        b.wait_val("#image-type", value_id)
+        # groups action done
+        b.wait_text("#continue-button", "Create")
+        # close wizard by clicking X button
+        b.click(".pf-c-wizard__close")
+        b.wait_not_present("#create-image-upload-wizard")
+
+        # go to wizard again (upload support)
+        b.click("li[data-blueprint=httpd-server] #create-image-button")
+        # check upload image action (wizard)
+        # group actions for select from dropdown menu
+        b.wait_visible("#image-type")
+        test_selector = "#image-type option[value='ami']"
+        b.wait_present(test_selector)
+        value_id = b.attr(test_selector, "value")
+        b.set_val("#image-type", value_id)
+        b.wait_val("#image-type", value_id)
+        # groups action done
+        # still keep Create if upload image not selected
+        b.wait_text("#continue-button", "Create")
+        # change to Next if upload image selected
+        b.click("#aws-checkbox")
+        b.click("button:contains('Next')")
+        # Back button is click-able and back to last page
+        b.click("button:contains('Back')")
+        b.wait_text("#create-image-upload-wizard #blueprint-name", "httpd-server")
+        # go to each setion by clicking link directly
+        b.click("a:contains('Authentication')")
+        b.click("a:contains('File upload')")
+        b.click("a:contains('Review')")
+        b.wait_in_text(".pf-c-alert__title", "Required information is missing.")
+        b.wait_attr("#continue-button", "disabled", "")
+        b.click("button:contains('Cancel')")
+        b.wait_not_present("#create-image-upload-wizard")
+
+        # collect code coverage result
+        self.check_coverage()
+
+    def testTar(self):
+        b = self.browser
+        m = self.machine
+
+        self.login_and_go("/composer", authorized=True)
+        b.wait_present("#main")
+
+        # create image wizard
+        b.click("li[data-blueprint=httpd-server] #create-image-button")
+        b.wait_text("#create-image-upload-wizard #blueprint-name", "httpd-server")
+        # group actions for select from dropdown menu
+        b.wait_visible("#image-type")
+        test_selector = "#image-type option[value='tar']"
+        b.wait_present(test_selector)
+        value_id = b.attr(test_selector, "value")
+        b.set_val("#image-type", value_id)
+        b.wait_val("#image-type", value_id)
+        # group actions end
+        b.click("#continue-button")
+        b.wait_not_present("#create-image-upload-wizard")
+
+        # toast notification
+        b.wait_present("#cmpsr-toast-imageWaiting .pficon-info")
+        b.click("#cmpsr-toast-imageWaiting .pficon-close")
+        b.wait_not_present("#cmpsr-toast-imageWaiting .pficon-info")
+
+        # got to images tab
+        b.click("#httpd-server-name")
+        # correct image name and type
+        with b.wait_timeout(300):
+            b.click("#blueprint-tabs-tab-images")
+            b.wait_present("ul[data-list=images]")
+        # get uuid as part of css selector
+        uuid = m.execute("""
+            composer-cli compose list | grep httpd-server | awk '{print $1}' | head -1
+            """).rstrip()
+        selector = "{}-compose-name".format(uuid)
+        b.wait_text("#{}".format(selector), "httpd-server-0.0.1-Tar")
+        b.wait_text("li[aria-labelledby={}] [data-image-type=Tar]".format(selector), "Tar")
+        # image building needs more time
+        with b.wait_timeout(1800):
+            b.wait_text("li[aria-labelledby={}] [data-status=true]".format(selector),
+                        "Image build complete")
+
+        # log should contains rpm, hostname, users stages and tar assembler
+        b.click("button:contains('Logs')")
+        b.wait_in_text("#{}-logs".format(uuid), "Stage org.osbuild.rpm")
+        b.wait_in_text("#{}-logs".format(uuid), "Stage: org.osbuild.hostname")
+        b.wait_in_text("#{}-logs".format(uuid), "Stage: org.osbuild.users")
+        b.wait_in_text("#{}-logs".format(uuid), "Assembler org.osbuild.tar")
+        # close logs
+        b.click("button:contains('Logs')")
+
+        # download image
+        b.click("#{}-actions".format(uuid))
+        b.click("a:contains('Download')")
+
+        # delete image cancel first always
+        b.click("#{}-actions".format(uuid))
+        b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "true")
+        b.click("li[aria-labelledby={}] a:contains('Delete')".format(selector))
+        b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "false")
+        b.click("#cmpsr-modal-delete button:contains('Cancel')")
+        b.wait_not_present("#cmpsr-modal-delete")
+        # delete here
+        b.click("#{}-actions".format(uuid))
+        b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "true")
+        b.click("li[aria-labelledby={}] a:contains('Delete')".format(selector))
+        b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "false")
+        b.click("#cmpsr-modal-delete button:contains('Delete Image')")
+        b.wait_not_present("#{}".format(selector))
+
+        # collect code coverage result
+        self.check_coverage()
+
+
+if __name__ == '__main__':
+    testlib.test_main()

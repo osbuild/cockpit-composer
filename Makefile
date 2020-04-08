@@ -3,8 +3,7 @@ VERSION=$(shell $(CURDIR)/rpmversion.sh | cut -d - -f 1)
 RELEASE=$(shell $(CURDIR)/rpmversion.sh | cut -d - -f 2)
 PACKAGE_NAME := $(shell awk '/"name":/ {gsub(/[",]/, "", $$2); print $$2}' package.json)
 TEST_OS ?= fedora-31
-BROWSER ?= firefox
-export TEST_OS BROWSER
+export TEST_OS
 VM_IMAGE=$(CURDIR)/test/images/$(TEST_OS)
 ifneq (,$(wildcard ~/.config/codecov-token))
 BUILD_RUN = npm run build -- --with-coverage
@@ -50,7 +49,8 @@ devel-install:
 	ln -s `pwd`/public/dist ~/.local/share/cockpit/composer
 
 dist-gzip: NODE_ENV=production
-dist-gzip: all $(PACKAGE_NAME).spec
+# package test dependence to avoid clone or fetch
+dist-gzip: all $(PACKAGE_NAME).spec machine test/common
 	mkdir -p $(PACKAGE_NAME)-$(VERSION)
 	cp -r public/ test/ LICENSE.txt README.md $(PACKAGE_NAME).spec io.weldr.cockpit-composer.metainfo.xml $(PACKAGE_NAME)-$(VERSION)
 	tar -czf $(PACKAGE_NAME)-$(VERSION).tar.gz $(PACKAGE_NAME)-$(VERSION)
@@ -99,14 +99,15 @@ test_rpmbuild: buildrpm_image
 	sudo docker run --rm --name buildrpm -v `pwd`:/composer welder/buildrpm:latest make rpm srpm
 
 local-clean:
-	rm -rf test/images tmp $(PACKAGE_NAME).spec $(PACKAGE_NAME)*.rpm $(PACKAGE_NAME)*.tar.gz test/end-to-end/wdio_report
+	rm -rf test/images tmp $(PACKAGE_NAME).spec $(PACKAGE_NAME)*.rpm $(PACKAGE_NAME)*.tar.gz
 
 # build VMs
 $(VM_IMAGE): local-clean rpm bots
 	# VM running cockpit, composer, and end to end test container
 	bots/image-customize -v \
-		-r "echo $(BROWSER) > /tmp/BROWSER" \
 		-i `pwd`/$(PACKAGE_NAME)-*.noarch.rpm \
+		-i composer-cli \
+		-u $(CURDIR)/test/files:/home/admin \
 		-s $(CURDIR)/test/vm.install \
 		$(TEST_OS)
 
@@ -114,13 +115,17 @@ $(VM_IMAGE): local-clean rpm bots
 vm: $(VM_IMAGE)
 	echo $(VM_IMAGE)
 
-# run the end to end test
-check: $(VM_IMAGE)
-	PYTHONPATH=`pwd`/bots/machine test/check-application -v -b $(BROWSER) -C 2 $(TEST_OS)
+# run the CDP integration test
+check: $(VM_IMAGE) test/common machine
+	test/verify/run-tests
 
-# debug end to end test
+# run test with browser interactively
 debug-check:
-	DEBUG_TEST=true $(MAKE) check
+	TEST_SHOW_BROWSER=true $(MAKE) check
+
+# run flake8 on files inside test/verify
+flake8:
+	flake8 test/verify/*
 
 # checkout Cockpit's bots for standard test VM images and API to launch them
 # must be from master, as only that has current and existing images; but testvm.py API is stable
@@ -130,6 +135,15 @@ bots:
 	if [ -n "$$COCKPIT_BOTS_REF" ]; then git -C bots fetch --quiet --depth=1 origin "$$COCKPIT_BOTS_REF"; git -C bots checkout --quiet FETCH_HEAD; fi
 	@echo "checked out bots/ ref $$(git -C bots rev-parse HEAD)"
 
+machine: bots
+	rsync -avR --exclude="bots/machine/machine_core/__pycache__/" bots/machine/testvm.py bots/machine/identity bots/machine/cloud-init.iso bots/machine/machine_core bots/task/testmap.py test
+
+# checkout Cockpit's test API; this has no API stability guarantee, so check out a stable tag
+test/common:
+	git fetch --depth=1 https://github.com/cockpit-project/cockpit.git 216
+	git checkout --force FETCH_HEAD -- test/common
+	git reset test/common
+
 # The po-refresh bot expects these specific Makefile targets
 update-po:
 upload-pot: po-push
@@ -137,4 +151,4 @@ download-po: po-pull
 clean-po:
 	rm po/*.po
 
-.PHONY: tag local-clean vm check devel-install
+.PHONY: tag local-clean vm check debug-check flake8 devel-install
