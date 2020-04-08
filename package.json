@@ -40,6 +40,7 @@
     "babel-plugin-istanbul": "^5.1.0",
     "babel-plugin-react-intl": "3.0.1",
     "babel-plugin-react-intl-auto": "^1.5.0",
+    "chrome-remote-interface": "^0.28.1",
     "clean-webpack-plugin": "^1.0.0",
     "connect-history-api-fallback": "^1.2.0",
     "copy-webpack-plugin": "^4.6.0",
@@ -68,6 +69,7 @@
     "postcss": "^7.0.14",
     "prettier": "^1.15.3",
     "react-intl-po": "^2.2.2",
+    "sizzle": "^2.3.5",
     "stdio": "^0.2.7",
     "stylelint": "^9.5.0",
     "stylelint-config-standard": "^18.2.0",
@@ -196,7 +198,7 @@
     }
   },
   "scripts": {
-    "eslint": "eslint components core data pages test utils main.js webpack.config.js",
+    "eslint": "eslint components core data pages utils main.js webpack.config.js",
     "stylelint": "stylelint \"components/**/*.css\" \"pages/**/*.css\"",
     "lint": "npm run eslint && npm run stylelint",
     "clean": "node run clean",

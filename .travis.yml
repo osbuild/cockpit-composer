@@ -4,9 +4,9 @@ sudo: required
 dist: xenial
 services:
   - docker
-language: node_js
-node_js:
-  - 'lts/*'
+language: python
+python:
+  - "3.7"
 cache:
   directories:
     - node_modules
@@ -18,16 +18,28 @@ before_install:
         git fetch welder $TRAVIS_BRANCH
         git log -1 --pretty=format:%H welder/${TRAVIS_BRANCH}
         git rebase welder/${TRAVIS_BRANCH}
+  - |
+        if [ "$COMMAND" == "eslint" ] || [ "$COMMAND" == "stylelint" ]; then
+            nvm install 'lts/*'
+            nvm use 'lts/*'
+        fi
 install:
   - |
-        if [ "$COMMAND" != "test_rpmbuild" ]; then
+        if [ "$COMMAND" == "eslint" ] || [ "$COMMAND" == "stylelint" ]; then
             npm install
+        fi
+  - |
+        if [ "$COMMAND" == "flake8" ]; then
+            python -V
+            pip -V
+            pip install flake8
         fi
 env:
   matrix:
     - COMMAND=eslint
     - COMMAND=stylelint
     - COMMAND=test_rpmbuild
+    - COMMAND=flake8
 script:
   - make "$COMMAND"
 notifications:

@@ -1,0 +1,20 @@
+name = "httpd-server-with-hostname"
+description = "httpd server with hostname image"
+version = "0.0.2"
+modules = []
+groups = []
+
+[[packages]]
+name = "httpd"
+version = "*"
+
+[[packages]]
+name = "tmux"
+version = "*"
+
+[[packages]]
+name = "vim-enhanced"
+version = "*"
+
+[customizations]
+hostname = "httpd-server-with-hostname"

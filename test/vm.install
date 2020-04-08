@@ -1,5 +1,5 @@
 #!/bin/sh
-# image-customize script to enable cockpit in test VMs
+# image-customize script to enable cockpit and osbuild-composer in test VMs
 # The application RPM will be installed separately
 set -eux
 
@@ -9,35 +9,8 @@ if type firewall-cmd >/dev/null 2>&1; then
     firewall-cmd --add-service=cockpit --permanent
 fi
 
-# Install nodejs if it does not exist
-if grep -isq fedora /etc/redhat-release; then
-    command -v node > /dev/null 2>&1 || dnf module install -y nodejs:10
-else
-    command -v node > /dev/null 2>&1 || $(command -v dnf || command -v yum) install -y nodejs
-fi
-
-# disable https in cockpit and use http instead
-printf "[WebService]\\nAllowUnencrypted=true\\n" > /etc/cockpit/cockpit.conf
-
-# disable session timeout as some tests wait for too long
-printf "[Session]\\nIdleTimeout=0\\n" >> /etc/cockpit/cockpit.conf
-
 # Make cockpit.socket auto-start when system started
-# Do not start it during image generation
-systemctl enable cockpit.socket
+systemctl enable --now cockpit.socket
 
-# Disable selinux to work around https://bugzilla.redhat.com/show_bug.cgi?id=1778126
-sed -i 's/^SELINUX=.*/SELINUX=permissive/g' /etc/selinux/config && cat /etc/selinux/config
-
-# Start osbuild-composer to init its db, but do not "enable" it
-# Tests expect the service to not run, it checks the "start service" button
-systemctl start osbuild-composer
-
-# TODO temporary until osbuild-composer depends on one worker
-systemctl start osbuild-worker@1
-
-# wait for lorax-composer initialization before running test
-until curl --unix-socket /run/weldr/api.socket \
-    http://localhost/api/status | grep '"db_supported": *true'; do
-sleep 1;
-done;
+# Make osbuild-composer.socket auto-start when system started
+systemctl enable --now osbuild-composer.socket
