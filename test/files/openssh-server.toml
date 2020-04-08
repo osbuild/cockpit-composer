@@ -1,0 +1,9 @@
+name = "openssh-server"
+description = "ssh server image"
+version = "0.0.1"
+modules = []
+groups = []
+
+[[packages]]
+name = "openssh-server"
+version = "*"

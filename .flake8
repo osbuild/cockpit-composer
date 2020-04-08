@@ -1,0 +1,49 @@
+[flake8]
+# Specify the number of subprocesses that Flake8 will use to run checks in parallel.
+jobs = auto
+# Print the total number of errors.
+count = True
+# Print the source code generating the error/warning in question.
+show-source = True
+# Count the number of occurrences of each error/warning code and print a report.
+statistics = True
+
+exclude =
+    # No need to traverse our git directory
+    .git,
+    # There's no value in checking cache directories
+    __pycache__,
+    bots,
+    test/common
+
+# Set the maximum length that any line (with some exceptions) may be.
+max-line-length = 100
+# Set the maximum allowed McCabe complexity value for a block of code.
+max-complexity = 10
+
+# ERROR CODES
+#
+# E/W  - PEP8 errors/warnings (pycodestyle)
+# F    - linting errors (pyflakes)
+# C    - McCabe complexity error (mccabe)
+#
+# F401 - Module imported but unused
+# C901 - Function is too complex
+# E501 - Line too long > 80 characters
+
+# Specify a list of codes to ignore.
+ignore =
+    C901
+
+# Per file ignore
+per-file-ignores =
+    test/verify/run-tests:F401
+    test/verify/composerlib.py:F401
+    test/verify/parent.py:E501
+
+# Specify the list of error codes you wish Flake8 to report.
+select =
+    E,
+    W,
+    F,
+    C

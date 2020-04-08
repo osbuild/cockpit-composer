@@ -1,0 +1,25 @@
+name = "httpd-server-with-user"
+description = "httpd server with user account image"
+version = "0.0.2"
+modules = []
+groups = []
+
+[[packages]]
+name = "httpd"
+version = "*"
+
+[[packages]]
+name = "tmux"
+version = "*"
+
+[[packages]]
+name = "vim-enhanced"
+version = "*"
+
+[customizations]
+
+[[customizations.user]]
+name = "auser"
+description = "admin user"
+password = "$6$zehfVoh/POuGYHam$XXAP3RY2ulkHjQNyDrPcosp3P9NT2DRQOxfoRGa7YOE8aaBRl5vxxb2/cE2uaIfhySB/VSxUGgrtg4TsQrLQe1"
+groups = ["wheel"]

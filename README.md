@@ -37,11 +37,8 @@ On Fedora or Red Hat Enterprise Linux:
 
 In addition, for testing, the following dependencies are required:
 
-    $ sudo yum install curl expect \
-        libvirt libvirt-client libvirt-daemon libvirt-python \
-        python python-libguestfs python-lxml libguestfs-xfs \
-        python3 libvirt-python3 \
-        libguestfs-tools qemu qemu-kvm rpm-build jq
+    $ sudo dnf install curl expect xz rpm-build chromium-headless \
+        libvirt-daemon-kvm libvirt-client python3-libvirt
 
 ### Building
 
@@ -55,9 +52,27 @@ Cockpit Composer is built using [React](https://reactjs.org/). For inspecting th
 
     $ npm run build:debug
 
-### Running end to end test
+### Running integration test
 
-[End-to-End Test Running Guide](test/end-to-end/README.md).
+Run test without visually seeing what the browser is doing:
+
+    $ make check
+
+In the case you wish to visually see what the browser is doing you will want to run:
+
+    $ TEST_SHOW_BROWSER=true make check
+
+or
+
+    $ make debug-check
+
+By default the cockpit-composer will be installed into `$TEST_OS`in [Makefile](Makefile) and test will be run on Chromium. To run it on Firefox, a environment variable ```TEST_BROWSER=firefox``` needs to be added, like:
+
+    $ TEST_BROWSER=firefox make check
+
+To test cockpit-composer in different OS, set the `$TEST_OS` environment variable, for example:
+
+    $ TEST_OS=fedora-32 make check
 
 ### Running eslint
 
@@ -123,7 +138,7 @@ After every change to your sources, run `make` to update all the webpacks, and r
 │   ├── /custom.css             # CSS file included in index.ejs
 │   ├── /manifest.json          # manifest file for Cockpit integration
 │   └── /index.ejs              # Template for index.html
-├── /test/                      # End to end test
+├── /test/                      # Integration test
 ├── /utils/                     # Utility and helper classes
 │── .tasks                      # Tasks triggered by Cockpit bot
 │── .travis.yml                 # Travis CI settings
