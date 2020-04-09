@@ -1,8 +1,8 @@
 # Oğuz Ersen <oguzersen@protonmail.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-03-18T16:51:59.689Z\n"
-"PO-Revision-Date: 2020-03-22 09:38+0000\n"
+"POT-Creation-Date: 2020-04-02T17:17:44.524Z\n"
+"PO-Revision-Date: 2020-04-02 20:38+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://translate.fedoraproject.org/projects/cockpit-"
 "composer/master/tr/>\n"
@@ -10,7 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=2; plural=n != 1\n"
 "X-Generator: Weblate 3.11.3\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
@@ -172,10 +172,10 @@ msgstr ""
 
 #. [components.EmptyState.errorInactiveCheckbox]
 #. defaultMessage is:
-#. Automatically start lorax-composer on boot
+#. Automatically start osbuild-composer on boot
 #: build/messages/components/EmptyState/EmptyStateInactive.json
-msgid "Automatically start lorax-composer on boot"
-msgstr "lorax-composer'ı başlangıçta otomatik olarak başlat"
+msgid "Automatically start osbuild-composer on boot"
+msgstr "osbuild-composer'ı başlangıçta otomatik olarak başlat"
 
 #. [pages.blueprintEdit.listTitleAvailableComps]
 #. defaultMessage is:
@@ -1365,10 +1365,10 @@ msgstr "Aradığınız sayfa mevcut değil veya başka bir hata oluştu."
 
 #. [components.EmptyState.alertTitleEnableServiceFailure]
 #. defaultMessage is:
-#. The service lorax-composer was not started.
+#. The service osbuild-composer was not started.
 #: build/messages/components/EmptyState/EmptyStateInactive.json
-msgid "The service lorax-composer was not started."
-msgstr "lorax-composer servisi başlatılmadı."
+msgid "The service osbuild-composer was not started."
+msgstr "osbuild-composer servisi başlatılmadı."
 
 #. [components.Modal.2405281428]
 #. defaultMessage is:

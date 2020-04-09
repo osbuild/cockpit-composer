@@ -5,8 +5,8 @@
 # Julien Humbert <julroy67@gmail.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-02-17T12:46:19.361Z\n"
-"PO-Revision-Date: 2020-02-18 14:38+0000\n"
+"POT-Creation-Date: 2020-04-02T17:17:44.524Z\n"
+"PO-Revision-Date: 2020-04-03 05:34+0000\n"
 "Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
 "Language-Team: French <https://translate.fedoraproject.org/projects/cockpit-"
 "composer/master/fr/>\n"
@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.10.3\n"
+"Plural-Forms: nplurals=2; plural=n > 1\n"
+"X-Generator: Weblate 3.11.3\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -176,10 +176,10 @@ msgstr ""
 
 #. [components.EmptyState.errorInactiveCheckbox]
 #. defaultMessage is:
-#. Automatically start lorax-composer on boot
+#. Automatically start osbuild-composer on boot
 #: build/messages/components/EmptyState/EmptyStateInactive.json
-msgid "Automatically start lorax-composer on boot"
-msgstr "Lancement automatique de lorax-composer au démarrage"
+msgid "Automatically start osbuild-composer on boot"
+msgstr "Lancement automatique de osbuild-composer au démarrage"
 
 #. [pages.blueprintEdit.listTitleAvailableComps]
 #. defaultMessage is:
@@ -1381,10 +1381,10 @@ msgstr "La page que vous recherchez n’existe pas ou une erreur est survenue."
 
 #. [components.EmptyState.alertTitleEnableServiceFailure]
 #. defaultMessage is:
-#. The service lorax-composer was not started.
+#. The service osbuild-composer was not started.
 #: build/messages/components/EmptyState/EmptyStateInactive.json
-msgid "The service lorax-composer was not started."
-msgstr "Le service lorax-composer n’a pas démarré."
+msgid "The service osbuild-composer was not started."
+msgstr "Le service osbuild-composer n’a pas démarré."
 
 #. [components.Modal.2405281428]
 #. defaultMessage is:

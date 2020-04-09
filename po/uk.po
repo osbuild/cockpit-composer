@@ -2,8 +2,8 @@
 # David Shea <dshea@redhat.com>, 2019. #zanata
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-02-17T12:46:19.361Z\n"
-"PO-Revision-Date: 2020-02-18 14:38+0000\n"
+"POT-Creation-Date: 2020-04-02T17:17:44.524Z\n"
+"PO-Revision-Date: 2020-04-02 20:38+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "cockpit-composer/master/uk/>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 3.10.3\n"
+"X-Generator: Weblate 3.11.3\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -172,10 +172,10 @@ msgstr "Ви справді хочете припинити процес зби�
 
 #. [components.EmptyState.errorInactiveCheckbox]
 #. defaultMessage is:
-#. Automatically start lorax-composer on boot
+#. Automatically start osbuild-composer on boot
 #: build/messages/components/EmptyState/EmptyStateInactive.json
-msgid "Automatically start lorax-composer on boot"
-msgstr "Автоматично запускати lorax-composer при завантаженні"
+msgid "Automatically start osbuild-composer on boot"
+msgstr "Автоматично запускати osbuild-composer при завантаженні"
 
 #. [pages.blueprintEdit.listTitleAvailableComps]
 #. defaultMessage is:
@@ -1367,10 +1367,10 @@ msgstr "Сторінки, яку ви шукаєте, не існує або с�
 
 #. [components.EmptyState.alertTitleEnableServiceFailure]
 #. defaultMessage is:
-#. The service lorax-composer was not started.
+#. The service osbuild-composer was not started.
 #: build/messages/components/EmptyState/EmptyStateInactive.json
-msgid "The service lorax-composer was not started."
-msgstr "Службу lorax-composer не запущено."
+msgid "The service osbuild-composer was not started."
+msgstr "Службу osbuild-composer не запущено."
 
 #. [components.Modal.2405281428]
 #. defaultMessage is:
