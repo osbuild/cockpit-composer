@@ -5,7 +5,7 @@ import Blueprint from "../components/Blueprint.component";
 describe("Blueprints Page", function() {
   let name, description, blueprintComponent;
   before(function() {
-    // blueprint name cannot contain space due to issue https://github.com/weldr/cockpit-composer/issues/317
+    // blueprint name cannot contain space due to issue https://github.com/osbuild/cockpit-composer/issues/317
     // use lorem.slug() ("a-accusantium-repudiandae") instead of lorem.words() ("nulla placeat qui")
     name = faker.lorem.slug();
     description = faker.lorem.sentence();

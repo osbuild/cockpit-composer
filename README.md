@@ -1,7 +1,7 @@
 # Cockpit Composer
 
-[![Build Status](https://travis-ci.org/weldr/cockpit-composer.svg?branch=master)](https://travis-ci.org/weldr/cockpit-composer)
-[![codecov](https://codecov.io/gh/weldr/cockpit-composer/branch/master/graph/badge.svg)](https://codecov.io/gh/weldr/cockpit-composer)
+[![Build Status](https://travis-ci.org/osbuild/cockpit-composer.svg?branch=master)](https://travis-ci.org/osbuild/cockpit-composer)
+[![codecov](https://codecov.io/gh/osbuild/cockpit-composer/branch/master/graph/badge.svg)](https://codecov.io/gh/osbuild/cockpit-composer)
 
 **The web interface for Composer!**
 
@@ -13,7 +13,7 @@ frontend for [osbuild](https://github.com/osbuild).
 
 Here's where to get the code:
 
-    $ git clone https://github.com/weldr/cockpit-composer.git
+    $ git clone https://github.com/osbuild/cockpit-composer.git
     $ cd cockpit-composer/
 
 The remainder of the commands assume you're in the top level of the

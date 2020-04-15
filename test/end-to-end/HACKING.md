@@ -2,7 +2,7 @@
 
 Here's where to get the code:
 
-    $ git clone https://github.com/weldr/cockpit-composer.git
+    $ git clone https://github.com/osbuild/cockpit-composer.git
     $ cd test/end-to-end
 
 The remainder of the commands assume you're in the test/end-to-end folder.

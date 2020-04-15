@@ -3,7 +3,7 @@ import Blueprint from "../components/Blueprint.component";
 import createImagePage from "../pages/createImage.page";
 
 describe("Create Image Page", function() {
-  // blueprint name cannot contain space due to issue https://github.com/weldr/cockpit-composer/issues/317
+  // blueprint name cannot contain space due to issue https://github.com/osbuild/cockpit-composer/issues/317
   // use lorem.slug() ("a-accusantium-repudiandae") instead of lorem.words() ("nulla placeat qui")
   const name = faker.lorem.slug();
   const description = faker.lorem.sentence();
