@@ -202,4 +202,4 @@ Finally, import the new `.srpm` into the appropriate RHEL release.
 This source code is licensed under the MIT license found in the [`LICENSE.txt`](LICENSE.txt) file.
 
 ---
-Made with ♥ by the [Welder team](https://github.com/orgs/weldr/people), [Cockpit team](https://github.com/orgs/cockpit-project/people), and contributors
+Made with ♥ by the [OSBuild team](https://github.com/orgs/osbuild/people), [Welder team](https://github.com/orgs/weldr/people), [Cockpit team](https://github.com/orgs/cockpit-project/people), and contributors
