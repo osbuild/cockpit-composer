@@ -157,28 +157,6 @@ class ListItemImages extends React.Component {
           </>
         );
         break;
-      case "RUNNING":
-        actions = (
-          <>
-            <li>
-              <a href="#" role="button" onClick={e => this.handleShowModalStop(e)}>
-                <FormattedMessage defaultMessage="Stop" />
-              </a>
-            </li>
-          </>
-        );
-        break;
-      case "WAITING":
-        actions = (
-          <>
-            <li>
-              <a href="#" role="button" onClick={e => this.handleCancel(e)}>
-                <FormattedMessage defaultMessage="Stop" />
-              </a>
-            </li>
-          </>
-        );
-        break;
       case "FAILED":
         actions = (
           <>
