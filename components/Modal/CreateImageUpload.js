@@ -630,6 +630,7 @@ class CreateImageUploadModal extends React.Component {
                   variant="primary"
                   isDisabled={
                     imageType === "" ||
+                    imageSize === "" ||
                     (!this.isValidImageSize() && uploadService.length === 0) ||
                     (this.missingRequiredFields() && activeStep.name === "Review")
                   }
