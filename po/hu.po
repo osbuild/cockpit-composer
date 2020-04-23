@@ -1,15 +1,17 @@
 # David Shea <dshea@redhat.com>, 2019. #zanata
-#, fuzzy
+# Laszlo Pal <vlad@vlad.hu>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-02-10T12:16:15.012Z\n"
-"PO-Revision-Date: 2019-05-27 09:01+0000\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: Hungarian\n"
+"POT-Creation-Date: 2020-04-09T18:06:25.170Z\n"
+"PO-Revision-Date: 2020-04-07 17:40+0000\n"
+"Last-Translator: Laszlo Pal <vlad@vlad.hu>\n"
+"Language-Team: Hungarian <https://translate.fedoraproject.org/projects/"
+"cockpit-composer/master/hu/>\n"
 "Language: hu\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Zanata 4.6.2\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1\n"
+"X-Generator: Weblate 3.11.3\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -55,7 +57,7 @@ msgstr "Nincs jelszó megadva ehhez a fiókhoz."
 #: build/messages/components/ListView/ListItemImages.json
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Actions"
-msgstr ""
+msgstr "Műveletek"
 
 #. [components.ListView.3099331554]
 #. defaultMessage is:
@@ -82,7 +84,7 @@ msgstr "Tervrajz komponensek hozzáadása"
 #. Add Source
 #: build/messages/components/Modal/ManageSources.json
 msgid "Add Source"
-msgstr ""
+msgstr "Forrás hozzáadása"
 
 #. [components.ListView.addComponent]
 #. defaultMessage is:
@@ -121,6 +123,8 @@ msgid ""
 "An error occurred when saving the source. Check that the path is valid and "
 "try again."
 msgstr ""
+"Hiba történt a forrás mentésekor. Ellenőrizze az útvonalat és próbálja meg "
+"újra."
 
 #. [components.ListView.emptyStateErrorMessage]
 #. defaultMessage is:
@@ -166,10 +170,10 @@ msgstr "Biztos, hogy leállítja a(z) {blueprintName} összeállítási folyamat
 
 #. [components.EmptyState.errorInactiveCheckbox]
 #. defaultMessage is:
-#. Automatically start lorax-composer on boot
+#. Automatically start osbuild-composer on boot
 #: build/messages/components/EmptyState/EmptyStateInactive.json
-msgid "Automatically start lorax-composer on boot"
-msgstr ""
+msgid "Automatically start osbuild-composer on boot"
+msgstr "Osbuild-composer automatikus indítása a rendszerrel"
 
 #. [pages.blueprintEdit.listTitleAvailableComps]
 #. defaultMessage is:
@@ -232,6 +236,7 @@ msgstr "Tervrajz összetevők"
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "Blueprint names cannot contain spaces or the character: {invalidChar}"
 msgstr ""
+"A tervrajz elnevezése nem tartalmazhat szóközt vagy {invalidChar} karaktert"
 
 #. [components.Modal.1134732033]
 #. defaultMessage is:
@@ -239,27 +244,28 @@ msgstr ""
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "Blueprint names cannot contain spaces or the characters: {invalidChar}"
 msgstr ""
+"A tervrajz elnevezése nem tartalmazhat szóközt vagy {invalidChar} karaktert"
 
 #. [components.Modal.2803906810]
 #. defaultMessage is:
 #. Blueprint names cannot contain spaces.
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "Blueprint names cannot contain spaces."
-msgstr ""
+msgstr "A tervrajz elnevezése nem tartalmazhat szóközt."
 
 #. [components.Modal.2781854456]
 #. defaultMessage is:
 #. Blueprint names cannot contain the character: {invalidChar}
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "Blueprint names cannot contain the character: {invalidChar}"
-msgstr ""
+msgstr "A tervrajz elnevezése nem tartalmazhat {invalidChar} karaktert"
 
 #. [components.Modal.3918401128]
 #. defaultMessage is:
 #. Blueprint names cannot contain the characters: {invalidChar}
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "Blueprint names cannot contain the characters: {invalidChar}"
-msgstr ""
+msgstr "A tervrajz elnevezése nem tartalmazhat {invalidChar} karaktert"
 
 #. [pages.blueprints.blueprintsTitle]
 #. defaultMessage is:
@@ -345,14 +351,14 @@ msgstr ""
 #. Check GPG key
 #: build/messages/components/Modal/ManageSources.json
 msgid "Check GPG key"
-msgstr ""
+msgstr "GPG kulcs ellenőrzése"
 
 #. [components.Modal.check_ssl]
 #. defaultMessage is:
 #. Check SSL certificate
 #: build/messages/components/Modal/ManageSources.json
 msgid "Check SSL certificate"
-msgstr ""
+msgstr "SSL tanúsítvány ellenőrzése"
 
 #. [components.ListView.1312249312]
 #. defaultMessage is:
@@ -1356,9 +1362,9 @@ msgstr "A keresett oldal nem létezik, vagy más hiba történt."
 
 #. [components.EmptyState.alertTitleEnableServiceFailure]
 #. defaultMessage is:
-#. The service lorax-composer was not started.
+#. The service osbuild-composer was not started.
 #: build/messages/components/EmptyState/EmptyStateInactive.json
-msgid "The service lorax-composer was not started."
+msgid "The service osbuild-composer was not started."
 msgstr ""
 
 #. [components.Modal.2405281428]
