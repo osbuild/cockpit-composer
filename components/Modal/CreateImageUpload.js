@@ -416,9 +416,11 @@ class CreateImageUploadModal extends React.Component {
                     GB
                   </div>
                 </div>
-                {!this.isValidImageSize() && (
+                {imageSize < maxImageSize && imageType !== "" && (
                   <div
-                    className="pf-c-form__helper-text pf-m-error"
+                    className={
+                      !this.isValidImageSize() ? "pf-c-form__helper-text pf-m-error" : "pf-c-form__helper-text"
+                    }
                     id="help-text-simple-form-name-helper"
                     aria-live="polite"
                   >
