@@ -544,10 +544,6 @@ class CreateImageUploadModal extends React.Component {
             <Text>{formatMessage(messages.review)}</Text>
             {providerSettings[uploadService] !== undefined && (
               <TextList component={TextListVariants.dl}>
-                <TextListItem component={TextListItemVariants.dt}>
-                  <FormattedMessage defaultMessage="Image name" />
-                </TextListItem>
-                <TextListItem component={TextListItemVariants.dd}>{imageName}</TextListItem>
                 <dt>
                   <FormattedMessage defaultMessage="Image size" />
                 </dt>
@@ -590,6 +586,10 @@ class CreateImageUploadModal extends React.Component {
                     </TextListItem>
                   </React.Fragment>
                 ))}
+                <TextListItem component={TextListItemVariants.dt}>
+                  <FormattedMessage defaultMessage="Image name" />
+                </TextListItem>
+                <TextListItem component={TextListItemVariants.dd}>{imageName}</TextListItem>
                 {Object.keys(providerSettings[uploadService].settings).map(key => (
                   <React.Fragment key={key}>
                     <TextListItem component={TextListItemVariants.dt}>
