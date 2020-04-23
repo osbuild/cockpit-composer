@@ -2,16 +2,16 @@
 # Matej Marusak <mmarusak@redhat.com>, 2019. #zanata, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-02-10T12:16:15.012Z\n"
-"PO-Revision-Date: 2020-01-15 06:47+0000\n"
+"POT-Creation-Date: 2020-04-09T18:06:25.170Z\n"
+"PO-Revision-Date: 2020-04-16 13:42+0000\n"
 "Last-Translator: Matej Marusak <mmarusak@redhat.com>\n"
-"Language-Team: Slovak <https://translate.stg.fedoraproject.org/projects/"
-"cockpit-composer/master/sk/>\n"
+"Language-Team: Slovak <https://translate.fedoraproject.org/projects/cockpit-"
+"composer/master/sk/>\n"
 "Language: sk\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 3.10.1\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2\n"
+"X-Generator: Weblate 4.0.1\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -170,10 +170,10 @@ msgstr ""
 
 #. [components.EmptyState.errorInactiveCheckbox]
 #. defaultMessage is:
-#. Automatically start lorax-composer on boot
+#. Automatically start osbuild-composer on boot
 #: build/messages/components/EmptyState/EmptyStateInactive.json
-msgid "Automatically start lorax-composer on boot"
-msgstr "Automaticky spustiť lorax-composer pri zavádzaní hostiteľa"
+msgid "Automatically start osbuild-composer on boot"
+msgstr "Automaticky spustiť osbuild-composer pri zavádzaní hostiteľa"
 
 #. [pages.blueprintEdit.listTitleAvailableComps]
 #. defaultMessage is:
@@ -535,7 +535,7 @@ msgstr "Aktuálna stránka"
 #. Customizations
 #: build/messages/pages/blueprint/index.json
 msgid "Customizations"
-msgstr ""
+msgstr "Prispôsobenia"
 
 #. [components.ListView.3645414921]
 #. defaultMessage is:
@@ -1352,9 +1352,9 @@ msgstr ""
 
 #. [components.EmptyState.alertTitleEnableServiceFailure]
 #. defaultMessage is:
-#. The service lorax-composer was not started.
+#. The service osbuild-composer was not started.
 #: build/messages/components/EmptyState/EmptyStateInactive.json
-msgid "The service lorax-composer was not started."
+msgid "The service osbuild-composer was not started."
 msgstr ""
 
 #. [components.Modal.2405281428]

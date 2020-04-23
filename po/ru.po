@@ -3,9 +3,9 @@
 # Petr Molodyk <pamolodyk@gmail.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-03-25T18:20:33.456Z\n"
-"PO-Revision-Date: 2020-04-01 11:38+0000\n"
-"Last-Translator: Petr Molodyk <pamolodyk@gmail.com>\n"
+"POT-Creation-Date: 2020-04-09T18:06:25.170Z\n"
+"PO-Revision-Date: 2020-04-02 20:38+0000\n"
+"Last-Translator: Igor Gorbounov <igor.gorbounov@gmail.com>\n"
 "Language-Team: Russian <https://translate.fedoraproject.org/projects/cockpit-"
 "composer/master/ru/>\n"
 "Language: ru\n"
@@ -175,10 +175,8 @@ msgstr "Вы действительно хотите остановить про
 #. defaultMessage is:
 #. Automatically start osbuild-composer on boot
 #: build/messages/components/EmptyState/EmptyStateInactive.json
-#, fuzzy
-#| msgid "Automatically start lorax-composer on boot"
 msgid "Automatically start osbuild-composer on boot"
-msgstr "Автоматически запускать lorax-composer при загрузке"
+msgstr "Автоматически запускать osbuild-composer при загрузке"
 
 #. [pages.blueprintEdit.listTitleAvailableComps]
 #. defaultMessage is:
@@ -1372,10 +1370,8 @@ msgstr "Страница, которую вы ищете, не существу�
 #. defaultMessage is:
 #. The service osbuild-composer was not started.
 #: build/messages/components/EmptyState/EmptyStateInactive.json
-#, fuzzy
-#| msgid "The service lorax-composer was not started."
 msgid "The service osbuild-composer was not started."
-msgstr "Служба lorax-composer не запущена."
+msgstr "Служба osbuild-composer не запущена."
 
 #. [components.Modal.2405281428]
 #. defaultMessage is:
