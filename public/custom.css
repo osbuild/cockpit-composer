@@ -827,7 +827,6 @@ body {
   line-height: var(--pf-global--LineHeight--md);
 }
 
-
 /* spacing below warning alert in wizard */
 .pf-c-wizard__main-body .pf-c-alert,
 .cc-c-alert__warning  {
