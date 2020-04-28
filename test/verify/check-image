@@ -20,6 +20,22 @@ class TestImage(composerlib.ComposerCase):
         # create image wizard (no upload support)
         b.click("li[data-blueprint=httpd-server] #create-image-button")
         b.wait_text("#create-image-upload-wizard #blueprint-name", "httpd-server")
+        # check ? (process length help) button
+        b.click("button[aria-label='process length help']")
+        b.wait_attr("button[aria-label='process length help']", "aria-expanded", "true")
+        b.wait_text(".pf-c-popover__body", "This process can take a while. "
+                    "Images are built in the order they are started.")
+        b.click(".pf-c-popover__content button")
+        b.wait_attr("button[aria-label='process length help']", "aria-expanded", "false")
+        # check ? (image size help) button
+        b.click("button[aria-label='image size help']")
+        b.wait_attr("button[aria-label='image size help']", "aria-expanded", "true")
+        b.wait_text(".pf-c-popover__body",
+                    "Set the size that you want the image to be when instantiated. The total "
+                    "package size and target destination of your image should be considered when "
+                    "setting the image size.")
+        b.click(".pf-c-popover__content button")
+        b.wait_attr("button[aria-label='image size help']", "aria-expanded", "false")
         # check non upload image action (Create only)
         # group actions for select from dropdown menu
         b.wait_visible("#image-type")
@@ -47,6 +63,25 @@ class TestImage(composerlib.ComposerCase):
         # groups action done
         # still keep Create if upload image not selected
         b.wait_text("#continue-button", "Create")
+        # default size = 6GB for ami image
+        b.wait_val("#create-image-size", 6)
+        # change to 1GB = error
+        b.focus("#create-image-size")
+        # delete 6 and input 1
+        b.key_press("\b")
+        b.key_press("1")
+        b.wait_attr("#create-image-upload-wizard button:contains('Create')", "disabled", "")
+        b.wait_attr_contains("#help-text-simple-form-name-helper", "class", "pf-m-error")
+        # delete 1 and input 2001
+        b.key_press("\b")
+        b.key_press("2001")
+        b.wait_in_text("#help-text-simple-form-name-helper",
+                       "The size specified is large. We recommend that you check whether your "
+                       "target destination has any restrictions on image size.")
+        # delete 2001 and input 6
+        b.key_press("\b\b\b\b")
+        b.key_press("6")
+        # b.set_val("#create-image-size", 6)
         # change to Next if upload image selected
         b.click("#aws-checkbox")
         b.click("button:contains('Next')")
@@ -57,7 +92,8 @@ class TestImage(composerlib.ComposerCase):
         b.click("a:contains('Authentication')")
         b.click("a:contains('File upload')")
         b.click("a:contains('Review')")
-        b.wait_in_text(".pf-c-alert__title", "Required information is missing.")
+        b.wait_in_text(".pf-c-alert__title",
+                       "There are one or more fields that require your attention.")
         b.wait_attr("#continue-button", "disabled", "")
         b.click("button:contains('Cancel')")
         b.wait_not_present("#create-image-upload-wizard")
