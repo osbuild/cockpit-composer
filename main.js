@@ -13,6 +13,7 @@ import { Provider } from "react-redux";
 import "@patternfly/react-core/dist/styles/base.css";
 import "@patternfly/patternfly/patternfly-addons.css";
 import "@patternfly/patternfly/layouts/Flex/flex.css";
+import "@patternfly/react-styles/css/utilities/Display/display.css";
 import "./public/custom.css";
 import "bootstrap";
 import cockpit from "cockpit";
