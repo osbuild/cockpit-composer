@@ -101,7 +101,7 @@ class TestImage(composerlib.ComposerCase):
         # collect code coverage result
         self.check_coverage()
 
-    def testTar(self):
+    def testOpenStack(self):
         b = self.browser
         m = self.machine
 
@@ -113,12 +113,16 @@ class TestImage(composerlib.ComposerCase):
         b.wait_text("#create-image-upload-wizard #blueprint-name", "httpd-server")
         # group actions for select from dropdown menu
         b.wait_visible("#image-type")
-        test_selector = "#image-type option[value='tar']"
+        test_selector = "#image-type option[value='openstack']"
         b.wait_present(test_selector)
         value_id = b.attr(test_selector, "value")
         b.set_val("#image-type", value_id)
         b.wait_val("#image-type", value_id)
         # group actions end
+        b.focus("#create-image-size")
+        # delete 2 and input 4
+        b.key_press("\b")
+        b.key_press("4")
         b.click("#continue-button")
         b.wait_not_present("#create-image-upload-wizard")
 
@@ -138,19 +142,26 @@ class TestImage(composerlib.ComposerCase):
             composer-cli compose list | grep httpd-server | awk '{print $1}' | head -1
             """).rstrip()
         selector = "{}-compose-name".format(uuid)
-        b.wait_text("#{}".format(selector), "httpd-server-0.0.1-Tar")
-        b.wait_text("li[aria-labelledby={}] [data-image-type=Tar]".format(selector), "Tar")
+        b.wait_text("#{}".format(selector), "httpd-server-0.0.1-OpenStack")
+        b.wait_text("li[aria-labelledby={}] [data-image-type=OpenStack]".format(selector),
+                    "OpenStack")
         # image building needs more time
         with b.wait_timeout(1800):
             b.wait_text("li[aria-labelledby={}] [data-status=true]".format(selector),
                         "Image build complete")
-
+        # image size should be 4GB
+        b.wait_in_text("li[aria-labelledby={}] ".format(selector), "4 GB")
+        # get image size from backend
+        image_size = m.execute(
+            "composer-cli compose info {} | head -1 | awk '{{print $6}}'".format(uuid)
+        ).rstrip()
+        self.assertEqual(int(image_size), 4 * 1024 * 1024 * 1024)
         # log should contains rpm, hostname, users stages and tar assembler
         b.click("button:contains('Logs')")
         b.wait_in_text("#{}-logs".format(uuid), "Stage org.osbuild.rpm")
         b.wait_in_text("#{}-logs".format(uuid), "Stage: org.osbuild.hostname")
         b.wait_in_text("#{}-logs".format(uuid), "Stage: org.osbuild.users")
-        b.wait_in_text("#{}-logs".format(uuid), "Assembler org.osbuild.tar")
+        b.wait_in_text("#{}-logs".format(uuid), "Assembler org.osbuild.qemu")
         # close logs
         b.click("button:contains('Logs')")
 
