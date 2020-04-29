@@ -837,6 +837,9 @@ body {
 .cc-c-popover__horizontal-group {
   display: flex;
   justify-content: space-between;
+}
+
+.cc-c-form__horizontal-align {
   align-items: baseline;
 }
 
