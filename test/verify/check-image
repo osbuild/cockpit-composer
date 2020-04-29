@@ -90,7 +90,7 @@ class TestImage(composerlib.ComposerCase):
         b.wait_text("#create-image-upload-wizard #blueprint-name", "httpd-server")
         # go to each setion by clicking link directly
         b.click("a:contains('Authentication')")
-        b.click("a:contains('File upload')")
+        b.click("a:contains('Destination')")
         b.click("a:contains('Review')")
         b.wait_in_text(".pf-c-alert__title",
                        "There are one or more fields that require your attention.")
