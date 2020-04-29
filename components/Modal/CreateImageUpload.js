@@ -432,7 +432,7 @@ class CreateImageUploadModal extends React.Component {
             </FormGroup>
             {imageType === "ami" && awsProviderCheckbox}
             <div className="pf-c-form__group">
-              <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-m-justify-content-flex-start pf-m-nowrap">
+              <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-u-display-flex pf-m-justify-content-flex-start pf-m-nowrap">
                 <label htmlFor="create-image-size" className="pf-l-flex__item">
                   <span className="pf-c-form__label-text">
                     <FormattedMessage defaultMessage="Image size" />
@@ -505,7 +505,7 @@ class CreateImageUploadModal extends React.Component {
           </Text>
           <Form isHorizontal className="cc-m-wide-label">
             <div className="pf-c-form__group">
-              <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-m-justify-content-flex-start pf-m-nowrap">
+              <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-u-display-flex pf-m-justify-content-flex-start pf-m-nowrap">
                 <label htmlFor="access-key-id-input" className="pf-l-flex__item">
                   <span className="pf-c-form__label-text">
                     <FormattedMessage defaultMessage="Access key ID" />
@@ -541,7 +541,7 @@ class CreateImageUploadModal extends React.Component {
               />
             </div>
             <div className="pf-c-form__group">
-              <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-m-justify-content-flex-start pf-m-nowrap">
+              <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-u-display-flex pf-m-justify-content-flex-start pf-m-nowrap">
                 <label htmlFor="secret-access-key-input" className="pf-l-flex__item">
                   <span className="pf-c-form__label-text">
                     <FormattedMessage defaultMessage="Secret access key" />
@@ -590,7 +590,7 @@ class CreateImageUploadModal extends React.Component {
           </Text>
           <Form isHorizontal className="cc-m-wide-label">
             <div className="pf-c-form__group">
-              <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-m-justify-content-flex-start pf-m-nowrap">
+              <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-u-display-flex pf-m-justify-content-flex-start pf-m-nowrap">
                 <label htmlFor="image-name-input" className="pf-l-flex__item">
                   <span className="pf-c-form__label-text">
                     <FormattedMessage defaultMessage="Image name" />
@@ -622,7 +622,7 @@ class CreateImageUploadModal extends React.Component {
               />
             </div>
             <div className="pf-c-form__group">
-              <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-m-justify-content-flex-start pf-m-nowrap">
+              <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-u-display-flex pf-m-justify-content-flex-start pf-m-nowrap">
                 <label htmlFor="bucket-input" className="pf-l-flex__item">
                   <span className="pf-c-form__label-text">Amazon S3 bucket</span>
                   <span className="pf-c-form__label-required" aria-hidden="true">
@@ -665,7 +665,7 @@ class CreateImageUploadModal extends React.Component {
               />
             </div>
             <div className="pf-c-form__group">
-              <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-m-justify-content-flex-start pf-m-nowrap">
+              <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-u-display-flex pf-m-justify-content-flex-start pf-m-nowrap">
                 <label htmlFor="region-input" className="pf-l-flex__item">
                   <span className="pf-c-form__label-text">
                     <FormattedMessage defaultMessage="AWS region" />
@@ -712,7 +712,7 @@ class CreateImageUploadModal extends React.Component {
 
     const awsReviewStep = uploadService === "aws" && (
       <TextContent>
-        <div className="pf-l-flex">
+        <div className="pf-l-flex pf-u-display-flex">
           <h3 className="pf-l-flex__item pf-u-mt-2xl pf-u-mb-md">
             <FormattedMessage defaultMessage="Upload to Amazon" />
           </h3>
