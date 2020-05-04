@@ -775,8 +775,8 @@ const mapDispatchToProps = dispatch => ({
   clearQueue: () => {
     dispatch(clearQueue());
   },
-  startCompose: (blueprintName, composeType, upload) => {
-    dispatch(startCompose(blueprintName, composeType, upload));
+  startCompose: (blueprintName, composeType, imageSize, upload) => {
+    dispatch(startCompose(blueprintName, composeType, imageSize, upload));
   }
 });
 
