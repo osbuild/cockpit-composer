@@ -381,7 +381,6 @@ class CreateImageUploadModal extends React.Component {
               defaultMessage: `Upload to AWS`
             })}
             id="aws-checkbox"
-            aria-labelledby="provider-checkbox"
           />
         </div>
       </div>
@@ -445,9 +444,9 @@ class CreateImageUploadModal extends React.Component {
                 <Popover
                   id="size-popover"
                   bodyContent={formatMessage(messages.imageSizePopover)}
-                  aria-label="image size help"
+                  aria-label="Image size help"
                 >
-                  <Button variant="plain" aria-label="image size help">
+                  <Button variant="plain" aria-label="Image size help">
                     <OutlinedQuestionCircleIcon id="popover-icon" />
                   </Button>
                 </Popover>
@@ -525,9 +524,9 @@ class CreateImageUploadModal extends React.Component {
                       }}
                     />
                   }
-                  aria-label="access key id help"
+                  aria-label="Access key ID help"
                 >
-                  <Button variant="plain" aria-label="access key id help">
+                  <Button variant="plain" aria-label="Access key ID help">
                     <OutlinedQuestionCircleIcon id="popover-icon" />
                   </Button>
                 </Popover>
@@ -561,9 +560,9 @@ class CreateImageUploadModal extends React.Component {
                       }}
                     />
                   }
-                  aria-label="secret access key help"
+                  aria-label="Secret access key help"
                 >
-                  <Button variant="plain" aria-label="secret access key help">
+                  <Button variant="plain" aria-label="Secret access key help">
                     <OutlinedQuestionCircleIcon id="popover-icon" />
                   </Button>
                 </Popover>
@@ -607,9 +606,9 @@ class CreateImageUploadModal extends React.Component {
                       <FormattedMessage defaultMessage="Provide a file name to be used for the image file that will be uploaded." />
                     </React.Fragment>
                   }
-                  aria-label="image name help"
+                  aria-label="Image name help"
                 >
-                  <Button variant="plain" aria-label="image name help">
+                  <Button variant="plain" aria-label="Image name help">
                     <OutlinedQuestionCircleIcon id="popover-icon" />
                   </Button>
                 </Popover>
@@ -649,9 +648,9 @@ class CreateImageUploadModal extends React.Component {
                       />
                     </React.Fragment>
                   }
-                  aria-label="bucket help"
+                  aria-label="S3 bucket help"
                 >
-                  <Button variant="plain" aria-label="bucket help">
+                  <Button variant="plain" aria-label="S3 bucket help">
                     <OutlinedQuestionCircleIcon id="popover-icon" />
                   </Button>
                 </Popover>
@@ -693,9 +692,9 @@ class CreateImageUploadModal extends React.Component {
                       }}
                     />
                   }
-                  aria-label="region help"
+                  aria-label="AWS region help"
                 >
-                  <Button variant="plain" aria-label="region help">
+                  <Button variant="plain" aria-label="AWS region help">
                     <OutlinedQuestionCircleIcon id="popover-icon" />
                   </Button>
                 </Popover>
@@ -764,9 +763,9 @@ class CreateImageUploadModal extends React.Component {
                 </p>
               </TextContent>
             }
-            aria-label="aws help"
+            aria-label="AWS help"
           >
-            <Button variant="plain" aria-label="aws help">
+            <Button variant="plain" aria-label="AWS help">
               <OutlinedQuestionCircleIcon id="popover-icon" />
             </Button>
           </Popover>
