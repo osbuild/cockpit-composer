@@ -112,6 +112,7 @@ class CreateImageUploadModal extends React.Component {
       minImageSize: 0,
       maxImageSize: 2000,
       showUploadAwsStep: false,
+      showUploadAzureStep: false,
       showReviewStep: false,
       uploadService: "",
       uploadSettings: {}
@@ -187,6 +188,7 @@ class CreateImageUploadModal extends React.Component {
       uploadService: "",
       uploadSettings: {},
       showUploadAwsStep: false,
+      showUploadAzureStep: false,
       showReviewStep: false
     });
   }
@@ -218,10 +220,12 @@ class CreateImageUploadModal extends React.Component {
 
   handleUploadService(_, event) {
     const uploadService = event.target.value;
-    if (this.state.uploadService === uploadService) {
+    const checked = event.target.checked;
+    if (!checked) {
       this.setState({
         uploadService: "",
-        showUploadAwsStep: true,
+        showUploadAwsStep: false,
+        showUploadAzureStep: false,
         showReviewStep: false
       });
     } else {
@@ -236,6 +240,18 @@ class CreateImageUploadModal extends React.Component {
               region: ""
             },
             showUploadAwsStep: true,
+            showReviewStep: true
+          });
+          break;
+        case "azure":
+          this.setState({
+            uploadService: uploadService,
+            uploadSettings: {
+              storageAccount: "",
+              storageAccessKey: "",
+              container: ""
+            },
+            showUploadAzureStep: true,
             showReviewStep: true
           });
           break;
@@ -311,6 +327,7 @@ class CreateImageUploadModal extends React.Component {
     const { blueprint, imageTypes } = this.props;
     const {
       showUploadAwsStep,
+      showUploadAzureStep,
       showReviewStep,
       imageName,
       imageType,
@@ -386,6 +403,28 @@ class CreateImageUploadModal extends React.Component {
       </div>
     );
 
+    const azureProviderCheckbox = (
+      <div className="pf-c-form__group">
+        <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-u-display-flex pf-m-justify-content-flex-start pf-m-nowrap">
+          <span className="pf-l-flex__item pf-c-form__label-text">
+            <FormattedMessage defaultMessage="Upload image" />
+          </span>
+        </div>
+        <div className="pf-c-form__horizontal-group">
+          <Checkbox
+            value="azure"
+            isChecked={this.state.uploadService === "azure"}
+            onChange={this.handleUploadService}
+            label={this.props.intl.formatMessage({
+              id: `azure-checkbox`,
+              defaultMessage: `Upload to Azure`
+            })}
+            id="azure-checkbox"
+          />
+        </div>
+      </div>
+    );
+
     const imageStep = {
       name: "Image type",
       component: (
@@ -431,6 +470,7 @@ class CreateImageUploadModal extends React.Component {
               </FormSelect>
             </FormGroup>
             {imageType === "ami" && awsProviderCheckbox}
+            {imageType === "vhd" && azureProviderCheckbox}
             <div className="pf-c-form__group">
               <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-u-display-flex pf-m-justify-content-flex-start pf-m-nowrap">
                 <label htmlFor="create-image-size" className="pf-l-flex__item">
@@ -705,11 +745,6 @@ class CreateImageUploadModal extends React.Component {
       )
     };
 
-    const uploadStep = {
-      name: `Upload to AWS`,
-      steps: [awsUploadAuth, awsUploadSettings]
-    };
-
     const awsReviewStep = uploadService === "aws" && (
       <TextContent>
         <div className="pf-l-flex pf-u-display-flex">
@@ -788,6 +823,138 @@ class CreateImageUploadModal extends React.Component {
       </TextContent>
     );
 
+    const azureUploadAuth = {
+      name: "Authentication",
+      component: (
+        <React.Fragment>
+          <Text className="help-block cc-c-form__required-text">
+            <FormattedMessage defaultMessage="All fields are required." />
+          </Text>
+          <Form isHorizontal className="cc-m-wide-label">
+            <div className="pf-c-form__group">
+              <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-u-display-flex pf-m-justify-content-flex-start pf-m-nowrap">
+                <label htmlFor="storage-account-input" className="pf-l-flex__item">
+                  <span className="pf-c-form__label-text">
+                    <FormattedMessage defaultMessage="Storage account" />
+                  </span>
+                  <span className="pf-c-form__label-required" aria-hidden="true">
+                    &#42;
+                  </span>
+                </label>
+              </div>
+              <TextInput
+                className="pf-c-form-control"
+                value={this.state.uploadSettings["storageAccount"]}
+                id="storage-account-input"
+                name="storageAccount"
+                onChange={this.setUploadSettings}
+              />
+            </div>
+            <div className="pf-c-form__group">
+              <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-u-display-flex pf-m-justify-content-flex-start pf-m-nowrap">
+                <label htmlFor="storage-access-key-input" className="pf-l-flex__item">
+                  <span className="pf-c-form__label-text">
+                    <FormattedMessage defaultMessage="Storage access key" />
+                  </span>
+                  <span className="pf-c-form__label-required" aria-hidden="true">
+                    &#42;
+                  </span>
+                </label>
+              </div>
+              <TextInput
+                className="pf-c-form-control"
+                value={this.state.uploadSettings["storageAccessKey"]}
+                type="password"
+                id="storage-access-key-input"
+                name="storageAccessKey"
+                onChange={this.setUploadSettings}
+              />
+            </div>
+          </Form>
+        </React.Fragment>
+      )
+    };
+
+    const azureUploadSettings = {
+      name: "Destination",
+      component: (
+        <React.Fragment>
+          <Text className="help-block cc-c-form__required-text">
+            <FormattedMessage defaultMessage="All fields are required." />
+          </Text>
+          <Form isHorizontal className="cc-m-wide-label">
+            <div className="pf-c-form__group">
+              <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-u-display-flex pf-m-justify-content-flex-start pf-m-nowrap">
+                <label htmlFor="image-name-input" className="pf-l-flex__item">
+                  <span className="pf-c-form__label-text">
+                    <FormattedMessage defaultMessage="Image name" />
+                  </span>
+                  <span className="pf-c-form__label-required" aria-hidden="true">
+                    &#42;
+                  </span>
+                </label>
+              </div>
+              <TextInput
+                className="pf-c-form-control"
+                value={imageName}
+                type="text"
+                id="image-name-input"
+                onChange={this.setImageName}
+              />
+            </div>
+            <div className="pf-c-form__group">
+              <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-u-display-flex pf-m-justify-content-flex-start pf-m-nowrap">
+                <label htmlFor="container-input" className="pf-l-flex__item">
+                  <span className="pf-c-form__label-text">Storage container</span>
+                  <span className="pf-c-form__label-required" aria-hidden="true">
+                    &#42;
+                  </span>
+                </label>
+              </div>
+              <TextInput
+                className="pf-c-form-control"
+                value={this.state.uploadSettings["container"]}
+                type="text"
+                id="container-input"
+                name="container"
+                onChange={this.setUploadSettings}
+              />
+            </div>
+          </Form>
+        </React.Fragment>
+      )
+    };
+
+    const azureReviewStep = uploadService === "azure" && (
+      <TextContent>
+        <div className="pf-l-flex pf-u-display-flex">
+          <h3 className="pf-l-flex__item pf-u-mt-2xl pf-u-mb-md">
+            <FormattedMessage defaultMessage="Upload to Azure" />
+          </h3>
+        </div>
+        <TextList className="cc-m-column__fixed-width" component={TextListVariants.dl}>
+          <TextListItem component={TextListItemVariants.dt}>
+            <FormattedMessage defaultMessage="Storage account" />
+          </TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>{this.state.uploadSettings["storageAccount"]}</TextListItem>
+          <TextListItem component={TextListItemVariants.dt}>
+            <FormattedMessage defaultMessage="Storage access key" />
+          </TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>
+            {"*".repeat(this.state.uploadSettings["storageAccessKey"].length)}
+          </TextListItem>
+          <TextListItem component={TextListItemVariants.dt}>
+            <FormattedMessage defaultMessage="Image name" />
+          </TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>{imageName}</TextListItem>
+          <TextListItem component={TextListItemVariants.dt}>
+            <FormattedMessage defaultMessage="Storage container" />
+          </TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>{this.state.uploadSettings["container"]}</TextListItem>
+        </TextList>
+      </TextContent>
+    );
+
     const reviewStep = {
       name: "Review",
       component: (
@@ -842,11 +1009,27 @@ class CreateImageUploadModal extends React.Component {
             </TextList>
           </TextContent>
           {awsReviewStep}
+          {azureReviewStep}
         </React.Fragment>
       )
     };
 
-    const steps = [imageStep, ...(showUploadAwsStep ? [uploadStep] : []), ...(showReviewStep ? [reviewStep] : [])];
+    const awsUploadStep = {
+      name: "Upload to AWS",
+      steps: [awsUploadAuth, awsUploadSettings]
+    };
+
+    const azureUploadStep = {
+      name: "Upload to Azure",
+      steps: [azureUploadAuth, azureUploadSettings]
+    };
+
+    const steps = [
+      imageStep,
+      ...(showUploadAwsStep ? [awsUploadStep] : []),
+      ...(showUploadAzureStep ? [azureUploadStep] : []),
+      ...(showReviewStep ? [reviewStep] : [])
+    ];
 
     const createImageUploadFooter = (
       <WizardFooter>
