@@ -327,7 +327,7 @@ class CreateImageUploadModal extends React.Component {
             <FormattedMessage defaultMessage="Upload image" />
           </span>
           <Popover
-            id="popover-help"
+            id="aws-provider-popover"
             bodyContent={
               <TextContent>
                 <p>
@@ -412,7 +412,7 @@ class CreateImageUploadModal extends React.Component {
               <div className="pf-c-form__horizontal-group cc-c-popover__horizontal-group">
                 <Text id="blueprint-name">{blueprint.name}</Text>
                 <Popover
-                  id="popover-help"
+                  id="blueprint-name-popover"
                   bodyContent={formatMessage(messages.infotip)}
                   aria-label="process length help"
                 >
@@ -442,7 +442,7 @@ class CreateImageUploadModal extends React.Component {
                   </span>
                 </label>
                 <Popover
-                  id="popover-help"
+                  id="size-popover"
                   bodyContent={formatMessage(messages.imageSizePopover)}
                   aria-label="image size help"
                 >
@@ -515,7 +515,7 @@ class CreateImageUploadModal extends React.Component {
                   </span>
                 </label>
                 <Popover
-                  id="popover-help"
+                  id="access-key-popover"
                   bodyContent={
                     <FormattedMessage
                       defaultMessage="You can create and find existing Access key IDs on the {iam} page in the AWS console."
@@ -551,7 +551,7 @@ class CreateImageUploadModal extends React.Component {
                   </span>
                 </label>
                 <Popover
-                  id="popover-help"
+                  id="secret-key-popover"
                   bodyContent={
                     <FormattedMessage
                       defaultMessage="You can view the Secret access key only when you create a new Access key ID on the {iam} page in the AWS console."
@@ -600,7 +600,7 @@ class CreateImageUploadModal extends React.Component {
                   </span>
                 </label>
                 <Popover
-                  id="popover-help"
+                  id="image-name-popover"
                   bodyContent={
                     <React.Fragment>
                       <FormattedMessage defaultMessage="Provide a file name to be used for the image file that will be uploaded." />
@@ -718,7 +718,7 @@ class CreateImageUploadModal extends React.Component {
           </h3>
           <Popover
             className="pf-l-flex__item"
-            id="popover-help"
+            id="aws-review-popover"
             bodyContent={
               <TextContent>
                 <p>
