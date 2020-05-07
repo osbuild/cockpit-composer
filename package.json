@@ -7,7 +7,7 @@
     "npm": ">=5.0"
   },
   "dependencies": {
-    "@patternfly/patternfly": "2.31.0",
+    "@patternfly/patternfly": "2.71.5",
     "@patternfly/react-core": "3.153.13",
     "@patternfly/react-icons": "3.15.16",
     "@patternfly/react-styles": "3.7.13",
