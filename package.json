@@ -16,7 +16,7 @@
     "core-js-compat": "3.6.5",
     "fastclick": "1.0.6",
     "history": "3.3.0",
-    "jquery": "3.5.0",
+    "jquery": "3.5.1",
     "patternfly-react": "1.19.1",
     "prop-types": "15.7.2",
     "react": "16.13.1",
