@@ -2,7 +2,7 @@
 # Matej Marusak <mmarusak@redhat.com>, 2019. #zanata, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-04-09T18:06:25.170Z\n"
+"POT-Creation-Date: 2020-05-05T00:28:27.513Z\n"
 "PO-Revision-Date: 2020-04-16 13:42+0000\n"
 "Last-Translator: Matej Marusak <mmarusak@redhat.com>\n"
 "Language-Team: Slovak <https://translate.fedoraproject.org/projects/cockpit-"
@@ -19,13 +19,6 @@ msgstr ""
 #: build/messages/components/Modal/PendingChanges.json
 msgid "(most recent first)"
 msgstr "(od najnovších)"
-
-#. [components.Modal.485442669]
-#. defaultMessage is:
-#. 1 build is in progress
-#: build/messages/components/Modal/CreateImage.json
-msgid "1 build is in progress"
-msgstr ""
 
 #. [components.Modal.4177685254]
 #. defaultMessage is:
@@ -47,6 +40,13 @@ msgstr "Heslo je definované pre tento účet."
 #: build/messages/components/Modal/UserAccount.json
 msgid "A password is not defined for this account."
 msgstr "Heslo nie je definované pre tento účet."
+
+#. [components.Modal.warningSizeEmpty]
+#. defaultMessage is:
+#. A value is required.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "A value is required."
+msgstr ""
 
 #. [components.ListView.imageActions] - A label for the menu that displays the actions available
 #. defaultMessage is:
@@ -99,6 +99,13 @@ msgstr "Pridať najnovšiu verziu"
 #: build/messages/components/Modal/PendingChanges.json
 msgid "Added"
 msgstr "Pridané"
+
+#. [components.Modal.1175512155]
+#. defaultMessage is:
+#. All fields are required.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "All fields are required."
+msgstr ""
 
 #. [components.ListView.emptyStateErrorTitle]
 #. defaultMessage is:
@@ -182,6 +189,13 @@ msgstr "Automaticky spustiť osbuild-composer pri zavádzaní hostiteľa"
 msgid "Available Components"
 msgstr "Dostupné komponenty"
 
+#. [components.Modal.1347475195]
+#. defaultMessage is:
+#. Back
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Back"
+msgstr ""
+
 #. [pages.blueprint.3126044146]
 #. defaultMessage is:
 #. Back to Blueprints
@@ -203,9 +217,6 @@ msgstr "Späť na {blueprint}"
 #. [components.Modal.1281198655]
 #. defaultMessage is:
 #. Blueprint
-#. [components.Modal.1281198655]
-#. defaultMessage is:
-#. Blueprint
 #. [components.Modal.blueprint]
 #. defaultMessage is:
 #. Blueprint
@@ -215,7 +226,6 @@ msgstr "Späť na {blueprint}"
 #. [pages.blueprintEdit.blueprintTitle]
 #. defaultMessage is:
 #. Blueprint
-#: build/messages/components/Modal/CreateImage.json
 #: build/messages/components/Modal/ExportBlueprint.json
 #: build/messages/components/Modal/PendingChanges.json
 #: build/messages/pages/blueprint/index.json
@@ -308,7 +318,7 @@ msgstr ""
 #. Cancel
 #: build/messages/components/Form/TextInlineEdit.json
 #: build/messages/components/Modal/CreateBlueprint.json
-#: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/CreateImageUpload.json
 #: build/messages/components/Modal/DeleteBlueprint.json
 #: build/messages/components/Modal/DeleteImage.json
 #: build/messages/components/Modal/EditDescription.json
@@ -414,11 +424,18 @@ msgstr "Komentár"
 msgid "Commit"
 msgstr ""
 
-#. [components.Modal.4244040826]
+#. [components.Modal.1126783419]
 #. defaultMessage is:
-#. Commit and Create
-#: build/messages/components/Modal/CreateImage.json
-msgid "Commit and Create"
+#. Commit and create
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Commit and create"
+msgstr ""
+
+#. [components.Modal.552112481]
+#. defaultMessage is:
+#. Commit and next
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Commit and next"
 msgstr ""
 
 #. [pages.blueprint.3540308269]
@@ -470,7 +487,7 @@ msgstr "Kopírovať"
 #. defaultMessage is:
 #. Create
 #: build/messages/components/Modal/CreateBlueprint.json
-#: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/CreateImageUpload.json
 #: build/messages/components/Modal/UserAccount.json
 msgid "Create"
 msgstr "Vytvoriť"
@@ -481,13 +498,6 @@ msgstr "Vytvoriť"
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "Create Blueprint"
 msgstr ""
-
-#. [components.Modal.2482064138]
-#. defaultMessage is:
-#. Create Image
-#: build/messages/components/Modal/CreateImage.json
-msgid "Create Image"
-msgstr "Vytvoriť obraz"
 
 #. [components.Modal.modalTitleCreate]
 #. defaultMessage is:
@@ -508,6 +518,27 @@ msgid ""
 "Create a blueprint to define the contents that will be included in the "
 "images you create. Images can be produced in a variety of output formats."
 msgstr ""
+
+#. [components.Modal.1723482220]
+#. defaultMessage is:
+#. Create and upload image
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "Create Image"
+msgid "Create and upload image"
+msgstr "Vytvoriť obraz"
+
+#. [components.Modal.title]
+#. defaultMessage is:
+#. Create image
+#. [components.Modal.2020427956]
+#. defaultMessage is:
+#. Create image
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "Create Image"
+msgid "Create image"
+msgstr "Vytvoriť obraz"
 
 #. [components.ListView.imageCreated] - A label for the date that an image file was created
 #. defaultMessage is:
@@ -727,6 +758,13 @@ msgstr ""
 msgid "Filter By Name..."
 msgstr "Filtrovať podľa mena..."
 
+#. [components.Modal.787186999]
+#. defaultMessage is:
+#. Finish
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Finish"
+msgstr ""
+
 #. [components.Modal.1182120637]
 #. defaultMessage is:
 #. Full name
@@ -773,13 +811,6 @@ msgstr ""
 msgid "Image Building Service is Not Active"
 msgstr ""
 
-#. [components.Modal.380558550]
-#. defaultMessage is:
-#. Image Type
-#: build/messages/components/Modal/CreateImage.json
-msgid "Image Type"
-msgstr "Typ obrazu"
-
 #. [components.ListView.imageStatusFinished] - Image build status when process is finished
 #. defaultMessage is:
 #. Image build complete
@@ -811,9 +842,22 @@ msgstr ""
 #. [components.ListView.imageName] - The name given by the user for an image
 #. defaultMessage is:
 #. Image name
+#. [components.Modal.2794911472]
+#. defaultMessage is:
+#. Image name
 #: build/messages/components/ListView/ListItemUploads.json
+#: build/messages/components/Modal/CreateImageUpload.json
 msgid "Image name"
 msgstr "Názov obrazu"
+
+#. [components.Modal.1905943231]
+#. defaultMessage is:
+#. Image size
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "Images"
+msgid "Image size"
+msgstr "Obrazy"
 
 #. [components.ListView.imageUploads] - A label for the section that lists the upload actions initiated by the user
 #. defaultMessage is:
@@ -861,6 +905,13 @@ msgstr ""
 msgid "Message"
 msgstr "Správa"
 
+#. [components.Modal.warningSizeSmall]
+#. defaultMessage is:
+#. Minimum size is {size} GB.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Minimum size is {size} GB."
+msgstr ""
+
 #. [components.ListView.emptyStateNoResultsMessage]
 #. defaultMessage is:
 #. Modify your filter criteria to get results.
@@ -896,6 +947,13 @@ msgstr "Názov: {name}"
 #: build/messages/components/Modal/UserAccount.json
 msgid "New password"
 msgstr "Nové heslo"
+
+#. [components.Modal.3673120330]
+#. defaultMessage is:
+#. Next
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Next"
+msgstr ""
 
 #. [pages.blueprints.emptyTitle]
 #. defaultMessage is:
@@ -1098,6 +1156,15 @@ msgstr ""
 msgid "Required information is missing."
 msgstr "Chýba požadovaná informácia."
 
+#. [components.Modal.review]
+#. defaultMessage is:
+#. Review the information below and click Finish to create the image and complete the tasks that were selected.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid ""
+"Review the information below and click Finish to create the image and "
+"complete the tasks that were selected."
+msgstr ""
+
 #. [components.Modal.106035384]
 #. defaultMessage is:
 #. Role
@@ -1150,7 +1217,7 @@ msgstr ""
 #. [components.Modal.selectOne]
 #. defaultMessage is:
 #. Select one
-#: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/CreateImageUpload.json
 #: build/messages/components/Modal/ManageSources.json
 msgid "Select one"
 msgstr "Vyberte jedno"
@@ -1182,6 +1249,16 @@ msgstr "Nastaviť nové heslo"
 #: build/messages/components/Modal/UserAccount.json
 msgid "Set Password"
 msgstr "Nastaviť heslo"
+
+#. [components.Modal.imageSizePopover]
+#. defaultMessage is:
+#. Set the size that you want the image to be when instantiated. The total package size and target destination of your image should be considered when setting the image size.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid ""
+"Set the size that you want the image to be when instantiated. The total "
+"package size and target destination of your image should be considered when "
+"setting the image size."
+msgstr ""
 
 #. [components.ListView.1256153657]
 #. defaultMessage is:
@@ -1278,13 +1355,6 @@ msgstr "Spustiť"
 msgid "Started"
 msgstr "Spustený"
 
-#. [components.ListView.2989081855]
-#. defaultMessage is:
-#. Stop
-#: build/messages/components/ListView/ListItemImages.json
-msgid "Stop"
-msgstr "Zastaviť"
-
 #. [components.Modal.1162993432]
 #. defaultMessage is:
 #. Stop Build
@@ -1357,6 +1427,15 @@ msgstr ""
 msgid "The service osbuild-composer was not started."
 msgstr ""
 
+#. [components.Modal.warningSizeLarge]
+#. defaultMessage is:
+#. The size specified is large. We recommend that you check whether your target destination has any restrictions on image size.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid ""
+"The size specified is large. We recommend that you check whether your target "
+"destination has any restrictions on image size."
+msgstr ""
+
 #. [components.Modal.2405281428]
 #. defaultMessage is:
 #. The user name can only consist of letters from a-z, digits, dots, dashes and underscores.
@@ -1389,6 +1468,13 @@ msgid ""
 "components."
 msgstr ""
 
+#. [components.Modal.warningReview]
+#. defaultMessage is:
+#. There are one or more fields that require your attention.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "There are one or more fields that require your attention."
+msgstr ""
+
 #. [components.Modal.181468144]
 #. defaultMessage is:
 #. This action cannot be undone.
@@ -1403,16 +1489,16 @@ msgstr ""
 #. [components.Modal.warningUnsaved]
 #. defaultMessage is:
 #. This blueprint has changes that are not committed. These changes will be committed before the image is created.
-#: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/CreateImageUpload.json
 msgid ""
 "This blueprint has changes that are not committed. These changes will be "
 "committed before the image is created."
 msgstr ""
 
-#. [components.Modal.1766703173]
+#. [empty-blueprint-alert]
 #. defaultMessage is:
 #. This blueprint is empty.
-#: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/CreateImageUpload.json
 msgid "This blueprint is empty."
 msgstr ""
 
@@ -1426,7 +1512,7 @@ msgstr ""
 #. [components.Modal.infotip]
 #. defaultMessage is:
 #. This process can take a while. Images are built in the order they are started.
-#: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/CreateImageUpload.json
 msgid ""
 "This process can take a while. Images are built in the order they are "
 "started."
@@ -1725,13 +1811,6 @@ msgstr ""
 msgid "{blueprint} Image creation is complete."
 msgstr ""
 
-#. [components.Modal.2122759296]
-#. defaultMessage is:
-#. {builds, plural, one {# build is waiting} other {# builds are waiting}}
-#: build/messages/components/Modal/CreateImage.json
-msgid "{builds, plural, one {# build is waiting} other {# builds are waiting}}"
-msgstr ""
-
 #. [components.Modal.1557505074]
 #. defaultMessage is:
 #. {count} total components
@@ -1798,3 +1877,9 @@ msgstr "Vytvoriť obraz"
 #: public/manifest.json
 msgid "Image Builder"
 msgstr ""
+
+#~ msgid "Image Type"
+#~ msgstr "Typ obrazu"
+
+#~ msgid "Stop"
+#~ msgstr "Zastaviť"

@@ -2,7 +2,7 @@
 # Laszlo Pal <vlad@vlad.hu>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-04-09T18:06:25.170Z\n"
+"POT-Creation-Date: 2020-05-05T00:28:27.513Z\n"
 "PO-Revision-Date: 2020-04-07 17:40+0000\n"
 "Last-Translator: Laszlo Pal <vlad@vlad.hu>\n"
 "Language-Team: Hungarian <https://translate.fedoraproject.org/projects/"
@@ -19,13 +19,6 @@ msgstr ""
 #: build/messages/components/Modal/PendingChanges.json
 msgid "(most recent first)"
 msgstr "(legfrissebb elöl)"
-
-#. [components.Modal.485442669]
-#. defaultMessage is:
-#. 1 build is in progress
-#: build/messages/components/Modal/CreateImage.json
-msgid "1 build is in progress"
-msgstr "1 összeállítás folyamatban"
 
 #. [components.Modal.4177685254]
 #. defaultMessage is:
@@ -47,6 +40,15 @@ msgstr "Van jelszó megadva ehhez a fiókhoz."
 #: build/messages/components/Modal/UserAccount.json
 msgid "A password is not defined for this account."
 msgstr "Nincs jelszó megadva ehhez a fiókhoz."
+
+#. [components.Modal.warningSizeEmpty]
+#. defaultMessage is:
+#. A value is required.
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "A blueprint name is required."
+msgid "A value is required."
+msgstr "Egy tervrajz neve szükséges."
 
 #. [components.ListView.imageActions] - A label for the menu that displays the actions available
 #. defaultMessage is:
@@ -99,6 +101,15 @@ msgstr "Legfrissebb verzió hozzáadása"
 #: build/messages/components/Modal/PendingChanges.json
 msgid "Added"
 msgstr "Hozzáadva"
+
+#. [components.Modal.1175512155]
+#. defaultMessage is:
+#. All fields are required.
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "The fields marked with {val} are required."
+msgid "All fields are required."
+msgstr "A(z) {val} értékkel jelölt mezők kötelezőek."
 
 #. [components.ListView.emptyStateErrorTitle]
 #. defaultMessage is:
@@ -182,6 +193,13 @@ msgstr "Osbuild-composer automatikus indítása a rendszerrel"
 msgid "Available Components"
 msgstr "Elérhető összetevők"
 
+#. [components.Modal.1347475195]
+#. defaultMessage is:
+#. Back
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Back"
+msgstr ""
+
 #. [pages.blueprint.3126044146]
 #. defaultMessage is:
 #. Back to Blueprints
@@ -203,9 +221,6 @@ msgstr "Vissza ide: {blueprint}"
 #. [components.Modal.1281198655]
 #. defaultMessage is:
 #. Blueprint
-#. [components.Modal.1281198655]
-#. defaultMessage is:
-#. Blueprint
 #. [components.Modal.blueprint]
 #. defaultMessage is:
 #. Blueprint
@@ -215,7 +230,6 @@ msgstr "Vissza ide: {blueprint}"
 #. [pages.blueprintEdit.blueprintTitle]
 #. defaultMessage is:
 #. Blueprint
-#: build/messages/components/Modal/CreateImage.json
 #: build/messages/components/Modal/ExportBlueprint.json
 #: build/messages/components/Modal/PendingChanges.json
 #: build/messages/pages/blueprint/index.json
@@ -310,7 +324,7 @@ msgstr "Összetevők tallózása vagy keresése, majd hozzáadás a tervrajzhoz.
 #. Cancel
 #: build/messages/components/Form/TextInlineEdit.json
 #: build/messages/components/Modal/CreateBlueprint.json
-#: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/CreateImageUpload.json
 #: build/messages/components/Modal/DeleteBlueprint.json
 #: build/messages/components/Modal/DeleteImage.json
 #: build/messages/components/Modal/EditDescription.json
@@ -419,11 +433,22 @@ msgstr "Megjegyzés"
 msgid "Commit"
 msgstr "Véglegesítés"
 
-#. [components.Modal.4244040826]
+#. [components.Modal.1126783419]
 #. defaultMessage is:
-#. Commit and Create
-#: build/messages/components/Modal/CreateImage.json
-msgid "Commit and Create"
+#. Commit and create
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "Commit and Create"
+msgid "Commit and create"
+msgstr "Véglegesítés és létrehozás"
+
+#. [components.Modal.552112481]
+#. defaultMessage is:
+#. Commit and next
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "Commit and Create"
+msgid "Commit and next"
 msgstr "Véglegesítés és létrehozás"
 
 #. [pages.blueprint.3540308269]
@@ -475,7 +500,7 @@ msgstr "Másolás"
 #. defaultMessage is:
 #. Create
 #: build/messages/components/Modal/CreateBlueprint.json
-#: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/CreateImageUpload.json
 #: build/messages/components/Modal/UserAccount.json
 msgid "Create"
 msgstr "Létrehozás"
@@ -486,13 +511,6 @@ msgstr "Létrehozás"
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "Create Blueprint"
 msgstr "Tervrajz létrehozása"
-
-#. [components.Modal.2482064138]
-#. defaultMessage is:
-#. Create Image
-#: build/messages/components/Modal/CreateImage.json
-msgid "Create Image"
-msgstr "Kép létrehozása"
 
 #. [components.Modal.modalTitleCreate]
 #. defaultMessage is:
@@ -516,6 +534,27 @@ msgstr ""
 "Hozzon létre egy tervrajzot, amely leírja a tartalmat, amely belekerül az Ön "
 "által létrehozott lemezképekbe. A lemezképek számos kimeneti formában "
 "előállíthatóak."
+
+#. [components.Modal.1723482220]
+#. defaultMessage is:
+#. Create and upload image
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "Create Image"
+msgid "Create and upload image"
+msgstr "Kép létrehozása"
+
+#. [components.Modal.title]
+#. defaultMessage is:
+#. Create image
+#. [components.Modal.2020427956]
+#. defaultMessage is:
+#. Create image
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "Create Image"
+msgid "Create image"
+msgstr "Kép létrehozása"
 
 #. [components.ListView.imageCreated] - A label for the date that an image file was created
 #. defaultMessage is:
@@ -735,6 +774,13 @@ msgstr "Elérhető összetevők szűrése név szerint"
 msgid "Filter By Name..."
 msgstr "Szűrés név szerint…"
 
+#. [components.Modal.787186999]
+#. defaultMessage is:
+#. Finish
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Finish"
+msgstr ""
+
 #. [components.Modal.1182120637]
 #. defaultMessage is:
 #. Full name
@@ -783,13 +829,6 @@ msgstr ""
 msgid "Image Building Service is Not Active"
 msgstr ""
 
-#. [components.Modal.380558550]
-#. defaultMessage is:
-#. Image Type
-#: build/messages/components/Modal/CreateImage.json
-msgid "Image Type"
-msgstr "Lemezkép típusa"
-
 #. [components.ListView.imageStatusFinished] - Image build status when process is finished
 #. defaultMessage is:
 #. Image build complete
@@ -821,9 +860,22 @@ msgstr ""
 #. [components.ListView.imageName] - The name given by the user for an image
 #. defaultMessage is:
 #. Image name
+#. [components.Modal.2794911472]
+#. defaultMessage is:
+#. Image name
 #: build/messages/components/ListView/ListItemUploads.json
+#: build/messages/components/Modal/CreateImageUpload.json
 msgid "Image name"
 msgstr ""
+
+#. [components.Modal.1905943231]
+#. defaultMessage is:
+#. Image size
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "Images"
+msgid "Image size"
+msgstr "Lemezképek"
 
 #. [components.ListView.imageUploads] - A label for the section that lists the upload actions initiated by the user
 #. defaultMessage is:
@@ -871,6 +923,13 @@ msgstr ""
 msgid "Message"
 msgstr ""
 
+#. [components.Modal.warningSizeSmall]
+#. defaultMessage is:
+#. Minimum size is {size} GB.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Minimum size is {size} GB."
+msgstr ""
+
 #. [components.ListView.emptyStateNoResultsMessage]
 #. defaultMessage is:
 #. Modify your filter criteria to get results.
@@ -906,6 +965,13 @@ msgstr "Név: {name}"
 #: build/messages/components/Modal/UserAccount.json
 msgid "New password"
 msgstr "Új jelszó"
+
+#. [components.Modal.3673120330]
+#. defaultMessage is:
+#. Next
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Next"
+msgstr ""
 
 #. [pages.blueprints.emptyTitle]
 #. defaultMessage is:
@@ -1108,6 +1174,15 @@ msgstr ""
 msgid "Required information is missing."
 msgstr "Hiányzik a szükséges információ."
 
+#. [components.Modal.review]
+#. defaultMessage is:
+#. Review the information below and click Finish to create the image and complete the tasks that were selected.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid ""
+"Review the information below and click Finish to create the image and "
+"complete the tasks that were selected."
+msgstr ""
+
 #. [components.Modal.106035384]
 #. defaultMessage is:
 #. Role
@@ -1160,7 +1235,7 @@ msgstr "Válassza ki az összetevőket"
 #. [components.Modal.selectOne]
 #. defaultMessage is:
 #. Select one
-#: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/CreateImageUpload.json
 #: build/messages/components/Modal/ManageSources.json
 msgid "Select one"
 msgstr "Válasszon egyet"
@@ -1192,6 +1267,16 @@ msgstr "Új jelszó beállítása"
 #: build/messages/components/Modal/UserAccount.json
 msgid "Set Password"
 msgstr "Jelszó megadása"
+
+#. [components.Modal.imageSizePopover]
+#. defaultMessage is:
+#. Set the size that you want the image to be when instantiated. The total package size and target destination of your image should be considered when setting the image size.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid ""
+"Set the size that you want the image to be when instantiated. The total "
+"package size and target destination of your image should be considered when "
+"setting the image size."
+msgstr ""
 
 #. [components.ListView.1256153657]
 #. defaultMessage is:
@@ -1288,13 +1373,6 @@ msgstr ""
 msgid "Started"
 msgstr ""
 
-#. [components.ListView.2989081855]
-#. defaultMessage is:
-#. Stop
-#: build/messages/components/ListView/ListItemImages.json
-msgid "Stop"
-msgstr "Leállítás"
-
 #. [components.Modal.1162993432]
 #. defaultMessage is:
 #. Stop Build
@@ -1367,6 +1445,15 @@ msgstr "A keresett oldal nem létezik, vagy más hiba történt."
 msgid "The service osbuild-composer was not started."
 msgstr ""
 
+#. [components.Modal.warningSizeLarge]
+#. defaultMessage is:
+#. The size specified is large. We recommend that you check whether your target destination has any restrictions on image size.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid ""
+"The size specified is large. We recommend that you check whether your target "
+"destination has any restrictions on image size."
+msgstr ""
+
 #. [components.Modal.2405281428]
 #. defaultMessage is:
 #. The user name can only consist of letters from a-z, digits, dots, dashes and underscores.
@@ -1403,6 +1490,13 @@ msgstr ""
 "Nincsenek összetevők felsorolva a tervrajzon. Szerkessze a tervrajzot az "
 "összetevők hozzáadásához."
 
+#. [components.Modal.warningReview]
+#. defaultMessage is:
+#. There are one or more fields that require your attention.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "There are one or more fields that require your attention."
+msgstr ""
+
 #. [components.Modal.181468144]
 #. defaultMessage is:
 #. This action cannot be undone.
@@ -1417,7 +1511,7 @@ msgstr "Ez a művelet nem vonható vissza."
 #. [components.Modal.warningUnsaved]
 #. defaultMessage is:
 #. This blueprint has changes that are not committed. These changes will be committed before the image is created.
-#: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/CreateImageUpload.json
 msgid ""
 "This blueprint has changes that are not committed. These changes will be "
 "committed before the image is created."
@@ -1425,10 +1519,10 @@ msgstr ""
 "A tervrajz nem véglegesített módosításokat tartalmaz. Ezek nem lesznek "
 "véglegesítve a lemezkép létrehozása előtt."
 
-#. [components.Modal.1766703173]
+#. [empty-blueprint-alert]
 #. defaultMessage is:
 #. This blueprint is empty.
-#: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/CreateImageUpload.json
 msgid "This blueprint is empty."
 msgstr "Ez a tervrajz üres."
 
@@ -1442,7 +1536,7 @@ msgstr "Ennek az összetevőnek nincsenek függőségei."
 #. [components.Modal.infotip]
 #. defaultMessage is:
 #. This process can take a while. Images are built in the order they are started.
-#: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/CreateImageUpload.json
 msgid ""
 "This process can take a while. Images are built in the order they are "
 "started."
@@ -1745,15 +1839,6 @@ msgstr "{blueprint} Lemezkép létrehozás elindult."
 msgid "{blueprint} Image creation is complete."
 msgstr "{blueprint} A lemezkép elkészült."
 
-#. [components.Modal.2122759296]
-#. defaultMessage is:
-#. {builds, plural, one {# build is waiting} other {# builds are waiting}}
-#: build/messages/components/Modal/CreateImage.json
-msgid "{builds, plural, one {# build is waiting} other {# builds are waiting}}"
-msgstr ""
-"{builds, plural, one {# összeállítás várakozik} other {# összeállítás "
-"várakozik}}"
-
 #. [components.Modal.1557505074]
 #. defaultMessage is:
 #. {count} total components
@@ -1821,3 +1906,18 @@ msgstr "Kép létrehozása"
 #: public/manifest.json
 msgid "Image Builder"
 msgstr "Lemezkép-összeállító"
+
+#~ msgid "1 build is in progress"
+#~ msgstr "1 összeállítás folyamatban"
+
+#~ msgid "Image Type"
+#~ msgstr "Lemezkép típusa"
+
+#~ msgid "Stop"
+#~ msgstr "Leállítás"
+
+#~ msgid ""
+#~ "{builds, plural, one {# build is waiting} other {# builds are waiting}}"
+#~ msgstr ""
+#~ "{builds, plural, one {# összeállítás várakozik} other {# összeállítás "
+#~ "várakozik}}"
