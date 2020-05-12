@@ -1,19 +1,20 @@
 # David Shea <dshea@redhat.com>, 2019. #zanata
 # Larry Letelier <geek@xofica.cl>, 2020.
 # Dennis Tobar <DENNIS.TOBAR@gmail.com>, 2020.
+# Álvaro Castillo <sincorchetes@gmail.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-02-10T12:16:15.012Z\n"
-"PO-Revision-Date: 2020-01-22 11:15+0000\n"
-"Last-Translator: Dennis Tobar <DENNIS.TOBAR@gmail.com>\n"
-"Language-Team: Spanish <https://translate.stg.fedoraproject.org/projects/"
-"cockpit-composer/master/es/>\n"
+"POT-Creation-Date: 2020-05-05T00:28:27.513Z\n"
+"PO-Revision-Date: 2020-05-10 09:40+0000\n"
+"Last-Translator: Álvaro Castillo <sincorchetes@gmail.com>\n"
+"Language-Team: Spanish <https://translate.fedoraproject.org/projects/cockpit-"
+"composer/master/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10.3\n"
+"Plural-Forms: nplurals=2; plural=n != 1\n"
+"X-Generator: Weblate 4.0.4\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -21,13 +22,6 @@ msgstr ""
 #: build/messages/components/Modal/PendingChanges.json
 msgid "(most recent first)"
 msgstr "(más reciente primero)"
-
-#. [components.Modal.485442669]
-#. defaultMessage is:
-#. 1 build is in progress
-#: build/messages/components/Modal/CreateImage.json
-msgid "1 build is in progress"
-msgstr "1 construcción en curso"
 
 #. [components.Modal.4177685254]
 #. defaultMessage is:
@@ -41,7 +35,7 @@ msgstr "Se requiere un nombre de plano."
 #. A password is defined for this account.
 #: build/messages/components/Modal/UserAccount.json
 msgid "A password is defined for this account."
-msgstr "Una contraseña ya esta definida para esta cuenta."
+msgstr "Una contraseña ya está definida para esta cuenta."
 
 #. [components.Modal.2362836873]
 #. defaultMessage is:
@@ -49,6 +43,15 @@ msgstr "Una contraseña ya esta definida para esta cuenta."
 #: build/messages/components/Modal/UserAccount.json
 msgid "A password is not defined for this account."
 msgstr "No se ha definido una contraseña para esta cuenta."
+
+#. [components.Modal.warningSizeEmpty]
+#. defaultMessage is:
+#. A value is required.
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "A blueprint name is required."
+msgid "A value is required."
+msgstr "Se requiere un nombre de plano."
 
 #. [components.ListView.imageActions] - A label for the menu that displays the actions available
 #. defaultMessage is:
@@ -86,14 +89,14 @@ msgstr "Agregar componentes de planos"
 #. Add Source
 #: build/messages/components/Modal/ManageSources.json
 msgid "Add Source"
-msgstr "Agregar Fuente"
+msgstr "Agregar fuente"
 
 #. [components.ListView.addComponent]
 #. defaultMessage is:
 #. Add latest version
 #: build/messages/components/ListView/ComponentInputs.json
 msgid "Add latest version"
-msgstr "Agregar última versión"
+msgstr "Añadir última versión"
 
 # translation auto-copied from project Drools Workbench, version 6.0.0, document org.drools/drools-wb-guided-rule-editor-client/org/drools/workbench/screens/guided/rule/client/resources/i18n/Constants, author angela.garcia
 #. [components.Modal.1362724042] - Identifies the change as a component that was added
@@ -101,7 +104,16 @@ msgstr "Agregar última versión"
 #. Added
 #: build/messages/components/Modal/PendingChanges.json
 msgid "Added"
-msgstr "Agregado"
+msgstr "Añadido"
+
+#. [components.Modal.1175512155]
+#. defaultMessage is:
+#. All fields are required.
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "The fields marked with {val} are required."
+msgid "All fields are required."
+msgstr "Los campos marcados con {val} son obligatorios."
 
 #. [components.ListView.emptyStateErrorTitle]
 #. defaultMessage is:
@@ -126,6 +138,8 @@ msgid ""
 "An error occurred when saving the source. Check that the path is valid and "
 "try again."
 msgstr ""
+"Ha ocurrido un error cuando se guardaba el origen. Compruebe que la ruta es "
+"válida e inténtelo otra vez."
 
 #. [components.ListView.emptyStateErrorMessage]
 #. defaultMessage is:
@@ -146,7 +160,7 @@ msgstr "Se ha producido un error al intentar obtener las fuentes."
 #. Apply Change
 #: build/messages/components/ListView/ComponentDetailsView.json
 msgid "Apply Change"
-msgstr "Aplicar Cambiar"
+msgstr "Aplicar cambio"
 
 #. [components.Modal.4140003068]
 #. defaultMessage is:
@@ -160,7 +174,7 @@ msgstr "¿Estás seguro de que quieres borrar el plano{name}?"
 #. Are you sure you want to delete the image for {blueprintName}?
 #: build/messages/components/Modal/DeleteImage.json
 msgid "Are you sure you want to delete the image for {blueprintName}?"
-msgstr "¿Está seguro de que desea eliminar la imagen de{blueprintName}?"
+msgstr "¿Está seguro de que desea eliminar la imagen de {blueprintName}?"
 
 #. [components.Modal.234116272]
 #. defaultMessage is:
@@ -168,14 +182,14 @@ msgstr "¿Está seguro de que desea eliminar la imagen de{blueprintName}?"
 #: build/messages/components/Modal/StopBuild.json
 msgid "Are you sure you want to stop the build process for {blueprintName}?"
 msgstr ""
-"¿Estás seguro de que quieres detener el proceso de construcción "
-"de{blueprintName}?"
+"¿Estás seguro de que quieres detener el proceso de construcción de "
+"{blueprintName}?"
 
 #. [components.EmptyState.errorInactiveCheckbox]
 #. defaultMessage is:
-#. Automatically start lorax-composer on boot
+#. Automatically start osbuild-composer on boot
 #: build/messages/components/EmptyState/EmptyStateInactive.json
-msgid "Automatically start lorax-composer on boot"
+msgid "Automatically start osbuild-composer on boot"
 msgstr ""
 
 #. [pages.blueprintEdit.listTitleAvailableComps]
@@ -184,6 +198,13 @@ msgstr ""
 #: build/messages/pages/blueprintEdit/index.json
 msgid "Available Components"
 msgstr "Componentes disponibles"
+
+#. [components.Modal.1347475195]
+#. defaultMessage is:
+#. Back
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Back"
+msgstr ""
 
 #. [pages.blueprint.3126044146]
 #. defaultMessage is:
@@ -206,9 +227,6 @@ msgstr "Volver a {blueprint}"
 #. [components.Modal.1281198655]
 #. defaultMessage is:
 #. Blueprint
-#. [components.Modal.1281198655]
-#. defaultMessage is:
-#. Blueprint
 #. [components.Modal.blueprint]
 #. defaultMessage is:
 #. Blueprint
@@ -218,7 +236,6 @@ msgstr "Volver a {blueprint}"
 #. [pages.blueprintEdit.blueprintTitle]
 #. defaultMessage is:
 #. Blueprint
-#: build/messages/components/Modal/CreateImage.json
 #: build/messages/components/Modal/ExportBlueprint.json
 #: build/messages/components/Modal/PendingChanges.json
 #: build/messages/pages/blueprint/index.json
@@ -311,7 +328,7 @@ msgstr "Busque o busque componentes y añádalos al plano."
 #. Cancel
 #: build/messages/components/Form/TextInlineEdit.json
 #: build/messages/components/Modal/CreateBlueprint.json
-#: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/CreateImageUpload.json
 #: build/messages/components/Modal/DeleteBlueprint.json
 #: build/messages/components/Modal/DeleteImage.json
 #: build/messages/components/Modal/EditDescription.json
@@ -419,11 +436,22 @@ msgstr "Comentario"
 msgid "Commit"
 msgstr "Consigna"
 
-#. [components.Modal.4244040826]
+#. [components.Modal.1126783419]
 #. defaultMessage is:
-#. Commit and Create
-#: build/messages/components/Modal/CreateImage.json
-msgid "Commit and Create"
+#. Commit and create
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "Commit and Create"
+msgid "Commit and create"
+msgstr "Comprometerse y crear"
+
+#. [components.Modal.552112481]
+#. defaultMessage is:
+#. Commit and next
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "Commit and Create"
+msgid "Commit and next"
 msgstr "Comprometerse y crear"
 
 #. [pages.blueprint.3540308269]
@@ -475,7 +503,7 @@ msgstr "Copiar"
 #. defaultMessage is:
 #. Create
 #: build/messages/components/Modal/CreateBlueprint.json
-#: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/CreateImageUpload.json
 #: build/messages/components/Modal/UserAccount.json
 msgid "Create"
 msgstr "Crear"
@@ -486,13 +514,6 @@ msgstr "Crear"
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "Create Blueprint"
 msgstr "Crear un plano"
-
-#. [components.Modal.2482064138]
-#. defaultMessage is:
-#. Create Image
-#: build/messages/components/Modal/CreateImage.json
-msgid "Create Image"
-msgstr "Crear imagen"
 
 #. [components.Modal.modalTitleCreate]
 #. defaultMessage is:
@@ -515,6 +536,27 @@ msgid ""
 msgstr ""
 "Cree un plano para definir el contenido que se incluirá en las imágenes que "
 "cree, las cuales se pueden producir en una variedad de formatos de salida."
+
+#. [components.Modal.1723482220]
+#. defaultMessage is:
+#. Create and upload image
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "Create Image"
+msgid "Create and upload image"
+msgstr "Crear imagen"
+
+#. [components.Modal.title]
+#. defaultMessage is:
+#. Create image
+#. [components.Modal.2020427956]
+#. defaultMessage is:
+#. Create image
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "Create Image"
+msgid "Create image"
+msgstr "Crear imagen"
 
 #. [components.ListView.imageCreated] - A label for the date that an image file was created
 #. defaultMessage is:
@@ -735,6 +777,13 @@ msgstr "Filtrar componentes disponibles por nombre"
 msgid "Filter By Name..."
 msgstr "Filtrar por nombre...."
 
+#. [components.Modal.787186999]
+#. defaultMessage is:
+#. Finish
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Finish"
+msgstr ""
+
 #. [components.Modal.1182120637]
 #. defaultMessage is:
 #. Full name
@@ -781,13 +830,6 @@ msgstr ""
 msgid "Image Building Service is Not Active"
 msgstr ""
 
-#. [components.Modal.380558550]
-#. defaultMessage is:
-#. Image Type
-#: build/messages/components/Modal/CreateImage.json
-msgid "Image Type"
-msgstr "Tipo de imagen"
-
 #. [components.ListView.imageStatusFinished] - Image build status when process is finished
 #. defaultMessage is:
 #. Image build complete
@@ -819,9 +861,22 @@ msgstr ""
 #. [components.ListView.imageName] - The name given by the user for an image
 #. defaultMessage is:
 #. Image name
+#. [components.Modal.2794911472]
+#. defaultMessage is:
+#. Image name
 #: build/messages/components/ListView/ListItemUploads.json
+#: build/messages/components/Modal/CreateImageUpload.json
 msgid "Image name"
 msgstr ""
+
+#. [components.Modal.1905943231]
+#. defaultMessage is:
+#. Image size
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "Images"
+msgid "Image size"
+msgstr "Imágenes"
 
 #. [components.ListView.imageUploads] - A label for the section that lists the upload actions initiated by the user
 #. defaultMessage is:
@@ -869,6 +924,13 @@ msgstr ""
 msgid "Message"
 msgstr ""
 
+#. [components.Modal.warningSizeSmall]
+#. defaultMessage is:
+#. Minimum size is {size} GB.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Minimum size is {size} GB."
+msgstr ""
+
 #. [components.ListView.emptyStateNoResultsMessage]
 #. defaultMessage is:
 #. Modify your filter criteria to get results.
@@ -903,6 +965,13 @@ msgstr "Nombre: {name}"
 #. New password
 #: build/messages/components/Modal/UserAccount.json
 msgid "New password"
+msgstr ""
+
+#. [components.Modal.3673120330]
+#. defaultMessage is:
+#. Next
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Next"
 msgstr ""
 
 #. [pages.blueprints.emptyTitle]
@@ -1107,6 +1176,15 @@ msgstr ""
 msgid "Required information is missing."
 msgstr "Falta la información requerida."
 
+#. [components.Modal.review]
+#. defaultMessage is:
+#. Review the information below and click Finish to create the image and complete the tasks that were selected.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid ""
+"Review the information below and click Finish to create the image and "
+"complete the tasks that were selected."
+msgstr ""
+
 #. [components.Modal.106035384]
 #. defaultMessage is:
 #. Role
@@ -1159,7 +1237,7 @@ msgstr "Seleccionar componentes"
 #. [components.Modal.selectOne]
 #. defaultMessage is:
 #. Select one
-#: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/CreateImageUpload.json
 #: build/messages/components/Modal/ManageSources.json
 msgid "Select one"
 msgstr "Seleccione uno"
@@ -1190,6 +1268,16 @@ msgstr ""
 #. Set Password
 #: build/messages/components/Modal/UserAccount.json
 msgid "Set Password"
+msgstr ""
+
+#. [components.Modal.imageSizePopover]
+#. defaultMessage is:
+#. Set the size that you want the image to be when instantiated. The total package size and target destination of your image should be considered when setting the image size.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid ""
+"Set the size that you want the image to be when instantiated. The total "
+"package size and target destination of your image should be considered when "
+"setting the image size."
 msgstr ""
 
 #. [components.ListView.1256153657]
@@ -1287,13 +1375,6 @@ msgstr ""
 msgid "Started"
 msgstr ""
 
-#. [components.ListView.2989081855]
-#. defaultMessage is:
-#. Stop
-#: build/messages/components/ListView/ListItemImages.json
-msgid "Stop"
-msgstr "Detener"
-
 #. [components.Modal.1162993432]
 #. defaultMessage is:
 #. Stop Build
@@ -1362,9 +1443,18 @@ msgstr "La página que está buscando no existe o se ha producido otro error."
 
 #. [components.EmptyState.alertTitleEnableServiceFailure]
 #. defaultMessage is:
-#. The service lorax-composer was not started.
+#. The service osbuild-composer was not started.
 #: build/messages/components/EmptyState/EmptyStateInactive.json
-msgid "The service lorax-composer was not started."
+msgid "The service osbuild-composer was not started."
+msgstr ""
+
+#. [components.Modal.warningSizeLarge]
+#. defaultMessage is:
+#. The size specified is large. We recommend that you check whether your target destination has any restrictions on image size.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid ""
+"The size specified is large. We recommend that you check whether your target "
+"destination has any restrictions on image size."
 msgstr ""
 
 #. [components.Modal.2405281428]
@@ -1400,6 +1490,13 @@ msgid ""
 msgstr ""
 "No hay componentes listados en el plano, edítelo para añadir componentes."
 
+#. [components.Modal.warningReview]
+#. defaultMessage is:
+#. There are one or more fields that require your attention.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "There are one or more fields that require your attention."
+msgstr ""
+
 #. [components.Modal.181468144]
 #. defaultMessage is:
 #. This action cannot be undone.
@@ -1414,7 +1511,7 @@ msgstr "Esta acción no puede deshacerse."
 #. [components.Modal.warningUnsaved]
 #. defaultMessage is:
 #. This blueprint has changes that are not committed. These changes will be committed before the image is created.
-#: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/CreateImageUpload.json
 msgid ""
 "This blueprint has changes that are not committed. These changes will be "
 "committed before the image is created."
@@ -1422,10 +1519,10 @@ msgstr ""
 "Este plano tiene cambios que no son confirmados y que serán confirmados "
 "antes de que la imagen sea creada."
 
-#. [components.Modal.1766703173]
+#. [empty-blueprint-alert]
 #. defaultMessage is:
 #. This blueprint is empty.
-#: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/CreateImageUpload.json
 msgid "This blueprint is empty."
 msgstr "Este plano está vacío."
 
@@ -1439,7 +1536,7 @@ msgstr ""
 #. [components.Modal.infotip]
 #. defaultMessage is:
 #. This process can take a while. Images are built in the order they are started.
-#: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/CreateImageUpload.json
 msgid ""
 "This process can take a while. Images are built in the order they are "
 "started."
@@ -1738,14 +1835,6 @@ msgstr "{blueprint} La creación de la imagen ha comenzado."
 msgid "{blueprint} Image creation is complete."
 msgstr "{blueprint} La creación de la imagen se ha completado."
 
-#. [components.Modal.2122759296]
-#. defaultMessage is:
-#. {builds, plural, one {# build is waiting} other {# builds are waiting}}
-#: build/messages/components/Modal/CreateImage.json
-msgid "{builds, plural, one {# build is waiting} other {# builds are waiting}}"
-msgstr ""
-"{builds, plural, one {# build is waiting} otros }{# builds are waiting}"
-
 #. [components.Modal.1557505074]
 #. defaultMessage is:
 #. {count} total components
@@ -1813,3 +1902,17 @@ msgstr "Crear imagen"
 #: public/manifest.json
 msgid "Image Builder"
 msgstr "Constructor de Imágenes"
+
+#~ msgid "1 build is in progress"
+#~ msgstr "1 construcción en curso"
+
+#~ msgid "Image Type"
+#~ msgstr "Tipo de imagen"
+
+#~ msgid "Stop"
+#~ msgstr "Detener"
+
+#~ msgid ""
+#~ "{builds, plural, one {# build is waiting} other {# builds are waiting}}"
+#~ msgstr ""
+#~ "{builds, plural, one {# build is waiting} otros }{# builds are waiting}"
