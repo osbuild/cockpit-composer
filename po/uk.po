@@ -2,8 +2,8 @@
 # David Shea <dshea@redhat.com>, 2019. #zanata
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-04-09T18:06:25.170Z\n"
-"PO-Revision-Date: 2020-04-02 20:38+0000\n"
+"POT-Creation-Date: 2020-05-05T00:28:27.513Z\n"
+"PO-Revision-Date: 2020-05-11 19:40+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "cockpit-composer/master/uk/>\n"
@@ -11,9 +11,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 3.11.3\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.0.4\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -21,13 +21,6 @@ msgstr ""
 #: build/messages/components/Modal/PendingChanges.json
 msgid "(most recent first)"
 msgstr "(найсвіжіші — перші)"
-
-#. [components.Modal.485442669]
-#. defaultMessage is:
-#. 1 build is in progress
-#: build/messages/components/Modal/CreateImage.json
-msgid "1 build is in progress"
-msgstr "Виконуємо 1 збирання"
 
 #. [components.Modal.4177685254]
 #. defaultMessage is:
@@ -49,6 +42,13 @@ msgstr "Для цього облікового запису визначено �
 #: build/messages/components/Modal/UserAccount.json
 msgid "A password is not defined for this account."
 msgstr "Для цього облікового запису не визначено пароль."
+
+#. [components.Modal.warningSizeEmpty]
+#. defaultMessage is:
+#. A value is required.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "A value is required."
+msgstr "Слід вказати значення."
 
 #. [components.ListView.imageActions] - A label for the menu that displays the actions available
 #. defaultMessage is:
@@ -101,6 +101,13 @@ msgstr "Додати найсвіжішу версію"
 #: build/messages/components/Modal/PendingChanges.json
 msgid "Added"
 msgstr "Додано"
+
+#. [components.Modal.1175512155]
+#. defaultMessage is:
+#. All fields are required.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "All fields are required."
+msgstr "Усі поля є обов'язковими до заповнення."
 
 #. [components.ListView.emptyStateErrorTitle]
 #. defaultMessage is:
@@ -184,6 +191,13 @@ msgstr "Автоматично запускати osbuild-composer при зав
 msgid "Available Components"
 msgstr "Доступні компоненти"
 
+#. [components.Modal.1347475195]
+#. defaultMessage is:
+#. Back
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Back"
+msgstr "Назад"
+
 #. [pages.blueprint.3126044146]
 #. defaultMessage is:
 #. Back to Blueprints
@@ -205,9 +219,6 @@ msgstr "Повернутися до {blueprint}"
 #. [components.Modal.1281198655]
 #. defaultMessage is:
 #. Blueprint
-#. [components.Modal.1281198655]
-#. defaultMessage is:
-#. Blueprint
 #. [components.Modal.blueprint]
 #. defaultMessage is:
 #. Blueprint
@@ -217,7 +228,6 @@ msgstr "Повернутися до {blueprint}"
 #. [pages.blueprintEdit.blueprintTitle]
 #. defaultMessage is:
 #. Blueprint
-#: build/messages/components/Modal/CreateImage.json
 #: build/messages/components/Modal/ExportBlueprint.json
 #: build/messages/components/Modal/PendingChanges.json
 #: build/messages/pages/blueprint/index.json
@@ -312,7 +322,7 @@ msgstr ""
 #. Cancel
 #: build/messages/components/Form/TextInlineEdit.json
 #: build/messages/components/Modal/CreateBlueprint.json
-#: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/CreateImageUpload.json
 #: build/messages/components/Modal/DeleteBlueprint.json
 #: build/messages/components/Modal/DeleteImage.json
 #: build/messages/components/Modal/EditDescription.json
@@ -420,12 +430,19 @@ msgstr "Коментар"
 msgid "Commit"
 msgstr "Надіслати"
 
-#. [components.Modal.4244040826]
+#. [components.Modal.1126783419]
 #. defaultMessage is:
-#. Commit and Create
-#: build/messages/components/Modal/CreateImage.json
-msgid "Commit and Create"
+#. Commit and create
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Commit and create"
 msgstr "Надіслати і створити"
+
+#. [components.Modal.552112481]
+#. defaultMessage is:
+#. Commit and next
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Commit and next"
+msgstr "Надіслати і перейти далі"
 
 #. [pages.blueprint.3540308269]
 #. defaultMessage is:
@@ -476,7 +493,7 @@ msgstr "Копіювати"
 #. defaultMessage is:
 #. Create
 #: build/messages/components/Modal/CreateBlueprint.json
-#: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/CreateImageUpload.json
 #: build/messages/components/Modal/UserAccount.json
 msgid "Create"
 msgstr "Створити"
@@ -487,13 +504,6 @@ msgstr "Створити"
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "Create Blueprint"
 msgstr "Створити проект"
-
-#. [components.Modal.2482064138]
-#. defaultMessage is:
-#. Create Image
-#: build/messages/components/Modal/CreateImage.json
-msgid "Create Image"
-msgstr "Створити зображення"
 
 #. [components.Modal.modalTitleCreate]
 #. defaultMessage is:
@@ -516,6 +526,23 @@ msgid ""
 msgstr ""
 "Створити проект для визначення вмісту, який буде включено до створюваних "
 "вами образів. Образи можна створювати у різноманітних форматах."
+
+#. [components.Modal.1723482220]
+#. defaultMessage is:
+#. Create and upload image
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Create and upload image"
+msgstr "Створити і вивантажити образ"
+
+#. [components.Modal.title]
+#. defaultMessage is:
+#. Create image
+#. [components.Modal.2020427956]
+#. defaultMessage is:
+#. Create image
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Create image"
+msgstr "Створити образ"
 
 #. [components.ListView.imageCreated] - A label for the date that an image file was created
 #. defaultMessage is:
@@ -735,6 +762,13 @@ msgstr "Фільтрувати доступні компоненти за наз
 msgid "Filter By Name..."
 msgstr "Фільтрувати за назвою…"
 
+#. [components.Modal.787186999]
+#. defaultMessage is:
+#. Finish
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Finish"
+msgstr "Завершити"
+
 #. [components.Modal.1182120637]
 #. defaultMessage is:
 #. Full name
@@ -783,13 +817,6 @@ msgstr ""
 msgid "Image Building Service is Not Active"
 msgstr "Служба збирання образів є неактивною"
 
-#. [components.Modal.380558550]
-#. defaultMessage is:
-#. Image Type
-#: build/messages/components/Modal/CreateImage.json
-msgid "Image Type"
-msgstr "Тип образу"
-
 #. [components.ListView.imageStatusFinished] - Image build status when process is finished
 #. defaultMessage is:
 #. Image build complete
@@ -821,9 +848,20 @@ msgstr "Збирання образу додано до черги"
 #. [components.ListView.imageName] - The name given by the user for an image
 #. defaultMessage is:
 #. Image name
+#. [components.Modal.2794911472]
+#. defaultMessage is:
+#. Image name
 #: build/messages/components/ListView/ListItemUploads.json
+#: build/messages/components/Modal/CreateImageUpload.json
 msgid "Image name"
 msgstr "Назва образу"
+
+#. [components.Modal.1905943231]
+#. defaultMessage is:
+#. Image size
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Image size"
+msgstr "Розмір образу"
 
 #. [components.ListView.imageUploads] - A label for the section that lists the upload actions initiated by the user
 #. defaultMessage is:
@@ -871,6 +909,13 @@ msgstr "Керування джерелами"
 msgid "Message"
 msgstr "Повідомлення"
 
+#. [components.Modal.warningSizeSmall]
+#. defaultMessage is:
+#. Minimum size is {size} GB.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Minimum size is {size} GB."
+msgstr "Мінімальним розміром є {size} ГБ."
+
 #. [components.ListView.emptyStateNoResultsMessage]
 #. defaultMessage is:
 #. Modify your filter criteria to get results.
@@ -906,6 +951,13 @@ msgstr "Назва: {name}"
 #: build/messages/components/Modal/UserAccount.json
 msgid "New password"
 msgstr "Новий пароль"
+
+#. [components.Modal.3673120330]
+#. defaultMessage is:
+#. Next
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Next"
+msgstr "Далі"
 
 #. [pages.blueprints.emptyTitle]
 #. defaultMessage is:
@@ -1108,6 +1160,17 @@ msgstr "Вилучаємо джерело"
 msgid "Required information is missing."
 msgstr "Не вказано обов'язкових даних."
 
+#. [components.Modal.review]
+#. defaultMessage is:
+#. Review the information below and click Finish to create the image and complete the tasks that were selected.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid ""
+"Review the information below and click Finish to create the image and "
+"complete the tasks that were selected."
+msgstr ""
+"Перегляньте наведені нижче відомості і натисніть кнопку «Завершити», щоб "
+"створити образ і завершити вибрані завдання."
+
 #. [components.Modal.106035384]
 #. defaultMessage is:
 #. Role
@@ -1160,7 +1223,7 @@ msgstr "Виберіть компоненти"
 #. [components.Modal.selectOne]
 #. defaultMessage is:
 #. Select one
-#: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/CreateImageUpload.json
 #: build/messages/components/Modal/ManageSources.json
 msgid "Select one"
 msgstr "Виберіть один"
@@ -1192,6 +1255,19 @@ msgstr "Встановити новий пароль"
 #: build/messages/components/Modal/UserAccount.json
 msgid "Set Password"
 msgstr "Встановити пароль"
+
+#. [components.Modal.imageSizePopover]
+#. defaultMessage is:
+#. Set the size that you want the image to be when instantiated. The total package size and target destination of your image should be considered when setting the image size.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid ""
+"Set the size that you want the image to be when instantiated. The total "
+"package size and target destination of your image should be considered when "
+"setting the image size."
+msgstr ""
+"Виберіть розмір зображення при створенні екземпляра. При встановлення "
+"розміру образу слід врахувати загальний розмір пакунків та призначення "
+"вашого образу."
 
 #. [components.ListView.1256153657]
 #. defaultMessage is:
@@ -1293,13 +1369,6 @@ msgstr "Запустити"
 msgid "Started"
 msgstr "Почато"
 
-#. [components.ListView.2989081855]
-#. defaultMessage is:
-#. Stop
-#: build/messages/components/ListView/ListItemImages.json
-msgid "Stop"
-msgstr "Припинити"
-
 #. [components.Modal.1162993432]
 #. defaultMessage is:
 #. Stop Build
@@ -1372,6 +1441,17 @@ msgstr "Сторінки, яку ви шукаєте, не існує або с�
 msgid "The service osbuild-composer was not started."
 msgstr "Службу osbuild-composer не запущено."
 
+#. [components.Modal.warningSizeLarge]
+#. defaultMessage is:
+#. The size specified is large. We recommend that you check whether your target destination has any restrictions on image size.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid ""
+"The size specified is large. We recommend that you check whether your target "
+"destination has any restrictions on image size."
+msgstr ""
+"Вказано надто великий розмір. Ми рекомендуємо визначитися із тим, чи є у "
+"системі призначення якісь обмеження на розмір образу."
+
 #. [components.Modal.2405281428]
 #. defaultMessage is:
 #. The user name can only consist of letters from a-z, digits, dots, dashes and underscores.
@@ -1408,6 +1488,13 @@ msgstr ""
 "У списку проекту немає компонентів. Змініть проект і додайте до нього "
 "компоненти."
 
+#. [components.Modal.warningReview]
+#. defaultMessage is:
+#. There are one or more fields that require your attention.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "There are one or more fields that require your attention."
+msgstr "Вашої уваги потребує одне або декілька полів."
+
 #. [components.Modal.181468144]
 #. defaultMessage is:
 #. This action cannot be undone.
@@ -1422,7 +1509,7 @@ msgstr "Цю дію не можна скасувати."
 #. [components.Modal.warningUnsaved]
 #. defaultMessage is:
 #. This blueprint has changes that are not committed. These changes will be committed before the image is created.
-#: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/CreateImageUpload.json
 msgid ""
 "This blueprint has changes that are not committed. These changes will be "
 "committed before the image is created."
@@ -1430,10 +1517,10 @@ msgstr ""
 "У цьому проекті містяться зміни, які не було надіслано до сховища. Ці зміни "
 "буде надіслано до створення образу."
 
-#. [components.Modal.1766703173]
+#. [empty-blueprint-alert]
 #. defaultMessage is:
 #. This blueprint is empty.
-#: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/CreateImageUpload.json
 msgid "This blueprint is empty."
 msgstr "Цей проект є порожнім."
 
@@ -1447,7 +1534,7 @@ msgstr "У цього компонента немає залежностей."
 #. [components.Modal.infotip]
 #. defaultMessage is:
 #. This process can take a while. Images are built in the order they are started.
-#: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/CreateImageUpload.json
 msgid ""
 "This process can take a while. Images are built in the order they are "
 "started."
@@ -1750,13 +1837,6 @@ msgstr "Розпочато створення образу {blueprint}."
 msgid "{blueprint} Image creation is complete."
 msgstr "Завершено створення образу {blueprint}."
 
-#. [components.Modal.2122759296]
-#. defaultMessage is:
-#. {builds, plural, one {# build is waiting} other {# builds are waiting}}
-#: build/messages/components/Modal/CreateImage.json
-msgid "{builds, plural, one {# build is waiting} other {# builds are waiting}}"
-msgstr "{builds, plural, one {# збирання у черзі} other {# збирань у черзі}}"
-
 #. [components.Modal.1557505074]
 #. defaultMessage is:
 #. {count} total components
@@ -1821,3 +1901,17 @@ msgstr "Створюємо образи систем"
 #: public/manifest.json
 msgid "Image Builder"
 msgstr "Засіб збирання образів"
+
+#~ msgid "1 build is in progress"
+#~ msgstr "Виконуємо 1 збирання"
+
+#~ msgid "Image Type"
+#~ msgstr "Тип образу"
+
+#~ msgid "Stop"
+#~ msgstr "Припинити"
+
+#~ msgid ""
+#~ "{builds, plural, one {# build is waiting} other {# builds are waiting}}"
+#~ msgstr ""
+#~ "{builds, plural, one {# збирання у черзі} other {# збирань у черзі}}"

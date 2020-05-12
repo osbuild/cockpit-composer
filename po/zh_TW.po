@@ -3,7 +3,7 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-02-10T12:16:15.012Z\n"
+"POT-Creation-Date: 2020-05-05T00:28:27.513Z\n"
 "PO-Revision-Date: 2019-12-17 03:27+0000\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Chinese (Taiwan)\n"
@@ -20,13 +20,6 @@ msgstr ""
 #: build/messages/components/Modal/PendingChanges.json
 msgid "(most recent first)"
 msgstr "（最近的第一個）"
-
-#. [components.Modal.485442669]
-#. defaultMessage is:
-#. 1 build is in progress
-#: build/messages/components/Modal/CreateImage.json
-msgid "1 build is in progress"
-msgstr "1個版本正在進行中"
 
 #. [components.Modal.4177685254]
 #. defaultMessage is:
@@ -48,6 +41,15 @@ msgstr ""
 #: build/messages/components/Modal/UserAccount.json
 msgid "A password is not defined for this account."
 msgstr ""
+
+#. [components.Modal.warningSizeEmpty]
+#. defaultMessage is:
+#. A value is required.
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "A blueprint name is required."
+msgid "A value is required."
+msgstr "藍圖名稱是必需的。"
 
 #. [components.ListView.imageActions] - A label for the menu that displays the actions available
 #. defaultMessage is:
@@ -100,6 +102,15 @@ msgstr ""
 #: build/messages/components/Modal/PendingChanges.json
 msgid "Added"
 msgstr "已新增"
+
+#. [components.Modal.1175512155]
+#. defaultMessage is:
+#. All fields are required.
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "The fields marked with {val} are required."
+msgid "All fields are required."
+msgstr "標有的字段 {val} 是必要的。"
 
 #. [components.ListView.emptyStateErrorTitle]
 #. defaultMessage is:
@@ -169,9 +180,9 @@ msgstr "您確定要停止構建過程嗎？ {blueprintName}？"
 
 #. [components.EmptyState.errorInactiveCheckbox]
 #. defaultMessage is:
-#. Automatically start lorax-composer on boot
+#. Automatically start osbuild-composer on boot
 #: build/messages/components/EmptyState/EmptyStateInactive.json
-msgid "Automatically start lorax-composer on boot"
+msgid "Automatically start osbuild-composer on boot"
 msgstr ""
 
 #. [pages.blueprintEdit.listTitleAvailableComps]
@@ -180,6 +191,13 @@ msgstr ""
 #: build/messages/pages/blueprintEdit/index.json
 msgid "Available Components"
 msgstr "可用組件"
+
+#. [components.Modal.1347475195]
+#. defaultMessage is:
+#. Back
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Back"
+msgstr ""
 
 #. [pages.blueprint.3126044146]
 #. defaultMessage is:
@@ -202,9 +220,6 @@ msgstr ""
 #. [components.Modal.1281198655]
 #. defaultMessage is:
 #. Blueprint
-#. [components.Modal.1281198655]
-#. defaultMessage is:
-#. Blueprint
 #. [components.Modal.blueprint]
 #. defaultMessage is:
 #. Blueprint
@@ -214,7 +229,6 @@ msgstr ""
 #. [pages.blueprintEdit.blueprintTitle]
 #. defaultMessage is:
 #. Blueprint
-#: build/messages/components/Modal/CreateImage.json
 #: build/messages/components/Modal/ExportBlueprint.json
 #: build/messages/components/Modal/PendingChanges.json
 #: build/messages/pages/blueprint/index.json
@@ -307,7 +321,7 @@ msgstr "瀏覽或搜索組件，然後將其添加到藍圖中。"
 #. Cancel
 #: build/messages/components/Form/TextInlineEdit.json
 #: build/messages/components/Modal/CreateBlueprint.json
-#: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/CreateImageUpload.json
 #: build/messages/components/Modal/DeleteBlueprint.json
 #: build/messages/components/Modal/DeleteImage.json
 #: build/messages/components/Modal/EditDescription.json
@@ -415,11 +429,22 @@ msgstr "備註"
 msgid "Commit"
 msgstr "交付"
 
-#. [components.Modal.4244040826]
+#. [components.Modal.1126783419]
 #. defaultMessage is:
-#. Commit and Create
-#: build/messages/components/Modal/CreateImage.json
-msgid "Commit and Create"
+#. Commit and create
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "Commit and Create"
+msgid "Commit and create"
+msgstr "提交和創建"
+
+#. [components.Modal.552112481]
+#. defaultMessage is:
+#. Commit and next
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "Commit and Create"
+msgid "Commit and next"
 msgstr "提交和創建"
 
 #. [pages.blueprint.3540308269]
@@ -471,7 +496,7 @@ msgstr "複製"
 #. defaultMessage is:
 #. Create
 #: build/messages/components/Modal/CreateBlueprint.json
-#: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/CreateImageUpload.json
 #: build/messages/components/Modal/UserAccount.json
 msgid "Create"
 msgstr "建立"
@@ -482,13 +507,6 @@ msgstr "建立"
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "Create Blueprint"
 msgstr "創建藍圖"
-
-#. [components.Modal.2482064138]
-#. defaultMessage is:
-#. Create Image
-#: build/messages/components/Modal/CreateImage.json
-msgid "Create Image"
-msgstr "創建圖像"
 
 #. [components.Modal.modalTitleCreate]
 #. defaultMessage is:
@@ -510,6 +528,27 @@ msgid ""
 "images you create. Images can be produced in a variety of output formats."
 msgstr ""
 "創建藍圖以定義將包含在您創建的圖像中的內容。可以以各種輸出格式生成圖像。"
+
+#. [components.Modal.1723482220]
+#. defaultMessage is:
+#. Create and upload image
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "Create Image"
+msgid "Create and upload image"
+msgstr "創建圖像"
+
+#. [components.Modal.title]
+#. defaultMessage is:
+#. Create image
+#. [components.Modal.2020427956]
+#. defaultMessage is:
+#. Create image
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "Create Image"
+msgid "Create image"
+msgstr "創建圖像"
 
 #. [components.ListView.imageCreated] - A label for the date that an image file was created
 #. defaultMessage is:
@@ -729,6 +768,13 @@ msgstr "按名稱過濾可用組件"
 msgid "Filter By Name..."
 msgstr "按名稱過濾..."
 
+#. [components.Modal.787186999]
+#. defaultMessage is:
+#. Finish
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Finish"
+msgstr ""
+
 #. [components.Modal.1182120637]
 #. defaultMessage is:
 #. Full name
@@ -775,13 +821,6 @@ msgstr ""
 msgid "Image Building Service is Not Active"
 msgstr ""
 
-#. [components.Modal.380558550]
-#. defaultMessage is:
-#. Image Type
-#: build/messages/components/Modal/CreateImage.json
-msgid "Image Type"
-msgstr "影像類型"
-
 #. [components.ListView.imageStatusFinished] - Image build status when process is finished
 #. defaultMessage is:
 #. Image build complete
@@ -813,9 +852,22 @@ msgstr ""
 #. [components.ListView.imageName] - The name given by the user for an image
 #. defaultMessage is:
 #. Image name
+#. [components.Modal.2794911472]
+#. defaultMessage is:
+#. Image name
 #: build/messages/components/ListView/ListItemUploads.json
+#: build/messages/components/Modal/CreateImageUpload.json
 msgid "Image name"
 msgstr ""
+
+#. [components.Modal.1905943231]
+#. defaultMessage is:
+#. Image size
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "Images"
+msgid "Image size"
+msgstr "映像檔"
 
 #. [components.ListView.imageUploads] - A label for the section that lists the upload actions initiated by the user
 #. defaultMessage is:
@@ -863,6 +915,13 @@ msgstr ""
 msgid "Message"
 msgstr ""
 
+#. [components.Modal.warningSizeSmall]
+#. defaultMessage is:
+#. Minimum size is {size} GB.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Minimum size is {size} GB."
+msgstr ""
+
 #. [components.ListView.emptyStateNoResultsMessage]
 #. defaultMessage is:
 #. Modify your filter criteria to get results.
@@ -897,6 +956,13 @@ msgstr "名稱： {name}"
 #. New password
 #: build/messages/components/Modal/UserAccount.json
 msgid "New password"
+msgstr ""
+
+#. [components.Modal.3673120330]
+#. defaultMessage is:
+#. Next
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Next"
 msgstr ""
 
 #. [pages.blueprints.emptyTitle]
@@ -1101,6 +1167,15 @@ msgstr ""
 msgid "Required information is missing."
 msgstr "缺少必需的信息。"
 
+#. [components.Modal.review]
+#. defaultMessage is:
+#. Review the information below and click Finish to create the image and complete the tasks that were selected.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid ""
+"Review the information below and click Finish to create the image and "
+"complete the tasks that were selected."
+msgstr ""
+
 #. [components.Modal.106035384]
 #. defaultMessage is:
 #. Role
@@ -1153,7 +1228,7 @@ msgstr "選擇組件"
 #. [components.Modal.selectOne]
 #. defaultMessage is:
 #. Select one
-#: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/CreateImageUpload.json
 #: build/messages/components/Modal/ManageSources.json
 msgid "Select one"
 msgstr "選擇一個"
@@ -1184,6 +1259,16 @@ msgstr ""
 #. Set Password
 #: build/messages/components/Modal/UserAccount.json
 msgid "Set Password"
+msgstr ""
+
+#. [components.Modal.imageSizePopover]
+#. defaultMessage is:
+#. Set the size that you want the image to be when instantiated. The total package size and target destination of your image should be considered when setting the image size.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid ""
+"Set the size that you want the image to be when instantiated. The total "
+"package size and target destination of your image should be considered when "
+"setting the image size."
 msgstr ""
 
 #. [components.ListView.1256153657]
@@ -1281,13 +1366,6 @@ msgstr ""
 msgid "Started"
 msgstr ""
 
-#. [components.ListView.2989081855]
-#. defaultMessage is:
-#. Stop
-#: build/messages/components/ListView/ListItemImages.json
-msgid "Stop"
-msgstr "停止"
-
 #. [components.Modal.1162993432]
 #. defaultMessage is:
 #. Stop Build
@@ -1355,9 +1433,18 @@ msgstr "您要查找的頁面不存在或發生了其他錯誤。"
 
 #. [components.EmptyState.alertTitleEnableServiceFailure]
 #. defaultMessage is:
-#. The service lorax-composer was not started.
+#. The service osbuild-composer was not started.
 #: build/messages/components/EmptyState/EmptyStateInactive.json
-msgid "The service lorax-composer was not started."
+msgid "The service osbuild-composer was not started."
+msgstr ""
+
+#. [components.Modal.warningSizeLarge]
+#. defaultMessage is:
+#. The size specified is large. We recommend that you check whether your target destination has any restrictions on image size.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid ""
+"The size specified is large. We recommend that you check whether your target "
+"destination has any restrictions on image size."
 msgstr ""
 
 #. [components.Modal.2405281428]
@@ -1392,6 +1479,13 @@ msgid ""
 "components."
 msgstr "藍圖中沒有列出任何組件。編輯藍圖以添加組件。"
 
+#. [components.Modal.warningReview]
+#. defaultMessage is:
+#. There are one or more fields that require your attention.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "There are one or more fields that require your attention."
+msgstr ""
+
 #. [components.Modal.181468144]
 #. defaultMessage is:
 #. This action cannot be undone.
@@ -1406,16 +1500,16 @@ msgstr "此操作無法撤消。"
 #. [components.Modal.warningUnsaved]
 #. defaultMessage is:
 #. This blueprint has changes that are not committed. These changes will be committed before the image is created.
-#: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/CreateImageUpload.json
 msgid ""
 "This blueprint has changes that are not committed. These changes will be "
 "committed before the image is created."
 msgstr "此藍圖包含未提交的更改。這些更改將在創建映像之前提交。"
 
-#. [components.Modal.1766703173]
+#. [empty-blueprint-alert]
 #. defaultMessage is:
 #. This blueprint is empty.
-#: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/CreateImageUpload.json
 msgid "This blueprint is empty."
 msgstr "這個藍圖是空的。"
 
@@ -1429,7 +1523,7 @@ msgstr ""
 #. [components.Modal.infotip]
 #. defaultMessage is:
 #. This process can take a while. Images are built in the order they are started.
-#: build/messages/components/Modal/CreateImage.json
+#: build/messages/components/Modal/CreateImageUpload.json
 msgid ""
 "This process can take a while. Images are built in the order they are "
 "started."
@@ -1728,13 +1822,6 @@ msgstr "{blueprint} 圖像創建已經開始。"
 msgid "{blueprint} Image creation is complete."
 msgstr "{blueprint} 圖像創建完成。"
 
-#. [components.Modal.2122759296]
-#. defaultMessage is:
-#. {builds, plural, one {# build is waiting} other {# builds are waiting}}
-#: build/messages/components/Modal/CreateImage.json
-msgid "{builds, plural, one {# build is waiting} other {# builds are waiting}}"
-msgstr "{builds, plural, one {# build is waiting} 其他 {# builds are waiting}}"
-
 #. [components.Modal.1557505074]
 #. defaultMessage is:
 #. {count} total components
@@ -1802,3 +1889,17 @@ msgstr "創建圖像"
 #: public/manifest.json
 msgid "Image Builder"
 msgstr "圖像生成器"
+
+#~ msgid "1 build is in progress"
+#~ msgstr "1個版本正在進行中"
+
+#~ msgid "Image Type"
+#~ msgstr "影像類型"
+
+#~ msgid "Stop"
+#~ msgstr "停止"
+
+#~ msgid ""
+#~ "{builds, plural, one {# build is waiting} other {# builds are waiting}}"
+#~ msgstr ""
+#~ "{builds, plural, one {# build is waiting} 其他 {# builds are waiting}}"
