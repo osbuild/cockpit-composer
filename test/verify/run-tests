@@ -23,6 +23,7 @@ sys.dont_write_bytecode = True
 # immediately dump logs to the stream instead of being buffered
 os.environ['PYTHONUNBUFFERED'] = '1'
 
+
 # a test data class
 @dataclasses.dataclass
 class Test:
