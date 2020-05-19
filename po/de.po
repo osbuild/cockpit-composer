@@ -2,7 +2,7 @@
 # Mike FABIAN <mfabian@redhat.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-05-05T00:28:27.513Z\n"
+"POT-Creation-Date: 2020-05-12T00:35:46.229Z\n"
 "PO-Revision-Date: 2020-01-15 06:47+0000\n"
 "Last-Translator: Mike FABIAN <mfabian@redhat.com>\n"
 "Language-Team: German <https://translate.stg.fedoraproject.org/projects/"
@@ -50,6 +50,41 @@ msgstr "Für diesen Account ist kein Passwort definiert."
 #| msgid "A blueprint name is required."
 msgid "A value is required."
 msgstr "Ein Blueprint-Name ist erforderlich."
+
+#. [aws-help]
+#. defaultMessage is:
+#. AWS help
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "AWS help"
+msgstr ""
+
+#. [components.Modal.4193750875]
+#. defaultMessage is:
+#. AWS region
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "AWS region"
+msgstr ""
+
+#. [region-help]
+#. defaultMessage is:
+#. AWS region help
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "AWS region help"
+msgstr ""
+
+#. [components.Modal.1635272069]
+#. defaultMessage is:
+#. Access key ID
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Access key ID"
+msgstr ""
+
+#. [access-key-id-help]
+#. defaultMessage is:
+#. Access key ID help
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Access key ID help"
+msgstr ""
 
 #. [components.ListView.imageActions] - A label for the menu that displays the actions available
 #. defaultMessage is:
@@ -826,6 +861,20 @@ msgstr ""
 msgid "If no hostname is provided, the hostname will be determined by the OS."
 msgstr ""
 
+#. [components.Modal.4131822949]
+#. defaultMessage is:
+#. Image Builder can upload images you create to an {bucket} in AWS and then import them into EC2. When the image build is complete
+#.                       and the upload action is successful, the image file is available in the AMI section of EC2. Most of the values required to upload
+#.                       the image can be found in the {console}.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid ""
+"Image Builder can upload images you create to an {bucket} in AWS and then "
+"import them into EC2. When the image build is complete\n"
+"                      and the upload action is successful, the image file is "
+"available in the AMI section of EC2. Most of the values required to upload\n"
+"                      the image can be found in the {console}."
+msgstr ""
+
 #. [components.EmptyState.errorInactiveTitle]
 #. defaultMessage is:
 #. Image Building Service is Not Active
@@ -872,6 +921,22 @@ msgstr ""
 msgid "Image name"
 msgstr ""
 
+#. [image-name-help]
+#. defaultMessage is:
+#. Image name help
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Image name help"
+msgstr ""
+
+#. [components.Modal.1005710141]
+#. defaultMessage is:
+#. Image output
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "Image Type"
+msgid "Image output"
+msgstr "Bildtyp"
+
 #. [components.Modal.1905943231]
 #. defaultMessage is:
 #. Image size
@@ -880,6 +945,24 @@ msgstr ""
 #| msgid "Images"
 msgid "Image size"
 msgstr "Abbilder"
+
+#. [image-size-help]
+#. defaultMessage is:
+#. Image size help
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "Images"
+msgid "Image size help"
+msgstr "Abbilder"
+
+#. [components.Modal.1813441558]
+#. defaultMessage is:
+#. Image type
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "Image Type"
+msgid "Image type"
+msgstr "Bildtyp"
 
 #. [components.ListView.imageUploads] - A label for the section that lists the upload actions initiated by the user
 #. defaultMessage is:
@@ -1104,6 +1187,46 @@ msgstr ""
 msgid "Pending Changes"
 msgstr "Ausstehende Änderungen"
 
+#. [provess-length-help]
+#. defaultMessage is:
+#. Process length help
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Process length help"
+msgstr ""
+
+#. [components.Modal.4277042358]
+#. defaultMessage is:
+#. Provide a file name to be used for the image file that will be uploaded.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid ""
+"Provide a file name to be used for the image file that will be uploaded."
+msgstr ""
+
+#. [components.Modal.2186792528]
+#. defaultMessage is:
+#. Provide the AWS Region where you want to import your image. This must be the same region where the {bucket} exists.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid ""
+"Provide the AWS Region where you want to import your image. This must be the "
+"same region where the {bucket} exists."
+msgstr ""
+
+#. [components.Modal.2822010101]
+#. defaultMessage is:
+#. Provide the S3 {bucket} name to which the image file will be uploaded before being imported into EC2. 
+#.                           The {bucket} must already exist in the Region where you want to import your image. You can find a list of {buckets} on the
+#.                           {bucketsPage} page in the {amazon} S3 storage service in the AWS console.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid ""
+"Provide the S3 {bucket} name to which the image file will be uploaded before "
+"being imported into EC2. \n"
+"                          The {bucket} must already exist in the Region "
+"where you want to import your image. You can find a list of {buckets} on "
+"the\n"
+"                          {bucketsPage} page in the {amazon} S3 storage "
+"service in the AWS console."
+msgstr ""
+
 #. [components.ListView.423140743]
 #. defaultMessage is:
 #. Release
@@ -1195,6 +1318,13 @@ msgstr ""
 msgid "Role"
 msgstr ""
 
+#. [bucket-help]
+#. defaultMessage is:
+#. S3 Bucket help
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "S3 Bucket help"
+msgstr ""
+
 #. [components.Modal.229369250]
 #. defaultMessage is:
 #. SSH key
@@ -1218,6 +1348,20 @@ msgstr ""
 #. Saving source
 #: build/messages/components/Modal/ManageSources.json
 msgid "Saving source"
+msgstr ""
+
+#. [components.Modal.135579143]
+#. defaultMessage is:
+#. Secret access key
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Secret access key"
+msgstr ""
+
+#. [secret-access-key-help]
+#. defaultMessage is:
+#. Secret access key help
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Secret access key help"
 msgstr ""
 
 #. [components.Modal.security]
@@ -1392,6 +1536,27 @@ msgstr "Stoppen Sie den Build"
 msgid "Stopping"
 msgstr "Anhalten"
 
+#. [components.Modal.4127941395]
+#. defaultMessage is:
+#. Storage access key
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Storage access key"
+msgstr ""
+
+#. [components.Modal.1624497518]
+#. defaultMessage is:
+#. Storage account
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Storage account"
+msgstr ""
+
+#. [components.Modal.1249927125]
+#. defaultMessage is:
+#. Storage container
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Storage container"
+msgstr ""
+
 #. [components.ListView.3639476303] - System sources are configured repositories that were found on the host machine
 #. defaultMessage is:
 #. System source
@@ -1564,6 +1729,18 @@ msgstr ""
 msgid "This source path already exists."
 msgstr ""
 
+#. [components.Modal.2415751559]
+#. defaultMessage is:
+#. This upload process requires that you have an {iam} role named {vmimport} to ensure that the image can
+#.                       be imported from the S3 {bucket} into EC2. For more details, refer to the {role}.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid ""
+"This upload process requires that you have an {iam} role named {vmimport} to "
+"ensure that the image can\n"
+"                      be imported from the S3 {bucket} into EC2. For more "
+"details, refer to the {role}."
+msgstr ""
+
 #. [components.Modal.3707489178]
 #. defaultMessage is:
 #. This user name already exists.
@@ -1653,6 +1830,22 @@ msgstr ""
 msgid "Upload failed"
 msgstr ""
 
+#. [components.Modal.3057159632]
+#. defaultMessage is:
+#. Upload image
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "Create Image"
+msgid "Upload image"
+msgstr "Bild erstellen"
+
+#. [upload-image-help]
+#. defaultMessage is:
+#. Upload image help
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Upload image help"
+msgstr ""
+
 #. [components.ListView.uploadStatusRunning] - Upload status when process is in progress
 #. defaultMessage is:
 #. Upload in progress
@@ -1665,6 +1858,20 @@ msgstr ""
 #. Upload pending
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload pending"
+msgstr ""
+
+#. [components.Modal.1426592721]
+#. defaultMessage is:
+#. Upload to Amazon
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Upload to Amazon"
+msgstr ""
+
+#. [components.Modal.2244258572]
+#. defaultMessage is:
+#. Upload to Azure
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Upload to Azure"
 msgstr ""
 
 #. [components.ListView.uploadType] - A label for the service to which an image was uploaded
@@ -1721,6 +1928,24 @@ msgstr "Version"
 #: build/messages/components/ListView/ComponentsDataListItem.json
 msgid "View"
 msgstr "Anzeigen"
+
+#. [components.Modal.706264916]
+#. defaultMessage is:
+#. You can create and find existing Access key IDs on the {iam} page in the AWS console.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid ""
+"You can create and find existing Access key IDs on the {iam} page in the AWS "
+"console."
+msgstr ""
+
+#. [components.Modal.4206409720]
+#. defaultMessage is:
+#. You can view the Secret access key only when you create a new Access key ID on the {iam} page in the AWS console.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid ""
+"You can view the Secret access key only when you create a new Access key ID "
+"on the {iam} page in the AWS console."
+msgstr ""
 
 #. [components.ListView.actions]
 #. defaultMessage is:
@@ -1914,9 +2139,6 @@ msgstr "Image Builder"
 
 #~ msgid "1 build is in progress"
 #~ msgstr "1 Build ist in Arbeit"
-
-#~ msgid "Image Type"
-#~ msgstr "Bildtyp"
 
 #~ msgid "Stop"
 #~ msgstr "Stoppen"
