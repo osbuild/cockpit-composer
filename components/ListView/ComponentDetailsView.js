@@ -12,6 +12,9 @@ import EmptyState from "../EmptyState/EmptyState";
 import { fetchingInputDetails, fetchingInputDeps } from "../../core/actions/inputs";
 
 const messages = defineMessages({
+  details: {
+    defaultMessage: "Details"
+  },
   dependencies: {
     defaultMessage: "Dependencies"
   },
@@ -275,7 +278,7 @@ class ComponentDetailsView extends React.Component {
         )}
         <div>
           <Tabs id="blueprint-tabs">
-            <Tab eventKey="details" title="Details">
+            <Tab eventKey="details" title={formatMessage(messages.details)}>
               <h4 className="cmpsr-title">{component.summary}</h4>
               <p>{component.description}</p>
               <dl className="dl-horizontal">
