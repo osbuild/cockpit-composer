@@ -2,11 +2,11 @@
 # Matej Marusak <mmarusak@redhat.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-05-12T00:35:46.229Z\n"
-"PO-Revision-Date: 2020-05-15 08:50+0000\n"
+"POT-Creation-Date: 2020-05-19T08:26:39.556Z\n"
+"PO-Revision-Date: 2020-05-19 10:40+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
-"Language-Team: Czech <https://translate.fedoraproject.org/projects/"
-"cockpit-composer/master/cs/>\n"
+"Language-Team: Czech <https://translate.fedoraproject.org/projects/cockpit-"
+"composer/master/cs/>\n"
 "Language: cs\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -852,6 +852,11 @@ msgid ""
 "available in the AMI section of EC2. Most of the values required to upload\n"
 "                      the image can be found in the {console}."
 msgstr ""
+"Nástroj pro sestavování obrazů může vzniklé obrazy nahrávat na {bucket} ve "
+"službě AWS a a pak je importovat do EC2. Když je sestavení\n"
+"                       obrazu hotové a akce nahrání je úspěšná, soubor s "
+"obrazem je k dispozici v AMI sekci EC2. Většinu hodnot, požadovaných pro\n"
+"                      nahrání obrazu je k nalezení v {console}."
 
 #. [components.EmptyState.errorInactiveTitle]
 #. defaultMessage is:
@@ -1179,6 +1184,8 @@ msgid ""
 "Provide the AWS Region where you want to import your image. This must be the "
 "same region where the {bucket} exists."
 msgstr ""
+"Zadejte AWS oblast, do které chcete obraz importovat. Je třeba, aby se "
+"jednalo o stejnou oblast, ve které existuje {bucket}."
 
 #. [components.Modal.2822010101]
 #. defaultMessage is:
@@ -1195,6 +1202,12 @@ msgid ""
 "                          {bucketsPage} page in the {amazon} S3 storage "
 "service in the AWS console."
 msgstr ""
+"Zadejte název S3 {bucket}, do kterého bude soubor s obrazem nahrán před "
+"importem do EC2. \n"
+"                          Je třeba, aby {bucket} už existoval v oblasti, do "
+"které chcete obraz importovat. Seznam {buckets} naleznete\n"
+"                          na stránce {bucketsPage} v {amazon} službě S3 "
+"úložiště v AWS konzoli."
 
 #. [components.ListView.423140743]
 #. defaultMessage is:
@@ -1294,7 +1307,7 @@ msgstr "Role"
 #. S3 Bucket help
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "S3 Bucket help"
-msgstr ""
+msgstr "Nápověda k S3 Bucket"
 
 #. [components.Modal.229369250]
 #. defaultMessage is:
@@ -1326,14 +1339,14 @@ msgstr "Ukládání zdroje"
 #. Secret access key
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Secret access key"
-msgstr ""
+msgstr "Tajný přístupový klíč"
 
 #. [secret-access-key-help]
 #. defaultMessage is:
 #. Secret access key help
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Secret access key help"
-msgstr ""
+msgstr "Nápověda k tajnému přístupovému klíči"
 
 #. [components.Modal.security]
 #. defaultMessage is:
@@ -1519,21 +1532,21 @@ msgstr "Zastavování"
 #. Storage access key
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Storage access key"
-msgstr ""
+msgstr "Klíč pro přístup k úložišti"
 
 #. [components.Modal.1624497518]
 #. defaultMessage is:
 #. Storage account
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Storage account"
-msgstr ""
+msgstr "Účet na úložišti"
 
 #. [components.Modal.1249927125]
 #. defaultMessage is:
 #. Storage container
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Storage container"
-msgstr ""
+msgstr "Kontejner úložiště"
 
 #. [components.ListView.3639476303] - System sources are configured repositories that were found on the host machine
 #. defaultMessage is:
@@ -1717,6 +1730,10 @@ msgid ""
 "                      be imported from the S3 {bucket} into EC2. For more "
 "details, refer to the {role}."
 msgstr ""
+"Tento proces nahrávání vyžaduje, abyste měli {iam} roli nazvanou {vmimport} "
+"a bylo tak zajištěno, že obraz\n"
+"                      může být importován z S3 {bucket} do EC2. Podrobnosti "
+"viz {role}."
 
 #. [components.Modal.3707489178]
 #. defaultMessage is:
@@ -1811,19 +1828,15 @@ msgstr "Nahrání se nezdařilo"
 #. defaultMessage is:
 #. Upload image
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Upload failed"
 msgid "Upload image"
-msgstr "Nahrání se nezdařilo"
+msgstr "Nahrát obraz"
 
 #. [upload-image-help]
 #. defaultMessage is:
 #. Upload image help
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Upload complete"
 msgid "Upload image help"
-msgstr "Nahrání dokončeno"
+msgstr "Nápověda k nahrávání obrazu"
 
 #. [components.ListView.uploadStatusRunning] - Upload status when process is in progress
 #. defaultMessage is:
@@ -1844,16 +1857,14 @@ msgstr "Nahrání čeká"
 #. Upload to Amazon
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Upload to Amazon"
-msgstr ""
+msgstr "Nahrát na Amazon"
 
 #. [components.Modal.2244258572]
 #. defaultMessage is:
 #. Upload to Azure
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Upload type"
 msgid "Upload to Azure"
-msgstr "Typ nahrání"
+msgstr "Nahrát na Azure"
 
 #. [components.ListView.uploadType] - A label for the service to which an image was uploaded
 #. defaultMessage is:
@@ -1920,6 +1931,8 @@ msgid ""
 "You can create and find existing Access key IDs on the {iam} page in the AWS "
 "console."
 msgstr ""
+"Identifikátory přístupového klíče je možné vytvářet a nalézt na stránce "
+"{iam} v AWS konzoli."
 
 #. [components.Modal.4206409720]
 #. defaultMessage is:
@@ -1929,6 +1942,8 @@ msgid ""
 "You can view the Secret access key only when you create a new Access key ID "
 "on the {iam} page in the AWS console."
 msgstr ""
+"Tajný přístupový klíč je viditelný pouze v okamžiku vytvoření identifikátoru "
+"přístupového klíče na stránce {iam} v AWS konzoli."
 
 #. [components.ListView.actions]
 #. defaultMessage is:
