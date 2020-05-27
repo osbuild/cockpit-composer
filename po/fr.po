@@ -3,19 +3,20 @@
 # corina roe <croe@redhat.com>, 2019. #zanata
 # Ludek Janda <ljanda@redhat.com>, 2020.
 # Julien Humbert <julroy67@gmail.com>, 2020.
+# Anonymous <noreply@weblate.org>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-05-12T00:35:46.229Z\n"
-"PO-Revision-Date: 2020-04-03 05:34+0000\n"
+"POT-Creation-Date: 2020-05-19T08:26:39.556Z\n"
+"PO-Revision-Date: 2020-05-27 01:40+0000\n"
 "Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
-"Language-Team: French <https://translate.fedoraproject.org/projects/cockpit-"
-"composer/master/fr/>\n"
+"Language-Team: French <https://translate.fedoraproject.org/projects/"
+"cockpit-composer/master/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1\n"
-"X-Generator: Weblate 3.11.3\n"
+"X-Generator: Weblate 4.0.4\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -49,45 +50,43 @@ msgstr "Un mot de passe n’est pas exigé pour utiliser ce compte."
 #. defaultMessage is:
 #. A value is required.
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "A blueprint name is required."
 msgid "A value is required."
-msgstr "Un nom de modèle est exigé."
+msgstr "Une valeur est exigée."
 
 #. [aws-help]
 #. defaultMessage is:
 #. AWS help
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "AWS help"
-msgstr ""
+msgstr "Aide d’AWS"
 
 #. [components.Modal.4193750875]
 #. defaultMessage is:
 #. AWS region
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "AWS region"
-msgstr ""
+msgstr "Région d’AWS"
 
 #. [region-help]
 #. defaultMessage is:
 #. AWS region help
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "AWS region help"
-msgstr ""
+msgstr "Aide sur les régions AWS"
 
 #. [components.Modal.1635272069]
 #. defaultMessage is:
 #. Access key ID
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Access key ID"
-msgstr ""
+msgstr "ID de la clé d’accès"
 
 #. [access-key-id-help]
 #. defaultMessage is:
 #. Access key ID help
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Access key ID help"
-msgstr ""
+msgstr "Aide sur l’ID de la clé d’accès"
 
 #. [components.ListView.imageActions] - A label for the menu that displays the actions available
 #. defaultMessage is:
@@ -146,10 +145,8 @@ msgstr "Ajouté"
 #. defaultMessage is:
 #. All fields are required.
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "The fields marked with {val} are required."
 msgid "All fields are required."
-msgstr "Les champs comportant  {version} sont requis."
+msgstr "Tous les champs sont requis."
 
 #. [components.ListView.emptyStateErrorTitle]
 #. defaultMessage is:
@@ -239,7 +236,7 @@ msgstr "Composants disponibles"
 #. Back
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Back"
-msgstr ""
+msgstr "Précédent"
 
 #. [pages.blueprint.3126044146]
 #. defaultMessage is:
@@ -484,19 +481,15 @@ msgstr "Enregistrer"
 #. defaultMessage is:
 #. Commit and create
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Commit and Create"
 msgid "Commit and create"
-msgstr "Valider et Créer"
+msgstr "Valider et créer"
 
 #. [components.Modal.552112481]
 #. defaultMessage is:
 #. Commit and next
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Commit and Create"
 msgid "Commit and next"
-msgstr "Valider et Créer"
+msgstr "Valider et suivant"
 
 #. [pages.blueprint.3540308269]
 #. defaultMessage is:
@@ -586,10 +579,8 @@ msgstr ""
 #. defaultMessage is:
 #. Create and upload image
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Create Image"
 msgid "Create and upload image"
-msgstr "Créer une image"
+msgstr "Créer et téléverser une image"
 
 #. [components.Modal.title]
 #. defaultMessage is:
@@ -598,8 +589,6 @@ msgstr "Créer une image"
 #. defaultMessage is:
 #. Create image
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Create Image"
 msgid "Create image"
 msgstr "Créer une image"
 
@@ -826,7 +815,7 @@ msgstr "Filtrer par nom..."
 #. Finish
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Finish"
-msgstr ""
+msgstr "Terminer"
 
 #. [components.Modal.1182120637]
 #. defaultMessage is:
@@ -882,6 +871,12 @@ msgid ""
 "available in the AMI section of EC2. Most of the values required to upload\n"
 "                      the image can be found in the {console}."
 msgstr ""
+"Image Builder peut téléverser des images sur un {bucket} dans AWS, puis les "
+"importer dans EC2. Lorsque la construction de l’image est\n"
+"                      complétée et que le téléversement a réussi, le fichier "
+"image est disponible dans la section AMI d’EC2. La plupart des valeurs\n"
+"                      requises pour le téléversement de l’image peuvent être "
+"trouvées dans la {console}."
 
 #. [components.EmptyState.errorInactiveTitle]
 #. defaultMessage is:
@@ -933,44 +928,34 @@ msgstr "Nom de l’image"
 #. defaultMessage is:
 #. Image name help
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Image name"
 msgid "Image name help"
-msgstr "Nom de l’image"
+msgstr "Aide sur le nom de l’image"
 
 #. [components.Modal.1005710141]
 #. defaultMessage is:
 #. Image output
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Image uploads"
 msgid "Image output"
-msgstr "Téléchargement d’images"
+msgstr "Sortie de l’image"
 
 #. [components.Modal.1905943231]
 #. defaultMessage is:
 #. Image size
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Images"
 msgid "Image size"
-msgstr "Images"
+msgstr "Taille de l’image"
 
 #. [image-size-help]
 #. defaultMessage is:
 #. Image size help
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Images"
 msgid "Image size help"
-msgstr "Images"
+msgstr "Aide sur la taille de l’image"
 
 #. [components.Modal.1813441558]
 #. defaultMessage is:
 #. Image type
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Image Type"
 msgid "Image type"
 msgstr "Type d’image"
 
@@ -1025,7 +1010,7 @@ msgstr "Message"
 #. Minimum size is {size} GB.
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Minimum size is {size} GB."
-msgstr ""
+msgstr "La taille minimale est de {size} Go."
 
 #. [components.ListView.emptyStateNoResultsMessage]
 #. defaultMessage is:
@@ -1068,7 +1053,7 @@ msgstr "Nouveau mot de passe"
 #. Next
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Next"
-msgstr ""
+msgstr "Suivant"
 
 #. [pages.blueprints.emptyTitle]
 #. defaultMessage is:
@@ -1203,7 +1188,7 @@ msgstr "Changements en cours"
 #. Process length help
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Process length help"
-msgstr ""
+msgstr "Aide sur la durée du processus"
 
 #. [components.Modal.4277042358]
 #. defaultMessage is:
@@ -1212,6 +1197,8 @@ msgstr ""
 msgid ""
 "Provide a file name to be used for the image file that will be uploaded."
 msgstr ""
+"Veuillez fournir un nom de fichier à utiliser pour le fichier image qui sera "
+"téléversé."
 
 #. [components.Modal.2186792528]
 #. defaultMessage is:
@@ -1221,6 +1208,8 @@ msgid ""
 "Provide the AWS Region where you want to import your image. This must be the "
 "same region where the {bucket} exists."
 msgstr ""
+"Veuillez indiquer la région AWS où vous souhaitez importer votre image. Il "
+"doit s’agir de la même région que celle du {bucket}."
 
 #. [components.Modal.2822010101]
 #. defaultMessage is:
@@ -1334,7 +1323,7 @@ msgstr "Role"
 #. S3 Bucket help
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "S3 Bucket help"
-msgstr ""
+msgstr "Aide sur S3 Bucket"
 
 #. [components.Modal.229369250]
 #. defaultMessage is:
@@ -1366,14 +1355,14 @@ msgstr "Sauvegarder une source"
 #. Secret access key
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Secret access key"
-msgstr ""
+msgstr "Clé d’accès secrète"
 
 #. [secret-access-key-help]
 #. defaultMessage is:
 #. Secret access key help
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Secret access key help"
-msgstr ""
+msgstr "Aide sur la clé d’accès secrète"
 
 #. [components.Modal.security]
 #. defaultMessage is:
@@ -1564,14 +1553,14 @@ msgstr ""
 #. Storage account
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Storage account"
-msgstr ""
+msgstr "Compte de stockage"
 
 #. [components.Modal.1249927125]
 #. defaultMessage is:
 #. Storage container
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Storage container"
-msgstr ""
+msgstr "Conteneur de stockage"
 
 #. [components.ListView.3639476303] - System sources are configured repositories that were found on the host machine
 #. defaultMessage is:
@@ -1849,19 +1838,15 @@ msgstr "Échec de chargement"
 #. defaultMessage is:
 #. Upload image
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Upload failed"
 msgid "Upload image"
-msgstr "Échec de chargement"
+msgstr "Téléversement de l’image"
 
 #. [upload-image-help]
 #. defaultMessage is:
 #. Upload image help
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Upload complete"
 msgid "Upload image help"
-msgstr "Chargement terminé"
+msgstr "Aide sur le téléversement de l’image"
 
 #. [components.ListView.uploadStatusRunning] - Upload status when process is in progress
 #. defaultMessage is:
@@ -1882,16 +1867,14 @@ msgstr "Chargement en attente"
 #. Upload to Amazon
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Upload to Amazon"
-msgstr ""
+msgstr "Téléversement vers Amazon"
 
 #. [components.Modal.2244258572]
 #. defaultMessage is:
 #. Upload to Azure
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Upload type"
 msgid "Upload to Azure"
-msgstr "Type de téléchargement"
+msgstr "Téléversement vers Azure"
 
 #. [components.ListView.uploadType] - A label for the service to which an image was uploaded
 #. defaultMessage is:
