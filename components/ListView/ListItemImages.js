@@ -276,7 +276,7 @@ class ListItemImages extends React.Component {
         isExpanded={this.state.uploadsExpanded}
         data-image={`${this.props.blueprint}-${listItem.version}-${listItem.compose_type}`}
       >
-        <DataListItemRow className={`${this.state.logsExpanded ? "cc-m-sticky" : ""}`}>
+        <DataListItemRow>
           {uploadsToggle}
           <div className="cc-c-data-list__item-icon">
             <BuilderImageIcon />

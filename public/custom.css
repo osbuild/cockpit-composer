@@ -626,12 +626,6 @@ body {
   --pf-c-data-list__item-action--PaddingBottom: var(--pf-global--spacer--sm);
 }
 
-.pf-c-data-list__item-row.cc-m-sticky {
-  position: sticky;
-  top: 0;
-  background: #fff;
-  border-bottom: var(--pf-c-data-list__item-item--BorderTopWidth) solid var(--pf-c-data-list__item-item--BorderTopColor);
-}
 .pf-c-data-list__expandable-content pre {
   border-top: none;
 }
