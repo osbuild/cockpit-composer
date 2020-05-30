@@ -182,15 +182,23 @@ There are a lot of parts involved in translating a string. Here's an overview of
 for details on how to indicate that the string is translatable, and what the string may contain. In general, the string
 is added using [react-intl](https://github.com/yahoo/react-intl) `MessageDescriptor`s, but without explicit `id` attributes.
 
-**Step 2**. The developer runs `npm run translations:push`. As part of this process, [babel-plugin-react-intl-auto](https://github.com/akameco/babel-plugin-react-intl-auto)
+*Debugging generated messages*
+
+To see if or how messages are generated, `make po/cockpit-composer.pot` can be run to generate `po/cockpit-composer.pot`,
+which is the file, that is uploaded for translators later on.
+As part of this process, [babel-plugin-react-intl-auto](https://github.com/akameco/babel-plugin-react-intl-auto)
 will add `id` attributes to all of the messages, and [babel-plugin-react-intl](https://github.com/yahoo/babel-plugin-react-intl)
 will extract all of the messages to JSON files, written to `./build/messages`. [react-intl-po](https://github.com/evenchange4/react-intl-po) is
-used to collect the JSON files into a gettext-style POT file, and the POT file is uploaded to [Weblate](https://translate.stg.fedoraproject.org/projects/cockpit-composer/).
+used to collect the JSON files into a gettext-style POT file (po/cockpit-composer.pot).
+
+**Step 2**. With `make upload-pot` the PO template gets uploaded to the [Weblate translation platform](https://translate.fedoraproject.org/projects/cockpit-composer/)
+where everybody can contribute translations to various languages. This is part of [bots/po-refresh](https://github.com/cockpit-project/bots/blob/master/po-refresh)
+which is invoked regularly by [bots/po-trigger](https://github.com/cockpit-project/bots/blob/master/po-trigger).
 
 **Step 3**. Translators provide translations on Weblate.
 
-**Step 4**. The developer runs `npm run translations:pull` and `npm run translations:po2json`. This downloads the translations from
-Weblate as gettext-style .po files and converts the .po files back to JSON.
+**Step 4**. With `make download-po` Weblate's translations are downloaded to `po/XX.po`. This is also done by
+[bots/po-refresh](https://github.com/cockpit-project/bots/blob/master/po-refresh).
 
 **Step 5**. The user runs cockpit-composer. Based on the user's browser configuration, cockpit-composer determines the user's preferred
 language, and if translations are available, these translations are provided to react-intl's `<IntlProvider>`. react-intl
