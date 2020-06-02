@@ -188,9 +188,8 @@ class ListItemImages extends React.Component {
         </Button>
       </div>
     );
-    let uploadsToggle;
-    if (listItem.uploads !== undefined) {
-      uploadsToggle = (
+    const uploads = listItem.uploads === undefined ? false : true;
+    const uploadsToggle = (
         <DataListToggle
             onClick={this.handleUploadsShow}
             isExpanded={this.state.uploadsExpanded}
@@ -198,11 +197,11 @@ class ListItemImages extends React.Component {
             aria-label={`${formatMessage(messages.imageUploads)} ${this.props.blueprint}-${listItem.version}-${listItem.compose_type}`}
             aria-controls={`${listItem.id}-uploads`}
             // ^ need to fix this attribute value
-            aria-hidden={!listItem.uploads.length > 0}
-            className={`${!listItem.uploads.length > 0 ? "cc-u-not-visible" : ""}`}
+            aria-hidden={!uploads}
+            className={`${!uploads ? "cc-u-not-visible" : ""}`}
           />
       );
-    }
+    
     const composeStatus = () => {
       switch (listItem.queue_status) {
         case "WAITING":
