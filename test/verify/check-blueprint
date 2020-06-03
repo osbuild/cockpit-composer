@@ -83,7 +83,7 @@ class TestBlueprint(composerlib.ComposerCase):
         # filter "openssh-server" blueprint
         b.set_input_text("#filter-blueprints", "openssh")
         b.key_press("\r")
-        b.wait_in_text(".filter-pf-active-label + .list-inline .label", "name: openssh")
+        b.wait_in_text(".filter-pf-active-label + .list-inline .label", "Name: openssh")
         b.wait_present("#openssh-server-name")
         b.wait_not_present("#httpd-server-name")
         # clear filter
@@ -93,7 +93,7 @@ class TestBlueprint(composerlib.ComposerCase):
         # filter "httpd" will show three matched blueprints
         b.set_input_text("#filter-blueprints", "httpd")
         b.key_press("\r")
-        b.wait_in_text(".filter-pf-active-label + .list-inline .label", "name: httpd")
+        b.wait_in_text(".filter-pf-active-label + .list-inline .label", "Name: httpd")
         b.wait_not_present("#openssh-server-name")
         b.wait_present("#httpd-server-name")
         b.wait_present("#httpd-server-with-hostname-name")

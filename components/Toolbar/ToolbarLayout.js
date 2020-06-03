@@ -4,14 +4,14 @@ import PropTypes from "prop-types";
 import { Filter, Toolbar } from "patternfly-react";
 
 const messages = defineMessages({
-  filterNameID: {
-    defaultMessage: "name"
+  filterNameTitle: {
+    defaultMessage: "Name"
   },
-  filterReleaseID: {
-    defaultMessage: "release"
+  filterReleaseTitle: {
+    defaultMessage: "Release"
   },
-  filterVersionID: {
-    defaultMessage: "version"
+  filterVersionTitle: {
+    defaultMessage: "Version"
   }
 });
 
@@ -34,19 +34,19 @@ class ToolbarLayout extends React.Component {
         case "name":
           return (
             <Filter.Item key={`${filter.key}-${filter.value}`} onRemove={this.handleRemoveFilter} filterData={filter}>
-              {formatMessage(messages.filterNameID)}: {filter.value}
+              {formatMessage(messages.filterNameTitle)}: {filter.value}
             </Filter.Item>
           );
         case "release":
           return (
             <Filter.Item key={`${filter.key}-${filter.value}`} onRemove={this.handleRemoveFilter} filterData={filter}>
-              {formatMessage(messages.filterReleaseID)}: {filter.value}
+              {formatMessage(messages.filterReleaseTitle)}: {filter.value}
             </Filter.Item>
           );
         case "version":
           return (
             <Filter.Item key={`${filter.key}-${filter.value}`} onRemove={this.handleRemoveFilter} filterData={filter}>
-              {formatMessage(messages.filterVersionID)}: {filter.value}
+              {formatMessage(messages.filterVersionTitle)}: {filter.value}
             </Filter.Item>
           );
         default:
