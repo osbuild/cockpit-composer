@@ -170,8 +170,8 @@ class TestCustom(composerlib.ComposerCase):
         set_input_value("#textInput2-modal-user", "x y")
         b.wait_val("#textInput1-modal-user", "xy")
         b.click("input[type=checkbox]")
-        set_input_value("#textInput1-modal-password", "foobar")
-        set_input_value("#textInput2-modal-password", "foobar")
+        set_input_value("#textInput1-modal-password", "fooBAR!@#123")
+        set_input_value("#textInput2-modal-password", "fooBAR!@#123")
         ssh_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDUOtNJdBEXyKxBB898rdT54ULjMGuO6v4" \
                   "jLXmRsdRhR5Id/lKNc9hsdioPWUePgYlqML2iSV72vKQoVhkyYkpcsjr3zvBny9+5xej3+T" \
                   "BLoEMAm2hmllKPmxYJDU8jQJ7wJuRrOVOnk0iSNF+FcY/yaQ0owSF02Nphx47j2KWc0IjGG" \
@@ -192,7 +192,7 @@ class TestCustom(composerlib.ComposerCase):
             composer-cli blueprints show openssh-server | grep password | awk -F '"' '{print $2}'
             """).rstrip()
         salt = passwd_str[:passwd_str.rfind("$")]
-        passwd_crypt = crypt.crypt("foobar", salt)
+        passwd_crypt = crypt.crypt("fooBAR!@#123", salt)
         self.assertEqual(passwd_str, passwd_crypt)
         # check backend to have correct ssh key configured
         ssh_key_backend = m.execute("""
