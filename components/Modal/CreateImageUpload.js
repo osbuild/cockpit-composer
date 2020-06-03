@@ -47,6 +47,9 @@ const messages = defineMessages({
     id: "empty-blueprint-alert",
     defaultMessage: "This blueprint is empty."
   },
+  warningEmptyBlueprintDesc: {
+    defaultMessage: "A minimal image will be created with only the packages needed to support the selected image type."
+  },
   warningReview: {
     defaultMessage: "There are one or more fields that require your attention."
   },
@@ -478,10 +481,12 @@ class CreateImageUploadModal extends React.Component {
           {blueprint.packages.length == 0 && (
             <Alert
               id="empty-blueprint-alert"
-              variant="warning"
+              variant="info"
               isInline
               title={formatMessage(messages.warningEmptyBlueprint)}
-            />
+            >
+              {formatMessage(messages.warningEmptyBlueprintDesc)}
+            </Alert>
           )}
           <Form isHorizontal className="cc-m-wide-label">
             <div className="pf-c-form__group cc-c-form__horizontal-align">

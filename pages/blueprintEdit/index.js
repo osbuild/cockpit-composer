@@ -67,8 +67,11 @@ const messages = defineMessages({
   addComponentTitle: {
     defaultMessage: "Add Blueprint Components"
   },
-  addComponentMessage: {
-    defaultMessage: "Browse or search for components, then add them to the blueprint."
+  addComponentMessageOne: {
+    defaultMessage: "Browse or search for components, then add them to the blueprint. Or leave the blueprint empty to create a minimal image."
+  },
+  addComponentMessageTwo: {
+    defaultMessage: "The packages needed to support the selected image type are automatically included when creating an image."
   },
   blueprintTitle: {
     defaultMessage: "Blueprint"
@@ -543,7 +546,7 @@ class EditBlueprintPage extends React.Component {
             >
               <EmptyState
                 title={formatMessage(messages.addComponentTitle)}
-                message={formatMessage(messages.addComponentMessage)}
+                message={`${formatMessage(messages.addComponentMessageOne)} ${formatMessage(messages.addComponentMessageTwo)}`}
               />
             </BlueprintContents>
           </div>
