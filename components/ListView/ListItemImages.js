@@ -172,11 +172,11 @@ class ListItemImages extends React.Component {
         actions = undefined;
         break;
     }
-    const noLogs = listItem.queue_status === "WAITING" || listItem.queue_status === "STOPPING";
+    const logs = (listItem.queue_status === "FAILED" || listItem.queue_status === "FINISHED");
     const logsButton = (
       <div
-        aria-hidden={noLogs}
-        className={`pf-c-data-list__item-action ${noLogs ? "cc-u-not-visible" : ""}`}
+        aria-hidden={!logs}
+        className={`pf-c-data-list__item-action ${logs ? "" : "cc-u-not-visible"}`}
       >
         <Button
           variant={`${this.state.logsExpanded ? "primary" : "secondary"}`}
