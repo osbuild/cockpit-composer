@@ -8,16 +8,12 @@ class Password extends React.Component {
     this.state = {
       passwordOne: "",
       passwordTwo: "",
-      displayWarningMatch: false,
-      passwordQuality: "",
-      warningQuality: "",
-      displayWarningQual: false
+      displayWarningMatch: false
     };
     this.handleChangePasswordOne = this.handleChangePasswordOne.bind(this);
     this.handleChangePasswordTwo = this.handleChangePasswordTwo.bind(this);
     this.handleWarnings = this.handleWarnings.bind(this);
   }
-
 
   // password match is checked when entering a value in either field
   // messages only display during handleWarnings on blur
@@ -62,8 +58,7 @@ class Password extends React.Component {
   }
 
   render() {
-    const passwordOneInvalid =
-      this.state.displayWarningMatch || (this.state.warningQuality !== "" && this.state.displayWarningQual);
+    const passwordOneInvalid = this.state.displayWarningMatch;
     return (
       <div>
         <div className={`form-group ${passwordOneInvalid ? "has-error" : ""}`}>
@@ -75,7 +70,7 @@ class Password extends React.Component {
               type="password"
               id="textInput1-modal-password"
               className="form-control"
-              aria-describedby="textInput2-modal-password-help textInput2-modal-password-help2"
+              aria-describedby="textInput2-modal-password-help"
               aria-invalid={this.state.displayWarningMatch}
               value={this.state.passwordOne}
               onChange={e => this.handleChangePasswordOne(e)}
@@ -92,28 +87,14 @@ class Password extends React.Component {
               type="password"
               id="textInput2-modal-password"
               className="form-control"
-              aria-describedby="textInput2-modal-password-help textInput2-modal-password-help2"
+              aria-describedby="textInput2-modal-password-help"
               aria-invalid={this.state.displayWarningMatch}
               value={this.state.passwordTwo}
               onChange={e => this.handleChangePasswordTwo(e)}
               onBlur={this.handleWarnings}
             />
-            <div
-              id="accounts-create-password-meter"
-              className={`progress password-strength-meter ${this.state.passwordQuality}`}
-            >
-              <div className="progress-bar" />
-              <div className="progress-bar" />
-              <div className="progress-bar" />
-              <div className="progress-bar" />
-            </div>
-            {this.state.warningQuality !== "" && this.state.displayWarningQual && (
-              <span className="help-block" id="textInput2-modal-password-help">
-                {this.state.warningQuality}
-              </span>
-            )}
             {this.state.displayWarningMatch && (
-              <span className="help-block" id="textInput2-modal-password-help2">
+              <span className="help-block" id="textInput2-modal-password-help">
                 <FormattedMessage defaultMessage="The values entered for password do not match." />
               </span>
             )}
