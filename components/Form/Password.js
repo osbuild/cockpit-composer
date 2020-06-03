@@ -1,16 +1,6 @@
 import React from "react";
-import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
+import { FormattedMessage, injectIntl } from "react-intl";
 import PropTypes from "prop-types";
-import cockpit from "cockpit";
-
-const messages = defineMessages({
-  weakPassword: {
-    defaultMessage: "Password is too weak"
-  },
-  rejectedPassword: {
-    defaultMessage: "Password is not acceptable"
-  }
-});
 
 class Password extends React.Component {
   constructor(props) {
@@ -26,31 +16,17 @@ class Password extends React.Component {
     this.handleChangePasswordOne = this.handleChangePasswordOne.bind(this);
     this.handleChangePasswordTwo = this.handleChangePasswordTwo.bind(this);
     this.handleWarnings = this.handleWarnings.bind(this);
-    this.validateQuality = this.validateQuality.bind(this);
-    this.passwordQualityFail = this.passwordQualityFail.bind(this);
-    this.passwordQualityPass = this.passwordQualityPass.bind(this);
   }
 
-  // password quality is only checked for passwordOne
-  // password match is checked on both
+
+  // password match is checked when entering a value in either field
   // messages only display during handleWarnings on blur
   // but will be removed during handleChange... when warnings are no longer true
 
   handleChangePasswordOne(event) {
     this.setState({
-      passwordOne: event.target.value,
-      displayWarningQual: false
+      passwordOne: event.target.value
     });
-    if (event.target.value !== "") {
-      this.validateQuality(event.target.value);
-      // if the password passes quality check, this function will also check
-      // if both values match, and will pass the password to the parent component
-    } else {
-      this.setState({
-        passwordQuality: "",
-        warningQuality: ""
-      });
-    }
     if (event.target.value === this.state.passwordTwo) {
       this.setState({ displayWarningMatch: false });
       if (event.target.value === "") {
@@ -64,21 +40,15 @@ class Password extends React.Component {
     if (this.state.passwordOne === event.target.value) {
       this.setState({ displayWarningMatch: false });
     }
-    // if the passwords match, and there's no quality warning message defined
-    // then pass the password to the parent component, otherwise, the password values
-    // are invalid and the submit button will be disabled
-    if (this.state.passwordOne === event.target.value && this.state.warningQuality === "") {
+    if (this.state.passwordOne === event.target.value) {
       this.props.setValidPassword(event.target.value);
     } else {
       this.props.setValidPassword();
     }
   }
 
-  handleWarnings(input) {
+  handleWarnings() {
     setTimeout(() => {
-      if (this.state.passwordOne !== "" && input === "one") {
-        this.setState({ displayWarningQual: true });
-      }
       if (
         this.state.passwordOne !== this.state.passwordTwo &&
         this.state.passwordOne !== "" &&
@@ -89,58 +59,6 @@ class Password extends React.Component {
         this.setState({ displayWarningMatch: false });
       }
     }, 300);
-  }
-
-  validateQuality(password) {
-    const dfd = cockpit.defer();
-    const { formatMessage } = this.props.intl;
-    cockpit
-      .spawn("/usr/bin/pwscore", { err: "message" })
-      .input(password)
-      .done(content => {
-        const quality = parseInt(content, 10);
-        if (quality === 0) {
-          this.passwordQualityFail(formatMessage(messages.weakPassword));
-          dfd.reject(new Error(formatMessage(messages.weakPassword)));
-        } else if (quality <= 33) {
-          this.passwordQualityPass("weak", password);
-          dfd.resolve("weak");
-        } else if (quality <= 66) {
-          this.passwordQualityPass("okay", password);
-          dfd.resolve("okay");
-        } else if (quality <= 99) {
-          this.passwordQualityPass("good", password);
-          dfd.resolve("good");
-        } else {
-          this.passwordQualityPass("excellent", password);
-          dfd.resolve("excellent");
-        }
-      })
-      .fail(ex => {
-        this.passwordQualityFail(ex.message || formatMessage(messages.rejectedPassword));
-        dfd.reject(new Error(ex.message || formatMessage(messages.rejectedPassword)));
-      });
-    return dfd.promise();
-  }
-
-  passwordQualityFail(message) {
-    this.setState({ passwordQuality: "weak" });
-    this.setState({ warningQuality: message });
-    this.props.setValidPassword();
-  }
-
-  passwordQualityPass(quality, password) {
-    this.setState({
-      passwordQuality: quality,
-      warningQuality: ""
-    });
-    // if the passwords match then pass the password to the modal state,
-    // otherwise, the password values are invalid and the submit button will be disabled
-    if (this.state.passwordTwo === password) {
-      this.props.setValidPassword(password);
-    } else {
-      this.props.setValidPassword();
-    }
   }
 
   render() {
@@ -161,7 +79,7 @@ class Password extends React.Component {
               aria-invalid={this.state.displayWarningMatch}
               value={this.state.passwordOne}
               onChange={e => this.handleChangePasswordOne(e)}
-              onBlur={() => this.handleWarnings("one")}
+              onBlur={this.handleWarnings}
             />
           </div>
         </div>
@@ -209,8 +127,7 @@ class Password extends React.Component {
 Password.propTypes = {
   setValidPassword: PropTypes.func,
   labelOne: PropTypes.string,
-  labelTwo: PropTypes.string,
-  intl: intlShape.isRequired
+  labelTwo: PropTypes.string
 };
 
 Password.defaultProps = {
