@@ -35,6 +35,12 @@ import { setBlueprint } from "../../core/actions/blueprints";
 import { fetchingQueue, clearQueue, startCompose, fetchingComposeTypes } from "../../core/actions/composes";
 
 const messages = defineMessages({
+  accessKeys: {
+    defaultMessage: "Access keys"
+  },
+  blobService: {
+    defaultMessage: "Blob service"
+  },
   imageSizePopover: {
     defaultMessage:
       "Set the size that you want the image to be when instantiated. " +
@@ -61,6 +67,9 @@ const messages = defineMessages({
   selectOne: {
     defaultMessage: "Select one"
   },
+  storageAccounts: {
+    defaultMessage: "Storage accounts"
+  },
   title: {
     defaultMessage: "Create image"
   },
@@ -80,6 +89,9 @@ const messages = defineMessages({
   },
   uploadAWS: {
     defaultMessage: "Upload to AWS"
+  },
+  uploadAzure: {
+    defaultMessage: "Upload to Azure"
   }
 });
 
@@ -119,6 +131,22 @@ const ariaLabels = defineMessages({
   aws: {
     id: "aws-help",
     defaultMessage: "AWS help"
+  },
+  storageAccount: {
+    id: "storage-account-help",
+    defaultMessage: "Storage account help"
+  },
+  storageAccessKey: {
+    id: "storage-access-key-help",
+    defaultMessage: "Storage access key help"
+  },
+  storageContainer: {
+    id: "storage-container-help",
+    defaultMessage: "storage container help"
+  },
+  azure: {
+    id: "azure-help",
+    defaultMessage: "Azure help"
   }
 });
 
@@ -477,16 +505,45 @@ class CreateImageUploadModal extends React.Component {
           <span className="pf-l-flex__item pf-c-form__label-text">
             <FormattedMessage defaultMessage="Upload image" />
           </span>
+          <Popover
+            id="popover-help"
+            bodyContent={
+              <FormattedMessage
+                defaultMessage="
+                    Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete 
+                    and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
+                    "
+                values={{
+                  azure: (
+                    <Button
+                      component="a"
+                      className="pf-icon"
+                      target="_blank"
+                      variant="link"
+                      icon={<ExternalLinkSquareAltIcon />}
+                      iconPosition="right"
+                      isInline
+                      href="https://portal.azure.com/"
+                    >
+                      Microsoft Azure
+                    </Button>
+                  )
+                }}
+              />
+            }
+            aria-label={formatMessage(ariaLabels.uploadImage)}
+          >
+            <Button variant="plain" aria-label={formatMessage(ariaLabels.uploadImage)}>
+              <OutlinedQuestionCircleIcon id="popover-icon" />
+            </Button>
+          </Popover>
         </div>
         <div className="pf-c-form__horizontal-group">
           <Checkbox
             value="azure"
             isChecked={this.state.uploadService === "azure"}
             onChange={this.handleUploadService}
-            label={this.props.intl.formatMessage({
-              id: `azure-checkbox`,
-              defaultMessage: `Upload to Azure`
-            })}
+            label={formatMessage(messages.uploadAzure)}
             id="azure-checkbox"
           />
         </div>
@@ -933,6 +990,23 @@ class CreateImageUploadModal extends React.Component {
                     &#42;
                   </span>
                 </label>
+                <Popover
+                  id="popover-help"
+                  bodyContent={
+                    <FormattedMessage 
+                      defaultMessage="Provide the name of a storage account. You can find storage accounts on the {storageAccounts} page in the {azure} portal."
+                      values={{ 
+                        storageAccounts: <strong>{formatMessage(messages.storageAccounts)}</strong>,
+                        azure: "Azure"
+                      }}
+                    />
+                  }
+                  aria-label={formatMessage(ariaLabels.storageAccount)}
+                >
+                  <Button variant="plain" aria-label={formatMessage(ariaLabels.storageAccount)}>
+                    <OutlinedQuestionCircleIcon id="popover-icon" />
+                  </Button>
+                </Popover>
               </div>
               <TextInput
                 className="pf-c-form-control"
@@ -952,6 +1026,27 @@ class CreateImageUploadModal extends React.Component {
                     &#42;
                   </span>
                 </label>
+                <Popover
+                  id="popover-help"
+                  bodyContent={
+                    <FormattedMessage 
+                      defaultMessage="
+                        Provide the access key for the desired storage account. You can find the access key on the {accessKeys} 
+                        page of the storage account. You can find storage accounts on the {storageAccounts} page in the {azure} portal.
+                      "
+                      values={{
+                        azure: "Azure",
+                        accessKeys: <strong>{formatMessage(messages.accessKeys)}</strong>,
+                        storageAccounts: <strong>{formatMessage(messages.storageAccounts)}</strong>
+                      }}
+                    />                  
+                  }
+                  aria-label={formatMessage(ariaLabels.storageAccessKey)}
+                >
+                  <Button variant="plain" aria-label={formatMessage(ariaLabels.storageAccessKey)}>
+                    <OutlinedQuestionCircleIcon id="popover-icon" />
+                  </Button>
+                </Popover>
               </div>
               <TextInput
                 className="pf-c-form-control"
@@ -985,6 +1080,19 @@ class CreateImageUploadModal extends React.Component {
                     &#42;
                   </span>
                 </label>
+                <Popover
+                  id="popover-help"
+                  bodyContent={
+                    <React.Fragment>
+                      <FormattedMessage defaultMessage="Provide a file name to be used for the image file that will be uploaded." />
+                    </React.Fragment>
+                  }
+                  aria-label={formatMessage(ariaLabels.imageName)}
+                >
+                  <Button variant="plain" aria-label={formatMessage(ariaLabels.imageName)}>
+                    <OutlinedQuestionCircleIcon id="popover-icon" />
+                  </Button>
+                </Popover>
               </div>
               <TextInput
                 className="pf-c-form-control"
@@ -996,18 +1104,41 @@ class CreateImageUploadModal extends React.Component {
             </div>
             <div className="pf-c-form__group">
               <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-u-display-flex pf-m-justify-content-flex-start pf-m-nowrap">
-                <label htmlFor="container-input" className="pf-l-flex__item">
-                  <span className="pf-c-form__label-text">Storage container</span>
+                <label htmlFor="storage-container-input" className="pf-l-flex__item">
+                  <span className="pf-c-form__label-text">
+                    <FormattedMessage defaultMessage="Storage container" />
+                  </span>
                   <span className="pf-c-form__label-required" aria-hidden="true">
                     &#42;
                   </span>
                 </label>
+                <Popover
+                  id="bucket-popover"
+                  bodyContent={
+                    <FormattedMessage 
+                    defaultMessage="
+                    Provide the Blob container to which the image file will be uploaded. You can find containers under the {blobService} 
+                    section of a storage account. You can find storage accounts on the {storageAccounts} page in the {azure} portal.
+                    "
+                    values={{
+                      azure: "Azure",
+                      blobService: <strong>{formatMessage(messages.blobService)}</strong>,
+                      storageAccounts: <strong>{formatMessage(messages.storageAccounts)}</strong>
+                    }}
+                  />                  
+                  }
+                  aria-label={formatMessage(ariaLabels.storageContainer)}
+                >
+                  <Button variant="plain" aria-label={formatMessage(ariaLabels.storageContainer)}>
+                    <OutlinedQuestionCircleIcon id="popover-icon" />
+                  </Button>
+                </Popover>
               </div>
               <TextInput
                 className="pf-c-form-control"
                 value={this.state.uploadSettings["container"]}
                 type="text"
-                id="container-input"
+                id="storage-container-input"
                 name="container"
                 onChange={this.setUploadSettings}
               />
@@ -1023,6 +1154,39 @@ class CreateImageUploadModal extends React.Component {
           <h3 className="pf-l-flex__item pf-u-mt-2xl pf-u-mb-md">
             <FormattedMessage defaultMessage="Upload to Azure" />
           </h3>
+          <Popover
+            className="pf-l-flex__item"
+            id="azure-review-popover"
+            bodyContent={
+              <FormattedMessage
+                defaultMessage="
+                    Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete 
+                    and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
+                    "
+                values={{
+                  azure: (
+                    <Button
+                      component="a"
+                      className="pf-icon"
+                      target="_blank"
+                      variant="link"
+                      icon={<ExternalLinkSquareAltIcon />}
+                      iconPosition="right"
+                      isInline
+                      href="https://portal.azure.com/"
+                    >
+                      Microsoft Azure
+                    </Button>
+                  )
+                }}
+              />
+            }
+            aria-label={formatMessage(ariaLabels.azure)}
+          >
+            <Button variant="plain" aria-label={formatMessage(ariaLabels.azure)}>
+              <OutlinedQuestionCircleIcon id="popover-icon" />
+            </Button>
+          </Popover>
         </div>
         <TextList className="cc-m-column__fixed-width" component={TextListVariants.dl}>
           <TextListItem component={TextListItemVariants.dt}>
