@@ -20,7 +20,12 @@ import {
   WizardContextConsumer,
   WizardFooter
 } from "@patternfly/react-core";
-import { OutlinedQuestionCircleIcon, ExclamationTriangleIcon, ExclamationCircleIcon } from "@patternfly/react-icons";
+import {
+  OutlinedQuestionCircleIcon,
+  ExclamationTriangleIcon,
+  ExclamationCircleIcon,
+  ExternalLinkSquareAltIcon
+} from "@patternfly/react-icons";
 import { defineMessages, FormattedMessage, injectIntl, intlShape } from "react-intl";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -69,6 +74,9 @@ const messages = defineMessages({
   },
   warningSizeEmpty: {
     defaultMessage: "A value is required."
+  },
+  uploadAWS: {
+    defaultMessage: "Upload to AWS"
   }
 });
 
@@ -395,7 +403,20 @@ class CreateImageUploadModal extends React.Component {
                     "
                     values={{
                       bucket: "S3 bucket",
-                      console: <a href="https://console.aws.amazon.com/console/home">AWS Management Console</a>
+                      console: (
+                        <Button
+                          component="a"
+                          className="pf-icon"
+                          target="_blank"
+                          variant="link"
+                          icon={<ExternalLinkSquareAltIcon />}
+                          iconPosition="right"
+                          isInline
+                          href="https://console.aws.amazon.com/console/home"
+                        >
+                          AWS Management Console
+                        </Button>
+                      )
                     }}
                   />
                 </p>
@@ -410,9 +431,18 @@ class CreateImageUploadModal extends React.Component {
                       vmimport: <code>vmimport</code>,
                       iam: "Identity and Access Management (IAM)",
                       role: (
-                        <a href="https://docs.aws.amazon.com/vm-import/latest/userguide/vmie_prereqs.html#vmimport-role">
+                        <Button
+                          component="a"
+                          className="pf-icon"
+                          target="_blank"
+                          variant="link"
+                          icon={<ExternalLinkSquareAltIcon />}
+                          iconPosition="right"
+                          isInline
+                          href="https://docs.aws.amazon.com/vm-import/latest/userguide/vmie_prereqs.html#vmimport-role"
+                        >
                           AWS Required Service Role
-                        </a>
+                        </Button>
                       )
                     }}
                   />
@@ -431,10 +461,7 @@ class CreateImageUploadModal extends React.Component {
             value="aws"
             isChecked={this.state.uploadService === "aws"}
             onChange={this.handleUploadService}
-            label={this.props.intl.formatMessage({
-              id: `aws-checkbox`,
-              defaultMessage: `Upload to AWS`
-            })}
+            label={formatMessage(messages.uploadAWS)}
             id="aws-checkbox"
           />
         </div>
@@ -803,7 +830,20 @@ class CreateImageUploadModal extends React.Component {
                     "
                     values={{
                       bucket: "S3 bucket",
-                      console: <a href="https://console.aws.amazon.com/console/home">AWS Management Console</a>
+                      console: (
+                        <Button
+                          component="a"
+                          className="pf-icon"
+                          target="_blank"
+                          variant="link"
+                          icon={<ExternalLinkSquareAltIcon />}
+                          iconPosition="right"
+                          isInline
+                          href="https://console.aws.amazon.com/console/home"
+                        >
+                          AWS Management Console
+                        </Button>
+                      )
                     }}
                   />
                 </p>
@@ -818,9 +858,18 @@ class CreateImageUploadModal extends React.Component {
                       vmimport: <code>vmimport</code>,
                       iam: "Identity and Access Management (IAM)",
                       role: (
-                        <a href="https://docs.aws.amazon.com/vm-import/latest/userguide/vmie_prereqs.html#vmimport-role">
+                        <Button
+                          component="a"
+                          className="pf-icon"
+                          target="_blank"
+                          variant="link"
+                          icon={<ExternalLinkSquareAltIcon />}
+                          iconPosition="right"
+                          isInline
+                          href="https://docs.aws.amazon.com/vm-import/latest/userguide/vmie_prereqs.html#vmimport-role"
+                        >
                           AWS Required Service Role
-                        </a>
+                        </Button>
                       )
                     }}
                   />
