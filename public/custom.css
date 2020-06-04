@@ -863,3 +863,7 @@ body {
 .pf-c-form.pf-m-horizontal.cc-m-wide-label .pf-c-form__group {
   grid-template-columns: 200px 1fr;
 }
+
+.pf-icon svg {
+  vertical-align: -0.125em;
+}
