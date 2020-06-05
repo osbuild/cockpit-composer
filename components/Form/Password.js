@@ -28,6 +28,8 @@ class Password extends React.Component {
       if (event.target.value === "") {
         this.props.setValidPassword(event.target.value);
       }
+    } else {
+      this.props.setValidPassword();
     }
   }
 
@@ -35,8 +37,6 @@ class Password extends React.Component {
     this.setState({ passwordTwo: event.target.value });
     if (this.state.passwordOne === event.target.value) {
       this.setState({ displayWarningMatch: false });
-    }
-    if (this.state.passwordOne === event.target.value) {
       this.props.setValidPassword(event.target.value);
     } else {
       this.props.setValidPassword();
