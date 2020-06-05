@@ -147,6 +147,14 @@ const ariaLabels = defineMessages({
   azure: {
     id: "azure-help",
     defaultMessage: "Azure help"
+  },
+  ostreeParent: {
+    id: "ostree-parent-help",
+    defaultMessage: "OSTree parent help"
+  },
+  ostreeRef: {
+    id: "ostree-ref-help",
+    defaultMessage: "OSTree ref help"
   }
 });
 
@@ -189,20 +197,28 @@ class CreateImageUploadModal extends React.Component {
       imageSize: "",
       minImageSize: 0,
       maxImageSize: 2000,
+      ostreeSettings: {
+        parent: undefined,
+        ref: undefined
+      },
       showUploadAwsStep: false,
       showUploadAzureStep: false,
       showReviewStep: false,
       uploadService: "",
       uploadSettings: {}
     };
+    this.disableCreateButton = this.disableCreateButton.bind(this);
     this.getDefaultImageSize = this.getDefaultImageSize.bind(this);
     this.isPendingChange = this.isPendingChange.bind(this);
     this.isValidImageSize = this.isValidImageSize.bind(this);
+    this.requiresImageSize = this.requiresImageSize.bind(this);
     this.missingRequiredFields = this.missingRequiredFields.bind(this);
     this.setNotifications = this.setNotifications.bind(this);
     this.setImageSize = this.setImageSize.bind(this);
     this.setImageName = this.setImageName.bind(this);
     this.setImageType = this.setImageType.bind(this);
+    this.setOstreeParent = this.setOstreeParent.bind(this);
+    this.setOstreeRef = this.setOstreeRef.bind(this);
     this.setUploadSettings = this.setUploadSettings.bind(this);
     this.handleUploadService = this.handleUploadService.bind(this);
     this.handleCreateImage = this.handleCreateImage.bind(this);
@@ -256,6 +272,14 @@ class CreateImageUploadModal extends React.Component {
     });
   }
 
+  setOstreeParent(value) {
+    this.setState(prevState => ({ ostreeSettings: Object.assign({}, prevState.ostreeSettings, { parent: value }) }));
+  }
+
+  setOstreeRef(value) {
+    this.setState(prevState => ({ ostreeSettings: Object.assign({}, prevState.ostreeSettings, { ref: value }) }));
+  }
+
   setImageType(imageType) {
     const defaultImageSize = this.getDefaultImageSize(imageType);
     this.setState({
@@ -263,6 +287,10 @@ class CreateImageUploadModal extends React.Component {
       imageName: "",
       imageSize: defaultImageSize,
       minImageSize: defaultImageSize,
+      ostreeSettings: {
+        parent: undefined,
+        ref: undefined
+      },
       uploadService: "",
       uploadSettings: {},
       showUploadAwsStep: false,
@@ -282,6 +310,26 @@ class CreateImageUploadModal extends React.Component {
       return false;
     } else {
       return true;
+    }
+  }
+
+  requiresImageSize(imageType) {
+    if (imageType == "fedora-iot-commit" || imageType == "rhel-edge-commit") {
+      return false;
+    } else {
+      return true;
+    } 
+  }
+
+  disableCreateButton(activeStep) {
+    if (this.state.imageType === "") {
+      return true;
+    } else if (this.requiresImageSize(this.state.imageType) && (this.state.imageSize === "" || (!this.isValidImageSize() && this.state.uploadService === ""))) {
+      return true;
+    } else if (this.missingRequiredFields() && activeStep.name === "Review") {
+      return true;
+    } else {
+      return false;
     }
   }
 
@@ -374,22 +422,29 @@ class CreateImageUploadModal extends React.Component {
         this.state.imageType,
         this.state.imageName,
         this.state.imageSize,
+        this.state.ostreeSettings,
         this.state.uploadService,
         this.state.uploadSettings
       );
     this.props.close();
   }
 
-  handleStartCompose(blueprintName, composeType, imageName, imageSize, uploadService, uploadSettings) {
+  handleStartCompose(blueprintName, composeType, imageName, imageSize, ostreeSettings, uploadService, uploadSettings) {
     const upload = {
       image_name: imageName,
       provider: uploadService,
       settings: uploadSettings
     };
+
+    let ostree;
+    if (ostreeSettings.parent !== undefined || ostreeSettings.ref !== undefined) {
+      ostree = ostreeSettings;
+    }
+
     if (uploadService == "") {
-      this.props.startCompose(blueprintName, composeType, imageSize);
+      this.props.startCompose(blueprintName, composeType, imageSize, ostree);
     } else {
-      this.props.startCompose(blueprintName, composeType, imageSize, upload);
+      this.props.startCompose(blueprintName, composeType, imageSize, ostree, upload);
     }
   }
 
@@ -410,10 +465,74 @@ class CreateImageUploadModal extends React.Component {
       imageName,
       imageType,
       imageSize,
+      ostreeSettings,
       minImageSize,
       maxImageSize,
       uploadService
     } = this.state;
+
+    const ostreeFields = (
+      <React.Fragment>
+        <div className="pf-c-form__group">
+          <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-u-display-flex pf-m-justify-content-flex-start pf-m-nowrap">
+            <label htmlFor="ostree-parent-input" className="pf-l-flex__item">
+              <span className="pf-c-form__label-text">
+                <FormattedMessage defaultMessage="Parent commit" />
+              </span>
+            </label>
+            <Popover
+              id="ostree-parent-popover"
+              bodyContent={
+                <FormattedMessage
+                  defaultMessage="Provide the ID of the latest commit in the updates repository for which this commit provides an update."
+                />
+              }
+              aria-label={formatMessage(ariaLabels.ostreeParent)}
+            >
+              <Button variant="plain" aria-label={formatMessage(ariaLabels.ostreeParent)}>
+                <OutlinedQuestionCircleIcon id="popover-icon" />
+              </Button>
+            </Popover>
+          </div>
+          <TextInput
+            className="pf-c-form-control"
+            value={ostreeSettings.parent !== undefined ? ostreeSettings.parent : ""}
+            type="text"
+            id="ostree-parent-input"
+            onChange={this.setOstreeParent}
+          />
+        </div>
+        <div className="pf-c-form__group">
+          <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-u-display-flex pf-m-justify-content-flex-start pf-m-nowrap">
+            <label htmlFor="ostree-ref-input" className="pf-l-flex__item">
+              <span className="pf-c-form__label-text">
+                <FormattedMessage defaultMessage="Ref" />
+              </span>
+            </label>
+            <Popover
+              id="ostree-ref-popover"
+              bodyContent={
+                <FormattedMessage
+                  defaultMessage="Provide the name of the branch for the content. If the ref does not already exist it will be created."
+                />
+              }
+              aria-label={formatMessage(ariaLabels.ostreeRef)}
+            >
+              <Button variant="plain" aria-label={formatMessage(ariaLabels.ostreeRef)}>
+                <OutlinedQuestionCircleIcon id="popover-icon" />
+              </Button>
+            </Popover>
+          </div>
+          <TextInput
+            className="pf-c-form-control"
+            value={ostreeSettings.ref !== undefined ? ostreeSettings.ref : ""}
+            type="text"
+            id="ostree-ref-input"
+            onChange={this.setOstreeRef}
+          />
+        </div>
+      </React.Fragment>
+    );
 
     const awsProviderCheckbox = (
       <div className="pf-c-form__group">
@@ -596,8 +715,10 @@ class CreateImageUploadModal extends React.Component {
                 ))}
               </FormSelect>
             </FormGroup>
+            {(imageType === "fedora-iot-commit" || imageType == "rhel-edge-commit") && ostreeFields}
             {imageType === "ami" && awsProviderCheckbox}
             {imageType === "vhd" && azureProviderCheckbox}
+            {this.requiresImageSize(imageType) && (
             <div className="pf-c-form__group">
               <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-u-display-flex pf-m-justify-content-flex-start pf-m-nowrap">
                 <label htmlFor="create-image-size" className="pf-l-flex__item">
@@ -658,6 +779,7 @@ class CreateImageUploadModal extends React.Component {
                 )}
               </div>
             </div>
+            )}
           </Form>
         </React.Fragment>
       )
@@ -1299,12 +1421,7 @@ class CreateImageUploadModal extends React.Component {
                 <Button
                   id="continue-button"
                   variant="primary"
-                  isDisabled={
-                    imageType === "" ||
-                    imageSize === "" ||
-                    (!this.isValidImageSize() && uploadService.length === 0) ||
-                    (this.missingRequiredFields() && activeStep.name === "Review")
-                  }
+                  isDisabled={this.disableCreateButton(activeStep)}
                   onClick={() => this.handleNextStep(activeStep, onNext)}
                 >
                   {activeStep.name === "Image type" ? (
@@ -1438,8 +1555,8 @@ const mapDispatchToProps = dispatch => ({
   clearQueue: () => {
     dispatch(clearQueue());
   },
-  startCompose: (blueprintName, composeType, imageSize, upload) => {
-    dispatch(startCompose(blueprintName, composeType, imageSize, upload));
+  startCompose: (blueprintName, composeType, imageSize, ostree, upload) => {
+    dispatch(startCompose(blueprintName, composeType, imageSize, ostree, upload));
   }
 });
 
