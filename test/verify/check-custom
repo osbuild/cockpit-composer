@@ -243,8 +243,7 @@ class TestCustom(composerlib.ComposerCase):
         b.click("input[type=checkbox]")
         set_input_value("#textInput1-modal-password", "aaa")
         set_input_value("#textInput2-modal-password", "bbb")
-        b.wait_in_text("#textInput2-modal-password-help", "Password quality check failed:")
-        b.wait_in_text("#textInput2-modal-password-help2",
+        b.wait_in_text("#textInput2-modal-password-help",
                        "The values entered for password do not match.")
         b.click("#cmpsr-modal-user-account .close")
         b.wait_not_present("#cmpsr-modal-user-account")
