@@ -59,6 +59,17 @@ class TestSource(composerlib.ComposerCase):
         # groups action done
         b.click("button:contains('Add Source')")
 
+        # HACK: workaround issue https://github.com/osbuild/cockpit-composer/issues/989
+        # open manage source again to continue running test
+        if b.cdp.browser == "firefox":
+            # open manage sources dialog
+            drop_down_sel = ".toolbar-pf-action-right #dropdownKebab"
+            b.click(drop_down_sel)
+            b.wait_attr(drop_down_sel, "aria-expanded", "true")
+            b.click("a:contains('Manage Sources')")
+            b.wait_attr(drop_down_sel, "aria-expanded", "false")
+            b.wait_present("#cmpsr-modal-manage-sources")
+
         # endit new source to enable check SSL certificate and GPG key
         b.click("button[aria-label='Edit Source {}']".format(repo_name))
         # SSL certificate
