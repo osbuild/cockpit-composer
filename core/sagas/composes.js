@@ -22,9 +22,16 @@ import {
 
 function* startCompose(action) {
   try {
-    const { blueprintName, composeType, imageSize, uploadSettings } = action.payload;
+    const { blueprintName, composeType, imageSize, ostree, uploadSettings } = action.payload;
     const imageSizeBytes = imageSize * 1024 * 1024 * 1024;
-    const response = yield call(composer.startCompose, blueprintName, composeType, imageSizeBytes, uploadSettings);
+    const response = yield call(
+      composer.startCompose,
+      blueprintName,
+      composeType,
+      imageSizeBytes,
+      ostree,
+      uploadSettings
+    );
     const statusResponse = yield call(composer.getComposeStatus, response.build_id);
     yield put(fetchingComposeSucceeded(statusResponse.uuids[0]));
     if (statusResponse.uuids[0].queue_status === "WAITING" || statusResponse.uuids[0].queue_status === "RUNNING") {
