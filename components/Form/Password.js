@@ -39,12 +39,17 @@ class Password extends React.Component {
     }
   }
 
-  handleWarnings() {
+  // warnings display:
+  // if password two has a value and the values for one and two do not match, OR
+  // if password two does NOT have a value but one does, and the user is exiting password two
+  // warnings do not display: 
+  // if password one has a value and two does not, and the user is exiting password one,
+  // because we assume the user is intending to provide a password in this case
+  handleWarnings(input) {
     setTimeout(() => {
       if (
-        this.state.passwordOne !== this.state.passwordTwo &&
-        this.state.passwordOne !== "" &&
-        this.state.passwordTwo !== ""
+        (this.state.passwordOne !== this.state.passwordTwo && this.state.passwordTwo !== "") || 
+        (input === "two" && this.state.passwordOne !== "" && this.state.passwordTwo === "")
       ) {
         this.setState({ displayWarningMatch: true });
       } else {
@@ -87,7 +92,7 @@ class Password extends React.Component {
               aria-invalid={this.state.displayWarningMatch}
               value={this.state.passwordTwo}
               onChange={e => this.handleChangePasswordTwo(e)}
-              onBlur={this.handleWarnings}
+              onBlur={() => this.handleWarnings("two")}
             />
             {this.state.displayWarningMatch && (
               <span className="help-block" id="textInput2-modal-password-help">
