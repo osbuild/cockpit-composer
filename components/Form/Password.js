@@ -20,14 +20,10 @@ class Password extends React.Component {
   // but will be removed during handleChange... when warnings are no longer true
 
   handleChangePasswordOne(event) {
-    this.setState({
-      passwordOne: event.target.value
-    });
+    this.setState({ passwordOne: event.target.value });
     if (event.target.value === this.state.passwordTwo) {
       this.setState({ displayWarningMatch: false });
-      if (event.target.value === "") {
-        this.props.setValidPassword(event.target.value);
-      }
+      this.props.setValidPassword(event.target.value);
     } else {
       this.props.setValidPassword();
     }
