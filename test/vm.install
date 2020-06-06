@@ -3,6 +3,10 @@
 # The application RPM will be installed separately
 set -eux
 
+# overriding osbuild-composer repo with nightly
+mkdir -p /etc/osbuild-composer/repositories
+cp /home/admin/files/rhel-8.json /etc/osbuild-composer/repositories
+
 # Allow cockpit port (9090) in INPUT chain
 # Do not reload firewall rule during image generation
 if type firewall-cmd >/dev/null 2>&1; then
