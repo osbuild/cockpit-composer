@@ -3,7 +3,6 @@
 # checkpoint:
 # 1. create supported image
 
-import os
 import composerlib
 import testlib
 
@@ -143,14 +142,14 @@ class TestImage(composerlib.ComposerCase):
             composer-cli compose list | grep httpd-server | awk '{print $1}' | head -1
             """).rstrip()
         selector = "{}-compose-name".format(uuid)
-        if "fedora" in os.environ["TEST_OS"]:
-            b.wait_text("#{}".format(selector), "httpd-server-0.0.1-OpenStack")
-            b.wait_text("li[aria-labelledby={}] [data-image-type=OpenStack]".format(selector),
-                    "OpenStack")
-        else:
-            b.wait_text("#{}".format(selector), "httpd-server-0.0.1-openstack")
-            b.wait_text("li[aria-labelledby={}] [data-image-type=openstack]".format(selector),
-                    "openstack")
+
+        # NOTE work around a bug in osbuild-composer-11, which got the
+        # capitalization wrong. This can be changed to `openstack` once we
+        # depend on a newer version of osbuild-composer.
+        image_type = b.attr("li[aria-labelledby={}] [data-image-type]".format(selector),
+                            "data-image-type")
+        self.assertEqual(image_type.lower(), "openstack")
+
         # image building needs more time
         with b.wait_timeout(1800):
             b.wait_text("li[aria-labelledby={}] [data-status=true]".format(selector),
