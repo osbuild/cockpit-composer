@@ -29,7 +29,7 @@ Before running the tests, ensure Cockpit-Composer environment has been built:
 
 To run all tests run the following:
 
-    $ ./test/verify/run-tests
+    $ make check
 
 Alternatively you can run an individual test like this:
 
