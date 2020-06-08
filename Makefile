@@ -10,12 +10,19 @@ BUILD_RUN = npm run build -- --with-coverage
 else
 BUILD_RUN = npm run build
 endif
+TARFILE=$(PACKAGE_NAME)-$(VERSION).tar.gz
+# stamp file to check if/when npm install ran
+NODE_MODULES_TEST=package-lock.json
+# one example file in dist/ from webpack to check if that already ran
+WEBPACK_TEST=public/dist/index.html
 
 WEBLATE_REPO=tmp/weblate-repo
 WEBLATE_REPO_URL=https://github.com/osbuild/cockpit-composer-weblate.git
 WEBLATE_REPO_BRANCH=master
 
-all: npm-install
+all: $(WEBPACK_TEST)
+
+$(WEBPACK_TEST): $(NODE_MODULES_TEST) $(shell find {core,components,data,pages,utils} -type f) package.json webpack.config.js $(patsubst %,dist/po.%.js,$(LINGUAS))
 	NODE_ENV=$(NODE_ENV) $(BUILD_RUN)
 
 $(WEBLATE_REPO):
@@ -30,12 +37,9 @@ po-push: po/cockpit-composer.pot $(WEBLATE_REPO)
 	git -C $(WEBLATE_REPO) commit -m "Update source file" -- cockpit-composer.pot
 	git -C $(WEBLATE_REPO) push
 
-po/cockpit-composer.pot: npm-install
+po/cockpit-composer.pot: $(WEBPACK_TEST)
 	NODE_ENV=$(NODE_ENV) npm run translations:extract
 	NODE_ENV=$(NODE_ENV) npm run translations:json2pot
-
-npm-install:
-	npm install
 
 install: all
 	mkdir -p /usr/share/cockpit/composer
@@ -44,17 +48,27 @@ install: all
 	cp io.weldr.cockpit-composer.metainfo.xml /usr/share/metainfo/
 
 # this requires a built source tree and avoids having to install anything system-wide
-devel-install:
+devel-install: $(WEBPACK_TEST)
 	mkdir -p ~/.local/share/cockpit
 	ln -s `pwd`/public/dist ~/.local/share/cockpit/composer
 
-dist-gzip: NODE_ENV=production
-# package test dependence to avoid clone or fetch
-dist-gzip: all $(PACKAGE_NAME).spec machine test/common
-	mkdir -p $(PACKAGE_NAME)-$(VERSION)
-	cp -r public/ test/ LICENSE.txt README.md $(PACKAGE_NAME).spec io.weldr.cockpit-composer.metainfo.xml $(PACKAGE_NAME)-$(VERSION)
-	tar -czf $(PACKAGE_NAME)-$(VERSION).tar.gz $(PACKAGE_NAME)-$(VERSION)
-	rm -rf $(PACKAGE_NAME)-$(VERSION)
+
+dist-gzip: $(TARFILE)
+
+# when building a distribution tarball, call webpack with a 'production' environment
+# we don't ship node_modules for license and compactness reasons; we ship a
+# pre-built dist/ (so it's not necessary) and ship packge-lock.json (so that
+# node_modules/ can be reconstructed if necessary)
+$(TARFILE): NODE_ENV=production
+$(TARFILE): $(WEBPACK_TEST) $(PACKAGE_NAME).spec
+	if type appstream-util >/dev/null 2>&1; then appstream-util validate-relax --nonet *.metainfo.xml; fi
+	mv node_modules node_modules.release
+	touch -r package.json $(NODE_MODULES_TEST)
+	touch public/dist/*
+	tar czf $(PACKAGE_NAME)-$(VERSION).tar.gz --transform 's,^,$(PACKAGE_NAME)/,' \
+		--exclude $(PACKAGE_NAME).spec.in \
+		$$(git ls-files) package-lock.json $(PACKAGE_NAME).spec public/dist/
+	mv node_modules.release node_modules
 
 $(PACKAGE_NAME).spec: $(PACKAGE_NAME).spec.in
 	sed -e 's|@VERSION@|$(VERSION)|' \
@@ -146,6 +160,14 @@ test/common:
 	git fetch https://github.com/cockpit-project/cockpit.git
 	git checkout --force bd3086070cc6 -- test/common
 	git reset test/common
+
+
+$(NODE_MODULES_TEST): package.json
+	# if it exists already, npm install won't update it; force that so that we always get up-to-date packages
+	rm -f package-lock.json
+	# unset NODE_ENV, skips devDependencies otherwise
+	env -u NODE_ENV npm install
+	env -u NODE_ENV npm prune
 
 # The po-refresh bot expects these specific Makefile targets
 update-po:

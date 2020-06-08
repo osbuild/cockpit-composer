@@ -19,7 +19,7 @@ Composer generates custom images suitable for deploying systems or uploading to
 the cloud. It integrates into Cockpit as a frontend for osbuild.
 
 %prep
-%setup -q -n cockpit-composer-%{version}
+%setup -q -n cockpit-composer
 
 %build
 # Nothing to build
