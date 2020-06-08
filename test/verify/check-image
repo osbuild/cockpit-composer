@@ -3,6 +3,8 @@
 # checkpoint:
 # 1. create supported image
 
+import os
+import unittest
 import composerlib
 import testlib
 
@@ -189,6 +191,86 @@ class TestImage(composerlib.ComposerCase):
         b.click("#cmpsr-modal-delete button:contains('Delete Image')")
         b.wait_not_present("#{}".format(selector))
 
+        # collect code coverage result
+        self.check_coverage()
+
+    @unittest.skipIf(os.environ.get("TEST_OS") == "fedora-31", "Does not support ostree image")
+    def testOSTree(self):
+        b = self.browser
+        m = self.machine
+
+        if (os.environ.get("TEST_OS") == "fedora-32"):
+            image_type_ostree = "fedora-iot-commit"
+        elif (os.environ.get("TEST_OS") == "rhel-8-3"):
+            image_type_ostree = "rhel-edge-commit"
+
+        self.login_and_go("/composer", authorized=True)
+        b.wait_present("#main")
+
+        # create image wizard
+        b.click("li[data-blueprint=httpd-server] #create-image-button")
+        b.wait_text("#create-image-upload-wizard #blueprint-name", "httpd-server")
+        # group actions for select from dropdown menu
+        b.wait_visible("#image-type")
+        test_selector = "#image-type option[value='{image_type}']".format(
+            image_type=image_type_ostree)
+        b.wait_present(test_selector)
+        value_id = b.attr(test_selector, "value")
+        b.set_val("#image-type", value_id)
+        b.wait_val("#image-type", value_id)
+        b.click("#continue-button")
+        b.wait_not_present("#create-image-upload-wizard")
+        # toast notification
+        b.wait_present("#cmpsr-toast-imageWaiting .pficon-info")
+        b.click("#cmpsr-toast-imageWaiting .pficon-close")
+        b.wait_not_present("#cmpsr-toast-imageWaiting .pficon-info")
+
+        # got to images tab
+        b.click("#httpd-server-name")
+        # correct image name and type
+        with b.wait_timeout(300):
+            b.click("#blueprint-tabs-tab-images")
+            b.wait_present("ul[data-list=images]")
+        # get uuid as part of css selector
+        uuid = m.execute("""
+            composer-cli compose list | grep httpd-server | awk '{print $1}' | head -1
+            """).rstrip()
+        selector = "{}-compose-name".format(uuid)
+
+        image_type = b.attr("li[aria-labelledby={}] [data-image-type]".format(selector),
+                            "data-image-type")
+        self.assertEqual(image_type, image_type_ostree)
+
+        # image building needs more time
+        with b.wait_timeout(1800):
+            b.wait_text("li[aria-labelledby={}] [data-status=true]".format(selector),
+                        "Image build complete")
+        # log should contains rpm, hostname, users stages and tar assembler
+        b.click("button:contains('Logs')")
+        b.wait_in_text("#{}-logs".format(uuid), "Stage org.osbuild.rpm")
+        b.wait_in_text("#{}-logs".format(uuid), "Stage: org.osbuild.rpm-ostree")
+        b.wait_in_text("#{}-logs".format(uuid), "Assembler org.osbuild.ostree.commit")
+        # close logs
+        b.click("button:contains('Logs')")
+
+        # download image
+        b.click("#{}-actions".format(uuid))
+        b.click("a:contains('Download')")
+
+        # delete image cancel first always
+        b.click("#{}-actions".format(uuid))
+        b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "true")
+        b.click("li[aria-labelledby={}] a:contains('Delete')".format(selector))
+        b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "false")
+        b.click("#cmpsr-modal-delete button:contains('Cancel')")
+        b.wait_not_present("#cmpsr-modal-delete")
+        # delete here
+        b.click("#{}-actions".format(uuid))
+        b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "true")
+        b.click("li[aria-labelledby={}] a:contains('Delete')".format(selector))
+        b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "false")
+        b.click("#cmpsr-modal-delete button:contains('Delete Image')")
+        b.wait_not_present("#{}".format(selector))
         # collect code coverage result
         self.check_coverage()
 
