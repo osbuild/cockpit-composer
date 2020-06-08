@@ -150,12 +150,13 @@ machine: bots
 	rsync -avR --exclude="bots/machine/machine_core/__pycache__/" bots/machine/testvm.py bots/machine/identity bots/machine/cloud-init.iso bots/machine/machine_core bots/task/testmap.py test
 
 # checkout Cockpit's test API; this has no API stability guarantee, so check out a stable tag
-# this needs a recent adjustment for firefox 77, so checkout a SHA until cockpit 221 releases
+# this needs a recent adjustment for firefox 77 and working with
+# network-enabled tests, so checkout a SHA until cockpit 221 releases
 test/common:
 	#git fetch --depth=1 https://github.com/cockpit-project/cockpit.git 221
 	#git checkout --force FETCH_HEAD -- test/common
 	git fetch https://github.com/cockpit-project/cockpit.git
-	git checkout --force bd3086070cc6 -- test/common
+	git checkout --force 48c716de7ebd -- test/common
 	git reset test/common
 
 
