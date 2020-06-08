@@ -119,6 +119,7 @@ $(VM_IMAGE): rpm bots
 		-i `pwd`/$(PACKAGE_NAME)-*.noarch.rpm \
 		-i composer-cli \
 		-u $(CURDIR)/test/files:/home/admin \
+		-u $(CURDIR)/test/osbuild-mock.repo:/etc/yum.repos.d \
 		-s $(CURDIR)/test/vm.install \
 		$(TEST_OS)
 
