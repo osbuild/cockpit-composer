@@ -25,7 +25,7 @@ allowed_browser_errors = [
 
 class ComposerCase(testlib.MachineCase):
     def setUp(self):
-        super().setUp()
+        super().setUp(restrict=False)
 
         self.allow_journal_messages(*allowed_journal_messages)
         self.allow_browser_errors(*allowed_browser_errors)
