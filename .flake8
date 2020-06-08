@@ -37,7 +37,6 @@ ignore =
 
 # Per file ignore
 per-file-ignores =
-    test/verify/run-tests:F401
     test/verify/composerlib.py:F401
     test/verify/parent.py:E501
 

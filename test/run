@@ -7,3 +7,9 @@ if [ -n "${TEST_SCENARIO}" ]; then
 fi
 
 make check
+
+# If successful, report code coverage result to codecov.io
+if [ -f ~/.config/codecov-token ]; then
+  token=$(cat ~/.config/codecov-token | sed 's/\n//g')
+  curl --silent localhost:8080/foo.sh | CODECOV_TOKEN=$token bash
+fi

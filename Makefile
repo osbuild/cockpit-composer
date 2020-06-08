@@ -128,7 +128,7 @@ vm: $(VM_IMAGE)
 
 # run the CDP integration test
 check: $(VM_IMAGE) test/common machine
-	test/verify/run-tests
+	test/common/run-tests --test-dir=test/verify --enable-network
 
 # run test with browser interactively
 debug-check:
