@@ -112,12 +112,9 @@ buildrpm_image:
 test_rpmbuild: buildrpm_image
 	sudo docker run --rm --name buildrpm -v `pwd`:/composer welder/buildrpm:latest make rpm srpm
 
-local-clean:
-	rm -rf test/images tmp $(PACKAGE_NAME).spec $(PACKAGE_NAME)*.rpm $(PACKAGE_NAME)*.tar.gz
-
 # build VMs
-$(VM_IMAGE): local-clean rpm bots
-	# VM running cockpit, composer, and end to end test container
+$(VM_IMAGE): rpm bots
+	rm -f $(VM_IMAGE) $(VM_IMAGE).qcow2
 	bots/image-customize -v \
 		-i `pwd`/$(PACKAGE_NAME)-*.noarch.rpm \
 		-i composer-cli \
@@ -176,4 +173,4 @@ download-po: po-pull
 clean-po:
 	rm po/*.po
 
-.PHONY: tag local-clean vm check debug-check flake8 devel-install
+.PHONY: tag vm check debug-check flake8 devel-install
