@@ -52,6 +52,11 @@ class ComposerCase(testlib.MachineCase):
                         "for bp in $(composer-cli blueprints list); "
                         "do composer-cli blueprints delete $bp; done")
 
+    # Hack to add more wait time to work with aarch64 platform test
+    def login_and_go(self, *args, **kwargs):
+        with self.browser.wait_timeout(300):
+            super().login_and_go(*args, **kwargs)
+
     def check_coverage(self):
         """ collect code coverage result and save to json file
 
