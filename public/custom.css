@@ -741,51 +741,6 @@ body {
   }
 }
 
-@font-face {
-  font-family: "RedHatDisplay";
-  src: url("../../static/fonts/RedHatDisplay-Regular.woff2");
-  src: url("../../static/fonts/RedHatDisplay-Regular.woff2")  format('woff2');
-  font-style: normal;
-  font-weight: 300;
-  text-rendering: optimizeLegibility;
-}
-
-@font-face {
-  font-family: "RedHatDisplay";
-  src: url("../../static/fonts/RedHatDisplay-Medium.woff2");
-  src: url("../../static/fonts/RedHatDisplay-Medium.woff2")  format('woff2');
-  font-style: normal;
-  font-weight: 400;
-  text-rendering: optimizeLegibility;
-}
-
-@font-face {
-  font-family: "RedHatDisplay";
-  src: url("../../static/fonts/RedHatDisplay-Bold.woff2");
-  src: url("../../static/fonts/RedHatDisplay-Bold.woff2")  format('woff2');
-  font-style: normal;
-  font-weight: 700;
-  text-rendering: optimizeLegibility;
-}
-
-@font-face {
-  font-family: "RedHatText";
-  src: url("../../static/fonts/RedHatText-Regular.woff2");
-  src: url("../../static/fonts/RedHatText-Regular.woff2")  format('woff2');
-  font-style: normal;
-  font-weight: 400;
-  text-rendering: optimizeLegibility;
-}
-
-@font-face {
-  font-family: "RedHatText";
-  src: url("../../static/fonts/RedHatText-Medium.woff2");
-  src: url("../../static/fonts/RedHatText-Medium.woff2")  format('woff2');
-  font-style: normal;
-  font-weight: 700;
-  text-rendering: optimizeLegibility;
-}
-
 /* form group checkbox alignment fix */
 .pf-c-form__horizontal-group .pf-c-check,
 .pf-c-form__horizontal-group .pf-c-radio,
