@@ -4,13 +4,15 @@ import "regenerator-runtime/runtime";
 
 import "whatwg-fetch";
 
+// Contains PF3 stylesheets and base for PF4
+import "./lib/patternfly/patternfly-cockpit.scss";
+
 import React from "react";
 import ReactDOM from "react-dom";
 import { addLocaleData, IntlProvider } from "react-intl";
 import enLocaleData from "react-intl/locale-data/en";
 import FastClick from "fastclick";
 import { Provider } from "react-redux";
-import "@patternfly/react-core/dist/styles/base.css";
 import "@patternfly/patternfly/patternfly-addons.css";
 import "@patternfly/patternfly/layouts/Flex/flex.css";
 import "@patternfly/react-styles/css/utilities/Display/display.css";

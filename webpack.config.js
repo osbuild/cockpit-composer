@@ -6,6 +6,8 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const babelConfig = require("./babel.config");
 
+const nodedir = path.resolve(process.env.SRCDIR || __dirname, "node_modules");
+
 const [mode, devtool] =
   process.env.NODE_ENV === "production" ? ["production", "source-map"] : ["development", "inline-source-map"];
 
@@ -59,6 +61,7 @@ module.exports = {
     maxEntrypointSize: 20000000,
     maxAssetSize: 20000000,
   },
+  resolve: { alias: { "font-awesome": path.resolve(nodedir, "font-awesome-sass/assets/stylesheets") } },
   module: {
     rules: [
       {
@@ -101,6 +104,58 @@ module.exports = {
           {
             loader: "css-loader",
             options: { url: false },
+          },
+        ],
+      },
+      /* HACK: remove unwanted fonts from PatternFly's css */
+      {
+        test: /patternfly-cockpit.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: { url: false },
+          },
+          {
+            loader: "string-replace-loader",
+            options: {
+              multiple: [
+                {
+                  search: /src:url[(]"patternfly-icons-fake-path\/glyphicons-halflings-regular[^}]*/g,
+                  replace: 'font-display:block; src:url("../base1/fonts/glyphicons.woff") format("woff");',
+                },
+                {
+                  search: /src:url[(]"patternfly-fonts-fake-path\/PatternFlyIcons[^}]*/g,
+                  replace: 'src:url("../base1/fonts/patternfly.woff") format("woff");',
+                },
+                {
+                  search: /src:url[(]"patternfly-fonts-fake-path\/fontawesome[^}]*/,
+                  replace: 'font-display:block; src:url("../base1/fonts/fontawesome.woff?v=4.2.0") format("woff");',
+                },
+                {
+                  search: /src:url\("patternfly-icons-fake-path\/pficon[^}]*/g,
+                  replace: 'src:url("../base1/fonts/patternfly.woff") format("woff");',
+                },
+                {
+                  search: /@font-face[^}]*patternfly-fonts-fake-path[^}]*}/g,
+                  replace: "",
+                },
+              ],
+            },
+          },
+          {
+            loader: "sass-loader",
+            options: {
+              sassOptions: {
+                includePaths: [
+                  // Teach webpack to resolve these references in order to build PF3 scss
+                  path.resolve(nodedir, "font-awesome-sass", "assets", "stylesheets"),
+                  path.resolve(nodedir, "patternfly", "dist", "sass"),
+                  path.resolve(nodedir, "bootstrap-sass", "assets", "stylesheets"),
+                ],
+                outputStyle: "compressed",
+              },
+            },
           },
         ],
       },
