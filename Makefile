@@ -116,6 +116,7 @@ test_rpmbuild: buildrpm_image
 $(VM_IMAGE): rpm bots
 	rm -f $(VM_IMAGE) $(VM_IMAGE).qcow2
 	bots/image-customize -v \
+		--resize 20G \
 		-i `pwd`/$(PACKAGE_NAME)-*.noarch.rpm \
 		-i composer-cli \
 		-u $(CURDIR)/test/files:/home/admin \
