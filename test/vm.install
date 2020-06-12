@@ -3,6 +3,12 @@
 # The application RPM will be installed separately
 set -eux
 
+# resize root partition to fill free space
+echo -en "n\n\n\n\n\nw\n" | fdisk /dev/vda
+pvcreate /dev/vda3
+vgextend fedora_ibm-p8-kvm-03-guest-02 /dev/vda3
+lvextend -r -l +100%FREE /dev/fedora_ibm-p8-kvm-03-guest-02/root
+
 # overriding osbuild-composer repo with nightly
 mkdir -p /etc/osbuild-composer/repositories
 cp /home/admin/files/rhel-8.json /etc/osbuild-composer/repositories
