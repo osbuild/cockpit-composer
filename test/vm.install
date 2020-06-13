@@ -4,10 +4,13 @@
 set -eux
 
 # resize root partition to fill free space
-echo -en "n\n\n\n\n\nw\n" | fdisk /dev/vda
-pvcreate /dev/vda3
-vgextend fedora_ibm-p8-kvm-03-guest-02 /dev/vda3
-lvextend -r -l +100%FREE /dev/fedora_ibm-p8-kvm-03-guest-02/root
+OS=$(. /etc/os-release; echo $ID)
+if [ $OS == "fedora" ]; then
+  echo -en "n\n\n\n\n\nw\n" | fdisk /dev/vda
+  pvcreate /dev/vda3
+  vgextend fedora_ibm-p8-kvm-03-guest-02 /dev/vda3
+  lvextend -r -l +100%FREE /dev/fedora_ibm-p8-kvm-03-guest-02/root
+fi
 
 # overriding osbuild-composer repo with nightly
 mkdir -p /etc/osbuild-composer/repositories

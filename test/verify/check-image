@@ -194,7 +194,7 @@ class TestImage(composerlib.ComposerCase):
         # collect code coverage result
         self.check_coverage()
 
-    @unittest.skipIf(os.environ.get("TEST_OS") == "fedora-31", "Does not support ostree image")
+    @unittest.skipUnless(os.environ.get("TEST_OS") == "fedora-32", "Does not support ostree image")
     def testOSTree(self):
         b = self.browser
         m = self.machine
