@@ -274,6 +274,59 @@ class TestImage(composerlib.ComposerCase):
         # collect code coverage result
         self.check_coverage()
 
+    def testCancel(self):
+        b = self.browser
+        m = self.machine
+
+        self.login_and_go("/composer", authorized=True)
+        b.wait_present("#main")
+
+        # create image wizard
+        b.click("li[data-blueprint=httpd-server] #create-image-button")
+        b.wait_text("#create-image-upload-wizard #blueprint-name", "httpd-server")
+        # group actions for select from dropdown menu
+        b.wait_visible("#image-type")
+        test_selector = "#image-type option[value='openstack']"
+        b.wait_present(test_selector)
+        value_id = b.attr(test_selector, "value")
+        b.set_val("#image-type", value_id)
+        b.wait_val("#image-type", value_id)
+        # group actions end
+        b.click("#continue-button")
+        b.wait_not_present("#create-image-upload-wizard")
+
+        # toast notification
+        b.wait_present("#cmpsr-toast-imageWaiting .pficon-info")
+        b.click("#cmpsr-toast-imageWaiting .pficon-close")
+        b.wait_not_present("#cmpsr-toast-imageWaiting .pficon-info")
+
+        # got to images tab
+        b.click("#httpd-server-name")
+        # correct image name and type
+        with b.wait_timeout(300):
+            b.click("#blueprint-tabs-tab-images")
+            b.wait_present("ul[data-list=images]")
+        # get uuid as part of css selector
+        uuid = m.execute("""
+            composer-cli compose list | grep httpd-server | awk '{print $1}' | head -1
+            """).rstrip()
+        selector = "{}-compose-name".format(uuid)
+        # stop image build
+        b.click("#{}-actions".format(uuid))
+        b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "true")
+        b.click("li[aria-labelledby={}] a:contains('Stop')".format(selector))
+        b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "false")
+        b.click("#cmpsr-modal-delete button:contains('Stop Build')")
+        b.wait_not_present("#cmpsr-modal-delete")
+        # delete canceled image build
+        b.click("#{}-actions".format(uuid))
+        b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "true")
+        b.click("li[aria-labelledby={}] a:contains('Remove')".format(selector))
+        b.wait_not_present("#{}".format(selector))
+
+        # collect code coverage result
+        self.check_coverage()
+
 
 if __name__ == '__main__':
     testlib.test_main()
