@@ -4,8 +4,8 @@
 # Ludek Janda <ljanda@redhat.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-05-12T00:35:46.229Z\n"
-"PO-Revision-Date: 2020-05-15 08:50+0000\n"
+"POT-Creation-Date: 2020-06-04T04:00:46.240Z\n"
+"PO-Revision-Date: 2020-06-11 10:40+0000\n"
 "Last-Translator: Ludek Janda <ljanda@redhat.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.fedoraproject.org/"
 "projects/cockpit-composer/master/zh_CN/>\n"
@@ -48,45 +48,43 @@ msgstr "没有为这个账户定义密码。"
 #. defaultMessage is:
 #. A value is required.
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "A blueprint name is required."
 msgid "A value is required."
-msgstr "需要一个蓝图（blueprint）名称。"
+msgstr "需要一个值。"
 
 #. [aws-help]
 #. defaultMessage is:
 #. AWS help
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "AWS help"
-msgstr ""
+msgstr "AWS 帮助"
 
 #. [components.Modal.4193750875]
 #. defaultMessage is:
 #. AWS region
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "AWS region"
-msgstr ""
+msgstr "AWS 区域"
 
 #. [region-help]
 #. defaultMessage is:
 #. AWS region help
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "AWS region help"
-msgstr ""
+msgstr "AWS 区域帮助"
 
 #. [components.Modal.1635272069]
 #. defaultMessage is:
 #. Access key ID
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Access key ID"
-msgstr ""
+msgstr "访问密钥 ID"
 
 #. [access-key-id-help]
 #. defaultMessage is:
 #. Access key ID help
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Access key ID help"
-msgstr ""
+msgstr "访问密钥 ID 帮助"
 
 #. [components.ListView.imageActions] - A label for the menu that displays the actions available
 #. defaultMessage is:
@@ -145,10 +143,8 @@ msgstr "已添加的"
 #. defaultMessage is:
 #. All fields are required.
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "The fields marked with {val} are required."
 msgid "All fields are required."
-msgstr "标记为 {val} 的项是必需的。"
+msgstr "各个项都是必需的。"
 
 #. [components.ListView.emptyStateErrorTitle]
 #. defaultMessage is:
@@ -235,7 +231,7 @@ msgstr "可用的组件"
 #. Back
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Back"
-msgstr ""
+msgstr "返回"
 
 #. [pages.blueprint.3126044146]
 #. defaultMessage is:
@@ -471,8 +467,6 @@ msgstr "提交"
 #. defaultMessage is:
 #. Commit and create
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Commit and Create"
 msgid "Commit and create"
 msgstr "提交并创建"
 
@@ -480,10 +474,8 @@ msgstr "提交并创建"
 #. defaultMessage is:
 #. Commit and next
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Commit and Create"
 msgid "Commit and next"
-msgstr "提交并创建"
+msgstr "提交和下一个"
 
 #. [pages.blueprint.3540308269]
 #. defaultMessage is:
@@ -571,10 +563,8 @@ msgstr ""
 #. defaultMessage is:
 #. Create and upload image
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Create Image"
 msgid "Create and upload image"
-msgstr "创建镜像"
+msgstr "创建并上传镜像"
 
 #. [components.Modal.title]
 #. defaultMessage is:
@@ -583,8 +573,6 @@ msgstr "创建镜像"
 #. defaultMessage is:
 #. Create image
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Create Image"
 msgid "Create image"
 msgstr "创建镜像"
 
@@ -811,7 +799,7 @@ msgstr "根据名称过滤..."
 #. Finish
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Finish"
-msgstr ""
+msgstr "完成"
 
 #. [components.Modal.1182120637]
 #. defaultMessage is:
@@ -865,6 +853,11 @@ msgid ""
 "available in the AMI section of EC2. Most of the values required to upload\n"
 "                      the image can be found in the {console}."
 msgstr ""
+"Image Builder 可以将您创建的镜像上传到 AWS 的一个 {bucket} 中，然后将其导入"
+"EC2。当镜像构建完成且\n"
+"                      上传操作成功时，镜像文件会出现在 EC2 的 AMI 中。上传镜"
+"像所需的多数值都可以在\n"
+"                      {console} 中找到。"
 
 #. [components.EmptyState.errorInactiveTitle]
 #. defaultMessage is:
@@ -916,44 +909,34 @@ msgstr "镜像名称"
 #. defaultMessage is:
 #. Image name help
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Image name"
 msgid "Image name help"
-msgstr "镜像名称"
+msgstr "镜像名称帮助"
 
 #. [components.Modal.1005710141]
 #. defaultMessage is:
 #. Image output
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Image uploads"
 msgid "Image output"
-msgstr "镜像上传"
+msgstr "镜像输出"
 
 #. [components.Modal.1905943231]
 #. defaultMessage is:
 #. Image size
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Images"
 msgid "Image size"
-msgstr "镜像"
+msgstr "镜像大小"
 
 #. [image-size-help]
 #. defaultMessage is:
 #. Image size help
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Images"
 msgid "Image size help"
-msgstr "镜像"
+msgstr "镜像大小帮助"
 
 #. [components.Modal.1813441558]
 #. defaultMessage is:
 #. Image type
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Image Type"
 msgid "Image type"
 msgstr "镜像类型"
 
@@ -1008,7 +991,7 @@ msgstr "信息"
 #. Minimum size is {size} GB.
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Minimum size is {size} GB."
-msgstr ""
+msgstr "最小大小为{size} GB。"
 
 #. [components.ListView.emptyStateNoResultsMessage]
 #. defaultMessage is:
@@ -1051,7 +1034,7 @@ msgstr "新密码"
 #. Next
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Next"
-msgstr ""
+msgstr "下一步"
 
 #. [pages.blueprints.emptyTitle]
 #. defaultMessage is:
@@ -1185,7 +1168,7 @@ msgstr "改变待生效"
 #. Process length help
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Process length help"
-msgstr ""
+msgstr "流程长度帮助"
 
 #. [components.Modal.4277042358]
 #. defaultMessage is:
@@ -1193,7 +1176,7 @@ msgstr ""
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid ""
 "Provide a file name to be used for the image file that will be uploaded."
-msgstr ""
+msgstr "提供上传镜像文件使用的文件名。"
 
 #. [components.Modal.2186792528]
 #. defaultMessage is:
@@ -1202,7 +1185,7 @@ msgstr ""
 msgid ""
 "Provide the AWS Region where you want to import your image. This must be the "
 "same region where the {bucket} exists."
-msgstr ""
+msgstr "提供您要导入镜像的 AWS 区域。该区域必须与 {bucket} 所在的区域相同。"
 
 #. [components.Modal.2822010101]
 #. defaultMessage is:
@@ -1219,6 +1202,11 @@ msgid ""
 "                          {bucketsPage} page in the {amazon} S3 storage "
 "service in the AWS console."
 msgstr ""
+"提供导入到 EC2 前镜像文件需要被上传到的 S3 {bucket} 的名称。 \n"
+"                          {bucket} 需要已存在于您要将镜像导入到的区域中。您可"
+"以在 AWS 控制台\n"
+"                          的 {amazon} S3 存储服务的 {bucketsPage} 页中找到 "
+"{buckets} 列表。"
 
 #. [components.ListView.423140743]
 #. defaultMessage is:
@@ -1302,7 +1290,7 @@ msgstr "缺少需要的信息。"
 msgid ""
 "Review the information below and click Finish to create the image and "
 "complete the tasks that were selected."
-msgstr ""
+msgstr "查看下面的信息，然后点“完成”以创建镜像并完成所选的任务。"
 
 #. [components.Modal.106035384]
 #. defaultMessage is:
@@ -1316,7 +1304,7 @@ msgstr "角色"
 #. S3 Bucket help
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "S3 Bucket help"
-msgstr ""
+msgstr "S3 存储桶帮助"
 
 #. [components.Modal.229369250]
 #. defaultMessage is:
@@ -1348,14 +1336,14 @@ msgstr "保存源"
 #. Secret access key
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Secret access key"
-msgstr ""
+msgstr "秘密访问密钥"
 
 #. [secret-access-key-help]
 #. defaultMessage is:
 #. Secret access key help
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Secret access key help"
-msgstr ""
+msgstr "秘密访问密钥帮助"
 
 #. [components.Modal.security]
 #. defaultMessage is:
@@ -1419,6 +1407,8 @@ msgid ""
 "package size and target destination of your image should be considered when "
 "setting the image size."
 msgstr ""
+"设置实例化时镜像的大小。在设置镜像大小时，应考虑软件包的总大小以及镜像的目标"
+"位置。"
 
 #. [components.ListView.1256153657]
 #. defaultMessage is:
@@ -1536,21 +1526,21 @@ msgstr "停止"
 #. Storage access key
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Storage access key"
-msgstr ""
+msgstr "存储访问密钥"
 
 #. [components.Modal.1624497518]
 #. defaultMessage is:
 #. Storage account
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Storage account"
-msgstr ""
+msgstr "储存帐号"
 
 #. [components.Modal.1249927125]
 #. defaultMessage is:
 #. Storage container
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Storage container"
-msgstr ""
+msgstr "储存容器"
 
 #. [components.ListView.3639476303] - System sources are configured repositories that were found on the host machine
 #. defaultMessage is:
@@ -1617,7 +1607,7 @@ msgstr "osbuild-composer 服务没有启动。"
 msgid ""
 "The size specified is large. We recommend that you check whether your target "
 "destination has any restrictions on image size."
-msgstr ""
+msgstr "指定的大小是大。我们建议您检查目标位置是否对镜像大小有限制。"
 
 #. [components.Modal.2405281428]
 #. defaultMessage is:
@@ -1656,7 +1646,7 @@ msgstr "在蓝图中没有组件列表。编辑蓝图来添加组件。"
 #. There are one or more fields that require your attention.
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "There are one or more fields that require your attention."
-msgstr ""
+msgstr "有一个或多个字段需要引起您的注意。"
 
 #. [components.Modal.181468144]
 #. defaultMessage is:
@@ -1726,6 +1716,8 @@ msgid ""
 "                      be imported from the S3 {bucket} into EC2. For more "
 "details, refer to the {role}."
 msgstr ""
+"这个上传过程需要您有一个名为 {vmimport} 的 {iam} 角色，以确保镜像可以\n"
+"                      从 S3 {bucket} 导入到 EC2。更多信息请参阅 {role}。"
 
 #. [components.Modal.3707489178]
 #. defaultMessage is:
@@ -1820,19 +1812,15 @@ msgstr "上传失败"
 #. defaultMessage is:
 #. Upload image
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Upload failed"
 msgid "Upload image"
-msgstr "上传失败"
+msgstr "上传镜像"
 
 #. [upload-image-help]
 #. defaultMessage is:
 #. Upload image help
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Upload complete"
 msgid "Upload image help"
-msgstr "上传完成"
+msgstr "上传镜像帮助"
 
 #. [components.ListView.uploadStatusRunning] - Upload status when process is in progress
 #. defaultMessage is:
@@ -1853,16 +1841,14 @@ msgstr "上传待处理"
 #. Upload to Amazon
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Upload to Amazon"
-msgstr ""
+msgstr "上传到 Amazon"
 
 #. [components.Modal.2244258572]
 #. defaultMessage is:
 #. Upload to Azure
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Upload type"
 msgid "Upload to Azure"
-msgstr "上传类型"
+msgstr "上传到 Azure"
 
 #. [components.ListView.uploadType] - A label for the service to which an image was uploaded
 #. defaultMessage is:
@@ -1927,7 +1913,7 @@ msgstr "查看"
 msgid ""
 "You can create and find existing Access key IDs on the {iam} page in the AWS "
 "console."
-msgstr ""
+msgstr "您可以在 AWS 控制台的 {iam} 页面中创建并找到现有的访问密钥 ID。"
 
 #. [components.Modal.4206409720]
 #. defaultMessage is:
@@ -1937,6 +1923,8 @@ msgid ""
 "You can view the Secret access key only when you create a new Access key ID "
 "on the {iam} page in the AWS console."
 msgstr ""
+"仅当您在 AWS 控制台中的 {iam} 页面中创建新的访问密钥 ID 时，才能查看秘密访问"
+"密钥。"
 
 #. [components.ListView.actions]
 #. defaultMessage is:
@@ -2071,7 +2059,7 @@ msgstr "{count} 组件总数"
 #. {currentPage} of {totalPages}
 #: build/messages/components/Pagination/Pagination.json
 msgid "{currentPage} of {totalPages}"
-msgstr "$1 的 $0"
+msgstr "{currentPage}（共{totalPages}）"
 
 #. [components.Modal.3908981070]
 #. defaultMessage is:
@@ -2100,7 +2088,8 @@ msgstr "{heading} {parenthetical}"
 #: build/messages/pages/blueprintEdit/index.json
 msgid ""
 "{pendingChanges, plural, one {# Pending Change} other {# Pending Changes}}"
-msgstr "其他"
+msgstr ""
+"{pendingChanges, plural, one {# Pending Change} 其他 {# Pending Changes}}"
 
 #. [pages.blueprintEdit.3140434516]
 #. defaultMessage is:
@@ -2114,7 +2103,7 @@ msgstr "在列表中 {selectComponents} 以添加到蓝图中。"
 #. {startNumber} - {endNumber} of {totalNumber}
 #: build/messages/components/Pagination/Pagination.json
 msgid "{startNumber} - {endNumber} of {totalNumber}"
-msgstr "$1 的 $0"
+msgstr "{startNumber} - {endNumber}（共{totalNumber}）"
 
 #: public/manifest.json
 msgid "Creating system images"

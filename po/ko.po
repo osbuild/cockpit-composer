@@ -3,11 +3,11 @@
 # Ludek Janda <ljanda@redhat.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-05-12T00:35:46.229Z\n"
-"PO-Revision-Date: 2020-05-15 08:50+0000\n"
+"POT-Creation-Date: 2020-06-04T04:00:46.240Z\n"
+"PO-Revision-Date: 2020-06-11 10:40+0000\n"
 "Last-Translator: Ludek Janda <ljanda@redhat.com>\n"
-"Language-Team: Korean <https://translate.fedoraproject.org/projects/"
-"cockpit-composer/master/ko/>\n"
+"Language-Team: Korean <https://translate.fedoraproject.org/projects/cockpit-"
+"composer/master/ko/>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,58 +34,56 @@ msgstr "블루프린트 이름이 필요합니다."
 #. A password is defined for this account.
 #: build/messages/components/Modal/UserAccount.json
 msgid "A password is defined for this account."
-msgstr "이 계정에 암호가 지정되어 있습니다. "
+msgstr "이 계정에 암호가 지정되어 있습니다."
 
 #. [components.Modal.2362836873]
 #. defaultMessage is:
 #. A password is not defined for this account.
 #: build/messages/components/Modal/UserAccount.json
 msgid "A password is not defined for this account."
-msgstr "이 계정에 암호가 지정되어 있지 않습니다. "
+msgstr "이 계정에 암호가 지정되어 있지 않습니다."
 
 #. [components.Modal.warningSizeEmpty]
 #. defaultMessage is:
 #. A value is required.
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "A blueprint name is required."
 msgid "A value is required."
-msgstr "블루프린트 이름이 필요합니다."
+msgstr "값이 필요합니다."
 
 #. [aws-help]
 #. defaultMessage is:
 #. AWS help
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "AWS help"
-msgstr ""
+msgstr "AWS 도움말"
 
 #. [components.Modal.4193750875]
 #. defaultMessage is:
 #. AWS region
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "AWS region"
-msgstr ""
+msgstr "AWS 리전"
 
 #. [region-help]
 #. defaultMessage is:
 #. AWS region help
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "AWS region help"
-msgstr ""
+msgstr "AWS 리전 도움말"
 
 #. [components.Modal.1635272069]
 #. defaultMessage is:
 #. Access key ID
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Access key ID"
-msgstr ""
+msgstr "액세스 키 ID"
 
 #. [access-key-id-help]
 #. defaultMessage is:
 #. Access key ID help
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Access key ID help"
-msgstr ""
+msgstr "액세스 키 ID 도움말"
 
 #. [components.ListView.imageActions] - A label for the menu that displays the actions available
 #. defaultMessage is:
@@ -96,7 +94,7 @@ msgstr ""
 #: build/messages/components/ListView/ListItemImages.json
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Actions"
-msgstr "동작 "
+msgstr "동작"
 
 #. [components.ListView.3099331554]
 #. defaultMessage is:
@@ -123,30 +121,28 @@ msgstr "블루프린트 구성 요소 추가"
 #. Add Source
 #: build/messages/components/Modal/ManageSources.json
 msgid "Add Source"
-msgstr "소스 추가 "
+msgstr "소스 추가"
 
 #. [components.ListView.addComponent]
 #. defaultMessage is:
 #. Add latest version
 #: build/messages/components/ListView/ComponentInputs.json
 msgid "Add latest version"
-msgstr "최신 버전 추가 "
+msgstr "최신 버전 추가"
 
 #. [components.Modal.1362724042] - Identifies the change as a component that was added
 #. defaultMessage is:
 #. Added
 #: build/messages/components/Modal/PendingChanges.json
 msgid "Added"
-msgstr "추가됨:"
+msgstr "추가됨"
 
 #. [components.Modal.1175512155]
 #. defaultMessage is:
 #. All fields are required.
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "The fields marked with {val} are required."
 msgid "All fields are required."
-msgstr "{val}(으)로 표시된 항목은 필수 항목입니다."
+msgstr "모든 항목이 필요합니다."
 
 #. [components.ListView.emptyStateErrorTitle]
 #. defaultMessage is:
@@ -161,7 +157,7 @@ msgstr "{val}(으)로 표시된 항목은 필수 항목입니다."
 #: build/messages/components/Modal/ManageSources.json
 #: build/messages/pages/blueprints/index.json
 msgid "An Error Occurred"
-msgstr "오류가 발생했습니다 "
+msgstr "오류가 발생했습니다"
 
 #. [components.Modal.1417078254]
 #. defaultMessage is:
@@ -172,7 +168,7 @@ msgid ""
 "try again."
 msgstr ""
 "소스를 저장할 때 오류가 발생했습니다. 경로가 유효한지 확인한 후 다시 시도해 "
-"보십시오. "
+"보십시오."
 
 #. [components.ListView.emptyStateErrorMessage]
 #. defaultMessage is:
@@ -207,14 +203,14 @@ msgstr "블루프린트 {name}을/를 정말로 삭제하시겠습니까?"
 #. Are you sure you want to delete the image for {blueprintName}?
 #: build/messages/components/Modal/DeleteImage.json
 msgid "Are you sure you want to delete the image for {blueprintName}?"
-msgstr " {blueprintName}의 이미지를 정말로 삭제하시겠습니까?"
+msgstr "{blueprintName}의 이미지를 정말로 삭제하시겠습니까?"
 
 #. [components.Modal.234116272]
 #. defaultMessage is:
 #. Are you sure you want to stop the build process for {blueprintName}?
 #: build/messages/components/Modal/StopBuild.json
 msgid "Are you sure you want to stop the build process for {blueprintName}?"
-msgstr " {blueprintName}의 빌드 프로세스를 중지하시겠습니까? "
+msgstr "{blueprintName}의 빌드 프로세스를 중지하시겠습니까?"
 
 #. [components.EmptyState.errorInactiveCheckbox]
 #. defaultMessage is:
@@ -235,7 +231,7 @@ msgstr "사용 가능한 구성 요소"
 #. Back
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Back"
-msgstr ""
+msgstr "돌아가기"
 
 #. [pages.blueprint.3126044146]
 #. defaultMessage is:
@@ -253,7 +249,7 @@ msgstr "블루프린트로 돌아 가기"
 #. Back to {blueprint}
 #: build/messages/components/ListView/ComponentDetailsView.json
 msgid "Back to {blueprint}"
-msgstr "{blueprint}로 되돌아 가기 "
+msgstr "{blueprint}로 되돌아 가기"
 
 #. [components.Modal.1281198655]
 #. defaultMessage is:
@@ -304,7 +300,7 @@ msgstr ""
 #. Blueprint names cannot contain spaces.
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "Blueprint names cannot contain spaces."
-msgstr "블루프린트 이름에 공백을 포함할 수 없습니다. "
+msgstr "블루프린트 이름에 공백을 포함할 수 없습니다."
 
 #. [components.Modal.2781854456]
 #. defaultMessage is:
@@ -378,7 +374,7 @@ msgstr "취소"
 #. Changes Pending Commit
 #: build/messages/components/Modal/PendingChanges.json
 msgid "Changes Pending Commit"
-msgstr "보류 중인 커밋을 변경 "
+msgstr "보류 중인 커밋을 변경"
 
 #. [components.Modal.683130131]
 #. defaultMessage is:
@@ -403,14 +399,14 @@ msgstr ""
 #. Check GPG key
 #: build/messages/components/Modal/ManageSources.json
 msgid "Check GPG key"
-msgstr "GPG 키 확인 "
+msgstr "GPG 키 확인"
 
 #. [components.Modal.check_ssl]
 #. defaultMessage is:
 #. Check SSL certificate
 #: build/messages/components/Modal/ManageSources.json
 msgid "Check SSL certificate"
-msgstr "SSL 인증서 확인 "
+msgstr "SSL 인증서 확인"
 
 #. [components.ListView.1312249312]
 #. defaultMessage is:
@@ -469,14 +465,12 @@ msgstr "설명"
 #: build/messages/components/Modal/PendingChanges.json
 #: build/messages/pages/blueprintEdit/index.json
 msgid "Commit"
-msgstr "커밋 "
+msgstr "커밋"
 
 #. [components.Modal.1126783419]
 #. defaultMessage is:
 #. Commit and create
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Commit and Create"
 msgid "Commit and create"
 msgstr "커밋 및 생성"
 
@@ -484,10 +478,8 @@ msgstr "커밋 및 생성"
 #. defaultMessage is:
 #. Commit and next
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Commit and Create"
 msgid "Commit and next"
-msgstr "커밋 및 생성"
+msgstr "커밋 및 다음"
 
 #. [pages.blueprint.3540308269]
 #. defaultMessage is:
@@ -559,7 +551,7 @@ msgstr "블루프린트 만들기"
 #: build/messages/components/Modal/UserAccount.json
 #: build/messages/pages/blueprint/index.json
 msgid "Create User Account"
-msgstr "사용자 계정 만들기 "
+msgstr "사용자 계정 만들기"
 
 #. [pages.blueprints.emptyMessage]
 #. defaultMessage is:
@@ -576,10 +568,8 @@ msgstr ""
 #. defaultMessage is:
 #. Create and upload image
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Create Image"
 msgid "Create and upload image"
-msgstr "이미지 만들기"
+msgstr "이미지 생성 및 업로드"
 
 #. [components.Modal.title]
 #. defaultMessage is:
@@ -588,8 +578,6 @@ msgstr "이미지 만들기"
 #. defaultMessage is:
 #. Create image
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Create Image"
 msgid "Create image"
 msgstr "이미지 만들기"
 
@@ -619,7 +607,7 @@ msgstr "현재 페이지"
 #. Customizations
 #: build/messages/pages/blueprint/index.json
 msgid "Customizations"
-msgstr "사용자 정의 "
+msgstr "사용자 정의"
 
 #. [components.ListView.3645414921]
 #. defaultMessage is:
@@ -651,7 +639,7 @@ msgstr "이미지 삭제"
 #. Delete User Account
 #: build/messages/pages/blueprint/index.json
 msgid "Delete User Account"
-msgstr "사용자 계정 삭제 "
+msgstr "사용자 계정 삭제"
 
 #. [components.ListView.dependenciesTabTitle]
 #. defaultMessage is:
@@ -669,7 +657,7 @@ msgstr "사용자 계정 삭제 "
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ComponentSummaryList.json
 msgid "Dependencies"
-msgstr "종속성 "
+msgstr "종속성"
 
 #. [components.Modal.3374163063]
 #. defaultMessage is:
@@ -699,14 +687,14 @@ msgstr "변경 사항 취소"
 #. Download
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Download"
-msgstr "다운로드 "
+msgstr "다운로드"
 
 #. [components.Modal.1237611265]
 #. defaultMessage is:
 #. Edit Description
 #: build/messages/components/Modal/EditDescription.json
 msgid "Edit Description"
-msgstr "설명 편집 "
+msgstr "설명 편집"
 
 #. [components.ListView.3855913088]
 #. defaultMessage is:
@@ -721,7 +709,7 @@ msgstr "설명 편집 "
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
 msgid "Edit Packages"
-msgstr "패키지 편집 "
+msgstr "패키지 편집"
 
 #. [components.ListView.edit]
 #. defaultMessage is:
@@ -732,7 +720,7 @@ msgstr "패키지 편집 "
 #: build/messages/components/ListView/SourcesListItem.json
 #: build/messages/components/Modal/ManageSources.json
 msgid "Edit Source"
-msgstr "소스 편집 "
+msgstr "소스 편집"
 
 #. [components.Modal.modalTitleEdit]
 #. defaultMessage is:
@@ -743,7 +731,7 @@ msgstr "소스 편집 "
 #: build/messages/components/Modal/UserAccount.json
 #: build/messages/pages/blueprint/index.json
 msgid "Edit User Account"
-msgstr "사용자 계정 편집 "
+msgstr "사용자 계정 편집"
 
 #. [components.Modal.2044423701]
 #. defaultMessage is:
@@ -754,21 +742,21 @@ msgstr "사용자 계정 편집 "
 #: build/messages/components/Modal/EditDescription.json
 #: build/messages/pages/blueprint/index.json
 msgid "Edit description"
-msgstr "설명 편집 "
+msgstr "설명 편집"
 
 #. [pages.blueprint.hostnameButtonLabel]
 #. defaultMessage is:
 #. Edit hostname
 #: build/messages/pages/blueprint/index.json
 msgid "Edit hostname"
-msgstr "호스트이름 편집 "
+msgstr "호스트이름 편집"
 
 #. [pages.blueprint.emptyBlueprintTitle]
 #. defaultMessage is:
 #. Empty Blueprint
 #: build/messages/pages/blueprint/index.json
 msgid "Empty Blueprint"
-msgstr "블루프린트가 비어있음 "
+msgstr "블루프린트가 비어있음"
 
 #. [pages.error.errorMessage]
 #. defaultMessage is:
@@ -782,14 +770,14 @@ msgstr "오류"
 #. Export
 #: build/messages/components/Modal/ExportBlueprint.json
 msgid "Export"
-msgstr "내보내기 "
+msgstr "내보내기"
 
 #. [components.Modal.386209032]
 #. defaultMessage is:
 #. Export Blueprint
 #: build/messages/components/Modal/ExportBlueprint.json
 msgid "Export Blueprint"
-msgstr "블루프린트 내보내기 "
+msgstr "블루프린트 내보내기"
 
 #. [components.Modal.3658760324]
 #. defaultMessage is:
@@ -803,7 +791,7 @@ msgstr "다음 형식으로 내보내기"
 #. Filter Available Components by Name
 #: build/messages/pages/blueprintEdit/index.json
 msgid "Filter Available Components by Name"
-msgstr "이름별로 사용 ​​가능한 구성 요소 필터링"
+msgstr "이름별로 사용 가능한 구성 요소 필터링"
 
 #. [pages.blueprintEdit.filterByPlaceholder]
 #. defaultMessage is:
@@ -817,14 +805,14 @@ msgstr "이름으로 필터링 ..."
 #. Finish
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Finish"
-msgstr ""
+msgstr "종료"
 
 #. [components.Modal.1182120637]
 #. defaultMessage is:
 #. Full name
 #: build/messages/components/Modal/UserAccount.json
 msgid "Full name"
-msgstr "성명 "
+msgstr "성명"
 
 #. [pages.error.2333299345]
 #. defaultMessage is:
@@ -849,14 +837,14 @@ msgstr "세부 정보 숨기기"
 #. Hostname
 #: build/messages/pages/blueprint/index.json
 msgid "Hostname"
-msgstr "호스트 이름 "
+msgstr "호스트 이름"
 
 #. [pages.blueprint.hostnameHelpEmpty]
 #. defaultMessage is:
 #. If no hostname is provided, the hostname will be determined by the OS.
 #: build/messages/pages/blueprint/index.json
 msgid "If no hostname is provided, the hostname will be determined by the OS."
-msgstr "호스트이름이 지정되어 있지 않을 경우 OS가 호스트 이름을 지정합니다. "
+msgstr "호스트이름이 지정되어 있지 않을 경우 OS가 호스트 이름을 지정합니다."
 
 #. [components.Modal.4131822949]
 #. defaultMessage is:
@@ -871,13 +859,18 @@ msgid ""
 "available in the AMI section of EC2. Most of the values required to upload\n"
 "                      the image can be found in the {console}."
 msgstr ""
+"이미지 빌더는 생성한 이미지를 AWS의 {bucket}에 업로드한 다음 EC2로 가져올 수 "
+"있습니다. 이미지 빌드가 완료되고\n"
+"                       업로드 작업이 성공하면 EC2의 AMI 섹션에서 이미지 파일"
+"을 사용할 수 있습니다. 이미지를 업로드하는 데\n"
+"                      필요한 대부분의 값은 {console}에 있습니다."
 
 #. [components.EmptyState.errorInactiveTitle]
 #. defaultMessage is:
 #. Image Building Service is Not Active
 #: build/messages/components/EmptyState/EmptyStateInactive.json
 msgid "Image Building Service is Not Active"
-msgstr "이미지 빌드 서비스가 활성화되어 있지 않습니다 "
+msgstr "이미지 빌드 서비스가 활성화되어 있지 않습니다"
 
 #. [components.ListView.imageStatusFinished] - Image build status when process is finished
 #. defaultMessage is:
@@ -922,44 +915,34 @@ msgstr "이미지 이름"
 #. defaultMessage is:
 #. Image name help
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Image name"
 msgid "Image name help"
-msgstr "이미지 이름"
+msgstr "이미지 이름 도움말"
 
 #. [components.Modal.1005710141]
 #. defaultMessage is:
 #. Image output
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Image uploads"
 msgid "Image output"
-msgstr "이미지 업로드"
+msgstr "이미지 출력"
 
 #. [components.Modal.1905943231]
 #. defaultMessage is:
 #. Image size
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Images"
 msgid "Image size"
-msgstr "이미지 "
+msgstr "이미지 크기"
 
 #. [image-size-help]
 #. defaultMessage is:
 #. Image size help
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Images"
 msgid "Image size help"
-msgstr "이미지 "
+msgstr "이미지 크기 도움말"
 
 #. [components.Modal.1813441558]
 #. defaultMessage is:
 #. Image type
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Image Type"
 msgid "Image type"
 msgstr "이미지 유형"
 
@@ -975,14 +958,14 @@ msgstr "이미지 업로드"
 #. Images
 #: build/messages/pages/blueprint/index.json
 msgid "Images"
-msgstr "이미지 "
+msgstr "이미지"
 
 #. [components.Loading.2617450248]
 #. defaultMessage is:
 #. Loading
 #: build/messages/components/Loading/Loading.json
 msgid "Loading"
-msgstr "로딩 중 "
+msgstr "로딩 중"
 
 #. [components.ListView.imageLogs] - Log content that gets generated as part of the image creation process
 #. defaultMessage is:
@@ -993,14 +976,14 @@ msgstr "로딩 중 "
 #: build/messages/components/ListView/ListItemImages.json
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Logs"
-msgstr "로그 "
+msgstr "로그"
 
 #. [components.Modal.357938285] - User action for displaying the list of source repositories
 #. defaultMessage is:
 #. Manage Sources
 #: build/messages/components/Modal/ManageSources.json
 msgid "Manage Sources"
-msgstr "소스 관리 "
+msgstr "소스 관리"
 
 #. [components.EmptyState.alertMessagePreface]
 #. defaultMessage is:
@@ -1014,7 +997,7 @@ msgstr "메세지"
 #. Minimum size is {size} GB.
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Minimum size is {size} GB."
-msgstr ""
+msgstr "최소 크기는 {size} GB 입니다."
 
 #. [components.ListView.emptyStateNoResultsMessage]
 #. defaultMessage is:
@@ -1057,7 +1040,7 @@ msgstr "새 암호"
 #. Next
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Next"
-msgstr ""
+msgstr "다음"
 
 #. [pages.blueprints.emptyTitle]
 #. defaultMessage is:
@@ -1071,7 +1054,7 @@ msgstr "블루프린트 없음"
 #. No Dependencies
 #: build/messages/components/ListView/ComponentDetailsView.json
 msgid "No Dependencies"
-msgstr "종속성 없음 "
+msgstr "종속성 없음"
 
 #. [pages.blueprint.noImagesTitle]
 #. defaultMessage is:
@@ -1089,7 +1072,7 @@ msgstr "이미지 없음"
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/pages/blueprints/index.json
 msgid "No Results Match the Filter Criteria"
-msgstr "검색 기준과 일치하는 결과가 없습니다."
+msgstr "검색 기준과 일치하는 결과가 없습니다"
 
 #. [pages.blueprint.noImagesMessage]
 #. defaultMessage is:
@@ -1103,7 +1086,7 @@ msgstr "이 블루프린트에서 생성된 이미지가 없습니다."
 #. No log available
 #: build/messages/components/ListView/ListItemImages.json
 msgid "No log available"
-msgstr "사용 가능한 로그가 없음 "
+msgstr "사용 가능한 로그가 없음"
 
 #. [components.Modal.1475836573]
 #. defaultMessage is:
@@ -1117,14 +1100,14 @@ msgstr "선택한 구성 요소의 변경 사항 만 표시됩니다."
 #. Oups, something went wrong
 #: build/messages/pages/error/index.json
 msgid "Oups, something went wrong"
-msgstr "문제가 발생했습니다. "
+msgstr "문제가 발생했습니다"
 
 #. [pages.blueprint.packagesTitle]
 #. defaultMessage is:
 #. Packages
 #: build/messages/pages/blueprint/index.json
 msgid "Packages"
-msgstr "패키지 "
+msgstr "패키지"
 
 # ctx::sourcefile::404 error page
 #. [pages.error.pageNotFoundMessage]
@@ -1146,7 +1129,7 @@ msgstr "페이지를 찾을 수 없음"
 #. Pagination
 #: build/messages/components/Pagination/Pagination.json
 msgid "Pagination"
-msgstr "페이지 매김 "
+msgstr "페이지 매김"
 
 #. [components.Modal.createPasswordOne]
 #. defaultMessage is:
@@ -1156,28 +1139,28 @@ msgstr "페이지 매김 "
 #. Password
 #: build/messages/components/Modal/UserAccount.json
 msgid "Password"
-msgstr "암호 "
+msgstr "암호"
 
 #. [components.Form.rejectedPassword]
 #. defaultMessage is:
 #. Password is not acceptable
 #: build/messages/components/Form/Password.json
 msgid "Password is not acceptable"
-msgstr "암호가 허용되지 않습니다 "
+msgstr "암호가 허용되지 않습니다"
 
 #. [components.Form.weakPassword]
 #. defaultMessage is:
 #. Password is too weak
 #: build/messages/components/Form/Password.json
 msgid "Password is too weak"
-msgstr "암호가 너무 취약합니다 "
+msgstr "암호가 너무 취약합니다"
 
 #. [components.Modal.sshKeyHelp]
 #. defaultMessage is:
 #. Paste the contents of your public SSH key file here.
 #: build/messages/components/Modal/UserAccount.json
 msgid "Paste the contents of your public SSH key file here."
-msgstr "SSH 공개키 파일 내용을 여기에 붙여넣기합니다. "
+msgstr "SSH 공개키 파일 내용을 여기에 붙여넣기합니다."
 
 #. [components.Modal.433458873]
 #. defaultMessage is:
@@ -1191,7 +1174,7 @@ msgstr "보류중인 변경"
 #. Process length help
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Process length help"
-msgstr ""
+msgstr "프로세스 길이 도움말"
 
 #. [components.Modal.4277042358]
 #. defaultMessage is:
@@ -1199,7 +1182,7 @@ msgstr ""
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid ""
 "Provide a file name to be used for the image file that will be uploaded."
-msgstr ""
+msgstr "이미지 파일을 업로드하는데 사용할 파일 이름을 제공하십시오."
 
 #. [components.Modal.2186792528]
 #. defaultMessage is:
@@ -1209,6 +1192,8 @@ msgid ""
 "Provide the AWS Region where you want to import your image. This must be the "
 "same region where the {bucket} exists."
 msgstr ""
+"이미지를 가져올 AWS 리전을 제공하십시오. 이는 {bucket}이 위치한 리전과 동일해"
+"야 합니다."
 
 #. [components.Modal.2822010101]
 #. defaultMessage is:
@@ -1225,6 +1210,12 @@ msgid ""
 "                          {bucketsPage} page in the {amazon} S3 storage "
 "service in the AWS console."
 msgstr ""
+"EC2로 가져 오기 전에 이미지 파일을 업로드해야 하는 S3 {bucket} 이름을 지정하"
+"십시오. \n"
+"                          이미지를 가져 오려는 리전에 {bucket}이/가 이미 존재"
+"해야 합니다. {buckets} 목록은\n"
+"                           AWS 콘솔의 {amazon} S3 스토리지 서비스에 있는 "
+"{bucketsPage} 페이지에 있습니다."
 
 #. [components.ListView.423140743]
 #. defaultMessage is:
@@ -1235,7 +1226,7 @@ msgstr ""
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ComponentsDataListItem.json
 msgid "Release"
-msgstr "릴리즈 "
+msgstr "릴리스"
 
 #. [components.ListView.2703758654]
 #. defaultMessage is:
@@ -1250,35 +1241,35 @@ msgstr "릴리즈 "
 #: build/messages/components/ListView/ComponentsDataListItem.json
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Remove"
-msgstr "제거 "
+msgstr "제거"
 
 #. [components.ListView.removeComponent]
 #. defaultMessage is:
 #. Remove Component from Blueprint
 #: build/messages/components/ListView/ComponentInputs.json
 msgid "Remove Component from Blueprint"
-msgstr "블루프린트에서 구성 요소 제거 "
+msgstr "블루프린트에서 구성 요소 제거"
 
 #. [components.Modal.2822116526]
 #. defaultMessage is:
 #. Remove Password
 #: build/messages/components/Modal/UserAccount.json
 msgid "Remove Password"
-msgstr "암호 제거 "
+msgstr "암호 제거"
 
 #. [components.ListView.remove]
 #. defaultMessage is:
 #. Remove Source
 #: build/messages/components/ListView/SourcesListItem.json
 msgid "Remove Source"
-msgstr "소스 제거 "
+msgstr "소스 제거"
 
 #. [components.ListView.removeFromBlueprint]
 #. defaultMessage is:
 #. Remove from Blueprint
 #: build/messages/components/ListView/ComponentDetailsView.json
 msgid "Remove from Blueprint"
-msgstr "블루프린트에서 삭제 "
+msgstr "블루프린트에서 삭제"
 
 #. [components.Modal.2291868453] - Identifies the change as a component that was removed
 #. defaultMessage is:
@@ -1292,14 +1283,14 @@ msgstr "삭제됨"
 #. Removing source
 #: build/messages/components/ListView/SourcesListItem.json
 msgid "Removing source"
-msgstr "원본 삭제 중 "
+msgstr "원본 삭제 중"
 
 #. [components.Modal.128739785]
 #. defaultMessage is:
 #. Required information is missing.
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "Required information is missing."
-msgstr "필수 정보가 없습니다. "
+msgstr "필수 정보가 없습니다."
 
 #. [components.Modal.review]
 #. defaultMessage is:
@@ -1309,6 +1300,8 @@ msgid ""
 "Review the information below and click Finish to create the image and "
 "complete the tasks that were selected."
 msgstr ""
+"아래 정보를 검토하고 완료를 클릭하여 이미지를 작성하고 선택한 작업을 완료하십"
+"시오."
 
 #. [components.Modal.106035384]
 #. defaultMessage is:
@@ -1322,14 +1315,14 @@ msgstr "역할"
 #. S3 Bucket help
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "S3 Bucket help"
-msgstr ""
+msgstr "S3 버킷 도움말"
 
 #. [components.Modal.229369250]
 #. defaultMessage is:
 #. SSH key
 #: build/messages/components/Modal/UserAccount.json
 msgid "SSH key"
-msgstr "SSH 키 "
+msgstr "SSH 키"
 
 #. [components.Form.save]
 #. defaultMessage is:
@@ -1340,28 +1333,28 @@ msgstr "SSH 키 "
 #: build/messages/components/Form/TextInlineEdit.json
 #: build/messages/components/Modal/EditDescription.json
 msgid "Save"
-msgstr "저장 "
+msgstr "저장"
 
 #. [components.Modal.1820273720]
 #. defaultMessage is:
 #. Saving source
 #: build/messages/components/Modal/ManageSources.json
 msgid "Saving source"
-msgstr "소스 저장 중 "
+msgstr "소스 저장 중"
 
 #. [components.Modal.135579143]
 #. defaultMessage is:
 #. Secret access key
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Secret access key"
-msgstr ""
+msgstr "비밀 액세스 키"
 
 #. [secret-access-key-help]
 #. defaultMessage is:
 #. Secret access key help
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Secret access key help"
-msgstr ""
+msgstr "비밀 액세스 키 도움말"
 
 #. [components.Modal.security]
 #. defaultMessage is:
@@ -1400,21 +1393,21 @@ msgstr "선택된 구성 요소"
 #. Server administrator
 #: build/messages/components/Modal/UserAccount.json
 msgid "Server administrator"
-msgstr "서버 관리자 "
+msgstr "서버 관리자"
 
 #. [components.Modal.1110245255]
 #. defaultMessage is:
 #. Set New Password
 #: build/messages/components/Modal/UserAccount.json
 msgid "Set New Password"
-msgstr "새 암호 설정 "
+msgstr "새 암호 설정"
 
 #. [components.Modal.3696648021]
 #. defaultMessage is:
 #. Set Password
 #: build/messages/components/Modal/UserAccount.json
 msgid "Set Password"
-msgstr "암호 설정 "
+msgstr "암호 설정"
 
 #. [components.Modal.imageSizePopover]
 #. defaultMessage is:
@@ -1425,6 +1418,8 @@ msgid ""
 "package size and target destination of your image should be considered when "
 "setting the image size."
 msgstr ""
+"인스턴스화할 때 이미지의 크기를 설정하십시오. 이미지 크기를 설정할 때 이미지"
+"의 소프트웨어 패키지의 전체 크기 및 이미지 대상 위치를 고려해야합니다."
 
 #. [components.ListView.1256153657]
 #. defaultMessage is:
@@ -1445,7 +1440,7 @@ msgstr "세부 정보 및 기타 옵션 표시"
 #. Show Less
 #: build/messages/components/ListView/ComponentSummaryList.json
 msgid "Show Less"
-msgstr "부분 표시 "
+msgstr "부분 표시"
 
 #. [components.Pagination.nextPage]
 #. defaultMessage is:
@@ -1459,7 +1454,7 @@ msgstr "다음 페이지보기"
 #. Show Previous Page
 #: build/messages/components/Pagination/Pagination.json
 msgid "Show Previous Page"
-msgstr "이전 페이지보기 "
+msgstr "이전 페이지보기"
 
 #. [components.ListView.imageSize] - A label for the size of an image file
 #. defaultMessage is:
@@ -1473,21 +1468,21 @@ msgstr "크기"
 #. Source Actions
 #: build/messages/components/ListView/SourcesListItem.json
 msgid "Source Actions"
-msgstr "소스 작업 "
+msgstr "소스 작업"
 
 #. [components.Modal.sourcePath] - The path or url to the source repository
 #. defaultMessage is:
 #. Source path
 #: build/messages/components/Modal/ManageSources.json
 msgid "Source path"
-msgstr "소스 경로 "
+msgstr "소스 경로"
 
 #. [components.Modal.3025955497] - Sources provide the contents from which components are selected
 #. defaultMessage is:
 #. Sources
 #: build/messages/components/Modal/ManageSources.json
 msgid "Sources"
-msgstr "소스 "
+msgstr "소스"
 
 #. [components.Modal.infotip]
 #. defaultMessage is:
@@ -1501,7 +1496,7 @@ msgid ""
 msgstr ""
 "블루프린트 종속성을 해결하고 이미지를 조합하기 위한 소스입니다. 사용자 정의 "
 "소스를 추가할 때 소스의 패키지가 다른 패키지 소스와 충돌하지 않도록 합니다. "
-"그렇지 않으면 종속성을 해결하고 이미지를 구성할 때 오류가 발생합니다. "
+"그렇지 않으면 종속성을 해결하고 이미지를 구성할 때 오류가 발생합니다."
 
 #. [components.Modal.540971304]
 #. defaultMessage is:
@@ -1515,14 +1510,14 @@ msgstr "새 블루프린트 이름을 지정하십시오."
 #. Start
 #: build/messages/components/EmptyState/EmptyStateInactive.json
 msgid "Start"
-msgstr "시작 "
+msgstr "시작"
 
 #. [components.ListView.timeStarted] - A label for the date that an image upload was started
 #. defaultMessage is:
 #. Started
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Started"
-msgstr "시작됨 "
+msgstr "시작됨"
 
 #. [components.Modal.1162993432]
 #. defaultMessage is:
@@ -1536,42 +1531,42 @@ msgstr "빌드 중지"
 #. Stopping
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Stopping"
-msgstr "중지 중 "
+msgstr "중지 중"
 
 #. [components.Modal.4127941395]
 #. defaultMessage is:
 #. Storage access key
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Storage access key"
-msgstr ""
+msgstr "스토리지 액세스 키"
 
 #. [components.Modal.1624497518]
 #. defaultMessage is:
 #. Storage account
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Storage account"
-msgstr ""
+msgstr "스토리지 계정"
 
 #. [components.Modal.1249927125]
 #. defaultMessage is:
 #. Storage container
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Storage container"
-msgstr ""
+msgstr "스토리지 컨테이너"
 
 #. [components.ListView.3639476303] - System sources are configured repositories that were found on the host machine
 #. defaultMessage is:
 #. System source
 #: build/messages/components/ListView/SourcesListItem.json
 msgid "System source"
-msgstr "시스템 소스 "
+msgstr "시스템 소스"
 
 #. [components.Modal.3495336243]
 #. defaultMessage is:
 #. Text
 #: build/messages/components/Modal/ExportBlueprint.json
 msgid "Text"
-msgstr "텍스트 "
+msgstr "텍스트"
 
 #. [components.Modal.3426018028]
 #. defaultMessage is:
@@ -1625,6 +1620,8 @@ msgid ""
 "The size specified is large. We recommend that you check whether your target "
 "destination has any restrictions on image size."
 msgstr ""
+"지정된 크기가 큽니다. 대상 위치에 이미지 크기에 대한 제한이 있는지 확인하는 "
+"것이 좋습니다."
 
 #. [components.Modal.2405281428]
 #. defaultMessage is:
@@ -1633,21 +1630,21 @@ msgstr ""
 msgid ""
 "The user name can only consist of letters from a-z, digits, dots, dashes and "
 "underscores."
-msgstr "사용자 이름에는 a~z 문자, 숫자, 점, 대시, 밑줄만 사용할 수 있습니다. "
+msgstr "사용자 이름에는 a~z 문자, 숫자, 점, 대시, 밑줄만 사용할 수 있습니다."
 
 #. [components.EmptyState.1947371795]
 #. defaultMessage is:
 #. The user {userName} is not permitted to start services.
 #: build/messages/components/EmptyState/EmptyStateInactive.json
 msgid "The user {userName} is not permitted to start services."
-msgstr "사용자 {userName}는 서비스를 시작할 수 있는 권한이 없습니다. "
+msgstr "사용자 {userName}는 서비스를 시작할 수 있는 권한이 없습니다."
 
 #. [components.Form.2330477961]
 #. defaultMessage is:
 #. The values entered for password do not match.
 #: build/messages/components/Form/Password.json
 msgid "The values entered for password do not match."
-msgstr "암호로 입력한 값이 일치하지 않습니다. "
+msgstr "암호로 입력한 값이 일치하지 않습니다."
 
 #. [pages.blueprint.emptyBlueprintMessage]
 #. defaultMessage is:
@@ -1665,7 +1662,7 @@ msgstr ""
 #. There are one or more fields that require your attention.
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "There are one or more fields that require your attention."
-msgstr ""
+msgstr "주의가 필요한 하나 이상의 필드가 있습니다."
 
 #. [components.Modal.181468144]
 #. defaultMessage is:
@@ -1701,7 +1698,7 @@ msgstr "이 블루프린트는 비어 있습니다."
 #. This component has no dependencies.
 #: build/messages/components/ListView/ComponentDetailsView.json
 msgid "This component has no dependencies."
-msgstr "이 구성 요소에는 종속 패키지가 없습니다. "
+msgstr "이 구성 요소에는 종속 패키지가 없습니다."
 
 #. [components.Modal.infotip]
 #. defaultMessage is:
@@ -1719,14 +1716,14 @@ msgstr ""
 #. This source name already exists.
 #: build/messages/components/Modal/ManageSources.json
 msgid "This source name already exists."
-msgstr "이 소스 이름이 이미 존재합니다. "
+msgstr "이 소스 이름이 이미 존재합니다."
 
 #. [components.Modal.1932541555]
 #. defaultMessage is:
 #. This source path already exists.
 #: build/messages/components/Modal/ManageSources.json
 msgid "This source path already exists."
-msgstr "이 소스 경로가 이미 존재합니다. "
+msgstr "이 소스 경로가 이미 존재합니다."
 
 #. [components.Modal.2415751559]
 #. defaultMessage is:
@@ -1739,13 +1736,16 @@ msgid ""
 "                      be imported from the S3 {bucket} into EC2. For more "
 "details, refer to the {role}."
 msgstr ""
+"이 업로드 과정에는 {vmimport}라는 {iam} 역할이 있어야\n"
+"                      S3{bucket}에서 EC2로 이미지를 가져올 수 있습니다. 자세"
+"한 내용은 {role}에서 참조하십시오."
 
 #. [components.Modal.3707489178]
 #. defaultMessage is:
 #. This user name already exists.
 #: build/messages/components/Modal/UserAccount.json
 msgid "This user name already exists."
-msgstr "이 사용자 이름이 이미 존재합니다. "
+msgstr "이 사용자 이름이 이미 존재합니다."
 
 #. [components.EmptyState.errorInactiveSecondary]
 #. defaultMessage is:
@@ -1792,7 +1792,7 @@ msgstr "URL"
 #. Undo Last Change
 #: build/messages/components/ListView/BlueprintContents.json
 msgid "Undo Last Change"
-msgstr "마지막 변경 사항 취소 "
+msgstr "마지막 변경 사항 취소"
 
 #. [components.Modal.1458938618]
 #. defaultMessage is:
@@ -1806,7 +1806,7 @@ msgstr "업데이트"
 #. Update Source
 #: build/messages/components/Modal/ManageSources.json
 msgid "Update Source"
-msgstr "소스 업데이트 "
+msgstr "소스 업데이트"
 
 #. [components.Modal.562988552] - Identifies the change as a component that was updated
 #. defaultMessage is:
@@ -1833,19 +1833,15 @@ msgstr "업로드 실패"
 #. defaultMessage is:
 #. Upload image
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Upload failed"
 msgid "Upload image"
-msgstr "업로드 실패"
+msgstr "이미지 업로드"
 
 #. [upload-image-help]
 #. defaultMessage is:
 #. Upload image help
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Upload complete"
 msgid "Upload image help"
-msgstr "업로드 완료"
+msgstr "이미지 도움말 업로드"
 
 #. [components.ListView.uploadStatusRunning] - Upload status when process is in progress
 #. defaultMessage is:
@@ -1866,16 +1862,14 @@ msgstr "업로드 보류 중"
 #. Upload to Amazon
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Upload to Amazon"
-msgstr ""
+msgstr "Amazon에 업로드"
 
 #. [components.Modal.2244258572]
 #. defaultMessage is:
 #. Upload to Azure
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Upload type"
 msgid "Upload to Azure"
-msgstr "업로드 유형"
+msgstr "Azure에 업로드"
 
 #. [components.ListView.uploadType] - A label for the service to which an image was uploaded
 #. defaultMessage is:
@@ -1889,14 +1883,14 @@ msgstr "업로드 유형"
 #. User Account Actions
 #: build/messages/pages/blueprint/index.json
 msgid "User Account Actions"
-msgstr "사용자 계정 작업 "
+msgstr "사용자 계정 작업"
 
 #. [components.Modal.529605439]
 #. defaultMessage is:
 #. User name
 #: build/messages/components/Modal/UserAccount.json
 msgid "User name"
-msgstr "사용자 이름 "
+msgstr "사용자 이름"
 
 #. [pages.blueprint.443046426]
 #. defaultMessage is:
@@ -1933,7 +1927,7 @@ msgstr "버전"
 #. View
 #: build/messages/components/ListView/ComponentsDataListItem.json
 msgid "View"
-msgstr "보기 "
+msgstr "보기"
 
 #. [components.Modal.706264916]
 #. defaultMessage is:
@@ -1943,6 +1937,7 @@ msgid ""
 "You can create and find existing Access key IDs on the {iam} page in the AWS "
 "console."
 msgstr ""
+"AWS 콘솔의 {iam}페이지에서 기존 액세스 키 ID를 만들고 찾을 수 있습니다."
 
 #. [components.Modal.4206409720]
 #. defaultMessage is:
@@ -1952,6 +1947,8 @@ msgid ""
 "You can view the Secret access key only when you create a new Access key ID "
 "on the {iam} page in the AWS console."
 msgstr ""
+"AWS 콘솔의 {iam}페이지에서 새 액세스 키 ID를 생성할 때만 비밀 액세스 키를 볼 "
+"수 있습니다."
 
 #. [components.ListView.actions]
 #. defaultMessage is:
@@ -1962,7 +1959,7 @@ msgstr ""
 #: build/messages/components/ListView/BlueprintsDataList.json
 #: build/messages/components/ListView/ComponentsDataListItem.json
 msgid "actions"
-msgstr "동작 "
+msgstr "동작"
 
 #. [components.ListView.details]
 #. defaultMessage is:
@@ -1976,7 +1973,7 @@ msgstr "상세 정보"
 #. from
 #: build/messages/components/Modal/PendingChanges.json
 msgid "from"
-msgstr "에서 "
+msgstr "에서"
 
 #. [pages.error.2054225650]
 #. defaultMessage is:
@@ -2037,7 +2034,7 @@ msgstr "{blueprint} 블루프린트 변경 사항이 커밋되었습니다."
 #. {blueprint} Commit failed.
 #: build/messages/data/NotificationsApi.json
 msgid "{blueprint} Commit failed."
-msgstr "{blueprint} 커밋에 실패했습니다. "
+msgstr "{blueprint} 커밋에 실패했습니다."
 
 #. [data.1829299735]
 #. defaultMessage is:
@@ -2058,7 +2055,7 @@ msgstr "{blueprint} 이미지 만들기에 실패했습니다."
 #. {blueprint} Image creation has been added to the {queue}.
 #: build/messages/data/NotificationsApi.json
 msgid "{blueprint} Image creation has been added to the {queue}."
-msgstr "{blueprint} 이미지 만들기가 {queue}에 추가되었습니다. "
+msgstr "{blueprint} 이미지 만들기가 {queue}에 추가되었습니다."
 
 #. [data.1726548071]
 #. defaultMessage is:
@@ -2072,7 +2069,7 @@ msgstr "{blueprint} 이미지 만들기가 시작되었습니다."
 #. {blueprint} Image creation is complete.
 #: build/messages/data/NotificationsApi.json
 msgid "{blueprint} Image creation is complete."
-msgstr "{blueprint} 이미지 만들기가 완료되었습니다. "
+msgstr "{blueprint} 이미지 만들기가 완료되었습니다."
 
 #. [components.Modal.1557505074]
 #. defaultMessage is:
@@ -2093,14 +2090,14 @@ msgstr "{currentPage} (총 {totalPages})"
 #. {from} {oldVersion} {to} {newVersion}
 #: build/messages/components/Modal/PendingChanges.json
 msgid "{from} {oldVersion} {to} {newVersion}"
-msgstr " {from} {oldVersion} {to} {newVersion}"
+msgstr "{from} {oldVersion} {to} {newVersion}"
 
 #. [pages.error.526995878]
 #. defaultMessage is:
 #. {goBack}, or head over to the {homePage} to choose a new direction.
 #: build/messages/pages/error/index.json
 msgid "{goBack}, or head over to the {homePage} to choose a new direction."
-msgstr "{goBack} 또는 {homePage}로 이동하여 다시 선택하십시오. "
+msgstr "{goBack} 또는 {homePage}로 이동하여 다시 선택하십시오."
 
 #. [components.Modal.3141775911]
 #. defaultMessage is:
@@ -2123,7 +2120,7 @@ msgstr ""
 #. {selectComponents} in this list to add to the blueprint.
 #: build/messages/pages/blueprintEdit/index.json
 msgid "{selectComponents} in this list to add to the blueprint."
-msgstr "이 목록에서 블루프린트에 추가할 {selectComponents} 실행 "
+msgstr "이 목록에서 블루프린트에 추가할 {selectComponents} 실행."
 
 #. [components.Pagination.3363928156]
 #. defaultMessage is:

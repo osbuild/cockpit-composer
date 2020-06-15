@@ -5,8 +5,8 @@
 # Ludek Janda <ljanda@redhat.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-05-12T00:35:46.229Z\n"
-"PO-Revision-Date: 2020-05-15 08:50+0000\n"
+"POT-Creation-Date: 2020-06-04T04:00:46.240Z\n"
+"PO-Revision-Date: 2020-06-11 10:40+0000\n"
 "Last-Translator: Ludek Janda <ljanda@redhat.com>\n"
 "Language-Team: Japanese <https://translate.fedoraproject.org/projects/"
 "cockpit-composer/master/ja/>\n"
@@ -49,45 +49,43 @@ msgstr "このアカウント用にパスワードが定義されていません
 #. defaultMessage is:
 #. A value is required.
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "A blueprint name is required."
 msgid "A value is required."
-msgstr "ブループリント名が必要です。"
+msgstr "値が必要です。"
 
 #. [aws-help]
 #. defaultMessage is:
 #. AWS help
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "AWS help"
-msgstr ""
+msgstr "AWS ヘルプ"
 
 #. [components.Modal.4193750875]
 #. defaultMessage is:
 #. AWS region
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "AWS region"
-msgstr ""
+msgstr "AWS リージョン"
 
 #. [region-help]
 #. defaultMessage is:
 #. AWS region help
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "AWS region help"
-msgstr ""
+msgstr "AWS リージョンのヘルプ"
 
 #. [components.Modal.1635272069]
 #. defaultMessage is:
 #. Access key ID
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Access key ID"
-msgstr ""
+msgstr "アクセスキー ID"
 
 #. [access-key-id-help]
 #. defaultMessage is:
 #. Access key ID help
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Access key ID help"
-msgstr ""
+msgstr "キー ID ヘルプへのアクセス"
 
 #. [components.ListView.imageActions] - A label for the menu that displays the actions available
 #. defaultMessage is:
@@ -145,10 +143,8 @@ msgstr "追加済み"
 #. defaultMessage is:
 #. All fields are required.
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "The fields marked with {val} are required."
 msgid "All fields are required."
-msgstr "{val} の付いたフィールドは必須です。"
+msgstr "全てのフィールドが必須です。"
 
 #. [components.ListView.emptyStateErrorTitle]
 #. defaultMessage is:
@@ -237,7 +233,7 @@ msgstr "利用可能なコンポーネント"
 #. Back
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Back"
-msgstr ""
+msgstr "戻る"
 
 #. [pages.blueprint.3126044146]
 #. defaultMessage is:
@@ -479,8 +475,6 @@ msgstr "コミット"
 #. defaultMessage is:
 #. Commit and create
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Commit and Create"
 msgid "Commit and create"
 msgstr "コミットおよび作成"
 
@@ -488,10 +482,8 @@ msgstr "コミットおよび作成"
 #. defaultMessage is:
 #. Commit and next
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Commit and Create"
 msgid "Commit and next"
-msgstr "コミットおよび作成"
+msgstr "コミットして次へ"
 
 #. [pages.blueprint.3540308269]
 #. defaultMessage is:
@@ -580,10 +572,8 @@ msgstr ""
 #. defaultMessage is:
 #. Create and upload image
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Create Image"
 msgid "Create and upload image"
-msgstr "イメージの作成"
+msgstr "イメージの作成とアップロード"
 
 #. [components.Modal.title]
 #. defaultMessage is:
@@ -592,8 +582,6 @@ msgstr "イメージの作成"
 #. defaultMessage is:
 #. Create image
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Create Image"
 msgid "Create image"
 msgstr "イメージの作成"
 
@@ -820,7 +808,7 @@ msgstr "名前での絞り込み..."
 #. Finish
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Finish"
-msgstr ""
+msgstr "終了"
 
 #. [components.Modal.1182120637]
 #. defaultMessage is:
@@ -874,6 +862,12 @@ msgid ""
 "available in the AMI section of EC2. Most of the values required to upload\n"
 "                      the image can be found in the {console}."
 msgstr ""
+"Image Builder は、作成したイメージを AWS の {bucket} にアップロードしてから、"
+"EC2 にインポートします。イメージのビルドが完了し\n"
+"                      アップロードアクションが成功すると、EC2 の AMI セクショ"
+"ンでイメージファイルが利用可能になります。イメージのアップロードに必要な値の"
+"多くは、\n"
+"            {console} にあります。"
 
 #. [components.EmptyState.errorInactiveTitle]
 #. defaultMessage is:
@@ -925,46 +919,36 @@ msgstr "イメージ名"
 #. defaultMessage is:
 #. Image name help
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Image name"
 msgid "Image name help"
-msgstr "イメージ名"
+msgstr "イメージ名ヘルプ"
 
 #. [components.Modal.1005710141]
 #. defaultMessage is:
 #. Image output
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Image uploads"
 msgid "Image output"
-msgstr "イメージのアップロード"
+msgstr "イメージ出力"
 
 # auto translated by TM merge from project: Openshift Enterprise Installation & Configuration, version: 3.9-Outsourced, DocId: week_1_2
 #. [components.Modal.1905943231]
 #. defaultMessage is:
 #. Image size
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Images"
 msgid "Image size"
-msgstr "イメージ"
+msgstr "イメージサイズ"
 
 # auto translated by TM merge from project: Openshift Enterprise Installation & Configuration, version: 3.9-Outsourced, DocId: week_1_2
 #. [image-size-help]
 #. defaultMessage is:
 #. Image size help
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Images"
 msgid "Image size help"
-msgstr "イメージ"
+msgstr "イメージサイズのヘルプ"
 
 #. [components.Modal.1813441558]
 #. defaultMessage is:
 #. Image type
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Image Type"
 msgid "Image type"
 msgstr "イメージタイプ"
 
@@ -1020,7 +1004,7 @@ msgstr "メッセージ"
 #. Minimum size is {size} GB.
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Minimum size is {size} GB."
-msgstr ""
+msgstr "最小サイズは {size} GB です。"
 
 #. [components.ListView.emptyStateNoResultsMessage]
 #. defaultMessage is:
@@ -1063,7 +1047,7 @@ msgstr "新規パスワード"
 #. Next
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Next"
-msgstr ""
+msgstr "次へ"
 
 #. [pages.blueprints.emptyTitle]
 #. defaultMessage is:
@@ -1196,7 +1180,7 @@ msgstr "変更を保留中"
 #. Process length help
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Process length help"
-msgstr ""
+msgstr "プロセス長ヘルプ"
 
 #. [components.Modal.4277042358]
 #. defaultMessage is:
@@ -1204,7 +1188,7 @@ msgstr ""
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid ""
 "Provide a file name to be used for the image file that will be uploaded."
-msgstr ""
+msgstr "アップロードするイメージファイルに使用するファイル名を指定します。"
 
 #. [components.Modal.2186792528]
 #. defaultMessage is:
@@ -1214,6 +1198,8 @@ msgid ""
 "Provide the AWS Region where you want to import your image. This must be the "
 "same region where the {bucket} exists."
 msgstr ""
+"イメージをインポートする AWS リージョンを指定します。これは、{bucket} が存在"
+"するリージョンと同じである必要があります。"
 
 #. [components.Modal.2822010101]
 #. defaultMessage is:
@@ -1230,6 +1216,12 @@ msgid ""
 "                          {bucketsPage} page in the {amazon} S3 storage "
 "service in the AWS console."
 msgstr ""
+"EC2 にインポートされる前にアップロードされるイメージファイルに S3 {bucket} 名"
+"を指定します。\n"
+"                          {bucket} はイメージをインポートするリージョンにすで"
+"に存在している必要があります。{buckets} のリストは、\n"
+"                          AWS コンソールの {bucketsPage} S3 ストレージページ"
+"の {amazon} ページにあります。"
 
 #. [components.ListView.423140743]
 #. defaultMessage is:
@@ -1314,6 +1306,8 @@ msgid ""
 "Review the information below and click Finish to create the image and "
 "complete the tasks that were selected."
 msgstr ""
+"以下の情報を確認し、終了をクリックしてイメージを作成し、選択されたタスクを完"
+"了します。"
 
 #. [components.Modal.106035384]
 #. defaultMessage is:
@@ -1327,14 +1321,14 @@ msgstr "ロール"
 #. S3 Bucket help
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "S3 Bucket help"
-msgstr ""
+msgstr "S3 バケットのヘルプ"
 
 #. [components.Modal.229369250]
 #. defaultMessage is:
 #. SSH key
 #: build/messages/components/Modal/UserAccount.json
 msgid "SSH key"
-msgstr "SSH 鍵"
+msgstr "SSH キー"
 
 #. [components.Form.save]
 #. defaultMessage is:
@@ -1359,14 +1353,14 @@ msgstr "ソースの保存"
 #. Secret access key
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Secret access key"
-msgstr ""
+msgstr "シークレットアクセスキー"
 
 #. [secret-access-key-help]
 #. defaultMessage is:
 #. Secret access key help
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Secret access key help"
-msgstr ""
+msgstr "シークレットアクセスキーのヘルプ"
 
 #. [components.Modal.security]
 #. defaultMessage is:
@@ -1430,6 +1424,9 @@ msgid ""
 "package size and target destination of your image should be considered when "
 "setting the image size."
 msgstr ""
+"インスタンス化したときのイメージのサイズを設定します。イメージのサイズを設定"
+"するときは、イメージの合計パッケージサイズとターゲットの宛先を考慮する必要が"
+"あります。"
 
 #. [components.ListView.1256153657]
 #. defaultMessage is:
@@ -1549,21 +1546,21 @@ msgstr "終了中"
 #. Storage access key
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Storage access key"
-msgstr ""
+msgstr "ストレージアクセスキー"
 
 #. [components.Modal.1624497518]
 #. defaultMessage is:
 #. Storage account
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Storage account"
-msgstr ""
+msgstr "ストレージアカウント"
 
 #. [components.Modal.1249927125]
 #. defaultMessage is:
 #. Storage container
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Storage container"
-msgstr ""
+msgstr "ストレージコンテナー"
 
 #. [components.ListView.3639476303] - System sources are configured repositories that were found on the host machine
 #. defaultMessage is:
@@ -1631,6 +1628,8 @@ msgid ""
 "The size specified is large. We recommend that you check whether your target "
 "destination has any restrictions on image size."
 msgstr ""
+"サイズが少々大きく設定されています。ターゲットの宛先にイメージサイズの制限が"
+"あるかどうかを確認することをお勧めします。"
 
 #. [components.Modal.2405281428]
 #. defaultMessage is:
@@ -1673,7 +1672,7 @@ msgstr ""
 #. There are one or more fields that require your attention.
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "There are one or more fields that require your attention."
-msgstr ""
+msgstr "注意が必要なフィールドが 1 つ以上あります。"
 
 #. [components.Modal.181468144]
 #. defaultMessage is:
@@ -1746,6 +1745,10 @@ msgid ""
 "                      be imported from the S3 {bucket} into EC2. For more "
 "details, refer to the {role}."
 msgstr ""
+"このアップロードプロセスでは、{iam} ロールに {vmimport} という名前を付け"
+"て、\n"
+"                      イメージが S3 {bucket} から EC2 にインポートされるよう"
+"にします。詳細は、{role} を参照してください。"
 
 #. [components.Modal.3707489178]
 #. defaultMessage is:
@@ -1840,19 +1843,15 @@ msgstr "アップロードに失敗しました"
 #. defaultMessage is:
 #. Upload image
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Upload failed"
 msgid "Upload image"
-msgstr "アップロードに失敗しました"
+msgstr "イメージのアップロード"
 
 #. [upload-image-help]
 #. defaultMessage is:
 #. Upload image help
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Upload complete"
 msgid "Upload image help"
-msgstr "アップロードが完了しました"
+msgstr "画像ヘルプのアップロード"
 
 #. [components.ListView.uploadStatusRunning] - Upload status when process is in progress
 #. defaultMessage is:
@@ -1873,16 +1872,14 @@ msgstr "アップロードを保留中"
 #. Upload to Amazon
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Upload to Amazon"
-msgstr ""
+msgstr "Amazon にアップロード"
 
 #. [components.Modal.2244258572]
 #. defaultMessage is:
 #. Upload to Azure
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Upload type"
 msgid "Upload to Azure"
-msgstr "アップロードタイプ"
+msgstr "Azure にアップロード"
 
 #. [components.ListView.uploadType] - A label for the service to which an image was uploaded
 #. defaultMessage is:
@@ -1949,6 +1946,8 @@ msgid ""
 "You can create and find existing Access key IDs on the {iam} page in the AWS "
 "console."
 msgstr ""
+"AWS コンソールの {iam} ページでは、アクセスキー ID の作成や既存の ID の検索を"
+"行うことができます。"
 
 #. [components.Modal.4206409720]
 #. defaultMessage is:
@@ -1958,6 +1957,8 @@ msgid ""
 "You can view the Secret access key only when you create a new Access key ID "
 "on the {iam} page in the AWS console."
 msgstr ""
+"シークレットアクセスキーは、AWS コンソールの {iam} ページ上に新しいアクセス"
+"キー ID を作成するときにのみ表示できます。"
 
 #. [components.ListView.actions]
 #. defaultMessage is:
