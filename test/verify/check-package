@@ -207,13 +207,13 @@ class TestPackage(composerlib.ComposerCase):
 
         # go to edit package page
         b.click("li[data-blueprint=openssh-server] a:contains('Edit Packages')")
-        with b.wait_timeout(120):
+        with b.wait_timeout(240):
             b.wait_present("ul[aria-label='Available Components'] li:nth-child(1)")
 
         # search for openssh-server pacakge
         b.set_input_text("#cmpsr-blueprint-input-filter", "cockpit-composer")
         b.key_press("\r")
-        with b.wait_timeout(120):
+        with b.wait_timeout(240):
             b.wait_text("#cockpit-composer-input", "cockpit-composer")
         # add it to blueprint
         b.click("li[data-input=cockpit-composer] .fa-plus")
