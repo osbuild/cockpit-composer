@@ -4,14 +4,11 @@
 set -eux
 
 # resize root partition to fill free space
-OS=$(. /etc/os-release; echo $ID)
-if [ $OS == "fedora" ]; then
-  echo -en "n\n\n\n\n\nw\n" | fdisk /dev/vda
-  pvcreate /dev/vda3
-  VG=$(vgs --noheadings -o vg_name)
-  vgextend $VG /dev/vda3
-  lvextend -r -l +100%FREE $VG/root
-fi
+echo -en "n\n\n\n\n\nw\n" | fdisk /dev/vda
+pvcreate /dev/vda3
+VG=$(vgs --noheadings -o vg_name)
+vgextend $VG /dev/vda3
+lvextend -r -l +100%FREE $VG/root
 
 # overriding osbuild-composer repo with nightly
 mkdir -p /etc/osbuild-composer/repositories
