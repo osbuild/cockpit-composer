@@ -184,11 +184,11 @@ class TestCustom(composerlib.ComposerCase):
         b.set_input_text("#textInput5-modal-user", ssh_key)
         b.click("#cmpsr-modal-user-account button:contains('Create')")
         b.wait_not_present("#cmpsr-modal-user-account")
-        b.wait_text("tr[data-tr=xy] td[data-td=fullname]", "x y")
-        b.wait_text("tr[data-tr=xy] td[data-td=username]", "xy")
-        b.wait_present("tr[data-tr=xy] td[data-td=groups] .fa-check")
-        b.wait_present("tr[data-tr=xy] td[data-td=password] .fa-check")
-        b.wait_in_text("tr[data-tr=xy] td[data-td=sshkey]", "cockpit-test")
+        b.wait_text("tr td[data-label='Full name']", "x y")
+        b.wait_text("tr td[data-label='User name']", "xy")
+        b.wait_present("tr td[data-label='Server administrator'] .fa-check")
+        b.wait_present("tr td[data-label=Password] .fa-check")
+        b.wait_in_text("tr td[data-label='SSH key']", "cockpit-test")
 
         # check backend to have correct password configured
         passwd_str = m.execute("""
@@ -212,7 +212,7 @@ class TestCustom(composerlib.ComposerCase):
         set_input_value("#textInput2-modal-password", new_password)
         b.click("#cmpsr-modal-user-account button:contains('Update')")
         b.wait_not_present("#cmpsr-modal-user-account")
-        b.wait_present("tr[data-tr=xy] td[data-td=password] .fa-check")
+        b.wait_present("tr td[data-label=Password] .fa-check")
         passwd_str = m.execute("""
             composer-cli blueprints show openssh-server | grep password | awk '{print $3}'
             """).strip('"\n')
@@ -226,8 +226,8 @@ class TestCustom(composerlib.ComposerCase):
         b.click("button:contains('Remove Password')")
         b.click("#cmpsr-modal-user-account button:contains('Update')")
         b.wait_not_present("#cmpsr-modal-user-account")
-        b.wait_present("tr[data-tr=xy] td[data-td=password]")
-        b.wait_not_present("tr[data-tr=xy] td[data-td=password] .fa-check")
+        b.wait_present("tr td[data-label=Password]")
+        b.wait_not_present("tr td[data-label=Password] .fa-check")
 
         # duplicated user
         b.click("button:contains('Create User Account')")
@@ -256,7 +256,7 @@ class TestCustom(composerlib.ComposerCase):
         b.click(delete_drop_down_sel)
         b.wait_attr(delete_drop_down_sel, "aria-expanded", "true")
         b.click("a:contains('Delete User Account')")
-        b.wait_not_present("tr[data-tr=xy]")
+        b.wait_not_present("table")
 
         # collect code coverage result
         self.check_coverage()

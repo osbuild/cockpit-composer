@@ -5,6 +5,12 @@ import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-i
 import cockpit from "cockpit"; // eslint-disable-line import/no-unresolved
 import PropTypes from "prop-types";
 import { Tab, Tabs } from "patternfly-react";
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableVariant,
+} from '@patternfly/react-table';
 import { connect } from "react-redux";
 import Link from "../../components/Link/Link";
 import Layout from "../../components/Layout/Layout";
@@ -68,6 +74,8 @@ import {
   makeGetBlueprintComposes,
   makeGetSelectedDeps
 } from "../../core/selectors";
+
+import "./index.css";
 
 const messages = defineMessages({
   blueprint: {
@@ -310,6 +318,55 @@ class BlueprintPage extends React.Component {
     const pathSuffix = cockpit.location.path[cockpit.location.path.length - 1];
     const activeKey = ["customizations", "packages", "images"].includes(pathSuffix) ? pathSuffix : undefined;
 
+    const rows = users.map(user => ({ props: { 'data-tr': user.name }, cells: [
+          user.description,
+          user.name,
+          { title: user.groups !== undefined && user.groups.includes("wheel") && <span className="fa fa-check" /> },
+          { title: user.password && <span className="fa fa-check" /> },
+          { title: (
+            user.key !== undefined && (
+              <span>
+                <span className="fa fa-check" />
+                {` `}
+                {user.key.split(" ")[2] || ""}
+              </span>
+            )
+          ) },
+        { title: (<div>
+            <button
+              className="btn btn-default"
+              type="button"
+              aria-label={`${formatMessage(messages.userEdit)} ${user.name}`}
+              onClick={e => this.handleShowModalEditUser(e, user)}
+              data-btn="edit"
+            >
+              <span className="pficon pficon-edit" />
+            </button>
+
+            <div className="dropdown btn-group dropdown-kebab-pf">
+              <button
+                aria-label={`${formatMessage(messages.userKebab)} ${user.name}`}
+                className="btn btn-link dropdown-toggle"
+                type="button"
+                data-btn="more"
+                id="dropdownKebab"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <span className="fa fa-ellipsis-v" />
+              </button>
+              <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
+                <li>
+                  <a href="#" onClick={e => this.handleDeleteUser(user.name, e)}>
+                    {formatMessage(messages.userDelete)}
+                  </a>
+                </li>
+              </ul>
+            </div>
+        </div>) }
+    ]}));
+
     return (
       <Layout className="container-fluid" ref={c => (this.layout = c)}>
         <header className="cmpsr-header">
@@ -401,81 +458,20 @@ class BlueprintPage extends React.Component {
                       helpblockNoValue={formatMessage(messages.hostnameHelpEmpty)}
                     />
                   </form>
-                  <div className="form-group">
+                  <div className="form-group user-list">
                     <label className="col-sm-2 control-label">
                       <FormattedMessage defaultMessage="Users" />
                     </label>
                     <div className="col-sm-10">
                       {users !== undefined && users.length > 0 && (
                         <div>
-                          <table className="table table-striped table-bordered table-hover">
-                            <thead>
-                              <tr>
-                                <th>Full name</th>
-                                <th>User name</th>
-                                <th>Server administrator</th>
-                                <th>Password</th>
-                                <th>SSH key</th>
-                                <th className="cmpsr-table-actions" />
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {users.map(user => (
-                                <tr key={user.name} data-tr={user.name}>
-                                  <td data-td="fullname">{user.description}</td>
-                                  <td data-td="username">{user.name}</td>
-                                  <td data-td="groups">
-                                    {user.groups !== undefined && user.groups.includes("wheel") && (
-                                      <span className="fa fa-check" />
-                                    )}
-                                  </td>
-                                  <td data-td="password">{user.password && <span className="fa fa-check" />}</td>
-                                  <td data-td="sshkey">
-                                    {user.key !== undefined && (
-                                      <span>
-                                        <span className="fa fa-check" />
-                                        {` `}
-                                        {user.key.split(" ")[2] || ""}
-                                      </span>
-                                    )}
-                                  </td>
-                                  <td className="cmpsr-table-actions">
-                                    <button
-                                      className="btn btn-default"
-                                      type="button"
-                                      aria-label={`${formatMessage(messages.userEdit)} ${user.name}`}
-                                      onClick={e => this.handleShowModalEditUser(e, user)}
-                                      data-btn="edit"
-                                    >
-                                      <span className="pficon pficon-edit" />
-                                    </button>
-
-                                    <div className="dropdown btn-group dropdown-kebab-pf">
-                                      <button
-                                        aria-label={`${formatMessage(messages.userKebab)} ${user.name}`}
-                                        className="btn btn-link dropdown-toggle"
-                                        type="button"
-                                        data-btn="more"
-                                        id="dropdownKebab"
-                                        data-toggle="dropdown"
-                                        aria-haspopup="true"
-                                        aria-expanded="false"
-                                      >
-                                        <span className="fa fa-ellipsis-v" />
-                                      </button>
-                                      <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
-                                        <li>
-                                          <a href="#" onClick={e => this.handleDeleteUser(user.name, e)}>
-                                            {formatMessage(messages.userDelete)}
-                                          </a>
-                                        </li>
-                                      </ul>
-                                    </div>
-                                  </td>
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
+                            <Table variant={TableVariant.compact}
+                                   aria-label="Users List"
+                                   cells={["Full name", "User name", "Server administrator", "Password", "SSH key", "Actions"]}
+                                   rows={rows}>
+                            <TableHeader />
+                            <TableBody />
+                          </Table>
                         </div>
                       )}
                       <button className="btn btn-default" type="button" onClick={this.handleShowModalUserAccount}>
