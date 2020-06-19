@@ -1,0 +1,9 @@
+.user-list .pf-c-table {
+  margin-bottom: 2rem;
+}
+.user-list .control-label {
+  padding-top: .375rem;
+}
+.user-list th {
+  padding-top: .375rem;
+}
