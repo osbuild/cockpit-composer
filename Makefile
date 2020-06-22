@@ -177,3 +177,84 @@ clean-po:
 	rm po/*.po
 
 .PHONY: tag vm check debug-check flake8 devel-install
+
+#
+# Coverity
+#
+# Download the coverity analysis tool and run it on the repository,
+# archive the analysis result and upload it to coverity. The target
+# to do all of that is `coverity-submit`.
+#
+# Individual targets exists for the respective steps.
+#
+# Needs COVERITY_TOKEN and COVERITY_EMAIL to be set for downloading
+# the analysis tool and submitting the final results
+
+BUILDDIR ?= .
+
+$(BUILDDIR)/:
+	mkdir -p "$@"
+
+$(BUILDDIR)/%/:
+	mkdir -p "$@"
+
+COVERITY_URL=https://scan.coverity.com/download/linux64
+COVERITY_TARFILE=coverity-tool.tar.gz
+
+COVERITY_BUILDDIR = $(BUILDDIR)/coverity
+COVERITY_TOOLTAR = $(COVERITY_BUILDDIR)/$(COVERITY_TARFILE)
+COVERITY_TOOLDIR = $(COVERITY_BUILDDIR)/cov-analysis-linux64
+COVERITY_ANALYSIS = $(COVERITY_BUILDDIR)/cov-analysis-cockpit-composer.xz
+
+.PHONY: coverity-token
+coverity-token:
+	$(if $(COVERITY_TOKEN),,$(error COVERITY_TOKEN must be set))
+
+.PHONY: coverity-email
+coverity-email:
+	$(if $(COVERITY_EMAIL),,$(error COVERITY_EMAIL must be set))
+
+
+.PHONY: coverity-download
+coverity-download: | coverity-token $(COVERITY_BUILDDIR)/
+	@$(RM) -rf "$(COVERITY_TOOLDIR)" "$(COVERITY_TOOLTAR)"
+	@echo "Downloading $(COVERITY_TARFILE) from $(COVERITY_URL)..."
+	@wget -q "$(COVERITY_URL)" --post-data "project=cockpit-composer-coverity&token=$(COVERITY_TOKEN)" -O "$(COVERITY_TOOLTAR)"
+	@echo "Extracting $(COVERITY_TARFILE)..."
+	@mkdir -p "$(COVERITY_TOOLDIR)"
+	@tar -xzf "$(COVERITY_TOOLTAR)" --strip 1 -C "$(COVERITY_TOOLDIR)"
+
+$(COVERITY_TOOLTAR): | $(COVERITY_BUILDDIR)/
+	@$(MAKE) --no-print-directory coverity-download
+
+.PHONY: coverity-check
+coverity-check: $(COVERITY_TOOLTAR)
+	@echo "Running coverity suite..."
+	@$(COVERITY_TOOLDIR)/bin/cov-build \
+		--dir "$(COVERITY_BUILDDIR)/cov-int" \
+		--no-command \
+		--fs-capture-search "$(BUILDDIR)" \
+		--fs-capture-search-exclude-regex "$(COVERITY_BUILDDIR)"
+	@echo "Compressing analysis results..."
+	@tar -caf "$(COVERITY_ANALYSIS)" -C "$(COVERITY_BUILDDIR)" "cov-int"
+
+$(COVERITY_ANALYSIS): | $(COVERITY_BUILDDIR)/
+	@$(MAKE) --no-print-directory coverity-check
+
+.PHONY: coverity-submit
+coverity-submit: $(COVERITY_ANALYSIS) | coverity-email coverity-token
+	@echo "Submitting $(COVERITY_ANALYSIS)..."
+	@curl --form "token=$(COVERITY_TOKEN)" \
+		--form "email=$(COVERITY_EMAIL)" \
+		--form "file=@$(COVERITY_ANALYSIS)" \
+		--form "version=main" \
+		--form "description=$$(git describe)" \
+		https://scan.coverity.com/builds?project=cockpit-composer-coverity
+
+.PHONY: coverity-clean
+coverity-clean:
+	@$(RM) -rfv "$(COVERITY_BUILDDIR)/cov-int" "$(COVERITY_ANALYSIS)"
+
+.PHONY: coverity-clean-all
+coverity-clean-all: coverity-clean
+	@$(RM) -rfv "$(COVERITY_BUILDDIR)"
