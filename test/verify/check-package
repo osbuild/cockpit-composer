@@ -215,6 +215,8 @@ class TestPackage(composerlib.ComposerCase):
         b.key_press("\r")
         with b.wait_timeout(120):
             b.wait_text("#cockpit-composer-input", "cockpit-composer")
+        # wait for package add icon
+        b.wait_present("li[data-input=cockpit-composer] .fa-plus")
         # add it to blueprint
         b.click("li[data-input=cockpit-composer] .fa-plus")
         # wait for package added
