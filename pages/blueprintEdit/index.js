@@ -571,7 +571,7 @@ class EditBlueprintPage extends React.Component {
         <h3 className="cmpsr-panel__title cmpsr-panel__title--sidebar">
           {formatMessage(messages.listTitleAvailableComps)}
         </h3>
-        {(inputComponents !== undefined && (
+        {((inputComponents !== undefined && blueprint.components !== undefined && blueprint.packages !== undefined) && (
           <div className="cmpsr-panel__body cmpsr-panel__body--sidebar">
             <div className="toolbar-pf">
               <form className="toolbar-pf-actions">
@@ -618,7 +618,7 @@ class EditBlueprintPage extends React.Component {
                 />
               </div>
             </div>
-            {(blueprint.components === undefined || blueprint.components.length === 0) &&
+            {blueprint.components.length === 0 &&
               Object.keys(this.props.blueprintContentsError).length === 0 &&
               componentsFilters.filterValues.length === 0 && (
                 <div className="alert alert-info alert-dismissable">
@@ -644,13 +644,13 @@ class EditBlueprintPage extends React.Component {
                   />
                 </div>
               )}
-            <ComponentInputs
-              label={formatMessage(messages.listTitleAvailableComps)}
-              components={inputComponents[inputs.selectedInputPage]}
-              handleComponentDetails={this.handleComponentDetails}
-              handleAddComponent={this.handleAddComponent}
-              handleRemoveComponent={this.handleRemoveComponent}
-            />
+              <ComponentInputs
+                label={formatMessage(messages.listTitleAvailableComps)}
+                components={inputComponents[inputs.selectedInputPage]}
+                handleComponentDetails={this.handleComponentDetails}
+                handleAddComponent={this.handleAddComponent}
+                handleRemoveComponent={this.handleRemoveComponent}
+              />
           </div>
         )) || (
           <div className="cmpsr-panel__body cmpsr-panel__body--sidebar">
