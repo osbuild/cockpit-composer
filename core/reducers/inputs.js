@@ -1,5 +1,6 @@
 import {
   FETCHING_INPUTS_SUCCEEDED,
+  FETCHING_FILTER_NO_RESULTS,
   SET_SELECTED_INPUT_PAGE,
   CLEAR_SELECTED_INPUT,
   SET_SELECTED_INPUT,
@@ -31,6 +32,13 @@ const inputs = (state = [], action) => {
         totalInputs: action.payload.total,
         pageSize: action.payload.pageSize
       });
+    case FETCHING_FILTER_NO_RESULTS:
+      return Object.assign({}, state, {
+        inputFilters: action.payload.filter,
+        inputComponents: [[]],
+        totalInputs: 0,
+        pageSize: action.payload.pageSize
+      })
     case SET_SELECTED_INPUT_PAGE:
       return Object.assign({}, state, { selectedInputPage: action.payload.selectedInputPage });
     case CLEAR_SELECTED_INPUT:

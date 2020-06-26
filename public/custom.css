@@ -513,6 +513,12 @@ body {
   margin-top: 0
 }
 
+.cmpsr-panel__body--sidebar .blank-slate-pf {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
 .cmpsr-alert-blank-slate {
   margin-bottom: 5px;
 }
