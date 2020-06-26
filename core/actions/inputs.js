@@ -20,6 +20,15 @@ export const fetchingInputsSucceeded = (filter, selectedInputPage, pageSize, inp
   }
 });
 
+export const FETCHING_FILTER_NO_RESULTS = "FETCHING_FILTER_NO_RESULTS";
+export const fetchingFilterNoResults = (filter, pageSize) => ({
+  type: FETCHING_FILTER_NO_RESULTS,
+  payload: {
+    filter,
+    pageSize
+  }
+});
+
 export const FETCHING_INPUT_DETAILS = "FETCHING_INPUT_DETAILS";
 export const fetchingInputDetails = component => ({
   type: FETCHING_INPUT_DETAILS,

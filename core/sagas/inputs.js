@@ -3,6 +3,7 @@ import * as composer from "../composer";
 import {
   FETCHING_INPUTS,
   fetchingInputsSucceeded,
+  fetchingFilterNoResults,
   FETCHING_INPUT_DETAILS,
   FETCHING_INPUT_DEPS,
   FETCHING_DEP_DETAILS,
@@ -42,8 +43,8 @@ function* fetchInputs(action) {
     const { filter, selectedInputPage, pageSize } = action.payload;
     const filter_value = `*${filter.value}*`.replace("**", "*");
     const response = yield call(composer.listModules, filter_value, selectedInputPage, pageSize);
-    const total = response[1];
-    const inputNames = response[0].map(input => input.name).join(",");
+    const total = response.total;
+    const inputNames = response.modules.map(input => input.name).join(",");
     const inputs = yield call(composer.getComponentInfo, inputNames);
     const updatedInputs = flattenInputs(inputs).map(input => {
       const inputData = Object.assign(
@@ -57,7 +58,12 @@ function* fetchInputs(action) {
     });
     yield put(fetchingInputsSucceeded(filter, selectedInputPage, pageSize, updatedInputs, total));
   } catch (error) {
-    console.log("Error in fetchInputsSaga", error);
+    const { filter, pageSize } = action.payload;
+    if (filter.value !== "") {
+      yield put(fetchingFilterNoResults(filter, pageSize));
+    } else {
+      console.log("Error in fetchInputsSaga", error);
+    }
   }
 }
 

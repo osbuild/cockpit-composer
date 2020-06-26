@@ -99,7 +99,7 @@ export function listModules(filter, selectedInputPage, pageSize) {
   const page = selectedInputPage * pageSize;
   return get("/api/v0/modules/list/" + encodeURIComponent(filter), {
     params: { limit: pageSize, offset: page }
-  }).then(response => [response.modules, response.total]);
+  });
 }
 
 /*

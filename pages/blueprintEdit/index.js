@@ -81,6 +81,12 @@ const messages = defineMessages({
   },
   filterByPlaceholder: {
     defaultMessage: "Filter By Name..."
+  },
+  emptyStateNoResultsMessage: {
+    defaultMessage: "Modify your filter criteria to get results."
+  },
+  emptyStateNoResultsTitle: {
+    defaultMessage: "No Results Match the Filter Criteria"
   }
 });
 
@@ -131,7 +137,6 @@ class EditBlueprintPage extends React.Component {
       };
       this.props.fetchingInputs(filter, 0, this.props.inputs.pageSize);
       this.props.setSelectedInputPage(0);
-      // TODO handle the case where no results are returned
       $("#cmpsr-blueprint-input-filter").blur();
       event.preventDefault();
     }
@@ -609,13 +614,15 @@ class EditBlueprintPage extends React.Component {
                     </li>
                   </ul>
                 )}
-                <Pagination
-                  cssClass="cmpsr-blueprint__inputs__pagination"
-                  currentPage={inputs.selectedInputPage}
-                  totalItems={inputs.totalInputs}
-                  pageSize={inputs.pageSize}
-                  handlePagination={this.handlePagination}
-                />
+                {inputs.totalInputs > 0 && (
+                  <Pagination
+                    cssClass="cmpsr-blueprint__inputs__pagination"
+                    currentPage={inputs.selectedInputPage}
+                    totalItems={inputs.totalInputs}
+                    pageSize={inputs.pageSize}
+                    handlePagination={this.handlePagination}
+                  />
+                )}
               </div>
             </div>
             {blueprint.components.length === 0 &&
@@ -644,6 +651,18 @@ class EditBlueprintPage extends React.Component {
                   />
                 </div>
               )}
+            {inputs.inputFilters !== undefined && 
+              inputs.inputFilters.value.length > 0 && 
+              inputComponents[inputs.selectedInputPage].length === 0 && (
+                <EmptyState
+                  title={formatMessage(messages.emptyStateNoResultsTitle)}
+                  message={formatMessage(messages.emptyStateNoResultsMessage)}
+                >
+                  <button className="btn btn-link" type="button" onClick={e => this.handleClearFilters(e)}>
+                    <FormattedMessage defaultMessage="Clear All Filters" />
+                  </button>
+                </EmptyState>
+            ) || (
               <ComponentInputs
                 label={formatMessage(messages.listTitleAvailableComps)}
                 components={inputComponents[inputs.selectedInputPage]}
@@ -651,6 +670,7 @@ class EditBlueprintPage extends React.Component {
                 handleAddComponent={this.handleAddComponent}
                 handleRemoveComponent={this.handleRemoveComponent}
               />
+            )}
           </div>
         )) || (
           <div className="cmpsr-panel__body cmpsr-panel__body--sidebar">
