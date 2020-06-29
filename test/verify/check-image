@@ -271,6 +271,8 @@ class TestImage(composerlib.ComposerCase):
         b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "false")
         b.click("#cmpsr-modal-delete button:contains('Delete Image')")
         b.wait_not_present("#{}".format(selector))
+        self.allow_journal_messages(".*avc:  denied.*",
+                                    ".*audit: .*seresult=denied .*")
         # collect code coverage result
         self.check_coverage()
 
