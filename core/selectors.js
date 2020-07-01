@@ -125,10 +125,9 @@ export const makeGetBlueprintComposes = () => createSelector([getBlueprintCompos
 
 const getSelectedInputs = (state, components) => {
   const { inputComponents } = state.inputs;
-  const page = state.inputs.selectedInputPage;
   const selectedComponent = state.inputs.selectedInput.component;
   if (components !== undefined && inputComponents !== undefined && inputComponents.length > 0) {
-    inputComponents[page].forEach((input) => {
+    inputComponents.forEach((input) => {
       input.inBlueprint = false; // eslint-disable-line no-param-reassign
       input.userSelected = false; // eslint-disable-line no-param-reassign
       input.active = false; // eslint-disable-line no-param-reassign

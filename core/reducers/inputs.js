@@ -1,4 +1,5 @@
 import {
+  FETCHING_INPUTS,
   FETCHING_INPUTS_SUCCEEDED,
   FETCHING_FILTER_NO_RESULTS,
   SET_SELECTED_INPUT_PAGE,
@@ -12,30 +13,24 @@ import {
 
 const inputs = (state = [], action) => {
   switch (action.type) {
+    case FETCHING_INPUTS:
+      return {
+        ...state,
+        loading: true,
+      };
     case FETCHING_INPUTS_SUCCEEDED:
       return {
         ...state,
+        loading: false,
         inputFilters: action.payload.filter,
-        inputComponents:
-          action.payload.selectedInputPage > 0
-            ? state.inputComponents
-                .slice(0, action.payload.selectedInputPage)
-                .concat(
-                  [action.payload.inputs].concat(
-                    Array(
-                      Math.ceil(action.payload.total / action.payload.pageSize - 1) - action.payload.selectedInputPage
-                    ).fill([])
-                  )
-                )
-            : [action.payload.inputs].concat(
-                Array(Math.ceil(action.payload.total / action.payload.pageSize - 1)).fill([])
-              ),
+        inputComponents: action.payload.inputs,
         totalInputs: action.payload.total,
         pageSize: action.payload.pageSize,
       };
     case FETCHING_FILTER_NO_RESULTS:
       return {
         ...state,
+        loading: false,
         inputFilters: action.payload.filter,
         inputComponents: [[]],
         totalInputs: 0,

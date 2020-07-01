@@ -643,7 +643,7 @@ class EditBlueprintPage extends React.Component {
               )}
             {(inputs.inputFilters !== undefined &&
               inputs.inputFilters.value.length > 0 &&
-              inputComponents[inputs.selectedInputPage].length === 0 && (
+              inputComponents.length === 0 && (
                 <EmptyState
                   title={formatMessage(messages.emptyStateNoResultsTitle)}
                   message={formatMessage(messages.emptyStateNoResultsMessage)}
@@ -652,15 +652,16 @@ class EditBlueprintPage extends React.Component {
                     <FormattedMessage defaultMessage="Clear All Filters" />
                   </button>
                 </EmptyState>
-              )) || (
-              <ComponentInputs
-                label={formatMessage(messages.listTitleAvailableComps)}
-                components={inputComponents[inputs.selectedInputPage]}
-                handleComponentDetails={this.handleComponentDetails}
-                handleAddComponent={this.handleAddComponent}
-                handleRemoveComponent={this.handleRemoveComponent}
-              />
-            )}
+              )) ||
+              (inputs.loading && <Loading />) || (
+                <ComponentInputs
+                  label={formatMessage(messages.listTitleAvailableComps)}
+                  components={inputComponents}
+                  handleComponentDetails={this.handleComponentDetails}
+                  handleAddComponent={this.handleAddComponent}
+                  handleRemoveComponent={this.handleRemoveComponent}
+                />
+              )}
           </div>
         )) || (
           <div className="cmpsr-panel__body cmpsr-panel__body--sidebar">
@@ -716,14 +717,15 @@ EditBlueprintPage.propTypes = {
     workspacePendingChanges: PropTypes.arrayOf(PropTypes.object),
   }),
   inputs: PropTypes.shape({
-    inputComponents: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.object)),
+    inputComponents: PropTypes.arrayOf(PropTypes.object),
     inputFilters: PropTypes.object,
+    loading: PropTypes.bool,
     pageSize: PropTypes.number,
     selectedInput: PropTypes.object,
     selectedInputPage: PropTypes.number,
     totalInputs: PropTypes.number,
   }),
-  inputComponents: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.object)),
+  inputComponents: PropTypes.arrayOf(PropTypes.object),
   modalActive: PropTypes.string,
   selectedInput: PropTypes.shape({
     component: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
