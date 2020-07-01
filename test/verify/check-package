@@ -25,12 +25,10 @@ class TestPackage(composerlib.ComposerCase):
             b.wait_present("ul[aria-label='Available Components'] li:nth-child(1)")
 
         # do navigate with > and < button
-        b.click("a[aria-label='Show Next Page']")
+        b.click("button[aria-label='Go to next page']")
         b.wait_present("ul[aria-label='Available Components'] li:nth-child(1)")
-        b.wait_val("#cmpsr-blueprint-inputs-page", "2")
-        b.click("a[aria-label='Show Previous Page']")
+        b.click("button[aria-label='Go to previous page']")
         b.wait_present("ul[aria-label='Available Components'] li:nth-child(1)")
-        b.wait_val("#cmpsr-blueprint-inputs-page", "1")
         # filter on avaliable components
         b.set_input_text("#cmpsr-blueprint-input-filter", "cockpit-bridge")
         b.key_press("\r")
