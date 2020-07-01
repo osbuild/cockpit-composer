@@ -7,17 +7,17 @@ import s from "./styles.css";
 
 const messages = defineMessages({
   errorMessage: {
-    defaultMessage: "Error"
+    defaultMessage: "Error",
   },
   pageNotFoundMessage: {
-    defaultMessage: "Page Not Found"
+    defaultMessage: "Page Not Found",
   },
   pageNotFoundTitle: {
-    defaultMessage: "Page not found"
+    defaultMessage: "Page not found",
   },
   oupsTitle: {
-    defaultMessage: "Oups, something went wrong"
-  }
+    defaultMessage: "Oups, something went wrong",
+  },
 });
 
 class ErrorPage extends React.Component {
@@ -72,7 +72,7 @@ class ErrorPage extends React.Component {
                   <Link to="/">
                     <FormattedMessage defaultMessage="home page" />
                   </Link>
-                )
+                ),
               }}
             />
           </p>
@@ -84,13 +84,13 @@ class ErrorPage extends React.Component {
 
 ErrorPage.propTypes = {
   error: PropTypes.shape({
-    status: PropTypes.number
+    status: PropTypes.number,
   }),
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
 };
 
 ErrorPage.defaultProps = {
-  error: {}
+  error: {},
 };
 
 export default injectIntl(ErrorPage);

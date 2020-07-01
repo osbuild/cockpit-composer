@@ -5,14 +5,14 @@ import { Filter, Toolbar } from "patternfly-react";
 
 const messages = defineMessages({
   filterNameTitle: {
-    defaultMessage: "Name"
+    defaultMessage: "Name",
   },
   filterReleaseTitle: {
-    defaultMessage: "Release"
+    defaultMessage: "Release",
   },
   filterVersionTitle: {
-    defaultMessage: "Version"
-  }
+    defaultMessage: "Version",
+  },
 });
 
 class ToolbarLayout extends React.Component {
@@ -29,7 +29,7 @@ class ToolbarLayout extends React.Component {
     const { filters, children, filterClearValues } = this.props;
     const { formatMessage } = this.props.intl;
 
-    const filterItem = filter => {
+    const filterItem = (filter) => {
       switch (filter.key) {
         case "name":
           return (
@@ -63,9 +63,7 @@ class ToolbarLayout extends React.Component {
               <Filter.ActiveLabel>
                 <FormattedMessage defaultMessage="Active Filters" />:
               </Filter.ActiveLabel>
-              <Filter.List>
-                {filters.filterValues.map(filter => filterItem(filter))}
-              </Filter.List>
+              <Filter.List>{filters.filterValues.map((filter) => filterItem(filter))}</Filter.List>
               <button type="button" className="btn-link" onClick={filterClearValues}>
                 <FormattedMessage defaultMessage="Clear All Filters" />
               </button>
@@ -81,19 +79,19 @@ ToolbarLayout.propTypes = {
   filters: PropTypes.shape({
     defaultFilterType: PropTypes.string,
     filterTypes: PropTypes.arrayOf(PropTypes.object),
-    filterValues: PropTypes.arrayOf(PropTypes.object)
+    filterValues: PropTypes.arrayOf(PropTypes.object),
   }),
   filterRemoveValue: PropTypes.func,
   filterClearValues: PropTypes.func,
   children: PropTypes.node,
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
 };
 
 ToolbarLayout.defaultProps = {
   filters: {},
-  filterRemoveValue: function() {},
-  filterClearValues: function() {},
-  children: React.createElement("div")
+  filterRemoveValue() {},
+  filterClearValues() {},
+  children: React.createElement("div"),
 };
 
 export default injectIntl(ToolbarLayout);

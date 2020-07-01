@@ -4,18 +4,18 @@ import PropTypes from "prop-types";
 
 const messages = defineMessages({
   previousPage: {
-    defaultMessage: "Show Previous Page"
+    defaultMessage: "Show Previous Page",
   },
   nextPage: {
-    defaultMessage: "Show Next Page"
+    defaultMessage: "Show Next Page",
   },
   currentPage: {
     defaultMessage: "Current Page",
-    description: "Label of form input for setting current page number"
+    description: "Label of form input for setting current page number",
   },
   pagination: {
-    defaultMessage: "Pagination"
-  }
+    defaultMessage: "Pagination",
+  },
 });
 
 class Pagination extends React.Component {
@@ -39,7 +39,8 @@ class Pagination extends React.Component {
   static getDerivedStateFromProps(newProps, prevState) {
     if (prevState.pageValue !== newProps.currentPage) {
       return { pageValue: newProps.currentPage };
-    } else return null;
+    }
+    return null;
   }
 
   handleBlur() {
@@ -76,7 +77,7 @@ class Pagination extends React.Component {
     const pageInput = (
       <input
         className="pagination-pf-page form-control"
-        ref={c => (this.paginationPage = c)}
+        ref={(c) => (this.paginationPage = c)}
         type="text"
         value={this.state.pageValue + 1}
         id="cmpsr-blueprint-inputs-page"
@@ -85,7 +86,7 @@ class Pagination extends React.Component {
           this.paginationPage.select();
         }}
         onChange={this.handleChange}
-        onKeyPress={e => this.props.handlePagination(e)}
+        onKeyPress={(e) => this.props.handlePagination(e)}
         onBlur={this.handleBlur}
       />
     );
@@ -106,7 +107,7 @@ class Pagination extends React.Component {
             role="button"
             aria-label={formatMessage(messages.previousPage)}
             data-page={currentPage - 1}
-            onClick={e => this.props.handlePagination(e)}
+            onClick={(e) => this.props.handlePagination(e)}
           >
             <span className="i fa fa-angle-left" />
           </a>
@@ -130,7 +131,7 @@ class Pagination extends React.Component {
             role="button"
             aria-label={formatMessage(messages.nextPage)}
             data-page={currentPage + 1}
-            onClick={e => this.props.handlePagination(e)}
+            onClick={(e) => this.props.handlePagination(e)}
           >
             <span className="i fa fa-angle-right" />
           </a>
@@ -151,7 +152,7 @@ class Pagination extends React.Component {
           values={{
             startNumber: startItems,
             endNumber: endItems,
-            totalNumber: totalItems
+            totalNumber: totalItems,
           }}
         />
         <span className="pagination-cmpsr-pages">
@@ -162,7 +163,7 @@ class Pagination extends React.Component {
             defaultMessage="{currentPage} of {totalPages}"
             values={{
               currentPage: pageInput,
-              totalPages: totalPages + 1
+              totalPages: totalPages + 1,
             }}
           />
           <ul className="pagination pagination-pf-forward" role="presentation">
@@ -180,7 +181,7 @@ Pagination.propTypes = {
   totalItems: PropTypes.number,
   pageSize: PropTypes.number,
   handlePagination: PropTypes.func,
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
 };
 
 Pagination.defaultProps = {
@@ -188,7 +189,7 @@ Pagination.defaultProps = {
   cssClass: "",
   totalItems: 0,
   pageSize: 0,
-  handlePagination: function() {}
+  handlePagination() {},
 };
 
 export default injectIntl(Pagination);

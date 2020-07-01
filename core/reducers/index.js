@@ -16,7 +16,7 @@ const rootReducer = combineReducers({
   sort,
   filter,
   composes,
-  uploads
+  uploads,
 });
 
 export default rootReducer;

@@ -1,52 +1,46 @@
 import React from "react";
 import { defineMessages, injectIntl, intlShape } from "react-intl";
 import PropTypes from "prop-types";
-import {
-  Button,
-  DataListItem,
-  DataListItemRow,
-  DataListCell,
-  DataListItemCells
-} from "@patternfly/react-core";
+import { Button, DataListItem, DataListItemRow, DataListCell, DataListItemCells } from "@patternfly/react-core";
 import { CaretDownIcon, ServiceIcon } from "@patternfly/react-icons";
 
 const messages = defineMessages({
   imageName: {
     defaultMessage: "Image name",
-    description: "The name given by the user for an image"
+    description: "The name given by the user for an image",
   },
   uploadType: {
     defaultMessage: "Upload type",
-    description: "A label for the service to which an image was uploaded"
+    description: "A label for the service to which an image was uploaded",
   },
   timeStarted: {
     defaultMessage: "Started",
-    description: "A label for the date that an image upload was started"
+    description: "A label for the date that an image upload was started",
   },
   uploadActions: {
     defaultMessage: "Actions",
-    description: "A label for the menu that displays the actions available"
+    description: "A label for the menu that displays the actions available",
   },
   uploadLogs: {
     defaultMessage: "Logs",
-    description: "Log content that gets generated as part of the upload process"
+    description: "Log content that gets generated as part of the upload process",
   },
   uploadStatusWaiting: {
     defaultMessage: "Upload pending",
-    description: "Upload status when process is waiting"
+    description: "Upload status when process is waiting",
   },
   uploadStatusRunning: {
     defaultMessage: "Upload in progress",
-    description: "Upload status when process is in progress"
+    description: "Upload status when process is in progress",
   },
   uploadStatusFinished: {
     defaultMessage: "Upload complete",
-    description: "Upload status when process is finished"
+    description: "Upload status when process is finished",
   },
   uploadStatusFailed: {
     defaultMessage: "Upload failed",
-    description: "Upload status when process failed"
-  }
+    description: "Upload status when process failed",
+  },
 });
 
 class ListItemUploads extends React.PureComponent {
@@ -55,17 +49,11 @@ class ListItemUploads extends React.PureComponent {
   }
 
   render() {
-    const upload = this.props.upload;
+    const { upload } = this.props;
     const { formatMessage } = this.props.intl;
     const timestamp = new Date(upload.creation_time * 1000);
     const formattedTime = timestamp.toDateString();
-    const logsButton = (
-      <Button
-        variant="secondary"
-      >
-        {formatMessage(messages.uploadLogs)}
-      </Button>
-    );
+    const logsButton = <Button variant="secondary">{formatMessage(messages.uploadLogs)}</Button>;
     const uploadStatus = () => {
       switch (upload.status) {
         case "WAITING":
@@ -128,23 +116,22 @@ class ListItemUploads extends React.PureComponent {
               <DataListCell key="primary" className="pf-l-flex pf-m-column pf-m-space-items-xs">
                 {upload.image_name && upload.image_name !== "" && (
                   <div className="pf-l-flex__item">
-                  <span>{formatMessage(messages.imageName)}</span> <strong id={`${upload.uuid}-name`}>{upload.image_name}</strong>
+                    <span>{formatMessage(messages.imageName)}</span>{" "}
+                    <strong id={`${upload.uuid}-name`}>{upload.image_name}</strong>
                   </div>
                 )}
                 <div className="pf-l-flex__item">
-                  <span>{formatMessage(messages.uploadType)}</span> <strong id={`${upload.uuid}-type`}>{upload.provider_name}</strong>
+                  <span>{formatMessage(messages.uploadType)}</span>{" "}
+                  <strong id={`${upload.uuid}-type`}>{upload.provider_name}</strong>
                 </div>
                 <div className="pf-l-flex__item">
                   <span>{formatMessage(messages.timeStarted)}</span> <strong>{formattedTime}</strong>
                 </div>
               </DataListCell>,
-              <DataListCell key="status">{uploadStatus()}</DataListCell>
+              <DataListCell key="status">{uploadStatus()}</DataListCell>,
             ]}
           />
-          <div
-            className="pf-c-data-list__item-action cc-u-not-visible"
-            aria-hidden="true"
-          >
+          <div className="pf-c-data-list__item-action cc-u-not-visible" aria-hidden="true">
             <div className="dropdown pull-right dropdown-kebab-pf">
               <button
                 aria-label={formatMessage(messages.uploadActions)}
@@ -156,10 +143,7 @@ class ListItemUploads extends React.PureComponent {
               </button>
             </div>
           </div>
-          <div
-            aria-hidden="true"
-            className="pf-c-data-list__item-action cc-u-not-visible"
-          >
+          <div aria-hidden="true" className="pf-c-data-list__item-action cc-u-not-visible">
             {logsButton}
           </div>
         </DataListItemRow>
@@ -173,13 +157,13 @@ ListItemUploads.propTypes = {
     image_name: PropTypes.string,
     provider_name: PropTypes.string,
     status: PropTypes.string,
-    uuid: PropTypes.string
+    uuid: PropTypes.string,
   }),
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
 };
 
 ListItemUploads.defaultProps = {
-  upload: {}
+  upload: {},
 };
 
 export default injectIntl(ListItemUploads);

@@ -6,7 +6,7 @@ class Loading extends React.Component {
     super(props);
     this.enableLoadingState = this.enableLoadingState.bind(this);
     this.state = {
-      displayLoadingState: false
+      displayLoadingState: false,
     };
     this.timer = setTimeout(this.enableLoadingState, 500);
   }

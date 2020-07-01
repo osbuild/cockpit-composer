@@ -13,7 +13,7 @@ class BlueprintApi {
         NotificationsApi.closeNotification(undefined, "committing");
         NotificationsApi.displayNotification(blueprint.name, "committed");
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(`Error committing blueprint: ${e}`);
         NotificationsApi.closeNotification(undefined, "committing");
         NotificationsApi.displayNotification(blueprint.name, "commitFailed");
@@ -27,7 +27,7 @@ class BlueprintApi {
       version: blueprint.version,
       modules: blueprint.modules,
       packages: blueprint.packages,
-      groups: blueprint.groups !== undefined ? blueprint.groups : []
+      groups: blueprint.groups !== undefined ? blueprint.groups : [],
     };
     if (blueprint.customizations !== undefined) {
       blueprintData.customizations = blueprint.customizations;
@@ -40,12 +40,10 @@ class BlueprintApi {
     // and reload details in UI
     return composer
       .depsolveBlueprint(blueprint.name.replace(/\s/g, "-"))
-      .then(data => {
-        return Object.assign({}, blueprint, {
-          version: data.blueprints[0].blueprint.version
-        });
+      .then((data) => {
+        return { ...blueprint, version: data.blueprints[0].blueprint.version };
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(`Error fetching blueprint details: ${e}`);
       });
   }

@@ -7,23 +7,23 @@ import EmptyState from "./EmptyState";
 
 const messages = defineMessages({
   errorInactiveTitle: {
-    defaultMessage: "Image Building Service is Not Active"
+    defaultMessage: "Image Building Service is Not Active",
   },
   errorInactivePrimary: {
-    defaultMessage: "Start"
+    defaultMessage: "Start",
   },
   errorInactiveSecondary: {
-    defaultMessage: "Troubleshoot"
+    defaultMessage: "Troubleshoot",
   },
   errorInactiveCheckbox: {
-    defaultMessage: "Automatically start osbuild-composer on boot"
+    defaultMessage: "Automatically start osbuild-composer on boot",
   },
   alertTitleEnableServiceFailure: {
-    defaultMessage: "The service osbuild-composer was not started."
+    defaultMessage: "The service osbuild-composer was not started.",
   },
   alertMessagePreface: {
-    defaultMessage: "Message"
-  }
+    defaultMessage: "Message",
+  },
 });
 
 const permission = cockpit.permission({ admin: true });
@@ -35,7 +35,7 @@ class EmptyStateInactive extends React.Component {
       enableService: true,
       enableServiceFailure: "",
       allowed: true,
-      user: ""
+      user: "",
     };
     this.onPermissionChanged = this.onPermissionChanged.bind(this);
     this.startService = this.startService.bind(this);
@@ -66,7 +66,7 @@ class EmptyStateInactive extends React.Component {
     cockpit
       .spawn(argv, { superuser: "require", err: "message" })
       .then(() => this.props.fetchingBlueprints())
-      .catch(err => {
+      .catch((err) => {
         this.setState({ enableServiceFailure: err.message });
         console.error("Failed to start osbuild-composer.socket:", JSON.stringify(err));
       });
@@ -87,7 +87,7 @@ class EmptyStateInactive extends React.Component {
             <FormattedMessage
               defaultMessage="The user {userName} is not permitted to start services."
               values={{
-                userName: <strong>{user}</strong>
+                userName: <strong>{user}</strong>,
               }}
             />
           </Tooltip>
@@ -119,7 +119,7 @@ class EmptyStateInactive extends React.Component {
               <input
                 type="checkbox"
                 checked={this.state.enableService}
-                onChange={e => this.setState({ enableService: e.target.checked })}
+                onChange={(e) => this.setState({ enableService: e.target.checked })}
                 disabled={!allowed}
               />
               {formatMessage(messages.errorInactiveCheckbox)}
@@ -137,11 +137,11 @@ class EmptyStateInactive extends React.Component {
 
 EmptyStateInactive.propTypes = {
   fetchingBlueprints: PropTypes.func,
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
 };
 
 EmptyStateInactive.defaultProps = {
-  fetchingBlueprints: function() {}
+  fetchingBlueprints() {},
 };
 
 export default injectIntl(EmptyStateInactive);

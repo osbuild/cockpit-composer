@@ -10,7 +10,7 @@ class DeleteBlueprint extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showModal: false
+      showModal: false,
     };
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
@@ -31,7 +31,7 @@ class DeleteBlueprint extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
+      <>
         <a href="#" onClick={this.open}>
           <FormattedMessage defaultMessage="Delete" />
         </a>
@@ -47,7 +47,7 @@ class DeleteBlueprint extends React.Component {
               <FormattedMessage
                 defaultMessage="Are you sure you want to delete the blueprint {name}?"
                 values={{
-                  name: <strong>{this.props.blueprint.name}</strong>
+                  name: <strong>{this.props.blueprint.name}</strong>,
                 }}
               />
             </p>
@@ -61,18 +61,18 @@ class DeleteBlueprint extends React.Component {
               type="button"
               className="btn btn-danger"
               data-dismiss="modal"
-              onClick={e => this.handleDelete(e, this.props.blueprint.id)}
+              onClick={(e) => this.handleDelete(e, this.props.blueprint.id)}
             >
               <FormattedMessage defaultMessage="Delete" />
             </button>
           </Modal.Footer>
         </Modal>
-      </React.Fragment>
+      </>
     );
   }
 }
 
-const makeMapStateToProps = state => {
+const makeMapStateToProps = (state) => {
   return state;
 };
 
@@ -80,19 +80,19 @@ DeleteBlueprint.propTypes = {
   deletingBlueprint: PropTypes.func,
   blueprint: PropTypes.shape({
     id: PropTypes.string,
-    name: PropTypes.string
-  })
+    name: PropTypes.string,
+  }),
 };
 
 DeleteBlueprint.defaultProps = {
-  deletingBlueprint: function() {},
-  blueprint: {}
+  deletingBlueprint() {},
+  blueprint: {},
 };
 
-const mapDispatchToProps = dispatch => ({
-  deletingBlueprint: blueprint => {
+const mapDispatchToProps = (dispatch) => ({
+  deletingBlueprint: (blueprint) => {
     dispatch(deletingBlueprint(blueprint));
-  }
+  },
 });
 
 export default connect(makeMapStateToProps, mapDispatchToProps)(injectIntl(DeleteBlueprint));

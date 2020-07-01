@@ -5,23 +5,23 @@ import { Spinner } from "patternfly-react";
 
 const messages = defineMessages({
   edit: {
-    defaultMessage: "Edit Source"
+    defaultMessage: "Edit Source",
   },
   kebab: {
-    defaultMessage: "Source Actions"
+    defaultMessage: "Source Actions",
   },
   remove: {
-    defaultMessage: "Remove Source"
+    defaultMessage: "Remove Source",
   },
   baseurl: {
-    defaultMessage: "yum repository"
+    defaultMessage: "yum repository",
   },
   mirrorlist: {
-    defaultMessage: "mirrorlist"
+    defaultMessage: "mirrorlist",
   },
   metalink: {
-    defaultMessage: "metalink"
-  }
+    defaultMessage: "metalink",
+  },
 });
 
 class SourcesListItem extends React.Component {
@@ -29,11 +29,13 @@ class SourcesListItem extends React.Component {
     super(props);
     this.editButton = React.createRef();
   }
+
   componentDidMount() {
     if (this.props.edited === this.props.source.name) {
       this.editButton.current.focus();
     }
   }
+
   render() {
     const { source, key } = this.props;
     const type = source.type.substring("yum-".length);
@@ -52,7 +54,7 @@ class SourcesListItem extends React.Component {
                   <FormattedMessage
                     defaultMessage="Type {sourceType}"
                     values={{
-                      sourceType: <strong>{formatMessage(messages[type])}</strong>
+                      sourceType: <strong>{formatMessage(messages[type])}</strong>,
                     }}
                   />
                 </div>
@@ -121,14 +123,14 @@ SourcesListItem.propTypes = {
   source: PropTypes.shape({
     url: PropTypes.string,
     name: PropTypes.string,
-    type: PropTypes.string
+    type: PropTypes.string,
   }),
   key: PropTypes.string,
   edited: PropTypes.string,
   fetching: PropTypes.string,
   edit: PropTypes.func,
   remove: PropTypes.func,
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
 };
 
 SourcesListItem.defaultProps = {
@@ -137,7 +139,7 @@ SourcesListItem.defaultProps = {
   edited: "",
   fetching: false,
   edit: undefined,
-  remove: undefined
+  remove: undefined,
 };
 
 export default injectIntl(SourcesListItem);

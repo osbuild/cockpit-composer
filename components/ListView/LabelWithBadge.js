@@ -21,11 +21,11 @@ export default function LabelWithBadge(props) {
 LabelWithBadge.propTypes = {
   title: PropTypes.string,
   badge: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  error: PropTypes.bool
+  error: PropTypes.bool,
 };
 
 LabelWithBadge.defaultProps = {
   title: "",
   badge: "",
-  error: false
+  error: false,
 };

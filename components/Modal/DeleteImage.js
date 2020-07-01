@@ -1,5 +1,3 @@
-/* global $ */
-
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
@@ -26,7 +24,7 @@ class DeleteImage extends React.Component {
       <div
         className="modal fade"
         id="cmpsr-modal-delete"
-        ref={c => {
+        ref={(c) => {
           this.modal = c;
         }}
         tabIndex="-1"
@@ -49,7 +47,7 @@ class DeleteImage extends React.Component {
                 <FormattedMessage
                   defaultMessage="Are you sure you want to delete the image for {blueprintName}?"
                   values={{
-                    blueprintName: <strong>{this.props.blueprintName}</strong>
+                    blueprintName: <strong>{this.props.blueprintName}</strong>,
                   }}
                 />
               </p>
@@ -74,20 +72,20 @@ DeleteImage.propTypes = {
   blueprintName: PropTypes.string,
   composeId: PropTypes.string,
   handleHideModal: PropTypes.func,
-  deletingCompose: PropTypes.func
+  deletingCompose: PropTypes.func,
 };
 
 DeleteImage.defaultProps = {
   blueprintName: "",
   composeId: "",
-  handleHideModal: function() {},
-  deletingCompose: function() {}
+  handleHideModal() {},
+  deletingCompose() {},
 };
 
-const mapDispatchToProps = dispatch => ({
-  deletingCompose: compose => {
+const mapDispatchToProps = (dispatch) => ({
+  deletingCompose: (compose) => {
     dispatch(deletingCompose(compose));
-  }
+  },
 });
 
 export default connect(null, mapDispatchToProps)(DeleteImage);

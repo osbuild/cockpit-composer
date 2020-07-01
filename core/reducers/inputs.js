@@ -7,13 +7,14 @@ import {
   SET_SELECTED_INPUT_PARENT,
   SET_SELECTED_INPUT_DEPS,
   SET_DEP_DETAILS,
-  DELETE_FILTER
+  DELETE_FILTER,
 } from "../actions/inputs";
 
 const inputs = (state = [], action) => {
   switch (action.type) {
     case FETCHING_INPUTS_SUCCEEDED:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         inputFilters: action.payload.filter,
         inputComponents:
           action.payload.selectedInputPage > 0
@@ -30,74 +31,86 @@ const inputs = (state = [], action) => {
                 Array(Math.ceil(action.payload.total / action.payload.pageSize - 1)).fill([])
               ),
         totalInputs: action.payload.total,
-        pageSize: action.payload.pageSize
-      });
+        pageSize: action.payload.pageSize,
+      };
     case FETCHING_FILTER_NO_RESULTS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         inputFilters: action.payload.filter,
         inputComponents: [[]],
         totalInputs: 0,
-        pageSize: action.payload.pageSize
-      })
+        pageSize: action.payload.pageSize,
+      };
     case SET_SELECTED_INPUT_PAGE:
-      return Object.assign({}, state, { selectedInputPage: action.payload.selectedInputPage });
+      return { ...state, selectedInputPage: action.payload.selectedInputPage };
     case CLEAR_SELECTED_INPUT:
-      return Object.assign({}, state, {
-        selectedInput: Object.assign({}, state.selectedInput, {
+      return {
+        ...state,
+        selectedInput: {
+          ...state.selectedInput,
           set: false,
           component: {
             name: undefined,
-            dependencies: undefined
+            dependencies: undefined,
           },
-          parent: []
-        })
-      });
+          parent: [],
+        },
+      };
     case SET_SELECTED_INPUT:
-      return Object.assign({}, state, {
-        selectedInput: Object.assign({}, state.selectedInput, {
+      return {
+        ...state,
+        selectedInput: {
+          ...state.selectedInput,
           set: true,
           // if same component, keep it and just add additional properties
           component:
             state.selectedInput.component.name === action.payload.selectedInput.name
-              ? Object.assign({}, state.selectedInput.component, action.payload.selectedInput)
-              : Object.assign({}, action.payload.selectedInput)
-        })
-      });
+              ? { ...state.selectedInput.component, ...action.payload.selectedInput }
+              : { ...action.payload.selectedInput },
+        },
+      };
     case SET_SELECTED_INPUT_DEPS:
-      return Object.assign({}, state, {
-        selectedInput: Object.assign({}, state.selectedInput, {
-          component: Object.assign({}, state.selectedInput.component, { dependencies: action.payload.dependencies })
-        })
-      });
+      return {
+        ...state,
+        selectedInput: {
+          ...state.selectedInput,
+          component: { ...state.selectedInput.component, dependencies: action.payload.dependencies },
+        },
+      };
     case SET_DEP_DETAILS:
-      return Object.assign({}, state, {
-        selectedInput: Object.assign({}, state.selectedInput, {
-          component: Object.assign({}, state.selectedInput.component, {
+      return {
+        ...state,
+        selectedInput: {
+          ...state.selectedInput,
+          component: {
+            ...state.selectedInput.component,
             dependencies: [
-              ...state.selectedInput.component.dependencies.map(dep => {
+              ...state.selectedInput.component.dependencies.map((dep) => {
                 if (dep.name === action.payload.depDetails.name) {
-                  return Object.assign({}, dep, action.payload.depDetails);
+                  return { ...dep, ...action.payload.depDetails };
                 }
                 return dep;
-              })
-            ]
-          })
-        })
-      });
+              }),
+            ],
+          },
+        },
+      };
     case SET_SELECTED_INPUT_PARENT:
-      return Object.assign({}, state, {
-        selectedInput: Object.assign({}, state.selectedInput, { parent: action.payload.selectedInputParent })
-      });
+      return {
+        ...state,
+        selectedInput: { ...state.selectedInput, parent: action.payload.selectedInputParent },
+      };
     case DELETE_FILTER:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         inputComponents: undefined,
         totalInputs: 0,
         selectedInputPage: 0,
         inputFilters: {
           field: "name",
-          value: ""
-        }
-      });
+          value: "",
+        },
+      };
     default:
       return state;
   }

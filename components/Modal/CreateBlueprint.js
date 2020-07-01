@@ -10,7 +10,7 @@ class CreateBlueprint extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showModal: false
+      showModal: false,
     };
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
@@ -26,7 +26,7 @@ class CreateBlueprint extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
+      <>
         <button
           className="btn btn-default"
           id="cmpsr-btn-crt-blueprint"
@@ -43,7 +43,7 @@ class CreateBlueprint extends React.Component {
             close={this.close}
           />
         )}
-      </React.Fragment>
+      </>
     );
   }
 }
@@ -62,7 +62,7 @@ class CreateBlueprintModal extends React.Component {
       name: "",
       description: "",
       modules: [],
-      packages: []
+      packages: [],
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -86,7 +86,7 @@ class CreateBlueprintModal extends React.Component {
             name: this.state.name,
             description: this.state.description,
             modules: this.state.modules,
-            packages: this.state.packages
+            packages: this.state.packages,
           };
           this.handleCreateBlueprint(blueprint);
         }
@@ -101,7 +101,7 @@ class CreateBlueprintModal extends React.Component {
       description: this.state.description,
       modules: this.state.modules,
       packages: this.state.packages,
-      id: this.state.name.replace(/\s/g, "-")
+      id: this.state.name.replace(/\s/g, "-"),
     };
     this.props.creatingBlueprint(updatedBlueprint);
     window.location.hash = history.createHref(`/edit/${this.state.name}`);
@@ -114,7 +114,7 @@ class CreateBlueprintModal extends React.Component {
       errorNameSpace: false,
       errorInline: false,
       errorNameInvalid: false,
-      errorNameInvalidChar: []
+      errorNameInvalidChar: [],
     });
   }
 
@@ -180,7 +180,7 @@ class CreateBlueprintModal extends React.Component {
               <FormattedMessage
                 defaultMessage="The fields marked with {val} are required."
                 values={{
-                  val: <span className="required-pf">*</span>
+                  val: <span className="required-pf">*</span>,
                 }}
               />
             </p>
@@ -195,9 +195,9 @@ class CreateBlueprintModal extends React.Component {
                   id="textInput-modal-markup"
                   className="form-control"
                   value={this.state.name}
-                  onChange={e => this.handleChange(e, "name")}
-                  onBlur={e => this.handleErrorNameInvalid(e.target.value)}
-                  onKeyPress={e => this.handleEnterKey(e)}
+                  onChange={(e) => this.handleChange(e, "name")}
+                  onBlur={(e) => this.handleErrorNameInvalid(e.target.value)}
+                  onKeyPress={(e) => this.handleEnterKey(e)}
                 />
                 <span className="help-block">
                   {this.state.errorNameEmpty && <FormattedMessage defaultMessage="A blueprint name is required." />}
@@ -205,7 +205,7 @@ class CreateBlueprintModal extends React.Component {
                     <FormattedMessage
                       defaultMessage="The name {name} already exists."
                       values={{
-                        name: this.state.name
+                        name: this.state.name,
                       }}
                     />
                   )}
@@ -218,14 +218,14 @@ class CreateBlueprintModal extends React.Component {
                       <FormattedMessage
                         defaultMessage="Blueprint names cannot contain the character: {invalidChar}"
                         values={{
-                          invalidChar: this.state.errorNameInvalidChar
+                          invalidChar: this.state.errorNameInvalidChar,
                         }}
                       />
                     ) : (
                       <FormattedMessage
                         defaultMessage="Blueprint names cannot contain the characters: {invalidChar}"
                         values={{
-                          invalidChar: this.state.errorNameInvalidChar.join(" ")
+                          invalidChar: this.state.errorNameInvalidChar.join(" "),
                         }}
                       />
                     ))}
@@ -235,14 +235,14 @@ class CreateBlueprintModal extends React.Component {
                       <FormattedMessage
                         defaultMessage="Blueprint names cannot contain spaces or the character: {invalidChar}"
                         values={{
-                          invalidChar: this.state.errorNameInvalidChar
+                          invalidChar: this.state.errorNameInvalidChar,
                         }}
                       />
                     ) : (
                       <FormattedMessage
                         defaultMessage="Blueprint names cannot contain spaces or the characters: {invalidChar}"
                         values={{
-                          invalidChar: this.state.errorNameInvalidChar.join(" ")
+                          invalidChar: this.state.errorNameInvalidChar.join(" "),
                         }}
                       />
                     ))}
@@ -259,8 +259,8 @@ class CreateBlueprintModal extends React.Component {
                   id="textInput2-modal-markup"
                   className="form-control"
                   value={this.state.description}
-                  onChange={e => this.handleChange(e, "description")}
-                  onKeyPress={e => this.handleEnterKey(e)}
+                  onChange={(e) => this.handleChange(e, "description")}
+                  onKeyPress={(e) => this.handleEnterKey(e)}
                 />
               </div>
             </div>
@@ -294,27 +294,27 @@ class CreateBlueprintModal extends React.Component {
 CreateBlueprintModal.propTypes = {
   close: PropTypes.func.isRequired,
   blueprintNames: PropTypes.arrayOf(PropTypes.string).isRequired,
-  creatingBlueprint: PropTypes.func.isRequired
+  creatingBlueprint: PropTypes.func.isRequired,
 };
 
 CreateBlueprint.propTypes = {
   blueprintNames: PropTypes.arrayOf(PropTypes.string),
   disabled: PropTypes.bool,
-  creatingBlueprint: PropTypes.func
+  creatingBlueprint: PropTypes.func,
 };
 
 CreateBlueprint.defaultProps = {
   blueprintNames: [],
   disabled: false,
-  creatingBlueprint: function() {}
+  creatingBlueprint() {},
 };
 
 const mapStateToProps = () => ({});
 
-const mapDispatchToProps = dispatch => ({
-  creatingBlueprint: blueprint => {
+const mapDispatchToProps = (dispatch) => ({
+  creatingBlueprint: (blueprint) => {
     dispatch(creatingBlueprint(blueprint));
-  }
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateBlueprint);

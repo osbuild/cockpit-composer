@@ -25,7 +25,7 @@ class Layout extends React.Component {
       <div>
         {notifications && (
           <div className="toast-notifications-list-pf">
-            {notifications.map(notification => (
+            {notifications.map((notification) => (
               <Notification
                 notification={notification}
                 id={notification.id}
@@ -43,7 +43,7 @@ class Layout extends React.Component {
 
 Layout.propTypes = {
   className: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 };
 
 export default Layout;

@@ -25,35 +25,35 @@ import history from "./core/history";
 // Intialize any necessary locale data, and load translated messages
 const translations = require("./build/translations.json");
 
-const languages = [...new Set(Object.keys(translations).map(lang => lang.split("_")[0]))];
-for (let lang of languages) {
+const languages = [...new Set(Object.keys(translations).map((lang) => lang.split("_")[0]))];
+for (const lang of languages) {
   const localData = require(`react-intl/locale-data/${lang}`); // eslint-disable-line import/no-dynamic-require
   addLocaleData(localData);
 }
 // still need english
 addLocaleData(enLocaleData);
 
-let routes = require("./routes.json");
+const routes = require("./routes.json");
 // Loaded with utils/routes-loader.js
 const container = document.getElementById("main");
 
 const userLanguage = cockpit.language;
 
-let messages = undefined;
+let messages;
 if (userLanguage in translations) {
   messages = translations[userLanguage];
 }
 
-let locale_lang = "en";
+let localeLang = "en";
 if (userLanguage) {
-  locale_lang = userLanguage.includes("_") ? userLanguage.replace("_", "-") : userLanguage;
+  localeLang = userLanguage.includes("_") ? userLanguage.replace("_", "-") : userLanguage;
 }
 
 function renderComponent(component) {
   ReactDOM.render(
     <Provider store={store}>
       {messages !== undefined ? (
-        <IntlProvider locale={locale_lang} messages={messages}>
+        <IntlProvider locale={localeLang} messages={messages}>
           {component}
         </IntlProvider>
       ) : (
@@ -70,7 +70,7 @@ function render(location) {
   router
     .resolve(routes, location)
     .then(renderComponent)
-    .catch(error => router.resolve(routes, Object.assign({}, location, { error: error })).then(renderComponent));
+    .catch((error) => router.resolve(routes, { ...location, error }).then(renderComponent));
 }
 
 // Handle client-side navigation by using HTML5 History API

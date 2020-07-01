@@ -8,7 +8,7 @@ class EditDescription extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showModal: false
+      showModal: false,
     };
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
@@ -26,7 +26,7 @@ class EditDescription extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
+      <>
         <a href="#" onClick={this.open} className={this.props.descriptionAsLink ? "text-muted" : ""}>
           {(this.props.descriptionAsLink && this.props.description) || (
             <FormattedMessage defaultMessage="Edit description" />
@@ -39,7 +39,7 @@ class EditDescription extends React.Component {
             close={this.close}
           />
         )}
-      </React.Fragment>
+      </>
     );
   }
 }
@@ -48,7 +48,7 @@ class EditDescriptionModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      description: ""
+      description: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -91,7 +91,7 @@ class EditDescriptionModal extends React.Component {
                   id="textInput-modal-markup"
                   className="form-control"
                   value={this.state.description}
-                  onChange={e => this.handleChange(e, "description")}
+                  onChange={(e) => this.handleChange(e, "description")}
                 />
               </div>
             </div>
@@ -118,23 +118,23 @@ class EditDescriptionModal extends React.Component {
 EditDescription.propTypes = {
   handleEditDescription: PropTypes.func.isRequired,
   description: PropTypes.string,
-  descriptionAsLink: PropTypes.bool
+  descriptionAsLink: PropTypes.bool,
 };
 
 EditDescription.defaultProps = {
   description: "",
-  descriptionAsLink: false
+  descriptionAsLink: false,
 };
 
 EditDescriptionModal.propTypes = {
   close: PropTypes.func.isRequired,
   handleEditDescription: PropTypes.func,
-  description: PropTypes.string
+  description: PropTypes.string,
 };
 
 EditDescriptionModal.defaultProps = {
-  handleEditDescription: function() {},
-  description: ""
+  handleEditDescription() {},
+  description: "",
 };
 
 const mapStateToProps = () => ({});

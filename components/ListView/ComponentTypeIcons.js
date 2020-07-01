@@ -5,11 +5,11 @@ import { Tooltip, TooltipPosition } from "@patternfly/react-core";
 
 const messages = defineMessages({
   type: {
-    defaultMessage: "Type"
-  }
+    defaultMessage: "Type",
+  },
 });
 
-const ComponentTypeIcons = props => {
+const ComponentTypeIcons = (props) => {
   const { formatMessage } = props.intl;
   let icon = "";
   let type = "";
@@ -54,14 +54,14 @@ ComponentTypeIcons.propTypes = {
   compDetails: PropTypes.bool,
   componentInBlueprint: PropTypes.bool,
   isSelected: PropTypes.bool,
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
 };
 
 ComponentTypeIcons.defaultProps = {
   componentType: "",
   compDetails: false,
   componentInBlueprint: false,
-  isSelected: false
+  isSelected: false,
 };
 
 export default injectIntl(ComponentTypeIcons);

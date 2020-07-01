@@ -5,7 +5,7 @@ import ToolbarLayout from "./ToolbarLayout";
 import CreateBlueprint from "../Modal/CreateBlueprint";
 import ManageSources from "../Modal/ManageSources";
 
-const BlueprintsToolbar = props => (
+const BlueprintsToolbar = (props) => (
   <ToolbarLayout
     filters={props.filters}
     filterRemoveValue={props.filterRemoveValue}
@@ -64,7 +64,7 @@ BlueprintsToolbar.propTypes = {
   filters: PropTypes.shape({
     defaultFilterType: PropTypes.string,
     filterTypes: PropTypes.arrayOf(PropTypes.object),
-    filterValues: PropTypes.arrayOf(PropTypes.object)
+    filterValues: PropTypes.arrayOf(PropTypes.object),
   }),
   filterRemoveValue: PropTypes.func,
   filterAddValue: PropTypes.func,
@@ -77,21 +77,21 @@ BlueprintsToolbar.propTypes = {
   manageSources: PropTypes.shape({
     fetchingSources: PropTypes.bool,
     sources: PropTypes.objectOf(PropTypes.object),
-    error: PropTypes.object
-  })
+    error: PropTypes.object,
+  }),
 };
 
 BlueprintsToolbar.defaultProps = {
   filters: {},
-  filterRemoveValue: function() {},
-  filterAddValue: function() {},
-  filterClearValues: function() {},
-  sortSetValue: function() {},
+  filterRemoveValue() {},
+  filterAddValue() {},
+  filterClearValues() {},
+  sortSetValue() {},
   errorState: false,
   emptyState: false,
   sortKey: "",
   sortValue: "",
-  manageSources: {}
+  manageSources: {},
 };
 
 export default BlueprintsToolbar;

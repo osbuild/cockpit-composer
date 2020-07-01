@@ -6,7 +6,7 @@ import {
   setModalManageSourcesContents,
   modalManageSourcesFailure,
   ADD_MODAL_MANAGE_SOURCES_ENTRY,
-  REMOVE_MODAL_MANAGE_SOURCES_ENTRY
+  REMOVE_MODAL_MANAGE_SOURCES_ENTRY,
 } from "../actions/modals";
 
 function* fetchModalManageSourcesContents() {
@@ -43,7 +43,7 @@ function* removeModalManageSourcesEntry(action) {
   }
 }
 
-export default function*() {
+export default function* () {
   yield takeEvery(FETCHING_MODAL_MANAGE_SOURCES_CONTENTS, fetchModalManageSourcesContents);
   yield takeEvery(ADD_MODAL_MANAGE_SOURCES_ENTRY, addModalManageSourcesEntry);
   yield takeEvery(REMOVE_MODAL_MANAGE_SOURCES_ENTRY, removeModalManageSourcesEntry);

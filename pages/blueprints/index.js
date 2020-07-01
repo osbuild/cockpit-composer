@@ -15,31 +15,31 @@ import { blueprintsSortSetKey, blueprintsSortSetValue } from "../../core/actions
 import {
   blueprintsFilterAddValue,
   blueprintsFilterRemoveValue,
-  blueprintsFilterClearValues
+  blueprintsFilterClearValues,
 } from "../../core/actions/filter";
 import { makeGetSortedBlueprints, makeGetFilteredBlueprints } from "../../core/selectors";
 
 const messages = defineMessages({
   blueprintsTitle: {
-    defaultMessage: "Blueprints"
+    defaultMessage: "Blueprints",
   },
   emptyMessage: {
     defaultMessage:
       "Create a blueprint to define the contents that will be included in the images you create. " +
-      "Images can be produced in a variety of output formats."
+      "Images can be produced in a variety of output formats.",
   },
   emptyTitle: {
-    defaultMessage: "No Blueprints"
+    defaultMessage: "No Blueprints",
   },
   errorGenericTitle: {
-    defaultMessage: "An Error Occurred"
+    defaultMessage: "An Error Occurred",
   },
   noResultsMessage: {
-    defaultMessage: "Modify your filter criteria to get results."
+    defaultMessage: "Modify your filter criteria to get results.",
   },
   noResultsTitle: {
-    defaultMessage: "No Results Match the Filter Criteria"
-  }
+    defaultMessage: "No Results Match the Filter Criteria",
+  },
 });
 
 class BlueprintsPage extends React.Component {
@@ -74,13 +74,13 @@ class BlueprintsPage extends React.Component {
       blueprintsFilterRemoveValue,
       blueprintsFilterClearValues,
       blueprintsError,
-      blueprintsLoading
+      blueprintsLoading,
     } = this.props;
     const { formatMessage } = this.props.intl;
     return (
-      <Layout className="container-fluid" ref={c => (this.layout = c)}>
+      <Layout className="container-fluid" ref={(c) => (this.layout = c)}>
         <BlueprintsToolbar
-          blueprintNames={blueprints.map(blueprint => blueprint.present.id)}
+          blueprintNames={blueprints.map((blueprint) => blueprint.present.id)}
           emptyState={blueprints.length === 0 && blueprintFilters.filterValues.length === 0}
           errorState={blueprintsError !== null}
           filters={blueprintFilters}
@@ -105,7 +105,7 @@ class BlueprintsPage extends React.Component {
             ))) ||
           (blueprints.length > 0 && (
             <BlueprintsDataList
-              blueprints={blueprints.map(blueprint => blueprint.present)}
+              blueprints={blueprints.map((blueprint) => blueprint.present)}
               setNotifications={this.setNotifications}
               layout={this.layout}
               ariaLabel={formatMessage(messages.blueprintsTitle)}
@@ -113,7 +113,7 @@ class BlueprintsPage extends React.Component {
           )) ||
           (blueprintFilters.filterValues.length === 0 && (
             <EmptyState title={formatMessage(messages.emptyTitle)} message={formatMessage(messages.emptyMessage)}>
-              <CreateBlueprint blueprintNames={blueprints.map(blueprint => blueprint.present.id)} />
+              <CreateBlueprint blueprintNames={blueprints.map((blueprint) => blueprint.present.id)} />
             </EmptyState>
           )) || (
             <EmptyState
@@ -137,14 +137,14 @@ BlueprintsPage.propTypes = {
   manageSources: PropTypes.shape({
     fetchingSources: PropTypes.bool,
     sources: PropTypes.objectOf(PropTypes.object),
-    error: PropTypes.object
+    error: PropTypes.object,
   }),
   blueprintSortKey: PropTypes.string,
   blueprintSortValue: PropTypes.string,
   blueprintFilters: PropTypes.shape({
     defaultFilterType: PropTypes.string,
     filterTypes: PropTypes.arrayOf(PropTypes.object),
-    filterValues: PropTypes.arrayOf(PropTypes.object)
+    filterValues: PropTypes.arrayOf(PropTypes.object),
   }),
   blueprintsSortSetValue: PropTypes.func,
   blueprintsFilterAddValue: PropTypes.func,
@@ -154,32 +154,32 @@ BlueprintsPage.propTypes = {
     message: PropTypes.string,
     options: PropTypes.object,
     problem: PropTypes.string,
-    url: PropTypes.string
+    url: PropTypes.string,
   }),
   blueprintsLoading: PropTypes.bool,
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
 };
 
 BlueprintsPage.defaultProps = {
-  fetchingModalManageSourcesContents: function() {},
-  fetchingBlueprints: function() {},
+  fetchingModalManageSourcesContents() {},
+  fetchingBlueprints() {},
   blueprints: [],
   manageSources: {},
   blueprintSortKey: "",
   blueprintSortValue: "",
   blueprintFilters: {},
-  blueprintsSortSetValue: function() {},
-  blueprintsFilterAddValue: function() {},
-  blueprintsFilterRemoveValue: function() {},
-  blueprintsFilterClearValues: function() {},
+  blueprintsSortSetValue() {},
+  blueprintsFilterAddValue() {},
+  blueprintsFilterRemoveValue() {},
+  blueprintsFilterClearValues() {},
   blueprintsError: {},
-  blueprintsLoading: false
+  blueprintsLoading: false,
 };
 
 const makeMapStateToProps = () => {
   const getSortedBlueprints = makeGetSortedBlueprints();
   const getFilteredBlueprints = makeGetFilteredBlueprints();
-  const mapStateToProps = state => {
+  const mapStateToProps = (state) => {
     if (getSortedBlueprints(state) !== undefined) {
       return {
         manageSources: state.modals.manageSources,
@@ -188,7 +188,7 @@ const makeMapStateToProps = () => {
         blueprintSortValue: state.sort.blueprints.value,
         blueprintFilters: state.filter.blueprints,
         blueprintsError: state.blueprints.errorState,
-        blueprintsLoading: state.blueprints.fetchingBlueprints
+        blueprintsLoading: state.blueprints.fetchingBlueprints,
       };
     }
     return {
@@ -198,35 +198,35 @@ const makeMapStateToProps = () => {
       blueprintSortValue: state.sort.blueprints.value,
       blueprintFilters: state.filter.blueprints,
       blueprintsError: state.blueprints.errorState,
-      blueprintsLoading: state.blueprints.fetchingBlueprints
+      blueprintsLoading: state.blueprints.fetchingBlueprints,
     };
   };
 
   return mapStateToProps;
 };
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   fetchingBlueprints: () => {
     dispatch(fetchingBlueprints());
   },
   fetchingModalManageSourcesContents: () => {
     dispatch(fetchingModalManageSourcesContents());
   },
-  blueprintsSortSetKey: key => {
+  blueprintsSortSetKey: (key) => {
     dispatch(blueprintsSortSetKey(key));
   },
-  blueprintsSortSetValue: value => {
+  blueprintsSortSetValue: (value) => {
     dispatch(blueprintsSortSetValue(value));
   },
-  blueprintsFilterAddValue: value => {
+  blueprintsFilterAddValue: (value) => {
     dispatch(blueprintsFilterAddValue(value));
   },
-  blueprintsFilterRemoveValue: value => {
+  blueprintsFilterRemoveValue: (value) => {
     dispatch(blueprintsFilterRemoveValue(value));
   },
-  blueprintsFilterClearValues: value => {
+  blueprintsFilterClearValues: (value) => {
     dispatch(blueprintsFilterClearValues(value));
-  }
+  },
 });
 
 export default connect(makeMapStateToProps, mapDispatchToProps)(injectIntl(BlueprintsPage));

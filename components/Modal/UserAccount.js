@@ -1,4 +1,3 @@
-/* global $ */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 
 import React from "react";
@@ -11,23 +10,23 @@ import { setModalUserAccountData } from "../../core/actions/modals";
 
 const messages = defineMessages({
   modalTitleCreate: {
-    defaultMessage: "Create User Account"
+    defaultMessage: "Create User Account",
   },
   modalTitleEdit: {
-    defaultMessage: "Edit User Account"
+    defaultMessage: "Edit User Account",
   },
   sshKeyHelp: {
-    defaultMessage: "Paste the contents of your public SSH key file here. "
+    defaultMessage: "Paste the contents of your public SSH key file here. ",
   },
   createPasswordOne: {
-    defaultMessage: "Password"
+    defaultMessage: "Password",
   },
   createPasswordTwo: {
-    defaultMessage: "Confirm password"
+    defaultMessage: "Confirm password",
   },
   editPasswordOne: {
-    defaultMessage: "New password"
-  }
+    defaultMessage: "New password",
+  },
 });
 
 class UserAccount extends React.Component {
@@ -35,7 +34,7 @@ class UserAccount extends React.Component {
     super(props);
     this.state = {
       currentUser: undefined,
-      setNewPassword: false
+      setNewPassword: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleHideModal = this.handleHideModal.bind(this);
@@ -53,11 +52,10 @@ class UserAccount extends React.Component {
     $(this.modal).modal("show");
     $(this.modal).on("hidden.bs.modal", this.handleHideModal);
     if (this.props.userAccount.editUser !== "") {
-      let currentUser = Object.assign(
-        {},
-        this.props.users.find(user => user.name === this.props.userAccount.name)
-      );
-      this.setState({ currentUser: currentUser });
+      const currentUser = {
+        ...this.props.users.find((user) => user.name === this.props.userAccount.name),
+      };
+      this.setState({ currentUser });
     }
   }
 
@@ -65,15 +63,15 @@ class UserAccount extends React.Component {
     if (password === undefined) {
       this.props.setModalUserAccountData({ showInvalidPassword: true });
     } else {
-      this.props.setModalUserAccountData({ password: password });
+      this.props.setModalUserAccountData({ password });
       this.props.setModalUserAccountData({ showInvalidPassword: false });
     }
   }
 
   handleRemovePassword() {
     this.props.setModalUserAccountData({ password: "" });
-    this.setState(prevState => {
-      const updatedUser = Object.assign({}, prevState.currentUser);
+    this.setState((prevState) => {
+      const updatedUser = { ...prevState.currentUser };
       delete updatedUser.password;
       return { currentUser: updatedUser };
     });
@@ -91,7 +89,7 @@ class UserAccount extends React.Component {
       dynamicName: true,
       visible: false,
       editUser: "",
-      disabledSubmit: true
+      disabledSubmit: true,
     };
     this.props.setModalUserAccountData(data);
   }
@@ -100,7 +98,7 @@ class UserAccount extends React.Component {
     let data = {};
     if (prop === "admin") {
       data = {
-        groups: e.target.checked ? ["wheel"] : [""]
+        groups: e.target.checked ? ["wheel"] : [""],
       };
     } else {
       data = { [prop]: e.target.value };
@@ -118,12 +116,12 @@ class UserAccount extends React.Component {
   }
 
   handleValidateUser(name) {
-    let userNames = this.props.users.map(user => user.name);
+    const userNames = this.props.users.map((user) => user.name);
     if (this.props.userAccount.editUser !== "") {
-      userNames.filter(name => name !== this.state.currentUser.name);
+      userNames.filter((name) => name !== this.state.currentUser.name);
     }
-    const showDuplicateUser = !userNames.every(userName => userName.toLowerCase() !== name.toLowerCase());
-    this.props.setModalUserAccountData({ showDuplicateUser: showDuplicateUser });
+    const showDuplicateUser = !userNames.every((userName) => userName.toLowerCase() !== name.toLowerCase());
+    this.props.setModalUserAccountData({ showDuplicateUser });
     const validCharacters = name.length === 0 || /^(\d|\w|-|_|\.){0,252}$/.test(name);
     this.props.setModalUserAccountData({ showInvalidName: !validCharacters });
   }
@@ -137,7 +135,7 @@ class UserAccount extends React.Component {
   }
 
   removeDiacritics(str) {
-    const translate_table = {
+    const translateTable = {
       a: "[àáâãäå]",
       ae: "æ",
       c: "[čç]",
@@ -153,19 +151,19 @@ class UserAccount extends React.Component {
       t: "ť",
       u: "[ùúůûűü]",
       y: "[ýÿ]",
-      z: "ž"
+      z: "ž",
     };
-    for (const i in translate_table) str = str.replace(new RegExp(translate_table[i], "g"), i);
+    for (const i in translateTable) str = str.replace(new RegExp(translateTable[i], "g"), i);
     for (let k = 0; k < str.length; ) {
       if (!this.isValidCharUsername(str[k])) str = str.substr(0, k) + str.substr(k + 1);
-      else k++;
+      else k += 1;
     }
     return str;
   }
 
   isValidCharUsername(c) {
     return (
-      (c >= "a" && c <= "z") || (c >= "A" && c <= "Z") || (c >= "0" && c <= "9") || c == "." || c == "_" || c == "-"
+      (c >= "a" && c <= "z") || (c >= "A" && c <= "Z") || (c >= "0" && c <= "9") || c === "." || c === "_" || c === "-"
     );
   }
 
@@ -174,8 +172,8 @@ class UserAccount extends React.Component {
     // then encrypt the password
     if (this.props.userAccount.password !== "") {
       this.encryptPassword(this.props.userAccount.password)
-        .then(res => this.props.handlePostUser(res))
-        .catch(ex => console.error("failed to encrypt password:", ex));
+        .then((res) => this.props.handlePostUser(res))
+        .catch((ex) => console.error("failed to encrypt password:", ex));
     } else {
       const password = this.state.currentUser ? this.state.currentUser.password : "";
       this.props.handlePostUser(password);
@@ -205,7 +203,7 @@ class UserAccount extends React.Component {
       <div
         className="modal fade"
         id="cmpsr-modal-user-account"
-        ref={c => {
+        ref={(c) => {
           this.modal = c;
         }}
         tabIndex="-1"
@@ -230,7 +228,7 @@ class UserAccount extends React.Component {
                   <FormattedMessage
                     defaultMessage="The fields marked with {val} are required."
                     values={{
-                      val: <span className="required-pf">*</span>
+                      val: <span className="required-pf">*</span>,
                     }}
                   />
                 </p>
@@ -244,7 +242,7 @@ class UserAccount extends React.Component {
                       id="textInput2-modal-user"
                       className="form-control"
                       value={userAccount.description}
-                      onChange={e => this.handleChange(e, "description")}
+                      onChange={(e) => this.handleChange(e, "description")}
                     />
                   </div>
                 </div>
@@ -263,7 +261,7 @@ class UserAccount extends React.Component {
                       className="form-control"
                       aria-describedby="textInput1-modal-user-help1 textInput1-modal-user-help2"
                       value={userAccount.name}
-                      onChange={e => this.handleChange(e, "name")}
+                      onChange={(e) => this.handleChange(e, "name")}
                       aria-required="true"
                       aria-invalid={userAccount.showDuplicateUser || userAccount.showInvalidName}
                     />
@@ -288,7 +286,7 @@ class UserAccount extends React.Component {
                       <input
                         type="checkbox"
                         checked={userAccount.groups.includes("wheel")}
-                        onChange={e => this.handleChange(e, "admin")}
+                        onChange={(e) => this.handleChange(e, "admin")}
                       />
                       <FormattedMessage defaultMessage="Server administrator" />
                     </label>
@@ -375,7 +373,7 @@ class UserAccount extends React.Component {
                       aria-describedby="textInput5-modal-user-help"
                       rows="8"
                       value={userAccount.key}
-                      onChange={e => this.handleChange(e, "key")}
+                      onChange={(e) => this.handleChange(e, "key")}
                     />
                     <span className="help-block" id="textInput5-modal-user-help">
                       {formatMessage(messages.sshKeyHelp)}
@@ -392,7 +390,7 @@ class UserAccount extends React.Component {
                 type="submit"
                 className="btn btn-primary"
                 disabled={disabledSubmit}
-                onClick={e => this.handleSubmitUserAccount(e)}
+                onClick={(e) => this.handleSubmitUserAccount(e)}
               >
                 {(userAccount.editUser !== "" && <FormattedMessage defaultMessage="Update" />) || (
                   <FormattedMessage defaultMessage="Create" />
@@ -419,29 +417,29 @@ UserAccount.propTypes = {
     dynamicName: PropTypes.bool,
     disabledSubmit: PropTypes.bool,
     visible: PropTypes.bool,
-    editUser: PropTypes.string
+    editUser: PropTypes.string,
   }),
   users: PropTypes.arrayOf(PropTypes.object),
   setModalUserAccountData: PropTypes.func,
   handlePostUser: PropTypes.func,
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
 };
 
 UserAccount.defaultProps = {
   userAccount: {},
   users: [],
-  setModalUserAccountData: function() {},
-  handlePostUser: function() {}
+  setModalUserAccountData() {},
+  handlePostUser() {},
 };
 
-const mapStateToProps = state => ({
-  userAccount: state.modals.userAccount
+const mapStateToProps = (state) => ({
+  userAccount: state.modals.userAccount,
 });
 
-const mapDispatchToProps = dispatch => ({
-  setModalUserAccountData: data => {
+const mapDispatchToProps = (dispatch) => ({
+  setModalUserAccountData: (data) => {
     dispatch(setModalUserAccountData(data));
-  }
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(UserAccount));

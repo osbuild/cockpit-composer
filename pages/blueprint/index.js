@@ -5,12 +5,7 @@ import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-i
 import cockpit from "cockpit"; // eslint-disable-line import/no-unresolved
 import PropTypes from "prop-types";
 import { Tab, Tabs } from "patternfly-react";
-import {
-  Table,
-  TableHeader,
-  TableBody,
-  TableVariant,
-} from '@patternfly/react-table';
+import { Table, TableHeader, TableBody, TableVariant } from "@patternfly/react-table";
 import { connect } from "react-redux";
 import Link from "../../components/Link/Link";
 import Layout from "../../components/Layout/Layout";
@@ -32,14 +27,14 @@ import {
   setBlueprintDescription,
   setBlueprintHostname,
   setBlueprintUsers,
-  fetchingCompDeps
+  fetchingCompDeps,
 } from "../../core/actions/blueprints";
 import {
   clearSelectedInput,
   setSelectedInput,
   setSelectedInputDeps,
   setSelectedInputParent,
-  fetchingDepDetails
+  fetchingDepDetails,
 } from "../../core/actions/inputs";
 import { fetchingComposes } from "../../core/actions/composes";
 import {
@@ -48,23 +43,23 @@ import {
   setModalStopBuildVisible,
   setModalStopBuildState,
   setModalDeleteImageVisible,
-  setModalDeleteImageState
+  setModalDeleteImageState,
 } from "../../core/actions/modals";
 import {
   setEditDescriptionVisible,
   setEditHostnameVisible,
-  setEditHostnameInvalid
+  setEditHostnameInvalid,
 } from "../../core/actions/blueprintPage";
 import {
   componentsSortSetKey,
   componentsSortSetValue,
   dependenciesSortSetKey,
-  dependenciesSortSetValue
+  dependenciesSortSetValue,
 } from "../../core/actions/sort";
 import {
   componentsFilterAddValue,
   componentsFilterRemoveValue,
-  componentsFilterClearValues
+  componentsFilterClearValues,
 } from "../../core/actions/filter";
 import {
   makeGetBlueprintById,
@@ -72,64 +67,64 @@ import {
   makeGetSortedDependencies,
   makeGetFilteredComponents,
   makeGetBlueprintComposes,
-  makeGetSelectedDeps
+  makeGetSelectedDeps,
 } from "../../core/selectors";
 
 import "./index.css";
 
 const messages = defineMessages({
   blueprint: {
-    defaultMessage: "Blueprint"
+    defaultMessage: "Blueprint",
   },
   emptyBlueprintTitle: {
-    defaultMessage: "Empty Blueprint"
+    defaultMessage: "Empty Blueprint",
   },
   emptyBlueprintMessage: {
-    defaultMessage: "There are no components listed in the blueprint. Edit the blueprint to add components."
+    defaultMessage: "There are no components listed in the blueprint. Edit the blueprint to add components.",
   },
   imagesTitle: {
-    defaultMessage: "Images"
+    defaultMessage: "Images",
   },
   noImagesTitle: {
-    defaultMessage: "No Images"
+    defaultMessage: "No Images",
   },
   noImagesMessage: {
-    defaultMessage: "No images have been created from this blueprint."
+    defaultMessage: "No images have been created from this blueprint.",
   },
   customizationsTitle: {
-    defaultMessage: "Customizations"
+    defaultMessage: "Customizations",
   },
   packagesTitle: {
-    defaultMessage: "Packages"
+    defaultMessage: "Packages",
   },
   descriptionButtonLabel: {
-    defaultMessage: "Edit description"
+    defaultMessage: "Edit description",
   },
   descriptionInputLabel: {
-    defaultMessage: "Description"
+    defaultMessage: "Description",
   },
   hostnameButtonLabel: {
-    defaultMessage: "Edit hostname"
+    defaultMessage: "Edit hostname",
   },
   hostnameInputLabel: {
-    defaultMessage: "Hostname"
+    defaultMessage: "Hostname",
   },
   hostnameHelp: {
     defaultMessage:
-      "Valid characters for hostname are letters from a to z, the digits from 0 to 9, and the hyphen (-). A hostname may not start with a hyphen."
+      "Valid characters for hostname are letters from a to z, the digits from 0 to 9, and the hyphen (-). A hostname may not start with a hyphen.",
   },
   hostnameHelpEmpty: {
-    defaultMessage: "If no hostname is provided, the hostname will be determined by the OS."
+    defaultMessage: "If no hostname is provided, the hostname will be determined by the OS.",
   },
   userEdit: {
-    defaultMessage: "Edit User Account"
+    defaultMessage: "Edit User Account",
   },
   userKebab: {
-    defaultMessage: "User Account Actions"
+    defaultMessage: "User Account Actions",
   },
   userDelete: {
-    defaultMessage: "Delete User Account"
-  }
+    defaultMessage: "Delete User Account",
+  },
 });
 
 class BlueprintPage extends React.Component {
@@ -198,21 +193,18 @@ class BlueprintPage extends React.Component {
 
   handleEditHostnameValue(value) {
     const validCharacters = value.length === 0 || /^(\d|\w|-|\.){0,252}$/.test(value);
-    const validElements = value.split(".").every(element => element.length < 63);
-    const invalid = !validCharacters || !validElements || value.startsWith("-") || value.endsWith(".") ? true : false;
+    const validElements = value.split(".").every((element) => element.length < 63);
+    const invalid = !!(!validCharacters || !validElements || value.startsWith("-") || value.endsWith("."));
     this.props.setEditHostnameInvalid(invalid);
   }
 
   handlePostUser(password) {
-    let user = Object.assign(
-      {},
-      {
-        name: this.props.userAccount.name
-      },
-      { ...(this.props.userAccount.description && { description: this.props.userAccount.description }) },
-      { ...(this.props.userAccount.key && { key: this.props.userAccount.key.trim() }) },
-      { ...(this.props.userAccount.groups.includes("wheel") && { groups: ["wheel"] }) }
-    );
+    const user = {
+      name: this.props.userAccount.name,
+      ...(this.props.userAccount.description && { description: this.props.userAccount.description }),
+      ...(this.props.userAccount.key && { key: this.props.userAccount.key.trim() }),
+      ...(this.props.userAccount.groups.includes("wheel") && { groups: ["wheel"] }),
+    };
     if (password) {
       password = password.trim();
       user.password = password;
@@ -222,7 +214,7 @@ class BlueprintPage extends React.Component {
       users = this.props.blueprint.customizations.user;
     }
     if (this.props.userAccount.editUser !== "") {
-      const userIndex = users.findIndex(user => user.name === this.props.userAccount.editUser);
+      const userIndex = users.findIndex((user) => user.name === this.props.userAccount.editUser);
       users = users
         .slice(0, userIndex)
         .concat([user])
@@ -235,7 +227,7 @@ class BlueprintPage extends React.Component {
   }
 
   handleDeleteUser(userName, e) {
-    const users = this.props.blueprint.customizations.user.filter(user => user.name !== userName);
+    const users = this.props.blueprint.customizations.user.filter((user) => user.name !== userName);
     this.props.setBlueprintUsers(this.props.blueprint.id, users);
     e.preventDefault();
     e.stopPropagation();
@@ -249,7 +241,7 @@ class BlueprintPage extends React.Component {
   }
 
   handleShowModalEditUser(e, user) {
-    const userInfo = Object.assign({}, user);
+    const userInfo = { ...user };
     userInfo.editUser = user.name;
     userInfo.disabledSubmit = false;
     userInfo.dynamicName = false;
@@ -279,7 +271,7 @@ class BlueprintPage extends React.Component {
         unix: "/run/weldr/api.socket",
         method: "GET",
         path: `/api/v0/compose/image/${compose.id}`,
-        superuser: "try"
+        superuser: "try",
       })
     );
 
@@ -303,7 +295,7 @@ class BlueprintPage extends React.Component {
       selectedInputDeps,
       setSelectedInput,
       setSelectedInputParent,
-      clearSelectedInput
+      clearSelectedInput,
     } = this.props;
     const { editHostnameVisible, editHostnameInvalid } = this.props.blueprintPage;
     const { formatMessage } = this.props.intl;
@@ -318,57 +310,64 @@ class BlueprintPage extends React.Component {
     const pathSuffix = cockpit.location.path[cockpit.location.path.length - 1];
     const activeKey = ["customizations", "packages", "images"].includes(pathSuffix) ? pathSuffix : undefined;
 
-    const rows = users.map(user => ({ props: { 'data-tr': user.name }, cells: [
-          user.description,
-          user.name,
-          { title: user.groups !== undefined && user.groups.includes("wheel") && <span className="fa fa-check" /> },
-          { title: user.password && <span className="fa fa-check" /> },
-          { title: (
-            user.key !== undefined && (
-              <span>
-                <span className="fa fa-check" />
-                {` `}
-                {user.key.split(" ")[2] || ""}
-              </span>
-            )
-          ) },
-        { title: (<div>
-            <button
-              className="btn btn-default"
-              type="button"
-              aria-label={`${formatMessage(messages.userEdit)} ${user.name}`}
-              onClick={e => this.handleShowModalEditUser(e, user)}
-              data-btn="edit"
-            >
-              <span className="pficon pficon-edit" />
-            </button>
-
-            <div className="dropdown btn-group dropdown-kebab-pf">
+    const rows = users.map((user) => ({
+      props: { "data-tr": user.name },
+      cells: [
+        user.description,
+        user.name,
+        { title: user.groups !== undefined && user.groups.includes("wheel") && <span className="fa fa-check" /> },
+        { title: user.password && <span className="fa fa-check" /> },
+        {
+          title: user.key !== undefined && (
+            <span>
+              <span className="fa fa-check" />
+              {` `}
+              {user.key.split(" ")[2] || ""}
+            </span>
+          ),
+        },
+        {
+          title: (
+            <div>
               <button
-                aria-label={`${formatMessage(messages.userKebab)} ${user.name}`}
-                className="btn btn-link dropdown-toggle"
+                className="btn btn-default"
                 type="button"
-                data-btn="more"
-                id="dropdownKebab"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
+                aria-label={`${formatMessage(messages.userEdit)} ${user.name}`}
+                onClick={(e) => this.handleShowModalEditUser(e, user)}
+                data-btn="edit"
               >
-                <span className="fa fa-ellipsis-v" />
+                <span className="pficon pficon-edit" />
               </button>
-              <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
-                <li>
-                  <a href="#" onClick={e => this.handleDeleteUser(user.name, e)}>
-                    {formatMessage(messages.userDelete)}
-                  </a>
-                </li>
-              </ul>
+
+              <div className="dropdown btn-group dropdown-kebab-pf">
+                <button
+                  aria-label={`${formatMessage(messages.userKebab)} ${user.name}`}
+                  className="btn btn-link dropdown-toggle"
+                  type="button"
+                  data-btn="more"
+                  id="dropdownKebab"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <span className="fa fa-ellipsis-v" />
+                </button>
+                <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
+                  <li>
+                    <a href="#" onClick={(e) => this.handleDeleteUser(user.name, e)}>
+                      {formatMessage(messages.userDelete)}
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
-        </div>) }
-    ]}));
+          ),
+        },
+      ],
+    }));
 
     return (
-      <Layout className="container-fluid" ref={c => (this.layout = c)}>
+      <Layout className="container-fluid" ref={(c) => (this.layout = c)}>
         <header className="cmpsr-header">
           <ol className="breadcrumb">
             <li>
@@ -432,7 +431,7 @@ class BlueprintPage extends React.Component {
         </header>
         <Tabs
           activeKey={activeKey}
-          onSelect={eventId => cockpit.location.go(["blueprint", blueprint.name, eventId])}
+          onSelect={(eventId) => cockpit.location.go(["blueprint", blueprint.name, eventId])}
           id="blueprint-tabs"
         >
           <Tab eventKey="customizations" title={formatMessage(messages.customizationsTitle)}>
@@ -465,10 +464,12 @@ class BlueprintPage extends React.Component {
                     <div className="col-sm-10">
                       {users !== undefined && users.length > 0 && (
                         <div>
-                            <Table variant={TableVariant.compact}
-                                   aria-label="Users List"
-                                   cells={["Full name", "User name", "Server administrator", "Password", "SSH key", "Actions"]}
-                                   rows={rows}>
+                          <Table
+                            variant={TableVariant.compact}
+                            aria-label="Users List"
+                            cells={["Full name", "User name", "Server administrator", "Password", "SSH key", "Actions"]}
+                            rows={rows}
+                          >
                             <TableHeader />
                             <TableBody />
                           </Table>
@@ -555,7 +556,7 @@ class BlueprintPage extends React.Component {
                 </EmptyState>
               )) || (
                 <ImagesDataList ariaLabel={formatMessage(messages.imagesTitle)}>
-                  {composeList.map(compose => (
+                  {composeList.map((compose) => (
                     <ListItemImages
                       blueprint={this.props.route.params.blueprint}
                       listItem={compose}
@@ -595,7 +596,7 @@ BlueprintPage.propTypes = {
     page: PropTypes.string,
     params: PropTypes.object,
     path: PropTypes.string,
-    pattern: PropTypes.object
+    pattern: PropTypes.object,
   }),
   fetchingBlueprintContents: PropTypes.func,
   fetchingCompDeps: PropTypes.func,
@@ -612,8 +613,8 @@ BlueprintPage.propTypes = {
     workspacePendingChanges: PropTypes.arrayOf(PropTypes.object),
     customizations: PropTypes.shape({
       hostname: PropTypes.string,
-      user: PropTypes.arrayOf(PropTypes.object)
-    })
+      user: PropTypes.arrayOf(PropTypes.object),
+    }),
   }),
   fetchingComposes: PropTypes.func,
   composesLoading: PropTypes.bool,
@@ -627,14 +628,14 @@ BlueprintPage.propTypes = {
   blueprintPage: PropTypes.shape({
     editDescriptionVisible: PropTypes.bool,
     editHostnameVisible: PropTypes.bool,
-    editHostnameInvalid: PropTypes.bool
+    editHostnameInvalid: PropTypes.bool,
   }),
   setBlueprintDescription: PropTypes.func,
   setBlueprintHostname: PropTypes.func,
   selectedInput: PropTypes.shape({
     set: PropTypes.bool,
     component: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    parent: PropTypes.arrayOf(PropTypes.object)
+    parent: PropTypes.arrayOf(PropTypes.object),
   }),
   selectedInputDeps: PropTypes.arrayOf(PropTypes.object),
   setSelectedInput: PropTypes.func,
@@ -644,16 +645,16 @@ BlueprintPage.propTypes = {
   stopBuild: PropTypes.shape({
     blueprintName: PropTypes.string,
     composeId: PropTypes.string,
-    visible: PropTypes.bool
+    visible: PropTypes.bool,
   }),
   deleteImage: PropTypes.shape({
     blueprintName: PropTypes.string,
     composeId: PropTypes.string,
-    visible: PropTypes.bool
+    visible: PropTypes.bool,
   }),
   CreateImageUpload: PropTypes.shape({
     blueprint: PropTypes.object,
-    visible: PropTypes.bool
+    visible: PropTypes.bool,
   }),
   userAccount: PropTypes.shape({
     name: PropTypes.string,
@@ -662,14 +663,14 @@ BlueprintPage.propTypes = {
     key: PropTypes.string,
     groups: PropTypes.arrayOf(PropTypes.string),
     visible: PropTypes.bool,
-    editUser: PropTypes.string
+    editUser: PropTypes.string,
   }),
   dependenciesSortSetValue: PropTypes.func,
   componentsSortSetValue: PropTypes.func,
   componentsFilters: PropTypes.shape({
     defaultFilterType: PropTypes.string,
     filterTypes: PropTypes.arrayOf(PropTypes.object),
-    filterValues: PropTypes.arrayOf(PropTypes.object)
+    filterValues: PropTypes.arrayOf(PropTypes.object),
   }),
   componentsFilterAddValue: PropTypes.func,
   componentsFilterRemoveValue: PropTypes.func,
@@ -686,55 +687,55 @@ BlueprintPage.propTypes = {
     message: PropTypes.string,
     options: PropTypes.object,
     problem: PropTypes.string,
-    url: PropTypes.string
+    url: PropTypes.string,
   }),
   blueprintContentsFetching: PropTypes.bool,
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
 };
 
 BlueprintPage.defaultProps = {
   route: {},
-  fetchingBlueprintContents: function() {},
+  fetchingBlueprintContents() {},
   blueprint: {},
-  fetchingComposes: function() {},
+  fetchingComposes() {},
   composesLoading: false,
   composeList: [],
-  setEditDescriptionVisible: function() {},
-  setEditHostnameVisible: function() {},
-  setEditHostnameInvalid: function() {},
-  setModalUserAccountVisible: function() {},
-  setModalUserAccountData: function() {},
-  setBlueprintUsers: function() {},
+  setEditDescriptionVisible() {},
+  setEditHostnameVisible() {},
+  setEditHostnameInvalid() {},
+  setModalUserAccountVisible() {},
+  setModalUserAccountData() {},
+  setBlueprintUsers() {},
   blueprintPage: {},
-  setBlueprintDescription: function() {},
-  setBlueprintHostname: function() {},
+  setBlueprintDescription() {},
+  setBlueprintHostname() {},
   stopBuild: {},
   deleteImage: {},
   CreateImageUpload: {},
   userAccount: {},
-  dependenciesSortSetValue: function() {},
-  componentsSortSetValue: function() {},
+  dependenciesSortSetValue() {},
+  componentsSortSetValue() {},
   componentsFilters: {},
-  componentsFilterAddValue: function() {},
-  componentsFilterRemoveValue: function() {},
-  componentsFilterClearValues: function() {},
+  componentsFilterAddValue() {},
+  componentsFilterRemoveValue() {},
+  componentsFilterClearValues() {},
   selectedComponents: [],
   dependencies: [],
   componentsSortKey: "",
   componentsSortValue: "",
-  fetchingCompDeps: function() {},
+  fetchingCompDeps() {},
   selectedInput: {},
   selectedInputDeps: undefined,
-  setSelectedInput: function() {},
-  clearSelectedInput: function() {},
-  setSelectedInputParent: function() {},
-  fetchingDepDetails: function() {},
-  setModalStopBuildVisible: function() {},
-  setModalStopBuildState: function() {},
-  setModalDeleteImageVisible: function() {},
-  setModalDeleteImageState: function() {},
+  setSelectedInput() {},
+  clearSelectedInput() {},
+  setSelectedInputParent() {},
+  fetchingDepDetails() {},
+  setModalStopBuildVisible() {},
+  setModalStopBuildState() {},
+  setModalDeleteImageVisible() {},
+  setModalDeleteImageState() {},
   blueprintContentsError: {},
-  blueprintContentsFetching: false
+  blueprintContentsFetching: false,
 };
 
 const makeMapStateToProps = () => {
@@ -767,8 +768,9 @@ const makeMapStateToProps = () => {
         componentsSortValue: state.sort.components.value,
         componentsFilters: state.filter.components,
         blueprintContentsError: fetchedBlueprint.errorState,
-        blueprintContentsFetching:
-          fetchedBlueprint.present.components === undefined && fetchedBlueprint.errorState === undefined ? true : false
+        blueprintContentsFetching: !!(
+          fetchedBlueprint.present.components === undefined && fetchedBlueprint.errorState === undefined
+        ),
       };
     }
     return {
@@ -784,14 +786,14 @@ const makeMapStateToProps = () => {
       componentsSortKey: state.sort.components.key,
       componentsSortValue: state.sort.components.value,
       componentsFilters: state.filter.components,
-      blueprintContentsError: {}
+      blueprintContentsError: {},
     };
   };
   return mapStateToProps;
 };
 
-const mapDispatchToProps = dispatch => ({
-  fetchingBlueprintContents: blueprintId => {
+const mapDispatchToProps = (dispatch) => ({
+  fetchingBlueprintContents: (blueprintId) => {
     dispatch(fetchingBlueprintContents(blueprintId));
   },
   fetchingComposes: () => {
@@ -800,70 +802,70 @@ const mapDispatchToProps = dispatch => ({
   setBlueprintDescription: (blueprint, description) => {
     dispatch(setBlueprintDescription(blueprint, description));
   },
-  setEditDescriptionVisible: visible => {
+  setEditDescriptionVisible: (visible) => {
     dispatch(setEditDescriptionVisible(visible));
   },
   setBlueprintHostname: (blueprint, hostname) => {
     dispatch(setBlueprintHostname(blueprint, hostname));
   },
-  setEditHostnameVisible: visible => {
+  setEditHostnameVisible: (visible) => {
     dispatch(setEditHostnameVisible(visible));
   },
-  setEditHostnameInvalid: invalid => {
+  setEditHostnameInvalid: (invalid) => {
     dispatch(setEditHostnameInvalid(invalid));
   },
   setBlueprintUsers: (blueprintId, users) => {
     dispatch(setBlueprintUsers(blueprintId, users));
   },
-  setSelectedInput: selectedInput => {
+  setSelectedInput: (selectedInput) => {
     dispatch(setSelectedInput(selectedInput));
   },
-  setSelectedInputDeps: dependencies => {
+  setSelectedInputDeps: (dependencies) => {
     dispatch(setSelectedInputDeps(dependencies));
   },
-  setSelectedInputParent: selectedInputParent => {
+  setSelectedInputParent: (selectedInputParent) => {
     dispatch(setSelectedInputParent(selectedInputParent));
   },
   clearSelectedInput: () => {
     dispatch(clearSelectedInput());
   },
-  setModalUserAccountVisible: visible => {
+  setModalUserAccountVisible: (visible) => {
     dispatch(setModalUserAccountVisible(visible));
   },
-  setModalUserAccountData: data => {
+  setModalUserAccountData: (data) => {
     dispatch(setModalUserAccountData(data));
   },
   setModalStopBuildState: (composeId, blueprintName) => {
     dispatch(setModalStopBuildState(composeId, blueprintName));
   },
-  setModalStopBuildVisible: visible => {
+  setModalStopBuildVisible: (visible) => {
     dispatch(setModalStopBuildVisible(visible));
   },
   setModalDeleteImageState: (composeId, blueprintName) => {
     dispatch(setModalDeleteImageState(composeId, blueprintName));
   },
-  setModalDeleteImageVisible: visible => {
+  setModalDeleteImageVisible: (visible) => {
     dispatch(setModalDeleteImageVisible(visible));
   },
-  componentsSortSetKey: key => {
+  componentsSortSetKey: (key) => {
     dispatch(componentsSortSetKey(key));
   },
-  componentsSortSetValue: value => {
+  componentsSortSetValue: (value) => {
     dispatch(componentsSortSetValue(value));
   },
-  dependenciesSortSetKey: key => {
+  dependenciesSortSetKey: (key) => {
     dispatch(dependenciesSortSetKey(key));
   },
-  dependenciesSortSetValue: value => {
+  dependenciesSortSetValue: (value) => {
     dispatch(dependenciesSortSetValue(value));
   },
-  componentsFilterAddValue: value => {
+  componentsFilterAddValue: (value) => {
     dispatch(componentsFilterAddValue(value));
   },
-  componentsFilterRemoveValue: value => {
+  componentsFilterRemoveValue: (value) => {
     dispatch(componentsFilterRemoveValue(value));
   },
-  componentsFilterClearValues: value => {
+  componentsFilterClearValues: (value) => {
     dispatch(componentsFilterClearValues(value));
   },
   fetchingCompDeps: (component, blueprintId) => {
@@ -871,7 +873,7 @@ const mapDispatchToProps = dispatch => ({
   },
   fetchingDepDetails: (component, blueprintId) => {
     dispatch(fetchingDepDetails(component, blueprintId));
-  }
+  },
 });
 
 export default connect(makeMapStateToProps, mapDispatchToProps)(injectIntl(BlueprintPage));

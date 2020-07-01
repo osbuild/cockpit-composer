@@ -1,5 +1,3 @@
-/* global $ */
-
 import React from "react";
 import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
 import PropTypes from "prop-types";
@@ -12,28 +10,28 @@ const messages = defineMessages({
     defaultMessage:
       "Changes made in a previous session are not listed " +
       "in the order they were made. If you choose to undo these " +
-      "changes, they are undone as a group."
+      "changes, they are undone as a group.",
   },
   blueprint: {
-    defaultMessage: "Blueprint"
+    defaultMessage: "Blueprint",
   },
   closeButtonLabel: {
-    defaultMessage: "Close"
+    defaultMessage: "Close",
   },
   commitButtonLabel: {
-    defaultMessage: "Commit"
+    defaultMessage: "Commit",
   },
   parenthetical: {
     defaultMessage: "(most recent first)",
-    description: "Describes the sort order of the pending changes"
-  }
+    description: "Describes the sort order of the pending changes",
+  },
 });
 
 class PendingChanges extends React.Component {
   constructor() {
     super();
     this.state = {
-      comment: ""
+      comment: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleCommitChanges = this.handleCommitChanges.bind(this);
@@ -60,7 +58,7 @@ class PendingChanges extends React.Component {
       <div
         className="modal fade"
         id="cmpsr-modal-pending-changes"
-        ref={c => {
+        ref={(c) => {
           this.modal = c;
         }}
         tabIndex="-1"
@@ -100,7 +98,7 @@ class PendingChanges extends React.Component {
                       className="form-control"
                       rows="1"
                       value={this.state.comment}
-                      onChange={e => this.handleChange(e)}
+                      onChange={(e) => this.handleChange(e)}
                       onBlur={() => this.props.setBlueprintComment(this.props.blueprint, this.state.comment)}
                     />
                   </div>
@@ -118,11 +116,11 @@ class PendingChanges extends React.Component {
                       defaultMessage="{heading} {parenthetical}"
                       values={{
                         heading: <FormattedMessage defaultMessage="Pending Changes" tagName="strong" />,
-                        parenthetical: <span className="text-muted"> {formatMessage(messages.parenthetical)}</span>
+                        parenthetical: <span className="text-muted"> {formatMessage(messages.parenthetical)}</span>,
                       }}
                     />
                     <ul className="list-group">
-                      {this.props.blueprint.localPendingChanges.map(componentUpdated => (
+                      {this.props.blueprint.localPendingChanges.map((componentUpdated) => (
                         <li
                           className="list-group-item"
                           key={
@@ -155,7 +153,7 @@ class PendingChanges extends React.Component {
                                           <FormattedMessage defaultMessage="to" />{" "}
                                         </span>
                                       ),
-                                      newVersion: componentUpdated.componentNew
+                                      newVersion: componentUpdated.componentNew,
                                     }}
                                   />
                                 </strong>
@@ -211,7 +209,7 @@ class PendingChanges extends React.Component {
                       </Button>
                     </OverlayTrigger>
                     <ul className="list-group">
-                      {this.props.blueprint.workspacePendingChanges.map(change => (
+                      {this.props.blueprint.workspacePendingChanges.map((change) => (
                         <li
                           className="list-group-item"
                           key={!change.componentNew ? change.componentOld.name : change.componentNew.name}
@@ -240,7 +238,7 @@ class PendingChanges extends React.Component {
                                           <FormattedMessage defaultMessage="to" />{" "}
                                         </span>
                                       ),
-                                      newVersion: `${change.componentNew.name}-${change.componentNew.version}`
+                                      newVersion: `${change.componentNew.name}-${change.componentNew.version}`,
                                     }}
                                   />
                                 </strong>
@@ -311,29 +309,29 @@ PendingChanges.propTypes = {
     packages: PropTypes.arrayOf(PropTypes.object),
     version: PropTypes.string,
     workspacePendingChanges: PropTypes.arrayOf(PropTypes.object),
-    comment: PropTypes.string
+    comment: PropTypes.string,
   }),
   handleHideModal: PropTypes.func,
   setBlueprintComment: PropTypes.func,
   handleCommit: PropTypes.func,
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
 };
 
 PendingChanges.defaultProps = {
   blueprint: {},
-  handleHideModal: function() {},
-  setBlueprintComment: function() {},
-  handleCommit: function() {}
+  handleHideModal() {},
+  setBlueprintComment() {},
+  handleCommit() {},
 };
 
-const mapStateToProps = state => ({
-  modals: state.modals
+const mapStateToProps = (state) => ({
+  modals: state.modals,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   setBlueprintComment: (blueprint, comment) => {
     dispatch(setBlueprintComment(blueprint, comment));
-  }
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(PendingChanges));

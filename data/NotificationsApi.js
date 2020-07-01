@@ -18,7 +18,7 @@ class NotificationsApi {
   closeNotification(id, label) {
     let index = id;
     if (index === undefined) {
-      for (let i = 0; i < this.notifications.length; i++) {
+      for (let i = 0; i < this.notifications.length; i += 1) {
         if (this.notifications[i].label === label) {
           index = i;
         }
@@ -42,13 +42,13 @@ class NotificationsApi {
                 defaultMessage="{blueprint} Image creation has been added to the {queue}."
                 values={{
                   blueprint: <strong>{blueprint}:</strong>,
-                  queue: <a href={"#blueprint/" + blueprint + "/images"}>queue</a>
+                  queue: <a href={`#blueprint/${blueprint}/images`}>queue</a>,
                 }}
               />
             </span>
           ),
           dismiss: true,
-          fade: true
+          fade: true,
         };
         break;
       }
@@ -61,13 +61,13 @@ class NotificationsApi {
               <FormattedMessage
                 defaultMessage="{blueprint} Image creation has started."
                 values={{
-                  blueprint: <strong>{blueprint}:</strong>
+                  blueprint: <strong>{blueprint}:</strong>,
                 }}
               />
             </span>
           ),
           dismiss: true,
-          fade: true
+          fade: true,
         };
         break;
       }
@@ -80,13 +80,13 @@ class NotificationsApi {
               <FormattedMessage
                 defaultMessage="{blueprint} Image creation is complete."
                 values={{
-                  blueprint: <strong>{blueprint}:</strong>
+                  blueprint: <strong>{blueprint}:</strong>,
                 }}
               />
             </span>
           ),
           dismiss: true,
-          fade: true
+          fade: true,
         };
         break;
       }
@@ -99,13 +99,13 @@ class NotificationsApi {
               <FormattedMessage
                 defaultMessage="{blueprint} Image creation failed."
                 values={{
-                  blueprint: <strong>{blueprint}:</strong>
+                  blueprint: <strong>{blueprint}:</strong>,
                 }}
               />
             </span>
           ),
           dismiss: true,
-          fade: true
+          fade: true,
         };
         break;
       }
@@ -119,12 +119,12 @@ class NotificationsApi {
               <FormattedMessage
                 defaultMessage="{blueprint} Committing blueprint."
                 values={{
-                  blueprint: <strong>{blueprint}:</strong>
+                  blueprint: <strong>{blueprint}:</strong>,
                 }}
               />
             </span>
           ),
-          dismiss: true
+          dismiss: true,
         };
         break;
       }
@@ -138,13 +138,13 @@ class NotificationsApi {
               <FormattedMessage
                 defaultMessage="{blueprint} Blueprint changes are committed."
                 values={{
-                  blueprint: <strong>{blueprint}:</strong>
+                  blueprint: <strong>{blueprint}:</strong>,
                 }}
               />
             </span>
           ),
           dismiss: true,
-          fade: true
+          fade: true,
         };
         break;
       }
@@ -157,12 +157,12 @@ class NotificationsApi {
               <FormattedMessage
                 defaultMessage="{blueprint} Commit failed."
                 values={{
-                  blueprint: <strong>{blueprint}:</strong>
+                  blueprint: <strong>{blueprint}:</strong>,
                 }}
               />
             </span>
           ),
-          dismiss: true
+          dismiss: true,
         };
         break;
       }

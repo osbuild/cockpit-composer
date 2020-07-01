@@ -9,7 +9,7 @@ class ExportBlueprint extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showModal: false
+      showModal: false,
     };
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
@@ -39,7 +39,7 @@ class ExportBlueprint extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
+      <>
         <a href="#" onClick={this.open}>
           <FormattedMessage defaultMessage="Export" />
         </a>
@@ -81,21 +81,21 @@ class ExportBlueprint extends React.Component {
                     <textarea
                       readOnly
                       id="textInput2-modal-markup"
-                      ref={c => {
+                      ref={(c) => {
                         this.blueprint_contents_text = c;
                       }}
                       className="form-control"
                       rows="10"
                       value={this.props.blueprint.components
-                        .map(comp => `${comp.name}-${comp.version}-${comp.release}`)
+                        .map((comp) => `${comp.name}-${comp.version}-${comp.release}`)
                         .join("\n")}
-                      onKeyPress={e => this.handleEnterKey(e)}
+                      onKeyPress={(e) => this.handleEnterKey(e)}
                     />
                     <p>
                       <FormattedMessage
                         defaultMessage="{count} total components"
                         values={{
-                          count: this.props.blueprint.components.length
+                          count: this.props.blueprint.components.length,
                         }}
                       />
                     </p>
@@ -117,7 +117,7 @@ class ExportBlueprint extends React.Component {
             </button>
           </Modal.Footer>
         </Modal>
-      </React.Fragment>
+      </>
     );
   }
 }
@@ -126,21 +126,21 @@ ExportBlueprint.propTypes = {
   fetchingBlueprintContents: PropTypes.func,
   blueprint: PropTypes.shape({
     name: PropTypes.string,
-    components: PropTypes.arrayOf(PropTypes.object)
-  })
+    components: PropTypes.arrayOf(PropTypes.object),
+  }),
 };
 
 ExportBlueprint.defaultProps = {
-  fetchingBlueprintContents: function() {},
-  blueprint: {}
+  fetchingBlueprintContents() {},
+  blueprint: {},
 };
 
 const mapStateToProps = () => ({});
 
-const mapDispatchToProps = dispatch => ({
-  fetchingBlueprintContents: blueprint => {
+const mapDispatchToProps = (dispatch) => ({
+  fetchingBlueprintContents: (blueprint) => {
     dispatch(fetchingBlueprintContents(blueprint));
-  }
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExportBlueprint);

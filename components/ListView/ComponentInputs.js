@@ -9,23 +9,23 @@ import {
   DataListCell,
   DataListItemCells,
   Tooltip,
-  TooltipPosition
+  TooltipPosition,
 } from "@patternfly/react-core";
 import ComponentTypeIcons from "./ComponentTypeIcons";
 
 const messages = defineMessages({
   hideDetails: {
-    defaultMessage: "Hide Details"
+    defaultMessage: "Hide Details",
   },
   showDetails: {
-    defaultMessage: "Show Details and More Options"
+    defaultMessage: "Show Details and More Options",
   },
   addComponent: {
-    defaultMessage: "Add latest version"
+    defaultMessage: "Add latest version",
   },
   removeComponent: {
-    defaultMessage: "Remove Component from Blueprint"
-  }
+    defaultMessage: "Remove Component from Blueprint",
+  },
 });
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -36,7 +36,7 @@ class ComponentInputs extends React.Component {
 
     return (
       <DataList aria-label={label} data-list="inputs" className="cc-m-compact">
-        {components.map(component => (
+        {components.map((component) => (
           <DataListItem
             key={shortid.generate()}
             aria-labelledby={`${component.name}-input`}
@@ -61,7 +61,7 @@ class ComponentInputs extends React.Component {
                           component.active ? formatMessage(messages.hideDetails) : formatMessage(messages.showDetails)
                         }
                       >
-                        <a href="#" onClick={e => this.props.handleComponentDetails(e, component)}>
+                        <a href="#" onClick={(e) => this.props.handleComponentDetails(e, component)}>
                           <strong id={`${component.name}-input`} data-input-name>
                             {component.name}
                           </strong>
@@ -69,7 +69,7 @@ class ComponentInputs extends React.Component {
                       </Tooltip>
                     </div>
                     <div data-input-description>{component.summary}</div>
-                  </DataListCell>
+                  </DataListCell>,
                 ]}
               />
               <div className="pf-c-data-list__item-action">
@@ -78,7 +78,7 @@ class ComponentInputs extends React.Component {
                     <a
                       href="#"
                       className="btn btn-link"
-                      onClick={e => this.props.handleRemoveComponent(e, component.name)}
+                      onClick={(e) => this.props.handleRemoveComponent(e, component.name)}
                     >
                       <span className="fa fa-minus" />
                     </a>
@@ -96,7 +96,7 @@ class ComponentInputs extends React.Component {
                     <a
                       href="#"
                       className="btn btn-link"
-                      onClick={e => this.props.handleAddComponent(e, component, "*")}
+                      onClick={(e) => this.props.handleAddComponent(e, component, "*")}
                     >
                       <span className="fa fa-plus" />
                     </a>
@@ -117,15 +117,15 @@ ComponentInputs.propTypes = {
   handleComponentDetails: PropTypes.func,
   handleAddComponent: PropTypes.func,
   handleRemoveComponent: PropTypes.func,
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
 };
 
 ComponentInputs.defaultProps = {
   components: [],
   label: "",
-  handleComponentDetails: function() {},
-  handleAddComponent: function() {},
-  handleRemoveComponent: function() {}
+  handleComponentDetails() {},
+  handleAddComponent() {},
+  handleRemoveComponent() {},
 };
 
 export default injectIntl(ComponentInputs);

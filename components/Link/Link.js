@@ -33,14 +33,14 @@ class Link extends React.Component {
     } else {
       history.push({
         pathname: event.currentTarget.pathname,
-        search: event.currentTarget.search
+        search: event.currentTarget.search,
       });
     }
   }
 
   render() {
     const { to, children } = this.props;
-    var propsWithoutTo = Object.assign({}, this.props);
+    const propsWithoutTo = { ...this.props };
     delete propsWithoutTo.to;
     return (
       <a href={history.createHref(to)} {...propsWithoutTo} onClick={this.handleClick}>
@@ -53,11 +53,11 @@ class Link extends React.Component {
 Link.propTypes = {
   to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   onClick: PropTypes.func,
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
 };
 
 Link.defaultProps = {
-  onClick: function() {}
+  onClick() {},
 };
 
 export default Link;
