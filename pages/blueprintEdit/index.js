@@ -2,6 +2,7 @@ import React from "react";
 import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Pagination, TextInput } from "@patternfly/react-core";
 import Link from "../../components/Link/Link";
 import Layout from "../../components/Layout/Layout";
 import BlueprintContents from "../../components/ListView/BlueprintContents";
@@ -11,7 +12,6 @@ import CreateImageUpload from "../../components/Wizard/CreateImageUpload";
 import ExportBlueprint from "../../components/Modal/ExportBlueprint";
 import PendingChanges from "../../components/Modal/PendingChanges";
 import EmptyState from "../../components/EmptyState/EmptyState";
-import Pagination from "../../components/Pagination/Pagination";
 import Loading from "../../components/Loading/Loading";
 import BlueprintToolbar from "../../components/Toolbar/BlueprintToolbar";
 import BlueprintApi from "../../data/BlueprintApi";
@@ -96,9 +96,12 @@ const messages = defineMessages({
 class EditBlueprintPage extends React.Component {
   constructor() {
     super();
+    this.state = {
+      page: 1,
+      pageSize: 50,
+    };
     this.setNotifications = this.setNotifications.bind(this);
     this.handleCommit = this.handleCommit.bind(this);
-    this.handlePagination = this.handlePagination.bind(this);
     this.handleAddComponent = this.handleAddComponent.bind(this);
     this.handleUpdateComponent = this.handleUpdateComponent.bind(this);
     this.handleRemoveComponent = this.handleRemoveComponent.bind(this);
@@ -109,6 +112,8 @@ class EditBlueprintPage extends React.Component {
     this.handleShowModal = this.handleShowModal.bind(this);
     this.handleDiscardChanges = this.handleDiscardChanges.bind(this);
     this.handleUndo = this.handleUndo.bind(this);
+    this.handleSetPage = this.handleSetPage.bind(this);
+    this.handlePageSizeSelect = this.handlePageSizeSelect.bind(this);
   }
 
   componentDidMount() {
@@ -117,15 +122,30 @@ class EditBlueprintPage extends React.Component {
     // get blueprint, get inputs; then update inputs
     if (this.props.blueprint.components === undefined) {
       this.props.fetchingBlueprintContents(this.props.route.params.blueprint.replace(/\s/g, "-"));
-      this.props.fetchingInputs(this.props.inputs.inputFilters, 0, 50);
-    } else {
-      this.props.fetchingInputs(this.props.inputs.inputFilters, 0, 50);
     }
+    this.props.fetchingInputs(this.props.inputs.inputFilters, this.state.page, this.state.pageSize);
   }
 
   componentWillUnmount() {
     this.props.deleteFilter();
     this.props.clearSelectedInput();
+  }
+
+  setNotifications() {
+    this.layout.setNotifications();
+  }
+
+  getFilteredInputs(event) {
+    if (event.which === 13 || event.keyCode === 13) {
+      const filter = {
+        field: "name",
+        value: event.target.value,
+      };
+      this.props.fetchingInputs(filter, 1, this.state.pageSize);
+      this.props.setSelectedInputPage(0);
+      $("#cmpsr-blueprint-input-filter").blur();
+      event.preventDefault();
+    }
   }
 
   handleClearFilters(event) {
@@ -134,36 +154,27 @@ class EditBlueprintPage extends React.Component {
       value: "",
     };
     this.props.deleteFilter();
-    this.props.fetchingInputs(filter, 0, this.props.inputs.pageSize);
+    this.props.fetchingInputs(filter, 1, this.state.pageSize);
     $("#cmpsr-blueprint-input-filter").val("");
     event.preventDefault();
     event.stopPropagation();
   }
 
-  handlePagination(event) {
-    // the event target knows what page to get
-    // the event target can either be the paging buttons on the page input
-    let page;
-
-    if (event.currentTarget.localName === "a") {
-      page = parseFloat(event.currentTarget.getAttribute("data-page"));
-      event.preventDefault();
-      event.stopPropagation();
-    } else if (event.which === 13 || event.keyCode === 13) {
-      page = parseFloat(event.currentTarget.value) - 1;
-      event.preventDefault();
-      event.stopPropagation();
-    } else {
-      return; // don't continue if keypress was not the Enter key
-    }
-    // if the data already exists, just update the selected page number and
-    // the DOM will automatically reload
+  handleSetPage(_event, page) {
+    this.setState({
+      page,
+    });
     this.props.setSelectedInputPage(page);
     const filter = this.props.inputs.inputFilters;
-    // check if filters are set to determine current input set
-    if (this.props.inputComponents.slice(0)[page].length === 0) {
-      this.props.fetchingInputs(filter, page, this.props.inputs.pageSize);
-    }
+    this.props.fetchingInputs(filter, page, this.state.pageSize);
+  }
+
+  handlePageSizeSelect(_event, pageSize) {
+    this.setState({
+      pageSize,
+    });
+    const filter = this.props.inputs.inputFilters;
+    this.props.fetchingInputs(filter, this.state.page, pageSize);
   }
 
   handleCommit() {
@@ -572,17 +583,24 @@ class EditBlueprintPage extends React.Component {
         {(inputComponents !== undefined && blueprint.components !== undefined && blueprint.packages !== undefined && (
           <div className="cmpsr-panel__body cmpsr-panel__body--sidebar">
             <div className="toolbar-pf">
-              <form className="toolbar-pf-actions">
-                <div className="form-group toolbar-pf-filter">
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="cmpsr-blueprint-input-filter"
-                    aria-label={formatMessage(messages.filterByLabel)}
-                    placeholder={formatMessage(messages.filterByPlaceholder)}
-                    onKeyPress={(e) => this.getFilteredInputs(e)}
-                  />
-                </div>
+              <form className="toolbar-pf-actions pf-l-flex">
+                <TextInput
+                  className="pf-m-flex-1"
+                  type="text"
+                  id="cmpsr-blueprint-input-filter"
+                  aria-label={formatMessage(messages.filterByLabel)}
+                  placeholder={formatMessage(messages.filterByPlaceholder)}
+                  onKeyPress={(e) => this.getFilteredInputs(e)}
+                />
+                <Pagination
+                  className="pf-m-flex-2"
+                  itemCount={inputs.totalInputs}
+                  perPage={this.state.pageSize}
+                  page={this.state.page}
+                  onSetPage={this.handleSetPage}
+                  onPerPageSelect={this.handlePageSizeSelect}
+                  isCompact
+                />
               </form>
               <div className="toolbar-pf-results">
                 {inputs.inputFilters !== undefined && inputs.inputFilters.value.length > 0 && (
@@ -606,15 +624,6 @@ class EditBlueprintPage extends React.Component {
                       </a>
                     </li>
                   </ul>
-                )}
-                {inputs.totalInputs > 0 && (
-                  <Pagination
-                    cssClass="cmpsr-blueprint__inputs__pagination"
-                    currentPage={inputs.selectedInputPage}
-                    totalItems={inputs.totalInputs}
-                    pageSize={inputs.pageSize}
-                    handlePagination={this.handlePagination}
-                  />
                 )}
               </div>
             </div>

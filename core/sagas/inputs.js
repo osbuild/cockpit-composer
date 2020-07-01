@@ -42,7 +42,9 @@ function* fetchInputs(action) {
   try {
     const { filter, selectedInputPage, pageSize } = action.payload;
     const filterValue = `*${filter.value}*`.replace("**", "*");
-    const response = yield call(composer.listModules, filterValue, selectedInputPage, pageSize);
+    // page is displayed in UI starting from 1 but api starts from 0
+    const pageIndex = selectedInputPage - 1;
+    const response = yield call(composer.listModules, filterValue, pageIndex, pageSize);
     const { total } = response;
     const inputNames = response.modules.map((input) => input.name).join(",");
     const inputs = yield call(composer.getComponentInfo, inputNames);
@@ -198,7 +200,7 @@ function* fetchDepDetails(action) {
 }
 
 export default function* () {
-  yield takeEvery(FETCHING_INPUTS, fetchInputs);
+  yield takeLatest(FETCHING_INPUTS, fetchInputs);
   yield takeLatest(FETCHING_INPUT_DETAILS, fetchInputDetails);
   yield takeLatest(FETCHING_INPUT_DEPS, fetchInputDeps);
   yield takeEvery(FETCHING_DEP_DETAILS, fetchDepDetails);
