@@ -4,27 +4,27 @@ const providerSettings = {
       accessKeyID: {
         displayText: "AWS access key ID",
         helperText: "",
-        isPassword: true
+        isPassword: true,
       },
       secretAccessKey: {
         displayText: "AWS secret access key",
         helperText: "",
-        isPassword: true
+        isPassword: true,
       },
       region: {
         displayText: "AWS region",
         helperText: "",
-        isPassword: false
-      }
+        isPassword: false,
+      },
     },
     settings: {
       bucket: {
         displayText: "Amazon S3 bucket name",
         helperText: "",
-        isPassword: false
-      }
-    }
-  }
+        isPassword: false,
+      },
+    },
+  },
 };
 
 export default providerSettings;

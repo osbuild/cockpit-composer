@@ -18,13 +18,13 @@ import {
   Title,
   Wizard,
   WizardContextConsumer,
-  WizardFooter
+  WizardFooter,
 } from "@patternfly/react-core";
 import {
   OutlinedQuestionCircleIcon,
   ExclamationTriangleIcon,
   ExclamationCircleIcon,
-  ExternalLinkSquareAltIcon
+  ExternalLinkSquareAltIcon,
 } from "@patternfly/react-icons";
 import { defineMessages, FormattedMessage, injectIntl, intlShape } from "react-intl";
 import PropTypes from "prop-types";
@@ -36,133 +36,133 @@ import { fetchingQueue, clearQueue, startCompose, fetchingComposeTypes } from ".
 
 const messages = defineMessages({
   accessKeys: {
-    defaultMessage: "Access keys"
+    defaultMessage: "Access keys",
   },
   blobService: {
-    defaultMessage: "Blob service"
+    defaultMessage: "Blob service",
   },
   imageSizePopover: {
     defaultMessage:
       "Set the size that you want the image to be when instantiated. " +
-      "The total package size and target destination of your image should be considered when setting the image size."
+      "The total package size and target destination of your image should be considered when setting the image size.",
   },
   infotip: {
-    defaultMessage: "This process can take a while. " + "Images are built in the order they are started."
+    defaultMessage: "This process can take a while. " + "Images are built in the order they are started.",
   },
   warningUnsaved: {
     defaultMessage:
       "This blueprint has changes that are not committed. " +
-      "These changes will be committed before the image is created."
+      "These changes will be committed before the image is created.",
   },
   warningEmptyBlueprint: {
     id: "empty-blueprint-alert",
-    defaultMessage: "This blueprint is empty."
+    defaultMessage: "This blueprint is empty.",
   },
   warningEmptyBlueprintDesc: {
-    defaultMessage: "A minimal image will be created with only the packages needed to support the selected image type."
+    defaultMessage: "A minimal image will be created with only the packages needed to support the selected image type.",
   },
   warningReview: {
-    defaultMessage: "There are one or more fields that require your attention."
+    defaultMessage: "There are one or more fields that require your attention.",
   },
   selectOne: {
-    defaultMessage: "Select one"
+    defaultMessage: "Select one",
   },
   storageAccounts: {
-    defaultMessage: "Storage accounts"
+    defaultMessage: "Storage accounts",
   },
   title: {
-    defaultMessage: "Create image"
+    defaultMessage: "Create image",
   },
   review: {
     defaultMessage:
-      "Review the information below and click Finish to create the image and complete the tasks that were selected. "
+      "Review the information below and click Finish to create the image and complete the tasks that were selected. ",
   },
   warningSizeSmall: {
-    defaultMessage: "Minimum size is {size} GB."
+    defaultMessage: "Minimum size is {size} GB.",
   },
   warningSizeLarge: {
     defaultMessage:
-      "The size specified is large. We recommend that you check whether your target destination has any restrictions on image size."
+      "The size specified is large. We recommend that you check whether your target destination has any restrictions on image size.",
   },
   warningSizeEmpty: {
-    defaultMessage: "A value is required."
+    defaultMessage: "A value is required.",
   },
   uploadAWS: {
-    defaultMessage: "Upload to AWS"
+    defaultMessage: "Upload to AWS",
   },
   uploadAzure: {
-    defaultMessage: "Upload to Azure"
-  }
+    defaultMessage: "Upload to Azure",
+  },
 });
 
 const ariaLabels = defineMessages({
   uploadImage: {
     id: "upload-image-help",
-    defaultMessage: "Upload image help"
+    defaultMessage: "Upload image help",
   },
   processLength: {
     id: "provess-length-help",
-    defaultMessage: "Process length help"
+    defaultMessage: "Process length help",
   },
   imageSize: {
     id: "image-size-help",
-    defaultMessage: "Image size help"
+    defaultMessage: "Image size help",
   },
   accessKeyID: {
     id: "access-key-id-help",
-    defaultMessage: "Access key ID help"
+    defaultMessage: "Access key ID help",
   },
   secretAccessKey: {
     id: "secret-access-key-help",
-    defaultMessage: "Secret access key help"
+    defaultMessage: "Secret access key help",
   },
   imageName: {
     id: "image-name-help",
-    defaultMessage: "Image name help"
+    defaultMessage: "Image name help",
   },
   bucket: {
     id: "bucket-help",
-    defaultMessage: "S3 Bucket help"
+    defaultMessage: "S3 Bucket help",
   },
   region: {
     id: "region-help",
-    defaultMessage: "AWS region help"
+    defaultMessage: "AWS region help",
   },
   aws: {
     id: "aws-help",
-    defaultMessage: "AWS help"
+    defaultMessage: "AWS help",
   },
   storageAccount: {
     id: "storage-account-help",
-    defaultMessage: "Storage account help"
+    defaultMessage: "Storage account help",
   },
   storageAccessKey: {
     id: "storage-access-key-help",
-    defaultMessage: "Storage access key help"
+    defaultMessage: "Storage access key help",
   },
   storageContainer: {
     id: "storage-container-help",
-    defaultMessage: "storage container help"
+    defaultMessage: "storage container help",
   },
   azure: {
     id: "azure-help",
-    defaultMessage: "Azure help"
+    defaultMessage: "Azure help",
   },
   ostreeParent: {
     id: "ostree-parent-help",
-    defaultMessage: "OSTree parent help"
+    defaultMessage: "OSTree parent help",
   },
   ostreeRef: {
     id: "ostree-ref-help",
-    defaultMessage: "OSTree ref help"
-  }
+    defaultMessage: "OSTree ref help",
+  },
 });
 
 class CreateImageUpload extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isOpen: false
+      isOpen: false,
     };
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
@@ -178,12 +178,12 @@ class CreateImageUpload extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
+      <>
         <Button id="create-image-button" variant="secondary" onClick={this.open}>
           <FormattedMessage defaultMessage="Create image" />
         </Button>
         {this.state.isOpen && <CreateImageUploadModal {...this.props} close={this.close} isOpen={this.state.isOpen} />}
-      </React.Fragment>
+      </>
     );
   }
 }
@@ -199,13 +199,13 @@ class CreateImageUploadModal extends React.Component {
       maxImageSize: 2000,
       ostreeSettings: {
         parent: undefined,
-        ref: undefined
+        ref: undefined,
       },
       showUploadAwsStep: false,
       showUploadAzureStep: false,
       showReviewStep: false,
       uploadService: "",
-      uploadSettings: {}
+      uploadSettings: {},
     };
     this.disableCreateButton = this.disableCreateButton.bind(this);
     this.getDefaultImageSize = this.getDefaultImageSize.bind(this);
@@ -243,11 +243,11 @@ class CreateImageUploadModal extends React.Component {
   getDefaultImageSize(imageType) {
     if (imageType === "ami") {
       return 6;
-    } else if (imageType === undefined) {
-      return null;
-    } else {
-      return 2;
     }
+    if (imageType === undefined) {
+      return null;
+    }
+    return 2;
   }
 
   setNotifications() {
@@ -256,28 +256,28 @@ class CreateImageUploadModal extends React.Component {
 
   setUploadSettings(_, event) {
     const key = event.target.name;
-    const value = event.target.value;
-    this.setState(prevState => ({ uploadSettings: Object.assign({}, prevState.uploadSettings, { [key]: value }) }));
+    const { value } = event.target;
+    this.setState((prevState) => ({ uploadSettings: { ...prevState.uploadSettings, [key]: value } }));
   }
 
   setImageSize(value) {
     this.setState({
-      imageSize: value
+      imageSize: value,
     });
   }
 
   setImageName(value) {
     this.setState({
-      imageName: value
+      imageName: value,
     });
   }
 
   setOstreeParent(value) {
-    this.setState(prevState => ({ ostreeSettings: Object.assign({}, prevState.ostreeSettings, { parent: value }) }));
+    this.setState((prevState) => ({ ostreeSettings: { ...prevState.ostreeSettings, parent: value } }));
   }
 
   setOstreeRef(value) {
-    this.setState(prevState => ({ ostreeSettings: Object.assign({}, prevState.ostreeSettings, { ref: value }) }));
+    this.setState((prevState) => ({ ostreeSettings: { ...prevState.ostreeSettings, ref: value } }));
   }
 
   setImageType(imageType) {
@@ -289,13 +289,13 @@ class CreateImageUploadModal extends React.Component {
       minImageSize: defaultImageSize,
       ostreeSettings: {
         parent: undefined,
-        ref: undefined
+        ref: undefined,
       },
       uploadService: "",
       uploadSettings: {},
       showUploadAwsStep: false,
       showUploadAzureStep: false,
-      showReviewStep: false
+      showReviewStep: false,
     });
   }
 
@@ -308,37 +308,39 @@ class CreateImageUploadModal extends React.Component {
   isValidImageSize() {
     if (this.state.imageSize < this.state.minImageSize && this.state.imageSize !== "") {
       return false;
-    } else {
-      return true;
     }
+    return true;
   }
 
   requiresImageSize(imageType) {
-    if (imageType == "fedora-iot-commit" || imageType == "rhel-edge-commit") {
+    if (imageType === "fedora-iot-commit" || imageType === "rhel-edge-commit") {
       return false;
-    } else {
-      return true;
-    } 
+    }
+    return true;
   }
 
   disableCreateButton(activeStep) {
     if (this.state.imageType === "") {
       return true;
-    } else if (this.requiresImageSize(this.state.imageType) && (this.state.imageSize === "" || (!this.isValidImageSize() && this.state.uploadService === ""))) {
-      return true;
-    } else if (this.missingRequiredFields() && activeStep.name === "Review") {
-      return true;
-    } else {
-      return false;
     }
+    if (
+      this.requiresImageSize(this.state.imageType) &&
+      (this.state.imageSize === "" || (!this.isValidImageSize() && this.state.uploadService === ""))
+    ) {
+      return true;
+    }
+    if (this.missingRequiredFields() && activeStep.name === "Review") {
+      return true;
+    }
+    return false;
   }
 
   missingRequiredFields() {
-    if (this.state.uploadService.length == 0) return true;
-    if (this.state.imageName.length == 0) return true;
-    if (Object.values(this.state.uploadSettings).some(setting => setting === "")) return true;
+    if (this.state.uploadService.length === 0) return true;
+    if (this.state.imageName.length === 0) return true;
+    if (Object.values(this.state.uploadSettings).some((setting) => setting === "")) return true;
     for (const setting in this.state.uploadSettings) {
-      if (this.state.uploadSettings[setting].length == 0) return true;
+      if (this.state.uploadSettings[setting].length === 0) return true;
     }
     if (this.state.imageSize < this.state.minImageSize || this.state.imageSize === "") return true;
     return false;
@@ -346,39 +348,39 @@ class CreateImageUploadModal extends React.Component {
 
   handleUploadService(_, event) {
     const uploadService = event.target.value;
-    const checked = event.target.checked;
+    const { checked } = event.target;
     if (!checked) {
       this.setState({
         uploadService: "",
         showUploadAwsStep: false,
         showUploadAzureStep: false,
-        showReviewStep: false
+        showReviewStep: false,
       });
     } else {
       switch (uploadService) {
         case "aws":
           this.setState({
-            uploadService: uploadService,
+            uploadService,
             uploadSettings: {
               accessKeyID: "",
               secretAccessKey: "",
               bucket: "",
-              region: ""
+              region: "",
             },
             showUploadAwsStep: true,
-            showReviewStep: true
+            showReviewStep: true,
           });
           break;
         case "azure":
           this.setState({
-            uploadService: uploadService,
+            uploadService,
             uploadSettings: {
               storageAccount: "",
               storageAccessKey: "",
-              container: ""
+              container: "",
             },
             showUploadAzureStep: true,
-            showReviewStep: true
+            showReviewStep: true,
           });
           break;
         default:
@@ -401,16 +403,14 @@ class CreateImageUploadModal extends React.Component {
         // to get details that were updated during commit (i.e. version)
         // and call create image
         Promise.all([BlueprintApi.reloadBlueprintDetails(this.props.blueprint)])
-          .then(data => {
-            const blueprintToSet = Object.assign({}, this.props.blueprint, {
-              version: data[0].version
-            });
+          .then((data) => {
+            const blueprintToSet = { ...this.props.blueprint, version: data[0].version };
             this.props.setBlueprint(blueprintToSet);
             this.handleCreateImage();
           })
-          .catch(e => console.log(`Error in reload blueprint details: ${e}`));
+          .catch((e) => console.log(`Error in reload blueprint details: ${e}`));
       })
-      .catch(e => console.log(`Error in blueprint commit: ${e}`));
+      .catch((e) => console.log(`Error in blueprint commit: ${e}`));
   }
 
   handleCreateImage() {
@@ -433,7 +433,7 @@ class CreateImageUploadModal extends React.Component {
     const upload = {
       image_name: imageName,
       provider: uploadService,
-      settings: uploadSettings
+      settings: uploadSettings,
     };
 
     let ostree;
@@ -441,7 +441,7 @@ class CreateImageUploadModal extends React.Component {
       ostree = ostreeSettings;
     }
 
-    if (uploadService == "") {
+    if (uploadService === "") {
       this.props.startCompose(blueprintName, composeType, imageSize, ostree);
     } else {
       this.props.startCompose(blueprintName, composeType, imageSize, ostree, upload);
@@ -468,11 +468,11 @@ class CreateImageUploadModal extends React.Component {
       ostreeSettings,
       minImageSize,
       maxImageSize,
-      uploadService
+      uploadService,
     } = this.state;
 
     const ostreeFields = (
-      <React.Fragment>
+      <>
         <div className="pf-c-form__group">
           <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-u-display-flex pf-m-justify-content-flex-start pf-m-nowrap">
             <label htmlFor="ostree-parent-input" className="pf-l-flex__item">
@@ -483,9 +483,7 @@ class CreateImageUploadModal extends React.Component {
             <Popover
               id="ostree-parent-popover"
               bodyContent={
-                <FormattedMessage
-                  defaultMessage="Provide the ID of the latest commit in the updates repository for which this commit provides an update."
-                />
+                <FormattedMessage defaultMessage="Provide the ID of the latest commit in the updates repository for which this commit provides an update." />
               }
               aria-label={formatMessage(ariaLabels.ostreeParent)}
             >
@@ -512,9 +510,7 @@ class CreateImageUploadModal extends React.Component {
             <Popover
               id="ostree-ref-popover"
               bodyContent={
-                <FormattedMessage
-                  defaultMessage="Provide the name of the branch for the content. If the ref does not already exist it will be created."
-                />
+                <FormattedMessage defaultMessage="Provide the name of the branch for the content. If the ref does not already exist it will be created." />
               }
               aria-label={formatMessage(ariaLabels.ostreeRef)}
             >
@@ -531,7 +527,7 @@ class CreateImageUploadModal extends React.Component {
             onChange={this.setOstreeRef}
           />
         </div>
-      </React.Fragment>
+      </>
     );
 
     const awsProviderCheckbox = (
@@ -566,7 +562,7 @@ class CreateImageUploadModal extends React.Component {
                         >
                           AWS Management Console
                         </Button>
-                      )
+                      ),
                     }}
                   />
                 </p>
@@ -593,7 +589,7 @@ class CreateImageUploadModal extends React.Component {
                         >
                           AWS Required Service Role
                         </Button>
-                      )
+                      ),
                     }}
                   />
                 </p>
@@ -646,7 +642,7 @@ class CreateImageUploadModal extends React.Component {
                     >
                       Microsoft Azure
                     </Button>
-                  )
+                  ),
                 }}
               />
             }
@@ -672,7 +668,7 @@ class CreateImageUploadModal extends React.Component {
     const imageStep = {
       name: "Image type",
       component: (
-        <React.Fragment>
+        <>
           {this.isPendingChange() && (
             <Alert
               id="pending-changes-alert"
@@ -681,7 +677,7 @@ class CreateImageUploadModal extends React.Component {
               title={formatMessage(messages.warningUnsaved)}
             />
           )}
-          {blueprint.packages.length == 0 && (
+          {blueprint.packages.length === 0 && (
             <Alert
               id="empty-blueprint-alert"
               variant="info"
@@ -710,85 +706,85 @@ class CreateImageUploadModal extends React.Component {
             <FormGroup label={formatMessage({ id: "image-type", defaultMessage: "Type " })} fieldId="image-type">
               <FormSelect value={imageType} id="image-type" onChange={this.setImageType}>
                 <FormSelectOption isDisabled key="default" value="" label={formatMessage(messages.selectOne)} />
-                {imageTypes.map(type => (
+                {imageTypes.map((type) => (
                   <FormSelectOption isDisabled={!type.enabled} key={type.name} value={type.name} label={type.label} />
                 ))}
               </FormSelect>
             </FormGroup>
-            {(imageType === "fedora-iot-commit" || imageType == "rhel-edge-commit") && ostreeFields}
+            {(imageType === "fedora-iot-commit" || imageType === "rhel-edge-commit") && ostreeFields}
             {imageType === "ami" && awsProviderCheckbox}
             {imageType === "vhd" && azureProviderCheckbox}
             {this.requiresImageSize(imageType) && (
-            <div className="pf-c-form__group">
-              <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-u-display-flex pf-m-justify-content-flex-start pf-m-nowrap">
-                <label htmlFor="create-image-size" className="pf-l-flex__item">
-                  <span className="pf-c-form__label-text">
-                    <FormattedMessage defaultMessage="Image size" />
-                  </span>
-                  <span className="pf-c-form__label-required" aria-hidden="true">
-                    &#42;
-                  </span>
-                </label>
-                <Popover
-                  id="size-popover"
-                  bodyContent={formatMessage(messages.imageSizePopover)}
-                  aria-label={formatMessage(ariaLabels.imageSize)}
-                >
-                  <Button variant="plain" aria-label={formatMessage(ariaLabels.imageSize)}>
-                    <OutlinedQuestionCircleIcon id="popover-icon" />
-                  </Button>
-                </Popover>
-              </div>
-              <div className="pf-c-form__horizontal-group">
-                <div className="pf-l-split pf-m-gutter">
-                  <div className="pf-l-split__item pf-m-fill">
-                    <TextInput
-                      className="pf-c-form-control"
-                      id="create-image-size"
-                      type="number"
-                      min={minImageSize}
-                      max={maxImageSize}
-                      value={imageSize}
-                      isValid={this.isValidImageSize()}
-                      onChange={this.setImageSize}
-                      aria-describedby="create-image-size-help"
-                    />
-                  </div>
-                  <div className="pf-l-split__item cc-c-form__static-text pf-u-mr-md" aria-hidden="true">
-                    GB
-                  </div>
-                </div>
-                {imageSize < maxImageSize && imageType !== "" && (
-                  <div
-                    className={
-                      !this.isValidImageSize() ? "pf-c-form__helper-text pf-m-error" : "pf-c-form__helper-text"
-                    }
-                    id="help-text-simple-form-name-helper"
-                    aria-live="polite"
+              <div className="pf-c-form__group">
+                <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-u-display-flex pf-m-justify-content-flex-start pf-m-nowrap">
+                  <label htmlFor="create-image-size" className="pf-l-flex__item">
+                    <span className="pf-c-form__label-text">
+                      <FormattedMessage defaultMessage="Image size" />
+                    </span>
+                    <span className="pf-c-form__label-required" aria-hidden="true">
+                      &#42;
+                    </span>
+                  </label>
+                  <Popover
+                    id="size-popover"
+                    bodyContent={formatMessage(messages.imageSizePopover)}
+                    aria-label={formatMessage(ariaLabels.imageSize)}
                   >
-                    {formatMessage(messages.warningSizeSmall, {
-                      size: minImageSize
-                    })}
+                    <Button variant="plain" aria-label={formatMessage(ariaLabels.imageSize)}>
+                      <OutlinedQuestionCircleIcon id="popover-icon" />
+                    </Button>
+                  </Popover>
+                </div>
+                <div className="pf-c-form__horizontal-group">
+                  <div className="pf-l-split pf-m-gutter">
+                    <div className="pf-l-split__item pf-m-fill">
+                      <TextInput
+                        className="pf-c-form-control"
+                        id="create-image-size"
+                        type="number"
+                        min={minImageSize}
+                        max={maxImageSize}
+                        value={imageSize}
+                        isValid={this.isValidImageSize()}
+                        onChange={this.setImageSize}
+                        aria-describedby="create-image-size-help"
+                      />
+                    </div>
+                    <div className="pf-l-split__item cc-c-form__static-text pf-u-mr-md" aria-hidden="true">
+                      GB
+                    </div>
                   </div>
-                )}
-                {imageSize > maxImageSize && (
-                  <div className="pf-c-form__helper-text" id="help-text-simple-form-name-helper" aria-live="polite">
-                    <ExclamationTriangleIcon className="cc-c-text__warning-icon" />{" "}
-                    {formatMessage(messages.warningSizeLarge)}
-                  </div>
-                )}
+                  {imageSize < maxImageSize && imageType !== "" && (
+                    <div
+                      className={
+                        !this.isValidImageSize() ? "pf-c-form__helper-text pf-m-error" : "pf-c-form__helper-text"
+                      }
+                      id="help-text-simple-form-name-helper"
+                      aria-live="polite"
+                    >
+                      {formatMessage(messages.warningSizeSmall, {
+                        size: minImageSize,
+                      })}
+                    </div>
+                  )}
+                  {imageSize > maxImageSize && (
+                    <div className="pf-c-form__helper-text" id="help-text-simple-form-name-helper" aria-live="polite">
+                      <ExclamationTriangleIcon className="cc-c-text__warning-icon" />{" "}
+                      {formatMessage(messages.warningSizeLarge)}
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
             )}
           </Form>
-        </React.Fragment>
-      )
+        </>
+      ),
     };
 
     const awsUploadAuth = {
       name: "Authentication",
       component: (
-        <React.Fragment>
+        <>
           <Text className="help-block cc-c-form__required-text">
             <FormattedMessage defaultMessage="All fields are required." />
           </Text>
@@ -809,7 +805,7 @@ class CreateImageUploadModal extends React.Component {
                     <FormattedMessage
                       defaultMessage="You can create and find existing Access key IDs on the {iam} page in the AWS console."
                       values={{
-                        iam: <strong>Identity and Access Management (IAM)</strong>
+                        iam: <strong>Identity and Access Management (IAM)</strong>,
                       }}
                     />
                   }
@@ -822,7 +818,7 @@ class CreateImageUploadModal extends React.Component {
               </div>
               <TextInput
                 className="pf-c-form-control"
-                value={this.state.uploadSettings["accessKeyID"]}
+                value={this.state.uploadSettings.accessKeyID}
                 type="password"
                 id="access-key-id-input"
                 name="accessKeyID"
@@ -845,7 +841,7 @@ class CreateImageUploadModal extends React.Component {
                     <FormattedMessage
                       defaultMessage="You can view the Secret access key only when you create a new Access key ID on the {iam} page in the AWS console."
                       values={{
-                        iam: <strong>Identity and Access Management (IAM)</strong>
+                        iam: <strong>Identity and Access Management (IAM)</strong>,
                       }}
                     />
                   }
@@ -858,7 +854,7 @@ class CreateImageUploadModal extends React.Component {
               </div>
               <TextInput
                 className="pf-c-form-control"
-                value={this.state.uploadSettings["secretAccessKey"]}
+                value={this.state.uploadSettings.secretAccessKey}
                 type="password"
                 id="secret-access-key-input"
                 name="secretAccessKey"
@@ -866,14 +862,14 @@ class CreateImageUploadModal extends React.Component {
               />
             </div>
           </Form>
-        </React.Fragment>
-      )
+        </>
+      ),
     };
 
     const awsUploadSettings = {
       name: "Destination",
       component: (
-        <React.Fragment>
+        <>
           <Text className="help-block cc-c-form__required-text">
             <FormattedMessage defaultMessage="All fields are required." />
           </Text>
@@ -891,9 +887,9 @@ class CreateImageUploadModal extends React.Component {
                 <Popover
                   id="image-name-popover"
                   bodyContent={
-                    <React.Fragment>
+                    <>
                       <FormattedMessage defaultMessage="Provide a file name to be used for the image file that will be uploaded." />
-                    </React.Fragment>
+                    </>
                   }
                   aria-label={formatMessage(ariaLabels.imageName)}
                 >
@@ -921,7 +917,7 @@ class CreateImageUploadModal extends React.Component {
                 <Popover
                   id="bucket-popover"
                   bodyContent={
-                    <React.Fragment>
+                    <>
                       <FormattedMessage
                         defaultMessage="
                           Provide the S3 {bucket} name to which the image file will be uploaded before being imported into EC2. 
@@ -932,10 +928,10 @@ class CreateImageUploadModal extends React.Component {
                           bucket: "bucket",
                           buckets: "buckets",
                           bucketsPage: <strong>S3 buckets</strong>,
-                          amazon: "Amazon"
+                          amazon: "Amazon",
                         }}
                       />
-                    </React.Fragment>
+                    </>
                   }
                   aria-label={formatMessage(ariaLabels.bucket)}
                 >
@@ -946,7 +942,7 @@ class CreateImageUploadModal extends React.Component {
               </div>
               <TextInput
                 className="pf-c-form-control"
-                value={this.state.uploadSettings["bucket"]}
+                value={this.state.uploadSettings.bucket}
                 type="text"
                 id="bucket-input"
                 name="bucket"
@@ -969,7 +965,7 @@ class CreateImageUploadModal extends React.Component {
                     <FormattedMessage
                       defaultMessage="Provide the AWS Region where you want to import your image. This must be the same region where the {bucket} exists."
                       values={{
-                        bucket: "S3 bucket"
+                        bucket: "S3 bucket",
                       }}
                     />
                   }
@@ -982,7 +978,7 @@ class CreateImageUploadModal extends React.Component {
               </div>
               <TextInput
                 className="pf-c-form-control"
-                value={this.state.uploadSettings["region"]}
+                value={this.state.uploadSettings.region}
                 type="text"
                 id="region-input"
                 name="region"
@@ -990,8 +986,8 @@ class CreateImageUploadModal extends React.Component {
               />
             </div>
           </Form>
-        </React.Fragment>
-      )
+        </>
+      ),
     };
 
     const awsReviewStep = uploadService === "aws" && (
@@ -1027,7 +1023,7 @@ class CreateImageUploadModal extends React.Component {
                         >
                           AWS Management Console
                         </Button>
-                      )
+                      ),
                     }}
                   />
                 </p>
@@ -1054,7 +1050,7 @@ class CreateImageUploadModal extends React.Component {
                         >
                           AWS Required Service Role
                         </Button>
-                      )
+                      ),
                     }}
                   />
                 </p>
@@ -1072,24 +1068,24 @@ class CreateImageUploadModal extends React.Component {
             <FormattedMessage defaultMessage="Access key ID" />
           </TextListItem>
           <TextListItem component={TextListItemVariants.dd}>
-            {"*".repeat(this.state.uploadSettings["accessKeyID"].length)}
+            {"*".repeat(this.state.uploadSettings.accessKeyID.length)}
           </TextListItem>
           <TextListItem component={TextListItemVariants.dt}>
             <FormattedMessage defaultMessage="Secret access key" />
           </TextListItem>
           <TextListItem component={TextListItemVariants.dd}>
-            {"*".repeat(this.state.uploadSettings["secretAccessKey"].length)}
+            {"*".repeat(this.state.uploadSettings.secretAccessKey.length)}
           </TextListItem>
           <TextListItem component={TextListItemVariants.dt}>
             <FormattedMessage defaultMessage="Image name" />
           </TextListItem>
           <TextListItem component={TextListItemVariants.dd}>{imageName}</TextListItem>
           <TextListItem component={TextListItemVariants.dt}>Amazon S3 bucket</TextListItem>
-          <TextListItem component={TextListItemVariants.dd}>{this.state.uploadSettings["bucket"]}</TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>{this.state.uploadSettings.bucket}</TextListItem>
           <TextListItem component={TextListItemVariants.dt}>
             <FormattedMessage defaultMessage="AWS region" />
           </TextListItem>
-          <TextListItem component={TextListItemVariants.dd}>{this.state.uploadSettings["region"]}</TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>{this.state.uploadSettings.region}</TextListItem>
         </TextList>
       </TextContent>
     );
@@ -1097,7 +1093,7 @@ class CreateImageUploadModal extends React.Component {
     const azureUploadAuth = {
       name: "Authentication",
       component: (
-        <React.Fragment>
+        <>
           <Text className="help-block cc-c-form__required-text">
             <FormattedMessage defaultMessage="All fields are required." />
           </Text>
@@ -1115,11 +1111,11 @@ class CreateImageUploadModal extends React.Component {
                 <Popover
                   id="popover-help"
                   bodyContent={
-                    <FormattedMessage 
+                    <FormattedMessage
                       defaultMessage="Provide the name of a storage account. You can find storage accounts on the {storageAccounts} page in the {azure} portal."
-                      values={{ 
+                      values={{
                         storageAccounts: <strong>{formatMessage(messages.storageAccounts)}</strong>,
-                        azure: "Azure"
+                        azure: "Azure",
                       }}
                     />
                   }
@@ -1132,7 +1128,7 @@ class CreateImageUploadModal extends React.Component {
               </div>
               <TextInput
                 className="pf-c-form-control"
-                value={this.state.uploadSettings["storageAccount"]}
+                value={this.state.uploadSettings.storageAccount}
                 id="storage-account-input"
                 name="storageAccount"
                 onChange={this.setUploadSettings}
@@ -1151,7 +1147,7 @@ class CreateImageUploadModal extends React.Component {
                 <Popover
                   id="popover-help"
                   bodyContent={
-                    <FormattedMessage 
+                    <FormattedMessage
                       defaultMessage="
                         Provide the access key for the desired storage account. You can find the access key on the {accessKeys} 
                         page of the storage account. You can find storage accounts on the {storageAccounts} page in the {azure} portal.
@@ -1159,9 +1155,9 @@ class CreateImageUploadModal extends React.Component {
                       values={{
                         azure: "Azure",
                         accessKeys: <strong>{formatMessage(messages.accessKeys)}</strong>,
-                        storageAccounts: <strong>{formatMessage(messages.storageAccounts)}</strong>
+                        storageAccounts: <strong>{formatMessage(messages.storageAccounts)}</strong>,
                       }}
-                    />                  
+                    />
                   }
                   aria-label={formatMessage(ariaLabels.storageAccessKey)}
                 >
@@ -1172,7 +1168,7 @@ class CreateImageUploadModal extends React.Component {
               </div>
               <TextInput
                 className="pf-c-form-control"
-                value={this.state.uploadSettings["storageAccessKey"]}
+                value={this.state.uploadSettings.storageAccessKey}
                 type="password"
                 id="storage-access-key-input"
                 name="storageAccessKey"
@@ -1180,14 +1176,14 @@ class CreateImageUploadModal extends React.Component {
               />
             </div>
           </Form>
-        </React.Fragment>
-      )
+        </>
+      ),
     };
 
     const azureUploadSettings = {
       name: "Destination",
       component: (
-        <React.Fragment>
+        <>
           <Text className="help-block cc-c-form__required-text">
             <FormattedMessage defaultMessage="All fields are required." />
           </Text>
@@ -1205,9 +1201,9 @@ class CreateImageUploadModal extends React.Component {
                 <Popover
                   id="popover-help"
                   bodyContent={
-                    <React.Fragment>
+                    <>
                       <FormattedMessage defaultMessage="Provide a file name to be used for the image file that will be uploaded." />
-                    </React.Fragment>
+                    </>
                   }
                   aria-label={formatMessage(ariaLabels.imageName)}
                 >
@@ -1237,17 +1233,17 @@ class CreateImageUploadModal extends React.Component {
                 <Popover
                   id="bucket-popover"
                   bodyContent={
-                    <FormattedMessage 
-                    defaultMessage="
+                    <FormattedMessage
+                      defaultMessage="
                     Provide the Blob container to which the image file will be uploaded. You can find containers under the {blobService} 
                     section of a storage account. You can find storage accounts on the {storageAccounts} page in the {azure} portal.
                     "
-                    values={{
-                      azure: "Azure",
-                      blobService: <strong>{formatMessage(messages.blobService)}</strong>,
-                      storageAccounts: <strong>{formatMessage(messages.storageAccounts)}</strong>
-                    }}
-                  />                  
+                      values={{
+                        azure: "Azure",
+                        blobService: <strong>{formatMessage(messages.blobService)}</strong>,
+                        storageAccounts: <strong>{formatMessage(messages.storageAccounts)}</strong>,
+                      }}
+                    />
                   }
                   aria-label={formatMessage(ariaLabels.storageContainer)}
                 >
@@ -1258,7 +1254,7 @@ class CreateImageUploadModal extends React.Component {
               </div>
               <TextInput
                 className="pf-c-form-control"
-                value={this.state.uploadSettings["container"]}
+                value={this.state.uploadSettings.container}
                 type="text"
                 id="storage-container-input"
                 name="container"
@@ -1266,8 +1262,8 @@ class CreateImageUploadModal extends React.Component {
               />
             </div>
           </Form>
-        </React.Fragment>
-      )
+        </>
+      ),
     };
 
     const azureReviewStep = uploadService === "azure" && (
@@ -1299,7 +1295,7 @@ class CreateImageUploadModal extends React.Component {
                     >
                       Microsoft Azure
                     </Button>
-                  )
+                  ),
                 }}
               />
             }
@@ -1314,12 +1310,12 @@ class CreateImageUploadModal extends React.Component {
           <TextListItem component={TextListItemVariants.dt}>
             <FormattedMessage defaultMessage="Storage account" />
           </TextListItem>
-          <TextListItem component={TextListItemVariants.dd}>{this.state.uploadSettings["storageAccount"]}</TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>{this.state.uploadSettings.storageAccount}</TextListItem>
           <TextListItem component={TextListItemVariants.dt}>
             <FormattedMessage defaultMessage="Storage access key" />
           </TextListItem>
           <TextListItem component={TextListItemVariants.dd}>
-            {"*".repeat(this.state.uploadSettings["storageAccessKey"].length)}
+            {"*".repeat(this.state.uploadSettings.storageAccessKey.length)}
           </TextListItem>
           <TextListItem component={TextListItemVariants.dt}>
             <FormattedMessage defaultMessage="Image name" />
@@ -1328,7 +1324,7 @@ class CreateImageUploadModal extends React.Component {
           <TextListItem component={TextListItemVariants.dt}>
             <FormattedMessage defaultMessage="Storage container" />
           </TextListItem>
-          <TextListItem component={TextListItemVariants.dd}>{this.state.uploadSettings["container"]}</TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>{this.state.uploadSettings.container}</TextListItem>
         </TextList>
       </TextContent>
     );
@@ -1336,7 +1332,7 @@ class CreateImageUploadModal extends React.Component {
     const reviewStep = {
       name: "Review",
       component: (
-        <React.Fragment>
+        <>
           {this.missingRequiredFields() && (
             <Alert id="required-fields-alert" variant="danger" isInline title={formatMessage(messages.warningReview)} />
           )}
@@ -1372,7 +1368,7 @@ class CreateImageUploadModal extends React.Component {
                   <div>
                     <ExclamationCircleIcon className="cc-c-text__danger-icon" />{" "}
                     {formatMessage(messages.warningSizeSmall, {
-                      size: minImageSize
+                      size: minImageSize,
                     })}
                   </div>
                 )}
@@ -1391,25 +1387,25 @@ class CreateImageUploadModal extends React.Component {
           </TextContent>
           {awsReviewStep}
           {azureReviewStep}
-        </React.Fragment>
-      )
+        </>
+      ),
     };
 
     const awsUploadStep = {
       name: "Upload to AWS",
-      steps: [awsUploadAuth, awsUploadSettings]
+      steps: [awsUploadAuth, awsUploadSettings],
     };
 
     const azureUploadStep = {
       name: "Upload to Azure",
-      steps: [azureUploadAuth, azureUploadSettings]
+      steps: [azureUploadAuth, azureUploadSettings],
     };
 
     const steps = [
       imageStep,
       ...(showUploadAwsStep ? [awsUploadStep] : []),
       ...(showUploadAzureStep ? [azureUploadStep] : []),
-      ...(showReviewStep ? [reviewStep] : [])
+      ...(showReviewStep ? [reviewStep] : []),
     ];
 
     const createImageUploadFooter = (
@@ -1417,7 +1413,7 @@ class CreateImageUploadModal extends React.Component {
         <WizardContextConsumer>
           {({ activeStep, onNext, onBack, onClose }) => {
             return (
-              <React.Fragment>
+              <>
                 <Button
                   id="continue-button"
                   variant="primary"
@@ -1448,7 +1444,7 @@ class CreateImageUploadModal extends React.Component {
                 <Button id="cancel-button" variant="danger" onClick={onClose}>
                   <FormattedMessage defaultMessage="Cancel" />
                 </Button>
-              </React.Fragment>
+              </>
             );
           }}
         </WizardContextConsumer>
@@ -1456,7 +1452,7 @@ class CreateImageUploadModal extends React.Component {
     );
 
     return (
-      <React.Fragment>
+      <>
         <Wizard
           id="create-image-upload-wizard"
           isOpen={this.props.isOpen}
@@ -1466,7 +1462,7 @@ class CreateImageUploadModal extends React.Component {
           title={formatMessage(messages.title)}
           steps={steps}
         />
-      </React.Fragment>
+      </>
     );
   }
 }
@@ -1482,17 +1478,17 @@ CreateImageUpload.propTypes = {
     name: PropTypes.string,
     packages: PropTypes.arrayOf(PropTypes.object),
     version: PropTypes.string,
-    workspacePendingChanges: PropTypes.arrayOf(PropTypes.object)
+    workspacePendingChanges: PropTypes.arrayOf(PropTypes.object),
   }),
   intl: intlShape.isRequired,
   layout: PropTypes.shape({
-    setNotifications: PropTypes.func
-  })
+    setNotifications: PropTypes.func,
+  }),
 };
 
 CreateImageUpload.defaultProps = {
   blueprint: {},
-  layout: {}
+  layout: {},
 };
 
 CreateImageUploadModal.propTypes = {
@@ -1506,7 +1502,7 @@ CreateImageUploadModal.propTypes = {
     name: PropTypes.string,
     packages: PropTypes.arrayOf(PropTypes.object),
     version: PropTypes.string,
-    workspacePendingChanges: PropTypes.arrayOf(PropTypes.object)
+    workspacePendingChanges: PropTypes.arrayOf(PropTypes.object),
   }),
   composeQueueFetched: PropTypes.bool,
   fetchingQueue: PropTypes.func,
@@ -1517,33 +1513,33 @@ CreateImageUploadModal.propTypes = {
   intl: intlShape.isRequired,
   startCompose: PropTypes.func,
   layout: PropTypes.shape({
-    setNotifications: PropTypes.func
+    setNotifications: PropTypes.func,
   }),
   close: PropTypes.func.isRequired,
-  isOpen: PropTypes.bool
+  isOpen: PropTypes.bool,
 };
 
 CreateImageUploadModal.defaultProps = {
   blueprint: {},
   composeQueueFetched: true,
-  fetchingQueue: function() {},
-  clearQueue: function() {},
+  fetchingQueue() {},
+  clearQueue() {},
   imageTypes: [],
-  fetchingComposeTypes: function() {},
-  setBlueprint: function() {},
-  startCompose: function() {},
+  fetchingComposeTypes() {},
+  setBlueprint() {},
+  startCompose() {},
   layout: {},
-  isOpen: false
+  isOpen: false,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   composeQueue: state.composes.queue,
   composeQueueFetched: state.composes.queueFetched,
-  imageTypes: state.composes.composeTypes
+  imageTypes: state.composes.composeTypes,
 });
 
-const mapDispatchToProps = dispatch => ({
-  setBlueprint: blueprint => {
+const mapDispatchToProps = (dispatch) => ({
+  setBlueprint: (blueprint) => {
     dispatch(setBlueprint(blueprint));
   },
   fetchingComposeTypes: () => {
@@ -1557,7 +1553,7 @@ const mapDispatchToProps = dispatch => ({
   },
   startCompose: (blueprintName, composeType, imageSize, ostree, upload) => {
     dispatch(startCompose(blueprintName, composeType, imageSize, ostree, upload));
-  }
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(CreateImageUpload));

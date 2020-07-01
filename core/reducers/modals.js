@@ -9,22 +9,22 @@ import {
   SET_MODAL_MANAGE_SOURCES_CONTENTS,
   ADD_MODAL_MANAGE_SOURCES_ENTRY,
   REMOVE_MODAL_MANAGE_SOURCES_ENTRY,
-  MODAL_MANAGE_SOURCES_FAILURE
+  MODAL_MANAGE_SOURCES_FAILURE,
 } from "../actions/modals";
 
 const modalStopBuild = (state = [], action) => {
   switch (action.type) {
     case SET_MODAL_STOP_BUILD_STATE:
-      return Object.assign({}, state, {
-        stopBuild: Object.assign({}, state.stopBuild, {
+      return {
+        ...state,
+        stopBuild: {
+          ...state.stopBuild,
           composeId: action.payload.composeId,
-          blueprintName: action.payload.blueprintName
-        })
-      });
+          blueprintName: action.payload.blueprintName,
+        },
+      };
     case SET_MODAL_STOP_BUILD_VISIBLE:
-      return Object.assign({}, state, {
-        stopBuild: Object.assign({}, state.stopBuild, { visible: action.payload.visible })
-      });
+      return { ...state, stopBuild: { ...state.stopBuild, visible: action.payload.visible } };
     default:
       return state;
   }
@@ -33,16 +33,16 @@ const modalStopBuild = (state = [], action) => {
 const modalDeleteImage = (state = [], action) => {
   switch (action.type) {
     case SET_MODAL_DELETE_IMAGE_STATE:
-      return Object.assign({}, state, {
-        deleteImage: Object.assign({}, state.deleteImage, {
+      return {
+        ...state,
+        deleteImage: {
+          ...state.deleteImage,
           composeId: action.payload.composeId,
-          blueprintName: action.payload.blueprintName
-        })
-      });
+          blueprintName: action.payload.blueprintName,
+        },
+      };
     case SET_MODAL_DELETE_IMAGE_VISIBLE:
-      return Object.assign({}, state, {
-        deleteImage: Object.assign({}, state.deleteImage, { visible: action.payload.visible })
-      });
+      return { ...state, deleteImage: { ...state.deleteImage, visible: action.payload.visible } };
     default:
       return state;
   }
@@ -51,13 +51,9 @@ const modalDeleteImage = (state = [], action) => {
 const modalUserAccount = (state = [], action) => {
   switch (action.type) {
     case SET_MODAL_CREATE_USER_VISIBLE:
-      return Object.assign({}, state, {
-        userAccount: Object.assign({}, state.userAccount, { visible: action.payload.visible })
-      });
+      return { ...state, userAccount: { ...state.userAccount, visible: action.payload.visible } };
     case SET_MODAL_CREATE_USER_DATA:
-      return Object.assign({}, state, {
-        userAccount: Object.assign({}, state.userAccount, action.payload.data)
-      });
+      return { ...state, userAccount: { ...state.userAccount, ...action.payload.data } };
     default:
       return state;
   }
@@ -66,25 +62,24 @@ const modalUserAccount = (state = [], action) => {
 const modalManageSources = (state = [], action) => {
   switch (action.type) {
     case SET_MODAL_MANAGE_SOURCES_CONTENTS:
-      return Object.assign({}, state, {
-        manageSources: Object.assign({}, state.manageSources, {
+      return {
+        ...state,
+        manageSources: {
+          ...state.manageSources,
           sources: action.payload.sources.sources,
           errors: action.payload.sources.errors,
-          fetchingSources: false
-        })
-      });
+          fetchingSources: false,
+        },
+      };
     case ADD_MODAL_MANAGE_SOURCES_ENTRY:
-      return Object.assign({}, state, {
-        manageSources: Object.assign({}, state.manageSources, { fetchingSources: true })
-      });
+      return { ...state, manageSources: { ...state.manageSources, fetchingSources: true } };
     case REMOVE_MODAL_MANAGE_SOURCES_ENTRY:
-      return Object.assign({}, state, {
-        manageSources: Object.assign({}, state.manageSources, { fetchingSources: true })
-      });
+      return { ...state, manageSources: { ...state.manageSources, fetchingSources: true } };
     case MODAL_MANAGE_SOURCES_FAILURE:
-      return Object.assign({}, state, {
-        manageSources: Object.assign({}, state.manageSources, { error: action.payload.error, fetchingSources: false })
-      });
+      return {
+        ...state,
+        manageSources: { ...state.manageSources, error: action.payload.error, fetchingSources: false },
+      };
     default:
       return state;
   }
@@ -93,7 +88,7 @@ const modalManageSources = (state = [], action) => {
 const modals = (state = [], action) => {
   switch (action.type) {
     case SET_MODAL_ACTIVE:
-      return Object.assign({}, state, { modalActive: action.payload.modalActive });
+      return { ...state, modalActive: action.payload.modalActive };
     case SET_MODAL_STOP_BUILD_STATE:
       return modalStopBuild(state, action);
     case SET_MODAL_STOP_BUILD_VISIBLE:

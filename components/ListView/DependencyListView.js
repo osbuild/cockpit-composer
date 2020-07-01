@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { DataList } from "@patternfly/react-core";
 import ComponentsDataListItem from "./ComponentsDataListItem";
 
-const DependencyListView = props => {
+const DependencyListView = (props) => {
   const {
     ariaLabel,
     listItems,
@@ -11,11 +11,11 @@ const DependencyListView = props => {
     handleComponentDetails,
     noEditComponent,
     fetchDetails,
-    componentDetailsParent
+    componentDetailsParent,
   } = props;
   return (
     <DataList data-list="dependencies" aria-label={ariaLabel} className="cc-m-nowrap-on-xl">
-      {listItems.map(listItem => (
+      {listItems.map((listItem) => (
         <ComponentsDataListItem
           listItem={listItem}
           key={listItem.name}
@@ -46,20 +46,20 @@ DependencyListView.propTypes = {
     ui_type: PropTypes.string,
     userSelected: PropTypes.bool,
     version: PropTypes.string,
-    versionSelected: PropTypes.string
+    versionSelected: PropTypes.string,
   }),
   fetchDetails: PropTypes.func,
-  ariaLabel: PropTypes.string
+  ariaLabel: PropTypes.string,
 };
 
 DependencyListView.defaultProps = {
   listItems: [],
   noEditComponent: true,
-  handleComponentDetails: function() {},
-  handleRemoveComponent: function() {},
+  handleComponentDetails() {},
+  handleRemoveComponent() {},
   componentDetailsParent: {},
-  fetchDetails: function() {},
-  ariaLabel: ""
+  fetchDetails() {},
+  ariaLabel: "",
 };
 
 export default DependencyListView;

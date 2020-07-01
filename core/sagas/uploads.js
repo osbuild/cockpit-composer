@@ -12,6 +12,6 @@ function* fetchUploadProviders() {
   }
 }
 
-export default function*() {
+export default function* () {
   yield takeEvery(FETCHING_UPLOAD_PROVIDERS, fetchUploadProviders);
 }

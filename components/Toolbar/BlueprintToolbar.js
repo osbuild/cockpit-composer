@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import FilterInput from "./FilterInput";
 import ToolbarLayout from "./ToolbarLayout";
 
-const BlueprintToolbar = props => (
+const BlueprintToolbar = (props) => (
   <ToolbarLayout
     filters={props.filters}
     filterRemoveValue={props.filterRemoveValue}
@@ -81,7 +81,7 @@ BlueprintToolbar.propTypes = {
   filters: PropTypes.shape({
     defaultFilterType: PropTypes.string,
     filterTypes: PropTypes.arrayOf(PropTypes.object),
-    filterValues: PropTypes.arrayOf(PropTypes.object)
+    filterValues: PropTypes.arrayOf(PropTypes.object),
   }),
   filterAddValue: PropTypes.func,
   filterRemoveValue: PropTypes.func,
@@ -95,24 +95,24 @@ BlueprintToolbar.propTypes = {
   pastLength: PropTypes.number,
   futureLength: PropTypes.number,
   redo: PropTypes.func,
-  blueprintId: PropTypes.string
+  blueprintId: PropTypes.string,
 };
 
 BlueprintToolbar.defaultProps = {
   filters: {},
-  filterAddValue: function() {},
-  filterRemoveValue: function() {},
-  filterClearValues: function() {},
+  filterAddValue() {},
+  filterRemoveValue() {},
+  filterClearValues() {},
   emptyState: false,
   componentsSortKey: "",
-  componentsSortSetValue: function() {},
+  componentsSortSetValue() {},
   componentsSortValue: "",
-  dependenciesSortSetValue: function() {},
-  undo: function() {},
+  dependenciesSortSetValue() {},
+  undo() {},
   pastLength: 0,
   futureLength: 0,
-  redo: function() {},
-  blueprintId: ""
+  redo() {},
+  blueprintId: "",
 };
 
 export default BlueprintToolbar;

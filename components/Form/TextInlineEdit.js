@@ -4,11 +4,11 @@ import PropTypes from "prop-types";
 
 const messages = defineMessages({
   save: {
-    defaultMessage: "Save"
+    defaultMessage: "Save",
   },
   cancel: {
-    defaultMessage: "Cancel"
-  }
+    defaultMessage: "Cancel",
+  },
 });
 
 class TextInlineEdit extends React.Component {
@@ -72,14 +72,14 @@ class TextInlineEdit extends React.Component {
       "aria-label": this.props.inputLabel,
       "aria-invalid": this.props.invalid,
       ref: this.textInput,
-      maxLength: "253"
+      maxLength: "253",
     };
     if (this.props.helpblock) {
       inputAttributes["aria-describedby"] = `${this.props.inputLabel}-help`;
     }
     const buttonAttributes = {
       onClick: () => this.props.handleEdit(),
-      ref: this.textButton
+      ref: this.textButton,
     };
     if (this.props.helpblockNoValue && this.props.value === "") {
       buttonAttributes["aria-describedby"] = `${this.props.inputLabel}-help2`;
@@ -164,20 +164,20 @@ TextInlineEdit.propTypes = {
   value: PropTypes.string,
   helpblock: PropTypes.string,
   helpblockNoValue: PropTypes.string,
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
 };
 
 TextInlineEdit.defaultProps = {
   className: "",
   editVisible: false,
-  handleEdit: function() {},
-  validateValue: function() {},
+  handleEdit() {},
+  validateValue() {},
   invalid: false,
   buttonLabel: "",
   inputLabel: "",
   value: "",
   helpblock: "",
-  helpblockNoValue: ""
+  helpblockNoValue: "",
 };
 
 export default injectIntl(TextInlineEdit);

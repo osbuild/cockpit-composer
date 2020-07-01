@@ -12,7 +12,7 @@ const [mode, devtool] =
 const output = {
   path: path.resolve(__dirname, "./public/dist"),
   filename: "[name].js",
-  sourceMapFilename: "[file].map"
+  sourceMapFilename: "[file].map",
 };
 
 // add istanbul as babel plugin to enable code coverage
@@ -23,41 +23,41 @@ const plugins = [
   // automatically load jquery instead of having to import or require them everywhere
   new webpack.ProvidePlugin({
     $: "jquery",
-    jQuery: "jquery"
+    jQuery: "jquery",
   }),
   // copy our assets
   new CopyWebpackPlugin([
     {
-      from: "./public/manifest.json"
-    }
+      from: "./public/manifest.json",
+    },
   ]),
   // main.js has to be injected into body and after <div id="main"></div>
   new HtmlWebpackPlugin({
     filename: "index.html",
     template: "public/index.ejs",
-    inject: "body"
+    inject: "body",
   }),
   // avoid multi chunks for every index.js inside pages folder
   new webpack.optimize.LimitChunkCountPlugin({
-    maxChunks: 1
+    maxChunks: 1,
   }),
   new MiniCssExtractPlugin({
     filename: "[name].css",
-    chunkFilename: "[name].bundle.css"
-  })
+    chunkFilename: "[name].bundle.css",
+  }),
 ];
 
 module.exports = {
-  mode: mode,
+  mode,
   entry: "./main.js",
-  plugins: plugins,
-  output: output,
-  devtool: devtool,
+  plugins,
+  output,
+  devtool,
   externals: { cockpit: "cockpit", jQuery: "jquery" },
   // disable noisy warnings about exceeding the recommended size limit
   performance: {
     maxEntrypointSize: 20000000,
-    maxAssetSize: 20000000
+    maxAssetSize: 20000000,
   },
   module: {
     rules: [
@@ -65,7 +65,7 @@ module.exports = {
         enforce: "pre",
         test: /\.(js|jsx)$/,
         exclude: [/node_modules/, /build/],
-        use: "eslint-loader"
+        use: "eslint-loader",
       },
       {
         test: /\.(js|jsx)$/,
@@ -75,12 +75,12 @@ module.exports = {
           path.resolve(__dirname, "./core"),
           path.resolve(__dirname, "./pages"),
           path.resolve(__dirname, "./data"),
-          path.resolve(__dirname, "./main.js")
+          path.resolve(__dirname, "./main.js"),
         ],
         use: {
           loader: "babel-loader",
-          options: babelConfig
-        }
+          options: babelConfig,
+        },
       },
       // add type: "javascript/auto" when transforming JSON via loader to JS
       {
@@ -88,11 +88,11 @@ module.exports = {
         use: [
           {
             loader: "babel-loader",
-            options: babelConfig
+            options: babelConfig,
           },
-          path.resolve(__dirname, "./utils/routes-loader.js")
+          path.resolve(__dirname, "./utils/routes-loader.js"),
         ],
-        type: "javascript/auto"
+        type: "javascript/auto",
       },
       {
         test: /\.css$/,
@@ -100,10 +100,10 @@ module.exports = {
           MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
-            options: { url: false }
-          }
-        ]
-      }
-    ]
-  }
+            options: { url: false },
+          },
+        ],
+      },
+    ],
+  },
 };

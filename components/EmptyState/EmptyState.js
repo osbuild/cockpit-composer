@@ -24,13 +24,13 @@ EmptyState.propTypes = {
   title: PropTypes.string.isRequired,
   message: PropTypes.string,
   children: PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.element)]),
-  icon: PropTypes.string
+  icon: PropTypes.string,
 };
 
 EmptyState.defaultProps = {
   children: React.createElement("div"),
   message: null,
-  icon: null
+  icon: null,
 };
 
 export default EmptyState;

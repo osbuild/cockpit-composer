@@ -8,7 +8,7 @@ class Password extends React.Component {
     this.state = {
       passwordOne: "",
       passwordTwo: "",
-      displayWarningMatch: false
+      displayWarningMatch: false,
     };
     this.handleChangePasswordOne = this.handleChangePasswordOne.bind(this);
     this.handleChangePasswordTwo = this.handleChangePasswordTwo.bind(this);
@@ -42,13 +42,13 @@ class Password extends React.Component {
   // warnings display:
   // if password two has a value and the values for one and two do not match, OR
   // if password two does NOT have a value but one does, and the user is exiting password two
-  // warnings do not display: 
+  // warnings do not display:
   // if password one has a value and two does not, and the user is exiting password one,
   // because we assume the user is intending to provide a password in this case
   handleWarnings(input) {
     setTimeout(() => {
       if (
-        (this.state.passwordOne !== this.state.passwordTwo && this.state.passwordTwo !== "") || 
+        (this.state.passwordOne !== this.state.passwordTwo && this.state.passwordTwo !== "") ||
         (input === "two" && this.state.passwordOne !== "" && this.state.passwordTwo === "")
       ) {
         this.setState({ displayWarningMatch: true });
@@ -74,7 +74,7 @@ class Password extends React.Component {
               aria-describedby="textInput2-modal-password-help"
               aria-invalid={this.state.displayWarningMatch}
               value={this.state.passwordOne}
-              onChange={e => this.handleChangePasswordOne(e)}
+              onChange={(e) => this.handleChangePasswordOne(e)}
               onBlur={this.handleWarnings}
             />
           </div>
@@ -91,7 +91,7 @@ class Password extends React.Component {
               aria-describedby="textInput2-modal-password-help"
               aria-invalid={this.state.displayWarningMatch}
               value={this.state.passwordTwo}
-              onChange={e => this.handleChangePasswordTwo(e)}
+              onChange={(e) => this.handleChangePasswordTwo(e)}
               onBlur={() => this.handleWarnings("two")}
             />
             {this.state.displayWarningMatch && (
@@ -109,13 +109,13 @@ class Password extends React.Component {
 Password.propTypes = {
   setValidPassword: PropTypes.func,
   labelOne: PropTypes.string,
-  labelTwo: PropTypes.string
+  labelTwo: PropTypes.string,
 };
 
 Password.defaultProps = {
-  setValidPassword: function() {},
+  setValidPassword() {},
   labelOne: "",
-  labelTwo: ""
+  labelTwo: "",
 };
 
 export default injectIntl(Password);

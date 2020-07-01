@@ -10,8 +10,8 @@ import ExportBlueprint from "../Modal/ExportBlueprint";
 
 const messages = defineMessages({
   actions: {
-    defaultMessage: "actions"
-  }
+    defaultMessage: "actions",
+  },
 });
 
 class BlueprintsDataList extends React.PureComponent {
@@ -24,7 +24,7 @@ class BlueprintsDataList extends React.PureComponent {
     const { formatMessage } = this.props.intl;
     return (
       <DataList aria-label={ariaLabel} className="cc-m-nowrap-on-lg">
-        {blueprints.map(blueprint => (
+        {blueprints.map((blueprint) => (
           <DataListItem key={blueprint.name} data-blueprint={blueprint.name} aria-labelledby={`${blueprint.name}-name`}>
             <DataListItemRow>
               <div className="cc-c-data-list__item-icon">
@@ -39,7 +39,7 @@ class BlueprintsDataList extends React.PureComponent {
                   </DataListCell>,
                   <DataListCell key="secondary" width={3} data-description>
                     {blueprint.description}
-                  </DataListCell>
+                  </DataListCell>,
                 ]}
               />
               <div className="pf-c-data-list__item-action cc-m-nowrap">
@@ -80,16 +80,16 @@ class BlueprintsDataList extends React.PureComponent {
 BlueprintsDataList.propTypes = {
   blueprints: PropTypes.arrayOf(PropTypes.object),
   layout: PropTypes.shape({
-    setNotifications: PropTypes.func
+    setNotifications: PropTypes.func,
   }),
   ariaLabel: PropTypes.string,
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
 };
 
 BlueprintsDataList.defaultProps = {
   blueprints: [],
   layout: {},
-  ariaLabel: ""
+  ariaLabel: "",
 };
 
 export default injectIntl(BlueprintsDataList);

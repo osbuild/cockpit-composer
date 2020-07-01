@@ -94,7 +94,12 @@ class Notification extends React.PureComponent {
         onBlur={() => this.setFade(notification.fade)}
       >
         {notification.dismiss && (
-          <button type="button" className="close" aria-hidden="true" onClick={e => this.handleClose(e, this.props.id)}>
+          <button
+            type="button"
+            className="close"
+            aria-hidden="true"
+            onClick={(e) => this.handleClose(e, this.props.id)}
+          >
             <span className="pficon pficon-close" />
           </button>
         )}
@@ -111,11 +116,11 @@ class Notification extends React.PureComponent {
               <span className="fa fa-ellipsis-v" />
             </button>
             <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight">
-              {notification.kebab.map(action => (
+              {notification.kebab.map((action) => (
                 <li key={action}>{action}</li>
               ))}
               <li>
-                <a href="#" onClick={e => this.handleClose(e, this.props.id)}>
+                <a href="#" onClick={(e) => this.handleClose(e, this.props.id)}>
                   <FormattedMessage defaultMessage="Close" />
                 </a>
               </li>
@@ -141,16 +146,16 @@ Notification.propTypes = {
     message: PropTypes.object,
     type: PropTypes.string,
     action: PropTypes.object,
-    input: PropTypes.object
+    input: PropTypes.object,
   }),
   setNotifications: PropTypes.func,
-  id: PropTypes.string
+  id: PropTypes.string,
 };
 
 Notification.defaultProps = {
   notification: {},
-  setNotifications: function() {},
-  id: ""
+  setNotifications() {},
+  id: "",
 };
 
 export default Notification;

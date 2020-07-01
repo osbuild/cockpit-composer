@@ -3,8 +3,8 @@ export function setModalActive(modalActive) {
   return {
     type: SET_MODAL_ACTIVE,
     payload: {
-      modalActive
-    }
+      modalActive,
+    },
   };
 }
 
@@ -13,8 +13,8 @@ export function setModalCreateBlueprintBlueprint(blueprint) {
   return {
     type: SET_MODAL_CREATE_BLUEPRINT_BLUEPRINT,
     payload: {
-      blueprint
-    }
+      blueprint,
+    },
   };
 }
 
@@ -24,8 +24,8 @@ export function setModalStopBuildState(composeId, blueprintName) {
     type: SET_MODAL_STOP_BUILD_STATE,
     payload: {
       composeId,
-      blueprintName
-    }
+      blueprintName,
+    },
   };
 }
 
@@ -34,8 +34,8 @@ export function setModalStopBuildVisible(visible) {
   return {
     type: SET_MODAL_STOP_BUILD_VISIBLE,
     payload: {
-      visible
-    }
+      visible,
+    },
   };
 }
 
@@ -45,8 +45,8 @@ export function setModalDeleteImageState(composeId, blueprintName) {
     type: SET_MODAL_DELETE_IMAGE_STATE,
     payload: {
       composeId,
-      blueprintName
-    }
+      blueprintName,
+    },
   };
 }
 
@@ -55,8 +55,8 @@ export function setModalDeleteImageVisible(visible) {
   return {
     type: SET_MODAL_DELETE_IMAGE_VISIBLE,
     payload: {
-      visible
-    }
+      visible,
+    },
   };
 }
 
@@ -65,8 +65,8 @@ export function appendModalPendingChangesComponentUpdates(componentUpdate) {
   return {
     type: APPEND_MODAL_PENDING_CHANGES_COMPONENT_UPDATES,
     payload: {
-      componentUpdate
-    }
+      componentUpdate,
+    },
   };
 }
 
@@ -75,8 +75,8 @@ export function setModalUserAccountData(data) {
   return {
     type: SET_MODAL_CREATE_USER_DATA,
     payload: {
-      data
-    }
+      data,
+    },
   };
 }
 
@@ -85,8 +85,8 @@ export function setModalUserAccountVisible(visible) {
   return {
     type: SET_MODAL_CREATE_USER_VISIBLE,
     payload: {
-      visible
-    }
+      visible,
+    },
   };
 }
 
@@ -95,15 +95,15 @@ export function setModalManageSourcesContents(sources) {
   return {
     type: SET_MODAL_MANAGE_SOURCES_CONTENTS,
     payload: {
-      sources
-    }
+      sources,
+    },
   };
 }
 
 export const FETCHING_MODAL_MANAGE_SOURCES_CONTENTS = "FETCHING_MODAL_MANAGE_SOURCES_CONTENTS";
 export function fetchingModalManageSourcesContents() {
   return {
-    type: FETCHING_MODAL_MANAGE_SOURCES_CONTENTS
+    type: FETCHING_MODAL_MANAGE_SOURCES_CONTENTS,
   };
 }
 
@@ -112,8 +112,8 @@ export function modalManageSourcesFailure(error) {
   return {
     type: MODAL_MANAGE_SOURCES_FAILURE,
     payload: {
-      error
-    }
+      error,
+    },
   };
 }
 
@@ -122,8 +122,8 @@ export function addModalManageSourcesEntry(source) {
   return {
     type: ADD_MODAL_MANAGE_SOURCES_ENTRY,
     payload: {
-      source
-    }
+      source,
+    },
   };
 }
 
@@ -132,7 +132,7 @@ export function removeModalManageSourcesEntry(sourceName) {
   return {
     type: REMOVE_MODAL_MANAGE_SOURCES_ENTRY,
     payload: {
-      sourceName
-    }
+      sourceName,
+    },
   };
 }

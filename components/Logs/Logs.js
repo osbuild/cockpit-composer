@@ -1,9 +1,7 @@
 import React from "react";
 // import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
-import {
-  Bullseye
-} from "@patternfly/react-core";
+import { Bullseye } from "@patternfly/react-core";
 import Loading from "../Loading/Loading";
 
 class Logs extends React.PureComponent {
@@ -16,23 +14,19 @@ class Logs extends React.PureComponent {
         </Bullseye>
       );
     } else logSection = <pre className="pf-u-px-lg pf-u-py-md">{this.props.logContent}</pre>;
-    
-    return (
-      <>
-        {logSection}
-      </>
-    );
+
+    return <>{logSection}</>;
   }
 }
 
 Logs.propTypes = {
-    fetchingLog: PropTypes.bool,
-    logContent: PropTypes.string
-  };
-  
-  Logs.defaultProps = {
-    fetchingLog: false,
-    logContent: ""
-  };
+  fetchingLog: PropTypes.bool,
+  logContent: PropTypes.string,
+};
+
+Logs.defaultProps = {
+  fetchingLog: false,
+  logContent: "",
+};
 
 export default Logs;

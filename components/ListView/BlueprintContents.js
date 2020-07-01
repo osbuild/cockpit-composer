@@ -11,26 +11,26 @@ import LabelWithBadge from "./LabelWithBadge";
 
 const messages = defineMessages({
   dependenciesTabTitle: {
-    defaultMessage: "Dependencies"
+    defaultMessage: "Dependencies",
   },
   emptyStateErrorMessage: {
-    defaultMessage: "An error occurred while trying to get blueprint contents."
+    defaultMessage: "An error occurred while trying to get blueprint contents.",
   },
   emptyStateErrorTitle: {
-    defaultMessage: "An Error Occurred"
+    defaultMessage: "An Error Occurred",
   },
   emptyStateNoResultsMessage: {
-    defaultMessage: "Modify your filter criteria to get results."
+    defaultMessage: "Modify your filter criteria to get results.",
   },
   emptyStateNoResultsTitle: {
-    defaultMessage: "No Results Match the Filter Criteria"
+    defaultMessage: "No Results Match the Filter Criteria",
   },
   selectedTabTitle: {
-    defaultMessage: "Selected Components"
-  }
+    defaultMessage: "Selected Components",
+  },
 });
 
-const BlueprintContents = props => {
+const BlueprintContents = (props) => {
   const {
     components,
     dependencies,
@@ -43,7 +43,7 @@ const BlueprintContents = props => {
     fetchingState,
     fetchDetails,
     pastLength,
-    undo
+    undo,
   } = props;
 
   const { formatMessage } = props.intl;
@@ -57,7 +57,7 @@ const BlueprintContents = props => {
   return (
     <div>
       {(fetchingState === true && <Loading />) ||
-        ((components.length === 0 && filterValues.length === 0 && <div>{props.children}</div>) || (
+        (components.length === 0 && filterValues.length === 0 && <div>{props.children}</div>) || (
           <Tabs id="blueprint-tabs">
             <Tab
               eventKey="selected-components"
@@ -91,7 +91,7 @@ const BlueprintContents = props => {
                     aria-label={formatMessage(messages.selectedTabTitle)}
                     className="cc-m-nowrap-on-xl cc-components"
                   >
-                    {components.map(listItem => (
+                    {components.map((listItem) => (
                       <ComponentsDataListItem
                         listItem={listItem}
                         key={listItem.name}
@@ -136,7 +136,7 @@ const BlueprintContents = props => {
               )}
             </Tab>
           </Tabs>
-        ))}
+        )}
     </div>
   );
 };
@@ -154,29 +154,29 @@ BlueprintContents.propTypes = {
     msg: PropTypes.string,
     options: PropTypes.object,
     problem: PropTypes.string,
-    url: PropTypes.string
+    url: PropTypes.string,
   }),
   fetchingState: PropTypes.bool,
   fetchDetails: PropTypes.func,
   children: PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.element)]),
   pastLength: PropTypes.number,
-  undo: PropTypes.func
+  undo: PropTypes.func,
 };
 
 BlueprintContents.defaultProps = {
   components: [],
   dependencies: [],
-  handleComponentDetails: function() {},
-  handleRemoveComponent: function() {},
+  handleComponentDetails() {},
+  handleRemoveComponent() {},
   noEditComponent: false,
-  filterClearValues: function() {},
+  filterClearValues() {},
   filterValues: [],
   errorState: {},
   fetchingState: true,
-  fetchDetails: function() {},
+  fetchDetails() {},
   children: React.createElement("div"),
   pastLength: 0,
-  undo: function() {}
+  undo() {},
 };
 
 export default injectIntl(BlueprintContents);

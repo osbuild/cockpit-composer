@@ -5,23 +5,23 @@ import { defineMessages, injectIntl, intlShape } from "react-intl";
 
 const messages = defineMessages({
   filterNameTitle: {
-    defaultMessage: "Name"
+    defaultMessage: "Name",
   },
   filterNamePlaceholder: {
-    defaultMessage: "Filter by Name"
+    defaultMessage: "Filter by Name",
   },
   filterReleaseTitle: {
-    defaultMessage: "Release"
+    defaultMessage: "Release",
   },
   filterReleasePlaceholder: {
-    defaultMessage: "Filter by Release"
+    defaultMessage: "Filter by Release",
   },
   filterVersionTitle: {
-    defaultMessage: "Version"
+    defaultMessage: "Version",
   },
   filterVersionPlaceholder: {
-    defaultMessage: "Filter by Version"
-  }
+    defaultMessage: "Filter by Version",
+  },
 });
 
 class FilterInput extends React.Component {
@@ -29,7 +29,7 @@ class FilterInput extends React.Component {
     super();
     this.state = {
       filterValue: "",
-      currentFilterId: ""
+      currentFilterId: "",
     };
     this.handleChangeFilter = this.handleChangeFilter.bind(this);
     this.handleSubmitFilter = this.handleSubmitFilter.bind(this);
@@ -48,7 +48,7 @@ class FilterInput extends React.Component {
     event.preventDefault();
     this.props.filterAddValue({
       key: this.state.currentFilterId,
-      value: this.state.filterValue
+      value: this.state.filterValue,
     });
     this.setState({ filterValue: "" });
   }
@@ -62,10 +62,10 @@ class FilterInput extends React.Component {
 
   render() {
     const { emptyState, filters } = this.props;
-    const currentFilterType = filters.filterTypes.find(type => type.id === this.state.currentFilterId);
+    const currentFilterType = filters.filterTypes.find((type) => type.id === this.state.currentFilterId);
     const { formatMessage } = this.props.intl;
 
-    const filterGroup = filterID => {
+    const filterGroup = (filterID) => {
       switch (filterID) {
         case "name":
           return (
@@ -133,7 +133,7 @@ class FilterInput extends React.Component {
     };
 
     return (
-      <form onSubmit={e => this.handleSubmitFilter(e)}>
+      <form onSubmit={(e) => this.handleSubmitFilter(e)}>
         <div className="filter-pf-fields">
           <div className="form-group toolbar-pf-filter">
             {currentFilterType !== undefined && filterGroup(currentFilterType.id)}
@@ -149,16 +149,16 @@ FilterInput.propTypes = {
   filters: PropTypes.shape({
     defaultFilterType: PropTypes.string,
     filterTypes: PropTypes.arrayOf(PropTypes.object),
-    filterValues: PropTypes.arrayOf(PropTypes.object)
+    filterValues: PropTypes.arrayOf(PropTypes.object),
   }),
   filterAddValue: PropTypes.func,
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
 };
 
 FilterInput.defaultProps = {
   emptyState: false,
   filters: {},
-  filterAddValue: function() {}
+  filterAddValue() {},
 };
 
 export default injectIntl(FilterInput);

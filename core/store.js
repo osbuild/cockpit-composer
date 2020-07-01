@@ -12,7 +12,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const initialState = {
   blueprintPage: {
     editDescriptionVisible: false,
-    editHostnameVisible: false
+    editHostnameVisible: false,
   },
   inputs: {
     selectedInputPage: 0,
@@ -20,20 +20,20 @@ const initialState = {
     selectedInput: {
       set: false,
       component: {
-        dependencies: undefined
+        dependencies: undefined,
       },
       parent: [],
-      status: ""
+      status: "",
     },
     inputFilters: {
       field: "name",
-      value: ""
-    }
+      value: "",
+    },
   },
   blueprints: {
     blueprintList: [],
     fetchingBlueprints: true,
-    errorState: null
+    errorState: null,
   },
   composes: {
     composeTypes: [],
@@ -41,38 +41,38 @@ const initialState = {
     queue: [],
     queueFetched: false,
     fetchingComposes: true,
-    errorState: null
+    errorState: null,
   },
   uploads: {
-    providerSettings: {}
+    providerSettings: {},
   },
   modals: {
     stopBuild: {
       composeId: "",
       blueprintName: "",
-      visible: false
+      visible: false,
     },
     deleteImage: {
       composeId: "",
       blueprintName: "",
-      visible: false
+      visible: false,
     },
     deleteBlueprint: {
       name: "",
       id: "",
-      visible: false
+      visible: false,
     },
     pendingChanges: {
       componentUpdates: {
         past: [],
         present: [],
-        future: []
-      }
+        future: [],
+      },
     },
     manageSources: {
       fetchingSources: true,
       sources: {},
-      error: {}
+      error: {},
     },
     userAccount: {
       name: "",
@@ -85,22 +85,22 @@ const initialState = {
       showInvalidPassword: false,
       dynamicName: true,
       visible: false,
-      editUser: ""
-    }
+      editUser: "",
+    },
   },
   sort: {
     blueprints: {
       key: "name",
-      value: "DESC"
+      value: "DESC",
     },
     components: {
       key: "name",
-      value: "DESC"
+      value: "DESC",
     },
     dependencies: {
       key: "name",
-      value: "DESC"
-    }
+      value: "DESC",
+    },
   },
   filter: {
     blueprints: {
@@ -110,10 +110,10 @@ const initialState = {
           id: "name",
           title: "Name",
           placeholder: "Filter by Name",
-          filterType: "text"
-        }
+          filterType: "text",
+        },
       ],
-      defaultFilterType: "name"
+      defaultFilterType: "name",
     },
     components: {
       filterValues: [],
@@ -122,24 +122,24 @@ const initialState = {
           id: "name",
           title: "Name",
           placeholder: "Filter by Name",
-          filterType: "text"
+          filterType: "text",
         },
         {
           id: "version",
           title: "Version",
           placeholder: "Filter by Version",
-          filterType: "text"
+          filterType: "text",
         },
         {
           id: "release",
           title: "Release",
           placeholder: "Filter by Release",
-          filterType: "text"
-        }
+          filterType: "text",
+        },
       ],
-      defaultFilterType: "name"
-    }
-  }
+      defaultFilterType: "name",
+    },
+  },
 };
 
 const store = createStore(rootReducer, initialState, composeEnhancers(applyMiddleware(sagaMiddleware)));

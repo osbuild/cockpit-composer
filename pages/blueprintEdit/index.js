@@ -1,5 +1,3 @@
-/* global $ */
-
 import React from "react";
 import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
 import PropTypes from "prop-types";
@@ -25,7 +23,7 @@ import {
   undo,
   redo,
   deleteHistory,
-  fetchingCompDeps
+  fetchingCompDeps,
 } from "../../core/actions/blueprints";
 import {
   fetchingInputs,
@@ -35,19 +33,19 @@ import {
   setSelectedInputDeps,
   setSelectedInputParent,
   deleteFilter,
-  fetchingDepDetails
+  fetchingDepDetails,
 } from "../../core/actions/inputs";
 import { setModalActive } from "../../core/actions/modals";
 import {
   componentsSortSetKey,
   componentsSortSetValue,
   dependenciesSortSetKey,
-  dependenciesSortSetValue
+  dependenciesSortSetValue,
 } from "../../core/actions/sort";
 import {
   componentsFilterAddValue,
   componentsFilterRemoveValue,
-  componentsFilterClearValues
+  componentsFilterClearValues,
 } from "../../core/actions/filter";
 import {
   makeGetBlueprintById,
@@ -57,37 +55,39 @@ import {
   makeGetPastLength,
   makeGetFilteredComponents,
   makeGetSelectedInputs,
-  makeGetSelectedDeps
+  makeGetSelectedDeps,
 } from "../../core/selectors";
 
 const messages = defineMessages({
   listTitleAvailableComps: {
-    defaultMessage: "Available Components"
+    defaultMessage: "Available Components",
   },
   addComponentTitle: {
-    defaultMessage: "Add Blueprint Components"
+    defaultMessage: "Add Blueprint Components",
   },
   addComponentMessageOne: {
-    defaultMessage: "Browse or search for components, then add them to the blueprint. Or leave the blueprint empty to create a minimal image."
+    defaultMessage:
+      "Browse or search for components, then add them to the blueprint. Or leave the blueprint empty to create a minimal image.",
   },
   addComponentMessageTwo: {
-    defaultMessage: "The packages needed to support the selected image type are automatically included when creating an image."
+    defaultMessage:
+      "The packages needed to support the selected image type are automatically included when creating an image.",
   },
   blueprintTitle: {
-    defaultMessage: "Blueprint"
+    defaultMessage: "Blueprint",
   },
   filterByLabel: {
-    defaultMessage: "Filter Available Components by Name"
+    defaultMessage: "Filter Available Components by Name",
   },
   filterByPlaceholder: {
-    defaultMessage: "Filter By Name..."
+    defaultMessage: "Filter By Name...",
   },
   emptyStateNoResultsMessage: {
-    defaultMessage: "Modify your filter criteria to get results."
+    defaultMessage: "Modify your filter criteria to get results.",
   },
   emptyStateNoResultsTitle: {
-    defaultMessage: "No Results Match the Filter Criteria"
-  }
+    defaultMessage: "No Results Match the Filter Criteria",
+  },
 });
 
 class EditBlueprintPage extends React.Component {
@@ -133,7 +133,7 @@ class EditBlueprintPage extends React.Component {
     if (event.which === 13 || event.keyCode === 13) {
       const filter = {
         field: "name",
-        value: event.target.value
+        value: event.target.value,
       };
       this.props.fetchingInputs(filter, 0, this.props.inputs.pageSize);
       this.props.setSelectedInputPage(0);
@@ -145,7 +145,7 @@ class EditBlueprintPage extends React.Component {
   handleClearFilters(event) {
     const filter = {
       field: "name",
-      value: ""
+      value: "",
     };
     this.props.deleteFilter();
     this.props.fetchingInputs(filter, 0, this.props.inputs.pageSize);
@@ -163,14 +163,12 @@ class EditBlueprintPage extends React.Component {
       page = parseFloat(event.currentTarget.getAttribute("data-page"));
       event.preventDefault();
       event.stopPropagation();
+    } else if (event.which === 13 || event.keyCode === 13) {
+      page = parseFloat(event.currentTarget.value) - 1;
+      event.preventDefault();
+      event.stopPropagation();
     } else {
-      if (event.which === 13 || event.keyCode === 13) {
-        page = parseFloat(event.currentTarget.value) - 1;
-        event.preventDefault();
-        event.stopPropagation();
-      } else {
-        return; // don't continue if keypress was not the Enter key
-      }
+      return; // don't continue if keypress was not the Enter key
     }
     // if the data already exists, just update the selected page number and
     // the DOM will automatically reload
@@ -195,46 +193,40 @@ class EditBlueprintPage extends React.Component {
         // then after blueprint is posted, reload blueprint details
         // to get details that were updated during commit (i.e. version)
         Promise.all([BlueprintApi.reloadBlueprintDetails(this.props.blueprint)])
-          .then(data => {
-            const blueprintToSet = Object.assign({}, this.props.blueprint, {
-              version: data[0].version
-            });
+          .then((data) => {
+            const blueprintToSet = { ...this.props.blueprint, version: data[0].version };
             this.props.setBlueprint(blueprintToSet);
           })
-          .catch(e => console.log(`Error in reload blueprint details: ${e}`));
+          .catch((e) => console.log(`Error in reload blueprint details: ${e}`));
       })
-      .catch(e => console.log(`Error in blueprint commit: ${e}`));
+      .catch((e) => console.log(`Error in blueprint commit: ${e}`));
   }
 
   handleAddComponent(event, component, version) {
     this.props.clearSelectedInput();
     const addedPackage = {
       name: component.name,
-      version: version
+      version,
     };
     const pendingChange = {
       componentOld: null,
-      componentNew: component.name + "-" + version
+      componentNew: `${component.name}-${version}`,
     };
     let pendingChanges = this.props.blueprint.localPendingChanges;
-    const prevChange = pendingChanges.find(change => change.componentOld === pendingChange.componentNew);
+    const prevChange = pendingChanges.find((change) => change.componentOld === pendingChange.componentNew);
     // removing then adding a component of the same version results in no change listed
     // if a different version of this component was removed, that change and this change will
     // still be listed as separate changes
     // but if a previous change exists where the same component version was removed...
     if (prevChange !== undefined) {
       // then filter that previous change, and don't add this change
-      pendingChanges = pendingChanges.filter(component => component !== prevChange);
+      pendingChanges = pendingChanges.filter((component) => component !== prevChange);
     } else {
       pendingChanges = [pendingChange].concat(pendingChanges);
     }
     const packages = this.props.blueprint.packages.concat(addedPackage);
-    const modules = this.props.blueprint.modules;
-    const addedComponent = Object.assign({}, component, {
-      version: version,
-      userSelected: true,
-      inBlueprint: true
-    });
+    const { modules } = this.props.blueprint;
+    const addedComponent = { ...component, version, userSelected: true, inBlueprint: true };
     // for now, just adding the component to the state
     // component info will load after committing the change to the workspace and reloading the blueprint
     const components = this.props.blueprint.components.concat(addedComponent);
@@ -246,46 +238,40 @@ class EditBlueprintPage extends React.Component {
   handleUpdateComponent(event, name, version) {
     this.props.clearSelectedInput();
     const selectedComponents = this.props.blueprint.packages.concat(this.props.blueprint.modules);
-    const oldVersion = selectedComponents.find(component => component.name === name).version;
+    const oldVersion = selectedComponents.find((component) => component.name === name).version;
     const updatedComponent = {
-      name: name,
-      version: version
+      name,
+      version,
     };
-    let pendingChange = {
-      componentOld: name + "-" + oldVersion,
-      componentNew: name + "-" + version
+    const pendingChange = {
+      componentOld: `${name}-${oldVersion}`,
+      componentNew: `${name}-${version}`,
     };
     let pendingChanges = this.props.blueprint.localPendingChanges;
-    const prevChange = pendingChanges.find(change => change.componentNew === pendingChange.componentOld);
+    const prevChange = pendingChanges.find((change) => change.componentNew === pendingChange.componentOld);
     // if this component was added or updated in this session...
     if (prevChange !== undefined) {
       // then only list this component once in the list of changes,
       // where the change shows the old version of the previous change
       pendingChange.componentOld = prevChange.componentOld;
-      pendingChanges = pendingChanges.filter(component => component !== prevChange);
+      pendingChanges = pendingChanges.filter((component) => component !== prevChange);
     }
     if (prevChange === undefined || pendingChange.componentOld !== pendingChange.componentNew) {
       pendingChanges = [pendingChange].concat(pendingChanges);
     }
-    let packages = this.props.blueprint.packages;
-    let modules = this.props.blueprint.modules;
-    if (modules.some(component => component.name === name)) {
-      modules = modules.filter(item => item.name !== updatedComponent.name).concat(updatedComponent);
+    let { packages } = this.props.blueprint;
+    let { modules } = this.props.blueprint;
+    if (modules.some((component) => component.name === name)) {
+      modules = modules.filter((item) => item.name !== updatedComponent.name).concat(updatedComponent);
     } else {
-      packages = packages.filter(item => item.name !== updatedComponent.name).concat(updatedComponent);
+      packages = packages.filter((item) => item.name !== updatedComponent.name).concat(updatedComponent);
     }
-    const components = this.props.blueprint.components.map(component => {
+    const components = this.props.blueprint.components.map((component) => {
       if (component.name === name) {
-        const componentData = Object.assign({}, component, {
-          name: name,
-          version: version,
-          userSelected: true,
-          inBlueprint: true
-        });
+        const componentData = { ...component, name, version, userSelected: true, inBlueprint: true };
         return componentData;
-      } else {
-        return component;
       }
+      return component;
     });
     this.props.updateBlueprintComponents(this.props.blueprint.id, components, packages, modules, pendingChanges);
     event.preventDefault();
@@ -295,29 +281,29 @@ class EditBlueprintPage extends React.Component {
   handleRemoveComponent(event, name) {
     this.props.clearSelectedInput();
     const selectedComponents = this.props.blueprint.packages.concat(this.props.blueprint.modules);
-    const version = selectedComponents.find(component => component.name === name).version;
+    const { version } = selectedComponents.find((component) => component.name === name);
 
-    let pendingChange = {
-      componentOld: name + "-" + version,
-      componentNew: null
+    const pendingChange = {
+      componentOld: `${name}-${version}`,
+      componentNew: null,
     };
     let pendingChanges = this.props.blueprint.localPendingChanges;
-    const prevChange = pendingChanges.find(change => change.componentNew === pendingChange.componentOld);
+    const prevChange = pendingChanges.find((change) => change.componentNew === pendingChange.componentOld);
     // if this component was updated in this session...
     if (prevChange !== undefined) {
       // then only list this component once in the list of changes,
       // where the change shows the old version of the previous change
       pendingChange.componentOld = prevChange.componentOld;
-      pendingChanges = pendingChanges.filter(component => component !== prevChange);
+      pendingChanges = pendingChanges.filter((component) => component !== prevChange);
       // but if this component was added in this session (i.e. componentOld === null)
       // then neither change should be listed
     }
     if (prevChange === undefined || prevChange.componentOld !== null) {
       pendingChanges = [pendingChange].concat(pendingChanges);
     }
-    const packages = this.props.blueprint.packages.filter(pack => pack.name !== name);
-    const modules = this.props.blueprint.modules.filter(module => module.name !== name);
-    const components = this.props.blueprint.components.filter(component => component.name !== name);
+    const packages = this.props.blueprint.packages.filter((pack) => pack.name !== name);
+    const modules = this.props.blueprint.modules.filter((module) => module.name !== name);
+    const components = this.props.blueprint.components.filter((component) => component.name !== name);
     this.props.updateBlueprintComponents(this.props.blueprint.id, components, packages, modules, pendingChanges);
     event.preventDefault();
     event.stopPropagation();
@@ -340,6 +326,7 @@ class EditBlueprintPage extends React.Component {
   handleComponentListItem(component) {
     this.props.fetchingCompDeps(component, this.props.blueprint.id);
   }
+
   handleDepListItem(component) {
     this.props.fetchingDepDetails(component, this.props.blueprint.id);
   }
@@ -365,7 +352,7 @@ class EditBlueprintPage extends React.Component {
 
   handleDiscardChanges() {
     const workspaceChanges = this.props.blueprint.workspacePendingChanges.length;
-    const reload = workspaceChanges > 0 ? true : false;
+    const reload = workspaceChanges > 0;
     this.props.deleteHistory(this.props.blueprint.id, reload);
     // only fetch blueprint contents if workspace changes existed
     // when this blueprint originally loaded
@@ -374,7 +361,7 @@ class EditBlueprintPage extends React.Component {
   handleUndo() {
     const workspaceChanges = this.props.blueprint.workspacePendingChanges.length;
     if (this.props.pastLength === 1) {
-      const reload = workspaceChanges > 0 ? true : false;
+      const reload = workspaceChanges > 0;
       this.props.deleteHistory(this.props.blueprint.id, reload);
     } else {
       this.props.undo(this.props.blueprint.id, false);
@@ -401,7 +388,7 @@ class EditBlueprintPage extends React.Component {
       selectedInputDeps,
       setSelectedInput,
       setSelectedInputParent,
-      clearSelectedInput
+      clearSelectedInput,
     } = this.props;
     const numPendingChanges = blueprint.localPendingChanges.length + blueprint.workspacePendingChanges.length;
     const { formatMessage } = this.props.intl;
@@ -409,7 +396,7 @@ class EditBlueprintPage extends React.Component {
     return (
       <Layout
         className="cmpsr-grid__wrapper"
-        ref={c => {
+        ref={(c) => {
           this.layout = c;
         }}
       >
@@ -433,14 +420,14 @@ class EditBlueprintPage extends React.Component {
             <ul className="list-inline">
               {numPendingChanges > 0 && (
                 <li>
-                  <a href="#" onClick={e => this.handleShowModal(e, "modalPendingChanges")}>
+                  <a href="#" onClick={(e) => this.handleShowModal(e, "modalPendingChanges")}>
                     <FormattedMessage
                       defaultMessage="{pendingChanges, plural,
                         one {# Pending Change}
                         other {# Pending Changes}
                         }"
                       values={{
-                        pendingChanges: numPendingChanges
+                        pendingChanges: numPendingChanges,
                       }}
                     />
                   </a>
@@ -451,7 +438,7 @@ class EditBlueprintPage extends React.Component {
                   <button
                     type="button"
                     className="btn btn-primary"
-                    onClick={e => this.handleShowModal(e, "modalPendingChanges")}
+                    onClick={(e) => this.handleShowModal(e, "modalPendingChanges")}
                   >
                     <FormattedMessage defaultMessage="Commit" />
                   </button>
@@ -551,7 +538,9 @@ class EditBlueprintPage extends React.Component {
             >
               <EmptyState
                 title={formatMessage(messages.addComponentTitle)}
-                message={`${formatMessage(messages.addComponentMessageOne)} ${formatMessage(messages.addComponentMessageTwo)}`}
+                message={`${formatMessage(messages.addComponentMessageOne)} ${formatMessage(
+                  messages.addComponentMessageTwo
+                )}`}
               />
             </BlueprintContents>
           </div>
@@ -576,7 +565,7 @@ class EditBlueprintPage extends React.Component {
         <h3 className="cmpsr-panel__title cmpsr-panel__title--sidebar">
           {formatMessage(messages.listTitleAvailableComps)}
         </h3>
-        {((inputComponents !== undefined && blueprint.components !== undefined && blueprint.packages !== undefined) && (
+        {(inputComponents !== undefined && blueprint.components !== undefined && blueprint.packages !== undefined && (
           <div className="cmpsr-panel__body cmpsr-panel__body--sidebar">
             <div className="toolbar-pf">
               <form className="toolbar-pf-actions">
@@ -587,7 +576,7 @@ class EditBlueprintPage extends React.Component {
                     id="cmpsr-blueprint-input-filter"
                     aria-label={formatMessage(messages.filterByLabel)}
                     placeholder={formatMessage(messages.filterByPlaceholder)}
-                    onKeyPress={e => this.getFilteredInputs(e)}
+                    onKeyPress={(e) => this.getFilteredInputs(e)}
                   />
                 </div>
               </form>
@@ -599,16 +588,16 @@ class EditBlueprintPage extends React.Component {
                         <FormattedMessage
                           defaultMessage="Name: {name}"
                           values={{
-                            name: inputs.inputFilters.value
+                            name: inputs.inputFilters.value,
                           }}
                         />
-                        <a href="#" onClick={e => this.handleClearFilters(e)}>
+                        <a href="#" onClick={(e) => this.handleClearFilters(e)}>
                           <span className="pficon pficon-close" />
                         </a>
                       </span>
                     </li>
                     <li>
-                      <a href="#" onClick={e => this.handleClearFilters(e)}>
+                      <a href="#" onClick={(e) => this.handleClearFilters(e)}>
                         <FormattedMessage defaultMessage="Clear All Filters" />
                       </a>
                     </li>
@@ -646,23 +635,23 @@ class EditBlueprintPage extends React.Component {
                         <strong>
                           <FormattedMessage defaultMessage="Select components" />
                         </strong>
-                      )
+                      ),
                     }}
                   />
                 </div>
               )}
-            {inputs.inputFilters !== undefined && 
-              inputs.inputFilters.value.length > 0 && 
+            {(inputs.inputFilters !== undefined &&
+              inputs.inputFilters.value.length > 0 &&
               inputComponents[inputs.selectedInputPage].length === 0 && (
                 <EmptyState
                   title={formatMessage(messages.emptyStateNoResultsTitle)}
                   message={formatMessage(messages.emptyStateNoResultsMessage)}
                 >
-                  <button className="btn btn-link" type="button" onClick={e => this.handleClearFilters(e)}>
+                  <button className="btn btn-link" type="button" onClick={(e) => this.handleClearFilters(e)}>
                     <FormattedMessage defaultMessage="Clear All Filters" />
                   </button>
                 </EmptyState>
-            ) || (
+              )) || (
               <ComponentInputs
                 label={formatMessage(messages.listTitleAvailableComps)}
                 components={inputComponents[inputs.selectedInputPage]}
@@ -711,7 +700,7 @@ EditBlueprintPage.propTypes = {
     page: PropTypes.string,
     params: PropTypes.object,
     path: PropTypes.string,
-    pattern: PropTypes.object
+    pattern: PropTypes.object,
   }),
   blueprint: PropTypes.shape({
     components: PropTypes.arrayOf(PropTypes.object),
@@ -723,7 +712,7 @@ EditBlueprintPage.propTypes = {
     name: PropTypes.string,
     packages: PropTypes.arrayOf(PropTypes.object),
     version: PropTypes.string,
-    workspacePendingChanges: PropTypes.arrayOf(PropTypes.object)
+    workspacePendingChanges: PropTypes.arrayOf(PropTypes.object),
   }),
   inputs: PropTypes.shape({
     inputComponents: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.object)),
@@ -731,13 +720,13 @@ EditBlueprintPage.propTypes = {
     pageSize: PropTypes.number,
     selectedInput: PropTypes.object,
     selectedInputPage: PropTypes.number,
-    totalInputs: PropTypes.number
+    totalInputs: PropTypes.number,
   }),
   inputComponents: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.object)),
   modalActive: PropTypes.string,
   selectedInput: PropTypes.shape({
     component: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    parent: PropTypes.arrayOf(PropTypes.object)
+    parent: PropTypes.arrayOf(PropTypes.object),
   }),
   selectedInputDeps: PropTypes.arrayOf(PropTypes.object),
   fetchingBlueprintContents: PropTypes.func,
@@ -761,7 +750,7 @@ EditBlueprintPage.propTypes = {
   componentsFilters: PropTypes.shape({
     defaultFilterType: PropTypes.string,
     filterTypes: PropTypes.arrayOf(PropTypes.object),
-    filterValues: PropTypes.arrayOf(PropTypes.object)
+    filterValues: PropTypes.arrayOf(PropTypes.object),
   }),
   componentsFilterAddValue: PropTypes.func,
   componentsFilterRemoveValue: PropTypes.func,
@@ -775,10 +764,10 @@ EditBlueprintPage.propTypes = {
     message: PropTypes.string,
     options: PropTypes.object,
     problem: PropTypes.string,
-    url: PropTypes.string
+    url: PropTypes.string,
   }),
   blueprintContentsFetching: PropTypes.bool,
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
 };
 
 EditBlueprintPage.defaultProps = {
@@ -788,36 +777,36 @@ EditBlueprintPage.defaultProps = {
   inputComponents: undefined,
   modalActive: "",
   selectedInput: {},
-  fetchingBlueprintContents: function() {},
-  setBlueprint: function() {},
-  fetchingCompDeps: function() {},
-  updateBlueprintComponents: function() {},
-  fetchingInputs: function() {},
-  fetchingDepDetails: function() {},
-  setSelectedInputPage: function() {},
-  setSelectedInput: function() {},
-  clearSelectedInput: function() {},
-  setSelectedInputParent: function() {},
+  fetchingBlueprintContents() {},
+  setBlueprint() {},
+  fetchingCompDeps() {},
+  updateBlueprintComponents() {},
+  fetchingInputs() {},
+  fetchingDepDetails() {},
+  setSelectedInputPage() {},
+  setSelectedInput() {},
+  clearSelectedInput() {},
+  setSelectedInputParent() {},
   selectedInputDeps: undefined,
-  deleteFilter: function() {},
-  setModalActive: function() {},
-  dependenciesSortSetValue: function() {},
-  componentsSortSetValue: function() {},
+  deleteFilter() {},
+  setModalActive() {},
+  dependenciesSortSetValue() {},
+  componentsSortSetValue() {},
   selectedComponents: [],
   dependencies: [],
   componentsSortKey: "",
   componentsSortValue: "",
   componentsFilters: {},
-  componentsFilterAddValue: function() {},
-  componentsFilterRemoveValue: function() {},
-  componentsFilterClearValues: function() {},
+  componentsFilterAddValue() {},
+  componentsFilterRemoveValue() {},
+  componentsFilterClearValues() {},
   pastLength: 0,
   futureLength: 0,
-  undo: function() {},
-  redo: function() {},
-  deleteHistory: function() {},
+  undo() {},
+  redo() {},
+  deleteHistory() {},
   blueprintContentsError: {},
-  blueprintContentsFetching: true
+  blueprintContentsFetching: true,
 };
 
 const makeMapStateToProps = () => {
@@ -851,10 +840,9 @@ const makeMapStateToProps = () => {
         pastLength: getPastLength(fetchedBlueprint),
         futureLength: getFutureLength(fetchedBlueprint),
         blueprintContentsError: fetchedBlueprint.present.errorState,
-        blueprintContentsFetching:
+        blueprintContentsFetching: !!(
           fetchedBlueprint.present.components === undefined && fetchedBlueprint.present.errorState === undefined
-            ? true
-            : false
+        ),
       };
     }
     return {
@@ -870,35 +858,35 @@ const makeMapStateToProps = () => {
       modalActive: state.modals.modalActive,
       pastLength: 0,
       futureLength: 0,
-      blueprintContentsError: {}
+      blueprintContentsError: {},
     };
   };
   return mapStateToProps;
 };
 
-const mapDispatchToProps = dispatch => ({
-  fetchingBlueprintContents: blueprintId => {
+const mapDispatchToProps = (dispatch) => ({
+  fetchingBlueprintContents: (blueprintId) => {
     dispatch(fetchingBlueprintContents(blueprintId));
   },
   fetchingInputs: (filter, selectedInputPage, pageSize) => {
     dispatch(fetchingInputs(filter, selectedInputPage, pageSize));
   },
-  setSelectedInputPage: selectedInputPage => {
+  setSelectedInputPage: (selectedInputPage) => {
     dispatch(setSelectedInputPage(selectedInputPage));
   },
-  setBlueprint: blueprint => {
+  setBlueprint: (blueprint) => {
     dispatch(setBlueprint(blueprint));
   },
   updateBlueprintComponents: (blueprintId, components, packages, modules, pendingChange) => {
     dispatch(updateBlueprintComponents(blueprintId, components, packages, modules, pendingChange));
   },
-  setSelectedInput: selectedInput => {
+  setSelectedInput: (selectedInput) => {
     dispatch(setSelectedInput(selectedInput));
   },
-  setSelectedInputDeps: dependencies => {
+  setSelectedInputDeps: (dependencies) => {
     dispatch(setSelectedInputDeps(dependencies));
   },
-  setSelectedInputParent: selectedInputParent => {
+  setSelectedInputParent: (selectedInputParent) => {
     dispatch(setSelectedInputParent(selectedInputParent));
   },
   clearSelectedInput: () => {
@@ -907,28 +895,28 @@ const mapDispatchToProps = dispatch => ({
   deleteFilter: () => {
     dispatch(deleteFilter());
   },
-  setModalActive: modalActive => {
+  setModalActive: (modalActive) => {
     dispatch(setModalActive(modalActive));
   },
-  componentsSortSetKey: key => {
+  componentsSortSetKey: (key) => {
     dispatch(componentsSortSetKey(key));
   },
-  componentsSortSetValue: value => {
+  componentsSortSetValue: (value) => {
     dispatch(componentsSortSetValue(value));
   },
-  dependenciesSortSetKey: key => {
+  dependenciesSortSetKey: (key) => {
     dispatch(dependenciesSortSetKey(key));
   },
-  dependenciesSortSetValue: value => {
+  dependenciesSortSetValue: (value) => {
     dispatch(dependenciesSortSetValue(value));
   },
-  componentsFilterAddValue: value => {
+  componentsFilterAddValue: (value) => {
     dispatch(componentsFilterAddValue(value));
   },
-  componentsFilterRemoveValue: value => {
+  componentsFilterRemoveValue: (value) => {
     dispatch(componentsFilterRemoveValue(value));
   },
-  componentsFilterClearValues: value => {
+  componentsFilterClearValues: (value) => {
     dispatch(componentsFilterClearValues(value));
   },
   undo: (blueprintId, reload) => {
@@ -945,7 +933,7 @@ const mapDispatchToProps = dispatch => ({
   },
   fetchingDepDetails: (component, blueprintId) => {
     dispatch(fetchingDepDetails(component, blueprintId));
-  }
+  },
 });
 
 export default connect(makeMapStateToProps, mapDispatchToProps)(injectIntl(EditBlueprintPage));

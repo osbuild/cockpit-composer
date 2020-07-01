@@ -26,7 +26,7 @@ class StopBuild extends React.Component {
       <div
         className="modal fade"
         id="cmpsr-modal-delete"
-        ref={c => {
+        ref={(c) => {
           this.modal = c;
         }}
         tabIndex="-1"
@@ -49,7 +49,7 @@ class StopBuild extends React.Component {
                 <FormattedMessage
                   defaultMessage="Are you sure you want to stop the build process for {blueprintName}?"
                   values={{
-                    blueprintName: <strong>{this.props.blueprintName}</strong>
+                    blueprintName: <strong>{this.props.blueprintName}</strong>,
                   }}
                 />
               </p>
@@ -74,20 +74,20 @@ StopBuild.propTypes = {
   blueprintName: PropTypes.string,
   composeId: PropTypes.string,
   handleHideModal: PropTypes.func,
-  cancellingCompose: PropTypes.func
+  cancellingCompose: PropTypes.func,
 };
 
 StopBuild.defaultProps = {
   blueprintName: "",
   composeId: "",
-  handleHideModal: function() {},
-  cancellingCompose: function() {}
+  handleHideModal() {},
+  cancellingCompose() {},
 };
 
-const mapDispatchToProps = dispatch => ({
-  cancellingCompose: compose => {
+const mapDispatchToProps = (dispatch) => ({
+  cancellingCompose: (compose) => {
     dispatch(cancellingCompose(compose));
-  }
+  },
 });
 
 export default connect(null, mapDispatchToProps)(StopBuild);

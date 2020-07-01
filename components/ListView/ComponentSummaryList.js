@@ -9,14 +9,14 @@ import {
   DataListItem,
   DataListItemRow,
   DataListCell,
-  DataListItemCells
+  DataListItemCells,
 } from "@patternfly/react-core";
 import ComponentTypeIcons from "./ComponentTypeIcons";
 
 const messages = defineMessages({
   dependencies: {
-    defaultMessage: "Dependencies"
-  }
+    defaultMessage: "Dependencies",
+  },
 });
 
 class ComponentSummaryList extends React.Component {
@@ -27,7 +27,7 @@ class ComponentSummaryList extends React.Component {
 
   handleShowAll(event) {
     // the user clicked a list item in the blueprint contents area to expand or collapse
-    this.setState(prevState => ({ showAll: !prevState.showAll }));
+    this.setState((prevState) => ({ showAll: !prevState.showAll }));
     event.preventDefault();
     event.stopPropagation();
   }
@@ -45,7 +45,7 @@ class ComponentSummaryList extends React.Component {
             <span className="badge">{this.props.listItems.length}</span>
           </SplitItem>
           <SplitItem>
-            <Button variant="link" isInline onClick={e => this.handleShowAll(e)}>
+            <Button variant="link" isInline onClick={(e) => this.handleShowAll(e)}>
               {this.state.showAll ? (
                 <FormattedMessage defaultMessage="Show Less" />
               ) : (
@@ -55,7 +55,7 @@ class ComponentSummaryList extends React.Component {
           </SplitItem>
         </Split>
         <DataList aria-label={formatMessage(messages.dependencies)} className="cc-m-compact">
-          {listItems.map(listItem => (
+          {listItems.map((listItem) => (
             <DataListItem key={listItem.name} aria-labelledby={`${this.props.parent}-${listItem.name}`}>
               <DataListItemRow>
                 <div className="cc-c-data-list__item-icon">
@@ -69,7 +69,7 @@ class ComponentSummaryList extends React.Component {
                   dataListCells={[
                     <DataListCell key="primary" id={`${this.props.parent}-${listItem.name}`}>
                       {listItem.name}
-                    </DataListCell>
+                    </DataListCell>,
                   ]}
                 />
               </DataListItemRow>
@@ -84,12 +84,12 @@ class ComponentSummaryList extends React.Component {
 ComponentSummaryList.propTypes = {
   listItems: PropTypes.arrayOf(PropTypes.object),
   parent: PropTypes.string,
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
 };
 
 ComponentSummaryList.defaultProps = {
   listItems: [],
-  parent: ""
+  parent: "",
 };
 
 export default injectIntl(ComponentSummaryList);

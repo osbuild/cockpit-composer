@@ -17,7 +17,7 @@ import {
   cancellingComposeSucceeded,
   cancellingComposeFailure,
   FETCHING_QUEUE,
-  fetchingQueueSucceeded
+  fetchingQueueSucceeded,
 } from "../actions/composes";
 
 function* startCompose(action) {
@@ -69,9 +69,9 @@ function* fetchComposes() {
     const finished = yield call(composer.getFinishedComposes);
     const failed = yield call(composer.getFailedComposes);
     const composes = queue.concat(finished, failed);
-    yield all(composes.map(compose => put(fetchingComposeSucceeded(compose))));
+    yield all(composes.map((compose) => put(fetchingComposeSucceeded(compose))));
     if (queue.length >= 1) {
-      yield all(queue.map(compose => pollComposeStatus(compose)));
+      yield all(queue.map((compose) => pollComposeStatus(compose)));
     }
   } catch (error) {
     console.log("fetchComposesError", error);
@@ -122,7 +122,7 @@ function* fetchComposeTypes() {
   }
 }
 
-export default function*() {
+export default function* () {
   yield takeEvery(FETCHING_COMPOSE_TYPES, fetchComposeTypes);
   yield takeEvery(START_COMPOSE, startCompose);
   yield takeEvery(FETCHING_COMPOSES, fetchComposes);

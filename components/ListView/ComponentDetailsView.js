@@ -13,23 +13,23 @@ import { fetchingInputDetails, fetchingInputDeps } from "../../core/actions/inpu
 
 const messages = defineMessages({
   details: {
-    defaultMessage: "Details"
+    defaultMessage: "Details",
   },
   dependencies: {
-    defaultMessage: "Dependencies"
+    defaultMessage: "Dependencies",
   },
   hideDetails: {
-    defaultMessage: "Hide Details"
+    defaultMessage: "Hide Details",
   },
   removeFromBlueprint: {
-    defaultMessage: "Remove from Blueprint"
+    defaultMessage: "Remove from Blueprint",
   },
   noDepsTitle: {
-    defaultMessage: "No Dependencies"
+    defaultMessage: "No Dependencies",
   },
   noDepsMessage: {
-    defaultMessage: "This component has no dependencies."
-  }
+    defaultMessage: "This component has no dependencies.",
+  },
 });
 
 class ComponentDetailsView extends React.Component {
@@ -37,7 +37,7 @@ class ComponentDetailsView extends React.Component {
     super();
     this.state = {
       selectedBuildIndex: undefined,
-      savedVersion: undefined
+      savedVersion: undefined,
     };
     this.setBuildIndex = this.setBuildIndex.bind(this);
     this.handleVersionSelect = this.handleVersionSelect.bind(this);
@@ -75,8 +75,8 @@ class ComponentDetailsView extends React.Component {
     let index = this.state.selectedBuildIndex;
     if (component.builds !== undefined && index === undefined) {
       if (component.userSelected === true) {
-        const selectedVersion = selectedComponents.find(selected => selected.name === component.name).version;
-        const selectedBuild = component.builds.filter(obj => obj.version === selectedVersion)[0];
+        const selectedVersion = selectedComponents.find((selected) => selected.name === component.name).version;
+        const selectedBuild = component.builds.filter((obj) => obj.version === selectedVersion)[0];
         index = component.builds.indexOf(selectedBuild);
         if (index === -1) {
           index = 0;
@@ -99,10 +99,11 @@ class ComponentDetailsView extends React.Component {
   handleSelectedBuildDeps(index) {
     const { component } = this.props;
     // update dependencies for selected component build
-    const selectedComponentBuild = Object.assign({}, component, {
+    const selectedComponentBuild = {
+      ...component,
       release: component.builds[index].release,
-      version: component.builds[index].depsolveVersion
-    });
+      version: component.builds[index].depsolveVersion,
+    };
     this.props.fetchingInputDeps(selectedComponentBuild);
   }
 
@@ -139,7 +140,7 @@ class ComponentDetailsView extends React.Component {
       handleAddComponent,
       handleUpdateComponent,
       handleRemoveComponent,
-      handleDepListItem
+      handleDepListItem,
     } = this.props;
     const { selectedBuildIndex } = this.state;
     const { formatMessage } = this.props.intl;
@@ -150,18 +151,18 @@ class ComponentDetailsView extends React.Component {
           {(componentParent.length > 0 && (
             <ol className="breadcrumb">
               <li>
-                <a href="#" onClick={e => this.handleCloseDetails(e)}>
+                <a href="#" onClick={(e) => this.handleCloseDetails(e)}>
                   <FormattedMessage
                     defaultMessage="Back to {blueprint}"
                     values={{
-                      blueprint: blueprint
+                      blueprint,
                     }}
                   />
                 </a>
               </li>
               {componentParent.map((parent, i) => (
                 <li key={parent.name}>
-                  <a href="#" onClick={e => this.handleParentComponent(e, parent, i)}>
+                  <a href="#" onClick={(e) => this.handleParentComponent(e, parent, i)}>
                     {parent.name}
                   </a>
                 </li>
@@ -171,11 +172,11 @@ class ComponentDetailsView extends React.Component {
           )) || (
             <ol className="breadcrumb">
               <li>
-                <a href="#" onClick={e => this.handleCloseDetails(e)}>
+                <a href="#" onClick={(e) => this.handleCloseDetails(e)}>
                   <FormattedMessage
                     defaultMessage="Back to {blueprint}"
                     values={{
-                      blueprint: blueprint
+                      blueprint,
                     }}
                   />
                 </a>
@@ -190,7 +191,7 @@ class ComponentDetailsView extends React.Component {
                     <button
                       className="btn btn-primary add"
                       type="button"
-                      onClick={e => handleAddComponent(e, component, component.builds[selectedBuildIndex].version)}
+                      onClick={(e) => handleAddComponent(e, component, component.builds[selectedBuildIndex].version)}
                     >
                       <FormattedMessage defaultMessage="Add" />
                     </button>
@@ -206,8 +207,8 @@ class ComponentDetailsView extends React.Component {
                     <button
                       className="btn btn-primary"
                       type="button"
-                      onClick={e => {
-                        return handleUpdateComponent(e, component.name, component.builds[selectedBuildIndex].version)
+                      onClick={(e) => {
+                        return handleUpdateComponent(e, component.name, component.builds[selectedBuildIndex].version);
                       }}
                     >
                       <FormattedMessage defaultMessage="Apply Change" />
@@ -220,7 +221,7 @@ class ComponentDetailsView extends React.Component {
                     <button
                       className="btn btn-default"
                       type="button"
-                      onClick={e => handleRemoveComponent(e, component.name)}
+                      onClick={(e) => handleRemoveComponent(e, component.name)}
                     >
                       <FormattedMessage defaultMessage="Remove" />
                     </button>
@@ -229,7 +230,7 @@ class ComponentDetailsView extends React.Component {
               )}
               <li>
                 <Tooltip position={TooltipPosition.bottom} content={formatMessage(messages.hideDetails)}>
-                  <button type="button" className="close" onClick={e => this.handleCloseDetails(e)}>
+                  <button type="button" className="close" onClick={(e) => this.handleCloseDetails(e)}>
                     <span className="pficon pficon-close" />
                   </button>
                 </Tooltip>
@@ -356,7 +357,7 @@ ComponentDetailsView.propTypes = {
     ui_type: PropTypes.string,
     userSelected: PropTypes.bool,
     version: PropTypes.string,
-    builds: PropTypes.arrayOf(PropTypes.object)
+    builds: PropTypes.arrayOf(PropTypes.object),
   }),
   selectedComponents: PropTypes.arrayOf(PropTypes.object),
   blueprint: PropTypes.string,
@@ -371,7 +372,7 @@ ComponentDetailsView.propTypes = {
   setSelectedInput: PropTypes.func,
   setSelectedInputParent: PropTypes.func,
   clearSelectedInput: PropTypes.func,
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
 };
 
 ComponentDetailsView.defaultProps = {
@@ -382,22 +383,22 @@ ComponentDetailsView.defaultProps = {
   handleRemoveComponent: undefined,
   handleAddComponent: undefined,
   handleUpdateComponent: undefined,
-  handleDepListItem: function() {},
-  fetchingInputDeps: function() {},
-  fetchingInputDetails: function() {},
+  handleDepListItem() {},
+  fetchingInputDeps() {},
+  fetchingInputDetails() {},
   dependencies: undefined,
-  setSelectedInput: function() {},
-  setSelectedInputParent: function() {},
-  clearSelectedInput: function() {}
+  setSelectedInput() {},
+  setSelectedInputParent() {},
+  clearSelectedInput() {},
 };
 
-const mapDispatchToProps = dispatch => ({
-  fetchingInputDetails: component => {
+const mapDispatchToProps = (dispatch) => ({
+  fetchingInputDetails: (component) => {
     dispatch(fetchingInputDetails(component));
   },
-  fetchingInputDeps: component => {
+  fetchingInputDeps: (component) => {
     dispatch(fetchingInputDeps(component));
-  }
+  },
 });
 
 export default connect(null, mapDispatchToProps)(injectIntl(ComponentDetailsView));

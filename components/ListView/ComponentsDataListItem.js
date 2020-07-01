@@ -7,18 +7,18 @@ import {
   DataListToggle,
   DataListCell,
   DataListItemCells,
-  DataListContent
+  DataListContent,
 } from "@patternfly/react-core";
 import ComponentTypeIcons from "./ComponentTypeIcons";
 import ComponentSummaryList from "./ComponentSummaryList";
 
 const messages = defineMessages({
   details: {
-    defaultMessage: "details"
+    defaultMessage: "details",
   },
   actions: {
-    defaultMessage: "actions"
-  }
+    defaultMessage: "actions",
+  },
 });
 
 class ComponentsDataListItem extends React.Component {
@@ -37,7 +37,7 @@ class ComponentsDataListItem extends React.Component {
   handleExpandComponent() {
     // the user clicked a list item in the blueprint contents area to expand or collapse
     const expandState = !this.state.expanded;
-    this.setState(prevState => ({ expanded: !prevState.expanded }));
+    this.setState((prevState) => ({ expanded: !prevState.expanded }));
     if (expandState === true && this.props.listItem.dependencies === undefined) {
       this.props.fetchDetails(this.props.listItem);
     }
@@ -74,7 +74,7 @@ class ComponentsDataListItem extends React.Component {
             dataListCells={[
               <DataListCell key="primary" className="cc-component__name">
                 <div>
-                  <a href="#" onClick={e => handleComponentDetails(e, listItem)}>
+                  <a href="#" onClick={(e) => handleComponentDetails(e, listItem)}>
                     <strong id={listItem.name} data-component-name>
                       {listItem.name}
                     </strong>
@@ -93,7 +93,7 @@ class ComponentsDataListItem extends React.Component {
                 className="cc-component__release pf-u-display-flex-on-xl pf-u-flex-direction-column"
               >
                 <FormattedMessage defaultMessage="Release" /> <strong>{listItem.release}</strong>
-              </DataListCell>
+              </DataListCell>,
             ]}
           />
           {noEditComponent !== true && (
@@ -112,13 +112,13 @@ class ComponentsDataListItem extends React.Component {
                 </button>
                 <ul className="dropdown-menu dropdown-menu-right" aria-labelledby={`${listItem.name}-kebab`}>
                   <li>
-                    <a href="#" onClick={e => handleComponentDetails(e, listItem)}>
+                    <a href="#" onClick={(e) => handleComponentDetails(e, listItem)}>
                       <FormattedMessage defaultMessage="View" />
                     </a>
                   </li>
                   {listItem.inBlueprint && listItem.userSelected && (
                     <li>
-                      <a href="#" onClick={e => handleRemoveComponent(e, listItem.name)}>
+                      <a href="#" onClick={(e) => handleRemoveComponent(e, listItem.name)}>
                         <FormattedMessage defaultMessage="Remove" />
                       </a>
                     </li>
@@ -179,7 +179,7 @@ ComponentsDataListItem.propTypes = {
     userSelected: PropTypes.bool,
     version: PropTypes.string,
     homepage: PropTypes.string,
-    dependencies: PropTypes.arrayOf(PropTypes.object)
+    dependencies: PropTypes.arrayOf(PropTypes.object),
   }),
   componentDetailsParent: PropTypes.shape({
     active: PropTypes.bool,
@@ -192,22 +192,22 @@ ComponentsDataListItem.propTypes = {
     ui_type: PropTypes.string,
     userSelected: PropTypes.bool,
     version: PropTypes.string,
-    versionSelected: PropTypes.string
+    versionSelected: PropTypes.string,
   }),
   handleComponentDetails: PropTypes.func,
   handleRemoveComponent: PropTypes.func,
   noEditComponent: PropTypes.bool,
   fetchDetails: PropTypes.func,
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
 };
 
 ComponentsDataListItem.defaultProps = {
   listItem: {},
   componentDetailsParent: {},
-  handleComponentDetails: function() {},
-  handleRemoveComponent: function() {},
+  handleComponentDetails() {},
+  handleRemoveComponent() {},
   noEditComponent: false,
-  fetchDetails: function() {}
+  fetchDetails() {},
 };
 
 export default injectIntl(ComponentsDataListItem);

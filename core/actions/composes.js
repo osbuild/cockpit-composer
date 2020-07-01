@@ -6,8 +6,8 @@ export const startCompose = (blueprintName, composeType, imageSize, ostree, uplo
     composeType,
     imageSize,
     ostree,
-    uploadSettings
-  }
+    uploadSettings,
+  },
 });
 
 export const START_COMPOSE_SUCCEEDED = "START_COMPOSE_SUCCEEDED";
@@ -15,75 +15,75 @@ export const startComposeSucceeded = (blueprintName, compose) => ({
   type: START_COMPOSE_SUCCEEDED,
   payload: {
     blueprintName,
-    compose
-  }
+    compose,
+  },
 });
 
 export const FETCHING_COMPOSES = "FETCHING_COMPOSES";
 export const fetchingComposes = () => ({
-  type: FETCHING_COMPOSES
+  type: FETCHING_COMPOSES,
 });
 
 export const FETCHING_QUEUE = "FETCHING_QUEUE";
 export const fetchingQueue = () => ({
-  type: FETCHING_QUEUE
+  type: FETCHING_QUEUE,
 });
 
 export const FETCHING_COMPOSE_SUCCEEDED = "FETCHING_COMPOSE_SUCCEEDED";
-export const fetchingComposeSucceeded = compose => ({
+export const fetchingComposeSucceeded = (compose) => ({
   type: FETCHING_COMPOSE_SUCCEEDED,
   payload: {
-    compose
-  }
+    compose,
+  },
 });
 
 export const FETCHING_COMPOSE_STATUS_SUCCEEDED = "FETCHING_COMPOSE_STATUS_SUCCEEDED";
-export const fetchingComposeStatusSucceeded = compose => ({
+export const fetchingComposeStatusSucceeded = (compose) => ({
   type: FETCHING_COMPOSE_STATUS_SUCCEEDED,
   payload: {
-    compose
-  }
+    compose,
+  },
 });
 
 export const FETCHING_COMPOSE_TYPES = "FETCHING_COMPOSE_TYPES";
 export const fetchingComposeTypes = () => ({
-  type: FETCHING_COMPOSE_TYPES
+  type: FETCHING_COMPOSE_TYPES,
 });
 
 export const FETCHING_COMPOSE_TYPES_SUCCEEDED = "FETCHING_COMPOSE_TYPES_SUCCEEDED";
-export const fetchingComposeTypesSucceeded = composeTypes => ({
+export const fetchingComposeTypesSucceeded = (composeTypes) => ({
   type: FETCHING_COMPOSE_TYPES_SUCCEEDED,
   payload: {
-    composeTypes
-  }
+    composeTypes,
+  },
 });
 
 export const FETCHING_QUEUE_SUCCEEDED = "FETCHING_QUEUE_SUCCEEDED";
-export const fetchingQueueSucceeded = queue => ({
+export const fetchingQueueSucceeded = (queue) => ({
   type: FETCHING_QUEUE_SUCCEEDED,
   payload: {
-    queue
-  }
+    queue,
+  },
 });
 export const CLEAR_QUEUE = "CLEAR_QUEUE";
 export const clearQueue = () => ({
-  type: CLEAR_QUEUE
+  type: CLEAR_QUEUE,
 });
 
 export const COMPOSES_FAILURE = "COMPOSES_FAILURE";
-export const composesFailure = error => ({
+export const composesFailure = (error) => ({
   type: COMPOSES_FAILURE,
   payload: {
-    error
-  }
+    error,
+  },
 });
 
 export const DELETING_COMPOSE = "DELETING_COMPOSE";
-export const deletingCompose = composeId => ({
+export const deletingCompose = (composeId) => ({
   type: DELETING_COMPOSE,
   payload: {
-    composeId
-  }
+    composeId,
+  },
 });
 
 export const DELETING_COMPOSE_SUCCEEDED = "DELETING_COMPOSE_SUCCEEDED";
@@ -91,24 +91,24 @@ export const deletingComposeSucceeded = (status, composeId) => ({
   type: DELETING_COMPOSE_SUCCEEDED,
   payload: {
     status,
-    composeId
-  }
+    composeId,
+  },
 });
 
 export const DELETING_COMPOSE_FAILURE = "DELETING_COMPOSE_FAILURE";
-export const deletingComposeFailure = error => ({
+export const deletingComposeFailure = (error) => ({
   type: DELETING_COMPOSE_FAILURE,
   payload: {
-    error
-  }
+    error,
+  },
 });
 
 export const CANCELLING_COMPOSE = "CANCELLING_COMPOSE";
-export const cancellingCompose = composeId => ({
+export const cancellingCompose = (composeId) => ({
   type: CANCELLING_COMPOSE,
   payload: {
-    composeId
-  }
+    composeId,
+  },
 });
 
 export const CANCELLING_COMPOSE_SUCCEEDED = "CANCELLING_COMPOSE_SUCCEEDED";
@@ -116,14 +116,14 @@ export const cancellingComposeSucceeded = (status, composeId) => ({
   type: CANCELLING_COMPOSE_SUCCEEDED,
   payload: {
     status,
-    composeId
-  }
+    composeId,
+  },
 });
 
 export const CANCELLING_COMPOSE_FAILURE = "CANCELLING_COMPOSE_FAILURE";
-export const cancellingComposeFailure = error => ({
+export const cancellingComposeFailure = (error) => ({
   type: CANCELLING_COMPOSE_FAILURE,
   payload: {
-    error
-  }
+    error,
+  },
 });

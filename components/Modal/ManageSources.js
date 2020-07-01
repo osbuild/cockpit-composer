@@ -11,7 +11,7 @@ import EmptyState from "../EmptyState/EmptyState";
 import {
   addModalManageSourcesEntry,
   removeModalManageSourcesEntry,
-  modalManageSourcesFailure
+  modalManageSourcesFailure,
 } from "../../core/actions/modals";
 
 const messages = defineMessages({
@@ -19,69 +19,69 @@ const messages = defineMessages({
     defaultMessage:
       "Sources are used for resolving blueprint dependencies and for composing images. " +
       "When adding custom sources you must make sure that the packages in the source do not conflict with any other package sources, " +
-      "otherwise resolving dependencies and composing images will fail."
+      "otherwise resolving dependencies and composing images will fail.",
   },
   errorStateTitle: {
-    defaultMessage: "An Error Occurred"
+    defaultMessage: "An Error Occurred",
   },
   errorStateMessage: {
-    defaultMessage: "An error occurred while trying to get sources."
+    defaultMessage: "An error occurred while trying to get sources.",
   },
   closeButtonLabel: {
-    defaultMessage: "Close"
+    defaultMessage: "Close",
   },
   sourcePath: {
     defaultMessage: "Source path",
-    description: "The path or url to the source repository"
+    description: "The path or url to the source repository",
   },
   name: {
     defaultMessage: "Name",
-    description: "Name of source"
+    description: "Name of source",
   },
   type: {
     defaultMessage: "Type",
-    description: "Type of source"
+    description: "Type of source",
   },
   security: {
-    defaultMessage: "Security"
+    defaultMessage: "Security",
   },
   check_ssl: {
-    defaultMessage: "Check SSL certificate"
+    defaultMessage: "Check SSL certificate",
   },
   check_gpg: {
-    defaultMessage: "Check GPG key"
+    defaultMessage: "Check GPG key",
   },
   selectOne: {
-    defaultMessage: "Select one"
+    defaultMessage: "Select one",
   },
   typeRepo: {
-    defaultMessage: "yum repository"
+    defaultMessage: "yum repository",
   },
   typeMirrorlist: {
-    defaultMessage: "mirrorlist"
+    defaultMessage: "mirrorlist",
   },
   typeMetalink: {
-    defaultMessage: "metalink"
+    defaultMessage: "metalink",
   },
   add: {
-    defaultMessage: "Add Source"
+    defaultMessage: "Add Source",
   },
   save: {
-    defaultMessage: "Add Source"
+    defaultMessage: "Add Source",
   },
   update: {
-    defaultMessage: "Update Source"
+    defaultMessage: "Update Source",
   },
   cancel: {
-    defaultMessage: "Cancel"
-  }
+    defaultMessage: "Cancel",
+  },
 });
 
 class ManageSources extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showModal: false
+      showModal: false,
     };
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
@@ -131,7 +131,7 @@ class ManageSourcesModal extends React.Component {
       check_gpg: false,
       warningDuplicateName: false,
       warningDuplicateUrl: false,
-      editName: ""
+      editName: "",
     };
     this.handleShowForm = this.handleShowForm.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -154,7 +154,7 @@ class ManageSourcesModal extends React.Component {
         name: "",
         type: "",
         check_ssl: false,
-        check_gpg: false
+        check_gpg: false,
       });
     }
   }
@@ -163,7 +163,7 @@ class ManageSourcesModal extends React.Component {
     this.setState({ addEntry: showForm });
     if (showForm) {
       this.setState({
-        editName: ""
+        editName: "",
       });
     } else {
       this.props.clearError({});
@@ -174,7 +174,7 @@ class ManageSourcesModal extends React.Component {
         check_ssl: false,
         check_gpg: false,
         warningDuplicateName: false,
-        warningDuplicateUrl: false
+        warningDuplicateUrl: false,
       });
     }
   }
@@ -201,30 +201,30 @@ class ManageSourcesModal extends React.Component {
   }
 
   handleValidateUrl(url) {
-    const sourceUrls = Object.values(this.props.manageSources.sources).map(source => source.url);
-    this.setState({ warningDuplicateUrl: !sourceUrls.every(sourceUrl => sourceUrl !== url) });
+    const sourceUrls = Object.values(this.props.manageSources.sources).map((source) => source.url);
+    this.setState({ warningDuplicateUrl: !sourceUrls.every((sourceUrl) => sourceUrl !== url) });
   }
 
   handleEditSource(name) {
     this.setState({
       addEntry: true,
       editName: name,
-      name: name,
+      name,
       type: this.props.manageSources.sources[name].type,
       url: this.props.manageSources.sources[name].url,
       check_ssl: this.props.manageSources.sources[name].check_ssl,
-      check_gpg: this.props.manageSources.sources[name].check_gpg
+      check_gpg: this.props.manageSources.sources[name].check_gpg,
     });
   }
 
   handleSubmitSource() {
     this.props.clearError({});
-    let source = {
+    const source = {
       name: this.state.name,
       url: this.state.url,
       type: this.state.type,
       check_ssl: this.state.check_ssl,
-      check_gpg: this.state.check_gpg
+      check_gpg: this.state.check_gpg,
     };
     this.props.addSource(source);
   }
@@ -232,8 +232,8 @@ class ManageSourcesModal extends React.Component {
   render() {
     const { formatMessage } = this.props.intl;
     const { manageSources } = this.props;
-    const systemSources = Object.values(manageSources.sources).filter(source => source.system === true);
-    const customSources = Object.values(manageSources.sources).filter(source => source.system !== true);
+    const systemSources = Object.values(manageSources.sources).filter((source) => source.system === true);
+    const customSources = Object.values(manageSources.sources).filter((source) => source.system !== true);
     const disabledSubmit =
       this.state.name === "" ||
       this.state.url === "" ||
@@ -253,7 +253,7 @@ class ManageSourcesModal extends React.Component {
             <FormattedMessage
               defaultMessage="The fields marked with {val} are required."
               values={{
-                val: <span className="required-pf">*</span>
+                val: <span className="required-pf">*</span>,
               }}
             />
           </p>
@@ -270,9 +270,9 @@ class ManageSourcesModal extends React.Component {
                 aria-describedby="textInput1-modal-source-help"
                 aria-required="true"
                 aria-invalid={this.state.warningDuplicateName}
-                readOnly={this.state.editName !== "" ? true : false}
+                readOnly={this.state.editName !== ""}
                 value={this.state.name}
-                onChange={e => this.handleChange(e, "name")}
+                onChange={(e) => this.handleChange(e, "name")}
               />
               {this.state.warningDuplicateName && (
                 <span className="help-block" id="textInput1-modal-source-help">
@@ -294,7 +294,7 @@ class ManageSourcesModal extends React.Component {
                 aria-required="true"
                 aria-invalid={this.state.warningDuplicateUrl}
                 value={this.state.url}
-                onChange={e => this.handleChange(e, "url")}
+                onChange={(e) => this.handleChange(e, "url")}
               />
               {this.state.warningDuplicateUrl && (
                 <span className="help-block" id="textInput2-modal-source-help">
@@ -313,7 +313,7 @@ class ManageSourcesModal extends React.Component {
                 className="form-control"
                 value={this.state.type}
                 aria-required="true"
-                onChange={e => this.handleChange(e, "type")}
+                onChange={(e) => this.handleChange(e, "type")}
               >
                 <option value="" disabled hidden>
                   {formatMessage(messages.selectOne)}
@@ -335,7 +335,7 @@ class ManageSourcesModal extends React.Component {
                     type="checkbox"
                     id="checkboxInput4-modal-source"
                     checked={this.state.check_ssl}
-                    onChange={e => this.handleChange(e, "check_ssl")}
+                    onChange={(e) => this.handleChange(e, "check_ssl")}
                   />
                   {formatMessage(messages.check_ssl)}
                 </label>
@@ -346,7 +346,7 @@ class ManageSourcesModal extends React.Component {
                     type="checkbox"
                     id="checkboxInput5-modal-source"
                     checked={this.state.check_gpg}
-                    onChange={e => this.handleChange(e, "check_gpg")}
+                    onChange={(e) => this.handleChange(e, "check_gpg")}
                   />
                   {formatMessage(messages.check_gpg)}
                 </label>
@@ -394,17 +394,17 @@ class ManageSourcesModal extends React.Component {
                         type="button"
                         autoFocus={this.state.editName === ""}
                         className="btn btn-primary pull-right"
-                        onClick={e => this.handleShowForm(e, true)}
+                        onClick={(e) => this.handleShowForm(e, true)}
                         value={formatMessage(messages.add)}
                       />
                     </div>
                   </div>
                   <div className="list-pf cmpsr-list-pf list-pf-stacked cmpsr-list-sources">
-                    {systemSources.map(source => (
+                    {systemSources.map((source) => (
                       <SourcesListItem source={source} key={source.name} />
                     ))}
                     {customSources.length > 0 &&
-                      customSources.map(source => (
+                      customSources.map((source) => (
                         <SourcesListItem
                           source={source}
                           key={source.name}
@@ -434,7 +434,7 @@ class ManageSourcesModal extends React.Component {
                   <FormattedMessage defaultMessage="Saving source" />
                 </div>
               )}
-              <button type="button" className="btn btn-default" onClick={e => this.handleShowForm(e, false)}>
+              <button type="button" className="btn btn-default" onClick={(e) => this.handleShowForm(e, false)}>
                 {formatMessage(messages.cancel)}
               </button>
 
@@ -459,54 +459,54 @@ ManageSources.propTypes = {
   manageSources: PropTypes.shape({
     fetchingSources: PropTypes.bool,
     sources: PropTypes.objectOf(PropTypes.object),
-    error: PropTypes.object
+    error: PropTypes.object,
   }),
   disabled: PropTypes.bool,
   removeModalManageSourcesEntry: PropTypes.func,
   addModalManageSourcesEntry: PropTypes.func,
   modalManageSourcesFailure: PropTypes.func,
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
 };
 
 ManageSources.defaultProps = {
   manageSources: {},
   disabled: false,
-  removeModalManageSourcesEntry: function() {},
-  addModalManageSourcesEntry: function() {},
-  modalManageSourcesFailure: function() {}
+  removeModalManageSourcesEntry() {},
+  addModalManageSourcesEntry() {},
+  modalManageSourcesFailure() {},
 };
 
 ManageSourcesModal.propTypes = {
   manageSources: PropTypes.shape({
     fetchingSources: PropTypes.bool,
     sources: PropTypes.objectOf(PropTypes.object),
-    error: PropTypes.object
+    error: PropTypes.object,
   }),
   removeSource: PropTypes.func,
   addSource: PropTypes.func,
   clearError: PropTypes.func,
   close: PropTypes.func,
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
 };
 
 ManageSourcesModal.defaultProps = {
   manageSources: {},
-  removeSource: function() {},
-  addSource: function() {},
-  clearError: function() {},
-  close: function() {}
+  removeSource() {},
+  addSource() {},
+  clearError() {},
+  close() {},
 };
 
-const mapDispatchToProps = dispatch => ({
-  addModalManageSourcesEntry: source => {
+const mapDispatchToProps = (dispatch) => ({
+  addModalManageSourcesEntry: (source) => {
     dispatch(addModalManageSourcesEntry(source));
   },
-  removeModalManageSourcesEntry: sourceName => {
+  removeModalManageSourcesEntry: (sourceName) => {
     dispatch(removeModalManageSourcesEntry(sourceName));
   },
-  modalManageSourcesFailure: error => {
+  modalManageSourcesFailure: (error) => {
     dispatch(modalManageSourcesFailure(error));
-  }
+  },
 });
 
 export default connect(null, mapDispatchToProps)(injectIntl(ManageSources));
