@@ -13,7 +13,7 @@ import BlueprintContents from "../../components/ListView/BlueprintContents";
 import ComponentDetailsView from "../../components/ListView/ComponentDetailsView";
 import UserAccount from "../../components/Modal/UserAccount";
 import EditDescription from "../../components/Modal/EditDescription";
-import CreateImageUpload from "../../components/Modal/CreateImageUpload";
+import CreateImageUpload from "../../components/Wizard/CreateImageUpload";
 import ExportBlueprint from "../../components/Modal/ExportBlueprint";
 import StopBuild from "../../components/Modal/StopBuild";
 import DeleteImage from "../../components/Modal/DeleteImage";
