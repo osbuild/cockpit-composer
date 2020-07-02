@@ -7,7 +7,7 @@ import Layout from "../../components/Layout/Layout";
 import BlueprintContents from "../../components/ListView/BlueprintContents";
 import ComponentInputs from "../../components/ListView/ComponentInputs";
 import ComponentDetailsView from "../../components/ListView/ComponentDetailsView";
-import CreateImageUpload from "../../components/Modal/CreateImageUpload";
+import CreateImageUpload from "../../components/Wizard/CreateImageUpload";
 import ExportBlueprint from "../../components/Modal/ExportBlueprint";
 import PendingChanges from "../../components/Modal/PendingChanges";
 import EmptyState from "../../components/EmptyState/EmptyState";

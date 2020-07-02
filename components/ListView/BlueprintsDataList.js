@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { DataList, DataListItem, DataListItemRow, DataListCell, DataListItemCells } from "@patternfly/react-core";
 import { PficonTemplateIcon } from "@patternfly/react-icons";
 import Link from "../Link/Link";
-import CreateImageUpload from "../Modal/CreateImageUpload";
+import CreateImageUpload from "../Wizard/CreateImageUpload";
 import DeleteBlueprint from "../Modal/DeleteBlueprint";
 import ExportBlueprint from "../Modal/ExportBlueprint";
 
