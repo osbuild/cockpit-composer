@@ -235,7 +235,8 @@ class EditBlueprintPage extends React.Component {
     event.stopPropagation();
   }
 
-  handleUpdateComponent(event, name, version) {
+  handleUpdateComponent(event, component, version) {
+    const name = component.name;
     this.props.clearSelectedInput();
     const selectedComponents = this.props.blueprint.packages.concat(this.props.blueprint.modules);
     const oldVersion = selectedComponents.find((component) => component.name === name).version;

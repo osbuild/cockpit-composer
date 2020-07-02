@@ -207,9 +207,7 @@ class ComponentDetailsView extends React.Component {
                     <button
                       className="btn btn-primary"
                       type="button"
-                      onClick={(e) => {
-                        return handleUpdateComponent(e, component.name, component.builds[selectedBuildIndex].version);
-                      }}
+                      onClick={(e) => handleUpdateComponent(e, component, component.builds[selectedBuildIndex].version)}
                     >
                       <FormattedMessage defaultMessage="Apply Change" />
                     </button>
