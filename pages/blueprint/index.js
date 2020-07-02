@@ -462,7 +462,7 @@ class BlueprintPage extends React.Component {
                       <FormattedMessage defaultMessage="Users" />
                     </label>
                     <div className="col-sm-10">
-                      {users !== undefined && users.length > 0 && (
+                      {users.length > 0 && (
                         <div>
                           <Table
                             variant={TableVariant.compact}
