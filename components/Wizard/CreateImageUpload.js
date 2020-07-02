@@ -34,6 +34,7 @@ import BlueprintApi from "../../data/BlueprintApi";
 import { setBlueprint } from "../../core/actions/blueprints";
 import { fetchingQueue, clearQueue, startCompose, fetchingComposeTypes } from "../../core/actions/composes";
 import AWSAuthStep from "./AWSAuthStep";
+import AWSDestinationStep from "./AWSDestinationStep";
 
 const messages = defineMessages({
   accessKeys: {
@@ -110,16 +111,7 @@ const ariaLabels = defineMessages({
     defaultMessage: "Image size help",
   },
   imageName: {
-    id: "image-name-help",
     defaultMessage: "Image name help",
-  },
-  bucket: {
-    id: "bucket-help",
-    defaultMessage: "S3 Bucket help",
-  },
-  region: {
-    id: "region-help",
-    defaultMessage: "AWS region help",
   },
   aws: {
     id: "aws-help",
@@ -779,127 +771,15 @@ class CreateImageUploadModal extends React.Component {
       component: <AWSAuthStep uploadSettings={this.state.uploadSettings} setUploadSettings={this.setUploadSettings} />,
     };
 
-    const awsUploadSettings = {
+    const awsUploadDest = {
       name: "Destination",
       component: (
-        <>
-          <Text className="help-block cc-c-form__required-text">
-            <FormattedMessage defaultMessage="All fields are required." />
-          </Text>
-          <Form isHorizontal className="cc-m-wide-label">
-            <div className="pf-c-form__group">
-              <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-u-display-flex pf-m-justify-content-flex-start pf-m-nowrap">
-                <label htmlFor="image-name-input" className="pf-l-flex__item">
-                  <span className="pf-c-form__label-text">
-                    <FormattedMessage defaultMessage="Image name" />
-                  </span>
-                  <span className="pf-c-form__label-required" aria-hidden="true">
-                    &#42;
-                  </span>
-                </label>
-                <Popover
-                  id="image-name-popover"
-                  bodyContent={
-                    <>
-                      <FormattedMessage defaultMessage="Provide a file name to be used for the image file that will be uploaded." />
-                    </>
-                  }
-                  aria-label={formatMessage(ariaLabels.imageName)}
-                >
-                  <Button variant="plain" aria-label={formatMessage(ariaLabels.imageName)}>
-                    <OutlinedQuestionCircleIcon id="popover-icon" />
-                  </Button>
-                </Popover>
-              </div>
-              <TextInput
-                className="pf-c-form-control"
-                value={imageName}
-                type="text"
-                id="image-name-input"
-                onChange={this.setImageName}
-              />
-            </div>
-            <div className="pf-c-form__group">
-              <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-u-display-flex pf-m-justify-content-flex-start pf-m-nowrap">
-                <label htmlFor="bucket-input" className="pf-l-flex__item">
-                  <span className="pf-c-form__label-text">Amazon S3 bucket</span>
-                  <span className="pf-c-form__label-required" aria-hidden="true">
-                    &#42;
-                  </span>
-                </label>
-                <Popover
-                  id="bucket-popover"
-                  bodyContent={
-                    <>
-                      <FormattedMessage
-                        defaultMessage="
-                          Provide the S3 {bucket} name to which the image file will be uploaded before being imported into EC2. 
-                          The {bucket} must already exist in the Region where you want to import your image. You can find a list of {buckets} on the
-                          {bucketsPage} page in the {amazon} S3 storage service in the AWS console.
-                        "
-                        values={{
-                          bucket: "bucket",
-                          buckets: "buckets",
-                          bucketsPage: <strong>S3 buckets</strong>,
-                          amazon: "Amazon",
-                        }}
-                      />
-                    </>
-                  }
-                  aria-label={formatMessage(ariaLabels.bucket)}
-                >
-                  <Button variant="plain" aria-label={formatMessage(ariaLabels.bucket)}>
-                    <OutlinedQuestionCircleIcon id="popover-icon" />
-                  </Button>
-                </Popover>
-              </div>
-              <TextInput
-                className="pf-c-form-control"
-                value={this.state.uploadSettings.bucket}
-                type="text"
-                id="bucket-input"
-                name="bucket"
-                onChange={this.setUploadSettings}
-              />
-            </div>
-            <div className="pf-c-form__group">
-              <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-u-display-flex pf-m-justify-content-flex-start pf-m-nowrap">
-                <label htmlFor="region-input" className="pf-l-flex__item">
-                  <span className="pf-c-form__label-text">
-                    <FormattedMessage defaultMessage="AWS region" />
-                  </span>
-                  <span className="pf-c-form__label-required" aria-hidden="true">
-                    &#42;
-                  </span>
-                </label>
-                <Popover
-                  id="region-popover"
-                  bodyContent={
-                    <FormattedMessage
-                      defaultMessage="Provide the AWS Region where you want to import your image. This must be the same region where the {bucket} exists."
-                      values={{
-                        bucket: "S3 bucket",
-                      }}
-                    />
-                  }
-                  aria-label={formatMessage(ariaLabels.region)}
-                >
-                  <Button variant="plain" aria-label={formatMessage(ariaLabels.region)}>
-                    <OutlinedQuestionCircleIcon id="popover-icon" />
-                  </Button>
-                </Popover>
-              </div>
-              <TextInput
-                className="pf-c-form-control"
-                value={this.state.uploadSettings.region}
-                type="text"
-                id="region-input"
-                name="region"
-                onChange={this.setUploadSettings}
-              />
-            </div>
-          </Form>
-        </>
+        <AWSDestinationStep
+          imageName={this.state.imageName}
+          uploadSettings={this.state.uploadSettings}
+          setImageName={this.setImageName}
+          setUploadSettings={this.setUploadSettings}
+        />
       ),
     };
 
@@ -1306,7 +1186,7 @@ class CreateImageUploadModal extends React.Component {
 
     const awsUploadStep = {
       name: "Upload to AWS",
-      steps: [awsUploadAuth, awsUploadSettings],
+      steps: [awsUploadAuth, awsUploadDest],
     };
 
     const azureUploadStep = {
