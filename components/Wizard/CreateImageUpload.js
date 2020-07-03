@@ -36,11 +36,9 @@ import { fetchingQueue, clearQueue, startCompose, fetchingComposeTypes } from ".
 import AWSAuthStep from "./AWSAuthStep";
 import AWSDestinationStep from "./AWSDestinationStep";
 import AzureAuthStep from "./AzureAuthStep";
+import AzureDestinationStep from "./AzureDestinationStep";
 
 const messages = defineMessages({
-  blobService: {
-    defaultMessage: "Blob service",
-  },
   imageSizePopover: {
     defaultMessage:
       "Set the size that you want the image to be when instantiated. " +
@@ -66,9 +64,6 @@ const messages = defineMessages({
   },
   selectOne: {
     defaultMessage: "Select one",
-  },
-  storageAccounts: {
-    defaultMessage: "Storage accounts",
   },
   title: {
     defaultMessage: "Create image",
@@ -114,10 +109,6 @@ const ariaLabels = defineMessages({
   aws: {
     id: "aws-help",
     defaultMessage: "AWS help",
-  },
-  storageContainer: {
-    id: "storage-container-help",
-    defaultMessage: "storage container help",
   },
   azure: {
     id: "azure-help",
@@ -880,89 +871,15 @@ class CreateImageUploadModal extends React.Component {
       ),
     };
 
-    const azureUploadSettings = {
+    const azureUploadDest = {
       name: "Destination",
       component: (
-        <>
-          <Text className="help-block cc-c-form__required-text">
-            <FormattedMessage defaultMessage="All fields are required." />
-          </Text>
-          <Form isHorizontal className="cc-m-wide-label">
-            <div className="pf-c-form__group">
-              <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-u-display-flex pf-m-justify-content-flex-start pf-m-nowrap">
-                <label htmlFor="image-name-input" className="pf-l-flex__item">
-                  <span className="pf-c-form__label-text">
-                    <FormattedMessage defaultMessage="Image name" />
-                  </span>
-                  <span className="pf-c-form__label-required" aria-hidden="true">
-                    &#42;
-                  </span>
-                </label>
-                <Popover
-                  id="popover-help"
-                  bodyContent={
-                    <>
-                      <FormattedMessage defaultMessage="Provide a file name to be used for the image file that will be uploaded." />
-                    </>
-                  }
-                  aria-label={formatMessage(ariaLabels.imageName)}
-                >
-                  <Button variant="plain" aria-label={formatMessage(ariaLabels.imageName)}>
-                    <OutlinedQuestionCircleIcon id="popover-icon" />
-                  </Button>
-                </Popover>
-              </div>
-              <TextInput
-                className="pf-c-form-control"
-                value={imageName}
-                type="text"
-                id="image-name-input"
-                onChange={this.setImageName}
-              />
-            </div>
-            <div className="pf-c-form__group">
-              <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-u-display-flex pf-m-justify-content-flex-start pf-m-nowrap">
-                <label htmlFor="storage-container-input" className="pf-l-flex__item">
-                  <span className="pf-c-form__label-text">
-                    <FormattedMessage defaultMessage="Storage container" />
-                  </span>
-                  <span className="pf-c-form__label-required" aria-hidden="true">
-                    &#42;
-                  </span>
-                </label>
-                <Popover
-                  id="bucket-popover"
-                  bodyContent={
-                    <FormattedMessage
-                      defaultMessage="
-                    Provide the Blob container to which the image file will be uploaded. You can find containers under the {blobService} 
-                    section of a storage account. You can find storage accounts on the {storageAccounts} page in the {azure} portal.
-                    "
-                      values={{
-                        azure: "Azure",
-                        blobService: <strong>{formatMessage(messages.blobService)}</strong>,
-                        storageAccounts: <strong>{formatMessage(messages.storageAccounts)}</strong>,
-                      }}
-                    />
-                  }
-                  aria-label={formatMessage(ariaLabels.storageContainer)}
-                >
-                  <Button variant="plain" aria-label={formatMessage(ariaLabels.storageContainer)}>
-                    <OutlinedQuestionCircleIcon id="popover-icon" />
-                  </Button>
-                </Popover>
-              </div>
-              <TextInput
-                className="pf-c-form-control"
-                value={this.state.uploadSettings.container}
-                type="text"
-                id="storage-container-input"
-                name="container"
-                onChange={this.setUploadSettings}
-              />
-            </div>
-          </Form>
-        </>
+        <AzureDestinationStep
+          imageName={this.state.imageName}
+          uploadSettings={this.state.uploadSettings}
+          setImageName={this.setImageName}
+          setUploadSettings={this.setUploadSettings}
+        />
       ),
     };
 
@@ -1098,7 +1015,7 @@ class CreateImageUploadModal extends React.Component {
 
     const azureUploadStep = {
       name: "Upload to Azure",
-      steps: [azureUploadAuth, azureUploadSettings],
+      steps: [azureUploadAuth, azureUploadDest],
     };
 
     const steps = [
