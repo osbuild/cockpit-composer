@@ -11,11 +11,6 @@ import {
   TextContent,
   Text,
   TextInput,
-  TextList,
-  TextListVariants,
-  TextListItem,
-  TextListItemVariants,
-  Title,
   Wizard,
   WizardContextConsumer,
   WizardFooter,
@@ -23,7 +18,6 @@ import {
 import {
   OutlinedQuestionCircleIcon,
   ExclamationTriangleIcon,
-  ExclamationCircleIcon,
   ExternalLinkSquareAltIcon,
 } from "@patternfly/react-icons";
 import { defineMessages, FormattedMessage, injectIntl, intlShape } from "react-intl";
@@ -37,6 +31,7 @@ import AWSAuthStep from "./AWSAuthStep";
 import AWSDestinationStep from "./AWSDestinationStep";
 import AzureAuthStep from "./AzureAuthStep";
 import AzureDestinationStep from "./AzureDestinationStep";
+import ReviewStep from "./ReviewStep";
 
 const messages = defineMessages({
   imageSizePopover: {
@@ -59,18 +54,11 @@ const messages = defineMessages({
   warningEmptyBlueprintDesc: {
     defaultMessage: "A minimal image will be created with only the packages needed to support the selected image type.",
   },
-  warningReview: {
-    defaultMessage: "There are one or more fields that require your attention.",
-  },
   selectOne: {
     defaultMessage: "Select one",
   },
   title: {
     defaultMessage: "Create image",
-  },
-  review: {
-    defaultMessage:
-      "Review the information below and click Finish to create the image and complete the tasks that were selected. ",
   },
   warningSizeSmall: {
     defaultMessage: "Minimum size is {size} GB.",
@@ -78,9 +66,6 @@ const messages = defineMessages({
   warningSizeLarge: {
     defaultMessage:
       "The size specified is large. We recommend that you check whether your target destination has any restrictions on image size.",
-  },
-  warningSizeEmpty: {
-    defaultMessage: "A value is required.",
   },
   uploadAWS: {
     defaultMessage: "Upload to AWS",
@@ -105,14 +90,6 @@ const ariaLabels = defineMessages({
   },
   imageName: {
     defaultMessage: "Image name help",
-  },
-  aws: {
-    id: "aws-help",
-    defaultMessage: "AWS help",
-  },
-  azure: {
-    id: "azure-help",
-    defaultMessage: "Azure help",
   },
   ostreeParent: {
     id: "ostree-parent-help",
@@ -428,7 +405,6 @@ class CreateImageUploadModal extends React.Component {
       showUploadAwsStep,
       showUploadAzureStep,
       showReviewStep,
-      imageName,
       imageType,
       imageSize,
       ostreeSettings,
@@ -764,106 +740,6 @@ class CreateImageUploadModal extends React.Component {
       ),
     };
 
-    const awsReviewStep = uploadService === "aws" && (
-      <TextContent>
-        <div className="pf-l-flex pf-u-display-flex">
-          <h3 className="pf-l-flex__item pf-u-mt-2xl pf-u-mb-md">
-            <FormattedMessage defaultMessage="Upload to Amazon" />
-          </h3>
-          <Popover
-            className="pf-l-flex__item"
-            id="aws-review-popover"
-            bodyContent={
-              <TextContent>
-                <p>
-                  <FormattedMessage
-                    defaultMessage="
-                      Image Builder can upload images you create to an {bucket} in AWS and then import them into EC2. When the image build is complete
-                      and the upload action is successful, the image file is available in the AMI section of EC2. Most of the values required to upload
-                      the image can be found in the {console}.
-                    "
-                    values={{
-                      bucket: "S3 bucket",
-                      console: (
-                        <Button
-                          component="a"
-                          className="pf-icon"
-                          target="_blank"
-                          variant="link"
-                          icon={<ExternalLinkSquareAltIcon />}
-                          iconPosition="right"
-                          isInline
-                          href="https://console.aws.amazon.com/console/home"
-                        >
-                          AWS Management Console
-                        </Button>
-                      ),
-                    }}
-                  />
-                </p>
-                <p>
-                  <FormattedMessage
-                    defaultMessage="
-                      This upload process requires that you have an {iam} role named {vmimport} to ensure that the image can
-                      be imported from the S3 {bucket} into EC2. For more details, refer to the {role}.
-                    "
-                    values={{
-                      bucket: "bucket",
-                      vmimport: <code>vmimport</code>,
-                      iam: "Identity and Access Management (IAM)",
-                      role: (
-                        <Button
-                          component="a"
-                          className="pf-icon"
-                          target="_blank"
-                          variant="link"
-                          icon={<ExternalLinkSquareAltIcon />}
-                          iconPosition="right"
-                          isInline
-                          href="https://docs.aws.amazon.com/vm-import/latest/userguide/vmie_prereqs.html#vmimport-role"
-                        >
-                          AWS Required Service Role
-                        </Button>
-                      ),
-                    }}
-                  />
-                </p>
-              </TextContent>
-            }
-            aria-label={formatMessage(ariaLabels.aws)}
-          >
-            <Button variant="plain" aria-label={formatMessage(ariaLabels.aws)}>
-              <OutlinedQuestionCircleIcon id="popover-icon" />
-            </Button>
-          </Popover>
-        </div>
-        <TextList className="cc-m-column__fixed-width" component={TextListVariants.dl}>
-          <TextListItem component={TextListItemVariants.dt}>
-            <FormattedMessage defaultMessage="Access key ID" />
-          </TextListItem>
-          <TextListItem component={TextListItemVariants.dd}>
-            {"*".repeat(this.state.uploadSettings.accessKeyID.length)}
-          </TextListItem>
-          <TextListItem component={TextListItemVariants.dt}>
-            <FormattedMessage defaultMessage="Secret access key" />
-          </TextListItem>
-          <TextListItem component={TextListItemVariants.dd}>
-            {"*".repeat(this.state.uploadSettings.secretAccessKey.length)}
-          </TextListItem>
-          <TextListItem component={TextListItemVariants.dt}>
-            <FormattedMessage defaultMessage="Image name" />
-          </TextListItem>
-          <TextListItem component={TextListItemVariants.dd}>{imageName}</TextListItem>
-          <TextListItem component={TextListItemVariants.dt}>Amazon S3 bucket</TextListItem>
-          <TextListItem component={TextListItemVariants.dd}>{this.state.uploadSettings.bucket}</TextListItem>
-          <TextListItem component={TextListItemVariants.dt}>
-            <FormattedMessage defaultMessage="AWS region" />
-          </TextListItem>
-          <TextListItem component={TextListItemVariants.dd}>{this.state.uploadSettings.region}</TextListItem>
-        </TextList>
-      </TextContent>
-    );
-
     const azureUploadAuth = {
       name: "Authentication",
       component: (
@@ -883,128 +759,19 @@ class CreateImageUploadModal extends React.Component {
       ),
     };
 
-    const azureReviewStep = uploadService === "azure" && (
-      <TextContent>
-        <div className="pf-l-flex pf-u-display-flex">
-          <h3 className="pf-l-flex__item pf-u-mt-2xl pf-u-mb-md">
-            <FormattedMessage defaultMessage="Upload to Azure" />
-          </h3>
-          <Popover
-            className="pf-l-flex__item"
-            id="azure-review-popover"
-            bodyContent={
-              <FormattedMessage
-                defaultMessage="
-                    Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete 
-                    and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
-                    "
-                values={{
-                  azure: (
-                    <Button
-                      component="a"
-                      className="pf-icon"
-                      target="_blank"
-                      variant="link"
-                      icon={<ExternalLinkSquareAltIcon />}
-                      iconPosition="right"
-                      isInline
-                      href="https://portal.azure.com/"
-                    >
-                      Microsoft Azure
-                    </Button>
-                  ),
-                }}
-              />
-            }
-            aria-label={formatMessage(ariaLabels.azure)}
-          >
-            <Button variant="plain" aria-label={formatMessage(ariaLabels.azure)}>
-              <OutlinedQuestionCircleIcon id="popover-icon" />
-            </Button>
-          </Popover>
-        </div>
-        <TextList className="cc-m-column__fixed-width" component={TextListVariants.dl}>
-          <TextListItem component={TextListItemVariants.dt}>
-            <FormattedMessage defaultMessage="Storage account" />
-          </TextListItem>
-          <TextListItem component={TextListItemVariants.dd}>{this.state.uploadSettings.storageAccount}</TextListItem>
-          <TextListItem component={TextListItemVariants.dt}>
-            <FormattedMessage defaultMessage="Storage access key" />
-          </TextListItem>
-          <TextListItem component={TextListItemVariants.dd}>
-            {"*".repeat(this.state.uploadSettings.storageAccessKey.length)}
-          </TextListItem>
-          <TextListItem component={TextListItemVariants.dt}>
-            <FormattedMessage defaultMessage="Image name" />
-          </TextListItem>
-          <TextListItem component={TextListItemVariants.dd}>{imageName}</TextListItem>
-          <TextListItem component={TextListItemVariants.dt}>
-            <FormattedMessage defaultMessage="Storage container" />
-          </TextListItem>
-          <TextListItem component={TextListItemVariants.dd}>{this.state.uploadSettings.container}</TextListItem>
-        </TextList>
-      </TextContent>
-    );
-
     const reviewStep = {
       name: "Review",
       component: (
-        <>
-          {this.missingRequiredFields() && (
-            <Alert id="required-fields-alert" variant="danger" isInline title={formatMessage(messages.warningReview)} />
-          )}
-          <TextContent>
-            <Title className="cc-c-popover__horizontal-group" headingLevel="h3" size="2xl">
-              <FormattedMessage defaultMessage="Create and upload image" />
-              <Popover
-                bodyContent={formatMessage(messages.infotip)}
-                aria-label={formatMessage(ariaLabels.processLength)}
-              >
-                <Button variant="plain" aria-label={formatMessage(ariaLabels.processLength)}>
-                  <OutlinedQuestionCircleIcon id="popover-icon" />
-                </Button>
-              </Popover>
-            </Title>
-            <Text>{formatMessage(messages.review)}</Text>
-            <h3 className="pf-u-mt-2xl pf-u-mb-md">
-              <FormattedMessage defaultMessage="Image output" />
-            </h3>
-            <TextList className="cc-m-column__fixed-width" component={TextListVariants.dl}>
-              <dt>
-                <FormattedMessage defaultMessage="Image size" />
-              </dt>
-              <dd>
-                {imageSize === "" && (
-                  <div>
-                    <ExclamationCircleIcon className="cc-c-text__danger-icon" />{" "}
-                    {formatMessage(messages.warningSizeEmpty)}
-                  </div>
-                )}
-                {imageSize !== "" && <div>{imageSize} GB</div>}
-                {imageSize < minImageSize && imageSize !== "" && (
-                  <div>
-                    <ExclamationCircleIcon className="cc-c-text__danger-icon" />{" "}
-                    {formatMessage(messages.warningSizeSmall, {
-                      size: minImageSize,
-                    })}
-                  </div>
-                )}
-                {imageSize > maxImageSize && (
-                  <div>
-                    <ExclamationTriangleIcon className="cc-c-text__warning-icon" />{" "}
-                    {formatMessage(messages.warningSizeLarge)}
-                  </div>
-                )}
-              </dd>
-              <TextListItem component={TextListItemVariants.dt}>
-                <FormattedMessage defaultMessage="Image type" />
-              </TextListItem>
-              <TextListItem component={TextListItemVariants.dd}>{imageType}</TextListItem>
-            </TextList>
-          </TextContent>
-          {awsReviewStep}
-          {azureReviewStep}
-        </>
+        <ReviewStep
+          imageName={this.state.imageName}
+          imageSize={this.state.imageSize}
+          imageType={this.state.imageType}
+          minImageSize={this.state.minImageSize}
+          maxImageSize={this.state.maxImageSize}
+          uploadService={this.state.uploadService}
+          uploadSettings={this.state.uploadSettings}
+          missingRequiredFields={this.missingRequiredFields}
+        />
       ),
     };
 
