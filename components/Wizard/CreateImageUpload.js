@@ -35,11 +35,9 @@ import { setBlueprint } from "../../core/actions/blueprints";
 import { fetchingQueue, clearQueue, startCompose, fetchingComposeTypes } from "../../core/actions/composes";
 import AWSAuthStep from "./AWSAuthStep";
 import AWSDestinationStep from "./AWSDestinationStep";
+import AzureAuthStep from "./AzureAuthStep";
 
 const messages = defineMessages({
-  accessKeys: {
-    defaultMessage: "Access keys",
-  },
   blobService: {
     defaultMessage: "Blob service",
   },
@@ -116,14 +114,6 @@ const ariaLabels = defineMessages({
   aws: {
     id: "aws-help",
     defaultMessage: "AWS help",
-  },
-  storageAccount: {
-    id: "storage-account-help",
-    defaultMessage: "Storage account help",
-  },
-  storageAccessKey: {
-    id: "storage-access-key-help",
-    defaultMessage: "Storage access key help",
   },
   storageContainer: {
     id: "storage-container-help",
@@ -886,90 +876,7 @@ class CreateImageUploadModal extends React.Component {
     const azureUploadAuth = {
       name: "Authentication",
       component: (
-        <>
-          <Text className="help-block cc-c-form__required-text">
-            <FormattedMessage defaultMessage="All fields are required." />
-          </Text>
-          <Form isHorizontal className="cc-m-wide-label">
-            <div className="pf-c-form__group">
-              <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-u-display-flex pf-m-justify-content-flex-start pf-m-nowrap">
-                <label htmlFor="storage-account-input" className="pf-l-flex__item">
-                  <span className="pf-c-form__label-text">
-                    <FormattedMessage defaultMessage="Storage account" />
-                  </span>
-                  <span className="pf-c-form__label-required" aria-hidden="true">
-                    &#42;
-                  </span>
-                </label>
-                <Popover
-                  id="popover-help"
-                  bodyContent={
-                    <FormattedMessage
-                      defaultMessage="Provide the name of a storage account. You can find storage accounts on the {storageAccounts} page in the {azure} portal."
-                      values={{
-                        storageAccounts: <strong>{formatMessage(messages.storageAccounts)}</strong>,
-                        azure: "Azure",
-                      }}
-                    />
-                  }
-                  aria-label={formatMessage(ariaLabels.storageAccount)}
-                >
-                  <Button variant="plain" aria-label={formatMessage(ariaLabels.storageAccount)}>
-                    <OutlinedQuestionCircleIcon id="popover-icon" />
-                  </Button>
-                </Popover>
-              </div>
-              <TextInput
-                className="pf-c-form-control"
-                value={this.state.uploadSettings.storageAccount}
-                id="storage-account-input"
-                name="storageAccount"
-                onChange={this.setUploadSettings}
-              />
-            </div>
-            <div className="pf-c-form__group">
-              <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-u-display-flex pf-m-justify-content-flex-start pf-m-nowrap">
-                <label htmlFor="storage-access-key-input" className="pf-l-flex__item">
-                  <span className="pf-c-form__label-text">
-                    <FormattedMessage defaultMessage="Storage access key" />
-                  </span>
-                  <span className="pf-c-form__label-required" aria-hidden="true">
-                    &#42;
-                  </span>
-                </label>
-                <Popover
-                  id="popover-help"
-                  bodyContent={
-                    <FormattedMessage
-                      defaultMessage="
-                        Provide the access key for the desired storage account. You can find the access key on the {accessKeys} 
-                        page of the storage account. You can find storage accounts on the {storageAccounts} page in the {azure} portal.
-                      "
-                      values={{
-                        azure: "Azure",
-                        accessKeys: <strong>{formatMessage(messages.accessKeys)}</strong>,
-                        storageAccounts: <strong>{formatMessage(messages.storageAccounts)}</strong>,
-                      }}
-                    />
-                  }
-                  aria-label={formatMessage(ariaLabels.storageAccessKey)}
-                >
-                  <Button variant="plain" aria-label={formatMessage(ariaLabels.storageAccessKey)}>
-                    <OutlinedQuestionCircleIcon id="popover-icon" />
-                  </Button>
-                </Popover>
-              </div>
-              <TextInput
-                className="pf-c-form-control"
-                value={this.state.uploadSettings.storageAccessKey}
-                type="password"
-                id="storage-access-key-input"
-                name="storageAccessKey"
-                onChange={this.setUploadSettings}
-              />
-            </div>
-          </Form>
-        </>
+        <AzureAuthStep uploadSettings={this.state.uploadSettings} setUploadSettings={this.setUploadSettings} />
       ),
     };
 
