@@ -363,6 +363,11 @@ class CreateImageUploadModal extends React.Component {
       ),
     };
 
+    const awsUploadStep = {
+      name: "Upload to AWS",
+      steps: [awsUploadAuth, awsUploadDest],
+    };
+
     const azureUploadAuth = {
       name: "Authentication",
       component: (
@@ -382,6 +387,11 @@ class CreateImageUploadModal extends React.Component {
       ),
     };
 
+    const azureUploadStep = {
+      name: "Upload to Azure",
+      steps: [azureUploadAuth, azureUploadDest],
+    };
+
     const reviewStep = {
       name: "Review",
       component: (
@@ -396,16 +406,6 @@ class CreateImageUploadModal extends React.Component {
           missingRequiredFields={this.missingRequiredFields}
         />
       ),
-    };
-
-    const awsUploadStep = {
-      name: "Upload to AWS",
-      steps: [awsUploadAuth, awsUploadDest],
-    };
-
-    const azureUploadStep = {
-      name: "Upload to Azure",
-      steps: [azureUploadAuth, azureUploadDest],
     };
 
     const steps = [
