@@ -399,6 +399,7 @@ class CreateImageUploadModal extends React.Component {
           imageName={this.state.imageName}
           imageSize={this.state.imageSize}
           imageType={this.state.imageType}
+          imageTypes={this.props.imageTypes}
           minImageSize={this.state.minImageSize}
           maxImageSize={this.state.maxImageSize}
           uploadService={this.state.uploadService}

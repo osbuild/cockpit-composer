@@ -62,6 +62,7 @@ class ReviewStep extends React.PureComponent {
       imageName,
       imageSize,
       imageType,
+      imageTypes,
       minImageSize,
       maxImageSize,
       missingRequiredFields,
@@ -280,7 +281,9 @@ class ReviewStep extends React.PureComponent {
             <TextListItem component={TextListItemVariants.dt}>
               <FormattedMessage defaultMessage="Image type" />
             </TextListItem>
-            <TextListItem component={TextListItemVariants.dd}>{imageType}</TextListItem>
+            <TextListItem component={TextListItemVariants.dd}>
+              {imageTypes.find((type) => type.name === imageType).label}
+            </TextListItem>
           </TextList>
         </TextContent>
         {awsReviewStep}
@@ -294,6 +297,7 @@ ReviewStep.propTypes = {
   intl: intlShape.isRequired,
   imageName: PropTypes.string,
   imageType: PropTypes.string,
+  imageTypes: PropTypes.arrayOf(PropTypes.object),
   imageSize: PropTypes.number,
   minImageSize: PropTypes.number,
   maxImageSize: PropTypes.number,
@@ -305,6 +309,7 @@ ReviewStep.propTypes = {
 ReviewStep.defaultProps = {
   imageName: "",
   imageType: "",
+  imageTypes: [],
   imageSize: undefined,
   minImageSize: 0,
   maxImageSize: 2000,
