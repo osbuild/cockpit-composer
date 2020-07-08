@@ -2,6 +2,8 @@ import React from "react";
 import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Button, EmptyStatePrimary } from "@patternfly/react-core";
+import { ExclamationCircleIcon } from "@patternfly/react-icons";
 import Layout from "../../components/Layout/Layout";
 import BlueprintsDataList from "../../components/ListView/BlueprintsDataList";
 import CreateBlueprint from "../../components/Modal/CreateBlueprint";
@@ -99,7 +101,7 @@ class BlueprintsPage extends React.Component {
             )) || (
               <EmptyState
                 title={formatMessage(messages.errorGenericTitle)}
-                icon="fa fa-exclamation-circle"
+                icon={ExclamationCircleIcon}
                 message={blueprintsError.message}
               />
             ))) ||
@@ -113,16 +115,20 @@ class BlueprintsPage extends React.Component {
           )) ||
           (blueprintFilters.filterValues.length === 0 && (
             <EmptyState title={formatMessage(messages.emptyTitle)} message={formatMessage(messages.emptyMessage)}>
-              <CreateBlueprint blueprintNames={blueprints.map((blueprint) => blueprint.present.id)} />
+              <EmptyStatePrimary>
+                <CreateBlueprint blueprintNames={blueprints.map((blueprint) => blueprint.present.id)} />
+              </EmptyStatePrimary>
             </EmptyState>
           )) || (
             <EmptyState
               title={formatMessage(messages.noResultsTitle)}
               message={formatMessage(messages.noResultsMessage)}
             >
-              <button className="btn btn-link btn-lg" type="button" onClick={blueprintsFilterClearValues}>
-                <FormattedMessage defaultMessage="Clear All Filters" />
-              </button>
+              <EmptyStatePrimary>
+                <Button variant="link" type="button" onClick={blueprintsFilterClearValues}>
+                  <FormattedMessage defaultMessage="Clear All Filters" />
+                </Button>
+              </EmptyStatePrimary>
             </EmptyState>
           )}
       </Layout>
