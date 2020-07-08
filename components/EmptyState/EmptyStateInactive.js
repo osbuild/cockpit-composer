@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
 import cockpit from "cockpit";
 import { Alert, Button, OverlayTrigger, Tooltip } from "patternfly-react";
+import { EmptyStateSecondaryActions, EmptyStatePrimary } from "@patternfly/react-core";
+import { ExclamationCircleIcon } from "@patternfly/react-icons";
 import EmptyState from "./EmptyState";
 
 const messages = defineMessages({
@@ -113,7 +115,7 @@ class EmptyStateInactive extends React.Component {
             {this.state.enableServiceFailure}
           </Alert>
         )}
-        <EmptyState title={formatMessage(messages.errorInactiveTitle)} icon="fa fa-exclamation-circle">
+        <EmptyState title={formatMessage(messages.errorInactiveTitle)} icon={ExclamationCircleIcon}>
           <div className="checkbox">
             <label>
               <input
@@ -125,10 +127,10 @@ class EmptyStateInactive extends React.Component {
               {formatMessage(messages.errorInactiveCheckbox)}
             </label>
           </div>
-          <div className="blank-slate-pf-main-action">{startButton}</div>
-          <div className="blank-slate-pf-secondary-action">
+          <EmptyStatePrimary>{startButton}</EmptyStatePrimary>
+          <EmptyStateSecondaryActions>
             <Button onClick={this.goToServicePage}>{formatMessage(messages.errorInactiveSecondary)}</Button>
-          </div>
+          </EmptyStateSecondaryActions>
         </EmptyState>
       </>
     );

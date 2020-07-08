@@ -34,16 +34,16 @@ class TestService(composerlib.ComposerCase):
 
         # start and enable osbuild-composer from UI
         b.click("button:contains('Start')")
-        # work around .blank-slate-pf element disappear in one second
+        # work around .pf-c-empty-state element disappear in one second
         b.wait_in_text("#main", "No Blueprints")
-        b.wait_text(".blank-slate-pf h1", "No Blueprints")
+        b.wait_text(".pf-c-empty-state h1", "No Blueprints")
 
         # create blueprint with random name and description
         name_template = string.ascii_letters + string.digits + "-" + "_"
         bp_name = "".join(random.sample(name_template, 20))
         desc_template = string.ascii_letters + string.digits + " "
         bp_desc = "".join(random.sample(desc_template, 40))
-        b.click(".blank-slate-pf button:contains('Create Blueprint')")
+        b.click(".pf-c-empty-state button:contains('Create Blueprint')")
         b.wait_present("div[role=dialog] #cmpsr-modal-crt-blueprint")
         # blueprint name
         b.set_input_text("#textInput-modal-markup", bp_name)
@@ -121,9 +121,9 @@ class TestService(composerlib.ComposerCase):
         b.click(".checkbox input")
         # start and enable osbuild-composer from UI
         b.click("button:contains('Start')")
-        # work around .blank-slate-pf element disappear in one second
+        # work around .pf-c-empty-state element disappear in one second
         b.wait_in_text("#main", "No Blueprints")
-        b.wait_text(".blank-slate-pf h1", "No Blueprints")
+        b.wait_text(".pf-c-empty-state h1", "No Blueprints")
         # osbuild-composer should be disabled
         is_enabled = m.execute("systemctl is-enabled osbuild-composer.socket || true").rstrip()
         self.assertEqual(is_enabled, "disabled")
