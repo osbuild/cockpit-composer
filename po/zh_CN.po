@@ -4,7 +4,7 @@
 # Ludek Janda <ljanda@redhat.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-06-04T04:00:46.240Z\n"
+"POT-Creation-Date: 2020-07-01T13:27:47.962Z\n"
 "PO-Revision-Date: 2020-06-11 10:40+0000\n"
 "Last-Translator: Ludek Janda <ljanda@redhat.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.fedoraproject.org/"
@@ -29,6 +29,15 @@ msgstr "（最近的在前）"
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "A blueprint name is required."
 msgstr "需要一个蓝图（blueprint）名称。"
+
+#. [components.Modal.warningEmptyBlueprintDesc]
+#. defaultMessage is:
+#. A minimal image will be created with only the packages needed to support the selected image type.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid ""
+"A minimal image will be created with only the packages needed to support the "
+"selected image type."
+msgstr ""
 
 #. [components.Modal.2310857819]
 #. defaultMessage is:
@@ -86,6 +95,15 @@ msgstr "访问密钥 ID"
 msgid "Access key ID help"
 msgstr "访问密钥 ID 帮助"
 
+#. [components.Modal.accessKeys]
+#. defaultMessage is:
+#. Access keys
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "Access key ID"
+msgid "Access keys"
+msgstr "访问密钥 ID"
+
 #. [components.ListView.imageActions] - A label for the menu that displays the actions available
 #. defaultMessage is:
 #. Actions
@@ -96,6 +114,13 @@ msgstr "访问密钥 ID 帮助"
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Actions"
 msgstr "操作"
+
+#. [components.Toolbar.4053658032]
+#. defaultMessage is:
+#. Active Filters
+#: build/messages/components/Toolbar/ToolbarLayout.json
+msgid "Active Filters"
+msgstr ""
 
 #. [components.ListView.3099331554]
 #. defaultMessage is:
@@ -226,6 +251,15 @@ msgstr "在引导时自动启动 osbuild-composer"
 msgid "Available Components"
 msgstr "可用的组件"
 
+#. [azure-help]
+#. defaultMessage is:
+#. Azure help
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "AWS help"
+msgid "Azure help"
+msgstr "AWS 帮助"
+
 #. [components.Modal.1347475195]
 #. defaultMessage is:
 #. Back
@@ -250,6 +284,13 @@ msgstr "返回到蓝图"
 #: build/messages/components/ListView/ComponentDetailsView.json
 msgid "Back to {blueprint}"
 msgstr "返回到 {blueprint}"
+
+#. [components.Modal.blobService]
+#. defaultMessage is:
+#. Blob service
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Blob service"
+msgstr ""
 
 #. [components.Modal.1281198655]
 #. defaultMessage is:
@@ -319,11 +360,15 @@ msgstr "蓝图名不能包括以下字符 : {invalidChar}"
 msgid "Blueprints"
 msgstr "蓝图"
 
-#. [pages.blueprintEdit.addComponentMessage]
+#. [pages.blueprintEdit.addComponentMessageOne]
 #. defaultMessage is:
-#. Browse or search for components, then add them to the blueprint.
+#. Browse or search for components, then add them to the blueprint. Or leave the blueprint empty to create a minimal image.
 #: build/messages/pages/blueprintEdit/index.json
-msgid "Browse or search for components, then add them to the blueprint."
+#, fuzzy
+#| msgid "Browse or search for components, then add them to the blueprint."
+msgid ""
+"Browse or search for components, then add them to the blueprint. Or leave "
+"the blueprint empty to create a minimal image."
 msgstr "浏览或搜索组件，然后把它们添加到蓝图中。"
 
 #. [components.Form.cancel]
@@ -669,6 +714,15 @@ msgstr "依赖"
 msgid "Description"
 msgstr "描述"
 
+#. [components.ListView.details]
+#. defaultMessage is:
+#. Details
+#: build/messages/components/ListView/ComponentDetailsView.json
+#, fuzzy
+#| msgid "details"
+msgid "Details"
+msgstr "详情"
+
 #. [pages.blueprintEdit.1936836258]
 #. defaultMessage is:
 #. Discard Changes
@@ -794,6 +848,31 @@ msgstr "根据名称过滤可用的组件"
 msgid "Filter By Name..."
 msgstr "根据名称过滤..."
 
+#. [components.Toolbar.filterNamePlaceholder]
+#. defaultMessage is:
+#. Filter by Name
+#: build/messages/components/Toolbar/FilterInput.json
+#, fuzzy
+#| msgid "Filter By Name..."
+msgid "Filter by Name"
+msgstr "根据名称过滤..."
+
+#. [components.Toolbar.filterReleasePlaceholder]
+#. defaultMessage is:
+#. Filter by Release
+#: build/messages/components/Toolbar/FilterInput.json
+#, fuzzy
+#| msgid "Filter By Name..."
+msgid "Filter by Release"
+msgstr "根据名称过滤..."
+
+#. [components.Toolbar.filterVersionPlaceholder]
+#. defaultMessage is:
+#. Filter by Version
+#: build/messages/components/Toolbar/FilterInput.json
+msgid "Filter by Version"
+msgstr ""
+
 #. [components.Modal.787186999]
 #. defaultMessage is:
 #. Finish
@@ -839,6 +918,31 @@ msgstr "主机名"
 #: build/messages/pages/blueprint/index.json
 msgid "If no hostname is provided, the hostname will be determined by the OS."
 msgstr "如果没有提供主机名，则主机名将由 OS 决定。"
+
+#. [components.Modal.1948537181]
+#. defaultMessage is:
+#. Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete 
+#.                     and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid ""
+#| "Image Builder can upload images you create to an {bucket} in AWS and then "
+#| "import them into EC2. When the image build is complete\n"
+#| "                      and the upload action is successful, the image file "
+#| "is available in the AMI section of EC2. Most of the values required to "
+#| "upload\n"
+#| "                      the image can be found in the {console}."
+msgid ""
+"Image Builder can upload images you create to a Blob container in {azure}. "
+"When the image build is complete \n"
+"                    and the upload action is successful, the image file is "
+"available in the Storage account and Blob container that you specified."
+msgstr ""
+"Image Builder 可以将您创建的镜像上传到 AWS 的一个 {bucket} 中，然后将其导入"
+"EC2。当镜像构建完成且\n"
+"                      上传操作成功时，镜像文件会出现在 EC2 的 AMI 中。上传镜"
+"像所需的多数值都可以在\n"
+"                      {console} 中找到。"
 
 #. [components.Modal.4131822949]
 #. defaultMessage is:
@@ -996,10 +1100,14 @@ msgstr "最小大小为{size} GB。"
 #. [components.ListView.emptyStateNoResultsMessage]
 #. defaultMessage is:
 #. Modify your filter criteria to get results.
+#. [pages.blueprintEdit.emptyStateNoResultsMessage]
+#. defaultMessage is:
+#. Modify your filter criteria to get results.
 #. [pages.blueprints.noResultsMessage]
 #. defaultMessage is:
 #. Modify your filter criteria to get results.
 #: build/messages/components/ListView/BlueprintContents.json
+#: build/messages/pages/blueprintEdit/index.json
 #: build/messages/pages/blueprints/index.json
 msgid "Modify your filter criteria to get results."
 msgstr "修改过滤条件以获得所需结果。"
@@ -1010,8 +1118,16 @@ msgstr "修改过滤条件以获得所需结果。"
 #. [components.Modal.name] - Name of source
 #. defaultMessage is:
 #. Name
+#. [components.Toolbar.filterNameTitle]
+#. defaultMessage is:
+#. Name
+#. [components.Toolbar.filterNameTitle]
+#. defaultMessage is:
+#. Name
 #: build/messages/components/Modal/CreateBlueprint.json
 #: build/messages/components/Modal/ManageSources.json
+#: build/messages/components/Toolbar/FilterInput.json
+#: build/messages/components/Toolbar/ToolbarLayout.json
 msgid "Name"
 msgstr "名称"
 
@@ -1060,10 +1176,14 @@ msgstr "没有镜像"
 #. [components.ListView.emptyStateNoResultsTitle]
 #. defaultMessage is:
 #. No Results Match the Filter Criteria
+#. [pages.blueprintEdit.emptyStateNoResultsTitle]
+#. defaultMessage is:
+#. No Results Match the Filter Criteria
 #. [pages.blueprints.noResultsTitle]
 #. defaultMessage is:
 #. No Results Match the Filter Criteria
 #: build/messages/components/ListView/BlueprintContents.json
+#: build/messages/pages/blueprintEdit/index.json
 #: build/messages/pages/blueprints/index.json
 msgid "No Results Match the Filter Criteria"
 msgstr "没有匹配过滤条件的结果"
@@ -1081,6 +1201,24 @@ msgstr "没有从这个蓝图创建的镜像。"
 #: build/messages/components/ListView/ListItemImages.json
 msgid "No log available"
 msgstr "无日志"
+
+#. [ostree-parent-help]
+#. defaultMessage is:
+#. OSTree parent help
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "AWS region help"
+msgid "OSTree parent help"
+msgstr "AWS 区域帮助"
+
+#. [ostree-ref-help]
+#. defaultMessage is:
+#. OSTree ref help
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "AWS region help"
+msgid "OSTree ref help"
+msgstr "AWS 区域帮助"
 
 #. [components.Modal.1475836573]
 #. defaultMessage is:
@@ -1125,6 +1263,13 @@ msgstr "没有找到页"
 msgid "Pagination"
 msgstr "分页"
 
+#. [components.Modal.3070030782]
+#. defaultMessage is:
+#. Parent commit
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Parent commit"
+msgstr ""
+
 #. [components.Modal.createPasswordOne]
 #. defaultMessage is:
 #. Password
@@ -1134,20 +1279,6 @@ msgstr "分页"
 #: build/messages/components/Modal/UserAccount.json
 msgid "Password"
 msgstr "密码"
-
-#. [components.Form.rejectedPassword]
-#. defaultMessage is:
-#. Password is not acceptable
-#: build/messages/components/Form/Password.json
-msgid "Password is not acceptable"
-msgstr "不接受该密码"
-
-#. [components.Form.weakPassword]
-#. defaultMessage is:
-#. Password is too weak
-#: build/messages/components/Form/Password.json
-msgid "Password is too weak"
-msgstr "密码太弱"
 
 #. [components.Modal.sshKeyHelp]
 #. defaultMessage is:
@@ -1187,6 +1318,27 @@ msgid ""
 "same region where the {bucket} exists."
 msgstr "提供您要导入镜像的 AWS 区域。该区域必须与 {bucket} 所在的区域相同。"
 
+#. [components.Modal.517158149]
+#. defaultMessage is:
+#. Provide the Blob container to which the image file will be uploaded. You can find containers under the {blobService} 
+#.                     section of a storage account. You can find storage accounts on the {storageAccounts} page in the {azure} portal.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid ""
+"Provide the Blob container to which the image file will be uploaded. You can "
+"find containers under the {blobService} \n"
+"                    section of a storage account. You can find storage "
+"accounts on the {storageAccounts} page in the {azure} portal."
+msgstr ""
+
+#. [components.Modal.1099888225]
+#. defaultMessage is:
+#. Provide the ID of the latest commit in the updates repository for which this commit provides an update.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid ""
+"Provide the ID of the latest commit in the updates repository for which this "
+"commit provides an update."
+msgstr ""
+
 #. [components.Modal.2822010101]
 #. defaultMessage is:
 #. Provide the S3 {bucket} name to which the image file will be uploaded before being imported into EC2. 
@@ -1208,14 +1360,59 @@ msgstr ""
 "                          的 {amazon} S3 存储服务的 {bucketsPage} 页中找到 "
 "{buckets} 列表。"
 
+#. [components.Modal.2706552502]
+#. defaultMessage is:
+#. Provide the access key for the desired storage account. You can find the access key on the {accessKeys} 
+#.                         page of the storage account. You can find storage accounts on the {storageAccounts} page in the {azure} portal.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid ""
+"Provide the access key for the desired storage account. You can find the "
+"access key on the {accessKeys} \n"
+"                        page of the storage account. You can find storage "
+"accounts on the {storageAccounts} page in the {azure} portal."
+msgstr ""
+
+#. [components.Modal.1434969769]
+#. defaultMessage is:
+#. Provide the name of a storage account. You can find storage accounts on the {storageAccounts} page in the {azure} portal.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid ""
+"Provide the name of a storage account. You can find storage accounts on the "
+"{storageAccounts} page in the {azure} portal."
+msgstr ""
+
+#. [components.Modal.1476874820]
+#. defaultMessage is:
+#. Provide the name of the branch for the content. If the ref does not already exist it will be created.
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid ""
+"Provide the name of the branch for the content. If the ref does not already "
+"exist it will be created."
+msgstr ""
+
+#. [components.Modal.31026111]
+#. defaultMessage is:
+#. Ref
+#: build/messages/components/Modal/CreateImageUpload.json
+msgid "Ref"
+msgstr ""
+
 #. [components.ListView.423140743]
 #. defaultMessage is:
 #. Release
 #. [components.ListView.423140743]
+#. defaultMessage is:
+#. Release
+#. [components.Toolbar.filterReleaseTitle]
+#. defaultMessage is:
+#. Release
+#. [components.Toolbar.filterReleaseTitle]
 #. defaultMessage is:
 #. Release
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ComponentsDataListItem.json
+#: build/messages/components/Toolbar/FilterInput.json
+#: build/messages/components/Toolbar/ToolbarLayout.json
 msgid "Release"
 msgstr "发布"
 
@@ -1507,6 +1704,13 @@ msgstr "开始"
 msgid "Started"
 msgstr "开始"
 
+#. [components.ListView.2989081855]
+#. defaultMessage is:
+#. Stop
+#: build/messages/components/ListView/ListItemImages.json
+msgid "Stop"
+msgstr "停止"
+
 #. [components.Modal.1162993432]
 #. defaultMessage is:
 #. Stop Build
@@ -1528,11 +1732,38 @@ msgstr "停止"
 msgid "Storage access key"
 msgstr "存储访问密钥"
 
+#. [storage-access-key-help]
+#. defaultMessage is:
+#. Storage access key help
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "Storage access key"
+msgid "Storage access key help"
+msgstr "存储访问密钥"
+
 #. [components.Modal.1624497518]
 #. defaultMessage is:
 #. Storage account
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Storage account"
+msgstr "储存帐号"
+
+#. [storage-account-help]
+#. defaultMessage is:
+#. Storage account help
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "Storage account"
+msgid "Storage account help"
+msgstr "储存帐号"
+
+#. [components.Modal.storageAccounts]
+#. defaultMessage is:
+#. Storage accounts
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "Storage account"
+msgid "Storage accounts"
 msgstr "储存帐号"
 
 #. [components.Modal.1249927125]
@@ -1584,6 +1815,15 @@ msgstr "标记为 {val} 的项是必需的。"
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "The name {name} already exists."
 msgstr "名称 {name} 已存在。"
+
+#. [pages.blueprintEdit.addComponentMessageTwo]
+#. defaultMessage is:
+#. The packages needed to support the selected image type are automatically included when creating an image.
+#: build/messages/pages/blueprintEdit/index.json
+msgid ""
+"The packages needed to support the selected image type are automatically "
+"included when creating an image."
+msgstr ""
 
 #. [pages.error.26562577]
 #. defaultMessage is:
@@ -1836,6 +2076,15 @@ msgstr "上传进行中"
 msgid "Upload pending"
 msgstr "上传待处理"
 
+#. [components.Modal.uploadAWS]
+#. defaultMessage is:
+#. Upload to AWS
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "Upload to Azure"
+msgid "Upload to AWS"
+msgstr "上传到 Azure"
+
 #. [components.Modal.1426592721]
 #. defaultMessage is:
 #. Upload to Amazon
@@ -1843,6 +2092,9 @@ msgstr "上传待处理"
 msgid "Upload to Amazon"
 msgstr "上传到 Amazon"
 
+#. [components.Modal.uploadAzure]
+#. defaultMessage is:
+#. Upload to Azure
 #. [components.Modal.2244258572]
 #. defaultMessage is:
 #. Upload to Azure
@@ -1894,8 +2146,16 @@ msgstr ""
 #. [components.ListView.602883748]
 #. defaultMessage is:
 #. Version
+#. [components.Toolbar.filterVersionTitle]
+#. defaultMessage is:
+#. Version
+#. [components.Toolbar.filterVersionTitle]
+#. defaultMessage is:
+#. Version
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ComponentsDataListItem.json
+#: build/messages/components/Toolbar/FilterInput.json
+#: build/messages/components/Toolbar/ToolbarLayout.json
 msgid "Version"
 msgstr "版本"
 
@@ -1979,6 +2239,15 @@ msgstr "metalink"
 #: build/messages/components/Modal/ManageSources.json
 msgid "mirrorlist"
 msgstr "mirrorlist"
+
+#. [storage-container-help]
+#. defaultMessage is:
+#. storage container help
+#: build/messages/components/Modal/CreateImageUpload.json
+#, fuzzy
+#| msgid "Storage container"
+msgid "storage container help"
+msgstr "储存容器"
 
 #. [components.Modal.152217691]
 #. defaultMessage is:
@@ -2113,11 +2382,14 @@ msgstr "创建系统镜像"
 msgid "Image Builder"
 msgstr "镜像生成器"
 
+#~ msgid "Password is not acceptable"
+#~ msgstr "不接受该密码"
+
+#~ msgid "Password is too weak"
+#~ msgstr "密码太弱"
+
 #~ msgid "1 build is in progress"
 #~ msgstr "1 构建进行中"
-
-#~ msgid "Stop"
-#~ msgstr "停止"
 
 #~ msgid ""
 #~ "{builds, plural, one {# build is waiting} other {# builds are waiting}}"
