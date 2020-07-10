@@ -82,7 +82,12 @@
 }
 .cmpsr-panel__body  .toolbar-pf .toolbar-pf-actions {
   padding-top: 10px;
-  margin: 0 0 10px 0;
+}
+.cmpsr-panel__body--sidebar .pf-c-pagination {
+  margin-bottom: 10px;
+}
+.toolbar-pf-results {
+  margin-top: 0;
 }
 .cmpsr-panel__body--view {
   margin-left: -20px;

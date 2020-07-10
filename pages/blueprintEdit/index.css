@@ -1,0 +1,9 @@
+#cmpsr-blueprint-input-filter {
+    min-width: 45%;
+}
+@media screen and (min-width: 768px) {
+    // this is when the pagination changes to just previous/next buttons, and at this size, 45% is too small for the input
+    #cmpsr-blueprint-input-filter {
+        min-width: 60%;
+    }
+}

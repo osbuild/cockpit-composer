@@ -2,7 +2,7 @@ import React from "react";
 import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Pagination, TextInput } from "@patternfly/react-core";
+import { Pagination, PaginationVariant, TextInput } from "@patternfly/react-core";
 import Link from "../../components/Link/Link";
 import Layout from "../../components/Layout/Layout";
 import BlueprintContents from "../../components/ListView/BlueprintContents";
@@ -57,6 +57,7 @@ import {
   makeGetSelectedInputs,
   makeGetSelectedDeps,
 } from "../../core/selectors";
+import "./index.css";
 
 const messages = defineMessages({
   listTitleAvailableComps: {
@@ -563,9 +564,9 @@ class EditBlueprintPage extends React.Component {
         {(inputComponents !== undefined && blueprint.components !== undefined && blueprint.packages !== undefined && (
           <div className="cmpsr-panel__body cmpsr-panel__body--sidebar">
             <div className="toolbar-pf">
-              <form className="toolbar-pf-actions pf-l-flex">
+              <form className="toolbar-pf-actions pf-l-flex pf-m-space-items-none">
                 <TextInput
-                  className="pf-m-flex-1"
+                  className="pf-m-flex-1 pf-u-mb-xs"
                   type="text"
                   id="cmpsr-blueprint-input-filter"
                   aria-label={formatMessage(messages.filterByLabel)}
@@ -573,17 +574,18 @@ class EditBlueprintPage extends React.Component {
                   onKeyPress={(e) => this.getFilteredInputs(e)}
                 />
                 <Pagination
-                  className="pf-m-flex-2"
+                  className="pf-m-flex-1 pf-u-flex-nowrap-on-lg pf-u-ml-md"
                   itemCount={inputs.totalInputs}
                   perPage={this.state.pageSize}
                   page={this.state.page}
                   onSetPage={this.handleSetPage}
                   onPerPageSelect={this.handlePageSizeSelect}
                   isCompact
+                  variant={PaginationVariant.bottom}
                 />
               </form>
-              <div className="toolbar-pf-results">
-                {inputs.inputFilters !== undefined && inputs.inputFilters.value.length > 0 && (
+              {inputs.inputFilters !== undefined && inputs.inputFilters.value.length > 0 && (
+                <div className="toolbar-pf-results">
                   <ul className="list-inline">
                     <li>
                       <span className="label label-info">
@@ -604,8 +606,8 @@ class EditBlueprintPage extends React.Component {
                       </a>
                     </li>
                   </ul>
-                )}
-              </div>
+                </div>
+              )}
             </div>
             {blueprint.components.length === 0 &&
               Object.keys(this.props.blueprintContentsError).length === 0 &&
@@ -659,16 +661,14 @@ class EditBlueprintPage extends React.Component {
           <div className="cmpsr-panel__body cmpsr-panel__body--sidebar">
             <div className="toolbar-pf">
               <form className="toolbar-pf-actions">
-                <div className="form-group toolbar-pf-filter">
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="cmpsr-blueprint-input-filter"
-                    aria-label={formatMessage(messages.filterByLabel)}
-                    placeholder={formatMessage(messages.filterByPlaceholder)}
-                    disabled="disabled"
-                  />
-                </div>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="cmpsr-blueprint-input-filter"
+                  aria-label={formatMessage(messages.filterByLabel)}
+                  placeholder={formatMessage(messages.filterByPlaceholder)}
+                  disabled="disabled"
+                />
               </form>
             </div>
             <Loading />
