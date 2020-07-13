@@ -11,8 +11,12 @@ BuildArch:      noarch
 BuildRequires:  libappstream-glib
 
 Requires:       cockpit
-Requires:       weldr
-Suggests:       osbuild-composer >= 14
+%if 0%{?fedora} >= 33 || 0%{?rhel} >= 8
+Requires: osbuild-composer >= 14
+%else
+Requires: weldr
+Suggests: osbuild-composer >= 14
+%endif
 
 %description
 Composer generates custom images suitable for deploying systems or uploading to
