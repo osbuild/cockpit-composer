@@ -71,7 +71,7 @@ class ReviewStep extends React.PureComponent {
     } = this.props;
 
     const awsReviewStep = uploadService === "aws" && (
-      <TextContent>
+      <TextContent id="aws-content">
         <div className="pf-l-flex pf-u-display-flex">
           <h3 className="pf-l-flex__item pf-u-mt-2xl pf-u-mb-md">
             <FormattedMessage defaultMessage="Upload to Amazon" />

@@ -13,7 +13,7 @@ import testlib
 @testlib.timeout(2400)
 class TestImage(composerlib.ComposerCase):
 
-    def testBasic(self):
+    def testImageStep(self):
         b = self.browser
 
         self.login_and_go("/composer", authorized=True)
@@ -48,13 +48,47 @@ class TestImage(composerlib.ComposerCase):
         b.wait_val("#image-type", value_id)
         # groups action done
         b.wait_text("#continue-button", "Create")
+
+        # default size = 2GB for qcow2 image
+        b.wait_val("#create-image-size", 2)
+        b.focus("#create-image-size")
+        # delete 2 and input 1
+        b.key_press("\b")
+        b.key_press("1")
+        # error if less than 2 GB
+        b.wait_attr("#create-image-upload-wizard button:contains('Create')", "disabled", "")
+        b.wait_attr_contains("#help-text-simple-form-name-helper", "class", "pf-m-error")
+        # delete 1 and input 2001
+        b.key_press("\b")
+        b.key_press("2001")
+        # error if greater than 2000 GB
+        b.wait_in_text("#help-text-simple-form-name-helper",
+                       "The size specified is large. We recommend that you check whether your "
+                       "target destination has any restrictions on image size.")
+        # delete 2001 and input 2
+        b.key_press("\b\b\b\b")
+        b.key_press("2")
         # close wizard by clicking X button
         b.click(".pf-c-wizard__close")
         b.wait_not_present("#create-image-upload-wizard")
 
-        # go to wizard again (upload support)
+        # Test cancel button
         b.click("li[data-blueprint=httpd-server] #create-image-button")
-        # check upload image action (wizard)
+        b.wait_text("#create-image-upload-wizard #blueprint-name", "httpd-server")
+        b.click("button:contains('Cancel')")
+        b.wait_not_present("#create-image-upload-wizard")
+
+        # collect code coverage result
+        self.check_coverage()
+
+    def testAWSStep(self):
+        b = self.browser
+
+        self.login_and_go("/composer", authorized=True)
+        b.wait_present("#main")
+
+        # create image wizard
+        b.click("li[data-blueprint=httpd-server] #create-image-button")
         # group actions for select from dropdown menu
         b.wait_visible("#image-type")
         test_selector = "#image-type option[value='ami']"
@@ -67,24 +101,21 @@ class TestImage(composerlib.ComposerCase):
         b.wait_text("#continue-button", "Create")
         # default size = 6GB for ami image
         b.wait_val("#create-image-size", 6)
-        # change to 1GB = error
-        b.focus("#create-image-size")
-        # delete 6 and input 1
-        b.key_press("\b")
-        b.key_press("1")
-        b.wait_attr("#create-image-upload-wizard button:contains('Create')", "disabled", "")
-        b.wait_attr_contains("#help-text-simple-form-name-helper", "class", "pf-m-error")
-        # delete 1 and input 2001
-        b.key_press("\b")
-        b.key_press("2001")
-        b.wait_in_text("#help-text-simple-form-name-helper",
-                       "The size specified is large. We recommend that you check whether your "
-                       "target destination has any restrictions on image size.")
-        # delete 2001 and input 6
-        b.key_press("\b\b\b\b")
-        b.key_press("6")
-        # b.set_val("#create-image-size", 6)
-        # change to Next if upload image selected
+        # check ? (AWS upload image help) button
+        b.click("button[aria-label='Upload image help']")
+        b.wait_attr("button[aria-label='Upload image help']", "aria-expanded", "true")
+        b.wait_in_text(".pf-c-popover__body",
+                       " Image Builder can upload images you create to an S3 bucket in AWS and "
+                       "then import them into EC2. When the image build is complete and the upload"
+                       " action is successful, the image file is available in the AMI section of "
+                       "EC2. Most of the values required to upload the image can be found in the "
+                       "AWS Management Console.  This upload process requires that you have an "
+                       "Identity and Access Management (IAM) role named vmimport to ensure that "
+                       "the image can be imported from the S3 bucket into EC2. For more details, "
+                       "refer to the AWS Required Service Role. ")
+        b.click(".pf-c-popover__content button")
+        b.wait_attr("button[aria-label='Upload image help']", "aria-expanded", "false")
+        # continue button changes to Next when upload image selected
         b.click("#aws-checkbox")
         b.click("button:contains('Next')")
         # Back button is click-able and back to last page
@@ -97,6 +128,101 @@ class TestImage(composerlib.ComposerCase):
         b.wait_in_text(".pf-c-alert__title",
                        "There are one or more fields that require your attention.")
         b.wait_attr("#continue-button", "disabled", "")
+        # check and enter authentication fields
+        b.click("a:contains('Authentication')")
+        b.wait_present("span:contains('Access key ID')")
+        # check access key id help button
+        b.click("button[aria-label='Access key ID help']")
+        b.wait_attr("button[aria-label='Access key ID help']", "aria-expanded", "true")
+        b.wait_text(".pf-c-popover__body",
+                    "You can create and find existing Access key IDs on the "
+                    "Identity and Access Management (IAM) page in the AWS console.")
+        b.click(".pf-c-popover__content button")
+        b.wait_attr("button[aria-label='Access key ID help']", "aria-expanded", "false")
+        # enter access key id value
+        b.focus("input[id='access-key-id-input']")
+        b.key_press("never")
+        b.wait_present("span:contains('Secret access key')")
+        # check secret access key help button
+        b.click("button[aria-label='Secret access key help']")
+        b.wait_attr("button[aria-label='Secret access key help']", "aria-expanded", "true")
+        b.wait_text(".pf-c-popover__body",
+                    "You can view the Secret access key only when you create a new Access key ID "
+                    "on the Identity and Access Management (IAM) page in the AWS console.")
+        b.click(".pf-c-popover__content button")
+        b.wait_attr("button[aria-label='Secret access key help']", "aria-expanded", "false")
+        # enter secret access key value
+        b.focus("input[id='secret-access-key-input']")
+        b.key_press("gunna")
+        # check and enter destination fields
+        b.click("a:contains('Destination')")
+        b.wait_present("span:contains('Image name')")
+        # check image name help button
+        b.click("button[aria-label='Image name help']")
+        b.wait_attr("button[aria-label='Image name help']", "aria-expanded", "true")
+        b.wait_text(".pf-c-popover__body",
+                    "Provide a file name to be used for the image file that will be uploaded.")
+        b.click(".pf-c-popover__content button")
+        b.wait_attr("button[aria-label='Image name help']", "aria-expanded", "false")
+        # enter access key id value
+        b.focus("input[id='image-name-input']")
+        b.key_press("give")
+        b.wait_present("span:contains('Amazon S3 bucket')")
+        # check amazon s3 bucket help button
+        b.click("button[aria-label='S3 Bucket help']")
+        b.wait_attr("button[aria-label='S3 Bucket help']", "aria-expanded", "true")
+        b.wait_text(".pf-c-popover__body",
+                    " Provide the S3 bucket name to which the image file will be uploaded before "
+                    "being imported into EC2.  The bucket must already exist in the Region where "
+                    "you want to import your image. You can find a list of buckets on the S3 "
+                    "buckets page in the Amazon S3 storage service in the AWS console. ")
+        b.click(".pf-c-popover__content button")
+        b.wait_attr("button[aria-label='S3 Bucket help']", "aria-expanded", "false")
+        # enter secret access key value
+        b.focus("input[id='bucket-input']")
+        b.key_press("you")
+        b.wait_present("span:contains('AWS region')")
+        # check image name help button
+        b.click("button[aria-label='AWS region help']")
+        b.wait_attr("button[aria-label='AWS region help']", "aria-expanded", "true")
+        b.wait_text(".pf-c-popover__body",
+                    "Provide the AWS Region where you want to import your image. "
+                    "This must be the same region where the S3 bucket exists.")
+        b.click(".pf-c-popover__content button")
+        b.wait_attr("button[aria-label='AWS region help']", "aria-expanded", "false")
+        # enter access key id value
+        b.focus("input[id='region-input']")
+        b.key_press("up")
+        # Verify AWS Review page
+        b.click("a:contains('Review')")
+        # check ? (AWS upload image help) button
+        b.click("button[aria-label='AWS help']")
+        b.wait_attr("button[aria-label='AWS help']", "aria-expanded", "true")
+        b.wait_in_text(".pf-c-popover__body",
+                       " Image Builder can upload images you create to an S3 bucket in AWS and "
+                       "then import them into EC2. When the image build is complete and the "
+                       "upload action is successful, the image file is available in the AMI "
+                       "section of EC2. Most of the values required to upload the image can "
+                       "be found in the AWS Management Console.  This upload process requires "
+                       "that you have an Identity and Access Management (IAM) role named vmimport "
+                       "to ensure that the image can be imported from the S3 bucket into EC2. For "
+                       "more details, refer to the AWS Required Service Role. ")
+        b.click(".pf-c-popover__content button")
+        b.wait_attr("button[aria-label='AWS help']", "aria-expanded", "false")
+        # Check that the expected fields and values are present
+        b.wait_in_text("#aws-content", "Access key ID")
+        b.wait_in_text("#aws-content", "*****")
+        b.wait_in_text("#aws-content", "Secret access key")
+        b.wait_in_text("#aws-content", "*****")
+        b.wait_in_text("#aws-content", "Image name")
+        b.wait_in_text("#aws-content", "give")
+        b.wait_in_text("#aws-content", "Amazon S3 bucket")
+        b.wait_in_text("#aws-content", "you")
+        b.wait_in_text("#aws-content", "AWS region")
+        b.wait_in_text("#aws-content", "up")
+        # continue button changes to Finish when upload has valid fields
+        b.wait_present("button:contains('Finish'):enabled")
+        # Close wizard
         b.click("button:contains('Cancel')")
         b.wait_not_present("#create-image-upload-wizard")
 
