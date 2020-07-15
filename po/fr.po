@@ -7,9 +7,9 @@
 # Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-07-01T13:27:47.962Z\n"
-"PO-Revision-Date: 2020-07-06 08:27+0000\n"
-"Last-Translator: Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>\n"
+"POT-Creation-Date: 2020-07-08T14:28:35.127Z\n"
+"PO-Revision-Date: 2020-07-09 09:27+0000\n"
+"Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
 "Language-Team: French <https://translate.fedoraproject.org/projects/cockpit-"
 "composer/master/fr/>\n"
 "Language: fr\n"
@@ -41,6 +41,8 @@ msgid ""
 "A minimal image will be created with only the packages needed to support the "
 "selected image type."
 msgstr ""
+"Une image minimale sera créée avec seulement les paquets nécessaires pour "
+"supporter le type d’image sélectionné."
 
 #. [components.Modal.2310857819]
 #. defaultMessage is:
@@ -102,10 +104,8 @@ msgstr "Aide sur l’ID de la clé d’accès"
 #. defaultMessage is:
 #. Access keys
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Access key ID"
 msgid "Access keys"
-msgstr "ID de la clé d’accès"
+msgstr "Clés d’accès"
 
 #. [components.ListView.imageActions] - A label for the menu that displays the actions available
 #. defaultMessage is:
@@ -123,7 +123,7 @@ msgstr "Actions"
 #. Active Filters
 #: build/messages/components/Toolbar/ToolbarLayout.json
 msgid "Active Filters"
-msgstr ""
+msgstr "Filtres actifs"
 
 #. [components.ListView.3099331554]
 #. defaultMessage is:
@@ -261,10 +261,8 @@ msgstr "Composants disponibles"
 #. defaultMessage is:
 #. Azure help
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "AWS help"
 msgid "Azure help"
-msgstr "Aide d’AWS"
+msgstr "Aide d’Azure"
 
 #. [components.Modal.1347475195]
 #. defaultMessage is:
@@ -296,7 +294,7 @@ msgstr "Retour à {blueprint}"
 #. Blob service
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Blob service"
-msgstr ""
+msgstr "Service Blob"
 
 #. [components.Modal.1281198655]
 #. defaultMessage is:
@@ -378,12 +376,12 @@ msgstr "Modèles"
 #. defaultMessage is:
 #. Browse or search for components, then add them to the blueprint. Or leave the blueprint empty to create a minimal image.
 #: build/messages/pages/blueprintEdit/index.json
-#, fuzzy
-#| msgid "Browse or search for components, then add them to the blueprint."
 msgid ""
 "Browse or search for components, then add them to the blueprint. Or leave "
 "the blueprint empty to create a minimal image."
-msgstr "Naviguez ou cherchez les composants, puis ajoutez les au modèle."
+msgstr ""
+"Parcourez ou recherchez les composants, puis ajoutez-les au plan. Ou laissez "
+"le plan vide pour créer une image minimale."
 
 #. [components.Form.cancel]
 #. defaultMessage is:
@@ -735,8 +733,6 @@ msgstr "La description"
 #. defaultMessage is:
 #. Details
 #: build/messages/components/ListView/ComponentDetailsView.json
-#, fuzzy
-#| msgid "details"
 msgid "Details"
 msgstr "Détails"
 
@@ -869,26 +865,22 @@ msgstr "Filtrer par nom..."
 #. defaultMessage is:
 #. Filter by Name
 #: build/messages/components/Toolbar/FilterInput.json
-#, fuzzy
-#| msgid "Filter By Name..."
 msgid "Filter by Name"
-msgstr "Filtrer par nom..."
+msgstr "Filtrer par nom"
 
 #. [components.Toolbar.filterReleasePlaceholder]
 #. defaultMessage is:
 #. Filter by Release
 #: build/messages/components/Toolbar/FilterInput.json
-#, fuzzy
-#| msgid "Filter By Name..."
 msgid "Filter by Release"
-msgstr "Filtrer par nom..."
+msgstr "Filtrer par version"
 
 #. [components.Toolbar.filterVersionPlaceholder]
 #. defaultMessage is:
 #. Filter by Version
 #: build/messages/components/Toolbar/FilterInput.json
 msgid "Filter by Version"
-msgstr ""
+msgstr "Filtrer par version"
 
 #. [components.Modal.787186999]
 #. defaultMessage is:
@@ -1227,19 +1219,15 @@ msgstr "Aucun journal disponible"
 #. defaultMessage is:
 #. OSTree parent help
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "AWS region help"
 msgid "OSTree parent help"
-msgstr "Aide sur les régions AWS"
+msgstr "Aide sur les parents OSTree"
 
 #. [ostree-ref-help]
 #. defaultMessage is:
 #. OSTree ref help
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "AWS region help"
 msgid "OSTree ref help"
-msgstr "Aide sur les régions AWS"
+msgstr "Aide sur les ref OSTree"
 
 #. [components.Modal.1475836573]
 #. defaultMessage is:
@@ -1423,7 +1411,7 @@ msgstr ""
 #. Ref
 #: build/messages/components/Modal/CreateImageUpload.json
 msgid "Ref"
-msgstr ""
+msgstr "Ref"
 
 #. [components.ListView.423140743]
 #. defaultMessage is:
@@ -1771,10 +1759,8 @@ msgstr "Clé d'accès au stockage"
 #. defaultMessage is:
 #. Storage access key help
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Storage access key"
 msgid "Storage access key help"
-msgstr "Clé d'accès au stockage"
+msgstr "Aide sur les clés d’accès au stockage"
 
 #. [components.Modal.1624497518]
 #. defaultMessage is:
@@ -1787,19 +1773,15 @@ msgstr "Compte de stockage"
 #. defaultMessage is:
 #. Storage account help
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Storage account"
 msgid "Storage account help"
-msgstr "Compte de stockage"
+msgstr "Aide sur les comptes de stockage"
 
 #. [components.Modal.storageAccounts]
 #. defaultMessage is:
 #. Storage accounts
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Storage account"
 msgid "Storage accounts"
-msgstr "Compte de stockage"
+msgstr "Comptes de stockage"
 
 #. [components.Modal.1249927125]
 #. defaultMessage is:
@@ -1859,6 +1841,8 @@ msgid ""
 "The packages needed to support the selected image type are automatically "
 "included when creating an image."
 msgstr ""
+"Les paquets nécessaires pour prendre en charge le type d’image sélectionné "
+"sont automatiquement inclus lors de la création d’une image."
 
 #. [pages.error.26562577]
 #. defaultMessage is:
@@ -2127,10 +2111,8 @@ msgstr "Chargement en attente"
 #. defaultMessage is:
 #. Upload to AWS
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Upload to Azure"
 msgid "Upload to AWS"
-msgstr "Téléversement vers Azure"
+msgstr "Téléversement vers AWS"
 
 #. [components.Modal.1426592721]
 #. defaultMessage is:
@@ -2294,10 +2276,8 @@ msgstr "mirrorlist"
 #. defaultMessage is:
 #. storage container help
 #: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Storage container"
 msgid "storage container help"
-msgstr "Conteneur de stockage"
+msgstr "Aide sur les conteneurs de stockage"
 
 #. [components.Modal.152217691]
 #. defaultMessage is:
