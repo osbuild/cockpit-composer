@@ -41,7 +41,12 @@ function flattenInputs(response) {
 function* fetchInputs(action) {
   try {
     const { filter, selectedInputPage, pageSize } = action.payload;
-    const filterValue = `*${filter.value}*`.replace("**", "*");
+    const wildcardsUsed = filter.value.includes("*");
+    const regex = / +|, +/g;
+    let filterValue = filter.value.replace(regex, ",");
+    const regexStrip = /(^,+)|(,+$)/g;
+    filterValue = filterValue.replace(regexStrip, "");
+    filterValue = wildcardsUsed ? filterValue : `*${filterValue}*`.replace(/,/g, "*,*");
     // page is displayed in UI starting from 1 but api starts from 0
     const pageIndex = selectedInputPage - 1;
     const response = yield call(composer.listModules, filterValue, pageIndex, pageSize);
