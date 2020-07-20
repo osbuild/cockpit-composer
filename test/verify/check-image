@@ -252,6 +252,7 @@ class TestImage(composerlib.ComposerCase):
         b.wait_val("#create-image-size", 2)
         # check ? (Azure upload image help) button
         b.click("button[aria-label='Upload image help']")
+        b.wait_attr("button[aria-label='Upload image help']", "aria-expanded", "true")
         print(b.text(".pf-c-popover__body"))
         b.wait_in_text(".pf-c-popover__body",
                        " Image Builder can upload images you create to a Blob container in "
@@ -259,70 +260,76 @@ class TestImage(composerlib.ComposerCase):
                        "is successful, the image file is available in the Storage account and Blob "
                        "container that you specified. ")
         b.click(".pf-c-popover__content button")
-        b.wait_not_present(".pf-c-popover__body")
+        b.wait_attr("button[aria-label='Upload image help']", "aria-expanded", "false")
         # continue button changes to Next when upload image selected
         b.click("#azure-checkbox")
         b.click("button:contains('Next')")
         # check and enter authentication fields
+        b.click("a:contains('Authentication')")
         b.wait_present("span:contains('Storage account')")
         # check storage account help button
         b.click("button[aria-label='Storage account help']")
+        b.wait_attr("button[aria-label='Storage account help']", "aria-expanded", "true")
         b.wait_text(".pf-c-popover__body",
                     "Provide the name of a storage account. You can find storage accounts on the "
                     "Storage accounts page in the Azure portal.")
         b.click(".pf-c-popover__content button")
-        b.wait_not_present(".pf-c-popover__body")
+        b.wait_attr("button[aria-label='Storage account help']", "aria-expanded", "false")
         # enter storage account value
         b.focus("input[id='storage-account-input']")
         b.key_press("never")
         b.wait_present("span:contains('Storage access key')")
         # check storage access key help button
         b.click("button[aria-label='Storage access key help']")
+        b.wait_attr("button[aria-label='Storage access key help']", "aria-expanded", "true")
         b.wait_text(".pf-c-popover__body",
                     " Provide the access key for the desired storage account. You can find the "
                     "access key on the Access keys  page of the storage account. You can find "
                     "storage accounts on the Storage accounts page in the Azure portal. ")
         b.click(".pf-c-popover__content button")
-        b.wait_not_present(".pf-c-popover__body")
+        b.wait_attr("button[aria-label='Storage access key help']", "aria-expanded", "false")
         # enter storage access key value
         b.focus("input[id='storage-access-key-input']")
         b.key_press("gunna")
         # check and enter destination fields
-        b.click("button:contains('Destination')")
+        b.click("a:contains('Destination')")
         b.wait_present("span:contains('Image name')")
         # check image name help button
         b.click("button[aria-label='Image name help']")
+        b.wait_attr("button[aria-label='Image name help']", "aria-expanded", "true")
         b.wait_text(".pf-c-popover__body",
                     "Provide a file name to be used for the image file that will be uploaded.")
         b.click(".pf-c-popover__content button")
-        b.wait_not_present(".pf-c-popover__body")
+        b.wait_attr("button[aria-label='Image name help']", "aria-expanded", "false")
         # enter image name id value
         b.focus("input[id='image-name-input']")
         b.key_press("give")
         b.wait_present("span:contains('Storage container')")
         # check amazon Storage container help button
         b.click("button[aria-label='Storage container help']")
+        b.wait_attr("button[aria-label='Storage container help']", "aria-expanded", "true")
         b.text(".pf-c-popover__body")
         b.wait_text(".pf-c-popover__body",
                     " Provide the Blob container to which the image file will be uploaded. You can "
                     "find containers under the Blob service  section of a storage account. You can "
                     "find storage accounts on the Storage accounts page in the Azure portal. ")
         b.click(".pf-c-popover__content button")
-        b.wait_not_present(".pf-c-popover__body")
+        b.wait_attr("button[aria-label='Storage container help']", "aria-expanded", "false")
         # enter storage container value
         b.focus("input[id='storage-container-input']")
         b.key_press("you-up")
         # Verify Azure Review page
-        b.click("button:contains('Review')")
+        b.click("a:contains('Review')")
         # check ? (Azure upload image help) button
         b.click("button[aria-label='Azure help']")
+        b.wait_attr("button[aria-label='Azure help']", "aria-expanded", "true")
         b.wait_in_text(".pf-c-popover__body",
                        " Image Builder can upload images you create to a Blob container in "
                        "Microsoft Azure. When the image build is complete  and the upload action "
                        "is successful, the image file is available in the Storage account and Blob "
                        "container that you specified. ")
         b.click(".pf-c-popover__content button")
-        b.wait_not_present(".pf-c-popover__body")
+        b.wait_attr("button[aria-label='Azure help']", "aria-expanded", "false")
         # Check that the expected fields and values are present
         b.wait_in_text("#azure-content", "Storage account")
         b.wait_in_text("#azure-content", "*****")

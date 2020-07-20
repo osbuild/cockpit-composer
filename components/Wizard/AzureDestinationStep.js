@@ -9,7 +9,7 @@ const ariaLabels = defineMessages({
     defaultMessage: "Image name help",
   },
   storageContainer: {
-    defaultMessage: "storage container help",
+    defaultMessage: "Storage container help",
   },
 });
 
