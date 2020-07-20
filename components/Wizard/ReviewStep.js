@@ -171,7 +171,7 @@ class ReviewStep extends React.PureComponent {
     );
 
     const azureReviewStep = uploadService === "azure" && (
-      <TextContent>
+      <TextContent id="azure-content">
         <div className="pf-l-flex pf-u-display-flex">
           <h3 className="pf-l-flex__item pf-u-mt-2xl pf-u-mb-md">
             <FormattedMessage defaultMessage="Upload to Azure" />
