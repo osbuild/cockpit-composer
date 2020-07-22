@@ -36,7 +36,7 @@ class TestService(composerlib.ComposerCase):
         b.click("button:contains('Start')")
         # work around .pf-c-empty-state element disappear in one second
         b.wait_in_text("#main", "No Blueprints")
-        b.wait_text(".pf-c-empty-state h1", "No Blueprints")
+        b.wait_text(".pf-c-empty-state__content .pf-c-title", "No Blueprints")
 
         # create blueprint with random name and description
         name_template = string.ascii_letters + string.digits + "-" + "_"
@@ -123,7 +123,7 @@ class TestService(composerlib.ComposerCase):
         b.click("button:contains('Start')")
         # work around .pf-c-empty-state element disappear in one second
         b.wait_in_text("#main", "No Blueprints")
-        b.wait_text(".pf-c-empty-state h1", "No Blueprints")
+        b.wait_text(".pf-c-empty-state__content .pf-c-title", "No Blueprints")
         # osbuild-composer should be disabled
         is_enabled = m.execute("systemctl is-enabled osbuild-composer.socket || true").rstrip()
         self.assertEqual(is_enabled, "disabled")

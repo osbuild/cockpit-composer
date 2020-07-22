@@ -37,7 +37,7 @@ class ComponentSummaryList extends React.Component {
     const { formatMessage } = this.props.intl;
     return (
       <div className="cc-component-summary__deps pf-l-flex pf-m-column">
-        <Split gutter="md" className="pf-m-spacer-sm">
+        <Split hasGutter className="pf-m-spacer-sm">
           <SplitItem isFilled>
             <strong>
               <FormattedMessage defaultMessage="Dependencies" />

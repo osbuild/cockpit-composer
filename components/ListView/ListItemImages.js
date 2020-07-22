@@ -352,7 +352,7 @@ class ListItemImages extends React.Component {
           aria-label={formatMessage(messages.imageUploads)}
           id={`${listItem.id}-uploads`}
           isHidden={!this.state.uploadsExpanded}
-          noPadding
+          hasNoPadding
         >
           {uploadsSection}
         </DataListContent>
@@ -360,7 +360,7 @@ class ListItemImages extends React.Component {
           aria-label={formatMessage(messages.imageLogs)}
           id={`${listItem.id}-logs`}
           isHidden={!this.state.logsExpanded}
-          noPadding
+          hasNoPadding
         >
           {logsSection}
         </DataListContent>

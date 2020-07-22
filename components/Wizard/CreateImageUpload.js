@@ -464,7 +464,6 @@ class CreateImageUploadModal extends React.Component {
         <Wizard
           id="create-image-upload-wizard"
           isOpen={this.props.isOpen}
-          isCompactNav
           onClose={this.props.close}
           footer={createImageUploadFooter}
           title={formatMessage(messages.title)}
