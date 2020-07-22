@@ -517,6 +517,7 @@ class EditBlueprintPage extends React.Component {
                 redo={this.props.redo}
                 pastLength={pastLength}
                 futureLength={futureLength}
+                showUndoRedo
               />
             )}
             <BlueprintContents

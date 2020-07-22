@@ -38,7 +38,7 @@ const BlueprintToolbar = (props) => (
           </button>
         ))}
     </div>
-    {props.undo !== undefined && (
+    {props.showUndoRedo && props.undo !== undefined && (
       <div className="form-group">
         {(props.pastLength > 0 && (
           <button
@@ -96,6 +96,7 @@ BlueprintToolbar.propTypes = {
   futureLength: PropTypes.number,
   redo: PropTypes.func,
   blueprintId: PropTypes.string,
+  showUndoRedo: PropTypes.bool,
 };
 
 BlueprintToolbar.defaultProps = {
@@ -113,6 +114,7 @@ BlueprintToolbar.defaultProps = {
   futureLength: 0,
   redo() {},
   blueprintId: "",
+  showUndoRedo: false,
 };
 
 export default BlueprintToolbar;

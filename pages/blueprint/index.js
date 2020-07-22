@@ -501,6 +501,7 @@ class BlueprintPage extends React.Component {
                     componentsSortValue={this.props.componentsSortValue}
                     componentsSortSetValue={this.props.componentsSortSetValue}
                     dependenciesSortSetValue={this.props.dependenciesSortSetValue}
+                    showUndoRedo={false}
                   />
                   <BlueprintContents
                     components={selectedComponents}
