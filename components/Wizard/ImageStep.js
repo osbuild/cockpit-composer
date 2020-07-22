@@ -366,7 +366,7 @@ class ImageStep extends React.PureComponent {
                       min={minImageSize}
                       max={maxImageSize}
                       value={imageSize || ""}
-                      isValid={isValidImageSize()}
+                      validated={isValidImageSize() ? "default" : "error"}
                       onChange={setImageSize}
                       aria-describedby="create-image-size-help"
                     />
