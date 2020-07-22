@@ -25,20 +25,18 @@ class TestImage(composerlib.ComposerCase):
         b.wait_text("#create-image-upload-wizard #blueprint-name", "httpd-server")
         # check ? (Process length help) button
         b.click("button[aria-label='Process length help']")
-        b.wait_attr("button[aria-label='Process length help']", "aria-expanded", "true")
         b.wait_text(".pf-c-popover__body", "This process can take a while. "
                     "Images are built in the order they are started.")
         b.click(".pf-c-popover__content button")
-        b.wait_attr("button[aria-label='Process length help']", "aria-expanded", "false")
+        b.wait_not_present(".pf-c-popover__body")
         # check ? (image size help) button
         b.click("button[aria-label='Image size help']")
-        b.wait_attr("button[aria-label='Image size help']", "aria-expanded", "true")
         b.wait_text(".pf-c-popover__body",
                     "Set the size that you want the image to be when instantiated. The total "
                     "package size and target destination of your image should be considered when "
                     "setting the image size.")
         b.click(".pf-c-popover__content button")
-        b.wait_attr("button[aria-label='Image size help']", "aria-expanded", "false")
+        b.wait_not_present(".pf-c-popover__body")
         # check non upload image action (Create only)
         # group actions for select from dropdown menu
         b.wait_visible("#image-type")
@@ -104,7 +102,6 @@ class TestImage(composerlib.ComposerCase):
         b.wait_val("#create-image-size", 6)
         # check ? (AWS upload image help) button
         b.click("button[aria-label='Upload image help']")
-        b.wait_attr("button[aria-label='Upload image help']", "aria-expanded", "true")
         b.wait_in_text(".pf-c-popover__body",
                        " Image Builder can upload images you create to an S3 bucket in AWS and "
                        "then import them into EC2. When the image build is complete and the upload"
@@ -115,7 +112,7 @@ class TestImage(composerlib.ComposerCase):
                        "the image can be imported from the S3 bucket into EC2. For more details, "
                        "refer to the AWS Required Service Role. ")
         b.click(".pf-c-popover__content button")
-        b.wait_attr("button[aria-label='Upload image help']", "aria-expanded", "false")
+        b.wait_not_present(".pf-c-popover__body")
         # continue button changes to Next when upload image selected
         b.click("#aws-checkbox")
         b.click("button:contains('Next')")
@@ -134,24 +131,22 @@ class TestImage(composerlib.ComposerCase):
         b.wait_present("span:contains('Access key ID')")
         # check access key id help button
         b.click("button[aria-label='Access key ID help']")
-        b.wait_attr("button[aria-label='Access key ID help']", "aria-expanded", "true")
         b.wait_text(".pf-c-popover__body",
                     "You can create and find existing Access key IDs on the "
                     "Identity and Access Management (IAM) page in the AWS console.")
         b.click(".pf-c-popover__content button")
-        b.wait_attr("button[aria-label='Access key ID help']", "aria-expanded", "false")
+        b.wait_not_present(".pf-c-popover__body")
         # enter access key id value
         b.focus("input[id='access-key-id-input']")
         b.key_press("never")
         b.wait_present("span:contains('Secret access key')")
         # check secret access key help button
         b.click("button[aria-label='Secret access key help']")
-        b.wait_attr("button[aria-label='Secret access key help']", "aria-expanded", "true")
         b.wait_text(".pf-c-popover__body",
                     "You can view the Secret access key only when you create a new Access key ID "
                     "on the Identity and Access Management (IAM) page in the AWS console.")
         b.click(".pf-c-popover__content button")
-        b.wait_attr("button[aria-label='Secret access key help']", "aria-expanded", "false")
+        b.wait_not_present(".pf-c-popover__body")
         # enter secret access key value
         b.focus("input[id='secret-access-key-input']")
         b.key_press("gunna")
@@ -160,37 +155,34 @@ class TestImage(composerlib.ComposerCase):
         b.wait_present("span:contains('Image name')")
         # check image name help button
         b.click("button[aria-label='Image name help']")
-        b.wait_attr("button[aria-label='Image name help']", "aria-expanded", "true")
         b.wait_text(".pf-c-popover__body",
                     "Provide a file name to be used for the image file that will be uploaded.")
         b.click(".pf-c-popover__content button")
-        b.wait_attr("button[aria-label='Image name help']", "aria-expanded", "false")
+        b.wait_not_present(".pf-c-popover__body")
         # enter access key id value
         b.focus("input[id='image-name-input']")
         b.key_press("give")
         b.wait_present("span:contains('Amazon S3 bucket')")
         # check amazon s3 bucket help button
         b.click("button[aria-label='S3 Bucket help']")
-        b.wait_attr("button[aria-label='S3 Bucket help']", "aria-expanded", "true")
         b.wait_text(".pf-c-popover__body",
                     " Provide the S3 bucket name to which the image file will be uploaded before "
                     "being imported into EC2.  The bucket must already exist in the Region where "
                     "you want to import your image. You can find a list of buckets on the S3 "
                     "buckets page in the Amazon S3 storage service in the AWS console. ")
         b.click(".pf-c-popover__content button")
-        b.wait_attr("button[aria-label='S3 Bucket help']", "aria-expanded", "false")
+        b.wait_not_present(".pf-c-popover__body")
         # enter secret access key value
         b.focus("input[id='bucket-input']")
         b.key_press("you")
         b.wait_present("span:contains('AWS region')")
         # check image name help button
         b.click("button[aria-label='AWS region help']")
-        b.wait_attr("button[aria-label='AWS region help']", "aria-expanded", "true")
         b.wait_text(".pf-c-popover__body",
                     "Provide the AWS Region where you want to import your image. "
                     "This must be the same region where the S3 bucket exists.")
         b.click(".pf-c-popover__content button")
-        b.wait_attr("button[aria-label='AWS region help']", "aria-expanded", "false")
+        b.wait_not_present(".pf-c-popover__body")
         # enter access key id value
         b.focus("input[id='region-input']")
         b.key_press("up")
@@ -198,7 +190,6 @@ class TestImage(composerlib.ComposerCase):
         b.click("a:contains('Review')")
         # check ? (AWS upload image help) button
         b.click("button[aria-label='AWS help']")
-        b.wait_attr("button[aria-label='AWS help']", "aria-expanded", "true")
         b.wait_in_text(".pf-c-popover__body",
                        " Image Builder can upload images you create to an S3 bucket in AWS and "
                        "then import them into EC2. When the image build is complete and the "
@@ -209,7 +200,7 @@ class TestImage(composerlib.ComposerCase):
                        "to ensure that the image can be imported from the S3 bucket into EC2. For "
                        "more details, refer to the AWS Required Service Role. ")
         b.click(".pf-c-popover__content button")
-        b.wait_attr("button[aria-label='AWS help']", "aria-expanded", "false")
+        b.wait_not_present(".pf-c-popover__body")
         # Check that the expected fields and values are present
         b.wait_in_text("#aws-content", "Access key ID")
         b.wait_in_text("#aws-content", "*****")
@@ -252,7 +243,6 @@ class TestImage(composerlib.ComposerCase):
         b.wait_val("#create-image-size", 2)
         # check ? (Azure upload image help) button
         b.click("button[aria-label='Upload image help']")
-        b.wait_attr("button[aria-label='Upload image help']", "aria-expanded", "true")
         print(b.text(".pf-c-popover__body"))
         b.wait_in_text(".pf-c-popover__body",
                        " Image Builder can upload images you create to a Blob container in "
@@ -260,7 +250,7 @@ class TestImage(composerlib.ComposerCase):
                        "is successful, the image file is available in the Storage account and Blob "
                        "container that you specified. ")
         b.click(".pf-c-popover__content button")
-        b.wait_attr("button[aria-label='Upload image help']", "aria-expanded", "false")
+        b.wait_not_present(".pf-c-popover__body")
         # continue button changes to Next when upload image selected
         b.click("#azure-checkbox")
         b.click("button:contains('Next')")
@@ -269,25 +259,23 @@ class TestImage(composerlib.ComposerCase):
         b.wait_present("span:contains('Storage account')")
         # check storage account help button
         b.click("button[aria-label='Storage account help']")
-        b.wait_attr("button[aria-label='Storage account help']", "aria-expanded", "true")
         b.wait_text(".pf-c-popover__body",
                     "Provide the name of a storage account. You can find storage accounts on the "
                     "Storage accounts page in the Azure portal.")
         b.click(".pf-c-popover__content button")
-        b.wait_attr("button[aria-label='Storage account help']", "aria-expanded", "false")
+        b.wait_not_present(".pf-c-popover__body")
         # enter storage account value
         b.focus("input[id='storage-account-input']")
         b.key_press("never")
         b.wait_present("span:contains('Storage access key')")
         # check storage access key help button
         b.click("button[aria-label='Storage access key help']")
-        b.wait_attr("button[aria-label='Storage access key help']", "aria-expanded", "true")
         b.wait_text(".pf-c-popover__body",
                     " Provide the access key for the desired storage account. You can find the "
                     "access key on the Access keys  page of the storage account. You can find "
                     "storage accounts on the Storage accounts page in the Azure portal. ")
         b.click(".pf-c-popover__content button")
-        b.wait_attr("button[aria-label='Storage access key help']", "aria-expanded", "false")
+        b.wait_not_present(".pf-c-popover__body")
         # enter storage access key value
         b.focus("input[id='storage-access-key-input']")
         b.key_press("gunna")
@@ -296,25 +284,23 @@ class TestImage(composerlib.ComposerCase):
         b.wait_present("span:contains('Image name')")
         # check image name help button
         b.click("button[aria-label='Image name help']")
-        b.wait_attr("button[aria-label='Image name help']", "aria-expanded", "true")
         b.wait_text(".pf-c-popover__body",
                     "Provide a file name to be used for the image file that will be uploaded.")
         b.click(".pf-c-popover__content button")
-        b.wait_attr("button[aria-label='Image name help']", "aria-expanded", "false")
+        b.wait_not_present(".pf-c-popover__body")
         # enter image name id value
         b.focus("input[id='image-name-input']")
         b.key_press("give")
         b.wait_present("span:contains('Storage container')")
         # check amazon Storage container help button
         b.click("button[aria-label='Storage container help']")
-        b.wait_attr("button[aria-label='Storage container help']", "aria-expanded", "true")
         b.text(".pf-c-popover__body")
         b.wait_text(".pf-c-popover__body",
                     " Provide the Blob container to which the image file will be uploaded. You can "
                     "find containers under the Blob service  section of a storage account. You can "
                     "find storage accounts on the Storage accounts page in the Azure portal. ")
         b.click(".pf-c-popover__content button")
-        b.wait_attr("button[aria-label='Storage container help']", "aria-expanded", "false")
+        b.wait_not_present(".pf-c-popover__body")
         # enter storage container value
         b.focus("input[id='storage-container-input']")
         b.key_press("you-up")
@@ -322,14 +308,13 @@ class TestImage(composerlib.ComposerCase):
         b.click("a:contains('Review')")
         # check ? (Azure upload image help) button
         b.click("button[aria-label='Azure help']")
-        b.wait_attr("button[aria-label='Azure help']", "aria-expanded", "true")
         b.wait_in_text(".pf-c-popover__body",
                        " Image Builder can upload images you create to a Blob container in "
                        "Microsoft Azure. When the image build is complete  and the upload action "
                        "is successful, the image file is available in the Storage account and Blob "
                        "container that you specified. ")
         b.click(".pf-c-popover__content button")
-        b.wait_attr("button[aria-label='Azure help']", "aria-expanded", "false")
+        b.wait_not_present(".pf-c-popover__body")
         # Check that the expected fields and values are present
         b.wait_in_text("#azure-content", "Storage account")
         b.wait_in_text("#azure-content", "*****")

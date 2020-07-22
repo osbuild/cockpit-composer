@@ -79,7 +79,7 @@ const BlueprintContents = (props) => {
                       title={formatMessage(messages.emptyStateErrorTitle)}
                       isInline
                       variant="danger"
-                      action={alertAction}
+                      actionClose={alertAction}
                       className="pf-u-mt-md pf-u-mb-md"
                     >
                       <p>{formatMessage(messages.emptyStateErrorMessage)}</p>

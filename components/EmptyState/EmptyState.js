@@ -12,7 +12,9 @@ class EmptyState extends React.PureComponent {
     return (
       <EmptyStatePF4>
         {emptyStateIcon}
-        <Title size="sm">{title}</Title>
+        <Title headingLevel="h2" size="md">
+          {title}
+        </Title>
         <EmptyStateBody>{message}</EmptyStateBody>
         {children}
       </EmptyStatePF4>
