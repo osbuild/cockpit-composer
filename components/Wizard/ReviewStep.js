@@ -80,7 +80,7 @@ class ReviewStep extends React.PureComponent {
             className="pf-l-flex__item"
             id="aws-review-popover"
             bodyContent={
-              <TextContent>
+              <div>
                 <p>
                   <FormattedMessage
                     defaultMessage="
@@ -107,6 +107,7 @@ class ReviewStep extends React.PureComponent {
                     }}
                   />
                 </p>
+                <br />
                 <p>
                   <FormattedMessage
                     defaultMessage="
@@ -134,7 +135,7 @@ class ReviewStep extends React.PureComponent {
                     }}
                   />
                 </p>
-              </TextContent>
+              </div>
             }
             aria-label={formatMessage(ariaLabels.aws)}
           >
