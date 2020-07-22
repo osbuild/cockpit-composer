@@ -575,7 +575,7 @@ class EditBlueprintPage extends React.Component {
                   onKeyPress={(e) => this.getFilteredInputs(e)}
                 />
                 <Pagination
-                  className="pf-m-flex-1 pf-u-flex-nowrap-on-lg pf-u-ml-md"
+                  className="pf-m-flex-1 pf-u-flex-nowrap-on-lg pf-u-ml-md-on-md"
                   itemCount={inputs.totalInputs}
                   perPage={this.state.pageSize}
                   page={this.state.page}

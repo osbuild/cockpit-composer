@@ -83,7 +83,10 @@
 .cmpsr-panel__body  .toolbar-pf .toolbar-pf-actions {
   padding-top: 10px;
 }
-.cmpsr-panel__body--sidebar .pf-c-pagination {
+.cmpsr-panel__body--sidebar .toolbar-pf .toolbar-pf-actions {
+  margin-bottom: 0;
+}
+.cmpsr-panel__body--sidebar .toolbar-pf .toolbar-pf-actions > *:last-child {
   margin-bottom: 10px;
 }
 .toolbar-pf-results {
@@ -256,48 +259,6 @@ h1.cmpsr-title__item {
   .cmpsr-list-sources .list-pf-title, .cmpsr-list-sources .list-pf-description {
     flex-basis: calc(50% - 20px);
   }
-}
-/* pagination */
-.toolbar-pf-results .content-view-pf-pagination {
-  margin-bottom: 5px;
-  margin-top: 5px;
-  background-color: transparent;
-  border: none;
-  -webkit-box-pack: end;
-          justify-content: flex-end;
-  -webkit-box-align: baseline;
-          align-items: baseline;
-}
-.toolbar-pf-results .pagination {
-  align-self: center;
-}
-.toolbar-pf-results .pagination-pf-page,
-.toolbar-pf-results .pagination.pagination-pf-forward {
-  margin-left: 5px;
-}
-.toolbar-pf-results .pagination-pf-page {
-  display: inline;
-}
-.pagination-cmpsr-pages {
-  display: -webkit-box;
-  display: flex;
-}
-/* given complexity of this component related to sr a11y and i18n, 
-this applies sr-only styles to the child span, which includes 
-the translated screenreader text, while the next line provides 
-the "-" that would display instead of the sr-only "to" */
-.pagination-cmpsr-to > span {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0,0,0,0);
-  border: 0;
-}
-.pagination-cmpsr-to:before {
-  content: "\2013";
 }
 
 /* sidebar */
