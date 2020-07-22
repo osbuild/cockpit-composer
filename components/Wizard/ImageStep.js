@@ -9,7 +9,6 @@ import {
   FormSelectOption,
   Popover,
   Text,
-  TextContent,
   TextInput,
 } from "@patternfly/react-core";
 import {
@@ -167,7 +166,7 @@ class ImageStep extends React.PureComponent {
           <Popover
             id="aws-provider-popover"
             bodyContent={
-              <TextContent>
+              <div>
                 <p>
                   <FormattedMessage
                     defaultMessage="
@@ -194,6 +193,7 @@ class ImageStep extends React.PureComponent {
                     }}
                   />
                 </p>
+                <br />
                 <p>
                   <FormattedMessage
                     defaultMessage="
@@ -221,7 +221,7 @@ class ImageStep extends React.PureComponent {
                     }}
                   />
                 </p>
-              </TextContent>
+              </div>
             }
             aria-label={formatMessage(ariaLabels.uploadImage)}
           >
