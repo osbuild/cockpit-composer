@@ -83,6 +83,10 @@ class ListItemImages extends React.Component {
     this.handleUploadsShow = this.handleUploadsShow.bind(this);
   }
 
+  componentDidMount() {
+    this.props.fetchingComposeTypes();
+  }
+
   // maps to Remove button for FAILED
   handleDelete(e) {
     e.preventDefault();
@@ -136,7 +140,7 @@ class ListItemImages extends React.Component {
   }
 
   render() {
-    const { listItem } = this.props;
+    const { listItem, imageTypes } = this.props;
     const { formatMessage } = this.props.intl;
     const timestamp = new Date(listItem.job_created * 1000);
     const formattedTime = timestamp.toDateString();
@@ -311,7 +315,9 @@ class ListItemImages extends React.Component {
                 </div>
                 <div className="pf-l-flex__item">
                   <span>{formatMessage(messages.imageType)} </span>
-                  <strong data-image-type={listItem.compose_type}>{listItem.compose_type}</strong>
+                  <strong data-image-type={listItem.compose_type}>
+                    {imageTypes.length > 0 ? imageTypes.find((type) => type.name === listItem.compose_type).label : ""}
+                  </strong>
                 </div>
                 <div className="pf-l-flex__item">
                   <span>{formatMessage(messages.imageCreated)}</span> <strong>{formattedTime}</strong>
@@ -385,6 +391,8 @@ ListItemImages.propTypes = {
   blueprint: PropTypes.string,
   deletingCompose: PropTypes.func,
   cancellingCompose: PropTypes.func,
+  fetchingComposeTypes: PropTypes.func,
+  imageTypes: PropTypes.arrayOf(PropTypes.object),
   setModalStopBuildState: PropTypes.func,
   setModalStopBuildVisible: PropTypes.func,
   setModalDeleteImageState: PropTypes.func,
@@ -398,6 +406,8 @@ ListItemImages.defaultProps = {
   blueprint: "",
   deletingCompose() {},
   cancellingCompose() {},
+  fetchingComposeTypes() {},
+  imageTypes: [],
   setModalStopBuildState() {},
   setModalStopBuildVisible() {},
   setModalDeleteImageState() {},
