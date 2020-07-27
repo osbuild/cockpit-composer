@@ -46,6 +46,15 @@ const messages = defineMessages({
 class ListItemUploads extends React.PureComponent {
   constructor(props) {
     super(props);
+    this.uploadProviderToLabel = this.uploadProviderToLabel.bind(this);
+  }
+
+  uploadProviderToLabel(uploadType) {
+    const uploadTypeLabels = {
+      aws: "AWS",
+      azure: "Azure",
+    };
+    return uploadTypeLabels[uploadType] !== undefined ? uploadTypeLabels[uploadType] : uploadType;
   }
 
   render() {
@@ -122,7 +131,7 @@ class ListItemUploads extends React.PureComponent {
                 )}
                 <div className="pf-l-flex__item">
                   <span>{formatMessage(messages.uploadType)}</span>{" "}
-                  <strong id={`${upload.uuid}-type`}>{upload.provider_name}</strong>
+                  <strong id={`${upload.uuid}-type`}>{this.uploadProviderToLabel(upload.provider_name)}</strong>
                 </div>
                 <div className="pf-l-flex__item">
                   <span>{formatMessage(messages.timeStarted)}</span> <strong>{formattedTime}</strong>
