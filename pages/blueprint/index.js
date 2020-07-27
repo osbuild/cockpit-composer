@@ -36,7 +36,7 @@ import {
   setSelectedInputParent,
   fetchingDepDetails,
 } from "../../core/actions/inputs";
-import { fetchingComposes } from "../../core/actions/composes";
+import { fetchingComposes, fetchingComposeTypes } from "../../core/actions/composes";
 import {
   setModalUserAccountVisible,
   setModalUserAccountData,
@@ -560,6 +560,8 @@ class BlueprintPage extends React.Component {
                   {composeList.map((compose) => (
                     <ListItemImages
                       blueprint={this.props.route.params.blueprint}
+                      fetchingComposeTypes={this.props.fetchingComposeTypes}
+                      imageTypes={this.props.imageTypes}
                       listItem={compose}
                       downloadUrl={this.downloadUrl(compose)}
                       key={compose.id}
@@ -618,8 +620,10 @@ BlueprintPage.propTypes = {
     }),
   }),
   fetchingComposes: PropTypes.func,
+  fetchingComposeTypes: PropTypes.func,
   composesLoading: PropTypes.bool,
   composeList: PropTypes.arrayOf(PropTypes.object),
+  imageTypes: PropTypes.arrayOf(PropTypes.object),
   setEditDescriptionVisible: PropTypes.func,
   setEditHostnameVisible: PropTypes.func,
   setEditHostnameInvalid: PropTypes.func,
@@ -699,8 +703,10 @@ BlueprintPage.defaultProps = {
   fetchingBlueprintContents() {},
   blueprint: {},
   fetchingComposes() {},
+  fetchingComposeTypes() {},
   composesLoading: false,
   composeList: [],
+  imageTypes: [],
   setEditDescriptionVisible() {},
   setEditHostnameVisible() {},
   setEditHostnameInvalid() {},
@@ -755,6 +761,7 @@ const makeMapStateToProps = () => {
         dependencies: getFilteredComponents(state, getSortedDependencies(state, fetchedBlueprint.present)),
         composeList: getBlueprintComposes(state, fetchedBlueprint.present),
         composesLoading: state.composes.fetchingComposes,
+        imageTypes: state.composes.composeTypes,
         blueprintPage: state.blueprintPage,
         selectedInput: state.inputs.selectedInput,
         selectedInputDeps: getSelectedDeps(
@@ -780,6 +787,7 @@ const makeMapStateToProps = () => {
       dependencies: [],
       composeList: [],
       composesLoading: state.composes.fetchingComposes,
+      imageTypes: state.composes.composeTypes,
       blueprintPage: state.blueprintPage,
       userAccount: state.modals.userAccount,
       stopBuild: state.modals.stopBuild,
@@ -799,6 +807,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   fetchingComposes: () => {
     dispatch(fetchingComposes());
+  },
+  fetchingComposeTypes: () => {
+    dispatch(fetchingComposeTypes());
   },
   setBlueprintDescription: (blueprint, description) => {
     dispatch(setBlueprintDescription(blueprint, description));
