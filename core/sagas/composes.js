@@ -115,8 +115,25 @@ function* fetchQueue() {
 
 function* fetchComposeTypes() {
   try {
-    const response = yield call(composer.getComposeTypes);
-    yield put(fetchingComposeTypesSucceeded(response));
+    const imageTypes = yield call(composer.getComposeTypes);
+    const imageTypeLabels = {
+      alibaba: "Alibaba Cloud (.qcow2)",
+      ami: "Amazon Web Services (.raw)",
+      "fedora-iot-commit": "Fedora IoT Commit (.tar)",
+      google: "Google Cloud Platform (.vhd)",
+      "hyper-v": "Hyper-V (.vhd)",
+      "live-iso": "Installer, suitable for USB and DVD (.iso)",
+      openstack: "OpenStack (.qcow2)",
+      "partitioned-disk": "Disk Image (.img)",
+      qcow2: "QEMU Image (.qcow2)",
+      "rhel-edge-commit": "RHEL for Edge Commit (.tar)",
+      vhd: "Microsoft Azure (.vhd)",
+      vmdk: "VMWare VSphere (.vmdk)",
+    };
+    const imageTypesLabelled = imageTypes.map((type) => {
+      return { ...type, label: imageTypeLabels[type.name] || type.name };
+    });
+    yield put(fetchingComposeTypesSucceeded(imageTypesLabelled));
   } catch (error) {
     console.log("Error in loadImageTypesSaga");
   }
