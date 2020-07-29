@@ -146,13 +146,25 @@ class ImageStep extends React.PureComponent {
               </Button>
             </Popover>
           </div>
-          <TextInput
-            className="pf-c-form-control"
-            value={ostreeSettings.ref !== undefined ? ostreeSettings.ref : ""}
-            type="text"
-            id="ostree-ref-input"
-            onChange={setOstreeRef}
-          />
+          <div className="pf-c-form__horizontal-group">
+            <TextInput
+              className="pf-c-form-control"
+              value={ostreeSettings.ref !== undefined ? ostreeSettings.ref : ""}
+              type="text"
+              id="ostree-ref-input"
+              onChange={setOstreeRef}
+            />
+            {imageType === "rhel-edge-commit" && (
+              <div className="pf-c-form__helper-text" id="ostree-ref-input-helper-text" aria-live="polite">
+                <FormattedMessage
+                  defaultMessage="rhel/8/{arch}/edge is the default, where {arch} is determined by the host machine"
+                  values={{
+                    arch: <em>$ARCH</em>,
+                  }}
+                />
+              </div>
+            )}
+          </div>
         </div>
       </>
     );
