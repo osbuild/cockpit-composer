@@ -234,11 +234,12 @@ class EditBlueprintPage extends React.Component {
     const name = component.name;
     this.props.clearSelectedInput();
     const selectedComponents = this.props.blueprint.packages.concat(this.props.blueprint.modules);
-    const oldVersion = selectedComponents.find((component) => component.name === name).version;
+    const oldVersion = selectedComponents.find((selectedComp) => selectedComp.name === name).version;
     const updatedComponent = {
       name,
       version,
     };
+    // let??
     const pendingChange = {
       componentOld: `${name}-${oldVersion}`,
       componentNew: `${name}-${version}`,
@@ -250,24 +251,24 @@ class EditBlueprintPage extends React.Component {
       // then only list this component once in the list of changes,
       // where the change shows the old version of the previous change
       pendingChange.componentOld = prevChange.componentOld;
-      pendingChanges = pendingChanges.filter((component) => component !== prevChange);
+      pendingChanges = pendingChanges.filter((change) => change !== prevChange);
     }
     if (prevChange === undefined || pendingChange.componentOld !== pendingChange.componentNew) {
       pendingChanges = [pendingChange].concat(pendingChanges);
     }
     let { packages } = this.props.blueprint;
     let { modules } = this.props.blueprint;
-    if (modules.some((component) => component.name === name)) {
+    if (modules.some((module) => module.name === name)) {
       modules = modules.filter((item) => item.name !== updatedComponent.name).concat(updatedComponent);
     } else {
       packages = packages.filter((item) => item.name !== updatedComponent.name).concat(updatedComponent);
     }
-    const components = this.props.blueprint.components.map((component) => {
-      if (component.name === name) {
-        const componentData = { ...component, name, version, userSelected: true, inBlueprint: true };
+    const components = this.props.blueprint.components.map((blueprintComp) => {
+      if (blueprintComp.name === name) {
+        const componentData = { ...blueprintComp, name, version, userSelected: true, inBlueprint: true };
         return componentData;
       }
-      return component;
+      return blueprintComp;
     });
     this.props.updateBlueprintComponents(this.props.blueprint.id, components, packages, modules, pendingChanges);
     event.preventDefault();
