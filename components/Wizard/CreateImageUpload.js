@@ -73,6 +73,7 @@ class CreateImageUploadModal extends React.Component {
     this.getDefaultImageSize = this.getDefaultImageSize.bind(this);
     this.isPendingChange = this.isPendingChange.bind(this);
     this.isValidImageSize = this.isValidImageSize.bind(this);
+    this.isValidOstreeRef = this.isValidOstreeRef.bind(this);
     this.requiresImageSize = this.requiresImageSize.bind(this);
     this.missingRequiredFields = this.missingRequiredFields.bind(this);
     this.setNotifications = this.setNotifications.bind(this);
@@ -242,7 +243,7 @@ class CreateImageUploadModal extends React.Component {
 
   setImageSize(value) {
     this.setState({
-      imageSize: value ? Number(value) : undefined,
+      imageSize: value || undefined,
     });
   }
 
@@ -271,15 +272,14 @@ class CreateImageUploadModal extends React.Component {
   }
 
   disableCreateButton(activeStepName) {
-    if (this.state.imageType === "") {
-      return true;
-    }
+    if (this.state.imageType === "") return true;
     if (
       this.requiresImageSize(this.state.imageType) &&
       (this.state.imageSize === undefined || (!this.isValidImageSize() && this.state.uploadService === ""))
     ) {
       return true;
     }
+    if (!this.isValidOstreeRef(this.state.ostreeSettings.ref)) return true;
     if (this.missingRequiredFields() && activeStepName === "Review") {
       return true;
     }
@@ -298,7 +298,7 @@ class CreateImageUploadModal extends React.Component {
   }
 
   requiresImageSize(imageType) {
-    if (imageType === "fedora-iot-commit" || imageType === "rhel-edge-commit") {
+    if (imageType === "" || imageType === "fedora-iot-commit" || imageType === "rhel-edge-commit") {
       return false;
     }
     return true;
@@ -317,6 +317,13 @@ class CreateImageUploadModal extends React.Component {
     return true;
   }
 
+  isValidOstreeRef(ref) {
+    // eslint-disable-next-line max-len
+    // This regex is based on https://github.com/ostreedev/ostree/blob/73742252e286e8b53677555dc1b0d52d55fb7012/src/libostree/ostree-core.c#L151
+    const refValidationRegex = /^(?:[\w\d][-._\w\d]*\/)*[\w\d][-._\w\d]*$/;
+    return ref === "" || refValidationRegex.test(ref);
+  }
+
   render() {
     const { formatMessage } = this.props.intl;
     const { showUploadAwsStep, showUploadAzureStep, showReviewStep, uploadService } = this.state;
@@ -331,8 +338,8 @@ class CreateImageUploadModal extends React.Component {
           imageSize={this.state.imageSize}
           imageType={this.state.imageType}
           imageTypes={this.props.imageTypes}
+          isValidOstreeRef={this.isValidOstreeRef}
           isPendingChange={this.isPendingChange}
-          isValidImageSize={this.isValidImageSize}
           minImageSize={this.state.minImageSize}
           maxImageSize={this.state.maxImageSize}
           ostreeSettings={this.state.ostreeSettings}

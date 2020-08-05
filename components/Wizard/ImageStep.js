@@ -7,6 +7,8 @@ import {
   FormGroup,
   FormSelect,
   FormSelectOption,
+  InputGroup,
+  InputGroupText,
   Popover,
   Text,
   TextInput,
@@ -46,6 +48,14 @@ const messages = defineMessages({
   infotip: {
     defaultMessage: "This process can take a while. " + "Images are built in the order they are started.",
   },
+  ostreeRefHelperText: {
+    defaultMessage:
+      "Valid characters for ref are letters from a to z, the digits from 0 to 9, the hyphen (-), the underscore (_), the period (.), " +
+      "and the forward slash (/). A ref must start with a letter, a number, or an underscore. Slashes must also be followed by a letter or number.",
+  },
+  requiredField: {
+    defaultMessage: "This is a required field",
+  },
   type: {
     defaultMessage: "Type",
   },
@@ -65,7 +75,7 @@ const messages = defineMessages({
     defaultMessage: "Select one",
   },
   warningSizeSmall: {
-    defaultMessage: "Minimum size is {size} GB.",
+    defaultMessage: "Minimum size is {size} GB",
   },
   warningSizeLarge: {
     defaultMessage:
@@ -80,6 +90,71 @@ const messages = defineMessages({
 });
 
 class ImageStep extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      imageSizeValidated: "default",
+      imageSizeHelperTextInvalid: "",
+      ostreeRefValidated: "default",
+    };
+    this.handleImageTypeSelect = this.handleImageTypeSelect.bind(this);
+    this.handleImageSizeInput = this.handleImageSizeInput.bind(this);
+    this.handleOSTreeRef = this.handleOSTreeRef.bind(this);
+  }
+
+  handleImageTypeSelect(imageType) {
+    this.setState({
+      imageSizeValidated: "default",
+      imageSizeHelperTextInvalid: "",
+      ostreeRefValidated: "default",
+    });
+    this.props.setImageType(imageType);
+  }
+
+  handleImageSizeInput(imageSize) {
+    imageSize = Number(imageSize);
+    if (imageSize === 0) {
+      this.setState({
+        imageSizeHelperTextInvalid: this.props.intl.formatMessage(messages.requiredField),
+        imageSizeValidated: "error",
+      });
+    } else if (imageSize < this.props.minImageSize) {
+      this.setState({
+        imageSizeHelperTextInvalid: this.props.intl.formatMessage(messages.warningSizeSmall, {
+          size: this.props.minImageSize,
+        }),
+        imageSizeValidated: "error",
+      });
+    } else if (imageSize > this.props.maxImageSize) {
+      this.setState({
+        imageSizeValidated: "warning",
+      });
+    } else {
+      this.setState({
+        imageSizeHelperTextInvalid: "",
+        imageSizeValidated: "success",
+      });
+    }
+    this.props.setImageSize(imageSize);
+  }
+
+  handleOSTreeRef(ref) {
+    if (ref === "") {
+      this.setState({
+        ostreeRefValidated: "default",
+      });
+    } else if (this.props.isValidOstreeRef(ref)) {
+      this.setState({
+        ostreeRefValidated: "success",
+      });
+    } else {
+      this.setState({
+        ostreeRefValidated: "error",
+      });
+    }
+    this.props.setOstreeRef(ref);
+  }
+
   render() {
     const { formatMessage } = this.props.intl;
     const {
@@ -89,95 +164,20 @@ class ImageStep extends React.PureComponent {
       imageType,
       imageTypes,
       isPendingChange,
-      isValidImageSize,
       minImageSize,
       maxImageSize,
       ostreeSettings,
       requiresImageSize,
-      setImageSize,
-      setImageType,
       setOstreeParent,
-      setOstreeRef,
       uploadService,
     } = this.props;
 
-    const ostreeFields = (
-      <>
-        <div className="pf-c-form__group">
-          <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-u-display-flex pf-m-justify-content-flex-start pf-m-nowrap">
-            <label htmlFor="ostree-parent-input" className="pf-l-flex__item">
-              <span className="pf-c-form__label-text">
-                <FormattedMessage defaultMessage="Parent commit" />
-              </span>
-            </label>
-            <Popover
-              id="ostree-parent-popover"
-              bodyContent={
-                <FormattedMessage defaultMessage="Provide the ID of the latest commit in the updates repository for which this commit provides an update." />
-              }
-              aria-label={formatMessage(ariaLabels.ostreeParent)}
-            >
-              <Button variant="plain" aria-label={formatMessage(ariaLabels.ostreeParent)}>
-                <OutlinedQuestionCircleIcon id="popover-icon" />
-              </Button>
-            </Popover>
-          </div>
-          <TextInput
-            className="pf-c-form-control"
-            value={ostreeSettings.parent !== undefined ? ostreeSettings.parent : ""}
-            type="text"
-            id="ostree-parent-input"
-            onChange={setOstreeParent}
-          />
-        </div>
-        <div className="pf-c-form__group">
-          <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-u-display-flex pf-m-justify-content-flex-start pf-m-nowrap">
-            <label htmlFor="ostree-ref-input" className="pf-l-flex__item">
-              <span className="pf-c-form__label-text">
-                <FormattedMessage defaultMessage="Ref" />
-              </span>
-            </label>
-            <Popover
-              id="ostree-ref-popover"
-              bodyContent={
-                <FormattedMessage defaultMessage="Provide the name of the branch for the content. If the ref does not already exist it will be created." />
-              }
-              aria-label={formatMessage(ariaLabels.ostreeRef)}
-            >
-              <Button variant="plain" aria-label={formatMessage(ariaLabels.ostreeRef)}>
-                <OutlinedQuestionCircleIcon id="popover-icon" />
-              </Button>
-            </Popover>
-          </div>
-          <div className="pf-c-form__horizontal-group">
-            <TextInput
-              className="pf-c-form-control"
-              value={ostreeSettings.ref !== undefined ? ostreeSettings.ref : ""}
-              type="text"
-              id="ostree-ref-input"
-              onChange={setOstreeRef}
-            />
-            {imageType === "rhel-edge-commit" && (
-              <div className="pf-c-form__helper-text" id="ostree-ref-input-helper-text" aria-live="polite">
-                <FormattedMessage
-                  defaultMessage="rhel/8/{arch}/edge is the default, where {arch} is determined by the host machine"
-                  values={{
-                    arch: <em>$ARCH</em>,
-                  }}
-                />
-              </div>
-            )}
-          </div>
-        </div>
-      </>
-    );
+    const { imageSizeValidated, imageSizeHelperTextInvalid, ostreeRefValidated } = this.state;
 
     const awsProviderCheckbox = (
-      <div className="pf-c-form__group">
-        <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-u-display-flex pf-m-justify-content-flex-start pf-m-nowrap">
-          <span className="pf-l-flex__item pf-c-form__label-text">
-            <FormattedMessage defaultMessage="Upload image" />
-          </span>
+      <FormGroup
+        label={<FormattedMessage defaultMessage="Upload image" />}
+        labelIcon={
           <Popover
             id="aws-provider-popover"
             bodyContent={
@@ -241,28 +241,27 @@ class ImageStep extends React.PureComponent {
             aria-label={formatMessage(ariaLabels.uploadImage)}
           >
             <Button variant="plain" aria-label={formatMessage(ariaLabels.uploadImage)}>
-              <OutlinedQuestionCircleIcon id="popover-icon" />
+              <OutlinedQuestionCircleIcon className="cc-c-text__align-icon" id="popover-icon" />
             </Button>
           </Popover>
-        </div>
-        <div className="pf-c-form__horizontal-group">
-          <Checkbox
-            value="aws"
-            isChecked={uploadService === "aws"}
-            onChange={handleUploadService}
-            label={formatMessage(messages.uploadAWS)}
-            id="aws-checkbox"
-          />
-        </div>
-      </div>
+        }
+        fieldId="aws-checkbox"
+        hasNoPaddingTop
+      >
+        <Checkbox
+          value="aws"
+          isChecked={uploadService === "aws"}
+          onChange={handleUploadService}
+          label={formatMessage(messages.uploadAWS)}
+          id="aws-checkbox"
+        />
+      </FormGroup>
     );
 
     const azureProviderCheckbox = (
-      <div className="pf-c-form__group">
-        <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-u-display-flex pf-m-justify-content-flex-start pf-m-nowrap">
-          <span className="pf-l-flex__item pf-c-form__label-text">
-            <FormattedMessage defaultMessage="Upload image" />
-          </span>
+      <FormGroup
+        label={<FormattedMessage defaultMessage="Upload image" />}
+        labelIcon={
           <Popover
             id="popover-help"
             bodyContent={
@@ -292,20 +291,141 @@ class ImageStep extends React.PureComponent {
             aria-label={formatMessage(ariaLabels.uploadImage)}
           >
             <Button variant="plain" aria-label={formatMessage(ariaLabels.uploadImage)}>
-              <OutlinedQuestionCircleIcon id="popover-icon" />
+              <OutlinedQuestionCircleIcon className="cc-c-text__align-icon" id="popover-icon" />
             </Button>
           </Popover>
-        </div>
-        <div className="pf-c-form__horizontal-group">
-          <Checkbox
-            value="azure"
-            isChecked={uploadService === "azure"}
-            onChange={handleUploadService}
-            label={formatMessage(messages.uploadAzure)}
-            id="azure-checkbox"
+        }
+        fieldId="azure-checkbox"
+        hasNoPaddingTop
+      >
+        <Checkbox
+          value="azure"
+          isChecked={uploadService === "azure"}
+          onChange={handleUploadService}
+          label={formatMessage(messages.uploadAzure)}
+          id="azure-checkbox"
+        />
+      </FormGroup>
+    );
+
+    const imageSizeInput = (
+      <FormGroup
+        label={<FormattedMessage defaultMessage="Image size" />}
+        labelIcon={
+          <Popover
+            id="size-popover"
+            bodyContent={formatMessage(messages.imageSizePopover)}
+            aria-label={formatMessage(ariaLabels.imageSize)}
+          >
+            <Button variant="plain" aria-label={formatMessage(ariaLabels.imageSize)}>
+              <OutlinedQuestionCircleIcon className="cc-c-text__align-icon" id="popover-icon" />
+            </Button>
+          </Popover>
+        }
+        fieldId="image-size-input"
+        hasNoPaddingTop
+        helperText={
+          imageSizeValidated === "warning"
+            ? formatMessage(messages.warningSizeLarge)
+            : formatMessage(messages.warningSizeSmall, {
+                size: this.props.minImageSize,
+              })
+        }
+        helperTextIcon={
+          imageSizeValidated === "warning" ? <ExclamationTriangleIcon className="cc-c-text__align-icon" /> : ""
+        }
+        helperTextInvalid={imageSizeHelperTextInvalid}
+        isRequired
+        validated={imageSizeValidated}
+      >
+        <InputGroup>
+          <TextInput
+            className="pf-c-form-control"
+            id="image-size-input"
+            aria-describedby="image-size-input-helper"
+            type="number"
+            min={minImageSize}
+            max={maxImageSize}
+            value={imageSize || ""}
+            validated={imageSizeValidated}
+            onChange={this.handleImageSizeInput}
+            isRequired
           />
-        </div>
-      </div>
+          <InputGroupText>GB</InputGroupText>
+        </InputGroup>
+      </FormGroup>
+    );
+
+    const ostreeFields = (
+      <>
+        <FormGroup
+          label={<FormattedMessage defaultMessage="Parent commit" />}
+          labelIcon={
+            <Popover
+              id="ostree-parent-popover"
+              bodyContent={
+                <FormattedMessage defaultMessage="Provide the ID of the latest commit in the updates repository for which this commit provides an update." />
+              }
+              aria-label={formatMessage(ariaLabels.ostreeParent)}
+            >
+              <Button variant="plain" aria-label={formatMessage(ariaLabels.ostreeParent)}>
+                <OutlinedQuestionCircleIcon className="cc-c-text__align-icon" id="popover-icon" />
+              </Button>
+            </Popover>
+          }
+          fieldId="ostree-parent-input"
+          hasNoPaddingTop
+        >
+          <TextInput
+            className="pf-c-form-control"
+            value={ostreeSettings.parent !== undefined ? ostreeSettings.parent : ""}
+            type="text"
+            id="ostree-parent-input"
+            onChange={setOstreeParent}
+          />
+        </FormGroup>
+        <FormGroup
+          label={<FormattedMessage defaultMessage="Ref" />}
+          labelIcon={
+            <Popover
+              id="ostree-ref-popover"
+              bodyContent={
+                <FormattedMessage defaultMessage="Provide the name of the branch for the content. If the ref does not already exist it will be created." />
+              }
+              aria-label={formatMessage(ariaLabels.ostreeRef)}
+            >
+              <Button variant="plain" aria-label={formatMessage(ariaLabels.ostreeRef)}>
+                <OutlinedQuestionCircleIcon className="cc-c-text__align-icon" id="popover-icon" />
+              </Button>
+            </Popover>
+          }
+          fieldId="ostree-ref-input"
+          helperText={formatMessage(messages.ostreeRefHelperText)}
+          helperTextInvalid={formatMessage(messages.ostreeRefHelperText)}
+          validated={ostreeRefValidated}
+          hasNoPaddingTop
+        >
+          <TextInput
+            className="pf-c-form-control"
+            value={ostreeSettings.ref !== undefined ? ostreeSettings.ref : ""}
+            type="text"
+            id="ostree-ref-input"
+            aria-describedby="ostree-ref-input-helper-default ostree-ref-input-helper"
+            onChange={this.handleOSTreeRef}
+            validated={ostreeRefValidated}
+          />
+          {ostreeRefValidated === "default" && imageType === "rhel-edge-commit" && (
+            <p className="pf-c-form__helper-text" id="ostree-ref-input-helper-default" aria-live="polite">
+              <FormattedMessage
+                defaultMessage="rhel/8/{arch}/edge is the default, where {arch} is determined by the host machine"
+                values={{
+                  arch: <em>$ARCH</em>,
+                }}
+              />
+            </p>
+          )}
+        </FormGroup>
+      </>
     );
 
     return (
@@ -324,11 +444,8 @@ class ImageStep extends React.PureComponent {
           </Alert>
         )}
         <Form isHorizontal className="cc-m-wide-label">
-          <div className="pf-c-form__group cc-c-form__horizontal-align">
-            <span className="pf-c-form__label-text">
-              <FormattedMessage defaultMessage="Blueprint" />
-            </span>
-            <div className="pf-c-form__horizontal-group cc-c-popover__horizontal-group">
+          <FormGroup label={<FormattedMessage defaultMessage="Blueprint" />} fieldId="blueprint-name" hasNoPaddingTop>
+            <div className="cc-c-popover__horizontal-group">
               <Text id="blueprint-name">{blueprint.name}</Text>
               <Popover
                 id="blueprint-name-popover"
@@ -336,82 +453,23 @@ class ImageStep extends React.PureComponent {
                 aria-label={formatMessage(ariaLabels.processLength)}
               >
                 <Button variant="plain" aria-label={formatMessage(ariaLabels.processLength)}>
-                  <OutlinedQuestionCircleIcon id="popover-icon" />
+                  <OutlinedQuestionCircleIcon className="cc-c-text__align-icon" id="popover-icon" />
                 </Button>
               </Popover>
             </div>
-          </div>
-          <FormGroup label={formatMessage(messages.type)} fieldId="image-type">
-            <FormSelect value={imageType} id="image-type" onChange={setImageType}>
+          </FormGroup>
+          <FormGroup label={formatMessage(messages.type)} fieldId="image-type" isRequired>
+            <FormSelect value={imageType} id="image-type" onChange={this.handleImageTypeSelect} isRequired>
               <FormSelectOption isDisabled key="default" value="" label={formatMessage(messages.selectOne)} />
               {imageTypes.map((type) => (
                 <FormSelectOption isDisabled={!type.enabled} key={type.name} value={type.name} label={type.label} />
               ))}
             </FormSelect>
           </FormGroup>
-          {(imageType === "fedora-iot-commit" || imageType === "rhel-edge-commit") && ostreeFields}
           {imageType === "ami" && awsProviderCheckbox}
           {imageType === "vhd" && azureProviderCheckbox}
-          {requiresImageSize(imageType) && (
-            <div className="pf-c-form__group">
-              <div className="pf-c-form__label pf-m-no-padding-top pf-l-flex pf-u-display-flex pf-m-justify-content-flex-start pf-m-nowrap">
-                <label htmlFor="create-image-size" className="pf-l-flex__item">
-                  <span className="pf-c-form__label-text">
-                    <FormattedMessage defaultMessage="Image size" />
-                  </span>
-                  <span className="pf-c-form__label-required" aria-hidden="true">
-                    &#42;
-                  </span>
-                </label>
-                <Popover
-                  id="size-popover"
-                  bodyContent={formatMessage(messages.imageSizePopover)}
-                  aria-label={formatMessage(ariaLabels.imageSize)}
-                >
-                  <Button variant="plain" aria-label={formatMessage(ariaLabels.imageSize)}>
-                    <OutlinedQuestionCircleIcon id="popover-icon" />
-                  </Button>
-                </Popover>
-              </div>
-              <div className="pf-c-form__horizontal-group">
-                <div className="pf-l-split pf-m-gutter">
-                  <div className="pf-l-split__item pf-m-fill">
-                    <TextInput
-                      className="pf-c-form-control"
-                      id="create-image-size"
-                      type="number"
-                      min={minImageSize}
-                      max={maxImageSize}
-                      value={imageSize || ""}
-                      validated={isValidImageSize() ? "default" : "error"}
-                      onChange={setImageSize}
-                      aria-describedby="create-image-size-help"
-                    />
-                  </div>
-                  <div className="pf-l-split__item cc-c-form__static-text pf-u-mr-md" aria-hidden="true">
-                    GB
-                  </div>
-                </div>
-                {imageSize < maxImageSize && imageType !== "" && (
-                  <div
-                    className={!isValidImageSize() ? "pf-c-form__helper-text pf-m-error" : "pf-c-form__helper-text"}
-                    id="help-text-simple-form-name-helper"
-                    aria-live="polite"
-                  >
-                    {formatMessage(messages.warningSizeSmall, {
-                      size: minImageSize,
-                    })}
-                  </div>
-                )}
-                {imageSize > maxImageSize && (
-                  <div className="pf-c-form__helper-text" id="help-text-simple-form-name-helper" aria-live="polite">
-                    <ExclamationTriangleIcon className="cc-c-text__warning-icon" />{" "}
-                    {formatMessage(messages.warningSizeLarge)}
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
+          {requiresImageSize(imageType) && imageSizeInput}
+          {(imageType === "fedora-iot-commit" || imageType === "rhel-edge-commit") && ostreeFields}
         </Form>
       </>
     );
@@ -425,8 +483,8 @@ ImageStep.propTypes = {
   imageType: PropTypes.string,
   imageTypes: PropTypes.arrayOf(PropTypes.object),
   imageSize: PropTypes.number,
+  isValidOstreeRef: PropTypes.func,
   isPendingChange: PropTypes.func,
-  isValidImageSize: PropTypes.func,
   minImageSize: PropTypes.number,
   maxImageSize: PropTypes.number,
   ostreeSettings: PropTypes.object,
@@ -444,8 +502,8 @@ ImageStep.defaultProps = {
   imageType: "",
   imageTypes: [],
   imageSize: undefined,
+  isValidOstreeRef() {},
   isPendingChange() {},
-  isValidImageSize() {},
   minImageSize: 0,
   maxImageSize: 2000,
   ostreeSettings: {},
