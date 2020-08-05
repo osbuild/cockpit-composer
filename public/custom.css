@@ -735,6 +735,7 @@ body {
 /* form group checkbox alignment fix */
 .pf-c-form__horizontal-group .pf-c-check,
 .pf-c-form__horizontal-group .pf-c-radio,
+.pf-c-form__group-control .pf-c-check,
 .cc-c-form__static-text {
   padding-top: var(--pf-global--spacer--form-element);
   padding-bottom: var(--pf-global--spacer--form-element);
@@ -761,21 +762,11 @@ body {
   justify-content: space-between;
 }
 
-.cc-c-form__horizontal-align {
-  align-items: baseline;
-}
-
 .cc-c-form__required-text {
   margin-bottom: var(--pf-global--gutter);
 }
 
-.cc-c-text__warning-icon {
-  color: var(--pf-global--warning-color--100);
-  vertical-align: -0.125em;
-}
-
-.cc-c-text__danger-icon {
-  color: var(--pf-global--danger-color--100);
+.cc-c-text__align-icon {
   vertical-align: -0.125em;
 }
 
