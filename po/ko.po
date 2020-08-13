@@ -3,7 +3,7 @@
 # Ludek Janda <ljanda@redhat.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-07-01T13:27:47.962Z\n"
+"POT-Creation-Date: 2020-08-06T03:50:16.790Z\n"
 "PO-Revision-Date: 2020-06-11 10:40+0000\n"
 "Last-Translator: Ludek Janda <ljanda@redhat.com>\n"
 "Language-Team: Korean <https://translate.fedoraproject.org/projects/cockpit-"
@@ -29,10 +29,10 @@ msgstr "(최신 순)"
 msgid "A blueprint name is required."
 msgstr "블루프린트 이름이 필요합니다."
 
-#. [components.Modal.warningEmptyBlueprintDesc]
+#. [components.Wizard.warningEmptyBlueprintDesc]
 #. defaultMessage is:
 #. A minimal image will be created with only the packages needed to support the selected image type.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid ""
 "A minimal image will be created with only the packages needed to support the "
 "selected image type."
@@ -52,52 +52,60 @@ msgstr "이 계정에 암호가 지정되어 있습니다."
 msgid "A password is not defined for this account."
 msgstr "이 계정에 암호가 지정되어 있지 않습니다."
 
-#. [components.Modal.warningSizeEmpty]
+#. [components.Wizard.warningSizeEmpty]
 #. defaultMessage is:
 #. A value is required.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "A value is required."
 msgstr "값이 필요합니다."
 
-#. [aws-help]
+#. [components.Wizard.aws]
 #. defaultMessage is:
 #. AWS help
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "AWS help"
 msgstr "AWS 도움말"
 
-#. [components.Modal.4193750875]
+#. [components.Wizard.4193750875]
 #. defaultMessage is:
 #. AWS region
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.4193750875]
+#. defaultMessage is:
+#. AWS region
+#: build/messages/components/Wizard/AWSDestinationStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "AWS region"
 msgstr "AWS 리전"
 
-#. [region-help]
+#. [components.Wizard.region]
 #. defaultMessage is:
 #. AWS region help
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AWSDestinationStep.json
 msgid "AWS region help"
 msgstr "AWS 리전 도움말"
 
-#. [components.Modal.1635272069]
+#. [components.Wizard.1635272069]
 #. defaultMessage is:
 #. Access key ID
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.1635272069]
+#. defaultMessage is:
+#. Access key ID
+#: build/messages/components/Wizard/AWSAuthStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Access key ID"
 msgstr "액세스 키 ID"
 
 #. [access-key-id-help]
 #. defaultMessage is:
 #. Access key ID help
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AWSAuthStep.json
 msgid "Access key ID help"
 msgstr "액세스 키 ID 도움말"
 
-#. [components.Modal.accessKeys]
+#. [components.Wizard.accessKeys]
 #. defaultMessage is:
 #. Access keys
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AzureAuthStep.json
 #, fuzzy
 #| msgid "Access key ID"
 msgid "Access keys"
@@ -162,10 +170,22 @@ msgstr "최신 버전 추가"
 msgid "Added"
 msgstr "추가됨"
 
-#. [components.Modal.1175512155]
+#. [components.Wizard.1175512155]
 #. defaultMessage is:
 #. All fields are required.
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.1175512155]
+#. defaultMessage is:
+#. All fields are required.
+#. [components.Wizard.1175512155]
+#. defaultMessage is:
+#. All fields are required.
+#. [components.Wizard.1175512155]
+#. defaultMessage is:
+#. All fields are required.
+#: build/messages/components/Wizard/AWSAuthStep.json
+#: build/messages/components/Wizard/AWSDestinationStep.json
+#: build/messages/components/Wizard/AzureAuthStep.json
+#: build/messages/components/Wizard/AzureDestinationStep.json
 msgid "All fields are required."
 msgstr "모든 항목이 필요합니다."
 
@@ -251,19 +271,19 @@ msgstr "부팅시 osbuild-composer 자동 실행"
 msgid "Available Components"
 msgstr "사용 가능한 구성 요소"
 
-#. [azure-help]
+#. [components.Wizard.azure]
 #. defaultMessage is:
 #. Azure help
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ReviewStep.json
 #, fuzzy
 #| msgid "AWS help"
 msgid "Azure help"
 msgstr "AWS 도움말"
 
-#. [components.Modal.1347475195]
+#. [components.Wizard.1347475195]
 #. defaultMessage is:
 #. Back
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/CreateImageUpload.json
 msgid "Back"
 msgstr "돌아가기"
 
@@ -285,10 +305,10 @@ msgstr "블루프린트로 돌아 가기"
 msgid "Back to {blueprint}"
 msgstr "{blueprint}로 되돌아 가기"
 
-#. [components.Modal.blobService]
+#. [components.Wizard.blobService]
 #. defaultMessage is:
 #. Blob service
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AzureDestinationStep.json
 msgid "Blob service"
 msgstr ""
 
@@ -390,9 +410,6 @@ msgstr "구성 요소를 찾아 보거나 검색 한 다음 블루프린트에 �
 #. [components.Modal.3528672691]
 #. defaultMessage is:
 #. Cancel
-#. [components.Modal.3528672691]
-#. defaultMessage is:
-#. Cancel
 #. [components.Modal.cancel]
 #. defaultMessage is:
 #. Cancel
@@ -402,15 +419,18 @@ msgstr "구성 요소를 찾아 보거나 검색 한 다음 블루프린트에 �
 #. [components.Modal.3528672691]
 #. defaultMessage is:
 #. Cancel
+#. [components.Wizard.3528672691]
+#. defaultMessage is:
+#. Cancel
 #: build/messages/components/Form/TextInlineEdit.json
 #: build/messages/components/Modal/CreateBlueprint.json
-#: build/messages/components/Modal/CreateImageUpload.json
 #: build/messages/components/Modal/DeleteBlueprint.json
 #: build/messages/components/Modal/DeleteImage.json
 #: build/messages/components/Modal/EditDescription.json
 #: build/messages/components/Modal/ManageSources.json
 #: build/messages/components/Modal/StopBuild.json
 #: build/messages/components/Modal/UserAccount.json
+#: build/messages/components/Wizard/CreateImageUpload.json
 msgid "Cancel"
 msgstr "취소"
 
@@ -512,17 +532,17 @@ msgstr "설명"
 msgid "Commit"
 msgstr "커밋"
 
-#. [components.Modal.1126783419]
+#. [components.Wizard.1126783419]
 #. defaultMessage is:
 #. Commit and create
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/CreateImageUpload.json
 msgid "Commit and create"
 msgstr "커밋 및 생성"
 
-#. [components.Modal.552112481]
+#. [components.Wizard.552112481]
 #. defaultMessage is:
 #. Commit and next
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/CreateImageUpload.json
 msgid "Commit and next"
 msgstr "커밋 및 다음"
 
@@ -571,12 +591,12 @@ msgstr "복사"
 #. [components.Modal.4120989039]
 #. defaultMessage is:
 #. Create
-#. [components.Modal.4120989039]
+#. [components.Wizard.4120989039]
 #. defaultMessage is:
 #. Create
 #: build/messages/components/Modal/CreateBlueprint.json
-#: build/messages/components/Modal/CreateImageUpload.json
 #: build/messages/components/Modal/UserAccount.json
+#: build/messages/components/Wizard/CreateImageUpload.json
 msgid "Create"
 msgstr "생성"
 
@@ -609,20 +629,20 @@ msgstr ""
 "생성한 이미지에 포함할 내용을 정의하기 위해 블루프린트를 만듭니다. 이미지는 "
 "다양한 출력 형식으로 생성할 수 있습니다."
 
-#. [components.Modal.1723482220]
+#. [components.Wizard.1723482220]
 #. defaultMessage is:
 #. Create and upload image
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Create and upload image"
 msgstr "이미지 생성 및 업로드"
 
-#. [components.Modal.title]
+#. [components.Wizard.title]
 #. defaultMessage is:
 #. Create image
-#. [components.Modal.2020427956]
+#. [components.Wizard.2020427956]
 #. defaultMessage is:
 #. Create image
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/CreateImageUpload.json
 msgid "Create image"
 msgstr "이미지 만들기"
 
@@ -632,20 +652,6 @@ msgstr "이미지 만들기"
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Created"
 msgstr "생성 일시"
-
-#. [components.Pagination.2925773048] - Label for the string: 1–50 of 125; only visible to screen readers
-#. defaultMessage is:
-#. Current Items
-#: build/messages/components/Pagination/Pagination.json
-msgid "Current Items"
-msgstr "현재 항목"
-
-#. [components.Pagination.currentPage] - Label of form input for setting current page number
-#. defaultMessage is:
-#. Current Page
-#: build/messages/components/Pagination/Pagination.json
-msgid "Current Page"
-msgstr "현재 페이지"
 
 #. [pages.blueprint.customizationsTitle]
 #. defaultMessage is:
@@ -879,10 +885,10 @@ msgstr "이름으로 필터링 ..."
 msgid "Filter by Version"
 msgstr ""
 
-#. [components.Modal.787186999]
+#. [components.Wizard.787186999]
 #. defaultMessage is:
 #. Finish
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/CreateImageUpload.json
 msgid "Finish"
 msgstr "종료"
 
@@ -925,11 +931,16 @@ msgstr "호스트 이름"
 msgid "If no hostname is provided, the hostname will be determined by the OS."
 msgstr "호스트이름이 지정되어 있지 않을 경우 OS가 호스트 이름을 지정합니다."
 
-#. [components.Modal.1948537181]
+#. [components.Wizard.3593632693]
 #. defaultMessage is:
 #. Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete 
-#.                     and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
-#: build/messages/components/Modal/CreateImageUpload.json
+#.                       and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
+#. [components.Wizard.3593632693]
+#. defaultMessage is:
+#. Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete 
+#.                       and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 #, fuzzy
 #| msgid ""
 #| "Image Builder can upload images you create to an {bucket} in AWS and then "
@@ -941,7 +952,7 @@ msgstr "호스트이름이 지정되어 있지 않을 경우 OS가 호스트 이
 msgid ""
 "Image Builder can upload images you create to a Blob container in {azure}. "
 "When the image build is complete \n"
-"                    and the upload action is successful, the image file is "
+"                      and the upload action is successful, the image file is "
 "available in the Storage account and Blob container that you specified."
 msgstr ""
 "이미지 빌더는 생성한 이미지를 AWS의 {bucket}에 업로드한 다음 EC2로 가져올 수 "
@@ -950,18 +961,33 @@ msgstr ""
 "을 사용할 수 있습니다. 이미지를 업로드하는 데\n"
 "                      필요한 대부분의 값은 {console}에 있습니다."
 
-#. [components.Modal.4131822949]
+#. [components.Wizard.1007547894]
 #. defaultMessage is:
 #. Image Builder can upload images you create to an {bucket} in AWS and then import them into EC2. When the image build is complete
-#.                       and the upload action is successful, the image file is available in the AMI section of EC2. Most of the values required to upload
-#.                       the image can be found in the {console}.
-#: build/messages/components/Modal/CreateImageUpload.json
+#.                         and the upload action is successful, the image file is available in the AMI section of EC2. Most of the values required to upload
+#.                         the image can be found in the {console}.
+#. [components.Wizard.1007547894]
+#. defaultMessage is:
+#. Image Builder can upload images you create to an {bucket} in AWS and then import them into EC2. When the image build is complete
+#.                         and the upload action is successful, the image file is available in the AMI section of EC2. Most of the values required to upload
+#.                         the image can be found in the {console}.
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
+#, fuzzy
+#| msgid ""
+#| "Image Builder can upload images you create to an {bucket} in AWS and then "
+#| "import them into EC2. When the image build is complete\n"
+#| "                      and the upload action is successful, the image file "
+#| "is available in the AMI section of EC2. Most of the values required to "
+#| "upload\n"
+#| "                      the image can be found in the {console}."
 msgid ""
 "Image Builder can upload images you create to an {bucket} in AWS and then "
 "import them into EC2. When the image build is complete\n"
-"                      and the upload action is successful, the image file is "
-"available in the AMI section of EC2. Most of the values required to upload\n"
-"                      the image can be found in the {console}."
+"                        and the upload action is successful, the image file "
+"is available in the AMI section of EC2. Most of the values required to "
+"upload\n"
+"                        the image can be found in the {console}."
 msgstr ""
 "이미지 빌더는 생성한 이미지를 AWS의 {bucket}에 업로드한 다음 EC2로 가져올 수 "
 "있습니다. 이미지 빌드가 완료되고\n"
@@ -1007,46 +1033,62 @@ msgstr "이미지 빌드 보류 중"
 #. [components.ListView.imageName] - The name given by the user for an image
 #. defaultMessage is:
 #. Image name
-#. [components.Modal.2794911472]
+#. [components.Wizard.2794911472]
+#. defaultMessage is:
+#. Image name
+#. [components.Wizard.2794911472]
+#. defaultMessage is:
+#. Image name
+#. [components.Wizard.2794911472]
 #. defaultMessage is:
 #. Image name
 #: build/messages/components/ListView/ListItemUploads.json
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AWSDestinationStep.json
+#: build/messages/components/Wizard/AzureDestinationStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Image name"
 msgstr "이미지 이름"
 
-#. [image-name-help]
+#. [components.Wizard.imageName]
 #. defaultMessage is:
 #. Image name help
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.imageName]
+#. defaultMessage is:
+#. Image name help
+#: build/messages/components/Wizard/AWSDestinationStep.json
+#: build/messages/components/Wizard/AzureDestinationStep.json
 msgid "Image name help"
 msgstr "이미지 이름 도움말"
 
-#. [components.Modal.1005710141]
+#. [components.Wizard.1005710141]
 #. defaultMessage is:
 #. Image output
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Image output"
 msgstr "이미지 출력"
 
-#. [components.Modal.1905943231]
+#. [components.Wizard.1905943231]
 #. defaultMessage is:
 #. Image size
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.1905943231]
+#. defaultMessage is:
+#. Image size
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Image size"
 msgstr "이미지 크기"
 
-#. [image-size-help]
+#. [components.Wizard.imageSize]
 #. defaultMessage is:
 #. Image size help
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid "Image size help"
 msgstr "이미지 크기 도움말"
 
-#. [components.Modal.1813441558]
+#. [components.Wizard.1813441558]
 #. defaultMessage is:
 #. Image type
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Image type"
 msgstr "이미지 유형"
 
@@ -1096,10 +1138,14 @@ msgstr "소스 관리"
 msgid "Message"
 msgstr "메세지"
 
-#. [components.Modal.warningSizeSmall]
+#. [components.Wizard.warningSizeSmall]
 #. defaultMessage is:
 #. Minimum size is {size} GB.
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.warningSizeSmall]
+#. defaultMessage is:
+#. Minimum size is {size} GB.
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Minimum size is {size} GB."
 msgstr "최소 크기는 {size} GB 입니다."
 
@@ -1151,10 +1197,10 @@ msgstr "이름: {name}"
 msgid "New password"
 msgstr "새 암호"
 
-#. [components.Modal.3673120330]
+#. [components.Wizard.3673120330]
 #. defaultMessage is:
 #. Next
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/CreateImageUpload.json
 msgid "Next"
 msgstr "다음"
 
@@ -1208,19 +1254,19 @@ msgstr "이 블루프린트에서 생성된 이미지가 없습니다."
 msgid "No log available"
 msgstr "사용 가능한 로그가 없음"
 
-#. [ostree-parent-help]
+#. [components.Wizard.ostreeParent]
 #. defaultMessage is:
 #. OSTree parent help
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 #, fuzzy
 #| msgid "AWS region help"
 msgid "OSTree parent help"
 msgstr "AWS 리전 도움말"
 
-#. [ostree-ref-help]
+#. [components.Wizard.ostreeRef]
 #. defaultMessage is:
 #. OSTree ref help
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 #, fuzzy
 #| msgid "AWS region help"
 msgid "OSTree ref help"
@@ -1262,17 +1308,10 @@ msgstr "페이지를 찾을 수 없음"
 msgid "Page not found"
 msgstr "페이지를 찾을 수 없음"
 
-#. [components.Pagination.pagination]
-#. defaultMessage is:
-#. Pagination
-#: build/messages/components/Pagination/Pagination.json
-msgid "Pagination"
-msgstr "페이지 매김"
-
-#. [components.Modal.3070030782]
+#. [components.Wizard.3070030782]
 #. defaultMessage is:
 #. Parent commit
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid "Parent commit"
 msgstr ""
 
@@ -1300,25 +1339,33 @@ msgstr "SSH 공개키 파일 내용을 여기에 붙여넣기합니다."
 msgid "Pending Changes"
 msgstr "보류중인 변경"
 
-#. [provess-length-help]
+#. [components.Wizard.processLength]
 #. defaultMessage is:
 #. Process length help
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.processLength]
+#. defaultMessage is:
+#. Process length help
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Process length help"
 msgstr "프로세스 길이 도움말"
 
-#. [components.Modal.4277042358]
+#. [components.Wizard.4277042358]
 #. defaultMessage is:
 #. Provide a file name to be used for the image file that will be uploaded.
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.4277042358]
+#. defaultMessage is:
+#. Provide a file name to be used for the image file that will be uploaded.
+#: build/messages/components/Wizard/AWSDestinationStep.json
+#: build/messages/components/Wizard/AzureDestinationStep.json
 msgid ""
 "Provide a file name to be used for the image file that will be uploaded."
 msgstr "이미지 파일을 업로드하는데 사용할 파일 이름을 제공하십시오."
 
-#. [components.Modal.2186792528]
+#. [components.Wizard.2186792528]
 #. defaultMessage is:
 #. Provide the AWS Region where you want to import your image. This must be the same region where the {bucket} exists.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AWSDestinationStep.json
 msgid ""
 "Provide the AWS Region where you want to import your image. This must be the "
 "same region where the {bucket} exists."
@@ -1326,11 +1373,11 @@ msgstr ""
 "이미지를 가져올 AWS 리전을 제공하십시오. 이는 {bucket}이 위치한 리전과 동일해"
 "야 합니다."
 
-#. [components.Modal.517158149]
+#. [components.Wizard.517158149]
 #. defaultMessage is:
 #. Provide the Blob container to which the image file will be uploaded. You can find containers under the {blobService} 
 #.                     section of a storage account. You can find storage accounts on the {storageAccounts} page in the {azure} portal.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AzureDestinationStep.json
 msgid ""
 "Provide the Blob container to which the image file will be uploaded. You can "
 "find containers under the {blobService} \n"
@@ -1338,28 +1385,36 @@ msgid ""
 "accounts on the {storageAccounts} page in the {azure} portal."
 msgstr ""
 
-#. [components.Modal.1099888225]
+#. [components.Wizard.1099888225]
 #. defaultMessage is:
 #. Provide the ID of the latest commit in the updates repository for which this commit provides an update.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid ""
 "Provide the ID of the latest commit in the updates repository for which this "
 "commit provides an update."
 msgstr ""
 
-#. [components.Modal.2822010101]
+#. [components.Wizard.1901372247]
 #. defaultMessage is:
 #. Provide the S3 {bucket} name to which the image file will be uploaded before being imported into EC2. 
-#.                           The {bucket} must already exist in the Region where you want to import your image. You can find a list of {buckets} on the
-#.                           {bucketsPage} page in the {amazon} S3 storage service in the AWS console.
-#: build/messages/components/Modal/CreateImageUpload.json
+#.                         The {bucket} must already exist in the Region where you want to import your image. You can find a list of {buckets} on the
+#.                         {bucketsPage} page in the {amazon} S3 storage service in the AWS console.
+#: build/messages/components/Wizard/AWSDestinationStep.json
+#, fuzzy
+#| msgid ""
+#| "Provide the S3 {bucket} name to which the image file will be uploaded "
+#| "before being imported into EC2. \n"
+#| "                          The {bucket} must already exist in the Region "
+#| "where you want to import your image. You can find a list of {buckets} on "
+#| "the\n"
+#| "                          {bucketsPage} page in the {amazon} S3 storage "
+#| "service in the AWS console."
 msgid ""
 "Provide the S3 {bucket} name to which the image file will be uploaded before "
 "being imported into EC2. \n"
-"                          The {bucket} must already exist in the Region "
-"where you want to import your image. You can find a list of {buckets} on "
-"the\n"
-"                          {bucketsPage} page in the {amazon} S3 storage "
+"                        The {bucket} must already exist in the Region where "
+"you want to import your image. You can find a list of {buckets} on the\n"
+"                        {bucketsPage} page in the {amazon} S3 storage "
 "service in the AWS console."
 msgstr ""
 "EC2로 가져 오기 전에 이미지 파일을 업로드해야 하는 S3 {bucket} 이름을 지정하"
@@ -1369,11 +1424,11 @@ msgstr ""
 "                           AWS 콘솔의 {amazon} S3 스토리지 서비스에 있는 "
 "{bucketsPage} 페이지에 있습니다."
 
-#. [components.Modal.2706552502]
+#. [components.Wizard.2706552502]
 #. defaultMessage is:
 #. Provide the access key for the desired storage account. You can find the access key on the {accessKeys} 
 #.                         page of the storage account. You can find storage accounts on the {storageAccounts} page in the {azure} portal.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AzureAuthStep.json
 msgid ""
 "Provide the access key for the desired storage account. You can find the "
 "access key on the {accessKeys} \n"
@@ -1381,28 +1436,28 @@ msgid ""
 "accounts on the {storageAccounts} page in the {azure} portal."
 msgstr ""
 
-#. [components.Modal.1434969769]
+#. [components.Wizard.1434969769]
 #. defaultMessage is:
 #. Provide the name of a storage account. You can find storage accounts on the {storageAccounts} page in the {azure} portal.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AzureAuthStep.json
 msgid ""
 "Provide the name of a storage account. You can find storage accounts on the "
 "{storageAccounts} page in the {azure} portal."
 msgstr ""
 
-#. [components.Modal.1476874820]
+#. [components.Wizard.1476874820]
 #. defaultMessage is:
 #. Provide the name of the branch for the content. If the ref does not already exist it will be created.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid ""
 "Provide the name of the branch for the content. If the ref does not already "
 "exist it will be created."
 msgstr ""
 
-#. [components.Modal.31026111]
+#. [components.Wizard.31026111]
 #. defaultMessage is:
 #. Ref
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid "Ref"
 msgstr ""
 
@@ -1489,10 +1544,10 @@ msgstr "원본 삭제 중"
 msgid "Required information is missing."
 msgstr "필수 정보가 없습니다."
 
-#. [components.Modal.review]
+#. [components.Wizard.review]
 #. defaultMessage is:
 #. Review the information below and click Finish to create the image and complete the tasks that were selected.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid ""
 "Review the information below and click Finish to create the image and "
 "complete the tasks that were selected."
@@ -1507,10 +1562,10 @@ msgstr ""
 msgid "Role"
 msgstr "역할"
 
-#. [bucket-help]
+#. [components.Wizard.bucket]
 #. defaultMessage is:
 #. S3 Bucket help
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AWSDestinationStep.json
 msgid "S3 Bucket help"
 msgstr "S3 버킷 도움말"
 
@@ -1539,17 +1594,21 @@ msgstr "저장"
 msgid "Saving source"
 msgstr "소스 저장 중"
 
-#. [components.Modal.135579143]
+#. [components.Wizard.135579143]
 #. defaultMessage is:
 #. Secret access key
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.135579143]
+#. defaultMessage is:
+#. Secret access key
+#: build/messages/components/Wizard/AWSAuthStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Secret access key"
 msgstr "비밀 액세스 키"
 
 #. [secret-access-key-help]
 #. defaultMessage is:
 #. Secret access key help
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AWSAuthStep.json
 msgid "Secret access key help"
 msgstr "비밀 액세스 키 도움말"
 
@@ -1570,11 +1629,11 @@ msgstr "구성 요소 선택"
 #. [components.Modal.selectOne]
 #. defaultMessage is:
 #. Select one
-#. [components.Modal.selectOne]
+#. [components.Wizard.selectOne]
 #. defaultMessage is:
 #. Select one
-#: build/messages/components/Modal/CreateImageUpload.json
 #: build/messages/components/Modal/ManageSources.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid "Select one"
 msgstr "하나만 선택"
 
@@ -1606,10 +1665,10 @@ msgstr "새 암호 설정"
 msgid "Set Password"
 msgstr "암호 설정"
 
-#. [components.Modal.imageSizePopover]
+#. [components.Wizard.imageSizePopover]
 #. defaultMessage is:
 #. Set the size that you want the image to be when instantiated. The total package size and target destination of your image should be considered when setting the image size.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid ""
 "Set the size that you want the image to be when instantiated. The total "
 "package size and target destination of your image should be considered when "
@@ -1638,20 +1697,6 @@ msgstr "세부 정보 및 기타 옵션 표시"
 #: build/messages/components/ListView/ComponentSummaryList.json
 msgid "Show Less"
 msgstr "부분 표시"
-
-#. [components.Pagination.nextPage]
-#. defaultMessage is:
-#. Show Next Page
-#: build/messages/components/Pagination/Pagination.json
-msgid "Show Next Page"
-msgstr "다음 페이지보기"
-
-#. [components.Pagination.previousPage]
-#. defaultMessage is:
-#. Show Previous Page
-#: build/messages/components/Pagination/Pagination.json
-msgid "Show Previous Page"
-msgstr "이전 페이지보기"
 
 #. [components.ListView.imageSize] - A label for the size of an image file
 #. defaultMessage is:
@@ -1737,52 +1782,77 @@ msgstr "빌드 중지"
 msgid "Stopping"
 msgstr "중지 중"
 
-#. [components.Modal.4127941395]
+#. [components.Wizard.4127941395]
 #. defaultMessage is:
 #. Storage access key
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.4127941395]
+#. defaultMessage is:
+#. Storage access key
+#: build/messages/components/Wizard/AzureAuthStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Storage access key"
 msgstr "스토리지 액세스 키"
 
-#. [storage-access-key-help]
+#. [components.Wizard.storageAccessKey]
 #. defaultMessage is:
 #. Storage access key help
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AzureAuthStep.json
 #, fuzzy
 #| msgid "Storage access key"
 msgid "Storage access key help"
 msgstr "스토리지 액세스 키"
 
-#. [components.Modal.1624497518]
+#. [components.Wizard.1624497518]
 #. defaultMessage is:
 #. Storage account
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.1624497518]
+#. defaultMessage is:
+#. Storage account
+#: build/messages/components/Wizard/AzureAuthStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Storage account"
 msgstr "스토리지 계정"
 
-#. [storage-account-help]
+#. [components.Wizard.storageAccount]
 #. defaultMessage is:
 #. Storage account help
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AzureAuthStep.json
 #, fuzzy
 #| msgid "Storage account"
 msgid "Storage account help"
 msgstr "스토리지 계정"
 
-#. [components.Modal.storageAccounts]
+#. [components.Wizard.storageAccounts]
 #. defaultMessage is:
 #. Storage accounts
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.storageAccounts]
+#. defaultMessage is:
+#. Storage accounts
+#: build/messages/components/Wizard/AzureAuthStep.json
+#: build/messages/components/Wizard/AzureDestinationStep.json
 #, fuzzy
 #| msgid "Storage account"
 msgid "Storage accounts"
 msgstr "스토리지 계정"
 
-#. [components.Modal.1249927125]
+#. [components.Wizard.1249927125]
 #. defaultMessage is:
 #. Storage container
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.1249927125]
+#. defaultMessage is:
+#. Storage container
+#: build/messages/components/Wizard/AzureDestinationStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Storage container"
+msgstr "스토리지 컨테이너"
+
+#. [components.Wizard.storageContainer]
+#. defaultMessage is:
+#. Storage container help
+#: build/messages/components/Wizard/AzureDestinationStep.json
+#, fuzzy
+#| msgid "Storage container"
+msgid "Storage container help"
 msgstr "스토리지 컨테이너"
 
 #. [components.ListView.3639476303] - System sources are configured repositories that were found on the host machine
@@ -1852,10 +1922,14 @@ msgstr "찾으시는 페이지가 존재하지 않거나 다른 오류가 발생
 msgid "The service osbuild-composer was not started."
 msgstr "osbuild-composer 서비스가 시작되지 않았습니다."
 
-#. [components.Modal.warningSizeLarge]
+#. [components.Wizard.warningSizeLarge]
 #. defaultMessage is:
 #. The size specified is large. We recommend that you check whether your target destination has any restrictions on image size.
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.warningSizeLarge]
+#. defaultMessage is:
+#. The size specified is large. We recommend that you check whether your target destination has any restrictions on image size.
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid ""
 "The size specified is large. We recommend that you check whether your target "
 "destination has any restrictions on image size."
@@ -1897,10 +1971,10 @@ msgstr ""
 "블루프린트에 나열된 구성 요소가 없습니다. 블루프린트를 편집하여 구성 요소를 "
 "추가하십시오."
 
-#. [components.Modal.warningReview]
+#. [components.Wizard.warningReview]
 #. defaultMessage is:
 #. There are one or more fields that require your attention.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "There are one or more fields that require your attention."
 msgstr "주의가 필요한 하나 이상의 필드가 있습니다."
 
@@ -1915,10 +1989,10 @@ msgstr "주의가 필요한 하나 이상의 필드가 있습니다."
 msgid "This action cannot be undone."
 msgstr "이 작업은 실행 취소할 수 없습니다."
 
-#. [components.Modal.warningUnsaved]
+#. [components.Wizard.warningUnsaved]
 #. defaultMessage is:
 #. This blueprint has changes that are not committed. These changes will be committed before the image is created.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid ""
 "This blueprint has changes that are not committed. These changes will be "
 "committed before the image is created."
@@ -1929,7 +2003,7 @@ msgstr ""
 #. [empty-blueprint-alert]
 #. defaultMessage is:
 #. This blueprint is empty.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid "This blueprint is empty."
 msgstr "이 블루프린트는 비어 있습니다."
 
@@ -1940,10 +2014,14 @@ msgstr "이 블루프린트는 비어 있습니다."
 msgid "This component has no dependencies."
 msgstr "이 구성 요소에는 종속 패키지가 없습니다."
 
-#. [components.Modal.infotip]
+#. [components.Wizard.infotip]
 #. defaultMessage is:
 #. This process can take a while. Images are built in the order they are started.
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.infotip]
+#. defaultMessage is:
+#. This process can take a while. Images are built in the order they are started.
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid ""
 "This process can take a while. Images are built in the order they are "
 "started."
@@ -1965,15 +2043,26 @@ msgstr "이 소스 이름이 이미 존재합니다."
 msgid "This source path already exists."
 msgstr "이 소스 경로가 이미 존재합니다."
 
-#. [components.Modal.2415751559]
+#. [components.Wizard.1727762289]
 #. defaultMessage is:
 #. This upload process requires that you have an {iam} role named {vmimport} to ensure that the image can
-#.                       be imported from the S3 {bucket} into EC2. For more details, refer to the {role}.
-#: build/messages/components/Modal/CreateImageUpload.json
+#.                         be imported from the S3 {bucket} into EC2. For more details, refer to the {role}.
+#. [components.Wizard.1727762289]
+#. defaultMessage is:
+#. This upload process requires that you have an {iam} role named {vmimport} to ensure that the image can
+#.                         be imported from the S3 {bucket} into EC2. For more details, refer to the {role}.
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
+#, fuzzy
+#| msgid ""
+#| "This upload process requires that you have an {iam} role named {vmimport} "
+#| "to ensure that the image can\n"
+#| "                      be imported from the S3 {bucket} into EC2. For more "
+#| "details, refer to the {role}."
 msgid ""
 "This upload process requires that you have an {iam} role named {vmimport} to "
 "ensure that the image can\n"
-"                      be imported from the S3 {bucket} into EC2. For more "
+"                        be imported from the S3 {bucket} into EC2. For more "
 "details, refer to the {role}."
 msgstr ""
 "이 업로드 과정에는 {vmimport}라는 {iam} 역할이 있어야\n"
@@ -2069,17 +2158,17 @@ msgstr "업로드 완료"
 msgid "Upload failed"
 msgstr "업로드 실패"
 
-#. [components.Modal.3057159632]
+#. [components.Wizard.3057159632]
 #. defaultMessage is:
 #. Upload image
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid "Upload image"
 msgstr "이미지 업로드"
 
-#. [upload-image-help]
+#. [components.Wizard.uploadImage]
 #. defaultMessage is:
 #. Upload image help
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid "Upload image help"
 msgstr "이미지 도움말 업로드"
 
@@ -2097,29 +2186,27 @@ msgstr "업로드 진행 중"
 msgid "Upload pending"
 msgstr "업로드 보류 중"
 
-#. [components.Modal.uploadAWS]
+#. [components.Wizard.uploadAWS]
 #. defaultMessage is:
 #. Upload to AWS
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.3235936248]
+#. defaultMessage is:
+#. Upload to AWS
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 #, fuzzy
 #| msgid "Upload to Azure"
 msgid "Upload to AWS"
 msgstr "Azure에 업로드"
 
-#. [components.Modal.1426592721]
-#. defaultMessage is:
-#. Upload to Amazon
-#: build/messages/components/Modal/CreateImageUpload.json
-msgid "Upload to Amazon"
-msgstr "Amazon에 업로드"
-
-#. [components.Modal.uploadAzure]
+#. [components.Wizard.uploadAzure]
 #. defaultMessage is:
 #. Upload to Azure
-#. [components.Modal.2244258572]
+#. [components.Wizard.2244258572]
 #. defaultMessage is:
 #. Upload to Azure
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Upload to Azure"
 msgstr "Azure에 업로드"
 
@@ -2189,20 +2276,20 @@ msgstr "버전"
 msgid "View"
 msgstr "보기"
 
-#. [components.Modal.706264916]
+#. [components.Wizard.706264916]
 #. defaultMessage is:
 #. You can create and find existing Access key IDs on the {iam} page in the AWS console.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AWSAuthStep.json
 msgid ""
 "You can create and find existing Access key IDs on the {iam} page in the AWS "
 "console."
 msgstr ""
 "AWS 콘솔의 {iam}페이지에서 기존 액세스 키 ID를 만들고 찾을 수 있습니다."
 
-#. [components.Modal.4206409720]
+#. [components.Wizard.4206409720]
 #. defaultMessage is:
 #. You can view the Secret access key only when you create a new Access key ID on the {iam} page in the AWS console.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AWSAuthStep.json
 msgid ""
 "You can view the Secret access key only when you create a new Access key ID "
 "on the {iam} page in the AWS console."
@@ -2263,15 +2350,6 @@ msgstr "metalink"
 #: build/messages/components/Modal/ManageSources.json
 msgid "mirrorlist"
 msgstr "mirrorlist"
-
-#. [storage-container-help]
-#. defaultMessage is:
-#. storage container help
-#: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Storage container"
-msgid "storage container help"
-msgstr "스토리지 컨테이너"
 
 #. [components.Modal.152217691]
 #. defaultMessage is:
@@ -2347,13 +2425,6 @@ msgstr "{blueprint} 이미지 만들기가 완료되었습니다."
 msgid "{count} total components"
 msgstr "{count} 총 구성 요소"
 
-#. [components.Pagination.3506832526]
-#. defaultMessage is:
-#. {currentPage} of {totalPages}
-#: build/messages/components/Pagination/Pagination.json
-msgid "{currentPage} of {totalPages}"
-msgstr "{currentPage} (총 {totalPages})"
-
 #. [components.Modal.3908981070]
 #. defaultMessage is:
 #. {from} {oldVersion} {to} {newVersion}
@@ -2391,13 +2462,6 @@ msgstr ""
 msgid "{selectComponents} in this list to add to the blueprint."
 msgstr "이 목록에서 블루프린트에 추가할 {selectComponents} 실행."
 
-#. [components.Pagination.3363928156]
-#. defaultMessage is:
-#. {startNumber} - {endNumber} of {totalNumber}
-#: build/messages/components/Pagination/Pagination.json
-msgid "{startNumber} - {endNumber} of {totalNumber}"
-msgstr "{startNumber} - {endNumber} (총 {totalNumber})"
-
 #: public/manifest.json
 msgid "Creating system images"
 msgstr "시스템 이미지 만들기"
@@ -2405,6 +2469,30 @@ msgstr "시스템 이미지 만들기"
 #: public/manifest.json
 msgid "Image Builder"
 msgstr "이미지 빌더"
+
+#~ msgid "Current Items"
+#~ msgstr "현재 항목"
+
+#~ msgid "Current Page"
+#~ msgstr "현재 페이지"
+
+#~ msgid "Pagination"
+#~ msgstr "페이지 매김"
+
+#~ msgid "Show Next Page"
+#~ msgstr "다음 페이지보기"
+
+#~ msgid "Show Previous Page"
+#~ msgstr "이전 페이지보기"
+
+#~ msgid "Upload to Amazon"
+#~ msgstr "Amazon에 업로드"
+
+#~ msgid "{currentPage} of {totalPages}"
+#~ msgstr "{currentPage} (총 {totalPages})"
+
+#~ msgid "{startNumber} - {endNumber} of {totalNumber}"
+#~ msgstr "{startNumber} - {endNumber} (총 {totalNumber})"
 
 #~ msgid "Password is not acceptable"
 #~ msgstr "암호가 허용되지 않습니다"

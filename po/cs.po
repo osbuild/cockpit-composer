@@ -2,16 +2,16 @@
 # Matej Marusak <mmarusak@redhat.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-07-01T13:27:47.962Z\n"
-"PO-Revision-Date: 2020-05-19 10:40+0000\n"
+"POT-Creation-Date: 2020-08-06T03:50:16.790Z\n"
+"PO-Revision-Date: 2020-08-09 16:29+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
-"Language-Team: Czech <https://translate.fedoraproject.org/projects/cockpit-"
-"composer/master/cs/>\n"
+"Language-Team: Czech <https://translate.fedoraproject.org/projects/"
+"cockpit-composer/master/cs/>\n"
 "Language: cs\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2\n"
-"X-Generator: Weblate 4.0.4\n"
+"X-Generator: Weblate 4.1.1\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -27,14 +27,16 @@ msgstr "(nejnovější jako první)"
 msgid "A blueprint name is required."
 msgstr "Je třeba uvést název plánku."
 
-#. [components.Modal.warningEmptyBlueprintDesc]
+#. [components.Wizard.warningEmptyBlueprintDesc]
 #. defaultMessage is:
 #. A minimal image will be created with only the packages needed to support the selected image type.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid ""
 "A minimal image will be created with only the packages needed to support the "
 "selected image type."
 msgstr ""
+"Bude vytvořen minimální obraz, obsahující pouze balíčky potřebné pro podporu "
+"zvoleného typu obrazu."
 
 #. [components.Modal.2310857819]
 #. defaultMessage is:
@@ -50,56 +52,62 @@ msgstr "Pro tento účet je definováno heslo."
 msgid "A password is not defined for this account."
 msgstr "Pro tento účet není definováno heslo."
 
-#. [components.Modal.warningSizeEmpty]
+#. [components.Wizard.warningSizeEmpty]
 #. defaultMessage is:
 #. A value is required.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "A value is required."
 msgstr "Je třeba zadat hodnotu."
 
-#. [aws-help]
+#. [components.Wizard.aws]
 #. defaultMessage is:
 #. AWS help
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "AWS help"
 msgstr "Nápověda k AWS"
 
-#. [components.Modal.4193750875]
+#. [components.Wizard.4193750875]
 #. defaultMessage is:
 #. AWS region
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.4193750875]
+#. defaultMessage is:
+#. AWS region
+#: build/messages/components/Wizard/AWSDestinationStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "AWS region"
 msgstr "region AWS"
 
-#. [region-help]
+#. [components.Wizard.region]
 #. defaultMessage is:
 #. AWS region help
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AWSDestinationStep.json
 msgid "AWS region help"
 msgstr "nápověda k regionu AWS"
 
-#. [components.Modal.1635272069]
+#. [components.Wizard.1635272069]
 #. defaultMessage is:
 #. Access key ID
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.1635272069]
+#. defaultMessage is:
+#. Access key ID
+#: build/messages/components/Wizard/AWSAuthStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Access key ID"
 msgstr "Identifikátor přístupového klíče"
 
 #. [access-key-id-help]
 #. defaultMessage is:
 #. Access key ID help
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AWSAuthStep.json
 msgid "Access key ID help"
 msgstr "Nápověda k identifikátoru přístupového klíče"
 
-#. [components.Modal.accessKeys]
+#. [components.Wizard.accessKeys]
 #. defaultMessage is:
 #. Access keys
-#: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Access key ID"
+#: build/messages/components/Wizard/AzureAuthStep.json
 msgid "Access keys"
-msgstr "Identifikátor přístupového klíče"
+msgstr "Přístupové klíče"
 
 #. [components.ListView.imageActions] - A label for the menu that displays the actions available
 #. defaultMessage is:
@@ -117,7 +125,7 @@ msgstr "Akce"
 #. Active Filters
 #: build/messages/components/Toolbar/ToolbarLayout.json
 msgid "Active Filters"
-msgstr ""
+msgstr "Aktivní filtry"
 
 #. [components.ListView.3099331554]
 #. defaultMessage is:
@@ -160,10 +168,22 @@ msgstr "Přidat nejnovější verzi"
 msgid "Added"
 msgstr "Přidáno"
 
-#. [components.Modal.1175512155]
+#. [components.Wizard.1175512155]
 #. defaultMessage is:
 #. All fields are required.
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.1175512155]
+#. defaultMessage is:
+#. All fields are required.
+#. [components.Wizard.1175512155]
+#. defaultMessage is:
+#. All fields are required.
+#. [components.Wizard.1175512155]
+#. defaultMessage is:
+#. All fields are required.
+#: build/messages/components/Wizard/AWSAuthStep.json
+#: build/messages/components/Wizard/AWSDestinationStep.json
+#: build/messages/components/Wizard/AzureAuthStep.json
+#: build/messages/components/Wizard/AzureDestinationStep.json
 msgid "All fields are required."
 msgstr "Je třeba vyplnit všechny kolonky."
 
@@ -249,19 +269,17 @@ msgstr "Automaticky spouštět osbuild-composer při startu systému"
 msgid "Available Components"
 msgstr "Součásti k dispozici"
 
-#. [azure-help]
+#. [components.Wizard.azure]
 #. defaultMessage is:
 #. Azure help
-#: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "AWS help"
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Azure help"
-msgstr "Nápověda k AWS"
+msgstr "Nápověda k Azure"
 
-#. [components.Modal.1347475195]
+#. [components.Wizard.1347475195]
 #. defaultMessage is:
 #. Back
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/CreateImageUpload.json
 msgid "Back"
 msgstr "Zpět"
 
@@ -283,12 +301,12 @@ msgstr "Zpět k plánkům"
 msgid "Back to {blueprint}"
 msgstr "Zpět k {blueprint}"
 
-#. [components.Modal.blobService]
+#. [components.Wizard.blobService]
 #. defaultMessage is:
 #. Blob service
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AzureDestinationStep.json
 msgid "Blob service"
-msgstr ""
+msgstr "Blob služba"
 
 #. [components.Modal.1281198655]
 #. defaultMessage is:
@@ -362,17 +380,14 @@ msgstr "Plánky"
 #. defaultMessage is:
 #. Browse or search for components, then add them to the blueprint. Or leave the blueprint empty to create a minimal image.
 #: build/messages/pages/blueprintEdit/index.json
-#, fuzzy
-#| msgid "Browse or search for components, then add them to the blueprint."
 msgid ""
 "Browse or search for components, then add them to the blueprint. Or leave "
 "the blueprint empty to create a minimal image."
-msgstr "Nalistujte nebo vyhledejte součásti, pak je přidejte do plánku."
+msgstr ""
+"Nalistujte nebo vyhledejte součásti, pak je přidejte do plánku. Nebo plánek "
+"ponechte prázdný a bude vytvořen minimální obraz."
 
 #. [components.Form.cancel]
-#. defaultMessage is:
-#. Cancel
-#. [components.Modal.3528672691]
 #. defaultMessage is:
 #. Cancel
 #. [components.Modal.3528672691]
@@ -396,15 +411,18 @@ msgstr "Nalistujte nebo vyhledejte součásti, pak je přidejte do plánku."
 #. [components.Modal.3528672691]
 #. defaultMessage is:
 #. Cancel
+#. [components.Wizard.3528672691]
+#. defaultMessage is:
+#. Cancel
 #: build/messages/components/Form/TextInlineEdit.json
 #: build/messages/components/Modal/CreateBlueprint.json
-#: build/messages/components/Modal/CreateImageUpload.json
 #: build/messages/components/Modal/DeleteBlueprint.json
 #: build/messages/components/Modal/DeleteImage.json
 #: build/messages/components/Modal/EditDescription.json
 #: build/messages/components/Modal/ManageSources.json
 #: build/messages/components/Modal/StopBuild.json
 #: build/messages/components/Modal/UserAccount.json
+#: build/messages/components/Wizard/CreateImageUpload.json
 msgid "Cancel"
 msgstr "Storno"
 
@@ -506,17 +524,17 @@ msgstr "Komentář"
 msgid "Commit"
 msgstr "Odeslat"
 
-#. [components.Modal.1126783419]
+#. [components.Wizard.1126783419]
 #. defaultMessage is:
 #. Commit and create
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/CreateImageUpload.json
 msgid "Commit and create"
 msgstr "Odeslat a vytvořit"
 
-#. [components.Modal.552112481]
+#. [components.Wizard.552112481]
 #. defaultMessage is:
 #. Commit and next
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/CreateImageUpload.json
 msgid "Commit and next"
 msgstr "Odeslat a další"
 
@@ -565,12 +583,12 @@ msgstr "Zkopírovat"
 #. [components.Modal.4120989039]
 #. defaultMessage is:
 #. Create
-#. [components.Modal.4120989039]
+#. [components.Wizard.4120989039]
 #. defaultMessage is:
 #. Create
 #: build/messages/components/Modal/CreateBlueprint.json
-#: build/messages/components/Modal/CreateImageUpload.json
 #: build/messages/components/Modal/UserAccount.json
+#: build/messages/components/Wizard/CreateImageUpload.json
 msgid "Create"
 msgstr "Vytvořit"
 
@@ -603,20 +621,20 @@ msgstr ""
 "Vytvořte plánek pro definování obsahu který bude obsažen v obrazu, který "
 "vytvoříte. Obrazy je možné vytvářet v různých výstupních formátech."
 
-#. [components.Modal.1723482220]
+#. [components.Wizard.1723482220]
 #. defaultMessage is:
 #. Create and upload image
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Create and upload image"
 msgstr "Vytvořit a nahrát obraz"
 
-#. [components.Modal.title]
+#. [components.Wizard.title]
 #. defaultMessage is:
 #. Create image
-#. [components.Modal.2020427956]
+#. [components.Wizard.2020427956]
 #. defaultMessage is:
 #. Create image
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/CreateImageUpload.json
 msgid "Create image"
 msgstr "Vytvořit obraz"
 
@@ -626,20 +644,6 @@ msgstr "Vytvořit obraz"
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Created"
 msgstr "Vytvořeno"
-
-#. [components.Pagination.2925773048] - Label for the string: 1–50 of 125; only visible to screen readers
-#. defaultMessage is:
-#. Current Items
-#: build/messages/components/Pagination/Pagination.json
-msgid "Current Items"
-msgstr "Stávající položky"
-
-#. [components.Pagination.currentPage] - Label of form input for setting current page number
-#. defaultMessage is:
-#. Current Page
-#: build/messages/components/Pagination/Pagination.json
-msgid "Current Page"
-msgstr "Stávající stránka"
 
 #. [pages.blueprint.customizationsTitle]
 #. defaultMessage is:
@@ -717,10 +721,8 @@ msgstr "Popis"
 #. defaultMessage is:
 #. Details
 #: build/messages/components/ListView/ComponentDetailsView.json
-#, fuzzy
-#| msgid "details"
 msgid "Details"
-msgstr "podrobnosti"
+msgstr "Podrobnosti"
 
 #. [pages.blueprintEdit.1936836258]
 #. defaultMessage is:
@@ -851,31 +853,27 @@ msgstr "Filtrovat podle názvu…"
 #. defaultMessage is:
 #. Filter by Name
 #: build/messages/components/Toolbar/FilterInput.json
-#, fuzzy
-#| msgid "Filter By Name..."
 msgid "Filter by Name"
-msgstr "Filtrovat podle názvu…"
+msgstr "Filtrovat podle názvu"
 
 #. [components.Toolbar.filterReleasePlaceholder]
 #. defaultMessage is:
 #. Filter by Release
 #: build/messages/components/Toolbar/FilterInput.json
-#, fuzzy
-#| msgid "Filter By Name..."
 msgid "Filter by Release"
-msgstr "Filtrovat podle názvu…"
+msgstr "Filtrovat podle vydání"
 
 #. [components.Toolbar.filterVersionPlaceholder]
 #. defaultMessage is:
 #. Filter by Version
 #: build/messages/components/Toolbar/FilterInput.json
 msgid "Filter by Version"
-msgstr ""
+msgstr "Filtrovat podle verze"
 
-#. [components.Modal.787186999]
+#. [components.Wizard.787186999]
 #. defaultMessage is:
 #. Finish
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/CreateImageUpload.json
 msgid "Finish"
 msgstr "Dokončit"
 
@@ -918,49 +916,52 @@ msgstr "Název hostitele"
 msgid "If no hostname is provided, the hostname will be determined by the OS."
 msgstr "Pokud název hostitele není zadán, bude zjištěn operačním systémem."
 
-#. [components.Modal.1948537181]
+#. [components.Wizard.3593632693]
 #. defaultMessage is:
 #. Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete 
-#.                     and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
-#: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid ""
-#| "Image Builder can upload images you create to an {bucket} in AWS and then "
-#| "import them into EC2. When the image build is complete\n"
-#| "                      and the upload action is successful, the image file "
-#| "is available in the AMI section of EC2. Most of the values required to "
-#| "upload\n"
-#| "                      the image can be found in the {console}."
+#.                       and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
+#. [components.Wizard.3593632693]
+#. defaultMessage is:
+#. Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete 
+#.                       and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid ""
 "Image Builder can upload images you create to a Blob container in {azure}. "
 "When the image build is complete \n"
-"                    and the upload action is successful, the image file is "
+"                      and the upload action is successful, the image file is "
 "available in the Storage account and Blob container that you specified."
 msgstr ""
-"Nástroj pro sestavování obrazů může vzniklé obrazy nahrávat na {bucket} ve "
-"službě AWS a a pak je importovat do EC2. Když je sestavení\n"
-"                       obrazu hotové a akce nahrání je úspěšná, soubor s "
-"obrazem je k dispozici v AMI sekci EC2. Většinu hodnot, požadovaných pro\n"
-"                      nahrání obrazu je k nalezení v {console}."
+"Nástroj pro sestavování obrazů může vzniklé obrazy nahrávat na Blob "
+"kontejner ve službě {azure}. Po dokončení sestavení obrazu\n"
+"                     a jeho úspěšném nahrání, soubor s obrazem bude k "
+"dispozici v Účtu úložiště a Blob kontejneru, který jste zadali."
 
-#. [components.Modal.4131822949]
+#. [components.Wizard.1007547894]
 #. defaultMessage is:
 #. Image Builder can upload images you create to an {bucket} in AWS and then import them into EC2. When the image build is complete
-#.                       and the upload action is successful, the image file is available in the AMI section of EC2. Most of the values required to upload
-#.                       the image can be found in the {console}.
-#: build/messages/components/Modal/CreateImageUpload.json
+#.                         and the upload action is successful, the image file is available in the AMI section of EC2. Most of the values required to upload
+#.                         the image can be found in the {console}.
+#. [components.Wizard.1007547894]
+#. defaultMessage is:
+#. Image Builder can upload images you create to an {bucket} in AWS and then import them into EC2. When the image build is complete
+#.                         and the upload action is successful, the image file is available in the AMI section of EC2. Most of the values required to upload
+#.                         the image can be found in the {console}.
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid ""
 "Image Builder can upload images you create to an {bucket} in AWS and then "
 "import them into EC2. When the image build is complete\n"
-"                      and the upload action is successful, the image file is "
-"available in the AMI section of EC2. Most of the values required to upload\n"
-"                      the image can be found in the {console}."
+"                        and the upload action is successful, the image file "
+"is available in the AMI section of EC2. Most of the values required to "
+"upload\n"
+"                        the image can be found in the {console}."
 msgstr ""
 "Nástroj pro sestavování obrazů může vzniklé obrazy nahrávat na {bucket} ve "
 "službě AWS a a pak je importovat do EC2. Když je sestavení\n"
-"                       obrazu hotové a akce nahrání je úspěšná, soubor s "
+"                        obrazu hotové a akce nahrání je úspěšná, soubor s "
 "obrazem je k dispozici v AMI sekci EC2. Většinu hodnot, požadovaných pro\n"
-"                      nahrání obrazu je k nalezení v {console}."
+"                       nahrání obrazu je k nalezení v {console}."
 
 #. [components.EmptyState.errorInactiveTitle]
 #. defaultMessage is:
@@ -1000,46 +1001,62 @@ msgstr "Sestavování obrazu čeká"
 #. [components.ListView.imageName] - The name given by the user for an image
 #. defaultMessage is:
 #. Image name
-#. [components.Modal.2794911472]
+#. [components.Wizard.2794911472]
+#. defaultMessage is:
+#. Image name
+#. [components.Wizard.2794911472]
+#. defaultMessage is:
+#. Image name
+#. [components.Wizard.2794911472]
 #. defaultMessage is:
 #. Image name
 #: build/messages/components/ListView/ListItemUploads.json
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AWSDestinationStep.json
+#: build/messages/components/Wizard/AzureDestinationStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Image name"
 msgstr "Název obrazu"
 
-#. [image-name-help]
+#. [components.Wizard.imageName]
 #. defaultMessage is:
 #. Image name help
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.imageName]
+#. defaultMessage is:
+#. Image name help
+#: build/messages/components/Wizard/AWSDestinationStep.json
+#: build/messages/components/Wizard/AzureDestinationStep.json
 msgid "Image name help"
 msgstr "Nápověda k názvu obrazu"
 
-#. [components.Modal.1005710141]
+#. [components.Wizard.1005710141]
 #. defaultMessage is:
 #. Image output
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Image output"
 msgstr "Výstup obrazu"
 
-#. [components.Modal.1905943231]
+#. [components.Wizard.1905943231]
 #. defaultMessage is:
 #. Image size
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.1905943231]
+#. defaultMessage is:
+#. Image size
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Image size"
 msgstr "Velikost obrazu"
 
-#. [image-size-help]
+#. [components.Wizard.imageSize]
 #. defaultMessage is:
 #. Image size help
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid "Image size help"
 msgstr "Nápověda k velikosti obrazu"
 
-#. [components.Modal.1813441558]
+#. [components.Wizard.1813441558]
 #. defaultMessage is:
 #. Image type
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Image type"
 msgstr "Typ obrazu"
 
@@ -1089,10 +1106,14 @@ msgstr "Spravovat zdroje"
 msgid "Message"
 msgstr "Zpráva"
 
-#. [components.Modal.warningSizeSmall]
+#. [components.Wizard.warningSizeSmall]
 #. defaultMessage is:
 #. Minimum size is {size} GB.
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.warningSizeSmall]
+#. defaultMessage is:
+#. Minimum size is {size} GB.
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Minimum size is {size} GB."
 msgstr "Nejmenší možná velikost je {size} GB."
 
@@ -1144,10 +1165,10 @@ msgstr "Název: {name}"
 msgid "New password"
 msgstr "Nové heslo"
 
-#. [components.Modal.3673120330]
+#. [components.Wizard.3673120330]
 #. defaultMessage is:
 #. Next
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/CreateImageUpload.json
 msgid "Next"
 msgstr "Další"
 
@@ -1201,23 +1222,19 @@ msgstr "Z tohoto plánku nebyly vytvořeny žádné obrazy."
 msgid "No log available"
 msgstr "Není k dispozici žádný záznam událostí"
 
-#. [ostree-parent-help]
+#. [components.Wizard.ostreeParent]
 #. defaultMessage is:
 #. OSTree parent help
-#: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "AWS region help"
+#: build/messages/components/Wizard/ImageStep.json
 msgid "OSTree parent help"
-msgstr "nápověda k regionu AWS"
+msgstr "hlavní nápověda k OSTree"
 
-#. [ostree-ref-help]
+#. [components.Wizard.ostreeRef]
 #. defaultMessage is:
 #. OSTree ref help
-#: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "AWS region help"
+#: build/messages/components/Wizard/ImageStep.json
 msgid "OSTree ref help"
-msgstr "nápověda k regionu AWS"
+msgstr "Referenční nápověda k OSTree"
 
 #. [components.Modal.1475836573]
 #. defaultMessage is:
@@ -1254,19 +1271,12 @@ msgstr "Stránka nenalezena"
 msgid "Page not found"
 msgstr "Stránka nenalezena"
 
-#. [components.Pagination.pagination]
-#. defaultMessage is:
-#. Pagination
-#: build/messages/components/Pagination/Pagination.json
-msgid "Pagination"
-msgstr "Stránkování"
-
-#. [components.Modal.3070030782]
+#. [components.Wizard.3070030782]
 #. defaultMessage is:
 #. Parent commit
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid "Parent commit"
-msgstr ""
+msgstr "Nadřazený commit"
 
 #. [components.Modal.createPasswordOne]
 #. defaultMessage is:
@@ -1292,25 +1302,33 @@ msgstr "Sem vložte obsah veřejného SSH klíče."
 msgid "Pending Changes"
 msgstr "Čekající změny"
 
-#. [provess-length-help]
+#. [components.Wizard.processLength]
 #. defaultMessage is:
 #. Process length help
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.processLength]
+#. defaultMessage is:
+#. Process length help
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Process length help"
 msgstr "Nápověda k délce procesu"
 
-#. [components.Modal.4277042358]
+#. [components.Wizard.4277042358]
 #. defaultMessage is:
 #. Provide a file name to be used for the image file that will be uploaded.
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.4277042358]
+#. defaultMessage is:
+#. Provide a file name to be used for the image file that will be uploaded.
+#: build/messages/components/Wizard/AWSDestinationStep.json
+#: build/messages/components/Wizard/AzureDestinationStep.json
 msgid ""
 "Provide a file name to be used for the image file that will be uploaded."
 msgstr "Zadejte název souboru, který nahrát jako obraz."
 
-#. [components.Modal.2186792528]
+#. [components.Wizard.2186792528]
 #. defaultMessage is:
 #. Provide the AWS Region where you want to import your image. This must be the same region where the {bucket} exists.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AWSDestinationStep.json
 msgid ""
 "Provide the AWS Region where you want to import your image. This must be the "
 "same region where the {bucket} exists."
@@ -1318,85 +1336,98 @@ msgstr ""
 "Zadejte AWS oblast, do které chcete obraz importovat. Je třeba, aby se "
 "jednalo o stejnou oblast, ve které existuje {bucket}."
 
-#. [components.Modal.517158149]
+#. [components.Wizard.517158149]
 #. defaultMessage is:
 #. Provide the Blob container to which the image file will be uploaded. You can find containers under the {blobService} 
 #.                     section of a storage account. You can find storage accounts on the {storageAccounts} page in the {azure} portal.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AzureDestinationStep.json
 msgid ""
 "Provide the Blob container to which the image file will be uploaded. You can "
 "find containers under the {blobService} \n"
 "                    section of a storage account. You can find storage "
 "accounts on the {storageAccounts} page in the {azure} portal."
 msgstr ""
+"Zadejte Blob kontejner od kterého soubor s obrazem nahrát. Kontejnery "
+"naleznete v sekci {blobService\n"
+"                    účtu na úložišti. Účty na úložišti naleznete na stránce "
+"{storageAccounts} na portálu {azure}."
 
-#. [components.Modal.1099888225]
+#. [components.Wizard.1099888225]
 #. defaultMessage is:
 #. Provide the ID of the latest commit in the updates repository for which this commit provides an update.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid ""
 "Provide the ID of the latest commit in the updates repository for which this "
 "commit provides an update."
 msgstr ""
+"Poskytne identifikátor nejnovějšího commitu v repozitáři aktualizací, pro "
+"který tento commit poskytuje aktualizaci."
 
-#. [components.Modal.2822010101]
+#. [components.Wizard.1901372247]
 #. defaultMessage is:
 #. Provide the S3 {bucket} name to which the image file will be uploaded before being imported into EC2. 
-#.                           The {bucket} must already exist in the Region where you want to import your image. You can find a list of {buckets} on the
-#.                           {bucketsPage} page in the {amazon} S3 storage service in the AWS console.
-#: build/messages/components/Modal/CreateImageUpload.json
+#.                         The {bucket} must already exist in the Region where you want to import your image. You can find a list of {buckets} on the
+#.                         {bucketsPage} page in the {amazon} S3 storage service in the AWS console.
+#: build/messages/components/Wizard/AWSDestinationStep.json
 msgid ""
 "Provide the S3 {bucket} name to which the image file will be uploaded before "
 "being imported into EC2. \n"
-"                          The {bucket} must already exist in the Region "
-"where you want to import your image. You can find a list of {buckets} on "
-"the\n"
-"                          {bucketsPage} page in the {amazon} S3 storage "
+"                        The {bucket} must already exist in the Region where "
+"you want to import your image. You can find a list of {buckets} on the\n"
+"                        {bucketsPage} page in the {amazon} S3 storage "
 "service in the AWS console."
 msgstr ""
 "Zadejte název S3 {bucket}, do kterého bude soubor s obrazem nahrán před "
 "importem do EC2. \n"
-"                          Je třeba, aby {bucket} už existoval v oblasti, do "
+"                         Je třeba, aby {bucket} už existoval v oblasti, do "
 "které chcete obraz importovat. Seznam {buckets} naleznete\n"
-"                          na stránce {bucketsPage} v {amazon} službě S3 "
+"                         na stránce {bucketsPage} v {amazon} službě S3 "
 "úložiště v AWS konzoli."
 
-#. [components.Modal.2706552502]
+#. [components.Wizard.2706552502]
 #. defaultMessage is:
 #. Provide the access key for the desired storage account. You can find the access key on the {accessKeys} 
 #.                         page of the storage account. You can find storage accounts on the {storageAccounts} page in the {azure} portal.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AzureAuthStep.json
 msgid ""
 "Provide the access key for the desired storage account. You can find the "
 "access key on the {accessKeys} \n"
 "                        page of the storage account. You can find storage "
 "accounts on the {storageAccounts} page in the {azure} portal."
 msgstr ""
+"Zadejte přístupový klíč pro požadovaný účet na úložišti. Přístupový klíč "
+"naleznete na stránce {accessKeys} \n"
+"                        účtu na úložišti. Účty na úložišti naleznete na "
+"stránce {storageAccounts} na portálu {azure}."
 
-#. [components.Modal.1434969769]
+#. [components.Wizard.1434969769]
 #. defaultMessage is:
 #. Provide the name of a storage account. You can find storage accounts on the {storageAccounts} page in the {azure} portal.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AzureAuthStep.json
 msgid ""
 "Provide the name of a storage account. You can find storage accounts on the "
 "{storageAccounts} page in the {azure} portal."
 msgstr ""
+"Poskytuje název účtu pro úložiště. Účty pro úložiště naleznete na stránce "
+"{storageAccounts} portálu {azure}."
 
-#. [components.Modal.1476874820]
+#. [components.Wizard.1476874820]
 #. defaultMessage is:
 #. Provide the name of the branch for the content. If the ref does not already exist it will be created.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid ""
 "Provide the name of the branch for the content. If the ref does not already "
 "exist it will be created."
 msgstr ""
+"Poskytuje název větve obsahu. Pokud reference ještě neexistuje, bude "
+"vytvořena."
 
-#. [components.Modal.31026111]
+#. [components.Wizard.31026111]
 #. defaultMessage is:
 #. Ref
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid "Ref"
-msgstr ""
+msgstr "Reference"
 
 #. [components.ListView.423140743]
 #. defaultMessage is:
@@ -1481,10 +1512,10 @@ msgstr "Odebrat zdroj"
 msgid "Required information is missing."
 msgstr "Chybí požadovaná informace."
 
-#. [components.Modal.review]
+#. [components.Wizard.review]
 #. defaultMessage is:
 #. Review the information below and click Finish to create the image and complete the tasks that were selected.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid ""
 "Review the information below and click Finish to create the image and "
 "complete the tasks that were selected."
@@ -1499,10 +1530,10 @@ msgstr ""
 msgid "Role"
 msgstr "Role"
 
-#. [bucket-help]
+#. [components.Wizard.bucket]
 #. defaultMessage is:
 #. S3 Bucket help
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AWSDestinationStep.json
 msgid "S3 Bucket help"
 msgstr "Nápověda k S3 Bucket"
 
@@ -1531,17 +1562,21 @@ msgstr "Uložit"
 msgid "Saving source"
 msgstr "Ukládání zdroje"
 
-#. [components.Modal.135579143]
+#. [components.Wizard.135579143]
 #. defaultMessage is:
 #. Secret access key
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.135579143]
+#. defaultMessage is:
+#. Secret access key
+#: build/messages/components/Wizard/AWSAuthStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Secret access key"
 msgstr "Tajný přístupový klíč"
 
 #. [secret-access-key-help]
 #. defaultMessage is:
 #. Secret access key help
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AWSAuthStep.json
 msgid "Secret access key help"
 msgstr "Nápověda k tajnému přístupovému klíči"
 
@@ -1562,11 +1597,11 @@ msgstr "Vybrat součást"
 #. [components.Modal.selectOne]
 #. defaultMessage is:
 #. Select one
-#. [components.Modal.selectOne]
+#. [components.Wizard.selectOne]
 #. defaultMessage is:
 #. Select one
-#: build/messages/components/Modal/CreateImageUpload.json
 #: build/messages/components/Modal/ManageSources.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid "Select one"
 msgstr "Vyberte jedno"
 
@@ -1598,10 +1633,10 @@ msgstr "Nastavit nové heslo"
 msgid "Set Password"
 msgstr "Nastavit heslo"
 
-#. [components.Modal.imageSizePopover]
+#. [components.Wizard.imageSizePopover]
 #. defaultMessage is:
 #. Set the size that you want the image to be when instantiated. The total package size and target destination of your image should be considered when setting the image size.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid ""
 "Set the size that you want the image to be when instantiated. The total "
 "package size and target destination of your image should be considered when "
@@ -1631,20 +1666,6 @@ msgstr "Zobrazit podrobnosti a další volby"
 #: build/messages/components/ListView/ComponentSummaryList.json
 msgid "Show Less"
 msgstr "Zobrazit méně"
-
-#. [components.Pagination.nextPage]
-#. defaultMessage is:
-#. Show Next Page
-#: build/messages/components/Pagination/Pagination.json
-msgid "Show Next Page"
-msgstr "Zobrazit následující stránku"
-
-#. [components.Pagination.previousPage]
-#. defaultMessage is:
-#. Show Previous Page
-#: build/messages/components/Pagination/Pagination.json
-msgid "Show Previous Page"
-msgstr "Zobrazit předcházející stránku"
 
 #. [components.ListView.imageSize] - A label for the size of an image file
 #. defaultMessage is:
@@ -1731,53 +1752,70 @@ msgstr "Zastavit sestavování"
 msgid "Stopping"
 msgstr "Zastavování"
 
-#. [components.Modal.4127941395]
+#. [components.Wizard.4127941395]
 #. defaultMessage is:
 #. Storage access key
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.4127941395]
+#. defaultMessage is:
+#. Storage access key
+#: build/messages/components/Wizard/AzureAuthStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Storage access key"
 msgstr "Klíč pro přístup k úložišti"
 
-#. [storage-access-key-help]
+#. [components.Wizard.storageAccessKey]
 #. defaultMessage is:
 #. Storage access key help
-#: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Storage access key"
+#: build/messages/components/Wizard/AzureAuthStep.json
 msgid "Storage access key help"
-msgstr "Klíč pro přístup k úložišti"
+msgstr "Nápověda pro klíč k úložišti"
 
-#. [components.Modal.1624497518]
+#. [components.Wizard.1624497518]
 #. defaultMessage is:
 #. Storage account
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.1624497518]
+#. defaultMessage is:
+#. Storage account
+#: build/messages/components/Wizard/AzureAuthStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Storage account"
 msgstr "Účet na úložišti"
 
-#. [storage-account-help]
+#. [components.Wizard.storageAccount]
 #. defaultMessage is:
 #. Storage account help
-#: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Storage account"
+#: build/messages/components/Wizard/AzureAuthStep.json
 msgid "Storage account help"
-msgstr "Účet na úložišti"
+msgstr "Nápověda k účtu na úložišti"
 
-#. [components.Modal.storageAccounts]
+#. [components.Wizard.storageAccounts]
 #. defaultMessage is:
 #. Storage accounts
-#: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Storage account"
+#. [components.Wizard.storageAccounts]
+#. defaultMessage is:
+#. Storage accounts
+#: build/messages/components/Wizard/AzureAuthStep.json
+#: build/messages/components/Wizard/AzureDestinationStep.json
 msgid "Storage accounts"
-msgstr "Účet na úložišti"
+msgstr "Účty na úložišti"
 
-#. [components.Modal.1249927125]
+#. [components.Wizard.1249927125]
 #. defaultMessage is:
 #. Storage container
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.1249927125]
+#. defaultMessage is:
+#. Storage container
+#: build/messages/components/Wizard/AzureDestinationStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Storage container"
 msgstr "Kontejner úložiště"
+
+#. [components.Wizard.storageContainer]
+#. defaultMessage is:
+#. Storage container help
+#: build/messages/components/Wizard/AzureDestinationStep.json
+msgid "Storage container help"
+msgstr "Nápověda k úložnému kontejneru"
 
 #. [components.ListView.3639476303] - System sources are configured repositories that were found on the host machine
 #. defaultMessage is:
@@ -1832,6 +1870,8 @@ msgid ""
 "The packages needed to support the selected image type are automatically "
 "included when creating an image."
 msgstr ""
+"Balíčky potřebné pro podporu vybraného typu obrazu jsou při vytváření obrazu "
+"automaticky zahrnuty."
 
 #. [pages.error.26562577]
 #. defaultMessage is:
@@ -1848,10 +1888,14 @@ msgstr "Stránka kterou hledáte neexistuje nebo došlo k jiné chybě."
 msgid "The service osbuild-composer was not started."
 msgstr "Služba osbuild-composer nebyla spuštěna."
 
-#. [components.Modal.warningSizeLarge]
+#. [components.Wizard.warningSizeLarge]
 #. defaultMessage is:
 #. The size specified is large. We recommend that you check whether your target destination has any restrictions on image size.
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.warningSizeLarge]
+#. defaultMessage is:
+#. The size specified is large. We recommend that you check whether your target destination has any restrictions on image size.
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid ""
 "The size specified is large. We recommend that you check whether your target "
 "destination has any restrictions on image size."
@@ -1893,10 +1937,10 @@ msgid ""
 "components."
 msgstr "V plánku nejsou uvedeny žádné součásti. Upravte ho a přidejte nějaké."
 
-#. [components.Modal.warningReview]
+#. [components.Wizard.warningReview]
 #. defaultMessage is:
 #. There are one or more fields that require your attention.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "There are one or more fields that require your attention."
 msgstr "Je zde jedna či více kolonek, které vyžaduje vaší pozornost."
 
@@ -1911,10 +1955,10 @@ msgstr "Je zde jedna či více kolonek, které vyžaduje vaší pozornost."
 msgid "This action cannot be undone."
 msgstr "Tuto akci nelze vzít zpět."
 
-#. [components.Modal.warningUnsaved]
+#. [components.Wizard.warningUnsaved]
 #. defaultMessage is:
 #. This blueprint has changes that are not committed. These changes will be committed before the image is created.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid ""
 "This blueprint has changes that are not committed. These changes will be "
 "committed before the image is created."
@@ -1923,7 +1967,7 @@ msgstr "Změny v plánku nebyly odeslány. Stane se tak před vytvářením obra
 #. [empty-blueprint-alert]
 #. defaultMessage is:
 #. This blueprint is empty.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid "This blueprint is empty."
 msgstr "Plánek je prázdný."
 
@@ -1934,10 +1978,14 @@ msgstr "Plánek je prázdný."
 msgid "This component has no dependencies."
 msgstr "Tato součást nemá žádné závislosti."
 
-#. [components.Modal.infotip]
+#. [components.Wizard.infotip]
 #. defaultMessage is:
 #. This process can take a while. Images are built in the order they are started.
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.infotip]
+#. defaultMessage is:
+#. This process can take a while. Images are built in the order they are started.
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid ""
 "This process can take a while. Images are built in the order they are "
 "started."
@@ -1959,20 +2007,25 @@ msgstr "Tento název zdroje už existuje."
 msgid "This source path already exists."
 msgstr "Tento popis umístění zdroje už existuje."
 
-#. [components.Modal.2415751559]
+#. [components.Wizard.1727762289]
 #. defaultMessage is:
 #. This upload process requires that you have an {iam} role named {vmimport} to ensure that the image can
-#.                       be imported from the S3 {bucket} into EC2. For more details, refer to the {role}.
-#: build/messages/components/Modal/CreateImageUpload.json
+#.                         be imported from the S3 {bucket} into EC2. For more details, refer to the {role}.
+#. [components.Wizard.1727762289]
+#. defaultMessage is:
+#. This upload process requires that you have an {iam} role named {vmimport} to ensure that the image can
+#.                         be imported from the S3 {bucket} into EC2. For more details, refer to the {role}.
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid ""
 "This upload process requires that you have an {iam} role named {vmimport} to "
 "ensure that the image can\n"
-"                      be imported from the S3 {bucket} into EC2. For more "
+"                        be imported from the S3 {bucket} into EC2. For more "
 "details, refer to the {role}."
 msgstr ""
 "Tento proces nahrávání vyžaduje, abyste měli {iam} roli nazvanou {vmimport} "
 "a bylo tak zajištěno, že obraz\n"
-"                      může být importován z S3 {bucket} do EC2. Podrobnosti "
+"                       může být importován z S3 {bucket} do EC2. Podrobnosti "
 "viz {role}."
 
 #. [components.Modal.3707489178]
@@ -2064,17 +2117,17 @@ msgstr "Nahrání dokončeno"
 msgid "Upload failed"
 msgstr "Nahrání se nezdařilo"
 
-#. [components.Modal.3057159632]
+#. [components.Wizard.3057159632]
 #. defaultMessage is:
 #. Upload image
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid "Upload image"
 msgstr "Nahrát obraz"
 
-#. [upload-image-help]
+#. [components.Wizard.uploadImage]
 #. defaultMessage is:
 #. Upload image help
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid "Upload image help"
 msgstr "Nápověda k nahrávání obrazu"
 
@@ -2092,29 +2145,25 @@ msgstr "Nahrání probíhá"
 msgid "Upload pending"
 msgstr "Nahrání čeká"
 
-#. [components.Modal.uploadAWS]
+#. [components.Wizard.uploadAWS]
 #. defaultMessage is:
 #. Upload to AWS
-#: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Upload to Azure"
+#. [components.Wizard.3235936248]
+#. defaultMessage is:
+#. Upload to AWS
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Upload to AWS"
-msgstr "Nahrát na Azure"
+msgstr "Nahrát na AWS"
 
-#. [components.Modal.1426592721]
-#. defaultMessage is:
-#. Upload to Amazon
-#: build/messages/components/Modal/CreateImageUpload.json
-msgid "Upload to Amazon"
-msgstr "Nahrát na Amazon"
-
-#. [components.Modal.uploadAzure]
+#. [components.Wizard.uploadAzure]
 #. defaultMessage is:
 #. Upload to Azure
-#. [components.Modal.2244258572]
+#. [components.Wizard.2244258572]
 #. defaultMessage is:
 #. Upload to Azure
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Upload to Azure"
 msgstr "Nahrát na Azure"
 
@@ -2183,10 +2232,10 @@ msgstr "Verze"
 msgid "View"
 msgstr "Zobrazit"
 
-#. [components.Modal.706264916]
+#. [components.Wizard.706264916]
 #. defaultMessage is:
 #. You can create and find existing Access key IDs on the {iam} page in the AWS console.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AWSAuthStep.json
 msgid ""
 "You can create and find existing Access key IDs on the {iam} page in the AWS "
 "console."
@@ -2194,10 +2243,10 @@ msgstr ""
 "Identifikátory přístupového klíče je možné vytvářet a nalézt na stránce "
 "{iam} v AWS konzoli."
 
-#. [components.Modal.4206409720]
+#. [components.Wizard.4206409720]
 #. defaultMessage is:
 #. You can view the Secret access key only when you create a new Access key ID on the {iam} page in the AWS console.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AWSAuthStep.json
 msgid ""
 "You can view the Secret access key only when you create a new Access key ID "
 "on the {iam} page in the AWS console."
@@ -2258,15 +2307,6 @@ msgstr "metaodkaz"
 #: build/messages/components/Modal/ManageSources.json
 msgid "mirrorlist"
 msgstr "seznam zrcadel"
-
-#. [storage-container-help]
-#. defaultMessage is:
-#. storage container help
-#: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Storage container"
-msgid "storage container help"
-msgstr "Kontejner úložiště"
 
 #. [components.Modal.152217691]
 #. defaultMessage is:
@@ -2342,13 +2382,6 @@ msgstr "Vytvoření obrazu {blueprint} je dokončeno."
 msgid "{count} total components"
 msgstr "{count} celkem součástí"
 
-#. [components.Pagination.3506832526]
-#. defaultMessage is:
-#. {currentPage} of {totalPages}
-#: build/messages/components/Pagination/Pagination.json
-msgid "{currentPage} of {totalPages}"
-msgstr "{currentPage} z {totalPages}"
-
 #. [components.Modal.3908981070]
 #. defaultMessage is:
 #. {from} {oldVersion} {to} {newVersion}
@@ -2386,13 +2419,6 @@ msgstr ""
 msgid "{selectComponents} in this list to add to the blueprint."
 msgstr "{selectComponents} v tomto seznamu pro přidání do plánku."
 
-#. [components.Pagination.3363928156]
-#. defaultMessage is:
-#. {startNumber} - {endNumber} of {totalNumber}
-#: build/messages/components/Pagination/Pagination.json
-msgid "{startNumber} - {endNumber} of {totalNumber}"
-msgstr "{startNumber} - {endNumber} z {totalNumber}"
-
 #: public/manifest.json
 msgid "Creating system images"
 msgstr "Vytváření systémových obrazů"
@@ -2400,6 +2426,30 @@ msgstr "Vytváření systémových obrazů"
 #: public/manifest.json
 msgid "Image Builder"
 msgstr "Sestavování obrazů"
+
+#~ msgid "Current Items"
+#~ msgstr "Stávající položky"
+
+#~ msgid "Current Page"
+#~ msgstr "Stávající stránka"
+
+#~ msgid "Pagination"
+#~ msgstr "Stránkování"
+
+#~ msgid "Show Next Page"
+#~ msgstr "Zobrazit následující stránku"
+
+#~ msgid "Show Previous Page"
+#~ msgstr "Zobrazit předcházející stránku"
+
+#~ msgid "Upload to Amazon"
+#~ msgstr "Nahrát na Amazon"
+
+#~ msgid "{currentPage} of {totalPages}"
+#~ msgstr "{currentPage} z {totalPages}"
+
+#~ msgid "{startNumber} - {endNumber} of {totalNumber}"
+#~ msgstr "{startNumber} - {endNumber} z {totalNumber}"
 
 #~ msgid "Password is not acceptable"
 #~ msgstr "Heslo není přijatelné"
