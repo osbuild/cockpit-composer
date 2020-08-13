@@ -2,7 +2,7 @@
 # Eliane Pereira <elirpereira@gmail.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-07-01T13:27:47.962Z\n"
+"POT-Creation-Date: 2020-08-06T03:50:16.790Z\n"
 "PO-Revision-Date: 2020-02-26 13:38+0000\n"
 "Last-Translator: Eliane Pereira <elirpereira@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
@@ -28,10 +28,10 @@ msgstr "(mais recente primeiro)"
 msgid "A blueprint name is required."
 msgstr "Um nome de blueprint é obrigatório."
 
-#. [components.Modal.warningEmptyBlueprintDesc]
+#. [components.Wizard.warningEmptyBlueprintDesc]
 #. defaultMessage is:
 #. A minimal image will be created with only the packages needed to support the selected image type.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid ""
 "A minimal image will be created with only the packages needed to support the "
 "selected image type."
@@ -51,54 +51,62 @@ msgstr "Uma senha é definida para esta conta."
 msgid "A password is not defined for this account."
 msgstr "Uma senha não é definida para esta conta."
 
-#. [components.Modal.warningSizeEmpty]
+#. [components.Wizard.warningSizeEmpty]
 #. defaultMessage is:
 #. A value is required.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ReviewStep.json
 #, fuzzy
 #| msgid "A blueprint name is required."
 msgid "A value is required."
 msgstr "Um nome de blueprint é obrigatório."
 
-#. [aws-help]
+#. [components.Wizard.aws]
 #. defaultMessage is:
 #. AWS help
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "AWS help"
 msgstr ""
 
-#. [components.Modal.4193750875]
+#. [components.Wizard.4193750875]
 #. defaultMessage is:
 #. AWS region
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.4193750875]
+#. defaultMessage is:
+#. AWS region
+#: build/messages/components/Wizard/AWSDestinationStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "AWS region"
 msgstr ""
 
-#. [region-help]
+#. [components.Wizard.region]
 #. defaultMessage is:
 #. AWS region help
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AWSDestinationStep.json
 msgid "AWS region help"
 msgstr ""
 
-#. [components.Modal.1635272069]
+#. [components.Wizard.1635272069]
 #. defaultMessage is:
 #. Access key ID
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.1635272069]
+#. defaultMessage is:
+#. Access key ID
+#: build/messages/components/Wizard/AWSAuthStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Access key ID"
 msgstr ""
 
 #. [access-key-id-help]
 #. defaultMessage is:
 #. Access key ID help
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AWSAuthStep.json
 msgid "Access key ID help"
 msgstr ""
 
-#. [components.Modal.accessKeys]
+#. [components.Wizard.accessKeys]
 #. defaultMessage is:
 #. Access keys
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AzureAuthStep.json
 msgid "Access keys"
 msgstr ""
 
@@ -162,10 +170,22 @@ msgstr "Adicione última versão"
 msgid "Added"
 msgstr "Adicionado"
 
-#. [components.Modal.1175512155]
+#. [components.Wizard.1175512155]
 #. defaultMessage is:
 #. All fields are required.
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.1175512155]
+#. defaultMessage is:
+#. All fields are required.
+#. [components.Wizard.1175512155]
+#. defaultMessage is:
+#. All fields are required.
+#. [components.Wizard.1175512155]
+#. defaultMessage is:
+#. All fields are required.
+#: build/messages/components/Wizard/AWSAuthStep.json
+#: build/messages/components/Wizard/AWSDestinationStep.json
+#: build/messages/components/Wizard/AzureAuthStep.json
+#: build/messages/components/Wizard/AzureDestinationStep.json
 #, fuzzy
 #| msgid "The fields marked with {val} are required."
 msgid "All fields are required."
@@ -257,17 +277,17 @@ msgstr "Iniciar automaticamente o lorax-composer na inicialização"
 msgid "Available Components"
 msgstr "Componentes Disponíveis"
 
-#. [azure-help]
+#. [components.Wizard.azure]
 #. defaultMessage is:
 #. Azure help
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Azure help"
 msgstr ""
 
-#. [components.Modal.1347475195]
+#. [components.Wizard.1347475195]
 #. defaultMessage is:
 #. Back
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/CreateImageUpload.json
 msgid "Back"
 msgstr ""
 
@@ -289,10 +309,10 @@ msgstr "De volta a Blueprints"
 msgid "Back to {blueprint}"
 msgstr "De volta a {blueprint}"
 
-#. [components.Modal.blobService]
+#. [components.Wizard.blobService]
 #. defaultMessage is:
 #. Blob service
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AzureDestinationStep.json
 msgid "Blob service"
 msgstr ""
 
@@ -393,9 +413,6 @@ msgstr ""
 #. [components.Modal.3528672691]
 #. defaultMessage is:
 #. Cancel
-#. [components.Modal.3528672691]
-#. defaultMessage is:
-#. Cancel
 #. [components.Modal.cancel]
 #. defaultMessage is:
 #. Cancel
@@ -405,15 +422,18 @@ msgstr ""
 #. [components.Modal.3528672691]
 #. defaultMessage is:
 #. Cancel
+#. [components.Wizard.3528672691]
+#. defaultMessage is:
+#. Cancel
 #: build/messages/components/Form/TextInlineEdit.json
 #: build/messages/components/Modal/CreateBlueprint.json
-#: build/messages/components/Modal/CreateImageUpload.json
 #: build/messages/components/Modal/DeleteBlueprint.json
 #: build/messages/components/Modal/DeleteImage.json
 #: build/messages/components/Modal/EditDescription.json
 #: build/messages/components/Modal/ManageSources.json
 #: build/messages/components/Modal/StopBuild.json
 #: build/messages/components/Modal/UserAccount.json
+#: build/messages/components/Wizard/CreateImageUpload.json
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -516,19 +536,19 @@ msgstr "Comentário"
 msgid "Commit"
 msgstr "Commit"
 
-#. [components.Modal.1126783419]
+#. [components.Wizard.1126783419]
 #. defaultMessage is:
 #. Commit and create
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/CreateImageUpload.json
 #, fuzzy
 #| msgid "Commit and Create"
 msgid "Commit and create"
 msgstr "Confirmar e criar"
 
-#. [components.Modal.552112481]
+#. [components.Wizard.552112481]
 #. defaultMessage is:
 #. Commit and next
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/CreateImageUpload.json
 #, fuzzy
 #| msgid "Commit and Create"
 msgid "Commit and next"
@@ -579,12 +599,12 @@ msgstr "Copiar"
 #. [components.Modal.4120989039]
 #. defaultMessage is:
 #. Create
-#. [components.Modal.4120989039]
+#. [components.Wizard.4120989039]
 #. defaultMessage is:
 #. Create
 #: build/messages/components/Modal/CreateBlueprint.json
-#: build/messages/components/Modal/CreateImageUpload.json
 #: build/messages/components/Modal/UserAccount.json
+#: build/messages/components/Wizard/CreateImageUpload.json
 msgid "Create"
 msgstr "Criar"
 
@@ -617,22 +637,22 @@ msgstr ""
 "Crie um blueprint para definir o conteúdo que será incluído nas imagens "
 "criadas. As imagens podem ser produzidas em vários formatos de saída."
 
-#. [components.Modal.1723482220]
+#. [components.Wizard.1723482220]
 #. defaultMessage is:
 #. Create and upload image
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ReviewStep.json
 #, fuzzy
 #| msgid "Create Image"
 msgid "Create and upload image"
 msgstr "Criar imagem"
 
-#. [components.Modal.title]
+#. [components.Wizard.title]
 #. defaultMessage is:
 #. Create image
-#. [components.Modal.2020427956]
+#. [components.Wizard.2020427956]
 #. defaultMessage is:
 #. Create image
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/CreateImageUpload.json
 #, fuzzy
 #| msgid "Create Image"
 msgid "Create image"
@@ -644,20 +664,6 @@ msgstr "Criar imagem"
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Created"
 msgstr "Criado"
-
-#. [components.Pagination.2925773048] - Label for the string: 1–50 of 125; only visible to screen readers
-#. defaultMessage is:
-#. Current Items
-#: build/messages/components/Pagination/Pagination.json
-msgid "Current Items"
-msgstr "Itens atuais"
-
-#. [components.Pagination.currentPage] - Label of form input for setting current page number
-#. defaultMessage is:
-#. Current Page
-#: build/messages/components/Pagination/Pagination.json
-msgid "Current Page"
-msgstr "Pagina atual"
 
 #. [pages.blueprint.customizationsTitle]
 #. defaultMessage is:
@@ -890,10 +896,10 @@ msgstr "Filtrar por nome ..."
 msgid "Filter by Version"
 msgstr ""
 
-#. [components.Modal.787186999]
+#. [components.Wizard.787186999]
 #. defaultMessage is:
 #. Finish
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/CreateImageUpload.json
 msgid "Finish"
 msgstr ""
 
@@ -938,30 +944,42 @@ msgstr ""
 "Se nenhum nome de hospedeiro for providenciado, o nome de hospedeiro será "
 "determinado pelo Sistema Operacional."
 
-#. [components.Modal.1948537181]
+#. [components.Wizard.3593632693]
 #. defaultMessage is:
 #. Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete 
-#.                     and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
-#: build/messages/components/Modal/CreateImageUpload.json
+#.                       and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
+#. [components.Wizard.3593632693]
+#. defaultMessage is:
+#. Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete 
+#.                       and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid ""
 "Image Builder can upload images you create to a Blob container in {azure}. "
 "When the image build is complete \n"
-"                    and the upload action is successful, the image file is "
+"                      and the upload action is successful, the image file is "
 "available in the Storage account and Blob container that you specified."
 msgstr ""
 
-#. [components.Modal.4131822949]
+#. [components.Wizard.1007547894]
 #. defaultMessage is:
 #. Image Builder can upload images you create to an {bucket} in AWS and then import them into EC2. When the image build is complete
-#.                       and the upload action is successful, the image file is available in the AMI section of EC2. Most of the values required to upload
-#.                       the image can be found in the {console}.
-#: build/messages/components/Modal/CreateImageUpload.json
+#.                         and the upload action is successful, the image file is available in the AMI section of EC2. Most of the values required to upload
+#.                         the image can be found in the {console}.
+#. [components.Wizard.1007547894]
+#. defaultMessage is:
+#. Image Builder can upload images you create to an {bucket} in AWS and then import them into EC2. When the image build is complete
+#.                         and the upload action is successful, the image file is available in the AMI section of EC2. Most of the values required to upload
+#.                         the image can be found in the {console}.
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid ""
 "Image Builder can upload images you create to an {bucket} in AWS and then "
 "import them into EC2. When the image build is complete\n"
-"                      and the upload action is successful, the image file is "
-"available in the AMI section of EC2. Most of the values required to upload\n"
-"                      the image can be found in the {console}."
+"                        and the upload action is successful, the image file "
+"is available in the AMI section of EC2. Most of the values required to "
+"upload\n"
+"                        the image can be found in the {console}."
 msgstr ""
 
 #. [components.EmptyState.errorInactiveTitle]
@@ -1002,56 +1020,72 @@ msgstr "Criação de imagem pendente"
 #. [components.ListView.imageName] - The name given by the user for an image
 #. defaultMessage is:
 #. Image name
-#. [components.Modal.2794911472]
+#. [components.Wizard.2794911472]
+#. defaultMessage is:
+#. Image name
+#. [components.Wizard.2794911472]
+#. defaultMessage is:
+#. Image name
+#. [components.Wizard.2794911472]
 #. defaultMessage is:
 #. Image name
 #: build/messages/components/ListView/ListItemUploads.json
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AWSDestinationStep.json
+#: build/messages/components/Wizard/AzureDestinationStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Image name"
 msgstr "Nome da imagem"
 
-#. [image-name-help]
+#. [components.Wizard.imageName]
 #. defaultMessage is:
 #. Image name help
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.imageName]
+#. defaultMessage is:
+#. Image name help
+#: build/messages/components/Wizard/AWSDestinationStep.json
+#: build/messages/components/Wizard/AzureDestinationStep.json
 #, fuzzy
 #| msgid "Image name"
 msgid "Image name help"
 msgstr "Nome da imagem"
 
-#. [components.Modal.1005710141]
+#. [components.Wizard.1005710141]
 #. defaultMessage is:
 #. Image output
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ReviewStep.json
 #, fuzzy
 #| msgid "Image uploads"
 msgid "Image output"
 msgstr "Carregamento de imagens"
 
 # auto translated by TM merge from project: ManageIQ, version: CF-4.5, DocId: xae
-#. [components.Modal.1905943231]
+#. [components.Wizard.1905943231]
 #. defaultMessage is:
 #. Image size
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.1905943231]
+#. defaultMessage is:
+#. Image size
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 #, fuzzy
 #| msgid "Images"
 msgid "Image size"
 msgstr "Imagens"
 
 # auto translated by TM merge from project: ManageIQ, version: CF-4.5, DocId: xae
-#. [image-size-help]
+#. [components.Wizard.imageSize]
 #. defaultMessage is:
 #. Image size help
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 #, fuzzy
 #| msgid "Images"
 msgid "Image size help"
 msgstr "Imagens"
 
-#. [components.Modal.1813441558]
+#. [components.Wizard.1813441558]
 #. defaultMessage is:
 #. Image type
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ReviewStep.json
 #, fuzzy
 #| msgid "Image Type"
 msgid "Image type"
@@ -1104,10 +1138,14 @@ msgstr "Gerenciar fontes"
 msgid "Message"
 msgstr "Mensagem"
 
-#. [components.Modal.warningSizeSmall]
+#. [components.Wizard.warningSizeSmall]
 #. defaultMessage is:
 #. Minimum size is {size} GB.
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.warningSizeSmall]
+#. defaultMessage is:
+#. Minimum size is {size} GB.
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Minimum size is {size} GB."
 msgstr ""
 
@@ -1159,10 +1197,10 @@ msgstr "Nome: {name}"
 msgid "New password"
 msgstr "Nova senha"
 
-#. [components.Modal.3673120330]
+#. [components.Wizard.3673120330]
 #. defaultMessage is:
 #. Next
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/CreateImageUpload.json
 msgid "Next"
 msgstr ""
 
@@ -1216,17 +1254,17 @@ msgstr "Nenhuma imagem foi criada a partir deste blueprint."
 msgid "No log available"
 msgstr "Nenum registro de evento disponível"
 
-#. [ostree-parent-help]
+#. [components.Wizard.ostreeParent]
 #. defaultMessage is:
 #. OSTree parent help
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid "OSTree parent help"
 msgstr ""
 
-#. [ostree-ref-help]
+#. [components.Wizard.ostreeRef]
 #. defaultMessage is:
 #. OSTree ref help
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid "OSTree ref help"
 msgstr ""
 
@@ -1266,17 +1304,10 @@ msgstr "Página Não Encontrada"
 msgid "Page not found"
 msgstr "página não encontrada"
 
-#. [components.Pagination.pagination]
-#. defaultMessage is:
-#. Pagination
-#: build/messages/components/Pagination/Pagination.json
-msgid "Pagination"
-msgstr "Paginação"
-
-#. [components.Modal.3070030782]
+#. [components.Wizard.3070030782]
 #. defaultMessage is:
 #. Parent commit
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid "Parent commit"
 msgstr ""
 
@@ -1304,35 +1335,43 @@ msgstr "Cole o conteúdo do seu arquivo de chave SSH público aqui."
 msgid "Pending Changes"
 msgstr "Alterações pendentes"
 
-#. [provess-length-help]
+#. [components.Wizard.processLength]
 #. defaultMessage is:
 #. Process length help
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.processLength]
+#. defaultMessage is:
+#. Process length help
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Process length help"
 msgstr ""
 
-#. [components.Modal.4277042358]
+#. [components.Wizard.4277042358]
 #. defaultMessage is:
 #. Provide a file name to be used for the image file that will be uploaded.
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.4277042358]
+#. defaultMessage is:
+#. Provide a file name to be used for the image file that will be uploaded.
+#: build/messages/components/Wizard/AWSDestinationStep.json
+#: build/messages/components/Wizard/AzureDestinationStep.json
 msgid ""
 "Provide a file name to be used for the image file that will be uploaded."
 msgstr ""
 
-#. [components.Modal.2186792528]
+#. [components.Wizard.2186792528]
 #. defaultMessage is:
 #. Provide the AWS Region where you want to import your image. This must be the same region where the {bucket} exists.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AWSDestinationStep.json
 msgid ""
 "Provide the AWS Region where you want to import your image. This must be the "
 "same region where the {bucket} exists."
 msgstr ""
 
-#. [components.Modal.517158149]
+#. [components.Wizard.517158149]
 #. defaultMessage is:
 #. Provide the Blob container to which the image file will be uploaded. You can find containers under the {blobService} 
 #.                     section of a storage account. You can find storage accounts on the {storageAccounts} page in the {azure} portal.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AzureDestinationStep.json
 msgid ""
 "Provide the Blob container to which the image file will be uploaded. You can "
 "find containers under the {blobService} \n"
@@ -1340,36 +1379,35 @@ msgid ""
 "accounts on the {storageAccounts} page in the {azure} portal."
 msgstr ""
 
-#. [components.Modal.1099888225]
+#. [components.Wizard.1099888225]
 #. defaultMessage is:
 #. Provide the ID of the latest commit in the updates repository for which this commit provides an update.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid ""
 "Provide the ID of the latest commit in the updates repository for which this "
 "commit provides an update."
 msgstr ""
 
-#. [components.Modal.2822010101]
+#. [components.Wizard.1901372247]
 #. defaultMessage is:
 #. Provide the S3 {bucket} name to which the image file will be uploaded before being imported into EC2. 
-#.                           The {bucket} must already exist in the Region where you want to import your image. You can find a list of {buckets} on the
-#.                           {bucketsPage} page in the {amazon} S3 storage service in the AWS console.
-#: build/messages/components/Modal/CreateImageUpload.json
+#.                         The {bucket} must already exist in the Region where you want to import your image. You can find a list of {buckets} on the
+#.                         {bucketsPage} page in the {amazon} S3 storage service in the AWS console.
+#: build/messages/components/Wizard/AWSDestinationStep.json
 msgid ""
 "Provide the S3 {bucket} name to which the image file will be uploaded before "
 "being imported into EC2. \n"
-"                          The {bucket} must already exist in the Region "
-"where you want to import your image. You can find a list of {buckets} on "
-"the\n"
-"                          {bucketsPage} page in the {amazon} S3 storage "
+"                        The {bucket} must already exist in the Region where "
+"you want to import your image. You can find a list of {buckets} on the\n"
+"                        {bucketsPage} page in the {amazon} S3 storage "
 "service in the AWS console."
 msgstr ""
 
-#. [components.Modal.2706552502]
+#. [components.Wizard.2706552502]
 #. defaultMessage is:
 #. Provide the access key for the desired storage account. You can find the access key on the {accessKeys} 
 #.                         page of the storage account. You can find storage accounts on the {storageAccounts} page in the {azure} portal.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AzureAuthStep.json
 msgid ""
 "Provide the access key for the desired storage account. You can find the "
 "access key on the {accessKeys} \n"
@@ -1377,28 +1415,28 @@ msgid ""
 "accounts on the {storageAccounts} page in the {azure} portal."
 msgstr ""
 
-#. [components.Modal.1434969769]
+#. [components.Wizard.1434969769]
 #. defaultMessage is:
 #. Provide the name of a storage account. You can find storage accounts on the {storageAccounts} page in the {azure} portal.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AzureAuthStep.json
 msgid ""
 "Provide the name of a storage account. You can find storage accounts on the "
 "{storageAccounts} page in the {azure} portal."
 msgstr ""
 
-#. [components.Modal.1476874820]
+#. [components.Wizard.1476874820]
 #. defaultMessage is:
 #. Provide the name of the branch for the content. If the ref does not already exist it will be created.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid ""
 "Provide the name of the branch for the content. If the ref does not already "
 "exist it will be created."
 msgstr ""
 
-#. [components.Modal.31026111]
+#. [components.Wizard.31026111]
 #. defaultMessage is:
 #. Ref
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid "Ref"
 msgstr ""
 
@@ -1485,10 +1523,10 @@ msgstr "Removendo fonte"
 msgid "Required information is missing."
 msgstr "Informações necessárias estão faltando."
 
-#. [components.Modal.review]
+#. [components.Wizard.review]
 #. defaultMessage is:
 #. Review the information below and click Finish to create the image and complete the tasks that were selected.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid ""
 "Review the information below and click Finish to create the image and "
 "complete the tasks that were selected."
@@ -1501,10 +1539,10 @@ msgstr ""
 msgid "Role"
 msgstr "Função"
 
-#. [bucket-help]
+#. [components.Wizard.bucket]
 #. defaultMessage is:
 #. S3 Bucket help
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AWSDestinationStep.json
 msgid "S3 Bucket help"
 msgstr ""
 
@@ -1533,17 +1571,21 @@ msgstr "Salvar"
 msgid "Saving source"
 msgstr "Salvando fonte"
 
-#. [components.Modal.135579143]
+#. [components.Wizard.135579143]
 #. defaultMessage is:
 #. Secret access key
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.135579143]
+#. defaultMessage is:
+#. Secret access key
+#: build/messages/components/Wizard/AWSAuthStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Secret access key"
 msgstr ""
 
 #. [secret-access-key-help]
 #. defaultMessage is:
 #. Secret access key help
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AWSAuthStep.json
 msgid "Secret access key help"
 msgstr ""
 
@@ -1564,11 +1606,11 @@ msgstr "Selecione componentes"
 #. [components.Modal.selectOne]
 #. defaultMessage is:
 #. Select one
-#. [components.Modal.selectOne]
+#. [components.Wizard.selectOne]
 #. defaultMessage is:
 #. Select one
-#: build/messages/components/Modal/CreateImageUpload.json
 #: build/messages/components/Modal/ManageSources.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid "Select one"
 msgstr "Selecione um"
 
@@ -1600,10 +1642,10 @@ msgstr "Definir nova senha"
 msgid "Set Password"
 msgstr "Definir Senha"
 
-#. [components.Modal.imageSizePopover]
+#. [components.Wizard.imageSizePopover]
 #. defaultMessage is:
 #. Set the size that you want the image to be when instantiated. The total package size and target destination of your image should be considered when setting the image size.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid ""
 "Set the size that you want the image to be when instantiated. The total "
 "package size and target destination of your image should be considered when "
@@ -1630,20 +1672,6 @@ msgstr "Mostrar detalhes e mais opções"
 #: build/messages/components/ListView/ComponentSummaryList.json
 msgid "Show Less"
 msgstr "Mostre menos"
-
-#. [components.Pagination.nextPage]
-#. defaultMessage is:
-#. Show Next Page
-#: build/messages/components/Pagination/Pagination.json
-msgid "Show Next Page"
-msgstr "Mostrar próxima página"
-
-#. [components.Pagination.previousPage]
-#. defaultMessage is:
-#. Show Previous Page
-#: build/messages/components/Pagination/Pagination.json
-msgid "Show Previous Page"
-msgstr "Mostrar página anterior"
 
 #. [components.ListView.imageSize] - A label for the size of an image file
 #. defaultMessage is:
@@ -1730,47 +1758,72 @@ msgstr "Parar de construir"
 msgid "Stopping"
 msgstr "Parando"
 
-#. [components.Modal.4127941395]
+#. [components.Wizard.4127941395]
 #. defaultMessage is:
 #. Storage access key
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.4127941395]
+#. defaultMessage is:
+#. Storage access key
+#: build/messages/components/Wizard/AzureAuthStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Storage access key"
 msgstr ""
 
-#. [storage-access-key-help]
+#. [components.Wizard.storageAccessKey]
 #. defaultMessage is:
 #. Storage access key help
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AzureAuthStep.json
 msgid "Storage access key help"
 msgstr ""
 
-#. [components.Modal.1624497518]
+#. [components.Wizard.1624497518]
 #. defaultMessage is:
 #. Storage account
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.1624497518]
+#. defaultMessage is:
+#. Storage account
+#: build/messages/components/Wizard/AzureAuthStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Storage account"
 msgstr ""
 
-#. [storage-account-help]
+#. [components.Wizard.storageAccount]
 #. defaultMessage is:
 #. Storage account help
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AzureAuthStep.json
 msgid "Storage account help"
 msgstr ""
 
-#. [components.Modal.storageAccounts]
+#. [components.Wizard.storageAccounts]
 #. defaultMessage is:
 #. Storage accounts
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.storageAccounts]
+#. defaultMessage is:
+#. Storage accounts
+#: build/messages/components/Wizard/AzureAuthStep.json
+#: build/messages/components/Wizard/AzureDestinationStep.json
 msgid "Storage accounts"
 msgstr ""
 
-#. [components.Modal.1249927125]
+#. [components.Wizard.1249927125]
 #. defaultMessage is:
 #. Storage container
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.1249927125]
+#. defaultMessage is:
+#. Storage container
+#: build/messages/components/Wizard/AzureDestinationStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Storage container"
 msgstr ""
+
+#. [components.Wizard.storageContainer]
+#. defaultMessage is:
+#. Storage container help
+#: build/messages/components/Wizard/AzureDestinationStep.json
+#, fuzzy
+#| msgid "Image name"
+msgid "Storage container help"
+msgstr "Nome da imagem"
 
 #. [components.ListView.3639476303] - System sources are configured repositories that were found on the host machine
 #. defaultMessage is:
@@ -1841,10 +1894,14 @@ msgstr "A página que você está procurando não existe ou ocorreu outro erro."
 msgid "The service osbuild-composer was not started."
 msgstr "O serviço lorax-composer não foi iniciado."
 
-#. [components.Modal.warningSizeLarge]
+#. [components.Wizard.warningSizeLarge]
 #. defaultMessage is:
 #. The size specified is large. We recommend that you check whether your target destination has any restrictions on image size.
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.warningSizeLarge]
+#. defaultMessage is:
+#. The size specified is large. We recommend that you check whether your target destination has any restrictions on image size.
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid ""
 "The size specified is large. We recommend that you check whether your target "
 "destination has any restrictions on image size."
@@ -1886,10 +1943,10 @@ msgstr ""
 "Não há componentes listados no blueprint. Edite o blueprint para adicionar "
 "componentes."
 
-#. [components.Modal.warningReview]
+#. [components.Wizard.warningReview]
 #. defaultMessage is:
 #. There are one or more fields that require your attention.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "There are one or more fields that require your attention."
 msgstr ""
 
@@ -1904,10 +1961,10 @@ msgstr ""
 msgid "This action cannot be undone."
 msgstr "Essa ação não pode ser desfeita."
 
-#. [components.Modal.warningUnsaved]
+#. [components.Wizard.warningUnsaved]
 #. defaultMessage is:
 #. This blueprint has changes that are not committed. These changes will be committed before the image is created.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid ""
 "This blueprint has changes that are not committed. These changes will be "
 "committed before the image is created."
@@ -1918,7 +1975,7 @@ msgstr ""
 #. [empty-blueprint-alert]
 #. defaultMessage is:
 #. This blueprint is empty.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid "This blueprint is empty."
 msgstr "Este modelo está vazio."
 
@@ -1929,10 +1986,14 @@ msgstr "Este modelo está vazio."
 msgid "This component has no dependencies."
 msgstr "Este componente não tem dependencias."
 
-#. [components.Modal.infotip]
+#. [components.Wizard.infotip]
 #. defaultMessage is:
 #. This process can take a while. Images are built in the order they are started.
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.infotip]
+#. defaultMessage is:
+#. This process can take a while. Images are built in the order they are started.
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid ""
 "This process can take a while. Images are built in the order they are "
 "started."
@@ -1954,15 +2015,20 @@ msgstr "Este nome de fonte já existe."
 msgid "This source path already exists."
 msgstr "Este caminho de fonte já existe."
 
-#. [components.Modal.2415751559]
+#. [components.Wizard.1727762289]
 #. defaultMessage is:
 #. This upload process requires that you have an {iam} role named {vmimport} to ensure that the image can
-#.                       be imported from the S3 {bucket} into EC2. For more details, refer to the {role}.
-#: build/messages/components/Modal/CreateImageUpload.json
+#.                         be imported from the S3 {bucket} into EC2. For more details, refer to the {role}.
+#. [components.Wizard.1727762289]
+#. defaultMessage is:
+#. This upload process requires that you have an {iam} role named {vmimport} to ensure that the image can
+#.                         be imported from the S3 {bucket} into EC2. For more details, refer to the {role}.
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid ""
 "This upload process requires that you have an {iam} role named {vmimport} to "
 "ensure that the image can\n"
-"                      be imported from the S3 {bucket} into EC2. For more "
+"                        be imported from the S3 {bucket} into EC2. For more "
 "details, refer to the {role}."
 msgstr ""
 
@@ -2055,19 +2121,19 @@ msgstr "Envio completo"
 msgid "Upload failed"
 msgstr "Envio falhou"
 
-#. [components.Modal.3057159632]
+#. [components.Wizard.3057159632]
 #. defaultMessage is:
 #. Upload image
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 #, fuzzy
 #| msgid "Upload failed"
 msgid "Upload image"
 msgstr "Envio falhou"
 
-#. [upload-image-help]
+#. [components.Wizard.uploadImage]
 #. defaultMessage is:
 #. Upload image help
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
 #, fuzzy
 #| msgid "Upload complete"
 msgid "Upload image help"
@@ -2087,29 +2153,27 @@ msgstr "Envio em andamento"
 msgid "Upload pending"
 msgstr "Envio pendente"
 
-#. [components.Modal.uploadAWS]
+#. [components.Wizard.uploadAWS]
 #. defaultMessage is:
 #. Upload to AWS
-#: build/messages/components/Modal/CreateImageUpload.json
+#. [components.Wizard.3235936248]
+#. defaultMessage is:
+#. Upload to AWS
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 #, fuzzy
 #| msgid "Upload type"
 msgid "Upload to AWS"
 msgstr "Tipo de envio"
 
-#. [components.Modal.1426592721]
-#. defaultMessage is:
-#. Upload to Amazon
-#: build/messages/components/Modal/CreateImageUpload.json
-msgid "Upload to Amazon"
-msgstr ""
-
-#. [components.Modal.uploadAzure]
+#. [components.Wizard.uploadAzure]
 #. defaultMessage is:
 #. Upload to Azure
-#. [components.Modal.2244258572]
+#. [components.Wizard.2244258572]
 #. defaultMessage is:
 #. Upload to Azure
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 #, fuzzy
 #| msgid "Upload type"
 msgid "Upload to Azure"
@@ -2180,19 +2244,19 @@ msgstr "Versão"
 msgid "View"
 msgstr "Ver"
 
-#. [components.Modal.706264916]
+#. [components.Wizard.706264916]
 #. defaultMessage is:
 #. You can create and find existing Access key IDs on the {iam} page in the AWS console.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AWSAuthStep.json
 msgid ""
 "You can create and find existing Access key IDs on the {iam} page in the AWS "
 "console."
 msgstr ""
 
-#. [components.Modal.4206409720]
+#. [components.Wizard.4206409720]
 #. defaultMessage is:
 #. You can view the Secret access key only when you create a new Access key ID on the {iam} page in the AWS console.
-#: build/messages/components/Modal/CreateImageUpload.json
+#: build/messages/components/Wizard/AWSAuthStep.json
 msgid ""
 "You can view the Secret access key only when you create a new Access key ID "
 "on the {iam} page in the AWS console."
@@ -2251,15 +2315,6 @@ msgstr "metalink"
 #: build/messages/components/Modal/ManageSources.json
 msgid "mirrorlist"
 msgstr "lista de espelhos"
-
-#. [storage-container-help]
-#. defaultMessage is:
-#. storage container help
-#: build/messages/components/Modal/CreateImageUpload.json
-#, fuzzy
-#| msgid "Image name"
-msgid "storage container help"
-msgstr "Nome da imagem"
 
 #. [components.Modal.152217691]
 #. defaultMessage is:
@@ -2335,13 +2390,6 @@ msgstr "{blueprint} A criação da imagem está completa."
 msgid "{count} total components"
 msgstr "{count} componentes totais"
 
-#. [components.Pagination.3506832526]
-#. defaultMessage is:
-#. {currentPage} of {totalPages}
-#: build/messages/components/Pagination/Pagination.json
-msgid "{currentPage} of {totalPages}"
-msgstr "{currentPage} do {totalPages}"
-
 #. [components.Modal.3908981070]
 #. defaultMessage is:
 #. {from} {oldVersion} {to} {newVersion}
@@ -2380,13 +2428,6 @@ msgstr ""
 msgid "{selectComponents} in this list to add to the blueprint."
 msgstr "{selectComponents} nesta lista para adicionar ao blueprint."
 
-#. [components.Pagination.3363928156]
-#. defaultMessage is:
-#. {startNumber} - {endNumber} of {totalNumber}
-#: build/messages/components/Pagination/Pagination.json
-msgid "{startNumber} - {endNumber} of {totalNumber}"
-msgstr "{startNumber} - {endNumber} do {totalNumber}"
-
 #: public/manifest.json
 msgid "Creating system images"
 msgstr "Criando imagens do sistema"
@@ -2394,6 +2435,27 @@ msgstr "Criando imagens do sistema"
 #: public/manifest.json
 msgid "Image Builder"
 msgstr "Criador de Imagem de Disco"
+
+#~ msgid "Current Items"
+#~ msgstr "Itens atuais"
+
+#~ msgid "Current Page"
+#~ msgstr "Pagina atual"
+
+#~ msgid "Pagination"
+#~ msgstr "Paginação"
+
+#~ msgid "Show Next Page"
+#~ msgstr "Mostrar próxima página"
+
+#~ msgid "Show Previous Page"
+#~ msgstr "Mostrar página anterior"
+
+#~ msgid "{currentPage} of {totalPages}"
+#~ msgstr "{currentPage} do {totalPages}"
+
+#~ msgid "{startNumber} - {endNumber} of {totalNumber}"
+#~ msgstr "{startNumber} - {endNumber} do {totalNumber}"
 
 #~ msgid "Password is not acceptable"
 #~ msgstr "Senha não é aceitável"
