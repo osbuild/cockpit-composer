@@ -2,7 +2,7 @@
 VERSION=$(shell $(CURDIR)/rpmversion.sh | cut -d - -f 1)
 RELEASE=$(shell $(CURDIR)/rpmversion.sh | cut -d - -f 2)
 PACKAGE_NAME := $(shell awk '/"name":/ {gsub(/[",]/, "", $$2); print $$2}' package.json)
-TEST_OS ?= fedora-31
+TEST_OS ?= fedora-32
 export TEST_OS
 VM_IMAGE=$(CURDIR)/test/images/$(TEST_OS)
 ifneq (,$(wildcard ~/.config/codecov-token))
@@ -152,15 +152,11 @@ machine: bots
 	rsync -avR --exclude="bots/machine/machine_core/__pycache__/" bots/machine/testvm.py bots/machine/identity bots/machine/cloud-init.iso bots/machine/machine_core bots/task/testmap.py test
 
 # checkout Cockpit's test API; this has no API stability guarantee, so check out a stable tag
-# this needs a recent adjustment for firefox 77 and working with
-# network-enabled tests, so checkout a SHA until cockpit 221 releases
+# this needs a recent adjustment for firefox 77 and working with network-enabled tests
 test/common:
-	#git fetch --depth=1 https://github.com/cockpit-project/cockpit.git 221
-	#git checkout --force FETCH_HEAD -- test/common
-	git fetch https://github.com/cockpit-project/cockpit.git
-	git checkout --force 48c716de7ebd -- test/common
+	git fetch --depth=1 https://github.com/cockpit-project/cockpit.git 225
+	git checkout --force FETCH_HEAD -- test/common
 	git reset test/common
-
 
 $(NODE_MODULES_TEST): package.json
 	# if it exists already, npm install won't update it; force that so that we always get up-to-date packages
