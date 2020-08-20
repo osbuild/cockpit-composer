@@ -64,6 +64,11 @@ class FilterInput extends React.Component {
     const { emptyState, filters } = this.props;
     const currentFilterType = filters.filterTypes.find((type) => type.id === this.state.currentFilterId);
     const { formatMessage } = this.props.intl;
+    const filterLabels = filters.filterTypes.map((filter) => {
+      const message = `filter${filter.title}Title`;
+      filter.title = messages[message] ? formatMessage(messages[message]) : filter.title;
+      return filter;
+    });
 
     const filterGroup = (filterID) => {
       switch (filterID) {
@@ -71,7 +76,7 @@ class FilterInput extends React.Component {
           return (
             <div className="input-group">
               <Filter.TypeSelector
-                filterTypes={filters.filterTypes}
+                filterTypes={filterLabels}
                 currentFilterType={formatMessage(messages.filterNameTitle)}
                 onFilterTypeSelected={this.selectFilterType}
               />
@@ -91,7 +96,7 @@ class FilterInput extends React.Component {
           return (
             <div className="input-group">
               <Filter.TypeSelector
-                filterTypes={filters.filterTypes}
+                filterTypes={filterLabels}
                 currentFilterType={formatMessage(messages.filterReleaseTitle)}
                 onFilterTypeSelected={this.selectFilterType}
               />
@@ -111,7 +116,7 @@ class FilterInput extends React.Component {
           return (
             <div className="input-group">
               <Filter.TypeSelector
-                filterTypes={filters.filterTypes}
+                filterTypes={filterLabels}
                 currentFilterType={formatMessage(messages.filterVersionTitle)}
                 onFilterTypeSelected={this.selectFilterType}
               />
