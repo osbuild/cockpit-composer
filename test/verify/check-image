@@ -28,14 +28,6 @@ class TestImage(composerlib.ComposerCase):
                     "Images are built in the order they are started.")
         b.click(".pf-c-popover__content button")
         b.wait_not_present(".pf-c-popover__body")
-        # check ? (image size help) button
-        b.click("button[aria-label='Image size help']")
-        b.wait_text(".pf-c-popover__body",
-                    "Set the size that you want the image to be when instantiated. The total "
-                    "package size and target destination of your image should be considered when "
-                    "setting the image size.")
-        b.click(".pf-c-popover__content button")
-        b.wait_not_present(".pf-c-popover__body")
         # check non upload image action (Create only)
         # group actions for select from dropdown menu
         b.wait_visible("#image-type")
@@ -44,6 +36,14 @@ class TestImage(composerlib.ComposerCase):
         value_id = b.attr(test_selector, "value")
         b.set_val("#image-type", value_id)
         b.wait_val("#image-type", value_id)
+        # check ? (image size help) button
+        b.click("button[aria-label='Image size help']")
+        b.wait_text(".pf-c-popover__body",
+                    "Set the size that you want the image to be when instantiated. The total "
+                    "package size and target destination of your image should be considered when "
+                    "setting the image size.")
+        b.click(".pf-c-popover__content button")
+        b.wait_not_present(".pf-c-popover__body")
         # groups action done
         b.wait_text("#continue-button", "Create")
 
@@ -119,14 +119,14 @@ class TestImage(composerlib.ComposerCase):
         b.click("button:contains('Back')")
         b.wait_text("#create-image-upload-wizard #blueprint-name", "httpd-server")
         # go to each setion by clicking link directly
-        b.click("a:contains('Authentication')")
-        b.click("a:contains('Destination')")
-        b.click("a:contains('Review')")
+        b.click("button:contains('Authentication')")
+        b.click("button:contains('Destination')")
+        b.click("button:contains('Review')")
         b.wait_in_text(".pf-c-alert__title",
                        "There are one or more fields that require your attention.")
         b.wait_attr("#continue-button", "disabled", "")
         # check and enter authentication fields
-        b.click("a:contains('Authentication')")
+        b.click("button:contains('Authentication')")
         b.wait_present("span:contains('Access key ID')")
         # check access key id help button
         b.click("button[aria-label='Access key ID help']")
@@ -150,7 +150,7 @@ class TestImage(composerlib.ComposerCase):
         b.focus("input[id='secret-access-key-input']")
         b.key_press("gunna")
         # check and enter destination fields
-        b.click("a:contains('Destination')")
+        b.click("button:contains('Destination')")
         b.wait_present("span:contains('Image name')")
         # check image name help button
         b.click("button[aria-label='Image name help']")
@@ -186,7 +186,7 @@ class TestImage(composerlib.ComposerCase):
         b.focus("input[id='region-input']")
         b.key_press("up")
         # Verify AWS Review page
-        b.click("a:contains('Review')")
+        b.click("button:contains('Review')")
         # check ? (AWS upload image help) button
         b.click("button[aria-label='AWS help']")
         b.wait_in_text(".pf-c-popover__body",
@@ -254,7 +254,6 @@ class TestImage(composerlib.ComposerCase):
         b.click("#azure-checkbox")
         b.click("button:contains('Next')")
         # check and enter authentication fields
-        b.click("a:contains('Authentication')")
         b.wait_present("span:contains('Storage account')")
         # check storage account help button
         b.click("button[aria-label='Storage account help']")
@@ -279,7 +278,7 @@ class TestImage(composerlib.ComposerCase):
         b.focus("input[id='storage-access-key-input']")
         b.key_press("gunna")
         # check and enter destination fields
-        b.click("a:contains('Destination')")
+        b.click("button:contains('Destination')")
         b.wait_present("span:contains('Image name')")
         # check image name help button
         b.click("button[aria-label='Image name help']")
@@ -304,7 +303,7 @@ class TestImage(composerlib.ComposerCase):
         b.focus("input[id='storage-container-input']")
         b.key_press("you-up")
         # Verify Azure Review page
-        b.click("a:contains('Review')")
+        b.click("button:contains('Review')")
         # check ? (Azure upload image help) button
         b.click("button[aria-label='Azure help']")
         b.wait_in_text(".pf-c-popover__body",
