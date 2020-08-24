@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@patternfly/patternfly": "4.23.3",
-    "@patternfly/react-core": "4.32.1",
+    "@patternfly/react-core": "4.40.4",
     "@patternfly/react-icons": "4.5.0",
     "@patternfly/react-table": "4.12.1",
     "bootstrap": "3.4.1",
