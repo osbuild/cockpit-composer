@@ -7,10 +7,10 @@
     "npm": ">=5.0"
   },
   "dependencies": {
-    "@patternfly/patternfly": "4.23.3",
-    "@patternfly/react-core": "4.32.1",
-    "@patternfly/react-icons": "4.5.0",
-    "@patternfly/react-table": "4.12.1",
+    "@patternfly/patternfly": "4.35.2",
+    "@patternfly/react-core": "4.47.0",
+    "@patternfly/react-icons": "4.7.4",
+    "@patternfly/react-table": "4.15.5",
     "bootstrap": "3.4.1",
     "core-js": "3.6.5",
     "core-js-compat": "3.6.5",
