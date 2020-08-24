@@ -7,9 +7,9 @@
 # Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-08-06T03:50:16.790Z\n"
-"PO-Revision-Date: 2020-07-09 09:27+0000\n"
-"Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
+"POT-Creation-Date: 2020-08-19T07:15:37.848Z\n"
+"PO-Revision-Date: 2020-07-06 08:27+0000\n"
+"Last-Translator: Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>\n"
 "Language-Team: French <https://translate.fedoraproject.org/projects/cockpit-"
 "composer/master/fr/>\n"
 "Language: fr\n"
@@ -40,9 +40,7 @@ msgstr "Un nom de modèle est exigé."
 msgid ""
 "A minimal image will be created with only the packages needed to support the "
 "selected image type."
-msgstr ""
-"Une image minimale sera créée avec seulement les paquets nécessaires pour "
-"supporter le type d’image sélectionné."
+msgstr "Une image minimale sera créée avec les paquets nécessaires pour supporter le type d'image sélectionné uniquement."
 
 #. [components.Modal.2310857819]
 #. defaultMessage is:
@@ -216,9 +214,7 @@ msgstr "Une erreur s’est produite"
 msgid ""
 "An error occurred when saving the source. Check that the path is valid and "
 "try again."
-msgstr ""
-"L’erreur suivante est apparue lors de la sauvegarde de la source. Veuillez "
-"vérifier que le chemin d’accès soit bien valide et essayer à nouveau."
+msgstr "L’erreur suivante est apparue lors de la sauvegarde de la source. Veuillez vérifier que le chemin d’accès soit bien valide et essayer à nouveau."
 
 #. [components.ListView.emptyStateErrorMessage]
 #. defaultMessage is:
@@ -260,8 +256,7 @@ msgstr "Êtes-vous sûr de vouloir supprimer l’image de {blueprintName} ?"
 #. Are you sure you want to stop the build process for {blueprintName}?
 #: build/messages/components/Modal/StopBuild.json
 msgid "Are you sure you want to stop the build process for {blueprintName}?"
-msgstr ""
-"Voulez-vous vraiment arrêter le processus de build pour {blueprintName} ?"
+msgstr "Voulez-vous vraiment arrêter le processus de build pour {blueprintName} ?"
 
 #. [components.EmptyState.errorInactiveCheckbox]
 #. defaultMessage is:
@@ -282,7 +277,7 @@ msgstr "Composants disponibles"
 #. Azure help
 #: build/messages/components/Wizard/ReviewStep.json
 msgid "Azure help"
-msgstr "Aide d’Azure"
+msgstr "Azure Help"
 
 #. [components.Wizard.1347475195]
 #. defaultMessage is:
@@ -347,18 +342,14 @@ msgstr "Composants du Modèle"
 #. Blueprint names cannot contain spaces or the character: {invalidChar}
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "Blueprint names cannot contain spaces or the character: {invalidChar}"
-msgstr ""
-"Le noms de topologie ne peuvent pas contenir d’espaces ou de caractère : "
-"{invalidChar}"
+msgstr "Le noms de topologie ne peuvent pas contenir d’espaces ou de caractère : {invalidChar}"
 
 #. [components.Modal.1134732033]
 #. defaultMessage is:
 #. Blueprint names cannot contain spaces or the characters: {invalidChar}
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "Blueprint names cannot contain spaces or the characters: {invalidChar}"
-msgstr ""
-"Le noms de topologie ne peuvent pas contenir d’espaces ou de caractères : "
-"{invalidChar}"
+msgstr "Le noms de topologie ne peuvent pas contenir d’espaces ou de caractères : {invalidChar}"
 
 #. [components.Modal.2803906810]
 #. defaultMessage is:
@@ -372,18 +363,14 @@ msgstr "Le noms de modèles (topologie) ne peuvent pas contenir d’espaces."
 #. Blueprint names cannot contain the character: {invalidChar}
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "Blueprint names cannot contain the character: {invalidChar}"
-msgstr ""
-"Le noms de modèles (topologie) ne peuvent pas contenir le caractère : "
-"{invalidChar}"
+msgstr "Le noms de modèles (topologie) ne peuvent pas contenir le caractère : {invalidChar}"
 
 #. [components.Modal.3918401128]
 #. defaultMessage is:
 #. Blueprint names cannot contain the characters: {invalidChar}
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "Blueprint names cannot contain the characters: {invalidChar}"
-msgstr ""
-"Le noms de modèles (topologie) ne peuvent pas contenir les caractères : "
-"{invalidChar}"
+msgstr "Le noms de modèles (topologie) ne peuvent pas contenir les caractères : {invalidChar}"
 
 #. [pages.blueprints.blueprintsTitle]
 #. defaultMessage is:
@@ -399,9 +386,7 @@ msgstr "Modèles"
 msgid ""
 "Browse or search for components, then add them to the blueprint. Or leave "
 "the blueprint empty to create a minimal image."
-msgstr ""
-"Parcourez ou recherchez les composants, puis ajoutez-les au plan. Ou laissez "
-"le plan vide pour créer une image minimale."
+msgstr "Parcourez ou recherchez les composants, puis ajoutez-les au modèle. Ou laissez le modèle vide pour créer une image minimale."
 
 #. [components.Form.cancel]
 #. defaultMessage is:
@@ -463,10 +448,7 @@ msgstr "Modifications effectuées lors de la session précédente"
 msgid ""
 "Changes made in a previous session are not listed in the order they were "
 "made. If you choose to undo these changes, they are undone as a group."
-msgstr ""
-"Les modifications effectuées dans la session précédente ne sont pas listées "
-"dans l’ordre dans lequel elles ont été faites. Si vous choisissez d’annuler "
-"ces changements, ils seront annulés en tant que groupe."
+msgstr "Les modifications effectuées dans la session précédente ne sont pas listées dans l’ordre dans lequel elles ont été faites. Si vous choisissez d’annuler ces changements, ils seront annulés en tant que groupe."
 
 #. [components.Modal.check_gpg]
 #. defaultMessage is:
@@ -634,10 +616,7 @@ msgstr "Créez le compte utilisateur"
 msgid ""
 "Create a blueprint to define the contents that will be included in the "
 "images you create. Images can be produced in a variety of output formats."
-msgstr ""
-"Créer un modèle pour définir le contenu qui sera inclus dans les images que "
-"vous allez créer. Les images peuvent être produites dans une variété de "
-"formats de sortie."
+msgstr "Créer un modèle pour définir le contenu qui sera inclus dans les images que vous allez créer. Les images peuvent être produites dans une variété de formats de sortie."
 
 #. [components.Wizard.1723482220]
 #. defaultMessage is:
@@ -662,6 +641,20 @@ msgstr "Créer une image"
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Created"
 msgstr "Créé"
+
+#. [components.Pagination.2925773048] - Label for the string: 1–50 of 125; only visible to screen readers
+#. defaultMessage is:
+#. Current Items
+#: build/messages/components/Pagination/Pagination.json
+msgid "Current Items"
+msgstr "Éléments actuels"
+
+#. [components.Pagination.currentPage] - Label of form input for setting current page number
+#. defaultMessage is:
+#. Current Page
+#: build/messages/components/Pagination/Pagination.json
+msgid "Current Page"
+msgstr "Page actuelle"
 
 #. [pages.blueprint.customizationsTitle]
 #. defaultMessage is:
@@ -933,8 +926,7 @@ msgstr "Nom d’hôte"
 #. If no hostname is provided, the hostname will be determined by the OS.
 #: build/messages/pages/blueprint/index.json
 msgid "If no hostname is provided, the hostname will be determined by the OS."
-msgstr ""
-"Si aucun nom d’hôte n’est spécifié, le nom d’hôte sera déterminé par le SE."
+msgstr "Si aucun nom d’hôte n’est spécifié, le nom d’hôte sera déterminé par le SE."
 
 #. [components.Wizard.3593632693]
 #. defaultMessage is:
@@ -946,26 +938,13 @@ msgstr ""
 #.                       and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
 #: build/messages/components/Wizard/ImageStep.json
 #: build/messages/components/Wizard/ReviewStep.json
-#, fuzzy
-#| msgid ""
-#| "Image Builder can upload images you create to an {bucket} in AWS and then "
-#| "import them into EC2. When the image build is complete\n"
-#| "                      and the upload action is successful, the image file "
-#| "is available in the AMI section of EC2. Most of the values required to "
-#| "upload\n"
-#| "                      the image can be found in the {console}."
 msgid ""
 "Image Builder can upload images you create to a Blob container in {azure}. "
 "When the image build is complete \n"
 "                      and the upload action is successful, the image file is "
 "available in the Storage account and Blob container that you specified."
-msgstr ""
-"Image Builder peut téléverser des images sur un {bucket} dans AWS, puis les "
-"importer dans EC2. Lorsque la construction de l’image est\n"
-"                      complétée et que le téléversement a réussi, le fichier "
-"image est disponible dans la section AMI d’EC2. La plupart des valeurs\n"
-"                      requises pour le téléversement de l’image peuvent être "
-"trouvées dans la {console}."
+msgstr "Image Builder peut télécharger les images que vous créez dans un conteneur Blob dans {azure}. Quand l'image est créée \n"
+"                      et que l'action de téléchargement est réussie, le fichier image est disponible dans le compte de stockage et le conteneur Blob que vous avez spécifiés."
 
 #. [components.Wizard.1007547894]
 #. defaultMessage is:
@@ -979,14 +958,6 @@ msgstr ""
 #.                         the image can be found in the {console}.
 #: build/messages/components/Wizard/ImageStep.json
 #: build/messages/components/Wizard/ReviewStep.json
-#, fuzzy
-#| msgid ""
-#| "Image Builder can upload images you create to an {bucket} in AWS and then "
-#| "import them into EC2. When the image build is complete\n"
-#| "                      and the upload action is successful, the image file "
-#| "is available in the AMI section of EC2. Most of the values required to "
-#| "upload\n"
-#| "                      the image can be found in the {console}."
 msgid ""
 "Image Builder can upload images you create to an {bucket} in AWS and then "
 "import them into EC2. When the image build is complete\n"
@@ -994,13 +965,9 @@ msgid ""
 "is available in the AMI section of EC2. Most of the values required to "
 "upload\n"
 "                        the image can be found in the {console}."
-msgstr ""
-"Image Builder peut téléverser des images sur un {bucket} dans AWS, puis les "
-"importer dans EC2. Lorsque la construction de l’image est\n"
-"                      complétée et que le téléversement a réussi, le fichier "
-"image est disponible dans la section AMI d’EC2. La plupart des valeurs\n"
-"                      requises pour le téléversement de l’image peuvent être "
-"trouvées dans la {console}."
+msgstr "Image Builder peut télécharger les images que vous créez dans un {bucket}AWS puis les importer dans EC2. Quand l'image est créée\n"
+"                        et que l'action de téléchargement est réussie, le fichier image est disponible dans la section AMI de EC2. La plupart des valeurs requises pour le téléchargement\n"
+"                        l'image se trouve dans le fichier {console}."
 
 #. [components.EmptyState.errorInactiveTitle]
 #. defaultMessage is:
@@ -1266,22 +1233,21 @@ msgstr "Aucun journal disponible"
 #. OSTree parent help
 #: build/messages/components/Wizard/ImageStep.json
 msgid "OSTree parent help"
-msgstr "Aide sur les parents OSTree"
+msgstr "OSTree parent Help"
 
 #. [components.Wizard.ostreeRef]
 #. defaultMessage is:
 #. OSTree ref help
 #: build/messages/components/Wizard/ImageStep.json
 msgid "OSTree ref help"
-msgstr "Aide sur les ref OSTree"
+msgstr "OSTree ref Help"
 
 #. [components.Modal.1475836573]
 #. defaultMessage is:
 #. Only changes to selected components are shown.
 #: build/messages/components/Modal/PendingChanges.json
 msgid "Only changes to selected components are shown."
-msgstr ""
-"Seuls les changements apportés aux composants sélectionnés sont affichés."
+msgstr "Seuls les changements apportés aux composants sélectionnés sont affichés."
 
 #. [pages.error.oupsTitle]
 #. defaultMessage is:
@@ -1312,12 +1278,19 @@ msgstr "Page non trouvée"
 msgid "Page not found"
 msgstr "Page non trouvée"
 
+#. [components.Pagination.pagination]
+#. defaultMessage is:
+#. Pagination
+#: build/messages/components/Pagination/Pagination.json
+msgid "Pagination"
+msgstr "Pagination"
+
 #. [components.Wizard.3070030782]
 #. defaultMessage is:
 #. Parent commit
 #: build/messages/components/Wizard/ImageStep.json
 msgid "Parent commit"
-msgstr ""
+msgstr "Enregistrer Parent"
 
 #. [components.Modal.createPasswordOne]
 #. defaultMessage is:
@@ -1364,9 +1337,7 @@ msgstr "Aide sur la durée du processus"
 #: build/messages/components/Wizard/AzureDestinationStep.json
 msgid ""
 "Provide a file name to be used for the image file that will be uploaded."
-msgstr ""
-"Veuillez fournir un nom de fichier à utiliser pour le fichier image qui sera "
-"téléversé."
+msgstr "Veuillez fournir un nom de fichier à utiliser pour le fichier image qui sera téléversé."
 
 #. [components.Wizard.2186792528]
 #. defaultMessage is:
@@ -1375,9 +1346,7 @@ msgstr ""
 msgid ""
 "Provide the AWS Region where you want to import your image. This must be the "
 "same region where the {bucket} exists."
-msgstr ""
-"Veuillez indiquer la région AWS où vous souhaitez importer votre image. Il "
-"doit s’agir de la même région que celle du {bucket}."
+msgstr "Veuillez indiquer la région AWS où vous souhaitez importer votre image. Il doit s’agir de la même région que celle du {bucket}."
 
 #. [components.Wizard.517158149]
 #. defaultMessage is:
@@ -1389,7 +1358,8 @@ msgid ""
 "find containers under the {blobService} \n"
 "                    section of a storage account. You can find storage "
 "accounts on the {storageAccounts} page in the {azure} portal."
-msgstr ""
+msgstr "Fournit le conteneur Blob dans lequel le fichier image sera téléchargé. Vous pouvez trouver des conteneurs sous la rubrique {blobService}\n"
+"                     section d'un compte de stockage. Vous pouvez trouver les comptes de stockage sur la page {storageAccounts} du {azure}portail."
 
 #. [components.Wizard.1099888225]
 #. defaultMessage is:
@@ -1398,7 +1368,7 @@ msgstr ""
 msgid ""
 "Provide the ID of the latest commit in the updates repository for which this "
 "commit provides an update."
-msgstr ""
+msgstr "Fournir l'ID du dernier commit dans le référentiel des mises à jour pour lequel ce commit fournit une mise à jour."
 
 #. [components.Wizard.1901372247]
 #. defaultMessage is:
@@ -1406,15 +1376,6 @@ msgstr ""
 #.                         The {bucket} must already exist in the Region where you want to import your image. You can find a list of {buckets} on the
 #.                         {bucketsPage} page in the {amazon} S3 storage service in the AWS console.
 #: build/messages/components/Wizard/AWSDestinationStep.json
-#, fuzzy
-#| msgid ""
-#| "Provide the S3 {bucket} name to which the image file will be uploaded "
-#| "before being imported into EC2. \n"
-#| "                          The {bucket} must already exist in the Region "
-#| "where you want to import your image. You can find a list of {buckets} on "
-#| "the\n"
-#| "                          {bucketsPage} page in the {amazon} S3 storage "
-#| "service in the AWS console."
 msgid ""
 "Provide the S3 {bucket} name to which the image file will be uploaded before "
 "being imported into EC2. \n"
@@ -1422,14 +1383,9 @@ msgid ""
 "you want to import your image. You can find a list of {buckets} on the\n"
 "                        {bucketsPage} page in the {amazon} S3 storage "
 "service in the AWS console."
-msgstr ""
-"Indiquez le nom S3 {bucket}sous lequel le fichier image sera téléchargé "
-"avant d'être importé dans EC2 \n"
-"                          Ce nom {bucket}doit déjà exister dans la région où "
-"vous souhaitez importer votre image. Vous pouvez trouver une liste "
-"des{buckets}\n"
-"                          sur la page {bucketsPage}dans le service de "
-"stockage {amazon}S3 dans la console AWS."
+msgstr "Indiquez le nom S3 {bucket}sous lequel le fichier image sera téléchargé avant d'être importé dans EC2 \n"
+"                          Ce nom {bucket}doit déjà exister dans l’emplacement où vous souhaitez importer votre image. Vous pouvez trouver une liste des{buckets}\n"
+"                          sur la page {bucketsPage}dans le service de stockage {amazon}S3 dans la console AWS."
 
 #. [components.Wizard.2706552502]
 #. defaultMessage is:
@@ -1441,7 +1397,8 @@ msgid ""
 "access key on the {accessKeys} \n"
 "                        page of the storage account. You can find storage "
 "accounts on the {storageAccounts} page in the {azure} portal."
-msgstr ""
+msgstr "Fournit la clé d'accès pour le compte de stockage souhaité. Vous pouvez trouver la clé d'accès sur la page {accessKeys} \n"
+"                        du compte de stockage. Vous pouvez trouver les comptes de stockage sur la page {storageAccounts} du portail {azure}."
 
 #. [components.Wizard.1434969769]
 #. defaultMessage is:
@@ -1450,7 +1407,7 @@ msgstr ""
 msgid ""
 "Provide the name of a storage account. You can find storage accounts on the "
 "{storageAccounts} page in the {azure} portal."
-msgstr ""
+msgstr "Indiquez le nom d'un compte de stockage. Vous pouvez trouver des comptes de stockage sur la page {storageAccounts}du portail {azure}."
 
 #. [components.Wizard.1476874820]
 #. defaultMessage is:
@@ -1459,7 +1416,7 @@ msgstr ""
 msgid ""
 "Provide the name of the branch for the content. If the ref does not already "
 "exist it will be created."
-msgstr ""
+msgstr "Indiquez le nom de la branche pour le contenu. Si la référence n'existe pas encore, elle sera créée."
 
 #. [components.Wizard.31026111]
 #. defaultMessage is:
@@ -1558,9 +1515,7 @@ msgstr "Éléments requis manquants."
 msgid ""
 "Review the information below and click Finish to create the image and "
 "complete the tasks that were selected."
-msgstr ""
-"Passez en revue les informations ci-dessous et cliquez sur Terminer pour "
-"créer l'image et accomplir les tâches qui ont été sélectionnées."
+msgstr "Passez en revue les informations ci-dessous et cliquez sur Terminer pour créer l'image et accomplir les tâches qui ont été sélectionnées."
 
 #. [components.Modal.106035384]
 #. defaultMessage is:
@@ -1680,11 +1635,7 @@ msgid ""
 "Set the size that you want the image to be when instantiated. The total "
 "package size and target destination of your image should be considered when "
 "setting the image size."
-msgstr ""
-"Définissez la taille que vous souhaitez donner à l'image lors de "
-"l'instanciation. La taille totale du paquet et la destination cible de votre "
-"image doivent être prises en compte lors de la définition de la taille de "
-"l'image."
+msgstr "Définissez la taille que vous souhaitez donner à l'image lors de l'instanciation. La taille totale du paquet et la destination cible de votre image doivent être prises en compte lors de la définition de la taille de l'image."
 
 #. [components.ListView.1256153657]
 #. defaultMessage is:
@@ -1706,6 +1657,20 @@ msgstr "Afficher des détails et des Options supplémentaires"
 #: build/messages/components/ListView/ComponentSummaryList.json
 msgid "Show Less"
 msgstr "Afficher moins de détails"
+
+#. [components.Pagination.nextPage]
+#. defaultMessage is:
+#. Show Next Page
+#: build/messages/components/Pagination/Pagination.json
+msgid "Show Next Page"
+msgstr "Afficher la page suivante"
+
+#. [components.Pagination.previousPage]
+#. defaultMessage is:
+#. Show Previous Page
+#: build/messages/components/Pagination/Pagination.json
+msgid "Show Previous Page"
+msgstr "Afficher la page précédente"
 
 #. [components.ListView.imageSize] - A label for the size of an image file
 #. defaultMessage is:
@@ -1744,12 +1709,7 @@ msgid ""
 "images. When adding custom sources you must make sure that the packages in "
 "the source do not conflict with any other package sources, otherwise "
 "resolving dependencies and composing images will fail."
-msgstr ""
-"Les sources sont utilisées pour résoudre les dépendances des plans d’images "
-"et pour composer les images. Lors de l’ajout de sources personnalisées, vous "
-"devez vous assurer que les paquets du source n’entrent pas en conflit avec "
-"d’autres sources de paquets, sinon la résolution des dépendances et la "
-"composition des images échoueront."
+msgstr "Les sources sont utilisées pour résoudre les dépendances des plans d’images et pour composer les images. Lors de l’ajout de sources personnalisées, vous devez vous assurer que les paquets du source n’entrent pas en conflit avec d’autres sources de paquets, sinon la résolution des dépendances et la composition des images échoueront."
 
 #. [components.Modal.540971304]
 #. defaultMessage is:
@@ -1809,7 +1769,7 @@ msgstr "Clé d'accès au stockage"
 #. Storage access key help
 #: build/messages/components/Wizard/AzureAuthStep.json
 msgid "Storage access key help"
-msgstr "Aide sur les clés d’accès au stockage"
+msgstr "Clé d'accès au stockage Help"
 
 #. [components.Wizard.1624497518]
 #. defaultMessage is:
@@ -1827,7 +1787,7 @@ msgstr "Compte de stockage"
 #. Storage account help
 #: build/messages/components/Wizard/AzureAuthStep.json
 msgid "Storage account help"
-msgstr "Aide sur les comptes de stockage"
+msgstr "Compte de stockage Help"
 
 #. [components.Wizard.storageAccounts]
 #. defaultMessage is:
@@ -1850,15 +1810,6 @@ msgstr "Comptes de stockage"
 #: build/messages/components/Wizard/ReviewStep.json
 msgid "Storage container"
 msgstr "Conteneur de stockage"
-
-#. [components.Wizard.storageContainer]
-#. defaultMessage is:
-#. Storage container help
-#: build/messages/components/Wizard/AzureDestinationStep.json
-#, fuzzy
-#| msgid "storage container help"
-msgid "Storage container help"
-msgstr "Aide sur les conteneurs de stockage"
 
 #. [components.ListView.3639476303] - System sources are configured repositories that were found on the host machine
 #. defaultMessage is:
@@ -1910,9 +1861,7 @@ msgstr "Le nom {version} existe déjà."
 msgid ""
 "The packages needed to support the selected image type are automatically "
 "included when creating an image."
-msgstr ""
-"Les paquets nécessaires pour prendre en charge le type d’image sélectionné "
-"sont automatiquement inclus lors de la création d’une image."
+msgstr "Les paquets nécessaires le type d'image sélectionné sont automatiquement inclus lors de la création d'une image."
 
 #. [pages.error.26562577]
 #. defaultMessage is:
@@ -1940,9 +1889,7 @@ msgstr "Le service osbuild-composer n’a pas démarré."
 msgid ""
 "The size specified is large. We recommend that you check whether your target "
 "destination has any restrictions on image size."
-msgstr ""
-"La taille indiquée est grande. Nous vous recommandons de vérifier si votre "
-"destination cible a des restrictions sur la taille de l'image."
+msgstr "La taille indiquée est grande. Nous vous recommandons de vérifier si votre destination cible a des restrictions sur la taille de l'image."
 
 #. [components.Modal.2405281428]
 #. defaultMessage is:
@@ -1951,9 +1898,7 @@ msgstr ""
 msgid ""
 "The user name can only consist of letters from a-z, digits, dots, dashes and "
 "underscores."
-msgstr ""
-"Le nom d’utilisateur ne peut contenir que des lettres de a-z, des chiffres, "
-"des points, des tirets et des traits de soulignement."
+msgstr "Le nom d’utilisateur ne peut contenir que des lettres de a-z, des chiffres, des points, des tirets et des traits de soulignement."
 
 #. [components.EmptyState.1947371795]
 #. defaultMessage is:
@@ -1976,9 +1921,7 @@ msgstr "Les valeurs saisies pour le mot de passe ne correspondent pas."
 msgid ""
 "There are no components listed in the blueprint. Edit the blueprint to add "
 "components."
-msgstr ""
-"Il n’y a pas de composants listés dans le modèle. Modifiez le modèle pour "
-"ajouter des composants."
+msgstr "Il n’y a pas de composants listés dans le modèle. Modifiez le modèle pour ajouter des composants."
 
 #. [components.Wizard.warningReview]
 #. defaultMessage is:
@@ -2005,9 +1948,7 @@ msgstr "L’action peut être annulée."
 msgid ""
 "This blueprint has changes that are not committed. These changes will be "
 "committed before the image is created."
-msgstr ""
-"Le modèle comprend des modifications qui n’ont pas été validées. Ces "
-"modifications seront validées avant que l’image ne soit créée."
+msgstr "Le modèle comprend des modifications qui n’ont pas été validées. Ces modifications seront validées avant que l’image ne soit créée."
 
 #. [empty-blueprint-alert]
 #. defaultMessage is:
@@ -2034,9 +1975,7 @@ msgstr "Ce composant n’a pas de dépendances."
 msgid ""
 "This process can take a while. Images are built in the order they are "
 "started."
-msgstr ""
-"Le processus peut prendre un moment. Les images sont construites dans "
-"l’ordre par lequel elles ont été créées."
+msgstr "Le processus peut prendre un moment. Les images sont construites dans l’ordre par lequel elles ont été créées."
 
 #. [components.Modal.2969976976]
 #. defaultMessage is:
@@ -2062,22 +2001,13 @@ msgstr "Le chemin de source existe déjà."
 #.                         be imported from the S3 {bucket} into EC2. For more details, refer to the {role}.
 #: build/messages/components/Wizard/ImageStep.json
 #: build/messages/components/Wizard/ReviewStep.json
-#, fuzzy
-#| msgid ""
-#| "This upload process requires that you have an {iam} role named {vmimport} "
-#| "to ensure that the image can\n"
-#| "                      be imported from the S3 {bucket} into EC2. For more "
-#| "details, refer to the {role}."
 msgid ""
 "This upload process requires that you have an {iam} role named {vmimport} to "
 "ensure that the image can\n"
 "                        be imported from the S3 {bucket} into EC2. For more "
 "details, refer to the {role}."
-msgstr ""
-"Ce processus de téléchargement exige que vous ayez un rôle {iam}nommé "
-"{vmimport}pour garantir que l'image puisse\n"
-"                      être importés du S3 {bucket}dans le EC2. Pour plus de "
-"détails, voir {role}."
+msgstr "Ce processus de téléchargement exige que vous ayez un rôle {iam}nommé {vmimport}pour garantir que l'image puisse\n"
+"                      être importée du S3 {bucket}dans le EC2. Pour plus de détails, voir {role}."
 
 #. [components.Modal.3707489178]
 #. defaultMessage is:
@@ -2091,7 +2021,7 @@ msgstr "Ce nom d’utilisateur existe déjà."
 #. Troubleshoot
 #: build/messages/components/EmptyState/EmptyStateInactive.json
 msgid "Troubleshoot"
-msgstr "Dépannage"
+msgstr "Résolution de problème"
 
 #. [components.ListView.1952810469]
 #. defaultMessage is:
@@ -2199,13 +2129,16 @@ msgstr "Chargement en attente"
 #. [components.Wizard.uploadAWS]
 #. defaultMessage is:
 #. Upload to AWS
-#. [components.Wizard.3235936248]
-#. defaultMessage is:
-#. Upload to AWS
 #: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
 msgid "Upload to AWS"
 msgstr "Téléversement vers AWS"
+
+#. [components.Wizard.1426592721]
+#. defaultMessage is:
+#. Upload to Amazon
+#: build/messages/components/Wizard/ReviewStep.json
+msgid "Upload to Amazon"
+msgstr "Téléversement vers Amazon"
 
 #. [components.Wizard.uploadAzure]
 #. defaultMessage is:
@@ -2253,9 +2186,7 @@ msgstr "Utilisateurs"
 msgid ""
 "Valid characters for hostname are letters from a to z, the digits from 0 to "
 "9, and the hyphen (-). A hostname may not start with a hyphen."
-msgstr ""
-"Le nom d’hôte ne peut contenir que des lettres de a-z, des chiffres de 0-9, "
-"des tirets (-). Un nom d’hôte de doit pas commencer par un tiret."
+msgstr "Le nom d’hôte ne peut contenir que des lettres de a-z, des chiffres de 0-9, des tirets (-). Un nom d’hôte de doit pas commencer par un tiret."
 
 #. [components.ListView.602883748]
 #. defaultMessage is:
@@ -2290,9 +2221,7 @@ msgstr "Affichage"
 msgid ""
 "You can create and find existing Access key IDs on the {iam} page in the AWS "
 "console."
-msgstr ""
-"Vous pouvez créer et trouver les ID de clés d'accès existantes sur la page "
-"{iam} de la console AWS."
+msgstr "Vous pouvez créer et trouver les ID de clés d'accès existantes sur la page {iam} de la console AWS."
 
 #. [components.Wizard.4206409720]
 #. defaultMessage is:
@@ -2301,9 +2230,7 @@ msgstr ""
 msgid ""
 "You can view the Secret access key only when you create a new Access key ID "
 "on the {iam} page in the AWS console."
-msgstr ""
-"Vous ne pouvez consulter la clé d'accès secrète que lorsque vous créez un "
-"nouvel ID de clé d'accès sur la page {iam} de la console AWS."
+msgstr "Vous ne pouvez consulter la clé d'accès secrète que lorsque vous créez un nouvel ID de clé d'accès sur la page {iam} de la console AWS."
 
 #. [components.ListView.actions]
 #. defaultMessage is:
@@ -2359,6 +2286,13 @@ msgstr "metalink"
 msgid "mirrorlist"
 msgstr "mirrorlist"
 
+#. [components.Wizard.storageContainer]
+#. defaultMessage is:
+#. storage container help
+#: build/messages/components/Wizard/AzureDestinationStep.json
+msgid "storage container help"
+msgstr "Conteneur de stockage Help"
+
 #. [components.Modal.152217691]
 #. defaultMessage is:
 #. to
@@ -2375,7 +2309,7 @@ msgstr "vers"
 #: build/messages/components/ListView/SourcesListItem.json
 #: build/messages/components/Modal/ManageSources.json
 msgid "yum repository"
-msgstr "yum repository"
+msgstr "référentiel yum"
 
 #. [data.4273735599]
 #. defaultMessage is:
@@ -2433,6 +2367,13 @@ msgstr "{blueprint} La création de l’image est terminée."
 msgid "{count} total components"
 msgstr "{version} composant en tout"
 
+#. [components.Pagination.3506832526]
+#. defaultMessage is:
+#. {currentPage} of {totalPages}
+#: build/messages/components/Pagination/Pagination.json
+msgid "{currentPage} of {totalPages}"
+msgstr "{currentPage} de {totalPages}"
+
 #. [components.Modal.3908981070]
 #. defaultMessage is:
 #. {from} {oldVersion} {to} {newVersion}
@@ -2445,9 +2386,7 @@ msgstr "{from} {oldVersion} {to} {newVersion}"
 #. {goBack}, or head over to the {homePage} to choose a new direction.
 #: build/messages/pages/error/index.json
 msgid "{goBack}, or head over to the {homePage} to choose a new direction."
-msgstr ""
-"{heading}, ou rendez-vous à la {homePage} pour choisir une nouvelles "
-"direction."
+msgstr "{heading}, ou rendez-vous à la {homePage} pour choisir une nouvelles direction."
 
 #. [components.Modal.3141775911]
 #. defaultMessage is:
@@ -2462,8 +2401,7 @@ msgstr "{heading} {parenthetical}"
 #: build/messages/pages/blueprintEdit/index.json
 msgid ""
 "{pendingChanges, plural, one {# Pending Change} other {# Pending Changes}}"
-msgstr ""
-"{pendingChanges, plural, one {# Pending Change} autre {# Pending Changes}}"
+msgstr "{pendingChanges, plural, one {# Pending Change} autre {# Pending Changes}}"
 
 #. [pages.blueprintEdit.3140434516]
 #. defaultMessage is:
@@ -2471,6 +2409,13 @@ msgstr ""
 #: build/messages/pages/blueprintEdit/index.json
 msgid "{selectComponents} in this list to add to the blueprint."
 msgstr "{heading} de cette liste à ajouter au modèle."
+
+#. [components.Pagination.3363928156]
+#. defaultMessage is:
+#. {startNumber} - {endNumber} of {totalNumber}
+#: build/messages/components/Pagination/Pagination.json
+msgid "{startNumber} - {endNumber} of {totalNumber}"
+msgstr "{startNumber} - {endNumber} de {totalNumber}"
 
 #: public/manifest.json
 msgid "Creating system images"
@@ -2480,29 +2425,70 @@ msgstr "Création des images systèmes"
 msgid "Image Builder"
 msgstr "Image Builder"
 
-#~ msgid "Current Items"
-#~ msgstr "Éléments actuels"
+#~| msgid ""
+#~| "Image Builder can upload images you create to an {bucket} in AWS and "
+#~| "then import them into EC2. When the image build is complete\n"
+#~| "                      and the upload action is successful, the image "
+#~| "file is available in the AMI section of EC2. Most of the values required "
+#~| "to upload\n"
+#~| "                      the image can be found in the {console}."
+#~ msgid ""
+#~ "Image Builder can upload images you create to a Blob container in "
+#~ "{azure}. When the image build is complete \n"
+#~ "                    and the upload action is successful, the image file "
+#~ "is available in the Storage account and Blob container that you specified."
+#~ msgstr ""
+#~ "Image Builder peut téléverser des images sur un {bucket} dans AWS, puis "
+#~ "les importer dans EC2. Lorsque la construction de l’image est\n"
+#~ "                      complétée et que le téléversement a réussi, le "
+#~ "fichier image est disponible dans la section AMI d’EC2. La plupart des "
+#~ "valeurs\n"
+#~ "                      requises pour le téléversement de l’image peuvent "
+#~ "être trouvées dans la {console}."
 
-#~ msgid "Current Page"
-#~ msgstr "Page actuelle"
+#~ msgid ""
+#~ "Image Builder can upload images you create to an {bucket} in AWS and then "
+#~ "import them into EC2. When the image build is complete\n"
+#~ "                      and the upload action is successful, the image file "
+#~ "is available in the AMI section of EC2. Most of the values required to "
+#~ "upload\n"
+#~ "                      the image can be found in the {console}."
+#~ msgstr ""
+#~ "Image Builder peut téléverser des images sur un {bucket} dans AWS, puis "
+#~ "les importer dans EC2. Lorsque la construction de l’image est\n"
+#~ "                      complétée et que le téléversement a réussi, le "
+#~ "fichier image est disponible dans la section AMI d’EC2. La plupart des "
+#~ "valeurs\n"
+#~ "                      requises pour le téléversement de l’image peuvent "
+#~ "être trouvées dans la {console}."
 
-#~ msgid "Pagination"
-#~ msgstr "Pagination"
+#~ msgid ""
+#~ "Provide the S3 {bucket} name to which the image file will be uploaded "
+#~ "before being imported into EC2. \n"
+#~ "                          The {bucket} must already exist in the Region "
+#~ "where you want to import your image. You can find a list of {buckets} on "
+#~ "the\n"
+#~ "                          {bucketsPage} page in the {amazon} S3 storage "
+#~ "service in the AWS console."
+#~ msgstr ""
+#~ "Indiquez le nom S3 {bucket}sous lequel le fichier image sera téléchargé "
+#~ "avant d'être importé dans EC2 \n"
+#~ "                          Ce nom {bucket}doit déjà exister dans la région "
+#~ "où vous souhaitez importer votre image. Vous pouvez trouver une liste "
+#~ "des{buckets}\n"
+#~ "                          sur la page {bucketsPage}dans le service de "
+#~ "stockage {amazon}S3 dans la console AWS."
 
-#~ msgid "Show Next Page"
-#~ msgstr "Afficher la page suivante"
-
-#~ msgid "Show Previous Page"
-#~ msgstr "Afficher la page précédente"
-
-#~ msgid "Upload to Amazon"
-#~ msgstr "Téléversement vers Amazon"
-
-#~ msgid "{currentPage} of {totalPages}"
-#~ msgstr "{currentPage} de {totalPages}"
-
-#~ msgid "{startNumber} - {endNumber} of {totalNumber}"
-#~ msgstr "{startNumber} - {endNumber} de {totalNumber}"
+#~ msgid ""
+#~ "This upload process requires that you have an {iam} role named {vmimport} "
+#~ "to ensure that the image can\n"
+#~ "                      be imported from the S3 {bucket} into EC2. For more "
+#~ "details, refer to the {role}."
+#~ msgstr ""
+#~ "Ce processus de téléchargement exige que vous ayez un rôle {iam}nommé "
+#~ "{vmimport}pour garantir que l'image puisse\n"
+#~ "                      être importés du S3 {bucket}dans le EC2. Pour plus "
+#~ "de détails, voir {role}."
 
 #~ msgid "Password is not acceptable"
 #~ msgstr "Le mot de passe n’est pas acceptable"
@@ -2510,10 +2496,3 @@ msgstr "Image Builder"
 #~ msgid "Password is too weak"
 #~ msgstr "Le mot de passe est trop faible"
 
-#~ msgid "1 build is in progress"
-#~ msgstr "1 build en cours"
-
-#~ msgid ""
-#~ "{builds, plural, one {# build is waiting} other {# builds are waiting}}"
-#~ msgstr ""
-#~ "{builds, plural, one {# build is waiting} autre {# builds are waiting}}"
