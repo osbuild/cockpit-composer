@@ -46,6 +46,9 @@ const messages = defineMessages({
   infotip: {
     defaultMessage: "This process can take a while. " + "Images are built in the order they are started.",
   },
+  type: {
+    defaultMessage: "Type",
+  },
   warningUnsaved: {
     defaultMessage:
       "This blueprint has changes that are not committed. " +
@@ -322,7 +325,9 @@ class ImageStep extends React.PureComponent {
         )}
         <Form isHorizontal className="cc-m-wide-label">
           <div className="pf-c-form__group cc-c-form__horizontal-align">
-            <span className="pf-c-form__label-text">Blueprint</span>
+            <span className="pf-c-form__label-text">
+              <FormattedMessage defaultMessage="Blueprint" />
+            </span>
             <div className="pf-c-form__horizontal-group cc-c-popover__horizontal-group">
               <Text id="blueprint-name">{blueprint.name}</Text>
               <Popover
@@ -336,7 +341,7 @@ class ImageStep extends React.PureComponent {
               </Popover>
             </div>
           </div>
-          <FormGroup label={formatMessage({ id: "image-type", defaultMessage: "Type " })} fieldId="image-type">
+          <FormGroup label={formatMessage(messages.type)} fieldId="image-type">
             <FormSelect value={imageType} id="image-type" onChange={setImageType}>
               <FormSelectOption isDisabled key="default" value="" label={formatMessage(messages.selectOne)} />
               {imageTypes.map((type) => (
