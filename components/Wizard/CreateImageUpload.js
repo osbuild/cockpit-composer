@@ -181,7 +181,7 @@ class CreateImageUploadModal extends React.Component {
     return true;
   }
 
-  disableCreateButton(activeStep) {
+  disableCreateButton(activeStepName) {
     if (this.state.imageType === "") {
       return true;
     }
@@ -191,7 +191,7 @@ class CreateImageUploadModal extends React.Component {
     ) {
       return true;
     }
-    if (this.missingRequiredFields() && activeStep.name === "Review") {
+    if (this.missingRequiredFields() && activeStepName === "Review") {
       return true;
     }
     return false;
@@ -310,8 +310,8 @@ class CreateImageUploadModal extends React.Component {
     }
   }
 
-  handleNextStep(activeStep, toNextStep) {
-    if (activeStep.name === "Review" || (activeStep.name === "Image type" && this.state.uploadService.length === 0)) {
+  handleNextStep(activeStepName, toNextStep) {
+    if (activeStepName === "Review" || (activeStepName === "Image type" && this.state.uploadService.length === 0)) {
       if (this.isPendingChange()) this.handleCommit();
       else this.handleCreateImage();
     } else toNextStep();
@@ -322,7 +322,7 @@ class CreateImageUploadModal extends React.Component {
     const { showUploadAwsStep, showUploadAzureStep, showReviewStep, uploadService } = this.state;
 
     const imageStep = {
-      name: "Image type",
+      name: <FormattedMessage defaultMessage="Image type" />,
       component: (
         <ImageStep
           blueprint={this.props.blueprint}
@@ -347,12 +347,12 @@ class CreateImageUploadModal extends React.Component {
     };
 
     const awsUploadAuth = {
-      name: "Authentication",
+      name: <FormattedMessage defaultMessage="Authentication" />,
       component: <AWSAuthStep uploadSettings={this.state.uploadSettings} setUploadSettings={this.setUploadSettings} />,
     };
 
     const awsUploadDest = {
-      name: "Destination",
+      name: <FormattedMessage defaultMessage="Destination" />,
       component: (
         <AWSDestinationStep
           imageName={this.state.imageName}
@@ -364,19 +364,19 @@ class CreateImageUploadModal extends React.Component {
     };
 
     const awsUploadStep = {
-      name: "Upload to AWS",
+      name: <FormattedMessage defaultMessage="Upload to AWS" />,
       steps: [awsUploadAuth, awsUploadDest],
     };
 
     const azureUploadAuth = {
-      name: "Authentication",
+      name: <FormattedMessage defaultMessage="Authentication" />,
       component: (
         <AzureAuthStep uploadSettings={this.state.uploadSettings} setUploadSettings={this.setUploadSettings} />
       ),
     };
 
     const azureUploadDest = {
-      name: "Destination",
+      name: <FormattedMessage defaultMessage="Destination" />,
       component: (
         <AzureDestinationStep
           imageName={this.state.imageName}
@@ -388,12 +388,12 @@ class CreateImageUploadModal extends React.Component {
     };
 
     const azureUploadStep = {
-      name: "Upload to Azure",
+      name: <FormattedMessage defaultMessage="Upload to Azure" />,
       steps: [azureUploadAuth, azureUploadDest],
     };
 
     const reviewStep = {
-      name: "Review",
+      name: <FormattedMessage defaultMessage="Review" />,
       component: (
         <ReviewStep
           imageName={this.state.imageName}
@@ -420,15 +420,17 @@ class CreateImageUploadModal extends React.Component {
       <WizardFooter>
         <WizardContextConsumer>
           {({ activeStep, onNext, onBack, onClose }) => {
+            // The active step's name is translated so we need to use the default message
+            const activeStepName = activeStep.name.props.defaultMessage;
             return (
               <>
                 <Button
                   id="continue-button"
                   variant="primary"
-                  isDisabled={this.disableCreateButton(activeStep)}
-                  onClick={() => this.handleNextStep(activeStep, onNext)}
+                  isDisabled={this.disableCreateButton(activeStepName)}
+                  onClick={() => this.handleNextStep(activeStepName, onNext)}
                 >
-                  {activeStep.name === "Image type" ? (
+                  {activeStepName === "Image type" ? (
                     uploadService.length > 0 ? (
                       this.isPendingChange() ? (
                         <FormattedMessage defaultMessage="Commit and next" />
@@ -440,13 +442,13 @@ class CreateImageUploadModal extends React.Component {
                     ) : (
                       <FormattedMessage defaultMessage="Create" />
                     )
-                  ) : activeStep.name === "Review" ? (
+                  ) : activeStepName === "Review" ? (
                     <FormattedMessage defaultMessage="Finish" />
                   ) : (
                     <FormattedMessage defaultMessage="Next" />
                   )}
                 </Button>
-                <Button variant="secondary" onClick={onBack} isDisabled={activeStep.name === "Image type"}>
+                <Button variant="secondary" onClick={onBack} isDisabled={activeStepName === "Image type"}>
                   <FormattedMessage defaultMessage="Back" />
                 </Button>
                 <Button id="cancel-button" variant="danger" onClick={onClose}>
