@@ -19,6 +19,7 @@ job release-srpm -V
 job release-koji master
 job release-koji f31
 job release-koji f32
+job release-koji f33
 
 job release-github
 job release-copr @osbuild/cockpit-composer
@@ -26,3 +27,4 @@ job release-copr @osbuild/cockpit-composer
 # Create a Bodhi update for stable Fedora releases
 job release-bodhi F31
 job release-bodhi F32
+job release-bodhi F33
