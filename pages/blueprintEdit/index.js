@@ -89,6 +89,9 @@ const messages = defineMessages({
   emptyStateNoResultsTitle: {
     defaultMessage: "No Results Match the Filter Criteria",
   },
+  paginationPerPage: {
+    defaultMessage: "per page",
+  },
 });
 
 class EditBlueprintPage extends React.Component {
@@ -584,6 +587,9 @@ class EditBlueprintPage extends React.Component {
                   onPerPageSelect={this.handlePageSizeSelect}
                   isCompact
                   variant={PaginationVariant.bottom}
+                  titles={{
+                    perPageSuffix: formatMessage(messages.paginationPerPage),
+                  }}
                 />
               </form>
               {inputs.inputFilters !== undefined && inputs.inputFilters.value.length > 0 && (
