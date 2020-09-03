@@ -2,8 +2,8 @@
 # Matej Marusak <mmarusak@redhat.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-08-06T03:50:16.790Z\n"
-"PO-Revision-Date: 2020-08-09 16:29+0000\n"
+"POT-Creation-Date: 2020-08-27T05:10:30.890Z\n"
+"PO-Revision-Date: 2020-08-29 10:29+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://translate.fedoraproject.org/projects/"
 "cockpit-composer/master/cs/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2\n"
-"X-Generator: Weblate 4.1.1\n"
+"X-Generator: Weblate 4.2.1\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -255,6 +255,13 @@ msgstr "Opravdu chcete smazat obraz pro {blueprintName}?"
 msgid "Are you sure you want to stop the build process for {blueprintName}?"
 msgstr "Opravdu chcete zastavit sestavování {blueprintName}?"
 
+#. [components.Wizard.160751819]
+#. defaultMessage is:
+#. Authentication
+#: build/messages/components/Wizard/CreateImageUpload.json
+msgid "Authentication"
+msgstr "Ověřování se"
+
 #. [components.EmptyState.errorInactiveCheckbox]
 #. defaultMessage is:
 #. Automatically start osbuild-composer on boot
@@ -314,6 +321,9 @@ msgstr "Blob služba"
 #. [components.Modal.blueprint]
 #. defaultMessage is:
 #. Blueprint
+#. [components.Wizard.1281198655]
+#. defaultMessage is:
+#. Blueprint
 #. [pages.blueprint.blueprint]
 #. defaultMessage is:
 #. Blueprint
@@ -322,6 +332,7 @@ msgstr "Blob služba"
 #. Blueprint
 #: build/messages/components/Modal/ExportBlueprint.json
 #: build/messages/components/Modal/PendingChanges.json
+#: build/messages/components/Wizard/ImageStep.json
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
 msgid "Blueprint"
@@ -717,6 +728,13 @@ msgstr "Závislosti"
 msgid "Description"
 msgstr "Popis"
 
+#. [components.Wizard.2515932130]
+#. defaultMessage is:
+#. Destination
+#: build/messages/components/Wizard/CreateImageUpload.json
+msgid "Destination"
+msgstr "Cíl"
+
 #. [components.ListView.details]
 #. defaultMessage is:
 #. Details
@@ -1056,6 +1074,10 @@ msgstr "Nápověda k velikosti obrazu"
 #. [components.Wizard.1813441558]
 #. defaultMessage is:
 #. Image type
+#. [components.Wizard.1813441558]
+#. defaultMessage is:
+#. Image type
+#: build/messages/components/Wizard/CreateImageUpload.json
 #: build/messages/components/Wizard/ReviewStep.json
 msgid "Image type"
 msgstr "Typ obrazu"
@@ -1511,6 +1533,13 @@ msgstr "Odebrat zdroj"
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "Required information is missing."
 msgstr "Chybí požadovaná informace."
+
+#. [components.Wizard.3835894881]
+#. defaultMessage is:
+#. Review
+#: build/messages/components/Wizard/CreateImageUpload.json
+msgid "Review"
+msgstr "Zrevidovat"
 
 #. [components.Wizard.review]
 #. defaultMessage is:
@@ -2054,10 +2083,14 @@ msgstr "Řešení problémů"
 #. [components.Modal.type] - Type of source
 #. defaultMessage is:
 #. Type
+#. [components.Wizard.type]
+#. defaultMessage is:
+#. Type
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ComponentTypeIcons.json
 #: build/messages/components/ListView/ListItemImages.json
 #: build/messages/components/Modal/ManageSources.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid "Type"
 msgstr "Typ"
 
@@ -2145,23 +2178,31 @@ msgstr "Nahrání probíhá"
 msgid "Upload pending"
 msgstr "Nahrání čeká"
 
+#. [components.Wizard.3235936248]
+#. defaultMessage is:
+#. Upload to AWS
 #. [components.Wizard.uploadAWS]
 #. defaultMessage is:
 #. Upload to AWS
 #. [components.Wizard.3235936248]
 #. defaultMessage is:
 #. Upload to AWS
+#: build/messages/components/Wizard/CreateImageUpload.json
 #: build/messages/components/Wizard/ImageStep.json
 #: build/messages/components/Wizard/ReviewStep.json
 msgid "Upload to AWS"
 msgstr "Nahrát na AWS"
 
+#. [components.Wizard.2244258572]
+#. defaultMessage is:
+#. Upload to Azure
 #. [components.Wizard.uploadAzure]
 #. defaultMessage is:
 #. Upload to Azure
 #. [components.Wizard.2244258572]
 #. defaultMessage is:
 #. Upload to Azure
+#: build/messages/components/Wizard/CreateImageUpload.json
 #: build/messages/components/Wizard/ImageStep.json
 #: build/messages/components/Wizard/ReviewStep.json
 msgid "Upload to Azure"
@@ -2307,6 +2348,16 @@ msgstr "metaodkaz"
 #: build/messages/components/Modal/ManageSources.json
 msgid "mirrorlist"
 msgstr "seznam zrcadel"
+
+#. [components.Wizard.2454328248]
+#. defaultMessage is:
+#. rhel/8/{arch}/edge is the default, where {arch} is determined by the host machine
+#: build/messages/components/Wizard/ImageStep.json
+msgid ""
+"rhel/8/{arch}/edge is the default, where {arch} is determined by the host "
+"machine"
+msgstr ""
+"rhel/8/{arch}/edge je výchozí, přičemž {arch} je dle hostitelského stroje"
 
 #. [components.Modal.152217691]
 #. defaultMessage is:

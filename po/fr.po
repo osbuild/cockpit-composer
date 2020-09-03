@@ -7,7 +7,7 @@
 # Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-08-20T05:43:21.797Z\n"
+"POT-Creation-Date: 2020-08-27T05:10:30.890Z\n"
 "PO-Revision-Date: 2020-08-20 06:40+0000\n"
 "Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
 "Language-Team: French <https://translate.fedoraproject.org/projects/cockpit-"
@@ -246,7 +246,7 @@ msgstr "Appliquer le changement"
 #. Are you sure you want to delete the blueprint {name}?
 #: build/messages/components/Modal/DeleteBlueprint.json
 msgid "Are you sure you want to delete the blueprint {name}?"
-msgstr "Voulez-vous vraiment supprimer le modèle {version} ?"
+msgstr "Voulez-vous vraiment supprimer le modèle {name} ?"
 
 #. [components.Modal.1346739796]
 #. defaultMessage is:
@@ -262,6 +262,13 @@ msgstr "Êtes-vous sûr de vouloir supprimer l’image de {blueprintName} ?"
 msgid "Are you sure you want to stop the build process for {blueprintName}?"
 msgstr ""
 "Voulez-vous vraiment arrêter le processus de build pour {blueprintName} ?"
+
+#. [components.Wizard.160751819]
+#. defaultMessage is:
+#. Authentication
+#: build/messages/components/Wizard/CreateImageUpload.json
+msgid "Authentication"
+msgstr ""
 
 #. [components.EmptyState.errorInactiveCheckbox]
 #. defaultMessage is:
@@ -322,6 +329,9 @@ msgstr "Service Blob"
 #. [components.Modal.blueprint]
 #. defaultMessage is:
 #. Blueprint
+#. [components.Wizard.1281198655]
+#. defaultMessage is:
+#. Blueprint
 #. [pages.blueprint.blueprint]
 #. defaultMessage is:
 #. Blueprint
@@ -330,6 +340,7 @@ msgstr "Service Blob"
 #. Blueprint
 #: build/messages/components/Modal/ExportBlueprint.json
 #: build/messages/components/Modal/PendingChanges.json
+#: build/messages/components/Wizard/ImageStep.json
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
 msgid "Blueprint"
@@ -735,6 +746,15 @@ msgstr "Dépendances"
 msgid "Description"
 msgstr "La description"
 
+#. [components.Wizard.2515932130]
+#. defaultMessage is:
+#. Destination
+#: build/messages/components/Wizard/CreateImageUpload.json
+#, fuzzy
+#| msgid "Description"
+msgid "Destination"
+msgstr "La description"
+
 #. [components.ListView.details]
 #. defaultMessage is:
 #. Details
@@ -1077,6 +1097,10 @@ msgstr "Aide sur la taille de l’image"
 #. [components.Wizard.1813441558]
 #. defaultMessage is:
 #. Image type
+#. [components.Wizard.1813441558]
+#. defaultMessage is:
+#. Image type
+#: build/messages/components/Wizard/CreateImageUpload.json
 #: build/messages/components/Wizard/ReviewStep.json
 msgid "Image type"
 msgstr "Type d’image"
@@ -1177,7 +1201,7 @@ msgstr "Nom"
 #. Name: {name}
 #: build/messages/pages/blueprintEdit/index.json
 msgid "Name: {name}"
-msgstr "Nom : {heading}"
+msgstr "Nom : {name}"
 
 #. [components.Modal.editPasswordOne]
 #. defaultMessage is:
@@ -1533,6 +1557,13 @@ msgstr "Supprimer la source"
 msgid "Required information is missing."
 msgstr "Éléments requis manquants."
 
+#. [components.Wizard.3835894881]
+#. defaultMessage is:
+#. Review
+#: build/messages/components/Wizard/CreateImageUpload.json
+msgid "Review"
+msgstr ""
+
 #. [components.Wizard.review]
 #. defaultMessage is:
 #. Review the information below and click Finish to create the image and complete the tasks that were selected.
@@ -1876,14 +1907,14 @@ msgstr "Le processus de build ne peut pas reprendre une fois arrêté."
 #: build/messages/components/Modal/ManageSources.json
 #: build/messages/components/Modal/UserAccount.json
 msgid "The fields marked with {val} are required."
-msgstr "Les champs comportant {version} sont requis."
+msgstr "Les champs comportant {val} sont requis."
 
 #. [components.Modal.2580689893]
 #. defaultMessage is:
 #. The name {name} already exists.
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "The name {name} already exists."
-msgstr "Le nom {version} existe déjà."
+msgstr "Le nom {name} existe déjà."
 
 #. [pages.blueprintEdit.addComponentMessageTwo]
 #. defaultMessage is:
@@ -2087,10 +2118,14 @@ msgstr "Dépannage"
 #. [components.Modal.type] - Type of source
 #. defaultMessage is:
 #. Type
+#. [components.Wizard.type]
+#. defaultMessage is:
+#. Type
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ComponentTypeIcons.json
 #: build/messages/components/ListView/ListItemImages.json
 #: build/messages/components/Modal/ManageSources.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid "Type"
 msgstr "Type"
 
@@ -2178,23 +2213,31 @@ msgstr "Chargement en cours"
 msgid "Upload pending"
 msgstr "Chargement en attente"
 
+#. [components.Wizard.3235936248]
+#. defaultMessage is:
+#. Upload to AWS
 #. [components.Wizard.uploadAWS]
 #. defaultMessage is:
 #. Upload to AWS
 #. [components.Wizard.3235936248]
 #. defaultMessage is:
 #. Upload to AWS
+#: build/messages/components/Wizard/CreateImageUpload.json
 #: build/messages/components/Wizard/ImageStep.json
 #: build/messages/components/Wizard/ReviewStep.json
 msgid "Upload to AWS"
 msgstr "Téléversement vers AWS"
 
+#. [components.Wizard.2244258572]
+#. defaultMessage is:
+#. Upload to Azure
 #. [components.Wizard.uploadAzure]
 #. defaultMessage is:
 #. Upload to Azure
 #. [components.Wizard.2244258572]
 #. defaultMessage is:
 #. Upload to Azure
+#: build/messages/components/Wizard/CreateImageUpload.json
 #: build/messages/components/Wizard/ImageStep.json
 #: build/messages/components/Wizard/ReviewStep.json
 msgid "Upload to Azure"
@@ -2373,7 +2416,7 @@ msgstr "yum repository"
 #. {blueprint} Blueprint changes are committed.
 #: build/messages/data/NotificationsApi.json
 msgid "{blueprint} Blueprint changes are committed."
-msgstr "{version} Les modifications au modèle ont été validées."
+msgstr "{blueprint} Les modifications au modèle ont été validées."
 
 #. [data.477516828]
 #. defaultMessage is:
@@ -2387,14 +2430,14 @@ msgstr "{blueprint} La validation a échoué."
 #. {blueprint} Committing blueprint.
 #: build/messages/data/NotificationsApi.json
 msgid "{blueprint} Committing blueprint."
-msgstr "{version} Validation du modèle."
+msgstr "{blueprint} Validation du modèle."
 
 #. [data.3947958753]
 #. defaultMessage is:
 #. {blueprint} Image creation failed.
 #: build/messages/data/NotificationsApi.json
 msgid "{blueprint} Image creation failed."
-msgstr "{version} La création de l’image a échoué."
+msgstr "{blueprint} La création de l’image a échoué."
 
 #. [data.3040107790]
 #. defaultMessage is:
@@ -2422,7 +2465,7 @@ msgstr "{blueprint} La création de l’image est terminée."
 #. {count} total components
 #: build/messages/components/Modal/ExportBlueprint.json
 msgid "{count} total components"
-msgstr "{version} composant en tout"
+msgstr "{count} composant en tout"
 
 #. [components.Modal.3908981070]
 #. defaultMessage is:
@@ -2437,7 +2480,7 @@ msgstr "{from} {oldVersion} {to} {newVersion}"
 #: build/messages/pages/error/index.json
 msgid "{goBack}, or head over to the {homePage} to choose a new direction."
 msgstr ""
-"{heading}, ou rendez-vous à la {homePage} pour choisir une nouvelles "
+"{goBack}, ou rendez-vous à la {homePage} pour choisir une nouvelles "
 "direction."
 
 #. [components.Modal.3141775911]
@@ -2461,7 +2504,7 @@ msgstr ""
 #. {selectComponents} in this list to add to the blueprint.
 #: build/messages/pages/blueprintEdit/index.json
 msgid "{selectComponents} in this list to add to the blueprint."
-msgstr "{heading} de cette liste à ajouter au modèle."
+msgstr "{selectComponents} de cette liste à ajouter au modèle."
 
 #: public/manifest.json
 msgid "Creating system images"
