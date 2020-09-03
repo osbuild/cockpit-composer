@@ -4,7 +4,7 @@
 # Ludek Janda <ljanda@redhat.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-08-06T03:50:16.790Z\n"
+"POT-Creation-Date: 2020-08-27T05:10:30.890Z\n"
 "PO-Revision-Date: 2020-06-11 10:40+0000\n"
 "Last-Translator: Ludek Janda <ljanda@redhat.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.fedoraproject.org/"
@@ -257,6 +257,13 @@ msgstr "您确定要为 {blueprintName} 删除镜像?"
 msgid "Are you sure you want to stop the build process for {blueprintName}?"
 msgstr "您确定要停止 {blueprintName} 的构建过程?"
 
+#. [components.Wizard.160751819]
+#. defaultMessage is:
+#. Authentication
+#: build/messages/components/Wizard/CreateImageUpload.json
+msgid "Authentication"
+msgstr ""
+
 #. [components.EmptyState.errorInactiveCheckbox]
 #. defaultMessage is:
 #. Automatically start osbuild-composer on boot
@@ -318,6 +325,9 @@ msgstr ""
 #. [components.Modal.blueprint]
 #. defaultMessage is:
 #. Blueprint
+#. [components.Wizard.1281198655]
+#. defaultMessage is:
+#. Blueprint
 #. [pages.blueprint.blueprint]
 #. defaultMessage is:
 #. Blueprint
@@ -326,6 +336,7 @@ msgstr ""
 #. Blueprint
 #: build/messages/components/Modal/ExportBlueprint.json
 #: build/messages/components/Modal/PendingChanges.json
+#: build/messages/components/Wizard/ImageStep.json
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
 msgid "Blueprint"
@@ -720,6 +731,15 @@ msgstr "依赖"
 msgid "Description"
 msgstr "描述"
 
+#. [components.Wizard.2515932130]
+#. defaultMessage is:
+#. Destination
+#: build/messages/components/Wizard/CreateImageUpload.json
+#, fuzzy
+#| msgid "Description"
+msgid "Destination"
+msgstr "描述"
+
 #. [components.ListView.details]
 #. defaultMessage is:
 #. Details
@@ -1082,6 +1102,10 @@ msgstr "镜像大小帮助"
 #. [components.Wizard.1813441558]
 #. defaultMessage is:
 #. Image type
+#. [components.Wizard.1813441558]
+#. defaultMessage is:
+#. Image type
+#: build/messages/components/Wizard/CreateImageUpload.json
 #: build/messages/components/Wizard/ReviewStep.json
 msgid "Image type"
 msgstr "镜像类型"
@@ -1534,6 +1558,13 @@ msgstr "删除源"
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "Required information is missing."
 msgstr "缺少需要的信息。"
+
+#. [components.Wizard.3835894881]
+#. defaultMessage is:
+#. Review
+#: build/messages/components/Wizard/CreateImageUpload.json
+msgid "Review"
+msgstr ""
 
 #. [components.Wizard.review]
 #. defaultMessage is:
@@ -2074,10 +2105,14 @@ msgstr "故障排除"
 #. [components.Modal.type] - Type of source
 #. defaultMessage is:
 #. Type
+#. [components.Wizard.type]
+#. defaultMessage is:
+#. Type
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ComponentTypeIcons.json
 #: build/messages/components/ListView/ListItemImages.json
 #: build/messages/components/Modal/ManageSources.json
+#: build/messages/components/Wizard/ImageStep.json
 msgid "Type"
 msgstr "类型"
 
@@ -2165,12 +2200,16 @@ msgstr "上传进行中"
 msgid "Upload pending"
 msgstr "上传待处理"
 
+#. [components.Wizard.3235936248]
+#. defaultMessage is:
+#. Upload to AWS
 #. [components.Wizard.uploadAWS]
 #. defaultMessage is:
 #. Upload to AWS
 #. [components.Wizard.3235936248]
 #. defaultMessage is:
 #. Upload to AWS
+#: build/messages/components/Wizard/CreateImageUpload.json
 #: build/messages/components/Wizard/ImageStep.json
 #: build/messages/components/Wizard/ReviewStep.json
 #, fuzzy
@@ -2178,12 +2217,16 @@ msgstr "上传待处理"
 msgid "Upload to AWS"
 msgstr "上传到 Azure"
 
+#. [components.Wizard.2244258572]
+#. defaultMessage is:
+#. Upload to Azure
 #. [components.Wizard.uploadAzure]
 #. defaultMessage is:
 #. Upload to Azure
 #. [components.Wizard.2244258572]
 #. defaultMessage is:
 #. Upload to Azure
+#: build/messages/components/Wizard/CreateImageUpload.json
 #: build/messages/components/Wizard/ImageStep.json
 #: build/messages/components/Wizard/ReviewStep.json
 msgid "Upload to Azure"
@@ -2326,6 +2369,15 @@ msgstr "metalink"
 #: build/messages/components/Modal/ManageSources.json
 msgid "mirrorlist"
 msgstr "mirrorlist"
+
+#. [components.Wizard.2454328248]
+#. defaultMessage is:
+#. rhel/8/{arch}/edge is the default, where {arch} is determined by the host machine
+#: build/messages/components/Wizard/ImageStep.json
+msgid ""
+"rhel/8/{arch}/edge is the default, where {arch} is determined by the host "
+"machine"
+msgstr ""
 
 #. [components.Modal.152217691]
 #. defaultMessage is:
