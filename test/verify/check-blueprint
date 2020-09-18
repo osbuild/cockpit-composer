@@ -17,7 +17,7 @@ class TestBlueprint(composerlib.ComposerCase):
     def testCreate(self):
         b = self.browser
 
-        self.login_and_go("/composer", authorized=True)
+        self.login_and_go("/composer", superuser=True)
         b.wait_present("#main")
 
         # create blueprint
@@ -81,7 +81,7 @@ class TestBlueprint(composerlib.ComposerCase):
     def testFilter(self):
         b = self.browser
 
-        self.login_and_go("/composer", authorized=True)
+        self.login_and_go("/composer", superuser=True)
         b.wait_present("#main")
 
         # filter "openssh-server" blueprint
@@ -112,7 +112,7 @@ class TestBlueprint(composerlib.ComposerCase):
     def testSort(self):
         b = self.browser
 
-        self.login_and_go("/composer", authorized=True)
+        self.login_and_go("/composer", superuser=True)
         b.wait_present("#main")
 
         blueprint_list = [
@@ -141,7 +141,7 @@ class TestBlueprint(composerlib.ComposerCase):
         b = self.browser
         m = self.machine
 
-        self.login_and_go("/composer", authorized=True)
+        self.login_and_go("/composer", superuser=True)
         b.wait_present("#main")
 
         # export package list

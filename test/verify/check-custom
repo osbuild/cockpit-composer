@@ -20,7 +20,7 @@ class TestCustom(composerlib.ComposerCase):
         b = self.browser
         m = self.machine
 
-        self.login_and_go("/composer", authorized=True)
+        self.login_and_go("/composer", superuser=True)
         b.wait_present("#main")
 
         # go to blueprint openssh-server
@@ -63,7 +63,7 @@ class TestCustom(composerlib.ComposerCase):
         b = self.browser
         m = self.machine
 
-        self.login_and_go("/composer", authorized=True)
+        self.login_and_go("/composer", superuser=True)
         b.wait_present("#main")
 
         # go to blueprint openssh-server
@@ -103,7 +103,7 @@ class TestCustom(composerlib.ComposerCase):
         b = self.browser
         m = self.machine
 
-        self.login_and_go("/composer", authorized=True)
+        self.login_and_go("/composer", superuser=True)
         b.wait_present("#main")
 
         b.click("#openssh-server-name")
@@ -160,7 +160,7 @@ class TestCustom(composerlib.ComposerCase):
                     b.focus(sel)
                     b.key_press(k)
 
-        self.login_and_go("/composer", authorized=True)
+        self.login_and_go("/composer", superuser=True)
         b.wait_present("#main")
 
         b.click("#openssh-server-name")

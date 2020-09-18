@@ -20,7 +20,7 @@ class TestSource(composerlib.ComposerCase):
             "/xiaofwan/sway-copr/fedora-31-x86_64"
         repo_name = "sway-copr"
 
-        self.login_and_go("/composer", authorized=True)
+        self.login_and_go("/composer", superuser=True)
         b.wait_present("#main")
 
         # open manage sources dialog

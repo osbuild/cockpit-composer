@@ -16,7 +16,7 @@ class TestImage(composerlib.ComposerCase):
     def testImageStep(self):
         b = self.browser
 
-        self.login_and_go("/composer", authorized=True)
+        self.login_and_go("/composer", superuser=True)
         b.wait_present("#main")
 
         # create image wizard (no upload support)
@@ -82,7 +82,7 @@ class TestImage(composerlib.ComposerCase):
     def testAWSStep(self):
         b = self.browser
 
-        self.login_and_go("/composer", authorized=True)
+        self.login_and_go("/composer", superuser=True)
         b.wait_present("#main")
 
         # create image wizard
@@ -223,7 +223,7 @@ class TestImage(composerlib.ComposerCase):
     def testAzureStep(self):
         b = self.browser
 
-        self.login_and_go("/composer", authorized=True)
+        self.login_and_go("/composer", superuser=True)
         b.wait_present("#main")
 
         # create image wizard
@@ -335,7 +335,7 @@ class TestImage(composerlib.ComposerCase):
         b = self.browser
         m = self.machine
 
-        self.login_and_go("/composer", authorized=True)
+        self.login_and_go("/composer", superuser=True)
         b.wait_present("#main")
 
         # create image wizard
@@ -432,7 +432,7 @@ class TestImage(composerlib.ComposerCase):
         elif (os.environ.get("TEST_OS") == "rhel-8-3"):
             image_type_ostree = "rhel-edge-commit"
 
-        self.login_and_go("/composer", authorized=True)
+        self.login_and_go("/composer", superuser=True)
         b.wait_present("#main")
 
         # create image wizard
@@ -508,7 +508,7 @@ class TestImage(composerlib.ComposerCase):
         b = self.browser
         m = self.machine
 
-        self.login_and_go("/composer", authorized=True)
+        self.login_and_go("/composer", superuser=True)
         b.wait_present("#main")
 
         # create image wizard
