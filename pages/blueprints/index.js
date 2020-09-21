@@ -95,8 +95,11 @@ class BlueprintsPage extends React.Component {
           manageSources={manageSources}
         />
         {(blueprintsLoading === true && <Loading />) ||
+          (blueprintsError === undefined && (
+            <EmptyStateInactive fetchingBlueprints={this.props.fetchingBlueprints} />
+          )) ||
           (blueprintsError !== null &&
-            ((blueprintsError.message === "not-found" && (
+            (((blueprintsError.problem === "access-denied" || blueprintsError.message === "not-found") && (
               <EmptyStateInactive fetchingBlueprints={this.props.fetchingBlueprints} />
             )) || (
               <EmptyState
