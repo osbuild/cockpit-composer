@@ -33,7 +33,7 @@ const initialState = {
   blueprints: {
     blueprintList: [],
     fetchingBlueprints: true,
-    errorState: null,
+    errorState: undefined,
   },
   composes: {
     composeTypes: [],
