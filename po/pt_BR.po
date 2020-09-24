@@ -2,7 +2,7 @@
 # Eliane Pereira <elirpereira@gmail.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-08-27T05:10:30.890Z\n"
+"POT-Creation-Date: 2020-09-17T09:36:43.245Z\n"
 "PO-Revision-Date: 2020-02-26 13:38+0000\n"
 "Last-Translator: Eliane Pereira <elirpereira@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
@@ -2358,6 +2358,15 @@ msgstr "metalink"
 #: build/messages/components/Modal/ManageSources.json
 msgid "mirrorlist"
 msgstr "lista de espelhos"
+
+#. [pages.blueprintEdit.paginationPerPage]
+#. defaultMessage is:
+#. per page
+#: build/messages/pages/blueprintEdit/index.json
+#, fuzzy
+#| msgid "home page"
+msgid "per page"
+msgstr "pagina inicial"
 
 #. [components.Wizard.2454328248]
 #. defaultMessage is:

@@ -2,8 +2,8 @@
 # Anonymous <noreply@weblate.org>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-08-27T05:10:30.890Z\n"
-"PO-Revision-Date: 2020-08-29 10:29+0000\n"
+"POT-Creation-Date: 2020-09-17T09:36:43.245Z\n"
+"PO-Revision-Date: 2020-09-20 15:29+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://translate.fedoraproject.org/projects/"
 "cockpit-composer/master/tr/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1\n"
-"X-Generator: Weblate 4.2.1\n"
+"X-Generator: Weblate 4.2.2\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -2359,6 +2359,13 @@ msgstr "metalink"
 #: build/messages/components/Modal/ManageSources.json
 msgid "mirrorlist"
 msgstr "ayna listesi"
+
+#. [pages.blueprintEdit.paginationPerPage]
+#. defaultMessage is:
+#. per page
+#: build/messages/pages/blueprintEdit/index.json
+msgid "per page"
+msgstr "sayfa başına"
 
 #. [components.Wizard.2454328248]
 #. defaultMessage is:
