@@ -16,7 +16,7 @@ class TestPackage(composerlib.ComposerCase):
     def testNavigate(self):
         b = self.browser
 
-        self.login_and_go("/composer", authorized=True)
+        self.login_and_go("/composer", superuser=True)
         b.wait_present("#main")
 
         # go to edit package page
@@ -79,7 +79,7 @@ class TestPackage(composerlib.ComposerCase):
     def testSort(self):
         b = self.browser
 
-        self.login_and_go("/composer", authorized=True)
+        self.login_and_go("/composer", superuser=True)
         b.wait_present("#main")
 
         # go to edit package page
@@ -113,7 +113,7 @@ class TestPackage(composerlib.ComposerCase):
     def testRedoUndoCommit(self):
         b = self.browser
 
-        self.login_and_go("/composer", authorized=True)
+        self.login_and_go("/composer", superuser=True)
         b.wait_present("#main")
 
         # go to edit package page
@@ -163,7 +163,7 @@ class TestPackage(composerlib.ComposerCase):
 
         # logout and login, still in edit blueprint page
         with b.wait_timeout(300):
-            b.relogin("/composer", authorized=True)
+            b.relogin("/composer", superuser=True)
         b.wait_present("ul[aria-label='Available Components'] li:nth-child(1)")
 
         # "1 Pending Change" still there
@@ -200,7 +200,7 @@ class TestPackage(composerlib.ComposerCase):
     def testDiscard(self):
         b = self.browser
 
-        self.login_and_go("/composer", authorized=True)
+        self.login_and_go("/composer", superuser=True)
         b.wait_present("#main")
 
         # go to edit package page

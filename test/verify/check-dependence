@@ -14,7 +14,7 @@ class TestDependence(composerlib.ComposerCase):
     def testComponent(self):
         b = self.browser
 
-        self.login_and_go("/composer", authorized=True)
+        self.login_and_go("/composer", superuser=True)
         b.wait_present("#main")
 
         # go to edit package page
@@ -48,7 +48,7 @@ class TestDependence(composerlib.ComposerCase):
     def testDetails(self):
         b = self.browser
 
-        self.login_and_go("/composer", authorized=True)
+        self.login_and_go("/composer", superuser=True)
         b.wait_present("#main")
 
         # go to edit package page

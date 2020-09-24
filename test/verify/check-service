@@ -29,7 +29,7 @@ class TestService(composerlib.ComposerCase):
     def testBasic(self):
         b = self.browser
 
-        self.login_and_go("/composer", authorized=True)
+        self.login_and_go("/composer", superuser=True)
         b.wait_present("#main")
 
         # start and enable osbuild-composer from UI
@@ -114,7 +114,7 @@ class TestService(composerlib.ComposerCase):
         # stop and disable osbuild-composer.socket
         m.execute("systemctl disable --now osbuild-composer.socket")
 
-        self.login_and_go("/composer", authorized=True)
+        self.login_and_go("/composer", superuser=True)
         b.wait_present("#main")
 
         # do not enable osbuild-composer
@@ -141,7 +141,7 @@ class TestService(composerlib.ComposerCase):
         # stop and disable osbuild-composer.socket
         m.execute("systemctl disable --now osbuild-composer.socket")
 
-        self.login_and_go("/composer", authorized=False)
+        self.login_and_go("/composer", superuser=False)
         b.wait_present("#main")
 
         # Start button can be disabled button or clickable button
