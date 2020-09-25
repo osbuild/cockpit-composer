@@ -9,7 +9,7 @@ Composer generates custom images suitable for deploying systems or uploading to
 the cloud. It integrates into [Cockpit](https://cockpit-project.org/) as a
 frontend for [osbuild](https://github.com/osbuild).
 
-## Making changes on Cockpit Composer
+## Making changes to Cockpit Composer
 
 Here's where to get the code:
 
