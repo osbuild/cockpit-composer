@@ -36,13 +36,24 @@ function request(options) {
         else if (replyFormat === "raw") resolve(data);
         else throw new Error(`invalid replyFormat: '${replyFormat}'`);
       })
-      .catch((error) =>
+      .catch((error, data) => {
+        /*
+         * osbuild-composer describes the error in more detail, so add the body
+         * so it at least can be logged for more information.
+         */
+        let body = data;
+        try {
+          body = JSON.parse(body);
+        } catch {
+          /* just keep the data as string */
+        }
         reject({
           problem: error.problem,
           message: error.message,
           options,
-        })
-      );
+          body,
+        });
+      });
   });
 }
 
