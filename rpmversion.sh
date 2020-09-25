@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Generate the version and release strings to use in the spec file.
 # The output of this script is "<VERSION>-<RELEASE>",
