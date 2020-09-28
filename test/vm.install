@@ -12,7 +12,7 @@ lvextend -r -l +100%FREE $VG/root
 
 # overriding osbuild-composer repo with nightly
 mkdir -p /etc/osbuild-composer/repositories
-cp /home/admin/files/rhel-8-beta.json /etc/osbuild-composer/repositories/
+cp /home/admin/files/rhel-8-beta.json /etc/osbuild-composer/repositories/rhel-8.json
 
 # Allow cockpit port (9090) in INPUT chain
 # Do not reload firewall rule during image generation
