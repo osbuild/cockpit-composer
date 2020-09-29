@@ -11,6 +11,7 @@ import testlib
 
 @testlib.nondestructive
 @testlib.timeout(2400)
+@testlib.noretry
 class TestImage(composerlib.ComposerCase):
 
     def testBasic(self):
