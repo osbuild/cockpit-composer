@@ -5,8 +5,8 @@
 # Ludek Janda <ljanda@redhat.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-09-17T09:36:43.245Z\n"
-"PO-Revision-Date: 2020-09-19 13:29+0000\n"
+"POT-Creation-Date: 2020-09-24T09:06:59.507Z\n"
+"PO-Revision-Date: 2020-09-24 18:29+0000\n"
 "Last-Translator: Ludek Janda <ljanda@redhat.com>\n"
 "Language-Team: Japanese <https://translate.fedoraproject.org/projects/"
 "cockpit-composer/master/ja/>\n"
@@ -110,10 +110,8 @@ msgstr "キー ID ヘルプへのアクセス"
 #. defaultMessage is:
 #. Access keys
 #: build/messages/components/Wizard/AzureAuthStep.json
-#, fuzzy
-#| msgid "Access key ID"
 msgid "Access keys"
-msgstr "アクセスキー ID"
+msgstr "アクセスキー"
 
 #. [components.ListView.imageActions] - A label for the menu that displays the actions available
 #. defaultMessage is:
@@ -286,10 +284,8 @@ msgstr "利用可能なコンポーネント"
 #. defaultMessage is:
 #. Azure help
 #: build/messages/components/Wizard/ReviewStep.json
-#, fuzzy
-#| msgid "AWS help"
 msgid "Azure help"
-msgstr "AWS ヘルプ"
+msgstr "Azure ヘルプ"
 
 #. [components.Wizard.1347475195]
 #. defaultMessage is:
@@ -405,12 +401,12 @@ msgstr "ブループリント"
 #. defaultMessage is:
 #. Browse or search for components, then add them to the blueprint. Or leave the blueprint empty to create a minimal image.
 #: build/messages/pages/blueprintEdit/index.json
-#, fuzzy
-#| msgid "Browse or search for components, then add them to the blueprint."
 msgid ""
 "Browse or search for components, then add them to the blueprint. Or leave "
 "the blueprint empty to create a minimal image."
-msgstr "コンポーネントを閲覧または検索した後、ブループリントに追加します。"
+msgstr ""
+"コンポーネントを閲覧または検索した後、ブループリントに追加します。または、最"
+"小限のイメージを作成するためにブループリントは空にします。"
 
 #. [components.Form.cancel]
 #. defaultMessage is:
@@ -746,17 +742,13 @@ msgstr "説明"
 #. defaultMessage is:
 #. Destination
 #: build/messages/components/Wizard/CreateImageUpload.json
-#, fuzzy
-#| msgid "Description"
 msgid "Destination"
-msgstr "説明"
+msgstr "ターゲット"
 
 #. [components.ListView.details]
 #. defaultMessage is:
 #. Details
 #: build/messages/components/ListView/ComponentDetailsView.json
-#, fuzzy
-#| msgid "details"
 msgid "Details"
 msgstr "詳細"
 
@@ -889,19 +881,15 @@ msgstr "名前での絞り込み..."
 #. defaultMessage is:
 #. Filter by Name
 #: build/messages/components/Toolbar/FilterInput.json
-#, fuzzy
-#| msgid "Filter By Name..."
 msgid "Filter by Name"
-msgstr "名前での絞り込み..."
+msgstr "名前での絞り込み"
 
 #. [components.Toolbar.filterReleasePlaceholder]
 #. defaultMessage is:
 #. Filter by Release
 #: build/messages/components/Toolbar/FilterInput.json
-#, fuzzy
-#| msgid "Filter By Name..."
 msgid "Filter by Release"
-msgstr "名前での絞り込み..."
+msgstr "リリースでの絞り込み"
 
 #. [components.Toolbar.filterVersionPlaceholder]
 #. defaultMessage is:
@@ -966,26 +954,16 @@ msgstr "ホスト名が提供されない場合は、OS がホスト名を決定
 #.                       and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
 #: build/messages/components/Wizard/ImageStep.json
 #: build/messages/components/Wizard/ReviewStep.json
-#, fuzzy
-#| msgid ""
-#| "Image Builder can upload images you create to an {bucket} in AWS and then "
-#| "import them into EC2. When the image build is complete\n"
-#| "                      and the upload action is successful, the image file "
-#| "is available in the AMI section of EC2. Most of the values required to "
-#| "upload\n"
-#| "                      the image can be found in the {console}."
 msgid ""
 "Image Builder can upload images you create to a Blob container in {azure}. "
 "When the image build is complete \n"
 "                      and the upload action is successful, the image file is "
 "available in the Storage account and Blob container that you specified."
 msgstr ""
-"Image Builder は、作成したイメージを AWS の {bucket} にアップロードしてから、"
+"Image Builder は、作成したイメージを AWS の {azure} にアップロードしてから、"
 "EC2 にインポートします。イメージのビルドが完了し\n"
-"                      アップロードアクションが成功すると、EC2 の AMI セクショ"
-"ンでイメージファイルが利用可能になります。イメージのアップロードに必要な値の"
-"多くは、\n"
-"            {console} にあります。"
+"                      アップロードアクションが成功すると、イメージファイルが"
+"指定したストレージアカウントとブロブコンテナーで利用できます。"
 
 #. [components.Wizard.1007547894]
 #. defaultMessage is:
@@ -999,14 +977,6 @@ msgstr ""
 #.                         the image can be found in the {console}.
 #: build/messages/components/Wizard/ImageStep.json
 #: build/messages/components/Wizard/ReviewStep.json
-#, fuzzy
-#| msgid ""
-#| "Image Builder can upload images you create to an {bucket} in AWS and then "
-#| "import them into EC2. When the image build is complete\n"
-#| "                      and the upload action is successful, the image file "
-#| "is available in the AMI section of EC2. Most of the values required to "
-#| "upload\n"
-#| "                      the image can be found in the {console}."
 msgid ""
 "Image Builder can upload images you create to an {bucket} in AWS and then "
 "import them into EC2. When the image build is complete\n"
@@ -1292,19 +1262,15 @@ msgstr "利用できるログはありません"
 #. defaultMessage is:
 #. OSTree parent help
 #: build/messages/components/Wizard/ImageStep.json
-#, fuzzy
-#| msgid "AWS region help"
 msgid "OSTree parent help"
-msgstr "AWS リージョンのヘルプ"
+msgstr "OSTree 親ヘルプ"
 
 #. [components.Wizard.ostreeRef]
 #. defaultMessage is:
 #. OSTree ref help
 #: build/messages/components/Wizard/ImageStep.json
-#, fuzzy
-#| msgid "AWS region help"
 msgid "OSTree ref help"
-msgstr "AWS リージョンのヘルプ"
+msgstr "OSTree ref ヘルプ"
 
 #. [components.Modal.1475836573]
 #. defaultMessage is:
@@ -1440,15 +1406,6 @@ msgstr ""
 #.                         The {bucket} must already exist in the Region where you want to import your image. You can find a list of {buckets} on the
 #.                         {bucketsPage} page in the {amazon} S3 storage service in the AWS console.
 #: build/messages/components/Wizard/AWSDestinationStep.json
-#, fuzzy
-#| msgid ""
-#| "Provide the S3 {bucket} name to which the image file will be uploaded "
-#| "before being imported into EC2. \n"
-#| "                          The {bucket} must already exist in the Region "
-#| "where you want to import your image. You can find a list of {buckets} on "
-#| "the\n"
-#| "                          {bucketsPage} page in the {amazon} S3 storage "
-#| "service in the AWS console."
 msgid ""
 "Provide the S3 {bucket} name to which the image file will be uploaded before "
 "being imported into EC2. \n"
@@ -1852,10 +1809,8 @@ msgstr "ストレージアクセスキー"
 #. defaultMessage is:
 #. Storage access key help
 #: build/messages/components/Wizard/AzureAuthStep.json
-#, fuzzy
-#| msgid "Storage access key"
 msgid "Storage access key help"
-msgstr "ストレージアクセスキー"
+msgstr "ストレージアクセスキーヘルプ"
 
 #. [components.Wizard.1624497518]
 #. defaultMessage is:
@@ -1872,10 +1827,8 @@ msgstr "ストレージアカウント"
 #. defaultMessage is:
 #. Storage account help
 #: build/messages/components/Wizard/AzureAuthStep.json
-#, fuzzy
-#| msgid "Storage account"
 msgid "Storage account help"
-msgstr "ストレージアカウント"
+msgstr "ストレージアカウントヘルプ"
 
 #. [components.Wizard.storageAccounts]
 #. defaultMessage is:
@@ -1885,8 +1838,6 @@ msgstr "ストレージアカウント"
 #. Storage accounts
 #: build/messages/components/Wizard/AzureAuthStep.json
 #: build/messages/components/Wizard/AzureDestinationStep.json
-#, fuzzy
-#| msgid "Storage account"
 msgid "Storage accounts"
 msgstr "ストレージアカウント"
 
@@ -1905,10 +1856,8 @@ msgstr "ストレージコンテナー"
 #. defaultMessage is:
 #. Storage container help
 #: build/messages/components/Wizard/AzureDestinationStep.json
-#, fuzzy
-#| msgid "Storage container"
 msgid "Storage container help"
-msgstr "ストレージコンテナー"
+msgstr "ストレージコンテナーヘルプ"
 
 #. [components.ListView.3639476303] - System sources are configured repositories that were found on the host machine
 #. defaultMessage is:
@@ -2111,12 +2060,6 @@ msgstr "このソースパスはすでに存在します。"
 #.                         be imported from the S3 {bucket} into EC2. For more details, refer to the {role}.
 #: build/messages/components/Wizard/ImageStep.json
 #: build/messages/components/Wizard/ReviewStep.json
-#, fuzzy
-#| msgid ""
-#| "This upload process requires that you have an {iam} role named {vmimport} "
-#| "to ensure that the image can\n"
-#| "                      be imported from the S3 {bucket} into EC2. For more "
-#| "details, refer to the {role}."
 msgid ""
 "This upload process requires that you have an {iam} role named {vmimport} to "
 "ensure that the image can\n"
@@ -2261,10 +2204,8 @@ msgstr "アップロードを保留中"
 #: build/messages/components/Wizard/CreateImageUpload.json
 #: build/messages/components/Wizard/ImageStep.json
 #: build/messages/components/Wizard/ReviewStep.json
-#, fuzzy
-#| msgid "Upload to Azure"
 msgid "Upload to AWS"
-msgstr "Azure にアップロード"
+msgstr "AWS にアップロード"
 
 #. [components.Wizard.2244258572]
 #. defaultMessage is:
