@@ -214,9 +214,12 @@ When the project is ready for a new release, do the following:
 
 (an editor should open automatically, and gpg is required to be setup in order to sign the tag).
 
-Then push the tag with `git push --tags`. This will trigger
-[cockpituous](https://github.com/cockpit-project/cockpituous/tree/master/release)
-to build a new release of cockpit-composer.
+Then push the tag with `git push --tags`. This triggers the [release.yml](.github/workflows/release.yml)
+[GitHub action](https://github.com/features/actions) workflow.
+
+The workflow runs [cockpituous](https://github.com/cockpit-project/cockpituous/tree/master/release)
+to build a new release of cockpit-composer, with the [cockpituous-release](./utils/cockpituous-release) control file.
+This uses the shared [cockpit-project organization secrets](https://github.com/organizations/cockpit-project/settings/secrets).
 
 Finally, import the new `.srpm` into the appropriate RHEL release.
 
