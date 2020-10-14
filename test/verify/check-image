@@ -137,6 +137,7 @@ class TestImage(composerlib.ComposerCase):
         b.click(".pf-c-popover__content button")
         b.wait_not_present(".pf-c-popover__body")
         # enter access key id value
+        b.wait_visible("input[id='access-key-id-input']")
         b.focus("input[id='access-key-id-input']")
         b.key_press("never")
         b.wait_present("span:contains('Secret access key')")
@@ -148,6 +149,7 @@ class TestImage(composerlib.ComposerCase):
         b.click(".pf-c-popover__content button")
         b.wait_not_present(".pf-c-popover__body")
         # enter secret access key value
+        b.wait_visible("input[id='secret-access-key-input']")
         b.focus("input[id='secret-access-key-input']")
         b.key_press("gunna")
         # check and enter destination fields
@@ -160,6 +162,7 @@ class TestImage(composerlib.ComposerCase):
         b.click(".pf-c-popover__content button")
         b.wait_not_present(".pf-c-popover__body")
         # enter access key id value
+        b.wait_visible("input[id='image-name-input']")
         b.focus("input[id='image-name-input']")
         b.key_press("give")
         b.wait_present("span:contains('Amazon S3 bucket')")
@@ -173,6 +176,7 @@ class TestImage(composerlib.ComposerCase):
         b.click(".pf-c-popover__content button")
         b.wait_not_present(".pf-c-popover__body")
         # enter secret access key value
+        b.wait_visible("input[id='bucket-input']")
         b.focus("input[id='bucket-input']")
         b.key_press("you")
         b.wait_present("span:contains('AWS region')")
@@ -184,6 +188,7 @@ class TestImage(composerlib.ComposerCase):
         b.click(".pf-c-popover__content button")
         b.wait_not_present(".pf-c-popover__body")
         # enter access key id value
+        b.wait_visible("input[id='region-input']")
         b.focus("input[id='region-input']")
         b.key_press("up")
         # Verify AWS Review page
