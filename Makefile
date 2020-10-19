@@ -153,8 +153,9 @@ machine: bots
 
 # checkout Cockpit's test API; this has no API stability guarantee, so check out a stable tag
 # this needs a recent adjustment for firefox 77 and working with network-enabled tests
+# checkout a special commit to fix https://github.com/cockpit-project/cockpit/issues/14720
 test/common:
-	git fetch --depth=1 https://github.com/cockpit-project/cockpit.git 229
+	git fetch --depth=1 https://github.com/cockpit-project/cockpit.git e73fd0d54cff27f0e76444a52ae4f07892cfeed1
 	git checkout --force FETCH_HEAD -- test/common
 	git reset test/common
 
