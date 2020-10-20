@@ -140,7 +140,6 @@ After every change to your sources, run `make` to update all the webpacks, and r
 │   └── /index.ejs              # Template for index.html
 ├── /test/                      # Integration test
 ├── /utils/                     # Utility and helper classes
-│── .tasks                      # Tasks triggered by Cockpit bot
 │── .travis.yml                 # Travis CI settings
 │── babel.config.js             # babel configurations
 │── cockpit-composer.spec.in    # Cockpit-composer spec file
@@ -222,6 +221,17 @@ to build a new release of cockpit-composer, with the [cockpituous-release](./uti
 This uses the shared [cockpit-project organization secrets](https://github.com/organizations/cockpit-project/settings/secrets).
 
 Finally, import the new `.srpm` into the appropriate RHEL release.
+
+## Automated maintenance
+
+It is important to keep your [NPM modules](./package.json) up to date, to keep
+up with security updates and bug fixes. This is done with the
+[npm-update bot script](https://github.com/cockpit-project/bots/blob/master/npm-update)
+which is run daily or upon [manual request](https://github.com/osbuild/cockpit-composer/actions) through the
+[npm-update.yml](.github/workflows/npm-update.yml) [GitHub action](https://github.com/features/actions).
+
+Similarly, translations are refreshed every Tuesday evening (or manually) through the
+[po-refresh.yml](.github/workflows/po-refresh.yml) action.
 
 ## License
 
