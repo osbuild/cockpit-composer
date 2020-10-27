@@ -438,7 +438,7 @@ class TestImage(composerlib.ComposerCase):
         distro = os.environ.get("TEST_OS")
         if (distro == "fedora-32" or distro == "fedora-33"):
             image_type_ostree = "fedora-iot-commit"
-        elif (distro == "rhel-8-3"):
+        elif (distro == "rhel-8-3" or distro == "rhel-8-4"):
             image_type_ostree = "rhel-edge-commit"
 
         self.login_and_go("/composer", superuser=True)
