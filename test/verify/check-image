@@ -428,9 +428,10 @@ class TestImage(composerlib.ComposerCase):
         b = self.browser
         m = self.machine
 
-        if (os.environ.get("TEST_OS") == "fedora-32"):
+        distro = os.environ.get("TEST_OS")
+        if (distro == "fedora-32" or distro == "fedora-33"):
             image_type_ostree = "fedora-iot-commit"
-        elif (os.environ.get("TEST_OS") == "rhel-8-3"):
+        elif (distro == "rhel-8-3"):
             image_type_ostree = "rhel-edge-commit"
 
         self.login_and_go("/composer", superuser=True)
