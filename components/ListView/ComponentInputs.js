@@ -1,7 +1,6 @@
 import React from "react";
 import { defineMessages, injectIntl, intlShape } from "react-intl";
 import PropTypes from "prop-types";
-import shortid from "shortid";
 import {
   DataList,
   DataListItem,
@@ -38,7 +37,7 @@ class ComponentInputs extends React.Component {
       <DataList aria-label={label} data-list="inputs" className="cc-m-compact">
         {components.map((component) => (
           <DataListItem
-            key={shortid.generate()}
+            key={component.name}
             aria-labelledby={`${component.name}-input`}
             className={component.active ? "active" : ""}
             data-input={component.name}
