@@ -11,7 +11,7 @@ import testlib
 
 @testlib.nondestructive
 @testlib.timeout(2400)
-@testlib.noretry
+@testlib.no_retry_when_changed
 class TestImage(composerlib.ComposerCase):
 
     def testImageStep(self):
