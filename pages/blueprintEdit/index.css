@@ -10,6 +10,12 @@
   --pf-c-pagination--m-bottom--BoxShadow: none;
 }
 
+.pf-c-options-menu.pf-m-top .pf-c-options-menu__menu {
+  --pf-c-options-menu__menu--Top: var(--pf-c-options-menu__menu--Top);
+
+  transform: translateY(0);
+}
+
 /* The base size for smaller viewports in patternfly-cockpit.scss is too small
 /* for this context. Using the size defined for larger viewports instead. */
 .toolbar-pf-results ul {
