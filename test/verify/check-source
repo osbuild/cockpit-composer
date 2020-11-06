@@ -57,6 +57,7 @@ class TestSource(composerlib.ComposerCase):
         b.set_val(dropdown_menu_sel, value_id)
         b.wait_val(dropdown_menu_sel, value_id)
         # groups action done
+        b.wait_present("button:contains('Add Source')")
         b.click("button:contains('Add Source')")
 
         # HACK: workaround issue https://github.com/osbuild/cockpit-composer/issues/989
@@ -64,6 +65,8 @@ class TestSource(composerlib.ComposerCase):
         if b.cdp.browser == "firefox":
             # open manage sources dialog
             drop_down_sel = ".toolbar-pf-action-right #dropdownKebab"
+            b.wait_present("#main")
+            b.wait_attr(drop_down_sel, "aria-expanded", "false")
             b.click(drop_down_sel)
             b.wait_attr(drop_down_sel, "aria-expanded", "true")
             b.click("a:contains('Manage Sources')")
