@@ -59,15 +59,6 @@ class UserAccount extends React.Component {
     }
   }
 
-  setValidPassword(password) {
-    if (password === undefined) {
-      this.props.setModalUserAccountData({ showInvalidPassword: true });
-    } else {
-      this.props.setModalUserAccountData({ password });
-      this.props.setModalUserAccountData({ showInvalidPassword: false });
-    }
-  }
-
   handleRemovePassword() {
     this.props.setModalUserAccountData({ password: "" });
     this.setState((prevState) => {
@@ -126,6 +117,30 @@ class UserAccount extends React.Component {
     this.props.setModalUserAccountData({ showInvalidName: !validCharacters });
   }
 
+  handleSubmitUserAccount(e) {
+    // if creating a new user and password is defined, or editing a user and new password is defined,
+    // then encrypt the password
+    if (this.props.userAccount.password !== "") {
+      this.encryptPassword(this.props.userAccount.password)
+        .then((res) => this.props.handlePostUser(res))
+        .catch((ex) => console.error("failed to encrypt password:", ex));
+    } else {
+      const password = this.state.currentUser ? this.state.currentUser.password : "";
+      this.props.handlePostUser(password);
+    }
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
+  setValidPassword(password) {
+    if (password === undefined) {
+      this.props.setModalUserAccountData({ showInvalidPassword: true });
+    } else {
+      this.props.setModalUserAccountData({ password });
+      this.props.setModalUserAccountData({ showInvalidPassword: false });
+    }
+  }
+
   makeUsername(realname) {
     let result = "";
     const name = realname.split(" ");
@@ -165,21 +180,6 @@ class UserAccount extends React.Component {
     return (
       (c >= "a" && c <= "z") || (c >= "A" && c <= "Z") || (c >= "0" && c <= "9") || c === "." || c === "_" || c === "-"
     );
-  }
-
-  handleSubmitUserAccount(e) {
-    // if creating a new user and password is defined, or editing a user and new password is defined,
-    // then encrypt the password
-    if (this.props.userAccount.password !== "") {
-      this.encryptPassword(this.props.userAccount.password)
-        .then((res) => this.props.handlePostUser(res))
-        .catch((ex) => console.error("failed to encrypt password:", ex));
-    } else {
-      const password = this.state.currentUser ? this.state.currentUser.password : "";
-      this.props.handlePostUser(password);
-    }
-    e.preventDefault();
-    e.stopPropagation();
   }
 
   encryptPassword(password) {

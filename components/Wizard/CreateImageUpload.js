@@ -102,112 +102,6 @@ class CreateImageUploadModal extends React.Component {
     this.props.clearQueue();
   }
 
-  getDefaultImageSize(imageType) {
-    if (imageType === "ami") {
-      return 6;
-    }
-    if (imageType === undefined) {
-      return null;
-    }
-    return 2;
-  }
-
-  setNotifications() {
-    this.props.layout.setNotifications();
-  }
-
-  setUploadSettings(_, event) {
-    const key = event.target.name;
-    const { value } = event.target;
-    this.setState((prevState) => ({ uploadSettings: { ...prevState.uploadSettings, [key]: value } }));
-  }
-
-  setImageSize(value) {
-    this.setState({
-      imageSize: value ? Number(value) : undefined,
-    });
-  }
-
-  setImageName(value) {
-    this.setState({
-      imageName: value,
-    });
-  }
-
-  setOstreeParent(value) {
-    this.setState((prevState) => ({ ostreeSettings: { ...prevState.ostreeSettings, parent: value } }));
-  }
-
-  setOstreeRef(value) {
-    this.setState((prevState) => ({ ostreeSettings: { ...prevState.ostreeSettings, ref: value } }));
-  }
-
-  setImageType(imageType) {
-    const defaultImageSize = this.getDefaultImageSize(imageType);
-    this.setState({
-      imageType,
-      imageName: "",
-      imageSize: defaultImageSize,
-      minImageSize: defaultImageSize,
-      ostreeSettings: {
-        parent: undefined,
-        ref: undefined,
-      },
-      uploadService: "",
-      uploadSettings: {},
-      showUploadAwsStep: false,
-      showUploadAzureStep: false,
-      showReviewStep: false,
-    });
-  }
-
-  isPendingChange() {
-    return (
-      this.props.blueprint.workspacePendingChanges.length > 0 || this.props.blueprint.localPendingChanges.length > 0
-    );
-  }
-
-  isValidImageSize() {
-    if (this.state.imageSize !== undefined && this.state.imageSize < this.state.minImageSize) {
-      return false;
-    }
-    return true;
-  }
-
-  requiresImageSize(imageType) {
-    if (imageType === "fedora-iot-commit" || imageType === "rhel-edge-commit") {
-      return false;
-    }
-    return true;
-  }
-
-  disableCreateButton(activeStep) {
-    if (this.state.imageType === "") {
-      return true;
-    }
-    if (
-      this.requiresImageSize(this.state.imageType) &&
-      (this.state.imageSize === undefined || (!this.isValidImageSize() && this.state.uploadService === ""))
-    ) {
-      return true;
-    }
-    if (this.missingRequiredFields() && activeStep.name === "Review") {
-      return true;
-    }
-    return false;
-  }
-
-  missingRequiredFields() {
-    if (this.state.uploadService.length === 0) return true;
-    if (this.state.imageName.length === 0) return true;
-    if (Object.values(this.state.uploadSettings).some((setting) => setting === "")) return true;
-    for (const setting in this.state.uploadSettings) {
-      if (this.state.uploadSettings[setting].length === 0) return true;
-    }
-    if (this.state.imageSize === undefined || this.state.imageSize < this.state.minImageSize) return true;
-    return false;
-  }
-
   handleUploadService(_, event) {
     const uploadService = event.target.value;
     const { checked } = event.target;
@@ -315,6 +209,112 @@ class CreateImageUploadModal extends React.Component {
       if (this.isPendingChange()) this.handleCommit();
       else this.handleCreateImage();
     } else toNextStep();
+  }
+
+  setImageType(imageType) {
+    const defaultImageSize = this.getDefaultImageSize(imageType);
+    this.setState({
+      imageType,
+      imageName: "",
+      imageSize: defaultImageSize,
+      minImageSize: defaultImageSize,
+      ostreeSettings: {
+        parent: undefined,
+        ref: undefined,
+      },
+      uploadService: "",
+      uploadSettings: {},
+      showUploadAwsStep: false,
+      showUploadAzureStep: false,
+      showReviewStep: false,
+    });
+  }
+
+  setNotifications() {
+    this.props.layout.setNotifications();
+  }
+
+  setUploadSettings(_, event) {
+    const key = event.target.name;
+    const { value } = event.target;
+    this.setState((prevState) => ({ uploadSettings: { ...prevState.uploadSettings, [key]: value } }));
+  }
+
+  setImageSize(value) {
+    this.setState({
+      imageSize: value ? Number(value) : undefined,
+    });
+  }
+
+  setImageName(value) {
+    this.setState({
+      imageName: value,
+    });
+  }
+
+  setOstreeParent(value) {
+    this.setState((prevState) => ({ ostreeSettings: { ...prevState.ostreeSettings, parent: value } }));
+  }
+
+  setOstreeRef(value) {
+    this.setState((prevState) => ({ ostreeSettings: { ...prevState.ostreeSettings, ref: value } }));
+  }
+
+  getDefaultImageSize(imageType) {
+    if (imageType === "ami") {
+      return 6;
+    }
+    if (imageType === undefined) {
+      return null;
+    }
+    return 2;
+  }
+
+  disableCreateButton(activeStep) {
+    if (this.state.imageType === "") {
+      return true;
+    }
+    if (
+      this.requiresImageSize(this.state.imageType) &&
+      (this.state.imageSize === undefined || (!this.isValidImageSize() && this.state.uploadService === ""))
+    ) {
+      return true;
+    }
+    if (this.missingRequiredFields() && activeStep.name === "Review") {
+      return true;
+    }
+    return false;
+  }
+
+  missingRequiredFields() {
+    if (this.state.uploadService.length === 0) return true;
+    if (this.state.imageName.length === 0) return true;
+    if (Object.values(this.state.uploadSettings).some((setting) => setting === "")) return true;
+    for (const setting in this.state.uploadSettings) {
+      if (this.state.uploadSettings[setting].length === 0) return true;
+    }
+    if (this.state.imageSize === undefined || this.state.imageSize < this.state.minImageSize) return true;
+    return false;
+  }
+
+  requiresImageSize(imageType) {
+    if (imageType === "fedora-iot-commit" || imageType === "rhel-edge-commit") {
+      return false;
+    }
+    return true;
+  }
+
+  isPendingChange() {
+    return (
+      this.props.blueprint.workspacePendingChanges.length > 0 || this.props.blueprint.localPendingChanges.length > 0
+    );
+  }
+
+  isValidImageSize() {
+    if (this.state.imageSize !== undefined && this.state.imageSize < this.state.minImageSize) {
+      return false;
+    }
+    return true;
   }
 
   render() {
