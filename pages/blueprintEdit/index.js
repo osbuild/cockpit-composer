@@ -131,23 +131,6 @@ class EditBlueprintPage extends React.Component {
     this.props.clearSelectedInput();
   }
 
-  setNotifications() {
-    this.layout.setNotifications();
-  }
-
-  getFilteredInputs(event) {
-    if (event.which === 13 || event.keyCode === 13) {
-      const filter = {
-        field: "name",
-        value: event.target.value,
-      };
-      this.props.fetchingInputs(filter, 1, this.state.pageSize);
-      this.props.setSelectedInputPage(0);
-      $("#cmpsr-blueprint-input-filter").blur();
-      event.preventDefault();
-    }
-  }
-
   handleClearFilters(event) {
     const filter = {
       field: "name",
@@ -376,7 +359,7 @@ class EditBlueprintPage extends React.Component {
         field: "name",
         value: event.target.value,
       };
-      this.props.fetchingInputs(filter, 0, this.props.inputs.pageSize);
+      this.props.fetchingInputs(filter, 1, this.state.pageSize);
       this.props.setSelectedInputPage(0);
       $("#cmpsr-blueprint-input-filter").blur();
       event.preventDefault();
