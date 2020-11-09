@@ -15,17 +15,6 @@ class ExportBlueprint extends React.Component {
     this.close = this.close.bind(this);
   }
 
-  open(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    this.props.fetchingBlueprintContents(this.props.blueprint.name);
-    this.setState({ showModal: true });
-  }
-
-  close() {
-    this.setState({ showModal: false });
-  }
-
   handleCopy() {
     this.blueprint_contents_text.select();
     document.execCommand("copy");
@@ -35,6 +24,17 @@ class ExportBlueprint extends React.Component {
     if (event.which === 13 || event.keyCode === 13) {
       this.handleCopy();
     }
+  }
+
+  open(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    this.props.fetchingBlueprintContents(this.props.blueprint.name);
+    this.setState({ showModal: true });
+  }
+
+  close() {
+    this.setState({ showModal: false });
   }
 
   render() {
