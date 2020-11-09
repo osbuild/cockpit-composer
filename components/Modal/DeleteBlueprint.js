@@ -16,17 +16,17 @@ class DeleteBlueprint extends React.Component {
     this.close = this.close.bind(this);
   }
 
+  handleDelete(event, blueprint) {
+    this.props.deletingBlueprint(blueprint);
+    this.close();
+  }
+
   open() {
     this.setState({ showModal: true });
   }
 
   close() {
     this.setState({ showModal: false });
-  }
-
-  handleDelete(event, blueprint) {
-    this.props.deletingBlueprint(blueprint);
-    this.close();
   }
 
   render() {

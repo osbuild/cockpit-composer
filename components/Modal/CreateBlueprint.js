@@ -107,17 +107,6 @@ class CreateBlueprintModal extends React.Component {
     window.location.hash = history.createHref(`/edit/${this.state.name}`);
   }
 
-  dismissErrors() {
-    this.setState({
-      errorNameEmpty: false,
-      errorNameDuplicate: false,
-      errorNameSpace: false,
-      errorInline: false,
-      errorNameInvalid: false,
-      errorNameInvalidChar: [],
-    });
-  }
-
   handleErrorNameInvalid(blueprintName) {
     if (blueprintName.length === 0 && this.state.checkErrors) {
       this.setState({ errorNameEmpty: true });
@@ -138,6 +127,17 @@ class CreateBlueprintModal extends React.Component {
         this.setState({ errorNameDuplicate: true });
       }
     }
+  }
+
+  dismissErrors() {
+    this.setState({
+      errorNameEmpty: false,
+      errorNameDuplicate: false,
+      errorNameSpace: false,
+      errorInline: false,
+      errorNameInvalid: false,
+      errorNameInvalidChar: [],
+    });
   }
 
   nameContainsError() {

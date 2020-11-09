@@ -35,17 +35,6 @@ class TextInlineEdit extends React.Component {
     document.removeEventListener("keydown", this.escFunction, false);
   }
 
-  setEditValue(prevProps) {
-    if (prevProps.editVisible === false && this.props.editVisible === true && this.textInput.current) {
-      this.setState({ editValue: this.props.value });
-      this.textInput.current.select();
-    }
-    if (prevProps.editVisible === true && this.props.editVisible === false && this.textButton.current) {
-      this.textButton.current.focus();
-      this.setState({ editValue: this.props.value });
-    }
-  }
-
   handleChange(event) {
     this.setState({ editValue: event.target.value });
     if (this.props.validateValue) {
@@ -55,6 +44,17 @@ class TextInlineEdit extends React.Component {
 
   handleEdit(action) {
     this.props.handleEdit(action, this.textInput.current.value);
+  }
+
+  setEditValue(prevProps) {
+    if (prevProps.editVisible === false && this.props.editVisible === true && this.textInput.current) {
+      this.setState({ editValue: this.props.value });
+      this.textInput.current.select();
+    }
+    if (prevProps.editVisible === true && this.props.editVisible === false && this.textButton.current) {
+      this.textButton.current.focus();
+      this.setState({ editValue: this.props.value });
+    }
   }
 
   escFunction(event) {
