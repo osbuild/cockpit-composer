@@ -4,6 +4,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const ESLintPlugin = require("eslint-webpack-plugin");
 const babelConfig = require("./babel.config");
 
 const nodedir = path.resolve(process.env.SRCDIR || __dirname, "node_modules");
@@ -47,6 +48,9 @@ const plugins = [
     filename: "[name].css",
     chunkFilename: "[name].bundle.css",
   }),
+  new ESLintPlugin({
+    files: ["components/**/*.js, core/**/*.js, pages/**/*.js, data/**/*.js"],
+  }),
 ];
 
 module.exports = {
@@ -64,12 +68,6 @@ module.exports = {
   resolve: { alias: { "font-awesome": path.resolve(nodedir, "font-awesome-sass/assets/stylesheets") } },
   module: {
     rules: [
-      {
-        enforce: "pre",
-        test: /\.(js|jsx)$/,
-        exclude: [/node_modules/, /build/],
-        use: "eslint-loader",
-      },
       {
         test: /\.(js|jsx)$/,
         include: [
