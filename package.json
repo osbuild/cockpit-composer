@@ -10,7 +10,7 @@
     "@patternfly/patternfly": "4.50.4",
     "@patternfly/react-core": "4.79.2",
     "@patternfly/react-icons": "4.7.16",
-    "@patternfly/react-table": "4.19.5",
+    "@patternfly/react-table": "4.19.24",
     "bootstrap": "3.4.1",
     "core-js": "3.7.0",
     "core-js-compat": "3.7.0",
