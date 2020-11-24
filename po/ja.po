@@ -5,7 +5,7 @@
 # Ludek Janda <ljanda@redhat.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-09-24T09:06:59.507Z\n"
+"POT-Creation-Date: 2020-11-17T18:11:08.021Z\n"
 "PO-Revision-Date: 2020-09-24 18:29+0000\n"
 "Last-Translator: Ludek Janda <ljanda@redhat.com>\n"
 "Language-Team: Japanese <https://translate.fedoraproject.org/projects/"
@@ -1144,11 +1144,16 @@ msgstr "メッセージ"
 
 #. [components.Wizard.warningSizeSmall]
 #. defaultMessage is:
-#. Minimum size is {size} GB.
+#. Minimum size is {size} GB
+#: build/messages/components/Wizard/ImageStep.json
+#, fuzzy
+#| msgid "Minimum size is {size} GB."
+msgid "Minimum size is {size} GB"
+msgstr "最小サイズは {size} GB です。"
+
 #. [components.Wizard.warningSizeSmall]
 #. defaultMessage is:
 #. Minimum size is {size} GB.
-#: build/messages/components/Wizard/ImageStep.json
 #: build/messages/components/Wizard/ReviewStep.json
 msgid "Minimum size is {size} GB."
 msgstr "最小サイズは {size} GB です。"
@@ -2022,6 +2027,13 @@ msgstr "このブループリントは空です。"
 msgid "This component has no dependencies."
 msgstr "このコンポーネントには依存関係はありません。"
 
+#. [components.Wizard.requiredField]
+#. defaultMessage is:
+#. This is a required field
+#: build/messages/components/Wizard/ImageStep.json
+msgid "This is a required field"
+msgstr ""
+
 #. [components.Wizard.infotip]
 #. defaultMessage is:
 #. This process can take a while. Images are built in the order they are started.
@@ -2260,6 +2272,17 @@ msgid ""
 msgstr ""
 "ホスト名に使用可能な文字は、a〜z の文字、0〜9 の数字、およびハイフン (-) で"
 "す。ハイフンで始まるホスト名は使用できません。"
+
+#. [components.Wizard.ostreeRefHelperText]
+#. defaultMessage is:
+#. Valid characters for ref are letters from a to z, the digits from 0 to 9, the hyphen (-), the underscore (_), the period (.), and the forward slash (/). A ref must start with a letter, a number, or an underscore. Slashes must also be followed by a letter or number.
+#: build/messages/components/Wizard/ImageStep.json
+msgid ""
+"Valid characters for ref are letters from a to z, the digits from 0 to 9, "
+"the hyphen (-), the underscore (_), the period (.), and the forward slash "
+"(/). A ref must start with a letter, a number, or an underscore. Slashes "
+"must also be followed by a letter or number."
+msgstr ""
 
 #. [components.ListView.602883748]
 #. defaultMessage is:
