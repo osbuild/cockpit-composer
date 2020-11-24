@@ -4,7 +4,7 @@
 # Ludek Janda <ljanda@redhat.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-09-17T09:36:43.245Z\n"
+"POT-Creation-Date: 2020-11-17T18:11:08.021Z\n"
 "PO-Revision-Date: 2020-09-22 10:29+0000\n"
 "Last-Translator: Ludek Janda <ljanda@redhat.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.fedoraproject.org/"
@@ -394,7 +394,8 @@ msgstr "蓝图"
 msgid ""
 "Browse or search for components, then add them to the blueprint. Or leave "
 "the blueprint empty to create a minimal image."
-msgstr "浏览或搜索组件，然后把它们添加到蓝图中。或把蓝图保持为空以创建一个最小镜像。"
+msgstr ""
+"浏览或搜索组件，然后把它们添加到蓝图中。或把蓝图保持为空以创建一个最小镜像。"
 
 #. [components.Form.cancel]
 #. defaultMessage is:
@@ -947,8 +948,10 @@ msgid ""
 "                      and the upload action is successful, the image file is "
 "available in the Storage account and Blob container that you specified."
 msgstr ""
-"Image Builder 可以将您创建的镜像上传到 AWS 的一个 {azure} 中。当镜像构建完成且\n"
-"                      上传操作成功时，镜像文件会出现在您指定的存储帐户和 Blob 容器中。 "
+"Image Builder 可以将您创建的镜像上传到 AWS 的一个 {azure} 中。当镜像构建完成"
+"且\n"
+"                      上传操作成功时，镜像文件会出现在您指定的存储帐户和 "
+"Blob 容器中。 "
 
 #. [components.Wizard.1007547894]
 #. defaultMessage is:
@@ -970,8 +973,10 @@ msgid ""
 "upload\n"
 "                        the image can be found in the {console}."
 msgstr ""
-"Image Builder 可以将您创建的镜像上传到 AWS 的一个 {bucket} 中，然后将其导入EC2。当镜像构建完成且\n"
-"                      上传操作成功时，镜像文件会出现在 EC2 的 AMI 中。上传镜像所需的多数值都可以在\n"
+"Image Builder 可以将您创建的镜像上传到 AWS 的一个 {bucket} 中，然后将其导入"
+"EC2。当镜像构建完成且\n"
+"                      上传操作成功时，镜像文件会出现在 EC2 的 AMI 中。上传镜"
+"像所需的多数值都可以在\n"
 "                      {console} 中找到。"
 
 #. [components.EmptyState.errorInactiveTitle]
@@ -1123,11 +1128,16 @@ msgstr "信息"
 
 #. [components.Wizard.warningSizeSmall]
 #. defaultMessage is:
-#. Minimum size is {size} GB.
+#. Minimum size is {size} GB
+#: build/messages/components/Wizard/ImageStep.json
+#, fuzzy
+#| msgid "Minimum size is {size} GB."
+msgid "Minimum size is {size} GB"
+msgstr "最小大小为{size} GB。"
+
 #. [components.Wizard.warningSizeSmall]
 #. defaultMessage is:
 #. Minimum size is {size} GB.
-#: build/messages/components/Wizard/ImageStep.json
 #: build/messages/components/Wizard/ReviewStep.json
 msgid "Minimum size is {size} GB."
 msgstr "最小大小为{size} GB。"
@@ -1389,9 +1399,10 @@ msgid ""
 "service in the AWS console."
 msgstr ""
 "提供导入到 EC2 前镜像文件需要被上传到的 S3 {bucket} 的名称。 \n"
-"                          {bucket} 需要已存在于您要将镜像导入到的区域中。您可以在 AWS 控制台\n"
-"                          的  {amazon} S3 存储服务的 {bucketsPage} 页中找到 {buckets} "
-"列表。"
+"                          {bucket} 需要已存在于您要将镜像导入到的区域中。您可"
+"以在 AWS 控制台\n"
+"                          的  {amazon} S3 存储服务的 {bucketsPage} 页中找到 "
+"{buckets} 列表。"
 
 #. [components.Wizard.2706552502]
 #. defaultMessage is:
@@ -1978,6 +1989,13 @@ msgstr "这个蓝图为空。"
 msgid "This component has no dependencies."
 msgstr "这个组件没有依赖软件包。"
 
+#. [components.Wizard.requiredField]
+#. defaultMessage is:
+#. This is a required field
+#: build/messages/components/Wizard/ImageStep.json
+msgid "This is a required field"
+msgstr ""
+
 #. [components.Wizard.infotip]
 #. defaultMessage is:
 #. This process can take a while. Images are built in the order they are started.
@@ -2212,6 +2230,17 @@ msgid ""
 "9, and the hyphen (-). A hostname may not start with a hyphen."
 msgstr ""
 "主机名只能包括字母 a 到 z、数字 0 到 9、短横线 (-)。主机名不能以短横线开始。"
+
+#. [components.Wizard.ostreeRefHelperText]
+#. defaultMessage is:
+#. Valid characters for ref are letters from a to z, the digits from 0 to 9, the hyphen (-), the underscore (_), the period (.), and the forward slash (/). A ref must start with a letter, a number, or an underscore. Slashes must also be followed by a letter or number.
+#: build/messages/components/Wizard/ImageStep.json
+msgid ""
+"Valid characters for ref are letters from a to z, the digits from 0 to 9, "
+"the hyphen (-), the underscore (_), the period (.), and the forward slash "
+"(/). A ref must start with a letter, a number, or an underscore. Slashes "
+"must also be followed by a letter or number."
+msgstr ""
 
 #. [components.ListView.602883748]
 #. defaultMessage is:

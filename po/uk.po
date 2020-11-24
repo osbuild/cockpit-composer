@@ -2,8 +2,8 @@
 # David Shea <dshea@redhat.com>, 2019. #zanata
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-09-17T09:36:43.245Z\n"
-"PO-Revision-Date: 2020-09-20 15:29+0000\n"
+"POT-Creation-Date: 2020-11-17T18:11:08.021Z\n"
+"PO-Revision-Date: 2020-11-21 19:35+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "cockpit-composer/master/uk/>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.2.2\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -1137,11 +1137,14 @@ msgstr "Повідомлення"
 
 #. [components.Wizard.warningSizeSmall]
 #. defaultMessage is:
-#. Minimum size is {size} GB.
+#. Minimum size is {size} GB
+#: build/messages/components/Wizard/ImageStep.json
+msgid "Minimum size is {size} GB"
+msgstr "Мінімальним розміром є {size} ГБ"
+
 #. [components.Wizard.warningSizeSmall]
 #. defaultMessage is:
 #. Minimum size is {size} GB.
-#: build/messages/components/Wizard/ImageStep.json
 #: build/messages/components/Wizard/ReviewStep.json
 msgid "Minimum size is {size} GB."
 msgstr "Мінімальним розміром є {size} ГБ."
@@ -2019,6 +2022,13 @@ msgstr "Цей проект є порожнім."
 msgid "This component has no dependencies."
 msgstr "У цього компонента немає залежностей."
 
+#. [components.Wizard.requiredField]
+#. defaultMessage is:
+#. This is a required field
+#: build/messages/components/Wizard/ImageStep.json
+msgid "This is a required field"
+msgstr "Це поле є обов'язковим"
+
 #. [components.Wizard.infotip]
 #. defaultMessage is:
 #. This process can take a while. Images are built in the order they are started.
@@ -2258,6 +2268,21 @@ msgid ""
 msgstr ""
 "Коректними літерами для назви вузла є латинські літери від a до z, цифри від "
 "0 до 9 та дефіс (-). Назва вузла не повинна починатися з дефіса."
+
+#. [components.Wizard.ostreeRefHelperText]
+#. defaultMessage is:
+#. Valid characters for ref are letters from a to z, the digits from 0 to 9, the hyphen (-), the underscore (_), the period (.), and the forward slash (/). A ref must start with a letter, a number, or an underscore. Slashes must also be followed by a letter or number.
+#: build/messages/components/Wizard/ImageStep.json
+msgid ""
+"Valid characters for ref are letters from a to z, the digits from 0 to 9, "
+"the hyphen (-), the underscore (_), the period (.), and the forward slash "
+"(/). A ref must start with a letter, a number, or an underscore. Slashes "
+"must also be followed by a letter or number."
+msgstr ""
+"Коректними символами для посилання є літери латинки від a до z, цифри від 0 "
+"до 9, дефіс (-), підкреслювання (_), крапка (.) та пряма похила риска (/). "
+"Посилання має починатися з літери, цифри або символу підкреслювання. Крім "
+"того, після символів похилої риски має бути літера або цифра."
 
 #. [components.ListView.602883748]
 #. defaultMessage is:

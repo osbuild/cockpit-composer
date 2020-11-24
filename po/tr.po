@@ -1,10 +1,11 @@
 # Oğuz Ersen <oguzersen@protonmail.com>, 2020.
 # Anonymous <noreply@weblate.org>, 2020.
+# Burak Yavuz <hitowerdigit@hotmail.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-09-17T09:36:43.245Z\n"
-"PO-Revision-Date: 2020-09-20 15:29+0000\n"
-"Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
+"POT-Creation-Date: 2020-11-17T18:11:08.021Z\n"
+"PO-Revision-Date: 2020-11-21 19:35+0000\n"
+"Last-Translator: Burak Yavuz <hitowerdigit@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.fedoraproject.org/projects/"
 "cockpit-composer/master/tr/>\n"
 "Language: tr\n"
@@ -12,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1\n"
-"X-Generator: Weblate 4.2.2\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -1138,11 +1139,14 @@ msgstr "Mesaj"
 
 #. [components.Wizard.warningSizeSmall]
 #. defaultMessage is:
-#. Minimum size is {size} GB.
+#. Minimum size is {size} GB
+#: build/messages/components/Wizard/ImageStep.json
+msgid "Minimum size is {size} GB"
+msgstr "En az boyut {size} GB'tır"
+
 #. [components.Wizard.warningSizeSmall]
 #. defaultMessage is:
 #. Minimum size is {size} GB.
-#: build/messages/components/Wizard/ImageStep.json
 #: build/messages/components/Wizard/ReviewStep.json
 msgid "Minimum size is {size} GB."
 msgstr "Asgari boyut {size} GB'tır."
@@ -2018,6 +2022,13 @@ msgstr "Bu plan boş."
 msgid "This component has no dependencies."
 msgstr "Bu bileşenin hiçbir bağımlılığı yok."
 
+#. [components.Wizard.requiredField]
+#. defaultMessage is:
+#. This is a required field
+#: build/messages/components/Wizard/ImageStep.json
+msgid "This is a required field"
+msgstr "Bu gerekli bir alandır"
+
 #. [components.Wizard.infotip]
 #. defaultMessage is:
 #. This process can take a while. Images are built in the order they are started.
@@ -2254,9 +2265,23 @@ msgid ""
 "Valid characters for hostname are letters from a to z, the digits from 0 to "
 "9, and the hyphen (-). A hostname may not start with a hyphen."
 msgstr ""
-"Ana bilgisayar adı için geçerli karakterler a-z arasındaki harfler, 0'dan "
-"9'a rakamlar ve kısa çizgi (-) karakteridir. Ana bilgisayar adı kısa çizgi "
-"ile başlayamaz."
+"Anamakine adı için geçerli karakterler a'dan z'ye harfler, 0'dan 9'a "
+"rakamlar ve kısa çizgidir (-). Anamakine adı kısa çizgi ile başlayamaz."
+
+#. [components.Wizard.ostreeRefHelperText]
+#. defaultMessage is:
+#. Valid characters for ref are letters from a to z, the digits from 0 to 9, the hyphen (-), the underscore (_), the period (.), and the forward slash (/). A ref must start with a letter, a number, or an underscore. Slashes must also be followed by a letter or number.
+#: build/messages/components/Wizard/ImageStep.json
+msgid ""
+"Valid characters for ref are letters from a to z, the digits from 0 to 9, "
+"the hyphen (-), the underscore (_), the period (.), and the forward slash "
+"(/). A ref must start with a letter, a number, or an underscore. Slashes "
+"must also be followed by a letter or number."
+msgstr ""
+"Başvuru için geçerli karakterler a'dan z'ye harfler, 0'dan 9'a rakamlar, "
+"kısa çizgi (-), alt çizgi (_), nokta (.) ve eğik çizgidir (/). Bir başvuru "
+"bir harf, bir sayı veya bir alt çizgiyle başlamak zorundadır. Ayrıca eğik "
+"çizgilerin ardından bir harf veya sayı gelmek zorundadır."
 
 #. [components.ListView.602883748]
 #. defaultMessage is:
@@ -2347,7 +2372,7 @@ msgstr "ana sayfa"
 #: build/messages/components/ListView/SourcesListItem.json
 #: build/messages/components/Modal/ManageSources.json
 msgid "metalink"
-msgstr "metalink"
+msgstr "üst bağlantı"
 
 #. [components.ListView.mirrorlist]
 #. defaultMessage is:
