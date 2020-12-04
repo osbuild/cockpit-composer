@@ -23,7 +23,7 @@ class TestService(composerlib.ComposerCase):
             for bp in $(composer-cli blueprints list); do
                 composer-cli blueprints delete $bp
             done
-            systemctl disable --now osbuild-composer.socket
+            systemctl disable --now osbuild-composer.socket osbuild-composer.service
         """)
 
     def testBasic(self):
@@ -112,7 +112,7 @@ class TestService(composerlib.ComposerCase):
         m = self.machine
 
         # stop and disable osbuild-composer.socket
-        m.execute("systemctl disable --now osbuild-composer.socket")
+        m.execute("systemctl disable --now osbuild-composer.socket osbuild-composer.service")
 
         self.login_and_go("/composer", superuser=True)
         b.wait_present("#main")
@@ -139,7 +139,7 @@ class TestService(composerlib.ComposerCase):
         m = self.machine
 
         # stop and disable osbuild-composer.socket
-        m.execute("systemctl disable --now osbuild-composer.socket")
+        m.execute("systemctl disable --now osbuild-composer.socket osbuild-composer.service")
 
         self.login_and_go("/composer", superuser=False)
         b.wait_present("#main")
