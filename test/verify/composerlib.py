@@ -35,7 +35,7 @@ class ComposerCase(testlib.MachineCase):
 
         # re-start osbuild-composer.socket
         self.machine.execute(script="""#!/bin/sh
-        systemctl stop --quiet osbuild-composer.socket osbuild-composer.service
+        systemctl stop --quiet osbuild-composer.socket osbuild-local-worker.socket osbuild-composer.service
         systemctl start osbuild-composer.socket
         """)
 
