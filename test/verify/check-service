@@ -3,7 +3,7 @@
 # checkpoint:
 # 1. osbuild-composer.socket can be started and enabled
 # 2. no blueprint by default and can add and delete blueprint
-
+import os
 import string
 import random
 
@@ -18,13 +18,18 @@ class TestService(composerlib.ComposerCase):
         # remove all blueprints
         # stop and disable osbuild-composer.socket service
         super().setUp()
+        m = self.machine
+        distro = os.environ.get("TEST_OS")
 
-        self.machine.execute("""
+        m.execute("""
             for bp in $(composer-cli blueprints list); do
                 composer-cli blueprints delete $bp
             done
             systemctl disable --now osbuild-composer.socket osbuild-composer.service
         """)
+        if (distro == "fedora-32" or distro == "fedora-33"):
+            m.execute("systemctl disable --now osbuild-local-worker.socket")
+
 
     def testBasic(self):
         b = self.browser
@@ -110,9 +115,11 @@ class TestService(composerlib.ComposerCase):
     def testNoEnable(self):
         b = self.browser
         m = self.machine
-
-        # stop and disable osbuild-composer.socket
+        distro = os.environ.get("TEST_OS")
+        # stop and disable the osbuild-composer service and sockets
         m.execute("systemctl disable --now osbuild-composer.socket osbuild-composer.service")
+        if (distro == "fedora-32" or distro == "fedora-33"):
+            m.execute("systemctl disable --now osbuild-local-worker.socket")
 
         self.login_and_go("/composer", authorized=True)
         b.wait_present("#main")
@@ -137,9 +144,11 @@ class TestService(composerlib.ComposerCase):
     def testNonAdminUser(self):
         b = self.browser
         m = self.machine
-
-        # stop and disable osbuild-composer.socket
+        distro = os.environ.get("TEST_OS")
+        # stop and disable the osbuild-composer service and sockets
         m.execute("systemctl disable --now osbuild-composer.socket osbuild-composer.service")
+        if (distro == "fedora-32" or distro == "fedora-33"):
+            m.execute("systemctl disable --now osbuild-local-worker.socket")
 
         self.login_and_go("/composer", authorized=False)
         b.wait_present("#main")
