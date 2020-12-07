@@ -1,5 +1,6 @@
 import json
 import hashlib
+import os
 import pathlib
 
 import parent
@@ -27,6 +28,8 @@ class ComposerCase(testlib.MachineCase):
     def setUp(self):
         super().setUp(restrict=False)
 
+        distro = os.environ.get("TEST_OS")
+
         self.allow_journal_messages(*allowed_journal_messages)
         self.allow_browser_errors(*allowed_browser_errors)
 
@@ -35,9 +38,12 @@ class ComposerCase(testlib.MachineCase):
 
         # re-start osbuild-composer.socket
         self.machine.execute(script="""#!/bin/sh
-        systemctl stop --quiet osbuild-composer.socket osbuild-composer.service
+        systemctl stop --quiet osbuild-composer.socket osbuild-local-worker.socket osbuild-composer.service
         systemctl start osbuild-composer.socket
         """)
+        if (distro == "fedora-32" or distro == "fedora-33"):
+            self.machine.execute("systemctl disable --now osbuild-local-worker.socket")
+
 
         # push pre-defined blueprint
         self.machine.execute(script="""#!/bin/sh
