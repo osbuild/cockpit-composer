@@ -40,7 +40,6 @@ class ComposerCase(testlib.MachineCase):
         systemctl start osbuild-composer.socket
         """)
 
-
         # push pre-defined blueprint
         self.machine.execute(script="""#!/bin/sh
         systemctl start osbuild-composer.socket

@@ -26,7 +26,6 @@ class TestService(composerlib.ComposerCase):
             systemctl disable --now osbuild-composer.socket osbuild-composer.service osbuild-local-worker.socket
         """)
 
-
     def testBasic(self):
         b = self.browser
 
