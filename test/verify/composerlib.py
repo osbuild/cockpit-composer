@@ -44,7 +44,6 @@ class ComposerCase(testlib.MachineCase):
         if (distro == "fedora-32" or distro == "fedora-33"):
             self.machine.execute("systemctl disable --now osbuild-local-worker.socket")
 
-
         # push pre-defined blueprint
         self.machine.execute(script="""#!/bin/sh
         systemctl start osbuild-composer.socket
