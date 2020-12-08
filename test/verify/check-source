@@ -63,7 +63,7 @@ class TestSource(composerlib.ComposerCase):
         # open manage source again to continue running test
         if b.cdp.browser == "firefox":
             # open manage sources dialog
-            drop_down_sel = ".toolbar-pf-action-right #dropdownKebab"
+            b.wait_not_present("#cmpsr-modal-manage-sources")
             b.click(drop_down_sel)
             b.wait_attr(drop_down_sel, "aria-expanded", "true")
             b.click("a:contains('Manage Sources')")
