@@ -30,7 +30,6 @@ class TestService(composerlib.ComposerCase):
         if (distro == "fedora-32" or distro == "fedora-33"):
             m.execute("systemctl disable --now osbuild-local-worker.socket")
 
-
     def testBasic(self):
         b = self.browser
 

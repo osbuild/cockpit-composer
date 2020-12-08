@@ -33,7 +33,8 @@ max-complexity = 10
 
 # Specify a list of codes to ignore.
 ignore =
-    C901
+    C901,
+    E501
 
 # Per file ignore
 per-file-ignores =
