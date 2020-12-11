@@ -39,7 +39,7 @@ class DeleteImage extends React.Component {
                 <span className="pficon pficon-close" />
               </button>
               <h4 className="modal-title" id="myModalLabel">
-                <FormattedMessage defaultMessage="Delete Image" />
+                <FormattedMessage defaultMessage="Delete image" />
               </h4>
             </div>
             <div className="modal-body">
@@ -58,7 +58,7 @@ class DeleteImage extends React.Component {
                 <FormattedMessage defaultMessage="Cancel" />
               </button>
               <button type="button" className="btn btn-danger" data-dismiss="modal" onClick={this.handleDelete}>
-                <FormattedMessage defaultMessage="Delete Image" />
+                <FormattedMessage defaultMessage="Delete image" />
               </button>
             </div>
           </div>

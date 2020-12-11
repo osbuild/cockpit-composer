@@ -47,9 +47,9 @@ class ComponentSummaryList extends React.Component {
           <SplitItem>
             <Button variant="link" isInline onClick={(e) => this.handleShowAll(e)}>
               {this.state.showAll ? (
-                <FormattedMessage defaultMessage="Show Less" />
+                <FormattedMessage defaultMessage="Show less" />
               ) : (
-                <FormattedMessage defaultMessage="Show All" />
+                <FormattedMessage defaultMessage="Show all" />
               )}
             </Button>
           </SplitItem>

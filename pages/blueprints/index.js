@@ -31,16 +31,16 @@ const messages = defineMessages({
       "Images can be produced in a variety of output formats.",
   },
   emptyTitle: {
-    defaultMessage: "No Blueprints",
+    defaultMessage: "No blueprints",
   },
   errorGenericTitle: {
-    defaultMessage: "An Error Occurred",
+    defaultMessage: "An error occurred",
   },
   noResultsMessage: {
     defaultMessage: "Modify your filter criteria to get results.",
   },
   noResultsTitle: {
-    defaultMessage: "No Results Match the Filter Criteria",
+    defaultMessage: "No results match the filter criteria",
   },
 });
 
@@ -126,7 +126,7 @@ class BlueprintsPage extends React.Component {
             >
               <EmptyStatePrimary>
                 <Button variant="link" type="button" onClick={blueprintsFilterClearValues}>
-                  <FormattedMessage defaultMessage="Clear All Filters" />
+                  <FormattedMessage defaultMessage="Clear all filters" />
                 </Button>
               </EmptyStatePrimary>
             </EmptyState>

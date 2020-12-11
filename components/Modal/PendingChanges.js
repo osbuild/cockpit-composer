@@ -77,7 +77,7 @@ class PendingChanges extends React.Component {
                 <span className="pficon pficon-close" />
               </button>
               <h4 className="modal-title" id="myModalLabel">
-                <FormattedMessage defaultMessage="Changes Pending Commit" />
+                <FormattedMessage defaultMessage="Changes pending commit" />
               </h4>
             </div>
             <div className="modal-body">
@@ -115,7 +115,7 @@ class PendingChanges extends React.Component {
                     <FormattedMessage
                       defaultMessage="{heading} {parenthetical}"
                       values={{
-                        heading: <FormattedMessage defaultMessage="Pending Changes" tagName="strong" />,
+                        heading: <FormattedMessage defaultMessage="Pending changes" tagName="strong" />,
                         parenthetical: <span className="text-muted"> {formatMessage(messages.parenthetical)}</span>,
                       }}
                     />

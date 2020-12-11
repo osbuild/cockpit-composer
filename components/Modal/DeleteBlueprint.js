@@ -39,7 +39,7 @@ class DeleteBlueprint extends React.Component {
           <Modal.Header>
             <Modal.CloseButton onClick={this.close} />
             <Modal.Title>
-              <FormattedMessage defaultMessage="Delete Blueprint" />
+              <FormattedMessage defaultMessage="Delete blueprint" />
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>

@@ -41,7 +41,7 @@ class StopBuild extends React.Component {
                 <span className="pficon pficon-close" />
               </button>
               <h4 className="modal-title" id="myModalLabel">
-                <FormattedMessage defaultMessage="Stop Build" />
+                <FormattedMessage defaultMessage="Stop build" />
               </h4>
             </div>
             <div className="modal-body">
@@ -60,7 +60,7 @@ class StopBuild extends React.Component {
                 <FormattedMessage defaultMessage="Cancel" />
               </button>
               <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.handleCancel}>
-                <FormattedMessage defaultMessage="Stop Build" />
+                <FormattedMessage defaultMessage="Stop build" />
               </button>
             </div>
           </div>

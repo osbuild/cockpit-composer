@@ -8,19 +8,19 @@ const messages = defineMessages({
     defaultMessage: "Name",
   },
   filterNamePlaceholder: {
-    defaultMessage: "Filter by Name",
+    defaultMessage: "Filter by name",
   },
   filterReleaseTitle: {
     defaultMessage: "Release",
   },
   filterReleasePlaceholder: {
-    defaultMessage: "Filter by Release",
+    defaultMessage: "Filter by release",
   },
   filterVersionTitle: {
     defaultMessage: "Version",
   },
   filterVersionPlaceholder: {
-    defaultMessage: "Filter by Version",
+    defaultMessage: "Filter by version",
   },
 });
 

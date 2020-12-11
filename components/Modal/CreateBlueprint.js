@@ -34,7 +34,7 @@ class CreateBlueprint extends React.Component {
           onClick={this.open}
           disabled={this.props.disabled}
         >
-          <FormattedMessage defaultMessage="Create Blueprint" />
+          <FormattedMessage defaultMessage="Create blueprint" />
         </button>
         {this.state.showModal && (
           <CreateBlueprintModal
@@ -155,7 +155,7 @@ class CreateBlueprintModal extends React.Component {
         <Modal.Header>
           <Modal.CloseButton onClick={this.props.close} />
           <Modal.Title>
-            <FormattedMessage defaultMessage="Create Blueprint" />
+            <FormattedMessage defaultMessage="Create blueprint" />
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>

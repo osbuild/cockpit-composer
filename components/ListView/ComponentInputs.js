@@ -15,16 +15,16 @@ import ComponentTypeIcons from "./ComponentTypeIcons";
 
 const messages = defineMessages({
   hideDetails: {
-    defaultMessage: "Hide Details",
+    defaultMessage: "Hide details",
   },
   showDetails: {
-    defaultMessage: "Show Details and More Options",
+    defaultMessage: "Show details and more options",
   },
   addComponent: {
     defaultMessage: "Add latest version",
   },
   removeComponent: {
-    defaultMessage: "Remove Component from Blueprint",
+    defaultMessage: "Remove component from blueprint",
   },
 });
 

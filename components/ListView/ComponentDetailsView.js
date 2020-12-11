@@ -19,13 +19,13 @@ const messages = defineMessages({
     defaultMessage: "Dependencies",
   },
   hideDetails: {
-    defaultMessage: "Hide Details",
+    defaultMessage: "Hide details",
   },
   removeFromBlueprint: {
-    defaultMessage: "Remove from Blueprint",
+    defaultMessage: "Remove from blueprint",
   },
   noDepsTitle: {
-    defaultMessage: "No Dependencies",
+    defaultMessage: "No dependencies",
   },
   noDepsMessage: {
     defaultMessage: "This component has no dependencies.",
@@ -209,7 +209,7 @@ class ComponentDetailsView extends React.Component {
                       type="button"
                       onClick={(e) => handleUpdateComponent(e, component, component.builds[selectedBuildIndex].version)}
                     >
-                      <FormattedMessage defaultMessage="Apply Change" />
+                      <FormattedMessage defaultMessage="Apply change" />
                     </button>
                   </li>
                 )}
@@ -250,7 +250,7 @@ class ComponentDetailsView extends React.Component {
         {handleUpdateComponent !== undefined && component.builds !== undefined && component.builds.length > 1 && (
           <div className="cmpsr-component-details__form">
             <h4>
-              <FormattedMessage defaultMessage="Component Options" />
+              <FormattedMessage defaultMessage="Component options" />
             </h4>
             <form className="form-horizontal">
               <div className="form-group">

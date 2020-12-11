@@ -35,15 +35,15 @@ class TestService(composerlib.ComposerCase):
         # start and enable osbuild-composer from UI
         b.click("button:contains('Start')")
         # work around .pf-c-empty-state element disappear in one second
-        b.wait_in_text("#main", "No Blueprints")
-        b.wait_text(".pf-c-empty-state__content .pf-c-title", "No Blueprints")
+        b.wait_in_text("#main", "No blueprints")
+        b.wait_text(".pf-c-empty-state__content .pf-c-title", "No blueprints")
 
         # create blueprint with random name and description
         name_template = string.ascii_letters + string.digits + "-" + "_"
         bp_name = "".join(random.sample(name_template, 20))
         desc_template = string.ascii_letters + string.digits + " "
         bp_desc = "".join(random.sample(desc_template, 40))
-        b.click(".pf-c-empty-state button:contains('Create Blueprint')")
+        b.click(".pf-c-empty-state button:contains('Create blueprint')")
         b.wait_visible("div[role=dialog] #cmpsr-modal-crt-blueprint")
         # blueprint name
         b.set_input_text("#textInput-modal-markup", bp_name)
@@ -79,7 +79,7 @@ class TestService(composerlib.ComposerCase):
         b.wait_not_present("#cmpsr-toast-committed .pficon-ok")
 
         # click back to blueprint link
-        b.click("a:contains('Back to Blueprints')")
+        b.click("a:contains('Back to blueprints')")
 
         # new added blueprint should be there with correct name and description
         b.wait_visible("li[data-blueprint={}]".format(bp_name))
@@ -102,7 +102,7 @@ class TestService(composerlib.ComposerCase):
         b.wait_not_present("#cmpsr-modal-delete")
         b.wait_not_present("li[data-blueprint={}]".format(bp_name))
         # no blueprint here
-        b.wait_in_text("#main", "No Blueprints")
+        b.wait_in_text("#main", "No blueprints")
 
         # collect code coverage result
         self.check_coverage()
@@ -122,8 +122,8 @@ class TestService(composerlib.ComposerCase):
         # start and enable osbuild-composer from UI
         b.click("button:contains('Start')")
         # work around .pf-c-empty-state element disappear in one second
-        b.wait_in_text("#main", "No Blueprints")
-        b.wait_text(".pf-c-empty-state__content .pf-c-title", "No Blueprints")
+        b.wait_in_text("#main", "No blueprints")
+        b.wait_text(".pf-c-empty-state__content .pf-c-title", "No blueprints")
         # osbuild-composer should be disabled
         is_enabled = m.execute("systemctl is-enabled osbuild-composer.socket || true").rstrip()
         self.assertEqual(is_enabled, "disabled")
