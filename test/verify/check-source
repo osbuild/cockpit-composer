@@ -27,7 +27,7 @@ class TestSource(composerlib.ComposerCase):
         drop_down_sel = ".toolbar-pf-action-right #dropdownKebab"
         b.click(drop_down_sel)
         b.wait_attr(drop_down_sel, "aria-expanded", "true")
-        b.click("a:contains('Manage Sources')")
+        b.click("a:contains('Manage sources')")
         b.wait_attr(drop_down_sel, "aria-expanded", "false")
         b.wait_visible("#cmpsr-modal-manage-sources")
 
@@ -37,21 +37,21 @@ class TestSource(composerlib.ComposerCase):
             b.wait_visible("div[data-source={}]".format(source))
 
         # add new source
-        b.click("input[value='Add Source']")
+        b.click("input[value='Add source']")
 
         # can't add srouce if type is empty
         b.set_input_text("#textInput1-modal-source", repo_name)
         b.set_input_text("#textInput2-modal-source", repo_url)
-        b.wait_attr("button:contains('Add Source')", "disabled", "")
+        b.wait_attr("button:contains('Add source')", "disabled", "")
         b.click("button:contains('Cancel')")
         # new source
-        b.click("input[value='Add Source']")
+        b.click("input[value='Add source']")
         b.set_input_text("#textInput1-modal-source", repo_name)
         b.set_input_text("#textInput2-modal-source", repo_url)
         b.set_val("#textInput3-modal-source", "yum-baseurl")
         b.wait_val("#textInput3-modal-source", "yum-baseurl")
         # groups action done
-        b.click("button:contains('Add Source')")
+        b.click("button:contains('Add source')")
 
         # HACK: workaround issue https://github.com/osbuild/cockpit-composer/issues/989
         # open manage source again to continue running test
@@ -60,21 +60,21 @@ class TestSource(composerlib.ComposerCase):
             b.wait_not_present("#cmpsr-modal-manage-sources")
             b.click(drop_down_sel)
             b.wait_attr(drop_down_sel, "aria-expanded", "true")
-            b.click("a:contains('Manage Sources')")
+            b.click("a:contains('Manage sources')")
             b.wait_attr(drop_down_sel, "aria-expanded", "false")
             b.wait_visible("#cmpsr-modal-manage-sources")
 
         # endit new source to enable check SSL certificate and GPG key
-        b.click("button[aria-label='Edit Source {}']".format(repo_name))
+        b.click("button[aria-label='Edit source {}']".format(repo_name))
         # SSL certificate
         b.click("#checkboxInput4-modal-source")
         # GPG key
         b.click("#checkboxInput5-modal-source")
-        b.click("button:contains('Update Source')")
+        b.click("button:contains('Update source')")
 
         # package from new added repo is here already
         b.click("button:contains('Close')")
-        b.click("li[data-blueprint=openssh-server] a:contains('Edit Packages')")
+        b.click("li[data-blueprint=openssh-server] a:contains('Edit packages')")
         # wait for all available compontents visible
         with b.wait_timeout(300):
             b.wait_visible("ul[data-list=inputs]")
@@ -85,25 +85,25 @@ class TestSource(composerlib.ComposerCase):
             b.wait_text("#kanshi-input", "kanshi")
         # new added reop works, go back
         # click back to blueprint link
-        b.click("a:contains('Back to Blueprints')")
+        b.click("a:contains('Back to blueprints')")
         # go to manage source
         b.click(drop_down_sel)
         b.wait_attr(drop_down_sel, "aria-expanded", "true")
-        b.click("a:contains('Manage Sources')")
+        b.click("a:contains('Manage sources')")
         b.wait_attr(drop_down_sel, "aria-expanded", "false")
         b.wait_visible("#cmpsr-modal-manage-sources")
 
         # duplicated source can't be added
-        b.click("input[value='Add Source']")
+        b.click("input[value='Add source']")
         b.set_input_text("#textInput2-modal-source", repo_url)
         b.wait_text("#textInput2-modal-source-help", "This source path already exists.")
         b.click("button:contains('Cancel')")
 
         # delete added source
-        delete_drop_down_sel = "button[aria-label='Source Actions {}']".format(repo_name)
+        delete_drop_down_sel = "button[aria-label='Source actions {}']".format(repo_name)
         b.click(delete_drop_down_sel)
         b.wait_attr(delete_drop_down_sel, "aria-expanded", "true")
-        b.click("a:contains('Remove Source')")
+        b.click("a:contains('Remove source')")
         b.wait_not_present("div[data-source={}]".format(repo_name))
 
         # close manage source dialog

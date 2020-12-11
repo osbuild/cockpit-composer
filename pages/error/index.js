@@ -10,7 +10,7 @@ const messages = defineMessages({
     defaultMessage: "Error",
   },
   pageNotFoundMessage: {
-    defaultMessage: "Page Not Found",
+    defaultMessage: "Page not found",
   },
   pageNotFoundTitle: {
     defaultMessage: "Page not found",

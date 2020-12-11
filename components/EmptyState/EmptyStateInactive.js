@@ -9,7 +9,7 @@ import EmptyState from "./EmptyState";
 
 const messages = defineMessages({
   errorInactiveTitle: {
-    defaultMessage: "Image Building Service is Not Active",
+    defaultMessage: "Image building service is not active",
   },
   errorInactivePrimary: {
     defaultMessage: "Start",

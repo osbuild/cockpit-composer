@@ -18,9 +18,9 @@ class TestDependence(composerlib.ComposerCase):
         b.wait_visible("#main")
 
         # go to edit package page
-        b.click("li[data-blueprint=openssh-server] a:contains('Edit Packages')")
+        b.click("li[data-blueprint=openssh-server] a:contains('Edit packages')")
         with b.wait_timeout(120):
-            b.wait_visible("ul[aria-label='Available Components'] li:nth-child(1)")
+            b.wait_visible("ul[aria-label='Available components'] li:nth-child(1)")
 
         # open component detail
         b.click("#openssh-server-toggle")
@@ -31,9 +31,9 @@ class TestDependence(composerlib.ComposerCase):
         # with b.wait_timeout(480):
         #     b.wait_visible(".cc-component-summary__deps")
         # # show all
-        # b.click("button:contains('Show All')")
+        # b.click("button:contains('Show all')")
         # # show less
-        # b.click("button:contains('Show Less')")
+        # b.click("button:contains('Show less')")
         # close detail
         b.click("#openssh-server-toggle")
         b.wait_not_visible("#openssh-server-details")
@@ -52,9 +52,9 @@ class TestDependence(composerlib.ComposerCase):
         b.wait_visible("#main")
 
         # go to edit package page
-        b.click("li[data-blueprint=openssh-server] a:contains('Edit Packages')")
+        b.click("li[data-blueprint=openssh-server] a:contains('Edit packages')")
         with b.wait_timeout(120):
-            b.wait_visible("ul[aria-label='Available Components'] li:nth-child(1)")
+            b.wait_visible("ul[aria-label='Available components'] li:nth-child(1)")
 
         # view openssh-server package detail
         b.click("#openssh-server-kebab")
@@ -64,7 +64,7 @@ class TestDependence(composerlib.ComposerCase):
         b.set_val("#cmpsr-compon__version-select", "1")
         b.wait_val("#cmpsr-compon__version-select", "1")
         # group actions end
-        b.click("button:contains('Apply Change')")
+        b.click("button:contains('Apply change')")
         b.wait_visible("a:contains('1 Pending Change')")
 
         # search for openssh-server pacakge

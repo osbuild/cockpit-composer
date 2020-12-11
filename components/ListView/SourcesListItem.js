@@ -5,13 +5,13 @@ import { Spinner } from "patternfly-react";
 
 const messages = defineMessages({
   edit: {
-    defaultMessage: "Edit Source",
+    defaultMessage: "Edit source",
   },
   kebab: {
-    defaultMessage: "Source Actions",
+    defaultMessage: "Source actions",
   },
   remove: {
-    defaultMessage: "Remove Source",
+    defaultMessage: "Remove source",
   },
   baseurl: {
     defaultMessage: "yum repository",

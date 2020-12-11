@@ -77,7 +77,7 @@ const messages = defineMessages({
     defaultMessage: "Blueprint",
   },
   emptyBlueprintTitle: {
-    defaultMessage: "Empty Blueprint",
+    defaultMessage: "Empty blueprint",
   },
   emptyBlueprintMessage: {
     defaultMessage: "There are no components listed in the blueprint. Edit the blueprint to add components.",
@@ -86,7 +86,7 @@ const messages = defineMessages({
     defaultMessage: "Images",
   },
   noImagesTitle: {
-    defaultMessage: "No Images",
+    defaultMessage: "No images",
   },
   noImagesMessage: {
     defaultMessage: "No images have been created from this blueprint.",
@@ -117,13 +117,13 @@ const messages = defineMessages({
     defaultMessage: "If no hostname is provided, the hostname will be determined by the OS.",
   },
   userEdit: {
-    defaultMessage: "Edit User Account",
+    defaultMessage: "Edit user account",
   },
   userKebab: {
-    defaultMessage: "User Account Actions",
+    defaultMessage: "User account actions",
   },
   userDelete: {
-    defaultMessage: "Delete User Account",
+    defaultMessage: "Delete user account",
   },
 });
 
@@ -372,7 +372,7 @@ class BlueprintPage extends React.Component {
           <ol className="breadcrumb">
             <li>
               <Link to="/blueprints">
-                <FormattedMessage defaultMessage="Back to Blueprints" />
+                <FormattedMessage defaultMessage="Back to blueprints" />
               </Link>
             </li>
             <li className="active">
@@ -383,7 +383,7 @@ class BlueprintPage extends React.Component {
             <ul className="list-inline">
               <li>
                 <Link to={`/edit/${this.props.route.params.blueprint}`} className="btn btn-default">
-                  <FormattedMessage defaultMessage="Edit Packages" />
+                  <FormattedMessage defaultMessage="Edit packages" />
                 </Link>
               </li>
               <li>
@@ -476,7 +476,7 @@ class BlueprintPage extends React.Component {
                         </div>
                       )}
                       <button className="btn btn-default" type="button" onClick={this.handleShowModalUserAccount}>
-                        <FormattedMessage defaultMessage="Create User Account" />
+                        <FormattedMessage defaultMessage="Create user account" />
                       </button>
                     </div>
                   </div>
@@ -520,7 +520,7 @@ class BlueprintPage extends React.Component {
                     >
                       <Link to={`/edit/${this.props.route.params.blueprint}`}>
                         <button className="btn btn-default btn-primary" type="button">
-                          <FormattedMessage defaultMessage="Edit Packages" />
+                          <FormattedMessage defaultMessage="Edit packages" />
                         </button>
                       </Link>
                     </EmptyState>
@@ -529,7 +529,7 @@ class BlueprintPage extends React.Component {
               )) || (
                 <div className="col-sm-12 cmpsr-component-details--view">
                   <h3 className="cmpsr-panel__title cmpsr-panel__title--main">
-                    <FormattedMessage defaultMessage="Component Details" />
+                    <FormattedMessage defaultMessage="Component details" />
                   </h3>
                   <ComponentDetailsView
                     blueprint={this.props.route.params.blueprint}

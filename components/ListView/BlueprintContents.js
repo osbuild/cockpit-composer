@@ -17,16 +17,16 @@ const messages = defineMessages({
     defaultMessage: "An error occurred while trying to get blueprint contents.",
   },
   emptyStateErrorTitle: {
-    defaultMessage: "An Error Occurred",
+    defaultMessage: "An error occurred",
   },
   emptyStateNoResultsMessage: {
     defaultMessage: "Modify your filter criteria to get results.",
   },
   emptyStateNoResultsTitle: {
-    defaultMessage: "No Results Match the Filter Criteria",
+    defaultMessage: "No results match the filter criteria",
   },
   selectedTabTitle: {
-    defaultMessage: "Selected Components",
+    defaultMessage: "Selected components",
   },
 });
 
@@ -50,7 +50,7 @@ const BlueprintContents = (props) => {
   const alertAction =
     pastLength > 0 ? (
       <button className="pf-c-button pf-m-link" type="button" onClick={() => undo()}>
-        <FormattedMessage defaultMessage="Undo Last Change" />
+        <FormattedMessage defaultMessage="Undo last change" />
       </button>
     ) : null;
 
@@ -69,7 +69,7 @@ const BlueprintContents = (props) => {
                   message={formatMessage(messages.emptyStateNoResultsMessage)}
                 >
                   <button className="btn btn-link btn-lg" type="button" onClick={() => filterClearValues([])}>
-                    <FormattedMessage defaultMessage="Clear All Filters" />
+                    <FormattedMessage defaultMessage="Clear all filters" />
                   </button>
                 </EmptyState>
               )) || (
@@ -122,7 +122,7 @@ const BlueprintContents = (props) => {
                   message={formatMessage(messages.emptyStateNoResultsMessage)}
                 >
                   <button className="btn btn-link btn-lg" type="button" onClick={() => filterClearValues([])}>
-                    <FormattedMessage defaultMessage="Clear All Filters" />
+                    <FormattedMessage defaultMessage="Clear all filters" />
                   </button>
                 </EmptyState>
               )) || (

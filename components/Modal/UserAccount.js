@@ -10,10 +10,10 @@ import { setModalUserAccountData } from "../../core/actions/modals";
 
 const messages = defineMessages({
   modalTitleCreate: {
-    defaultMessage: "Create User Account",
+    defaultMessage: "Create user account",
   },
   modalTitleEdit: {
-    defaultMessage: "Edit User Account",
+    defaultMessage: "Edit user account",
   },
   sshKeyHelp: {
     defaultMessage: "Paste the contents of your public SSH key file here. ",
@@ -317,7 +317,7 @@ class UserAccount extends React.Component {
                           className="btn btn-default"
                           onClick={() => this.setState({ setNewPassword: true })}
                         >
-                          <FormattedMessage defaultMessage="Set Password" />
+                          <FormattedMessage defaultMessage="Set password" />
                         </button>
                       </div>
                     </div>
@@ -338,7 +338,7 @@ class UserAccount extends React.Component {
                                 className="btn btn-default"
                                 onClick={() => this.setState({ setNewPassword: true })}
                               >
-                                <FormattedMessage defaultMessage="Set New Password" />
+                                <FormattedMessage defaultMessage="Set new password" />
                               </button>
 
                               <button
@@ -346,7 +346,7 @@ class UserAccount extends React.Component {
                                 className="btn btn-default"
                                 onClick={() => this.handleRemovePassword()}
                               >
-                                <FormattedMessage defaultMessage="Remove Password" />
+                                <FormattedMessage defaultMessage="Remove password" />
                               </button>
                             </div>
                           )}

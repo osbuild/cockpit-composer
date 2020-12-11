@@ -75,7 +75,7 @@ class EditDescriptionModal extends React.Component {
         <Modal.Header>
           <Modal.CloseButton onClick={this.props.close} />
           <Modal.Title>
-            <FormattedMessage defaultMessage="Edit Description" />
+            <FormattedMessage defaultMessage="Edit description" />
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>

@@ -22,7 +22,7 @@ const messages = defineMessages({
       "otherwise resolving dependencies and composing images will fail.",
   },
   errorStateTitle: {
-    defaultMessage: "An Error Occurred",
+    defaultMessage: "An error occurred",
   },
   errorStateMessage: {
     defaultMessage: "An error occurred while trying to get sources.",
@@ -64,13 +64,13 @@ const messages = defineMessages({
     defaultMessage: "metalink",
   },
   add: {
-    defaultMessage: "Add Source",
+    defaultMessage: "Add source",
   },
   save: {
-    defaultMessage: "Add Source",
+    defaultMessage: "Add source",
   },
   update: {
-    defaultMessage: "Update Source",
+    defaultMessage: "Update source",
   },
   cancel: {
     defaultMessage: "Cancel",
@@ -100,7 +100,7 @@ class ManageSources extends React.Component {
       <>
         <a href="#" onClick={!this.props.disabled ? this.open : undefined}>
           <FormattedMessage
-            defaultMessage="Manage Sources"
+            defaultMessage="Manage sources"
             description="User action for displaying the list of source repositories"
           />
         </a>
@@ -373,8 +373,8 @@ class ManageSourcesModal extends React.Component {
                 description="Sources provide the contents from which components are selected"
               />
             )) ||
-              (this.state.editName === "" && <FormattedMessage defaultMessage="Add Source" />) || (
-                <FormattedMessage defaultMessage="Edit Source" />
+              (this.state.editName === "" && <FormattedMessage defaultMessage="Add source" />) || (
+                <FormattedMessage defaultMessage="Edit source" />
               )}
           </Modal.Title>
         </Modal.Header>

@@ -168,7 +168,7 @@ class TestCustom(composerlib.ComposerCase):
             b.click("#blueprint-tabs-tab-customizations")
 
         # add a new user
-        b.click("button:contains('Create User Account')")
+        b.click("button:contains('Create user account')")
         b.wait_visible("#cmpsr-modal-user-account")
         set_input_value("#textInput2-modal-user", "x y")
         b.wait_val("#textInput1-modal-user", "xy")
@@ -205,9 +205,9 @@ class TestCustom(composerlib.ComposerCase):
 
         # update password
         new_password = "c456rty$%^RTY"
-        b.click("button[aria-label='Edit User Account xy']")
+        b.click("button[aria-label='Edit user account xy']")
         b.wait_visible("#cmpsr-modal-user-account")
-        b.click("button:contains('Set New Password')")
+        b.click("button:contains('Set new password')")
         set_input_value("#textInput1-modal-password", new_password)
         set_input_value("#textInput2-modal-password", new_password)
         b.click("#cmpsr-modal-user-account button:contains('Update')")
@@ -221,16 +221,16 @@ class TestCustom(composerlib.ComposerCase):
         self.assertEqual(passwd_str, passwd_crypt)
 
         # remove password
-        b.click("button[aria-label='Edit User Account xy']")
+        b.click("button[aria-label='Edit user account xy']")
         b.wait_visible("#cmpsr-modal-user-account")
-        b.click("button:contains('Remove Password')")
+        b.click("button:contains('Remove password')")
         b.click("#cmpsr-modal-user-account button:contains('Update')")
         b.wait_not_present("#cmpsr-modal-user-account")
         b.wait_visible("tr td[data-label=Password]")
         b.wait_not_present("tr td[data-label=Password] .fa-check")
 
         # duplicated user
-        b.click("button:contains('Create User Account')")
+        b.click("button:contains('Create user account')")
         b.wait_visible("#cmpsr-modal-user-account")
         set_input_value("#textInput2-modal-user", "x y")
         b.wait_val("#textInput1-modal-user", "xy")
@@ -239,7 +239,7 @@ class TestCustom(composerlib.ComposerCase):
         b.wait_not_present("#cmpsr-modal-user-account")
 
         # password checking error
-        b.click("button:contains('Create User Account')")
+        b.click("button:contains('Create user account')")
         b.wait_visible("#cmpsr-modal-user-account")
         set_input_value("#textInput2-modal-user", "admin user")
         b.wait_val("#textInput1-modal-user", "auser")
@@ -252,10 +252,10 @@ class TestCustom(composerlib.ComposerCase):
         b.wait_not_present("#cmpsr-modal-user-account")
 
         # delete user
-        delete_drop_down_sel = "button[aria-label='User Account Actions xy']"
+        delete_drop_down_sel = "button[aria-label='User account actions xy']"
         b.click(delete_drop_down_sel)
         b.wait_attr(delete_drop_down_sel, "aria-expanded", "true")
-        b.click("a:contains('Delete User Account')")
+        b.click("a:contains('Delete user account')")
         b.wait_not_present("table")
 
         # collect code coverage result

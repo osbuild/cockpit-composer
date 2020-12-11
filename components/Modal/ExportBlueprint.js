@@ -47,7 +47,7 @@ class ExportBlueprint extends React.Component {
           <Modal.Header>
             <Modal.CloseButton onClick={this.close} />
             <Modal.Title id="title-export">
-              <FormattedMessage defaultMessage="Export Blueprint" />
+              <FormattedMessage defaultMessage="Export blueprint" />
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>

@@ -44,7 +44,7 @@ class BlueprintsDataList extends React.PureComponent {
               />
               <div className="pf-c-data-list__item-action cc-m-nowrap">
                 <Link to={`/edit/${blueprint.name}`} className="btn btn-default">
-                  <FormattedMessage defaultMessage="Edit Packages" />
+                  <FormattedMessage defaultMessage="Edit packages" />
                 </Link>
                 <CreateImageUpload blueprint={blueprint} layout={layout} />
                 <div className="dropdown pull-right dropdown-kebab-pf">

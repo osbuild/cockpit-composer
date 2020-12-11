@@ -109,7 +109,7 @@ const initialState = {
         {
           id: "name",
           title: "Name",
-          placeholder: "Filter by Name",
+          placeholder: "Filter by name",
           filterType: "text",
         },
       ],
@@ -121,19 +121,19 @@ const initialState = {
         {
           id: "name",
           title: "Name",
-          placeholder: "Filter by Name",
+          placeholder: "Filter by name",
           filterType: "text",
         },
         {
           id: "version",
           title: "Version",
-          placeholder: "Filter by Version",
+          placeholder: "Filter by version",
           filterType: "text",
         },
         {
           id: "release",
           title: "Release",
-          placeholder: "Filter by Release",
+          placeholder: "Filter by release",
           filterType: "text",
         },
       ],
