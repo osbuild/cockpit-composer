@@ -19,7 +19,8 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          sudo apt-get install nodejs npm
+          sudo apt update
+          sudo apt install nodejs npm
 
       - name: Download Coverity Tool
         run: |
