@@ -34,7 +34,7 @@ class TestPackage(composerlib.ComposerCase):
         b.key_press("\r")
         with b.wait_timeout(120):
             b.wait_text("#cockpit-bridge-input", "cockpit-bridge")
-        b.wait_present(".toolbar-pf-results .label-info span")
+        b.wait_present(".toolbar-pf-results .label-info > span")
         # click Clear All Filters link
         b.click("span:contains('Clear All Filters')")
         b.wait_present("ul[aria-label='Available Components'] li:nth-child(1)")
@@ -155,9 +155,9 @@ class TestPackage(composerlib.ComposerCase):
         # pending commit
         b.click("a:contains('1 Pending Change')")
         # show Added cockpit-bridge
-        b.wait_present("#cmpsr-modal-pending-changes ul li:nth-child(1) div:contains('Added')")
+        b.wait_present("#cmpsr-modal-pending-changes ul li:nth-child(1) .row:contains('Added')")
         b.wait_present("#cmpsr-modal-pending-changes ul li:nth-child(1) "
-                       "div:contains('cockpit-bridge-*')")
+                       ".row:contains('cockpit-bridge-*')")
         b.click("#cmpsr-modal-pending-changes button:contains('Close')")
         b.wait_not_present("#cmpsr-modal-pending-changes")
 
@@ -177,15 +177,15 @@ class TestPackage(composerlib.ComposerCase):
         # commit
         b.click("button:contains('Commit')")
         b.wait_present("#cmpsr-modal-pending-changes .form-horizontal p + div ul "
-                       "li:nth-child(1) div:contains('Removed')")
+                       "li:nth-child(1) .row:contains('Removed')")
         b.wait_present("#cmpsr-modal-pending-changes .form-horizontal p + div ul "
-                       "li:nth-child(1) div:contains('cockpit-bridge-*')")
+                       "li:nth-child(1) .row:contains('cockpit-bridge-*')")
         b.wait_in_text("#cmpsr-modal-pending-changes .form-horizontal p + div + div > strong",
                        "Changes made in a previous session")
         b.wait_present("#cmpsr-modal-pending-changes .form-horizontal p + div + div ul "
-                       "li:nth-child(1) div:contains('Added')")
+                       "li:nth-child(1) .row:contains('Added')")
         b.wait_present("#cmpsr-modal-pending-changes .form-horizontal p + div + div ul "
-                       "li:nth-child(1) div:contains('cockpit-bridge-*')")
+                       "li:nth-child(1) .row:contains('cockpit-bridge-*')")
         b.click("#cmpsr-modal-pending-changes .modal-footer button:contains('Commit')")
         # toast notification appear and disappear automatically
         b.wait_present("#cmpsr-toast-committed")
