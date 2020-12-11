@@ -88,6 +88,9 @@ const messages = defineMessages({
   emptyStateNoResultsTitle: {
     defaultMessage: "No results match the filter criteria",
   },
+  paginationPerPage: {
+    defaultMessage: "per page",
+  },
 });
 
 class EditBlueprintPage extends React.Component {
