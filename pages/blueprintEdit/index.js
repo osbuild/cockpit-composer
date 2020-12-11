@@ -61,10 +61,10 @@ import "./index.css";
 
 const messages = defineMessages({
   listTitleAvailableComps: {
-    defaultMessage: "Available Components",
+    defaultMessage: "Available components",
   },
   addComponentTitle: {
-    defaultMessage: "Add Blueprint Components",
+    defaultMessage: "Add blueprint components",
   },
   addComponentMessageOne: {
     defaultMessage:
@@ -78,16 +78,16 @@ const messages = defineMessages({
     defaultMessage: "Blueprint",
   },
   filterByLabel: {
-    defaultMessage: "Filter Available Components by Name",
+    defaultMessage: "Filter available components by name",
   },
   filterByPlaceholder: {
-    defaultMessage: "Filter By Name...",
+    defaultMessage: "Filter by name...",
   },
   emptyStateNoResultsMessage: {
     defaultMessage: "Modify your filter criteria to get results.",
   },
   emptyStateNoResultsTitle: {
-    defaultMessage: "No Results Match the Filter Criteria",
+    defaultMessage: "No results match the filter criteria",
   },
   paginationPerPage: {
     defaultMessage: "per page",
@@ -404,7 +404,7 @@ class EditBlueprintPage extends React.Component {
           <ol className="breadcrumb">
             <li>
               <Link to="/blueprints">
-                <FormattedMessage defaultMessage="Back to Blueprints" />
+                <FormattedMessage defaultMessage="Back to blueprints" />
               </Link>
             </li>
             <li>
@@ -412,7 +412,7 @@ class EditBlueprintPage extends React.Component {
             </li>
             <li className="active">
               <strong>
-                <FormattedMessage defaultMessage="Edit Packages" />
+                <FormattedMessage defaultMessage="Edit packages" />
               </strong>
             </li>
           </ol>
@@ -453,13 +453,13 @@ class EditBlueprintPage extends React.Component {
               {(numPendingChanges > 0 && (
                 <li>
                   <button className="btn btn-default" type="button" onClick={this.handleDiscardChanges}>
-                    <FormattedMessage defaultMessage="Discard Changes" />
+                    <FormattedMessage defaultMessage="Discard changes" />
                   </button>
                 </li>
               )) || (
                 <li>
                   <button className="btn btn-default disabled" type="button">
-                    <FormattedMessage defaultMessage="Discard Changes" />
+                    <FormattedMessage defaultMessage="Discard changes" />
                   </button>
                 </li>
               )}
@@ -493,11 +493,11 @@ class EditBlueprintPage extends React.Component {
         </header>
         {(inputs.selectedInput.set === false && (
           <h3 className="cmpsr-panel__title cmpsr-panel__title--main">
-            <FormattedMessage defaultMessage="Blueprint Components" />
+            <FormattedMessage defaultMessage="Blueprint components" />
           </h3>
         )) || (
           <h3 className="cmpsr-panel__title cmpsr-panel__title--main">
-            <FormattedMessage defaultMessage="Component Details" />
+            <FormattedMessage defaultMessage="Component details" />
           </h3>
         )}
         {(inputs.selectedInput.set === false && (
@@ -610,7 +610,7 @@ class EditBlueprintPage extends React.Component {
                     </li>
                     <li>
                       <a href="#" onClick={(e) => this.handleClearFilters(e)}>
-                        <FormattedMessage defaultMessage="Clear All Filters" />
+                        <FormattedMessage defaultMessage="Clear all filters" />
                       </a>
                     </li>
                   </ul>
@@ -651,7 +651,7 @@ class EditBlueprintPage extends React.Component {
                   message={formatMessage(messages.emptyStateNoResultsMessage)}
                 >
                   <button className="btn btn-link" type="button" onClick={(e) => this.handleClearFilters(e)}>
-                    <FormattedMessage defaultMessage="Clear All Filters" />
+                    <FormattedMessage defaultMessage="Clear all filters" />
                   </button>
                 </EmptyState>
               )) ||

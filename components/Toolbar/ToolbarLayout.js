@@ -61,11 +61,11 @@ class ToolbarLayout extends React.Component {
           {filters.filterValues && filters.filterValues.length !== 0 && (
             <Toolbar.Results>
               <Filter.ActiveLabel>
-                <FormattedMessage defaultMessage="Active Filters" />:
+                <FormattedMessage defaultMessage="Active filters" />:
               </Filter.ActiveLabel>
               <Filter.List>{filters.filterValues.map((filter) => filterItem(filter))}</Filter.List>
               <button type="button" className="btn-link" onClick={filterClearValues}>
-                <FormattedMessage defaultMessage="Clear All Filters" />
+                <FormattedMessage defaultMessage="Clear all filters" />
               </button>
             </Toolbar.Results>
           )}

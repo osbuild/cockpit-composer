@@ -92,7 +92,7 @@ class TestBlueprint(composerlib.ComposerCase):
         b.wait_not_present("#httpd-server-name")
         # clear filter
         b.click(".filter-pf-active-label + .list-inline .pficon-close")
-        b.wait_not_present("p:contains('Active Filters:')")
+        b.wait_not_present("p:contains('Active filters:')")
 
         # filter "httpd" will show three matched blueprints
         b.set_input_text("#filter-blueprints", "httpd")
@@ -103,8 +103,8 @@ class TestBlueprint(composerlib.ComposerCase):
         b.wait_visible("#httpd-server-with-hostname-name")
         b.wait_visible("#httpd-server-with-user-name")
         # clear filter
-        b.click("button:contains('Clear All Filters')")
-        b.wait_not_present("p:contains('Active Filters:')")
+        b.click("button:contains('Clear all filters')")
+        b.wait_not_present("p:contains('Active filters:')")
 
         # collect code coverage result
         self.check_coverage()

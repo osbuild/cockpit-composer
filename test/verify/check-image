@@ -408,7 +408,7 @@ class TestImage(composerlib.ComposerCase):
         b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "true")
         b.click("li[aria-labelledby={}] a:contains('Delete')".format(selector))
         b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "false")
-        b.click("#cmpsr-modal-delete button:contains('Delete Image')")
+        b.click("#cmpsr-modal-delete button:contains('Delete image')")
         b.wait_not_present("#{}".format(selector))
 
         # collect code coverage result
@@ -485,7 +485,7 @@ class TestImage(composerlib.ComposerCase):
         b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "true")
         b.click("li[aria-labelledby={}] a:contains('Delete')".format(selector))
         b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "false")
-        b.click("#cmpsr-modal-delete button:contains('Delete Image')")
+        b.click("#cmpsr-modal-delete button:contains('Delete image')")
         b.wait_not_present("#{}".format(selector))
         self.allow_journal_messages(".*avc:  denied.*",
                                     ".*audit: .*seresult=denied .*")
@@ -530,7 +530,7 @@ class TestImage(composerlib.ComposerCase):
         b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "true")
         b.click("li[aria-labelledby={}] a:contains('Stop')".format(selector))
         b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "false")
-        b.click("#cmpsr-modal-delete button:contains('Stop Build')")
+        b.click("#cmpsr-modal-delete button:contains('Stop build')")
         b.wait_not_present("#cmpsr-modal-delete")
         # delete canceled image build
         b.click("#{}-actions".format(uuid))

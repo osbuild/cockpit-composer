@@ -20,15 +20,15 @@ class TestPackage(composerlib.ComposerCase):
         b.wait_visible("#main")
 
         # go to edit package page
-        b.click("li[data-blueprint=httpd-server] a:contains('Edit Packages')")
+        b.click("li[data-blueprint=httpd-server] a:contains('Edit packages')")
         with b.wait_timeout(120):
-            b.wait_visible("ul[aria-label='Available Components'] li:nth-child(1)")
+            b.wait_visible("ul[aria-label='Available components'] li:nth-child(1)")
 
         # do navigate with > and < button
         b.click("button[aria-label='Go to next page']")
-        b.wait_visible("ul[aria-label='Available Components'] li:nth-child(1)")
+        b.wait_visible("ul[aria-label='Available components'] li:nth-child(1)")
         b.click("button[aria-label='Go to previous page']")
-        b.wait_visible("ul[aria-label='Available Components'] li:nth-child(1)")
+        b.wait_visible("ul[aria-label='Available components'] li:nth-child(1)")
         # filter on avaliable components
         b.set_input_text("#cmpsr-blueprint-input-filter", "cockpit-bridge")
         b.key_press("\r")
@@ -36,8 +36,8 @@ class TestPackage(composerlib.ComposerCase):
             b.wait_text("#cockpit-bridge-input", "cockpit-bridge")
         b.wait_visible(".toolbar-pf-results .label-info > span")
         # click Clear All Filters link
-        b.click("span:contains('Clear All Filters')")
-        b.wait_visible("ul[aria-label='Available Components'] li:nth-child(1)")
+        b.click("span:contains('Clear all filters')")
+        b.wait_visible("ul[aria-label='Available components'] li:nth-child(1)")
         b.wait_not_present(".toolbar-pf-results .label-info span")
         b.wait_not_present("#cockpit-bridge-input")
 
@@ -46,7 +46,7 @@ class TestPackage(composerlib.ComposerCase):
         b.set_input_text("#filter-blueprints", "tmux")
         b.key_press("\r")
         b.wait_text("ul[data-list=components] li:nth-child(1) #tmux", "tmux")
-        b.click(".cmpsr-panel__body--main .toolbar-pf-results button:contains('Clear All Filters')")
+        b.click(".cmpsr-panel__body--main .toolbar-pf-results button:contains('Clear all filters')")
         b.wait_text("ul[data-list=components] li:nth-child(1) #httpd", "httpd")
         # filter by version
         b.click("#filterFieldTypeMenu")
@@ -83,9 +83,9 @@ class TestPackage(composerlib.ComposerCase):
         b.wait_visible("#main")
 
         # go to edit package page
-        b.click("li[data-blueprint=httpd-server] a:contains('Edit Packages')")
+        b.click("li[data-blueprint=httpd-server] a:contains('Edit packages')")
         with b.wait_timeout(120):
-            b.wait_visible("ul[aria-label='Available Components'] li:nth-child(1)")
+            b.wait_visible("ul[aria-label='Available components'] li:nth-child(1)")
 
         blueprint_list = [
             "httpd",
@@ -93,18 +93,18 @@ class TestPackage(composerlib.ComposerCase):
             "vim-enhanced"
         ]
         # sort from Z-A
-        b.wait_visible("ul[aria-label='Selected Components']")
+        b.wait_visible("ul[aria-label='Selected components']")
         b.click(".fa-sort-alpha-asc")
         b.wait_visible(".fa-sort-alpha-desc")
         for i, v in enumerate(sorted(blueprint_list, reverse=True)):
-            b.wait_text("ul[aria-label='Selected Components'] li:nth-child({}) "
+            b.wait_text("ul[aria-label='Selected components'] li:nth-child({}) "
                         "a strong".format(i + 1), v)
 
         # sort from A-Z
         b.click(".fa-sort-alpha-desc")
         b.wait_visible(".fa-sort-alpha-asc")
         for i, v in enumerate(sorted(blueprint_list)):
-            b.wait_text("ul[aria-label='Selected Components'] li:nth-child({}) "
+            b.wait_text("ul[aria-label='Selected components'] li:nth-child({}) "
                         "a strong".format(i + 1), v)
 
         # collect code coverage result
@@ -117,9 +117,9 @@ class TestPackage(composerlib.ComposerCase):
         b.wait_visible("#main")
 
         # go to edit package page
-        b.click("li[data-blueprint=openssh-server] a:contains('Edit Packages')")
+        b.click("li[data-blueprint=openssh-server] a:contains('Edit packages')")
         with b.wait_timeout(120):
-            b.wait_visible("ul[aria-label='Available Components'] li:nth-child(1)")
+            b.wait_visible("ul[aria-label='Available components'] li:nth-child(1)")
 
         # search for openssh-server pacakge
         b.set_input_text("#cmpsr-blueprint-input-filter", "cockpit-bridge")
@@ -164,7 +164,7 @@ class TestPackage(composerlib.ComposerCase):
         # logout and login, still in edit blueprint page
         with b.wait_timeout(300):
             b.relogin("/composer", superuser=True)
-        b.wait_visible("ul[aria-label='Available Components'] li:nth-child(1)")
+        b.wait_visible("ul[aria-label='Available components'] li:nth-child(1)")
 
         # "1 Pending Change" still there
         b.wait_visible("a:contains('1 Pending Change')")
@@ -204,9 +204,9 @@ class TestPackage(composerlib.ComposerCase):
         b.wait_visible("#main")
 
         # go to edit package page
-        b.click("li[data-blueprint=openssh-server] a:contains('Edit Packages')")
+        b.click("li[data-blueprint=openssh-server] a:contains('Edit packages')")
         with b.wait_timeout(240):
-            b.wait_visible("ul[aria-label='Available Components'] li:nth-child(1)")
+            b.wait_visible("ul[aria-label='Available components'] li:nth-child(1)")
 
         # search for openssh-server pacakge
         b.set_input_text("#cmpsr-blueprint-input-filter", "cockpit-composer")
@@ -218,7 +218,7 @@ class TestPackage(composerlib.ComposerCase):
         # wait for package added
         b.wait_visible("li[data-component=cockpit-composer]")
         # click discard changes button
-        b.click("button:contains('Discard Changes')")
+        b.click("button:contains('Discard changes')")
         b.wait_not_present("li[data-component=cockpit-composer]")
 
         # collect code coverage result
