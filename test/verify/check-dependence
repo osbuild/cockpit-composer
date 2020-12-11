@@ -61,13 +61,8 @@ class TestDependence(composerlib.ComposerCase):
         b.wait_attr("#openssh-server-kebab", "aria-expanded", "true")
         b.click("ul[aria-labelledby=openssh-server-kebab] a:contains('View')")
         # version selection
-        # group actions for select from dropdown menu
-        b.wait_visible("#cmpsr-compon__version-select")
-        version_selector = "#cmpsr-compon__version-select option[value='1']"
-        b.wait_present(version_selector)
-        value_id = b.attr(version_selector, "value")
-        b.set_val("#cmpsr-compon__version-select", value_id)
-        b.wait_val("#cmpsr-compon__version-select", value_id)
+        b.set_val("#cmpsr-compon__version-select", "1")
+        b.wait_val("#cmpsr-compon__version-select", "1")
         # group actions end
         b.click("button:contains('Apply Change')")
         b.wait_present("a:contains('1 Pending Change')")
