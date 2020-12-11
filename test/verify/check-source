@@ -48,14 +48,8 @@ class TestSource(composerlib.ComposerCase):
         b.click("input[value='Add Source']")
         b.set_input_text("#textInput1-modal-source", repo_name)
         b.set_input_text("#textInput2-modal-source", repo_url)
-        # group actions for select from dropdown menu
-        dropdown_menu_sel = "#textInput3-modal-source"
-        b.wait_visible(dropdown_menu_sel)
-        test_selector = "{} option[value='yum-baseurl']".format(dropdown_menu_sel)
-        b.wait_present(test_selector)
-        value_id = b.attr(test_selector, "value")
-        b.set_val(dropdown_menu_sel, value_id)
-        b.wait_val(dropdown_menu_sel, value_id)
+        b.set_val("#textInput3-modal-source", "yum-baseurl")
+        b.wait_val("#textInput3-modal-source", "yum-baseurl")
         # groups action done
         b.click("button:contains('Add Source')")
 
