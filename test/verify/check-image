@@ -30,13 +30,9 @@ class TestImage(composerlib.ComposerCase):
         b.click(".pf-c-popover__content button")
         b.wait_not_present(".pf-c-popover__body")
         # check non upload image action (Create only)
-        # group actions for select from dropdown menu
-        b.wait_visible("#image-type")
-        test_selector = "#image-type option[value='qcow2']"
-        b.wait_present(test_selector)
-        value_id = b.attr(test_selector, "value")
-        b.set_val("#image-type", value_id)
-        b.wait_val("#image-type", value_id)
+        b.wait_js_cond('ph_select("#image-type option").length > 1')
+        b.set_val("#image-type", "qcow2")
+        b.wait_val("#image-type", "qcow2")
         # check ? (image size help) button
         b.click("button[aria-label='Image size help']")
         b.wait_text(".pf-c-popover__body",
@@ -95,13 +91,9 @@ class TestImage(composerlib.ComposerCase):
 
         # create image wizard
         b.click("li[data-blueprint=httpd-server] #create-image-button")
-        # group actions for select from dropdown menu
-        b.wait_visible("#image-type")
-        test_selector = "#image-type option[value='ami']"
-        b.wait_present(test_selector)
-        value_id = b.attr(test_selector, "value")
-        b.set_val("#image-type", value_id)
-        b.wait_val("#image-type", value_id)
+        b.wait_js_cond('ph_select("#image-type option").length > 1')
+        b.set_val("#image-type", "ami")
+        b.wait_val("#image-type", "ami")
         # groups action done
         # still keep Create if upload image not selected
         b.wait_text("#continue-button", "Create")
@@ -236,13 +228,9 @@ class TestImage(composerlib.ComposerCase):
 
         # create image wizard
         b.click("li[data-blueprint=httpd-server] #create-image-button")
-        # group actions for select from dropdown menu
-        b.wait_visible("#image-type")
-        test_selector = "#image-type option[value='vhd']"
-        b.wait_present(test_selector)
-        value_id = b.attr(test_selector, "value")
-        b.set_val("#image-type", value_id)
-        b.wait_val("#image-type", value_id)
+        b.wait_js_cond('ph_select("#image-type option").length > 1')
+        b.set_val("#image-type", "vhd")
+        b.wait_val("#image-type", "vhd")
         # groups action done
         # still keep Create if upload image not selected
         b.wait_text("#continue-button", "Create")
@@ -349,13 +337,9 @@ class TestImage(composerlib.ComposerCase):
         # create image wizard
         b.click("li[data-blueprint=httpd-server] #create-image-button")
         b.wait_text("#create-image-upload-wizard #blueprint-name", "httpd-server")
-        # group actions for select from dropdown menu
-        b.wait_visible("#image-type")
-        test_selector = "#image-type option[value='openstack']"
-        b.wait_present(test_selector)
-        value_id = b.attr(test_selector, "value")
-        b.set_val("#image-type", value_id)
-        b.wait_val("#image-type", value_id)
+        b.wait_js_cond('ph_select("#image-type option").length > 1')
+        b.set_val("#image-type", "openstack")
+        b.wait_val("#image-type", "openstack")
         # group actions end
         b.focus("#image-size-input")
         # delete 2 and input 4
@@ -447,14 +431,9 @@ class TestImage(composerlib.ComposerCase):
         # create image wizard
         b.click("li[data-blueprint=httpd-server] #create-image-button")
         b.wait_text("#create-image-upload-wizard #blueprint-name", "httpd-server")
-        # group actions for select from dropdown menu
-        b.wait_visible("#image-type")
-        test_selector = "#image-type option[value='{image_type}']".format(
-            image_type=image_type_ostree)
-        b.wait_present(test_selector)
-        value_id = b.attr(test_selector, "value")
-        b.set_val("#image-type", value_id)
-        b.wait_val("#image-type", value_id)
+        b.wait_js_cond('ph_select("#image-type option").length > 1')
+        b.set_val("#image-type", image_type_ostree)
+        b.wait_val("#image-type", image_type_ostree)
         b.click("#continue-button")
         b.wait_not_present("#create-image-upload-wizard")
         # toast notification
@@ -523,13 +502,9 @@ class TestImage(composerlib.ComposerCase):
         # create image wizard
         b.click("li[data-blueprint=httpd-server] #create-image-button")
         b.wait_text("#create-image-upload-wizard #blueprint-name", "httpd-server")
-        # group actions for select from dropdown menu
-        b.wait_visible("#image-type")
-        test_selector = "#image-type option[value='openstack']"
-        b.wait_present(test_selector)
-        value_id = b.attr(test_selector, "value")
-        b.set_val("#image-type", value_id)
-        b.wait_val("#image-type", value_id)
+        b.wait_js_cond('ph_select("#image-type option").length > 1')
+        b.set_val("#image-type", "openstack")
+        b.wait_val("#image-type", "openstack")
         # group actions end
         b.click("#continue-button")
         b.wait_not_present("#create-image-upload-wizard")
