@@ -15,12 +15,12 @@ class TestDependence(composerlib.ComposerCase):
         b = self.browser
 
         self.login_and_go("/composer", superuser=True)
-        b.wait_present("#main")
+        b.wait_visible("#main")
 
         # go to edit package page
         b.click("li[data-blueprint=openssh-server] a:contains('Edit Packages')")
         with b.wait_timeout(120):
-            b.wait_present("ul[aria-label='Available Components'] li:nth-child(1)")
+            b.wait_visible("ul[aria-label='Available Components'] li:nth-child(1)")
 
         # open component detail
         b.click("#openssh-server-toggle")
@@ -29,7 +29,7 @@ class TestDependence(composerlib.ComposerCase):
         # https://github.com/osbuild/cockpit-composer/issues/942
         # # depsolving dependencies needs more time
         # with b.wait_timeout(480):
-        #     b.wait_present(".cc-component-summary__deps")
+        #     b.wait_visible(".cc-component-summary__deps")
         # # show all
         # b.click("button:contains('Show All')")
         # # show less
@@ -49,12 +49,12 @@ class TestDependence(composerlib.ComposerCase):
         b = self.browser
 
         self.login_and_go("/composer", superuser=True)
-        b.wait_present("#main")
+        b.wait_visible("#main")
 
         # go to edit package page
         b.click("li[data-blueprint=openssh-server] a:contains('Edit Packages')")
         with b.wait_timeout(120):
-            b.wait_present("ul[aria-label='Available Components'] li:nth-child(1)")
+            b.wait_visible("ul[aria-label='Available Components'] li:nth-child(1)")
 
         # view openssh-server package detail
         b.click("#openssh-server-kebab")
@@ -65,7 +65,7 @@ class TestDependence(composerlib.ComposerCase):
         b.wait_val("#cmpsr-compon__version-select", "1")
         # group actions end
         b.click("button:contains('Apply Change')")
-        b.wait_present("a:contains('1 Pending Change')")
+        b.wait_visible("a:contains('1 Pending Change')")
 
         # search for openssh-server pacakge
         b.set_input_text("#cmpsr-blueprint-input-filter", "tmux")
@@ -76,21 +76,21 @@ class TestDependence(composerlib.ComposerCase):
         b.click("#blueprint-tabs-tab-dependencies")
         # add tmux to blueprint
         b.click(".cmpsr-header__actions button:contains('Add')")
-        b.wait_present("a:contains('2 Pending Change')")
-        b.wait_present("li[data-component=tmux]")
+        b.wait_visible("a:contains('2 Pending Change')")
+        b.wait_visible("li[data-component=tmux]")
 
         # view tmux detail
         b.click("li[data-component=tmux] #tmux")
         b.wait_visible("#cmpsr-compon__version-select")
         # back to openssh-server
         b.click("a:contains('Back to openssh-server')")
-        b.wait_present("li[data-component=tmux]")
+        b.wait_visible("li[data-component=tmux]")
 
         # remove from tumx detail
         b.click("li[data-component=tmux] #tmux")
         b.wait_visible("#cmpsr-compon__version-select")
         b.click("button:contains('Remove')")
-        b.wait_present("a:contains('1 Pending Change')")
+        b.wait_visible("a:contains('1 Pending Change')")
 
         # collect code coverage result
         self.check_coverage()
