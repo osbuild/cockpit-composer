@@ -18,11 +18,11 @@ class TestBlueprint(composerlib.ComposerCase):
         b = self.browser
 
         self.login_and_go("/composer", superuser=True)
-        b.wait_present("#main")
+        b.wait_visible("#main")
 
         # create blueprint
         b.click(".toolbar-pf-action-right #cmpsr-btn-crt-blueprint")
-        b.wait_present("div[role=dialog] #cmpsr-modal-crt-blueprint")
+        b.wait_visible("div[role=dialog] #cmpsr-modal-crt-blueprint")
         # empty name blueprint
         b.set_input_text("#textInput-modal-markup", "")
         b.set_input_text("#textInput2-modal-markup", "test")
@@ -42,7 +42,7 @@ class TestBlueprint(composerlib.ComposerCase):
         }
         for c in invalid_chars.keys():
             b.click(".toolbar-pf-action-right #cmpsr-btn-crt-blueprint")
-            b.wait_present("div[role=dialog] #cmpsr-modal-crt-blueprint")
+            b.wait_visible("div[role=dialog] #cmpsr-modal-crt-blueprint")
             # empty name blueprint
             b.set_input_text("#textInput-modal-markup", "-_.{}".format(c))
             b.wait_text("#cmpsr-modal-crt-blueprint .help-block",
@@ -54,7 +54,7 @@ class TestBlueprint(composerlib.ComposerCase):
         # wait until the openssh-server blueprint is there
         b.wait_in_text("ul[aria-label=Blueprints]", "openssh-server")
         b.click(".toolbar-pf-action-right #cmpsr-btn-crt-blueprint")
-        b.wait_present("div[role=dialog] #cmpsr-modal-crt-blueprint")
+        b.wait_visible("div[role=dialog] #cmpsr-modal-crt-blueprint")
         # empty name blueprint
         b.set_input_text("#textInput-modal-markup", "openssh-server")
         b.set_input_text("#textInput2-modal-markup", "openssh server image")
@@ -67,7 +67,7 @@ class TestBlueprint(composerlib.ComposerCase):
         # wait until the openssh-server blueprint is there
         b.wait_in_text("ul[aria-label=Blueprints]", "openssh-server")
         b.click(".toolbar-pf-action-right #cmpsr-btn-crt-blueprint")
-        b.wait_present("div[role=dialog] #cmpsr-modal-crt-blueprint")
+        b.wait_visible("div[role=dialog] #cmpsr-modal-crt-blueprint")
         # empty name blueprint
         b.set_input_text("#textInput-modal-markup", "openssh-server")
         b.key_press("\r")
@@ -82,13 +82,13 @@ class TestBlueprint(composerlib.ComposerCase):
         b = self.browser
 
         self.login_and_go("/composer", superuser=True)
-        b.wait_present("#main")
+        b.wait_visible("#main")
 
         # filter "openssh-server" blueprint
         b.set_input_text("#filter-blueprints", "openssh")
         b.key_press("\r")
         b.wait_in_text(".filter-pf-active-label + .list-inline .label", "Name: openssh")
-        b.wait_present("#openssh-server-name")
+        b.wait_visible("#openssh-server-name")
         b.wait_not_present("#httpd-server-name")
         # clear filter
         b.click(".filter-pf-active-label + .list-inline .pficon-close")
@@ -99,9 +99,9 @@ class TestBlueprint(composerlib.ComposerCase):
         b.key_press("\r")
         b.wait_in_text(".filter-pf-active-label + .list-inline .label", "Name: httpd")
         b.wait_not_present("#openssh-server-name")
-        b.wait_present("#httpd-server-name")
-        b.wait_present("#httpd-server-with-hostname-name")
-        b.wait_present("#httpd-server-with-user-name")
+        b.wait_visible("#httpd-server-name")
+        b.wait_visible("#httpd-server-with-hostname-name")
+        b.wait_visible("#httpd-server-with-user-name")
         # clear filter
         b.click("button:contains('Clear All Filters')")
         b.wait_not_present("p:contains('Active Filters:')")
@@ -113,7 +113,7 @@ class TestBlueprint(composerlib.ComposerCase):
         b = self.browser
 
         self.login_and_go("/composer", superuser=True)
-        b.wait_present("#main")
+        b.wait_visible("#main")
 
         blueprint_list = [
             "httpd-server",
@@ -122,15 +122,15 @@ class TestBlueprint(composerlib.ComposerCase):
             "openssh-server"
         ]
         # sort from Z-A
-        b.wait_present("ul[aria-label=Blueprints]")
+        b.wait_visible("ul[aria-label=Blueprints]")
         b.click(".fa-sort-alpha-asc")
-        b.wait_present(".fa-sort-alpha-desc")
+        b.wait_visible(".fa-sort-alpha-desc")
         for i, v in enumerate(sorted(blueprint_list, reverse=True)):
             b.wait_text("ul[aria-label=Blueprints] li:nth-child({}) a strong".format(i + 1), v)
 
         # sort from A-Z
         b.click(".fa-sort-alpha-desc")
-        b.wait_present(".fa-sort-alpha-asc")
+        b.wait_visible(".fa-sort-alpha-asc")
         for i, v in enumerate(sorted(blueprint_list)):
             b.wait_text("ul[aria-label=Blueprints] li:nth-child({}) a strong".format(i + 1), v)
 
@@ -142,14 +142,14 @@ class TestBlueprint(composerlib.ComposerCase):
         m = self.machine
 
         self.login_and_go("/composer", superuser=True)
-        b.wait_present("#main")
+        b.wait_visible("#main")
 
         # export package list
         actions_drop_down_sel = "#openssh-server-kebab"
         b.click(actions_drop_down_sel)
         b.wait_attr(actions_drop_down_sel, "aria-expanded", "true")
         b.click("li[data-blueprint=openssh-server] a:contains('Export')")
-        b.wait_present("#cmpsr-modal-export")
+        b.wait_visible("#cmpsr-modal-export")
         with b.wait_timeout(300):
             b.wait_in_text("#textInput2-modal-markup", "openssh-server")
         packages_list = b.text("#textInput2-modal-markup")

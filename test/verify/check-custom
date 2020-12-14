@@ -21,7 +21,7 @@ class TestCustom(composerlib.ComposerCase):
         m = self.machine
 
         self.login_and_go("/composer", superuser=True)
-        b.wait_present("#main")
+        b.wait_visible("#main")
 
         # go to blueprint openssh-server
         b.click("#openssh-server-name")
@@ -32,7 +32,7 @@ class TestCustom(composerlib.ComposerCase):
             b.click(actions_drop_down_sel)
         b.wait_attr(actions_drop_down_sel, "aria-expanded", "true")
         b.click("a:contains('Export')")
-        b.wait_present("#cmpsr-modal-export")
+        b.wait_visible("#cmpsr-modal-export")
         with b.wait_timeout(300):
             b.wait_in_text("#textInput2-modal-markup", "openssh-server")
         packages_list = b.text("#textInput2-modal-markup")
@@ -64,7 +64,7 @@ class TestCustom(composerlib.ComposerCase):
         m = self.machine
 
         self.login_and_go("/composer", superuser=True)
-        b.wait_present("#main")
+        b.wait_visible("#main")
 
         # go to blueprint openssh-server
         b.click("#openssh-server-name")
@@ -73,22 +73,22 @@ class TestCustom(composerlib.ComposerCase):
         updated_description = "edit ssh server image description"
         with b.wait_timeout(300):
             b.click("a:contains('ssh server image')")
-        b.wait_present("#cmpsr-modal-edit-description")
+        b.wait_visible("#cmpsr-modal-edit-description")
         b.set_input_text("#textInput-modal-markup", updated_description)
         b.click("#cmpsr-modal-edit-description button:contains('Cancel')")
         b.wait_not_present("#cmpsr-modal-edit-description")
-        b.wait_present("a:contains('ssh server image')")
+        b.wait_visible("a:contains('ssh server image')")
 
         # update description
         actions_drop_down_sel = ".cmpsr-header__actions #dropdownKebab"
         b.click(actions_drop_down_sel)
         b.wait_attr(actions_drop_down_sel, "aria-expanded", "true")
         b.click("a:contains('Edit description')")
-        b.wait_present("#cmpsr-modal-edit-description")
+        b.wait_visible("#cmpsr-modal-edit-description")
         b.set_input_text("#textInput-modal-markup", updated_description)
         b.click("#cmpsr-modal-edit-description button:contains('Save')")
         b.wait_not_present("#cmpsr-modal-edit-description")
-        b.wait_present("a:contains('{}')".format(updated_description))
+        b.wait_visible("a:contains('{}')".format(updated_description))
         # backend got updated as well
         desc = m.execute("""
             composer-cli blueprints show openssh-server | grep description | \
@@ -104,7 +104,7 @@ class TestCustom(composerlib.ComposerCase):
         m = self.machine
 
         self.login_and_go("/composer", superuser=True)
-        b.wait_present("#main")
+        b.wait_visible("#main")
 
         b.click("#openssh-server-name")
         with b.wait_timeout(300):
@@ -113,31 +113,31 @@ class TestCustom(composerlib.ComposerCase):
         b.click("button[aria-describedby=Hostname-help2]")
         b.set_input_text("input[aria-label=Hostname]", "hostname-openssh-server")
         b.click(".form-control-pf-save")
-        b.wait_present("span:contains(hostname-openssh-server)")
+        b.wait_visible("span:contains(hostname-openssh-server)")
         hostname = m.execute("""
             composer-cli blueprints show openssh-server | grep hostname | awk -F '"' '{print $2}'
             """).rstrip()
-        b.wait_present("span:contains({})".format(hostname))
+        b.wait_visible("span:contains({})".format(hostname))
 
         # update hostname
         b.click(".form-control-pf-value")
         b.set_input_text("input[aria-label=Hostname]", "update-openssh-server")
         b.key_press("\r")
-        b.wait_present("span:contains(update-openssh-server)")
+        b.wait_visible("span:contains(update-openssh-server)")
         hostname = m.execute("""
             composer-cli blueprints show openssh-server | grep hostname | awk -F '"' '{print $2}'
             """).rstrip()
-        b.wait_present("span:contains({})".format(hostname))
+        b.wait_visible("span:contains({})".format(hostname))
 
         # clicking x button will not update
         b.click(".form-control-pf-value")
         b.set_input_text("input[aria-label=Hostname]", "no-update-openssh-server")
         b.click(".form-control-pf-cancel")
-        b.wait_present("span:contains(update-openssh-server)")
+        b.wait_visible("span:contains(update-openssh-server)")
         hostname = m.execute("""
             composer-cli blueprints show openssh-server | grep hostname | awk -F '"' '{print $2}'
             """).rstrip()
-        b.wait_present("span:contains({})".format(hostname))
+        b.wait_visible("span:contains({})".format(hostname))
 
         # invalid character, save button is disabled
         b.click(".form-control-pf-value")
@@ -161,7 +161,7 @@ class TestCustom(composerlib.ComposerCase):
                     b.key_press(k)
 
         self.login_and_go("/composer", superuser=True)
-        b.wait_present("#main")
+        b.wait_visible("#main")
 
         b.click("#openssh-server-name")
         with b.wait_timeout(300):
@@ -169,7 +169,7 @@ class TestCustom(composerlib.ComposerCase):
 
         # add a new user
         b.click("button:contains('Create User Account')")
-        b.wait_present("#cmpsr-modal-user-account")
+        b.wait_visible("#cmpsr-modal-user-account")
         set_input_value("#textInput2-modal-user", "x y")
         b.wait_val("#textInput1-modal-user", "xy")
         b.click("input[type=checkbox]")
@@ -186,8 +186,8 @@ class TestCustom(composerlib.ComposerCase):
         b.wait_not_present("#cmpsr-modal-user-account")
         b.wait_text("tr td[data-label='Full name']", "x y")
         b.wait_text("tr td[data-label='User name']", "xy")
-        b.wait_present("tr td[data-label='Server administrator'] .fa-check")
-        b.wait_present("tr td[data-label=Password] .fa-check")
+        b.wait_visible("tr td[data-label='Server administrator'] .fa-check")
+        b.wait_visible("tr td[data-label=Password] .fa-check")
         b.wait_in_text("tr td[data-label='SSH key']", "cockpit-test")
 
         # check backend to have correct password configured
@@ -206,13 +206,13 @@ class TestCustom(composerlib.ComposerCase):
         # update password
         new_password = "c456rty$%^RTY"
         b.click("button[aria-label='Edit User Account xy']")
-        b.wait_present("#cmpsr-modal-user-account")
+        b.wait_visible("#cmpsr-modal-user-account")
         b.click("button:contains('Set New Password')")
         set_input_value("#textInput1-modal-password", new_password)
         set_input_value("#textInput2-modal-password", new_password)
         b.click("#cmpsr-modal-user-account button:contains('Update')")
         b.wait_not_present("#cmpsr-modal-user-account")
-        b.wait_present("tr td[data-label=Password] .fa-check")
+        b.wait_visible("tr td[data-label=Password] .fa-check")
         passwd_str = m.execute("""
             composer-cli blueprints show openssh-server | grep password | awk '{print $3}'
             """).strip('"\n')
@@ -222,16 +222,16 @@ class TestCustom(composerlib.ComposerCase):
 
         # remove password
         b.click("button[aria-label='Edit User Account xy']")
-        b.wait_present("#cmpsr-modal-user-account")
+        b.wait_visible("#cmpsr-modal-user-account")
         b.click("button:contains('Remove Password')")
         b.click("#cmpsr-modal-user-account button:contains('Update')")
         b.wait_not_present("#cmpsr-modal-user-account")
-        b.wait_present("tr td[data-label=Password]")
+        b.wait_visible("tr td[data-label=Password]")
         b.wait_not_present("tr td[data-label=Password] .fa-check")
 
         # duplicated user
         b.click("button:contains('Create User Account')")
-        b.wait_present("#cmpsr-modal-user-account")
+        b.wait_visible("#cmpsr-modal-user-account")
         set_input_value("#textInput2-modal-user", "x y")
         b.wait_val("#textInput1-modal-user", "xy")
         b.wait_in_text("#textInput1-modal-user-help1", "This user name already exists.")
@@ -240,7 +240,7 @@ class TestCustom(composerlib.ComposerCase):
 
         # password checking error
         b.click("button:contains('Create User Account')")
-        b.wait_present("#cmpsr-modal-user-account")
+        b.wait_visible("#cmpsr-modal-user-account")
         set_input_value("#textInput2-modal-user", "admin user")
         b.wait_val("#textInput1-modal-user", "auser")
         b.click("input[type=checkbox]")

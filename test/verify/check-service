@@ -30,7 +30,7 @@ class TestService(composerlib.ComposerCase):
         b = self.browser
 
         self.login_and_go("/composer", superuser=True)
-        b.wait_present("#main")
+        b.wait_visible("#main")
 
         # start and enable osbuild-composer from UI
         b.click("button:contains('Start')")
@@ -44,7 +44,7 @@ class TestService(composerlib.ComposerCase):
         desc_template = string.ascii_letters + string.digits + " "
         bp_desc = "".join(random.sample(desc_template, 40))
         b.click(".pf-c-empty-state button:contains('Create Blueprint')")
-        b.wait_present("div[role=dialog] #cmpsr-modal-crt-blueprint")
+        b.wait_visible("div[role=dialog] #cmpsr-modal-crt-blueprint")
         # blueprint name
         b.set_input_text("#textInput-modal-markup", bp_name)
         # blueprint description
@@ -55,7 +55,7 @@ class TestService(composerlib.ComposerCase):
 
         # wait for all available compontents visible
         with b.wait_timeout(300):
-            b.wait_present("ul[data-list=inputs]")
+            b.wait_visible("ul[data-list=inputs]")
         # search for openssh-server pacakge
         b.set_input_text("#cmpsr-blueprint-input-filter", "openssh-server")
         b.key_press("\r")
@@ -64,8 +64,8 @@ class TestService(composerlib.ComposerCase):
         # add it to blueprint
         b.click("li[data-input=openssh-server] .fa-plus")
         # wait for package added
-        b.wait_present("#blueprint-tabs")
-        b.wait_present("li[data-component=openssh-server]")
+        b.wait_visible("#blueprint-tabs")
+        b.wait_visible("li[data-component=openssh-server]")
         # click commit button
         b.click(".cmpsr-header__actions .btn-primary")
         # click commit button
@@ -73,7 +73,7 @@ class TestService(composerlib.ComposerCase):
         b.wait_not_present("#cmpsr-modal-pending-changes")
 
         # wait for toast notification dialog
-        b.wait_present("#cmpsr-toast-committed .pficon-ok")
+        b.wait_visible("#cmpsr-toast-committed .pficon-ok")
         # click close button
         b.click("#cmpsr-toast-committed .pficon-close")
         b.wait_not_present("#cmpsr-toast-committed .pficon-ok")
@@ -115,7 +115,7 @@ class TestService(composerlib.ComposerCase):
         m.execute("systemctl disable --now osbuild-composer.socket")
 
         self.login_and_go("/composer", superuser=True)
-        b.wait_present("#main")
+        b.wait_visible("#main")
 
         # do not enable osbuild-composer
         b.click(".checkbox input")
@@ -138,10 +138,10 @@ class TestService(composerlib.ComposerCase):
         b = self.browser
 
         self.login_and_go("/composer", superuser=False)
-        b.wait_present("#main")
+        b.wait_visible("#main")
 
         # Start button can be disabled button or clickable button
-        b.wait_present("button:contains('Start')")
+        b.wait_visible("button:contains('Start')")
 
         # disable this test due to https://github.com/osbuild/cockpit-composer/issues/941
         # if "disabled" not in b.attr("button:contains('Start')", "class"):
