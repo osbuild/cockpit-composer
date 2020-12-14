@@ -21,7 +21,7 @@ class TestSource(composerlib.ComposerCase):
         repo_name = "sway-copr"
 
         self.login_and_go("/composer", superuser=True)
-        b.wait_present("#main")
+        b.wait_visible("#main")
 
         # open manage sources dialog
         drop_down_sel = ".toolbar-pf-action-right #dropdownKebab"
@@ -29,12 +29,12 @@ class TestSource(composerlib.ComposerCase):
         b.wait_attr(drop_down_sel, "aria-expanded", "true")
         b.click("a:contains('Manage Sources')")
         b.wait_attr(drop_down_sel, "aria-expanded", "false")
-        b.wait_present("#cmpsr-modal-manage-sources")
+        b.wait_visible("#cmpsr-modal-manage-sources")
 
         # check default loaded sources
         sources = m.execute("composer-cli sources list").split()
         for source in sources:
-            b.wait_present("div[data-source={}]".format(source))
+            b.wait_visible("div[data-source={}]".format(source))
 
         # add new source
         b.click("input[value='Add Source']")
@@ -62,7 +62,7 @@ class TestSource(composerlib.ComposerCase):
             b.wait_attr(drop_down_sel, "aria-expanded", "true")
             b.click("a:contains('Manage Sources')")
             b.wait_attr(drop_down_sel, "aria-expanded", "false")
-            b.wait_present("#cmpsr-modal-manage-sources")
+            b.wait_visible("#cmpsr-modal-manage-sources")
 
         # endit new source to enable check SSL certificate and GPG key
         b.click("button[aria-label='Edit Source {}']".format(repo_name))
@@ -77,7 +77,7 @@ class TestSource(composerlib.ComposerCase):
         b.click("li[data-blueprint=openssh-server] a:contains('Edit Packages')")
         # wait for all available compontents visible
         with b.wait_timeout(300):
-            b.wait_present("ul[data-list=inputs]")
+            b.wait_visible("ul[data-list=inputs]")
         # search for kanshi which exists in added repo only
         b.set_input_text("#cmpsr-blueprint-input-filter", "kanshi")
         b.key_press("\r")
@@ -91,7 +91,7 @@ class TestSource(composerlib.ComposerCase):
         b.wait_attr(drop_down_sel, "aria-expanded", "true")
         b.click("a:contains('Manage Sources')")
         b.wait_attr(drop_down_sel, "aria-expanded", "false")
-        b.wait_present("#cmpsr-modal-manage-sources")
+        b.wait_visible("#cmpsr-modal-manage-sources")
 
         # duplicated source can't be added
         b.click("input[value='Add Source']")
