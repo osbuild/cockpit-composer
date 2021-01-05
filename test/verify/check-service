@@ -3,7 +3,6 @@
 # checkpoint:
 # 1. osbuild-composer.socket can be started and enabled
 # 2. no blueprint by default and can add and delete blueprint
-import os
 import string
 import random
 
@@ -19,16 +18,13 @@ class TestService(composerlib.ComposerCase):
         # stop and disable osbuild-composer.socket service
         super().setUp()
         m = self.machine
-        distro = os.environ.get("TEST_OS")
 
         m.execute("""
             for bp in $(composer-cli blueprints list); do
                 composer-cli blueprints delete $bp
             done
-            systemctl disable --now osbuild-composer.socket osbuild-composer.service
+            systemctl disable --now osbuild-composer.socket osbuild-composer.service osbuild-local-worker.socket
         """)
-        if (distro == "fedora-32" or distro == "fedora-33"):
-            m.execute("systemctl disable --now osbuild-local-worker.socket")
 
     def testBasic(self):
         b = self.browser
@@ -114,11 +110,6 @@ class TestService(composerlib.ComposerCase):
     def testNoEnable(self):
         b = self.browser
         m = self.machine
-        distro = os.environ.get("TEST_OS")
-        # stop and disable the osbuild-composer service and sockets
-        m.execute("systemctl disable --now osbuild-composer.socket osbuild-composer.service")
-        if (distro == "fedora-32" or distro == "fedora-33"):
-            m.execute("systemctl disable --now osbuild-local-worker.socket")
 
         self.login_and_go("/composer", superuser=True)
         b.wait_visible("#main")
@@ -142,12 +133,6 @@ class TestService(composerlib.ComposerCase):
 
     def testNonAdminUser(self):
         b = self.browser
-        m = self.machine
-        distro = os.environ.get("TEST_OS")
-        # stop and disable the osbuild-composer service and sockets
-        m.execute("systemctl disable --now osbuild-composer.socket osbuild-composer.service")
-        if (distro == "fedora-32" or distro == "fedora-33"):
-            m.execute("systemctl disable --now osbuild-local-worker.socket")
 
         self.login_and_go("/composer", superuser=False)
         b.wait_visible("#main")
