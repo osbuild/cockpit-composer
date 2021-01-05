@@ -3,12 +3,14 @@
 # The application RPM will be installed separately
 set -eux
 
-# resize root partition to fill free space
-echo -en "n\n\n\n\n\nw\n" | fdisk /dev/vda
-pvcreate /dev/vda3
+# on virt-install images with LVM, resize root partition to fill free space
 VG=$(vgs --noheadings -o vg_name)
-vgextend $VG /dev/vda3
-lvextend -r -l +100%FREE $VG/root
+if [ -n "$VG" ]; then
+    echo -en "n\n\n\n\n\nw\n" | fdisk /dev/vda
+    pvcreate /dev/vda3
+    vgextend $VG /dev/vda3
+    lvextend -r -l +100%FREE $VG/root
+fi
 
 # overriding osbuild-composer repo with nightly
 mkdir -p /etc/osbuild-composer/repositories
