@@ -69,7 +69,8 @@ class TestPackage(composerlib.ComposerCase):
         release = b.text("li[data-component=tmux] .cc-component__release strong")
         b.set_input_text("#filter-blueprints", release)
         b.key_press("\r")
-        b.wait_text("ul[data-list=components] li:nth-child(1) #tmux", "tmux")
+        b.wait_text("ul[data-list=components] li:nth-child(1) .cc-component__release strong",
+                    release)
         b.click(".cmpsr-panel__body--main .toolbar-pf-results .pficon-close")
         b.wait_text("ul[data-list=components] li:nth-child(1) #httpd", "httpd")
 
