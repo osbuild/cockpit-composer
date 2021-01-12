@@ -1,17 +1,18 @@
 # David Shea <dshea@redhat.com>, 2019. #zanata
 # Laszlo Pal <vlad@vlad.hu>, 2020.
+# Matej Marusak <mmarusak@redhat.com>, 2021.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-09-17T09:36:43.245Z\n"
-"PO-Revision-Date: 2020-04-07 17:40+0000\n"
-"Last-Translator: Laszlo Pal <vlad@vlad.hu>\n"
+"POT-Creation-Date: 2021-01-08T07:28:53.139Z\n"
+"PO-Revision-Date: 2021-01-10 09:36+0000\n"
+"Last-Translator: Matej Marusak <mmarusak@redhat.com>\n"
 "Language-Team: Hungarian <https://translate.fedoraproject.org/projects/"
 "cockpit-composer/master/hu/>\n"
 "Language: hu\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1\n"
-"X-Generator: Weblate 3.11.3\n"
+"X-Generator: Weblate 4.4\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -120,11 +121,11 @@ msgstr ""
 msgid "Actions"
 msgstr "Műveletek"
 
-#. [components.Toolbar.4053658032]
+#. [components.Toolbar.2872798476]
 #. defaultMessage is:
-#. Active Filters
+#. Active filters
 #: build/messages/components/Toolbar/ToolbarLayout.json
-msgid "Active Filters"
+msgid "Active filters"
 msgstr ""
 
 #. [components.ListView.3099331554]
@@ -136,23 +137,10 @@ msgstr "Hozzáadás"
 
 #. [pages.blueprintEdit.addComponentTitle]
 #. defaultMessage is:
-#. Add Blueprint Components
+#. Add blueprint components
 #: build/messages/pages/blueprintEdit/index.json
-msgid "Add Blueprint Components"
+msgid "Add blueprint components"
 msgstr "Tervrajz komponensek hozzáadása"
-
-#. [components.Modal.add]
-#. defaultMessage is:
-#. Add Source
-#. [components.Modal.save]
-#. defaultMessage is:
-#. Add Source
-#. [components.Modal.2130684444]
-#. defaultMessage is:
-#. Add Source
-#: build/messages/components/Modal/ManageSources.json
-msgid "Add Source"
-msgstr "Forrás hozzáadása"
 
 #. [components.ListView.addComponent]
 #. defaultMessage is:
@@ -160,6 +148,19 @@ msgstr "Forrás hozzáadása"
 #: build/messages/components/ListView/ComponentInputs.json
 msgid "Add latest version"
 msgstr "Legfrissebb verzió hozzáadása"
+
+#. [components.Modal.add]
+#. defaultMessage is:
+#. Add source
+#. [components.Modal.save]
+#. defaultMessage is:
+#. Add source
+#. [components.Modal.4044066101]
+#. defaultMessage is:
+#. Add source
+#: build/messages/components/Modal/ManageSources.json
+msgid "Add source"
+msgstr "Forrás hozzáadása"
 
 #. [components.Modal.1362724042] - Identifies the change as a component that was added
 #. defaultMessage is:
@@ -191,17 +192,17 @@ msgstr "A(z) {val} értékkel jelölt mezők kötelezőek."
 
 #. [components.ListView.emptyStateErrorTitle]
 #. defaultMessage is:
-#. An Error Occurred
+#. An error occurred
 #. [components.Modal.errorStateTitle]
 #. defaultMessage is:
-#. An Error Occurred
+#. An error occurred
 #. [pages.blueprints.errorGenericTitle]
 #. defaultMessage is:
-#. An Error Occurred
+#. An error occurred
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/components/Modal/ManageSources.json
 #: build/messages/pages/blueprints/index.json
-msgid "An Error Occurred"
+msgid "An error occurred"
 msgstr "Hiba történt"
 
 #. [components.Modal.1417078254]
@@ -229,11 +230,11 @@ msgstr "Hiba történt a tervrajz tartalmának lekérésekor."
 msgid "An error occurred while trying to get sources."
 msgstr "Hiba történt a források lekérésekor."
 
-#. [components.ListView.668376819]
+#. [components.ListView.3998303130]
 #. defaultMessage is:
-#. Apply Change
+#. Apply change
 #: build/messages/components/ListView/ComponentDetailsView.json
-msgid "Apply Change"
+msgid "Apply change"
 msgstr "Módosítás alkalmazása"
 
 #. [components.Modal.4140003068]
@@ -273,9 +274,9 @@ msgstr "Osbuild-composer automatikus indítása a rendszerrel"
 
 #. [pages.blueprintEdit.listTitleAvailableComps]
 #. defaultMessage is:
-#. Available Components
+#. Available components
 #: build/messages/pages/blueprintEdit/index.json
-msgid "Available Components"
+msgid "Available components"
 msgstr "Elérhető összetevők"
 
 #. [components.Wizard.azure]
@@ -292,15 +293,15 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#. [pages.blueprint.3126044146]
+#. [pages.blueprint.2057444273]
 #. defaultMessage is:
-#. Back to Blueprints
-#. [pages.blueprintEdit.3126044146]
+#. Back to blueprints
+#. [pages.blueprintEdit.2057444273]
 #. defaultMessage is:
-#. Back to Blueprints
+#. Back to blueprints
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
-msgid "Back to Blueprints"
+msgid "Back to blueprints"
 msgstr "Vissza a tervrajzokhoz"
 
 #. [components.ListView.3448229549]
@@ -340,11 +341,11 @@ msgstr ""
 msgid "Blueprint"
 msgstr "Tervrajz"
 
-#. [pages.blueprintEdit.711554923]
+#. [pages.blueprintEdit.966788260]
 #. defaultMessage is:
-#. Blueprint Components
+#. Blueprint components
 #: build/messages/pages/blueprintEdit/index.json
-msgid "Blueprint Components"
+msgid "Blueprint components"
 msgstr "Tervrajz összetevők"
 
 #. [components.Modal.2544705954]
@@ -441,13 +442,6 @@ msgstr "Összetevők tallózása vagy keresése, majd hozzáadás a tervrajzhoz.
 msgid "Cancel"
 msgstr "Mégse"
 
-#. [components.Modal.2208777537]
-#. defaultMessage is:
-#. Changes Pending Commit
-#: build/messages/components/Modal/PendingChanges.json
-msgid "Changes Pending Commit"
-msgstr "Függőben lévő módosítások"
-
 #. [components.Modal.683130131]
 #. defaultMessage is:
 #. Changes made in a previous session
@@ -467,6 +461,13 @@ msgstr ""
 "jelennek meg. Ha visszavonja ezeket a módosításokat, akkor csoportként "
 "lesznek visszavonva."
 
+#. [components.Modal.92001050]
+#. defaultMessage is:
+#. Changes pending commit
+#: build/messages/components/Modal/PendingChanges.json
+msgid "Changes pending commit"
+msgstr "Függőben lévő módosítások"
+
 #. [components.Modal.check_gpg]
 #. defaultMessage is:
 #. Check GPG key
@@ -481,23 +482,23 @@ msgstr "GPG kulcs ellenőrzése"
 msgid "Check SSL certificate"
 msgstr "SSL tanúsítvány ellenőrzése"
 
-#. [components.ListView.1312249312]
+#. [components.ListView.1634835134]
 #. defaultMessage is:
-#. Clear All Filters
-#. [components.Toolbar.1312249312]
+#. Clear all filters
+#. [components.Toolbar.1634835134]
 #. defaultMessage is:
-#. Clear All Filters
-#. [pages.blueprintEdit.1312249312]
+#. Clear all filters
+#. [pages.blueprintEdit.1634835134]
 #. defaultMessage is:
-#. Clear All Filters
-#. [pages.blueprints.1312249312]
+#. Clear all filters
+#. [pages.blueprints.1634835134]
 #. defaultMessage is:
-#. Clear All Filters
+#. Clear all filters
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/components/Toolbar/ToolbarLayout.json
 #: build/messages/pages/blueprintEdit/index.json
 #: build/messages/pages/blueprints/index.json
-msgid "Clear All Filters"
+msgid "Clear all filters"
 msgstr "Összes szűrő törlése"
 
 #. [components.Modal.2324218928]
@@ -544,8 +545,6 @@ msgstr "Véglegesítés"
 #. defaultMessage is:
 #. Commit and create
 #: build/messages/components/Wizard/CreateImageUpload.json
-#, fuzzy
-#| msgid "Commit and Create"
 msgid "Commit and create"
 msgstr "Véglegesítés és létrehozás"
 
@@ -558,22 +557,22 @@ msgstr "Véglegesítés és létrehozás"
 msgid "Commit and next"
 msgstr "Véglegesítés és létrehozás"
 
-#. [pages.blueprint.3540308269]
+#. [pages.blueprint.3956908315]
 #. defaultMessage is:
-#. Component Details
-#. [pages.blueprintEdit.3540308269]
+#. Component details
+#. [pages.blueprintEdit.3956908315]
 #. defaultMessage is:
-#. Component Details
+#. Component details
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
-msgid "Component Details"
+msgid "Component details"
 msgstr "Összetevő részletei"
 
-#. [components.ListView.2104464527]
+#. [components.ListView.1304855088]
 #. defaultMessage is:
-#. Component Options
+#. Component options
 #: build/messages/components/ListView/ComponentDetailsView.json
-msgid "Component Options"
+msgid "Component options"
 msgstr "Összetevő beállításai"
 
 #. [components.Modal.createPasswordTwo]
@@ -612,24 +611,6 @@ msgstr "Másolás"
 msgid "Create"
 msgstr "Létrehozás"
 
-#. [components.Modal.536838868]
-#. defaultMessage is:
-#. Create Blueprint
-#: build/messages/components/Modal/CreateBlueprint.json
-msgid "Create Blueprint"
-msgstr "Tervrajz létrehozása"
-
-#. [components.Modal.modalTitleCreate]
-#. defaultMessage is:
-#. Create User Account
-#. [pages.blueprint.531338943]
-#. defaultMessage is:
-#. Create User Account
-#: build/messages/components/Modal/UserAccount.json
-#: build/messages/pages/blueprint/index.json
-msgid "Create User Account"
-msgstr "Felhasználói fiók létrehozása"
-
 #. [pages.blueprints.emptyMessage]
 #. defaultMessage is:
 #. Create a blueprint to define the contents that will be included in the images you create. Images can be produced in a variety of output formats.
@@ -651,6 +632,13 @@ msgstr ""
 msgid "Create and upload image"
 msgstr "Kép létrehozása"
 
+#. [components.Modal.994816806]
+#. defaultMessage is:
+#. Create blueprint
+#: build/messages/components/Modal/CreateBlueprint.json
+msgid "Create blueprint"
+msgstr "Tervrajz létrehozása"
+
 #. [components.Wizard.title]
 #. defaultMessage is:
 #. Create image
@@ -658,10 +646,19 @@ msgstr "Kép létrehozása"
 #. defaultMessage is:
 #. Create image
 #: build/messages/components/Wizard/CreateImageUpload.json
-#, fuzzy
-#| msgid "Create Image"
 msgid "Create image"
 msgstr "Kép létrehozása"
+
+#. [components.Modal.modalTitleCreate]
+#. defaultMessage is:
+#. Create user account
+#. [pages.blueprint.3234825297]
+#. defaultMessage is:
+#. Create user account
+#: build/messages/components/Modal/UserAccount.json
+#: build/messages/pages/blueprint/index.json
+msgid "Create user account"
+msgstr "Felhasználói fiók létrehozása"
 
 #. [components.ListView.imageCreated] - A label for the date that an image file was created
 #. defaultMessage is:
@@ -688,25 +685,25 @@ msgstr ""
 msgid "Delete"
 msgstr "Törlés"
 
-#. [components.Modal.3153775112]
+#. [components.Modal.1567722925]
 #. defaultMessage is:
-#. Delete Blueprint
+#. Delete blueprint
 #: build/messages/components/Modal/DeleteBlueprint.json
-msgid "Delete Blueprint"
+msgid "Delete blueprint"
 msgstr "Tervrajz törlése"
 
-#. [components.Modal.1731766393]
+#. [components.Modal.942133001]
 #. defaultMessage is:
-#. Delete Image
+#. Delete image
 #: build/messages/components/Modal/DeleteImage.json
-msgid "Delete Image"
+msgid "Delete image"
 msgstr "Lemezkép törlése"
 
 #. [pages.blueprint.userDelete]
 #. defaultMessage is:
-#. Delete User Account
+#. Delete user account
 #: build/messages/pages/blueprint/index.json
-msgid "Delete User Account"
+msgid "Delete user account"
 msgstr "Felhasználói fiók törlése"
 
 #. [components.ListView.dependenciesTabTitle]
@@ -760,11 +757,11 @@ msgstr "Leírás"
 msgid "Details"
 msgstr "Részletek elrejtése"
 
-#. [pages.blueprintEdit.1936836258]
+#. [pages.blueprintEdit.1469729075]
 #. defaultMessage is:
-#. Discard Changes
+#. Discard changes
 #: build/messages/pages/blueprintEdit/index.json
-msgid "Discard Changes"
+msgid "Discard changes"
 msgstr "Módosítások elvetése"
 
 #. [components.ListView.1982430146]
@@ -773,50 +770,6 @@ msgstr "Módosítások elvetése"
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Download"
 msgstr "Letöltés"
-
-#. [components.Modal.1237611265]
-#. defaultMessage is:
-#. Edit Description
-#: build/messages/components/Modal/EditDescription.json
-msgid "Edit Description"
-msgstr ""
-
-#. [components.ListView.3855913088]
-#. defaultMessage is:
-#. Edit Packages
-#. [pages.blueprint.3855913088]
-#. defaultMessage is:
-#. Edit Packages
-#. [pages.blueprintEdit.3855913088]
-#. defaultMessage is:
-#. Edit Packages
-#: build/messages/components/ListView/BlueprintsDataList.json
-#: build/messages/pages/blueprint/index.json
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Edit Packages"
-msgstr ""
-
-#. [components.ListView.edit]
-#. defaultMessage is:
-#. Edit Source
-#. [components.Modal.215316199]
-#. defaultMessage is:
-#. Edit Source
-#: build/messages/components/ListView/SourcesListItem.json
-#: build/messages/components/Modal/ManageSources.json
-msgid "Edit Source"
-msgstr ""
-
-#. [components.Modal.modalTitleEdit]
-#. defaultMessage is:
-#. Edit User Account
-#. [pages.blueprint.userEdit]
-#. defaultMessage is:
-#. Edit User Account
-#: build/messages/components/Modal/UserAccount.json
-#: build/messages/pages/blueprint/index.json
-msgid "Edit User Account"
-msgstr "Felhasználói fiók szerkesztése"
 
 #. [components.Modal.2044423701]
 #. defaultMessage is:
@@ -836,11 +789,50 @@ msgstr "Leírás szerkesztése"
 msgid "Edit hostname"
 msgstr "Gépnév szerkesztése"
 
+#. [components.ListView.1908303378]
+#. defaultMessage is:
+#. Edit packages
+#. [pages.blueprint.1908303378]
+#. defaultMessage is:
+#. Edit packages
+#. [pages.blueprintEdit.1908303378]
+#. defaultMessage is:
+#. Edit packages
+#: build/messages/components/ListView/BlueprintsDataList.json
+#: build/messages/pages/blueprint/index.json
+#: build/messages/pages/blueprintEdit/index.json
+msgid "Edit packages"
+msgstr ""
+
+#. [components.ListView.edit]
+#. defaultMessage is:
+#. Edit source
+#. [components.Modal.2346552400]
+#. defaultMessage is:
+#. Edit source
+#: build/messages/components/ListView/SourcesListItem.json
+#: build/messages/components/Modal/ManageSources.json
+#, fuzzy
+#| msgid "Add Source"
+msgid "Edit source"
+msgstr "Forrás hozzáadása"
+
+#. [components.Modal.modalTitleEdit]
+#. defaultMessage is:
+#. Edit user account
+#. [pages.blueprint.userEdit]
+#. defaultMessage is:
+#. Edit user account
+#: build/messages/components/Modal/UserAccount.json
+#: build/messages/pages/blueprint/index.json
+msgid "Edit user account"
+msgstr "Felhasználói fiók szerkesztése"
+
 #. [pages.blueprint.emptyBlueprintTitle]
 #. defaultMessage is:
-#. Empty Blueprint
+#. Empty blueprint
 #: build/messages/pages/blueprint/index.json
-msgid "Empty Blueprint"
+msgid "Empty blueprint"
 msgstr "Üres tervrajz"
 
 #. [pages.error.errorMessage]
@@ -857,13 +849,6 @@ msgstr "Hiba"
 msgid "Export"
 msgstr "Exportálás"
 
-#. [components.Modal.386209032]
-#. defaultMessage is:
-#. Export Blueprint
-#: build/messages/components/Modal/ExportBlueprint.json
-msgid "Export Blueprint"
-msgstr "Tervrajz exportálása"
-
 #. [components.Modal.3658760324]
 #. defaultMessage is:
 #. Export as
@@ -871,44 +856,51 @@ msgstr "Tervrajz exportálása"
 msgid "Export as"
 msgstr "Exportálás mint"
 
+#. [components.Modal.2169054801]
+#. defaultMessage is:
+#. Export blueprint
+#: build/messages/components/Modal/ExportBlueprint.json
+msgid "Export blueprint"
+msgstr "Tervrajz exportálása"
+
 #. [pages.blueprintEdit.filterByLabel]
 #. defaultMessage is:
-#. Filter Available Components by Name
+#. Filter available components by name
 #: build/messages/pages/blueprintEdit/index.json
-msgid "Filter Available Components by Name"
+msgid "Filter available components by name"
 msgstr "Elérhető összetevők szűrése név szerint"
-
-#. [pages.blueprintEdit.filterByPlaceholder]
-#. defaultMessage is:
-#. Filter By Name...
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Filter By Name..."
-msgstr "Szűrés név szerint…"
 
 #. [components.Toolbar.filterNamePlaceholder]
 #. defaultMessage is:
-#. Filter by Name
+#. Filter by name
 #: build/messages/components/Toolbar/FilterInput.json
-#, fuzzy
-#| msgid "Filter By Name..."
-msgid "Filter by Name"
+msgid "Filter by name"
+msgstr "Szűrés név szerint"
+
+#. [pages.blueprintEdit.filterByPlaceholder]
+#. defaultMessage is:
+#. Filter by name...
+#: build/messages/pages/blueprintEdit/index.json
+msgid "Filter by name..."
 msgstr "Szűrés név szerint…"
 
 #. [components.Toolbar.filterReleasePlaceholder]
 #. defaultMessage is:
-#. Filter by Release
+#. Filter by release
 #: build/messages/components/Toolbar/FilterInput.json
 #, fuzzy
 #| msgid "Filter By Name..."
-msgid "Filter by Release"
+msgid "Filter by release"
 msgstr "Szűrés név szerint…"
 
 #. [components.Toolbar.filterVersionPlaceholder]
 #. defaultMessage is:
-#. Filter by Version
+#. Filter by version
 #: build/messages/components/Toolbar/FilterInput.json
-msgid "Filter by Version"
-msgstr ""
+#, fuzzy
+#| msgid "Filter By Name..."
+msgid "Filter by version"
+msgstr "Szűrés név szerint…"
 
 #. [components.Wizard.787186999]
 #. defaultMessage is:
@@ -933,13 +925,13 @@ msgstr "Ugrás vissza"
 
 #. [components.ListView.hideDetails]
 #. defaultMessage is:
-#. Hide Details
+#. Hide details
 #. [components.ListView.hideDetails]
 #. defaultMessage is:
-#. Hide Details
+#. Hide details
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ComponentInputs.json
-msgid "Hide Details"
+msgid "Hide details"
 msgstr "Részletek elrejtése"
 
 #. [pages.blueprint.hostnameInputLabel]
@@ -996,13 +988,6 @@ msgid ""
 "                        the image can be found in the {console}."
 msgstr ""
 
-#. [components.EmptyState.errorInactiveTitle]
-#. defaultMessage is:
-#. Image Building Service is Not Active
-#: build/messages/components/EmptyState/EmptyStateInactive.json
-msgid "Image Building Service is Not Active"
-msgstr ""
-
 #. [components.ListView.imageStatusFinished] - Image build status when process is finished
 #. defaultMessage is:
 #. Image build complete
@@ -1029,6 +1014,13 @@ msgstr ""
 #. Image build pending
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Image build pending"
+msgstr ""
+
+#. [components.EmptyState.errorInactiveTitle]
+#. defaultMessage is:
+#. Image building service is not active
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+msgid "Image building service is not active"
 msgstr ""
 
 #. [components.ListView.imageName] - The name given by the user for an image
@@ -1100,8 +1092,6 @@ msgstr "Lemezképek"
 #. Image type
 #: build/messages/components/Wizard/CreateImageUpload.json
 #: build/messages/components/Wizard/ReviewStep.json
-#, fuzzy
-#| msgid "Image Type"
 msgid "Image type"
 msgstr "Lemezkép típusa"
 
@@ -1137,11 +1127,11 @@ msgstr "Betöltés"
 msgid "Logs"
 msgstr ""
 
-#. [components.Modal.357938285] - User action for displaying the list of source repositories
+#. [components.Modal.3594196712] - User action for displaying the list of source repositories
 #. defaultMessage is:
-#. Manage Sources
+#. Manage sources
 #: build/messages/components/Modal/ManageSources.json
-msgid "Manage Sources"
+msgid "Manage sources"
 msgstr ""
 
 #. [components.EmptyState.alertMessagePreface]
@@ -1153,11 +1143,14 @@ msgstr ""
 
 #. [components.Wizard.warningSizeSmall]
 #. defaultMessage is:
-#. Minimum size is {size} GB.
+#. Minimum size is {size} GB
+#: build/messages/components/Wizard/ImageStep.json
+msgid "Minimum size is {size} GB"
+msgstr ""
+
 #. [components.Wizard.warningSizeSmall]
 #. defaultMessage is:
 #. Minimum size is {size} GB.
-#: build/messages/components/Wizard/ImageStep.json
 #: build/messages/components/Wizard/ReviewStep.json
 msgid "Minimum size is {size} GB."
 msgstr ""
@@ -1219,39 +1212,24 @@ msgstr ""
 
 #. [pages.blueprints.emptyTitle]
 #. defaultMessage is:
-#. No Blueprints
+#. No blueprints
 #: build/messages/pages/blueprints/index.json
-msgid "No Blueprints"
+msgid "No blueprints"
 msgstr "Nincsenek tervrajzok"
 
 #. [components.ListView.noDepsTitle]
 #. defaultMessage is:
-#. No Dependencies
+#. No dependencies
 #: build/messages/components/ListView/ComponentDetailsView.json
-msgid "No Dependencies"
+msgid "No dependencies"
 msgstr "Nincsenek függőségek"
 
 #. [pages.blueprint.noImagesTitle]
 #. defaultMessage is:
-#. No Images
+#. No images
 #: build/messages/pages/blueprint/index.json
-msgid "No Images"
+msgid "No images"
 msgstr "Nincsenek lemezképek"
-
-#. [components.ListView.emptyStateNoResultsTitle]
-#. defaultMessage is:
-#. No Results Match the Filter Criteria
-#. [pages.blueprintEdit.emptyStateNoResultsTitle]
-#. defaultMessage is:
-#. No Results Match the Filter Criteria
-#. [pages.blueprints.noResultsTitle]
-#. defaultMessage is:
-#. No Results Match the Filter Criteria
-#: build/messages/components/ListView/BlueprintContents.json
-#: build/messages/pages/blueprintEdit/index.json
-#: build/messages/pages/blueprints/index.json
-msgid "No Results Match the Filter Criteria"
-msgstr "Nincs találat a szűrőfeltételre"
 
 #. [pages.blueprint.noImagesMessage]
 #. defaultMessage is:
@@ -1266,6 +1244,21 @@ msgstr "Nem lett lemezkép létrehozva ebből a tervrajzból."
 #: build/messages/components/ListView/ListItemImages.json
 msgid "No log available"
 msgstr ""
+
+#. [components.ListView.emptyStateNoResultsTitle]
+#. defaultMessage is:
+#. No results match the filter criteria
+#. [pages.blueprintEdit.emptyStateNoResultsTitle]
+#. defaultMessage is:
+#. No results match the filter criteria
+#. [pages.blueprints.noResultsTitle]
+#. defaultMessage is:
+#. No results match the filter criteria
+#: build/messages/components/ListView/BlueprintContents.json
+#: build/messages/pages/blueprintEdit/index.json
+#: build/messages/pages/blueprints/index.json
+msgid "No results match the filter criteria"
+msgstr "Nincs találat a szűrőfeltételre"
 
 #. [components.Wizard.ostreeParent]
 #. defaultMessage is:
@@ -1304,11 +1297,7 @@ msgstr ""
 
 #. [pages.error.pageNotFoundMessage]
 #. defaultMessage is:
-#. Page Not Found
-#: build/messages/pages/error/index.json
-msgid "Page Not Found"
-msgstr "Az oldal nem található"
-
+#. Page not found
 #. [pages.error.pageNotFoundTitle]
 #. defaultMessage is:
 #. Page not found
@@ -1340,11 +1329,11 @@ msgstr "Jelszó"
 msgid "Paste the contents of your public SSH key file here."
 msgstr "Illessze be ide a nyilvános SSH-kulcsfájlját."
 
-#. [components.Modal.433458873]
+#. [components.Modal.3226997558]
 #. defaultMessage is:
-#. Pending Changes
+#. Pending changes
 #: build/messages/components/Modal/PendingChanges.json
-msgid "Pending Changes"
+msgid "Pending changes"
 msgstr "Függőben módosítások"
 
 #. [components.Wizard.processLength]
@@ -1488,31 +1477,33 @@ msgstr "Eltávolítás"
 
 #. [components.ListView.removeComponent]
 #. defaultMessage is:
-#. Remove Component from Blueprint
+#. Remove component from blueprint
 #: build/messages/components/ListView/ComponentInputs.json
-msgid "Remove Component from Blueprint"
+msgid "Remove component from blueprint"
 msgstr "Összetevő eltávolítása a tervrajzról"
 
-#. [components.Modal.2822116526]
+#. [components.ListView.removeFromBlueprint]
 #. defaultMessage is:
-#. Remove Password
+#. Remove from blueprint
+#: build/messages/components/ListView/ComponentDetailsView.json
+msgid "Remove from blueprint"
+msgstr "Eltávolítás a tervrajzról"
+
+#. [components.Modal.1101731800]
+#. defaultMessage is:
+#. Remove password
 #: build/messages/components/Modal/UserAccount.json
-msgid "Remove Password"
+msgid "Remove password"
 msgstr "Jelszó eltávolítása"
 
 #. [components.ListView.remove]
 #. defaultMessage is:
-#. Remove Source
+#. Remove source
 #: build/messages/components/ListView/SourcesListItem.json
-msgid "Remove Source"
-msgstr ""
-
-#. [components.ListView.removeFromBlueprint]
-#. defaultMessage is:
-#. Remove from Blueprint
-#: build/messages/components/ListView/ComponentDetailsView.json
-msgid "Remove from Blueprint"
-msgstr "Eltávolítás a tervrajzról"
+#, fuzzy
+#| msgid "Remove Password"
+msgid "Remove source"
+msgstr "Jelszó eltávolítása"
 
 #. [components.Modal.2291868453] - Identifies the change as a component that was removed
 #. defaultMessage is:
@@ -1635,9 +1626,9 @@ msgstr "Válasszon egyet"
 
 #. [components.ListView.selectedTabTitle]
 #. defaultMessage is:
-#. Selected Components
+#. Selected components
 #: build/messages/components/ListView/BlueprintContents.json
-msgid "Selected Components"
+msgid "Selected components"
 msgstr "Kiválasztott összetevők"
 
 #. [components.Modal.122879380]
@@ -1647,18 +1638,18 @@ msgstr "Kiválasztott összetevők"
 msgid "Server administrator"
 msgstr "Kiszolgáló rendszergazdája"
 
-#. [components.Modal.1110245255]
+#. [components.Modal.2342634351]
 #. defaultMessage is:
-#. Set New Password
+#. Set new password
 #: build/messages/components/Modal/UserAccount.json
-msgid "Set New Password"
+msgid "Set new password"
 msgstr "Új jelszó beállítása"
 
-#. [components.Modal.3696648021]
+#. [components.Modal.3532935154]
 #. defaultMessage is:
-#. Set Password
+#. Set password
 #: build/messages/components/Modal/UserAccount.json
-msgid "Set Password"
+msgid "Set password"
 msgstr "Jelszó megadása"
 
 #. [components.Wizard.imageSizePopover]
@@ -1671,25 +1662,25 @@ msgid ""
 "setting the image size."
 msgstr ""
 
-#. [components.ListView.1256153657]
+#. [components.ListView.4147597655]
 #. defaultMessage is:
-#. Show All
+#. Show all
 #: build/messages/components/ListView/ComponentSummaryList.json
-msgid "Show All"
+msgid "Show all"
 msgstr "Összes megjelenítése"
 
 #. [components.ListView.showDetails]
 #. defaultMessage is:
-#. Show Details and More Options
+#. Show details and more options
 #: build/messages/components/ListView/ComponentInputs.json
-msgid "Show Details and More Options"
+msgid "Show details and more options"
 msgstr "Részletek és további beállítások megjelenítése"
 
-#. [components.ListView.2354351315]
+#. [components.ListView.614182381]
 #. defaultMessage is:
-#. Show Less
+#. Show less
 #: build/messages/components/ListView/ComponentSummaryList.json
-msgid "Show Less"
+msgid "Show less"
 msgstr "Kevesebb megjelenítése"
 
 #. [components.ListView.imageSize] - A label for the size of an image file
@@ -1701,10 +1692,12 @@ msgstr ""
 
 #. [components.ListView.kebab]
 #. defaultMessage is:
-#. Source Actions
+#. Source actions
 #: build/messages/components/ListView/SourcesListItem.json
-msgid "Source Actions"
-msgstr ""
+#, fuzzy
+#| msgid "Sources"
+msgid "Source actions"
+msgstr "Források"
 
 #. [components.Modal.sourcePath] - The path or url to the source repository
 #. defaultMessage is:
@@ -1759,11 +1752,11 @@ msgstr ""
 msgid "Stop"
 msgstr "Leállítás"
 
-#. [components.Modal.1162993432]
+#. [components.Modal.154017637]
 #. defaultMessage is:
-#. Stop Build
+#. Stop build
 #: build/messages/components/Modal/StopBuild.json
-msgid "Stop Build"
+msgid "Stop build"
 msgstr "Összeállítás leállítása"
 
 #. [components.ListView.imageStatusStopping] - Image build status when user selected to end the process
@@ -1997,6 +1990,13 @@ msgstr "Ez a tervrajz üres."
 msgid "This component has no dependencies."
 msgstr "Ennek az összetevőnek nincsenek függőségei."
 
+#. [components.Wizard.requiredField]
+#. defaultMessage is:
+#. This is a required field
+#: build/messages/components/Wizard/ImageStep.json
+msgid "This is a required field"
+msgstr ""
+
 #. [components.Wizard.infotip]
 #. defaultMessage is:
 #. This process can take a while. Images are built in the order they are started.
@@ -2094,11 +2094,11 @@ msgstr ""
 msgid "URL"
 msgstr "URL"
 
-#. [components.ListView.3158548332]
+#. [components.ListView.4008580262]
 #. defaultMessage is:
-#. Undo Last Change
+#. Undo last change
 #: build/messages/components/ListView/BlueprintContents.json
-msgid "Undo Last Change"
+msgid "Undo last change"
 msgstr "Legutóbbi módosítás visszavonása"
 
 #. [components.Modal.1458938618]
@@ -2110,10 +2110,12 @@ msgstr "Frissítés"
 
 #. [components.Modal.update]
 #. defaultMessage is:
-#. Update Source
+#. Update source
 #: build/messages/components/Modal/ManageSources.json
-msgid "Update Source"
-msgstr ""
+#, fuzzy
+#| msgid "Update"
+msgid "Update source"
+msgstr "Frissítés"
 
 #. [components.Modal.562988552] - Identifies the change as a component that was updated
 #. defaultMessage is:
@@ -2205,9 +2207,9 @@ msgstr ""
 
 #. [pages.blueprint.userKebab]
 #. defaultMessage is:
-#. User Account Actions
+#. User account actions
 #: build/messages/pages/blueprint/index.json
-msgid "User Account Actions"
+msgid "User account actions"
 msgstr ""
 
 #. [components.Modal.529605439]
@@ -2234,6 +2236,17 @@ msgid ""
 msgstr ""
 "A gépnév érvényes karakterei a következők: betűk a-tól z-ig, számjegyek 0-"
 "tól 9-ig, és a kötőjel (-). A gépnév nem kezdődhet kötőjellel."
+
+#. [components.Wizard.ostreeRefHelperText]
+#. defaultMessage is:
+#. Valid characters for ref are letters from a to z, the digits from 0 to 9, the hyphen (-), the underscore (_), the period (.), and the forward slash (/). A ref must start with a letter, a number, or an underscore. Slashes must also be followed by a letter or number.
+#: build/messages/components/Wizard/ImageStep.json
+msgid ""
+"Valid characters for ref are letters from a to z, the digits from 0 to 9, "
+"the hyphen (-), the underscore (_), the period (.), and the forward slash "
+"(/). A ref must start with a letter, a number, or an underscore. Slashes "
+"must also be followed by a letter or number."
+msgstr ""
 
 #. [components.ListView.602883748]
 #. defaultMessage is:
@@ -2471,6 +2484,9 @@ msgstr "Kép létrehozása"
 #: public/manifest.json
 msgid "Image Builder"
 msgstr "Lemezkép-összeállító"
+
+#~ msgid "Page Not Found"
+#~ msgstr "Az oldal nem található"
 
 #~ msgid "Current Items"
 #~ msgstr "Jelenlegi elemek"

@@ -6,7 +6,7 @@
 # Anonymous <noreply@weblate.org>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-11-17T18:11:08.021Z\n"
+"POT-Creation-Date: 2021-01-08T07:28:53.139Z\n"
 "PO-Revision-Date: 2020-05-15 08:50+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish <https://translate.fedoraproject.org/projects/cockpit-"
@@ -125,11 +125,11 @@ msgstr "Id. de clave de acceso"
 msgid "Actions"
 msgstr "Acciones"
 
-#. [components.Toolbar.4053658032]
+#. [components.Toolbar.2872798476]
 #. defaultMessage is:
-#. Active Filters
+#. Active filters
 #: build/messages/components/Toolbar/ToolbarLayout.json
-msgid "Active Filters"
+msgid "Active filters"
 msgstr ""
 
 #. [components.ListView.3099331554]
@@ -141,23 +141,12 @@ msgstr "Añadir"
 
 #. [pages.blueprintEdit.addComponentTitle]
 #. defaultMessage is:
-#. Add Blueprint Components
+#. Add blueprint components
 #: build/messages/pages/blueprintEdit/index.json
-msgid "Add Blueprint Components"
+#, fuzzy
+#| msgid "Add Blueprint Components"
+msgid "Add blueprint components"
 msgstr "Añadir componentes de planos"
-
-#. [components.Modal.add]
-#. defaultMessage is:
-#. Add Source
-#. [components.Modal.save]
-#. defaultMessage is:
-#. Add Source
-#. [components.Modal.2130684444]
-#. defaultMessage is:
-#. Add Source
-#: build/messages/components/Modal/ManageSources.json
-msgid "Add Source"
-msgstr "Añadir fuente"
 
 #. [components.ListView.addComponent]
 #. defaultMessage is:
@@ -165,6 +154,21 @@ msgstr "Añadir fuente"
 #: build/messages/components/ListView/ComponentInputs.json
 msgid "Add latest version"
 msgstr "Añadir última versión"
+
+#. [components.Modal.add]
+#. defaultMessage is:
+#. Add source
+#. [components.Modal.save]
+#. defaultMessage is:
+#. Add source
+#. [components.Modal.4044066101]
+#. defaultMessage is:
+#. Add source
+#: build/messages/components/Modal/ManageSources.json
+#, fuzzy
+#| msgid "Add Source"
+msgid "Add source"
+msgstr "Añadir fuente"
 
 # translation auto-copied from project Drools Workbench, version 6.0.0, document org.drools/drools-wb-guided-rule-editor-client/org/drools/workbench/screens/guided/rule/client/resources/i18n/Constants, author angela.garcia
 #. [components.Modal.1362724042] - Identifies the change as a component that was added
@@ -195,17 +199,19 @@ msgstr "Todos los campos son obligatorios."
 
 #. [components.ListView.emptyStateErrorTitle]
 #. defaultMessage is:
-#. An Error Occurred
+#. An error occurred
 #. [components.Modal.errorStateTitle]
 #. defaultMessage is:
-#. An Error Occurred
+#. An error occurred
 #. [pages.blueprints.errorGenericTitle]
 #. defaultMessage is:
-#. An Error Occurred
+#. An error occurred
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/components/Modal/ManageSources.json
 #: build/messages/pages/blueprints/index.json
-msgid "An Error Occurred"
+#, fuzzy
+#| msgid "An Error Occurred"
+msgid "An error occurred"
 msgstr "Ocurrió un error"
 
 #. [components.Modal.1417078254]
@@ -233,11 +239,13 @@ msgstr "Se ha producido un error al intentar obtener el contenido del plano."
 msgid "An error occurred while trying to get sources."
 msgstr "Se ha producido un error al intentar obtener las fuentes."
 
-#. [components.ListView.668376819]
+#. [components.ListView.3998303130]
 #. defaultMessage is:
-#. Apply Change
+#. Apply change
 #: build/messages/components/ListView/ComponentDetailsView.json
-msgid "Apply Change"
+#, fuzzy
+#| msgid "Apply Change"
+msgid "Apply change"
 msgstr "Aplicar cambio"
 
 #. [components.Modal.4140003068]
@@ -278,9 +286,11 @@ msgstr "Iniciar osbuild-composer automáticamente al arrancar"
 
 #. [pages.blueprintEdit.listTitleAvailableComps]
 #. defaultMessage is:
-#. Available Components
+#. Available components
 #: build/messages/pages/blueprintEdit/index.json
-msgid "Available Components"
+#, fuzzy
+#| msgid "Available Components"
+msgid "Available components"
 msgstr "Componentes disponibles"
 
 #. [components.Wizard.azure]
@@ -299,15 +309,17 @@ msgstr "Ayuda con AWS"
 msgid "Back"
 msgstr "Atrás"
 
-#. [pages.blueprint.3126044146]
+#. [pages.blueprint.2057444273]
 #. defaultMessage is:
-#. Back to Blueprints
-#. [pages.blueprintEdit.3126044146]
+#. Back to blueprints
+#. [pages.blueprintEdit.2057444273]
 #. defaultMessage is:
-#. Back to Blueprints
+#. Back to blueprints
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
-msgid "Back to Blueprints"
+#, fuzzy
+#| msgid "Back to Blueprints"
+msgid "Back to blueprints"
 msgstr "Volver a Planos"
 
 #. [components.ListView.3448229549]
@@ -347,11 +359,13 @@ msgstr ""
 msgid "Blueprint"
 msgstr "Diagrama"
 
-#. [pages.blueprintEdit.711554923]
+#. [pages.blueprintEdit.966788260]
 #. defaultMessage is:
-#. Blueprint Components
+#. Blueprint components
 #: build/messages/pages/blueprintEdit/index.json
-msgid "Blueprint Components"
+#, fuzzy
+#| msgid "Blueprint Components"
+msgid "Blueprint components"
 msgstr "Componentes de planos"
 
 #. [components.Modal.2544705954]
@@ -452,13 +466,6 @@ msgstr "Busque o busque componentes y añádalos al plano."
 msgid "Cancel"
 msgstr "Cancelar"
 
-#. [components.Modal.2208777537]
-#. defaultMessage is:
-#. Changes Pending Commit
-#: build/messages/components/Modal/PendingChanges.json
-msgid "Changes Pending Commit"
-msgstr "Cambios Pendientes de Confirmar"
-
 #. [components.Modal.683130131]
 #. defaultMessage is:
 #. Changes made in a previous session
@@ -477,6 +484,15 @@ msgstr ""
 "Los cambios realizados en una sesión anterior no aparecen en la lista en el "
 "orden en que se realizaron."
 
+#. [components.Modal.92001050]
+#. defaultMessage is:
+#. Changes pending commit
+#: build/messages/components/Modal/PendingChanges.json
+#, fuzzy
+#| msgid "Changes Pending Commit"
+msgid "Changes pending commit"
+msgstr "Cambios Pendientes de Confirmar"
+
 #. [components.Modal.check_gpg]
 #. defaultMessage is:
 #. Check GPG key
@@ -491,23 +507,25 @@ msgstr "Comprobación llave GPG"
 msgid "Check SSL certificate"
 msgstr "Comprobar certificado SSL"
 
-#. [components.ListView.1312249312]
+#. [components.ListView.1634835134]
 #. defaultMessage is:
-#. Clear All Filters
-#. [components.Toolbar.1312249312]
+#. Clear all filters
+#. [components.Toolbar.1634835134]
 #. defaultMessage is:
-#. Clear All Filters
-#. [pages.blueprintEdit.1312249312]
+#. Clear all filters
+#. [pages.blueprintEdit.1634835134]
 #. defaultMessage is:
-#. Clear All Filters
-#. [pages.blueprints.1312249312]
+#. Clear all filters
+#. [pages.blueprints.1634835134]
 #. defaultMessage is:
-#. Clear All Filters
+#. Clear all filters
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/components/Toolbar/ToolbarLayout.json
 #: build/messages/pages/blueprintEdit/index.json
 #: build/messages/pages/blueprints/index.json
-msgid "Clear All Filters"
+#, fuzzy
+#| msgid "Clear All Filters"
+msgid "Clear all filters"
 msgstr "Borrar todos los filtros"
 
 #. [components.Modal.2324218928]
@@ -564,22 +582,26 @@ msgstr "Consignar y crear"
 msgid "Commit and next"
 msgstr "Consignar y siguiente"
 
-#. [pages.blueprint.3540308269]
+#. [pages.blueprint.3956908315]
 #. defaultMessage is:
-#. Component Details
-#. [pages.blueprintEdit.3540308269]
+#. Component details
+#. [pages.blueprintEdit.3956908315]
 #. defaultMessage is:
-#. Component Details
+#. Component details
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
-msgid "Component Details"
+#, fuzzy
+#| msgid "Component Details"
+msgid "Component details"
 msgstr "Detalles de los componentes"
 
-#. [components.ListView.2104464527]
+#. [components.ListView.1304855088]
 #. defaultMessage is:
-#. Component Options
+#. Component options
 #: build/messages/components/ListView/ComponentDetailsView.json
-msgid "Component Options"
+#, fuzzy
+#| msgid "Component Options"
+msgid "Component options"
 msgstr "Opciones de componentes"
 
 #. [components.Modal.createPasswordTwo]
@@ -618,24 +640,6 @@ msgstr "Copiar"
 msgid "Create"
 msgstr "Crear"
 
-#. [components.Modal.536838868]
-#. defaultMessage is:
-#. Create Blueprint
-#: build/messages/components/Modal/CreateBlueprint.json
-msgid "Create Blueprint"
-msgstr "Crear un plano"
-
-#. [components.Modal.modalTitleCreate]
-#. defaultMessage is:
-#. Create User Account
-#. [pages.blueprint.531338943]
-#. defaultMessage is:
-#. Create User Account
-#: build/messages/components/Modal/UserAccount.json
-#: build/messages/pages/blueprint/index.json
-msgid "Create User Account"
-msgstr "Crear cuenta de usuario"
-
 #. [pages.blueprints.emptyMessage]
 #. defaultMessage is:
 #. Create a blueprint to define the contents that will be included in the images you create. Images can be produced in a variety of output formats.
@@ -654,6 +658,15 @@ msgstr ""
 msgid "Create and upload image"
 msgstr "Crear y cargar imagen"
 
+#. [components.Modal.994816806]
+#. defaultMessage is:
+#. Create blueprint
+#: build/messages/components/Modal/CreateBlueprint.json
+#, fuzzy
+#| msgid "Create Blueprint"
+msgid "Create blueprint"
+msgstr "Crear un plano"
+
 #. [components.Wizard.title]
 #. defaultMessage is:
 #. Create image
@@ -663,6 +676,19 @@ msgstr "Crear y cargar imagen"
 #: build/messages/components/Wizard/CreateImageUpload.json
 msgid "Create image"
 msgstr "Crear imagen"
+
+#. [components.Modal.modalTitleCreate]
+#. defaultMessage is:
+#. Create user account
+#. [pages.blueprint.3234825297]
+#. defaultMessage is:
+#. Create user account
+#: build/messages/components/Modal/UserAccount.json
+#: build/messages/pages/blueprint/index.json
+#, fuzzy
+#| msgid "Create User Account"
+msgid "Create user account"
+msgstr "Crear cuenta de usuario"
 
 #. [components.ListView.imageCreated] - A label for the date that an image file was created
 #. defaultMessage is:
@@ -689,25 +715,31 @@ msgstr "Personalizaciones"
 msgid "Delete"
 msgstr "Eliminar"
 
-#. [components.Modal.3153775112]
+#. [components.Modal.1567722925]
 #. defaultMessage is:
-#. Delete Blueprint
+#. Delete blueprint
 #: build/messages/components/Modal/DeleteBlueprint.json
-msgid "Delete Blueprint"
+#, fuzzy
+#| msgid "Delete Blueprint"
+msgid "Delete blueprint"
 msgstr "Eliminar plano"
 
-#. [components.Modal.1731766393]
+#. [components.Modal.942133001]
 #. defaultMessage is:
-#. Delete Image
+#. Delete image
 #: build/messages/components/Modal/DeleteImage.json
-msgid "Delete Image"
+#, fuzzy
+#| msgid "Delete Image"
+msgid "Delete image"
 msgstr "Eliminar imagen"
 
 #. [pages.blueprint.userDelete]
 #. defaultMessage is:
-#. Delete User Account
+#. Delete user account
 #: build/messages/pages/blueprint/index.json
-msgid "Delete User Account"
+#, fuzzy
+#| msgid "Delete User Account"
+msgid "Delete user account"
 msgstr "Eliminar cuenta de usuario"
 
 #. [components.ListView.dependenciesTabTitle]
@@ -762,11 +794,13 @@ msgid "Details"
 msgstr "detalles"
 
 # translation auto-copied from project Customer Portal Translations, version PortalCaseManagementStrings, document PortalCaseManagementStrings, author gguerrer
-#. [pages.blueprintEdit.1936836258]
+#. [pages.blueprintEdit.1469729075]
 #. defaultMessage is:
-#. Discard Changes
+#. Discard changes
 #: build/messages/pages/blueprintEdit/index.json
-msgid "Discard Changes"
+#, fuzzy
+#| msgid "Discard Changes"
+msgid "Discard changes"
 msgstr "Descartar cambios"
 
 #. [components.ListView.1982430146]
@@ -775,50 +809,6 @@ msgstr "Descartar cambios"
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Download"
 msgstr "Descarga"
-
-#. [components.Modal.1237611265]
-#. defaultMessage is:
-#. Edit Description
-#: build/messages/components/Modal/EditDescription.json
-msgid "Edit Description"
-msgstr "Editar descripción"
-
-#. [components.ListView.3855913088]
-#. defaultMessage is:
-#. Edit Packages
-#. [pages.blueprint.3855913088]
-#. defaultMessage is:
-#. Edit Packages
-#. [pages.blueprintEdit.3855913088]
-#. defaultMessage is:
-#. Edit Packages
-#: build/messages/components/ListView/BlueprintsDataList.json
-#: build/messages/pages/blueprint/index.json
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Edit Packages"
-msgstr "Editar paquetes"
-
-#. [components.ListView.edit]
-#. defaultMessage is:
-#. Edit Source
-#. [components.Modal.215316199]
-#. defaultMessage is:
-#. Edit Source
-#: build/messages/components/ListView/SourcesListItem.json
-#: build/messages/components/Modal/ManageSources.json
-msgid "Edit Source"
-msgstr "Editar fuente"
-
-#. [components.Modal.modalTitleEdit]
-#. defaultMessage is:
-#. Edit User Account
-#. [pages.blueprint.userEdit]
-#. defaultMessage is:
-#. Edit User Account
-#: build/messages/components/Modal/UserAccount.json
-#: build/messages/pages/blueprint/index.json
-msgid "Edit User Account"
-msgstr "Editar cuenta de usuario"
 
 #. [components.Modal.2044423701]
 #. defaultMessage is:
@@ -838,11 +828,56 @@ msgstr "Editar descripción"
 msgid "Edit hostname"
 msgstr "Editar nombre de anfitrión"
 
+#. [components.ListView.1908303378]
+#. defaultMessage is:
+#. Edit packages
+#. [pages.blueprint.1908303378]
+#. defaultMessage is:
+#. Edit packages
+#. [pages.blueprintEdit.1908303378]
+#. defaultMessage is:
+#. Edit packages
+#: build/messages/components/ListView/BlueprintsDataList.json
+#: build/messages/pages/blueprint/index.json
+#: build/messages/pages/blueprintEdit/index.json
+#, fuzzy
+#| msgid "Edit Packages"
+msgid "Edit packages"
+msgstr "Editar paquetes"
+
+#. [components.ListView.edit]
+#. defaultMessage is:
+#. Edit source
+#. [components.Modal.2346552400]
+#. defaultMessage is:
+#. Edit source
+#: build/messages/components/ListView/SourcesListItem.json
+#: build/messages/components/Modal/ManageSources.json
+#, fuzzy
+#| msgid "Edit Source"
+msgid "Edit source"
+msgstr "Editar fuente"
+
+#. [components.Modal.modalTitleEdit]
+#. defaultMessage is:
+#. Edit user account
+#. [pages.blueprint.userEdit]
+#. defaultMessage is:
+#. Edit user account
+#: build/messages/components/Modal/UserAccount.json
+#: build/messages/pages/blueprint/index.json
+#, fuzzy
+#| msgid "Edit User Account"
+msgid "Edit user account"
+msgstr "Editar cuenta de usuario"
+
 #. [pages.blueprint.emptyBlueprintTitle]
 #. defaultMessage is:
-#. Empty Blueprint
+#. Empty blueprint
 #: build/messages/pages/blueprint/index.json
-msgid "Empty Blueprint"
+#, fuzzy
+#| msgid "Empty Blueprint"
+msgid "Empty blueprint"
 msgstr "Vaciar plano"
 
 #. [pages.error.errorMessage]
@@ -859,13 +894,6 @@ msgstr "Error"
 msgid "Export"
 msgstr "Exportar"
 
-#. [components.Modal.386209032]
-#. defaultMessage is:
-#. Export Blueprint
-#: build/messages/components/Modal/ExportBlueprint.json
-msgid "Export Blueprint"
-msgstr "Exportar plano"
-
 #. [components.Modal.3658760324]
 #. defaultMessage is:
 #. Export as
@@ -873,44 +901,59 @@ msgstr "Exportar plano"
 msgid "Export as"
 msgstr "Exportar como"
 
+#. [components.Modal.2169054801]
+#. defaultMessage is:
+#. Export blueprint
+#: build/messages/components/Modal/ExportBlueprint.json
+#, fuzzy
+#| msgid "Export Blueprint"
+msgid "Export blueprint"
+msgstr "Exportar plano"
+
 #. [pages.blueprintEdit.filterByLabel]
 #. defaultMessage is:
-#. Filter Available Components by Name
+#. Filter available components by name
 #: build/messages/pages/blueprintEdit/index.json
-msgid "Filter Available Components by Name"
+#, fuzzy
+#| msgid "Filter Available Components by Name"
+msgid "Filter available components by name"
 msgstr "Filtrar componentes disponibles por nombre"
-
-#. [pages.blueprintEdit.filterByPlaceholder]
-#. defaultMessage is:
-#. Filter By Name...
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Filter By Name..."
-msgstr "Filtrar por nombre...."
 
 #. [components.Toolbar.filterNamePlaceholder]
 #. defaultMessage is:
-#. Filter by Name
+#. Filter by name
 #: build/messages/components/Toolbar/FilterInput.json
 #, fuzzy
 #| msgid "Filter By Name..."
-msgid "Filter by Name"
+msgid "Filter by name"
+msgstr "Filtrar por nombre...."
+
+#. [pages.blueprintEdit.filterByPlaceholder]
+#. defaultMessage is:
+#. Filter by name...
+#: build/messages/pages/blueprintEdit/index.json
+#, fuzzy
+#| msgid "Filter By Name..."
+msgid "Filter by name..."
 msgstr "Filtrar por nombre...."
 
 #. [components.Toolbar.filterReleasePlaceholder]
 #. defaultMessage is:
-#. Filter by Release
+#. Filter by release
 #: build/messages/components/Toolbar/FilterInput.json
 #, fuzzy
 #| msgid "Filter By Name..."
-msgid "Filter by Release"
+msgid "Filter by release"
 msgstr "Filtrar por nombre...."
 
 #. [components.Toolbar.filterVersionPlaceholder]
 #. defaultMessage is:
-#. Filter by Version
+#. Filter by version
 #: build/messages/components/Toolbar/FilterInput.json
-msgid "Filter by Version"
-msgstr ""
+#, fuzzy
+#| msgid "Filter By Name..."
+msgid "Filter by version"
+msgstr "Filtrar por nombre...."
 
 #. [components.Wizard.787186999]
 #. defaultMessage is:
@@ -935,13 +978,15 @@ msgstr "Regresar"
 
 #. [components.ListView.hideDetails]
 #. defaultMessage is:
-#. Hide Details
+#. Hide details
 #. [components.ListView.hideDetails]
 #. defaultMessage is:
-#. Hide Details
+#. Hide details
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ComponentInputs.json
-msgid "Hide Details"
+#, fuzzy
+#| msgid "Hide Details"
+msgid "Hide details"
 msgstr "Esconder detalles"
 
 #. [pages.blueprint.hostnameInputLabel]
@@ -998,13 +1043,6 @@ msgid ""
 "                        the image can be found in the {console}."
 msgstr ""
 
-#. [components.EmptyState.errorInactiveTitle]
-#. defaultMessage is:
-#. Image Building Service is Not Active
-#: build/messages/components/EmptyState/EmptyStateInactive.json
-msgid "Image Building Service is Not Active"
-msgstr "El servicio de construcción de imágenes no está activo"
-
 #. [components.ListView.imageStatusFinished] - Image build status when process is finished
 #. defaultMessage is:
 #. Image build complete
@@ -1032,6 +1070,15 @@ msgstr "Construcción de la imagen en curso"
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Image build pending"
 msgstr "Construcción de la imagen pendiente"
+
+#. [components.EmptyState.errorInactiveTitle]
+#. defaultMessage is:
+#. Image building service is not active
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+#, fuzzy
+#| msgid "Image Building Service is Not Active"
+msgid "Image building service is not active"
+msgstr "El servicio de construcción de imágenes no está activo"
 
 #. [components.ListView.imageName] - The name given by the user for an image
 #. defaultMessage is:
@@ -1131,11 +1178,13 @@ msgstr "Cargando"
 msgid "Logs"
 msgstr "Registros"
 
-#. [components.Modal.357938285] - User action for displaying the list of source repositories
+#. [components.Modal.3594196712] - User action for displaying the list of source repositories
 #. defaultMessage is:
-#. Manage Sources
+#. Manage sources
 #: build/messages/components/Modal/ManageSources.json
-msgid "Manage Sources"
+#, fuzzy
+#| msgid "Manage Sources"
+msgid "Manage sources"
 msgstr "Gestionar fuentes"
 
 #. [components.EmptyState.alertMessagePreface]
@@ -1218,39 +1267,30 @@ msgstr "Siguiente"
 
 #. [pages.blueprints.emptyTitle]
 #. defaultMessage is:
-#. No Blueprints
+#. No blueprints
 #: build/messages/pages/blueprints/index.json
-msgid "No Blueprints"
+#, fuzzy
+#| msgid "No Blueprints"
+msgid "No blueprints"
 msgstr "Ningún plano"
 
 #. [components.ListView.noDepsTitle]
 #. defaultMessage is:
-#. No Dependencies
+#. No dependencies
 #: build/messages/components/ListView/ComponentDetailsView.json
-msgid "No Dependencies"
+#, fuzzy
+#| msgid "No Dependencies"
+msgid "No dependencies"
 msgstr "Ninguna dependencia"
 
 #. [pages.blueprint.noImagesTitle]
 #. defaultMessage is:
-#. No Images
+#. No images
 #: build/messages/pages/blueprint/index.json
-msgid "No Images"
+#, fuzzy
+#| msgid "No Images"
+msgid "No images"
 msgstr "Ninguna imagen"
-
-#. [components.ListView.emptyStateNoResultsTitle]
-#. defaultMessage is:
-#. No Results Match the Filter Criteria
-#. [pages.blueprintEdit.emptyStateNoResultsTitle]
-#. defaultMessage is:
-#. No Results Match the Filter Criteria
-#. [pages.blueprints.noResultsTitle]
-#. defaultMessage is:
-#. No Results Match the Filter Criteria
-#: build/messages/components/ListView/BlueprintContents.json
-#: build/messages/pages/blueprintEdit/index.json
-#: build/messages/pages/blueprints/index.json
-msgid "No Results Match the Filter Criteria"
-msgstr "Ningún resultado coincide con los criterios de filtrado"
 
 #. [pages.blueprint.noImagesMessage]
 #. defaultMessage is:
@@ -1265,6 +1305,23 @@ msgstr "No se han creado imágenes a partir de este plano."
 #: build/messages/components/ListView/ListItemImages.json
 msgid "No log available"
 msgstr "Ningún registro disponible"
+
+#. [components.ListView.emptyStateNoResultsTitle]
+#. defaultMessage is:
+#. No results match the filter criteria
+#. [pages.blueprintEdit.emptyStateNoResultsTitle]
+#. defaultMessage is:
+#. No results match the filter criteria
+#. [pages.blueprints.noResultsTitle]
+#. defaultMessage is:
+#. No results match the filter criteria
+#: build/messages/components/ListView/BlueprintContents.json
+#: build/messages/pages/blueprintEdit/index.json
+#: build/messages/pages/blueprints/index.json
+#, fuzzy
+#| msgid "No Results Match the Filter Criteria"
+msgid "No results match the filter criteria"
+msgstr "Ningún resultado coincide con los criterios de filtrado"
 
 #. [components.Wizard.ostreeParent]
 #. defaultMessage is:
@@ -1305,14 +1362,9 @@ msgstr "Oups, algo salió mal"
 msgid "Packages"
 msgstr "Paquetes"
 
-# ctx::sourcefile::404 error page
 #. [pages.error.pageNotFoundMessage]
 #. defaultMessage is:
-#. Page Not Found
-#: build/messages/pages/error/index.json
-msgid "Page Not Found"
-msgstr "Página no encontrada"
-
+#. Page not found
 #. [pages.error.pageNotFoundTitle]
 #. defaultMessage is:
 #. Page not found
@@ -1344,11 +1396,13 @@ msgstr "Contraseña"
 msgid "Paste the contents of your public SSH key file here."
 msgstr "Pegue aquí el contenido de su archivo de clave SSH pública."
 
-#. [components.Modal.433458873]
+#. [components.Modal.3226997558]
 #. defaultMessage is:
-#. Pending Changes
+#. Pending changes
 #: build/messages/components/Modal/PendingChanges.json
-msgid "Pending Changes"
+#, fuzzy
+#| msgid "Pending Changes"
+msgid "Pending changes"
 msgstr "Cambios pendientes"
 
 #. [components.Wizard.processLength]
@@ -1492,31 +1546,39 @@ msgstr "Quitar"
 
 #. [components.ListView.removeComponent]
 #. defaultMessage is:
-#. Remove Component from Blueprint
+#. Remove component from blueprint
 #: build/messages/components/ListView/ComponentInputs.json
-msgid "Remove Component from Blueprint"
+#, fuzzy
+#| msgid "Remove Component from Blueprint"
+msgid "Remove component from blueprint"
 msgstr "Quitar componente de plano"
 
-#. [components.Modal.2822116526]
+#. [components.ListView.removeFromBlueprint]
 #. defaultMessage is:
-#. Remove Password
+#. Remove from blueprint
+#: build/messages/components/ListView/ComponentDetailsView.json
+#, fuzzy
+#| msgid "Remove from Blueprint"
+msgid "Remove from blueprint"
+msgstr "Quitar de plano"
+
+#. [components.Modal.1101731800]
+#. defaultMessage is:
+#. Remove password
 #: build/messages/components/Modal/UserAccount.json
-msgid "Remove Password"
+#, fuzzy
+#| msgid "Remove Password"
+msgid "Remove password"
 msgstr "Quitar contraseña"
 
 #. [components.ListView.remove]
 #. defaultMessage is:
-#. Remove Source
+#. Remove source
 #: build/messages/components/ListView/SourcesListItem.json
-msgid "Remove Source"
+#, fuzzy
+#| msgid "Remove Source"
+msgid "Remove source"
 msgstr "Quitar fuente"
-
-#. [components.ListView.removeFromBlueprint]
-#. defaultMessage is:
-#. Remove from Blueprint
-#: build/messages/components/ListView/ComponentDetailsView.json
-msgid "Remove from Blueprint"
-msgstr "Quitar de plano"
 
 #. [components.Modal.2291868453] - Identifies the change as a component that was removed
 #. defaultMessage is:
@@ -1641,9 +1703,11 @@ msgstr "Seleccione uno"
 
 #. [components.ListView.selectedTabTitle]
 #. defaultMessage is:
-#. Selected Components
+#. Selected components
 #: build/messages/components/ListView/BlueprintContents.json
-msgid "Selected Components"
+#, fuzzy
+#| msgid "Selected Components"
+msgid "Selected components"
 msgstr "Componentes seleccionados"
 
 #. [components.Modal.122879380]
@@ -1653,18 +1717,22 @@ msgstr "Componentes seleccionados"
 msgid "Server administrator"
 msgstr "Administrador del servidor"
 
-#. [components.Modal.1110245255]
+#. [components.Modal.2342634351]
 #. defaultMessage is:
-#. Set New Password
+#. Set new password
 #: build/messages/components/Modal/UserAccount.json
-msgid "Set New Password"
+#, fuzzy
+#| msgid "Set New Password"
+msgid "Set new password"
 msgstr "Establecer contraseña nueva"
 
-#. [components.Modal.3696648021]
+#. [components.Modal.3532935154]
 #. defaultMessage is:
-#. Set Password
+#. Set password
 #: build/messages/components/Modal/UserAccount.json
-msgid "Set Password"
+#, fuzzy
+#| msgid "Set Password"
+msgid "Set password"
 msgstr "Establecer contraseña"
 
 #. [components.Wizard.imageSizePopover]
@@ -1680,25 +1748,31 @@ msgstr ""
 "del paquete y el destino de la imagen deberán tomarse en cuenta al momento "
 "de definir el tamaño de la imagen."
 
-#. [components.ListView.1256153657]
+#. [components.ListView.4147597655]
 #. defaultMessage is:
-#. Show All
+#. Show all
 #: build/messages/components/ListView/ComponentSummaryList.json
-msgid "Show All"
+#, fuzzy
+#| msgid "Show All"
+msgid "Show all"
 msgstr "Mostrar todo"
 
 #. [components.ListView.showDetails]
 #. defaultMessage is:
-#. Show Details and More Options
+#. Show details and more options
 #: build/messages/components/ListView/ComponentInputs.json
-msgid "Show Details and More Options"
+#, fuzzy
+#| msgid "Show Details and More Options"
+msgid "Show details and more options"
 msgstr "Mostrar detalles y más opciones"
 
-#. [components.ListView.2354351315]
+#. [components.ListView.614182381]
 #. defaultMessage is:
-#. Show Less
+#. Show less
 #: build/messages/components/ListView/ComponentSummaryList.json
-msgid "Show Less"
+#, fuzzy
+#| msgid "Show Less"
+msgid "Show less"
 msgstr "Mostrar menos"
 
 #. [components.ListView.imageSize] - A label for the size of an image file
@@ -1710,9 +1784,11 @@ msgstr "Tamaño"
 
 #. [components.ListView.kebab]
 #. defaultMessage is:
-#. Source Actions
+#. Source actions
 #: build/messages/components/ListView/SourcesListItem.json
-msgid "Source Actions"
+#, fuzzy
+#| msgid "Source Actions"
+msgid "Source actions"
 msgstr "Acciones de fuente"
 
 #. [components.Modal.sourcePath] - The path or url to the source repository
@@ -1773,11 +1849,13 @@ msgstr "Iniciado"
 msgid "Stop"
 msgstr "Detener"
 
-#. [components.Modal.1162993432]
+#. [components.Modal.154017637]
 #. defaultMessage is:
-#. Stop Build
+#. Stop build
 #: build/messages/components/Modal/StopBuild.json
-msgid "Stop Build"
+#, fuzzy
+#| msgid "Stop Build"
+msgid "Stop build"
 msgstr "Detener la construcción"
 
 #. [components.ListView.imageStatusStopping] - Image build status when user selected to end the process
@@ -2119,11 +2197,13 @@ msgstr "Tipo {sourceType}"
 msgid "URL"
 msgstr "URL"
 
-#. [components.ListView.3158548332]
+#. [components.ListView.4008580262]
 #. defaultMessage is:
-#. Undo Last Change
+#. Undo last change
 #: build/messages/components/ListView/BlueprintContents.json
-msgid "Undo Last Change"
+#, fuzzy
+#| msgid "Undo Last Change"
+msgid "Undo last change"
 msgstr "Deshacer último cambio"
 
 #. [components.Modal.1458938618]
@@ -2135,9 +2215,11 @@ msgstr "Actualizar"
 
 #. [components.Modal.update]
 #. defaultMessage is:
-#. Update Source
+#. Update source
 #: build/messages/components/Modal/ManageSources.json
-msgid "Update Source"
+#, fuzzy
+#| msgid "Update Source"
+msgid "Update source"
 msgstr "Actualizar fuente"
 
 #. [components.Modal.562988552] - Identifies the change as a component that was updated
@@ -2230,9 +2312,11 @@ msgstr "Tipo de carga"
 
 #. [pages.blueprint.userKebab]
 #. defaultMessage is:
-#. User Account Actions
+#. User account actions
 #: build/messages/pages/blueprint/index.json
-msgid "User Account Actions"
+#, fuzzy
+#| msgid "User Account Actions"
+msgid "User account actions"
 msgstr "Acciones de cuenta de usuario"
 
 #. [components.Modal.529605439]
@@ -2506,6 +2590,13 @@ msgstr "Creando imágenes de sistema"
 #: public/manifest.json
 msgid "Image Builder"
 msgstr "Constructor de Imágenes"
+
+#~ msgid "Edit Description"
+#~ msgstr "Editar descripción"
+
+# ctx::sourcefile::404 error page
+#~ msgid "Page Not Found"
+#~ msgstr "Página no encontrada"
 
 #~ msgid "Current Items"
 #~ msgstr "Elementos actuales"
