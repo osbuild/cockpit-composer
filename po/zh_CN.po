@@ -4,7 +4,7 @@
 # Ludek Janda <ljanda@redhat.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-11-17T18:11:08.021Z\n"
+"POT-Creation-Date: 2021-01-08T07:28:53.139Z\n"
 "PO-Revision-Date: 2020-09-22 10:29+0000\n"
 "Last-Translator: Ludek Janda <ljanda@redhat.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.fedoraproject.org/"
@@ -121,11 +121,13 @@ msgstr "访问密钥"
 msgid "Actions"
 msgstr "操作"
 
-#. [components.Toolbar.4053658032]
+#. [components.Toolbar.2872798476]
 #. defaultMessage is:
-#. Active Filters
+#. Active filters
 #: build/messages/components/Toolbar/ToolbarLayout.json
-msgid "Active Filters"
+#, fuzzy
+#| msgid "Active Filters"
+msgid "Active filters"
 msgstr "活跃的过滤器"
 
 #. [components.ListView.3099331554]
@@ -137,23 +139,12 @@ msgstr "添加"
 
 #. [pages.blueprintEdit.addComponentTitle]
 #. defaultMessage is:
-#. Add Blueprint Components
+#. Add blueprint components
 #: build/messages/pages/blueprintEdit/index.json
-msgid "Add Blueprint Components"
+#, fuzzy
+#| msgid "Add Blueprint Components"
+msgid "Add blueprint components"
 msgstr "添加蓝图组件"
-
-#. [components.Modal.add]
-#. defaultMessage is:
-#. Add Source
-#. [components.Modal.save]
-#. defaultMessage is:
-#. Add Source
-#. [components.Modal.2130684444]
-#. defaultMessage is:
-#. Add Source
-#: build/messages/components/Modal/ManageSources.json
-msgid "Add Source"
-msgstr "添加源"
 
 #. [components.ListView.addComponent]
 #. defaultMessage is:
@@ -161,6 +152,21 @@ msgstr "添加源"
 #: build/messages/components/ListView/ComponentInputs.json
 msgid "Add latest version"
 msgstr "添加最新版本"
+
+#. [components.Modal.add]
+#. defaultMessage is:
+#. Add source
+#. [components.Modal.save]
+#. defaultMessage is:
+#. Add source
+#. [components.Modal.4044066101]
+#. defaultMessage is:
+#. Add source
+#: build/messages/components/Modal/ManageSources.json
+#, fuzzy
+#| msgid "Add Source"
+msgid "Add source"
+msgstr "添加源"
 
 # translation auto-copied from project Drools Workbench, version 6.0.0, document org.drools/drools-wb-guided-rule-editor-client/org/drools/workbench/screens/guided/rule/client/resources/i18n/Constants, author xi.huang
 #. [components.Modal.1362724042] - Identifies the change as a component that was added
@@ -191,17 +197,19 @@ msgstr "各个项都是必需的。"
 
 #. [components.ListView.emptyStateErrorTitle]
 #. defaultMessage is:
-#. An Error Occurred
+#. An error occurred
 #. [components.Modal.errorStateTitle]
 #. defaultMessage is:
-#. An Error Occurred
+#. An error occurred
 #. [pages.blueprints.errorGenericTitle]
 #. defaultMessage is:
-#. An Error Occurred
+#. An error occurred
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/components/Modal/ManageSources.json
 #: build/messages/pages/blueprints/index.json
-msgid "An Error Occurred"
+#, fuzzy
+#| msgid "An Error Occurred"
+msgid "An error occurred"
 msgstr "发生了错误"
 
 #. [components.Modal.1417078254]
@@ -227,11 +235,13 @@ msgstr "在获取蓝图内容时出错。"
 msgid "An error occurred while trying to get sources."
 msgstr "在获取源时出错。"
 
-#. [components.ListView.668376819]
+#. [components.ListView.3998303130]
 #. defaultMessage is:
-#. Apply Change
+#. Apply change
 #: build/messages/components/ListView/ComponentDetailsView.json
-msgid "Apply Change"
+#, fuzzy
+#| msgid "Apply Change"
+msgid "Apply change"
 msgstr "应用改变"
 
 #. [components.Modal.4140003068]
@@ -271,9 +281,11 @@ msgstr "在引导时自动启动 osbuild-composer"
 
 #. [pages.blueprintEdit.listTitleAvailableComps]
 #. defaultMessage is:
-#. Available Components
+#. Available components
 #: build/messages/pages/blueprintEdit/index.json
-msgid "Available Components"
+#, fuzzy
+#| msgid "Available Components"
+msgid "Available components"
 msgstr "可用的组件"
 
 #. [components.Wizard.azure]
@@ -290,15 +302,17 @@ msgstr "Azure 帮助"
 msgid "Back"
 msgstr "返回"
 
-#. [pages.blueprint.3126044146]
+#. [pages.blueprint.2057444273]
 #. defaultMessage is:
-#. Back to Blueprints
-#. [pages.blueprintEdit.3126044146]
+#. Back to blueprints
+#. [pages.blueprintEdit.2057444273]
 #. defaultMessage is:
-#. Back to Blueprints
+#. Back to blueprints
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
-msgid "Back to Blueprints"
+#, fuzzy
+#| msgid "Back to Blueprints"
+msgid "Back to blueprints"
 msgstr "返回到蓝图"
 
 #. [components.ListView.3448229549]
@@ -338,11 +352,13 @@ msgstr "Blob 服务"
 msgid "Blueprint"
 msgstr "蓝图"
 
-#. [pages.blueprintEdit.711554923]
+#. [pages.blueprintEdit.966788260]
 #. defaultMessage is:
-#. Blueprint Components
+#. Blueprint components
 #: build/messages/pages/blueprintEdit/index.json
-msgid "Blueprint Components"
+#, fuzzy
+#| msgid "Blueprint Components"
+msgid "Blueprint components"
 msgstr "蓝图组件"
 
 #. [components.Modal.2544705954]
@@ -436,13 +452,6 @@ msgstr ""
 msgid "Cancel"
 msgstr "取消"
 
-#. [components.Modal.2208777537]
-#. defaultMessage is:
-#. Changes Pending Commit
-#: build/messages/components/Modal/PendingChanges.json
-msgid "Changes Pending Commit"
-msgstr "所做出的修改需要等待提交后才会有效"
-
 #. [components.Modal.683130131]
 #. defaultMessage is:
 #. Changes made in a previous session
@@ -461,6 +470,15 @@ msgstr ""
 "在前一个会话中所做的修改不会以修改的顺序列出。如果您选择取消这些修改，它们会"
 "做为一个组来取消。"
 
+#. [components.Modal.92001050]
+#. defaultMessage is:
+#. Changes pending commit
+#: build/messages/components/Modal/PendingChanges.json
+#, fuzzy
+#| msgid "Changes Pending Commit"
+msgid "Changes pending commit"
+msgstr "所做出的修改需要等待提交后才会有效"
+
 #. [components.Modal.check_gpg]
 #. defaultMessage is:
 #. Check GPG key
@@ -475,23 +493,25 @@ msgstr "检查 GPG 密钥"
 msgid "Check SSL certificate"
 msgstr "检查 SSL 证书"
 
-#. [components.ListView.1312249312]
+#. [components.ListView.1634835134]
 #. defaultMessage is:
-#. Clear All Filters
-#. [components.Toolbar.1312249312]
+#. Clear all filters
+#. [components.Toolbar.1634835134]
 #. defaultMessage is:
-#. Clear All Filters
-#. [pages.blueprintEdit.1312249312]
+#. Clear all filters
+#. [pages.blueprintEdit.1634835134]
 #. defaultMessage is:
-#. Clear All Filters
-#. [pages.blueprints.1312249312]
+#. Clear all filters
+#. [pages.blueprints.1634835134]
 #. defaultMessage is:
-#. Clear All Filters
+#. Clear all filters
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/components/Toolbar/ToolbarLayout.json
 #: build/messages/pages/blueprintEdit/index.json
 #: build/messages/pages/blueprints/index.json
-msgid "Clear All Filters"
+#, fuzzy
+#| msgid "Clear All Filters"
+msgid "Clear all filters"
 msgstr "清除所有过滤条件"
 
 #. [components.Modal.2324218928]
@@ -548,22 +568,26 @@ msgstr "提交并创建"
 msgid "Commit and next"
 msgstr "提交和下一个"
 
-#. [pages.blueprint.3540308269]
+#. [pages.blueprint.3956908315]
 #. defaultMessage is:
-#. Component Details
-#. [pages.blueprintEdit.3540308269]
+#. Component details
+#. [pages.blueprintEdit.3956908315]
 #. defaultMessage is:
-#. Component Details
+#. Component details
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
-msgid "Component Details"
+#, fuzzy
+#| msgid "Component Details"
+msgid "Component details"
 msgstr "组件详情"
 
-#. [components.ListView.2104464527]
+#. [components.ListView.1304855088]
 #. defaultMessage is:
-#. Component Options
+#. Component options
 #: build/messages/components/ListView/ComponentDetailsView.json
-msgid "Component Options"
+#, fuzzy
+#| msgid "Component Options"
+msgid "Component options"
 msgstr "组件选项"
 
 #. [components.Modal.createPasswordTwo]
@@ -602,24 +626,6 @@ msgstr "复制"
 msgid "Create"
 msgstr "创建"
 
-#. [components.Modal.536838868]
-#. defaultMessage is:
-#. Create Blueprint
-#: build/messages/components/Modal/CreateBlueprint.json
-msgid "Create Blueprint"
-msgstr "创建蓝图"
-
-#. [components.Modal.modalTitleCreate]
-#. defaultMessage is:
-#. Create User Account
-#. [pages.blueprint.531338943]
-#. defaultMessage is:
-#. Create User Account
-#: build/messages/components/Modal/UserAccount.json
-#: build/messages/pages/blueprint/index.json
-msgid "Create User Account"
-msgstr "创建用户账户"
-
 #. [pages.blueprints.emptyMessage]
 #. defaultMessage is:
 #. Create a blueprint to define the contents that will be included in the images you create. Images can be produced in a variety of output formats.
@@ -637,6 +643,15 @@ msgstr ""
 msgid "Create and upload image"
 msgstr "创建并上传镜像"
 
+#. [components.Modal.994816806]
+#. defaultMessage is:
+#. Create blueprint
+#: build/messages/components/Modal/CreateBlueprint.json
+#, fuzzy
+#| msgid "Create Blueprint"
+msgid "Create blueprint"
+msgstr "创建蓝图"
+
 #. [components.Wizard.title]
 #. defaultMessage is:
 #. Create image
@@ -646,6 +661,19 @@ msgstr "创建并上传镜像"
 #: build/messages/components/Wizard/CreateImageUpload.json
 msgid "Create image"
 msgstr "创建镜像"
+
+#. [components.Modal.modalTitleCreate]
+#. defaultMessage is:
+#. Create user account
+#. [pages.blueprint.3234825297]
+#. defaultMessage is:
+#. Create user account
+#: build/messages/components/Modal/UserAccount.json
+#: build/messages/pages/blueprint/index.json
+#, fuzzy
+#| msgid "Create User Account"
+msgid "Create user account"
+msgstr "创建用户账户"
 
 #. [components.ListView.imageCreated] - A label for the date that an image file was created
 #. defaultMessage is:
@@ -672,25 +700,31 @@ msgstr "自定义"
 msgid "Delete"
 msgstr "删除"
 
-#. [components.Modal.3153775112]
+#. [components.Modal.1567722925]
 #. defaultMessage is:
-#. Delete Blueprint
+#. Delete blueprint
 #: build/messages/components/Modal/DeleteBlueprint.json
-msgid "Delete Blueprint"
+#, fuzzy
+#| msgid "Delete Blueprint"
+msgid "Delete blueprint"
 msgstr "删除蓝图"
 
-#. [components.Modal.1731766393]
+#. [components.Modal.942133001]
 #. defaultMessage is:
-#. Delete Image
+#. Delete image
 #: build/messages/components/Modal/DeleteImage.json
-msgid "Delete Image"
+#, fuzzy
+#| msgid "Delete Image"
+msgid "Delete image"
 msgstr "删除镜像"
 
 #. [pages.blueprint.userDelete]
 #. defaultMessage is:
-#. Delete User Account
+#. Delete user account
 #: build/messages/pages/blueprint/index.json
-msgid "Delete User Account"
+#, fuzzy
+#| msgid "Delete User Account"
+msgid "Delete user account"
 msgstr "删除用户账户"
 
 #. [components.ListView.dependenciesTabTitle]
@@ -740,11 +774,13 @@ msgstr "目的地"
 msgid "Details"
 msgstr "详情"
 
-#. [pages.blueprintEdit.1936836258]
+#. [pages.blueprintEdit.1469729075]
 #. defaultMessage is:
-#. Discard Changes
+#. Discard changes
 #: build/messages/pages/blueprintEdit/index.json
-msgid "Discard Changes"
+#, fuzzy
+#| msgid "Discard Changes"
+msgid "Discard changes"
 msgstr "放弃更改"
 
 #. [components.ListView.1982430146]
@@ -753,50 +789,6 @@ msgstr "放弃更改"
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Download"
 msgstr "下载"
-
-#. [components.Modal.1237611265]
-#. defaultMessage is:
-#. Edit Description
-#: build/messages/components/Modal/EditDescription.json
-msgid "Edit Description"
-msgstr "编辑描述"
-
-#. [components.ListView.3855913088]
-#. defaultMessage is:
-#. Edit Packages
-#. [pages.blueprint.3855913088]
-#. defaultMessage is:
-#. Edit Packages
-#. [pages.blueprintEdit.3855913088]
-#. defaultMessage is:
-#. Edit Packages
-#: build/messages/components/ListView/BlueprintsDataList.json
-#: build/messages/pages/blueprint/index.json
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Edit Packages"
-msgstr "编辑软件包"
-
-#. [components.ListView.edit]
-#. defaultMessage is:
-#. Edit Source
-#. [components.Modal.215316199]
-#. defaultMessage is:
-#. Edit Source
-#: build/messages/components/ListView/SourcesListItem.json
-#: build/messages/components/Modal/ManageSources.json
-msgid "Edit Source"
-msgstr "编辑源"
-
-#. [components.Modal.modalTitleEdit]
-#. defaultMessage is:
-#. Edit User Account
-#. [pages.blueprint.userEdit]
-#. defaultMessage is:
-#. Edit User Account
-#: build/messages/components/Modal/UserAccount.json
-#: build/messages/pages/blueprint/index.json
-msgid "Edit User Account"
-msgstr "编辑用户账户"
 
 #. [components.Modal.2044423701]
 #. defaultMessage is:
@@ -816,11 +808,56 @@ msgstr "编辑描述"
 msgid "Edit hostname"
 msgstr "编辑主机名"
 
+#. [components.ListView.1908303378]
+#. defaultMessage is:
+#. Edit packages
+#. [pages.blueprint.1908303378]
+#. defaultMessage is:
+#. Edit packages
+#. [pages.blueprintEdit.1908303378]
+#. defaultMessage is:
+#. Edit packages
+#: build/messages/components/ListView/BlueprintsDataList.json
+#: build/messages/pages/blueprint/index.json
+#: build/messages/pages/blueprintEdit/index.json
+#, fuzzy
+#| msgid "Edit Packages"
+msgid "Edit packages"
+msgstr "编辑软件包"
+
+#. [components.ListView.edit]
+#. defaultMessage is:
+#. Edit source
+#. [components.Modal.2346552400]
+#. defaultMessage is:
+#. Edit source
+#: build/messages/components/ListView/SourcesListItem.json
+#: build/messages/components/Modal/ManageSources.json
+#, fuzzy
+#| msgid "Edit Source"
+msgid "Edit source"
+msgstr "编辑源"
+
+#. [components.Modal.modalTitleEdit]
+#. defaultMessage is:
+#. Edit user account
+#. [pages.blueprint.userEdit]
+#. defaultMessage is:
+#. Edit user account
+#: build/messages/components/Modal/UserAccount.json
+#: build/messages/pages/blueprint/index.json
+#, fuzzy
+#| msgid "Edit User Account"
+msgid "Edit user account"
+msgstr "编辑用户账户"
+
 #. [pages.blueprint.emptyBlueprintTitle]
 #. defaultMessage is:
-#. Empty Blueprint
+#. Empty blueprint
 #: build/messages/pages/blueprint/index.json
-msgid "Empty Blueprint"
+#, fuzzy
+#| msgid "Empty Blueprint"
+msgid "Empty blueprint"
 msgstr "空蓝图"
 
 #. [pages.error.errorMessage]
@@ -837,13 +874,6 @@ msgstr "错误"
 msgid "Export"
 msgstr "导出"
 
-#. [components.Modal.386209032]
-#. defaultMessage is:
-#. Export Blueprint
-#: build/messages/components/Modal/ExportBlueprint.json
-msgid "Export Blueprint"
-msgstr "导出蓝图"
-
 #. [components.Modal.3658760324]
 #. defaultMessage is:
 #. Export as
@@ -851,39 +881,58 @@ msgstr "导出蓝图"
 msgid "Export as"
 msgstr "导出为"
 
+#. [components.Modal.2169054801]
+#. defaultMessage is:
+#. Export blueprint
+#: build/messages/components/Modal/ExportBlueprint.json
+#, fuzzy
+#| msgid "Export Blueprint"
+msgid "Export blueprint"
+msgstr "导出蓝图"
+
 #. [pages.blueprintEdit.filterByLabel]
 #. defaultMessage is:
-#. Filter Available Components by Name
+#. Filter available components by name
 #: build/messages/pages/blueprintEdit/index.json
-msgid "Filter Available Components by Name"
+#, fuzzy
+#| msgid "Filter Available Components by Name"
+msgid "Filter available components by name"
 msgstr "根据名称过滤可用的组件"
-
-#. [pages.blueprintEdit.filterByPlaceholder]
-#. defaultMessage is:
-#. Filter By Name...
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Filter By Name..."
-msgstr "根据名称过滤..."
 
 #. [components.Toolbar.filterNamePlaceholder]
 #. defaultMessage is:
-#. Filter by Name
+#. Filter by name
 #: build/messages/components/Toolbar/FilterInput.json
-msgid "Filter by Name"
+#, fuzzy
+#| msgid "Filter by Name"
+msgid "Filter by name"
+msgstr "根据名称过滤..."
+
+#. [pages.blueprintEdit.filterByPlaceholder]
+#. defaultMessage is:
+#. Filter by name...
+#: build/messages/pages/blueprintEdit/index.json
+#, fuzzy
+#| msgid "Filter By Name..."
+msgid "Filter by name..."
 msgstr "根据名称过滤..."
 
 #. [components.Toolbar.filterReleasePlaceholder]
 #. defaultMessage is:
-#. Filter by Release
+#. Filter by release
 #: build/messages/components/Toolbar/FilterInput.json
-msgid "Filter by Release"
+#, fuzzy
+#| msgid "Filter by Release"
+msgid "Filter by release"
 msgstr "根据发行版本过滤"
 
 #. [components.Toolbar.filterVersionPlaceholder]
 #. defaultMessage is:
-#. Filter by Version
+#. Filter by version
 #: build/messages/components/Toolbar/FilterInput.json
-msgid "Filter by Version"
+#, fuzzy
+#| msgid "Filter by Version"
+msgid "Filter by version"
 msgstr "按版本过滤"
 
 #. [components.Wizard.787186999]
@@ -909,13 +958,15 @@ msgstr "回退"
 
 #. [components.ListView.hideDetails]
 #. defaultMessage is:
-#. Hide Details
+#. Hide details
 #. [components.ListView.hideDetails]
 #. defaultMessage is:
-#. Hide Details
+#. Hide details
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ComponentInputs.json
-msgid "Hide Details"
+#, fuzzy
+#| msgid "Hide Details"
+msgid "Hide details"
 msgstr "隐藏详情"
 
 #. [pages.blueprint.hostnameInputLabel]
@@ -979,13 +1030,6 @@ msgstr ""
 "像所需的多数值都可以在\n"
 "                      {console} 中找到。"
 
-#. [components.EmptyState.errorInactiveTitle]
-#. defaultMessage is:
-#. Image Building Service is Not Active
-#: build/messages/components/EmptyState/EmptyStateInactive.json
-msgid "Image Building Service is Not Active"
-msgstr "镜像构建服务没有被激活"
-
 #. [components.ListView.imageStatusFinished] - Image build status when process is finished
 #. defaultMessage is:
 #. Image build complete
@@ -1013,6 +1057,15 @@ msgstr "镜像构建进行中"
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Image build pending"
 msgstr "镜像构建待处理"
+
+#. [components.EmptyState.errorInactiveTitle]
+#. defaultMessage is:
+#. Image building service is not active
+#: build/messages/components/EmptyState/EmptyStateInactive.json
+#, fuzzy
+#| msgid "Image Building Service is Not Active"
+msgid "Image building service is not active"
+msgstr "镜像构建服务没有被激活"
 
 #. [components.ListView.imageName] - The name given by the user for an image
 #. defaultMessage is:
@@ -1112,11 +1165,13 @@ msgstr "载入"
 msgid "Logs"
 msgstr "日志"
 
-#. [components.Modal.357938285] - User action for displaying the list of source repositories
+#. [components.Modal.3594196712] - User action for displaying the list of source repositories
 #. defaultMessage is:
-#. Manage Sources
+#. Manage sources
 #: build/messages/components/Modal/ManageSources.json
-msgid "Manage Sources"
+#, fuzzy
+#| msgid "Manage Sources"
+msgid "Manage sources"
 msgstr "管理源"
 
 #. [components.EmptyState.alertMessagePreface]
@@ -1199,39 +1254,30 @@ msgstr "下一步"
 
 #. [pages.blueprints.emptyTitle]
 #. defaultMessage is:
-#. No Blueprints
+#. No blueprints
 #: build/messages/pages/blueprints/index.json
-msgid "No Blueprints"
+#, fuzzy
+#| msgid "No Blueprints"
+msgid "No blueprints"
 msgstr "没有蓝图"
 
 #. [components.ListView.noDepsTitle]
 #. defaultMessage is:
-#. No Dependencies
+#. No dependencies
 #: build/messages/components/ListView/ComponentDetailsView.json
-msgid "No Dependencies"
+#, fuzzy
+#| msgid "No Dependencies"
+msgid "No dependencies"
 msgstr "无依赖"
 
 #. [pages.blueprint.noImagesTitle]
 #. defaultMessage is:
-#. No Images
+#. No images
 #: build/messages/pages/blueprint/index.json
-msgid "No Images"
+#, fuzzy
+#| msgid "No Images"
+msgid "No images"
 msgstr "没有镜像"
-
-#. [components.ListView.emptyStateNoResultsTitle]
-#. defaultMessage is:
-#. No Results Match the Filter Criteria
-#. [pages.blueprintEdit.emptyStateNoResultsTitle]
-#. defaultMessage is:
-#. No Results Match the Filter Criteria
-#. [pages.blueprints.noResultsTitle]
-#. defaultMessage is:
-#. No Results Match the Filter Criteria
-#: build/messages/components/ListView/BlueprintContents.json
-#: build/messages/pages/blueprintEdit/index.json
-#: build/messages/pages/blueprints/index.json
-msgid "No Results Match the Filter Criteria"
-msgstr "没有匹配过滤条件的结果"
 
 #. [pages.blueprint.noImagesMessage]
 #. defaultMessage is:
@@ -1246,6 +1292,23 @@ msgstr "没有从这个蓝图创建的镜像。"
 #: build/messages/components/ListView/ListItemImages.json
 msgid "No log available"
 msgstr "无日志"
+
+#. [components.ListView.emptyStateNoResultsTitle]
+#. defaultMessage is:
+#. No results match the filter criteria
+#. [pages.blueprintEdit.emptyStateNoResultsTitle]
+#. defaultMessage is:
+#. No results match the filter criteria
+#. [pages.blueprints.noResultsTitle]
+#. defaultMessage is:
+#. No results match the filter criteria
+#: build/messages/components/ListView/BlueprintContents.json
+#: build/messages/pages/blueprintEdit/index.json
+#: build/messages/pages/blueprints/index.json
+#, fuzzy
+#| msgid "No Results Match the Filter Criteria"
+msgid "No results match the filter criteria"
+msgstr "没有匹配过滤条件的结果"
 
 #. [components.Wizard.ostreeParent]
 #. defaultMessage is:
@@ -1282,14 +1345,9 @@ msgstr "抱歉，什么地方出现问题"
 msgid "Packages"
 msgstr "软件包"
 
-# ctx::sourcefile::404 error page
 #. [pages.error.pageNotFoundMessage]
 #. defaultMessage is:
-#. Page Not Found
-#: build/messages/pages/error/index.json
-msgid "Page Not Found"
-msgstr "没有找到页"
-
+#. Page not found
 #. [pages.error.pageNotFoundTitle]
 #. defaultMessage is:
 #. Page not found
@@ -1321,11 +1379,13 @@ msgstr "密码"
 msgid "Paste the contents of your public SSH key file here."
 msgstr "在这里粘贴 SSH 公钥文件内容。"
 
-#. [components.Modal.433458873]
+#. [components.Modal.3226997558]
 #. defaultMessage is:
-#. Pending Changes
+#. Pending changes
 #: build/messages/components/Modal/PendingChanges.json
-msgid "Pending Changes"
+#, fuzzy
+#| msgid "Pending Changes"
+msgid "Pending changes"
 msgstr "改变待生效"
 
 #. [components.Wizard.processLength]
@@ -1482,31 +1542,39 @@ msgstr "删除"
 
 #. [components.ListView.removeComponent]
 #. defaultMessage is:
-#. Remove Component from Blueprint
+#. Remove component from blueprint
 #: build/messages/components/ListView/ComponentInputs.json
-msgid "Remove Component from Blueprint"
+#, fuzzy
+#| msgid "Remove Component from Blueprint"
+msgid "Remove component from blueprint"
 msgstr "从 Blueprint 中删除组件"
 
-#. [components.Modal.2822116526]
+#. [components.ListView.removeFromBlueprint]
 #. defaultMessage is:
-#. Remove Password
+#. Remove from blueprint
+#: build/messages/components/ListView/ComponentDetailsView.json
+#, fuzzy
+#| msgid "Remove from Blueprint"
+msgid "Remove from blueprint"
+msgstr "从蓝图中删除"
+
+#. [components.Modal.1101731800]
+#. defaultMessage is:
+#. Remove password
 #: build/messages/components/Modal/UserAccount.json
-msgid "Remove Password"
+#, fuzzy
+#| msgid "Remove Password"
+msgid "Remove password"
 msgstr "删除密码"
 
 #. [components.ListView.remove]
 #. defaultMessage is:
-#. Remove Source
+#. Remove source
 #: build/messages/components/ListView/SourcesListItem.json
-msgid "Remove Source"
+#, fuzzy
+#| msgid "Remove Source"
+msgid "Remove source"
 msgstr "删除源"
-
-#. [components.ListView.removeFromBlueprint]
-#. defaultMessage is:
-#. Remove from Blueprint
-#: build/messages/components/ListView/ComponentDetailsView.json
-msgid "Remove from Blueprint"
-msgstr "从蓝图中删除"
 
 #. [components.Modal.2291868453] - Identifies the change as a component that was removed
 #. defaultMessage is:
@@ -1629,9 +1697,11 @@ msgstr "选择全部"
 
 #. [components.ListView.selectedTabTitle]
 #. defaultMessage is:
-#. Selected Components
+#. Selected components
 #: build/messages/components/ListView/BlueprintContents.json
-msgid "Selected Components"
+#, fuzzy
+#| msgid "Selected Components"
+msgid "Selected components"
 msgstr "选择的组件"
 
 #. [components.Modal.122879380]
@@ -1641,18 +1711,22 @@ msgstr "选择的组件"
 msgid "Server administrator"
 msgstr "服务器管理员"
 
-#. [components.Modal.1110245255]
+#. [components.Modal.2342634351]
 #. defaultMessage is:
-#. Set New Password
+#. Set new password
 #: build/messages/components/Modal/UserAccount.json
-msgid "Set New Password"
+#, fuzzy
+#| msgid "Set New Password"
+msgid "Set new password"
 msgstr "设置新密码"
 
-#. [components.Modal.3696648021]
+#. [components.Modal.3532935154]
 #. defaultMessage is:
-#. Set Password
+#. Set password
 #: build/messages/components/Modal/UserAccount.json
-msgid "Set Password"
+#, fuzzy
+#| msgid "Set Password"
+msgid "Set password"
 msgstr "设置密码"
 
 #. [components.Wizard.imageSizePopover]
@@ -1667,25 +1741,31 @@ msgstr ""
 "设置实例化时镜像的大小。在设置镜像大小时，应考虑软件包的总大小以及镜像的目标"
 "位置。"
 
-#. [components.ListView.1256153657]
+#. [components.ListView.4147597655]
 #. defaultMessage is:
-#. Show All
+#. Show all
 #: build/messages/components/ListView/ComponentSummaryList.json
-msgid "Show All"
+#, fuzzy
+#| msgid "Show All"
+msgid "Show all"
 msgstr "显示全部"
 
 #. [components.ListView.showDetails]
 #. defaultMessage is:
-#. Show Details and More Options
+#. Show details and more options
 #: build/messages/components/ListView/ComponentInputs.json
-msgid "Show Details and More Options"
+#, fuzzy
+#| msgid "Show Details and More Options"
+msgid "Show details and more options"
 msgstr "显示详情及更多选项"
 
-#. [components.ListView.2354351315]
+#. [components.ListView.614182381]
 #. defaultMessage is:
-#. Show Less
+#. Show less
 #: build/messages/components/ListView/ComponentSummaryList.json
-msgid "Show Less"
+#, fuzzy
+#| msgid "Show Less"
+msgid "Show less"
 msgstr "显示更少"
 
 #. [components.ListView.imageSize] - A label for the size of an image file
@@ -1697,9 +1777,11 @@ msgstr "大小"
 
 #. [components.ListView.kebab]
 #. defaultMessage is:
-#. Source Actions
+#. Source actions
 #: build/messages/components/ListView/SourcesListItem.json
-msgid "Source Actions"
+#, fuzzy
+#| msgid "Source Actions"
+msgid "Source actions"
 msgstr "源操作"
 
 #. [components.Modal.sourcePath] - The path or url to the source repository
@@ -1757,11 +1839,13 @@ msgstr "开始"
 msgid "Stop"
 msgstr "停止"
 
-#. [components.Modal.1162993432]
+#. [components.Modal.154017637]
 #. defaultMessage is:
-#. Stop Build
+#. Stop build
 #: build/messages/components/Modal/StopBuild.json
-msgid "Stop Build"
+#, fuzzy
+#| msgid "Stop Build"
+msgid "Stop build"
 msgstr "停止构建"
 
 #. [components.ListView.imageStatusStopping] - Image build status when user selected to end the process
@@ -2093,11 +2177,13 @@ msgstr "类型 {sourceType}"
 msgid "URL"
 msgstr "URL"
 
-#. [components.ListView.3158548332]
+#. [components.ListView.4008580262]
 #. defaultMessage is:
-#. Undo Last Change
+#. Undo last change
 #: build/messages/components/ListView/BlueprintContents.json
-msgid "Undo Last Change"
+#, fuzzy
+#| msgid "Undo Last Change"
+msgid "Undo last change"
 msgstr "恢复最后的改变"
 
 #. [components.Modal.1458938618]
@@ -2109,9 +2195,11 @@ msgstr "更新"
 
 #. [components.Modal.update]
 #. defaultMessage is:
-#. Update Source
+#. Update source
 #: build/messages/components/Modal/ManageSources.json
-msgid "Update Source"
+#, fuzzy
+#| msgid "Update Source"
+msgid "Update source"
 msgstr "更新源"
 
 #. [components.Modal.562988552] - Identifies the change as a component that was updated
@@ -2202,9 +2290,11 @@ msgstr "上传类型"
 
 #. [pages.blueprint.userKebab]
 #. defaultMessage is:
-#. User Account Actions
+#. User account actions
 #: build/messages/pages/blueprint/index.json
-msgid "User Account Actions"
+#, fuzzy
+#| msgid "User Account Actions"
+msgid "User account actions"
 msgstr "用户账户操作"
 
 #. [components.Modal.529605439]
@@ -2478,6 +2568,13 @@ msgstr "创建系统镜像"
 #: public/manifest.json
 msgid "Image Builder"
 msgstr "镜像生成器"
+
+#~ msgid "Edit Description"
+#~ msgstr "编辑描述"
+
+# ctx::sourcefile::404 error page
+#~ msgid "Page Not Found"
+#~ msgstr "没有找到页"
 
 #~ msgid "Current Items"
 #~ msgstr "当前项"
