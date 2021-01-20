@@ -11,6 +11,8 @@ import AWSAuthStep from "./AWSAuthStep";
 import AWSDestinationStep from "./AWSDestinationStep";
 import AzureAuthStep from "./AzureAuthStep";
 import AzureDestinationStep from "./AzureDestinationStep";
+import VMWareAuthStep from "./VMWareAuthStep";
+import VMWareDestinationStep from "./VMWareDestinationStep";
 import ReviewStep from "./ReviewStep";
 import ImageStep from "./ImageStep";
 
@@ -140,6 +142,21 @@ class CreateImageUploadModal extends React.Component {
             showReviewStep: true,
           });
           break;
+        case "vmware":
+          this.setState({
+            uploadService,
+            uploadSettings: {
+              username: "",
+              password: "",
+              host: "",
+              cluster: "",
+              dataCenter: "",
+              dataStore: "",
+            },
+            showUploadVMWareStep: true,
+            showReviewStep: true,
+          });
+          break;
         default:
           break;
       }
@@ -227,6 +244,7 @@ class CreateImageUploadModal extends React.Component {
       uploadSettings: {},
       showUploadAwsStep: false,
       showUploadAzureStep: false,
+      showUploadVMWareStep: false,
       showReviewStep: false,
     });
   }
@@ -326,7 +344,7 @@ class CreateImageUploadModal extends React.Component {
 
   render() {
     const { formatMessage } = this.props.intl;
-    const { showUploadAwsStep, showUploadAzureStep, showReviewStep, uploadService } = this.state;
+    const { showUploadAwsStep, showUploadAzureStep, showUploadVMWareStep, showReviewStep, uploadService } = this.state;
 
     const imageStep = {
       name: <FormattedMessage defaultMessage="Image type" />,
@@ -399,6 +417,30 @@ class CreateImageUploadModal extends React.Component {
       steps: [azureUploadAuth, azureUploadDest],
     };
 
+    const vmwareUploadAuth = {
+      name: <FormattedMessage defaultMessage="Authentication" />,
+      component: (
+        <VMWareAuthStep uploadSettings={this.state.uploadSettings} setUploadSettings={this.setUploadSettings} />
+      ),
+    };
+
+    const vmwareUploadDest = {
+      name: <FormattedMessage defaultMessage="Destination" />,
+      component: (
+        <VMWareDestinationStep
+          imageName={this.state.imageName}
+          uploadSettings={this.state.uploadSettings}
+          setImageName={this.setImageName}
+          setUploadSettings={this.setUploadSettings}
+        />
+      ),
+    };
+
+    const vmwareUploadStep = {
+      name: <FormattedMessage defaultMessage="Upload to VMWare" />,
+      steps: [vmwareUploadAuth, vmwareUploadDest],
+    };
+
     const reviewStep = {
       name: <FormattedMessage defaultMessage="Review" />,
       component: (
@@ -420,6 +462,7 @@ class CreateImageUploadModal extends React.Component {
       imageStep,
       ...(showUploadAwsStep ? [awsUploadStep] : []),
       ...(showUploadAzureStep ? [azureUploadStep] : []),
+      ...(showUploadVMWareStep ? [vmwareUploadStep] : []),
       ...(showReviewStep ? [reviewStep] : []),
     ];
 
