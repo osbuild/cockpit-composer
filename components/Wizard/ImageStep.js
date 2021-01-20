@@ -87,6 +87,9 @@ const messages = defineMessages({
   uploadAzure: {
     defaultMessage: "Upload to Azure",
   },
+  uploadVMWare: {
+    defaultMessage: "Upload to VMWare",
+  },
 });
 
 class ImageStep extends React.PureComponent {
@@ -267,7 +270,7 @@ class ImageStep extends React.PureComponent {
             bodyContent={
               <FormattedMessage
                 defaultMessage="
-                      Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete 
+                      Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete
                       and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
                       "
                 values={{
@@ -304,6 +307,41 @@ class ImageStep extends React.PureComponent {
           onChange={handleUploadService}
           label={formatMessage(messages.uploadAzure)}
           id="azure-checkbox"
+        />
+      </FormGroup>
+    );
+
+    const vmwareProviderCheckbox = (
+      <FormGroup
+        label={<FormattedMessage defaultMessage="Upload image" />}
+        labelIcon={
+          <Popover
+            id="popover-help"
+            bodyContent={
+              <FormattedMessage
+                defaultMessage="
+                      Image Builder can upload images you create to VMWare vSphere.
+                      When the image build is complete and the upload action is successful,
+                      the image file is available in the Cluster on the vSphere instance that you specified.
+                      "
+              />
+            }
+            aria-label={formatMessage(ariaLabels.uploadImage)}
+          >
+            <Button variant="plain" aria-label={formatMessage(ariaLabels.uploadImage)}>
+              <OutlinedQuestionCircleIcon className="cc-c-text__align-icon" id="popover-icon" />
+            </Button>
+          </Popover>
+        }
+        fieldId="vmware-checkbox"
+        hasNoPaddingTop
+      >
+        <Checkbox
+          value="vmware"
+          isChecked={uploadService === "vmware"}
+          onChange={handleUploadService}
+          label={formatMessage(messages.uploadVMWare)}
+          id="vmware-checkbox"
         />
       </FormGroup>
     );
@@ -468,6 +506,7 @@ class ImageStep extends React.PureComponent {
           </FormGroup>
           {imageType === "ami" && awsProviderCheckbox}
           {imageType === "vhd" && azureProviderCheckbox}
+          {imageType === "vmdk" && vmwareProviderCheckbox}
           {requiresImageSize(imageType) && imageSizeInput}
           {(imageType === "fedora-iot-commit" || imageType === "rhel-edge-commit") && ostreeFields}
         </Form>

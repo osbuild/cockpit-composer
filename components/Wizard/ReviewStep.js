@@ -27,6 +27,9 @@ const ariaLabels = defineMessages({
   azure: {
     defaultMessage: "Azure help",
   },
+  vmware: {
+    defaultMessage: "VMWare help",
+  },
   processLength: {
     defaultMessage: "Process length help",
   },
@@ -183,7 +186,7 @@ class ReviewStep extends React.PureComponent {
             bodyContent={
               <FormattedMessage
                 defaultMessage="
-                      Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete 
+                      Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete
                       and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
                       "
                 values={{
@@ -230,6 +233,64 @@ class ReviewStep extends React.PureComponent {
             <FormattedMessage defaultMessage="Storage container" />
           </TextListItem>
           <TextListItem component={TextListItemVariants.dd}>{uploadSettings.container}</TextListItem>
+        </TextList>
+      </TextContent>
+    );
+
+    const vmwareReviewStep = uploadService === "vmware" && (
+      <TextContent id="vmware-content">
+        <div className="pf-l-flex pf-u-display-flex">
+          <h3 className="pf-l-flex__item pf-u-mt-2xl pf-u-mb-md">
+            <FormattedMessage defaultMessage="Upload to VMWare" />
+          </h3>
+          <Popover
+            className="pf-l-flex__item"
+            id="vmware-review-popover"
+            bodyContent={
+              <FormattedMessage
+                defaultMessage="
+                      Image Builder can upload images you create to VMWare vSphere.
+                      When the image build is complete and the upload action is successful,
+                      the image file is available in the Cluster on the vSphere instance that you specified.
+                      "
+              />
+            }
+            aria-label={formatMessage(ariaLabels.vmware)}
+          >
+            <Button variant="plain" aria-label={formatMessage(ariaLabels.vmware)}>
+              <OutlinedQuestionCircleIcon id="popover-icon" />
+            </Button>
+          </Popover>
+        </div>
+        <TextList className="cc-m-column__fixed-width" component={TextListVariants.dl}>
+          <TextListItem component={TextListItemVariants.dt}>
+            <FormattedMessage defaultMessage="Host" />
+          </TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>{uploadSettings.host}</TextListItem>
+          <TextListItem component={TextListItemVariants.dt}>
+            <FormattedMessage defaultMessage="Username" />
+          </TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>{uploadSettings.username}</TextListItem>
+          <TextListItem component={TextListItemVariants.dt}>
+            <FormattedMessage defaultMessage="Password" />
+          </TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>{"*".repeat(uploadSettings.password.length)}</TextListItem>
+          <TextListItem component={TextListItemVariants.dt}>
+            <FormattedMessage defaultMessage="Image name" />
+          </TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>{imageName}</TextListItem>
+          <TextListItem component={TextListItemVariants.dt}>
+            <FormattedMessage defaultMessage="Cluster" />
+          </TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>{uploadSettings.cluster}</TextListItem>
+          <TextListItem component={TextListItemVariants.dt}>
+            <FormattedMessage defaultMessage="Data Center" />
+          </TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>{uploadSettings.dataCenter}</TextListItem>
+          <TextListItem component={TextListItemVariants.dt}>
+            <FormattedMessage defaultMessage="Data Store" />
+          </TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>{uploadSettings.dataStore}</TextListItem>
         </TextList>
       </TextContent>
     );
@@ -289,6 +350,7 @@ class ReviewStep extends React.PureComponent {
         </TextContent>
         {awsReviewStep}
         {azureReviewStep}
+        {vmwareReviewStep}
       </>
     );
   }
