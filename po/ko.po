@@ -36,7 +36,7 @@ msgstr "블루프린트 이름이 필요합니다."
 msgid ""
 "A minimal image will be created with only the packages needed to support the "
 "selected image type."
-msgstr ""
+msgstr "선택한 이미지 유형을 지원하는 데 필요한 패키지만 사용하여 최소 이미지를 생성합니다."
 
 #. [components.Modal.2310857819]
 #. defaultMessage is:
@@ -109,7 +109,7 @@ msgstr "액세스 키 ID 도움말"
 #, fuzzy
 #| msgid "Access key ID"
 msgid "Access keys"
-msgstr "액세스 키 ID"
+msgstr "액세스 키"
 
 #. [components.ListView.imageActions] - A label for the menu that displays the actions available
 #. defaultMessage is:
@@ -217,9 +217,7 @@ msgstr "오류가 발생했습니다"
 msgid ""
 "An error occurred when saving the source. Check that the path is valid and "
 "try again."
-msgstr ""
-"소스를 저장할 때 오류가 발생했습니다. 경로가 유효한지 확인한 후 다시 시도해 "
-"보십시오."
+msgstr "소스를 저장할 때 오류가 발생했습니다. 경로가 유효한지 확인한 후 다시 시도해 보십시오."
 
 #. [components.ListView.emptyStateErrorMessage]
 #. defaultMessage is:
@@ -295,7 +293,7 @@ msgstr "사용 가능한 구성 요소"
 #, fuzzy
 #| msgid "AWS help"
 msgid "Azure help"
-msgstr "AWS 도움말"
+msgstr "Azure 도움말"
 
 #. [components.Wizard.1347475195]
 #. defaultMessage is:
@@ -329,7 +327,7 @@ msgstr "{blueprint}로 되돌아 가기"
 #. Blob service
 #: build/messages/components/Wizard/AzureDestinationStep.json
 msgid "Blob service"
-msgstr ""
+msgstr "Blob 서비스"
 
 #. [components.Modal.1281198655]
 #. defaultMessage is:
@@ -368,18 +366,14 @@ msgstr "블루프린트 구성 요소"
 #. Blueprint names cannot contain spaces or the character: {invalidChar}
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "Blueprint names cannot contain spaces or the character: {invalidChar}"
-msgstr ""
-"블루프린트 이름에 공백이나 다음과 같은 문자를 사용할 수 없습니다: "
-"{invalidChar}"
+msgstr "블루프린트 이름에 공백이나 다음과 같은 문자를 사용할 수 없습니다: {invalidChar}"
 
 #. [components.Modal.1134732033]
 #. defaultMessage is:
 #. Blueprint names cannot contain spaces or the characters: {invalidChar}
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "Blueprint names cannot contain spaces or the characters: {invalidChar}"
-msgstr ""
-"블루프린트 이름에 공백이나 다음과 같은 문자를 사용할 수 없습니다: "
-"{invalidChar}"
+msgstr "블루프린트 이름에 공백이나 다음과 같은 문자를 사용할 수 없습니다: {invalidChar}"
 
 #. [components.Modal.2803906810]
 #. defaultMessage is:
@@ -413,12 +407,10 @@ msgstr "블루프린트"
 #. defaultMessage is:
 #. Browse or search for components, then add them to the blueprint. Or leave the blueprint empty to create a minimal image.
 #: build/messages/pages/blueprintEdit/index.json
-#, fuzzy
-#| msgid "Browse or search for components, then add them to the blueprint."
 msgid ""
 "Browse or search for components, then add them to the blueprint. Or leave "
 "the blueprint empty to create a minimal image."
-msgstr "구성 요소를 찾아 보거나 검색 한 다음 블루프린트에 추가하십시오."
+msgstr "구성 요소를 찾아보거나 검색한 다음 블루프린트에 추가합니다. 또는 최소 이미지를 생성하려면 블루프린트를 비워 두십시오."
 
 #. [components.Form.cancel]
 #. defaultMessage is:
@@ -473,9 +465,7 @@ msgstr "이전 세션에서 변경한 내용"
 msgid ""
 "Changes made in a previous session are not listed in the order they were "
 "made. If you choose to undo these changes, they are undone as a group."
-msgstr ""
-"이전 세션에서 변경한 사항은 변경된 순서대로 나열되지 않습니다. 이러한 변경 사"
-"항을 실행 취소하면 그룹으로 실행 취소됩니다."
+msgstr "이전 세션에서 변경한 사항은 변경된 순서대로 나열되지 않습니다. 이러한 변경 사항을 실행 취소하면 그룹으로 실행 취소됩니다."
 
 #. [components.Modal.92001050]
 #. defaultMessage is:
@@ -640,9 +630,7 @@ msgstr "생성"
 msgid ""
 "Create a blueprint to define the contents that will be included in the "
 "images you create. Images can be produced in a variety of output formats."
-msgstr ""
-"생성한 이미지에 포함할 내용을 정의하기 위해 블루프린트를 만듭니다. 이미지는 "
-"다양한 출력 형식으로 생성할 수 있습니다."
+msgstr "생성한 이미지에 포함할 내용을 정의하기 위해 블루프린트를 만듭니다. 이미지는 다양한 출력 형식으로 생성할 수 있습니다."
 
 #. [components.Wizard.1723482220]
 #. defaultMessage is:
@@ -781,10 +769,8 @@ msgstr "설명"
 #. defaultMessage is:
 #. Details
 #: build/messages/components/ListView/ComponentDetailsView.json
-#, fuzzy
-#| msgid "details"
 msgid "Details"
-msgstr "상세 정보"
+msgstr "세부 정보"
 
 # translation auto-copied from project Customer Portal Translations, version PortalCaseManagementStrings, document PortalCaseManagementStrings, author eukim
 #. [pages.blueprintEdit.1469729075]
@@ -1019,12 +1005,8 @@ msgid ""
 "When the image build is complete \n"
 "                      and the upload action is successful, the image file is "
 "available in the Storage account and Blob container that you specified."
-msgstr ""
-"이미지 빌더는 생성한 이미지를 AWS의 {bucket}에 업로드한 다음 EC2로 가져올 수 "
-"있습니다. 이미지 빌드가 완료되고\n"
-"                       업로드 작업이 성공하면 EC2의 AMI 섹션에서 이미지 파일"
-"을 사용할 수 있습니다. 이미지를 업로드하는 데\n"
-"                      필요한 대부분의 값은 {console}에 있습니다."
+msgstr "Image Builder는 사용자가 생성한 이미지를 {azure}의 Blob 컨테이너에 업로드할 수 있습니다. 이미지 빌드가 완료되고 \n"
+"              업로드 작업이 성공하면 지정한 스토리지 계정 및 Blob 컨테이너에서 이미지 파일을 사용할 수 있습니다."
 
 #. [components.Wizard.1007547894]
 #. defaultMessage is:
@@ -1347,7 +1329,7 @@ msgstr "검색 기준과 일치하는 결과가 없습니다"
 #, fuzzy
 #| msgid "AWS region help"
 msgid "OSTree parent help"
-msgstr "AWS 리전 도움말"
+msgstr "OSTree 상위 도움말"
 
 #. [components.Wizard.ostreeRef]
 #. defaultMessage is:
@@ -1356,7 +1338,7 @@ msgstr "AWS 리전 도움말"
 #, fuzzy
 #| msgid "AWS region help"
 msgid "OSTree ref help"
-msgstr "AWS 리전 도움말"
+msgstr "OSTree ref 도움말"
 
 #. [components.Modal.1475836573]
 #. defaultMessage is:
@@ -1394,7 +1376,7 @@ msgstr "페이지를 찾을 수 없음"
 #. Parent commit
 #: build/messages/components/Wizard/ImageStep.json
 msgid "Parent commit"
-msgstr ""
+msgstr "상위 커밋"
 
 #. [components.Modal.createPasswordOne]
 #. defaultMessage is:
@@ -1452,9 +1434,7 @@ msgstr "이미지 파일을 업로드하는데 사용할 파일 이름을 제공
 msgid ""
 "Provide the AWS Region where you want to import your image. This must be the "
 "same region where the {bucket} exists."
-msgstr ""
-"이미지를 가져올 AWS 리전을 제공하십시오. 이는 {bucket}이 위치한 리전과 동일해"
-"야 합니다."
+msgstr "이미지를 가져올 AWS 리전을 제공하십시오. 이는 {bucket}이 위치한 리전과 동일해야 합니다."
 
 #. [components.Wizard.517158149]
 #. defaultMessage is:
@@ -1466,7 +1446,8 @@ msgid ""
 "find containers under the {blobService} \n"
 "                    section of a storage account. You can find storage "
 "accounts on the {storageAccounts} page in the {azure} portal."
-msgstr ""
+msgstr "이미지 파일을 업로드할 Blob 컨테이너를 제공합니다. 스토리지 계정의 {blobService}에서 컨테이너를 찾을 수 있습니다. \n"
+"                    스토리지 계정은 {azure} 포털의 {storageAccounts} 페이지에서 찾을 수 있습니다."
 
 #. [components.Wizard.1099888225]
 #. defaultMessage is:
@@ -1475,7 +1456,7 @@ msgstr ""
 msgid ""
 "Provide the ID of the latest commit in the updates repository for which this "
 "commit provides an update."
-msgstr ""
+msgstr "이 커밋이 업데이트를 제공하는 업데이트 저장소에서 최신 커밋의 ID를 제공합니다."
 
 #. [components.Wizard.1901372247]
 #. defaultMessage is:
@@ -1499,13 +1480,9 @@ msgid ""
 "you want to import your image. You can find a list of {buckets} on the\n"
 "                        {bucketsPage} page in the {amazon} S3 storage "
 "service in the AWS console."
-msgstr ""
-"EC2로 가져 오기 전에 이미지 파일을 업로드해야 하는 S3 {bucket} 이름을 지정하"
-"십시오. \n"
-"                          이미지를 가져 오려는 리전에 {bucket}이/가 이미 존재"
-"해야 합니다. {buckets} 목록은\n"
-"                           AWS 콘솔의 {amazon} S3 스토리지 서비스에 있는 "
-"{bucketsPage} 페이지에 있습니다."
+msgstr "EC2로 가져 오기 전에 이미지 파일을 업로드해야 하는 S3 {bucket} 이름을 지정하십시오. \n"
+"                          이미지를 가져 오려는 리전에 {bucket}이/가 이미 존재해야 합니다. {buckets} 목록은\n"
+"                           AWS 콘솔의 {amazon} S3 스토리지 서비스에 있는 {bucketsPage} 페이지에 있습니다."
 
 #. [components.Wizard.2706552502]
 #. defaultMessage is:
@@ -1517,7 +1494,8 @@ msgid ""
 "access key on the {accessKeys} \n"
 "                        page of the storage account. You can find storage "
 "accounts on the {storageAccounts} page in the {azure} portal."
-msgstr ""
+msgstr "원하는 스토리지 계정에 대한 액세스 키를 제공합니다. 액세스 키는 스토리지 계정의 {accessKeys} 페이지에서 찾을 수 있습니다. \n"
+"                        스토리지 계정은  {azure} 포털의 {storageAccounts} 페이지에서 찾을 수 있습니다."
 
 #. [components.Wizard.1434969769]
 #. defaultMessage is:
@@ -1526,7 +1504,7 @@ msgstr ""
 msgid ""
 "Provide the name of a storage account. You can find storage accounts on the "
 "{storageAccounts} page in the {azure} portal."
-msgstr ""
+msgstr "스토리지 계정의 이름을 제공하십시오. 스토리지 계정은 {azure} 포털의 {azure} 페이지에서 찾을 수 있습니다."
 
 #. [components.Wizard.1476874820]
 #. defaultMessage is:
@@ -1535,14 +1513,14 @@ msgstr ""
 msgid ""
 "Provide the name of the branch for the content. If the ref does not already "
 "exist it will be created."
-msgstr ""
+msgstr "콘텐츠의 분기 이름을 제공합니다. ref가 아직 존재하지 않으면 생성됩니다."
 
 #. [components.Wizard.31026111]
 #. defaultMessage is:
 #. Ref
 #: build/messages/components/Wizard/ImageStep.json
 msgid "Ref"
-msgstr ""
+msgstr "Ref"
 
 #. [components.ListView.423140743]
 #. defaultMessage is:
@@ -1649,9 +1627,7 @@ msgstr ""
 msgid ""
 "Review the information below and click Finish to create the image and "
 "complete the tasks that were selected."
-msgstr ""
-"아래 정보를 검토하고 완료를 클릭하여 이미지를 작성하고 선택한 작업을 완료하십"
-"시오."
+msgstr "아래 정보를 검토하고 완료를 클릭하여 이미지를 작성하고 선택한 작업을 완료하십시오."
 
 #. [components.Modal.106035384]
 #. defaultMessage is:
@@ -1777,9 +1753,7 @@ msgid ""
 "Set the size that you want the image to be when instantiated. The total "
 "package size and target destination of your image should be considered when "
 "setting the image size."
-msgstr ""
-"인스턴스화할 때 이미지의 크기를 설정하십시오. 이미지 크기를 설정할 때 이미지"
-"의 소프트웨어 패키지의 전체 크기 및 이미지 대상 위치를 고려해야합니다."
+msgstr "인스턴스화할 때 이미지의 크기를 설정하십시오. 이미지 크기를 설정할 때 이미지의 소프트웨어 패키지의 전체 크기 및 이미지 대상 위치를 고려해야합니다."
 
 #. [components.ListView.4147597655]
 #. defaultMessage is:
@@ -1847,10 +1821,7 @@ msgid ""
 "images. When adding custom sources you must make sure that the packages in "
 "the source do not conflict with any other package sources, otherwise "
 "resolving dependencies and composing images will fail."
-msgstr ""
-"블루프린트 종속성을 해결하고 이미지를 조합하기 위한 소스입니다. 사용자 정의 "
-"소스를 추가할 때 소스의 패키지가 다른 패키지 소스와 충돌하지 않도록 합니다. "
-"그렇지 않으면 종속성을 해결하고 이미지를 구성할 때 오류가 발생합니다."
+msgstr "블루프린트 종속성을 해결하고 이미지를 조합하기 위한 소스입니다. 사용자 정의 소스를 추가할 때 소스의 패키지가 다른 패키지 소스와 충돌하지 않도록 합니다. 그렇지 않으면 종속성을 해결하고 이미지를 구성할 때 오류가 발생합니다."
 
 #. [components.Modal.540971304]
 #. defaultMessage is:
@@ -1914,7 +1885,7 @@ msgstr "스토리지 액세스 키"
 #, fuzzy
 #| msgid "Storage access key"
 msgid "Storage access key help"
-msgstr "스토리지 액세스 키"
+msgstr "스토리지 액세스 키 도움말"
 
 #. [components.Wizard.1624497518]
 #. defaultMessage is:
@@ -1934,7 +1905,7 @@ msgstr "스토리지 계정"
 #, fuzzy
 #| msgid "Storage account"
 msgid "Storage account help"
-msgstr "스토리지 계정"
+msgstr "스토리지 계정 도움말"
 
 #. [components.Wizard.storageAccounts]
 #. defaultMessage is:
@@ -2019,7 +1990,7 @@ msgstr "{name} 이름이 이미 있습니다."
 msgid ""
 "The packages needed to support the selected image type are automatically "
 "included when creating an image."
-msgstr ""
+msgstr "선택한 이미지 유형을 지원하는 데 필요한 패키지는 이미지를 만들 때 자동으로 포함됩니다."
 
 #. [pages.error.26562577]
 #. defaultMessage is:
@@ -2047,9 +2018,7 @@ msgstr "osbuild-composer 서비스가 시작되지 않았습니다."
 msgid ""
 "The size specified is large. We recommend that you check whether your target "
 "destination has any restrictions on image size."
-msgstr ""
-"지정된 크기가 큽니다. 대상 위치에 이미지 크기에 대한 제한이 있는지 확인하는 "
-"것이 좋습니다."
+msgstr "지정된 크기가 큽니다. 대상 위치에 이미지 크기에 대한 제한이 있는지 확인하는 것이 좋습니다."
 
 #. [components.Modal.2405281428]
 #. defaultMessage is:
@@ -2081,9 +2050,7 @@ msgstr "암호로 입력한 값이 일치하지 않습니다."
 msgid ""
 "There are no components listed in the blueprint. Edit the blueprint to add "
 "components."
-msgstr ""
-"블루프린트에 나열된 구성 요소가 없습니다. 블루프린트를 편집하여 구성 요소를 "
-"추가하십시오."
+msgstr "블루프린트에 나열된 구성 요소가 없습니다. 블루프린트를 편집하여 구성 요소를 추가하십시오."
 
 #. [components.Wizard.warningReview]
 #. defaultMessage is:
@@ -2110,9 +2077,7 @@ msgstr "이 작업은 실행 취소할 수 없습니다."
 msgid ""
 "This blueprint has changes that are not committed. These changes will be "
 "committed before the image is created."
-msgstr ""
-"이 블루프린트에는 커밋되지 않은 변경 사항이 있습니다. 이러한 변경 사항은 이미"
-"지가 작성되기 전에 커밋됩니다."
+msgstr "이 블루프린트에는 커밋되지 않은 변경 사항이 있습니다. 이러한 변경 사항은 이미지가 작성되기 전에 커밋됩니다."
 
 #. [empty-blueprint-alert]
 #. defaultMessage is:
@@ -2146,9 +2111,7 @@ msgstr ""
 msgid ""
 "This process can take a while. Images are built in the order they are "
 "started."
-msgstr ""
-"이 프로세스는 몇 분 정도 시간이 걸릴 수 있습니다. 이미지는 시작된 순서대로 빌"
-"드됩니다."
+msgstr "이 프로세스는 몇 분 정도 시간이 걸릴 수 있습니다. 이미지는 시작된 순서대로 빌드됩니다."
 
 #. [components.Modal.2969976976]
 #. defaultMessage is:
@@ -2185,10 +2148,8 @@ msgid ""
 "ensure that the image can\n"
 "                        be imported from the S3 {bucket} into EC2. For more "
 "details, refer to the {role}."
-msgstr ""
-"이 업로드 과정에는 {vmimport}라는 {iam} 역할이 있어야\n"
-"                      S3{bucket}에서 EC2로 이미지를 가져올 수 있습니다. 자세"
-"한 내용은 {role}에서 참조하십시오."
+msgstr "이 업로드 과정에는 {vmimport}라는 {iam} 역할이 있어야\n"
+"                      S3{bucket}에서 EC2로 이미지를 가져올 수 있습니다. 자세한 내용은 {role}에서 참조하십시오."
 
 #. [components.Modal.3707489178]
 #. defaultMessage is:
@@ -2330,7 +2291,7 @@ msgstr "업로드 보류 중"
 #, fuzzy
 #| msgid "Upload to Azure"
 msgid "Upload to AWS"
-msgstr "Azure에 업로드"
+msgstr "AWS에 업로드"
 
 #. [components.Wizard.2244258572]
 #. defaultMessage is:
@@ -2384,9 +2345,7 @@ msgstr "사용자"
 msgid ""
 "Valid characters for hostname are letters from a to z, the digits from 0 to "
 "9, and the hyphen (-). A hostname may not start with a hyphen."
-msgstr ""
-"호스트 이름으로 a~z 문자 0~9의 숫자 및 하이픈 (-)을 사용할 수 있습니다. 하이"
-"픈으로 시작하는 호스트 이름을 사용할 수 없습니다."
+msgstr "호스트 이름으로 a~z 문자 0~9의 숫자 및 하이픈 (-)을 사용할 수 있습니다. 하이픈으로 시작하는 호스트 이름을 사용할 수 없습니다."
 
 #. [components.Wizard.ostreeRefHelperText]
 #. defaultMessage is:
@@ -2433,8 +2392,7 @@ msgstr "보기"
 msgid ""
 "You can create and find existing Access key IDs on the {iam} page in the AWS "
 "console."
-msgstr ""
-"AWS 콘솔의 {iam}페이지에서 기존 액세스 키 ID를 만들고 찾을 수 있습니다."
+msgstr "AWS 콘솔의 {iam}페이지에서 기존 액세스 키 ID를 만들고 찾을 수 있습니다."
 
 #. [components.Wizard.4206409720]
 #. defaultMessage is:
@@ -2443,9 +2401,7 @@ msgstr ""
 msgid ""
 "You can view the Secret access key only when you create a new Access key ID "
 "on the {iam} page in the AWS console."
-msgstr ""
-"AWS 콘솔의 {iam}페이지에서 새 액세스 키 ID를 생성할 때만 비밀 액세스 키를 볼 "
-"수 있습니다."
+msgstr "AWS 콘솔의 {iam}페이지에서 새 액세스 키 ID를 생성할 때만 비밀 액세스 키를 볼 수 있습니다."
 
 #. [components.ListView.actions]
 #. defaultMessage is:
@@ -2620,8 +2576,7 @@ msgstr "{heading} {parenthetical}"
 #: build/messages/pages/blueprintEdit/index.json
 msgid ""
 "{pendingChanges, plural, one {# Pending Change} other {# Pending Changes}}"
-msgstr ""
-"{pendingChanges, plural, one {# Pending Change} other {# Pending Changes}}"
+msgstr "{pendingChanges, plural, one {# Pending Change} other {# Pending Changes}}"
 
 #. [pages.blueprintEdit.3140434516]
 #. defaultMessage is:
@@ -2675,10 +2630,3 @@ msgstr "이미지 빌더"
 #~ msgid "Password is too weak"
 #~ msgstr "암호가 너무 취약합니다"
 
-#~ msgid "1 build is in progress"
-#~ msgstr "1 개의 빌드가 진행 중입니다."
-
-#~ msgid ""
-#~ "{builds, plural, one {# build is waiting} other {# builds are waiting}}"
-#~ msgstr ""
-#~ "{builds, plural, one {# build is waiting} other {# builds are waiting}}"

@@ -466,9 +466,7 @@ msgstr "在前一个会话中做的修改"
 msgid ""
 "Changes made in a previous session are not listed in the order they were "
 "made. If you choose to undo these changes, they are undone as a group."
-msgstr ""
-"在前一个会话中所做的修改不会以修改的顺序列出。如果您选择取消这些修改，它们会"
-"做为一个组来取消。"
+msgstr "在前一个会话中所做的修改不会以修改的顺序列出。如果您选择取消这些修改，它们会做为一个组来取消。"
 
 #. [components.Modal.92001050]
 #. defaultMessage is:
@@ -633,8 +631,7 @@ msgstr "创建"
 msgid ""
 "Create a blueprint to define the contents that will be included in the "
 "images you create. Images can be produced in a variety of output formats."
-msgstr ""
-"创建蓝图来定义将要包括在所创建镜像中的内容。镜像可以被创建为不同的输出格式。"
+msgstr "创建蓝图来定义将要包括在所创建镜像中的内容。镜像可以被创建为不同的输出格式。"
 
 #. [components.Wizard.1723482220]
 #. defaultMessage is:
@@ -1596,7 +1593,6 @@ msgstr "删除源"
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "Required information is missing."
 msgstr "缺少需要的信息。"
-
 #. [components.Wizard.3835894881]
 #. defaultMessage is:
 #. Review
@@ -1737,9 +1733,7 @@ msgid ""
 "Set the size that you want the image to be when instantiated. The total "
 "package size and target destination of your image should be considered when "
 "setting the image size."
-msgstr ""
-"设置实例化时镜像的大小。在设置镜像大小时，应考虑软件包的总大小以及镜像的目标"
-"位置。"
+msgstr "设置实例化时镜像的大小。在设置镜像大小时，应考虑软件包的总大小以及镜像的目标位置。"
 
 #. [components.ListView.4147597655]
 #. defaultMessage is:
@@ -1807,9 +1801,7 @@ msgid ""
 "images. When adding custom sources you must make sure that the packages in "
 "the source do not conflict with any other package sources, otherwise "
 "resolving dependencies and composing images will fail."
-msgstr ""
-"用来解决蓝图依赖性以及组装镜像的源。当添加自定义的源时，需要确保源中的软件包"
-"与其他的软件包源没有冲突，否则解决依赖性并组装镜像时会出错。"
+msgstr "用来解决蓝图依赖性以及组装镜像的源。当添加自定义的源时，需要确保源中的软件包与其他的软件包源没有冲突，否则解决依赖性并组装镜像时会出错。"
 
 #. [components.Modal.540971304]
 #. defaultMessage is:
@@ -2122,8 +2114,7 @@ msgid ""
 "ensure that the image can\n"
 "                        be imported from the S3 {bucket} into EC2. For more "
 "details, refer to the {role}."
-msgstr ""
-"这个上传过程需要您有一个名为 {vmimport} 的 {iam} 角色，以确保镜像可以\n"
+msgstr "这个上传过程需要您有一个名为 {vmimport} 的 {iam} 角色，以确保镜像可以\n"
 "                      从 S3 {bucket} 导入到 EC2。更多信息请参阅 {role}。"
 
 #. [components.Modal.3707489178]
@@ -2318,8 +2309,7 @@ msgstr "用户"
 msgid ""
 "Valid characters for hostname are letters from a to z, the digits from 0 to "
 "9, and the hyphen (-). A hostname may not start with a hyphen."
-msgstr ""
-"主机名只能包括字母 a 到 z、数字 0 到 9、短横线 (-)。主机名不能以短横线开始。"
+msgstr "主机名只能包括字母 a 到 z、数字 0 到 9、短横线 (-)。主机名不能以短横线开始。"
 
 #. [components.Wizard.ostreeRefHelperText]
 #. defaultMessage is:
@@ -2374,9 +2364,7 @@ msgstr "您可以在 AWS 控制台的 {iam} 页面中创建并找到现有的访
 msgid ""
 "You can view the Secret access key only when you create a new Access key ID "
 "on the {iam} page in the AWS console."
-msgstr ""
-"仅当您在 AWS 控制台中的 {iam} 页面中创建新的访问密钥 ID 时，才能查看秘密访问"
-"密钥。"
+msgstr "仅当您在 AWS 控制台中的 {iam} 页面中创建新的访问密钥 ID 时，才能查看秘密访问密钥。"
 
 #. [components.ListView.actions]
 #. defaultMessage is:
@@ -2551,8 +2539,7 @@ msgstr "{heading} {parenthetical}"
 #: build/messages/pages/blueprintEdit/index.json
 msgid ""
 "{pendingChanges, plural, one {# Pending Change} other {# Pending Changes}}"
-msgstr ""
-"{pendingChanges, plural, one {# Pending Change} 其他 {# Pending Changes}}"
+msgstr "{pendingChanges, plural, one {# Pending Change} 其他 {# Pending Changes}}"
 
 #. [pages.blueprintEdit.3140434516]
 #. defaultMessage is:
@@ -2606,9 +2593,3 @@ msgstr "镜像生成器"
 #~ msgid "Password is too weak"
 #~ msgstr "密码太弱"
 
-#~ msgid "1 build is in progress"
-#~ msgstr "1 构建进行中"
-
-#~ msgid ""
-#~ "{builds, plural, one {# build is waiting} other {# builds are waiting}}"
-#~ msgstr "其他"

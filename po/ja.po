@@ -221,9 +221,7 @@ msgstr "エラーが発生しました"
 msgid ""
 "An error occurred when saving the source. Check that the path is valid and "
 "try again."
-msgstr ""
-"ソースを保存する際にエラーが発生しました。パスが有効かどうか確認し、再試行し"
-"てください。"
+msgstr "ソースを保存する際にエラーが発生しました。パスが有効かどうか確認し、再試行してください。"
 
 #. [components.ListView.emptyStateErrorMessage]
 #. defaultMessage is:
@@ -370,18 +368,14 @@ msgstr "ブループリントコンポーネント"
 #. Blueprint names cannot contain spaces or the character: {invalidChar}
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "Blueprint names cannot contain spaces or the character: {invalidChar}"
-msgstr ""
-"ブループリント名には、スペースや以下の文字を含めることはできません: "
-"{invalidChar}"
+msgstr "ブループリント名には、スペースや以下の文字を含めることはできません: {invalidChar}"
 
 #. [components.Modal.1134732033]
 #. defaultMessage is:
 #. Blueprint names cannot contain spaces or the characters: {invalidChar}
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "Blueprint names cannot contain spaces or the characters: {invalidChar}"
-msgstr ""
-"ブループリント名には、スペースや以下の文字を含めることはできません: "
-"{invalidChar}"
+msgstr "ブループリント名には、スペースや以下の文字を含めることはできません: {invalidChar}"
 
 #. [components.Modal.2803906810]
 #. defaultMessage is:
@@ -395,16 +389,14 @@ msgstr "ブループリントには、スペースを含めることはできま
 #. Blueprint names cannot contain the character: {invalidChar}
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "Blueprint names cannot contain the character: {invalidChar}"
-msgstr ""
-"ブループリント名には、以下の文字を含めることはできません: {invalidChar}"
+msgstr "ブループリント名には、以下の文字を含めることはできません: {invalidChar}"
 
 #. [components.Modal.3918401128]
 #. defaultMessage is:
 #. Blueprint names cannot contain the characters: {invalidChar}
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "Blueprint names cannot contain the characters: {invalidChar}"
-msgstr ""
-"ブループリント名には、以下の文字を含めることはできません: {invalidChar}"
+msgstr "ブループリント名には、以下の文字を含めることはできません: {invalidChar}"
 
 #. [pages.blueprints.blueprintsTitle]
 #. defaultMessage is:
@@ -477,9 +469,7 @@ msgstr "前回のセッションでの変更点"
 msgid ""
 "Changes made in a previous session are not listed in the order they were "
 "made. If you choose to undo these changes, they are undone as a group."
-msgstr ""
-"前回のセッションでの変更点は、変更順に表示されていません。これらの変更点を元"
-"に戻す場合は、グループとして戻します。"
+msgstr "前回のセッションでの変更点は、変更順に表示されていません。これらの変更点を元に戻す場合は、グループとして戻します。"
 
 #. [components.Modal.92001050]
 #. defaultMessage is:
@@ -644,9 +634,7 @@ msgstr "作成"
 msgid ""
 "Create a blueprint to define the contents that will be included in the "
 "images you create. Images can be produced in a variety of output formats."
-msgstr ""
-"作成するイメージに含むコンテンツを定義するためにブループリントを作成します。"
-"イメージは、様々な出力フォーマットで作成可能です。"
+msgstr "作成するイメージに含むコンテンツを定義するためにブループリントを作成します。イメージは、様々な出力フォーマットで作成可能です。"
 
 #. [components.Wizard.1723482220]
 #. defaultMessage is:
@@ -1434,9 +1422,7 @@ msgstr "アップロードするイメージファイルに使用するファイ
 msgid ""
 "Provide the AWS Region where you want to import your image. This must be the "
 "same region where the {bucket} exists."
-msgstr ""
-"イメージをインポートする AWS リージョンを指定します。これは、{bucket} が存在"
-"するリージョンと同じである必要があります。"
+msgstr "イメージをインポートする AWS リージョンを指定します。これは、{bucket} が存在するリージョンと同じである必要があります。"
 
 #. [components.Wizard.517158149]
 #. defaultMessage is:
@@ -1479,13 +1465,9 @@ msgid ""
 "you want to import your image. You can find a list of {buckets} on the\n"
 "                        {bucketsPage} page in the {amazon} S3 storage "
 "service in the AWS console."
-msgstr ""
-"EC2 にインポートされる前にアップロードされるイメージファイルに S3 {bucket} 名"
-"を指定します。\n"
-"                          {bucket} はイメージをインポートするリージョンにすで"
-"に存在している必要があります。{buckets} のリストは、\n"
-"                          AWS コンソールの {bucketsPage} S3 ストレージページ"
-"の {amazon} ページにあります。"
+msgstr "EC2 にインポートされる前にアップロードされるイメージファイルに S3 {bucket} 名を指定します。\n"
+"                          {bucket} はイメージをインポートするリージョンにすでに存在している必要があります。{buckets} のリストは、\n"
+"                          AWS コンソールの {bucketsPage} S3 ストレージページの {amazon} ページにあります。"
 
 #. [components.Wizard.2706552502]
 #. defaultMessage is:
@@ -1635,9 +1617,7 @@ msgstr "レビュー"
 msgid ""
 "Review the information below and click Finish to create the image and "
 "complete the tasks that were selected."
-msgstr ""
-"以下の情報を確認し、終了をクリックしてイメージを作成し、選択されたタスクを完"
-"了します。"
+msgstr "以下の情報を確認し、終了をクリックしてイメージを作成し、選択されたタスクを完了します。"
 
 #. [components.Modal.106035384]
 #. defaultMessage is:
@@ -1763,10 +1743,7 @@ msgid ""
 "Set the size that you want the image to be when instantiated. The total "
 "package size and target destination of your image should be considered when "
 "setting the image size."
-msgstr ""
-"インスタンス化したときのイメージのサイズを設定します。イメージのサイズを設定"
-"するときは、イメージの合計パッケージサイズとターゲットの宛先を考慮する必要が"
-"あります。"
+msgstr "インスタンス化したときのイメージのサイズを設定します。イメージのサイズを設定するときは、イメージの合計パッケージサイズとターゲットの宛先を考慮する必要があります。"
 
 #. [components.ListView.4147597655]
 #. defaultMessage is:
@@ -1834,11 +1811,7 @@ msgid ""
 "images. When adding custom sources you must make sure that the packages in "
 "the source do not conflict with any other package sources, otherwise "
 "resolving dependencies and composing images will fail."
-msgstr ""
-"ソースは、ブループリントの依存関係の解決とイメージの作成に使われます。カスタ"
-"ムソースを追加する場合は、ソースのパッケージが、他のパッケージソースと競合し"
-"ない点を確認してください。競合する場合、依存関係の解決とイメージの作成は失敗"
-"します。"
+msgstr "ソースは、ブループリントの依存関係の解決とイメージの作成に使われます。カスタムソースを追加する場合は、ソースのパッケージが、他のパッケージソースと競合しない点を確認してください。競合する場合、依存関係の解決とイメージの作成は失敗します。"
 
 #. [components.Modal.540971304]
 #. defaultMessage is:
@@ -2029,9 +2002,7 @@ msgstr "osbuild-composer サービスは開始しませんでした。"
 msgid ""
 "The size specified is large. We recommend that you check whether your target "
 "destination has any restrictions on image size."
-msgstr ""
-"サイズが少々大きく設定されています。ターゲットの宛先にイメージサイズの制限が"
-"あるかどうかを確認することをお勧めします。"
+msgstr "サイズが少々大きく設定されています。ターゲットの宛先にイメージサイズの制限があるかどうかを確認することをお勧めします。"
 
 #. [components.Modal.2405281428]
 #. defaultMessage is:
@@ -2040,9 +2011,7 @@ msgstr ""
 msgid ""
 "The user name can only consist of letters from a-z, digits, dots, dashes and "
 "underscores."
-msgstr ""
-"ユーザー名は a〜z の文字、数字、ドット、ダッシュ、およびアンダースコアだけで"
-"構成されます。"
+msgstr "ユーザー名は a〜z の文字、数字、ドット、ダッシュ、およびアンダースコアだけで構成されます。"
 
 #. [components.EmptyState.1947371795]
 #. defaultMessage is:
@@ -2065,9 +2034,7 @@ msgstr "パスワードとして入力した値が一致しません。"
 msgid ""
 "There are no components listed in the blueprint. Edit the blueprint to add "
 "components."
-msgstr ""
-"ブループリントにリストされたコンポーネントはありません。ブループリントを編集"
-"して、コンポーネントを追加します。"
+msgstr "ブループリントにリストされたコンポーネントはありません。ブループリントを編集して、コンポーネントを追加します。"
 
 #. [components.Wizard.warningReview]
 #. defaultMessage is:
@@ -2094,9 +2061,7 @@ msgstr "この動作は取り消せません。"
 msgid ""
 "This blueprint has changes that are not committed. These changes will be "
 "committed before the image is created."
-msgstr ""
-"このブループリントには、コミットされていない変更点があります。これらの変更点"
-"はイメージの作成前にコミットされます。"
+msgstr "このブループリントには、コミットされていない変更点があります。これらの変更点はイメージの作成前にコミットされます。"
 
 #. [empty-blueprint-alert]
 #. defaultMessage is:
@@ -2130,8 +2095,7 @@ msgstr ""
 msgid ""
 "This process can take a while. Images are built in the order they are "
 "started."
-msgstr ""
-"この処理には数分かかることがあります。イメージは開始順にビルドされます。"
+msgstr "この処理には数分かかることがあります。イメージは開始順にビルドされます。"
 
 #. [components.Modal.2969976976]
 #. defaultMessage is:
@@ -2162,11 +2126,8 @@ msgid ""
 "ensure that the image can\n"
 "                        be imported from the S3 {bucket} into EC2. For more "
 "details, refer to the {role}."
-msgstr ""
-"このアップロードプロセスでは、{iam} ロールに {vmimport} という名前を付け"
-"て、\n"
-"                      イメージが S3 {bucket} から EC2 にインポートされるよう"
-"にします。詳細は、{role} を参照してください。"
+msgstr "このアップロードプロセスでは、{iam} ロールに {vmimport} という名前を付けて、\n"
+"                      イメージが S3 {bucket} から EC2 にインポートされるようにします。詳細は、{role} を参照してください。"
 
 #. [components.Modal.3707489178]
 #. defaultMessage is:
@@ -2277,7 +2238,7 @@ msgstr "イメージのアップロード"
 #. Upload image help
 #: build/messages/components/Wizard/ImageStep.json
 msgid "Upload image help"
-msgstr "画像ヘルプのアップロード"
+msgstr "イメージヘルプのアップロード"
 
 #. [components.ListView.uploadStatusRunning] - Upload status when process is in progress
 #. defaultMessage is:
@@ -2360,9 +2321,7 @@ msgstr "ユーザー"
 msgid ""
 "Valid characters for hostname are letters from a to z, the digits from 0 to "
 "9, and the hyphen (-). A hostname may not start with a hyphen."
-msgstr ""
-"ホスト名に使用可能な文字は、a〜z の文字、0〜9 の数字、およびハイフン (-) で"
-"す。ハイフンで始まるホスト名は使用できません。"
+msgstr "ホスト名に使用可能な文字は、a〜z の文字、0〜9 の数字、およびハイフン (-) です。ハイフンで始まるホスト名は使用できません。"
 
 #. [components.Wizard.ostreeRefHelperText]
 #. defaultMessage is:
@@ -2408,9 +2367,7 @@ msgstr "表示"
 msgid ""
 "You can create and find existing Access key IDs on the {iam} page in the AWS "
 "console."
-msgstr ""
-"AWS コンソールの {iam} ページでは、アクセスキー ID の作成や既存の ID の検索を"
-"行うことができます。"
+msgstr "AWS コンソールの {iam} ページでは、アクセスキー ID の作成や既存の ID の検索を行うことができます。"
 
 #. [components.Wizard.4206409720]
 #. defaultMessage is:
@@ -2419,9 +2376,7 @@ msgstr ""
 msgid ""
 "You can view the Secret access key only when you create a new Access key ID "
 "on the {iam} page in the AWS console."
-msgstr ""
-"シークレットアクセスキーは、AWS コンソールの {iam} ページ上に新しいアクセス"
-"キー ID を作成するときにのみ表示できます。"
+msgstr "シークレットアクセスキーは、AWS コンソールの {iam} ページ上に新しいアクセスキー ID を作成するときにのみ表示できます。"
 
 #. [components.ListView.actions]
 #. defaultMessage is:
@@ -2598,8 +2553,7 @@ msgstr "{heading} {parenthetical}"
 #: build/messages/pages/blueprintEdit/index.json
 msgid ""
 "{pendingChanges, plural, one {# Pending Change} other {# Pending Changes}}"
-msgstr ""
-"{pendingChanges, plural, one {# Pending Change} その他 {# Pending Changes}}"
+msgstr "{pendingChanges, plural, one {# Pending Change} その他 {# Pending Changes}}"
 
 #. [pages.blueprintEdit.3140434516]
 #. defaultMessage is:
@@ -2652,10 +2606,3 @@ msgstr "イメージビルダー"
 #~ msgid "Password is too weak"
 #~ msgstr "パスワードが弱すぎます"
 
-#~ msgid "1 build is in progress"
-#~ msgstr "1 つのビルドが進行中"
-
-#~ msgid ""
-#~ "{builds, plural, one {# build is waiting} other {# builds are waiting}}"
-#~ msgstr ""
-#~ "{builds, plural, one {# build is waiting} その他 {# builds are waiting}}"

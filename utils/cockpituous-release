@@ -9,9 +9,6 @@ RELEASE_SOURCE="_release/source"
 RELEASE_SPEC="cockpit-composer.spec"
 RELEASE_SRPM="_release/srpm"
 
-# Authenticate for pushing into Fedora dist-git
-cat ~/.fedora-password | kinit cockpit@FEDORAPROJECT.ORG
-
 job release-source
 job release-srpm -V
 
