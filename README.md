@@ -1,6 +1,5 @@
 # Cockpit Composer
 
-[![Build Status](https://travis-ci.org/osbuild/cockpit-composer.svg?branch=master)](https://travis-ci.org/osbuild/cockpit-composer)
 [![codecov](https://codecov.io/gh/osbuild/cockpit-composer/branch/master/graph/badge.svg)](https://codecov.io/gh/osbuild/cockpit-composer)
 
 **The web interface for Composer!**
@@ -140,10 +139,9 @@ After every change to your sources, run `make` to update all the webpacks, and r
 │   └── /index.ejs              # Template for index.html
 ├── /test/                      # Integration test
 ├── /utils/                     # Utility and helper classes
-│── .travis.yml                 # Travis CI settings
 │── babel.config.js             # babel configurations
 │── cockpit-composer.spec.in    # Cockpit-composer spec file
-│── Dockerfile.buildrpm         # Dockerfile for building RPM on Travis
+│── Dockerfile.buildrpm         # Dockerfile for building RPM on Github Actions
 │── io.weldr.cockpit-composer.metainfo.xml         # Makes Composer appear on Cockpit's "Applications" page
 │── main.js                     # React application entry point
 │── Makefile                    # Makefile

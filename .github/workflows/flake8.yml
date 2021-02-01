@@ -1,0 +1,20 @@
+name: flake8
+
+on: [pull_request]
+
+jobs:
+  flake8:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Lint with flake8
+        run: |
+          pip install flake8
+          make flake8
