@@ -16,7 +16,7 @@ job release-source
 job release-srpm -V
 
 # Do fedora builds for the tag, using tarball
-job release-koji master
+job release-koji rawhide
 job release-koji f32
 job release-koji f33 
 
