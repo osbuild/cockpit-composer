@@ -311,6 +311,7 @@ class ImageStep extends React.PureComponent {
       </FormGroup>
     );
 
+    // eslint-disable-next-line no-unused-vars
     const vmwareProviderCheckbox = (
       <FormGroup
         label={<FormattedMessage defaultMessage="Upload image" />}
@@ -506,7 +507,7 @@ class ImageStep extends React.PureComponent {
           </FormGroup>
           {imageType === "ami" && awsProviderCheckbox}
           {imageType === "vhd" && azureProviderCheckbox}
-          {imageType === "vmdk" && vmwareProviderCheckbox}
+          {/* {imageType === "vmdk" && vmwareProviderCheckbox} */}
           {requiresImageSize(imageType) && imageSizeInput}
           {(imageType === "fedora-iot-commit" || imageType === "rhel-edge-commit") && ostreeFields}
         </Form>
