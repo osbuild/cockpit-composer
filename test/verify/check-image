@@ -327,6 +327,8 @@ class TestImage(composerlib.ComposerCase):
         # collect code coverage result
         self.check_coverage()
 
+    # temporarily skip until vmware upload is supported
+    @unittest.SkipTest
     def testVMWareStep(self):
         b = self.browser
 
