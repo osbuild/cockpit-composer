@@ -37,6 +37,9 @@ const ariaLabels = defineMessages({
   ostreeRef: {
     defaultMessage: "OSTree ref help",
   },
+  ostreeURL: {
+    defaultMessage: "OSTree repo url help",
+  },
 });
 
 const messages = defineMessages({
@@ -172,6 +175,7 @@ class ImageStep extends React.PureComponent {
       ostreeSettings,
       requiresImageSize,
       setOstreeParent,
+      setOstreeURL,
       uploadService,
     } = this.props;
 
@@ -395,7 +399,7 @@ class ImageStep extends React.PureComponent {
       </FormGroup>
     );
 
-    const ostreeFields = (
+    const ostreeCommitFields = (
       <>
         <FormGroup
           label={<FormattedMessage defaultMessage="Parent commit" />}
@@ -404,6 +408,108 @@ class ImageStep extends React.PureComponent {
               id="ostree-parent-popover"
               bodyContent={
                 <FormattedMessage defaultMessage="Provide the ID of the latest commit in the updates repository for which this commit provides an update." />
+              }
+              aria-label={formatMessage(ariaLabels.ostreeParent)}
+            >
+              <Button variant="plain" aria-label={formatMessage(ariaLabels.ostreeParent)}>
+                <OutlinedQuestionCircleIcon className="cc-c-text__align-icon" id="popover-icon" />
+              </Button>
+            </Popover>
+          }
+          fieldId="ostree-parent-input"
+          hasNoPaddingTop
+        >
+          <TextInput
+            className="pf-c-form-control"
+            value={ostreeSettings.parent !== undefined ? ostreeSettings.parent : ""}
+            type="text"
+            id="ostree-parent-input"
+            onChange={setOstreeParent}
+          />
+        </FormGroup>
+        <FormGroup
+          label={<FormattedMessage defaultMessage="Ref" />}
+          labelIcon={
+            <Popover
+              id="ostree-ref-popover"
+              bodyContent={
+                <FormattedMessage defaultMessage="Provide the name of the branch for the content. If the ref does not already exist it will be created." />
+              }
+              aria-label={formatMessage(ariaLabels.ostreeRef)}
+            >
+              <Button variant="plain" aria-label={formatMessage(ariaLabels.ostreeRef)}>
+                <OutlinedQuestionCircleIcon className="cc-c-text__align-icon" id="popover-icon" />
+              </Button>
+            </Popover>
+          }
+          fieldId="ostree-ref-input"
+          helperText={formatMessage(messages.ostreeRefHelperText)}
+          helperTextInvalid={formatMessage(messages.ostreeRefHelperText)}
+          validated={ostreeRefValidated}
+          hasNoPaddingTop
+        >
+          <TextInput
+            className="pf-c-form-control"
+            value={ostreeSettings.ref !== undefined ? ostreeSettings.ref : ""}
+            type="text"
+            id="ostree-ref-input"
+            aria-describedby="ostree-ref-input-helper-default ostree-ref-input-helper"
+            onChange={this.handleOSTreeRef}
+            validated={ostreeRefValidated}
+          />
+          {ostreeRefValidated === "default" && imageType === "rhel-edge-commit" && (
+            <p className="pf-c-form__helper-text" id="ostree-ref-input-helper-default" aria-live="polite">
+              <FormattedMessage
+                defaultMessage="rhel/8/{arch}/edge is the default, where {arch} is determined by the host machine"
+                values={{
+                  arch: <em>$ARCH</em>,
+                }}
+              />
+            </p>
+          )}
+        </FormGroup>
+      </>
+    );
+
+    const ostreeContainerFields = (
+      <>
+        <FormGroup
+          label={<FormattedMessage defaultMessage="Repository URL" />}
+          labelIcon={
+            <Popover
+              id="ostree-url-popover"
+              bodyContent={
+                <FormattedMessage defaultMessage="Provide the URL of the upstream repository. This repository is where the parent OSTree commit will be pulled from." />
+              }
+              aria-label={formatMessage(ariaLabels.ostreeURL)}
+            >
+              <Button variant="plain" aria-label={formatMessage(ariaLabels.ostreeURL)}>
+                <OutlinedQuestionCircleIcon className="cc-c-text__align-icon" id="popover-icon" />
+              </Button>
+            </Popover>
+          }
+          fieldId="ostree-url-input"
+          hasNoPaddingTop
+        >
+          <TextInput
+            className="pf-c-form-control"
+            value={ostreeSettings.url !== undefined ? ostreeSettings.url : ""}
+            type="text"
+            id="ostree-url-input"
+            onChange={setOstreeURL}
+          />
+        </FormGroup>
+        <FormGroup
+          label={<FormattedMessage defaultMessage="Parent commit" />}
+          labelIcon={
+            <Popover
+              id="ostree-parent-popover"
+              bodyContent={
+                <FormattedMessage
+                  defaultMessage="
+                    Provide the ID of the latest commit in the updates repository for which this commit provides an update. 
+                    If no commit is specified it will be inferred from the parent repository."
+                />
               }
               aria-label={formatMessage(ariaLabels.ostreeParent)}
             >
@@ -509,7 +615,8 @@ class ImageStep extends React.PureComponent {
           {imageType === "vhd" && azureProviderCheckbox}
           {/* {imageType === "vmdk" && vmwareProviderCheckbox} */}
           {requiresImageSize(imageType) && imageSizeInput}
-          {(imageType === "fedora-iot-commit" || imageType === "rhel-edge-commit") && ostreeFields}
+          {(imageType === "fedora-iot-commit" || imageType === "rhel-edge-commit") && ostreeCommitFields}
+          {imageType === "rhel-edge-container" && ostreeContainerFields}
         </Form>
       </>
     );
@@ -533,6 +640,7 @@ ImageStep.propTypes = {
   setImageType: PropTypes.func,
   setOstreeParent: PropTypes.func,
   setOstreeRef: PropTypes.func,
+  setOstreeURL: PropTypes.func,
   uploadService: PropTypes.string,
 };
 
@@ -552,6 +660,7 @@ ImageStep.defaultProps = {
   setImageType() {},
   setOstreeParent() {},
   setOstreeRef() {},
+  setOstreeURL() {},
   uploadService: "",
 };
 

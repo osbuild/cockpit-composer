@@ -64,6 +64,7 @@ class CreateImageUploadModal extends React.Component {
       ostreeSettings: {
         parent: undefined,
         ref: undefined,
+        url: undefined,
       },
       showUploadAwsStep: false,
       showUploadAzureStep: false,
@@ -84,6 +85,7 @@ class CreateImageUploadModal extends React.Component {
     this.setImageType = this.setImageType.bind(this);
     this.setOstreeParent = this.setOstreeParent.bind(this);
     this.setOstreeRef = this.setOstreeRef.bind(this);
+    this.setOstreeURL = this.setOstreeURL.bind(this);
     this.setUploadSettings = this.setUploadSettings.bind(this);
     this.handleUploadService = this.handleUploadService.bind(this);
     this.handleCreateImage = this.handleCreateImage.bind(this);
@@ -211,8 +213,17 @@ class CreateImageUploadModal extends React.Component {
     };
 
     let ostree;
-    if (ostreeSettings.parent !== undefined || ostreeSettings.ref !== undefined) {
-      ostree = ostreeSettings;
+    if (composeType === "fedora-iot-commit" || composeType === "rhel-edge-commit") {
+      ostree = {
+        parent: ostreeSettings.parent,
+        ref: ostreeSettings.ref,
+      };
+    } else if (composeType === "rhel-edge-container") {
+      ostree = {
+        parent: ostreeSettings.parent,
+        ref: ostreeSettings.ref,
+        url: ostreeSettings.url,
+      };
     }
 
     if (uploadService === "") {
@@ -239,6 +250,7 @@ class CreateImageUploadModal extends React.Component {
       ostreeSettings: {
         parent: undefined,
         ref: undefined,
+        url: undefined,
       },
       uploadService: "",
       uploadSettings: {},
@@ -279,6 +291,10 @@ class CreateImageUploadModal extends React.Component {
     this.setState((prevState) => ({ ostreeSettings: { ...prevState.ostreeSettings, ref: value } }));
   }
 
+  setOstreeURL(value) {
+    this.setState((prevState) => ({ ostreeSettings: { ...prevState.ostreeSettings, url: value } }));
+  }
+
   getDefaultImageSize(imageType) {
     if (imageType === "ami") {
       return 6;
@@ -316,7 +332,12 @@ class CreateImageUploadModal extends React.Component {
   }
 
   requiresImageSize(imageType) {
-    if (imageType === "" || imageType === "fedora-iot-commit" || imageType === "rhel-edge-commit") {
+    if (
+      imageType === "" ||
+      imageType === "fedora-iot-commit" ||
+      imageType === "rhel-edge-commit" ||
+      imageType === "rhel-edge-container"
+    ) {
       return false;
     }
     return true;
@@ -366,6 +387,7 @@ class CreateImageUploadModal extends React.Component {
           setImageType={this.setImageType}
           setOstreeParent={this.setOstreeParent}
           setOstreeRef={this.setOstreeRef}
+          setOstreeURL={this.setOstreeURL}
           uploadService={this.state.uploadService}
         />
       ),

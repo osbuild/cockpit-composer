@@ -127,6 +127,7 @@ function* fetchComposeTypes() {
       "partitioned-disk": "Disk Image (.img)",
       qcow2: "QEMU Image (.qcow2)",
       "rhel-edge-commit": "RHEL for Edge Commit (.tar)",
+      "rhel-edge-container": "RHEL for Edge Container (.tar)",
       vhd: "Microsoft Azure (.vhd)",
       vmdk: "VMWare VSphere (.vmdk)",
     };
