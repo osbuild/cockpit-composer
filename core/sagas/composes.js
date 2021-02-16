@@ -123,6 +123,7 @@ function* fetchComposeTypes() {
       google: "Google Cloud Platform (.vhd)",
       "hyper-v": "Hyper-V (.vhd)",
       "live-iso": "Installer, suitable for USB and DVD (.iso)",
+      tar: "Disk Archive (.tar)",
       openstack: "OpenStack (.qcow2)",
       "partitioned-disk": "Disk Image (.img)",
       qcow2: "QEMU Image (.qcow2)",
