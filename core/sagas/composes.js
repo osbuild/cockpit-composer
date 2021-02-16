@@ -128,6 +128,7 @@ function* fetchComposeTypes() {
       qcow2: "QEMU Image (.qcow2)",
       "rhel-edge-commit": "RHEL for Edge Commit (.tar)",
       "rhel-edge-container": "RHEL for Edge Container (.tar)",
+      "rhel-edge-installer": "RHEL for Edge Installer (.iso)",
       vhd: "Microsoft Azure (.vhd)",
       vmdk: "VMWare VSphere (.vmdk)",
     };

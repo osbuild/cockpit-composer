@@ -57,7 +57,7 @@ const messages = defineMessages({
       "and the forward slash (/). A ref must start with a letter, a number, or an underscore. Slashes must also be followed by a letter or number.",
   },
   requiredField: {
-    defaultMessage: "This is a required field",
+    defaultMessage: "This is a required field.",
   },
   type: {
     defaultMessage: "Type",
@@ -145,9 +145,13 @@ class ImageStep extends React.PureComponent {
   }
 
   handleOSTreeRef(ref) {
-    if (ref === "") {
+    if (ref === "" && this.props.imageType !== "rhel-edge-installer") {
       this.setState({
         ostreeRefValidated: "default",
+      });
+    } else if (ref === "" && this.props.imageType === "rhel-edge-installer") {
+      this.setState({
+        ostreeRefValidated: "error",
       });
     } else if (this.props.isValidOstreeRef(ref)) {
       this.setState({
@@ -573,6 +577,88 @@ class ImageStep extends React.PureComponent {
       </>
     );
 
+    const ostreeInstallerFields = (
+      <>
+        <FormGroup
+          isRequired
+          label={<FormattedMessage defaultMessage="Repository URL" />}
+          labelIcon={
+            <Popover
+              id="ostree-url-popover"
+              bodyContent={
+                <FormattedMessage defaultMessage="Provide the URL of the upstream repository. This repository is where the parent OSTree commit will be pulled from." />
+              }
+              aria-label={formatMessage(ariaLabels.ostreeURL)}
+            >
+              <Button variant="plain" aria-label={formatMessage(ariaLabels.ostreeURL)}>
+                <OutlinedQuestionCircleIcon className="cc-c-text__align-icon" id="popover-icon" />
+              </Button>
+            </Popover>
+          }
+          fieldId="ostree-url-input"
+          helperTextInvalid={formatMessage(messages.requiredField)}
+          validated={ostreeSettings.url !== "" ? "default" : "error"}
+          hasNoPaddingTop
+        >
+          <TextInput
+            className="pf-c-form-control"
+            value={ostreeSettings.url !== undefined ? ostreeSettings.url : ""}
+            type="text"
+            id="ostree-url-input"
+            onChange={setOstreeURL}
+            validated={ostreeSettings.url !== "" ? "default" : "error"}
+          />
+        </FormGroup>
+        <FormGroup
+          isRequired
+          label={<FormattedMessage defaultMessage="Ref" />}
+          labelIcon={
+            <Popover
+              id="ostree-ref-popover"
+              bodyContent={
+                <FormattedMessage defaultMessage="Provide the name of the branch for the content. If the ref does not already exist it will be created." />
+              }
+              aria-label={formatMessage(ariaLabels.ostreeRef)}
+            >
+              <Button variant="plain" aria-label={formatMessage(ariaLabels.ostreeRef)}>
+                <OutlinedQuestionCircleIcon className="cc-c-text__align-icon" id="popover-icon" />
+              </Button>
+            </Popover>
+          }
+          fieldId="ostree-ref-input"
+          helperText={formatMessage(messages.ostreeRefHelperText)}
+          helperTextInvalid={formatMessage(messages.ostreeRefHelperText)}
+          validated={ostreeRefValidated}
+          hasNoPaddingTop
+        >
+          <TextInput
+            className="pf-c-form-control"
+            value={ostreeSettings.ref !== undefined ? ostreeSettings.ref : ""}
+            type="text"
+            id="ostree-ref-input"
+            aria-describedby="ostree-ref-input-helper-default ostree-ref-input-helper"
+            onChange={this.handleOSTreeRef}
+            validated={ostreeRefValidated}
+          />
+          {ostreeRefValidated === "default" && imageType === "rhel-edge-commit" && (
+            <p className="pf-c-form__helper-text" id="ostree-ref-input-helper-default" aria-live="polite">
+              <FormattedMessage
+                defaultMessage="rhel/8/{arch}/edge is the default, where {arch} is determined by the host machine"
+                values={{
+                  arch: <em>$ARCH</em>,
+                }}
+              />
+            </p>
+          )}
+          {ostreeRefValidated === "error" && !ostreeSettings.ref && imageType === "rhel-edge-installer" && (
+            <p className="pf-c-form__helper-text pf-m-error" id="ostree-ref-input-helper-default" aria-live="polite">
+              {formatMessage(messages.requiredField)}
+            </p>
+          )}
+        </FormGroup>
+      </>
+    );
+
     return (
       <>
         {isPendingChange() && (
@@ -617,6 +703,7 @@ class ImageStep extends React.PureComponent {
           {requiresImageSize(imageType) && imageSizeInput}
           {(imageType === "fedora-iot-commit" || imageType === "rhel-edge-commit") && ostreeCommitFields}
           {imageType === "rhel-edge-container" && ostreeContainerFields}
+          {imageType === "rhel-edge-installer" && ostreeInstallerFields}
         </Form>
       </>
     );

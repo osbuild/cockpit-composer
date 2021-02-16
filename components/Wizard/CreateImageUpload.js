@@ -76,6 +76,7 @@ class CreateImageUploadModal extends React.Component {
     this.getDefaultImageSize = this.getDefaultImageSize.bind(this);
     this.isPendingChange = this.isPendingChange.bind(this);
     this.isValidImageSize = this.isValidImageSize.bind(this);
+    this.isValidOstree = this.isValidOstree.bind(this);
     this.isValidOstreeRef = this.isValidOstreeRef.bind(this);
     this.requiresImageSize = this.requiresImageSize.bind(this);
     this.missingRequiredFields = this.missingRequiredFields.bind(this);
@@ -224,6 +225,11 @@ class CreateImageUploadModal extends React.Component {
         ref: ostreeSettings.ref,
         url: ostreeSettings.url,
       };
+    } else if (composeType === "rhel-edge-installer") {
+      ostree = {
+        ref: ostreeSettings.ref,
+        url: ostreeSettings.url,
+      };
     }
 
     if (uploadService === "") {
@@ -313,7 +319,7 @@ class CreateImageUploadModal extends React.Component {
     ) {
       return true;
     }
-    if (!this.isValidOstreeRef(this.state.ostreeSettings.ref)) return true;
+    if (!this.isValidOstree()) return true;
     if (this.missingRequiredFields() && activeStepName === "Review") {
       return true;
     }
@@ -336,7 +342,8 @@ class CreateImageUploadModal extends React.Component {
       imageType === "" ||
       imageType === "fedora-iot-commit" ||
       imageType === "rhel-edge-commit" ||
-      imageType === "rhel-edge-container"
+      imageType === "rhel-edge-container" ||
+      imageType === "rhel-edge-installer"
     ) {
       return false;
     }
@@ -354,6 +361,16 @@ class CreateImageUploadModal extends React.Component {
       return false;
     }
     return true;
+  }
+
+  isValidOstree() {
+    if (
+      this.state.imageType === "rhel-edge-installer" &&
+      (!this.state.ostreeSettings.ref || !this.state.ostreeSettings.url)
+    ) {
+      return false;
+    }
+    return this.isValidOstreeRef(this.state.ostreeSettings.ref);
   }
 
   isValidOstreeRef(ref) {
