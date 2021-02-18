@@ -501,7 +501,12 @@ class ImageStep extends React.PureComponent {
             <FormSelect value={imageType} id="image-type" onChange={this.handleImageTypeSelect} isRequired>
               <FormSelectOption isDisabled key="default" value="" label={formatMessage(messages.selectOne)} />
               {imageTypes.map((type) => (
-                <FormSelectOption isDisabled={!type.enabled} key={type.name} value={type.name} label={type.label} />
+                <FormSelectOption
+                  isDisabled={!type.enabled}
+                  key={type.name}
+                  value={type.name}
+                  label={formatMessage({ id: type.name, defaultMessage: type.label })}
+                />
               ))}
             </FormSelect>
           </FormGroup>
