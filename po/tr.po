@@ -3,11 +3,11 @@
 # Burak Yavuz <hitowerdigit@hotmail.com>, 2020, 2021.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2021-01-08T07:28:53.139Z\n"
+"POT-Creation-Date: 2021-02-19T16:42:55.043Z\n"
 "PO-Revision-Date: 2021-01-10 09:36+0000\n"
 "Last-Translator: Burak Yavuz <hitowerdigit@hotmail.com>\n"
-"Language-Team: Turkish <https://translate.fedoraproject.org/projects/"
-"cockpit-composer/master/tr/>\n"
+"Language-Team: Turkish <https://translate.fedoraproject.org/projects/cockpit-"
+"composer/master/tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -182,10 +182,18 @@ msgstr "Eklendi"
 #. [components.Wizard.1175512155]
 #. defaultMessage is:
 #. All fields are required.
+#. [components.Wizard.1175512155]
+#. defaultMessage is:
+#. All fields are required.
+#. [components.Wizard.1175512155]
+#. defaultMessage is:
+#. All fields are required.
 #: build/messages/components/Wizard/AWSAuthStep.json
 #: build/messages/components/Wizard/AWSDestinationStep.json
 #: build/messages/components/Wizard/AzureAuthStep.json
 #: build/messages/components/Wizard/AzureDestinationStep.json
+#: build/messages/components/Wizard/VMWareAuthStep.json
+#: build/messages/components/Wizard/VMWareDestinationStep.json
 msgid "All fields are required."
 msgstr "Tüm alanlar gereklidir."
 
@@ -522,6 +530,26 @@ msgstr "Tüm süzgeçleri temizle"
 msgid "Close"
 msgstr "Kapat"
 
+#. [components.Wizard.103343714]
+#. defaultMessage is:
+#. Cluster
+#. [components.Wizard.103343714]
+#. defaultMessage is:
+#. Cluster
+#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+msgid "Cluster"
+msgstr ""
+
+#. [components.Wizard.cluster]
+#. defaultMessage is:
+#. Cluster help
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+#, fuzzy
+#| msgid "Azure help"
+msgid "Cluster help"
+msgstr "Azure ile ilgili yardım"
+
 #. [components.Modal.2299254306]
 #. defaultMessage is:
 #. Comment
@@ -668,6 +696,50 @@ msgstr "Oluşturuldu"
 msgid "Customizations"
 msgstr "Özelleştirmeler"
 
+#. [components.Wizard.2877310487]
+#. defaultMessage is:
+#. Data Center
+#: build/messages/components/Wizard/ReviewStep.json
+msgid "Data Center"
+msgstr ""
+
+#. [components.Wizard.3747912914]
+#. defaultMessage is:
+#. Data Store
+#: build/messages/components/Wizard/ReviewStep.json
+msgid "Data Store"
+msgstr ""
+
+#. [components.Wizard.4278711264]
+#. defaultMessage is:
+#. Data center
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+msgid "Data center"
+msgstr ""
+
+#. [components.Wizard.3717439361]
+#. defaultMessage is:
+#. Data store
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+msgid "Data store"
+msgstr ""
+
+#. [components.Wizard.dataCenter]
+#. defaultMessage is:
+#. Datacenter help
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+#, fuzzy
+#| msgid "Storage container help"
+msgid "Datacenter help"
+msgstr "Depolama konteyneri ile ilgili yardım"
+
+#. [components.Wizard.dataStore]
+#. defaultMessage is:
+#. Datastore help
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+msgid "Datastore help"
+msgstr ""
+
 #. [components.ListView.3645414921]
 #. defaultMessage is:
 #. Delete
@@ -753,6 +825,13 @@ msgstr "Ayrıntılar"
 #: build/messages/pages/blueprintEdit/index.json
 msgid "Discard changes"
 msgstr "Değişiklikleri yoksay"
+
+#. [components.Wizard.labelTar]
+#. defaultMessage is:
+#. Disk Archive (.tar)
+#: build/messages/components/Wizard/ImageStep.json
+msgid "Disk Archive (.tar)"
+msgstr ""
 
 #. [components.ListView.1982430146]
 #. defaultMessage is:
@@ -918,6 +997,26 @@ msgstr "Geri git"
 msgid "Hide details"
 msgstr "Ayrıntıları gizle"
 
+#. [components.Wizard.644347739]
+#. defaultMessage is:
+#. Host
+#. [components.Wizard.644347739]
+#. defaultMessage is:
+#. Host
+#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+#, fuzzy
+#| msgid "Hostname"
+msgid "Host"
+msgstr "Ana bilgisayar adı"
+
+#. [components.Wizard.host]
+#. defaultMessage is:
+#. Host help
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+msgid "Host help"
+msgstr ""
+
 #. [pages.blueprint.hostnameInputLabel]
 #. defaultMessage is:
 #. Hostname
@@ -934,19 +1033,56 @@ msgstr ""
 "Ana bilgisayar adı belirtilmezse, ana bilgisayar adı işletim sistemi "
 "tarafından belirlenecektir."
 
-#. [components.Wizard.3593632693]
+#. [components.Wizard.327045352]
 #. defaultMessage is:
-#. Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete 
+#. Image Builder can upload images you create to VMWare vSphere.
+#.                       When the image build is complete and the upload action is successful,
+#.                       the image file is available in the Cluster on the vSphere instance that you specified.
+#. [components.Wizard.327045352]
+#. defaultMessage is:
+#. Image Builder can upload images you create to VMWare vSphere.
+#.                       When the image build is complete and the upload action is successful,
+#.                       the image file is available in the Cluster on the vSphere instance that you specified.
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
+#, fuzzy
+#| msgid ""
+#| "Image Builder can upload images you create to a Blob container in "
+#| "{azure}. When the image build is complete \n"
+#| "                      and the upload action is successful, the image file "
+#| "is available in the Storage account and Blob container that you specified."
+msgid ""
+"Image Builder can upload images you create to VMWare vSphere.\n"
+"                      When the image build is complete and the upload action "
+"is successful,\n"
+"                      the image file is available in the Cluster on the "
+"vSphere instance that you specified."
+msgstr ""
+"Kalıp Oluşturucu, oluşturduğunuz kalıpları {azure} üzerinde bir Blob "
+"konteynerine yükleyebilir. Kalıp oluşturma işlemi \n"
+"                      tamamlandığında ve karşıya yükleme işlemi başarılı "
+"olduğunda kalıp dosyası Depolama hesabında ve belirttiğiniz Blob "
+"konteynerinde kullanılabilir."
+
+#. [components.Wizard.3501375619]
+#. defaultMessage is:
+#. Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete
 #.                       and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
-#. [components.Wizard.3593632693]
+#. [components.Wizard.3501375619]
 #. defaultMessage is:
-#. Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete 
+#. Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete
 #.                       and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
 #: build/messages/components/Wizard/ImageStep.json
 #: build/messages/components/Wizard/ReviewStep.json
+#, fuzzy
+#| msgid ""
+#| "Image Builder can upload images you create to a Blob container in "
+#| "{azure}. When the image build is complete \n"
+#| "                      and the upload action is successful, the image file "
+#| "is available in the Storage account and Blob container that you specified."
 msgid ""
 "Image Builder can upload images you create to a Blob container in {azure}. "
-"When the image build is complete \n"
+"When the image build is complete\n"
 "                      and the upload action is successful, the image file is "
 "available in the Storage account and Blob container that you specified."
 msgstr ""
@@ -1030,10 +1166,14 @@ msgstr "Kalıp oluşturma hizmeti etkin değil"
 #. [components.Wizard.2794911472]
 #. defaultMessage is:
 #. Image name
+#. [components.Wizard.2794911472]
+#. defaultMessage is:
+#. Image name
 #: build/messages/components/ListView/ListItemUploads.json
 #: build/messages/components/Wizard/AWSDestinationStep.json
 #: build/messages/components/Wizard/AzureDestinationStep.json
 #: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/VMWareDestinationStep.json
 msgid "Image name"
 msgstr "Kalıp adı"
 
@@ -1043,8 +1183,12 @@ msgstr "Kalıp adı"
 #. [components.Wizard.imageName]
 #. defaultMessage is:
 #. Image name help
+#. [components.Wizard.imageName]
+#. defaultMessage is:
+#. Image name help
 #: build/messages/components/Wizard/AWSDestinationStep.json
 #: build/messages/components/Wizard/AzureDestinationStep.json
+#: build/messages/components/Wizard/VMWareDestinationStep.json
 msgid "Image name help"
 msgstr "Kalıp adı ile ilgili yardım"
 
@@ -1097,6 +1241,13 @@ msgstr "Kalıp karşıya yüklemeleri"
 #: build/messages/pages/blueprint/index.json
 msgid "Images"
 msgstr "Kalıplar"
+
+#. [components.Wizard.labelLiveIso]
+#. defaultMessage is:
+#. Installer, suitable for USB and DVD (.iso)
+#: build/messages/components/Wizard/ImageStep.json
+msgid "Installer, suitable for USB and DVD (.iso)"
+msgstr ""
 
 #. [components.Loading.2617450248]
 #. defaultMessage is:
@@ -1307,7 +1458,15 @@ msgstr "Üst işlem"
 #. [components.Modal.2237029987]
 #. defaultMessage is:
 #. Password
+#. [components.Wizard.2237029987]
+#. defaultMessage is:
+#. Password
+#. [components.Wizard.2237029987]
+#. defaultMessage is:
+#. Password
 #: build/messages/components/Modal/UserAccount.json
+#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/VMWareAuthStep.json
 msgid "Password"
 msgstr "Parola"
 
@@ -1342,8 +1501,12 @@ msgstr "İşlem uzunluğu ile ilgili yardım"
 #. [components.Wizard.4277042358]
 #. defaultMessage is:
 #. Provide a file name to be used for the image file that will be uploaded.
+#. [components.Wizard.4277042358]
+#. defaultMessage is:
+#. Provide a file name to be used for the image file that will be uploaded.
 #: build/messages/components/Wizard/AWSDestinationStep.json
 #: build/messages/components/Wizard/AzureDestinationStep.json
+#: build/messages/components/Wizard/VMWareDestinationStep.json
 msgid ""
 "Provide a file name to be used for the image file that will be uploaded."
 msgstr ""
@@ -1436,6 +1599,42 @@ msgstr ""
 "Depolama hesabının adını belirtin. Depolama hesaplarını {azure} portalındaki "
 "{storageAccounts} sayfasında bulabilirsiniz."
 
+#. [components.Wizard.1891777230]
+#. defaultMessage is:
+#. Provide the name of the Cluster to which the image file will be uploaded.
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+#, fuzzy
+#| msgid ""
+#| "Provide a file name to be used for the image file that will be uploaded."
+msgid ""
+"Provide the name of the Cluster to which the image file will be uploaded."
+msgstr ""
+"Karşıya yüklenecek kalıp dosyası için kullanılacak bir dosya adı girin."
+
+#. [components.Wizard.1217327836]
+#. defaultMessage is:
+#. Provide the name of the Datacenter to which the image file will be uploaded.
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+#, fuzzy
+#| msgid ""
+#| "Provide a file name to be used for the image file that will be uploaded."
+msgid ""
+"Provide the name of the Datacenter to which the image file will be uploaded."
+msgstr ""
+"Karşıya yüklenecek kalıp dosyası için kullanılacak bir dosya adı girin."
+
+#. [components.Wizard.4014474612]
+#. defaultMessage is:
+#. Provide the name of the Datastore to which the image file will be uploaded.
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+#, fuzzy
+#| msgid ""
+#| "Provide a file name to be used for the image file that will be uploaded."
+msgid ""
+"Provide the name of the Datastore to which the image file will be uploaded."
+msgstr ""
+"Karşıya yüklenecek kalıp dosyası için kullanılacak bir dosya adı girin."
+
 #. [components.Wizard.1476874820]
 #. defaultMessage is:
 #. Provide the name of the branch for the content. If the ref does not already exist it will be created.
@@ -1446,6 +1645,26 @@ msgid ""
 msgstr ""
 "İçerik için dalın adını belirtin. Referans zaten mevcut değilse "
 "oluşturulacaktır."
+
+#. [components.Wizard.3387354708]
+#. defaultMessage is:
+#. Provide the url of your {vmware} instance to which the image file will be uploaded.
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+#, fuzzy
+#| msgid ""
+#| "Provide a file name to be used for the image file that will be uploaded."
+msgid ""
+"Provide the url of your {vmware} instance to which the image file will be "
+"uploaded."
+msgstr ""
+"Karşıya yüklenecek kalıp dosyası için kullanılacak bir dosya adı girin."
+
+#. [components.Wizard.labelqcow]
+#. defaultMessage is:
+#. QEMU Image (.qcow2)
+#: build/messages/components/Wizard/ImageStep.json
+msgid "QEMU Image (.qcow2)"
+msgstr ""
 
 #. [components.Wizard.31026111]
 #. defaultMessage is:
@@ -2218,6 +2437,23 @@ msgstr "AWS'ye yükle"
 msgid "Upload to Azure"
 msgstr "Azure'ye yükle"
 
+#. [components.Wizard.3542348520]
+#. defaultMessage is:
+#. Upload to VMWare
+#. [components.Wizard.uploadVMWare]
+#. defaultMessage is:
+#. Upload to VMWare
+#. [components.Wizard.3542348520]
+#. defaultMessage is:
+#. Upload to VMWare
+#: build/messages/components/Wizard/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
+#, fuzzy
+#| msgid "Upload to Azure"
+msgid "Upload to VMWare"
+msgstr "Azure'ye yükle"
+
 #. [components.ListView.uploadType] - A label for the service to which an image was uploaded
 #. defaultMessage is:
 #. Upload type
@@ -2239,12 +2475,34 @@ msgstr "Kullanıcı hesabı eylemleri"
 msgid "User name"
 msgstr "Kullanıcı adı"
 
+#. [components.Wizard.2663586870]
+#. defaultMessage is:
+#. Username
+#. [components.Wizard.2663586870]
+#. defaultMessage is:
+#. Username
+#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/VMWareAuthStep.json
+#, fuzzy
+#| msgid "User name"
+msgid "Username"
+msgstr "Kullanıcı adı"
+
 #. [pages.blueprint.443046426]
 #. defaultMessage is:
 #. Users
 #: build/messages/pages/blueprint/index.json
 msgid "Users"
 msgstr "Kullanıcılar"
+
+#. [components.Wizard.vmware]
+#. defaultMessage is:
+#. VMWare help
+#: build/messages/components/Wizard/ReviewStep.json
+#, fuzzy
+#| msgid "Azure help"
+msgid "VMWare help"
+msgstr "Azure ile ilgili yardım"
 
 #. [pages.blueprint.hostnameHelp]
 #. defaultMessage is:

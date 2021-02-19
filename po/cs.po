@@ -2,7 +2,7 @@
 # Matej Marusak <mmarusak@redhat.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2021-01-08T07:28:53.139Z\n"
+"POT-Creation-Date: 2021-02-19T16:42:55.043Z\n"
 "PO-Revision-Date: 2020-09-20 15:29+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://translate.fedoraproject.org/projects/cockpit-"
@@ -186,10 +186,18 @@ msgstr "Přidáno"
 #. [components.Wizard.1175512155]
 #. defaultMessage is:
 #. All fields are required.
+#. [components.Wizard.1175512155]
+#. defaultMessage is:
+#. All fields are required.
+#. [components.Wizard.1175512155]
+#. defaultMessage is:
+#. All fields are required.
 #: build/messages/components/Wizard/AWSAuthStep.json
 #: build/messages/components/Wizard/AWSDestinationStep.json
 #: build/messages/components/Wizard/AzureAuthStep.json
 #: build/messages/components/Wizard/AzureDestinationStep.json
+#: build/messages/components/Wizard/VMWareAuthStep.json
+#: build/messages/components/Wizard/VMWareDestinationStep.json
 msgid "All fields are required."
 msgstr "Je třeba vyplnit všechny kolonky."
 
@@ -537,6 +545,26 @@ msgstr "Vyčistit všechny filtry"
 msgid "Close"
 msgstr "Zavřít"
 
+#. [components.Wizard.103343714]
+#. defaultMessage is:
+#. Cluster
+#. [components.Wizard.103343714]
+#. defaultMessage is:
+#. Cluster
+#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+msgid "Cluster"
+msgstr ""
+
+#. [components.Wizard.cluster]
+#. defaultMessage is:
+#. Cluster help
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+#, fuzzy
+#| msgid "Azure help"
+msgid "Cluster help"
+msgstr "Nápověda k Azure"
+
 #. [components.Modal.2299254306]
 #. defaultMessage is:
 #. Comment
@@ -691,6 +719,50 @@ msgstr "Vytvořeno"
 msgid "Customizations"
 msgstr "Přizpůsobení"
 
+#. [components.Wizard.2877310487]
+#. defaultMessage is:
+#. Data Center
+#: build/messages/components/Wizard/ReviewStep.json
+msgid "Data Center"
+msgstr ""
+
+#. [components.Wizard.3747912914]
+#. defaultMessage is:
+#. Data Store
+#: build/messages/components/Wizard/ReviewStep.json
+msgid "Data Store"
+msgstr ""
+
+#. [components.Wizard.4278711264]
+#. defaultMessage is:
+#. Data center
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+msgid "Data center"
+msgstr ""
+
+#. [components.Wizard.3717439361]
+#. defaultMessage is:
+#. Data store
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+msgid "Data store"
+msgstr ""
+
+#. [components.Wizard.dataCenter]
+#. defaultMessage is:
+#. Datacenter help
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+#, fuzzy
+#| msgid "Storage container help"
+msgid "Datacenter help"
+msgstr "Nápověda k úložnému kontejneru"
+
+#. [components.Wizard.dataStore]
+#. defaultMessage is:
+#. Datastore help
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+msgid "Datastore help"
+msgstr ""
+
 #. [components.ListView.3645414921]
 #. defaultMessage is:
 #. Delete
@@ -784,6 +856,13 @@ msgstr "Podrobnosti"
 #| msgid "Discard Changes"
 msgid "Discard changes"
 msgstr "Zahodit změny"
+
+#. [components.Wizard.labelTar]
+#. defaultMessage is:
+#. Disk Archive (.tar)
+#: build/messages/components/Wizard/ImageStep.json
+msgid "Disk Archive (.tar)"
+msgstr ""
 
 #. [components.ListView.1982430146]
 #. defaultMessage is:
@@ -971,6 +1050,26 @@ msgstr "Jít zpět"
 msgid "Hide details"
 msgstr "Skrýt podrobnosti"
 
+#. [components.Wizard.644347739]
+#. defaultMessage is:
+#. Host
+#. [components.Wizard.644347739]
+#. defaultMessage is:
+#. Host
+#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+#, fuzzy
+#| msgid "Hostname"
+msgid "Host"
+msgstr "Název hostitele"
+
+#. [components.Wizard.host]
+#. defaultMessage is:
+#. Host help
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+msgid "Host help"
+msgstr ""
+
 #. [pages.blueprint.hostnameInputLabel]
 #. defaultMessage is:
 #. Hostname
@@ -985,19 +1084,55 @@ msgstr "Název hostitele"
 msgid "If no hostname is provided, the hostname will be determined by the OS."
 msgstr "Pokud název hostitele není zadán, bude zjištěn operačním systémem."
 
-#. [components.Wizard.3593632693]
+#. [components.Wizard.327045352]
 #. defaultMessage is:
-#. Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete 
+#. Image Builder can upload images you create to VMWare vSphere.
+#.                       When the image build is complete and the upload action is successful,
+#.                       the image file is available in the Cluster on the vSphere instance that you specified.
+#. [components.Wizard.327045352]
+#. defaultMessage is:
+#. Image Builder can upload images you create to VMWare vSphere.
+#.                       When the image build is complete and the upload action is successful,
+#.                       the image file is available in the Cluster on the vSphere instance that you specified.
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
+#, fuzzy
+#| msgid ""
+#| "Image Builder can upload images you create to a Blob container in "
+#| "{azure}. When the image build is complete \n"
+#| "                      and the upload action is successful, the image file "
+#| "is available in the Storage account and Blob container that you specified."
+msgid ""
+"Image Builder can upload images you create to VMWare vSphere.\n"
+"                      When the image build is complete and the upload action "
+"is successful,\n"
+"                      the image file is available in the Cluster on the "
+"vSphere instance that you specified."
+msgstr ""
+"Nástroj pro sestavování obrazů může vzniklé obrazy nahrávat na Blob "
+"kontejner ve službě {azure}. Po dokončení sestavení obrazu\n"
+"                     a jeho úspěšném nahrání, soubor s obrazem bude k "
+"dispozici v Účtu úložiště a Blob kontejneru, který jste zadali."
+
+#. [components.Wizard.3501375619]
+#. defaultMessage is:
+#. Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete
 #.                       and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
-#. [components.Wizard.3593632693]
+#. [components.Wizard.3501375619]
 #. defaultMessage is:
-#. Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete 
+#. Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete
 #.                       and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
 #: build/messages/components/Wizard/ImageStep.json
 #: build/messages/components/Wizard/ReviewStep.json
+#, fuzzy
+#| msgid ""
+#| "Image Builder can upload images you create to a Blob container in "
+#| "{azure}. When the image build is complete \n"
+#| "                      and the upload action is successful, the image file "
+#| "is available in the Storage account and Blob container that you specified."
 msgid ""
 "Image Builder can upload images you create to a Blob container in {azure}. "
-"When the image build is complete \n"
+"When the image build is complete\n"
 "                      and the upload action is successful, the image file is "
 "available in the Storage account and Blob container that you specified."
 msgstr ""
@@ -1081,10 +1216,14 @@ msgstr "Služba sestavování obrazů není aktivní"
 #. [components.Wizard.2794911472]
 #. defaultMessage is:
 #. Image name
+#. [components.Wizard.2794911472]
+#. defaultMessage is:
+#. Image name
 #: build/messages/components/ListView/ListItemUploads.json
 #: build/messages/components/Wizard/AWSDestinationStep.json
 #: build/messages/components/Wizard/AzureDestinationStep.json
 #: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/VMWareDestinationStep.json
 msgid "Image name"
 msgstr "Název obrazu"
 
@@ -1094,8 +1233,12 @@ msgstr "Název obrazu"
 #. [components.Wizard.imageName]
 #. defaultMessage is:
 #. Image name help
+#. [components.Wizard.imageName]
+#. defaultMessage is:
+#. Image name help
 #: build/messages/components/Wizard/AWSDestinationStep.json
 #: build/messages/components/Wizard/AzureDestinationStep.json
+#: build/messages/components/Wizard/VMWareDestinationStep.json
 msgid "Image name help"
 msgstr "Nápověda k názvu obrazu"
 
@@ -1148,6 +1291,13 @@ msgstr "Nahrání obrazu"
 #: build/messages/pages/blueprint/index.json
 msgid "Images"
 msgstr "Obrazy"
+
+#. [components.Wizard.labelLiveIso]
+#. defaultMessage is:
+#. Installer, suitable for USB and DVD (.iso)
+#: build/messages/components/Wizard/ImageStep.json
+msgid "Installer, suitable for USB and DVD (.iso)"
+msgstr ""
 
 #. [components.Loading.2617450248]
 #. defaultMessage is:
@@ -1370,7 +1520,15 @@ msgstr "Nadřazený commit"
 #. [components.Modal.2237029987]
 #. defaultMessage is:
 #. Password
+#. [components.Wizard.2237029987]
+#. defaultMessage is:
+#. Password
+#. [components.Wizard.2237029987]
+#. defaultMessage is:
+#. Password
 #: build/messages/components/Modal/UserAccount.json
+#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/VMWareAuthStep.json
 msgid "Password"
 msgstr "Heslo"
 
@@ -1407,8 +1565,12 @@ msgstr "Nápověda k délce procesu"
 #. [components.Wizard.4277042358]
 #. defaultMessage is:
 #. Provide a file name to be used for the image file that will be uploaded.
+#. [components.Wizard.4277042358]
+#. defaultMessage is:
+#. Provide a file name to be used for the image file that will be uploaded.
 #: build/messages/components/Wizard/AWSDestinationStep.json
 #: build/messages/components/Wizard/AzureDestinationStep.json
+#: build/messages/components/Wizard/VMWareDestinationStep.json
 msgid ""
 "Provide a file name to be used for the image file that will be uploaded."
 msgstr "Zadejte název souboru, který nahrát jako obraz."
@@ -1499,6 +1661,39 @@ msgstr ""
 "Poskytuje název účtu pro úložiště. Účty pro úložiště naleznete na stránce "
 "{storageAccounts} portálu {azure}."
 
+#. [components.Wizard.1891777230]
+#. defaultMessage is:
+#. Provide the name of the Cluster to which the image file will be uploaded.
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+#, fuzzy
+#| msgid ""
+#| "Provide a file name to be used for the image file that will be uploaded."
+msgid ""
+"Provide the name of the Cluster to which the image file will be uploaded."
+msgstr "Zadejte název souboru, který nahrát jako obraz."
+
+#. [components.Wizard.1217327836]
+#. defaultMessage is:
+#. Provide the name of the Datacenter to which the image file will be uploaded.
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+#, fuzzy
+#| msgid ""
+#| "Provide a file name to be used for the image file that will be uploaded."
+msgid ""
+"Provide the name of the Datacenter to which the image file will be uploaded."
+msgstr "Zadejte název souboru, který nahrát jako obraz."
+
+#. [components.Wizard.4014474612]
+#. defaultMessage is:
+#. Provide the name of the Datastore to which the image file will be uploaded.
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+#, fuzzy
+#| msgid ""
+#| "Provide a file name to be used for the image file that will be uploaded."
+msgid ""
+"Provide the name of the Datastore to which the image file will be uploaded."
+msgstr "Zadejte název souboru, který nahrát jako obraz."
+
 #. [components.Wizard.1476874820]
 #. defaultMessage is:
 #. Provide the name of the branch for the content. If the ref does not already exist it will be created.
@@ -1509,6 +1704,25 @@ msgid ""
 msgstr ""
 "Poskytuje název větve obsahu. Pokud reference ještě neexistuje, bude "
 "vytvořena."
+
+#. [components.Wizard.3387354708]
+#. defaultMessage is:
+#. Provide the url of your {vmware} instance to which the image file will be uploaded.
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+#, fuzzy
+#| msgid ""
+#| "Provide a file name to be used for the image file that will be uploaded."
+msgid ""
+"Provide the url of your {vmware} instance to which the image file will be "
+"uploaded."
+msgstr "Zadejte název souboru, který nahrát jako obraz."
+
+#. [components.Wizard.labelqcow]
+#. defaultMessage is:
+#. QEMU Image (.qcow2)
+#: build/messages/components/Wizard/ImageStep.json
+msgid "QEMU Image (.qcow2)"
+msgstr ""
 
 #. [components.Wizard.31026111]
 #. defaultMessage is:
@@ -2309,6 +2523,23 @@ msgstr "Nahrát na AWS"
 msgid "Upload to Azure"
 msgstr "Nahrát na Azure"
 
+#. [components.Wizard.3542348520]
+#. defaultMessage is:
+#. Upload to VMWare
+#. [components.Wizard.uploadVMWare]
+#. defaultMessage is:
+#. Upload to VMWare
+#. [components.Wizard.3542348520]
+#. defaultMessage is:
+#. Upload to VMWare
+#: build/messages/components/Wizard/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
+#, fuzzy
+#| msgid "Upload to Azure"
+msgid "Upload to VMWare"
+msgstr "Nahrát na Azure"
+
 #. [components.ListView.uploadType] - A label for the service to which an image was uploaded
 #. defaultMessage is:
 #. Upload type
@@ -2332,12 +2563,34 @@ msgstr "Akce uživatelského účtu"
 msgid "User name"
 msgstr "Uživatelské jméno"
 
+#. [components.Wizard.2663586870]
+#. defaultMessage is:
+#. Username
+#. [components.Wizard.2663586870]
+#. defaultMessage is:
+#. Username
+#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/VMWareAuthStep.json
+#, fuzzy
+#| msgid "User name"
+msgid "Username"
+msgstr "Uživatelské jméno"
+
 #. [pages.blueprint.443046426]
 #. defaultMessage is:
 #. Users
 #: build/messages/pages/blueprint/index.json
 msgid "Users"
 msgstr "Uživatelé"
+
+#. [components.Wizard.vmware]
+#. defaultMessage is:
+#. VMWare help
+#: build/messages/components/Wizard/ReviewStep.json
+#, fuzzy
+#| msgid "Azure help"
+msgid "VMWare help"
+msgstr "Nápověda k Azure"
 
 #. [pages.blueprint.hostnameHelp]
 #. defaultMessage is:
