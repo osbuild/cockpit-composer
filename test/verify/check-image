@@ -668,6 +668,7 @@ class TestImage(composerlib.ComposerCase):
         b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "true")
         b.click("li[aria-labelledby={}] a:contains('Remove')".format(selector))
         b.wait_not_present("#{}".format(selector))
+        self.allow_journal_messages(".*avc:  denied.*")
 
         # collect code coverage result
         self.check_coverage()
