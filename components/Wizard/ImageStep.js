@@ -90,6 +90,15 @@ const messages = defineMessages({
   uploadVMWare: {
     defaultMessage: "Upload to VMWare",
   },
+  labelqcow: {
+    defaultMessage: "QEMU Image (.qcow2)",
+  },
+  labelTar: {
+    defaultMessage: "Disk Archive (.tar)",
+  },
+  labelLiveIso: {
+    defaultMessage: "Installer, suitable for USB and DVD (.iso)",
+  },
 });
 
 class ImageStep extends React.PureComponent {
@@ -500,14 +509,35 @@ class ImageStep extends React.PureComponent {
           <FormGroup label={formatMessage(messages.type)} fieldId="image-type" isRequired>
             <FormSelect value={imageType} id="image-type" onChange={this.handleImageTypeSelect} isRequired>
               <FormSelectOption isDisabled key="default" value="" label={formatMessage(messages.selectOne)} />
-              {imageTypes.map((type) => (
-                <FormSelectOption
-                  isDisabled={!type.enabled}
-                  key={type.name}
-                  value={type.name}
-                  label={formatMessage({ id: type.name, defaultMessage: type.label })}
-                />
-              ))}
+              {imageTypes.map(
+                (type) =>
+                  (type.name === "tar" && (
+                    <FormSelectOption
+                      isDisabled={!type.enabled}
+                      key={type.name}
+                      value={type.name}
+                      label={formatMessage(messages.labelTar)}
+                    />
+                  )) ||
+                  (type.name === "qcow2" && (
+                    <FormSelectOption
+                      isDisabled={!type.enabled}
+                      key={type.name}
+                      value={type.name}
+                      label={formatMessage(messages.labelqcow)}
+                    />
+                  )) ||
+                  (type.name === "live-iso" && (
+                    <FormSelectOption
+                      isDisabled={!type.enabled}
+                      key={type.name}
+                      value={type.name}
+                      label={formatMessage(messages.labelLiveIso)}
+                    />
+                  )) || (
+                    <FormSelectOption isDisabled={!type.enabled} key={type.name} value={type.name} label={type.label} />
+                  )
+              )}
             </FormSelect>
           </FormGroup>
           {imageType === "ami" && awsProviderCheckbox}
