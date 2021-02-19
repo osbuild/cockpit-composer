@@ -8,7 +8,7 @@
 # Alain Nussbaumer <alain.nussbaumer@alleluia.ch>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2021-01-08T07:28:53.139Z\n"
+"POT-Creation-Date: 2021-02-19T16:42:55.043Z\n"
 "PO-Revision-Date: 2020-11-20 18:35+0000\n"
 "Last-Translator: Alain Nussbaumer <alain.nussbaumer@alleluia.ch>\n"
 "Language-Team: French <https://translate.fedoraproject.org/projects/cockpit-"
@@ -194,10 +194,18 @@ msgstr "Ajouté"
 #. [components.Wizard.1175512155]
 #. defaultMessage is:
 #. All fields are required.
+#. [components.Wizard.1175512155]
+#. defaultMessage is:
+#. All fields are required.
+#. [components.Wizard.1175512155]
+#. defaultMessage is:
+#. All fields are required.
 #: build/messages/components/Wizard/AWSAuthStep.json
 #: build/messages/components/Wizard/AWSDestinationStep.json
 #: build/messages/components/Wizard/AzureAuthStep.json
 #: build/messages/components/Wizard/AzureDestinationStep.json
+#: build/messages/components/Wizard/VMWareAuthStep.json
+#: build/messages/components/Wizard/VMWareDestinationStep.json
 msgid "All fields are required."
 msgstr "Tous les champs sont requis."
 
@@ -555,6 +563,26 @@ msgstr "Supprimer tous les filtres"
 msgid "Close"
 msgstr "Fermer"
 
+#. [components.Wizard.103343714]
+#. defaultMessage is:
+#. Cluster
+#. [components.Wizard.103343714]
+#. defaultMessage is:
+#. Cluster
+#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+msgid "Cluster"
+msgstr ""
+
+#. [components.Wizard.cluster]
+#. defaultMessage is:
+#. Cluster help
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+#, fuzzy
+#| msgid "Azure help"
+msgid "Cluster help"
+msgstr "Aide d’Azure"
+
 #. [components.Modal.2299254306]
 #. defaultMessage is:
 #. Comment
@@ -710,6 +738,50 @@ msgstr "Créé"
 msgid "Customizations"
 msgstr "Personnalisations"
 
+#. [components.Wizard.2877310487]
+#. defaultMessage is:
+#. Data Center
+#: build/messages/components/Wizard/ReviewStep.json
+msgid "Data Center"
+msgstr ""
+
+#. [components.Wizard.3747912914]
+#. defaultMessage is:
+#. Data Store
+#: build/messages/components/Wizard/ReviewStep.json
+msgid "Data Store"
+msgstr ""
+
+#. [components.Wizard.4278711264]
+#. defaultMessage is:
+#. Data center
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+msgid "Data center"
+msgstr ""
+
+#. [components.Wizard.3717439361]
+#. defaultMessage is:
+#. Data store
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+msgid "Data store"
+msgstr ""
+
+#. [components.Wizard.dataCenter]
+#. defaultMessage is:
+#. Datacenter help
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+#, fuzzy
+#| msgid "Storage container help"
+msgid "Datacenter help"
+msgstr "Aide sur les conteneurs de stockage"
+
+#. [components.Wizard.dataStore]
+#. defaultMessage is:
+#. Datastore help
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+msgid "Datastore help"
+msgstr ""
+
 #. [components.ListView.3645414921]
 #. defaultMessage is:
 #. Delete
@@ -803,6 +875,13 @@ msgstr "Détails"
 #| msgid "Discard Changes"
 msgid "Discard changes"
 msgstr "Abandonner les modifications"
+
+#. [components.Wizard.labelTar]
+#. defaultMessage is:
+#. Disk Archive (.tar)
+#: build/messages/components/Wizard/ImageStep.json
+msgid "Disk Archive (.tar)"
+msgstr ""
 
 #. [components.ListView.1982430146]
 #. defaultMessage is:
@@ -991,6 +1070,26 @@ msgstr "Retour en arrière"
 msgid "Hide details"
 msgstr "Cacher les détails"
 
+#. [components.Wizard.644347739]
+#. defaultMessage is:
+#. Host
+#. [components.Wizard.644347739]
+#. defaultMessage is:
+#. Host
+#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+#, fuzzy
+#| msgid "Hostname"
+msgid "Host"
+msgstr "Nom d’hôte"
+
+#. [components.Wizard.host]
+#. defaultMessage is:
+#. Host help
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+msgid "Host help"
+msgstr ""
+
 #. [pages.blueprint.hostnameInputLabel]
 #. defaultMessage is:
 #. Hostname
@@ -1006,19 +1105,55 @@ msgid "If no hostname is provided, the hostname will be determined by the OS."
 msgstr ""
 "Si aucun nom d’hôte n’est spécifié, le nom d’hôte sera déterminé par le SE."
 
-#. [components.Wizard.3593632693]
+#. [components.Wizard.327045352]
 #. defaultMessage is:
-#. Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete 
+#. Image Builder can upload images you create to VMWare vSphere.
+#.                       When the image build is complete and the upload action is successful,
+#.                       the image file is available in the Cluster on the vSphere instance that you specified.
+#. [components.Wizard.327045352]
+#. defaultMessage is:
+#. Image Builder can upload images you create to VMWare vSphere.
+#.                       When the image build is complete and the upload action is successful,
+#.                       the image file is available in the Cluster on the vSphere instance that you specified.
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
+#, fuzzy
+#| msgid ""
+#| "Image Builder can upload images you create to a Blob container in "
+#| "{azure}. When the image build is complete \n"
+#| "                      and the upload action is successful, the image file "
+#| "is available in the Storage account and Blob container that you specified."
+msgid ""
+"Image Builder can upload images you create to VMWare vSphere.\n"
+"                      When the image build is complete and the upload action "
+"is successful,\n"
+"                      the image file is available in the Cluster on the "
+"vSphere instance that you specified."
+msgstr ""
+"Image Builder peut téléverser des images sur un conteneur Blob dans {azure}. "
+"Lorsque la construction de l’image est complétée\n"
+"et que le téléversement a réussi, le fichier image est disponible dans le "
+"compte de Stockage et le conteneur Blob que vous avez spécifié."
+
+#. [components.Wizard.3501375619]
+#. defaultMessage is:
+#. Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete
 #.                       and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
-#. [components.Wizard.3593632693]
+#. [components.Wizard.3501375619]
 #. defaultMessage is:
-#. Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete 
+#. Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete
 #.                       and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
 #: build/messages/components/Wizard/ImageStep.json
 #: build/messages/components/Wizard/ReviewStep.json
+#, fuzzy
+#| msgid ""
+#| "Image Builder can upload images you create to a Blob container in "
+#| "{azure}. When the image build is complete \n"
+#| "                      and the upload action is successful, the image file "
+#| "is available in the Storage account and Blob container that you specified."
 msgid ""
 "Image Builder can upload images you create to a Blob container in {azure}. "
-"When the image build is complete \n"
+"When the image build is complete\n"
 "                      and the upload action is successful, the image file is "
 "available in the Storage account and Blob container that you specified."
 msgstr ""
@@ -1103,10 +1238,14 @@ msgstr "Le service Image Building n’est pas actif"
 #. [components.Wizard.2794911472]
 #. defaultMessage is:
 #. Image name
+#. [components.Wizard.2794911472]
+#. defaultMessage is:
+#. Image name
 #: build/messages/components/ListView/ListItemUploads.json
 #: build/messages/components/Wizard/AWSDestinationStep.json
 #: build/messages/components/Wizard/AzureDestinationStep.json
 #: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/VMWareDestinationStep.json
 msgid "Image name"
 msgstr "Nom de l’image"
 
@@ -1116,8 +1255,12 @@ msgstr "Nom de l’image"
 #. [components.Wizard.imageName]
 #. defaultMessage is:
 #. Image name help
+#. [components.Wizard.imageName]
+#. defaultMessage is:
+#. Image name help
 #: build/messages/components/Wizard/AWSDestinationStep.json
 #: build/messages/components/Wizard/AzureDestinationStep.json
+#: build/messages/components/Wizard/VMWareDestinationStep.json
 msgid "Image name help"
 msgstr "Aide sur le nom de l’image"
 
@@ -1170,6 +1313,13 @@ msgstr "Téléchargement d’images"
 #: build/messages/pages/blueprint/index.json
 msgid "Images"
 msgstr "Images"
+
+#. [components.Wizard.labelLiveIso]
+#. defaultMessage is:
+#. Installer, suitable for USB and DVD (.iso)
+#: build/messages/components/Wizard/ImageStep.json
+msgid "Installer, suitable for USB and DVD (.iso)"
+msgstr ""
 
 #. [components.Loading.2617450248]
 #. defaultMessage is:
@@ -1393,7 +1543,15 @@ msgstr "Commit parent"
 #. [components.Modal.2237029987]
 #. defaultMessage is:
 #. Password
+#. [components.Wizard.2237029987]
+#. defaultMessage is:
+#. Password
+#. [components.Wizard.2237029987]
+#. defaultMessage is:
+#. Password
 #: build/messages/components/Modal/UserAccount.json
+#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/VMWareAuthStep.json
 msgid "Password"
 msgstr "Mot de passe"
 
@@ -1430,8 +1588,12 @@ msgstr "Aide sur la durée du processus"
 #. [components.Wizard.4277042358]
 #. defaultMessage is:
 #. Provide a file name to be used for the image file that will be uploaded.
+#. [components.Wizard.4277042358]
+#. defaultMessage is:
+#. Provide a file name to be used for the image file that will be uploaded.
 #: build/messages/components/Wizard/AWSDestinationStep.json
 #: build/messages/components/Wizard/AzureDestinationStep.json
+#: build/messages/components/Wizard/VMWareDestinationStep.json
 msgid ""
 "Provide a file name to be used for the image file that will be uploaded."
 msgstr ""
@@ -1527,6 +1689,45 @@ msgstr ""
 "Indiquez le nom d'un compte de stockage. Vous pouvez trouver des comptes de "
 "stockage sur la page {storageAccounts} du portail {azure}."
 
+#. [components.Wizard.1891777230]
+#. defaultMessage is:
+#. Provide the name of the Cluster to which the image file will be uploaded.
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+#, fuzzy
+#| msgid ""
+#| "Provide a file name to be used for the image file that will be uploaded."
+msgid ""
+"Provide the name of the Cluster to which the image file will be uploaded."
+msgstr ""
+"Veuillez fournir un nom de fichier à utiliser pour le fichier image qui sera "
+"téléversé."
+
+#. [components.Wizard.1217327836]
+#. defaultMessage is:
+#. Provide the name of the Datacenter to which the image file will be uploaded.
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+#, fuzzy
+#| msgid ""
+#| "Provide a file name to be used for the image file that will be uploaded."
+msgid ""
+"Provide the name of the Datacenter to which the image file will be uploaded."
+msgstr ""
+"Veuillez fournir un nom de fichier à utiliser pour le fichier image qui sera "
+"téléversé."
+
+#. [components.Wizard.4014474612]
+#. defaultMessage is:
+#. Provide the name of the Datastore to which the image file will be uploaded.
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+#, fuzzy
+#| msgid ""
+#| "Provide a file name to be used for the image file that will be uploaded."
+msgid ""
+"Provide the name of the Datastore to which the image file will be uploaded."
+msgstr ""
+"Veuillez fournir un nom de fichier à utiliser pour le fichier image qui sera "
+"téléversé."
+
 #. [components.Wizard.1476874820]
 #. defaultMessage is:
 #. Provide the name of the branch for the content. If the ref does not already exist it will be created.
@@ -1537,6 +1738,27 @@ msgid ""
 msgstr ""
 "Indiquez le nom de la branche pour le contenu. Si la référence n'existe pas "
 "déjà, elle sera créée."
+
+#. [components.Wizard.3387354708]
+#. defaultMessage is:
+#. Provide the url of your {vmware} instance to which the image file will be uploaded.
+#: build/messages/components/Wizard/VMWareDestinationStep.json
+#, fuzzy
+#| msgid ""
+#| "Provide a file name to be used for the image file that will be uploaded."
+msgid ""
+"Provide the url of your {vmware} instance to which the image file will be "
+"uploaded."
+msgstr ""
+"Veuillez fournir un nom de fichier à utiliser pour le fichier image qui sera "
+"téléversé."
+
+#. [components.Wizard.labelqcow]
+#. defaultMessage is:
+#. QEMU Image (.qcow2)
+#: build/messages/components/Wizard/ImageStep.json
+msgid "QEMU Image (.qcow2)"
+msgstr ""
 
 #. [components.Wizard.31026111]
 #. defaultMessage is:
@@ -2341,6 +2563,23 @@ msgstr "Téléversement vers AWS"
 msgid "Upload to Azure"
 msgstr "Téléversement vers Azure"
 
+#. [components.Wizard.3542348520]
+#. defaultMessage is:
+#. Upload to VMWare
+#. [components.Wizard.uploadVMWare]
+#. defaultMessage is:
+#. Upload to VMWare
+#. [components.Wizard.3542348520]
+#. defaultMessage is:
+#. Upload to VMWare
+#: build/messages/components/Wizard/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
+#, fuzzy
+#| msgid "Upload to Azure"
+msgid "Upload to VMWare"
+msgstr "Téléversement vers Azure"
+
 #. [components.ListView.uploadType] - A label for the service to which an image was uploaded
 #. defaultMessage is:
 #. Upload type
@@ -2364,12 +2603,34 @@ msgstr "Actions Compte utilisateur"
 msgid "User name"
 msgstr "Nom d’utilisateur"
 
+#. [components.Wizard.2663586870]
+#. defaultMessage is:
+#. Username
+#. [components.Wizard.2663586870]
+#. defaultMessage is:
+#. Username
+#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/VMWareAuthStep.json
+#, fuzzy
+#| msgid "User name"
+msgid "Username"
+msgstr "Nom d’utilisateur"
+
 #. [pages.blueprint.443046426]
 #. defaultMessage is:
 #. Users
 #: build/messages/pages/blueprint/index.json
 msgid "Users"
 msgstr "Utilisateurs"
+
+#. [components.Wizard.vmware]
+#. defaultMessage is:
+#. VMWare help
+#: build/messages/components/Wizard/ReviewStep.json
+#, fuzzy
+#| msgid "Azure help"
+msgid "VMWare help"
+msgstr "Aide d’Azure"
 
 #. [pages.blueprint.hostnameHelp]
 #. defaultMessage is:
