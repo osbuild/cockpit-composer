@@ -13,7 +13,7 @@
     "@patternfly/react-styles": "4.8.2",
     "@patternfly/react-table": "4.20.15",
     "bootstrap": "3.4.1",
-    "core-js": "3.8.3",
+    "core-js": "3.9.0",
     "core-js-compat": "3.8.3",
     "fastclick": "1.0.6",
     "history": "3.3.0",
