@@ -76,6 +76,7 @@ class CreateImageUploadModal extends React.Component {
     this.getDefaultImageSize = this.getDefaultImageSize.bind(this);
     this.isPendingChange = this.isPendingChange.bind(this);
     this.isValidImageSize = this.isValidImageSize.bind(this);
+    this.isValidOstree = this.isValidOstree.bind(this);
     this.isValidOstreeRef = this.isValidOstreeRef.bind(this);
     this.requiresImageSize = this.requiresImageSize.bind(this);
     this.missingRequiredFields = this.missingRequiredFields.bind(this);
@@ -304,7 +305,7 @@ class CreateImageUploadModal extends React.Component {
     ) {
       return true;
     }
-    if (!this.isValidOstreeRef(this.state.ostreeSettings.ref)) return true;
+    if (!this.isValidOstree()) return true;
     if (this.missingRequiredFields() && activeStepName === "Review") {
       return true;
     }
@@ -346,6 +347,11 @@ class CreateImageUploadModal extends React.Component {
       return false;
     }
     return true;
+  }
+
+  isValidOstree() {
+    if (this.state.ostreeSettings.parent && this.state.ostreeSettings.url) return false;
+    return this.isValidOstreeRef(this.state.ostreeSettings.ref);
   }
 
   isValidOstreeRef(ref) {
