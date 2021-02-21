@@ -12,6 +12,20 @@ if [ -n "$VG" ]; then
     lvextend -r -l +100%FREE $VG/root
 fi
 
+# TEMPORARY: pull osbuild-composer 28 from koji/brew until it lands properly
+. /etc/os-release
+case "$ID" in
+  rhel)
+    curl -OL http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/osbuild-composer/28/1.el8/x86_64/osbuild-composer-28-1.el8.x86_64.rpm
+    curl -OL http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/osbuild-composer/28/1.el8/x86_64/osbuild-composer-core-28-1.el8.x86_64.rpm
+    curl -OL http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/osbuild-composer/28/1.el8/x86_64/osbuild-composer-worker-28-1.el8.x86_64.rpm
+    sudo dnf -y install *.rpm
+    ;;
+  fedora)
+    sudo dnf -y upgrade --enablerepo=updates-testing osbuild-composer
+    ;;
+esac
+
 # overriding osbuild-composer repo with nightly
 mkdir -p /etc/osbuild-composer/repositories
 cp /home/admin/files/rhel-84.json /etc/osbuild-composer/repositories/rhel-8.json

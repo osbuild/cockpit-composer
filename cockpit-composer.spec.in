@@ -12,10 +12,10 @@ BuildRequires:  libappstream-glib
 
 Requires:       cockpit
 %if 0%{?fedora} >= 33 || 0%{?rhel} >= 8
-Requires: osbuild-composer >= 28
+Requires: osbuild-composer >= 14
 %else
 Requires: weldr
-Suggests: osbuild-composer >= 28
+Suggests: osbuild-composer >= 14
 %endif
 
 %description
