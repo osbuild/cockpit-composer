@@ -115,6 +115,8 @@ class ImageStep extends React.PureComponent {
     this.handleImageTypeSelect = this.handleImageTypeSelect.bind(this);
     this.handleImageSizeInput = this.handleImageSizeInput.bind(this);
     this.handleOSTreeRef = this.handleOSTreeRef.bind(this);
+    this.handleOSTreeCommit = this.handleOSTreeCommit.bind(this);
+    this.handleOSTreeURL = this.handleOSTreeURL.bind(this);
   }
 
   handleImageTypeSelect(imageType) {
@@ -122,6 +124,8 @@ class ImageStep extends React.PureComponent {
       imageSizeValidated: "default",
       imageSizeHelperTextInvalid: "",
       ostreeRefValidated: "default",
+      ostreeCommitValidated: "default",
+      ostreeURLValidated: "default",
     });
     this.props.setImageType(imageType);
   }
@@ -170,6 +174,42 @@ class ImageStep extends React.PureComponent {
     this.props.setOstreeRef(ref);
   }
 
+  handleOSTreeCommit(commit) {
+    if (!commit) {
+      this.setState({
+        ostreeURLValidated: "default",
+      });
+    }
+    if (this.props.ostreeSettings.url && commit) {
+      this.setState({
+        ostreeCommitValidated: "error",
+      });
+    } else {
+      this.setState({
+        ostreeCommitValidated: "default",
+      });
+    }
+    this.props.setOstreeParent(commit);
+  }
+
+  handleOSTreeURL(url) {
+    if (!url) {
+      this.setState({
+        ostreeCommitValidated: "default",
+      });
+    }
+    if (this.props.ostreeSettings.parent && url) {
+      this.setState({
+        ostreeURLValidated: "error",
+      });
+    } else {
+      this.setState({
+        ostreeURLValidated: "default",
+      });
+    }
+    this.props.setOstreeURL(url);
+  }
+
   render() {
     const { formatMessage } = this.props.intl;
     const {
@@ -183,12 +223,16 @@ class ImageStep extends React.PureComponent {
       maxImageSize,
       ostreeSettings,
       requiresImageSize,
-      setOstreeParent,
-      setOstreeURL,
       uploadService,
     } = this.props;
 
-    const { imageSizeValidated, imageSizeHelperTextInvalid, ostreeRefValidated } = this.state;
+    const {
+      imageSizeValidated,
+      imageSizeHelperTextInvalid,
+      ostreeRefValidated,
+      ostreeCommitValidated,
+      ostreeURLValidated,
+    } = this.state;
 
     const awsProviderCheckbox = (
       <FormGroup
@@ -426,6 +470,7 @@ class ImageStep extends React.PureComponent {
             </Popover>
           }
           fieldId="ostree-url-input"
+          validated={ostreeURLValidated}
           hasNoPaddingTop
         >
           <TextInput
@@ -433,8 +478,14 @@ class ImageStep extends React.PureComponent {
             value={ostreeSettings.url !== undefined ? ostreeSettings.url : ""}
             type="text"
             id="ostree-url-input"
-            onChange={setOstreeURL}
+            onChange={this.handleOSTreeURL}
+            validated={ostreeURLValidated}
           />
+          {ostreeURLValidated === "error" && (
+            <p className="pf-c-form__helper-text pf-m-error" id="ostree-url-input-helper-error" aria-live="polite">
+              <FormattedMessage defaultMessage="Either the parent commit or repository url can be specified. Not both." />
+            </p>
+          )}
         </FormGroup>
         <FormGroup
           label={<FormattedMessage defaultMessage="Parent commit" />}
@@ -456,6 +507,7 @@ class ImageStep extends React.PureComponent {
             </Popover>
           }
           fieldId="ostree-parent-input"
+          validated={ostreeCommitValidated}
           hasNoPaddingTop
         >
           <TextInput
@@ -463,8 +515,14 @@ class ImageStep extends React.PureComponent {
             value={ostreeSettings.parent !== undefined ? ostreeSettings.parent : ""}
             type="text"
             id="ostree-parent-input"
-            onChange={setOstreeParent}
+            onChange={this.handleOSTreeCommit}
+            validated={ostreeCommitValidated}
           />
+          {ostreeCommitValidated === "error" && (
+            <p className="pf-c-form__helper-text pf-m-error" id="ostree-parent-input-helper-error" aria-live="polite">
+              <FormattedMessage defaultMessage="Either the parent commit or repository url can be specified. Not both." />
+            </p>
+          )}
         </FormGroup>
         <FormGroup
           label={<FormattedMessage defaultMessage="Ref" />}
