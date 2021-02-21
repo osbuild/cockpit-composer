@@ -37,6 +37,9 @@ const ariaLabels = defineMessages({
   ostreeRef: {
     defaultMessage: "OSTree ref help",
   },
+  ostreeURL: {
+    defaultMessage: "OSTree repo url help",
+  },
 });
 
 const messages = defineMessages({
@@ -181,6 +184,7 @@ class ImageStep extends React.PureComponent {
       ostreeSettings,
       requiresImageSize,
       setOstreeParent,
+      setOstreeURL,
       uploadService,
     } = this.props;
 
@@ -407,12 +411,42 @@ class ImageStep extends React.PureComponent {
     const ostreeFields = (
       <>
         <FormGroup
+          label={<FormattedMessage defaultMessage="Repository URL" />}
+          labelIcon={
+            <Popover
+              id="ostree-url-popover"
+              bodyContent={
+                <FormattedMessage defaultMessage="Provide the URL of the upstream repository. This repository is where the parent OSTree commit will be pulled from." />
+              }
+              aria-label={formatMessage(ariaLabels.ostreeURL)}
+            >
+              <Button variant="plain" aria-label={formatMessage(ariaLabels.ostreeURL)}>
+                <OutlinedQuestionCircleIcon className="cc-c-text__align-icon" id="popover-icon" />
+              </Button>
+            </Popover>
+          }
+          fieldId="ostree-url-input"
+          hasNoPaddingTop
+        >
+          <TextInput
+            className="pf-c-form-control"
+            value={ostreeSettings.url !== undefined ? ostreeSettings.url : ""}
+            type="text"
+            id="ostree-url-input"
+            onChange={setOstreeURL}
+          />
+        </FormGroup>
+        <FormGroup
           label={<FormattedMessage defaultMessage="Parent commit" />}
           labelIcon={
             <Popover
               id="ostree-parent-popover"
               bodyContent={
-                <FormattedMessage defaultMessage="Provide the ID of the latest commit in the updates repository for which this commit provides an update." />
+                <FormattedMessage
+                  defaultMessage="
+                    Provide the ID of the latest commit in the updates repository for which this commit provides an update.
+                    If no commit is specified it will be inferred from the parent repository."
+                />
               }
               aria-label={formatMessage(ariaLabels.ostreeParent)}
             >
@@ -568,6 +602,7 @@ ImageStep.propTypes = {
   setImageType: PropTypes.func,
   setOstreeParent: PropTypes.func,
   setOstreeRef: PropTypes.func,
+  setOstreeURL: PropTypes.func,
   uploadService: PropTypes.string,
 };
 
@@ -587,6 +622,7 @@ ImageStep.defaultProps = {
   setImageType() {},
   setOstreeParent() {},
   setOstreeRef() {},
+  setOstreeURL() {},
   uploadService: "",
 };
 
