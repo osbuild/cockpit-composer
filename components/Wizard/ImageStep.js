@@ -579,6 +579,8 @@ class ImageStep extends React.PureComponent {
           {/* {imageType === "vmdk" && vmwareProviderCheckbox} */}
           {requiresImageSize(imageType) && imageSizeInput}
           {(imageType === "fedora-iot-commit" || imageType === "rhel-edge-commit") && ostreeFields}
+          {imageType === "rhel-edge-container" && ostreeFields}
+          {imageType === "rhel-edge-installer" && ostreeFields}
         </Form>
       </>
     );
