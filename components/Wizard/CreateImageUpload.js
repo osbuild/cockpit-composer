@@ -323,7 +323,13 @@ class CreateImageUploadModal extends React.Component {
   }
 
   requiresImageSize(imageType) {
-    if (imageType === "" || imageType === "fedora-iot-commit" || imageType === "rhel-edge-commit") {
+    if (
+      imageType === "" ||
+      imageType === "fedora-iot-commit" ||
+      imageType === "rhel-edge-commit" ||
+      imageType === "rhel-edge-container" ||
+      imageType === "rhel-edge-installer"
+    ) {
       return false;
     }
     return true;
