@@ -589,7 +589,7 @@ class TestImage(composerlib.ComposerCase):
         self.assertEqual(image_type, image_type_ostree)
 
         # image building needs more time
-        with b.wait_timeout(1800):
+        with b.wait_timeout(3600):
             b.wait_text("li[aria-labelledby={}] [data-status=true]".format(selector),
                         "Image build complete")
         # log should contains rpm, hostname, users stages and tar assembler
