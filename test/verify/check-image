@@ -10,6 +10,7 @@ import testlib
 
 
 @testlib.timeout(2400)
+@testlib.nondestructive
 @testlib.no_retry_when_changed
 class TestImage(composerlib.ComposerCase):
 
@@ -512,17 +513,17 @@ class TestImage(composerlib.ComposerCase):
         ).rstrip()
         self.assertEqual(int(image_size), 4 * 1024 * 1024 * 1024)
         # log should contains rpm, hostname, users stages and tar assembler
-        b.click("button:contains('Logs')")
+        b.click("li[aria-labelledby={}] button:contains('Logs')".format(selector))
         b.wait_in_text("#{}-logs".format(uuid), "Stage org.osbuild.rpm")
         b.wait_in_text("#{}-logs".format(uuid), "Stage: org.osbuild.hostname")
         b.wait_in_text("#{}-logs".format(uuid), "Stage: org.osbuild.users")
         b.wait_in_text("#{}-logs".format(uuid), "Assembler org.osbuild.qemu")
         # close logs
-        b.click("button:contains('Logs')")
+        b.click("li[aria-labelledby={}] button:contains('Logs')".format(selector))
 
         # download image
         b.click("#{}-actions".format(uuid))
-        b.click("a:contains('Download')")
+        b.click("li[aria-labelledby={}] button:contains('Download')".format(selector))
 
         # delete image cancel first always
         b.click("#{}-actions".format(uuid))
@@ -595,16 +596,16 @@ class TestImage(composerlib.ComposerCase):
             b.wait_text("li[aria-labelledby={}] [data-status=true]".format(selector),
                         "Image build complete")
         # log should contains rpm, hostname, users stages and tar assembler
-        b.click("button:contains('Logs')")
+        b.click("li[aria-labelledby={}] button:contains('Logs')".format(selector))
         b.wait_in_text("#{}-logs".format(uuid), "Stage org.osbuild.rpm")
         b.wait_in_text("#{}-logs".format(uuid), "Stage: org.osbuild.rpm-ostree")
         b.wait_in_text("#{}-logs".format(uuid), "Assembler org.osbuild.ostree.commit")
         # close logs
-        b.click("button:contains('Logs')")
+        b.click("li[aria-labelledby={}] button:contains('Logs')".format(selector))
 
         # download image
         b.click("#{}-actions".format(uuid))
-        b.click("a:contains('Download')")
+        b.click("li[aria-labelledby={}] button:contains('Download')".format(selector))
 
         # delete image cancel first always
         b.click("#{}-actions".format(uuid))
