@@ -4,7 +4,7 @@
 # Ludek Janda <ljanda@redhat.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2021-02-19T16:42:55.043Z\n"
+"POT-Creation-Date: 2021-02-22T18:10:01.151Z\n"
 "PO-Revision-Date: 2020-09-22 10:29+0000\n"
 "Last-Translator: Ludek Janda <ljanda@redhat.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.fedoraproject.org/"
@@ -930,6 +930,13 @@ msgstr "编辑源"
 msgid "Edit user account"
 msgstr "编辑用户账户"
 
+#. [components.Wizard.4173021643]
+#. defaultMessage is:
+#. Either the parent commit or repository url can be specified. Not both.
+#: build/messages/components/Wizard/ImageStep.json
+msgid "Either the parent commit or repository url can be specified. Not both."
+msgstr ""
+
 #. [pages.blueprint.emptyBlueprintTitle]
 #. defaultMessage is:
 #. Empty blueprint
@@ -1474,6 +1481,15 @@ msgstr "OSTree parent 帮助"
 msgid "OSTree ref help"
 msgstr "OSTree ref 帮助"
 
+#. [components.Wizard.ostreeURL]
+#. defaultMessage is:
+#. OSTree repo url help
+#: build/messages/components/Wizard/ImageStep.json
+#, fuzzy
+#| msgid "OSTree ref help"
+msgid "OSTree repo url help"
+msgstr "OSTree ref 帮助"
+
 #. [components.Modal.1475836573]
 #. defaultMessage is:
 #. Only changes to selected components are shown.
@@ -1597,13 +1613,20 @@ msgstr ""
 "下                    找到容器。您可以在 {azure} 门户的 {storageAccounts} 页"
 "中找到存储账户。"
 
-#. [components.Wizard.1099888225]
+#. [components.Wizard.4044130958]
 #. defaultMessage is:
 #. Provide the ID of the latest commit in the updates repository for which this commit provides an update.
+#.                     If no commit is specified it will be inferred from the parent repository.
 #: build/messages/components/Wizard/ImageStep.json
+#, fuzzy
+#| msgid ""
+#| "Provide the ID of the latest commit in the updates repository for which "
+#| "this commit provides an update."
 msgid ""
 "Provide the ID of the latest commit in the updates repository for which this "
-"commit provides an update."
+"commit provides an update.\n"
+"                    If no commit is specified it will be inferred from the "
+"parent repository."
 msgstr "提供更新库中最新提交的 ID，该提交提供了一个更新。"
 
 #. [components.Wizard.1901372247]
@@ -1625,6 +1648,15 @@ msgstr ""
 "以在 AWS 控制台\n"
 "                          的  {amazon} S3 存储服务的 {bucketsPage} 页中找到 "
 "{buckets} 列表。"
+
+#. [components.Wizard.1170512263]
+#. defaultMessage is:
+#. Provide the URL of the upstream repository. This repository is where the parent OSTree commit will be pulled from.
+#: build/messages/components/Wizard/ImageStep.json
+msgid ""
+"Provide the URL of the upstream repository. This repository is where the "
+"parent OSTree commit will be pulled from."
+msgstr ""
 
 #. [components.Wizard.2706552502]
 #. defaultMessage is:
@@ -1803,6 +1835,15 @@ msgstr "已删除的（Removed）"
 #: build/messages/components/ListView/SourcesListItem.json
 msgid "Removing source"
 msgstr "删除源"
+
+#. [components.Wizard.2238384022]
+#. defaultMessage is:
+#. Repository URL
+#: build/messages/components/Wizard/ImageStep.json
+#, fuzzy
+#| msgid "yum repository"
+msgid "Repository URL"
+msgstr "yum repository"
 
 #. [components.Modal.128739785]
 #. defaultMessage is:

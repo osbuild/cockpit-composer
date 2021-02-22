@@ -2,8 +2,8 @@
 # David Shea <dshea@redhat.com>, 2019. #zanata
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2021-02-19T16:42:55.043Z\n"
-"PO-Revision-Date: 2021-01-10 09:36+0000\n"
+"POT-Creation-Date: 2021-02-22T18:10:01.151Z\n"
+"PO-Revision-Date: 2021-02-20 17:40+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "cockpit-composer/master/uk/>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.4\n"
+"X-Generator: Weblate 4.4.2\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -537,16 +537,14 @@ msgstr "Закрити"
 #: build/messages/components/Wizard/ReviewStep.json
 #: build/messages/components/Wizard/VMWareDestinationStep.json
 msgid "Cluster"
-msgstr ""
+msgstr "Кластер"
 
 #. [components.Wizard.cluster]
 #. defaultMessage is:
 #. Cluster help
 #: build/messages/components/Wizard/VMWareDestinationStep.json
-#, fuzzy
-#| msgid "Azure help"
 msgid "Cluster help"
-msgstr "Довідка з Azure"
+msgstr "Довідка з кластерів"
 
 #. [components.Modal.2299254306]
 #. defaultMessage is:
@@ -699,44 +697,42 @@ msgstr "Налаштовування"
 #. Data Center
 #: build/messages/components/Wizard/ReviewStep.json
 msgid "Data Center"
-msgstr ""
+msgstr "Дата-центр"
 
 #. [components.Wizard.3747912914]
 #. defaultMessage is:
 #. Data Store
 #: build/messages/components/Wizard/ReviewStep.json
 msgid "Data Store"
-msgstr ""
+msgstr "Сховище даних"
 
 #. [components.Wizard.4278711264]
 #. defaultMessage is:
 #. Data center
 #: build/messages/components/Wizard/VMWareDestinationStep.json
 msgid "Data center"
-msgstr ""
+msgstr "Дата-центр"
 
 #. [components.Wizard.3717439361]
 #. defaultMessage is:
 #. Data store
 #: build/messages/components/Wizard/VMWareDestinationStep.json
 msgid "Data store"
-msgstr ""
+msgstr "Сховище даних"
 
 #. [components.Wizard.dataCenter]
 #. defaultMessage is:
 #. Datacenter help
 #: build/messages/components/Wizard/VMWareDestinationStep.json
-#, fuzzy
-#| msgid "Storage container help"
 msgid "Datacenter help"
-msgstr "Довідка з контейнера сховища"
+msgstr "Довідка з дата-центру"
 
 #. [components.Wizard.dataStore]
 #. defaultMessage is:
 #. Datastore help
 #: build/messages/components/Wizard/VMWareDestinationStep.json
 msgid "Datastore help"
-msgstr ""
+msgstr "Довідка зі сховища даних"
 
 #. [components.ListView.3645414921]
 #. defaultMessage is:
@@ -829,7 +825,7 @@ msgstr "Відкинути зміни"
 #. Disk Archive (.tar)
 #: build/messages/components/Wizard/ImageStep.json
 msgid "Disk Archive (.tar)"
-msgstr ""
+msgstr "Архів диска (.tar)"
 
 #. [components.ListView.1982430146]
 #. defaultMessage is:
@@ -892,6 +888,13 @@ msgstr "Редагувати джерело"
 #: build/messages/pages/blueprint/index.json
 msgid "Edit user account"
 msgstr "Редагувати обліковий запис користувача"
+
+#. [components.Wizard.4173021643]
+#. defaultMessage is:
+#. Either the parent commit or repository url can be specified. Not both.
+#: build/messages/components/Wizard/ImageStep.json
+msgid "Either the parent commit or repository url can be specified. Not both."
+msgstr ""
 
 #. [pages.blueprint.emptyBlueprintTitle]
 #. defaultMessage is:
@@ -1003,17 +1006,15 @@ msgstr "Приховати подробиці"
 #. Host
 #: build/messages/components/Wizard/ReviewStep.json
 #: build/messages/components/Wizard/VMWareDestinationStep.json
-#, fuzzy
-#| msgid "Hostname"
 msgid "Host"
-msgstr "Назва вузла"
+msgstr "Вузол"
 
 #. [components.Wizard.host]
 #. defaultMessage is:
 #. Host help
 #: build/messages/components/Wizard/VMWareDestinationStep.json
 msgid "Host help"
-msgstr ""
+msgstr "Довідка з вузла"
 
 #. [pages.blueprint.hostnameInputLabel]
 #. defaultMessage is:
@@ -1043,12 +1044,6 @@ msgstr ""
 #.                       the image file is available in the Cluster on the vSphere instance that you specified.
 #: build/messages/components/Wizard/ImageStep.json
 #: build/messages/components/Wizard/ReviewStep.json
-#, fuzzy
-#| msgid ""
-#| "Image Builder can upload images you create to a Blob container in "
-#| "{azure}. When the image build is complete \n"
-#| "                      and the upload action is successful, the image file "
-#| "is available in the Storage account and Blob container that you specified."
 msgid ""
 "Image Builder can upload images you create to VMWare vSphere.\n"
 "                      When the image build is complete and the upload action "
@@ -1056,11 +1051,11 @@ msgid ""
 "                      the image file is available in the Cluster on the "
 "vSphere instance that you specified."
 msgstr ""
-"Image Builder може вивантажувати створені вами образи до бінарного "
-"контейнера в {azure}. Коли збирання образу буде завершено,\n"
-"                        а дія з вивантаження буде успішною, файл образу "
-"стане доступним на обліковому записі сховища та у вказаному вами бінарному "
-"контейнері."
+"Image Builder може вивантажувати створені вами образи до vSphere VMWare.\n"
+"                        Коли збирання образу буде завершено, а дія з "
+"вивантаження буде успішною,\n"
+"                        файл образу стане доступним у кластері у екземплярі "
+"vSphere, який було вказано вами."
 
 #. [components.Wizard.3501375619]
 #. defaultMessage is:
@@ -1072,12 +1067,6 @@ msgstr ""
 #.                       and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
 #: build/messages/components/Wizard/ImageStep.json
 #: build/messages/components/Wizard/ReviewStep.json
-#, fuzzy
-#| msgid ""
-#| "Image Builder can upload images you create to a Blob container in "
-#| "{azure}. When the image build is complete \n"
-#| "                      and the upload action is successful, the image file "
-#| "is available in the Storage account and Blob container that you specified."
 msgid ""
 "Image Builder can upload images you create to a Blob container in {azure}. "
 "When the image build is complete\n"
@@ -1245,7 +1234,7 @@ msgstr "Образи"
 #. Installer, suitable for USB and DVD (.iso)
 #: build/messages/components/Wizard/ImageStep.json
 msgid "Installer, suitable for USB and DVD (.iso)"
-msgstr ""
+msgstr "Образ для встановлення, можна використовувати на USB і DVD (.iso)"
 
 #. [components.Loading.2617450248]
 #. defaultMessage is:
@@ -1412,6 +1401,15 @@ msgstr "Довідка з батьківського запису OSTree"
 msgid "OSTree ref help"
 msgstr "Довідка з посилань OSTree"
 
+#. [components.Wizard.ostreeURL]
+#. defaultMessage is:
+#. OSTree repo url help
+#: build/messages/components/Wizard/ImageStep.json
+#, fuzzy
+#| msgid "OSTree ref help"
+msgid "OSTree repo url help"
+msgstr "Довідка з посилань OSTree"
+
 #. [components.Modal.1475836573]
 #. defaultMessage is:
 #. Only changes to selected components are shown.
@@ -1538,13 +1536,20 @@ msgstr ""
 "                    облікового запису у сховищі. Ви можете знайти облікові "
 "записи у сховищі на сторінці {storageAccounts} порталу {azure}."
 
-#. [components.Wizard.1099888225]
+#. [components.Wizard.4044130958]
 #. defaultMessage is:
 #. Provide the ID of the latest commit in the updates repository for which this commit provides an update.
+#.                     If no commit is specified it will be inferred from the parent repository.
 #: build/messages/components/Wizard/ImageStep.json
+#, fuzzy
+#| msgid ""
+#| "Provide the ID of the latest commit in the updates repository for which "
+#| "this commit provides an update."
 msgid ""
 "Provide the ID of the latest commit in the updates repository for which this "
-"commit provides an update."
+"commit provides an update.\n"
+"                    If no commit is specified it will be inferred from the "
+"parent repository."
 msgstr ""
 "Надайте ідентифікатор останнього внеску у сховищі оновлень, для якого цей "
 "внесок надає оновлення."
@@ -1569,6 +1574,15 @@ msgstr ""
 "імпортувати ваш образ. Список {buckets} можна знайти\n"
 "                             на сторінці {bucketsPage} у службі зберігання "
 "даних S3 {amazon} у консолі AWS."
+
+#. [components.Wizard.1170512263]
+#. defaultMessage is:
+#. Provide the URL of the upstream repository. This repository is where the parent OSTree commit will be pulled from.
+#: build/messages/components/Wizard/ImageStep.json
+msgid ""
+"Provide the URL of the upstream repository. This repository is where the "
+"parent OSTree commit will be pulled from."
+msgstr ""
 
 #. [components.Wizard.2706552502]
 #. defaultMessage is:
@@ -1601,40 +1615,25 @@ msgstr ""
 #. defaultMessage is:
 #. Provide the name of the Cluster to which the image file will be uploaded.
 #: build/messages/components/Wizard/VMWareDestinationStep.json
-#, fuzzy
-#| msgid ""
-#| "Provide a file name to be used for the image file that will be uploaded."
 msgid ""
 "Provide the name of the Cluster to which the image file will be uploaded."
-msgstr ""
-"Вкажіть назву файла, яку буде використано для файла образу, який буде "
-"вивантажено."
+msgstr "Вкажіть назву кластера, до якого буде вивантажено файл образу."
 
 #. [components.Wizard.1217327836]
 #. defaultMessage is:
 #. Provide the name of the Datacenter to which the image file will be uploaded.
 #: build/messages/components/Wizard/VMWareDestinationStep.json
-#, fuzzy
-#| msgid ""
-#| "Provide a file name to be used for the image file that will be uploaded."
 msgid ""
 "Provide the name of the Datacenter to which the image file will be uploaded."
-msgstr ""
-"Вкажіть назву файла, яку буде використано для файла образу, який буде "
-"вивантажено."
+msgstr "Вкажіть назву дата-центру, до якого буде вивантажено файл образу."
 
 #. [components.Wizard.4014474612]
 #. defaultMessage is:
 #. Provide the name of the Datastore to which the image file will be uploaded.
 #: build/messages/components/Wizard/VMWareDestinationStep.json
-#, fuzzy
-#| msgid ""
-#| "Provide a file name to be used for the image file that will be uploaded."
 msgid ""
 "Provide the name of the Datastore to which the image file will be uploaded."
-msgstr ""
-"Вкажіть назву файла, яку буде використано для файла образу, який буде "
-"вивантажено."
+msgstr "Вкажіть назву сховища даних, до якого буде вивантажено файл образу."
 
 #. [components.Wizard.1476874820]
 #. defaultMessage is:
@@ -1651,22 +1650,19 @@ msgstr ""
 #. defaultMessage is:
 #. Provide the url of your {vmware} instance to which the image file will be uploaded.
 #: build/messages/components/Wizard/VMWareDestinationStep.json
-#, fuzzy
-#| msgid ""
-#| "Provide a file name to be used for the image file that will be uploaded."
 msgid ""
 "Provide the url of your {vmware} instance to which the image file will be "
 "uploaded."
 msgstr ""
-"Вкажіть назву файла, яку буде використано для файла образу, який буде "
-"вивантажено."
+"Вкажіть адресу вашого екземпляра {vmware}, до якого буде вивантажено файл "
+"образу."
 
 #. [components.Wizard.labelqcow]
 #. defaultMessage is:
 #. QEMU Image (.qcow2)
 #: build/messages/components/Wizard/ImageStep.json
 msgid "QEMU Image (.qcow2)"
-msgstr ""
+msgstr "Образ QEMU (.qcow2)"
 
 #. [components.Wizard.31026111]
 #. defaultMessage is:
@@ -1750,6 +1746,15 @@ msgstr "Вилучено"
 #: build/messages/components/ListView/SourcesListItem.json
 msgid "Removing source"
 msgstr "Вилучаємо джерело"
+
+#. [components.Wizard.2238384022]
+#. defaultMessage is:
+#. Repository URL
+#: build/messages/components/Wizard/ImageStep.json
+#, fuzzy
+#| msgid "yum repository"
+msgid "Repository URL"
+msgstr "сховище yum"
 
 #. [components.Modal.128739785]
 #. defaultMessage is:
@@ -2454,10 +2459,8 @@ msgstr "Вивантажити на Azure"
 #: build/messages/components/Wizard/CreateImageUpload.json
 #: build/messages/components/Wizard/ImageStep.json
 #: build/messages/components/Wizard/ReviewStep.json
-#, fuzzy
-#| msgid "Upload to Azure"
 msgid "Upload to VMWare"
-msgstr "Вивантажити на Azure"
+msgstr "Вивантажити до VMWare"
 
 #. [components.ListView.uploadType] - A label for the service to which an image was uploaded
 #. defaultMessage is:
@@ -2488,10 +2491,8 @@ msgstr "Ім'я користувача"
 #. Username
 #: build/messages/components/Wizard/ReviewStep.json
 #: build/messages/components/Wizard/VMWareAuthStep.json
-#, fuzzy
-#| msgid "User name"
 msgid "Username"
-msgstr "Ім'я користувача"
+msgstr "Користувач"
 
 #. [pages.blueprint.443046426]
 #. defaultMessage is:
@@ -2504,10 +2505,8 @@ msgstr "Користувачі"
 #. defaultMessage is:
 #. VMWare help
 #: build/messages/components/Wizard/ReviewStep.json
-#, fuzzy
-#| msgid "Azure help"
 msgid "VMWare help"
-msgstr "Довідка з Azure"
+msgstr "Довідка з VMWare"
 
 #. [pages.blueprint.hostnameHelp]
 #. defaultMessage is:

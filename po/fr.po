@@ -8,7 +8,7 @@
 # Alain Nussbaumer <alain.nussbaumer@alleluia.ch>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2021-02-19T16:42:55.043Z\n"
+"POT-Creation-Date: 2021-02-22T18:10:01.151Z\n"
 "PO-Revision-Date: 2020-11-20 18:35+0000\n"
 "Last-Translator: Alain Nussbaumer <alain.nussbaumer@alleluia.ch>\n"
 "Language-Team: French <https://translate.fedoraproject.org/projects/cockpit-"
@@ -951,6 +951,13 @@ msgstr "Modifier la source"
 msgid "Edit user account"
 msgstr "Modifier un compte d’utilisateur"
 
+#. [components.Wizard.4173021643]
+#. defaultMessage is:
+#. Either the parent commit or repository url can be specified. Not both.
+#: build/messages/components/Wizard/ImageStep.json
+msgid "Either the parent commit or repository url can be specified. Not both."
+msgstr ""
+
 #. [pages.blueprint.emptyBlueprintTitle]
 #. defaultMessage is:
 #. Empty blueprint
@@ -1498,6 +1505,15 @@ msgstr "Aide sur les parents OSTree"
 msgid "OSTree ref help"
 msgstr "Aide sur les ref OSTree"
 
+#. [components.Wizard.ostreeURL]
+#. defaultMessage is:
+#. OSTree repo url help
+#: build/messages/components/Wizard/ImageStep.json
+#, fuzzy
+#| msgid "OSTree ref help"
+msgid "OSTree repo url help"
+msgstr "Aide sur les ref OSTree"
+
 #. [components.Modal.1475836573]
 #. defaultMessage is:
 #. Only changes to selected components are shown.
@@ -1628,13 +1644,20 @@ msgstr ""
 "trouver des comptes de stockage sur la page {storageAccounts} du portail "
 "{azure}."
 
-#. [components.Wizard.1099888225]
+#. [components.Wizard.4044130958]
 #. defaultMessage is:
 #. Provide the ID of the latest commit in the updates repository for which this commit provides an update.
+#.                     If no commit is specified it will be inferred from the parent repository.
 #: build/messages/components/Wizard/ImageStep.json
+#, fuzzy
+#| msgid ""
+#| "Provide the ID of the latest commit in the updates repository for which "
+#| "this commit provides an update."
 msgid ""
 "Provide the ID of the latest commit in the updates repository for which this "
-"commit provides an update."
+"commit provides an update.\n"
+"                    If no commit is specified it will be inferred from the "
+"parent repository."
 msgstr ""
 "Fournissez l'ID du dernier commit dans le référentiel des mises à jour pour "
 "lequel ce commit fournit une mise à jour."
@@ -1660,6 +1683,15 @@ msgstr ""
 "{buckets}\n"
 "                          sur la page {bucketsPage} dans le service de "
 "stockage {amazon} S3 dans la console AWS."
+
+#. [components.Wizard.1170512263]
+#. defaultMessage is:
+#. Provide the URL of the upstream repository. This repository is where the parent OSTree commit will be pulled from.
+#: build/messages/components/Wizard/ImageStep.json
+msgid ""
+"Provide the URL of the upstream repository. This repository is where the "
+"parent OSTree commit will be pulled from."
+msgstr ""
 
 #. [components.Wizard.2706552502]
 #. defaultMessage is:
@@ -1850,6 +1882,15 @@ msgstr "Retiré"
 #: build/messages/components/ListView/SourcesListItem.json
 msgid "Removing source"
 msgstr "Supprimer la source"
+
+#. [components.Wizard.2238384022]
+#. defaultMessage is:
+#. Repository URL
+#: build/messages/components/Wizard/ImageStep.json
+#, fuzzy
+#| msgid "yum repository"
+msgid "Repository URL"
+msgstr "yum repository"
 
 #. [components.Modal.128739785]
 #. defaultMessage is:

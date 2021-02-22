@@ -5,7 +5,7 @@
 # Ludek Janda <ljanda@redhat.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2021-02-19T16:42:55.043Z\n"
+"POT-Creation-Date: 2021-02-22T18:10:01.151Z\n"
 "PO-Revision-Date: 2020-09-24 18:29+0000\n"
 "Last-Translator: Ludek Janda <ljanda@redhat.com>\n"
 "Language-Team: Japanese <https://translate.fedoraproject.org/projects/"
@@ -942,6 +942,13 @@ msgstr "ソースの編集"
 msgid "Edit user account"
 msgstr "ユーザーアカウントの編集"
 
+#. [components.Wizard.4173021643]
+#. defaultMessage is:
+#. Either the parent commit or repository url can be specified. Not both.
+#: build/messages/components/Wizard/ImageStep.json
+msgid "Either the parent commit or repository url can be specified. Not both."
+msgstr ""
+
 #. [pages.blueprint.emptyBlueprintTitle]
 #. defaultMessage is:
 #. Empty blueprint
@@ -1490,6 +1497,15 @@ msgstr "OSTree 親ヘルプ"
 msgid "OSTree ref help"
 msgstr "OSTree ref ヘルプ"
 
+#. [components.Wizard.ostreeURL]
+#. defaultMessage is:
+#. OSTree repo url help
+#: build/messages/components/Wizard/ImageStep.json
+#, fuzzy
+#| msgid "OSTree ref help"
+msgid "OSTree repo url help"
+msgstr "OSTree ref ヘルプ"
+
 #. [components.Modal.1475836573]
 #. defaultMessage is:
 #. Only changes to selected components are shown.
@@ -1617,13 +1633,20 @@ msgstr ""
 "ウントは、{azure} ポータルの {storageAccounts} ページで見つけることができま"
 "す。"
 
-#. [components.Wizard.1099888225]
+#. [components.Wizard.4044130958]
 #. defaultMessage is:
 #. Provide the ID of the latest commit in the updates repository for which this commit provides an update.
+#.                     If no commit is specified it will be inferred from the parent repository.
 #: build/messages/components/Wizard/ImageStep.json
+#, fuzzy
+#| msgid ""
+#| "Provide the ID of the latest commit in the updates repository for which "
+#| "this commit provides an update."
 msgid ""
 "Provide the ID of the latest commit in the updates repository for which this "
-"commit provides an update."
+"commit provides an update.\n"
+"                    If no commit is specified it will be inferred from the "
+"parent repository."
 msgstr ""
 "このコミットが更新を提供する更新レポジトリの最新のコミットの ID を提供しま"
 "す。"
@@ -1648,6 +1671,15 @@ msgstr ""
 "に存在している必要があります。{buckets} のリストは、\n"
 "                          AWS コンソールの {bucketsPage} S3 ストレージページ"
 "の {amazon} ページにあります。"
+
+#. [components.Wizard.1170512263]
+#. defaultMessage is:
+#. Provide the URL of the upstream repository. This repository is where the parent OSTree commit will be pulled from.
+#: build/messages/components/Wizard/ImageStep.json
+msgid ""
+"Provide the URL of the upstream repository. This repository is where the "
+"parent OSTree commit will be pulled from."
+msgstr ""
 
 #. [components.Wizard.2706552502]
 #. defaultMessage is:
@@ -1827,6 +1859,15 @@ msgstr "削除済み"
 #: build/messages/components/ListView/SourcesListItem.json
 msgid "Removing source"
 msgstr "ソースの削除中"
+
+#. [components.Wizard.2238384022]
+#. defaultMessage is:
+#. Repository URL
+#: build/messages/components/Wizard/ImageStep.json
+#, fuzzy
+#| msgid "yum repository"
+msgid "Repository URL"
+msgstr "Yum リポジトリー"
 
 #. [components.Modal.128739785]
 #. defaultMessage is:
