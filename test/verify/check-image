@@ -9,7 +9,6 @@ import composerlib
 import testlib
 
 
-@testlib.nondestructive
 @testlib.timeout(2400)
 @testlib.no_retry_when_changed
 class TestImage(composerlib.ComposerCase):
