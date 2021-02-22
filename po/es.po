@@ -6,7 +6,7 @@
 # Anonymous <noreply@weblate.org>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2021-02-19T16:42:55.043Z\n"
+"POT-Creation-Date: 2021-02-22T18:10:01.151Z\n"
 "PO-Revision-Date: 2020-05-15 08:50+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish <https://translate.fedoraproject.org/projects/cockpit-"
@@ -950,6 +950,13 @@ msgstr "Editar fuente"
 msgid "Edit user account"
 msgstr "Editar cuenta de usuario"
 
+#. [components.Wizard.4173021643]
+#. defaultMessage is:
+#. Either the parent commit or repository url can be specified. Not both.
+#: build/messages/components/Wizard/ImageStep.json
+msgid "Either the parent commit or repository url can be specified. Not both."
+msgstr ""
+
 #. [pages.blueprint.emptyBlueprintTitle]
 #. defaultMessage is:
 #. Empty blueprint
@@ -1475,6 +1482,15 @@ msgstr "Ayuda con las regiones de AWS"
 msgid "OSTree ref help"
 msgstr "Ayuda con las regiones de AWS"
 
+#. [components.Wizard.ostreeURL]
+#. defaultMessage is:
+#. OSTree repo url help
+#: build/messages/components/Wizard/ImageStep.json
+#, fuzzy
+#| msgid "AWS region help"
+msgid "OSTree repo url help"
+msgstr "Ayuda con las regiones de AWS"
+
 #. [components.Modal.1475836573]
 #. defaultMessage is:
 #. Only changes to selected components are shown.
@@ -1595,13 +1611,16 @@ msgid ""
 "accounts on the {storageAccounts} page in the {azure} portal."
 msgstr ""
 
-#. [components.Wizard.1099888225]
+#. [components.Wizard.4044130958]
 #. defaultMessage is:
 #. Provide the ID of the latest commit in the updates repository for which this commit provides an update.
+#.                     If no commit is specified it will be inferred from the parent repository.
 #: build/messages/components/Wizard/ImageStep.json
 msgid ""
 "Provide the ID of the latest commit in the updates repository for which this "
-"commit provides an update."
+"commit provides an update.\n"
+"                    If no commit is specified it will be inferred from the "
+"parent repository."
 msgstr ""
 
 #. [components.Wizard.1901372247]
@@ -1617,6 +1636,15 @@ msgid ""
 "you want to import your image. You can find a list of {buckets} on the\n"
 "                        {bucketsPage} page in the {amazon} S3 storage "
 "service in the AWS console."
+msgstr ""
+
+#. [components.Wizard.1170512263]
+#. defaultMessage is:
+#. Provide the URL of the upstream repository. This repository is where the parent OSTree commit will be pulled from.
+#: build/messages/components/Wizard/ImageStep.json
+msgid ""
+"Provide the URL of the upstream repository. This repository is where the "
+"parent OSTree commit will be pulled from."
 msgstr ""
 
 #. [components.Wizard.2706552502]
@@ -1779,6 +1807,15 @@ msgstr "Eliminado"
 #: build/messages/components/ListView/SourcesListItem.json
 msgid "Removing source"
 msgstr "Quitando la fuente"
+
+#. [components.Wizard.2238384022]
+#. defaultMessage is:
+#. Repository URL
+#: build/messages/components/Wizard/ImageStep.json
+#, fuzzy
+#| msgid "yum repository"
+msgid "Repository URL"
+msgstr "repositorio yum"
 
 #. [components.Modal.128739785]
 #. defaultMessage is:
