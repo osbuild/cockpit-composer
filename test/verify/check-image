@@ -523,7 +523,7 @@ class TestImage(composerlib.ComposerCase):
 
         # download image
         b.click("#{}-actions".format(uuid))
-        b.click("li[aria-labelledby={}] button:contains('Download')".format(selector))
+        b.click("li[aria-labelledby={}] a:contains('Download')".format(selector))
 
         # delete image cancel first always
         b.click("#{}-actions".format(uuid))
@@ -605,7 +605,7 @@ class TestImage(composerlib.ComposerCase):
 
         # download image
         b.click("#{}-actions".format(uuid))
-        b.click("li[aria-labelledby={}] button:contains('Download')".format(selector))
+        b.click("li[aria-labelledby={}] a:contains('Download')".format(selector))
 
         # delete image cancel first always
         b.click("#{}-actions".format(uuid))
