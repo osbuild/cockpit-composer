@@ -2,8 +2,8 @@
 # David Shea <dshea@redhat.com>, 2019. #zanata
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2021-02-22T18:10:01.151Z\n"
-"PO-Revision-Date: 2021-02-20 17:40+0000\n"
+"POT-Creation-Date: 2021-02-23T18:20:33.048Z\n"
+"PO-Revision-Date: 2021-02-23 18:40+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "cockpit-composer/master/uk/>\n"
@@ -895,6 +895,8 @@ msgstr "Редагувати обліковий запис користувач�
 #: build/messages/components/Wizard/ImageStep.json
 msgid "Either the parent commit or repository url can be specified. Not both."
 msgstr ""
+"Можна вказувати або батьківський внесок, або адресу сховища. Не можна "
+"вказувати ці значення одночасно."
 
 #. [pages.blueprint.emptyBlueprintTitle]
 #. defaultMessage is:
@@ -1405,10 +1407,8 @@ msgstr "Довідка з посилань OSTree"
 #. defaultMessage is:
 #. OSTree repo url help
 #: build/messages/components/Wizard/ImageStep.json
-#, fuzzy
-#| msgid "OSTree ref help"
 msgid "OSTree repo url help"
-msgstr "Довідка з посилань OSTree"
+msgstr "Довідка з адреси сховища OSTree"
 
 #. [components.Modal.1475836573]
 #. defaultMessage is:
@@ -1541,10 +1541,6 @@ msgstr ""
 #. Provide the ID of the latest commit in the updates repository for which this commit provides an update.
 #.                     If no commit is specified it will be inferred from the parent repository.
 #: build/messages/components/Wizard/ImageStep.json
-#, fuzzy
-#| msgid ""
-#| "Provide the ID of the latest commit in the updates repository for which "
-#| "this commit provides an update."
 msgid ""
 "Provide the ID of the latest commit in the updates repository for which this "
 "commit provides an update.\n"
@@ -1552,7 +1548,9 @@ msgid ""
 "parent repository."
 msgstr ""
 "Надайте ідентифікатор останнього внеску у сховищі оновлень, для якого цей "
-"внесок надає оновлення."
+"внесок надає оновлення.\n"
+"                        Якщо не вказано внеску, його буде успадковано з "
+"батьківського сховища."
 
 #. [components.Wizard.1901372247]
 #. defaultMessage is:
@@ -1583,6 +1581,8 @@ msgid ""
 "Provide the URL of the upstream repository. This repository is where the "
 "parent OSTree commit will be pulled from."
 msgstr ""
+"Надати адресу сховища із основним кодом. Цей сховище, з якого буде отримано "
+"батьківський внесок OSTree."
 
 #. [components.Wizard.2706552502]
 #. defaultMessage is:
@@ -1751,10 +1751,8 @@ msgstr "Вилучаємо джерело"
 #. defaultMessage is:
 #. Repository URL
 #: build/messages/components/Wizard/ImageStep.json
-#, fuzzy
-#| msgid "yum repository"
 msgid "Repository URL"
-msgstr "сховище yum"
+msgstr "Адреса сховища"
 
 #. [components.Modal.128739785]
 #. defaultMessage is:
