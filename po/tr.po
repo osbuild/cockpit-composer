@@ -3,8 +3,8 @@
 # Burak Yavuz <hitowerdigit@hotmail.com>, 2020, 2021.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2021-02-22T18:10:01.151Z\n"
-"PO-Revision-Date: 2021-02-20 17:40+0000\n"
+"POT-Creation-Date: 2021-02-23T18:20:33.048Z\n"
+"PO-Revision-Date: 2021-02-23 18:40+0000\n"
 "Last-Translator: Burak Yavuz <hitowerdigit@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.fedoraproject.org/projects/cockpit-"
 "composer/master/tr/>\n"
@@ -896,7 +896,7 @@ msgstr "Kullanıcı hesabını düzenle"
 #. Either the parent commit or repository url can be specified. Not both.
 #: build/messages/components/Wizard/ImageStep.json
 msgid "Either the parent commit or repository url can be specified. Not both."
-msgstr ""
+msgstr "Ya üst işleme ya da depo url'si belirtilebilir. İkiside değil."
 
 #. [pages.blueprint.emptyBlueprintTitle]
 #. defaultMessage is:
@@ -1395,7 +1395,7 @@ msgstr "Süzme ölçütüyle eşleşen sonuçlar yok"
 #. OSTree parent help
 #: build/messages/components/Wizard/ImageStep.json
 msgid "OSTree parent help"
-msgstr "OSTree üst öge ile ilgili yardım"
+msgstr "OSTree üst öğe yardımı"
 
 #. [components.Wizard.ostreeRef]
 #. defaultMessage is:
@@ -1408,10 +1408,8 @@ msgstr "OSTree referans ile ilgili yardım"
 #. defaultMessage is:
 #. OSTree repo url help
 #: build/messages/components/Wizard/ImageStep.json
-#, fuzzy
-#| msgid "OSTree ref help"
 msgid "OSTree repo url help"
-msgstr "OSTree referans ile ilgili yardım"
+msgstr "OSTree depo url'si yardımı"
 
 #. [components.Modal.1475836573]
 #. defaultMessage is:
@@ -1449,7 +1447,7 @@ msgstr "Sayfa bulunamadı"
 #. Parent commit
 #: build/messages/components/Wizard/ImageStep.json
 msgid "Parent commit"
-msgstr "Üst işlem"
+msgstr "Üst işleme"
 
 #. [components.Modal.createPasswordOne]
 #. defaultMessage is:
@@ -1543,18 +1541,16 @@ msgstr ""
 #. Provide the ID of the latest commit in the updates repository for which this commit provides an update.
 #.                     If no commit is specified it will be inferred from the parent repository.
 #: build/messages/components/Wizard/ImageStep.json
-#, fuzzy
-#| msgid ""
-#| "Provide the ID of the latest commit in the updates repository for which "
-#| "this commit provides an update."
 msgid ""
 "Provide the ID of the latest commit in the updates repository for which this "
 "commit provides an update.\n"
 "                    If no commit is specified it will be inferred from the "
 "parent repository."
 msgstr ""
-"Bu işlemin bir güncelleme sağladığı güncellemeler deposundaki en son işlemin "
-"kimliğini belirtin."
+"Bu işlemenin bir güncelleme sağladığı güncellemeler deposundaki en son "
+"işlemenin kimliğini verin.\n"
+"                    Eğer hiç bir işleme belirtilmezse, üst depodan "
+"çıkarılacaktır."
 
 #. [components.Wizard.1901372247]
 #. defaultMessage is:
@@ -1586,6 +1582,8 @@ msgid ""
 "Provide the URL of the upstream repository. This repository is where the "
 "parent OSTree commit will be pulled from."
 msgstr ""
+"Yukarı akış deposunun URL'sini verin. Bu depo, üst OSTree işlemesinin "
+"çekileceği yerdir."
 
 #. [components.Wizard.2706552502]
 #. defaultMessage is:
@@ -1752,10 +1750,8 @@ msgstr "Kaynak kaldırılıyor"
 #. defaultMessage is:
 #. Repository URL
 #: build/messages/components/Wizard/ImageStep.json
-#, fuzzy
-#| msgid "yum repository"
 msgid "Repository URL"
-msgstr "yum deposu"
+msgstr "Depo URL'si"
 
 #. [components.Modal.128739785]
 #. defaultMessage is:
