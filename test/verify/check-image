@@ -4,7 +4,6 @@
 # 1. create supported image
 
 import os
-import unittest
 import composerlib
 import testlib
 
@@ -456,6 +455,144 @@ class TestImage(composerlib.ComposerCase):
         # collect code coverage result
         self.check_coverage()
 
+    def testCancel(self):
+        b = self.browser
+        m = self.machine
+
+        self.login_and_go("/composer", superuser=True)
+        b.wait_visible("#main")
+
+        # create image wizard
+        b.click("li[data-blueprint=httpd-server] #create-image-button")
+        b.wait_text("#create-image-upload-wizard #blueprint-name", "httpd-server")
+        b.wait_js_cond('ph_select("#image-type option").length > 1')
+        b.set_val("#image-type", "openstack")
+        b.wait_val("#image-type", "openstack")
+        # group actions end
+        b.click("#continue-button")
+        b.wait_not_present("#create-image-upload-wizard")
+
+        # toast notification
+        b.wait_visible("#cmpsr-toast-imageWaiting .pficon-info")
+        b.click("#cmpsr-toast-imageWaiting .pficon-close")
+        b.wait_not_present("#cmpsr-toast-imageWaiting .pficon-info")
+
+        # got to images tab
+        b.click("#httpd-server-name")
+        # correct image name and type
+        with b.wait_timeout(300):
+            b.click("#blueprint-tabs-tab-images")
+            b.wait_visible("ul[data-list=images]")
+        # get uuid as part of css selector
+        uuid = m.execute("""
+            composer-cli compose list | grep httpd-server | awk '{print $1}' | head -1
+            """).rstrip()
+        selector = "{}-compose-name".format(uuid)
+        # stop image build
+        b.click("#{}-actions".format(uuid))
+        b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "true")
+        b.click("li[aria-labelledby={}] a:contains('Stop')".format(selector))
+        b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "false")
+        b.click("#cmpsr-modal-delete button:contains('Stop build')")
+        b.wait_not_present("#cmpsr-modal-delete")
+        # delete canceled image build
+        b.click("#{}-actions".format(uuid))
+        b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "true")
+        b.click("li[aria-labelledby={}] a:contains('Remove')".format(selector))
+        b.wait_not_present("#{}".format(selector))
+
+        # collect code coverage result
+        self.check_coverage()
+
+
+# these tests don't get along with just the standard 1.1GiB @nondestructive VMs
+@testlib.timeout(2400)
+@testlib.no_retry_when_changed
+class TestLargeImage(composerlib.ComposerCase):
+    provision = {"machine1": {"cpus": 2, "memory_mb": 2048}}
+
+    def testOSTree(self):
+        b = self.browser
+        m = self.machine
+
+        distro = os.environ.get("TEST_OS")
+        if (distro == "fedora-32" or distro == "fedora-33"):
+            image_type_ostree = "fedora-iot-commit"
+        elif (distro == "rhel-8-3" or distro == "rhel-8-4"):
+            image_type_ostree = "rhel-edge-commit"
+
+        self.login_and_go("/composer", superuser=True)
+        b.wait_visible("#main")
+
+        # create image wizard
+        b.click("li[data-blueprint=httpd-server] #create-image-button")
+        b.wait_text("#create-image-upload-wizard #blueprint-name", "httpd-server")
+        b.wait_js_cond('ph_select("#image-type option").length > 1')
+        b.set_val("#image-type", image_type_ostree)
+        b.wait_val("#image-type", image_type_ostree)
+        b.click("#continue-button")
+        b.wait_not_present("#create-image-upload-wizard")
+        # toast notification
+        b.wait_visible("#cmpsr-toast-imageWaiting .pficon-info")
+        b.click("#cmpsr-toast-imageWaiting .pficon-close")
+        b.wait_not_present("#cmpsr-toast-imageWaiting .pficon-info")
+
+        # got to images tab
+        b.click("#httpd-server-name")
+        # correct image name and type
+        with b.wait_timeout(300):
+            b.click("#blueprint-tabs-tab-images")
+            b.wait_visible("ul[data-list=images]")
+        # get uuid as part of css selector
+        uuid = m.execute("""
+            composer-cli compose list | grep httpd-server | awk '{print $1}' | head -1
+            """).rstrip()
+        selector = "{}-compose-name".format(uuid)
+
+        image_type = b.attr("li[aria-labelledby={}] [data-image-type]".format(selector),
+                            "data-image-type")
+        self.assertEqual(image_type, image_type_ostree)
+
+        # image building needs more time
+        with b.wait_timeout(3600):
+            b.wait_text("li[aria-labelledby={}] [data-status=true]".format(selector),
+                        "Image build complete")
+        # log should contains rpm, hostname, users stages and tar assembler
+        b.click("li[aria-labelledby={}] button:contains('Logs')".format(selector))
+        b.wait_in_text("#{}-logs".format(uuid), "Stage org.osbuild.rpm")
+        b.wait_in_text("#{}-logs".format(uuid), "Stage: org.osbuild.rpm-ostree")
+        b.wait_in_text("#{}-logs".format(uuid), "Assembler org.osbuild.ostree.commit")
+        # close logs
+        b.click("li[aria-labelledby={}] button:contains('Logs')".format(selector))
+
+        # download image
+        b.click("#{}-actions".format(uuid))
+        b.click("li[aria-labelledby={}] a:contains('Download')".format(selector))
+
+        # delete image cancel first always
+        b.click("#{}-actions".format(uuid))
+        b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "true")
+        b.click("li[aria-labelledby={}] a:contains('Delete')".format(selector))
+        b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "false")
+        b.click("#cmpsr-modal-delete button:contains('Cancel')")
+        b.wait_not_present("#cmpsr-modal-delete")
+
+        # Deleting an image is currently failing. We believe this is due to an
+        # api failure and that this is unrelated to the UI. This section of the
+        # test is temporarily disabled.
+
+        # delete here
+        # b.click("#{}-actions".format(uuid))
+        # b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "true")
+        # b.click("li[aria-labelledby={}] a:contains('Delete')".format(selector))
+        # b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "false")
+        # b.click("#cmpsr-modal-delete button:contains('Delete image')")
+        # b.wait_not_present("#{}".format(selector))
+        self.allow_journal_messages(".*avc:  denied.*",
+                                    ".*audit: .*seresult=denied .*")
+        # collect code coverage result
+        self.check_coverage()
+
     def testOpenStack(self):
         b = self.browser
         m = self.machine
@@ -544,138 +681,6 @@ class TestImage(composerlib.ComposerCase):
         # b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "false")
         # b.click("#cmpsr-modal-delete button:contains('Delete image')")
         # b.wait_not_present("#{}".format(selector))
-
-        # collect code coverage result
-        self.check_coverage()
-
-    @unittest.skipIf(os.environ.get("TEST_OS") == "fedora-31", "Does not support ostree image")
-    def testOSTree(self):
-        b = self.browser
-        m = self.machine
-
-        distro = os.environ.get("TEST_OS")
-        if (distro == "fedora-32" or distro == "fedora-33"):
-            image_type_ostree = "fedora-iot-commit"
-        elif (distro == "rhel-8-3" or distro == "rhel-8-4"):
-            image_type_ostree = "rhel-edge-commit"
-
-        self.login_and_go("/composer", superuser=True)
-        b.wait_visible("#main")
-
-        # create image wizard
-        b.click("li[data-blueprint=httpd-server] #create-image-button")
-        b.wait_text("#create-image-upload-wizard #blueprint-name", "httpd-server")
-        b.wait_js_cond('ph_select("#image-type option").length > 1')
-        b.set_val("#image-type", image_type_ostree)
-        b.wait_val("#image-type", image_type_ostree)
-        b.click("#continue-button")
-        b.wait_not_present("#create-image-upload-wizard")
-        # toast notification
-        b.wait_visible("#cmpsr-toast-imageWaiting .pficon-info")
-        b.click("#cmpsr-toast-imageWaiting .pficon-close")
-        b.wait_not_present("#cmpsr-toast-imageWaiting .pficon-info")
-
-        # got to images tab
-        b.click("#httpd-server-name")
-        # correct image name and type
-        with b.wait_timeout(300):
-            b.click("#blueprint-tabs-tab-images")
-            b.wait_visible("ul[data-list=images]")
-        # get uuid as part of css selector
-        uuid = m.execute("""
-            composer-cli compose list | grep httpd-server | awk '{print $1}' | head -1
-            """).rstrip()
-        selector = "{}-compose-name".format(uuid)
-
-        image_type = b.attr("li[aria-labelledby={}] [data-image-type]".format(selector),
-                            "data-image-type")
-        self.assertEqual(image_type, image_type_ostree)
-
-        # image building needs more time
-        with b.wait_timeout(3600):
-            b.wait_text("li[aria-labelledby={}] [data-status=true]".format(selector),
-                        "Image build complete")
-        # log should contains rpm, hostname, users stages and tar assembler
-        b.click("li[aria-labelledby={}] button:contains('Logs')".format(selector))
-        b.wait_in_text("#{}-logs".format(uuid), "Stage org.osbuild.rpm")
-        b.wait_in_text("#{}-logs".format(uuid), "Stage: org.osbuild.rpm-ostree")
-        b.wait_in_text("#{}-logs".format(uuid), "Assembler org.osbuild.ostree.commit")
-        # close logs
-        b.click("li[aria-labelledby={}] button:contains('Logs')".format(selector))
-
-        # download image
-        b.click("#{}-actions".format(uuid))
-        b.click("li[aria-labelledby={}] a:contains('Download')".format(selector))
-
-        # delete image cancel first always
-        b.click("#{}-actions".format(uuid))
-        b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "true")
-        b.click("li[aria-labelledby={}] a:contains('Delete')".format(selector))
-        b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "false")
-        b.click("#cmpsr-modal-delete button:contains('Cancel')")
-        b.wait_not_present("#cmpsr-modal-delete")
-
-        # Deleting an image is currently failing. We believe this is due to an
-        # api failure and that this is unrelated to the UI. This section of the
-        # test is temporarily disabled.
-
-        # delete here
-        # b.click("#{}-actions".format(uuid))
-        # b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "true")
-        # b.click("li[aria-labelledby={}] a:contains('Delete')".format(selector))
-        # b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "false")
-        # b.click("#cmpsr-modal-delete button:contains('Delete image')")
-        # b.wait_not_present("#{}".format(selector))
-        self.allow_journal_messages(".*avc:  denied.*",
-                                    ".*audit: .*seresult=denied .*")
-        # collect code coverage result
-        self.check_coverage()
-
-    def testCancel(self):
-        b = self.browser
-        m = self.machine
-
-        self.login_and_go("/composer", superuser=True)
-        b.wait_visible("#main")
-
-        # create image wizard
-        b.click("li[data-blueprint=httpd-server] #create-image-button")
-        b.wait_text("#create-image-upload-wizard #blueprint-name", "httpd-server")
-        b.wait_js_cond('ph_select("#image-type option").length > 1')
-        b.set_val("#image-type", "openstack")
-        b.wait_val("#image-type", "openstack")
-        # group actions end
-        b.click("#continue-button")
-        b.wait_not_present("#create-image-upload-wizard")
-
-        # toast notification
-        b.wait_visible("#cmpsr-toast-imageWaiting .pficon-info")
-        b.click("#cmpsr-toast-imageWaiting .pficon-close")
-        b.wait_not_present("#cmpsr-toast-imageWaiting .pficon-info")
-
-        # got to images tab
-        b.click("#httpd-server-name")
-        # correct image name and type
-        with b.wait_timeout(300):
-            b.click("#blueprint-tabs-tab-images")
-            b.wait_visible("ul[data-list=images]")
-        # get uuid as part of css selector
-        uuid = m.execute("""
-            composer-cli compose list | grep httpd-server | awk '{print $1}' | head -1
-            """).rstrip()
-        selector = "{}-compose-name".format(uuid)
-        # stop image build
-        b.click("#{}-actions".format(uuid))
-        b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "true")
-        b.click("li[aria-labelledby={}] a:contains('Stop')".format(selector))
-        b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "false")
-        b.click("#cmpsr-modal-delete button:contains('Stop build')")
-        b.wait_not_present("#cmpsr-modal-delete")
-        # delete canceled image build
-        b.click("#{}-actions".format(uuid))
-        b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "true")
-        b.click("li[aria-labelledby={}] a:contains('Remove')".format(selector))
-        b.wait_not_present("#{}".format(selector))
 
         # collect code coverage result
         self.check_coverage()
