@@ -149,7 +149,7 @@ bots:
 	@echo "checked out bots/ ref $$(git -C bots rev-parse HEAD)"
 
 machine: bots
-	rsync -avR --exclude="bots/machine/machine_core/__pycache__/" bots/machine/testvm.py bots/machine/identity bots/machine/cloud-init.iso bots/machine/machine_core bots/task/testmap.py test
+	rsync -avR --exclude="bots/machine/machine_core/__pycache__/" bots/machine/testvm.py bots/machine/identity bots/machine/cloud-init.iso bots/machine/machine_core bots/lib test
 
 # checkout Cockpit's test API; this has no API stability guarantee, so check out a stable tag
 # this needs a recent adjustment for firefox 77 and working with network-enabled tests
