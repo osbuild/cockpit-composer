@@ -2,11 +2,12 @@
 # Eun-Ju Kim <eukim@redhat.com>, 2019. #zanata
 # Ludek Janda <ljanda@redhat.com>, 2020.
 # Sundeep Anand <suanand@redhat.com>, 2021.
+# simmon <simmon@nplob.com>, 2021.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2021-03-02T18:18:37.457Z\n"
-"PO-Revision-Date: 2021-03-09 10:01+0000\n"
-"Last-Translator: Sundeep Anand <suanand@redhat.com>\n"
+"POT-Creation-Date: 2021-03-09T18:32:16.967Z\n"
+"PO-Revision-Date: 2021-03-16 05:01+0000\n"
+"Last-Translator: simmon <simmon@nplob.com>\n"
 "Language-Team: Korean <https://translate.fedoraproject.org/projects/"
 "cockpit-composer/master/ko/>\n"
 "Language: ko\n"
@@ -37,7 +38,7 @@ msgstr "블루프린트 이름이 필요합니다."
 msgid ""
 "A minimal image will be created with only the packages needed to support the "
 "selected image type."
-msgstr "선택한 이미지 유형을 지원하는 데 필요한 패키지만 사용하여 최소 이미지를 생성합니다."
+msgstr "이미지 유형을 지원하는 데 필요한 꾸러미만 사용하여 최소 이미지를 생성합니다."
 
 #. [components.Modal.2310857819]
 #. defaultMessage is:
@@ -218,7 +219,9 @@ msgstr "오류가 발생했습니다"
 msgid ""
 "An error occurred when saving the source. Check that the path is valid and "
 "try again."
-msgstr "소스 저장 중 오류가 발생했습니다. 경로가 유효한지 확인한 후 다시 시도해 보십시오."
+msgstr ""
+"소스 저장 중 오류가 발생했습니다. 경로가 유효한지 확인한 후 다시 시도해 보십"
+"시오."
 
 #. [components.ListView.emptyStateErrorMessage]
 #. defaultMessage is:
@@ -239,7 +242,7 @@ msgstr "소스를 가져오는 도중 오류가 발생했습니다."
 #. Apply change
 #: build/messages/components/ListView/ComponentDetailsView.json
 msgid "Apply change"
-msgstr "변경 내용 적용"
+msgstr "변경 적용"
 
 #. [components.Modal.4140003068]
 #. defaultMessage is:
@@ -274,7 +277,7 @@ msgstr "인증"
 #. Automatically start osbuild-composer on boot
 #: build/messages/components/EmptyState/EmptyStateInactive.json
 msgid "Automatically start osbuild-composer on boot"
-msgstr "부팅 시 osbuild-composer 자동 실행"
+msgstr "부팅시 osbuild-composer 자동 실행"
 
 #. [pages.blueprintEdit.listTitleAvailableComps]
 #. defaultMessage is:
@@ -295,7 +298,7 @@ msgstr "Azure 도움말"
 #. Back
 #: build/messages/components/Wizard/CreateImageUpload.json
 msgid "Back"
-msgstr "돌아가기"
+msgstr "뒤로"
 
 #. [pages.blueprint.2057444273]
 #. defaultMessage is:
@@ -405,7 +408,9 @@ msgstr "블루프린트"
 msgid ""
 "Browse or search for components, then add them to the blueprint. Or leave "
 "the blueprint empty to create a minimal image."
-msgstr "구성 요소를 찾아보거나 검색한 다음 블루프린트에 추가합니다. 또는 최소 이미지를 생성하려면 블루프린트를 비워 두십시오."
+msgstr ""
+"구성 요소를 찾아보거나 검색한 다음 블루프린트에 추가합니다. 또는 최소 이미지"
+"를 생성하려면 블루프린트를 비워 두십시오."
 
 #. [components.Form.cancel]
 #. defaultMessage is:
@@ -460,14 +465,16 @@ msgstr "이전 세션에서 변경한 내용"
 msgid ""
 "Changes made in a previous session are not listed in the order they were "
 "made. If you choose to undo these changes, they are undone as a group."
-msgstr "이전 세션에서 변경한 내용은 변경된 순서대로 나열되지 않습니다. 이러한 변경 내용을 실행 취소하면 그룹으로 실행 취소됩니다."
+msgstr ""
+"이전 세션에서 변경한 내용은 변경된 순서대로 나열되지 않습니다. 이러한 변경 내"
+"용을 실행 취소하면 그룹으로 실행 취소됩니다."
 
 #. [components.Modal.92001050]
 #. defaultMessage is:
 #. Changes pending commit
 #: build/messages/components/Modal/PendingChanges.json
 msgid "Changes pending commit"
-msgstr "보류 중인 커밋 변경"
+msgstr "보류 중인 실행 변경"
 
 #. [components.Modal.check_gpg]
 #. defaultMessage is:
@@ -807,7 +814,7 @@ msgstr "대상"
 #. Details
 #: build/messages/components/ListView/ComponentDetailsView.json
 msgid "Details"
-msgstr "세부 정보"
+msgstr "상세 정보"
 
 # translation auto-copied from project Customer Portal Translations, version PortalCaseManagementStrings, document PortalCaseManagementStrings, author eukim
 #. [pages.blueprintEdit.1469729075]
@@ -815,7 +822,7 @@ msgstr "세부 정보"
 #. Discard changes
 #: build/messages/pages/blueprintEdit/index.json
 msgid "Discard changes"
-msgstr "변경 내용 취소"
+msgstr "변경 사항 취소"
 
 #. [components.Wizard.labelTar]
 #. defaultMessage is:
@@ -862,7 +869,7 @@ msgstr "호스트이름 편집"
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
 msgid "Edit packages"
-msgstr "패키지 편집"
+msgstr "꾸러미 편집"
 
 #. [components.ListView.edit]
 #. defaultMessage is:
@@ -1046,9 +1053,11 @@ msgid ""
 "                      the image file is available in the Cluster on the "
 "vSphere instance that you specified."
 msgstr ""
-"Image Builder는 사용자가 생성한 이미지를 VMWare vSphere에 업로드할 수 있습니다.\n"
+"Image Builder는 사용자가 생성한 이미지를 VMWare vSphere에 업로드할 수 있습니"
+"다.\n"
 "                      이미지 빌드가 완료되고 업로드 작업이 성공하면\n"
-"                      지정한 vSphere 인스턴스 클러스터에서 이미지 파일을 사용할 수 있습니다."
+"                      지정한 vSphere 인스턴스 클러스터에서 이미지 파일을 사용"
+"할 수 있습니다."
 
 #. [components.Wizard.3501375619]
 #. defaultMessage is:
@@ -1066,8 +1075,10 @@ msgid ""
 "                      and the upload action is successful, the image file is "
 "available in the Storage account and Blob container that you specified."
 msgstr ""
-"Image Builder는 사용자가 생성한 이미지를 {azure}의 Blob 컨테이너에 업로드할 수 있습니다. 이미지 빌드가 완료되고 \n"
-"              업로드 작업이 성공하면 지정한 스토리지 계정 및 Blob 컨테이너에서 이미지 파일을 사용할 수 있습니다."
+"Image Builder는 사용자가 생성한 이미지를 {azure}의 Blob 컨테이너에 업로드할 "
+"수 있습니다. 이미지 빌드가 완료되고 \n"
+"              업로드 작업이 성공하면 지정한 스토리지 계정 및 Blob 컨테이너에"
+"서 이미지 파일을 사용할 수 있습니다."
 
 #. [components.Wizard.1007547894]
 #. defaultMessage is:
@@ -1089,9 +1100,10 @@ msgid ""
 "upload\n"
 "                        the image can be found in the {console}."
 msgstr ""
-"이미지 빌더는 생성한 이미지를 AWS의 {bucket}에 업로드한 다음 EC2로 가져올 수 있습니다. 이미지 빌드가 완료되고\n"
-"                       업로드 작업이 성공하면 EC2의 AMI 섹션에서 이미지 파일을 사용할 수 있습니다. 이미지를 "
-"업로드하는 데\n"
+"이미지 빌더는 생성한 이미지를 AWS의 {bucket}에 업로드한 다음 EC2로 가져올 수 "
+"있습니다. 이미지 빌드가 완료되고\n"
+"                       업로드 작업이 성공하면 EC2의 AMI 섹션에서 이미지 파일"
+"을 사용할 수 있습니다. 이미지를 업로드하는 데\n"
 "                      필요한 대부분의 값은 {console}에 있습니다."
 
 #. [components.ListView.imageStatusFinished] - Image build status when process is finished
@@ -1415,7 +1427,7 @@ msgstr "문제가 발생했습니다"
 #. Packages
 #: build/messages/pages/blueprint/index.json
 msgid "Packages"
-msgstr "패키지"
+msgstr "꾸러미"
 
 #. [pages.error.pageNotFoundMessage]
 #. defaultMessage is:
@@ -1515,8 +1527,10 @@ msgid ""
 "                    section of a storage account. You can find storage "
 "accounts on the {storageAccounts} page in the {azure} portal."
 msgstr ""
-"이미지 파일을 업로드할 Blob 컨테이너를 제공합니다. 스토리지 계정의 {blobService}에서 컨테이너를 찾을 수 있습니다. \n"
-"                    스토리지 계정은 {azure} 포털의 {storageAccounts} 페이지에서 찾을 수 있습니다."
+"이미지 파일을 업로드할 Blob 컨테이너를 제공합니다. 스토리지 계정의 "
+"{blobService}에서 컨테이너를 찾을 수 있습니다. \n"
+"                    스토리지 계정은 {azure} 포털의 {storageAccounts} 페이지에"
+"서 찾을 수 있습니다."
 
 #. [components.Wizard.4044130958]
 #. defaultMessage is:
@@ -1529,7 +1543,8 @@ msgid ""
 "                    If no commit is specified it will be inferred from the "
 "parent repository."
 msgstr ""
-"이 커밋이 업데이트를 제공하는 업데이트 저장소에서 최신 커밋의 ID를 제공합니다.\n"
+"이 커밋이 업데이트를 제공하는 업데이트 저장소에서 최신 커밋의 ID를 제공합니"
+"다.\n"
 "                    커밋이 지정되지 않은 경우 상위 저장소에서 유추됩니다."
 
 #. [components.Wizard.1901372247]
@@ -1546,11 +1561,12 @@ msgid ""
 "                        {bucketsPage} page in the {amazon} S3 storage "
 "service in the AWS console."
 msgstr ""
-"EC2로 가져 오기 전에 이미지 파일을 업로드해야 하는 S3 {bucket} 이름을 지정하십시오. \n"
-"                          이미지를 가져 오려는 리전에 {bucket}이/가 이미 존재해야 합니다. {buckets} "
-"목록은\n"
-"                           AWS 콘솔의 {amazon} S3 스토리지 서비스에 있는 {bucketsPage} "
-"페이지에 있습니다."
+"EC2로 가져 오기 전에 이미지 파일을 업로드해야 하는 S3 {bucket} 이름을 지정하"
+"십시오. \n"
+"                          이미지를 가져 오려는 리전에 {bucket}이/가 이미 존재"
+"해야 합니다. {buckets} 목록은\n"
+"                           AWS 콘솔의 {amazon} S3 스토리지 서비스에 있는 "
+"{bucketsPage} 페이지에 있습니다."
 
 #. [components.Wizard.1170512263]
 #. defaultMessage is:
@@ -1559,7 +1575,9 @@ msgstr ""
 msgid ""
 "Provide the URL of the upstream repository. This repository is where the "
 "parent OSTree commit will be pulled from."
-msgstr "업스트림 저장소의 URL을 제공합니다. 이 저장소에서 상위 OSTree 커밋을 가져옵니다."
+msgstr ""
+"업스트림 저장소의 URL을 제공합니다. 이 저장소에서 상위 OSTree 커밋을 가져옵니"
+"다."
 
 #. [components.Wizard.2706552502]
 #. defaultMessage is:
@@ -1572,10 +1590,10 @@ msgid ""
 "                        page of the storage account. You can find storage "
 "accounts on the {storageAccounts} page in the {azure} portal."
 msgstr ""
-"원하는 스토리지 계정에 대한 액세스 키를 제공합니다. 액세스 키는 스토리지 계정의 {accessKeys} 페이지에서 찾을 수 있습니다. "
-"\n"
-"                        스토리지 계정은  {azure} 포털의 {storageAccounts} 페이지에서 찾을 수 "
-"있습니다."
+"원하는 스토리지 계정에 대한 액세스 키를 제공합니다. 액세스 키는 스토리지 계정"
+"의 {accessKeys} 페이지에서 찾을 수 있습니다. \n"
+"                        스토리지 계정은  {azure} 포털의 {storageAccounts} 페"
+"이지에서 찾을 수 있습니다."
 
 #. [components.Wizard.1434969769]
 #. defaultMessage is:
@@ -1584,7 +1602,9 @@ msgstr ""
 msgid ""
 "Provide the name of a storage account. You can find storage accounts on the "
 "{storageAccounts} page in the {azure} portal."
-msgstr "스토리지 계정의 이름을 제공하십시오. 스토리지 계정은 {azure} 포털의 {azure} 페이지에서 찾을 수 있습니다."
+msgstr ""
+"스토리지 계정의 이름을 제공하십시오. 스토리지 계정은 {azure} 포털의 {azure} "
+"페이지에서 찾을 수 있습니다."
 
 #. [components.Wizard.1891777230]
 #. defaultMessage is:
@@ -1617,7 +1637,8 @@ msgstr "이미지 파일을 업로드할 데이터 저장소 이름을 제공합
 msgid ""
 "Provide the name of the branch for the content. If the ref does not already "
 "exist it will be created."
-msgstr "콘텐츠의 분기 이름을 제공합니다. ref가 아직 존재하지 않으면 생성됩니다."
+msgstr ""
+"콘텐츠의 분기 이름을 제공합니다. ref가 아직 존재하지 않으면 생성됩니다."
 
 #. [components.Wizard.3387354708]
 #. defaultMessage is:
@@ -1640,7 +1661,7 @@ msgstr "QEMU 이미지(.qcow2)"
 #. Ref
 #: build/messages/components/Wizard/ImageStep.json
 msgid "Ref"
-msgstr "Ref"
+msgstr "참조"
 
 #. [components.ListView.423140743]
 #. defaultMessage is:
@@ -1869,8 +1890,8 @@ msgid ""
 "package size and target destination of your image should be considered when "
 "setting the image size."
 msgstr ""
-"인스턴스화할 때 이미지의 크기를 설정하십시오. 이미지 크기를 설정할 때 이미지"
-"의 소프트웨어 패키지의 전체 크기 및 이미지 대상 위치를 고려해야합니다."
+"인스턴스화할 때 이미지의 크기를 설정하십시오. 이미지 크기를 설정할 때 이미지의 소프트웨어 꾸러미의 전체 크기 및 이미지 대상 위치를 "
+"고려해야합니다."
 
 #. [components.ListView.4147597655]
 #. defaultMessage is:
@@ -1891,7 +1912,7 @@ msgstr "세부 정보 및 기타 옵션 표시"
 #. Show less
 #: build/messages/components/ListView/ComponentSummaryList.json
 msgid "Show less"
-msgstr "부분 표시"
+msgstr "덜 보기"
 
 #. [components.ListView.imageSize] - A label for the size of an image file
 #. defaultMessage is:
@@ -1931,9 +1952,8 @@ msgid ""
 "the source do not conflict with any other package sources, otherwise "
 "resolving dependencies and composing images will fail."
 msgstr ""
-"블루프린트 종속성을 해결하고 이미지를 조합하기 위한 소스입니다. 사용자 정의 "
-"소스를 추가할 때 소스의 패키지가 다른 패키지 소스와 충돌하지 않도록 합니다. "
-"그렇지 않으면 종속성을 해결하고 이미지를 구성할 때 오류가 발생합니다."
+"블루프린트 종속성을 해결하고 이미지를 조합하기 위한 소스입니다. 사용자 정의 소스를 추가할 때 소스의 꾸러미가 다른 꾸러미 소스와 "
+"충돌하지 않도록 합니다. 그렇지 않으면 종속성을 해결하고 이미지를 구성할 때 오류가 발생합니다."
 
 #. [components.Modal.540971304]
 #. defaultMessage is:
@@ -2092,7 +2112,7 @@ msgstr "{name} 이름이 이미 있습니다."
 msgid ""
 "The packages needed to support the selected image type are automatically "
 "included when creating an image."
-msgstr "선택한 이미지 유형을 지원하는 데 필요한 패키지는 이미지를 만들 때 자동으로 포함됩니다."
+msgstr "선택한 이미지 유형을 지원하는 데 필요한 꾸러미는 이미지를 만들 때 자동으로 포함됩니다."
 
 #. [pages.error.26562577]
 #. defaultMessage is:
@@ -2183,7 +2203,9 @@ msgstr "이 작업은 실행 취소할 수 없습니다."
 msgid ""
 "This blueprint has changes that are not committed. These changes will be "
 "committed before the image is created."
-msgstr "이 블루프린트에는 커밋되지 않은 변경 내용이 있습니다. 이러한 변경 내용은 이미지가 작성되기 전에 커밋됩니다."
+msgstr ""
+"이 블루프린트에는 커밋되지 않은 변경 내용이 있습니다. 이러한 변경 내용은 이미"
+"지가 작성되기 전에 커밋됩니다."
 
 #. [empty-blueprint-alert]
 #. defaultMessage is:
@@ -2197,7 +2219,7 @@ msgstr "이 블루프린트는 비어 있습니다."
 #. This component has no dependencies.
 #: build/messages/components/ListView/ComponentDetailsView.json
 msgid "This component has no dependencies."
-msgstr "이 구성 요소에는 종속 패키지가 없습니다."
+msgstr "이 구성 요소에는 종속 꾸러미가 없습니다."
 
 #. [components.Wizard.requiredField]
 #. defaultMessage is:
@@ -2252,8 +2274,8 @@ msgid ""
 "details, refer to the {role}."
 msgstr ""
 "이 업로드 과정에는 {vmimport}라는 {iam} 역할이 있어야\n"
-"                      S3{bucket}에서 EC2로 이미지를 가져올 수 있습니다. 자세한 내용은 {role}에서 "
-"참조하십시오."
+"                      S3{bucket}에서 EC2로 이미지를 가져올 수 있습니다. 자세"
+"한 내용은 {role}에서 참조하십시오."
 
 #. [components.Modal.3707489178]
 #. defaultMessage is:
@@ -2311,7 +2333,7 @@ msgstr "URL"
 #. Undo last change
 #: build/messages/components/ListView/BlueprintContents.json
 msgid "Undo last change"
-msgstr "마지막 변경 내용 취소"
+msgstr "마지막 변경 사항 취소"
 
 #. [components.Modal.1458938618]
 #. defaultMessage is:
@@ -2475,7 +2497,8 @@ msgid ""
 "Valid characters for hostname are letters from a to z, the digits from 0 to "
 "9, and the hyphen (-). A hostname may not start with a hyphen."
 msgstr ""
-"호스트 이름으로 a~z 문자 0~9의 숫자 및 하이픈(-)을 사용할 수 있습니다. 하이픈으로 시작하는 호스트 이름을 사용할 수 없습니다."
+"호스트 이름으로 a~z 문자 0~9의 숫자 및 하이픈(-)을 사용할 수 있습니다. 하이픈"
+"으로 시작하는 호스트 이름을 사용할 수 없습니다."
 
 #. [components.Wizard.ostreeRefHelperText]
 #. defaultMessage is:
@@ -2487,8 +2510,9 @@ msgid ""
 "(/). A ref must start with a letter, a number, or an underscore. Slashes "
 "must also be followed by a letter or number."
 msgstr ""
-"ref에 a~z 문자 0~9의 숫자, 하이픈(-), 밑줄(_), 마침표(.), 슬래시(/)를 사용할 수 있습니다. ref는 문자, 숫자, "
-"밑줄로 시작해야 합니다. 또한 슬래시 뒤에 문자 또는 숫자가 와야 합니다."
+"ref에 a~z 문자 0~9의 숫자, 하이픈(-), 밑줄(_), 마침표(.), 슬래시(/)를 사용할 "
+"수 있습니다. ref는 문자, 숫자, 밑줄로 시작해야 합니다. 또한 슬래시 뒤에 문자 "
+"또는 숫자가 와야 합니다."
 
 # auto translated by TM merge from project: Customer Portal Drupal, version: cp-drupal, DocId: node/2357861/Red_Hat_Mobile_Application_Platform_Product_Life_Cycle.field_page_body][0][value.html
 #. [components.ListView.602883748]
@@ -2590,7 +2614,7 @@ msgstr "metalink"
 #: build/messages/components/ListView/SourcesListItem.json
 #: build/messages/components/Modal/ManageSources.json
 msgid "mirrorlist"
-msgstr "mirrorlist"
+msgstr "연결주소목록"
 
 #. [pages.blueprintEdit.paginationPerPage]
 #. defaultMessage is:
@@ -2606,7 +2630,8 @@ msgstr "페이지당"
 msgid ""
 "rhel/8/{arch}/edge is the default, where {arch} is determined by the host "
 "machine"
-msgstr "rhel/8/{arch}/edge가 기본값이며 {arch}은(는) 호스트 컴퓨터가 결정합니다"
+msgstr ""
+"rhel/8/{arch}/edge가 기본값이며 {arch}은(는) 호스트 컴퓨터가 결정합니다"
 
 #. [components.Modal.152217691]
 #. defaultMessage is:
@@ -2624,7 +2649,7 @@ msgstr "에"
 #: build/messages/components/ListView/SourcesListItem.json
 #: build/messages/components/Modal/ManageSources.json
 msgid "yum repository"
-msgstr "yum repository"
+msgstr "yum 저장소"
 
 #. [data.4273735599]
 #. defaultMessage is:
@@ -2709,7 +2734,8 @@ msgstr "{heading} {parenthetical}"
 #: build/messages/pages/blueprintEdit/index.json
 msgid ""
 "{pendingChanges, plural, one {# Pending Change} other {# Pending Changes}}"
-msgstr "{pendingChanges, plural, one {# Pending Change} 기타 {# Pending Changes}}"
+msgstr ""
+"{pendingChanges, plural, one {# Pending Change} 기타 {# Pending Changes}}"
 
 #. [pages.blueprintEdit.3140434516]
 #. defaultMessage is:
