@@ -31,24 +31,32 @@ To run all tests run the following:
 
     $ make check
 
-Alternatively you can run an individual test like this:
+Alternatively, you can run individual tests. To list the individual test names you can run:
 
-    $ ./test/verify/check-image
+    $ test/common/run-tests --test-dir=test/verify -l
+
+And then run:
+
+    $ test/common/run-tests --test-dir=test/verify $TEST_NAME
+
+To run the tests with network, use the `--enable-network` flag:
+
+    $ test/common/run-tests --test-dir=test/verify --enable-network $TEST_NAME
 
 To see more verbose output from the test, use the `--verbose` and/or `--trace` flags:
 
-    $ ./test/verify/check-image --verbose --trace
+    $ test/common/run-tests --test-dir=test/verify --verbose --trace $TEST_NAME
 
 In addition if you specify `--sit`, then the test will wait on failure and allow you to log into
 cockpit and/or the test instance and diagnose the issue. An address will be printed of the test
 instance.
 
-    $ ./test/verify/check-image --trace --sit
+    $ test/common/run-tests --test-dir=test/verify --sit $TEST_NAME
 
 Normally each test starts its own chromium headless browser process on a separate random port. To
 interactively follow what a test is doing, set environment variable `$TEST_SHOW_BROWSER`.
 
-    $ TEST_SHOW_BROWSER=true ./test/verify/check-image --trace
+    $ TEST_SHOW_BROWSER=true test/common/run-tests --test-dir=test/verify $TEST_NAME
 
 ## Test Configuration
 
