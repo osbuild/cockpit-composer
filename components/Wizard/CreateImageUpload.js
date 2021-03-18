@@ -351,6 +351,7 @@ class CreateImageUploadModal extends React.Component {
 
   isValidOstree() {
     if (this.state.ostreeSettings.parent && this.state.ostreeSettings.url) return false;
+    if (this.state.imageType === "rhel-edge-installer" && !this.state.ostreeSettings.url) return false;
     return this.isValidOstreeRef(this.state.ostreeSettings.ref);
   }
 
