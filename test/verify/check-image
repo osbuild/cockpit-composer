@@ -6,6 +6,7 @@
 import os
 import composerlib
 import testlib
+import unittest
 
 
 @testlib.timeout(2400)
@@ -511,7 +512,7 @@ class TestImage(composerlib.ComposerCase):
 class TestLargeImage(composerlib.ComposerCase):
     provision = {"machine1": {"cpus": 2, "memory_mb": 2048}}
 
-    def testOSTree(self):
+    def testOSTreeCommit(self):
         b = self.browser
         m = self.machine
 
@@ -588,6 +589,133 @@ class TestLargeImage(composerlib.ComposerCase):
         # b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "false")
         # b.click("#cmpsr-modal-delete button:contains('Delete image')")
         # b.wait_not_present("#{}".format(selector))
+        self.allow_journal_messages(".*avc:  denied.*",
+                                    ".*audit: .*seresult=denied .*")
+        # collect code coverage result
+        self.check_coverage()
+
+    @unittest.skipIf(os.environ.get("TEST_OS") != "rhel-8-4", "Does not support ostree container image type")
+    def testOSTreeContainer(self):
+        b = self.browser
+        m = self.machine
+
+        image_type_ostree = "rhel-edge-container"
+
+        self.login_and_go("/composer", superuser=True)
+        b.wait_visible("#main")
+
+        # create image wizard
+        b.click("li[data-blueprint=httpd-server] #create-image-button")
+        b.wait_text("#create-image-upload-wizard #blueprint-name", "httpd-server")
+        b.wait_js_cond('ph_select("#image-type option").length > 1')
+        b.set_val("#image-type", image_type_ostree)
+        b.wait_val("#image-type", image_type_ostree)
+        # check url help button
+        b.click("button[aria-label='OSTree repo url help']")
+        b.text(".pf-c-popover__body")
+        b.wait_text(".pf-c-popover__body",
+                    "Provide the URL of the upstream repository. This repository is where the parent OSTree commit will be pulled from.")
+        b.click(".pf-c-popover__content button")
+        b.wait_not_present(".pf-c-popover__body")
+        # check ref help button
+        b.click("button[aria-label='OSTree ref help']")
+        b.text(".pf-c-popover__body")
+        b.wait_text(".pf-c-popover__body", "Provide the name of the branch for the content. If the ref does not already exist it will be created.")
+        b.click(".pf-c-popover__content button")
+        b.wait_not_present(".pf-c-popover__body")
+
+        b.click("#continue-button")
+        b.wait_not_present("#create-image-upload-wizard")
+        # toast notification
+        b.wait_visible("#cmpsr-toast-imageWaiting .pficon-info")
+        b.click("#cmpsr-toast-imageWaiting .pficon-close")
+        b.wait_not_present("#cmpsr-toast-imageWaiting .pficon-info")
+
+        # got to images tab
+        b.click("#httpd-server-name")
+        # correct image name and type
+        with b.wait_timeout(300):
+            b.click("#blueprint-tabs-tab-images")
+            b.wait_visible("ul[data-list=images]")
+        # get uuid as part of css selector
+        uuid = m.execute("""
+            composer-cli compose list | grep httpd-server | awk '{print $1}' | head -1
+            """).rstrip()
+        selector = "{}-compose-name".format(uuid)
+
+        image_type = b.attr("li[aria-labelledby={}] [data-image-type]".format(selector),
+                            "data-image-type")
+        self.assertEqual(image_type, image_type_ostree)
+
+        # image building needs more time
+        with b.wait_timeout(3600):
+            b.wait_text("li[aria-labelledby={}] [data-status=true]".format(selector),
+                        "Image build complete")
+        # log should exist
+        b.click("li[aria-labelledby={}] button:contains('Logs')".format(selector))
+        # close logs
+        b.click("li[aria-labelledby={}] button:contains('Logs')".format(selector))
+
+        # download image
+        b.click("#{}-actions".format(uuid))
+        b.click("li[aria-labelledby={}] a:contains('Download')".format(selector))
+
+        # delete image cancel first always
+        b.click("#{}-actions".format(uuid))
+        b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "true")
+        b.click("li[aria-labelledby={}] a:contains('Delete')".format(selector))
+        b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "false")
+        b.click("#cmpsr-modal-delete button:contains('Cancel')")
+        b.wait_not_present("#cmpsr-modal-delete")
+
+        # Deleting an image is currently failing. We believe this is due to an
+        # api failure and that this is unrelated to the UI. This section of the
+        # test is temporarily disabled.
+
+        # delete here
+        # b.click("#{}-actions".format(uuid))
+        # b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "true")
+        # b.click("li[aria-labelledby={}] a:contains('Delete')".format(selector))
+        # b.wait_attr("#{}-actions".format(uuid), "aria-expanded", "false")
+        # b.click("#cmpsr-modal-delete button:contains('Delete image')")
+        # b.wait_not_present("#{}".format(selector))
+        self.allow_journal_messages(".*avc:  denied.*",
+                                    ".*audit: .*seresult=denied .*")
+        # collect code coverage result
+        self.check_coverage()
+
+    @unittest.skipIf(os.environ.get("TEST_OS") != "rhel-8-4", "Does not support ostree image image type")
+    def testOSTreeInstaller(self):
+        b = self.browser
+
+        image_type_ostree = "rhel-edge-installer"
+
+        self.login_and_go("/composer", superuser=True)
+        b.wait_visible("#main")
+
+        # create image wizard
+        b.click("li[data-blueprint=httpd-server] #create-image-button")
+        b.wait_text("#create-image-upload-wizard #blueprint-name", "httpd-server")
+        b.wait_js_cond('ph_select("#image-type option").length > 1')
+        b.set_val("#image-type", image_type_ostree)
+        b.wait_val("#image-type", image_type_ostree)
+        # check url help button
+        b.click("button[aria-label='OSTree repo url help']")
+        b.text(".pf-c-popover__body")
+        b.wait_text(".pf-c-popover__body",
+                    "Provide the URL of the upstream repository. This repository is where the parent OSTree commit will be pulled from.")
+        b.click(".pf-c-popover__content button")
+        b.wait_not_present(".pf-c-popover__body")
+        # check ref help button
+        b.click("button[aria-label='OSTree ref help']")
+        b.text(".pf-c-popover__body")
+        b.wait_text(".pf-c-popover__body", "Provide the name of the branch for the content. If the ref does not already exist it will be created.")
+        b.click(".pf-c-popover__content button")
+        b.wait_not_present(".pf-c-popover__body")
+
+        # without a url entered the continue button should be disabled
+        b.wait_attr("#continue-button", "disabled", "")
+
         self.allow_journal_messages(".*avc:  denied.*",
                                     ".*audit: .*seresult=denied .*")
         # collect code coverage result
