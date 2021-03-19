@@ -558,12 +558,8 @@ class TestLargeImage(composerlib.ComposerCase):
         with b.wait_timeout(3600):
             b.wait_text("li[aria-labelledby={}] [data-status=true]".format(selector),
                         "Image build complete")
-        # log should contains rpm, hostname, users stages and tar assembler
+        # log should open and close
         b.click("li[aria-labelledby={}] button:contains('Logs')".format(selector))
-        b.wait_in_text("#{}-logs".format(uuid), "Stage org.osbuild.rpm")
-        b.wait_in_text("#{}-logs".format(uuid), "Stage: org.osbuild.rpm-ostree")
-        b.wait_in_text("#{}-logs".format(uuid), "Assembler org.osbuild.ostree.commit")
-        # close logs
         b.click("li[aria-labelledby={}] button:contains('Logs')".format(selector))
 
         # download image
@@ -777,13 +773,8 @@ class TestLargeImage(composerlib.ComposerCase):
             "composer-cli compose info {} | head -1 | awk '{{print $6}}'".format(uuid)
         ).rstrip()
         self.assertEqual(int(image_size), 4 * 1024 * 1024 * 1024)
-        # log should contains rpm, hostname, users stages and tar assembler
+        # log should open and close
         b.click("li[aria-labelledby={}] button:contains('Logs')".format(selector))
-        b.wait_in_text("#{}-logs".format(uuid), "Stage org.osbuild.rpm")
-        b.wait_in_text("#{}-logs".format(uuid), "Stage: org.osbuild.hostname")
-        b.wait_in_text("#{}-logs".format(uuid), "Stage: org.osbuild.users")
-        b.wait_in_text("#{}-logs".format(uuid), "Assembler org.osbuild.qemu")
-        # close logs
         b.click("li[aria-labelledby={}] button:contains('Logs')".format(selector))
 
         # download image
