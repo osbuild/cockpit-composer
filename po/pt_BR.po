@@ -1,10 +1,11 @@
 # David Shea <dshea@redhat.com>, 2019. #zanata
 # Eliane Pereira <elirpereira@gmail.com>, 2020.
+# Fábio Rodrigues Ribeiro <farribeiro@gmail.com>, 2021.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2021-02-22T18:10:01.151Z\n"
-"PO-Revision-Date: 2020-02-26 13:38+0000\n"
-"Last-Translator: Eliane Pereira <elirpereira@gmail.com>\n"
+"POT-Creation-Date: 2021-03-16T18:16:54.267Z\n"
+"PO-Revision-Date: 2021-03-19 16:01+0000\n"
+"Last-Translator: Fábio Rodrigues Ribeiro <farribeiro@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
 "projects/cockpit-composer/master/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -12,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Weblate 3.11.2\n"
+"X-Generator: Weblate 4.5.1\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -1014,7 +1015,7 @@ msgstr "Filtrar componentes disponíveis por nome"
 #, fuzzy
 #| msgid "Filter By Name..."
 msgid "Filter by name"
-msgstr "Filtrar por nome ..."
+msgstr "Filtrar por nome"
 
 #. [pages.blueprintEdit.filterByPlaceholder]
 #. defaultMessage is:
@@ -1032,7 +1033,7 @@ msgstr "Filtrar por nome ..."
 #, fuzzy
 #| msgid "Filter By Name..."
 msgid "Filter by release"
-msgstr "Filtrar por nome ..."
+msgstr "Filtrar por release"
 
 #. [components.Toolbar.filterVersionPlaceholder]
 #. defaultMessage is:
@@ -1041,7 +1042,7 @@ msgstr "Filtrar por nome ..."
 #, fuzzy
 #| msgid "Filter By Name..."
 msgid "Filter by version"
-msgstr "Filtrar por nome ..."
+msgstr "Filtrar por versão"
 
 #. [components.Wizard.787186999]
 #. defaultMessage is:
