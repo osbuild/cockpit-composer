@@ -78,6 +78,7 @@ class CreateImageUploadModal extends React.Component {
     this.isValidImageSize = this.isValidImageSize.bind(this);
     this.isValidOstree = this.isValidOstree.bind(this);
     this.isValidOstreeRef = this.isValidOstreeRef.bind(this);
+    this.isValidOstreeUrl = this.isValidOstreeUrl.bind(this);
     this.requiresImageSize = this.requiresImageSize.bind(this);
     this.missingRequiredFields = this.missingRequiredFields.bind(this);
     this.setNotifications = this.setNotifications.bind(this);
@@ -352,7 +353,9 @@ class CreateImageUploadModal extends React.Component {
   isValidOstree() {
     if (this.state.ostreeSettings.parent && this.state.ostreeSettings.url) return false;
     if (this.state.imageType === "rhel-edge-installer" && !this.state.ostreeSettings.url) return false;
-    return this.isValidOstreeRef(this.state.ostreeSettings.ref);
+    if (!this.isValidOstreeRef(this.state.ostreeSettings.ref)) return false;
+    if (!this.isValidOstreeUrl(this.state.ostreeSettings.url)) return false;
+    return true;
   }
 
   isValidOstreeRef(ref) {
@@ -360,6 +363,13 @@ class CreateImageUploadModal extends React.Component {
     // This regex is based on https://github.com/ostreedev/ostree/blob/73742252e286e8b53677555dc1b0d52d55fb7012/src/libostree/ostree-core.c#L151
     const refValidationRegex = /^(?:[\w\d][-._\w\d]*\/)*[\w\d][-._\w\d]*$/;
     return ref === "" || refValidationRegex.test(ref);
+  }
+
+  isValidOstreeUrl(url) {
+    if (url) {
+      const lastChar = url.substr(-1);
+      return lastChar === "/";
+    }
   }
 
   render() {
@@ -377,6 +387,7 @@ class CreateImageUploadModal extends React.Component {
           imageType={this.state.imageType}
           imageTypes={this.props.imageTypes}
           isValidOstreeRef={this.isValidOstreeRef}
+          isValidOstreeUrl={this.isValidOstreeUrl}
           isPendingChange={this.isPendingChange}
           minImageSize={this.state.minImageSize}
           maxImageSize={this.state.maxImageSize}

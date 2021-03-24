@@ -195,16 +195,16 @@ class ImageStep extends React.PureComponent {
   handleOSTreeURL(url) {
     if (!url) {
       this.setState({
+        ostreeURLValidated: "default",
         ostreeCommitValidated: "default",
       });
-    }
-    if (this.props.ostreeSettings.parent && url) {
+    } else if (!this.props.isValidOstreeUrl(url) || (this.props.ostreeSettings.parent && url)) {
       this.setState({
         ostreeURLValidated: "error",
       });
     } else {
       this.setState({
-        ostreeURLValidated: "default",
+        ostreeURLValidated: "success",
       });
     }
     this.props.setOstreeURL(url);
@@ -219,6 +219,7 @@ class ImageStep extends React.PureComponent {
       imageType,
       imageTypes,
       isPendingChange,
+      isValidOstreeUrl,
       minImageSize,
       maxImageSize,
       ostreeSettings,
@@ -480,7 +481,7 @@ class ImageStep extends React.PureComponent {
             onChange={this.handleOSTreeURL}
             validated={ostreeURLValidated}
           />
-          {ostreeURLValidated === "error" && (
+          {ostreeURLValidated === "error" && isValidOstreeUrl(ostreeSettings.url) && (
             <p className="pf-c-form__helper-text pf-m-error" id="ostree-url-input-helper-error" aria-live="polite">
               <FormattedMessage defaultMessage="Either the parent commit or repository url can be specified. Not both." />
             </p>
@@ -585,8 +586,8 @@ class ImageStep extends React.PureComponent {
             </Popover>
           }
           fieldId="ostree-url-input"
-          helperTextInvalid={formatMessage(messages.requiredField)}
-          validated={ostreeSettings.url !== "" ? "default" : "error"}
+          helperTextInvalid={!ostreeSettings.url ? formatMessage(messages.requiredField) : ""}
+          validated={ostreeSettings.url !== "" ? ostreeURLValidated : "error"}
           isRequired
           hasNoPaddingTop
         >
@@ -596,7 +597,7 @@ class ImageStep extends React.PureComponent {
             type="text"
             id="ostree-url-input"
             onChange={this.handleOSTreeURL}
-            validated={ostreeSettings.url !== "" ? "default" : "error"}
+            validated={ostreeSettings.url !== "" ? ostreeURLValidated : "error"}
           />
         </FormGroup>
         <FormGroup
@@ -728,6 +729,7 @@ ImageStep.propTypes = {
   imageTypes: PropTypes.arrayOf(PropTypes.object),
   imageSize: PropTypes.number,
   isValidOstreeRef: PropTypes.func,
+  isValidOstreeUrl: PropTypes.func,
   isPendingChange: PropTypes.func,
   minImageSize: PropTypes.number,
   maxImageSize: PropTypes.number,
@@ -748,6 +750,7 @@ ImageStep.defaultProps = {
   imageTypes: [],
   imageSize: undefined,
   isValidOstreeRef() {},
+  isValidOstreeUrl() {},
   isPendingChange() {},
   minImageSize: 0,
   maxImageSize: 2000,
