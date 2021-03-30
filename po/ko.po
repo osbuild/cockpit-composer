@@ -5,8 +5,8 @@
 # simmon <simmon@nplob.com>, 2021.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2021-03-16T18:16:54.267Z\n"
-"PO-Revision-Date: 2021-03-22 10:01+0000\n"
+"POT-Creation-Date: 2021-03-23T18:21:02.157Z\n"
+"PO-Revision-Date: 2021-03-30 06:01+0000\n"
 "Last-Translator: simmon <simmon@nplob.com>\n"
 "Language-Team: Korean <https://translate.fedoraproject.org/projects/"
 "cockpit-composer/master/ko/>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
-"X-Generator: Weblate 4.5.1\n"
+"X-Generator: Weblate 4.5.2\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -39,7 +39,8 @@ msgid ""
 "A minimal image will be created with only the packages needed to support the "
 "selected image type."
 msgstr ""
-"이미지 유형을 지원하는 데 필요한 꾸러미만 사용하여 최소 이미지를 생성합니다."
+"이미지 유형을 지원하는 데 필요한 꾸러미(package)만 사용하여 최소 이미지를 생"
+"성합니다."
 
 #. [components.Modal.2310857819]
 #. defaultMessage is:
@@ -837,7 +838,7 @@ msgstr "디스크 아카이브(.tar)"
 #. Download
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Download"
-msgstr "다운로드"
+msgstr "내려받기"
 
 #. [components.Modal.2044423701]
 #. defaultMessage is:
@@ -870,7 +871,7 @@ msgstr "호스트이름 편집"
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
 msgid "Edit packages"
-msgstr "꾸러미 편집"
+msgstr "꾸러미(package) 편집"
 
 #. [components.ListView.edit]
 #. defaultMessage is:
@@ -1076,10 +1077,8 @@ msgid ""
 "                      and the upload action is successful, the image file is "
 "available in the Storage account and Blob container that you specified."
 msgstr ""
-"Image Builder는 사용자가 생성한 이미지를 {azure}의 Blob 컨테이너에 업로드할 "
-"수 있습니다. 이미지 빌드가 완료되고 \n"
-"              업로드 작업이 성공하면 지정한 스토리지 계정 및 Blob 컨테이너에"
-"서 이미지 파일을 사용할 수 있습니다."
+"Image Builder는 사용자가 생성한 이미지를 {azure}의 Blob 컨테이너에 적재 할 수 있습니다. 이미지 빌드가 완료되고\n"
+"적재 작업이 성공하면 지정한 저장소 계정 및 Blob 컨테이너에서 이미지 파일을 사용할 수 있습니다."
 
 #. [components.Wizard.1007547894]
 #. defaultMessage is:
@@ -1428,7 +1427,7 @@ msgstr "문제가 발생했습니다"
 #. Packages
 #: build/messages/pages/blueprint/index.json
 msgid "Packages"
-msgstr "꾸러미"
+msgstr "꾸러미(packages)"
 
 #. [pages.error.pageNotFoundMessage]
 #. defaultMessage is:
@@ -1528,10 +1527,8 @@ msgid ""
 "                    section of a storage account. You can find storage "
 "accounts on the {storageAccounts} page in the {azure} portal."
 msgstr ""
-"이미지 파일을 업로드할 Blob 컨테이너를 제공합니다. 스토리지 계정의 "
-"{blobService}에서 컨테이너를 찾을 수 있습니다. \n"
-"                    스토리지 계정은 {azure} 포털의 {storageAccounts} 페이지에"
-"서 찾을 수 있습니다."
+"이미지 파일을 적재 할 Blob 컨테이너를 제공합니다. 저장소 계정의 {blobService}에서 컨테이너를 찾을 수 있습니다.\n"
+"저장소 계정은 {azure} 포털의 {storageAccounts} 페이지에서 찾을 수 있습니다."
 
 #. [components.Wizard.4044130958]
 #. defaultMessage is:
@@ -1562,12 +1559,9 @@ msgid ""
 "                        {bucketsPage} page in the {amazon} S3 storage "
 "service in the AWS console."
 msgstr ""
-"EC2로 가져 오기 전에 이미지 파일을 업로드해야 하는 S3 {bucket} 이름을 지정하"
-"십시오. \n"
-"                          이미지를 가져 오려는 리전에 {bucket}이/가 이미 존재"
-"해야 합니다. {buckets} 목록은\n"
-"                           AWS 콘솔의 {amazon} S3 스토리지 서비스에 있는 "
-"{bucketsPage} 페이지에 있습니다."
+"EC2로 가져 오기 전에 이미지 파일을 업로드해야 하는 S3 {bucket} 이름을 지정하십시오.\n"
+" 이미지를 가져 오려는 리전에 {bucket}이 이미 존재해야 합니다. {buckets} 목록은\n"
+" AWS 콘솔의 {amazon} S3 저장소 서비스에 있는 {bucketsPage} 페이지에 있습니다."
 
 #. [components.Wizard.1170512263]
 #. defaultMessage is:
@@ -1591,10 +1585,8 @@ msgid ""
 "                        page of the storage account. You can find storage "
 "accounts on the {storageAccounts} page in the {azure} portal."
 msgstr ""
-"원하는 스토리지 계정에 대한 액세스 키를 제공합니다. 액세스 키는 스토리지 계정"
-"의 {accessKeys} 페이지에서 찾을 수 있습니다. \n"
-"                        스토리지 계정은  {azure} 포털의 {storageAccounts} 페"
-"이지에서 찾을 수 있습니다."
+"원하는 저장소 계정에 대한 접근 키를 제공합니다. 접근 키는 저장소 계정의 {accessKeys} 페이지에서 찾을 수 있습니다.\n"
+"저장소 계정은 {azure} 포털의 {storageAccounts} 페이지에서 찾을 수 있습니다."
 
 #. [components.Wizard.1434969769]
 #. defaultMessage is:
@@ -1603,9 +1595,7 @@ msgstr ""
 msgid ""
 "Provide the name of a storage account. You can find storage accounts on the "
 "{storageAccounts} page in the {azure} portal."
-msgstr ""
-"스토리지 계정의 이름을 제공하십시오. 스토리지 계정은 {azure} 포털의 {azure} "
-"페이지에서 찾을 수 있습니다."
+msgstr "저장소 계정의 이름을 제공하십시오. 저장소 계정은 {azure} 포털의 {azure} 페이지에서 찾을 수 있습니다."
 
 #. [components.Wizard.1891777230]
 #. defaultMessage is:
@@ -1768,9 +1758,7 @@ msgstr "리뷰"
 msgid ""
 "Review the information below and click Finish to create the image and "
 "complete the tasks that were selected."
-msgstr ""
-"아래 정보를 검토하고 완료를 클릭하여 이미지를 작성하고 선택한 작업을 완료하십"
-"시오."
+msgstr "아래 정보를 검토하고 완료를 눌로 이미지를 작성하고 선택한 작업을 완료하십시오."
 
 #. [components.Modal.106035384]
 #. defaultMessage is:
@@ -1891,8 +1879,9 @@ msgid ""
 "package size and target destination of your image should be considered when "
 "setting the image size."
 msgstr ""
-"인스턴스화할 때 이미지의 크기를 설정하십시오. 이미지 크기를 설정할 때 이미지"
-"의 소프트웨어 꾸러미의 전체 크기 및 이미지 대상 위치를 고려해야합니다."
+"인스턴스화 할 때 이미지의 크기를 설정하십시오. 이미지 크기를 설정할 때 이미지"
+"의 소프트웨어 꾸러미(package)의 전체 크기 및 이미지 대상 위치를 고려해야 합니"
+"다."
 
 #. [components.ListView.4147597655]
 #. defaultMessage is:
@@ -2008,14 +1997,14 @@ msgstr "중지 중"
 #: build/messages/components/Wizard/AzureAuthStep.json
 #: build/messages/components/Wizard/ReviewStep.json
 msgid "Storage access key"
-msgstr "스토리지 액세스 키"
+msgstr "저장소 접근 키"
 
 #. [components.Wizard.storageAccessKey]
 #. defaultMessage is:
 #. Storage access key help
 #: build/messages/components/Wizard/AzureAuthStep.json
 msgid "Storage access key help"
-msgstr "스토리지 액세스 키 도움말"
+msgstr "저장소 접근 키 도움말"
 
 #. [components.Wizard.1624497518]
 #. defaultMessage is:
@@ -2026,14 +2015,14 @@ msgstr "스토리지 액세스 키 도움말"
 #: build/messages/components/Wizard/AzureAuthStep.json
 #: build/messages/components/Wizard/ReviewStep.json
 msgid "Storage account"
-msgstr "스토리지 계정"
+msgstr "저장소 계정"
 
 #. [components.Wizard.storageAccount]
 #. defaultMessage is:
 #. Storage account help
 #: build/messages/components/Wizard/AzureAuthStep.json
 msgid "Storage account help"
-msgstr "스토리지 계정 도움말"
+msgstr "저장소 계정 도움말"
 
 #. [components.Wizard.storageAccounts]
 #. defaultMessage is:
@@ -2044,7 +2033,7 @@ msgstr "스토리지 계정 도움말"
 #: build/messages/components/Wizard/AzureAuthStep.json
 #: build/messages/components/Wizard/AzureDestinationStep.json
 msgid "Storage accounts"
-msgstr "스토리지 계정"
+msgstr "저장소 계정"
 
 #. [components.Wizard.1249927125]
 #. defaultMessage is:
@@ -2055,14 +2044,14 @@ msgstr "스토리지 계정"
 #: build/messages/components/Wizard/AzureDestinationStep.json
 #: build/messages/components/Wizard/ReviewStep.json
 msgid "Storage container"
-msgstr "스토리지 컨테이너"
+msgstr "저장소 컨테이너"
 
 #. [components.Wizard.storageContainer]
 #. defaultMessage is:
 #. Storage container help
 #: build/messages/components/Wizard/AzureDestinationStep.json
 msgid "Storage container help"
-msgstr "스토리지 컨테이너 도움말"
+msgstr "저장소 컨테이너 도움말"
 
 #. [components.ListView.3639476303] - System sources are configured repositories that were found on the host machine
 #. defaultMessage is:
