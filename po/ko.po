@@ -5,8 +5,8 @@
 # simmon <simmon@nplob.com>, 2021.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2021-03-23T18:21:02.157Z\n"
-"PO-Revision-Date: 2021-03-30 06:01+0000\n"
+"POT-Creation-Date: 2021-03-30T18:16:30.589Z\n"
+"PO-Revision-Date: 2021-04-03 17:01+0000\n"
 "Last-Translator: simmon <simmon@nplob.com>\n"
 "Language-Team: Korean <https://translate.fedoraproject.org/projects/"
 "cockpit-composer/master/ko/>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
-"X-Generator: Weblate 4.5.2\n"
+"X-Generator: Weblate 4.5.3\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -251,7 +251,7 @@ msgstr "변경 적용"
 #. Are you sure you want to delete the blueprint {name}?
 #: build/messages/components/Modal/DeleteBlueprint.json
 msgid "Are you sure you want to delete the blueprint {name}?"
-msgstr "블루프린트 {name}을/를 정말로 삭제하시겠습니까?"
+msgstr "블루프린트 {name}를 정말로 삭제하시겠습니까?"
 
 #. [components.Modal.1346739796]
 #. defaultMessage is:
@@ -606,7 +606,7 @@ msgstr "구성 요소 옵션"
 #. Confirm password
 #: build/messages/components/Modal/UserAccount.json
 msgid "Confirm password"
-msgstr "암호 확인"
+msgstr "비밀번호 확인"
 
 #. [components.Modal.956699920]
 #. defaultMessage is:
@@ -900,7 +900,7 @@ msgstr "사용자 계정 편집"
 #. Either the parent commit or repository url can be specified. Not both.
 #: build/messages/components/Wizard/ImageStep.json
 msgid "Either the parent commit or repository url can be specified. Not both."
-msgstr "부모 커밋 또는 저장소 url 중 하나만 지정할 수 있습니다."
+msgstr "원인 커밋 또는 저장소 url 중 하나만 지정 할 수 있습니다."
 
 #. [pages.blueprint.emptyBlueprintTitle]
 #. defaultMessage is:
@@ -1077,8 +1077,10 @@ msgid ""
 "                      and the upload action is successful, the image file is "
 "available in the Storage account and Blob container that you specified."
 msgstr ""
-"Image Builder는 사용자가 생성한 이미지를 {azure}의 Blob 컨테이너에 적재 할 수 있습니다. 이미지 빌드가 완료되고\n"
-"적재 작업이 성공하면 지정한 저장소 계정 및 Blob 컨테이너에서 이미지 파일을 사용할 수 있습니다."
+"Image Builder는 사용자가 생성한 이미지를 {azure}의 Blob 컨테이너에 적재 할 "
+"수 있습니다. 이미지 빌드가 완료되고\n"
+"적재 작업이 성공하면 지정한 저장소 계정 및 Blob 컨테이너에서 이미지 파일을 사"
+"용할 수 있습니다."
 
 #. [components.Wizard.1007547894]
 #. defaultMessage is:
@@ -1527,7 +1529,8 @@ msgid ""
 "                    section of a storage account. You can find storage "
 "accounts on the {storageAccounts} page in the {azure} portal."
 msgstr ""
-"이미지 파일을 적재 할 Blob 컨테이너를 제공합니다. 저장소 계정의 {blobService}에서 컨테이너를 찾을 수 있습니다.\n"
+"이미지 파일을 적재 할 Blob 컨테이너를 제공합니다. 저장소 계정의 {blobService}"
+"에서 컨테이너를 찾을 수 있습니다.\n"
 "저장소 계정은 {azure} 포털의 {storageAccounts} 페이지에서 찾을 수 있습니다."
 
 #. [components.Wizard.4044130958]
@@ -1559,8 +1562,10 @@ msgid ""
 "                        {bucketsPage} page in the {amazon} S3 storage "
 "service in the AWS console."
 msgstr ""
-"EC2로 가져 오기 전에 이미지 파일을 업로드해야 하는 S3 {bucket} 이름을 지정하십시오.\n"
-" 이미지를 가져 오려는 리전에 {bucket}이 이미 존재해야 합니다. {buckets} 목록은\n"
+"EC2로 가져 오기 전에 이미지 파일을 업로드해야 하는 S3 {bucket} 이름을 지정하"
+"십시오.\n"
+" 이미지를 가져 오려는 리전에 {bucket}이 이미 존재해야 합니다. {buckets} 목록"
+"은\n"
 " AWS 콘솔의 {amazon} S3 저장소 서비스에 있는 {bucketsPage} 페이지에 있습니다."
 
 #. [components.Wizard.1170512263]
@@ -1585,7 +1590,8 @@ msgid ""
 "                        page of the storage account. You can find storage "
 "accounts on the {storageAccounts} page in the {azure} portal."
 msgstr ""
-"원하는 저장소 계정에 대한 접근 키를 제공합니다. 접근 키는 저장소 계정의 {accessKeys} 페이지에서 찾을 수 있습니다.\n"
+"원하는 저장소 계정에 대한 접근 키를 제공합니다. 접근 키는 저장소 계정의 "
+"{accessKeys} 페이지에서 찾을 수 있습니다.\n"
 "저장소 계정은 {azure} 포털의 {storageAccounts} 페이지에서 찾을 수 있습니다."
 
 #. [components.Wizard.1434969769]
@@ -1595,7 +1601,9 @@ msgstr ""
 msgid ""
 "Provide the name of a storage account. You can find storage accounts on the "
 "{storageAccounts} page in the {azure} portal."
-msgstr "저장소 계정의 이름을 제공하십시오. 저장소 계정은 {azure} 포털의 {azure} 페이지에서 찾을 수 있습니다."
+msgstr ""
+"저장소 계정의 이름을 제공하십시오. 저장소 계정은 {azure} 포털의 {azure} 페이"
+"지에서 찾을 수 있습니다."
 
 #. [components.Wizard.1891777230]
 #. defaultMessage is:
@@ -1758,7 +1766,9 @@ msgstr "리뷰"
 msgid ""
 "Review the information below and click Finish to create the image and "
 "complete the tasks that were selected."
-msgstr "아래 정보를 검토하고 완료를 눌로 이미지를 작성하고 선택한 작업을 완료하십시오."
+msgstr ""
+"아래 정보를 검토하고 완료를 눌로 이미지를 작성하고 선택한 작업을 완료하십시"
+"오."
 
 #. [components.Modal.106035384]
 #. defaultMessage is:
