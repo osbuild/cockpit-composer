@@ -514,6 +514,8 @@ class TestImage(composerlib.ComposerCase):
             image_type_ostree = "fedora-iot-commit"
         elif (distro == "rhel-8-3" or distro == "rhel-8-4"):
             image_type_ostree = "rhel-edge-commit"
+        else:
+            image_type_ostree = "edge-commit"
 
         self.login_and_go("/composer", superuser=True)
         b.wait_visible("#main")
@@ -583,12 +585,13 @@ class TestImage(composerlib.ComposerCase):
         # collect code coverage result
         self.check_coverage()
 
-    @unittest.skipIf(os.environ.get("TEST_OS") != "rhel-8-4", "Does not support ostree container image type")
+    # Parse the name of the distro to know if it is any version of rhel/fedora
+    @unittest.skipIf(os.environ.get("TEST_OS").split('-')[0] != "rhel", "Does not support ostree container image type")
     def testOSTreeContainer(self):
         b = self.browser
         m = self.machine
 
-        image_type_ostree = "rhel-edge-container"
+        image_type_ostree = "edge-container"
 
         self.login_and_go("/composer", superuser=True)
         b.wait_visible("#main")
@@ -673,11 +676,12 @@ class TestImage(composerlib.ComposerCase):
         # collect code coverage result
         self.check_coverage()
 
-    @unittest.skipIf(os.environ.get("TEST_OS") != "rhel-8-4", "Does not support ostree image image type")
+    # Parse the name of the distro to know if it is any version of rhel/fedora
+    @unittest.skipIf(os.environ.get("TEST_OS").split('-')[0] != "rhel", "Does not support ostree image image type")
     def testOSTreeInstaller(self):
         b = self.browser
 
-        image_type_ostree = "rhel-edge-installer"
+        image_type_ostree = "edge-installer"
 
         self.login_and_go("/composer", superuser=True)
         b.wait_visible("#main")
