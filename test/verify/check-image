@@ -12,12 +12,9 @@ import unittest
 @testlib.timeout(2400)
 @testlib.no_retry_when_changed
 class TestLargeImage(composerlib.ComposerCase):
-    provision = {"machine1": {"cpus": 2, "memory_mb": 4096}}
-
     def testOSTreeCommit(self):
         b = self.browser
         m = self.machine
-
         distro = os.environ.get("TEST_OS")
         if (distro == "fedora-32" or distro == "fedora-33"):
             image_type_ostree = "fedora-iot-commit"
@@ -26,7 +23,6 @@ class TestLargeImage(composerlib.ComposerCase):
 
         self.login_and_go("/composer", superuser=True)
         b.wait_visible("#main")
-
         # create image wizard
         b.click("li[data-blueprint=httpd-server] #create-image-button")
         b.wait_text("#create-image-upload-wizard #blueprint-name", "httpd-server")

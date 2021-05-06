@@ -130,7 +130,7 @@ vm: $(VM_IMAGE)
 
 # run the CDP integration test
 check: $(VM_IMAGE) test/common machine
-	test/common/run-tests --test-dir=test/verify --enable-network
+	test/common/run-tests --test-dir=test/verify --nondestructive-cpus 2 --nondestructive-memory-mb 4096 --enable-network
 
 # run test with browser interactively
 debug-check:
@@ -154,7 +154,7 @@ machine: bots
 # checkout Cockpit's test API; this has no API stability guarantee, so check out a stable tag
 # this needs a recent adjustment for firefox 77 and working with network-enabled tests
 test/common:
-	git fetch --depth=1 https://github.com/cockpit-project/cockpit.git 233
+	git fetch --depth=1 https://github.com/cockpit-project/cockpit.git 243
 	git checkout --force FETCH_HEAD -- test/common
 	git reset test/common
 
