@@ -12,7 +12,7 @@ import unittest
 @testlib.timeout(2400)
 @testlib.no_retry_when_changed
 class TestLargeImage(composerlib.ComposerCase):
-    provision = {"machine1": {"cpus": 2, "memory_mb": 2048}}
+    provision = {"machine1": {"cpus": 2, "memory_mb": 4096}}
 
     def testOSTreeCommit(self):
         b = self.browser
