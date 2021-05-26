@@ -68,7 +68,6 @@
     "node-sass": "^4.14.1",
     "path-to-regexp": "^1.5.3",
     "po2json": "^0.4.5",
-    "postcss": "^7.0.14",
     "prettier": "2.0.5",
     "react-intl-po": "^2.2.2",
     "sass": "^1.27.1",
