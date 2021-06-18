@@ -43,7 +43,12 @@ class CreateImageUpload extends React.Component {
   render() {
     return (
       <>
-        <Button id="create-image-button" variant="secondary" onClick={this.open}>
+        <Button
+          id="create-image-button"
+          variant="secondary"
+          onClick={this.open}
+          isDisabled={!this.props.blueprint.name}
+        >
           <FormattedMessage defaultMessage="Create image" />
         </Button>
         {this.state.isOpen && <CreateImageUploadModal {...this.props} close={this.close} isOpen={this.state.isOpen} />}
