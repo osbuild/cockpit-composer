@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/no-unused-prop-types */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 
 import React from "react";
@@ -22,6 +24,7 @@ import BlueprintToolbar from "../../components/Toolbar/BlueprintToolbar";
 import ListItemImages from "../../components/ListView/ListItemImages";
 import ImagesDataList from "../../components/ListView/ImagesDataList";
 import TextInlineEdit from "../../components/Form/TextInlineEdit";
+import Loading from "../../components/Loading/Loading";
 import {
   fetchingBlueprintContents,
   setBlueprintDescription,
@@ -279,9 +282,6 @@ class BlueprintPage extends React.Component {
   }
 
   render() {
-    if (this.props.blueprint.components === undefined) {
-      return <div />;
-    }
     const {
       blueprint,
       userAccount,
@@ -431,7 +431,7 @@ class BlueprintPage extends React.Component {
         </header>
         <Tabs
           activeKey={activeKey}
-          onSelect={(eventId) => cockpit.location.go(["blueprint", blueprint.name, eventId])}
+          onSelect={(eventId) => cockpit.location.go(["blueprint", this.props.route.params.blueprint, eventId])}
           id="blueprint-tabs"
         >
           <Tab eventKey="customizations" title={formatMessage(messages.customizationsTitle)}>
@@ -486,7 +486,7 @@ class BlueprintPage extends React.Component {
           </Tab>
           <Tab eventKey="packages" title={formatMessage(messages.packagesTitle)}>
             <div className="row">
-              {(selectedInput.set === false && (
+              {(!selectedInput.set && (
                 <div className="col-sm-12">
                   <BlueprintToolbar
                     emptyState={
@@ -503,28 +503,30 @@ class BlueprintPage extends React.Component {
                     dependenciesSortSetValue={this.props.dependenciesSortSetValue}
                     showUndoRedo={false}
                   />
-                  <BlueprintContents
-                    components={selectedComponents}
-                    dependencies={dependencies}
-                    noEditComponent
-                    handleComponentDetails={this.handleComponentDetails}
-                    filterClearValues={this.props.componentsFilterClearValues}
-                    filterValues={componentsFilters.filterValues}
-                    errorState={this.props.blueprintContentsError}
-                    fetchingState={this.props.blueprintContentsFetching}
-                    fetchDetails={this.handleComponentListItem}
-                  >
-                    <EmptyState
-                      title={formatMessage(messages.emptyBlueprintTitle)}
-                      message={formatMessage(messages.emptyBlueprintMessage)}
+                  {(this.props.blueprint.components === undefined && <Loading />) || (
+                    <BlueprintContents
+                      components={selectedComponents}
+                      dependencies={dependencies}
+                      noEditComponent
+                      handleComponentDetails={this.handleComponentDetails}
+                      filterClearValues={this.props.componentsFilterClearValues}
+                      filterValues={componentsFilters.filterValues}
+                      errorState={this.props.blueprintContentsError}
+                      fetchingState={this.props.blueprintContentsFetching}
+                      fetchDetails={this.handleComponentListItem}
                     >
-                      <Link to={`/edit/${this.props.route.params.blueprint}`}>
-                        <button className="btn btn-default btn-primary" type="button">
-                          <FormattedMessage defaultMessage="Edit packages" />
-                        </button>
-                      </Link>
-                    </EmptyState>
-                  </BlueprintContents>
+                      <EmptyState
+                        title={formatMessage(messages.emptyBlueprintTitle)}
+                        message={formatMessage(messages.emptyBlueprintMessage)}
+                      >
+                        <Link to={`/edit/${this.props.route.params.blueprint}`}>
+                          <button className="btn btn-default btn-primary" type="button">
+                            <FormattedMessage defaultMessage="Edit packages" />
+                          </button>
+                        </Link>
+                      </EmptyState>
+                    </BlueprintContents>
+                  )}
                 </div>
               )) || (
                 <div className="col-sm-12 cmpsr-component-details--view">
