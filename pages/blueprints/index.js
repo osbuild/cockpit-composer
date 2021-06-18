@@ -83,7 +83,7 @@ class BlueprintsPage extends React.Component {
       <Layout className="container-fluid" ref={(c) => (this.layout = c)}>
         <BlueprintsToolbar
           blueprintNames={blueprints.map((blueprint) => blueprint.present.id)}
-          emptyState={blueprints.length === 0 && blueprintFilters.filterValues.length === 0}
+          emptyState={!blueprints && !blueprintFilters.filterValues}
           errorState={blueprintsError !== null}
           filters={blueprintFilters}
           filterRemoveValue={blueprintsFilterRemoveValue}
