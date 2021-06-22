@@ -1,7 +1,7 @@
 import { delay } from "redux-saga";
 import { call, all, put, takeEvery } from "redux-saga/effects";
+import { v4 as uuid } from "uuid";
 import * as composer from "../composer";
-
 import {
   START_COMPOSE,
   fetchingComposeStatusSucceeded,
@@ -19,10 +19,11 @@ import {
   FETCHING_QUEUE,
   fetchingQueueSucceeded,
 } from "../actions/composes";
+import { alertAdd } from "../actions/alerts";
 
 function* startCompose(action) {
+  const { blueprintName, composeType, imageSize, ostree, uploadSettings } = action.payload;
   try {
-    const { blueprintName, composeType, imageSize, ostree, uploadSettings } = action.payload;
     const imageSizeBytes = imageSize * 1024 * 1024 * 1024;
     const response = yield call(
       composer.startCompose,
@@ -33,12 +34,14 @@ function* startCompose(action) {
       uploadSettings
     );
     const statusResponse = yield call(composer.getComposeStatus, response.build_id);
+    yield put(alertAdd(uuid(), "composeQueued", blueprintName));
     yield put(fetchingComposeSucceeded(statusResponse.uuids[0]));
     if (statusResponse.uuids[0].queue_status === "WAITING" || statusResponse.uuids[0].queue_status === "RUNNING") {
       yield* pollComposeStatus(statusResponse.uuids[0]);
     }
   } catch (error) {
     console.log("startComposeError", error);
+    yield put(alertAdd(uuid(), "composeFailed", blueprintName));
     yield put(composesFailure(error));
   }
 }
@@ -49,7 +52,12 @@ function* pollComposeStatus(compose) {
     while (polledCompose.queue_status === "WAITING" || polledCompose.queue_status === "RUNNING") {
       const response = yield call(composer.getComposeStatus, polledCompose.id);
       polledCompose = response.uuids[0];
-      if (polledCompose !== undefined) {
+      if (polledCompose) {
+        if (polledCompose.queue_status === "FINISHED") {
+          yield put(alertAdd(uuid(), "composeSucceeded", polledCompose.blueprint));
+        } else if (polledCompose.queue_status === "FAILED") {
+          yield put(alertAdd(uuid(), "composeFailed", polledCompose.blueprint));
+        }
         yield put(fetchingComposeStatusSucceeded(polledCompose));
         yield call(delay, 60000);
       } else {
@@ -59,6 +67,7 @@ function* pollComposeStatus(compose) {
     }
   } catch (error) {
     console.log("pollComposeStatusError", error);
+    yield put(alertAdd(uuid(), "composeFailed", compose.blueprint));
     yield put(composesFailure(error));
   }
 }

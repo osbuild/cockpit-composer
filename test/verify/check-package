@@ -188,12 +188,9 @@ class TestPackage(composerlib.ComposerCase):
         b.wait_visible("#cmpsr-modal-pending-changes .form-horizontal p + div + div ul "
                        "li:nth-child(1) .row:contains('cockpit-bridge-*')")
         b.click("#cmpsr-modal-pending-changes .modal-footer button:contains('Commit')")
-        # toast notification appear and disappear automatically
-        b.wait_visible("#cmpsr-toast-committed")
-        with b.wait_timeout(120):
-            b.wait_not_present("#cmpsr-toast-committed")
-        # disabled commit button
-        b.wait_attr_contains("button:contains('Commit')", "class", "disabled")
+        b.wait_visible("#alertBlueprintCommitSucceeded")
+        b.click("#alertBlueprintCommitSucceeded .pf-c-alert__action button")
+        b.wait_not_present("#alertBlueprintCommitSucceeded")
 
         # collect code coverage result
         self.check_coverage()

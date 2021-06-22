@@ -3,8 +3,9 @@ import { Button, Wizard, WizardContextConsumer, WizardFooter } from "@patternfly
 import { defineMessages, FormattedMessage, injectIntl, intlShape } from "react-intl";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import NotificationsApi from "../../data/NotificationsApi";
+import { v4 as uuid } from "uuid";
 import BlueprintApi from "../../data/BlueprintApi";
+import { alertAdd } from "../../core/actions/alerts";
 import { setBlueprint } from "../../core/actions/blueprints";
 import { fetchingQueue, clearQueue, startCompose, fetchingComposeTypes } from "../../core/actions/composes";
 import AWSAuthStep from "./AWSAuthStep";
@@ -85,7 +86,6 @@ class CreateImageUploadModal extends React.Component {
     this.isValidOstreeRef = this.isValidOstreeRef.bind(this);
     this.requiresImageSize = this.requiresImageSize.bind(this);
     this.missingRequiredFields = this.missingRequiredFields.bind(this);
-    this.setNotifications = this.setNotifications.bind(this);
     this.setImageSize = this.setImageSize.bind(this);
     this.setImageName = this.setImageName.bind(this);
     this.setImageType = this.setImageType.bind(this);
@@ -172,15 +172,10 @@ class CreateImageUploadModal extends React.Component {
   }
 
   handleCommit() {
-    // clear existing notifications
-    NotificationsApi.closeNotification(undefined, "committed");
-    NotificationsApi.closeNotification(undefined, "committing");
-    // display the committing notification
-    NotificationsApi.displayNotification(this.props.blueprint.name, "committing");
-    this.setNotifications();
     // post blueprint (includes 'committed' notification)
     Promise.all([BlueprintApi.handleCommitBlueprint(this.props.blueprint)])
       .then(() => {
+        this.props.alertAdd(uuid(), "blueprintCommitSucceeded", this.props.blueprint.name);
         // then after blueprint is posted, reload blueprint details
         // to get details that were updated during commit (i.e. version)
         // and call create image
@@ -192,12 +187,13 @@ class CreateImageUploadModal extends React.Component {
           })
           .catch((e) => console.log(`Error in reload blueprint details: ${e}`));
       })
-      .catch((e) => console.log(`Error in blueprint commit: ${e}`));
+      .catch((e) => {
+        this.props.alertAdd(uuid(), "blueprintCommitFailed", this.props.blueprint.name);
+        console.log(`Error in blueprint commit: ${e}`);
+      });
   }
 
   handleCreateImage() {
-    NotificationsApi.displayNotification(this.props.blueprint.name, "imageWaiting");
-    if (this.setNotifications) this.setNotifications();
     if (this.handleStartCompose)
       this.handleStartCompose(
         this.props.blueprint.name,
@@ -256,10 +252,6 @@ class CreateImageUploadModal extends React.Component {
       showUploadVMWareStep: false,
       showReviewStep: false,
     });
-  }
-
-  setNotifications() {
-    this.props.layout.setNotifications();
   }
 
   setUploadSettings(_, event) {
@@ -566,17 +558,14 @@ CreateImageUpload.propTypes = {
     workspacePendingChanges: PropTypes.arrayOf(PropTypes.object),
   }),
   intl: intlShape.isRequired,
-  layout: PropTypes.shape({
-    setNotifications: PropTypes.func,
-  }),
 };
 
 CreateImageUpload.defaultProps = {
   blueprint: {},
-  layout: {},
 };
 
 CreateImageUploadModal.propTypes = {
+  alertAdd: PropTypes.func,
   blueprint: PropTypes.shape({
     changed: PropTypes.bool,
     description: PropTypes.string,
@@ -597,14 +586,12 @@ CreateImageUploadModal.propTypes = {
   setBlueprint: PropTypes.func,
   intl: intlShape.isRequired,
   startCompose: PropTypes.func,
-  layout: PropTypes.shape({
-    setNotifications: PropTypes.func,
-  }),
   close: PropTypes.func.isRequired,
   isOpen: PropTypes.bool,
 };
 
 CreateImageUploadModal.defaultProps = {
+  alertAdd() {},
   blueprint: {},
   composeQueueFetched: true,
   fetchingQueue() {},
@@ -613,7 +600,6 @@ CreateImageUploadModal.defaultProps = {
   fetchingComposeTypes() {},
   setBlueprint() {},
   startCompose() {},
-  layout: {},
   isOpen: false,
 };
 
@@ -624,6 +610,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  alertAdd: (id, type, blueprintName) => {
+    dispatch(alertAdd(id, type, blueprintName));
+  },
   setBlueprint: (blueprint) => {
     dispatch(setBlueprint(blueprint));
   },

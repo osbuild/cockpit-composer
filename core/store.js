@@ -10,6 +10,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 /* eslint-enable */
 
 const initialState = {
+  alerts: [],
   blueprintPage: {
     editDescriptionVisible: false,
     editHostnameVisible: false,
