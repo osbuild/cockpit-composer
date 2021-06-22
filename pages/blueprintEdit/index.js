@@ -3,6 +3,7 @@ import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-i
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Pagination, PaginationVariant, TextInput } from "@patternfly/react-core";
+import { v4 as uuid } from "uuid";
 import Link from "../../components/Link/Link";
 import Layout from "../../components/Layout/Layout";
 import BlueprintContents from "../../components/ListView/BlueprintContents";
@@ -15,7 +16,7 @@ import EmptyState from "../../components/EmptyState/EmptyState";
 import Loading from "../../components/Loading/Loading";
 import BlueprintToolbar from "../../components/Toolbar/BlueprintToolbar";
 import BlueprintApi from "../../data/BlueprintApi";
-import NotificationsApi from "../../data/NotificationsApi";
+import { alertAdd } from "../../core/actions/alerts";
 import {
   fetchingBlueprintContents,
   setBlueprint,
@@ -162,15 +163,10 @@ class EditBlueprintPage extends React.Component {
   }
 
   handleCommit() {
-    // clear existing notifications
-    NotificationsApi.closeNotification(undefined, "committed");
-    NotificationsApi.closeNotification(undefined, "committing");
-    // display the committing notification
-    NotificationsApi.displayNotification(this.props.blueprint.name, "committing");
-    this.setNotifications();
     // post blueprint (includes 'committed' notification)
     Promise.all([BlueprintApi.handleCommitBlueprint(this.props.blueprint)])
       .then(() => {
+        this.props.alertAdd(uuid(), "blueprintCommitSucceeded", this.props.blueprint.name);
         // then after blueprint is posted, reload blueprint details
         // to get details that were updated during commit (i.e. version)
         Promise.all([BlueprintApi.reloadBlueprintDetails(this.props.blueprint)])
@@ -180,7 +176,10 @@ class EditBlueprintPage extends React.Component {
           })
           .catch((e) => console.log(`Error in reload blueprint details: ${e}`));
       })
-      .catch((e) => console.log(`Error in blueprint commit: ${e}`));
+      .catch((e) => {
+        this.props.alertAdd(uuid(), "blueprintCommitFailed", this.props.blueprint.name);
+        console.log(`Error in blueprint commit: ${e}`);
+      });
   }
 
   handleAddComponent(event, component, version) {
@@ -696,6 +695,7 @@ class EditBlueprintPage extends React.Component {
 }
 
 EditBlueprintPage.propTypes = {
+  alertAdd: PropTypes.func,
   route: PropTypes.shape({
     keys: PropTypes.arrayOf(PropTypes.object),
     load: PropTypes.func,
@@ -774,6 +774,7 @@ EditBlueprintPage.propTypes = {
 };
 
 EditBlueprintPage.defaultProps = {
+  alertAdd() {},
   route: {},
   blueprint: {},
   inputs: {},
@@ -868,6 +869,9 @@ const makeMapStateToProps = () => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
+  alertAdd: (id, type, blueprintName) => {
+    dispatch(alertAdd(id, type, blueprintName));
+  },
   fetchingBlueprintContents: (blueprintId) => {
     dispatch(fetchingBlueprintContents(blueprintId));
   },

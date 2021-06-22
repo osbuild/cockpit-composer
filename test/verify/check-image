@@ -473,10 +473,10 @@ class TestImage(composerlib.ComposerCase):
         b.click("#continue-button")
         b.wait_not_present("#create-image-upload-wizard")
 
-        # toast notification
-        b.wait_visible("#cmpsr-toast-imageWaiting .pficon-info")
-        b.click("#cmpsr-toast-imageWaiting .pficon-close")
-        b.wait_not_present("#cmpsr-toast-imageWaiting .pficon-info")
+        # notification
+        b.wait_visible("#alertComposeQueued")
+        b.click("#alertComposeQueued .pf-c-alert__action button")
+        b.wait_not_present("#alertComposeQueued")
 
         # got to images tab
         b.click("#httpd-server-name")
@@ -526,10 +526,10 @@ class TestImage(composerlib.ComposerCase):
         b.wait_val("#image-type", image_type_ostree)
         b.click("#continue-button")
         b.wait_not_present("#create-image-upload-wizard")
-        # toast notification
-        b.wait_visible("#cmpsr-toast-imageWaiting .pficon-info")
-        b.click("#cmpsr-toast-imageWaiting .pficon-close")
-        b.wait_not_present("#cmpsr-toast-imageWaiting .pficon-info")
+        # notification
+        b.wait_visible("#alertComposeQueued")
+        b.click("#alertComposeQueued .pf-c-alert__action button")
+        b.wait_not_present("#alertComposeQueued")
 
         # got to images tab
         b.click("#httpd-server-name")
@@ -615,10 +615,10 @@ class TestImage(composerlib.ComposerCase):
 
         b.click("#continue-button")
         b.wait_not_present("#create-image-upload-wizard")
-        # toast notification
-        b.wait_visible("#cmpsr-toast-imageWaiting .pficon-info")
-        b.click("#cmpsr-toast-imageWaiting .pficon-close")
-        b.wait_not_present("#cmpsr-toast-imageWaiting .pficon-info")
+        # notification
+        b.wait_visible("#alertComposeQueued")
+        b.click("#alertComposeQueued .pf-c-alert__action button")
+        b.wait_not_present("#alertComposeQueued")
 
         # got to images tab
         b.click("#httpd-server-name")
@@ -731,10 +731,10 @@ class TestImage(composerlib.ComposerCase):
         b.click("#continue-button")
         b.wait_not_present("#create-image-upload-wizard")
 
-        # toast notification
-        b.wait_visible("#cmpsr-toast-imageWaiting .pficon-info")
-        b.click("#cmpsr-toast-imageWaiting .pficon-close")
-        b.wait_not_present("#cmpsr-toast-imageWaiting .pficon-info")
+        # notification
+        b.wait_visible("#alertComposeQueued")
+        b.click("#alertComposeQueued .pf-c-alert__action button")
+        b.wait_not_present("#alertComposeQueued")
 
         # got to images tab
         b.click("#httpd-server-name")

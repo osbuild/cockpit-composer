@@ -72,11 +72,11 @@ class TestService(composerlib.ComposerCase):
         b.click("#cmpsr-modal-pending-changes .modal-footer .btn-primary")
         b.wait_not_present("#cmpsr-modal-pending-changes")
 
-        # wait for toast notification dialog
-        b.wait_visible("#cmpsr-toast-committed .pficon-ok")
+        # wait for notification
+        b.wait_visible("#alertBlueprintCommitSucceeded")
         # click close button
-        b.click("#cmpsr-toast-committed .pficon-close")
-        b.wait_not_present("#cmpsr-toast-committed .pficon-ok")
+        b.click("#alertBlueprintCommitSucceeded .pf-c-alert__action button")
+        b.wait_not_present("#alertBlueprintCommitSucceeded")
 
         # click back to blueprint link
         b.click("a:contains('Back to blueprints')")

@@ -1,4 +1,3 @@
-import NotificationsApi from "./NotificationsApi";
 import * as composer from "../core/composer";
 
 class BlueprintApi {
@@ -7,17 +6,9 @@ class BlueprintApi {
   }
 
   handleCommitBlueprint(blueprint) {
-    return composer
-      .newBlueprint(this.postedBlueprintData(blueprint))
-      .then(() => {
-        NotificationsApi.closeNotification(undefined, "committing");
-        NotificationsApi.displayNotification(blueprint.name, "committed");
-      })
-      .catch((e) => {
-        console.log(`Error committing blueprint: ${e}`);
-        NotificationsApi.closeNotification(undefined, "committing");
-        NotificationsApi.displayNotification(blueprint.name, "commitFailed");
-      });
+    return composer.newBlueprint(this.postedBlueprintData(blueprint)).catch((e) => {
+      console.log(`Error committing blueprint: ${e}`);
+    });
   }
 
   postedBlueprintData(blueprint) {
