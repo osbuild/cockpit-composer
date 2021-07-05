@@ -1,6 +1,6 @@
 # Cockpit Composer
 
-[![codecov](https://codecov.io/gh/osbuild/cockpit-composer/branch/master/graph/badge.svg)](https://codecov.io/gh/osbuild/cockpit-composer)
+[![codecov](https://codecov.io/gh/osbuild/cockpit-composer/branch/main/graph/badge.svg)](https://codecov.io/gh/osbuild/cockpit-composer)
 
 **The web interface for Composer!**
 
