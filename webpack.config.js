@@ -152,6 +152,7 @@ module.exports = {
                   path.resolve(nodedir, "bootstrap-sass", "assets", "stylesheets"),
                 ],
                 outputStyle: "compressed",
+                quietDeps: true,
               },
             },
           },
