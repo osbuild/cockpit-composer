@@ -7,7 +7,7 @@ Actually we need to follow the end-user flows and assert they get the intended
 experience and focus on the behavior of the thing as the user would see it.
 
 The integration tests are powered by [Cockpit test
-framework](https://github.com/cockpit-project/cockpit/tree/master/test), which is simple and easy to
+framework](https://github.com/cockpit-project/cockpit/tree/main/test), which is simple and easy to
 debug for test development.
 
 ## Requirement

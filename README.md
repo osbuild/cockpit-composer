@@ -189,13 +189,13 @@ will extract all of the messages to JSON files, written to `./build/messages`. [
 used to collect the JSON files into a gettext-style POT file (po/cockpit-composer.pot).
 
 **Step 2**. With `make upload-pot` the PO template gets uploaded to the [Weblate translation platform](https://translate.fedoraproject.org/projects/cockpit-composer/)
-where everybody can contribute translations to various languages. This is part of [bots/po-refresh](https://github.com/cockpit-project/bots/blob/master/po-refresh)
-which is invoked regularly by [bots/po-trigger](https://github.com/cockpit-project/bots/blob/master/po-trigger).
+where everybody can contribute translations to various languages. This is part of [bots/po-refresh](https://github.com/cockpit-project/bots/blob/main/po-refresh)
+which is invoked regularly by [bots/po-trigger](https://github.com/cockpit-project/bots/blob/main/po-trigger).
 
 **Step 3**. Translators provide translations on Weblate.
 
 **Step 4**. With `make download-po` Weblate's translations are downloaded to `po/XX.po`. This is also done by
-[bots/po-refresh](https://github.com/cockpit-project/bots/blob/master/po-refresh).
+[bots/po-refresh](https://github.com/cockpit-project/bots/blob/main/po-refresh).
 
 **Step 5**. The user runs cockpit-composer. Based on the user's browser configuration, cockpit-composer determines the user's preferred
 language, and if translations are available, these translations are provided to react-intl's `<IntlProvider>`. react-intl
@@ -214,7 +214,7 @@ When the project is ready for a new release, do the following:
 Then push the tag with `git push --tags`. This triggers the [release.yml](.github/workflows/release.yml)
 [GitHub action](https://github.com/features/actions) workflow.
 
-The workflow runs [cockpituous](https://github.com/cockpit-project/cockpituous/tree/master/release)
+The workflow runs [cockpituous](https://github.com/cockpit-project/cockpituous/tree/main/release)
 to build a new release of cockpit-composer, with the [cockpituous-release](./utils/cockpituous-release) control file.
 This uses the shared [cockpit-project organization secrets](https://github.com/organizations/cockpit-project/settings/secrets).
 
@@ -224,7 +224,7 @@ Finally, import the new `.srpm` into the appropriate RHEL release.
 
 It is important to keep your [NPM modules](./package.json) up to date, to keep
 up with security updates and bug fixes. This is done with the
-[npm-update bot script](https://github.com/cockpit-project/bots/blob/master/npm-update)
+[npm-update bot script](https://github.com/cockpit-project/bots/blob/main/npm-update)
 which is run daily or upon [manual request](https://github.com/osbuild/cockpit-composer/actions) through the
 [npm-update.yml](.github/workflows/npm-update.yml) [GitHub action](https://github.com/features/actions).
 
