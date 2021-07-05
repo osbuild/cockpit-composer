@@ -2,16 +2,16 @@
 # Lars Karlitski <lars@karlitski.net>, 2019. #zanata
 # corina roe <croe@redhat.com>, 2019. #zanata
 # Ludek Janda <ljanda@redhat.com>, 2020.
-# Julien Humbert <julroy67@gmail.com>, 2020.
+# Julien Humbert <julroy67@gmail.com>, 2020, 2021.
 # Anonymous <noreply@weblate.org>, 2020.
 # Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>, 2020.
 # Alain Nussbaumer <alain.nussbaumer@alleluia.ch>, 2020.
 # Sundeep Anand <suanand@redhat.com>, 2021.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2021-03-02T18:18:37.457Z\n"
-"PO-Revision-Date: 2021-03-09 10:01+0000\n"
-"Last-Translator: Sundeep Anand <suanand@redhat.com>\n"
+"POT-Creation-Date: 2021-04-06T18:16:39.224Z\n"
+"PO-Revision-Date: 2021-05-17 03:02+0000\n"
+"Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
 "Language-Team: French <https://translate.fedoraproject.org/projects/"
 "cockpit-composer/master/fr/>\n"
 "Language: fr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1\n"
-"X-Generator: Weblate 4.5.1\n"
+"X-Generator: Weblate 4.6.2\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -976,7 +976,7 @@ msgstr "Filtrer par nom..."
 #. Filter by release
 #: build/messages/components/Toolbar/FilterInput.json
 msgid "Filter by release"
-msgstr "Filtrer par date de sortie de version"
+msgstr "Filtrer par version"
 
 #. [components.Toolbar.filterVersionPlaceholder]
 #. defaultMessage is:
@@ -1070,8 +1070,8 @@ msgid ""
 "                      the image file is available in the Cluster on the "
 "vSphere instance that you specified."
 msgstr ""
-"Image Builder peut télécharger les images que vous créez dans VMWare vSphere."
-"\n"
+"Image Builder peut télécharger les images que vous créez dans VMWare "
+"vSphere.\n"
 "                      Lorsque la création d'images est terminée et que "
 "l'action de téléchargement est réussie,\n"
 "                      le fichier image est alors disponible dans le Cluster "
@@ -1093,11 +1093,10 @@ msgid ""
 "                      and the upload action is successful, the image file is "
 "available in the Storage account and Blob container that you specified."
 msgstr ""
-"Image Builder peut télécharger les images que vous créez dans un conteneur "
-"Blob dans {azure}. Quand l'image est créée \n"
-"                      et que l'action de téléchargement est réussie, le "
-"fichier image est disponible dans le compte de stockage et le conteneur Blob "
-"que vous avez spécifiés."
+"Image Builder peut téléverser des images sur un conteneur Blob dans {azure}. "
+"Lorsque la construction de l’image est complétée\n"
+"et que le téléversement a réussi, le fichier image est disponible dans le "
+"compte de Stockage et le conteneur Blob que vous avez spécifié."
 
 #. [components.Wizard.1007547894]
 #. defaultMessage is:
@@ -1778,7 +1777,7 @@ msgstr "Supprimer la source"
 #. Repository URL
 #: build/messages/components/Wizard/ImageStep.json
 msgid "Repository URL"
-msgstr "URL du dépôt"
+msgstr "URL du référentiel"
 
 #. [components.Modal.128739785]
 #. defaultMessage is:
