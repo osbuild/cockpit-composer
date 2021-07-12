@@ -8,6 +8,12 @@ import cockpit from "cockpit";
 import Password from "../Form/Password";
 import { setModalUserAccountData } from "../../core/actions/modals";
 
+const ariaLabels = defineMessages({
+  adminCheckbox: {
+    defaultMessage: "Server admin checkbox",
+  },
+});
+
 const messages = defineMessages({
   modalTitleCreate: {
     defaultMessage: "Create user account",
@@ -285,6 +291,7 @@ class UserAccount extends React.Component {
                     <label>
                       <input
                         type="checkbox"
+                        aria-label={formatMessage(ariaLabels.adminCheckbox)}
                         checked={userAccount.groups.includes("wheel")}
                         onChange={(e) => this.handleChange(e, "admin")}
                       />
