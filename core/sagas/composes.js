@@ -133,8 +133,12 @@ function* fetchComposeTypes() {
       vhd: "Microsoft Azure (.vhd)",
       vmdk: "VMWare VSphere (.vmdk)",
     };
-    const imageTypesLabelled = imageTypes.map((type) => {
-      return { ...type, label: imageTypeLabels[type.name] || type.name };
+    const imageTypesLabelled = [];
+    imageTypes.forEach((type) => {
+      if (type.name in imageTypeLabels) {
+        const typeLabelled = { ...type, label: imageTypeLabels[type.name] };
+        imageTypesLabelled.push(typeLabelled);
+      }
     });
     yield put(fetchingComposeTypesSucceeded(imageTypesLabelled));
   } catch (error) {
