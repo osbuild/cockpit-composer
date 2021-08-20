@@ -5,58 +5,12 @@
 # 2. blueprint description edit/update
 # 3. hostname setting
 # 4. user setting
-
-import re
-
 import composerlib
 import testlib
 
 
 @testlib.nondestructive
 class TestCustom(composerlib.ComposerCase):
-
-    def testExport(self):
-        b = self.browser
-        m = self.machine
-
-        self.login_and_go("/composer", superuser=True)
-        b.wait_visible("#main")
-
-        # go to blueprint openssh-server
-        b.click("#openssh-server-name")
-
-        # export package list
-        actions_drop_down_sel = ".cmpsr-header__actions #dropdownKebab"
-        with b.wait_timeout(300):
-            b.click(actions_drop_down_sel)
-        b.wait_attr(actions_drop_down_sel, "aria-expanded", "true")
-        b.click("a:contains('Export')")
-        b.wait_visible("#cmpsr-modal-export")
-        with b.wait_timeout(300):
-            b.wait_in_text("#textInput2-modal-markup", "openssh-server")
-        packages_list = b.text("#textInput2-modal-markup")
-        b.click("#cmpsr-modal-export button[data-btn=copy-export]")
-        b.click("#cmpsr-modal-export button[data-btn=close-export]")
-        b.wait_not_present("#cmpsr-modal-export")
-
-        list_from_backend = m.execute("""
-            composer-cli blueprints depsolve openssh-server | tail -n +2
-            """).split()
-        # remove tailing ".x86_64" or ".noarch"(6 chars) or ".aarch64"(7 chars)
-        # and "*:" in libpcap-14:1.9.1-2.fc31.x86_64
-        regex = re.compile("-[0-9]*:")
-
-        def remove(x):
-            if x.endswith("aarch64"):
-                return regex.sub("-", x[:-8])
-            else:
-                return regex.sub("-", x[:-7])
-        format_list = map(remove, list_from_backend)
-
-        self.assertEqual(packages_list, "\n".join(format_list))
-
-        # collect code coverage result
-        self.check_coverage()
 
     def testDescription(self):
         b = self.browser
