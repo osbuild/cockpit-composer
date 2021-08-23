@@ -1,10 +1,16 @@
 import React from "react";
-import { FormattedMessage, injectIntl } from "react-intl";
+import { defineMessages, FormattedMessage, injectIntl, intlShape } from "react-intl";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Alert, AlertActionCloseButton, AlertGroup } from "@patternfly/react-core";
 import "./Notifications.css";
 import { alertDelete } from "../../core/actions/alerts";
+
+const messages = defineMessages({
+  errorSubscription: {
+    defaultMessage: "This system does not have any valid subscriptions.",
+  },
+});
 
 class Notifications extends React.PureComponent {
   constructor() {
@@ -12,6 +18,8 @@ class Notifications extends React.PureComponent {
   }
 
   render() {
+    const { formatMessage } = this.props.intl;
+
     return (
       <AlertGroup isToast>
         {this.props.alerts.map((alert) => {
@@ -81,15 +89,18 @@ class Notifications extends React.PureComponent {
                   variant="danger"
                   title={
                     <FormattedMessage
-                      defaultMessage="{blueprint} Image creation {queue}."
+                      defaultMessage="{blueprint} Image creation failed."
                       values={{
                         blueprint: <strong>{alert.blueprintName}:</strong>,
-                        queue: <a href={`#blueprint/${alert.blueprintName}/images`}>failed</a>,
                       }}
                     />
                   }
                   actionClose={<AlertActionCloseButton onClose={() => this.props.alertDelete(alert.id)} />}
-                />
+                >
+                  {alert.error ===
+                    "This system does not have any valid subscriptions. Subscribe it before specifying rhsm: true in sources." &&
+                    formatMessage(messages.errorSubscription)}
+                </Alert>
               );
             }
             case "blueprintCommitStarted": {
@@ -158,6 +169,7 @@ class Notifications extends React.PureComponent {
 Notifications.propTypes = {
   alerts: PropTypes.arrayOf(PropTypes.object),
   alertDelete: PropTypes.func,
+  intl: intlShape.isRequired,
 };
 
 Notifications.defaultProps = {

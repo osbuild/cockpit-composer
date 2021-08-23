@@ -188,7 +188,7 @@ class CreateImageUploadModal extends React.Component {
           .catch((e) => console.log(`Error in reload blueprint details: ${e}`));
       })
       .catch((e) => {
-        this.props.alertAdd(uuid(), "blueprintCommitFailed", this.props.blueprint.name);
+        this.props.alertAdd(uuid(), "blueprintCommitFailed", this.props.blueprint.name, e);
         console.log(`Error in blueprint commit: ${e}`);
       });
   }

@@ -41,7 +41,8 @@ function* startCompose(action) {
     }
   } catch (error) {
     console.log("startComposeError", error);
-    yield put(alertAdd(uuid(), "composeFailed", blueprintName));
+    const errorMessage = error.body.errors[0].msg;
+    yield put(alertAdd(uuid(), "composeFailed", blueprintName, errorMessage));
     yield put(composesFailure(error));
   }
 }
@@ -67,7 +68,7 @@ function* pollComposeStatus(compose) {
     }
   } catch (error) {
     console.log("pollComposeStatusError", error);
-    yield put(alertAdd(uuid(), "composeFailed", compose.blueprint));
+    yield put(alertAdd(uuid(), "composeFailed", compose.blueprint, error));
     yield put(composesFailure(error));
   }
 }
