@@ -9,6 +9,7 @@ const alerts = (state = [], action) => {
           id: action.payload.id,
           type: action.payload.type,
           blueprintName: action.payload.blueprintName,
+          error: action.payload.error,
         },
       ];
     case ALERT_DELETE:

@@ -1,10 +1,11 @@
 export const ALERT_ADD = "ALERT_ADD";
-export const alertAdd = (id, type, blueprintName) => ({
+export const alertAdd = (id, type, blueprintName, error) => ({
   type: ALERT_ADD,
   payload: {
     id,
     type,
     blueprintName,
+    error,
   },
 });
 
