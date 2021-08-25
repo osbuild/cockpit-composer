@@ -591,7 +591,11 @@ class TestImage(composerlib.ComposerCase):
         b = self.browser
         m = self.machine
 
-        image_type_ostree = "edge-container"
+        distro = os.environ.get("TEST_OS")
+        if (distro == "rhel-8-4"):
+            image_type_ostree = "rhel-edge-container"
+        else:
+            image_type_ostree = "edge-container"
 
         self.login_and_go("/composer", superuser=True)
         b.wait_visible("#main")
@@ -681,7 +685,11 @@ class TestImage(composerlib.ComposerCase):
     def testOSTreeInstaller(self):
         b = self.browser
 
-        image_type_ostree = "edge-installer"
+        distro = os.environ.get("TEST_OS")
+        if (distro == "rhel-8-4"):
+            image_type_ostree = "rhel-edge-installer"
+        else:
+            image_type_ostree = "edge-installer"
 
         self.login_and_go("/composer", superuser=True)
         b.wait_visible("#main")
