@@ -324,6 +324,9 @@ class CreateImageUploadModal extends React.Component {
     if (
       imageType === "" ||
       imageType === "fedora-iot-commit" ||
+      imageType === "rhel-edge-commit" ||
+      imageType === "rhel-edge-container" ||
+      imageType === "rhel-edge-installer" ||
       imageType === "edge-commit" ||
       imageType === "edge-container" ||
       imageType === "edge-installer"
@@ -348,7 +351,12 @@ class CreateImageUploadModal extends React.Component {
 
   isValidOstree() {
     if (this.state.ostreeSettings.parent && this.state.ostreeSettings.url) return false;
-    if (this.state.imageType === "edge-installer" && !this.state.ostreeSettings.url) return false;
+    if (
+      (this.state.imageType === "edge-installer" || this.state.imageType === "rhel-edge-installer") &&
+      !this.state.ostreeSettings.url
+    ) {
+      return false;
+    }
     return this.isValidOstreeRef(this.state.ostreeSettings.ref);
   }
 
