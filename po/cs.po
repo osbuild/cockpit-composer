@@ -2,7 +2,7 @@
 # Matej Marusak <mmarusak@redhat.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2021-02-22T18:10:01.151Z\n"
+"POT-Creation-Date: 2021-08-31T18:16:33.299Z\n"
 "PO-Revision-Date: 2020-09-20 15:29+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://translate.fedoraproject.org/projects/cockpit-"
@@ -535,13 +535,9 @@ msgstr "Vyčistit všechny filtry"
 #. [components.Modal.closeButtonLabel]
 #. defaultMessage is:
 #. Close
-#. [components.Notifications.2324218928]
-#. defaultMessage is:
-#. Close
 #: build/messages/components/Modal/ExportBlueprint.json
 #: build/messages/components/Modal/ManageSources.json
 #: build/messages/components/Modal/PendingChanges.json
-#: build/messages/components/Notifications/Notification.json
 msgid "Close"
 msgstr "Zavřít"
 
@@ -1972,6 +1968,15 @@ msgstr "Vyberte jedno"
 msgid "Selected components"
 msgstr "Vybrané součásti"
 
+#. [components.Modal.adminCheckbox]
+#. defaultMessage is:
+#. Server admin checkbox
+#: build/messages/components/Modal/UserAccount.json
+#, fuzzy
+#| msgid "Server administrator"
+msgid "Server admin checkbox"
+msgstr "Správce serveru"
+
 #. [components.Modal.122879380]
 #. defaultMessage is:
 #. Server administrator
@@ -2388,6 +2393,13 @@ msgstr "Tento název zdroje už existuje."
 msgid "This source path already exists."
 msgstr "Tento popis umístění zdroje už existuje."
 
+#. [components.Notifications.errorSubscription]
+#. defaultMessage is:
+#. This system does not have any valid subscriptions.
+#: build/messages/components/Notifications/Notifications.json
+msgid "This system does not have any valid subscriptions."
+msgstr ""
+
 #. [components.Wizard.1727762289]
 #. defaultMessage is:
 #. This upload process requires that you have an {iam} role named {vmimport} to ensure that the image can
@@ -2792,53 +2804,57 @@ msgstr "pro"
 msgid "yum repository"
 msgstr "yum repozitář"
 
-#. [data.4273735599]
+#. [components.Notifications.4273735599]
 #. defaultMessage is:
 #. {blueprint} Blueprint changes are committed.
-#: build/messages/data/NotificationsApi.json
+#: build/messages/components/Notifications/Notifications.json
 msgid "{blueprint} Blueprint changes are committed."
 msgstr "Změny v plánku {blueprint} odeslány."
 
-#. [data.477516828]
+#. [components.Notifications.477516828]
 #. defaultMessage is:
 #. {blueprint} Commit failed.
-#: build/messages/data/NotificationsApi.json
+#: build/messages/components/Notifications/Notifications.json
 msgid "{blueprint} Commit failed."
 msgstr "Odeslání {blueprint} se nezdařilo."
 
-#. [data.1829299735]
+#. [components.Notifications.1829299735]
 #. defaultMessage is:
 #. {blueprint} Committing blueprint.
-#: build/messages/data/NotificationsApi.json
+#: build/messages/components/Notifications/Notifications.json
 msgid "{blueprint} Committing blueprint."
 msgstr "Odesílání plánku {blueprint}."
 
-#. [data.3947958753]
+#. [components.Notifications.3947958753]
 #. defaultMessage is:
 #. {blueprint} Image creation failed.
-#: build/messages/data/NotificationsApi.json
+#: build/messages/components/Notifications/Notifications.json
 msgid "{blueprint} Image creation failed."
 msgstr "Vytvoření obrazu {blueprint} se nezdařilo."
 
-#. [data.3040107790]
+#. [components.Notifications.3040107790]
 #. defaultMessage is:
 #. {blueprint} Image creation has been added to the {queue}.
-#: build/messages/data/NotificationsApi.json
+#: build/messages/components/Notifications/Notifications.json
 msgid "{blueprint} Image creation has been added to the {queue}."
 msgstr "Vytváření obrazu {blueprint} bylo přidáno do fronty {queue}."
 
-#. [data.1726548071]
+#. [components.Notifications.45922374]
 #. defaultMessage is:
-#. {blueprint} Image creation has started.
-#: build/messages/data/NotificationsApi.json
-msgid "{blueprint} Image creation has started."
+#. {blueprint} Image creation has {queue}.
+#: build/messages/components/Notifications/Notifications.json
+#, fuzzy
+#| msgid "{blueprint} Image creation has started."
+msgid "{blueprint} Image creation has {queue}."
 msgstr "Vytvoření obrazu {blueprint} zahájeno."
 
-#. [data.210196387]
+#. [components.Notifications.652081902]
 #. defaultMessage is:
-#. {blueprint} Image creation is complete.
-#: build/messages/data/NotificationsApi.json
-msgid "{blueprint} Image creation is complete."
+#. {blueprint} Image creation is {queue}.
+#: build/messages/components/Notifications/Notifications.json
+#, fuzzy
+#| msgid "{blueprint} Image creation is complete."
+msgid "{blueprint} Image creation is {queue}."
 msgstr "Vytvoření obrazu {blueprint} je dokončeno."
 
 #. [components.Modal.1557505074]
