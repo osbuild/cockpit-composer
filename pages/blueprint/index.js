@@ -41,8 +41,6 @@ import {
 } from "../../core/actions/inputs";
 import { fetchingComposes, fetchingComposeTypes } from "../../core/actions/composes";
 import {
-  setModalUserAccountVisible,
-  setModalUserAccountData,
   setModalStopBuildVisible,
   setModalStopBuildState,
   setModalDeleteImageVisible,
@@ -136,14 +134,11 @@ class BlueprintPage extends React.Component {
     this.handleComponentDetails = this.handleComponentDetails.bind(this);
     this.handleComponentListItem = this.handleComponentListItem.bind(this);
     this.handleDepListItem = this.handleDepListItem.bind(this);
-    this.handleShowModalUserAccount = this.handleShowModalUserAccount.bind(this);
-    this.handleShowModalEditUser = this.handleShowModalEditUser.bind(this);
     this.handleHideModalStop = this.handleHideModalStop.bind(this);
     this.handleHideModalDeleteImage = this.handleHideModalDeleteImage.bind(this);
     this.handleEditDescription = this.handleEditDescription.bind(this);
     this.handleEditHostname = this.handleEditHostname.bind(this);
     this.handleEditHostnameValue = this.handleEditHostnameValue.bind(this);
-    this.handlePostUser = this.handlePostUser.bind(this);
     this.handleDeleteUser = this.handleDeleteUser.bind(this);
     this.downloadUrl = this.downloadUrl.bind(this);
   }
@@ -201,58 +196,9 @@ class BlueprintPage extends React.Component {
     this.props.setEditHostnameInvalid(invalid);
   }
 
-  handlePostUser(password) {
-    const user = {
-      name: this.props.userAccount.name,
-      ...(this.props.userAccount.description && { description: this.props.userAccount.description }),
-      ...(this.props.userAccount.key && { key: this.props.userAccount.key.trim() }),
-      ...(this.props.userAccount.groups.includes("wheel") && { groups: ["wheel"] }),
-    };
-    if (password) {
-      password = password.trim();
-      user.password = password;
-    }
-    let users = [];
-    if (this.props.blueprint.customizations !== undefined && this.props.blueprint.customizations.user !== undefined) {
-      users = this.props.blueprint.customizations.user;
-    }
-    if (this.props.userAccount.editUser !== "") {
-      const userIndex = users.findIndex((user) => user.name === this.props.userAccount.editUser);
-      users = users
-        .slice(0, userIndex)
-        .concat([user])
-        .concat(users.slice(userIndex + 1));
-    } else {
-      users = users.concat(user);
-    }
-    this.props.setBlueprintUsers(this.props.blueprint.id, users);
-    $("#cmpsr-modal-user-account").modal("hide");
-  }
-
   handleDeleteUser(userName, e) {
     const users = this.props.blueprint.customizations.user.filter((user) => user.name !== userName);
     this.props.setBlueprintUsers(this.props.blueprint.id, users);
-    e.preventDefault();
-    e.stopPropagation();
-  }
-
-  // handle show/hide of modal dialogs
-  handleShowModalUserAccount(e) {
-    this.props.setModalUserAccountVisible(true);
-    e.preventDefault();
-    e.stopPropagation();
-  }
-
-  handleShowModalEditUser(e, user) {
-    const userInfo = { ...user };
-    userInfo.editUser = user.name;
-    userInfo.disabledSubmit = false;
-    userInfo.dynamicName = false;
-    // the previously encrypted password is stored in component state
-    // this property is for storing a new password that needs to be encrypted
-    userInfo.password = "";
-    this.props.setModalUserAccountData(userInfo);
-    this.props.setModalUserAccountVisible(true);
     e.preventDefault();
     e.stopPropagation();
   }
@@ -329,16 +275,7 @@ class BlueprintPage extends React.Component {
         {
           title: (
             <div>
-              <button
-                className="btn btn-default"
-                type="button"
-                aria-label={`${formatMessage(messages.userEdit)} ${user.name}`}
-                onClick={(e) => this.handleShowModalEditUser(e, user)}
-                data-btn="edit"
-              >
-                <span className="pficon pficon-edit" />
-              </button>
-
+              <UserAccount edit users={users} user={user} blueprintID={blueprint.id} />
               <div className="dropdown btn-group dropdown-kebab-pf">
                 <button
                   aria-label={`${formatMessage(messages.userKebab)} ${user.name}`}
@@ -475,9 +412,7 @@ class BlueprintPage extends React.Component {
                           </Table>
                         </div>
                       )}
-                      <button className="btn btn-default" type="button" onClick={this.handleShowModalUserAccount}>
-                        <FormattedMessage defaultMessage="Create user account" />
-                      </button>
+                      <UserAccount edit={false} blueprintID={blueprint.id} users={users} />
                     </div>
                   </div>
                 </div>
@@ -574,7 +509,6 @@ class BlueprintPage extends React.Component {
             </div>
           </Tab>
         </Tabs>
-        {userAccount.visible ? <UserAccount handlePostUser={this.handlePostUser} users={users} /> : null}
         {stopBuild.visible ? (
           <StopBuild
             composeId={stopBuild.composeId}
@@ -629,8 +563,6 @@ BlueprintPage.propTypes = {
   setEditDescriptionVisible: PropTypes.func,
   setEditHostnameVisible: PropTypes.func,
   setEditHostnameInvalid: PropTypes.func,
-  setModalUserAccountVisible: PropTypes.func,
-  setModalUserAccountData: PropTypes.func,
   setBlueprintUsers: PropTypes.func,
   blueprintPage: PropTypes.shape({
     editDescriptionVisible: PropTypes.bool,
@@ -712,8 +644,6 @@ BlueprintPage.defaultProps = {
   setEditDescriptionVisible() {},
   setEditHostnameVisible() {},
   setEditHostnameInvalid() {},
-  setModalUserAccountVisible() {},
-  setModalUserAccountData() {},
   setBlueprintUsers() {},
   blueprintPage: {},
   setBlueprintDescription() {},
@@ -842,12 +772,6 @@ const mapDispatchToProps = (dispatch) => ({
   },
   clearSelectedInput: () => {
     dispatch(clearSelectedInput());
-  },
-  setModalUserAccountVisible: (visible) => {
-    dispatch(setModalUserAccountVisible(visible));
-  },
-  setModalUserAccountData: (data) => {
-    dispatch(setModalUserAccountData(data));
   },
   setModalStopBuildState: (composeId, blueprintName) => {
     dispatch(setModalStopBuildState(composeId, blueprintName));

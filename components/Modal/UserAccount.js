@@ -1,12 +1,10 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-
 import React from "react";
 import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import cockpit from "cockpit";
-import Password from "../Form/Password";
-import { setModalUserAccountData } from "../../core/actions/modals";
+import { Button, Checkbox, Form, FormGroup, Modal, ModalVariant, TextInput, TextArea } from "@patternfly/react-core";
+import { setBlueprintUsers } from "../../core/actions/blueprints";
+import "./UserAccount.css";
 
 const ariaLabels = defineMessages({
   adminCheckbox: {
@@ -15,23 +13,41 @@ const ariaLabels = defineMessages({
 });
 
 const messages = defineMessages({
-  modalTitleCreate: {
-    defaultMessage: "Create user account",
-  },
-  modalTitleEdit: {
-    defaultMessage: "Edit user account",
-  },
   sshKeyHelp: {
     defaultMessage: "Paste the contents of your public SSH key file here. ",
   },
-  createPasswordOne: {
+  usernameValidChars: {
+    defaultMessage: "The user name can only consist of letters from a-z, digits, dots, dashes and underscores.",
+  },
+  usernameEmpty: {
+    defaultMessage: "The user name cannot be empty.",
+  },
+  usernameDuplicate: {
+    defaultMessage: "This user name already exists.",
+  },
+  passwordMatch: {
+    defaultMessage: "The values entered for password do not match.",
+  },
+  labelName: {
+    defaultMessage: "Full name",
+  },
+  labelUsername: {
+    defaultMessage: "User name",
+  },
+  labelRole: {
+    defaultMessage: "Role",
+  },
+  labelAdmin: {
+    defaultMessage: "Server administrator",
+  },
+  labelPassword: {
     defaultMessage: "Password",
   },
-  createPasswordTwo: {
+  labelConfirmPassword: {
     defaultMessage: "Confirm password",
   },
-  editPasswordOne: {
-    defaultMessage: "New password",
+  labelSSHKey: {
+    defaultMessage: "SSH key",
   },
 });
 
@@ -39,414 +55,358 @@ class UserAccount extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUser: undefined,
-      setNewPassword: false,
+      isModalOpen: false,
+      name: "",
+      // state value for existing username when editing user
+      usernameOld: "",
+      username: "",
+      usernameValidated: "default",
+      isUsernameDuplicate: false,
+      isUsernameEmpty: false,
+      isUsernameValidChars: false,
+      isAdmin: false,
+      password: "",
+      passwordConfirm: "",
+      passwordValidated: "default",
+      sshKey: "",
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleHideModal = this.handleHideModal.bind(this);
-    this.handleValidateUser = this.handleValidateUser.bind(this);
-    this.handleSubmitUserAccount = this.handleSubmitUserAccount.bind(this);
-    this.encryptPassword = this.encryptPassword.bind(this);
-    this.setValidPassword = this.setValidPassword.bind(this);
-    this.handleRemovePassword = this.handleRemovePassword.bind(this);
-    this.makeUsername = this.makeUsername.bind(this);
-    this.removeDiacritics = this.removeDiacritics.bind(this);
-    this.isValidCharUsername = this.isValidCharUsername.bind(this);
+    this.handleModalOpen = this.handleModalOpen.bind(this);
+    this.handleModalClose = this.handleModalClose.bind(this);
+    this.handleSetName = this.handleSetName.bind(this);
+    this.handleSetUsername = this.handleSetUsername.bind(this);
+    this.handleIsAdmin = this.handleIsAdmin.bind(this);
+    this.validateUserName = this.validateUserName.bind(this);
+    this.handleSetPassword = this.handleSetPassword.bind(this);
+    this.handleSetPasswordConfirm = this.handleSetPasswordConfirm.bind(this);
+    this.validatePassword = this.validatePassword.bind(this);
+    this.handleSetSSHKey = this.handleSetSSHKey.bind(this);
+    this.handleCreateUser = this.handleCreateUser.bind(this);
+    this.handleUpdateUser = this.handleUpdateUser.bind(this);
   }
 
   componentDidMount() {
-    $(this.modal).modal("show");
-    $(this.modal).on("hidden.bs.modal", this.handleHideModal);
-    if (this.props.userAccount.editUser !== "") {
-      const currentUser = {
-        ...this.props.users.find((user) => user.name === this.props.userAccount.name),
-      };
-      this.setState({ currentUser });
+    if (this.props.edit) {
+      this.setState({
+        username: this.props.user.name,
+        usernameOld: this.props.user.name,
+        name: this.props.user.description,
+        password: this.props.user.password,
+        passwordConfirm: this.props.user.password,
+        isAdmin: this.props.user.groups && this.props.user.groups[0] === "wheel",
+        sshKey: this.props.user.key ? this.props.user.key : "",
+      });
     }
   }
 
-  handleRemovePassword() {
-    this.props.setModalUserAccountData({ password: "" });
-    this.setState((prevState) => {
-      const updatedUser = { ...prevState.currentUser };
-      delete updatedUser.password;
-      return { currentUser: updatedUser };
+  handleModalOpen() {
+    this.setState({ isModalOpen: true });
+  }
+
+  handleModalClose() {
+    // clear state
+    if (this.props.edit) {
+      this.setState({
+        username: this.props.user.name,
+        usernameOld: this.props.user.name,
+        name: this.props.user.description,
+        password: this.props.user.password,
+        passwordConfirm: this.props.user.password,
+        isAdmin: this.props.user.groups && this.props.user.groups[0] === "wheel",
+        sshKey: this.props.user.key ? this.props.user.key : "",
+      });
+    } else {
+      this.setState({
+        name: "",
+        username: "",
+        password: "",
+        passwordConfirm: "",
+        sshKey: "",
+      });
+    }
+    // clear validation
+    this.setState({
+      usernameValidated: "default",
+      isUsernameDuplicate: false,
+      isUsernameEmpty: false,
+      isUsernameValidChars: false,
+      passwordValidated: "default",
+    });
+    // close modal
+    this.setState({ isModalOpen: false });
+  }
+
+  handleSetName(name) {
+    this.setState({ name });
+  }
+
+  handleSetUsername(username) {
+    this.setState({ username });
+    this.validateUserName(username);
+  }
+
+  handleIsAdmin(checked) {
+    this.setState({ isAdmin: checked });
+  }
+
+  handleSetPassword(password) {
+    this.setState({ password });
+    if (!password && !this.state.passwordConfirm) {
+      this.setState({ passwordValidated: "default" });
+    } else if (password === this.state.passwordConfirm) {
+      this.setState({ passwordValidated: "success" });
+    } else if (this.state.passwordConfirm && password !== this.state.passwordConfirm) {
+      this.setState({ passwordValidated: "error" });
+    }
+  }
+
+  handleSetPasswordConfirm(passwordConfirm) {
+    this.setState({ passwordConfirm });
+    if (!this.state.password && !passwordConfirm) {
+      this.setState({ passwordValidated: "default" });
+    } else if (this.state.password === passwordConfirm) {
+      this.setState({ passwordValidated: "success" });
+    } else {
+      this.setState({ passwordValidated: "error" });
+    }
+  }
+
+  handleSetSSHKey(sshKey) {
+    this.setState({ sshKey });
+  }
+
+  handleCreateUser() {
+    const user = {
+      name: this.state.username,
+      description: this.state.name ? this.state.name : undefined,
+      groups: this.state.isAdmin ? ["wheel"] : undefined,
+      password: this.state.password,
+      key: this.state.sshKey ? this.state.sshKey : undefined,
+    };
+    const users = this.props.users.concat(user);
+    this.props.setBlueprintUsers(this.props.blueprintID, users);
+    this.handleModalClose();
+  }
+
+  handleUpdateUser() {
+    const userUpdated = {
+      name: this.state.username,
+      description: this.state.name ? this.state.name : undefined,
+      groups: this.state.isAdmin ? ["wheel"] : undefined,
+      password: this.state.password,
+      key: this.state.sshKey ? this.state.sshKey : undefined,
+    };
+    const users = this.props.users.map((user) => {
+      if (user.name === this.state.usernameOld) return userUpdated;
+      return user;
+    });
+    this.props.setBlueprintUsers(this.props.blueprintID, users);
+    this.handleModalClose();
+  }
+
+  validateUserName(username) {
+    if (username === "") {
+      this.setState({ usernameValidated: "error", isUsernameEmpty: true });
+      return;
+    }
+
+    let isDuplicateUser = false;
+    this.props.users.map((user) => {
+      if (user.name === username && user.name !== this.state.usernameOld) {
+        isDuplicateUser = true;
+      }
+    });
+    if (isDuplicateUser) {
+      this.setState({ usernameValidated: "error", isUsernameDuplicate: true });
+      return;
+    }
+
+    const validCharacters = /^(\d|\w|-|_|\.){0,252}$/.test(username);
+    if (!validCharacters) {
+      this.setState({ usernameValidated: "error", isUsernameValidChars: true });
+      return;
+    }
+
+    this.setState({
+      usernameValidated: "success",
+      isUsernameEmpty: false,
+      isUsernameDuplicate: false,
+      isUsernameValidChars: false,
     });
   }
 
-  handleHideModal() {
-    const data = {
-      name: "",
-      description: "",
-      password: "",
-      key: "",
-      groups: [],
-      showDuplicateUser: false,
-      showInvalidName: false,
-      dynamicName: true,
-      visible: false,
-      editUser: "",
-      disabledSubmit: true,
-    };
-    this.props.setModalUserAccountData(data);
-  }
-
-  handleChange(e, prop) {
-    let data = {};
-    if (prop === "admin") {
-      data = {
-        groups: e.target.checked ? ["wheel"] : [""],
-      };
+  validatePassword() {
+    if (!this.state.password && !this.state.passwordConfirm) {
+      this.setState({ passwordValidated: "default" });
+    } else if (this.state.password === this.state.passwordConfirm) {
+      this.setState({ passwordValidated: "success" });
     } else {
-      data = { [prop]: e.target.value };
+      this.setState({ passwordValidated: "error" });
     }
-    this.props.setModalUserAccountData(data);
-    if (prop === "name") {
-      this.props.setModalUserAccountData({ dynamicName: false });
-      this.handleValidateUser(e.target.value);
-    }
-    if (prop === "description" && this.props.userAccount.dynamicName === true) {
-      const userName = this.makeUsername(e.target.value);
-      this.props.setModalUserAccountData({ name: userName });
-      this.handleValidateUser(userName);
-    }
-  }
-
-  handleValidateUser(name) {
-    const userNames = this.props.users.map((user) => user.name);
-    if (this.props.userAccount.editUser !== "") {
-      userNames.filter((name) => name !== this.state.currentUser.name);
-    }
-    const showDuplicateUser = !userNames.every((userName) => userName.toLowerCase() !== name.toLowerCase());
-    this.props.setModalUserAccountData({ showDuplicateUser });
-    const validCharacters = name.length === 0 || /^(\d|\w|-|_|\.){0,252}$/.test(name);
-    this.props.setModalUserAccountData({ showInvalidName: !validCharacters });
-  }
-
-  handleSubmitUserAccount(e) {
-    // if creating a new user and password is defined, or editing a user and new password is defined,
-    // then encrypt the password
-    if (this.props.userAccount.password !== "") {
-      this.encryptPassword(this.props.userAccount.password)
-        .then((res) => this.props.handlePostUser(res))
-        .catch((ex) => console.error("failed to encrypt password:", ex));
-    } else {
-      const password = this.state.currentUser ? this.state.currentUser.password : "";
-      this.props.handlePostUser(password);
-    }
-    e.preventDefault();
-    e.stopPropagation();
-  }
-
-  setValidPassword(password) {
-    if (password === undefined) {
-      this.props.setModalUserAccountData({ showInvalidPassword: true });
-    } else {
-      this.props.setModalUserAccountData({ password });
-      this.props.setModalUserAccountData({ showInvalidPassword: false });
-    }
-  }
-
-  makeUsername(realname) {
-    let result = "";
-    const name = realname.split(" ");
-    if (name.length === 1) result = name[0].toLowerCase();
-    else if (name.length > 1) result = name[0][0].toLowerCase() + name[name.length - 1].toLowerCase();
-    return this.removeDiacritics(result);
-  }
-
-  removeDiacritics(str) {
-    const translateTable = {
-      a: "[àáâãäå]",
-      ae: "æ",
-      c: "[čç]",
-      d: "ď",
-      e: "[èéêë]",
-      i: "[íìïî]",
-      l: "[ĺľ]",
-      n: "[ňñ]",
-      o: "[òóôõö]",
-      oe: "œ",
-      r: "[ŕř]",
-      s: "š",
-      t: "ť",
-      u: "[ùúůûűü]",
-      y: "[ýÿ]",
-      z: "ž",
-    };
-    for (const i in translateTable) str = str.replace(new RegExp(translateTable[i], "g"), i);
-    for (let k = 0; k < str.length; ) {
-      if (!this.isValidCharUsername(str[k])) str = str.substr(0, k) + str.substr(k + 1);
-      else k += 1;
-    }
-    return str;
-  }
-
-  isValidCharUsername(c) {
-    return (
-      (c >= "a" && c <= "z") || (c >= "A" && c <= "Z") || (c >= "0" && c <= "9") || c === "." || c === "_" || c === "-"
-    );
-  }
-
-  encryptPassword(password) {
-    return cockpit
-      .script(
-        "$(which /usr/libexec/platform-python 2>/dev/null || which python3 2>/dev/null || which python) -c 'import sys, crypt; print(crypt.crypt(sys.stdin.readline().strip(), crypt.mksalt(crypt.METHOD_SHA512)))'",
-        { err: "message" }
-      )
-      .input(password);
   }
 
   render() {
-    const { userAccount } = this.props;
+    const { isModalOpen } = this.state;
     const { formatMessage } = this.props.intl;
-    const disabledSubmit =
-      userAccount.showDuplicateUser ||
-      userAccount.showInvalidName ||
-      userAccount.name.length === 0 ||
-      userAccount.showInvalidPassword;
-    return (
-      <div
-        className="modal fade"
-        id="cmpsr-modal-user-account"
-        ref={(c) => {
-          this.modal = c;
-        }}
-        tabIndex="-1"
-        role="dialog"
-        aria-labelledby="myModalLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog">
-          <form className="modal-content">
-            <div className="modal-header">
-              <button type="button" className="close" data-dismiss="modal">
-                <span className="pficon pficon-close" />
-              </button>
-              <h4 className="modal-title" id="myModalLabel">
-                {(userAccount.editUser !== "" && formatMessage(messages.modalTitleEdit)) ||
-                  formatMessage(messages.modalTitleCreate)}
-              </h4>
-            </div>
-            <div className="modal-body">
-              <div className="form-horizontal">
-                <p className="fields-status-pf">
-                  <FormattedMessage
-                    defaultMessage="The fields marked with {val} are required."
-                    values={{
-                      val: <span className="required-pf">*</span>,
-                    }}
-                  />
-                </p>
-                <div className="form-group">
-                  <label className="col-sm-3 control-label" htmlFor="textInput2-modal-user">
-                    <FormattedMessage defaultMessage="Full name" />
-                  </label>
-                  <div className="col-sm-9">
-                    <input
-                      type="text"
-                      id="textInput2-modal-user"
-                      className="form-control"
-                      value={userAccount.description}
-                      onChange={(e) => this.handleChange(e, "description")}
-                    />
-                  </div>
-                </div>
-                <div
-                  className={`form-group ${
-                    userAccount.showDuplicateUser || userAccount.showInvalidName ? "has-error" : ""
-                  }`}
-                >
-                  <label className="col-sm-3 control-label required-pf" htmlFor="textInput1-modal-user">
-                    <FormattedMessage defaultMessage="User name" />
-                  </label>
-                  <div className="col-sm-9">
-                    <input
-                      type="text"
-                      id="textInput1-modal-user"
-                      className="form-control"
-                      aria-describedby="textInput1-modal-user-help1 textInput1-modal-user-help2"
-                      value={userAccount.name}
-                      onChange={(e) => this.handleChange(e, "name")}
-                      aria-required="true"
-                      aria-invalid={userAccount.showDuplicateUser || userAccount.showInvalidName}
-                    />
-                    {userAccount.showDuplicateUser && (
-                      <span className="help-block" id="textInput1-modal-user-help1">
-                        <FormattedMessage defaultMessage="This user name already exists." />
-                      </span>
-                    )}
-                    {!userAccount.showDuplicateUser && (
-                      <span className="help-block" id="textInput1-modal-user-help2">
-                        <FormattedMessage defaultMessage="The user name can only consist of letters from a-z, digits, dots, dashes and underscores." />
-                      </span>
-                    )}
-                  </div>
-                </div>
-                <div className="form-group">
-                  <label className="col-sm-3 control-label">
-                    <FormattedMessage defaultMessage="Role" />
-                  </label>
-                  <div className="col-sm-9 checkbox">
-                    <label>
-                      <input
-                        type="checkbox"
-                        aria-label={formatMessage(ariaLabels.adminCheckbox)}
-                        checked={userAccount.groups.includes("wheel")}
-                        onChange={(e) => this.handleChange(e, "admin")}
-                      />
-                      <FormattedMessage defaultMessage="Server administrator" />
-                    </label>
-                  </div>
-                </div>
-                {((userAccount.editUser === "" ||
-                  (userAccount.editUser !== "" &&
-                    this.state.setNewPassword === true &&
-                    this.state.currentUser !== undefined &&
-                    this.state.currentUser.password === undefined)) && (
-                  <Password
-                    setValidPassword={this.setValidPassword}
-                    labelOne={formatMessage(messages.createPasswordOne)}
-                    labelTwo={formatMessage(messages.createPasswordTwo)}
-                  />
-                )) ||
-                  (this.state.currentUser !== undefined && this.state.currentUser.password === undefined && (
-                    <div className="form-group">
-                      <label className="col-sm-3 control-label">
-                        <FormattedMessage defaultMessage="Password" />
-                      </label>
-                      <div className="col-sm-9">
-                        <p className="form-control-static">
-                          <FormattedMessage defaultMessage="A password is not defined for this account." />
-                        </p>
-                        <button
-                          type="button"
-                          className="btn btn-default"
-                          onClick={() => this.setState({ setNewPassword: true })}
-                        >
-                          <FormattedMessage defaultMessage="Set password" />
-                        </button>
-                      </div>
-                    </div>
-                  )) || (
-                    <div>
-                      <div className="form-group">
-                        <label className="col-sm-3 control-label">
-                          <FormattedMessage defaultMessage="Password" />
-                        </label>
-                        <div className="col-sm-9">
-                          <p className="form-control-static">
-                            <FormattedMessage defaultMessage="A password is defined for this account." />
-                          </p>
-                          {this.state.setNewPassword === false && (
-                            <div>
-                              <button
-                                type="button"
-                                className="btn btn-default"
-                                onClick={() => this.setState({ setNewPassword: true })}
-                              >
-                                <FormattedMessage defaultMessage="Set new password" />
-                              </button>
 
-                              <button
-                                type="button"
-                                className="btn btn-default"
-                                onClick={() => this.handleRemovePassword()}
-                              >
-                                <FormattedMessage defaultMessage="Remove password" />
-                              </button>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                      {this.state.setNewPassword === true && (
-                        <Password
-                          setValidPassword={this.setValidPassword}
-                          labelOne={formatMessage(messages.editPasswordOne)}
-                          labelTwo={formatMessage(messages.createPasswordTwo)}
-                        />
-                      )}
-                    </div>
-                  )}
-                <div className="form-group">
-                  <label className="col-sm-3 control-label" htmlFor="textInput5-modal-user">
-                    <FormattedMessage defaultMessage="SSH key" />
-                  </label>
-                  <div className="col-sm-9">
-                    <textarea
-                      type="text"
-                      id="textInput5-modal-user"
-                      className="form-control"
-                      aria-describedby="textInput5-modal-user-help"
-                      rows="8"
-                      value={userAccount.key}
-                      onChange={(e) => this.handleChange(e, "key")}
-                    />
-                    <span className="help-block" id="textInput5-modal-user-help">
-                      {formatMessage(messages.sshKeyHelp)}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="modal-footer">
-              <button type="button" className="btn btn-default" data-dismiss="modal">
-                <FormattedMessage defaultMessage="Cancel" />
-              </button>
-              <button
-                type="submit"
-                className="btn btn-primary"
-                disabled={disabledSubmit}
-                onClick={(e) => this.handleSubmitUserAccount(e)}
+    return (
+      <>
+        {this.props.edit ? (
+          <Button id="button-edit-user" variant="primary" onClick={this.handleModalOpen}>
+            <span className="pficon pficon-edit" />
+          </Button>
+        ) : (
+          <Button variant="primary" onClick={this.handleModalOpen}>
+            <FormattedMessage defaultMessage="Create user account" />
+          </Button>
+        )}
+        <Modal
+          id="user-account-modal"
+          position="top"
+          variant={ModalVariant.medium}
+          title={
+            this.props.edit ? (
+              <FormattedMessage defaultMessage="Edit user account" />
+            ) : (
+              <FormattedMessage defaultMessage="Create user account" />
+            )
+          }
+          isOpen={isModalOpen}
+          onClose={this.handleModalClose}
+          actions={[
+            this.props.edit ? (
+              <Button
+                key="update"
+                variant="primary"
+                onClick={this.handleUpdateUser}
+                isDisabled={!this.state.username || this.state.password !== this.state.passwordConfirm}
               >
-                {(userAccount.editUser !== "" && <FormattedMessage defaultMessage="Update" />) || (
-                  <FormattedMessage defaultMessage="Create" />
-                )}
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
+                <FormattedMessage defaultMessage="Update" />
+              </Button>
+            ) : (
+              <Button
+                key="create"
+                variant="primary"
+                onClick={this.handleCreateUser}
+                isDisabled={!this.state.username || this.state.password !== this.state.passwordConfirm}
+              >
+                <FormattedMessage defaultMessage="Create" />
+              </Button>
+            ),
+            <Button key="cancel" variant="link" onClick={this.handleModalClose}>
+              <FormattedMessage defaultMessage="Cancel" />
+            </Button>,
+          ]}
+        >
+          <Form isHorizontal>
+            <FormattedMessage
+              defaultMessage="The fields marked with {val} are required."
+              values={{
+                val: <span className="required-pf">*</span>,
+              }}
+            />
+            <FormGroup label={formatMessage(messages.labelName)} fieldId="user-account-name">
+              <TextInput value={this.state.name} type="text" id="user-account-name" onChange={this.handleSetName} />
+            </FormGroup>
+            <FormGroup
+              label={formatMessage(messages.labelUsername)}
+              isRequired
+              fieldId="user-account-username"
+              helperText={formatMessage(messages.usernameValidChars)}
+              helperTextInvalid={
+                (this.state.isUsernameValidChars && formatMessage(messages.usernameValidChars)) ||
+                (this.state.isUsernameEmpty && formatMessage(messages.usernameEmpty)) ||
+                (this.state.isUsernameDuplicate && formatMessage(messages.usernameDuplicate))
+              }
+              validated={this.state.usernameValidated}
+            >
+              <TextInput
+                value={this.state.username}
+                onChange={this.handleSetUsername}
+                validated={this.state.usernameValidated}
+                isRequired
+                type="text"
+                id="user-account-username"
+              />
+            </FormGroup>
+            <FormGroup label={formatMessage(messages.labelRole)} fieldId="user-account-role">
+              <Checkbox
+                className="admin-checkbox"
+                label={formatMessage(messages.labelAdmin)}
+                isChecked={this.state.isAdmin}
+                type="text"
+                id="user-account-role"
+                onChange={this.handleIsAdmin}
+                aria-label={formatMessage(ariaLabels.adminCheckbox)}
+              />
+            </FormGroup>
+            <FormGroup
+              label={formatMessage(messages.labelPassword)}
+              fieldId="user-account-password"
+              validated={this.state.passwordValidated}
+            >
+              <TextInput
+                value={this.state.password}
+                onChange={this.handleSetPassword}
+                onBlur={this.validatePassword}
+                validated={this.state.passwordValidated}
+                type="password"
+                id="user-account-password"
+              />
+            </FormGroup>
+            <FormGroup
+              label={formatMessage(messages.labelConfirmPassword)}
+              fieldId="user-account-password-confirm"
+              validated={this.state.passwordValidated}
+              helperTextInvalid={formatMessage(messages.passwordMatch)}
+            >
+              <TextInput
+                value={this.state.passwordConfirm}
+                onChange={this.handleSetPasswordConfirm}
+                validated={this.state.passwordValidated}
+                type="password"
+                id="user-account-password-confirm"
+              />
+            </FormGroup>
+            <FormGroup
+              label={formatMessage(messages.labelSSHKey)}
+              fieldId="user-account-ssh-key"
+              helperText={formatMessage(messages.sshKeyHelp)}
+            >
+              <TextArea
+                value={this.state.sshKey}
+                onChange={this.handleSetSSHKey}
+                type="text"
+                id="user-account-ssh-key"
+              />
+            </FormGroup>
+          </Form>
+        </Modal>
+      </>
     );
   }
 }
 
 UserAccount.propTypes = {
-  userAccount: PropTypes.shape({
-    name: PropTypes.string,
-    description: PropTypes.string,
-    password: PropTypes.string,
-    groups: PropTypes.arrayOf(PropTypes.string),
-    key: PropTypes.string,
-    showDuplicateUser: PropTypes.bool,
-    showInvalidName: PropTypes.bool,
-    showInvalidPassword: PropTypes.bool,
-    dynamicName: PropTypes.bool,
-    disabledSubmit: PropTypes.bool,
-    visible: PropTypes.bool,
-    editUser: PropTypes.string,
-  }),
+  user: PropTypes.object,
+  edit: PropTypes.bool,
+  blueprintID: PropTypes.string,
   users: PropTypes.arrayOf(PropTypes.object),
-  setModalUserAccountData: PropTypes.func,
-  handlePostUser: PropTypes.func,
+  setBlueprintUsers: PropTypes.func,
   intl: intlShape.isRequired,
 };
 
 UserAccount.defaultProps = {
-  userAccount: {},
+  user: {},
+  edit: false,
+  blueprintID: "",
   users: [],
-  setModalUserAccountData() {},
-  handlePostUser() {},
+  setBlueprintUsers() {},
 };
 
-const mapStateToProps = (state) => ({
-  userAccount: state.modals.userAccount,
-});
-
 const mapDispatchToProps = (dispatch) => ({
-  setModalUserAccountData: (data) => {
-    dispatch(setModalUserAccountData(data));
+  setBlueprintUsers: (id, users) => {
+    dispatch(setBlueprintUsers(id, users));
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(UserAccount));
+export default connect(null, mapDispatchToProps)(injectIntl(UserAccount));

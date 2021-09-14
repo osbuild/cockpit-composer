@@ -103,15 +103,6 @@ class TestCustom(composerlib.ComposerCase):
     def testUserAccount(self):
         b = self.browser
 
-        # HACK: cockpit-composer may loose keystrokes, see issue #944
-        def set_input_value(sel, val):
-            w = ""
-            for k in val:
-                w += k
-                while b.val(sel) != w:
-                    b.focus(sel)
-                    b.key_press(k)
-
         self.login_and_go("/composer", superuser=True)
         b.wait_visible("#main")
 
@@ -121,44 +112,43 @@ class TestCustom(composerlib.ComposerCase):
 
         # add a new user
         b.click("button:contains('Create user account')")
-        b.wait_visible("#cmpsr-modal-user-account")
-        set_input_value("#textInput2-modal-user", "user")
-        b.wait_val("#textInput1-modal-user", "user")
-        b.click("input[aria-label='Server admin checkbox']")
-        set_input_value("#textInput1-modal-password", "fooBAR!@#123")
-        set_input_value("#textInput2-modal-password", "fooBAR!@#123")
+        b.wait_visible("#user-account-modal")
+        b.set_input_text("#user-account-name", "user name")
+        b.set_input_text("#user-account-username", "username")
+        b.click("#user-account-role")
+        b.set_input_text("#user-account-password", "fooBAR!@#123")
+        b.set_input_text("#user-account-password-confirm", "fooBAR!@#123")
         ssh_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDUOtNJdBEXyKxBB898rdT54ULjMGuO6v4" \
                   "jLXmRsdRhR5Id/lKNc9hsdioPWUePgYlqML2iSV72vKQoVhkyYkpcsjr3zvBny9+5xej3+T" \
                   "BLoEMAm2hmllKPmxYJDU8jQJ7wJuRrOVOnk0iSNF+FcY/yaQ0owSF02Nphx47j2KWc0IjGG" \
                   "lt4fl0fmHJuZBA2afN/4IYIIsEWZziDewVtaEjWV3InMRLllfdqGMllhFR+ed2hQz9PN2Qc" \
                   "apmEvUR4UCy/mJXrke5htyFyHi8ECfyMMyYeHwbWLFQIve4CWix9qtksvKjcetnxT+WWrut" \
                   "dr3c9cfIj/c0v/Zg/c4zETxtp cockpit-test"
-        b.set_input_text("#textInput5-modal-user", ssh_key)
-        b.click("#cmpsr-modal-user-account button:contains('Create')")
-        b.wait_not_present("#cmpsr-modal-user-account")
-        b.wait_text("tr td[data-label='Full name']", "user")
-        b.wait_text("tr td[data-label='User name']", "user")
+        b.set_input_text("#user-account-ssh-key", ssh_key)
+        b.click("#user-account-modal button:contains('Create')")
+        b.wait_not_present("#user-account-modal")
+        b.wait_text("tr td[data-label='Full name']", "user name")
+        b.wait_text("tr td[data-label='User name']", "username")
         b.wait_visible("tr td[data-label='Server administrator'] .fa-check")
         b.wait_visible("tr td[data-label='Password'] .fa-check")
         b.wait_visible("tr td[data-label='SSH key'] .fa-check")
 
         # update password
-        new_password = "c456rty$%^RTY"
-        b.click("button[aria-label='Edit user account user']")
-        b.wait_visible("#cmpsr-modal-user-account")
-        b.click("button:contains('Set new password')")
-        set_input_value("#textInput1-modal-password", new_password)
-        set_input_value("#textInput2-modal-password", new_password)
-        b.click("#cmpsr-modal-user-account button:contains('Update')")
-        b.wait_not_present("#cmpsr-modal-user-account")
+        b.click("table:contains('username') #button-edit-user")
+        b.wait_visible("#user-account-modal")
+        b.set_input_text("#user-account-password", "c456rty$%^RTY")
+        b.set_input_text("#user-account-password-confirm", "c456rty$%^RTY")
+        b.click("#user-account-modal button:contains('Update')")
+        b.wait_not_present("#user-account-modal")
         b.wait_visible("tr td[data-label=Password] .fa-check")
 
         # remove password
-        b.click("button[aria-label='Edit user account user']")
-        b.wait_visible("#cmpsr-modal-user-account")
-        b.click("button:contains('Remove password')")
-        b.click("#cmpsr-modal-user-account button:contains('Update')")
-        b.wait_not_present("#cmpsr-modal-user-account")
+        b.click("table:contains('username') #button-edit-user")
+        b.wait_visible("#user-account-modal")
+        b.set_input_text("#user-account-password", "")
+        b.set_input_text("#user-account-password-confirm", "")
+        b.click("#user-account-modal button:contains('Update')")
+        b.wait_not_present("#user-account-modal")
         b.wait_visible("table[aria-label='Users List']")
         b.wait_not_present("tr td[data-label='Password'] .fa-check")
 
@@ -185,7 +175,7 @@ class TestCustom(composerlib.ComposerCase):
         # b.wait_not_present("#cmpsr-modal-user-account")
 
         # delete user
-        delete_drop_down_sel = "button[aria-label='User account actions user']"
+        delete_drop_down_sel = "button[aria-label='User account actions username']"
         b.click(delete_drop_down_sel)
         b.wait_attr(delete_drop_down_sel, "aria-expanded", "true")
         b.click("a:contains('Delete user account')")
