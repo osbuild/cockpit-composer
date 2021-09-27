@@ -152,27 +152,23 @@ class TestCustom(composerlib.ComposerCase):
         b.wait_visible("table[aria-label='Users List']")
         b.wait_not_present("tr td[data-label='Password'] .fa-check")
 
-        # These tests are failing due to issues with the firefox nightly.
-        # This is tracked in https://github.com/osbuild/cockpit-composer/issues/1336
-        # # duplicated user
-        # b.click("button:contains('Create user account')")
-        # b.wait_visible("#cmpsr-modal-user-account")
-        # set_input_value("#textInput2-modal-user", "user")
-        # b.wait_in_text("#textInput1-modal-user-help1", "This user name already exists.")
-        # b.click("#cmpsr-modal-user-account button:contains('Cancel')")
-        # b.wait_not_present("#cmpsr-modal-user-account")
+        # duplicated user
+        b.click("button:contains('Create user account')")
+        b.wait_visible("#user-account-modal")
+        b.set_input_text("#user-account-username", "username")
+        b.wait_in_text("#user-account-username-helper", "This user name already exists.")
+        b.click("#user-account-modal button:contains('Cancel')")
+        b.wait_not_present("#user-account-modal")
 
-        # # password checking error
-        # b.click("button:contains('Create user account')")
-        # b.wait_visible("#cmpsr-modal-user-account")
-        # set_input_value("#textInput2-modal-user", "admin user")
-        # b.click("input[aria-label='Server admin checkbox']")
-        # set_input_value("#textInput1-modal-password", "aaa")
-        # set_input_value("#textInput2-modal-password", "bbb")
-        # b.wait_in_text("#textInput2-modal-password-help",
-        #                "The values entered for password do not match.")
-        # b.click("#cmpsr-modal-user-account button:contains('Cancel')")
-        # b.wait_not_present("#cmpsr-modal-user-account")
+        # password checking error
+        b.click("button:contains('Create user account')")
+        b.wait_visible("#user-account-modal")
+        b.set_input_text("#user-account-password", "aaa")
+        b.set_input_text("#user-account-password-confirm", "bbb")
+        b.wait_in_text("#user-account-password-confirm-helper",
+                       "The values entered for password do not match.")
+        b.click("#user-account-modal button:contains('Cancel')")
+        b.wait_not_present("#user-account-modal")
 
         # delete user
         delete_drop_down_sel = "button[aria-label='User account actions username']"
