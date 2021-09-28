@@ -3,7 +3,7 @@
 # Burak Yavuz <hitowerdigit@hotmail.com>, 2020, 2021.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2021-09-07T18:15:43.635Z\n"
+"POT-Creation-Date: 2021-09-21T18:16:54.428Z\n"
 "PO-Revision-Date: 2021-09-04 01:04+0000\n"
 "Last-Translator: Burak Yavuz <hitowerdigit@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.fedoraproject.org/projects/cockpit-"
