@@ -1,17 +1,17 @@
-# Pavel Borecki <pavel.borecki@gmail.com>, 2019. #zanata, 2020.
+# Pavel Borecki <pavel.borecki@gmail.com>, 2019. #zanata, 2020, 2021.
 # Matej Marusak <mmarusak@redhat.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2021-09-07T18:15:43.635Z\n"
-"PO-Revision-Date: 2020-09-20 15:29+0000\n"
+"POT-Creation-Date: 2021-09-21T18:16:54.428Z\n"
+"PO-Revision-Date: 2021-09-23 13:04+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://translate.fedoraproject.org/projects/cockpit-"
-"composer/master/cs/>\n"
+"composer/main/cs/>\n"
 "Language: cs\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2\n"
-"X-Generator: Weblate 4.2.2\n"
+"X-Generator: Weblate 4.8\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -124,8 +124,6 @@ msgstr "Akce"
 #. defaultMessage is:
 #. Active filters
 #: build/messages/components/Toolbar/ToolbarLayout.json
-#, fuzzy
-#| msgid "Active Filters"
 msgid "Active filters"
 msgstr "Aktivní filtry"
 
@@ -140,8 +138,6 @@ msgstr "Přidat"
 #. defaultMessage is:
 #. Add blueprint components
 #: build/messages/pages/blueprintEdit/index.json
-#, fuzzy
-#| msgid "Add Blueprint Components"
 msgid "Add blueprint components"
 msgstr "Přidat součásti plánku"
 
@@ -162,8 +158,6 @@ msgstr "Přidat nejnovější verzi"
 #. defaultMessage is:
 #. Add source
 #: build/messages/components/Modal/ManageSources.json
-#, fuzzy
-#| msgid "Add Source"
 msgid "Add source"
 msgstr "Přidat zdroj"
 
@@ -213,8 +207,6 @@ msgstr "Je třeba vyplnit všechny kolonky."
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/components/Modal/ManageSources.json
 #: build/messages/pages/blueprints/index.json
-#, fuzzy
-#| msgid "An Error Occurred"
 msgid "An error occurred"
 msgstr "Došlo k chybě"
 
@@ -247,8 +239,6 @@ msgstr "Došlo k chybě při pokusu o získání zdrojů."
 #. defaultMessage is:
 #. Apply change
 #: build/messages/components/ListView/ComponentDetailsView.json
-#, fuzzy
-#| msgid "Apply Change"
 msgid "Apply change"
 msgstr "Uplatnit změnu"
 
@@ -291,8 +281,6 @@ msgstr "Automaticky spouštět osbuild-composer při startu systému"
 #. defaultMessage is:
 #. Available components
 #: build/messages/pages/blueprintEdit/index.json
-#, fuzzy
-#| msgid "Available Components"
 msgid "Available components"
 msgstr "Součásti k dispozici"
 
@@ -318,8 +306,6 @@ msgstr "Zpět"
 #. Back to blueprints
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
-#, fuzzy
-#| msgid "Back to Blueprints"
 msgid "Back to blueprints"
 msgstr "Zpět k plánkům"
 
@@ -364,8 +350,6 @@ msgstr "Plánek"
 #. defaultMessage is:
 #. Blueprint components
 #: build/messages/pages/blueprintEdit/index.json
-#, fuzzy
-#| msgid "Blueprint Components"
 msgid "Blueprint components"
 msgstr "Součásti plánku"
 
@@ -483,8 +467,6 @@ msgstr ""
 #. defaultMessage is:
 #. Changes pending commit
 #: build/messages/components/Modal/PendingChanges.json
-#, fuzzy
-#| msgid "Changes Pending Commit"
 msgid "Changes pending commit"
 msgstr "Změny čekající na odeslání"
 
@@ -518,8 +500,6 @@ msgstr "Zkontrolovat SSL certifikát"
 #: build/messages/components/Toolbar/ToolbarLayout.json
 #: build/messages/pages/blueprintEdit/index.json
 #: build/messages/pages/blueprints/index.json
-#, fuzzy
-#| msgid "Clear All Filters"
 msgid "Clear all filters"
 msgstr "Vyčistit všechny filtry"
 
@@ -550,16 +530,14 @@ msgstr "Zavřít"
 #: build/messages/components/Wizard/ReviewStep.json
 #: build/messages/components/Wizard/VMWareDestinationStep.json
 msgid "Cluster"
-msgstr ""
+msgstr "Cluster"
 
 #. [components.Wizard.cluster]
 #. defaultMessage is:
 #. Cluster help
 #: build/messages/components/Wizard/VMWareDestinationStep.json
-#, fuzzy
-#| msgid "Azure help"
 msgid "Cluster help"
-msgstr "Nápověda k Azure"
+msgstr "Nápověda ke clusteru"
 
 #. [components.Modal.2299254306]
 #. defaultMessage is:
@@ -601,8 +579,6 @@ msgstr "Odeslat a další"
 #. Component details
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
-#, fuzzy
-#| msgid "Component Details"
 msgid "Component details"
 msgstr "Podrobnosti o součásti"
 
@@ -610,8 +586,6 @@ msgstr "Podrobnosti o součásti"
 #. defaultMessage is:
 #. Component options
 #: build/messages/components/ListView/ComponentDetailsView.json
-#, fuzzy
-#| msgid "Component Options"
 msgid "Component options"
 msgstr "Předvolby součásti"
 
@@ -673,8 +647,6 @@ msgstr "Vytvořit a nahrát obraz"
 #. defaultMessage is:
 #. Create blueprint
 #: build/messages/components/Modal/CreateBlueprint.json
-#, fuzzy
-#| msgid "Create Blueprint"
 msgid "Create blueprint"
 msgstr "Vytvořit plánek"
 
@@ -696,8 +668,6 @@ msgstr "Vytvořit obraz"
 #. Create user account
 #: build/messages/components/Modal/UserAccount.json
 #: build/messages/pages/blueprint/index.json
-#, fuzzy
-#| msgid "Create User Account"
 msgid "Create user account"
 msgstr "Vytvořit uživatelský účet"
 
@@ -720,44 +690,42 @@ msgstr "Přizpůsobení"
 #. Data Center
 #: build/messages/components/Wizard/ReviewStep.json
 msgid "Data Center"
-msgstr ""
+msgstr "Datacentrum"
 
 #. [components.Wizard.3747912914]
 #. defaultMessage is:
 #. Data Store
 #: build/messages/components/Wizard/ReviewStep.json
 msgid "Data Store"
-msgstr ""
+msgstr "Datové úložiště"
 
 #. [components.Wizard.4278711264]
 #. defaultMessage is:
 #. Data center
 #: build/messages/components/Wizard/VMWareDestinationStep.json
 msgid "Data center"
-msgstr ""
+msgstr "Datacentrum"
 
 #. [components.Wizard.3717439361]
 #. defaultMessage is:
 #. Data store
 #: build/messages/components/Wizard/VMWareDestinationStep.json
 msgid "Data store"
-msgstr ""
+msgstr "Datové úložiště"
 
 #. [components.Wizard.dataCenter]
 #. defaultMessage is:
 #. Datacenter help
 #: build/messages/components/Wizard/VMWareDestinationStep.json
-#, fuzzy
-#| msgid "Storage container help"
 msgid "Datacenter help"
-msgstr "Nápověda k úložnému kontejneru"
+msgstr "Nápověda k datacentru"
 
 #. [components.Wizard.dataStore]
 #. defaultMessage is:
 #. Datastore help
 #: build/messages/components/Wizard/VMWareDestinationStep.json
 msgid "Datastore help"
-msgstr ""
+msgstr "Nápověda k úložišti dat"
 
 #. [components.ListView.3645414921]
 #. defaultMessage is:
@@ -774,8 +742,6 @@ msgstr "Smazat"
 #. defaultMessage is:
 #. Delete blueprint
 #: build/messages/components/Modal/DeleteBlueprint.json
-#, fuzzy
-#| msgid "Delete Blueprint"
 msgid "Delete blueprint"
 msgstr "Smazat plánek"
 
@@ -783,8 +749,6 @@ msgstr "Smazat plánek"
 #. defaultMessage is:
 #. Delete image
 #: build/messages/components/Modal/DeleteImage.json
-#, fuzzy
-#| msgid "Delete Image"
 msgid "Delete image"
 msgstr "Smazat obraz"
 
@@ -792,8 +756,6 @@ msgstr "Smazat obraz"
 #. defaultMessage is:
 #. Delete user account
 #: build/messages/pages/blueprint/index.json
-#, fuzzy
-#| msgid "Delete User Account"
 msgid "Delete user account"
 msgstr "Smazat uživatelský účet"
 
@@ -848,8 +810,6 @@ msgstr "Podrobnosti"
 #. defaultMessage is:
 #. Discard changes
 #: build/messages/pages/blueprintEdit/index.json
-#, fuzzy
-#| msgid "Discard Changes"
 msgid "Discard changes"
 msgstr "Zahodit změny"
 
@@ -858,7 +818,7 @@ msgstr "Zahodit změny"
 #. Disk Archive (.tar)
 #: build/messages/components/Wizard/ImageStep.json
 msgid "Disk Archive (.tar)"
-msgstr ""
+msgstr "Archiv disku (.tar)"
 
 #. [components.ListView.1982430146]
 #. defaultMessage is:
@@ -897,8 +857,6 @@ msgstr "Upravit název hostitele"
 #: build/messages/components/ListView/BlueprintsDataList.json
 #: build/messages/pages/blueprint/index.json
 #: build/messages/pages/blueprintEdit/index.json
-#, fuzzy
-#| msgid "Edit Packages"
 msgid "Edit packages"
 msgstr "Upravit balíčky"
 
@@ -910,8 +868,6 @@ msgstr "Upravit balíčky"
 #. Edit source
 #: build/messages/components/ListView/SourcesListItem.json
 #: build/messages/components/Modal/ManageSources.json
-#, fuzzy
-#| msgid "Edit Source"
 msgid "Edit source"
 msgstr "Upravit zdroj"
 
@@ -923,8 +879,6 @@ msgstr "Upravit zdroj"
 #. Edit user account
 #: build/messages/components/Modal/UserAccount.json
 #: build/messages/pages/blueprint/index.json
-#, fuzzy
-#| msgid "Edit User Account"
 msgid "Edit user account"
 msgstr "Upravit uživatelský účet"
 
@@ -933,14 +887,12 @@ msgstr "Upravit uživatelský účet"
 #. Either the parent commit or repository url can be specified. Not both.
 #: build/messages/components/Wizard/ImageStep.json
 msgid "Either the parent commit or repository url can be specified. Not both."
-msgstr ""
+msgstr "Je možné zadat buď nadřazený commit nebo url repozitáře. Ne obojí."
 
 #. [pages.blueprint.emptyBlueprintTitle]
 #. defaultMessage is:
 #. Empty blueprint
 #: build/messages/pages/blueprint/index.json
-#, fuzzy
-#| msgid "Empty Blueprint"
 msgid "Empty blueprint"
 msgstr "Prázdný plánek"
 
@@ -969,8 +921,6 @@ msgstr "Exportovat jako"
 #. defaultMessage is:
 #. Export blueprint
 #: build/messages/components/Modal/ExportBlueprint.json
-#, fuzzy
-#| msgid "Export Blueprint"
 msgid "Export blueprint"
 msgstr "Exportovat plánek"
 
@@ -978,8 +928,6 @@ msgstr "Exportovat plánek"
 #. defaultMessage is:
 #. Filter available components by name
 #: build/messages/pages/blueprintEdit/index.json
-#, fuzzy
-#| msgid "Filter Available Components by Name"
 msgid "Filter available components by name"
 msgstr "Filtrovat dostupné součásti podle názvu"
 
@@ -987,8 +935,6 @@ msgstr "Filtrovat dostupné součásti podle názvu"
 #. defaultMessage is:
 #. Filter by name
 #: build/messages/components/Toolbar/FilterInput.json
-#, fuzzy
-#| msgid "Filter by Name"
 msgid "Filter by name"
 msgstr "Filtrovat podle názvu"
 
@@ -996,8 +942,6 @@ msgstr "Filtrovat podle názvu"
 #. defaultMessage is:
 #. Filter by name...
 #: build/messages/pages/blueprintEdit/index.json
-#, fuzzy
-#| msgid "Filter By Name..."
 msgid "Filter by name..."
 msgstr "Filtrovat podle názvu…"
 
@@ -1005,8 +949,6 @@ msgstr "Filtrovat podle názvu…"
 #. defaultMessage is:
 #. Filter by release
 #: build/messages/components/Toolbar/FilterInput.json
-#, fuzzy
-#| msgid "Filter by Release"
 msgid "Filter by release"
 msgstr "Filtrovat podle vydání"
 
@@ -1014,8 +956,6 @@ msgstr "Filtrovat podle vydání"
 #. defaultMessage is:
 #. Filter by version
 #: build/messages/components/Toolbar/FilterInput.json
-#, fuzzy
-#| msgid "Filter by Version"
 msgid "Filter by version"
 msgstr "Filtrovat podle verze"
 
@@ -1048,8 +988,6 @@ msgstr "Jít zpět"
 #. Hide details
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ComponentInputs.json
-#, fuzzy
-#| msgid "Hide Details"
 msgid "Hide details"
 msgstr "Skrýt podrobnosti"
 
@@ -1061,8 +999,6 @@ msgstr "Skrýt podrobnosti"
 #. Host
 #: build/messages/components/Wizard/ReviewStep.json
 #: build/messages/components/Wizard/VMWareDestinationStep.json
-#, fuzzy
-#| msgid "Hostname"
 msgid "Host"
 msgstr "Název hostitele"
 
@@ -1071,7 +1007,7 @@ msgstr "Název hostitele"
 #. Host help
 #: build/messages/components/Wizard/VMWareDestinationStep.json
 msgid "Host help"
-msgstr ""
+msgstr "Nápověda k hostiteli"
 
 #. [pages.blueprint.hostnameInputLabel]
 #. defaultMessage is:
@@ -1099,12 +1035,6 @@ msgstr "Pokud název hostitele není zadán, bude zjištěn operačním systéme
 #.                       the image file is available in the Cluster on the vSphere instance that you specified.
 #: build/messages/components/Wizard/ImageStep.json
 #: build/messages/components/Wizard/ReviewStep.json
-#, fuzzy
-#| msgid ""
-#| "Image Builder can upload images you create to a Blob container in "
-#| "{azure}. When the image build is complete \n"
-#| "                      and the upload action is successful, the image file "
-#| "is available in the Storage account and Blob container that you specified."
 msgid ""
 "Image Builder can upload images you create to VMWare vSphere.\n"
 "                      When the image build is complete and the upload action "
@@ -1112,10 +1042,12 @@ msgid ""
 "                      the image file is available in the Cluster on the "
 "vSphere instance that you specified."
 msgstr ""
-"Nástroj pro sestavování obrazů může vzniklé obrazy nahrávat na Blob "
-"kontejner ve službě {azure}. Po dokončení sestavení obrazu\n"
-"                     a jeho úspěšném nahrání, soubor s obrazem bude k "
-"dispozici v Účtu úložiště a Blob kontejneru, který jste zadali."
+"Nástroj pro sestavování obrazů může vzniklé obrazy nahrávat na VMWare "
+"vSphere.\n"
+"                      Po dokončení sestavení obrazu a jeho úspěšném "
+"nahrání,\n"
+"                      soubor s obrazem bude k dispozici v Cluster na vSphere "
+"instanci, kterou jste zadali."
 
 #. [components.Wizard.3501375619]
 #. defaultMessage is:
@@ -1127,12 +1059,6 @@ msgstr ""
 #.                       and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
 #: build/messages/components/Wizard/ImageStep.json
 #: build/messages/components/Wizard/ReviewStep.json
-#, fuzzy
-#| msgid ""
-#| "Image Builder can upload images you create to a Blob container in "
-#| "{azure}. When the image build is complete \n"
-#| "                      and the upload action is successful, the image file "
-#| "is available in the Storage account and Blob container that you specified."
 msgid ""
 "Image Builder can upload images you create to a Blob container in {azure}. "
 "When the image build is complete\n"
@@ -1141,7 +1067,7 @@ msgid ""
 msgstr ""
 "Nástroj pro sestavování obrazů může vzniklé obrazy nahrávat na Blob "
 "kontejner ve službě {azure}. Po dokončení sestavení obrazu\n"
-"                     a jeho úspěšném nahrání, soubor s obrazem bude k "
+"                      a jeho úspěšném nahrání, soubor s obrazem bude k "
 "dispozici v Účtu úložiště a Blob kontejneru, který jste zadali."
 
 #. [components.Wizard.1007547894]
@@ -1202,8 +1128,6 @@ msgstr "Sestavování obrazu čeká"
 #. defaultMessage is:
 #. Image building service is not active
 #: build/messages/components/EmptyState/EmptyStateInactive.json
-#, fuzzy
-#| msgid "Image Building Service is Not Active"
 msgid "Image building service is not active"
 msgstr "Služba sestavování obrazů není aktivní"
 
@@ -1300,7 +1224,7 @@ msgstr "Obrazy"
 #. Installer, suitable for USB and DVD (.iso)
 #: build/messages/components/Wizard/ImageStep.json
 msgid "Installer, suitable for USB and DVD (.iso)"
-msgstr ""
+msgstr "Instalátor, použitelné pro USB a DVD (.iso)"
 
 #. [components.Loading.2617450248]
 #. defaultMessage is:
@@ -1324,8 +1248,6 @@ msgstr "Záznamy událostí"
 #. defaultMessage is:
 #. Manage sources
 #: build/messages/components/Modal/ManageSources.json
-#, fuzzy
-#| msgid "Manage Sources"
 msgid "Manage sources"
 msgstr "Spravovat zdroje"
 
@@ -1340,10 +1262,8 @@ msgstr "Zpráva"
 #. defaultMessage is:
 #. Minimum size is {size} GB
 #: build/messages/components/Wizard/ImageStep.json
-#, fuzzy
-#| msgid "Minimum size is {size} GB."
 msgid "Minimum size is {size} GB"
-msgstr "Nejmenší možná velikost je {size} GB."
+msgstr "Nejmenší možná velikost je {size} GB"
 
 #. [components.Wizard.warningSizeSmall]
 #. defaultMessage is:
@@ -1411,8 +1331,6 @@ msgstr "Další"
 #. defaultMessage is:
 #. No blueprints
 #: build/messages/pages/blueprints/index.json
-#, fuzzy
-#| msgid "No Blueprints"
 msgid "No blueprints"
 msgstr "Žádné plánky"
 
@@ -1420,8 +1338,6 @@ msgstr "Žádné plánky"
 #. defaultMessage is:
 #. No dependencies
 #: build/messages/components/ListView/ComponentDetailsView.json
-#, fuzzy
-#| msgid "No Dependencies"
 msgid "No dependencies"
 msgstr "Žádné závislosti"
 
@@ -1429,10 +1345,8 @@ msgstr "Žádné závislosti"
 #. defaultMessage is:
 #. No images
 #: build/messages/pages/blueprint/index.json
-#, fuzzy
-#| msgid "No Images"
 msgid "No images"
-msgstr "Žádné obrázky"
+msgstr "Žádné obrazy"
 
 #. [pages.blueprint.noImagesMessage]
 #. defaultMessage is:
@@ -1460,8 +1374,6 @@ msgstr "Není k dispozici žádný záznam událostí"
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/pages/blueprintEdit/index.json
 #: build/messages/pages/blueprints/index.json
-#, fuzzy
-#| msgid "No Results Match the Filter Criteria"
 msgid "No results match the filter criteria"
 msgstr "Žádné výsledky odpovídající podmínkám filtru"
 
@@ -1483,10 +1395,8 @@ msgstr "Referenční nápověda k OSTree"
 #. defaultMessage is:
 #. OSTree repo url help
 #: build/messages/components/Wizard/ImageStep.json
-#, fuzzy
-#| msgid "OSTree ref help"
 msgid "OSTree repo url help"
-msgstr "Referenční nápověda k OSTree"
+msgstr "Nápověda k url OSTree repozitáře"
 
 #. [components.Modal.1475836573]
 #. defaultMessage is:
@@ -1555,8 +1465,6 @@ msgstr "Sem vložte obsah veřejného SSH klíče."
 #. defaultMessage is:
 #. Pending changes
 #: build/messages/components/Modal/PendingChanges.json
-#, fuzzy
-#| msgid "Pending Changes"
 msgid "Pending changes"
 msgstr "Čekající změny"
 
@@ -1619,18 +1527,16 @@ msgstr ""
 #. Provide the ID of the latest commit in the updates repository for which this commit provides an update.
 #.                     If no commit is specified it will be inferred from the parent repository.
 #: build/messages/components/Wizard/ImageStep.json
-#, fuzzy
-#| msgid ""
-#| "Provide the ID of the latest commit in the updates repository for which "
-#| "this commit provides an update."
 msgid ""
 "Provide the ID of the latest commit in the updates repository for which this "
 "commit provides an update.\n"
 "                    If no commit is specified it will be inferred from the "
 "parent repository."
 msgstr ""
-"Poskytne identifikátor nejnovějšího commitu v repozitáři aktualizací, pro "
-"který tento commit poskytuje aktualizaci."
+"Poskytnout identifikátor nejnovějšího commitu v repozitáři aktualizací, pro "
+"který tento commit poskytuje aktualizaci.\n"
+"                    Pokud není zadán žádný commit, bude vyvozeno z "
+"nadřazeného repozitáře."
 
 #. [components.Wizard.1901372247]
 #. defaultMessage is:
@@ -1661,6 +1567,8 @@ msgid ""
 "Provide the URL of the upstream repository. This repository is where the "
 "parent OSTree commit will be pulled from."
 msgstr ""
+"Poskytne URL upstream repozitáře. Tento repozitář je odkud jsou získávány "
+"OSTree commity."
 
 #. [components.Wizard.2706552502]
 #. defaultMessage is:
@@ -1693,34 +1601,25 @@ msgstr ""
 #. defaultMessage is:
 #. Provide the name of the Cluster to which the image file will be uploaded.
 #: build/messages/components/Wizard/VMWareDestinationStep.json
-#, fuzzy
-#| msgid ""
-#| "Provide a file name to be used for the image file that will be uploaded."
 msgid ""
 "Provide the name of the Cluster to which the image file will be uploaded."
-msgstr "Zadejte název souboru, který nahrát jako obraz."
+msgstr "Zadejte název clusteru, do kterého bude soubor s obrazem nahrán."
 
 #. [components.Wizard.1217327836]
 #. defaultMessage is:
 #. Provide the name of the Datacenter to which the image file will be uploaded.
 #: build/messages/components/Wizard/VMWareDestinationStep.json
-#, fuzzy
-#| msgid ""
-#| "Provide a file name to be used for the image file that will be uploaded."
 msgid ""
 "Provide the name of the Datacenter to which the image file will be uploaded."
-msgstr "Zadejte název souboru, který nahrát jako obraz."
+msgstr "Zadejte název datacentra, do kterého bude soubor s obrazem nahrán."
 
 #. [components.Wizard.4014474612]
 #. defaultMessage is:
 #. Provide the name of the Datastore to which the image file will be uploaded.
 #: build/messages/components/Wizard/VMWareDestinationStep.json
-#, fuzzy
-#| msgid ""
-#| "Provide a file name to be used for the image file that will be uploaded."
 msgid ""
 "Provide the name of the Datastore to which the image file will be uploaded."
-msgstr "Zadejte název souboru, který nahrát jako obraz."
+msgstr "Zadejte název úložiště dat, do kterého bude soubor s obrazem nahrán."
 
 #. [components.Wizard.1476874820]
 #. defaultMessage is:
@@ -1737,20 +1636,18 @@ msgstr ""
 #. defaultMessage is:
 #. Provide the url of your {vmware} instance to which the image file will be uploaded.
 #: build/messages/components/Wizard/VMWareDestinationStep.json
-#, fuzzy
-#| msgid ""
-#| "Provide a file name to be used for the image file that will be uploaded."
 msgid ""
 "Provide the url of your {vmware} instance to which the image file will be "
 "uploaded."
-msgstr "Zadejte název souboru, který nahrát jako obraz."
+msgstr ""
+"Zadejte název url {vmware} instance, do kterého bude soubor s obrazem nahrán."
 
 #. [components.Wizard.labelqcow]
 #. defaultMessage is:
 #. QEMU Image (.qcow2)
 #: build/messages/components/Wizard/ImageStep.json
 msgid "QEMU Image (.qcow2)"
-msgstr ""
+msgstr "QEMU obraz (.qcow2)"
 
 #. [components.Wizard.31026111]
 #. defaultMessage is:
@@ -1797,8 +1694,6 @@ msgstr "Odebrat"
 #. defaultMessage is:
 #. Remove component from blueprint
 #: build/messages/components/ListView/ComponentInputs.json
-#, fuzzy
-#| msgid "Remove Component from Blueprint"
 msgid "Remove component from blueprint"
 msgstr "Odebrat součást z plánku"
 
@@ -1806,8 +1701,6 @@ msgstr "Odebrat součást z plánku"
 #. defaultMessage is:
 #. Remove from blueprint
 #: build/messages/components/ListView/ComponentDetailsView.json
-#, fuzzy
-#| msgid "Remove from Blueprint"
 msgid "Remove from blueprint"
 msgstr "Odebrat z plánku"
 
@@ -1815,8 +1708,6 @@ msgstr "Odebrat z plánku"
 #. defaultMessage is:
 #. Remove password
 #: build/messages/components/Modal/UserAccount.json
-#, fuzzy
-#| msgid "Remove Password"
 msgid "Remove password"
 msgstr "Odebrat heslo"
 
@@ -1824,8 +1715,6 @@ msgstr "Odebrat heslo"
 #. defaultMessage is:
 #. Remove source
 #: build/messages/components/ListView/SourcesListItem.json
-#, fuzzy
-#| msgid "Remove Source"
 msgid "Remove source"
 msgstr "Odebrat zdroj"
 
@@ -1847,10 +1736,8 @@ msgstr "Odebrat zdroj"
 #. defaultMessage is:
 #. Repository URL
 #: build/messages/components/Wizard/ImageStep.json
-#, fuzzy
-#| msgid "yum repository"
 msgid "Repository URL"
-msgstr "yum repozitář"
+msgstr "URL adresa repozitáře"
 
 #. [components.Modal.128739785]
 #. defaultMessage is:
@@ -1963,8 +1850,6 @@ msgstr "Vyberte jedno"
 #. defaultMessage is:
 #. Selected components
 #: build/messages/components/ListView/BlueprintContents.json
-#, fuzzy
-#| msgid "Selected Components"
 msgid "Selected components"
 msgstr "Vybrané součásti"
 
@@ -1972,10 +1857,8 @@ msgstr "Vybrané součásti"
 #. defaultMessage is:
 #. Server admin checkbox
 #: build/messages/components/Modal/UserAccount.json
-#, fuzzy
-#| msgid "Server administrator"
 msgid "Server admin checkbox"
-msgstr "Správce serveru"
+msgstr "Zaškrtávátko správce serveru"
 
 #. [components.Modal.122879380]
 #. defaultMessage is:
@@ -1988,8 +1871,6 @@ msgstr "Správce serveru"
 #. defaultMessage is:
 #. Set new password
 #: build/messages/components/Modal/UserAccount.json
-#, fuzzy
-#| msgid "Set New Password"
 msgid "Set new password"
 msgstr "Nastavit nové heslo"
 
@@ -1997,8 +1878,6 @@ msgstr "Nastavit nové heslo"
 #. defaultMessage is:
 #. Set password
 #: build/messages/components/Modal/UserAccount.json
-#, fuzzy
-#| msgid "Set Password"
 msgid "Set password"
 msgstr "Nastavit heslo"
 
@@ -2019,8 +1898,6 @@ msgstr ""
 #. defaultMessage is:
 #. Show all
 #: build/messages/components/ListView/ComponentSummaryList.json
-#, fuzzy
-#| msgid "Show All"
 msgid "Show all"
 msgstr "Zobrazit vše"
 
@@ -2028,8 +1905,6 @@ msgstr "Zobrazit vše"
 #. defaultMessage is:
 #. Show details and more options
 #: build/messages/components/ListView/ComponentInputs.json
-#, fuzzy
-#| msgid "Show Details and More Options"
 msgid "Show details and more options"
 msgstr "Zobrazit podrobnosti a další volby"
 
@@ -2037,8 +1912,6 @@ msgstr "Zobrazit podrobnosti a další volby"
 #. defaultMessage is:
 #. Show less
 #: build/messages/components/ListView/ComponentSummaryList.json
-#, fuzzy
-#| msgid "Show Less"
 msgid "Show less"
 msgstr "Zobrazit méně"
 
@@ -2053,10 +1926,8 @@ msgstr "Velikost"
 #. defaultMessage is:
 #. Source actions
 #: build/messages/components/ListView/SourcesListItem.json
-#, fuzzy
-#| msgid "Source Actions"
 msgid "Source actions"
-msgstr "Zobrazit akce"
+msgstr "Akce zdroje"
 
 #. [components.Modal.sourcePath] - The path or url to the source repository
 #. defaultMessage is:
@@ -2119,8 +1990,6 @@ msgstr "Zastavit"
 #. defaultMessage is:
 #. Stop build
 #: build/messages/components/Modal/StopBuild.json
-#, fuzzy
-#| msgid "Stop Build"
 msgid "Stop build"
 msgstr "Zastavit sestavování"
 
@@ -2362,7 +2231,7 @@ msgstr "Tato součást nemá žádné závislosti."
 #. This is a required field
 #: build/messages/components/Wizard/ImageStep.json
 msgid "This is a required field"
-msgstr ""
+msgstr "Toto je vyžadovaná kolonka"
 
 #. [components.Wizard.infotip]
 #. defaultMessage is:
@@ -2398,7 +2267,7 @@ msgstr "Tento popis umístění zdroje už existuje."
 #. This system does not have any valid subscriptions.
 #: build/messages/components/Notifications/Notifications.json
 msgid "This system does not have any valid subscriptions."
-msgstr ""
+msgstr "Tento systém nemá žádná platná předplatná."
 
 #. [components.Wizard.1727762289]
 #. defaultMessage is:
@@ -2476,8 +2345,6 @@ msgstr "URL adresa"
 #. defaultMessage is:
 #. Undo last change
 #: build/messages/components/ListView/BlueprintContents.json
-#, fuzzy
-#| msgid "Undo Last Change"
 msgid "Undo last change"
 msgstr "Vzít zpět poslední změnu"
 
@@ -2492,8 +2359,6 @@ msgstr "Aktualizovat"
 #. defaultMessage is:
 #. Update source
 #: build/messages/components/Modal/ManageSources.json
-#, fuzzy
-#| msgid "Update Source"
 msgid "Update source"
 msgstr "Aktualizovat zdroj"
 
@@ -2588,10 +2453,8 @@ msgstr "Nahrát na Azure"
 #: build/messages/components/Wizard/CreateImageUpload.json
 #: build/messages/components/Wizard/ImageStep.json
 #: build/messages/components/Wizard/ReviewStep.json
-#, fuzzy
-#| msgid "Upload to Azure"
 msgid "Upload to VMWare"
-msgstr "Nahrát na Azure"
+msgstr "Nahrát na VMWare"
 
 #. [components.ListView.uploadType] - A label for the service to which an image was uploaded
 #. defaultMessage is:
@@ -2604,8 +2467,6 @@ msgstr "Typ nahrání"
 #. defaultMessage is:
 #. User account actions
 #: build/messages/pages/blueprint/index.json
-#, fuzzy
-#| msgid "User Account Actions"
 msgid "User account actions"
 msgstr "Akce uživatelského účtu"
 
@@ -2624,8 +2485,6 @@ msgstr "Uživatelské jméno"
 #. Username
 #: build/messages/components/Wizard/ReviewStep.json
 #: build/messages/components/Wizard/VMWareAuthStep.json
-#, fuzzy
-#| msgid "User name"
 msgid "Username"
 msgstr "Uživatelské jméno"
 
@@ -2640,10 +2499,8 @@ msgstr "Uživatelé"
 #. defaultMessage is:
 #. VMWare help
 #: build/messages/components/Wizard/ReviewStep.json
-#, fuzzy
-#| msgid "Azure help"
 msgid "VMWare help"
-msgstr "Nápověda k Azure"
+msgstr "Nápověda k VMWare"
 
 #. [pages.blueprint.hostnameHelp]
 #. defaultMessage is:
@@ -2666,6 +2523,10 @@ msgid ""
 "(/). A ref must start with a letter, a number, or an underscore. Slashes "
 "must also be followed by a letter or number."
 msgstr ""
+"Platné znaky pro referenci jsou písmena od a do z (bez diakritiky), číslice "
+"0 až 9, spojovník (-), podtržítko (_), tečka (.), a dopředné lomítko (/). Je "
+"třeba, aby reference začínala písmenem, číslicí nebo podtržítkem. Je třeba, "
+"aby lomítka byla následována písmenem nebo číslicí."
 
 #. [components.ListView.602883748]
 #. defaultMessage is:
@@ -2843,19 +2704,15 @@ msgstr "Vytváření obrazu {blueprint} bylo přidáno do fronty {queue}."
 #. defaultMessage is:
 #. {blueprint} Image creation has {queue}.
 #: build/messages/components/Notifications/Notifications.json
-#, fuzzy
-#| msgid "{blueprint} Image creation has started."
 msgid "{blueprint} Image creation has {queue}."
-msgstr "Vytvoření obrazu {blueprint} zahájeno."
+msgstr "Vytváření {blueprint} obrazu má {queue}."
 
 #. [components.Notifications.652081902]
 #. defaultMessage is:
 #. {blueprint} Image creation is {queue}.
 #: build/messages/components/Notifications/Notifications.json
-#, fuzzy
-#| msgid "{blueprint} Image creation is complete."
 msgid "{blueprint} Image creation is {queue}."
-msgstr "Vytvoření obrazu {blueprint} je dokončeno."
+msgstr "Vytvoření {blueprint} obrazu je {queue}."
 
 #. [components.Modal.1557505074]
 #. defaultMessage is:
