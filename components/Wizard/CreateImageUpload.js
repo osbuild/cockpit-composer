@@ -329,7 +329,8 @@ class CreateImageUploadModal extends React.Component {
       imageType === "rhel-edge-installer" ||
       imageType === "edge-commit" ||
       imageType === "edge-container" ||
-      imageType === "edge-installer"
+      imageType === "edge-installer" ||
+      imageType === "image-installer"
     ) {
       return false;
     }
