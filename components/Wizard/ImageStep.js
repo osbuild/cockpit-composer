@@ -567,7 +567,7 @@ class ImageStep extends React.PureComponent {
       </>
     );
 
-    const ostreeInstallerFields = (
+    const ostreeInstallerRawFields = (
       <>
         <FormGroup
           label={<FormattedMessage defaultMessage="Repository URL" />}
@@ -714,7 +714,8 @@ class ImageStep extends React.PureComponent {
           {(imageType === "fedora-iot-commit" || imageType === "edge-commit" || imageType === "rhel-edge-commit") &&
             ostreeFields}
           {(imageType === "edge-container" || imageType === "rhel-edge-container") && ostreeFields}
-          {(imageType === "edge-installer" || imageType === "rhel-edge-installer") && ostreeInstallerFields}
+          {(imageType === "edge-installer" || imageType === "rhel-edge-installer" || imageType === "edge-raw-image") &&
+            ostreeInstallerRawFields}
         </Form>
       </>
     );

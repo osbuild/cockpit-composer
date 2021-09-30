@@ -298,7 +298,7 @@ class CreateImageUploadModal extends React.Component {
     if (this.state.imageType === "") return true;
     if (
       this.requiresImageSize(this.state.imageType) &&
-      (this.state.imageSize === undefined || (!this.isValidImageSize() && this.state.uploadService === ""))
+      (!this.state.imageSize || (!this.isValidImageSize() && !this.state.uploadService))
     ) {
       return true;
     }
@@ -352,7 +352,9 @@ class CreateImageUploadModal extends React.Component {
   isValidOstree() {
     if (this.state.ostreeSettings.parent && this.state.ostreeSettings.url) return false;
     if (
-      (this.state.imageType === "edge-installer" || this.state.imageType === "rhel-edge-installer") &&
+      (this.state.imageType === "edge-installer" ||
+        this.state.imageType === "rhel-edge-installer" ||
+        this.state.imageType === "edge-raw-image") &&
       !this.state.ostreeSettings.url
     ) {
       return false;

@@ -722,6 +722,41 @@ class TestImage(composerlib.ComposerCase):
         # collect code coverage result
         self.check_coverage()
 
+    # Currently only supported on rhel-8-5
+    @unittest.skipIf(os.environ.get("TEST_OS") != "rhel-8-5", "Does not support ostree image image type")
+    def testEdgeRaw(self):
+        b = self.browser
+
+        self.login_and_go("/composer", superuser=True)
+        b.wait_visible("#main")
+
+        # create image wizard
+        b.click("li[data-blueprint=httpd-server] #create-image-button")
+        b.wait_text("#create-image-upload-wizard #blueprint-name", "httpd-server")
+        b.wait_js_cond('ph_select("#image-type option").length > 1')
+        b.set_val("#image-type", "edge-raw-image")
+        # check url help button
+        b.click("button[aria-label='OSTree repo url help']")
+        b.text(".pf-c-popover__body")
+        b.wait_text(".pf-c-popover__body",
+                    "Provide the URL of the upstream repository. This repository is where the parent OSTree commit will be pulled from.")
+        b.click(".pf-c-popover__content button")
+        b.wait_not_present(".pf-c-popover__body")
+        # check ref help button
+        b.click("button[aria-label='OSTree ref help']")
+        b.text(".pf-c-popover__body")
+        b.wait_text(".pf-c-popover__body", "Provide the name of the branch for the content. If the ref does not already exist it will be created.")
+        b.click(".pf-c-popover__content button")
+        b.wait_not_present(".pf-c-popover__body")
+
+        # without a url entered the continue button should be disabled
+        b.wait_attr("#continue-button", "disabled", "")
+
+        self.allow_journal_messages(".*avc:  denied.*",
+                                    ".*audit: .*seresult=denied .*")
+        # collect code coverage result
+        self.check_coverage()
+
     def testOpenStack(self):
         b = self.browser
         m = self.machine
