@@ -143,6 +143,7 @@ function* fetchComposeTypes() {
       "edge-commit": "RHEL for Edge Commit (.tar)",
       "edge-container": "RHEL for Edge Container (.tar)",
       "edge-installer": "RHEL for Edge Installer (.iso)",
+      "edge-raw-image": "RHEL for Edge Raw Image (.raw.xz)",
       vhd: "Microsoft Azure (.vhd)",
       vmdk: "VMWare VSphere (.vmdk)",
     };
