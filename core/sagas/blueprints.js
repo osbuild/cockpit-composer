@@ -13,6 +13,7 @@ import {
   UPDATE_BLUEPRINT_COMPONENTS,
   SET_BLUEPRINT_USERS,
   setBlueprintUsersSucceeded,
+  SET_BLUEPRINT_DEVICE,
   SET_BLUEPRINT_HOSTNAME,
   setBlueprintHostnameSucceeded,
   SET_BLUEPRINT_DESCRIPTION,
@@ -210,6 +211,35 @@ function* setBlueprintUsers(action) {
   }
 }
 
+// convert between our stores blueprint object and the format that the weldr api expects
+function createWeldrBlueprint(blueprint) {
+  const weldrBlueprint = {
+    name: blueprint.name,
+    description: blueprint.description,
+    version: blueprint.version,
+    modules: blueprint.modules,
+    packages: blueprint.packages,
+    groups: blueprint.groups !== undefined ? blueprint.groups : [],
+    customizations: blueprint.customizations,
+  };
+  return weldrBlueprint;
+}
+
+function* setBlueprintDevice(action) {
+  try {
+    const { blueprint, device } = action.payload;
+    const blueprintToPost = createWeldrBlueprint(blueprint);
+    blueprintToPost.customizations = {
+      ...blueprintToPost.customizations,
+      installation_device: device,
+    };
+    yield call(composer.newBlueprint, blueprintToPost);
+  } catch (error) {
+    console.log("Error in setBlueprintDevice", error);
+    yield put(blueprintsFailure(error));
+  }
+}
+
 function* setBlueprintHostname(action) {
   try {
     const { blueprint, hostname } = action.payload;
@@ -361,6 +391,7 @@ export default function* () {
   yield takeEvery(CREATING_BLUEPRINT, createBlueprint);
   yield takeEvery(FETCHING_BLUEPRINT_CONTENTS, fetchBlueprintContents);
   yield takeEvery(SET_BLUEPRINT_USERS, setBlueprintUsers);
+  yield takeEvery(SET_BLUEPRINT_DEVICE, setBlueprintDevice);
   yield takeEvery(SET_BLUEPRINT_HOSTNAME, setBlueprintHostname);
   yield takeEvery(SET_BLUEPRINT_DESCRIPTION, setBlueprintDescription);
   yield takeEvery(DELETING_BLUEPRINT, deleteBlueprint);

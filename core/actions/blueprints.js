@@ -95,6 +95,15 @@ export const setBlueprintUsersSucceeded = (blueprint) => ({
   },
 });
 
+export const SET_BLUEPRINT_DEVICE = "SET_BLUEPRINT_DEVICE";
+export const setBlueprintDevice = (blueprint, device) => ({
+  type: SET_BLUEPRINT_DEVICE,
+  payload: {
+    blueprint,
+    device,
+  },
+});
+
 export const SET_BLUEPRINT_HOSTNAME = "SET_BLUEPRINT_HOSTNAME";
 export const setBlueprintHostname = (blueprint, hostname) => ({
   type: SET_BLUEPRINT_HOSTNAME,
