@@ -54,7 +54,6 @@ class TestCustom(composerlib.ComposerCase):
 
     def testHostname(self):
         b = self.browser
-        m = self.machine
 
         self.login_and_go("/composer", superuser=True)
         b.wait_visible("#main")
@@ -65,37 +64,55 @@ class TestCustom(composerlib.ComposerCase):
         # set hostname to "openssh-server"
         b.click("button[aria-describedby=Hostname-help2]")
         b.set_input_text("input[aria-label=Hostname]", "hostname-openssh-server")
-        b.click(".form-control-pf-save")
+        b.click("#input-hostname .form-control-pf-save")
         b.wait_visible("span:contains(hostname-openssh-server)")
-        hostname = m.execute("""
-            composer-cli blueprints show openssh-server | grep hostname | awk -F '"' '{print $2}'
-            """).rstrip()
-        b.wait_visible("span:contains({})".format(hostname))
 
         # update hostname
-        b.click(".form-control-pf-value")
+        b.click("#input-hostname .form-control-pf-value")
         b.set_input_text("input[aria-label=Hostname]", "update-openssh-server")
-        b.key_press("\r")
+        b.click("#input-hostname .form-control-pf-save")
         b.wait_visible("span:contains(update-openssh-server)")
-        hostname = m.execute("""
-            composer-cli blueprints show openssh-server | grep hostname | awk -F '"' '{print $2}'
-            """).rstrip()
-        b.wait_visible("span:contains({})".format(hostname))
 
         # clicking x button will not update
-        b.click(".form-control-pf-value")
+        b.click("#input-hostname .form-control-pf-value")
         b.set_input_text("input[aria-label=Hostname]", "no-update-openssh-server")
-        b.click(".form-control-pf-cancel")
+        b.click("#input-hostname .form-control-pf-cancel")
         b.wait_visible("span:contains(update-openssh-server)")
-        hostname = m.execute("""
-            composer-cli blueprints show openssh-server | grep hostname | awk -F '"' '{print $2}'
-            """).rstrip()
-        b.wait_visible("span:contains({})".format(hostname))
 
         # invalid character, save button is disabled
-        b.click(".form-control-pf-value")
+        b.click("#input-hostname .form-control-pf-value")
         b.set_input_text("input[aria-label=Hostname]", "?")
-        b.wait_attr(".form-control-pf-save", "disabled", "")
+        b.wait_attr("#input-hostname .form-control-pf-save", "disabled", "")
+
+        # collect code coverage result
+        self.check_coverage()
+
+    def testDevice(self):
+        b = self.browser
+
+        self.login_and_go("/composer", superuser=True)
+        b.wait_visible("#main")
+
+        b.click("#openssh-server-name")
+        with b.wait_timeout(300):
+            b.click("#blueprint-tabs-tab-customizations")
+        # set device to "dev0"
+        b.click("#input-device .form-control-pf-value")
+        b.set_input_text("input[aria-label='Installation device']", "dev0")
+        b.click("#input-device .form-control-pf-save")
+        b.wait_visible("span:contains(dev0)")
+
+        # update device to "dev1"
+        b.click("#input-device .form-control-pf-value")
+        b.set_input_text("input[aria-label='Installation device']", "dev1")
+        b.click("#input-device .form-control-pf-save")
+        b.wait_visible("span:contains(dev1)")
+
+        # clicking x button will not update
+        b.click("#input-device .form-control-pf-value")
+        b.set_input_text("input[aria-label='Installation device']", "")
+        b.click("#input-device .form-control-pf-cancel")
+        b.wait_visible("span:contains(dev1)")
 
         # collect code coverage result
         self.check_coverage()

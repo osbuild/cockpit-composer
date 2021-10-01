@@ -28,6 +28,7 @@ import Loading from "../../components/Loading/Loading";
 import {
   fetchingBlueprintContents,
   setBlueprintDescription,
+  setBlueprintDevice,
   setBlueprintHostname,
   setBlueprintUsers,
   fetchingCompDeps,
@@ -117,6 +118,12 @@ const messages = defineMessages({
   hostnameHelpEmpty: {
     defaultMessage: "If no hostname is provided, the hostname will be determined by the OS.",
   },
+  deviceButtonLabel: {
+    defaultMessage: "Edit installation device",
+  },
+  deviceInputLabel: {
+    defaultMessage: "Installation device",
+  },
   userEdit: {
     defaultMessage: "Edit user account",
   },
@@ -131,6 +138,10 @@ const messages = defineMessages({
 class BlueprintPage extends React.Component {
   constructor() {
     super();
+    this.state = {
+      device: "",
+      editDeviceVisible: false,
+    };
     this.handleComponentDetails = this.handleComponentDetails.bind(this);
     this.handleComponentListItem = this.handleComponentListItem.bind(this);
     this.handleDepListItem = this.handleDepListItem.bind(this);
@@ -139,6 +150,7 @@ class BlueprintPage extends React.Component {
     this.handleEditDescription = this.handleEditDescription.bind(this);
     this.handleEditHostname = this.handleEditHostname.bind(this);
     this.handleEditHostnameValue = this.handleEditHostnameValue.bind(this);
+    this.handleEditDeviceVisible = this.handleEditDeviceVisible.bind(this);
     this.handleDeleteUser = this.handleDeleteUser.bind(this);
     this.downloadUrl = this.downloadUrl.bind(this);
   }
@@ -194,6 +206,24 @@ class BlueprintPage extends React.Component {
     const validElements = value.split(".").every((element) => element.length < 63);
     const invalid = !!(!validCharacters || !validElements || value.startsWith("-") || value.endsWith("."));
     this.props.setEditHostnameInvalid(invalid);
+  }
+
+  handleEditDeviceVisible(action, value) {
+    if (action === "commit") {
+      this.setState({
+        device: value,
+        editDeviceVisible: false,
+      });
+      this.props.setBlueprintDevice(this.props.blueprint, value);
+    } else if (action === "cancel") {
+      this.setState({
+        editDeviceVisible: false,
+      });
+    } else {
+      this.setState({
+        editDeviceVisible: true,
+      });
+    }
   }
 
   handleDeleteUser(userName, e) {
@@ -252,6 +282,12 @@ class BlueprintPage extends React.Component {
     let users = [];
     if (blueprint.customizations !== undefined && blueprint.customizations.user !== undefined) {
       users = blueprint.customizations.user;
+    }
+    // Setting the state values from our redux store is tedious.
+    // This is a simple way to display the installation device if set in the blueprint customizations.
+    let { device } = this.state;
+    if (!device && blueprint.customizations && blueprint.customizations.installation_device) {
+      device = blueprint.customizations.installation_device;
     }
     const pathSuffix = cockpit.location.path[cockpit.location.path.length - 1];
     const activeKey = ["customizations", "packages", "images"].includes(pathSuffix) ? pathSuffix : undefined;
@@ -375,7 +411,8 @@ class BlueprintPage extends React.Component {
             <div className="tab-container row">
               <div className="col-sm-12">
                 <div className="form-horizontal">
-                  <form
+                  <div
+                    id="input-hostname"
                     className={`form-group ${editHostnameInvalid ? "has-error" : ""}`}
                     data-form="hostname"
                     onSubmit={() => this.handleEditHostname("commit")}
@@ -393,7 +430,20 @@ class BlueprintPage extends React.Component {
                       helpblock={formatMessage(messages.hostnameHelp)}
                       helpblockNoValue={formatMessage(messages.hostnameHelpEmpty)}
                     />
-                  </form>
+                  </div>
+                  <div className="form-group" id="input-device">
+                    <label className="col-sm-2 control-label">
+                      <FormattedMessage defaultMessage="Installation Device" />
+                    </label>
+                    <TextInlineEdit
+                      className="col-sm-10"
+                      editVisible={this.state.editDeviceVisible}
+                      handleEdit={this.handleEditDeviceVisible}
+                      buttonLabel={formatMessage(messages.deviceButtonLabel)}
+                      inputLabel={formatMessage(messages.deviceInputLabel)}
+                      value={device}
+                    />
+                  </div>
                   <div className="form-group user-list">
                     <label className="col-sm-2 control-label">
                       <FormattedMessage defaultMessage="Users" />
@@ -552,6 +602,7 @@ BlueprintPage.propTypes = {
     workspacePendingChanges: PropTypes.arrayOf(PropTypes.object),
     customizations: PropTypes.shape({
       hostname: PropTypes.string,
+      installation_device: PropTypes.string,
       user: PropTypes.arrayOf(PropTypes.object),
     }),
   }),
@@ -570,6 +621,7 @@ BlueprintPage.propTypes = {
     editHostnameInvalid: PropTypes.bool,
   }),
   setBlueprintDescription: PropTypes.func,
+  setBlueprintDevice: PropTypes.func,
   setBlueprintHostname: PropTypes.func,
   selectedInput: PropTypes.shape({
     set: PropTypes.bool,
@@ -647,6 +699,7 @@ BlueprintPage.defaultProps = {
   setBlueprintUsers() {},
   blueprintPage: {},
   setBlueprintDescription() {},
+  setBlueprintDevice() {},
   setBlueprintHostname() {},
   stopBuild: {},
   deleteImage: {},
@@ -748,6 +801,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   setEditDescriptionVisible: (visible) => {
     dispatch(setEditDescriptionVisible(visible));
+  },
+  setBlueprintDevice: (blueprint, device) => {
+    dispatch(setBlueprintDevice(blueprint, device));
   },
   setBlueprintHostname: (blueprint, hostname) => {
     dispatch(setBlueprintHostname(blueprint, hostname));
