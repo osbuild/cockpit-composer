@@ -7,6 +7,8 @@ import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-i
 import cockpit from "cockpit"; // eslint-disable-line import/no-unresolved
 import PropTypes from "prop-types";
 import { Tab, Tabs } from "patternfly-react";
+import { Button, Popover } from "@patternfly/react-core";
+import { OutlinedQuestionCircleIcon } from "@patternfly/react-icons";
 import { Table, TableHeader, TableBody, TableVariant } from "@patternfly/react-table";
 import { connect } from "react-redux";
 import Link from "../../components/Link/Link";
@@ -117,6 +119,16 @@ const messages = defineMessages({
   },
   hostnameHelpEmpty: {
     defaultMessage: "If no hostname is provided, the hostname will be determined by the OS.",
+  },
+  deviceHelp: {
+    defaultMessage: "Enter valid device node such as /dev/sda1",
+  },
+  devicePopover: {
+    defaultMessage:
+      "The installation device is used by the RHEL for Edge Simplified Installer. It specifies which device the image will be installed onto.",
+  },
+  devicePopoverLabel: {
+    defaultMessage: "Installation device help",
   },
   deviceButtonLabel: {
     defaultMessage: "Edit installation device",
@@ -409,7 +421,7 @@ class BlueprintPage extends React.Component {
         >
           <Tab eventKey="customizations" title={formatMessage(messages.customizationsTitle)}>
             <div className="tab-container row">
-              <div className="col-sm-12">
+              <div className="form-customizations col-sm-12 pf-u-ml-md">
                 <div className="form-horizontal">
                   <div
                     id="input-hostname"
@@ -417,7 +429,9 @@ class BlueprintPage extends React.Component {
                     data-form="hostname"
                     onSubmit={() => this.handleEditHostname("commit")}
                   >
-                    <label className="col-sm-2 control-label">{formatMessage(messages.hostnameInputLabel)}</label>
+                    <label className="col-sm-2 control-label pf-u-text-align-left">
+                      {formatMessage(messages.hostnameInputLabel)}
+                    </label>
                     <TextInlineEdit
                       className="col-sm-10"
                       editVisible={editHostnameVisible}
@@ -432,8 +446,17 @@ class BlueprintPage extends React.Component {
                     />
                   </div>
                   <div className="form-group" id="input-device">
-                    <label className="col-sm-2 control-label">
+                    <label className="col-sm-2 control-label pf-u-text-align-left">
                       <FormattedMessage defaultMessage="Installation Device" />
+                      <Popover
+                        id="popover-installation-device"
+                        bodyContent={formatMessage(messages.devicePopover)}
+                        aria-label={formatMessage(messages.devicePopoverLabel)}
+                      >
+                        <Button variant="plain" aria-label={formatMessage(messages.devicePopoverLabel)}>
+                          <OutlinedQuestionCircleIcon />
+                        </Button>
+                      </Popover>
                     </label>
                     <TextInlineEdit
                       className="col-sm-10"
@@ -441,11 +464,12 @@ class BlueprintPage extends React.Component {
                       handleEdit={this.handleEditDeviceVisible}
                       buttonLabel={formatMessage(messages.deviceButtonLabel)}
                       inputLabel={formatMessage(messages.deviceInputLabel)}
+                      helpblock={formatMessage(messages.deviceHelp)}
                       value={device}
                     />
                   </div>
                   <div className="form-group user-list">
-                    <label className="col-sm-2 control-label">
+                    <label className="col-sm-2 control-label pf-u-text-align-left">
                       <FormattedMessage defaultMessage="Users" />
                     </label>
                     <div className="col-sm-10">
