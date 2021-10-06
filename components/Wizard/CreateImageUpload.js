@@ -288,6 +288,9 @@ class CreateImageUploadModal extends React.Component {
     if (imageType === "ami") {
       return 6;
     }
+    if (imageType === "edge-simplified-installer") {
+      return 10;
+    }
     if (imageType === undefined) {
       return null;
     }
@@ -355,7 +358,8 @@ class CreateImageUploadModal extends React.Component {
     if (
       (this.state.imageType === "edge-installer" ||
         this.state.imageType === "rhel-edge-installer" ||
-        this.state.imageType === "edge-raw-image") &&
+        this.state.imageType === "edge-raw-image" ||
+        this.state.imageType === "edge-simplified-installer") &&
       !this.state.ostreeSettings.url
     ) {
       return false;
