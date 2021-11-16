@@ -63,7 +63,7 @@ interactively follow what a test is doing, set environment variable `$TEST_SHOW_
 You can set these environment variables to configure the test suite:
 
     TEST_OS    The OS to run the tests in.  Currently supported values:
-                  "fedora-33, fedora-34, rhel-8-5, rhel-9-0"
+                  "fedora-33, fedora-34, rhel-8-6, rhel-9-0"
                "fedora-33" is the default
 
     TEST_DATA  Where to find and store test machine images.  The
