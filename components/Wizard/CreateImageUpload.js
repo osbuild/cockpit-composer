@@ -14,6 +14,8 @@ import AzureAuthStep from "./AzureAuthStep";
 import AzureDestinationStep from "./AzureDestinationStep";
 import VMWareAuthStep from "./VMWareAuthStep";
 import VMWareDestinationStep from "./VMWareDestinationStep";
+import OCIAuthStep from "./OCIAuthStep";
+import OCIDestinationStep from "./OCIDestinationStep";
 import ReviewStep from "./ReviewStep";
 import ImageStep from "./ImageStep";
 
@@ -74,6 +76,7 @@ class CreateImageUploadModal extends React.Component {
       },
       showUploadAwsStep: false,
       showUploadAzureStep: false,
+      showUploadOCIStep: false,
       showReviewStep: false,
       uploadService: "",
       uploadSettings: {},
@@ -165,6 +168,23 @@ class CreateImageUploadModal extends React.Component {
             showReviewStep: true,
           });
           break;
+        case "oci":
+          this.setState({
+            uploadService,
+            uploadSettings: {
+              user: "",
+              private_key: "",
+              fingerprint: "",
+              bucket: "",
+              namespace: "",
+              region: "",
+              compartment: "",
+              tenancy: "",
+            },
+            showUploadOCIStep: true,
+            showReviewStep: true,
+          });
+          break;
         default:
           break;
       }
@@ -250,6 +270,7 @@ class CreateImageUploadModal extends React.Component {
       showUploadAwsStep: false,
       showUploadAzureStep: false,
       showUploadVMWareStep: false,
+      showUploadOCIStep: false,
       showReviewStep: false,
     });
   }
@@ -376,7 +397,14 @@ class CreateImageUploadModal extends React.Component {
 
   render() {
     const { formatMessage } = this.props.intl;
-    const { showUploadAwsStep, showUploadAzureStep, showUploadVMWareStep, showReviewStep, uploadService } = this.state;
+    const {
+      showUploadAwsStep,
+      showUploadAzureStep,
+      showUploadVMWareStep,
+      showUploadOCIStep,
+      showReviewStep,
+      uploadService,
+    } = this.state;
 
     const imageStep = {
       name: <FormattedMessage defaultMessage="Image type" />,
@@ -474,6 +502,28 @@ class CreateImageUploadModal extends React.Component {
       steps: [vmwareUploadAuth, vmwareUploadDest],
     };
 
+    const ociUploadAuth = {
+      name: <FormattedMessage defaultMessage="Authentication" />,
+      component: <OCIAuthStep uploadSettings={this.state.uploadSettings} setUploadSettings={this.setUploadSettings} />,
+    };
+
+    const ociUploadDest = {
+      name: <FormattedMessage defaultMessage="Destination" />,
+      component: (
+        <OCIDestinationStep
+          imageName={this.state.imageName}
+          uploadSettings={this.state.uploadSettings}
+          setImageName={this.setImageName}
+          setUploadSettings={this.setUploadSettings}
+        />
+      ),
+    };
+
+    const ociUploadStep = {
+      name: <FormattedMessage defaultMessage="Upload to OCI" />,
+      steps: [ociUploadAuth, ociUploadDest],
+    };
+
     const reviewStep = {
       name: <FormattedMessage defaultMessage="Review" />,
       component: (
@@ -496,6 +546,7 @@ class CreateImageUploadModal extends React.Component {
       ...(showUploadAwsStep ? [awsUploadStep] : []),
       ...(showUploadAzureStep ? [azureUploadStep] : []),
       ...(showUploadVMWareStep ? [vmwareUploadStep] : []),
+      ...(showUploadOCIStep ? [ociUploadStep] : []),
       ...(showReviewStep ? [reviewStep] : []),
     ];
 

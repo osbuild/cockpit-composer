@@ -93,6 +93,9 @@ const messages = defineMessages({
   uploadVMWare: {
     defaultMessage: "Upload to VMWare",
   },
+  uploadOCI: {
+    defaultMessage: "Upload to OCI",
+  },
   labelqcow: {
     defaultMessage: "QEMU Image (.qcow2)",
   },
@@ -399,6 +402,89 @@ class ImageStep extends React.PureComponent {
           onChange={handleUploadService}
           label={formatMessage(messages.uploadVMWare)}
           id="vmware-checkbox"
+        />
+      </FormGroup>
+    );
+
+    const ociProviderCheckbox = (
+      <FormGroup
+        label={<FormattedMessage defaultMessage="Upload image" />}
+        labelIcon={
+          <Popover
+            id="oci-provider-popover"
+            bodyContent={
+              <div>
+                <p>
+                  <FormattedMessage
+                    defaultMessage="
+                        Image Builder can upload images you create to an {bucket} in OCI and register it as a custom image. When the image build is complete
+                        and the upload action is successful, the image should be available under custom images.
+                        Most of the values required to upload the image can be found in the {console}.
+                      "
+                    values={{
+                      bucket: "OCI bucket",
+                      console: (
+                        <Button
+                          component="a"
+                          className="pf-icon"
+                          target="_blank"
+                          variant="link"
+                          icon={<ExternalLinkSquareAltIcon />}
+                          iconPosition="right"
+                          isInline
+                          href="https://cloud.oracle.com"
+                        >
+                          OCI Management Console
+                        </Button>
+                      ),
+                    }}
+                  />
+                </p>
+                <br />
+                <p>
+                  <FormattedMessage
+                    defaultMessage="
+                        This upload process requires that you have an {iam} with attached policy to manage custom images
+                        to ensure that the image can be import as a custom image from the {bucket}. For more details, refer to the {policies}.
+                      "
+                    values={{
+                      bucket: "bucket",
+                      iam: "Identity and Access Management (IAM)",
+                      policies: (
+                        <Button
+                          component="a"
+                          className="pf-icon"
+                          target="_blank"
+                          variant="link"
+                          icon={<ExternalLinkSquareAltIcon />}
+                          iconPosition="right"
+                          isInline
+                          href="https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/commonpolicies.htm#manage-custom-images"
+                        >
+                          OCI Required IAM Policy
+                        </Button>
+                      ),
+                    }}
+                  />
+                </p>
+              </div>
+            }
+            aria-label={formatMessage(ariaLabels.uploadImage)}
+          >
+            <Button variant="plain" aria-label={formatMessage(ariaLabels.uploadImage)}>
+              <OutlinedQuestionCircleIcon className="cc-c-text__align-icon" id="popover-icon" />
+            </Button>
+          </Popover>
+        }
+        fieldId="oci-checkbox"
+        hasNoPaddingTop
+      >
+        <Checkbox
+          value="oci"
+          isChecked={uploadService === "oci"}
+          onChange={handleUploadService}
+          label={formatMessage(messages.uploadOCI)}
+          id="oci-checkbox"
         />
       </FormGroup>
     );
@@ -710,6 +796,7 @@ class ImageStep extends React.PureComponent {
           {imageType === "ami" && awsProviderCheckbox}
           {imageType === "vhd" && azureProviderCheckbox}
           {imageType === "vmdk" && vmwareProviderCheckbox}
+          {imageType === "oci" && ociProviderCheckbox}
           {requiresImageSize(imageType) && imageSizeInput}
           {(imageType === "fedora-iot-commit" || imageType === "edge-commit" || imageType === "rhel-edge-commit") &&
             ostreeFields}
