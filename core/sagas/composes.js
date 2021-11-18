@@ -136,6 +136,7 @@ function* fetchComposeTypes() {
       tar: "Disk Archive (.tar)",
       openstack: "OpenStack (.qcow2)",
       "partitioned-disk": "Disk Image (.img)",
+      oci: "Oracle Cloud Infrastructure (.qcow2)",
       qcow2: "QEMU Image (.qcow2)",
       "rhel-edge-commit": "RHEL for Edge Commit (.tar)",
       "rhel-edge-container": "RHEL for Edge Container (.tar)",
