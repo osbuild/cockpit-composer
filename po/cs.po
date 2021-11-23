@@ -2,7 +2,7 @@
 # Matej Marusak <mmarusak@redhat.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2021-09-21T18:16:54.428Z\n"
+"POT-Creation-Date: 2021-11-16T18:15:25.060Z\n"
 "PO-Revision-Date: 2021-09-23 13:04+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://translate.fedoraproject.org/projects/cockpit-"
@@ -37,20 +37,6 @@ msgid ""
 msgstr ""
 "Bude vytvořen minimální obraz, obsahující pouze balíčky potřebné pro podporu "
 "zvoleného typu obrazu."
-
-#. [components.Modal.2310857819]
-#. defaultMessage is:
-#. A password is defined for this account.
-#: build/messages/components/Modal/UserAccount.json
-msgid "A password is defined for this account."
-msgstr "Pro tento účet je definováno heslo."
-
-#. [components.Modal.2362836873]
-#. defaultMessage is:
-#. A password is not defined for this account.
-#: build/messages/components/Modal/UserAccount.json
-msgid "A password is not defined for this account."
-msgstr "Pro tento účet není definováno heslo."
 
 #. [components.Wizard.warningSizeEmpty]
 #. defaultMessage is:
@@ -589,7 +575,7 @@ msgstr "Podrobnosti o součásti"
 msgid "Component options"
 msgstr "Předvolby součásti"
 
-#. [components.Modal.createPasswordTwo]
+#. [components.Modal.labelConfirmPassword]
 #. defaultMessage is:
 #. Confirm password
 #: build/messages/components/Modal/UserAccount.json
@@ -660,14 +646,10 @@ msgstr "Vytvořit plánek"
 msgid "Create image"
 msgstr "Vytvořit obraz"
 
-#. [components.Modal.modalTitleCreate]
-#. defaultMessage is:
-#. Create user account
-#. [pages.blueprint.3234825297]
+#. [components.Modal.3234825297]
 #. defaultMessage is:
 #. Create user account
 #: build/messages/components/Modal/UserAccount.json
-#: build/messages/pages/blueprint/index.json
 msgid "Create user account"
 msgstr "Vytvořit uživatelský účet"
 
@@ -845,6 +827,13 @@ msgstr "Upravit popis"
 msgid "Edit hostname"
 msgstr "Upravit název hostitele"
 
+#. [pages.blueprint.deviceButtonLabel]
+#. defaultMessage is:
+#. Edit installation device
+#: build/messages/pages/blueprint/index.json
+msgid "Edit installation device"
+msgstr ""
+
 #. [components.ListView.1908303378]
 #. defaultMessage is:
 #. Edit packages
@@ -871,7 +860,7 @@ msgstr "Upravit balíčky"
 msgid "Edit source"
 msgstr "Upravit zdroj"
 
-#. [components.Modal.modalTitleEdit]
+#. [components.Modal.2685045824]
 #. defaultMessage is:
 #. Edit user account
 #. [pages.blueprint.userEdit]
@@ -895,6 +884,13 @@ msgstr "Je možné zadat buď nadřazený commit nebo url repozitáře. Ne oboj�
 #: build/messages/pages/blueprint/index.json
 msgid "Empty blueprint"
 msgstr "Prázdný plánek"
+
+#. [pages.blueprint.deviceHelp]
+#. defaultMessage is:
+#. Enter valid device node such as /dev/sda1
+#: build/messages/pages/blueprint/index.json
+msgid "Enter valid device node such as /dev/sda1"
+msgstr ""
 
 #. [pages.error.errorMessage]
 #. defaultMessage is:
@@ -966,7 +962,7 @@ msgstr "Filtrovat podle verze"
 msgid "Finish"
 msgstr "Dokončit"
 
-#. [components.Modal.1182120637]
+#. [components.Modal.labelName]
 #. defaultMessage is:
 #. Full name
 #: build/messages/components/Modal/UserAccount.json
@@ -1219,6 +1215,27 @@ msgstr "Nahrání obrazu"
 msgid "Images"
 msgstr "Obrazy"
 
+#. [pages.blueprint.3654599626]
+#. defaultMessage is:
+#. Installation Device
+#: build/messages/pages/blueprint/index.json
+msgid "Installation Device"
+msgstr ""
+
+#. [pages.blueprint.deviceInputLabel]
+#. defaultMessage is:
+#. Installation device
+#: build/messages/pages/blueprint/index.json
+msgid "Installation device"
+msgstr ""
+
+#. [pages.blueprint.devicePopoverLabel]
+#. defaultMessage is:
+#. Installation device help
+#: build/messages/pages/blueprint/index.json
+msgid "Installation device help"
+msgstr ""
+
 #. [components.Wizard.labelLiveIso]
 #. defaultMessage is:
 #. Installer, suitable for USB and DVD (.iso)
@@ -1312,13 +1329,6 @@ msgstr "Název"
 #: build/messages/pages/blueprintEdit/index.json
 msgid "Name: {name}"
 msgstr "Název: {name}"
-
-#. [components.Modal.editPasswordOne]
-#. defaultMessage is:
-#. New password
-#: build/messages/components/Modal/UserAccount.json
-msgid "New password"
-msgstr "Nové heslo"
 
 #. [components.Wizard.3673120330]
 #. defaultMessage is:
@@ -1436,10 +1446,7 @@ msgstr "Stránka nenalezena"
 msgid "Parent commit"
 msgstr "Nadřazený commit"
 
-#. [components.Modal.createPasswordOne]
-#. defaultMessage is:
-#. Password
-#. [components.Modal.2237029987]
+#. [components.Modal.labelPassword]
 #. defaultMessage is:
 #. Password
 #. [components.Wizard.2237029987]
@@ -1704,13 +1711,6 @@ msgstr "Odebrat součást z plánku"
 msgid "Remove from blueprint"
 msgstr "Odebrat z plánku"
 
-#. [components.Modal.1101731800]
-#. defaultMessage is:
-#. Remove password
-#: build/messages/components/Modal/UserAccount.json
-msgid "Remove password"
-msgstr "Odebrat heslo"
-
 #. [components.ListView.remove]
 #. defaultMessage is:
 #. Remove source
@@ -1764,7 +1764,7 @@ msgstr ""
 "Zkontrolujte níže uvedené informace a kliknutím na Dokončit vytvořte obraz a "
 "dokončete úlohy, které byly vybrány."
 
-#. [components.Modal.106035384]
+#. [components.Modal.labelRole]
 #. defaultMessage is:
 #. Role
 #: build/messages/components/Modal/UserAccount.json
@@ -1778,7 +1778,7 @@ msgstr "Role"
 msgid "S3 Bucket help"
 msgstr "Nápověda k S3 Bucket"
 
-#. [components.Modal.229369250]
+#. [components.Modal.labelSSHKey]
 #. defaultMessage is:
 #. SSH key
 #: build/messages/components/Modal/UserAccount.json
@@ -1860,26 +1860,12 @@ msgstr "Vybrané součásti"
 msgid "Server admin checkbox"
 msgstr "Zaškrtávátko správce serveru"
 
-#. [components.Modal.122879380]
+#. [components.Modal.labelAdmin]
 #. defaultMessage is:
 #. Server administrator
 #: build/messages/components/Modal/UserAccount.json
 msgid "Server administrator"
 msgstr "Správce serveru"
-
-#. [components.Modal.2342634351]
-#. defaultMessage is:
-#. Set new password
-#: build/messages/components/Modal/UserAccount.json
-msgid "Set new password"
-msgstr "Nastavit nové heslo"
-
-#. [components.Modal.3532935154]
-#. defaultMessage is:
-#. Set password
-#: build/messages/components/Modal/UserAccount.json
-msgid "Set password"
-msgstr "Nastavit heslo"
 
 #. [components.Wizard.imageSizePopover]
 #. defaultMessage is:
@@ -2103,6 +2089,15 @@ msgstr ""
 msgid "The fields marked with {val} are required."
 msgstr "Kolonky označené {val} jsou povinné."
 
+#. [pages.blueprint.devicePopover]
+#. defaultMessage is:
+#. The installation device is used by the RHEL for Edge Simplified Installer. It specifies which device the image will be installed onto.
+#: build/messages/pages/blueprint/index.json
+msgid ""
+"The installation device is used by the RHEL for Edge Simplified Installer. "
+"It specifies which device the image will be installed onto."
+msgstr ""
+
 #. [components.Modal.2580689893]
 #. defaultMessage is:
 #. The name {name} already exists.
@@ -2151,7 +2146,7 @@ msgstr ""
 "Zadaná velikost je velká. Doporučujeme zkontrolovat, zda má cílové umístění "
 "nějaké omezení ohledně velikosti obrazu."
 
-#. [components.Modal.2405281428]
+#. [components.Modal.usernameValidChars]
 #. defaultMessage is:
 #. The user name can only consist of letters from a-z, digits, dots, dashes and underscores.
 #: build/messages/components/Modal/UserAccount.json
@@ -2161,6 +2156,15 @@ msgid ""
 msgstr ""
 "Uživatelské jméno může být tvořeno pouze malými písmeny (bez diakritiky), "
 "tečkami, spojovníky a podtržítky."
+
+#. [components.Modal.usernameEmpty]
+#. defaultMessage is:
+#. The user name cannot be empty.
+#: build/messages/components/Modal/UserAccount.json
+#, fuzzy
+#| msgid "This user name already exists."
+msgid "The user name cannot be empty."
+msgstr "Toto uživatelské jméno už existuje."
 
 #. [components.EmptyState.1947371795]
 #. defaultMessage is:
@@ -2172,7 +2176,11 @@ msgstr "Uživatel {userName} nemá oprávnění spouštět služby."
 #. [components.Form.2330477961]
 #. defaultMessage is:
 #. The values entered for password do not match.
+#. [components.Modal.passwordMatch]
+#. defaultMessage is:
+#. The values entered for password do not match.
 #: build/messages/components/Form/Password.json
+#: build/messages/components/Modal/UserAccount.json
 msgid "The values entered for password do not match."
 msgstr "Zadání hesla se neshodují."
 
@@ -2290,7 +2298,7 @@ msgstr ""
 "                       může být importován z S3 {bucket} do EC2. Podrobnosti "
 "viz {role}."
 
-#. [components.Modal.3707489178]
+#. [components.Modal.usernameDuplicate]
 #. defaultMessage is:
 #. This user name already exists.
 #: build/messages/components/Modal/UserAccount.json
@@ -2470,7 +2478,7 @@ msgstr "Typ nahrání"
 msgid "User account actions"
 msgstr "Akce uživatelského účtu"
 
-#. [components.Modal.529605439]
+#. [components.Modal.labelUsername]
 #. defaultMessage is:
 #. User name
 #: build/messages/components/Modal/UserAccount.json
@@ -2765,6 +2773,24 @@ msgstr "Vytváření systémových obrazů"
 #: public/manifest.json
 msgid "Image Builder"
 msgstr "Sestavování obrazů"
+
+#~ msgid "A password is defined for this account."
+#~ msgstr "Pro tento účet je definováno heslo."
+
+#~ msgid "A password is not defined for this account."
+#~ msgstr "Pro tento účet není definováno heslo."
+
+#~ msgid "New password"
+#~ msgstr "Nové heslo"
+
+#~ msgid "Remove password"
+#~ msgstr "Odebrat heslo"
+
+#~ msgid "Set new password"
+#~ msgstr "Nastavit nové heslo"
+
+#~ msgid "Set password"
+#~ msgstr "Nastavit heslo"
 
 #~ msgid "Edit Description"
 #~ msgstr "Upravit popis"

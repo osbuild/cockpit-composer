@@ -5,7 +5,7 @@
 # Sundeep Anand <suanand@redhat.com>, 2021.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2021-09-21T18:16:54.428Z\n"
+"POT-Creation-Date: 2021-11-16T18:15:25.060Z\n"
 "PO-Revision-Date: 2021-09-07 13:04+0000\n"
 "Last-Translator: Sundeep Anand <suanand@redhat.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.fedoraproject.org/"
@@ -39,20 +39,6 @@ msgid ""
 "A minimal image will be created with only the packages needed to support the "
 "selected image type."
 msgstr "一个小型镜像将被创建，它只带有支持所选镜像类型所必需的软件包。"
-
-#. [components.Modal.2310857819]
-#. defaultMessage is:
-#. A password is defined for this account.
-#: build/messages/components/Modal/UserAccount.json
-msgid "A password is defined for this account."
-msgstr "为这个账户定义了一个密码。"
-
-#. [components.Modal.2362836873]
-#. defaultMessage is:
-#. A password is not defined for this account.
-#: build/messages/components/Modal/UserAccount.json
-msgid "A password is not defined for this account."
-msgstr "没有为这个账户定义密码。"
 
 #. [components.Wizard.warningSizeEmpty]
 #. defaultMessage is:
@@ -589,7 +575,7 @@ msgstr "组件详情"
 msgid "Component options"
 msgstr "组件选项"
 
-#. [components.Modal.createPasswordTwo]
+#. [components.Modal.labelConfirmPassword]
 #. defaultMessage is:
 #. Confirm password
 #: build/messages/components/Modal/UserAccount.json
@@ -659,14 +645,10 @@ msgstr "创建蓝图"
 msgid "Create image"
 msgstr "创建镜像"
 
-#. [components.Modal.modalTitleCreate]
-#. defaultMessage is:
-#. Create user account
-#. [pages.blueprint.3234825297]
+#. [components.Modal.3234825297]
 #. defaultMessage is:
 #. Create user account
 #: build/messages/components/Modal/UserAccount.json
-#: build/messages/pages/blueprint/index.json
 msgid "Create user account"
 msgstr "创建用户账户"
 
@@ -844,6 +826,13 @@ msgstr "编辑描述"
 msgid "Edit hostname"
 msgstr "编辑主机名"
 
+#. [pages.blueprint.deviceButtonLabel]
+#. defaultMessage is:
+#. Edit installation device
+#: build/messages/pages/blueprint/index.json
+msgid "Edit installation device"
+msgstr ""
+
 #. [components.ListView.1908303378]
 #. defaultMessage is:
 #. Edit packages
@@ -870,7 +859,7 @@ msgstr "编辑软件包"
 msgid "Edit source"
 msgstr "编辑源"
 
-#. [components.Modal.modalTitleEdit]
+#. [components.Modal.2685045824]
 #. defaultMessage is:
 #. Edit user account
 #. [pages.blueprint.userEdit]
@@ -894,6 +883,13 @@ msgstr "可以指定上级提交，或仓库 url。但不能同时指定两者�
 #: build/messages/pages/blueprint/index.json
 msgid "Empty blueprint"
 msgstr "空蓝图"
+
+#. [pages.blueprint.deviceHelp]
+#. defaultMessage is:
+#. Enter valid device node such as /dev/sda1
+#: build/messages/pages/blueprint/index.json
+msgid "Enter valid device node such as /dev/sda1"
+msgstr ""
 
 #. [pages.error.errorMessage]
 #. defaultMessage is:
@@ -965,7 +961,7 @@ msgstr "根据版本过滤"
 msgid "Finish"
 msgstr "完成"
 
-#. [components.Modal.1182120637]
+#. [components.Modal.labelName]
 #. defaultMessage is:
 #. Full name
 #: build/messages/components/Modal/UserAccount.json
@@ -1215,6 +1211,27 @@ msgstr "镜像上传"
 msgid "Images"
 msgstr "镜像"
 
+#. [pages.blueprint.3654599626]
+#. defaultMessage is:
+#. Installation Device
+#: build/messages/pages/blueprint/index.json
+msgid "Installation Device"
+msgstr ""
+
+#. [pages.blueprint.deviceInputLabel]
+#. defaultMessage is:
+#. Installation device
+#: build/messages/pages/blueprint/index.json
+msgid "Installation device"
+msgstr ""
+
+#. [pages.blueprint.devicePopoverLabel]
+#. defaultMessage is:
+#. Installation device help
+#: build/messages/pages/blueprint/index.json
+msgid "Installation device help"
+msgstr ""
+
 #. [components.Wizard.labelLiveIso]
 #. defaultMessage is:
 #. Installer, suitable for USB and DVD (.iso)
@@ -1308,13 +1325,6 @@ msgstr "名称"
 #: build/messages/pages/blueprintEdit/index.json
 msgid "Name: {name}"
 msgstr "名称 {name}"
-
-#. [components.Modal.editPasswordOne]
-#. defaultMessage is:
-#. New password
-#: build/messages/components/Modal/UserAccount.json
-msgid "New password"
-msgstr "新密码"
 
 #. [components.Wizard.3673120330]
 #. defaultMessage is:
@@ -1432,10 +1442,7 @@ msgstr "没有找到页"
 msgid "Parent commit"
 msgstr "父提交"
 
-#. [components.Modal.createPasswordOne]
-#. defaultMessage is:
-#. Password
-#. [components.Modal.2237029987]
+#. [components.Modal.labelPassword]
 #. defaultMessage is:
 #. Password
 #. [components.Wizard.2237029987]
@@ -1688,13 +1695,6 @@ msgstr "从蓝图中删除组件"
 msgid "Remove from blueprint"
 msgstr "从蓝图中删除"
 
-#. [components.Modal.1101731800]
-#. defaultMessage is:
-#. Remove password
-#: build/messages/components/Modal/UserAccount.json
-msgid "Remove password"
-msgstr "删除密码"
-
 #. [components.ListView.remove]
 #. defaultMessage is:
 #. Remove source
@@ -1746,7 +1746,7 @@ msgid ""
 "complete the tasks that were selected."
 msgstr "查看下面的信息，然后点“完成”以创建镜像并完成所选的任务。"
 
-#. [components.Modal.106035384]
+#. [components.Modal.labelRole]
 #. defaultMessage is:
 #. Role
 #: build/messages/components/Modal/UserAccount.json
@@ -1760,7 +1760,7 @@ msgstr "角色"
 msgid "S3 Bucket help"
 msgstr "S3 存储桶帮助"
 
-#. [components.Modal.229369250]
+#. [components.Modal.labelSSHKey]
 #. defaultMessage is:
 #. SSH key
 #: build/messages/components/Modal/UserAccount.json
@@ -1842,26 +1842,12 @@ msgstr "选择的组件"
 msgid "Server admin checkbox"
 msgstr "服务器管理复选框"
 
-#. [components.Modal.122879380]
+#. [components.Modal.labelAdmin]
 #. defaultMessage is:
 #. Server administrator
 #: build/messages/components/Modal/UserAccount.json
 msgid "Server administrator"
 msgstr "服务器管理员"
-
-#. [components.Modal.2342634351]
-#. defaultMessage is:
-#. Set new password
-#: build/messages/components/Modal/UserAccount.json
-msgid "Set new password"
-msgstr "设置新密码"
-
-#. [components.Modal.3532935154]
-#. defaultMessage is:
-#. Set password
-#: build/messages/components/Modal/UserAccount.json
-msgid "Set password"
-msgstr "设置密码"
 
 #. [components.Wizard.imageSizePopover]
 #. defaultMessage is:
@@ -2080,6 +2066,15 @@ msgstr "构建过程停止后将不能恢复。"
 msgid "The fields marked with {val} are required."
 msgstr "标记为 {val} 的项是必需的。"
 
+#. [pages.blueprint.devicePopover]
+#. defaultMessage is:
+#. The installation device is used by the RHEL for Edge Simplified Installer. It specifies which device the image will be installed onto.
+#: build/messages/pages/blueprint/index.json
+msgid ""
+"The installation device is used by the RHEL for Edge Simplified Installer. "
+"It specifies which device the image will be installed onto."
+msgstr ""
+
 #. [components.Modal.2580689893]
 #. defaultMessage is:
 #. The name {name} already exists.
@@ -2124,7 +2119,7 @@ msgid ""
 "destination has any restrictions on image size."
 msgstr "指定的大小是大。我们建议您检查目标位置是否对镜像大小有限制。"
 
-#. [components.Modal.2405281428]
+#. [components.Modal.usernameValidChars]
 #. defaultMessage is:
 #. The user name can only consist of letters from a-z, digits, dots, dashes and underscores.
 #: build/messages/components/Modal/UserAccount.json
@@ -2132,6 +2127,15 @@ msgid ""
 "The user name can only consist of letters from a-z, digits, dots, dashes and "
 "underscores."
 msgstr "用户名仅能包含 a-z、数字、点、破折号和下划线的字母。"
+
+#. [components.Modal.usernameEmpty]
+#. defaultMessage is:
+#. The user name cannot be empty.
+#: build/messages/components/Modal/UserAccount.json
+#, fuzzy
+#| msgid "This user name already exists."
+msgid "The user name cannot be empty."
+msgstr "这个用户名已存在。"
 
 #. [components.EmptyState.1947371795]
 #. defaultMessage is:
@@ -2143,7 +2147,11 @@ msgstr "用户 {userName} 没有启动服务的权限。"
 #. [components.Form.2330477961]
 #. defaultMessage is:
 #. The values entered for password do not match.
+#. [components.Modal.passwordMatch]
+#. defaultMessage is:
+#. The values entered for password do not match.
 #: build/messages/components/Form/Password.json
+#: build/messages/components/Modal/UserAccount.json
 msgid "The values entered for password do not match."
 msgstr "为密码输入的值不匹配。"
 
@@ -2257,7 +2265,7 @@ msgstr ""
 "这个上传过程需要您有一个名为 {vmimport} 的 {iam} 角色，以确保镜像可以\n"
 "                      从 S3 {bucket} 导入到 EC2。更多信息请参阅 {role}。"
 
-#. [components.Modal.3707489178]
+#. [components.Modal.usernameDuplicate]
 #. defaultMessage is:
 #. This user name already exists.
 #: build/messages/components/Modal/UserAccount.json
@@ -2437,7 +2445,7 @@ msgstr "上传类型"
 msgid "User account actions"
 msgstr "用户账户操作"
 
-#. [components.Modal.529605439]
+#. [components.Modal.labelUsername]
 #. defaultMessage is:
 #. User name
 #: build/messages/components/Modal/UserAccount.json
@@ -2726,6 +2734,24 @@ msgstr "创建系统镜像"
 #: public/manifest.json
 msgid "Image Builder"
 msgstr "镜像生成器"
+
+#~ msgid "A password is defined for this account."
+#~ msgstr "为这个账户定义了一个密码。"
+
+#~ msgid "A password is not defined for this account."
+#~ msgstr "没有为这个账户定义密码。"
+
+#~ msgid "New password"
+#~ msgstr "新密码"
+
+#~ msgid "Remove password"
+#~ msgstr "删除密码"
+
+#~ msgid "Set new password"
+#~ msgstr "设置新密码"
+
+#~ msgid "Set password"
+#~ msgstr "设置密码"
 
 #~ msgid "Edit Description"
 #~ msgstr "编辑描述"
