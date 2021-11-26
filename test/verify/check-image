@@ -510,10 +510,8 @@ class TestImage(composerlib.ComposerCase):
         m = self.machine
 
         distro = os.environ.get("TEST_OS")
-        if (distro == "fedora-33" or distro == "fedora-34"):
+        if (distro == "fedora-34"):
             image_type_ostree = "fedora-iot-commit"
-        elif (distro == "rhel-8-3" or distro == "rhel-8-4"):
-            image_type_ostree = "rhel-edge-commit"
         else:
             image_type_ostree = "edge-commit"
 
@@ -591,11 +589,7 @@ class TestImage(composerlib.ComposerCase):
         b = self.browser
         m = self.machine
 
-        distro = os.environ.get("TEST_OS")
-        if (distro == "rhel-8-4"):
-            image_type_ostree = "rhel-edge-container"
-        else:
-            image_type_ostree = "edge-container"
+        image_type_ostree = "edge-container"
 
         self.login_and_go("/composer", superuser=True)
         b.wait_visible("#main")
@@ -685,11 +679,7 @@ class TestImage(composerlib.ComposerCase):
     def testOSTreeInstaller(self):
         b = self.browser
 
-        distro = os.environ.get("TEST_OS")
-        if (distro == "rhel-8-4"):
-            image_type_ostree = "rhel-edge-installer"
-        else:
-            image_type_ostree = "edge-installer"
+        image_type_ostree = "edge-installer"
 
         self.login_and_go("/composer", superuser=True)
         b.wait_visible("#main")
@@ -722,8 +712,7 @@ class TestImage(composerlib.ComposerCase):
         # collect code coverage result
         self.check_coverage()
 
-    # Currently only supported on rhel-8-5
-    @unittest.skipIf(os.environ.get("TEST_OS") != "rhel-8-5", "Does not support ostree image image type")
+    @unittest.skipIf(os.environ.get("TEST_OS") != "rhel-8-6", "Does not support edge-raw-image image type")
     def testEdgeRaw(self):
         b = self.browser
 
@@ -757,7 +746,8 @@ class TestImage(composerlib.ComposerCase):
         # collect code coverage result
         self.check_coverage()
 
-    @unittest.skipIf(os.environ.get("TEST_OS") != "rhel-8-5", "Does not support edge-simplified-installer image type")
+    # Currently only supported on rhel-8-6
+    @unittest.skipIf(os.environ.get("TEST_OS") != "rhel-8-6", "Does not support edge-simplified-installer image type")
     def testEdgeSimplifiedInstaller(self):
         b = self.browser
 
