@@ -14,9 +14,7 @@ fi
 
 # overriding osbuild-composer repo with nightly
 mkdir -p /etc/osbuild-composer/repositories
-cp /home/admin/files/rhel-84.json /etc/osbuild-composer/repositories/rhel-8.json
-ln -s /etc/osbuild-composer/repositories/rhel-8.json /etc/osbuild-composer/repositories/rhel-8-beta.json
-cp /home/admin/files/rhel-85.json /etc/osbuild-composer/repositories/rhel-85.json
+cp /home/admin/files/rhel-86.json /etc/osbuild-composer/repositories/rhel-86.json
 cp /home/admin/files/rhel-90.json /etc/osbuild-composer/repositories/rhel-90.json
 
 # Allow cockpit port (9090) in INPUT chain
