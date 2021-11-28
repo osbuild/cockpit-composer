@@ -67,7 +67,7 @@ class TestBlueprint(composerlib.ComposerCase):
         b.click(".toolbar-pf-action-right #cmpsr-btn-crt-blueprint")
         b.wait_visible("div[role=dialog] #cmpsr-modal-crt-blueprint")
         # empty name blueprint
-        b.set_input_text("#textInput-modal-markup", "openssh-server")
+        b.set_input_text("#textInput-modal-markup", "openssh-server", blur=False)
         b.key_press("\r")
         b.wait_text("#cmpsr-modal-crt-blueprint .alert-danger", "Specify a new blueprint name.")
         b.click("#cmpsr-modal-crt-blueprint button:contains('Cancel')")
@@ -83,7 +83,7 @@ class TestBlueprint(composerlib.ComposerCase):
         b.wait_visible("#main")
 
         # filter "openssh-server" blueprint
-        b.set_input_text("#filter-blueprints", "openssh")
+        b.set_input_text("#filter-blueprints", "openssh", blur=False)
         b.key_press("\r")
         b.wait_in_text(".filter-pf-active-label + .list-inline .label", "Name: openssh")
         b.wait_visible("#openssh-server-name")
@@ -93,7 +93,7 @@ class TestBlueprint(composerlib.ComposerCase):
         b.wait_not_present("p:contains('Active filters:')")
 
         # filter "httpd" will show three matched blueprints
-        b.set_input_text("#filter-blueprints", "httpd")
+        b.set_input_text("#filter-blueprints", "httpd", blur=False)
         b.key_press("\r")
         b.wait_in_text(".filter-pf-active-label + .list-inline .label", "Name: httpd")
         b.wait_not_present("#openssh-server-name")
