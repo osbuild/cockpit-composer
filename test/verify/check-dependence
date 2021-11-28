@@ -68,7 +68,7 @@ class TestDependence(composerlib.ComposerCase):
         b.wait_visible("a:contains('1 Pending Change')")
 
         # search for openssh-server pacakge
-        b.set_input_text("#cmpsr-blueprint-input-filter", "tmux")
+        b.set_input_text("#cmpsr-blueprint-input-filter", "tmux", blur=False)
         b.key_press("\r")
         with b.wait_timeout(120):
             b.click("#tmux-input")

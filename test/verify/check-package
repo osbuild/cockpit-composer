@@ -30,7 +30,7 @@ class TestPackage(composerlib.ComposerCase):
         b.click("button[aria-label='Go to previous page']")
         b.wait_visible("ul[aria-label='Available components'] li:nth-child(1)")
         # filter on avaliable components
-        b.set_input_text("#cmpsr-blueprint-input-filter", "cockpit-bridge")
+        b.set_input_text("#cmpsr-blueprint-input-filter", "cockpit-bridge", blur=False)
         b.key_press("\r")
         with b.wait_timeout(120):
             b.wait_text("#cockpit-bridge-input", "cockpit-bridge")
@@ -43,7 +43,7 @@ class TestPackage(composerlib.ComposerCase):
 
         # filter on blueprints component
         # filter by name
-        b.set_input_text("#filter-blueprints", "tmux")
+        b.set_input_text("#filter-blueprints", "tmux", blur=False)
         b.key_press("\r")
         b.wait_text("ul[data-list=components] li:nth-child(1) #tmux", "tmux")
         b.click(".cmpsr-panel__body--main .toolbar-pf-results button:contains('Clear all filters')")
@@ -55,7 +55,7 @@ class TestPackage(composerlib.ComposerCase):
         b.wait_in_text("#filterFieldTypeMenu", "Version")
         # input version is dynamic according to different OS release
         version = b.text("li[data-component=tmux] .cc-component__version strong")
-        b.set_input_text("#filter-blueprints", version)
+        b.set_input_text("#filter-blueprints", version, blur=False)
         b.key_press("\r")
         b.wait_text("ul[data-list=components] li:nth-child(1) #tmux", "tmux")
         b.click(".cmpsr-panel__body--main .toolbar-pf-results .pficon-close")
@@ -67,7 +67,7 @@ class TestPackage(composerlib.ComposerCase):
         b.wait_in_text("#filterFieldTypeMenu", "Release")
         # input release is dynamic according to different OS release
         release = b.text("li[data-component=tmux] .cc-component__release strong")
-        b.set_input_text("#filter-blueprints", release)
+        b.set_input_text("#filter-blueprints", release, blur=False)
         b.key_press("\r")
         b.wait_text("ul[data-list=components] li:nth-child(1) .cc-component__release strong",
                     release)
@@ -123,7 +123,7 @@ class TestPackage(composerlib.ComposerCase):
             b.wait_visible("ul[aria-label='Available components'] li:nth-child(1)")
 
         # search for openssh-server pacakge
-        b.set_input_text("#cmpsr-blueprint-input-filter", "cockpit-bridge")
+        b.set_input_text("#cmpsr-blueprint-input-filter", "cockpit-bridge", blur=False)
         b.key_press("\r")
         with b.wait_timeout(120):
             b.wait_text("#cockpit-bridge-input", "cockpit-bridge")
@@ -207,7 +207,7 @@ class TestPackage(composerlib.ComposerCase):
             b.wait_visible("ul[aria-label='Available components'] li:nth-child(1)")
 
         # search for openssh-server pacakge
-        b.set_input_text("#cmpsr-blueprint-input-filter", "cockpit-composer")
+        b.set_input_text("#cmpsr-blueprint-input-filter", "cockpit-composer", blur=False)
         b.key_press("\r")
         with b.wait_timeout(120):
             b.wait_text("#cockpit-composer-input", "cockpit-composer")

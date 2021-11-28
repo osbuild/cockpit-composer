@@ -57,7 +57,7 @@ class TestService(composerlib.ComposerCase):
         with b.wait_timeout(300):
             b.wait_visible("ul[data-list=inputs]")
         # search for openssh-server pacakge
-        b.set_input_text("#cmpsr-blueprint-input-filter", "openssh-server")
+        b.set_input_text("#cmpsr-blueprint-input-filter", "openssh-server", blur=False)
         b.key_press("\r")
         with b.wait_timeout(120):
             b.wait_text("#openssh-server-input", "openssh-server")
