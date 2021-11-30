@@ -6,7 +6,7 @@
 # Sundeep Anand <suanand@redhat.com>, 2021.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2021-09-21T18:16:54.428Z\n"
+"POT-Creation-Date: 2021-11-16T18:15:25.060Z\n"
 "PO-Revision-Date: 2021-09-07 13:04+0000\n"
 "Last-Translator: Sundeep Anand <suanand@redhat.com>\n"
 "Language-Team: Japanese <https://translate.fedoraproject.org/projects/"
@@ -42,20 +42,6 @@ msgid ""
 msgstr ""
 "選択したイメージタイプの対応に必要なパッケージのみが含まれた最小のイメージが"
 "作成されます。"
-
-#. [components.Modal.2310857819]
-#. defaultMessage is:
-#. A password is defined for this account.
-#: build/messages/components/Modal/UserAccount.json
-msgid "A password is defined for this account."
-msgstr "このアカウント用にパスワードが定義されています。"
-
-#. [components.Modal.2362836873]
-#. defaultMessage is:
-#. A password is not defined for this account.
-#: build/messages/components/Modal/UserAccount.json
-msgid "A password is not defined for this account."
-msgstr "このアカウント用にパスワードが定義されていません。"
 
 #. [components.Wizard.warningSizeEmpty]
 #. defaultMessage is:
@@ -600,7 +586,7 @@ msgstr "コンポーネントの詳細"
 msgid "Component options"
 msgstr "コンポーネントのオプション"
 
-#. [components.Modal.createPasswordTwo]
+#. [components.Modal.labelConfirmPassword]
 #. defaultMessage is:
 #. Confirm password
 #: build/messages/components/Modal/UserAccount.json
@@ -671,14 +657,10 @@ msgstr "ブループリントの作成"
 msgid "Create image"
 msgstr "イメージの作成"
 
-#. [components.Modal.modalTitleCreate]
-#. defaultMessage is:
-#. Create user account
-#. [pages.blueprint.3234825297]
+#. [components.Modal.3234825297]
 #. defaultMessage is:
 #. Create user account
 #: build/messages/components/Modal/UserAccount.json
-#: build/messages/pages/blueprint/index.json
 msgid "Create user account"
 msgstr "ユーザーアカウントの作成"
 
@@ -856,6 +838,13 @@ msgstr "説明の編集"
 msgid "Edit hostname"
 msgstr "ホスト名の編集"
 
+#. [pages.blueprint.deviceButtonLabel]
+#. defaultMessage is:
+#. Edit installation device
+#: build/messages/pages/blueprint/index.json
+msgid "Edit installation device"
+msgstr ""
+
 #. [components.ListView.1908303378]
 #. defaultMessage is:
 #. Edit packages
@@ -882,7 +871,7 @@ msgstr "パッケージの編集"
 msgid "Edit source"
 msgstr "ソースの編集"
 
-#. [components.Modal.modalTitleEdit]
+#. [components.Modal.2685045824]
 #. defaultMessage is:
 #. Edit user account
 #. [pages.blueprint.userEdit]
@@ -908,6 +897,13 @@ msgstr ""
 #: build/messages/pages/blueprint/index.json
 msgid "Empty blueprint"
 msgstr "ブループリントを空にします"
+
+#. [pages.blueprint.deviceHelp]
+#. defaultMessage is:
+#. Enter valid device node such as /dev/sda1
+#: build/messages/pages/blueprint/index.json
+msgid "Enter valid device node such as /dev/sda1"
+msgstr ""
 
 #. [pages.error.errorMessage]
 #. defaultMessage is:
@@ -979,7 +975,7 @@ msgstr "バージョンによる絞り込み"
 msgid "Finish"
 msgstr "終了"
 
-#. [components.Modal.1182120637]
+#. [components.Modal.labelName]
 #. defaultMessage is:
 #. Full name
 #: build/messages/components/Modal/UserAccount.json
@@ -1236,6 +1232,27 @@ msgstr "イメージのアップロード"
 msgid "Images"
 msgstr "イメージ"
 
+#. [pages.blueprint.3654599626]
+#. defaultMessage is:
+#. Installation Device
+#: build/messages/pages/blueprint/index.json
+msgid "Installation Device"
+msgstr ""
+
+#. [pages.blueprint.deviceInputLabel]
+#. defaultMessage is:
+#. Installation device
+#: build/messages/pages/blueprint/index.json
+msgid "Installation device"
+msgstr ""
+
+#. [pages.blueprint.devicePopoverLabel]
+#. defaultMessage is:
+#. Installation device help
+#: build/messages/pages/blueprint/index.json
+msgid "Installation device help"
+msgstr ""
+
 #. [components.Wizard.labelLiveIso]
 #. defaultMessage is:
 #. Installer, suitable for USB and DVD (.iso)
@@ -1329,13 +1346,6 @@ msgstr "名前"
 #: build/messages/pages/blueprintEdit/index.json
 msgid "Name: {name}"
 msgstr "名前: {name}"
-
-#. [components.Modal.editPasswordOne]
-#. defaultMessage is:
-#. New password
-#: build/messages/components/Modal/UserAccount.json
-msgid "New password"
-msgstr "新規パスワード"
 
 #. [components.Wizard.3673120330]
 #. defaultMessage is:
@@ -1453,10 +1463,7 @@ msgstr "ページが見つかりません"
 msgid "Parent commit"
 msgstr "親のコミット"
 
-#. [components.Modal.createPasswordOne]
-#. defaultMessage is:
-#. Password
-#. [components.Modal.2237029987]
+#. [components.Modal.labelPassword]
 #. defaultMessage is:
 #. Password
 #. [components.Wizard.2237029987]
@@ -1720,13 +1727,6 @@ msgstr "ブループリントからコンポーネントを削除"
 msgid "Remove from blueprint"
 msgstr "ブループリントから削除"
 
-#. [components.Modal.1101731800]
-#. defaultMessage is:
-#. Remove password
-#: build/messages/components/Modal/UserAccount.json
-msgid "Remove password"
-msgstr "パスワードの削除"
-
 #. [components.ListView.remove]
 #. defaultMessage is:
 #. Remove source
@@ -1780,7 +1780,7 @@ msgstr ""
 "以下の情報を確認し、終了をクリックしてイメージを作成し、選択されたタスクを完"
 "了します。"
 
-#. [components.Modal.106035384]
+#. [components.Modal.labelRole]
 #. defaultMessage is:
 #. Role
 #: build/messages/components/Modal/UserAccount.json
@@ -1794,7 +1794,7 @@ msgstr "ロール"
 msgid "S3 Bucket help"
 msgstr "S3 バケットのヘルプ"
 
-#. [components.Modal.229369250]
+#. [components.Modal.labelSSHKey]
 #. defaultMessage is:
 #. SSH key
 #: build/messages/components/Modal/UserAccount.json
@@ -1876,26 +1876,12 @@ msgstr "選択されたコンポーネント"
 msgid "Server admin checkbox"
 msgstr "サーバー管理者チェックボックス"
 
-#. [components.Modal.122879380]
+#. [components.Modal.labelAdmin]
 #. defaultMessage is:
 #. Server administrator
 #: build/messages/components/Modal/UserAccount.json
 msgid "Server administrator"
 msgstr "サーバー管理者"
-
-#. [components.Modal.2342634351]
-#. defaultMessage is:
-#. Set new password
-#: build/messages/components/Modal/UserAccount.json
-msgid "Set new password"
-msgstr "新規パスワードの設定"
-
-#. [components.Modal.3532935154]
-#. defaultMessage is:
-#. Set password
-#: build/messages/components/Modal/UserAccount.json
-msgid "Set password"
-msgstr "パスワードの設定"
 
 #. [components.Wizard.imageSizePopover]
 #. defaultMessage is:
@@ -2117,6 +2103,15 @@ msgstr "ビルドプロセス終了後に再開することはできません。
 msgid "The fields marked with {val} are required."
 msgstr "{val} の付いたフィールドは必須です。"
 
+#. [pages.blueprint.devicePopover]
+#. defaultMessage is:
+#. The installation device is used by the RHEL for Edge Simplified Installer. It specifies which device the image will be installed onto.
+#: build/messages/pages/blueprint/index.json
+msgid ""
+"The installation device is used by the RHEL for Edge Simplified Installer. "
+"It specifies which device the image will be installed onto."
+msgstr ""
+
 #. [components.Modal.2580689893]
 #. defaultMessage is:
 #. The name {name} already exists.
@@ -2165,7 +2160,7 @@ msgstr ""
 "サイズが少々大きく設定されています。ターゲットの宛先にイメージサイズの制限が"
 "あるかどうかを確認することをお勧めします。"
 
-#. [components.Modal.2405281428]
+#. [components.Modal.usernameValidChars]
 #. defaultMessage is:
 #. The user name can only consist of letters from a-z, digits, dots, dashes and underscores.
 #: build/messages/components/Modal/UserAccount.json
@@ -2175,6 +2170,15 @@ msgid ""
 msgstr ""
 "ユーザー名は a〜z の文字、数字、ドット、ダッシュ、およびアンダースコアだけで"
 "構成されます。"
+
+#. [components.Modal.usernameEmpty]
+#. defaultMessage is:
+#. The user name cannot be empty.
+#: build/messages/components/Modal/UserAccount.json
+#, fuzzy
+#| msgid "This user name already exists."
+msgid "The user name cannot be empty."
+msgstr "このユーザー名はすでに存在します。"
 
 #. [components.EmptyState.1947371795]
 #. defaultMessage is:
@@ -2186,7 +2190,11 @@ msgstr "ユーザー {userName} は、サービスを開始することを許可
 #. [components.Form.2330477961]
 #. defaultMessage is:
 #. The values entered for password do not match.
+#. [components.Modal.passwordMatch]
+#. defaultMessage is:
+#. The values entered for password do not match.
 #: build/messages/components/Form/Password.json
+#: build/messages/components/Modal/UserAccount.json
 msgid "The values entered for password do not match."
 msgstr "パスワードとして入力した値が一致しません。"
 
@@ -2307,7 +2315,7 @@ msgstr ""
 "                      イメージが S3 {bucket} から EC2 にインポートされるよう"
 "にします。詳細は、{role} を参照してください。"
 
-#. [components.Modal.3707489178]
+#. [components.Modal.usernameDuplicate]
 #. defaultMessage is:
 #. This user name already exists.
 #: build/messages/components/Modal/UserAccount.json
@@ -2487,7 +2495,7 @@ msgstr "アップロードタイプ"
 msgid "User account actions"
 msgstr "ユーザーアカウントの動作"
 
-#. [components.Modal.529605439]
+#. [components.Modal.labelUsername]
 #. defaultMessage is:
 #. User name
 #: build/messages/components/Modal/UserAccount.json
@@ -2782,6 +2790,24 @@ msgstr "システムイメージの作成"
 #: public/manifest.json
 msgid "Image Builder"
 msgstr "イメージビルダー"
+
+#~ msgid "A password is defined for this account."
+#~ msgstr "このアカウント用にパスワードが定義されています。"
+
+#~ msgid "A password is not defined for this account."
+#~ msgstr "このアカウント用にパスワードが定義されていません。"
+
+#~ msgid "New password"
+#~ msgstr "新規パスワード"
+
+#~ msgid "Remove password"
+#~ msgstr "パスワードの削除"
+
+#~ msgid "Set new password"
+#~ msgstr "新規パスワードの設定"
+
+#~ msgid "Set password"
+#~ msgstr "パスワードの設定"
 
 #~ msgid "Edit Description"
 #~ msgstr "説明の編集"
