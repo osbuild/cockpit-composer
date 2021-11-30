@@ -5,17 +5,17 @@
 # simmon <simmon@nplob.com>, 2021.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2021-09-21T18:16:54.428Z\n"
-"PO-Revision-Date: 2021-09-03 06:57+0000\n"
+"POT-Creation-Date: 2021-11-16T18:15:25.060Z\n"
+"PO-Revision-Date: 2021-11-20 08:16+0000\n"
 "Last-Translator: simmon <simmon@nplob.com>\n"
-"Language-Team: Korean <https://translate.fedoraproject.org/projects/cockpit-"
-"composer/main/ko/>\n"
+"Language-Team: Korean <https://translate.fedoraproject.org/projects/"
+"cockpit-composer/main/ko/>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
-"X-Generator: Weblate 4.8\n"
+"X-Generator: Weblate 4.9\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -41,20 +41,6 @@ msgid ""
 msgstr ""
 "이미지 유형을 지원하는 데 필요한 꾸러미(package)만 사용하여 최소 이미지를 생"
 "성합니다."
-
-#. [components.Modal.2310857819]
-#. defaultMessage is:
-#. A password is defined for this account.
-#: build/messages/components/Modal/UserAccount.json
-msgid "A password is defined for this account."
-msgstr "이 계정에 암호가 지정되어 있습니다."
-
-#. [components.Modal.2362836873]
-#. defaultMessage is:
-#. A password is not defined for this account.
-#: build/messages/components/Modal/UserAccount.json
-msgid "A password is not defined for this account."
-msgstr "이 계정에 암호가 지정되어 있지 않습니다."
 
 #. [components.Wizard.warningSizeEmpty]
 #. defaultMessage is:
@@ -597,7 +583,7 @@ msgstr "구성 요소 세부 정보"
 msgid "Component options"
 msgstr "구성 요소 옵션"
 
-#. [components.Modal.createPasswordTwo]
+#. [components.Modal.labelConfirmPassword]
 #. defaultMessage is:
 #. Confirm password
 #: build/messages/components/Modal/UserAccount.json
@@ -668,14 +654,10 @@ msgstr "블루프린트 만들기"
 msgid "Create image"
 msgstr "이미지 만들기"
 
-#. [components.Modal.modalTitleCreate]
-#. defaultMessage is:
-#. Create user account
-#. [pages.blueprint.3234825297]
+#. [components.Modal.3234825297]
 #. defaultMessage is:
 #. Create user account
 #: build/messages/components/Modal/UserAccount.json
-#: build/messages/pages/blueprint/index.json
 msgid "Create user account"
 msgstr "사용자 계정 만들기"
 
@@ -854,6 +836,13 @@ msgstr "설명 편집"
 msgid "Edit hostname"
 msgstr "호스트이름 편집"
 
+#. [pages.blueprint.deviceButtonLabel]
+#. defaultMessage is:
+#. Edit installation device
+#: build/messages/pages/blueprint/index.json
+msgid "Edit installation device"
+msgstr "설치 장치 편집"
+
 #. [components.ListView.1908303378]
 #. defaultMessage is:
 #. Edit packages
@@ -880,7 +869,7 @@ msgstr "꾸러미(package) 편집"
 msgid "Edit source"
 msgstr "소스 편집"
 
-#. [components.Modal.modalTitleEdit]
+#. [components.Modal.2685045824]
 #. defaultMessage is:
 #. Edit user account
 #. [pages.blueprint.userEdit]
@@ -904,6 +893,13 @@ msgstr "원인 커밋 또는 저장소 url 중 하나만 지정 할 수 있습�
 #: build/messages/pages/blueprint/index.json
 msgid "Empty blueprint"
 msgstr "블루프린트가 비어있음"
+
+#. [pages.blueprint.deviceHelp]
+#. defaultMessage is:
+#. Enter valid device node such as /dev/sda1
+#: build/messages/pages/blueprint/index.json
+msgid "Enter valid device node such as /dev/sda1"
+msgstr "/dev/sda1과 같은 유효한 노드 장치를 입력합니다"
 
 #. [pages.error.errorMessage]
 #. defaultMessage is:
@@ -975,7 +971,7 @@ msgstr "버전별 필터"
 msgid "Finish"
 msgstr "종료"
 
-#. [components.Modal.1182120637]
+#. [components.Modal.labelName]
 #. defaultMessage is:
 #. Full name
 #: build/messages/components/Modal/UserAccount.json
@@ -1227,6 +1223,27 @@ msgstr "이미지 업로드"
 msgid "Images"
 msgstr "이미지"
 
+#. [pages.blueprint.3654599626]
+#. defaultMessage is:
+#. Installation Device
+#: build/messages/pages/blueprint/index.json
+msgid "Installation Device"
+msgstr "설치 장치"
+
+#. [pages.blueprint.deviceInputLabel]
+#. defaultMessage is:
+#. Installation device
+#: build/messages/pages/blueprint/index.json
+msgid "Installation device"
+msgstr "설치 장치"
+
+#. [pages.blueprint.devicePopoverLabel]
+#. defaultMessage is:
+#. Installation device help
+#: build/messages/pages/blueprint/index.json
+msgid "Installation device help"
+msgstr "설치 장치 도움말"
+
 #. [components.Wizard.labelLiveIso]
 #. defaultMessage is:
 #. Installer, suitable for USB and DVD (.iso)
@@ -1320,13 +1337,6 @@ msgstr "이름"
 #: build/messages/pages/blueprintEdit/index.json
 msgid "Name: {name}"
 msgstr "이름: {name}"
-
-#. [components.Modal.editPasswordOne]
-#. defaultMessage is:
-#. New password
-#: build/messages/components/Modal/UserAccount.json
-msgid "New password"
-msgstr "신규 비밀번호"
 
 #. [components.Wizard.3673120330]
 #. defaultMessage is:
@@ -1444,10 +1454,7 @@ msgstr "페이지를 찾을 수 없음"
 msgid "Parent commit"
 msgstr "상위 커밋"
 
-#. [components.Modal.createPasswordOne]
-#. defaultMessage is:
-#. Password
-#. [components.Modal.2237029987]
+#. [components.Modal.labelPassword]
 #. defaultMessage is:
 #. Password
 #. [components.Wizard.2237029987]
@@ -1706,13 +1713,6 @@ msgstr "블루프린트에서 구성 요소 제거"
 msgid "Remove from blueprint"
 msgstr "블루프린트에서 삭제"
 
-#. [components.Modal.1101731800]
-#. defaultMessage is:
-#. Remove password
-#: build/messages/components/Modal/UserAccount.json
-msgid "Remove password"
-msgstr "암호 제거"
-
 #. [components.ListView.remove]
 #. defaultMessage is:
 #. Remove source
@@ -1766,7 +1766,7 @@ msgstr ""
 "아래 정보를 검토하고 완료를 눌로 이미지를 작성하고 선택한 작업을 완료하십시"
 "오."
 
-#. [components.Modal.106035384]
+#. [components.Modal.labelRole]
 #. defaultMessage is:
 #. Role
 #: build/messages/components/Modal/UserAccount.json
@@ -1780,7 +1780,7 @@ msgstr "역할"
 msgid "S3 Bucket help"
 msgstr "S3 버킷 도움말"
 
-#. [components.Modal.229369250]
+#. [components.Modal.labelSSHKey]
 #. defaultMessage is:
 #. SSH key
 #: build/messages/components/Modal/UserAccount.json
@@ -1862,26 +1862,12 @@ msgstr "선택된 구성 요소"
 msgid "Server admin checkbox"
 msgstr "서버 관리자 점검상자"
 
-#. [components.Modal.122879380]
+#. [components.Modal.labelAdmin]
 #. defaultMessage is:
 #. Server administrator
 #: build/messages/components/Modal/UserAccount.json
 msgid "Server administrator"
 msgstr "서버 관리자"
-
-#. [components.Modal.2342634351]
-#. defaultMessage is:
-#. Set new password
-#: build/messages/components/Modal/UserAccount.json
-msgid "Set new password"
-msgstr "신규 비밀번호 설정"
-
-#. [components.Modal.3532935154]
-#. defaultMessage is:
-#. Set password
-#: build/messages/components/Modal/UserAccount.json
-msgid "Set password"
-msgstr "암호 설정"
 
 #. [components.Wizard.imageSizePopover]
 #. defaultMessage is:
@@ -2102,6 +2088,15 @@ msgstr "빌드 프로세스가 중지 된 후에 다시 시작할 수 없습니�
 msgid "The fields marked with {val} are required."
 msgstr "{val}(으)로 표시된 항목은 필수 항목입니다."
 
+#. [pages.blueprint.devicePopover]
+#. defaultMessage is:
+#. The installation device is used by the RHEL for Edge Simplified Installer. It specifies which device the image will be installed onto.
+#: build/messages/pages/blueprint/index.json
+msgid ""
+"The installation device is used by the RHEL for Edge Simplified Installer. "
+"It specifies which device the image will be installed onto."
+msgstr "설치 장치는 Edge Simplified Installer용 RHEL에서 사용됩니다. 이미지를 설치 할 장치를 지정합니다."
+
 #. [components.Modal.2580689893]
 #. defaultMessage is:
 #. The name {name} already exists.
@@ -2150,7 +2145,7 @@ msgstr ""
 "지정된 크기가 큽니다. 대상 위치에 이미지 크기에 대한 제한이 있는지 확인하는 "
 "것이 좋습니다."
 
-#. [components.Modal.2405281428]
+#. [components.Modal.usernameValidChars]
 #. defaultMessage is:
 #. The user name can only consist of letters from a-z, digits, dots, dashes and underscores.
 #: build/messages/components/Modal/UserAccount.json
@@ -2158,6 +2153,13 @@ msgid ""
 "The user name can only consist of letters from a-z, digits, dots, dashes and "
 "underscores."
 msgstr "사용자 이름에는 a~z 문자, 숫자, 점, 대시, 밑줄만 사용할 수 있습니다."
+
+#. [components.Modal.usernameEmpty]
+#. defaultMessage is:
+#. The user name cannot be empty.
+#: build/messages/components/Modal/UserAccount.json
+msgid "The user name cannot be empty."
+msgstr "사용자 이름은 비워 둘 수 없습니다."
 
 #. [components.EmptyState.1947371795]
 #. defaultMessage is:
@@ -2169,7 +2171,11 @@ msgstr "사용자 {userName}는 서비스를 시작할 수 있는 권한이 없�
 #. [components.Form.2330477961]
 #. defaultMessage is:
 #. The values entered for password do not match.
+#. [components.Modal.passwordMatch]
+#. defaultMessage is:
+#. The values entered for password do not match.
 #: build/messages/components/Form/Password.json
+#: build/messages/components/Modal/UserAccount.json
 msgid "The values entered for password do not match."
 msgstr "암호로 입력한 값이 일치하지 않습니다."
 
@@ -2290,7 +2296,7 @@ msgstr ""
 "                      S3{bucket}에서 EC2로 이미지를 가져올 수 있습니다. 자세"
 "한 내용은 {role}에서 참조하십시오."
 
-#. [components.Modal.3707489178]
+#. [components.Modal.usernameDuplicate]
 #. defaultMessage is:
 #. This user name already exists.
 #: build/messages/components/Modal/UserAccount.json
@@ -2470,7 +2476,7 @@ msgstr "업로드 유형"
 msgid "User account actions"
 msgstr "사용자 계정 작업"
 
-#. [components.Modal.529605439]
+#. [components.Modal.labelUsername]
 #. defaultMessage is:
 #. User name
 #: build/messages/components/Modal/UserAccount.json
@@ -2764,6 +2770,24 @@ msgstr "시스템 이미지 만들기"
 #: public/manifest.json
 msgid "Image Builder"
 msgstr "이미지 빌더"
+
+#~ msgid "A password is defined for this account."
+#~ msgstr "이 계정에 암호가 지정되어 있습니다."
+
+#~ msgid "A password is not defined for this account."
+#~ msgstr "이 계정에 암호가 지정되어 있지 않습니다."
+
+#~ msgid "New password"
+#~ msgstr "신규 비밀번호"
+
+#~ msgid "Remove password"
+#~ msgstr "암호 제거"
+
+#~ msgid "Set new password"
+#~ msgstr "신규 비밀번호 설정"
+
+#~ msgid "Set password"
+#~ msgstr "암호 설정"
 
 #~ msgid "Edit Description"
 #~ msgstr "설명 편집"

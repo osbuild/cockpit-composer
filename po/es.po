@@ -6,7 +6,7 @@
 # Anonymous <noreply@weblate.org>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2021-09-21T18:16:54.428Z\n"
+"POT-Creation-Date: 2021-11-16T18:15:25.060Z\n"
 "PO-Revision-Date: 2020-05-15 08:50+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish <https://translate.fedoraproject.org/projects/cockpit-"
@@ -40,20 +40,6 @@ msgid ""
 "A minimal image will be created with only the packages needed to support the "
 "selected image type."
 msgstr ""
-
-#. [components.Modal.2310857819]
-#. defaultMessage is:
-#. A password is defined for this account.
-#: build/messages/components/Modal/UserAccount.json
-msgid "A password is defined for this account."
-msgstr "Se ha definido una contraseña para esta cuenta."
-
-#. [components.Modal.2362836873]
-#. defaultMessage is:
-#. A password is not defined for this account.
-#: build/messages/components/Modal/UserAccount.json
-msgid "A password is not defined for this account."
-msgstr "No se ha definido una contraseña para esta cuenta."
 
 #. [components.Wizard.warningSizeEmpty]
 #. defaultMessage is:
@@ -628,7 +614,7 @@ msgstr "Detalles de los componentes"
 msgid "Component options"
 msgstr "Opciones de componentes"
 
-#. [components.Modal.createPasswordTwo]
+#. [components.Modal.labelConfirmPassword]
 #. defaultMessage is:
 #. Confirm password
 #: build/messages/components/Modal/UserAccount.json
@@ -701,14 +687,10 @@ msgstr "Crear un plano"
 msgid "Create image"
 msgstr "Crear imagen"
 
-#. [components.Modal.modalTitleCreate]
-#. defaultMessage is:
-#. Create user account
-#. [pages.blueprint.3234825297]
+#. [components.Modal.3234825297]
 #. defaultMessage is:
 #. Create user account
 #: build/messages/components/Modal/UserAccount.json
-#: build/messages/pages/blueprint/index.json
 #, fuzzy
 #| msgid "Create User Account"
 msgid "Create user account"
@@ -903,6 +885,13 @@ msgstr "Editar descripción"
 msgid "Edit hostname"
 msgstr "Editar nombre de anfitrión"
 
+#. [pages.blueprint.deviceButtonLabel]
+#. defaultMessage is:
+#. Edit installation device
+#: build/messages/pages/blueprint/index.json
+msgid "Edit installation device"
+msgstr ""
+
 #. [components.ListView.1908303378]
 #. defaultMessage is:
 #. Edit packages
@@ -933,7 +922,7 @@ msgstr "Editar paquetes"
 msgid "Edit source"
 msgstr "Editar fuente"
 
-#. [components.Modal.modalTitleEdit]
+#. [components.Modal.2685045824]
 #. defaultMessage is:
 #. Edit user account
 #. [pages.blueprint.userEdit]
@@ -961,6 +950,13 @@ msgstr ""
 #| msgid "Empty Blueprint"
 msgid "Empty blueprint"
 msgstr "Vaciar plano"
+
+#. [pages.blueprint.deviceHelp]
+#. defaultMessage is:
+#. Enter valid device node such as /dev/sda1
+#: build/messages/pages/blueprint/index.json
+msgid "Enter valid device node such as /dev/sda1"
+msgstr ""
 
 #. [pages.error.errorMessage]
 #. defaultMessage is:
@@ -1044,7 +1040,7 @@ msgstr "Filtrar por nombre...."
 msgid "Finish"
 msgstr "Finalizar"
 
-#. [components.Modal.1182120637]
+#. [components.Modal.labelName]
 #. defaultMessage is:
 #. Full name
 #: build/messages/components/Modal/UserAccount.json
@@ -1290,6 +1286,27 @@ msgstr "Cargas de la imagen"
 msgid "Images"
 msgstr "Imágenes"
 
+#. [pages.blueprint.3654599626]
+#. defaultMessage is:
+#. Installation Device
+#: build/messages/pages/blueprint/index.json
+msgid "Installation Device"
+msgstr ""
+
+#. [pages.blueprint.deviceInputLabel]
+#. defaultMessage is:
+#. Installation device
+#: build/messages/pages/blueprint/index.json
+msgid "Installation device"
+msgstr ""
+
+#. [pages.blueprint.devicePopoverLabel]
+#. defaultMessage is:
+#. Installation device help
+#: build/messages/pages/blueprint/index.json
+msgid "Installation device help"
+msgstr ""
+
 #. [components.Wizard.labelLiveIso]
 #. defaultMessage is:
 #. Installer, suitable for USB and DVD (.iso)
@@ -1387,13 +1404,6 @@ msgstr "Nombre"
 #: build/messages/pages/blueprintEdit/index.json
 msgid "Name: {name}"
 msgstr "Nombre: {name}"
-
-#. [components.Modal.editPasswordOne]
-#. defaultMessage is:
-#. New password
-#: build/messages/components/Modal/UserAccount.json
-msgid "New password"
-msgstr "Contraseña nueva"
 
 #. [components.Wizard.3673120330]
 #. defaultMessage is:
@@ -1525,10 +1535,7 @@ msgstr "Página no encontrada"
 msgid "Parent commit"
 msgstr ""
 
-#. [components.Modal.createPasswordOne]
-#. defaultMessage is:
-#. Password
-#. [components.Modal.2237029987]
+#. [components.Modal.labelPassword]
 #. defaultMessage is:
 #. Password
 #. [components.Wizard.2237029987]
@@ -1772,15 +1779,6 @@ msgstr "Quitar componente de plano"
 msgid "Remove from blueprint"
 msgstr "Quitar de plano"
 
-#. [components.Modal.1101731800]
-#. defaultMessage is:
-#. Remove password
-#: build/messages/components/Modal/UserAccount.json
-#, fuzzy
-#| msgid "Remove Password"
-msgid "Remove password"
-msgstr "Quitar contraseña"
-
 #. [components.ListView.remove]
 #. defaultMessage is:
 #. Remove source
@@ -1838,7 +1836,7 @@ msgstr ""
 "Revise la información siguiente y pulse en Finalizar para crear la imagen y "
 "completar las tareas que se han seleccionado."
 
-#. [components.Modal.106035384]
+#. [components.Modal.labelRole]
 #. defaultMessage is:
 #. Role
 #: build/messages/components/Modal/UserAccount.json
@@ -1852,7 +1850,7 @@ msgstr "Función"
 msgid "S3 Bucket help"
 msgstr ""
 
-#. [components.Modal.229369250]
+#. [components.Modal.labelSSHKey]
 #. defaultMessage is:
 #. SSH key
 #: build/messages/components/Modal/UserAccount.json
@@ -1938,30 +1936,12 @@ msgstr "Componentes seleccionados"
 msgid "Server admin checkbox"
 msgstr "Administrador del servidor"
 
-#. [components.Modal.122879380]
+#. [components.Modal.labelAdmin]
 #. defaultMessage is:
 #. Server administrator
 #: build/messages/components/Modal/UserAccount.json
 msgid "Server administrator"
 msgstr "Administrador del servidor"
-
-#. [components.Modal.2342634351]
-#. defaultMessage is:
-#. Set new password
-#: build/messages/components/Modal/UserAccount.json
-#, fuzzy
-#| msgid "Set New Password"
-msgid "Set new password"
-msgstr "Establecer contraseña nueva"
-
-#. [components.Modal.3532935154]
-#. defaultMessage is:
-#. Set password
-#: build/messages/components/Modal/UserAccount.json
-#, fuzzy
-#| msgid "Set Password"
-msgid "Set password"
-msgstr "Establecer contraseña"
 
 #. [components.Wizard.imageSizePopover]
 #. defaultMessage is:
@@ -2199,6 +2179,15 @@ msgstr ""
 msgid "The fields marked with {val} are required."
 msgstr "Los campos marcados con {val} son obligatorios."
 
+#. [pages.blueprint.devicePopover]
+#. defaultMessage is:
+#. The installation device is used by the RHEL for Edge Simplified Installer. It specifies which device the image will be installed onto.
+#: build/messages/pages/blueprint/index.json
+msgid ""
+"The installation device is used by the RHEL for Edge Simplified Installer. "
+"It specifies which device the image will be installed onto."
+msgstr ""
+
 #. [components.Modal.2580689893]
 #. defaultMessage is:
 #. The name {name} already exists.
@@ -2245,7 +2234,7 @@ msgstr ""
 "El tamaño especificado es grande. Recomendamos que compruebe si el destino "
 "tiene restricciones de tamaño de imagen."
 
-#. [components.Modal.2405281428]
+#. [components.Modal.usernameValidChars]
 #. defaultMessage is:
 #. The user name can only consist of letters from a-z, digits, dots, dashes and underscores.
 #: build/messages/components/Modal/UserAccount.json
@@ -2255,6 +2244,15 @@ msgid ""
 msgstr ""
 "El nombre de usuario solo puede consistir de letras (a-z), dígitos, puntos, "
 "guiones y guiones bajos."
+
+#. [components.Modal.usernameEmpty]
+#. defaultMessage is:
+#. The user name cannot be empty.
+#: build/messages/components/Modal/UserAccount.json
+#, fuzzy
+#| msgid "This user name already exists."
+msgid "The user name cannot be empty."
+msgstr "Este nombre de usuario ya existe."
 
 #. [components.EmptyState.1947371795]
 #. defaultMessage is:
@@ -2266,7 +2264,11 @@ msgstr "{userName} no tiene permitido iniciar servicios."
 #. [components.Form.2330477961]
 #. defaultMessage is:
 #. The values entered for password do not match.
+#. [components.Modal.passwordMatch]
+#. defaultMessage is:
+#. The values entered for password do not match.
 #: build/messages/components/Form/Password.json
+#: build/messages/components/Modal/UserAccount.json
 msgid "The values entered for password do not match."
 msgstr "Las contraseñas no coinciden."
 
@@ -2381,7 +2383,7 @@ msgid ""
 "details, refer to the {role}."
 msgstr ""
 
-#. [components.Modal.3707489178]
+#. [components.Modal.usernameDuplicate]
 #. defaultMessage is:
 #. This user name already exists.
 #: build/messages/components/Modal/UserAccount.json
@@ -2571,7 +2573,7 @@ msgstr "Tipo de carga"
 msgid "User account actions"
 msgstr "Acciones de cuenta de usuario"
 
-#. [components.Modal.529605439]
+#. [components.Modal.labelUsername]
 #. defaultMessage is:
 #. User name
 #: build/messages/components/Modal/UserAccount.json
@@ -2868,6 +2870,30 @@ msgstr "Creando imágenes de sistema"
 #: public/manifest.json
 msgid "Image Builder"
 msgstr "Constructor de Imágenes"
+
+#~ msgid "A password is defined for this account."
+#~ msgstr "Se ha definido una contraseña para esta cuenta."
+
+#~ msgid "A password is not defined for this account."
+#~ msgstr "No se ha definido una contraseña para esta cuenta."
+
+#~ msgid "New password"
+#~ msgstr "Contraseña nueva"
+
+#, fuzzy
+#~| msgid "Remove Password"
+#~ msgid "Remove password"
+#~ msgstr "Quitar contraseña"
+
+#, fuzzy
+#~| msgid "Set New Password"
+#~ msgid "Set new password"
+#~ msgstr "Establecer contraseña nueva"
+
+#, fuzzy
+#~| msgid "Set Password"
+#~ msgid "Set password"
+#~ msgstr "Establecer contraseña"
 
 #~ msgid "Edit Description"
 #~ msgstr "Editar descripción"

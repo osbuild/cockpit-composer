@@ -3,17 +3,17 @@
 # Burak Yavuz <hitowerdigit@hotmail.com>, 2020, 2021.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2021-09-21T18:16:54.428Z\n"
-"PO-Revision-Date: 2021-09-04 01:04+0000\n"
+"POT-Creation-Date: 2021-11-16T18:15:25.060Z\n"
+"PO-Revision-Date: 2021-11-20 08:16+0000\n"
 "Last-Translator: Burak Yavuz <hitowerdigit@hotmail.com>\n"
-"Language-Team: Turkish <https://translate.fedoraproject.org/projects/cockpit-"
-"composer/main/tr/>\n"
+"Language-Team: Turkish <https://translate.fedoraproject.org/projects/"
+"cockpit-composer/main/tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1\n"
-"X-Generator: Weblate 4.8\n"
+"X-Generator: Weblate 4.9\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -39,20 +39,6 @@ msgid ""
 msgstr ""
 "Sadece seçilen kalıp türünü desteklemek için gereken paketlerle asgari bir "
 "kalıp oluşturulacaktır."
-
-#. [components.Modal.2310857819]
-#. defaultMessage is:
-#. A password is defined for this account.
-#: build/messages/components/Modal/UserAccount.json
-msgid "A password is defined for this account."
-msgstr "Bu hesap için bir şifre tanımlı."
-
-#. [components.Modal.2362836873]
-#. defaultMessage is:
-#. A password is not defined for this account.
-#: build/messages/components/Modal/UserAccount.json
-msgid "A password is not defined for this account."
-msgstr "Bu hesap için bir şifre tanımlı değil."
 
 #. [components.Wizard.warningSizeEmpty]
 #. defaultMessage is:
@@ -594,7 +580,7 @@ msgstr "Bileşen ayrıntıları"
 msgid "Component options"
 msgstr "Bileşen seçenekleri"
 
-#. [components.Modal.createPasswordTwo]
+#. [components.Modal.labelConfirmPassword]
 #. defaultMessage is:
 #. Confirm password
 #: build/messages/components/Modal/UserAccount.json
@@ -665,14 +651,10 @@ msgstr "Plan oluştur"
 msgid "Create image"
 msgstr "Kalıp oluştur"
 
-#. [components.Modal.modalTitleCreate]
-#. defaultMessage is:
-#. Create user account
-#. [pages.blueprint.3234825297]
+#. [components.Modal.3234825297]
 #. defaultMessage is:
 #. Create user account
 #: build/messages/components/Modal/UserAccount.json
-#: build/messages/pages/blueprint/index.json
 msgid "Create user account"
 msgstr "Kullanıcı hesabı oluştur"
 
@@ -850,6 +832,13 @@ msgstr "Açıklamayı düzenle"
 msgid "Edit hostname"
 msgstr "Ana bilgisayar adını düzenle"
 
+#. [pages.blueprint.deviceButtonLabel]
+#. defaultMessage is:
+#. Edit installation device
+#: build/messages/pages/blueprint/index.json
+msgid "Edit installation device"
+msgstr "Kurulum aygıtını düzenle"
+
 #. [components.ListView.1908303378]
 #. defaultMessage is:
 #. Edit packages
@@ -876,7 +865,7 @@ msgstr "Paketleri düzenle"
 msgid "Edit source"
 msgstr "Kaynağı düzenle"
 
-#. [components.Modal.modalTitleEdit]
+#. [components.Modal.2685045824]
 #. defaultMessage is:
 #. Edit user account
 #. [pages.blueprint.userEdit]
@@ -900,6 +889,13 @@ msgstr "Ya üst işleme ya da depo url'si belirtilebilir. İkiside değil."
 #: build/messages/pages/blueprint/index.json
 msgid "Empty blueprint"
 msgstr "Boş plan"
+
+#. [pages.blueprint.deviceHelp]
+#. defaultMessage is:
+#. Enter valid device node such as /dev/sda1
+#: build/messages/pages/blueprint/index.json
+msgid "Enter valid device node such as /dev/sda1"
+msgstr "/dev/sda1 gibi geçerli aygıt düğümünü girin"
 
 #. [pages.error.errorMessage]
 #. defaultMessage is:
@@ -971,7 +967,7 @@ msgstr "Sürüme göre süz"
 msgid "Finish"
 msgstr "Bitir"
 
-#. [components.Modal.1182120637]
+#. [components.Modal.labelName]
 #. defaultMessage is:
 #. Full name
 #: build/messages/components/Modal/UserAccount.json
@@ -1228,6 +1224,27 @@ msgstr "Kalıp karşıya yüklemeleri"
 msgid "Images"
 msgstr "Kalıplar"
 
+#. [pages.blueprint.3654599626]
+#. defaultMessage is:
+#. Installation Device
+#: build/messages/pages/blueprint/index.json
+msgid "Installation Device"
+msgstr "Kurulum Aygıtı"
+
+#. [pages.blueprint.deviceInputLabel]
+#. defaultMessage is:
+#. Installation device
+#: build/messages/pages/blueprint/index.json
+msgid "Installation device"
+msgstr "Kurulum aygıtı"
+
+#. [pages.blueprint.devicePopoverLabel]
+#. defaultMessage is:
+#. Installation device help
+#: build/messages/pages/blueprint/index.json
+msgid "Installation device help"
+msgstr "Kurulum aygıtı yardım"
+
 #. [components.Wizard.labelLiveIso]
 #. defaultMessage is:
 #. Installer, suitable for USB and DVD (.iso)
@@ -1321,13 +1338,6 @@ msgstr "İsim"
 #: build/messages/pages/blueprintEdit/index.json
 msgid "Name: {name}"
 msgstr "İsim: {name}"
-
-#. [components.Modal.editPasswordOne]
-#. defaultMessage is:
-#. New password
-#: build/messages/components/Modal/UserAccount.json
-msgid "New password"
-msgstr "Yeni parola"
 
 #. [components.Wizard.3673120330]
 #. defaultMessage is:
@@ -1445,10 +1455,7 @@ msgstr "Sayfa bulunamadı"
 msgid "Parent commit"
 msgstr "Üst işleme"
 
-#. [components.Modal.createPasswordOne]
-#. defaultMessage is:
-#. Password
-#. [components.Modal.2237029987]
+#. [components.Modal.labelPassword]
 #. defaultMessage is:
 #. Password
 #. [components.Wizard.2237029987]
@@ -1714,13 +1721,6 @@ msgstr "Bileşeni plandan kaldır"
 msgid "Remove from blueprint"
 msgstr "Plandan kaldır"
 
-#. [components.Modal.1101731800]
-#. defaultMessage is:
-#. Remove password
-#: build/messages/components/Modal/UserAccount.json
-msgid "Remove password"
-msgstr "Parolayı kaldır"
-
 #. [components.ListView.remove]
 #. defaultMessage is:
 #. Remove source
@@ -1774,7 +1774,7 @@ msgstr ""
 "Aşağıdaki bilgileri inceleyin ve kalıbı oluşturmak ve seçilen görevleri "
 "tamamlamak için Bitir düğmesine tıklayın."
 
-#. [components.Modal.106035384]
+#. [components.Modal.labelRole]
 #. defaultMessage is:
 #. Role
 #: build/messages/components/Modal/UserAccount.json
@@ -1788,7 +1788,7 @@ msgstr "Rol"
 msgid "S3 Bucket help"
 msgstr "S3 Bucket ile ilgili yardım"
 
-#. [components.Modal.229369250]
+#. [components.Modal.labelSSHKey]
 #. defaultMessage is:
 #. SSH key
 #: build/messages/components/Modal/UserAccount.json
@@ -1870,26 +1870,12 @@ msgstr "Seçilen bileşenler"
 msgid "Server admin checkbox"
 msgstr "Sunucu yöneticisi onay kutusu"
 
-#. [components.Modal.122879380]
+#. [components.Modal.labelAdmin]
 #. defaultMessage is:
 #. Server administrator
 #: build/messages/components/Modal/UserAccount.json
 msgid "Server administrator"
 msgstr "Sunucu yöneticisi"
-
-#. [components.Modal.2342634351]
-#. defaultMessage is:
-#. Set new password
-#: build/messages/components/Modal/UserAccount.json
-msgid "Set new password"
-msgstr "Yeni parola ayarla"
-
-#. [components.Modal.3532935154]
-#. defaultMessage is:
-#. Set password
-#: build/messages/components/Modal/UserAccount.json
-msgid "Set password"
-msgstr "Parola ayarla"
 
 #. [components.Wizard.imageSizePopover]
 #. defaultMessage is:
@@ -2111,6 +2097,17 @@ msgstr "Oluşturma işlemi durduktan sonra devam edemez."
 msgid "The fields marked with {val} are required."
 msgstr "{val} ile işaretli alanlar zorunludur."
 
+#. [pages.blueprint.devicePopover]
+#. defaultMessage is:
+#. The installation device is used by the RHEL for Edge Simplified Installer. It specifies which device the image will be installed onto.
+#: build/messages/pages/blueprint/index.json
+msgid ""
+"The installation device is used by the RHEL for Edge Simplified Installer. "
+"It specifies which device the image will be installed onto."
+msgstr ""
+"Kurulum aygıtı Edge Basitleştirilmiş Yükleyici için RHEL tarafından "
+"kullanılır. Kalıbın hangi aygıt üzerine yükleneceğini belirtir."
+
 #. [components.Modal.2580689893]
 #. defaultMessage is:
 #. The name {name} already exists.
@@ -2159,7 +2156,7 @@ msgstr ""
 "Belirtilen boyut büyük. Hedef konumunuzun kalıp boyutu üzerinde herhangi bir "
 "kısıtlamaya sahip olup olmadığını kontrol etmenizi öneririz."
 
-#. [components.Modal.2405281428]
+#. [components.Modal.usernameValidChars]
 #. defaultMessage is:
 #. The user name can only consist of letters from a-z, digits, dots, dashes and underscores.
 #: build/messages/components/Modal/UserAccount.json
@@ -2169,6 +2166,13 @@ msgid ""
 msgstr ""
 "Kullanıcı adı sadece a-z arasındaki harf, rakam, nokta, tire ve alt çizgi "
 "karakterlerinden oluşabilir."
+
+#. [components.Modal.usernameEmpty]
+#. defaultMessage is:
+#. The user name cannot be empty.
+#: build/messages/components/Modal/UserAccount.json
+msgid "The user name cannot be empty."
+msgstr "Kullanıcı adı boş olamaz."
 
 #. [components.EmptyState.1947371795]
 #. defaultMessage is:
@@ -2180,7 +2184,11 @@ msgstr "{userName} kullanıcısının hizmetleri başlatmasına izin verilmiyor.
 #. [components.Form.2330477961]
 #. defaultMessage is:
 #. The values entered for password do not match.
+#. [components.Modal.passwordMatch]
+#. defaultMessage is:
+#. The values entered for password do not match.
 #: build/messages/components/Form/Password.json
+#: build/messages/components/Modal/UserAccount.json
 msgid "The values entered for password do not match."
 msgstr "Parola için girilen değerler eşleşmiyor."
 
@@ -2300,7 +2308,7 @@ msgstr ""
 "                        adında bir {iam} rolünüzün olmasını "
 "gerektirmektedir. Daha fazla ayrıntı için {role} bölümüne bakın."
 
-#. [components.Modal.3707489178]
+#. [components.Modal.usernameDuplicate]
 #. defaultMessage is:
 #. This user name already exists.
 #: build/messages/components/Modal/UserAccount.json
@@ -2480,7 +2488,7 @@ msgstr "Karşıya yükleme türü"
 msgid "User account actions"
 msgstr "Kullanıcı hesabı eylemleri"
 
-#. [components.Modal.529605439]
+#. [components.Modal.labelUsername]
 #. defaultMessage is:
 #. User name
 #: build/messages/components/Modal/UserAccount.json
@@ -2777,6 +2785,24 @@ msgstr "Sistem kalıpları oluşturma"
 #: public/manifest.json
 msgid "Image Builder"
 msgstr "Kalıp Oluşturucu"
+
+#~ msgid "A password is defined for this account."
+#~ msgstr "Bu hesap için bir şifre tanımlı."
+
+#~ msgid "A password is not defined for this account."
+#~ msgstr "Bu hesap için bir şifre tanımlı değil."
+
+#~ msgid "New password"
+#~ msgstr "Yeni parola"
+
+#~ msgid "Remove password"
+#~ msgstr "Parolayı kaldır"
+
+#~ msgid "Set new password"
+#~ msgstr "Yeni parola ayarla"
+
+#~ msgid "Set password"
+#~ msgstr "Parola ayarla"
 
 #~ msgid "Edit Description"
 #~ msgstr "Açıklamayı Düzenle"
