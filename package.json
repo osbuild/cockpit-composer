@@ -17,7 +17,7 @@
     "history": "3.3.0",
     "jquery": "3.5.1",
     "patternfly-react": "1.19.1",
-    "prop-types": "15.7.2",
+    "prop-types": "15.8.0",
     "react": "16.14.0",
     "react-dom": "16.14.0",
     "react-intl": "2.9.0",
