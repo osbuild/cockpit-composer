@@ -6,7 +6,7 @@
 # Sundeep Anand <suanand@redhat.com>, 2021.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2021-11-16T18:15:25.060Z\n"
+"POT-Creation-Date: 2021-11-30T18:18:23.224Z\n"
 "PO-Revision-Date: 2021-09-07 13:04+0000\n"
 "Last-Translator: Sundeep Anand <suanand@redhat.com>\n"
 "Language-Team: Japanese <https://translate.fedoraproject.org/projects/"

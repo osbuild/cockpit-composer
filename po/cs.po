@@ -2,8 +2,8 @@
 # Matej Marusak <mmarusak@redhat.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2021-11-16T18:15:25.060Z\n"
-"PO-Revision-Date: 2021-09-23 13:04+0000\n"
+"POT-Creation-Date: 2021-11-30T18:18:23.224Z\n"
+"PO-Revision-Date: 2021-12-03 23:16+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://translate.fedoraproject.org/projects/cockpit-"
 "composer/main/cs/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2\n"
-"X-Generator: Weblate 4.8\n"
+"X-Generator: Weblate 4.9.1\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -832,7 +832,7 @@ msgstr "Upravit název hostitele"
 #. Edit installation device
 #: build/messages/pages/blueprint/index.json
 msgid "Edit installation device"
-msgstr ""
+msgstr "Upravit instalační zařízení"
 
 #. [components.ListView.1908303378]
 #. defaultMessage is:
@@ -890,7 +890,7 @@ msgstr "Prázdný plánek"
 #. Enter valid device node such as /dev/sda1
 #: build/messages/pages/blueprint/index.json
 msgid "Enter valid device node such as /dev/sda1"
-msgstr ""
+msgstr "Zadejte platný uzel zařízení, jako například /dev/sda1"
 
 #. [pages.error.errorMessage]
 #. defaultMessage is:
@@ -1220,21 +1220,21 @@ msgstr "Obrazy"
 #. Installation Device
 #: build/messages/pages/blueprint/index.json
 msgid "Installation Device"
-msgstr ""
+msgstr "Instalační zařízení"
 
 #. [pages.blueprint.deviceInputLabel]
 #. defaultMessage is:
 #. Installation device
 #: build/messages/pages/blueprint/index.json
 msgid "Installation device"
-msgstr ""
+msgstr "Instalační zařízení"
 
 #. [pages.blueprint.devicePopoverLabel]
 #. defaultMessage is:
 #. Installation device help
 #: build/messages/pages/blueprint/index.json
 msgid "Installation device help"
-msgstr ""
+msgstr "Nápověda k instalačnímu zařízení"
 
 #. [components.Wizard.labelLiveIso]
 #. defaultMessage is:
@@ -2097,6 +2097,8 @@ msgid ""
 "The installation device is used by the RHEL for Edge Simplified Installer. "
 "It specifies which device the image will be installed onto."
 msgstr ""
+"Instalační zařízení je použito instalátorem RHEL for Edge Simplified. Určuje "
+"na které zařízení bude obraz nainstalován."
 
 #. [components.Modal.2580689893]
 #. defaultMessage is:
@@ -2161,10 +2163,8 @@ msgstr ""
 #. defaultMessage is:
 #. The user name cannot be empty.
 #: build/messages/components/Modal/UserAccount.json
-#, fuzzy
-#| msgid "This user name already exists."
 msgid "The user name cannot be empty."
-msgstr "Toto uživatelské jméno už existuje."
+msgstr "Uživatelské jméno je třeba vyplnit."
 
 #. [components.EmptyState.1947371795]
 #. defaultMessage is:
