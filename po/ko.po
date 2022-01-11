@@ -5,11 +5,11 @@
 # simmon <simmon@nplob.com>, 2021.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2021-11-16T18:15:25.060Z\n"
+"POT-Creation-Date: 2021-11-30T18:18:23.224Z\n"
 "PO-Revision-Date: 2021-11-20 08:16+0000\n"
 "Last-Translator: simmon <simmon@nplob.com>\n"
-"Language-Team: Korean <https://translate.fedoraproject.org/projects/"
-"cockpit-composer/main/ko/>\n"
+"Language-Team: Korean <https://translate.fedoraproject.org/projects/cockpit-"
+"composer/main/ko/>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2095,7 +2095,9 @@ msgstr "{val}(으)로 표시된 항목은 필수 항목입니다."
 msgid ""
 "The installation device is used by the RHEL for Edge Simplified Installer. "
 "It specifies which device the image will be installed onto."
-msgstr "설치 장치는 Edge Simplified Installer용 RHEL에서 사용됩니다. 이미지를 설치 할 장치를 지정합니다."
+msgstr ""
+"설치 장치는 Edge Simplified Installer용 RHEL에서 사용됩니다. 이미지를 설치 "
+"할 장치를 지정합니다."
 
 #. [components.Modal.2580689893]
 #. defaultMessage is:
