@@ -2,16 +2,16 @@
 # Lars Karlitski <lars@karlitski.net>, 2019. #zanata
 # corina roe <croe@redhat.com>, 2019. #zanata
 # Ludek Janda <ljanda@redhat.com>, 2020.
-# Julien Humbert <julroy67@gmail.com>, 2020, 2021.
+# Julien Humbert <julroy67@gmail.com>, 2020, 2021, 2022.
 # Anonymous <noreply@weblate.org>, 2020.
 # Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>, 2020.
 # Alain Nussbaumer <alain.nussbaumer@alleluia.ch>, 2020.
 # Sundeep Anand <suanand@redhat.com>, 2021.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2021-11-16T18:15:25.060Z\n"
-"PO-Revision-Date: 2021-09-07 13:04+0000\n"
-"Last-Translator: Sundeep Anand <suanand@redhat.com>\n"
+"POT-Creation-Date: 2022-01-11T18:18:15.659Z\n"
+"PO-Revision-Date: 2022-01-14 07:16+0000\n"
+"Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
 "Language-Team: French <https://translate.fedoraproject.org/projects/cockpit-"
 "composer/main/fr/>\n"
 "Language: fr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1\n"
-"X-Generator: Weblate 4.8\n"
+"X-Generator: Weblate 4.10.1\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -2197,10 +2197,8 @@ msgstr ""
 #. defaultMessage is:
 #. The user name cannot be empty.
 #: build/messages/components/Modal/UserAccount.json
-#, fuzzy
-#| msgid "This user name already exists."
 msgid "The user name cannot be empty."
-msgstr "Ce nom d’utilisateur existe déjà."
+msgstr "Le nom d’utilisateur ne peut pas être vide."
 
 #. [components.EmptyState.1947371795]
 #. defaultMessage is:
