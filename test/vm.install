@@ -16,6 +16,8 @@ fi
 mkdir -p /etc/osbuild-composer/repositories
 cp /home/admin/files/rhel-86.json /etc/osbuild-composer/repositories/rhel-86.json
 cp /home/admin/files/rhel-90.json /etc/osbuild-composer/repositories/rhel-90.json
+ln -s /etc/osbuild-composer/repositories/rhel-90.json /etc/osbuild-composer/repositories/rhel-90-beta.json
+ln -s /etc/osbuild-composer/repositories/rhel-90.json /etc/osbuild-composer/repositories/rhel-90-ga.json
 
 # Allow cockpit port (9090) in INPUT chain
 # Do not reload firewall rule during image generation
