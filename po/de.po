@@ -1,11 +1,11 @@
 # David Shea <dshea@redhat.com>, 2019. #zanata
 # Mike FABIAN <mfabian@redhat.com>, 2020.
 # Matej Marusak <mmarusak@redhat.com>, 2021.
-# Ettore Atalan <atalanttore@googlemail.com>, 2021.
+# Ettore Atalan <atalanttore@googlemail.com>, 2021, 2022.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2022-01-11T18:18:15.659Z\n"
-"PO-Revision-Date: 2021-11-18 22:16+0000\n"
+"POT-Creation-Date: 2022-02-08T18:16:14.974Z\n"
+"PO-Revision-Date: 2022-02-14 13:16+0000\n"
 "Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German <https://translate.fedoraproject.org/projects/cockpit-"
 "composer/main/de/>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1\n"
-"X-Generator: Weblate 4.9\n"
+"X-Generator: Weblate 4.10.1\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -38,6 +38,8 @@ msgid ""
 "A minimal image will be created with only the packages needed to support the "
 "selected image type."
 msgstr ""
+"Es wird ein minimales Abbild erstellt, das nur die Pakete enthält, die zur "
+"Unterstützung des ausgewählten Abbildtyps erforderlich sind."
 
 #. [components.Wizard.warningSizeEmpty]
 #. defaultMessage is:
@@ -45,6 +47,13 @@ msgstr ""
 #: build/messages/components/Wizard/ReviewStep.json
 msgid "A value is required."
 msgstr "Ein Wert ist erforderlich."
+
+#. [fingerprint-help]
+#. defaultMessage is:
+#. API private key's fingerprint
+#: build/messages/components/Wizard/OCIAuthStep.json
+msgid "API private key's fingerprint"
+msgstr ""
 
 #. [components.Wizard.aws]
 #. defaultMessage is:
@@ -69,7 +78,7 @@ msgstr "AWS-Region"
 #. AWS region help
 #: build/messages/components/Wizard/AWSDestinationStep.json
 msgid "AWS region help"
-msgstr ""
+msgstr "Hilfe zur AWS-Region"
 
 #. [components.Wizard.1635272069]
 #. defaultMessage is:
@@ -174,10 +183,18 @@ msgstr "Hinzugefügt"
 #. [components.Wizard.1175512155]
 #. defaultMessage is:
 #. All fields are required.
+#. [components.Wizard.1175512155]
+#. defaultMessage is:
+#. All fields are required.
+#. [components.Wizard.1175512155]
+#. defaultMessage is:
+#. All fields are required.
 #: build/messages/components/Wizard/AWSAuthStep.json
 #: build/messages/components/Wizard/AWSDestinationStep.json
 #: build/messages/components/Wizard/AzureAuthStep.json
 #: build/messages/components/Wizard/AzureDestinationStep.json
+#: build/messages/components/Wizard/OCIAuthStep.json
+#: build/messages/components/Wizard/OCIDestinationStep.json
 #: build/messages/components/Wizard/VMWareAuthStep.json
 #: build/messages/components/Wizard/VMWareDestinationStep.json
 msgid "All fields are required."
@@ -403,6 +420,47 @@ msgstr ""
 "Durchsuchen oder suchen Sie nach Komponenten und fügen Sie sie dann dem "
 "Bauplan hinzu."
 
+#. [components.Wizard.992376537]
+#. defaultMessage is:
+#. Bucket compartment
+#: build/messages/components/Wizard/OCIDestinationStep.json
+#, fuzzy
+#| msgid "Blueprint Components"
+msgid "Bucket compartment"
+msgstr "Blueprint-Komponenten"
+
+#. [components.Wizard.bucket]
+#. defaultMessage is:
+#. Bucket help
+#: build/messages/components/Wizard/OCIDestinationStep.json
+#, fuzzy
+#| msgid "Azure help"
+msgid "Bucket help"
+msgstr "Azure-Hilfe"
+
+#. [components.Wizard.3386954132]
+#. defaultMessage is:
+#. Bucket namespace
+#: build/messages/components/Wizard/OCIDestinationStep.json
+msgid "Bucket namespace"
+msgstr ""
+
+#. [components.Wizard.2790265886]
+#. defaultMessage is:
+#. Bucket region
+#: build/messages/components/Wizard/OCIDestinationStep.json
+#, fuzzy
+#| msgid "AWS region"
+msgid "Bucket region"
+msgstr "AWS-Region"
+
+#. [components.Wizard.1601119828]
+#. defaultMessage is:
+#. Bucket tenancy
+#: build/messages/components/Wizard/OCIDestinationStep.json
+msgid "Bucket tenancy"
+msgstr ""
+
 #. [components.Form.cancel]
 #. defaultMessage is:
 #. Cancel
@@ -561,19 +619,15 @@ msgstr "Festschreiben"
 #. defaultMessage is:
 #. Commit and create
 #: build/messages/components/Wizard/CreateImageUpload.json
-#, fuzzy
-#| msgid "Commit and Create"
 msgid "Commit and create"
-msgstr "Übertragen und Erstellen"
+msgstr ""
 
 #. [components.Wizard.552112481]
 #. defaultMessage is:
 #. Commit and next
 #: build/messages/components/Wizard/CreateImageUpload.json
-#, fuzzy
-#| msgid "Commit and Create"
 msgid "Commit and next"
-msgstr "Übertragen und Erstellen"
+msgstr ""
 
 #. [pages.blueprint.3956908315]
 #. defaultMessage is:
@@ -833,6 +887,13 @@ msgstr "Festplattenarchiv (.tar)"
 msgid "Download"
 msgstr "Herunterladen"
 
+#. [filename-placeholder]
+#. defaultMessage is:
+#. Drag and drop a file or upload one
+#: build/messages/components/Wizard/OCIAuthStep.json
+msgid "Drag and drop a file or upload one"
+msgstr ""
+
 #. [components.Modal.2044423701]
 #. defaultMessage is:
 #. Edit description
@@ -856,7 +917,7 @@ msgstr "Hostname bearbeiten"
 #. Edit installation device
 #: build/messages/pages/blueprint/index.json
 msgid "Edit installation device"
-msgstr ""
+msgstr "Installationsgerät bearbeiten"
 
 #. [components.ListView.1908303378]
 #. defaultMessage is:
@@ -916,7 +977,7 @@ msgstr "Leerer Bauplan"
 #. Enter valid device node such as /dev/sda1
 #: build/messages/pages/blueprint/index.json
 msgid "Enter valid device node such as /dev/sda1"
-msgstr ""
+msgstr "Geben Sie einen gültigen Geräteknoten wie z. B. /dev/sda1 ein"
 
 #. [pages.error.errorMessage]
 #. defaultMessage is:
@@ -983,6 +1044,15 @@ msgstr "Nach Veröffentlichung filtern"
 msgid "Filter by version"
 msgstr "Nach Version filtern"
 
+#. [components.Wizard.244381809]
+#. defaultMessage is:
+#. Fingerprint
+#: build/messages/components/Wizard/OCIAuthStep.json
+#, fuzzy
+#| msgid "Blueprint"
+msgid "Fingerprint"
+msgstr "Blaupause"
+
 #. [components.Wizard.787186999]
 #. defaultMessage is:
 #. Finish
@@ -1046,6 +1116,8 @@ msgstr "Hostname"
 #: build/messages/pages/blueprint/index.json
 msgid "If no hostname is provided, the hostname will be determined by the OS."
 msgstr ""
+"Wenn kein Hostname angegeben wird, wird der Hostname vom Betriebssystem "
+"bestimmt."
 
 #. [components.Wizard.327045352]
 #. defaultMessage is:
@@ -1105,42 +1177,60 @@ msgid ""
 "                        the image can be found in the {console}."
 msgstr ""
 
+#. [components.Wizard.3213107448]
+#. defaultMessage is:
+#. Image Builder can upload images you create to an {bucket} in OCI and register it as a custom image. When the image build is complete
+#.                         and the upload action is successful, the image should be available under custom images.
+#.                         Most of the values required to upload the image can be found in the {console}.
+#: build/messages/components/Wizard/ImageStep.json
+msgid ""
+"Image Builder can upload images you create to an {bucket} in OCI and "
+"register it as a custom image. When the image build is complete\n"
+"                        and the upload action is successful, the image "
+"should be available under custom images.\n"
+"                        Most of the values required to upload the image can "
+"be found in the {console}."
+msgstr ""
+
 #. [components.ListView.imageStatusFinished] - Image build status when process is finished
 #. defaultMessage is:
 #. Image build complete
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Image build complete"
-msgstr ""
+msgstr "Abbilderstellung abgeschlossen"
 
 #. [components.ListView.imageStatusFailed] - Image build status when process failed
 #. defaultMessage is:
 #. Image build failed
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Image build failed"
-msgstr ""
+msgstr "Abbilderstellung fehlgeschlagen"
 
 #. [components.ListView.imageStatusRunning] - Image build status when process is in progress
 #. defaultMessage is:
 #. Image build in progress
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Image build in progress"
-msgstr ""
+msgstr "Abbilderstellung in Arbeit"
 
 #. [components.ListView.imageStatusWaiting] - Image build status when process is waiting
 #. defaultMessage is:
 #. Image build pending
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Image build pending"
-msgstr ""
+msgstr "Abbilderstellung ausstehend"
 
 #. [components.EmptyState.errorInactiveTitle]
 #. defaultMessage is:
 #. Image building service is not active
 #: build/messages/components/EmptyState/EmptyStateInactive.json
 msgid "Image building service is not active"
-msgstr ""
+msgstr "Abbilderstellungsdienst ist nicht aktiv"
 
 #. [components.ListView.imageName] - The name given by the user for an image
+#. defaultMessage is:
+#. Image name
+#. [components.Wizard.2794911472]
 #. defaultMessage is:
 #. Image name
 #. [components.Wizard.2794911472]
@@ -1158,6 +1248,7 @@ msgstr ""
 #: build/messages/components/ListView/ListItemUploads.json
 #: build/messages/components/Wizard/AWSDestinationStep.json
 #: build/messages/components/Wizard/AzureDestinationStep.json
+#: build/messages/components/Wizard/OCIDestinationStep.json
 #: build/messages/components/Wizard/ReviewStep.json
 #: build/messages/components/Wizard/VMWareDestinationStep.json
 msgid "Image name"
@@ -1172,8 +1263,12 @@ msgstr "Abbildname"
 #. [components.Wizard.imageName]
 #. defaultMessage is:
 #. Image name help
+#. [components.Wizard.imageName]
+#. defaultMessage is:
+#. Image name help
 #: build/messages/components/Wizard/AWSDestinationStep.json
 #: build/messages/components/Wizard/AzureDestinationStep.json
+#: build/messages/components/Wizard/OCIDestinationStep.json
 #: build/messages/components/Wizard/VMWareDestinationStep.json
 msgid "Image name help"
 msgstr "Hilfe zum Abbildnamen"
@@ -1233,28 +1328,28 @@ msgstr "Abbilder"
 #. Installation Device
 #: build/messages/pages/blueprint/index.json
 msgid "Installation Device"
-msgstr ""
+msgstr "Installationsgerät"
 
 #. [pages.blueprint.deviceInputLabel]
 #. defaultMessage is:
 #. Installation device
 #: build/messages/pages/blueprint/index.json
 msgid "Installation device"
-msgstr ""
+msgstr "Installationsgerät"
 
 #. [pages.blueprint.devicePopoverLabel]
 #. defaultMessage is:
 #. Installation device help
 #: build/messages/pages/blueprint/index.json
 msgid "Installation device help"
-msgstr ""
+msgstr "Installationsgeräthilfe"
 
 #. [components.Wizard.labelLiveIso]
 #. defaultMessage is:
 #. Installer, suitable for USB and DVD (.iso)
 #: build/messages/components/Wizard/ImageStep.json
 msgid "Installer, suitable for USB and DVD (.iso)"
-msgstr ""
+msgstr "Installationsprogramm, geeignet für USB und DVD (.iso)"
 
 #. [components.Loading.2617450248]
 #. defaultMessage is:
@@ -1343,6 +1438,15 @@ msgstr "Name"
 msgid "Name: {name}"
 msgstr "Name: {name}"
 
+#. [components.Wizard.namespace]
+#. defaultMessage is:
+#. Namespace help
+#: build/messages/components/Wizard/OCIDestinationStep.json
+#, fuzzy
+#| msgid "Image name help"
+msgid "Namespace help"
+msgstr "Hilfe zum Abbildnamen"
+
 #. [components.Wizard.3673120330]
 #. defaultMessage is:
 #. Next
@@ -1401,6 +1505,29 @@ msgstr "Kein Protokoll verfügbar"
 #: build/messages/pages/blueprints/index.json
 msgid "No results match the filter criteria"
 msgstr "Keine Ergebnisse entsprechen den Filterkriterien"
+
+#. [components.Wizard.compartment]
+#. defaultMessage is:
+#. OCI compartment help
+#: build/messages/components/Wizard/OCIDestinationStep.json
+msgid "OCI compartment help"
+msgstr ""
+
+#. [components.Wizard.region]
+#. defaultMessage is:
+#. OCI region help
+#: build/messages/components/Wizard/OCIDestinationStep.json
+#, fuzzy
+#| msgid "AWS region help"
+msgid "OCI region help"
+msgstr "Hilfe zur AWS-Region"
+
+#. [components.Wizard.tenancy]
+#. defaultMessage is:
+#. OCI tenancy help
+#: build/messages/components/Wizard/OCIDestinationStep.json
+msgid "OCI tenancy help"
+msgstr ""
 
 #. [components.Wizard.ostreeParent]
 #. defaultMessage is:
@@ -1481,7 +1608,7 @@ msgstr "Passwort"
 #. Paste the contents of your public SSH key file here.
 #: build/messages/components/Modal/UserAccount.json
 msgid "Paste the contents of your public SSH key file here."
-msgstr ""
+msgstr "Fügen Sie hier den Inhalt Ihrer öffentlichen SSH-Schlüsseldatei ein."
 
 #. [components.Modal.3226997558]
 #. defaultMessage is:
@@ -1489,6 +1616,16 @@ msgstr ""
 #: build/messages/components/Modal/PendingChanges.json
 msgid "Pending changes"
 msgstr "Ausstehende Änderungen"
+
+#. [key-help]
+#. defaultMessage is:
+#. Private key
+#. [components.Wizard.1443428038]
+#. defaultMessage is:
+#. Private key
+#: build/messages/components/Wizard/OCIAuthStep.json
+msgid "Private key"
+msgstr ""
 
 #. [components.Wizard.processLength]
 #. defaultMessage is:
@@ -1510,12 +1647,18 @@ msgstr "Hilfe zur Prozesslänge"
 #. [components.Wizard.4277042358]
 #. defaultMessage is:
 #. Provide a file name to be used for the image file that will be uploaded.
+#. [components.Wizard.4277042358]
+#. defaultMessage is:
+#. Provide a file name to be used for the image file that will be uploaded.
 #: build/messages/components/Wizard/AWSDestinationStep.json
 #: build/messages/components/Wizard/AzureDestinationStep.json
+#: build/messages/components/Wizard/OCIDestinationStep.json
 #: build/messages/components/Wizard/VMWareDestinationStep.json
 msgid ""
 "Provide a file name to be used for the image file that will be uploaded."
 msgstr ""
+"Geben Sie einen Dateinamen an, der für die hochzuladende Abbilddatei "
+"verwendet werden soll."
 
 #. [components.Wizard.2186792528]
 #. defaultMessage is:
@@ -1525,6 +1668,8 @@ msgid ""
 "Provide the AWS Region where you want to import your image. This must be the "
 "same region where the {bucket} exists."
 msgstr ""
+"Geben Sie die AWS-Region an, in die Sie Ihr Abbild importieren möchten. Dies "
+"muss dieselbe Region sein, in der das {bucket} existiert."
 
 #. [components.Wizard.517158149]
 #. defaultMessage is:
@@ -1586,6 +1731,15 @@ msgid ""
 "accounts on the {storageAccounts} page in the {azure} portal."
 msgstr ""
 
+#. [components.Wizard.2831983558]
+#. defaultMessage is:
+#. Provide the compartment of the {bucket} your uploading to. You can find the compartment in the bucket details.
+#: build/messages/components/Wizard/OCIDestinationStep.json
+msgid ""
+"Provide the compartment of the {bucket} your uploading to. You can find the "
+"compartment in the bucket details."
+msgstr ""
+
 #. [components.Wizard.1434969769]
 #. defaultMessage is:
 #. Provide the name of a storage account. You can find storage accounts on the {storageAccounts} page in the {azure} portal.
@@ -1594,6 +1748,8 @@ msgid ""
 "Provide the name of a storage account. You can find storage accounts on the "
 "{storageAccounts} page in the {azure} portal."
 msgstr ""
+"Geben Sie den Namen eines Speicherkontos an. Sie finden Speicherkonten auf "
+"der Seite {storageAccounts} im Portal {azure}."
 
 #. [components.Wizard.1891777230]
 #. defaultMessage is:
@@ -1602,6 +1758,8 @@ msgstr ""
 msgid ""
 "Provide the name of the Cluster to which the image file will be uploaded."
 msgstr ""
+"Geben Sie den Namen des Clusters an, in den die Abbilddatei hochgeladen "
+"werden soll."
 
 #. [components.Wizard.1217327836]
 #. defaultMessage is:
@@ -1610,6 +1768,8 @@ msgstr ""
 msgid ""
 "Provide the name of the Datacenter to which the image file will be uploaded."
 msgstr ""
+"Geben Sie den Namen des Datenzentrums an, in das die Abbilddatei hochgeladen "
+"werden soll."
 
 #. [components.Wizard.4014474612]
 #. defaultMessage is:
@@ -1618,6 +1778,8 @@ msgstr ""
 msgid ""
 "Provide the name of the Datastore to which the image file will be uploaded."
 msgstr ""
+"Geben Sie den Namen des Datenspeichers an, in den die Abbilddatei "
+"hochgeladen werden soll."
 
 #. [components.Wizard.1476874820]
 #. defaultMessage is:
@@ -1627,6 +1789,41 @@ msgid ""
 "Provide the name of the branch for the content. If the ref does not already "
 "exist it will be created."
 msgstr ""
+"Geben Sie den Namen des Zweigs für den Inhalt an. Wenn die Referenz nicht "
+"bereits existiert, wird sie erstellt."
+
+#. [components.Wizard.3701635592]
+#. defaultMessage is:
+#. Provide the namespace of the {bucket} your uploading to. You can find the namespace in the bucket details.
+#: build/messages/components/Wizard/OCIDestinationStep.json
+msgid ""
+"Provide the namespace of the {bucket} your uploading to. You can find the "
+"namespace in the bucket details."
+msgstr ""
+
+#. [components.Wizard.3286165321]
+#. defaultMessage is:
+#. Provide the region of the {bucket} your uploading to. You can find the region in the bucket details.
+#: build/messages/components/Wizard/OCIDestinationStep.json
+#, fuzzy
+#| msgid ""
+#| "Provide the AWS Region where you want to import your image. This must be "
+#| "the same region where the {bucket} exists."
+msgid ""
+"Provide the region of the {bucket} your uploading to. You can find the "
+"region in the bucket details."
+msgstr ""
+"Geben Sie die AWS-Region an, in die Sie Ihr Abbild importieren möchten. Dies "
+"muss dieselbe Region sein, in der das {bucket} existiert."
+
+#. [components.Wizard.3854501928]
+#. defaultMessage is:
+#. Provide the tenancy of the {bucket} your uploading to. You can find the tenancy in the bucket details.
+#: build/messages/components/Wizard/OCIDestinationStep.json
+msgid ""
+"Provide the tenancy of the {bucket} your uploading to. You can find the "
+"tenancy in the bucket details."
+msgstr ""
 
 #. [components.Wizard.3387354708]
 #. defaultMessage is:
@@ -1635,6 +1832,23 @@ msgstr ""
 msgid ""
 "Provide the url of your {vmware} instance to which the image file will be "
 "uploaded."
+msgstr ""
+"Geben Sie die URL Ihrer {vmware}-Instanz an, auf die die Abbilddatei "
+"hochgeladen werden soll."
+
+#. [components.Wizard.577410027]
+#. defaultMessage is:
+#. Provide the {bucket} name to which the image file will be uploaded before being imported as a custom image. 
+#.                         The {bucket} must already exist in the Region where you want to import your image. You can find a list of {buckets} on the
+#.                         {bucketsPage} page in the OCI storage service in the OCI console.
+#: build/messages/components/Wizard/OCIDestinationStep.json
+msgid ""
+"Provide the {bucket} name to which the image file will be uploaded before "
+"being imported as a custom image. \n"
+"                        The {bucket} must already exist in the Region where "
+"you want to import your image. You can find a list of {buckets} on the\n"
+"                        {bucketsPage} page in the OCI storage service in the "
+"OCI console."
 msgstr ""
 
 #. [components.Wizard.labelqcow]
@@ -1649,7 +1863,7 @@ msgstr "QEMU-Abbild (.qcow2)"
 #. Ref
 #: build/messages/components/Wizard/ImageStep.json
 msgid "Ref"
-msgstr ""
+msgstr "Ref"
 
 #. [components.ListView.423140743]
 #. defaultMessage is:
@@ -1668,7 +1882,7 @@ msgstr ""
 #: build/messages/components/Toolbar/FilterInput.json
 #: build/messages/components/Toolbar/ToolbarLayout.json
 msgid "Release"
-msgstr "Release"
+msgstr "Version"
 
 #. [components.ListView.2703758654]
 #. defaultMessage is:
@@ -1692,7 +1906,7 @@ msgstr "Entfernen"
 #, fuzzy
 #| msgid "Remove from Blueprint"
 msgid "Remove component from blueprint"
-msgstr "Aus dem Blueprint entfernen"
+msgstr "Komponente aus dem Blueprint entfernen"
 
 #. [components.ListView.removeFromBlueprint]
 #. defaultMessage is:
@@ -1722,14 +1936,14 @@ msgstr "Entfernt"
 #. Removing source
 #: build/messages/components/ListView/SourcesListItem.json
 msgid "Removing source"
-msgstr ""
+msgstr "Quelle wird entfernt"
 
 #. [components.Wizard.2238384022]
 #. defaultMessage is:
 #. Repository URL
 #: build/messages/components/Wizard/ImageStep.json
 msgid "Repository URL"
-msgstr ""
+msgstr "Paketquellen-URL"
 
 #. [components.Modal.128739785]
 #. defaultMessage is:
@@ -1743,7 +1957,7 @@ msgstr "Die erforderlichen Informationen fehlen."
 #. Review
 #: build/messages/components/Wizard/CreateImageUpload.json
 msgid "Review"
-msgstr ""
+msgstr "Überprüfen"
 
 #. [components.Wizard.review]
 #. defaultMessage is:
@@ -1753,6 +1967,9 @@ msgid ""
 "Review the information below and click Finish to create the image and "
 "complete the tasks that were selected."
 msgstr ""
+"Überprüfen Sie die nachstehenden Informationen und klicken Sie auf Fertig "
+"stellen, um das Abbild zu erstellen und die ausgewählten Aufgaben "
+"abzuschließen."
 
 #. [components.Modal.labelRole]
 #. defaultMessage is:
@@ -1791,7 +2008,7 @@ msgstr "Speichern"
 #. Saving source
 #: build/messages/components/Modal/ManageSources.json
 msgid "Saving source"
-msgstr ""
+msgstr "Quelle wird gespeichert"
 
 #. [components.Wizard.135579143]
 #. defaultMessage is:
@@ -1866,6 +2083,9 @@ msgid ""
 "package size and target destination of your image should be considered when "
 "setting the image size."
 msgstr ""
+"Legen Sie die Größe fest, die das Abbild haben soll, wenn es instanziiert "
+"wird. Bei der Festlegung der Abbildgröße sollten die Gesamtgröße des Pakets "
+"und der Zielort des Abbilds berücksichtigt werden."
 
 #. [components.ListView.4147597655]
 #. defaultMessage is:
@@ -1909,7 +2129,7 @@ msgstr "Quellenaktionen"
 #. Source path
 #: build/messages/components/Modal/ManageSources.json
 msgid "Source path"
-msgstr ""
+msgstr "Quellpfad"
 
 #. [components.Modal.3025955497] - Sources provide the contents from which components are selected
 #. defaultMessage is:
@@ -1982,14 +2202,14 @@ msgstr "Anhalten"
 #: build/messages/components/Wizard/AzureAuthStep.json
 #: build/messages/components/Wizard/ReviewStep.json
 msgid "Storage access key"
-msgstr ""
+msgstr "Speicherzugriffsschlüssel"
 
 #. [components.Wizard.storageAccessKey]
 #. defaultMessage is:
 #. Storage access key help
 #: build/messages/components/Wizard/AzureAuthStep.json
 msgid "Storage access key help"
-msgstr ""
+msgstr "Speicherzugriffsschlüsselhilfe"
 
 #. [components.Wizard.1624497518]
 #. defaultMessage is:
@@ -2029,14 +2249,14 @@ msgstr "Speicherkonten"
 #: build/messages/components/Wizard/AzureDestinationStep.json
 #: build/messages/components/Wizard/ReviewStep.json
 msgid "Storage container"
-msgstr ""
+msgstr "Speichercontainer"
 
 #. [components.Wizard.storageContainer]
 #. defaultMessage is:
 #. Storage container help
 #: build/messages/components/Wizard/AzureDestinationStep.json
 msgid "Storage container help"
-msgstr ""
+msgstr "Speichercontainerhilfe"
 
 #. [components.ListView.3639476303] - System sources are configured repositories that were found on the host machine
 #. defaultMessage is:
@@ -2099,6 +2319,8 @@ msgid ""
 "The packages needed to support the selected image type are automatically "
 "included when creating an image."
 msgstr ""
+"Die Pakete, die zur Unterstützung des ausgewählten Abbildtyps erforderlich "
+"sind, werden bei der Erstellung eines Abbilds automatisch mit einbezogen."
 
 #. [pages.error.26562577]
 #. defaultMessage is:
@@ -2115,7 +2337,7 @@ msgstr ""
 #. The service osbuild-composer was not started.
 #: build/messages/components/EmptyState/EmptyStateInactive.json
 msgid "The service osbuild-composer was not started."
-msgstr ""
+msgstr "Der Dienst osbuild-composer wurde nicht gestartet."
 
 #. [components.Wizard.warningSizeLarge]
 #. defaultMessage is:
@@ -2129,6 +2351,8 @@ msgid ""
 "The size specified is large. We recommend that you check whether your target "
 "destination has any restrictions on image size."
 msgstr ""
+"Die angegebene Größe ist zu groß. Wir empfehlen Ihnen, zu überprüfen, ob Ihr "
+"Zielort irgendwelche Beschränkungen für die Abbildgröße hat."
 
 #. [components.Modal.usernameValidChars]
 #. defaultMessage is:
@@ -2138,22 +2362,22 @@ msgid ""
 "The user name can only consist of letters from a-z, digits, dots, dashes and "
 "underscores."
 msgstr ""
+"Der Benutzername darf nur aus Buchstaben von a-z, Zahlen, Punkten, "
+"Bindestrichen und Unterstrichen bestehen."
 
 #. [components.Modal.usernameEmpty]
 #. defaultMessage is:
 #. The user name cannot be empty.
 #: build/messages/components/Modal/UserAccount.json
-#, fuzzy
-#| msgid "This user name already exists."
 msgid "The user name cannot be empty."
-msgstr "Dieser Benutzername existiert bereits."
+msgstr "Der Benutzername darf nicht leer sein."
 
 #. [components.EmptyState.1947371795]
 #. defaultMessage is:
 #. The user {userName} is not permitted to start services.
 #: build/messages/components/EmptyState/EmptyStateInactive.json
 msgid "The user {userName} is not permitted to start services."
-msgstr ""
+msgstr "Der Benutzer {Benutzername} ist nicht berechtigt, Dienste zu starten."
 
 #. [components.Form.2330477961]
 #. defaultMessage is:
@@ -2280,6 +2504,18 @@ msgid ""
 "details, refer to the {role}."
 msgstr ""
 
+#. [components.Wizard.50730016]
+#. defaultMessage is:
+#. This upload process requires that you have an {iam} with attached policy to manage custom images
+#.                         to ensure that the image can be import as a custom image from the {bucket}. For more details, refer to the {policies}.
+#: build/messages/components/Wizard/ImageStep.json
+msgid ""
+"This upload process requires that you have an {iam} with attached policy to "
+"manage custom images\n"
+"                        to ensure that the image can be import as a custom "
+"image from the {bucket}. For more details, refer to the {policies}."
+msgstr ""
+
 #. [components.Modal.usernameDuplicate]
 #. defaultMessage is:
 #. This user name already exists.
@@ -2349,10 +2585,8 @@ msgstr "Update"
 #. defaultMessage is:
 #. Update source
 #: build/messages/components/Modal/ManageSources.json
-#, fuzzy
-#| msgid "Update"
 msgid "Update source"
-msgstr "Update"
+msgstr "Aktualisierungsquelle"
 
 #. [components.Modal.562988552] - Identifies the change as a component that was updated
 #. defaultMessage is:
@@ -2366,7 +2600,7 @@ msgstr "Aktualisiert"
 #. Upload complete
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload complete"
-msgstr ""
+msgstr "Hochladen abgeschlossen"
 
 #. [components.ListView.uploadStatusFailed] - Upload status when process failed
 #. defaultMessage is:
@@ -2394,14 +2628,14 @@ msgstr ""
 #. Upload in progress
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload in progress"
-msgstr ""
+msgstr "Hochladen in Arbeit"
 
 #. [components.ListView.uploadStatusWaiting] - Upload status when process is waiting
 #. defaultMessage is:
 #. Upload pending
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload pending"
-msgstr ""
+msgstr "Hochladen ausstehend"
 
 #. [components.Wizard.3235936248]
 #. defaultMessage is:
@@ -2433,6 +2667,19 @@ msgstr "Zu AWS hochladen"
 msgid "Upload to Azure"
 msgstr "Zu Azure hochladen"
 
+#. [components.Wizard.3418449520]
+#. defaultMessage is:
+#. Upload to OCI
+#. [components.Wizard.uploadOCI]
+#. defaultMessage is:
+#. Upload to OCI
+#: build/messages/components/Wizard/CreateImageUpload.json
+#: build/messages/components/Wizard/ImageStep.json
+#, fuzzy
+#| msgid "Upload to AWS"
+msgid "Upload to OCI"
+msgstr "Zu AWS hochladen"
+
 #. [components.Wizard.3542348520]
 #. defaultMessage is:
 #. Upload to VMWare
@@ -2453,6 +2700,16 @@ msgstr "Zu VMWare hochladen"
 #. Upload type
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload type"
+msgstr ""
+
+#. [user-help]
+#. defaultMessage is:
+#. User OCID
+#. [components.Wizard.4135109133]
+#. defaultMessage is:
+#. User OCID
+#: build/messages/components/Wizard/OCIAuthStep.json
+msgid "User OCID"
 msgstr ""
 
 #. [pages.blueprint.userKebab]
@@ -2502,6 +2759,9 @@ msgid ""
 "Valid characters for hostname are letters from a to z, the digits from 0 to "
 "9, and the hyphen (-). A hostname may not start with a hyphen."
 msgstr ""
+"Gültige Zeichen für den Hostnamen sind Buchstaben von a bis z, die Zahlen "
+"von 0 bis 9 und der Bindestrich (-). Ein Hostname darf nicht mit einem "
+"Bindestrich beginnen."
 
 #. [components.Wizard.ostreeRefHelperText]
 #. defaultMessage is:
@@ -2548,6 +2808,21 @@ msgid ""
 "You can create and find existing Access key IDs on the {iam} page in the AWS "
 "console."
 msgstr ""
+"Sie können auf der Seite {iam} in der AWS-Konsole Zugriffsschlüssel-IDs "
+"erstellen und vorhandene finden."
+
+#. [components.Wizard.844662623]
+#. defaultMessage is:
+#. You can find your user OCID {iam} page in the OCI console.
+#: build/messages/components/Wizard/OCIAuthStep.json
+#, fuzzy
+#| msgid ""
+#| "You can create and find existing Access key IDs on the {iam} page in the "
+#| "AWS console."
+msgid "You can find your user OCID {iam} page in the OCI console."
+msgstr ""
+"Sie können auf der Seite {iam} in der AWS-Konsole Zugriffsschlüssel-IDs "
+"erstellen und vorhandene finden."
 
 #. [components.Wizard.4206409720]
 #. defaultMessage is:
@@ -2557,6 +2832,38 @@ msgid ""
 "You can view the Secret access key only when you create a new Access key ID "
 "on the {iam} page in the AWS console."
 msgstr ""
+"Sie können den geheimen Zugangsschlüssel nur ansehen, wenn Sie eine neue "
+"Zugangsschlüssel-ID auf der Seite {iam} in der AWS-Konsole erstellen."
+
+#. [components.Wizard.285351067]
+#. defaultMessage is:
+#. You can view your deployed RSA keys fingerprint in the API Keys section on the {iam} page in the OCI console.
+#: build/messages/components/Wizard/OCIAuthStep.json
+#, fuzzy
+#| msgid ""
+#| "You can create and find existing Access key IDs on the {iam} page in the "
+#| "AWS console."
+msgid ""
+"You can view your deployed RSA keys fingerprint in the API Keys section on "
+"the {iam} page in the OCI console."
+msgstr ""
+"Sie können auf der Seite {iam} in der AWS-Konsole Zugriffsschlüssel-IDs "
+"erstellen und vorhandene finden."
+
+#. [components.Wizard.182848243]
+#. defaultMessage is:
+#. You can view your deployed RSA keys in the API Keys section on the {iam} page in the OCI console.
+#: build/messages/components/Wizard/OCIAuthStep.json
+#, fuzzy
+#| msgid ""
+#| "You can create and find existing Access key IDs on the {iam} page in the "
+#| "AWS console."
+msgid ""
+"You can view your deployed RSA keys in the API Keys section on the {iam} "
+"page in the OCI console."
+msgstr ""
+"Sie können auf der Seite {iam} in der AWS-Konsole Zugriffsschlüssel-IDs "
+"erstellen und vorhandene finden."
 
 #. [components.ListView.actions]
 #. defaultMessage is:
@@ -2627,6 +2934,8 @@ msgid ""
 "rhel/8/{arch}/edge is the default, where {arch} is determined by the host "
 "machine"
 msgstr ""
+"rhel/8/{arch}/edge ist der Standard, wobei {arch} durch den Hostrechner "
+"bestimmt wird"
 
 #. [components.Modal.152217691]
 #. defaultMessage is:
@@ -2644,7 +2953,7 @@ msgstr "zu"
 #: build/messages/components/ListView/SourcesListItem.json
 #: build/messages/components/Modal/ManageSources.json
 msgid "yum repository"
-msgstr ""
+msgstr "yum-Paketquelle"
 
 #. [components.Notifications.4273735599]
 #. defaultMessage is:
@@ -2685,10 +2994,8 @@ msgstr ""
 #. defaultMessage is:
 #. {blueprint} Image creation has {queue}.
 #: build/messages/components/Notifications/Notifications.json
-#, fuzzy
-#| msgid "{blueprint} Image creation has started."
 msgid "{blueprint} Image creation has {queue}."
-msgstr "{blueprint} Die Erstellung von Bildern hat begonnen."
+msgstr ""
 
 #. [components.Notifications.652081902]
 #. defaultMessage is:
