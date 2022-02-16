@@ -33,6 +33,9 @@ const ariaLabels = defineMessages({
   processLength: {
     defaultMessage: "Process length help",
   },
+  uploadImage: {
+    defaultMessage: "Upload image help",
+  },
 });
 
 const messages = defineMessages({
@@ -295,6 +298,119 @@ class ReviewStep extends React.PureComponent {
       </TextContent>
     );
 
+    const ociReveiwStep = uploadService === "oci" && (
+      <TextContent id="oci-content">
+        <div className="pf-l-flex pf-u-display-flex">
+          <h3 className="pf-l-flex__item pf-u-mt-2xl pf-u-mb-md">
+            <FormattedMessage defaultMessage="Upload to OCI" />
+          </h3>
+          <Popover
+            id="oci-provider-popover"
+            bodyContent={
+              <div>
+                <p>
+                  <FormattedMessage
+                    defaultMessage="
+                        Image Builder can upload images you create to an {bucket} in OCI and register it as a custom image. When the image build is complete
+                        and the upload action is successful, the image should be available under custom images.
+                        Most of the values required to upload the image can be found in the {console}.
+                      "
+                    values={{
+                      bucket: "OCI bucket",
+                      console: (
+                        <Button
+                          component="a"
+                          className="pf-icon"
+                          target="_blank"
+                          variant="link"
+                          icon={<ExternalLinkSquareAltIcon />}
+                          iconPosition="right"
+                          isInline
+                          href="https://cloud.oracle.com"
+                        >
+                          OCI Management Console
+                        </Button>
+                      ),
+                    }}
+                  />
+                </p>
+                <br />
+                <p>
+                  <FormattedMessage
+                    defaultMessage="
+                        This upload process requires that you have an {iam} with attached policy to manage custom images
+                        to ensure that the image can be import as a custom image from the {bucket}. For more details, refer to the {policies}.
+                      "
+                    values={{
+                      bucket: "bucket",
+                      iam: "Identity and Access Management (IAM)",
+                      policies: (
+                        <Button
+                          component="a"
+                          className="pf-icon"
+                          target="_blank"
+                          variant="link"
+                          icon={<ExternalLinkSquareAltIcon />}
+                          iconPosition="right"
+                          isInline
+                          href="https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/commonpolicies.htm#manage-custom-images"
+                        >
+                          OCI Required IAM Policy
+                        </Button>
+                      ),
+                    }}
+                  />
+                </p>
+              </div>
+            }
+            aria-label={formatMessage(ariaLabels.uploadImage)}
+          >
+            <Button variant="plain" aria-label={formatMessage(ariaLabels.uploadImage)}>
+              <OutlinedQuestionCircleIcon className="cc-c-text__align-icon" id="popover-icon" />
+            </Button>
+          </Popover>
+        </div>
+        <TextList className="cc-m-column__fixed-width" component={TextListVariants.dl}>
+          <TextListItem component={TextListItemVariants.dt}>
+            <FormattedMessage defaultMessage="User" />
+          </TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>{uploadSettings.user}</TextListItem>
+          <TextListItem component={TextListItemVariants.dt}>
+            <FormattedMessage defaultMessage="Private key filename" />
+          </TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>{uploadSettings.filename}</TextListItem>
+          <TextListItem component={TextListItemVariants.dt}>
+            <FormattedMessage defaultMessage="Fingerprint" />
+          </TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>{uploadSettings.fingerprint}</TextListItem>
+          <TextListItem component={TextListItemVariants.dt}>
+            <FormattedMessage defaultMessage="Image name" />
+          </TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>{imageName}</TextListItem>
+          <TextListItem component={TextListItemVariants.dt}>
+            <FormattedMessage defaultMessage="OCI bucket" />
+          </TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>{uploadSettings.bucket}</TextListItem>
+          <TextListItem component={TextListItemVariants.dt}>
+            <FormattedMessage defaultMessage="Bucket namespace" />
+          </TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>{uploadSettings.namespace}</TextListItem>
+          <TextListItem component={TextListItemVariants.dt}>
+            <FormattedMessage defaultMessage="Bucket region" />
+          </TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>{uploadSettings.region}</TextListItem>
+          <TextListItem component={TextListItemVariants.dt}>
+            <FormattedMessage defaultMessage="Bucket compartment" />
+          </TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>{uploadSettings.compartment}</TextListItem>
+          <TextListItem component={TextListItemVariants.dt}>
+            <FormattedMessage defaultMessage="Bucket tenancy" />
+          </TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>{uploadSettings.tenancy}</TextListItem>
+        </TextList>
+      </TextContent>
+    );
+
     return (
       <>
         {missingRequiredFields() && (
@@ -351,6 +467,7 @@ class ReviewStep extends React.PureComponent {
         {awsReviewStep}
         {azureReviewStep}
         {vmwareReviewStep}
+        {ociReveiwStep}
       </>
     );
   }
