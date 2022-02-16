@@ -8,6 +8,7 @@ fi
 
 # overlays are too big for bot's 10GB /tmp tmpfs
 TEST_OVERLAY_DIR="$(pwd)/tmp/run"
+mkdir -p $TEST_OVERLAY_DIR
 
 make check
 
