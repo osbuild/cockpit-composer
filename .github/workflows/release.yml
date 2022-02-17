@@ -3,7 +3,7 @@ on:
   push:
     tags:
       # this is a glob, not a regexp
-      - '[0-9]*'
+      - 'v*'
 jobs:
   cockpituous:
     runs-on: ubuntu-20.04
