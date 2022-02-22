@@ -3,19 +3,20 @@
 # Ludek Janda <ljanda@redhat.com>, 2020.
 # Sundeep Anand <suanand@redhat.com>, 2021.
 # simmon <simmon@nplob.com>, 2021.
+# Kim InSoo <simmon@nplob.com>, 2022.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2022-02-08T18:16:14.974Z\n"
-"PO-Revision-Date: 2021-11-20 08:16+0000\n"
-"Last-Translator: simmon <simmon@nplob.com>\n"
-"Language-Team: Korean <https://translate.fedoraproject.org/projects/cockpit-"
-"composer/main/ko/>\n"
+"POT-Creation-Date: 2022-02-15T18:16:52.357Z\n"
+"PO-Revision-Date: 2022-02-20 04:16+0000\n"
+"Last-Translator: Kim InSoo <simmon@nplob.com>\n"
+"Language-Team: Korean <https://translate.fedoraproject.org/projects/"
+"cockpit-composer/main/ko/>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
-"X-Generator: Weblate 4.9\n"
+"X-Generator: Weblate 4.10.1\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -54,7 +55,7 @@ msgstr "값이 필요합니다."
 #. API private key's fingerprint
 #: build/messages/components/Wizard/OCIAuthStep.json
 msgid "API private key's fingerprint"
-msgstr ""
+msgstr "API 개인 키의 지문"
 
 #. [components.Wizard.aws]
 #. defaultMessage is:
@@ -419,44 +420,36 @@ msgstr ""
 #. defaultMessage is:
 #. Bucket compartment
 #: build/messages/components/Wizard/OCIDestinationStep.json
-#, fuzzy
-#| msgid "Blueprint components"
 msgid "Bucket compartment"
-msgstr "블루프린트 구성 요소"
+msgstr "버킷 구성 요소"
 
 #. [components.Wizard.bucket]
 #. defaultMessage is:
 #. Bucket help
 #: build/messages/components/Wizard/OCIDestinationStep.json
-#, fuzzy
-#| msgid "S3 Bucket help"
 msgid "Bucket help"
-msgstr "S3 버킷 도움말"
+msgstr "버킷 도움말"
 
 #. [components.Wizard.3386954132]
 #. defaultMessage is:
 #. Bucket namespace
 #: build/messages/components/Wizard/OCIDestinationStep.json
-#, fuzzy
-#| msgid "S3 Bucket help"
 msgid "Bucket namespace"
-msgstr "S3 버킷 도움말"
+msgstr "버킷 네임스페이스"
 
 #. [components.Wizard.2790265886]
 #. defaultMessage is:
 #. Bucket region
 #: build/messages/components/Wizard/OCIDestinationStep.json
-#, fuzzy
-#| msgid "AWS region"
 msgid "Bucket region"
-msgstr "AWS 리전"
+msgstr "버킷 지역"
 
 #. [components.Wizard.1601119828]
 #. defaultMessage is:
 #. Bucket tenancy
 #: build/messages/components/Wizard/OCIDestinationStep.json
 msgid "Bucket tenancy"
-msgstr ""
+msgstr "버킷 테넌시"
 
 #. [components.Form.cancel]
 #. defaultMessage is:
@@ -881,7 +874,7 @@ msgstr "내려받기"
 #. Drag and drop a file or upload one
 #: build/messages/components/Wizard/OCIAuthStep.json
 msgid "Drag and drop a file or upload one"
-msgstr ""
+msgstr "파일을 끌어서 놓거나 하나를 업로드합니다"
 
 #. [components.Modal.2044423701]
 #. defaultMessage is:
@@ -1033,10 +1026,8 @@ msgstr "버전별 필터"
 #. defaultMessage is:
 #. Fingerprint
 #: build/messages/components/Wizard/OCIAuthStep.json
-#, fuzzy
-#| msgid "Blueprint"
 msgid "Fingerprint"
-msgstr "블루프린트"
+msgstr "지문"
 
 #. [components.Wizard.787186999]
 #. defaultMessage is:
@@ -1180,14 +1171,6 @@ msgstr ""
 #.                         and the upload action is successful, the image should be available under custom images.
 #.                         Most of the values required to upload the image can be found in the {console}.
 #: build/messages/components/Wizard/ImageStep.json
-#, fuzzy
-#| msgid ""
-#| "Image Builder can upload images you create to an {bucket} in AWS and then "
-#| "import them into EC2. When the image build is complete\n"
-#| "                        and the upload action is successful, the image "
-#| "file is available in the AMI section of EC2. Most of the values required "
-#| "to upload\n"
-#| "                        the image can be found in the {console}."
 msgid ""
 "Image Builder can upload images you create to an {bucket} in OCI and "
 "register it as a custom image. When the image build is complete\n"
@@ -1196,11 +1179,9 @@ msgid ""
 "                        Most of the values required to upload the image can "
 "be found in the {console}."
 msgstr ""
-"이미지 빌더는 생성한 이미지를 AWS의 {bucket}에 업로드한 다음 EC2로 가져올 수 "
-"있습니다. 이미지 빌드가 완료되고\n"
-"                       업로드 작업이 성공하면 EC2의 AMI 섹션에서 이미지 파일"
-"을 사용할 수 있습니다. 이미지를 업로드하는 데\n"
-"                      필요한 대부분의 값은 {console}에 있습니다."
+"이미지 빌더는 생성한 이미지를 OCI의 {bucket}에 업로드한 다음 사용자 정의 이미지로 등록합니다. 이미지 빌드가 완료되고\n"
+"                       업로드 작업이 성공하면, 이미지는 사용자 정의 이미지에서 사용 할 수 있습니다.\n"
+"                       이미지를 업로드하는 데 필요한 대부분의 값은 {console}에 있습니다."
 
 #. [components.ListView.imageStatusFinished] - Image build status when process is finished
 #. defaultMessage is:
@@ -1452,10 +1433,8 @@ msgstr "이름: {name}"
 #. defaultMessage is:
 #. Namespace help
 #: build/messages/components/Wizard/OCIDestinationStep.json
-#, fuzzy
-#| msgid "Image name help"
 msgid "Namespace help"
-msgstr "이미지 이름 도움말"
+msgstr "네임스페이스 도움말"
 
 #. [components.Wizard.3673120330]
 #. defaultMessage is:
@@ -1518,26 +1497,22 @@ msgstr "검색 기준과 일치하는 결과가 없습니다"
 #. defaultMessage is:
 #. OCI compartment help
 #: build/messages/components/Wizard/OCIDestinationStep.json
-#, fuzzy
-#| msgid "OSTree parent help"
 msgid "OCI compartment help"
-msgstr "OSTree 상위 도움말"
+msgstr "OCI 상위 도움말"
 
 #. [components.Wizard.region]
 #. defaultMessage is:
 #. OCI region help
 #: build/messages/components/Wizard/OCIDestinationStep.json
-#, fuzzy
-#| msgid "AWS region help"
 msgid "OCI region help"
-msgstr "AWS 리전 도움말"
+msgstr "OCI 지역 도움말"
 
 #. [components.Wizard.tenancy]
 #. defaultMessage is:
 #. OCI tenancy help
 #: build/messages/components/Wizard/OCIDestinationStep.json
 msgid "OCI tenancy help"
-msgstr ""
+msgstr "OCI 테넌시 도움말"
 
 #. [components.Wizard.ostreeParent]
 #. defaultMessage is:
@@ -1635,7 +1610,7 @@ msgstr "보류중인 변경"
 #. Private key
 #: build/messages/components/Wizard/OCIAuthStep.json
 msgid "Private key"
-msgstr ""
+msgstr "개인 키"
 
 #. [components.Wizard.processLength]
 #. defaultMessage is:
@@ -1762,7 +1737,7 @@ msgstr ""
 msgid ""
 "Provide the compartment of the {bucket} your uploading to. You can find the "
 "compartment in the bucket details."
-msgstr ""
+msgstr "당신의 업로드 하고자 하는 {bucket}의 구획 부분을 제공합니다. 당신은 버킷 세부 정보에서 구획을 찾을 수 있습니다."
 
 #. [components.Wizard.1434969769]
 #. defaultMessage is:
@@ -1816,22 +1791,16 @@ msgstr ""
 msgid ""
 "Provide the namespace of the {bucket} your uploading to. You can find the "
 "namespace in the bucket details."
-msgstr ""
+msgstr "당신의 업로드 하고자 하는 {bucket}의 이름공간을 제공합니다. 당신은 버킷 세부정보에서 이름공간을 찾을 수 있습니다."
 
 #. [components.Wizard.3286165321]
 #. defaultMessage is:
 #. Provide the region of the {bucket} your uploading to. You can find the region in the bucket details.
 #: build/messages/components/Wizard/OCIDestinationStep.json
-#, fuzzy
-#| msgid ""
-#| "Provide the AWS Region where you want to import your image. This must be "
-#| "the same region where the {bucket} exists."
 msgid ""
 "Provide the region of the {bucket} your uploading to. You can find the "
 "region in the bucket details."
-msgstr ""
-"이미지를 가져올 AWS 리전을 제공하십시오. 이는 {bucket}이 위치한 리전과 동일해"
-"야 합니다."
+msgstr "당신의 업로드 하고자 하는 {bucket}의 지역을 제공하세요. 당신은 버킷 세부정보에서 지역을 찾을 수 있습니다."
 
 #. [components.Wizard.3854501928]
 #. defaultMessage is:
@@ -1840,7 +1809,7 @@ msgstr ""
 msgid ""
 "Provide the tenancy of the {bucket} your uploading to. You can find the "
 "tenancy in the bucket details."
-msgstr ""
+msgstr "당신의 업로드 하고자 하는 {bucket}의 테넌시를 제공하세요. 당신은 버킷 세부정보에서 테넌시를 찾을 수 있습니다."
 
 #. [components.Wizard.3387354708]
 #. defaultMessage is:
@@ -1857,15 +1826,6 @@ msgstr "이미지 파일을 업로드할 {vmware} 인스턴스의 url을 제공�
 #.                         The {bucket} must already exist in the Region where you want to import your image. You can find a list of {buckets} on the
 #.                         {bucketsPage} page in the OCI storage service in the OCI console.
 #: build/messages/components/Wizard/OCIDestinationStep.json
-#, fuzzy
-#| msgid ""
-#| "Provide the S3 {bucket} name to which the image file will be uploaded "
-#| "before being imported into EC2. \n"
-#| "                        The {bucket} must already exist in the Region "
-#| "where you want to import your image. You can find a list of {buckets} on "
-#| "the\n"
-#| "                        {bucketsPage} page in the {amazon} S3 storage "
-#| "service in the AWS console."
 msgid ""
 "Provide the {bucket} name to which the image file will be uploaded before "
 "being imported as a custom image. \n"
@@ -1874,11 +1834,9 @@ msgid ""
 "                        {bucketsPage} page in the OCI storage service in the "
 "OCI console."
 msgstr ""
-"EC2로 가져 오기 전에 이미지 파일을 업로드해야 하는 S3 {bucket} 이름을 지정하"
-"십시오.\n"
-" 이미지를 가져 오려는 리전에 {bucket}이 이미 존재해야 합니다. {buckets} 목록"
-"은\n"
-" AWS 콘솔의 {amazon} S3 저장소 서비스에 있는 {bucketsPage} 페이지에 있습니다."
+"사용자 정의 이미지로 가져 오기 전에 이미지 파일을 업로드해야 하는 {bucket} 이름을 지정하십시오.\n"
+" 이미지를 가져 오려는 지역에 {bucket}이 이미 존재해야 합니다. {buckets} 목록은\n"
+" OCI 콘솔의 OCI 저장소 서비스에 있는 {bucketsPage} 페이지에서 찾을 수 있습니다."
 
 #. [components.Wizard.labelqcow]
 #. defaultMessage is:
@@ -2532,21 +2490,15 @@ msgstr ""
 #. This upload process requires that you have an {iam} with attached policy to manage custom images
 #.                         to ensure that the image can be import as a custom image from the {bucket}. For more details, refer to the {policies}.
 #: build/messages/components/Wizard/ImageStep.json
-#, fuzzy
-#| msgid ""
-#| "This upload process requires that you have an {iam} role named {vmimport} "
-#| "to ensure that the image can\n"
-#| "                        be imported from the S3 {bucket} into EC2. For "
-#| "more details, refer to the {role}."
 msgid ""
 "This upload process requires that you have an {iam} with attached policy to "
 "manage custom images\n"
 "                        to ensure that the image can be import as a custom "
 "image from the {bucket}. For more details, refer to the {policies}."
 msgstr ""
-"이 업로드 과정에는 {vmimport}라는 {iam} 역할이 있어야\n"
-"                      S3{bucket}에서 EC2로 이미지를 가져올 수 있습니다. 자세"
-"한 내용은 {role}에서 참조하십시오."
+"이와 같은 업로드 과정은 사용자 정의 이미지를 관리하는 정책이 연결된 {iam}을 가져야만 합니다\n"
+"                        {bucket}에서 사용자 정의 이미지를 가져올 수 있습니다. 자세한 내용은 {policies}"
+"를 참조하세요."
 
 #. [components.Modal.usernameDuplicate]
 #. defaultMessage is:
@@ -2707,10 +2659,8 @@ msgstr "Azure에 업로드"
 #. Upload to OCI
 #: build/messages/components/Wizard/CreateImageUpload.json
 #: build/messages/components/Wizard/ImageStep.json
-#, fuzzy
-#| msgid "Upload to AWS"
 msgid "Upload to OCI"
-msgstr "AWS에 업로드"
+msgstr "OCI에 업로드"
 
 #. [components.Wizard.3542348520]
 #. defaultMessage is:
@@ -2742,7 +2692,7 @@ msgstr "업로드 유형"
 #. User OCID
 #: build/messages/components/Wizard/OCIAuthStep.json
 msgid "User OCID"
-msgstr ""
+msgstr "사용자 OCID"
 
 #. [pages.blueprint.userKebab]
 #. defaultMessage is:
@@ -2849,13 +2799,8 @@ msgstr ""
 #. defaultMessage is:
 #. You can find your user OCID {iam} page in the OCI console.
 #: build/messages/components/Wizard/OCIAuthStep.json
-#, fuzzy
-#| msgid ""
-#| "You can create and find existing Access key IDs on the {iam} page in the "
-#| "AWS console."
 msgid "You can find your user OCID {iam} page in the OCI console."
-msgstr ""
-"AWS 콘솔의 {iam}페이지에서 기존 액세스 키 ID를 만들고 찾을 수 있습니다."
+msgstr "당신은 OCI 콘솔에서 자신의 사용자 OCID {iam} 부분을 찾을 수 있습니다."
 
 #. [components.Wizard.4206409720]
 #. defaultMessage is:
@@ -2872,29 +2817,19 @@ msgstr ""
 #. defaultMessage is:
 #. You can view your deployed RSA keys fingerprint in the API Keys section on the {iam} page in the OCI console.
 #: build/messages/components/Wizard/OCIAuthStep.json
-#, fuzzy
-#| msgid ""
-#| "You can create and find existing Access key IDs on the {iam} page in the "
-#| "AWS console."
 msgid ""
 "You can view your deployed RSA keys fingerprint in the API Keys section on "
 "the {iam} page in the OCI console."
-msgstr ""
-"AWS 콘솔의 {iam}페이지에서 기존 액세스 키 ID를 만들고 찾을 수 있습니다."
+msgstr "당신은 OCI 콘솔의 {iam} 부분에 있는 API 키 부분에서 자신의 배포된 RSA 키 지문을 볼 수 있습니다."
 
 #. [components.Wizard.182848243]
 #. defaultMessage is:
 #. You can view your deployed RSA keys in the API Keys section on the {iam} page in the OCI console.
 #: build/messages/components/Wizard/OCIAuthStep.json
-#, fuzzy
-#| msgid ""
-#| "You can create and find existing Access key IDs on the {iam} page in the "
-#| "AWS console."
 msgid ""
 "You can view your deployed RSA keys in the API Keys section on the {iam} "
 "page in the OCI console."
-msgstr ""
-"AWS 콘솔의 {iam}페이지에서 기존 액세스 키 ID를 만들고 찾을 수 있습니다."
+msgstr "당신은 OCI 콘솔의 {iam} 부분에서 API 키 부분에서 자신에게 배포된 RSA 키를 볼 수 있습니다."
 
 #. [components.ListView.actions]
 #. defaultMessage is:

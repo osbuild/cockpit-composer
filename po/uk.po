@@ -1,9 +1,9 @@
-# Yuri Chornoivan <yurchor@ukr.net>, 2019, 2020, 2021.
+# Yuri Chornoivan <yurchor@ukr.net>, 2019, 2020, 2021, 2022.
 # David Shea <dshea@redhat.com>, 2019. #zanata
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2022-02-08T18:16:14.974Z\n"
-"PO-Revision-Date: 2021-11-20 08:16+0000\n"
+"POT-Creation-Date: 2022-02-15T18:16:52.357Z\n"
+"PO-Revision-Date: 2022-02-16 22:16+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "cockpit-composer/main/uk/>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.9\n"
+"X-Generator: Weblate 4.10.1\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -52,7 +52,7 @@ msgstr "Слід вказати значення."
 #. API private key's fingerprint
 #: build/messages/components/Wizard/OCIAuthStep.json
 msgid "API private key's fingerprint"
-msgstr ""
+msgstr "Відбиток закритого ключа до програмного інтерфейсу"
 
 #. [components.Wizard.aws]
 #. defaultMessage is:
@@ -414,44 +414,36 @@ msgstr ""
 #. defaultMessage is:
 #. Bucket compartment
 #: build/messages/components/Wizard/OCIDestinationStep.json
-#, fuzzy
-#| msgid "Blueprint components"
 msgid "Bucket compartment"
-msgstr "Компоненти проєкту"
+msgstr "Відсік корзин"
 
 #. [components.Wizard.bucket]
 #. defaultMessage is:
 #. Bucket help
 #: build/messages/components/Wizard/OCIDestinationStep.json
-#, fuzzy
-#| msgid "S3 Bucket help"
 msgid "Bucket help"
-msgstr "Довідка з корзини S3"
+msgstr "Довідка з корзини"
 
 #. [components.Wizard.3386954132]
 #. defaultMessage is:
 #. Bucket namespace
 #: build/messages/components/Wizard/OCIDestinationStep.json
-#, fuzzy
-#| msgid "S3 Bucket help"
 msgid "Bucket namespace"
-msgstr "Довідка з корзини S3"
+msgstr "Простір назв корзини"
 
 #. [components.Wizard.2790265886]
 #. defaultMessage is:
 #. Bucket region
 #: build/messages/components/Wizard/OCIDestinationStep.json
-#, fuzzy
-#| msgid "AWS region"
 msgid "Bucket region"
-msgstr "Регіон AWS"
+msgstr "Регіон корзини"
 
 #. [components.Wizard.1601119828]
 #. defaultMessage is:
 #. Bucket tenancy
 #: build/messages/components/Wizard/OCIDestinationStep.json
 msgid "Bucket tenancy"
-msgstr ""
+msgstr "Володіння корзини"
 
 #. [components.Form.cancel]
 #. defaultMessage is:
@@ -875,7 +867,7 @@ msgstr "Отримати"
 #. Drag and drop a file or upload one
 #: build/messages/components/Wizard/OCIAuthStep.json
 msgid "Drag and drop a file or upload one"
-msgstr ""
+msgstr "Перетягніть і скиньте файл або вивантажте його"
 
 #. [components.Modal.2044423701]
 #. defaultMessage is:
@@ -1029,10 +1021,8 @@ msgstr "Фільтрувати за версією"
 #. defaultMessage is:
 #. Fingerprint
 #: build/messages/components/Wizard/OCIAuthStep.json
-#, fuzzy
-#| msgid "Blueprint"
 msgid "Fingerprint"
-msgstr "Синька"
+msgstr "Відбиток"
 
 #. [components.Wizard.787186999]
 #. defaultMessage is:
@@ -1180,14 +1170,6 @@ msgstr ""
 #.                         and the upload action is successful, the image should be available under custom images.
 #.                         Most of the values required to upload the image can be found in the {console}.
 #: build/messages/components/Wizard/ImageStep.json
-#, fuzzy
-#| msgid ""
-#| "Image Builder can upload images you create to an {bucket} in AWS and then "
-#| "import them into EC2. When the image build is complete\n"
-#| "                        and the upload action is successful, the image "
-#| "file is available in the AMI section of EC2. Most of the values required "
-#| "to upload\n"
-#| "                        the image can be found in the {console}."
 msgid ""
 "Image Builder can upload images you create to an {bucket} in OCI and "
 "register it as a custom image. When the image build is complete\n"
@@ -1196,11 +1178,11 @@ msgid ""
 "                        Most of the values required to upload the image can "
 "be found in the {console}."
 msgstr ""
-"Image Builder може вивантажувати створені вами образи до {bucket} в AWS, а "
-"потім імпортувати їх до EC2. Коли збирання образу буде завершено,\n"
-"                             а дія з вивантаження буде успішною, файл образу "
-"стане доступним у розділі AMI EC2. Доступ до більшості значень, потрібних "
-"для\n"
+"Image Builder може вивантажувати створені вами образи до {bucket} в OCI і "
+"реєструвати їх як нетипові образи. Коли збирання образу буде завершено,\n"
+"                             а дія з вивантаження буде успішною, образ стане "
+"доступним у розділі нетипових образів. Доступ до більшості значень, "
+"потрібних для\n"
 "                             вивантаження образу, можна знайти у {console}."
 
 #. [components.ListView.imageStatusFinished] - Image build status when process is finished
@@ -1453,10 +1435,8 @@ msgstr "Назва: {name}"
 #. defaultMessage is:
 #. Namespace help
 #: build/messages/components/Wizard/OCIDestinationStep.json
-#, fuzzy
-#| msgid "Image name help"
 msgid "Namespace help"
-msgstr "Довідка з назви образу"
+msgstr "Довідка з простору назв"
 
 #. [components.Wizard.3673120330]
 #. defaultMessage is:
@@ -1519,26 +1499,22 @@ msgstr "Немає результатів, які відповідають кр�
 #. defaultMessage is:
 #. OCI compartment help
 #: build/messages/components/Wizard/OCIDestinationStep.json
-#, fuzzy
-#| msgid "OSTree parent help"
 msgid "OCI compartment help"
-msgstr "Довідка з батьківського запису OSTree"
+msgstr "Довідка з відсіку OCI"
 
 #. [components.Wizard.region]
 #. defaultMessage is:
 #. OCI region help
 #: build/messages/components/Wizard/OCIDestinationStep.json
-#, fuzzy
-#| msgid "AWS region help"
 msgid "OCI region help"
-msgstr "Довідка з регіонів AWS"
+msgstr "Довідка з регіонів OCI"
 
 #. [components.Wizard.tenancy]
 #. defaultMessage is:
 #. OCI tenancy help
 #: build/messages/components/Wizard/OCIDestinationStep.json
 msgid "OCI tenancy help"
-msgstr ""
+msgstr "Довідка з належності OCI"
 
 #. [components.Wizard.ostreeParent]
 #. defaultMessage is:
@@ -1636,7 +1612,7 @@ msgstr "Зміни у черзі"
 #. Private key
 #: build/messages/components/Wizard/OCIAuthStep.json
 msgid "Private key"
-msgstr ""
+msgstr "Закритий ключ"
 
 #. [components.Wizard.processLength]
 #. defaultMessage is:
@@ -1770,6 +1746,8 @@ msgid ""
 "Provide the compartment of the {bucket} your uploading to. You can find the "
 "compartment in the bucket details."
 msgstr ""
+"Вкажіть відсік {bucket}, до якого відбувається вивантаження. Ви можете "
+"визначити відсік за даними з подробиць щодо корзини."
 
 #. [components.Wizard.1434969769]
 #. defaultMessage is:
@@ -1825,21 +1803,19 @@ msgid ""
 "Provide the namespace of the {bucket} your uploading to. You can find the "
 "namespace in the bucket details."
 msgstr ""
+"Вкажіть простір назв {bucket}, до якого відбуватиметься вивантаження. Ви "
+"можете визначити простір назв за даними подробиць щодо корзини."
 
 #. [components.Wizard.3286165321]
 #. defaultMessage is:
 #. Provide the region of the {bucket} your uploading to. You can find the region in the bucket details.
 #: build/messages/components/Wizard/OCIDestinationStep.json
-#, fuzzy
-#| msgid ""
-#| "Provide the AWS Region where you want to import your image. This must be "
-#| "the same region where the {bucket} exists."
 msgid ""
 "Provide the region of the {bucket} your uploading to. You can find the "
 "region in the bucket details."
 msgstr ""
-"Вкажіть регіон AWS, до якого ви хочете імпортувати ваш образ. Це має бути "
-"той самий регіон, у якому існує {bucket}."
+"Вкажіть регіон {bucket}, до якого відбуватиметься вивантаження. Ви можете "
+"визначити регіон за даними подробиць щодо корзини."
 
 #. [components.Wizard.3854501928]
 #. defaultMessage is:
@@ -1849,6 +1825,8 @@ msgid ""
 "Provide the tenancy of the {bucket} your uploading to. You can find the "
 "tenancy in the bucket details."
 msgstr ""
+"Вкажіть належність {bucket}, до якої відбуватиметься вивантаження. Ви можете "
+"визначити належність за даними подробиць щодо корзини."
 
 #. [components.Wizard.3387354708]
 #. defaultMessage is:
@@ -1867,15 +1845,6 @@ msgstr ""
 #.                         The {bucket} must already exist in the Region where you want to import your image. You can find a list of {buckets} on the
 #.                         {bucketsPage} page in the OCI storage service in the OCI console.
 #: build/messages/components/Wizard/OCIDestinationStep.json
-#, fuzzy
-#| msgid ""
-#| "Provide the S3 {bucket} name to which the image file will be uploaded "
-#| "before being imported into EC2. \n"
-#| "                        The {bucket} must already exist in the Region "
-#| "where you want to import your image. You can find a list of {buckets} on "
-#| "the\n"
-#| "                        {bucketsPage} page in the {amazon} S3 storage "
-#| "service in the AWS console."
 msgid ""
 "Provide the {bucket} name to which the image file will be uploaded before "
 "being imported as a custom image. \n"
@@ -1884,12 +1853,12 @@ msgid ""
 "                        {bucketsPage} page in the OCI storage service in the "
 "OCI console."
 msgstr ""
-"Вкажіть назву {bucket} S3, до якої буде вивантажено файл образу перед "
-"імпортуванням до EC2. \n"
+"Вкажіть назву {bucket}, до якої буде вивантажено файл образу перед "
+"імпортуванням у форматі нетипового образу. \n"
 "                             {bucket} має існувати у регіоні, куди ви хочете "
 "імпортувати ваш образ. Список {buckets} можна знайти\n"
 "                             на сторінці {bucketsPage} у службі зберігання "
-"даних S3 {amazon} у консолі AWS."
+"даних OCI у консолі OCI."
 
 #. [components.Wizard.labelqcow]
 #. defaultMessage is:
@@ -2548,22 +2517,16 @@ msgstr ""
 #. This upload process requires that you have an {iam} with attached policy to manage custom images
 #.                         to ensure that the image can be import as a custom image from the {bucket}. For more details, refer to the {policies}.
 #: build/messages/components/Wizard/ImageStep.json
-#, fuzzy
-#| msgid ""
-#| "This upload process requires that you have an {iam} role named {vmimport} "
-#| "to ensure that the image can\n"
-#| "                        be imported from the S3 {bucket} into EC2. For "
-#| "more details, refer to the {role}."
 msgid ""
 "This upload process requires that you have an {iam} with attached policy to "
 "manage custom images\n"
 "                        to ensure that the image can be import as a custom "
 "image from the {bucket}. For more details, refer to the {policies}."
 msgstr ""
-"Цей процес вивантаження потребує наявності у вас ролі {iam} із назвою "
-"{vmimport} для забезпечення можливості\n"
-"                            імпортування образу з {bucket} S3 до EC2. "
-"Докладніше про це можна дізнатися з запису {role}."
+"Цей процес вивантаження потребує наявності у вас ролі {iam} із долученими "
+"правилами для керування нетиповими образами для забезпечення можливості\n"
+"                            імпортування образу як нетипового образу з "
+"{bucket}. Докладніше про це можна дізнатися з запису {policies}."
 
 #. [components.Modal.usernameDuplicate]
 #. defaultMessage is:
@@ -2724,10 +2687,8 @@ msgstr "Вивантажити на Azure"
 #. Upload to OCI
 #: build/messages/components/Wizard/CreateImageUpload.json
 #: build/messages/components/Wizard/ImageStep.json
-#, fuzzy
-#| msgid "Upload to AWS"
 msgid "Upload to OCI"
-msgstr "Вивантажити на AWS"
+msgstr "Вивантажити на OCI"
 
 #. [components.Wizard.3542348520]
 #. defaultMessage is:
@@ -2759,7 +2720,7 @@ msgstr "Тип вивантаження"
 #. User OCID
 #: build/messages/components/Wizard/OCIAuthStep.json
 msgid "User OCID"
-msgstr ""
+msgstr "OCID користувача"
 
 #. [pages.blueprint.userKebab]
 #. defaultMessage is:
@@ -2867,14 +2828,9 @@ msgstr ""
 #. defaultMessage is:
 #. You can find your user OCID {iam} page in the OCI console.
 #: build/messages/components/Wizard/OCIAuthStep.json
-#, fuzzy
-#| msgid ""
-#| "You can create and find existing Access key IDs on the {iam} page in the "
-#| "AWS console."
 msgid "You can find your user OCID {iam} page in the OCI console."
 msgstr ""
-"Ви можете створити і знайти наявні ідентифікатори ключів доступу на сторінці "
-"{iam} у консолі AWS."
+"Ви можете визначити OCID вашого користувача на сторінці {iam} у консолі OCI."
 
 #. [components.Wizard.4206409720]
 #. defaultMessage is:
@@ -2891,31 +2847,23 @@ msgstr ""
 #. defaultMessage is:
 #. You can view your deployed RSA keys fingerprint in the API Keys section on the {iam} page in the OCI console.
 #: build/messages/components/Wizard/OCIAuthStep.json
-#, fuzzy
-#| msgid ""
-#| "You can create and find existing Access key IDs on the {iam} page in the "
-#| "AWS console."
 msgid ""
 "You can view your deployed RSA keys fingerprint in the API Keys section on "
 "the {iam} page in the OCI console."
 msgstr ""
-"Ви можете створити і знайти наявні ідентифікатори ключів доступу на сторінці "
-"{iam} у консолі AWS."
+"Ви можете переглянути ваш розгорнутий відбиток ключів RSA у розділі ключів "
+"до програмного інтерфейсу на сторінці {iam} у консолі OCI."
 
 #. [components.Wizard.182848243]
 #. defaultMessage is:
 #. You can view your deployed RSA keys in the API Keys section on the {iam} page in the OCI console.
 #: build/messages/components/Wizard/OCIAuthStep.json
-#, fuzzy
-#| msgid ""
-#| "You can create and find existing Access key IDs on the {iam} page in the "
-#| "AWS console."
 msgid ""
 "You can view your deployed RSA keys in the API Keys section on the {iam} "
 "page in the OCI console."
 msgstr ""
-"Ви можете створити і знайти наявні ідентифікатори ключів доступу на сторінці "
-"{iam} у консолі AWS."
+"Ви можете переглянути ваші розгорнуті ключі RSA у розділі ключів до "
+"програмного інтерфейсу на сторінці {iam} у консолі OCI."
 
 #. [components.ListView.actions]
 #. defaultMessage is:
