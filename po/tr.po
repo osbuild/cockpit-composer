@@ -1,10 +1,10 @@
 # Oğuz Ersen <oguzersen@protonmail.com>, 2020.
 # Anonymous <noreply@weblate.org>, 2020.
-# Burak Yavuz <hitowerdigit@hotmail.com>, 2020, 2021.
+# Burak Yavuz <hitowerdigit@hotmail.com>, 2020, 2021, 2022.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2022-02-08T18:16:14.974Z\n"
-"PO-Revision-Date: 2021-11-20 08:16+0000\n"
+"POT-Creation-Date: 2022-02-15T18:16:52.357Z\n"
+"PO-Revision-Date: 2022-02-16 22:16+0000\n"
 "Last-Translator: Burak Yavuz <hitowerdigit@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.fedoraproject.org/projects/cockpit-"
 "composer/main/tr/>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1\n"
-"X-Generator: Weblate 4.9\n"
+"X-Generator: Weblate 4.10.1\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -52,7 +52,7 @@ msgstr "Bir değer gerekli."
 #. API private key's fingerprint
 #: build/messages/components/Wizard/OCIAuthStep.json
 msgid "API private key's fingerprint"
-msgstr ""
+msgstr "API özel anahtarının parmak izi"
 
 #. [components.Wizard.aws]
 #. defaultMessage is:
@@ -415,44 +415,36 @@ msgstr ""
 #. defaultMessage is:
 #. Bucket compartment
 #: build/messages/components/Wizard/OCIDestinationStep.json
-#, fuzzy
-#| msgid "Blueprint components"
 msgid "Bucket compartment"
-msgstr "Plan bileşenleri"
+msgstr "Bucket bölmesi"
 
 #. [components.Wizard.bucket]
 #. defaultMessage is:
 #. Bucket help
 #: build/messages/components/Wizard/OCIDestinationStep.json
-#, fuzzy
-#| msgid "S3 Bucket help"
 msgid "Bucket help"
-msgstr "S3 Bucket ile ilgili yardım"
+msgstr "Bucket yardım"
 
 #. [components.Wizard.3386954132]
 #. defaultMessage is:
 #. Bucket namespace
 #: build/messages/components/Wizard/OCIDestinationStep.json
-#, fuzzy
-#| msgid "S3 Bucket help"
 msgid "Bucket namespace"
-msgstr "S3 Bucket ile ilgili yardım"
+msgstr "Bucket ad alanı"
 
 #. [components.Wizard.2790265886]
 #. defaultMessage is:
 #. Bucket region
 #: build/messages/components/Wizard/OCIDestinationStep.json
-#, fuzzy
-#| msgid "AWS region"
 msgid "Bucket region"
-msgstr "AWS bölgesi"
+msgstr "Bucket bölgesi"
 
 #. [components.Wizard.1601119828]
 #. defaultMessage is:
 #. Bucket tenancy
 #: build/messages/components/Wizard/OCIDestinationStep.json
 msgid "Bucket tenancy"
-msgstr ""
+msgstr "Bucket kirası"
 
 #. [components.Form.cancel]
 #. defaultMessage is:
@@ -877,7 +869,7 @@ msgstr "İndir"
 #. Drag and drop a file or upload one
 #: build/messages/components/Wizard/OCIAuthStep.json
 msgid "Drag and drop a file or upload one"
-msgstr ""
+msgstr "Bir dosyayı sürükleyin ve bırakın veya birini yükleyin"
 
 #. [components.Modal.2044423701]
 #. defaultMessage is:
@@ -1029,10 +1021,8 @@ msgstr "Sürüme göre süz"
 #. defaultMessage is:
 #. Fingerprint
 #: build/messages/components/Wizard/OCIAuthStep.json
-#, fuzzy
-#| msgid "Blueprint"
 msgid "Fingerprint"
-msgstr "Plan"
+msgstr "Parmak izi"
 
 #. [components.Wizard.787186999]
 #. defaultMessage is:
@@ -1181,14 +1171,6 @@ msgstr ""
 #.                         and the upload action is successful, the image should be available under custom images.
 #.                         Most of the values required to upload the image can be found in the {console}.
 #: build/messages/components/Wizard/ImageStep.json
-#, fuzzy
-#| msgid ""
-#| "Image Builder can upload images you create to an {bucket} in AWS and then "
-#| "import them into EC2. When the image build is complete\n"
-#| "                        and the upload action is successful, the image "
-#| "file is available in the AMI section of EC2. Most of the values required "
-#| "to upload\n"
-#| "                        the image can be found in the {console}."
 msgid ""
 "Image Builder can upload images you create to an {bucket} in OCI and "
 "register it as a custom image. When the image build is complete\n"
@@ -1197,13 +1179,13 @@ msgid ""
 "                        Most of the values required to upload the image can "
 "be found in the {console}."
 msgstr ""
-"Kalıp Oluşturucu, oluşturduğunuz kalıpları AWS'deki bir {bucket} içine "
-"yükleyebilir ve ardından bunları EC2'ye aktarabilir. Kalıp oluşturma "
-"tamamlandığında\n"
-"                        yükleme eylemi başarılı olduğunda, kalıp dosyası "
-"EC2'nin AMI bölümünde kullanılabilir. Kalıbı yüklemek için gereken "
-"değerlerin çoğu\n"
-"                        {console} içinde bulunabilir."
+"Kalıp Oluşturucu, oluşturduğunuz kalıpları OCI'deki bir {bucket} içine "
+"yükleyebilir ve bunu özel bir kalıp olarak kaydettirebilirsiniz. Kalıp "
+"oluşturma tamamlandığında\n"
+"                        ve yükleme eylemi başarılı olduğunda kalıp, özel "
+"kalıplar altında kullanılabilir olmalıdır.\n"
+"                         Kalıbı yüklemek için gereken değerlerin çoğu "
+"{console} içinde bulunabilir."
 
 #. [components.ListView.imageStatusFinished] - Image build status when process is finished
 #. defaultMessage is:
@@ -1442,23 +1424,21 @@ msgstr "Sonuç almak için filtreleme kriterlerinizi değiştirin."
 #: build/messages/components/Toolbar/FilterInput.json
 #: build/messages/components/Toolbar/ToolbarLayout.json
 msgid "Name"
-msgstr "İsim"
+msgstr "Ad"
 
 #. [pages.blueprintEdit.3059610115]
 #. defaultMessage is:
 #. Name: {name}
 #: build/messages/pages/blueprintEdit/index.json
 msgid "Name: {name}"
-msgstr "İsim: {name}"
+msgstr "Ad: {name}"
 
 #. [components.Wizard.namespace]
 #. defaultMessage is:
 #. Namespace help
 #: build/messages/components/Wizard/OCIDestinationStep.json
-#, fuzzy
-#| msgid "Image name help"
 msgid "Namespace help"
-msgstr "Kalıp adı ile ilgili yardım"
+msgstr "Ad alanı yardımı"
 
 #. [components.Wizard.3673120330]
 #. defaultMessage is:
@@ -1521,26 +1501,22 @@ msgstr "Süzme ölçütüyle eşleşen sonuçlar yok"
 #. defaultMessage is:
 #. OCI compartment help
 #: build/messages/components/Wizard/OCIDestinationStep.json
-#, fuzzy
-#| msgid "OSTree parent help"
 msgid "OCI compartment help"
-msgstr "OSTree üst öğe yardımı"
+msgstr "OCI bölmesi yardımı"
 
 #. [components.Wizard.region]
 #. defaultMessage is:
 #. OCI region help
 #: build/messages/components/Wizard/OCIDestinationStep.json
-#, fuzzy
-#| msgid "AWS region help"
 msgid "OCI region help"
-msgstr "AWS bölgesi ile ilgili yardım"
+msgstr "OCI bölgesi yardımı"
 
 #. [components.Wizard.tenancy]
 #. defaultMessage is:
 #. OCI tenancy help
 #: build/messages/components/Wizard/OCIDestinationStep.json
 msgid "OCI tenancy help"
-msgstr ""
+msgstr "OCI kirası yardımı"
 
 #. [components.Wizard.ostreeParent]
 #. defaultMessage is:
@@ -1638,7 +1614,7 @@ msgstr "Bekleyen değişiklikler"
 #. Private key
 #: build/messages/components/Wizard/OCIAuthStep.json
 msgid "Private key"
-msgstr ""
+msgstr "Özel anahtar"
 
 #. [components.Wizard.processLength]
 #. defaultMessage is:
@@ -1680,8 +1656,8 @@ msgid ""
 "Provide the AWS Region where you want to import your image. This must be the "
 "same region where the {bucket} exists."
 msgstr ""
-"Kalıbınızı aktarmak istediğiniz AWS Bölgesini belirtin. Bu, {bucket} "
-"alanının bulunduğu bölge ile aynı olmalıdır."
+"Kalıbınızı içe aktarmak istediğiniz AWS Bölgesini girin. Bu, {bucket} "
+"alanının bulunduğu aynı bölge olmak zorundadır."
 
 #. [components.Wizard.517158149]
 #. defaultMessage is:
@@ -1694,7 +1670,7 @@ msgid ""
 "                    section of a storage account. You can find storage "
 "accounts on the {storageAccounts} page in the {azure} portal."
 msgstr ""
-"Kalıp dosyasının yükleneceği Blob konteynerini belirtin. Konteynerleri "
+"Kalıp dosyasının yükleneceği Blob kapsayıcısını girin. Kapsayıcıları "
 "depolama hesabının {blobService} bölümünde \n"
 "                    bulabilirsiniz. Depolama hesaplarını {azure} "
 "portalındaki {storageAccounts} sayfasında bulabilirsiniz."
@@ -1711,7 +1687,7 @@ msgid ""
 "parent repository."
 msgstr ""
 "Bu işlemenin bir güncelleme sağladığı güncellemeler deposundaki en son "
-"işlemenin kimliğini verin.\n"
+"işlemenin kimliğini girin.\n"
 "                    Eğer hiç bir işleme belirtilmezse, üst depodan "
 "çıkarılacaktır."
 
@@ -1745,7 +1721,7 @@ msgid ""
 "Provide the URL of the upstream repository. This repository is where the "
 "parent OSTree commit will be pulled from."
 msgstr ""
-"Yukarı akış deposunun URL'sini verin. Bu depo, üst OSTree işlemesinin "
+"Yukarı akış deposunun URL'sini girin. Bu depo, üst OSTree işlemesinin "
 "çekileceği yerdir."
 
 #. [components.Wizard.2706552502]
@@ -1759,7 +1735,7 @@ msgid ""
 "                        page of the storage account. You can find storage "
 "accounts on the {storageAccounts} page in the {azure} portal."
 msgstr ""
-"İstenen depolama hesabı için erişim anahtarını belirtin. Erişim anahtarını "
+"İstenen depolama hesabı için erişim anahtarını girin. Erişim anahtarını "
 "depolama hesabının {accessKeys} \n"
 "                        sayfasında bulabilirsiniz. Depolama hesaplarını "
 "{azure} portalındaki {storageAccounts} sayfasında bulabilirsiniz."
@@ -1772,6 +1748,8 @@ msgid ""
 "Provide the compartment of the {bucket} your uploading to. You can find the "
 "compartment in the bucket details."
 msgstr ""
+"Yüklediğiniz {bucket} bölmesini girin. Bölmeyi bucket ayrıntılarında "
+"bulabilirsiniz."
 
 #. [components.Wizard.1434969769]
 #. defaultMessage is:
@@ -1781,7 +1759,7 @@ msgid ""
 "Provide the name of a storage account. You can find storage accounts on the "
 "{storageAccounts} page in the {azure} portal."
 msgstr ""
-"Depolama hesabının adını belirtin. Depolama hesaplarını {azure} portalındaki "
+"Depolama hesabının adını girin. Depolama hesaplarını {azure} portalındaki "
 "{storageAccounts} sayfasında bulabilirsiniz."
 
 #. [components.Wizard.1891777230]
@@ -1816,7 +1794,7 @@ msgid ""
 "Provide the name of the branch for the content. If the ref does not already "
 "exist it will be created."
 msgstr ""
-"İçerik için dalın adını belirtin. Referans zaten mevcut değilse "
+"İçerik için dalın adını girin. Referans zaten mevcut değilse "
 "oluşturulacaktır."
 
 #. [components.Wizard.3701635592]
@@ -1827,21 +1805,19 @@ msgid ""
 "Provide the namespace of the {bucket} your uploading to. You can find the "
 "namespace in the bucket details."
 msgstr ""
+"Yüklediğiniz {bucket} ad alanını girin. Ad alanını bucket ayrıntılarında "
+"bulabilirsiniz."
 
 #. [components.Wizard.3286165321]
 #. defaultMessage is:
 #. Provide the region of the {bucket} your uploading to. You can find the region in the bucket details.
 #: build/messages/components/Wizard/OCIDestinationStep.json
-#, fuzzy
-#| msgid ""
-#| "Provide the AWS Region where you want to import your image. This must be "
-#| "the same region where the {bucket} exists."
 msgid ""
 "Provide the region of the {bucket} your uploading to. You can find the "
 "region in the bucket details."
 msgstr ""
-"Kalıbınızı aktarmak istediğiniz AWS Bölgesini belirtin. Bu, {bucket} "
-"alanının bulunduğu bölge ile aynı olmalıdır."
+"Yüklediğiniz {bucket} bölgesini girin. Bölgeyi bucket ayrıntılarında "
+"bulabilirsiniz."
 
 #. [components.Wizard.3854501928]
 #. defaultMessage is:
@@ -1851,6 +1827,8 @@ msgid ""
 "Provide the tenancy of the {bucket} your uploading to. You can find the "
 "tenancy in the bucket details."
 msgstr ""
+"Yüklediğiniz {bucket} kirasını girin. Kirayı bucket ayrıntılarında "
+"bulabilirsiniz."
 
 #. [components.Wizard.3387354708]
 #. defaultMessage is:
@@ -1867,15 +1845,6 @@ msgstr "Kalıp dosyasının yükleneceği {vmware} örneğinizin url'sini girin.
 #.                         The {bucket} must already exist in the Region where you want to import your image. You can find a list of {buckets} on the
 #.                         {bucketsPage} page in the OCI storage service in the OCI console.
 #: build/messages/components/Wizard/OCIDestinationStep.json
-#, fuzzy
-#| msgid ""
-#| "Provide the S3 {bucket} name to which the image file will be uploaded "
-#| "before being imported into EC2. \n"
-#| "                        The {bucket} must already exist in the Region "
-#| "where you want to import your image. You can find a list of {buckets} on "
-#| "the\n"
-#| "                        {bucketsPage} page in the {amazon} S3 storage "
-#| "service in the AWS console."
 msgid ""
 "Provide the {bucket} name to which the image file will be uploaded before "
 "being imported as a custom image. \n"
@@ -1884,13 +1853,13 @@ msgid ""
 "                        {bucketsPage} page in the OCI storage service in the "
 "OCI console."
 msgstr ""
-"EC2'ye aktarılmadan önce kalıp dosyasının yükleneceği S3 {bucket} adını "
-"girin.\n"
-"                        {bucket}, kalıbınızı aktarmak istediğiniz Bölge'de "
-"önceden mevcut olmalıdır. {buckets} ögelerinin bir listesini AWS "
-"konsolundaki\n"
-"                        {amazon} S3 depolama hizmetindeki {bucketsPage} "
-"sayfasında bulabilirsiniz."
+"Özel bir kalıp olarak içe aktarılmadan önce kalıp dosyasının yükleneceği "
+"{bucket} adını girin.\n"
+"                        {bucket}, kalıbınızı içe aktarmak istediğiniz "
+"Bölgede zaten mevcut olmak zorundadır. Bir {buckets} listesini OCI "
+"konsolunda\n"
+"                        OCI depolama hizmetindeki {bucketsPage} sayfasında "
+"bulabilirsiniz."
 
 #. [components.Wizard.labelqcow]
 #. defaultMessage is:
@@ -2019,7 +1988,7 @@ msgstr "Rol"
 #. S3 Bucket help
 #: build/messages/components/Wizard/AWSDestinationStep.json
 msgid "S3 Bucket help"
-msgstr "S3 Bucket ile ilgili yardım"
+msgstr "S3 Bucket yardımı"
 
 #. [components.Modal.labelSSHKey]
 #. defaultMessage is:
@@ -2546,22 +2515,16 @@ msgstr ""
 #. This upload process requires that you have an {iam} with attached policy to manage custom images
 #.                         to ensure that the image can be import as a custom image from the {bucket}. For more details, refer to the {policies}.
 #: build/messages/components/Wizard/ImageStep.json
-#, fuzzy
-#| msgid ""
-#| "This upload process requires that you have an {iam} role named {vmimport} "
-#| "to ensure that the image can\n"
-#| "                        be imported from the S3 {bucket} into EC2. For "
-#| "more details, refer to the {role}."
 msgid ""
 "This upload process requires that you have an {iam} with attached policy to "
 "manage custom images\n"
 "                        to ensure that the image can be import as a custom "
 "image from the {bucket}. For more details, refer to the {policies}."
 msgstr ""
-"Bu karşıya yükleme işlemi, kalıbın S3 {bucket} alanından EC2'ye "
-"aktarılabilmesini sağlamak için {vmimport}\n"
-"                        adında bir {iam} rolünüzün olmasını "
-"gerektirmektedir. Daha fazla ayrıntı için {role} bölümüne bakın."
+"Bu yükleme işlemi, kalıbın {bucket} öğesinden gelen özel bir kalıp olarak "
+"içe aktarılabilmesini sağlamak amacıyla özel kalıpları yönetmek için\n"
+"                        ekli ilkeye sahip bir {iam} öğesine sahip olmanızı "
+"gerektirir. Daha fazla ayrıntı için {policies} ilkesine bakın."
 
 #. [components.Modal.usernameDuplicate]
 #. defaultMessage is:
@@ -2722,10 +2685,8 @@ msgstr "Azure'a yükle"
 #. Upload to OCI
 #: build/messages/components/Wizard/CreateImageUpload.json
 #: build/messages/components/Wizard/ImageStep.json
-#, fuzzy
-#| msgid "Upload to AWS"
 msgid "Upload to OCI"
-msgstr "AWS'ye yükle"
+msgstr "OCI'ye yükle"
 
 #. [components.Wizard.3542348520]
 #. defaultMessage is:
@@ -2757,7 +2718,7 @@ msgstr "Karşıya yükleme türü"
 #. User OCID
 #: build/messages/components/Wizard/OCIAuthStep.json
 msgid "User OCID"
-msgstr ""
+msgstr "Kullanıcı OCID"
 
 #. [pages.blueprint.userKebab]
 #. defaultMessage is:
@@ -2865,14 +2826,8 @@ msgstr ""
 #. defaultMessage is:
 #. You can find your user OCID {iam} page in the OCI console.
 #: build/messages/components/Wizard/OCIAuthStep.json
-#, fuzzy
-#| msgid ""
-#| "You can create and find existing Access key IDs on the {iam} page in the "
-#| "AWS console."
 msgid "You can find your user OCID {iam} page in the OCI console."
-msgstr ""
-"AWS konsolundaki {iam} sayfasında Erişim anahtarı kimlikleri oluşturabilir "
-"ve geçerli kimlikleri bulabilirsiniz."
+msgstr "Kullanıcı OCID {iam} sayfanızı OCI konsolunda bulabilirsiniz."
 
 #. [components.Wizard.4206409720]
 #. defaultMessage is:
@@ -2889,31 +2844,23 @@ msgstr ""
 #. defaultMessage is:
 #. You can view your deployed RSA keys fingerprint in the API Keys section on the {iam} page in the OCI console.
 #: build/messages/components/Wizard/OCIAuthStep.json
-#, fuzzy
-#| msgid ""
-#| "You can create and find existing Access key IDs on the {iam} page in the "
-#| "AWS console."
 msgid ""
 "You can view your deployed RSA keys fingerprint in the API Keys section on "
 "the {iam} page in the OCI console."
 msgstr ""
-"AWS konsolundaki {iam} sayfasında Erişim anahtarı kimlikleri oluşturabilir "
-"ve geçerli kimlikleri bulabilirsiniz."
+"Dağıtılan RSA anahtarlarınızın parmak izini OCI konsolunda {iam} "
+"sayfasındaki API Anahtarları bölümünde görüntüleyebilirsiniz."
 
 #. [components.Wizard.182848243]
 #. defaultMessage is:
 #. You can view your deployed RSA keys in the API Keys section on the {iam} page in the OCI console.
 #: build/messages/components/Wizard/OCIAuthStep.json
-#, fuzzy
-#| msgid ""
-#| "You can create and find existing Access key IDs on the {iam} page in the "
-#| "AWS console."
 msgid ""
 "You can view your deployed RSA keys in the API Keys section on the {iam} "
 "page in the OCI console."
 msgstr ""
-"AWS konsolundaki {iam} sayfasında Erişim anahtarı kimlikleri oluşturabilir "
-"ve geçerli kimlikleri bulabilirsiniz."
+"Dağıtılan RSA anahtarlarınızı OCI konsolunda {iam} sayfasındaki API "
+"Anahtarları bölümünde görüntüleyebilirsiniz."
 
 #. [components.ListView.actions]
 #. defaultMessage is:

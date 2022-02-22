@@ -1,9 +1,9 @@
-# Pavel Borecki <pavel.borecki@gmail.com>, 2019. #zanata, 2020, 2021.
+# Pavel Borecki <pavel.borecki@gmail.com>, 2019. #zanata, 2020, 2021, 2022.
 # Matej Marusak <mmarusak@redhat.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2022-02-08T18:16:14.974Z\n"
-"PO-Revision-Date: 2021-12-03 23:16+0000\n"
+"POT-Creation-Date: 2022-02-15T18:16:52.357Z\n"
+"PO-Revision-Date: 2022-02-16 22:16+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://translate.fedoraproject.org/projects/cockpit-"
 "composer/main/cs/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2\n"
-"X-Generator: Weblate 4.9.1\n"
+"X-Generator: Weblate 4.10.1\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -50,7 +50,7 @@ msgstr "Je třeba zadat hodnotu."
 #. API private key's fingerprint
 #: build/messages/components/Wizard/OCIAuthStep.json
 msgid "API private key's fingerprint"
-msgstr ""
+msgstr "Otisk klíče k soukromému API"
 
 #. [components.Wizard.aws]
 #. defaultMessage is:
@@ -872,7 +872,7 @@ msgstr "Stáhnout si"
 #. Drag and drop a file or upload one
 #: build/messages/components/Wizard/OCIAuthStep.json
 msgid "Drag and drop a file or upload one"
-msgstr ""
+msgstr "Přetáhněte sem soubor nebo ho nahrajte"
 
 #. [components.Modal.2044423701]
 #. defaultMessage is:
@@ -1024,10 +1024,8 @@ msgstr "Filtrovat podle verze"
 #. defaultMessage is:
 #. Fingerprint
 #: build/messages/components/Wizard/OCIAuthStep.json
-#, fuzzy
-#| msgid "Blueprint"
 msgid "Fingerprint"
-msgstr "Plánek"
+msgstr "Otisk"
 
 #. [components.Wizard.787186999]
 #. defaultMessage is:
@@ -1444,10 +1442,8 @@ msgstr "Název: {name}"
 #. defaultMessage is:
 #. Namespace help
 #: build/messages/components/Wizard/OCIDestinationStep.json
-#, fuzzy
-#| msgid "Image name help"
 msgid "Namespace help"
-msgstr "Nápověda k názvu obrazu"
+msgstr "Nápověda k oboru názvů"
 
 #. [components.Wizard.3673120330]
 #. defaultMessage is:
@@ -1627,7 +1623,7 @@ msgstr "Čekající změny"
 #. Private key
 #: build/messages/components/Wizard/OCIAuthStep.json
 msgid "Private key"
-msgstr ""
+msgstr "Soukromý klíč"
 
 #. [components.Wizard.processLength]
 #. defaultMessage is:
@@ -2709,10 +2705,8 @@ msgstr "Nahrát na Azure"
 #. Upload to OCI
 #: build/messages/components/Wizard/CreateImageUpload.json
 #: build/messages/components/Wizard/ImageStep.json
-#, fuzzy
-#| msgid "Upload to AWS"
 msgid "Upload to OCI"
-msgstr "Nahrát na AWS"
+msgstr "Nahrát na OCI"
 
 #. [components.Wizard.3542348520]
 #. defaultMessage is:

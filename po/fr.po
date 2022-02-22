@@ -9,7 +9,7 @@
 # Sundeep Anand <suanand@redhat.com>, 2021.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2022-02-08T18:16:14.974Z\n"
+"POT-Creation-Date: 2022-02-15T18:16:52.357Z\n"
 "PO-Revision-Date: 2022-01-14 07:16+0000\n"
 "Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
 "Language-Team: French <https://translate.fedoraproject.org/projects/cockpit-"
