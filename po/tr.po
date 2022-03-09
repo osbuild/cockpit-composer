@@ -3,7 +3,7 @@
 # Burak Yavuz <hitowerdigit@hotmail.com>, 2020, 2021, 2022.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2022-02-15T18:16:52.357Z\n"
+"POT-Creation-Date: 2022-03-09T19:40:28.678Z\n"
 "PO-Revision-Date: 2022-02-16 22:16+0000\n"
 "Last-Translator: Burak Yavuz <hitowerdigit@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.fedoraproject.org/projects/cockpit-"
@@ -414,7 +414,11 @@ msgstr ""
 #. [components.Wizard.992376537]
 #. defaultMessage is:
 #. Bucket compartment
+#. [components.Wizard.992376537]
+#. defaultMessage is:
+#. Bucket compartment
 #: build/messages/components/Wizard/OCIDestinationStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Bucket compartment"
 msgstr "Bucket bölmesi"
 
@@ -428,21 +432,33 @@ msgstr "Bucket yardım"
 #. [components.Wizard.3386954132]
 #. defaultMessage is:
 #. Bucket namespace
+#. [components.Wizard.3386954132]
+#. defaultMessage is:
+#. Bucket namespace
 #: build/messages/components/Wizard/OCIDestinationStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Bucket namespace"
 msgstr "Bucket ad alanı"
 
 #. [components.Wizard.2790265886]
 #. defaultMessage is:
 #. Bucket region
+#. [components.Wizard.2790265886]
+#. defaultMessage is:
+#. Bucket region
 #: build/messages/components/Wizard/OCIDestinationStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Bucket region"
 msgstr "Bucket bölgesi"
 
 #. [components.Wizard.1601119828]
 #. defaultMessage is:
 #. Bucket tenancy
+#. [components.Wizard.1601119828]
+#. defaultMessage is:
+#. Bucket tenancy
 #: build/messages/components/Wizard/OCIDestinationStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Bucket tenancy"
 msgstr "Bucket kirası"
 
@@ -1020,7 +1036,11 @@ msgstr "Sürüme göre süz"
 #. [components.Wizard.244381809]
 #. defaultMessage is:
 #. Fingerprint
+#. [components.Wizard.244381809]
+#. defaultMessage is:
+#. Fingerprint
 #: build/messages/components/Wizard/OCIAuthStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Fingerprint"
 msgstr "Parmak izi"
 
@@ -1170,7 +1190,13 @@ msgstr ""
 #. Image Builder can upload images you create to an {bucket} in OCI and register it as a custom image. When the image build is complete
 #.                         and the upload action is successful, the image should be available under custom images.
 #.                         Most of the values required to upload the image can be found in the {console}.
+#. [components.Wizard.3213107448]
+#. defaultMessage is:
+#. Image Builder can upload images you create to an {bucket} in OCI and register it as a custom image. When the image build is complete
+#.                         and the upload action is successful, the image should be available under custom images.
+#.                         Most of the values required to upload the image can be found in the {console}.
 #: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid ""
 "Image Builder can upload images you create to an {bucket} in OCI and "
 "register it as a custom image. When the image build is complete\n"
@@ -1497,6 +1523,13 @@ msgstr "Kullanılabilir günlük kaydı yok"
 msgid "No results match the filter criteria"
 msgstr "Süzme ölçütüyle eşleşen sonuçlar yok"
 
+#. [components.Wizard.1666805205]
+#. defaultMessage is:
+#. OCI bucket
+#: build/messages/components/Wizard/ReviewStep.json
+msgid "OCI bucket"
+msgstr ""
+
 #. [components.Wizard.compartment]
 #. defaultMessage is:
 #. OCI compartment help
@@ -1614,6 +1647,15 @@ msgstr "Bekleyen değişiklikler"
 #. Private key
 #: build/messages/components/Wizard/OCIAuthStep.json
 msgid "Private key"
+msgstr "Özel anahtar"
+
+#. [components.Wizard.3157862487]
+#. defaultMessage is:
+#. Private key filename
+#: build/messages/components/Wizard/ReviewStep.json
+#, fuzzy
+#| msgid "Private key"
+msgid "Private key filename"
 msgstr "Özel anahtar"
 
 #. [components.Wizard.processLength]
@@ -2514,7 +2556,12 @@ msgstr ""
 #. defaultMessage is:
 #. This upload process requires that you have an {iam} with attached policy to manage custom images
 #.                         to ensure that the image can be import as a custom image from the {bucket}. For more details, refer to the {policies}.
+#. [components.Wizard.50730016]
+#. defaultMessage is:
+#. This upload process requires that you have an {iam} with attached policy to manage custom images
+#.                         to ensure that the image can be import as a custom image from the {bucket}. For more details, refer to the {policies}.
 #: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid ""
 "This upload process requires that you have an {iam} with attached policy to "
 "manage custom images\n"
@@ -2629,7 +2676,11 @@ msgstr "Kalıbı karşıya yükle"
 #. [components.Wizard.uploadImage]
 #. defaultMessage is:
 #. Upload image help
+#. [components.Wizard.uploadImage]
+#. defaultMessage is:
+#. Upload image help
 #: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Upload image help"
 msgstr "Kalıbı karşıya yükleme ile ilgili yardım"
 
@@ -2683,8 +2734,12 @@ msgstr "Azure'a yükle"
 #. [components.Wizard.uploadOCI]
 #. defaultMessage is:
 #. Upload to OCI
+#. [components.Wizard.3418449520]
+#. defaultMessage is:
+#. Upload to OCI
 #: build/messages/components/Wizard/CreateImageUpload.json
 #: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Upload to OCI"
 msgstr "OCI'ye yükle"
 
@@ -2709,6 +2764,15 @@ msgstr "VMWare'e yükle"
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload type"
 msgstr "Karşıya yükleme türü"
+
+#. [components.Wizard.2419068661]
+#. defaultMessage is:
+#. User
+#: build/messages/components/Wizard/ReviewStep.json
+#, fuzzy
+#| msgid "Users"
+msgid "User"
+msgstr "Kullanıcılar"
 
 #. [user-help]
 #. defaultMessage is:

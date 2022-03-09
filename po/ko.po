@@ -6,11 +6,11 @@
 # Kim InSoo <simmon@nplob.com>, 2022.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2022-02-15T18:16:52.357Z\n"
+"POT-Creation-Date: 2022-03-09T19:40:28.678Z\n"
 "PO-Revision-Date: 2022-02-20 04:16+0000\n"
 "Last-Translator: Kim InSoo <simmon@nplob.com>\n"
-"Language-Team: Korean <https://translate.fedoraproject.org/projects/"
-"cockpit-composer/main/ko/>\n"
+"Language-Team: Korean <https://translate.fedoraproject.org/projects/cockpit-"
+"composer/main/ko/>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -419,7 +419,11 @@ msgstr ""
 #. [components.Wizard.992376537]
 #. defaultMessage is:
 #. Bucket compartment
+#. [components.Wizard.992376537]
+#. defaultMessage is:
+#. Bucket compartment
 #: build/messages/components/Wizard/OCIDestinationStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Bucket compartment"
 msgstr "버킷 구성 요소"
 
@@ -433,21 +437,33 @@ msgstr "버킷 도움말"
 #. [components.Wizard.3386954132]
 #. defaultMessage is:
 #. Bucket namespace
+#. [components.Wizard.3386954132]
+#. defaultMessage is:
+#. Bucket namespace
 #: build/messages/components/Wizard/OCIDestinationStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Bucket namespace"
 msgstr "버킷 네임스페이스"
 
 #. [components.Wizard.2790265886]
 #. defaultMessage is:
 #. Bucket region
+#. [components.Wizard.2790265886]
+#. defaultMessage is:
+#. Bucket region
 #: build/messages/components/Wizard/OCIDestinationStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Bucket region"
 msgstr "버킷 지역"
 
 #. [components.Wizard.1601119828]
 #. defaultMessage is:
 #. Bucket tenancy
+#. [components.Wizard.1601119828]
+#. defaultMessage is:
+#. Bucket tenancy
 #: build/messages/components/Wizard/OCIDestinationStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Bucket tenancy"
 msgstr "버킷 테넌시"
 
@@ -1025,7 +1041,11 @@ msgstr "버전별 필터"
 #. [components.Wizard.244381809]
 #. defaultMessage is:
 #. Fingerprint
+#. [components.Wizard.244381809]
+#. defaultMessage is:
+#. Fingerprint
 #: build/messages/components/Wizard/OCIAuthStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Fingerprint"
 msgstr "지문"
 
@@ -1170,7 +1190,13 @@ msgstr ""
 #. Image Builder can upload images you create to an {bucket} in OCI and register it as a custom image. When the image build is complete
 #.                         and the upload action is successful, the image should be available under custom images.
 #.                         Most of the values required to upload the image can be found in the {console}.
+#. [components.Wizard.3213107448]
+#. defaultMessage is:
+#. Image Builder can upload images you create to an {bucket} in OCI and register it as a custom image. When the image build is complete
+#.                         and the upload action is successful, the image should be available under custom images.
+#.                         Most of the values required to upload the image can be found in the {console}.
 #: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid ""
 "Image Builder can upload images you create to an {bucket} in OCI and "
 "register it as a custom image. When the image build is complete\n"
@@ -1179,9 +1205,12 @@ msgid ""
 "                        Most of the values required to upload the image can "
 "be found in the {console}."
 msgstr ""
-"이미지 빌더는 생성한 이미지를 OCI의 {bucket}에 업로드한 다음 사용자 정의 이미지로 등록합니다. 이미지 빌드가 완료되고\n"
-"                       업로드 작업이 성공하면, 이미지는 사용자 정의 이미지에서 사용 할 수 있습니다.\n"
-"                       이미지를 업로드하는 데 필요한 대부분의 값은 {console}에 있습니다."
+"이미지 빌더는 생성한 이미지를 OCI의 {bucket}에 업로드한 다음 사용자 정의 이미"
+"지로 등록합니다. 이미지 빌드가 완료되고\n"
+"                       업로드 작업이 성공하면, 이미지는 사용자 정의 이미지에"
+"서 사용 할 수 있습니다.\n"
+"                       이미지를 업로드하는 데 필요한 대부분의 값은 {console}"
+"에 있습니다."
 
 #. [components.ListView.imageStatusFinished] - Image build status when process is finished
 #. defaultMessage is:
@@ -1493,6 +1522,13 @@ msgstr "사용 가능한 로그가 없음"
 msgid "No results match the filter criteria"
 msgstr "검색 기준과 일치하는 결과가 없습니다"
 
+#. [components.Wizard.1666805205]
+#. defaultMessage is:
+#. OCI bucket
+#: build/messages/components/Wizard/ReviewStep.json
+msgid "OCI bucket"
+msgstr ""
+
 #. [components.Wizard.compartment]
 #. defaultMessage is:
 #. OCI compartment help
@@ -1610,6 +1646,15 @@ msgstr "보류중인 변경"
 #. Private key
 #: build/messages/components/Wizard/OCIAuthStep.json
 msgid "Private key"
+msgstr "개인 키"
+
+#. [components.Wizard.3157862487]
+#. defaultMessage is:
+#. Private key filename
+#: build/messages/components/Wizard/ReviewStep.json
+#, fuzzy
+#| msgid "Private key"
+msgid "Private key filename"
 msgstr "개인 키"
 
 #. [components.Wizard.processLength]
@@ -1737,7 +1782,9 @@ msgstr ""
 msgid ""
 "Provide the compartment of the {bucket} your uploading to. You can find the "
 "compartment in the bucket details."
-msgstr "당신의 업로드 하고자 하는 {bucket}의 구획 부분을 제공합니다. 당신은 버킷 세부 정보에서 구획을 찾을 수 있습니다."
+msgstr ""
+"당신의 업로드 하고자 하는 {bucket}의 구획 부분을 제공합니다. 당신은 버킷 세"
+"부 정보에서 구획을 찾을 수 있습니다."
 
 #. [components.Wizard.1434969769]
 #. defaultMessage is:
@@ -1791,7 +1838,9 @@ msgstr ""
 msgid ""
 "Provide the namespace of the {bucket} your uploading to. You can find the "
 "namespace in the bucket details."
-msgstr "당신의 업로드 하고자 하는 {bucket}의 이름공간을 제공합니다. 당신은 버킷 세부정보에서 이름공간을 찾을 수 있습니다."
+msgstr ""
+"당신의 업로드 하고자 하는 {bucket}의 이름공간을 제공합니다. 당신은 버킷 세부"
+"정보에서 이름공간을 찾을 수 있습니다."
 
 #. [components.Wizard.3286165321]
 #. defaultMessage is:
@@ -1800,7 +1849,9 @@ msgstr "당신의 업로드 하고자 하는 {bucket}의 이름공간을 제공�
 msgid ""
 "Provide the region of the {bucket} your uploading to. You can find the "
 "region in the bucket details."
-msgstr "당신의 업로드 하고자 하는 {bucket}의 지역을 제공하세요. 당신은 버킷 세부정보에서 지역을 찾을 수 있습니다."
+msgstr ""
+"당신의 업로드 하고자 하는 {bucket}의 지역을 제공하세요. 당신은 버킷 세부정보"
+"에서 지역을 찾을 수 있습니다."
 
 #. [components.Wizard.3854501928]
 #. defaultMessage is:
@@ -1809,7 +1860,9 @@ msgstr "당신의 업로드 하고자 하는 {bucket}의 지역을 제공하세�
 msgid ""
 "Provide the tenancy of the {bucket} your uploading to. You can find the "
 "tenancy in the bucket details."
-msgstr "당신의 업로드 하고자 하는 {bucket}의 테넌시를 제공하세요. 당신은 버킷 세부정보에서 테넌시를 찾을 수 있습니다."
+msgstr ""
+"당신의 업로드 하고자 하는 {bucket}의 테넌시를 제공하세요. 당신은 버킷 세부정"
+"보에서 테넌시를 찾을 수 있습니다."
 
 #. [components.Wizard.3387354708]
 #. defaultMessage is:
@@ -1834,9 +1887,12 @@ msgid ""
 "                        {bucketsPage} page in the OCI storage service in the "
 "OCI console."
 msgstr ""
-"사용자 정의 이미지로 가져 오기 전에 이미지 파일을 업로드해야 하는 {bucket} 이름을 지정하십시오.\n"
-" 이미지를 가져 오려는 지역에 {bucket}이 이미 존재해야 합니다. {buckets} 목록은\n"
-" OCI 콘솔의 OCI 저장소 서비스에 있는 {bucketsPage} 페이지에서 찾을 수 있습니다."
+"사용자 정의 이미지로 가져 오기 전에 이미지 파일을 업로드해야 하는 {bucket} 이"
+"름을 지정하십시오.\n"
+" 이미지를 가져 오려는 지역에 {bucket}이 이미 존재해야 합니다. {buckets} 목록"
+"은\n"
+" OCI 콘솔의 OCI 저장소 서비스에 있는 {bucketsPage} 페이지에서 찾을 수 있습니"
+"다."
 
 #. [components.Wizard.labelqcow]
 #. defaultMessage is:
@@ -2489,16 +2545,22 @@ msgstr ""
 #. defaultMessage is:
 #. This upload process requires that you have an {iam} with attached policy to manage custom images
 #.                         to ensure that the image can be import as a custom image from the {bucket}. For more details, refer to the {policies}.
+#. [components.Wizard.50730016]
+#. defaultMessage is:
+#. This upload process requires that you have an {iam} with attached policy to manage custom images
+#.                         to ensure that the image can be import as a custom image from the {bucket}. For more details, refer to the {policies}.
 #: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid ""
 "This upload process requires that you have an {iam} with attached policy to "
 "manage custom images\n"
 "                        to ensure that the image can be import as a custom "
 "image from the {bucket}. For more details, refer to the {policies}."
 msgstr ""
-"이와 같은 업로드 과정은 사용자 정의 이미지를 관리하는 정책이 연결된 {iam}을 가져야만 합니다\n"
-"                        {bucket}에서 사용자 정의 이미지를 가져올 수 있습니다. 자세한 내용은 {policies}"
-"를 참조하세요."
+"이와 같은 업로드 과정은 사용자 정의 이미지를 관리하는 정책이 연결된 {iam}을 "
+"가져야만 합니다\n"
+"                        {bucket}에서 사용자 정의 이미지를 가져올 수 있습니"
+"다. 자세한 내용은 {policies}를 참조하세요."
 
 #. [components.Modal.usernameDuplicate]
 #. defaultMessage is:
@@ -2603,7 +2665,11 @@ msgstr "이미지 업로드"
 #. [components.Wizard.uploadImage]
 #. defaultMessage is:
 #. Upload image help
+#. [components.Wizard.uploadImage]
+#. defaultMessage is:
+#. Upload image help
 #: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Upload image help"
 msgstr "이미지 도움말 업로드"
 
@@ -2657,8 +2723,12 @@ msgstr "Azure에 업로드"
 #. [components.Wizard.uploadOCI]
 #. defaultMessage is:
 #. Upload to OCI
+#. [components.Wizard.3418449520]
+#. defaultMessage is:
+#. Upload to OCI
 #: build/messages/components/Wizard/CreateImageUpload.json
 #: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Upload to OCI"
 msgstr "OCI에 업로드"
 
@@ -2683,6 +2753,15 @@ msgstr "VMWare에 업로드"
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload type"
 msgstr "업로드 유형"
+
+#. [components.Wizard.2419068661]
+#. defaultMessage is:
+#. User
+#: build/messages/components/Wizard/ReviewStep.json
+#, fuzzy
+#| msgid "Users"
+msgid "User"
+msgstr "사용자"
 
 #. [user-help]
 #. defaultMessage is:
@@ -2820,7 +2899,9 @@ msgstr ""
 msgid ""
 "You can view your deployed RSA keys fingerprint in the API Keys section on "
 "the {iam} page in the OCI console."
-msgstr "당신은 OCI 콘솔의 {iam} 부분에 있는 API 키 부분에서 자신의 배포된 RSA 키 지문을 볼 수 있습니다."
+msgstr ""
+"당신은 OCI 콘솔의 {iam} 부분에 있는 API 키 부분에서 자신의 배포된 RSA 키 지문"
+"을 볼 수 있습니다."
 
 #. [components.Wizard.182848243]
 #. defaultMessage is:
@@ -2829,7 +2910,9 @@ msgstr "당신은 OCI 콘솔의 {iam} 부분에 있는 API 키 부분에서 자�
 msgid ""
 "You can view your deployed RSA keys in the API Keys section on the {iam} "
 "page in the OCI console."
-msgstr "당신은 OCI 콘솔의 {iam} 부분에서 API 키 부분에서 자신에게 배포된 RSA 키를 볼 수 있습니다."
+msgstr ""
+"당신은 OCI 콘솔의 {iam} 부분에서 API 키 부분에서 자신에게 배포된 RSA 키를 볼 "
+"수 있습니다."
 
 #. [components.ListView.actions]
 #. defaultMessage is:
