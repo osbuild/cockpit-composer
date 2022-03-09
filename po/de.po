@@ -4,7 +4,7 @@
 # Ettore Atalan <atalanttore@googlemail.com>, 2021, 2022.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2022-02-15T18:16:52.357Z\n"
+"POT-Creation-Date: 2022-03-09T19:40:28.678Z\n"
 "PO-Revision-Date: 2022-02-14 13:16+0000\n"
 "Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German <https://translate.fedoraproject.org/projects/cockpit-"
@@ -423,7 +423,11 @@ msgstr ""
 #. [components.Wizard.992376537]
 #. defaultMessage is:
 #. Bucket compartment
+#. [components.Wizard.992376537]
+#. defaultMessage is:
+#. Bucket compartment
 #: build/messages/components/Wizard/OCIDestinationStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 #, fuzzy
 #| msgid "Blueprint Components"
 msgid "Bucket compartment"
@@ -441,14 +445,22 @@ msgstr "Azure-Hilfe"
 #. [components.Wizard.3386954132]
 #. defaultMessage is:
 #. Bucket namespace
+#. [components.Wizard.3386954132]
+#. defaultMessage is:
+#. Bucket namespace
 #: build/messages/components/Wizard/OCIDestinationStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Bucket namespace"
 msgstr ""
 
 #. [components.Wizard.2790265886]
 #. defaultMessage is:
 #. Bucket region
+#. [components.Wizard.2790265886]
+#. defaultMessage is:
+#. Bucket region
 #: build/messages/components/Wizard/OCIDestinationStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 #, fuzzy
 #| msgid "AWS region"
 msgid "Bucket region"
@@ -457,7 +469,11 @@ msgstr "AWS-Region"
 #. [components.Wizard.1601119828]
 #. defaultMessage is:
 #. Bucket tenancy
+#. [components.Wizard.1601119828]
+#. defaultMessage is:
+#. Bucket tenancy
 #: build/messages/components/Wizard/OCIDestinationStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Bucket tenancy"
 msgstr ""
 
@@ -1047,7 +1063,11 @@ msgstr "Nach Version filtern"
 #. [components.Wizard.244381809]
 #. defaultMessage is:
 #. Fingerprint
+#. [components.Wizard.244381809]
+#. defaultMessage is:
+#. Fingerprint
 #: build/messages/components/Wizard/OCIAuthStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 #, fuzzy
 #| msgid "Blueprint"
 msgid "Fingerprint"
@@ -1182,7 +1202,13 @@ msgstr ""
 #. Image Builder can upload images you create to an {bucket} in OCI and register it as a custom image. When the image build is complete
 #.                         and the upload action is successful, the image should be available under custom images.
 #.                         Most of the values required to upload the image can be found in the {console}.
+#. [components.Wizard.3213107448]
+#. defaultMessage is:
+#. Image Builder can upload images you create to an {bucket} in OCI and register it as a custom image. When the image build is complete
+#.                         and the upload action is successful, the image should be available under custom images.
+#.                         Most of the values required to upload the image can be found in the {console}.
 #: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid ""
 "Image Builder can upload images you create to an {bucket} in OCI and "
 "register it as a custom image. When the image build is complete\n"
@@ -1506,6 +1532,13 @@ msgstr "Kein Protokoll verfügbar"
 msgid "No results match the filter criteria"
 msgstr "Keine Ergebnisse entsprechen den Filterkriterien"
 
+#. [components.Wizard.1666805205]
+#. defaultMessage is:
+#. OCI bucket
+#: build/messages/components/Wizard/ReviewStep.json
+msgid "OCI bucket"
+msgstr ""
+
 #. [components.Wizard.compartment]
 #. defaultMessage is:
 #. OCI compartment help
@@ -1625,6 +1658,13 @@ msgstr "Ausstehende Änderungen"
 #. Private key
 #: build/messages/components/Wizard/OCIAuthStep.json
 msgid "Private key"
+msgstr ""
+
+#. [components.Wizard.3157862487]
+#. defaultMessage is:
+#. Private key filename
+#: build/messages/components/Wizard/ReviewStep.json
+msgid "Private key filename"
 msgstr ""
 
 #. [components.Wizard.processLength]
@@ -2508,7 +2548,12 @@ msgstr ""
 #. defaultMessage is:
 #. This upload process requires that you have an {iam} with attached policy to manage custom images
 #.                         to ensure that the image can be import as a custom image from the {bucket}. For more details, refer to the {policies}.
+#. [components.Wizard.50730016]
+#. defaultMessage is:
+#. This upload process requires that you have an {iam} with attached policy to manage custom images
+#.                         to ensure that the image can be import as a custom image from the {bucket}. For more details, refer to the {policies}.
 #: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid ""
 "This upload process requires that you have an {iam} with attached policy to "
 "manage custom images\n"
@@ -2619,7 +2664,11 @@ msgstr "Abbild hochladen"
 #. [components.Wizard.uploadImage]
 #. defaultMessage is:
 #. Upload image help
+#. [components.Wizard.uploadImage]
+#. defaultMessage is:
+#. Upload image help
 #: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 msgid "Upload image help"
 msgstr ""
 
@@ -2673,8 +2722,12 @@ msgstr "Zu Azure hochladen"
 #. [components.Wizard.uploadOCI]
 #. defaultMessage is:
 #. Upload to OCI
+#. [components.Wizard.3418449520]
+#. defaultMessage is:
+#. Upload to OCI
 #: build/messages/components/Wizard/CreateImageUpload.json
 #: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/ReviewStep.json
 #, fuzzy
 #| msgid "Upload to AWS"
 msgid "Upload to OCI"
@@ -2701,6 +2754,15 @@ msgstr "Zu VMWare hochladen"
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload type"
 msgstr ""
+
+#. [components.Wizard.2419068661]
+#. defaultMessage is:
+#. User
+#: build/messages/components/Wizard/ReviewStep.json
+#, fuzzy
+#| msgid "Users"
+msgid "User"
+msgstr "Benutzer"
 
 #. [user-help]
 #. defaultMessage is:
