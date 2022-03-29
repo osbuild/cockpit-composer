@@ -3,8 +3,8 @@
 # Burak Yavuz <hitowerdigit@hotmail.com>, 2020, 2021, 2022.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2022-03-09T19:40:28.678Z\n"
-"PO-Revision-Date: 2022-02-16 22:16+0000\n"
+"POT-Creation-Date: 2022-03-09T19:54:22.616Z\n"
+"PO-Revision-Date: 2022-03-09 20:10+0000\n"
 "Last-Translator: Burak Yavuz <hitowerdigit@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.fedoraproject.org/projects/cockpit-"
 "composer/main/tr/>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.11.2\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -1528,7 +1528,7 @@ msgstr "Süzme ölçütüyle eşleşen sonuçlar yok"
 #. OCI bucket
 #: build/messages/components/Wizard/ReviewStep.json
 msgid "OCI bucket"
-msgstr ""
+msgstr "OCI bucket"
 
 #. [components.Wizard.compartment]
 #. defaultMessage is:
@@ -1563,7 +1563,7 @@ msgstr "OSTree üst öğe yardımı"
 #. OSTree ref help
 #: build/messages/components/Wizard/ImageStep.json
 msgid "OSTree ref help"
-msgstr "OSTree referans ile ilgili yardım"
+msgstr "OSTree referans yardımı"
 
 #. [components.Wizard.ostreeURL]
 #. defaultMessage is:
@@ -1653,10 +1653,8 @@ msgstr "Özel anahtar"
 #. defaultMessage is:
 #. Private key filename
 #: build/messages/components/Wizard/ReviewStep.json
-#, fuzzy
-#| msgid "Private key"
 msgid "Private key filename"
-msgstr "Özel anahtar"
+msgstr "Özel anahtar dosya adı"
 
 #. [components.Wizard.processLength]
 #. defaultMessage is:
@@ -2769,10 +2767,8 @@ msgstr "Karşıya yükleme türü"
 #. defaultMessage is:
 #. User
 #: build/messages/components/Wizard/ReviewStep.json
-#, fuzzy
-#| msgid "Users"
 msgid "User"
-msgstr "Kullanıcılar"
+msgstr "Kullanıcı"
 
 #. [user-help]
 #. defaultMessage is:
