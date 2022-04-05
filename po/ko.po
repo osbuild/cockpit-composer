@@ -4,11 +4,12 @@
 # Sundeep Anand <suanand@redhat.com>, 2021.
 # simmon <simmon@nplob.com>, 2021.
 # Kim InSoo <simmon@nplob.com>, 2022.
+# 김인수 <simmon@nplob.com>, 2022.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2022-03-09T19:40:28.678Z\n"
-"PO-Revision-Date: 2022-02-20 04:16+0000\n"
-"Last-Translator: Kim InSoo <simmon@nplob.com>\n"
+"POT-Creation-Date: 2022-03-29T18:19:31.691Z\n"
+"PO-Revision-Date: 2022-03-10 15:01+0000\n"
+"Last-Translator: 김인수 <simmon@nplob.com>\n"
 "Language-Team: Korean <https://translate.fedoraproject.org/projects/cockpit-"
 "composer/main/ko/>\n"
 "Language: ko\n"
@@ -16,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.11.2\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -1527,7 +1528,7 @@ msgstr "검색 기준과 일치하는 결과가 없습니다"
 #. OCI bucket
 #: build/messages/components/Wizard/ReviewStep.json
 msgid "OCI bucket"
-msgstr ""
+msgstr "OCI 버킷"
 
 #. [components.Wizard.compartment]
 #. defaultMessage is:
@@ -1652,10 +1653,8 @@ msgstr "개인 키"
 #. defaultMessage is:
 #. Private key filename
 #: build/messages/components/Wizard/ReviewStep.json
-#, fuzzy
-#| msgid "Private key"
 msgid "Private key filename"
-msgstr "개인 키"
+msgstr "개인 키 파일이름"
 
 #. [components.Wizard.processLength]
 #. defaultMessage is:
@@ -2758,8 +2757,6 @@ msgstr "업로드 유형"
 #. defaultMessage is:
 #. User
 #: build/messages/components/Wizard/ReviewStep.json
-#, fuzzy
-#| msgid "Users"
 msgid "User"
 msgstr "사용자"
 
