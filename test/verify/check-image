@@ -783,6 +783,7 @@ class TestImage(composerlib.ComposerCase):
         # collect code coverage result
         self.check_coverage()
 
+    @testlib.skipImage("FIXME broken", "rhel-9-0")
     def testOpenStack(self):
         b = self.browser
         m = self.machine
