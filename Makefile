@@ -130,7 +130,7 @@ vm: $(VM_IMAGE)
 
 # run the CDP integration test
 check: $(VM_IMAGE) test/common machine
-	test/common/run-tests --nondestructive-memory-mb 2048 --test-dir=test/verify --enable-network
+	test/common/run-tests --nondestructive-memory-mb 2048 --test-dir=test/verify --enable-network ${RUN_TESTS_OPTIONS}
 
 # run test with browser interactively
 debug-check:
@@ -153,7 +153,7 @@ machine: bots
 
 # checkout Cockpit's test API; this has no API stability guarantee, so check out a stable tag
 test/common:
-	git fetch --depth=1 https://github.com/cockpit-project/cockpit.git 262
+	git fetch --depth=1 https://github.com/cockpit-project/cockpit.git 267
 	git checkout --force FETCH_HEAD -- test/common
 	git reset test/common
 

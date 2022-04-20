@@ -10,6 +10,8 @@ fi
 TEST_OVERLAY_DIR="$(pwd)/tmp/run"
 mkdir -p $TEST_OVERLAY_DIR
 
+export RUN_TESTS_OPTIONS=--track-naughties
+
 make check
 
 # If successful, report code coverage result to codecov.io
