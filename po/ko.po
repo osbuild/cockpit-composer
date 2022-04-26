@@ -7,7 +7,7 @@
 # 김인수 <simmon@nplob.com>, 2022.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2022-03-29T18:19:31.691Z\n"
+"POT-Creation-Date: 2022-04-12T18:19:09.758Z\n"
 "PO-Revision-Date: 2022-03-10 15:01+0000\n"
 "Last-Translator: 김인수 <simmon@nplob.com>\n"
 "Language-Team: Korean <https://translate.fedoraproject.org/projects/cockpit-"

@@ -2,14 +2,14 @@
 # Hiroshi Yamanaka <hyamanak@redhat.com>, 2019. #zanata
 # Keiko Moriguchi <kemorigu@redhat.com>, 2019. #zanata
 # Lars Karlitski <lars@karlitski.net>, 2019. #zanata
-# Ludek Janda <ljanda@redhat.com>, 2020.
+# Ludek Janda <ljanda@redhat.com>, 2020, 2022.
 # Sundeep Anand <suanand@redhat.com>, 2021.
 # Transtats <suanand@redhat.com>, 2022.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2022-03-29T18:19:31.691Z\n"
-"PO-Revision-Date: 2022-03-09 19:46+0000\n"
-"Last-Translator: Transtats <suanand@redhat.com>\n"
+"POT-Creation-Date: 2022-04-12T18:19:09.758Z\n"
+"PO-Revision-Date: 2022-04-13 13:17+0000\n"
+"Last-Translator: Ludek Janda <ljanda@redhat.com>\n"
 "Language-Team: Japanese <https://translate.fedoraproject.org/projects/"
 "cockpit-composer/main/ja/>\n"
 "Language: ja\n"
@@ -2851,10 +2851,10 @@ msgid ""
 "(/). A ref must start with a letter, a number, or an underscore. Slashes "
 "must also be followed by a letter or number."
 msgstr ""
-"ref の有効な文字は、a から z の文字、0 から 9 までの数字、ハイフン (-)、ピリ"
-"オド (.)、およびスラッシュ (/) です。ref は文字、数字、またはアンダースコア "
-"(/) で開始する必要があります。また、その後に文字または数字を追加する必要があ"
-"ります。"
+"参照に使用できる有効な文字は、a から z までの文字、0 から 9 までの数字、ハイ"
+"フン (-)、アンダースコア (_)、ピリオド (.)、およびスラッシュ (/) です。参照は"
+"文字、数字、またはアンダースコアで始める必要があります。また、スラッシュの後"
+"には文字または数字を続ける必要があります。"
 
 #. [components.ListView.602883748]
 #. defaultMessage is:

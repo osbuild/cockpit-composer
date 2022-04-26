@@ -1,8 +1,8 @@
 # Temuri Doghonadze <temuri.doghonadze@gmail.com>, 2022.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2022-03-29T18:19:31.691Z\n"
-"PO-Revision-Date: 2022-04-04 04:17+0000\n"
+"POT-Creation-Date: 2022-04-12T18:19:09.758Z\n"
+"PO-Revision-Date: 2022-04-13 13:17+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.fedoraproject.org/projects/"
 "cockpit-composer/main/ka/>\n"
@@ -253,14 +253,16 @@ msgstr "დარწმუნებული ბრძანდებით, რ
 #. Are you sure you want to delete the image for {blueprintName}?
 #: build/messages/components/Modal/DeleteImage.json
 msgid "Are you sure you want to delete the image for {blueprintName}?"
-msgstr "დარწმუნებული ბრძანდებით რომ გნებავთ {blueprintName}-ის მონახაზის წაშლა?"
+msgstr ""
+"დარწმუნებული ბრძანდებით რომ გნებავთ {blueprintName}-ის მონახაზის წაშლა?"
 
 #. [components.Modal.234116272]
 #. defaultMessage is:
 #. Are you sure you want to stop the build process for {blueprintName}?
 #: build/messages/components/Modal/StopBuild.json
 msgid "Are you sure you want to stop the build process for {blueprintName}?"
-msgstr "დარწმუნებული ბრძანდებით, რომ გნებავთ შეაჩეროთ {blueprintName}-ის აგება?"
+msgstr ""
+"დარწმუნებული ბრძანდებით, რომ გნებავთ შეაჩეროთ {blueprintName}-ის აგება?"
 
 #. [components.Wizard.160751819]
 #. defaultMessage is:
@@ -412,7 +414,7 @@ msgstr ""
 #: build/messages/components/Wizard/OCIDestinationStep.json
 #: build/messages/components/Wizard/ReviewStep.json
 msgid "Bucket compartment"
-msgstr ""
+msgstr "პროექტის შემადგენელი ნაწილები"
 
 #. [components.Wizard.bucket]
 #. defaultMessage is:
