@@ -211,12 +211,12 @@ When the project is ready for a new release, do the following:
 
 (an editor should open automatically, and gpg is required to be setup in order to sign the tag).
 
-Then push the tag with `git push --tags`. This triggers the [release.yml](.github/workflows/release.yml)
-[GitHub action](https://github.com/features/actions) workflow.
+Then push the tag with `git push --tags`, which triggers the [release.yml](.github/workflows/release.yml)
+[GitHub action](https://github.com/features/actions) workflow. This creates the
+official release tarball and publishes as upstream release to GitHub.
 
-The workflow runs [cockpituous](https://github.com/cockpit-project/cockpituous/tree/main/release)
-to build a new release of cockpit-composer, with the [cockpituous-release](./utils/cockpituous-release) control file.
-This uses the shared [cockpit-project organization secrets](https://github.com/organizations/cockpit-project/settings/secrets).
+The Fedora and COPR releases are done with [Packit](https://packit.dev/),
+see the [packit.yaml](./packit.yaml) control file.
 
 Finally, import the new `.srpm` into the appropriate RHEL release.
 

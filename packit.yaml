@@ -1,0 +1,52 @@
+upstream_project_url: https://github.com/osbuild/cockpit-composer
+specfile_path: cockpit-composer.spec
+upstream_package_name: cockpit-composer
+downstream_package_name: cockpit-composer
+# use the nicely formatted release description from our upstream release, instead of git shortlog
+copy_upstream_release_description: true
+
+actions:
+  post-upstream-clone: make cockpit-composer.spec
+  create-archive: make dist-gzip
+
+srpm_build_deps:
+  - make
+  - npm
+
+jobs:
+  - job: copr_build
+    trigger: release
+    metadata:
+      owner: "@osbuild"
+      project: "cockpit-composer"
+      preserve_project: True
+      targets:
+      - epel-8
+    actions:
+      post-upstream-clone: make cockpit-composer.spec
+      # HACK: tarball for releases (copr_build, koji, etc.), copying spec's Source0; this
+      # really should be the default, see https://github.com/packit/packit-service/issues/1505
+      create-archive:
+        - sh -exc "curl -L -O https://github.com/osbuild/cockpit-composer/releases/download/${PACKIT_PROJECT_VERSION}/${PACKIT_PROJECT_NAME_VERSION}.tar.gz"
+        - sh -exc "ls ${PACKIT_PROJECT_NAME_VERSION}.tar.gz"
+
+  - job: propose_downstream
+    trigger: release
+    metadata:
+      dist_git_branches:
+        - fedora-development
+        - fedora-34
+
+  - job: koji_build
+    trigger: commit
+    metadata:
+      dist_git_branches:
+        - fedora-development
+        - fedora-34
+
+  - job: bodhi_update
+    trigger: commit
+    metadata:
+      dist_git_branches:
+        # rawhide updates are created automatically
+        - fedora-34
