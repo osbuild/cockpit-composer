@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Form, Popover, Text, TextInput } from "@patternfly/react-core";
 import { OutlinedQuestionCircleIcon } from "@patternfly/react-icons";
-import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
+import { FormattedMessage, defineMessages, injectIntl } from "react-intl";
 import PropTypes from "prop-types";
 
 const ariaLabels = defineMessages({
@@ -145,7 +145,7 @@ class AWSDestinationStep extends React.PureComponent {
 }
 
 AWSDestinationStep.propTypes = {
-  intl: intlShape.isRequired,
+  intl: PropTypes.object.isRequired,
   imageName: PropTypes.string,
   setUploadSettings: PropTypes.func,
   setImageName: PropTypes.func,

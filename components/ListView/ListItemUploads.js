@@ -1,5 +1,5 @@
 import React from "react";
-import { defineMessages, injectIntl, intlShape } from "react-intl";
+import { defineMessages, injectIntl } from "react-intl";
 import PropTypes from "prop-types";
 import { Button, DataListItem, DataListItemRow, DataListCell, DataListItemCells } from "@patternfly/react-core";
 import { CaretDownIcon, ServiceIcon } from "@patternfly/react-icons";
@@ -169,7 +169,7 @@ ListItemUploads.propTypes = {
     status: PropTypes.string,
     uuid: PropTypes.string,
   }),
-  intl: intlShape.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 ListItemUploads.defaultProps = {

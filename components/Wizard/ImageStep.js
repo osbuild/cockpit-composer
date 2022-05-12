@@ -18,7 +18,7 @@ import {
   ExclamationTriangleIcon,
   OutlinedQuestionCircleIcon,
 } from "@patternfly/react-icons";
-import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
+import { FormattedMessage, defineMessages, injectIntl } from "react-intl";
 import PropTypes from "prop-types";
 
 const ariaLabels = defineMessages({
@@ -815,7 +815,7 @@ class ImageStep extends React.PureComponent {
 ImageStep.propTypes = {
   blueprint: PropTypes.object,
   handleUploadService: PropTypes.func,
-  intl: intlShape.isRequired,
+  intl: PropTypes.object.isRequired,
   imageType: PropTypes.string,
   imageTypes: PropTypes.arrayOf(PropTypes.object),
   imageSize: PropTypes.number,

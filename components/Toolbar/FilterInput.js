@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Filter } from "patternfly-react";
-import { defineMessages, injectIntl, intlShape } from "react-intl";
+import { defineMessages, injectIntl } from "react-intl";
 
 const messages = defineMessages({
   filterNameTitle: {
@@ -157,7 +157,7 @@ FilterInput.propTypes = {
     filterValues: PropTypes.arrayOf(PropTypes.object),
   }),
   filterAddValue: PropTypes.func,
-  intl: intlShape.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 FilterInput.defaultProps = {

@@ -4,7 +4,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
+import { FormattedMessage, defineMessages, injectIntl } from "react-intl";
 import { Alert, Spinner } from "patternfly-react";
 import { Modal, ModalVariant, Title } from "@patternfly/react-core";
 import SourcesListItem from "../ListView/SourcesListItem";
@@ -469,7 +469,7 @@ ManageSources.propTypes = {
   removeModalManageSourcesEntry: PropTypes.func,
   addModalManageSourcesEntry: PropTypes.func,
   modalManageSourcesFailure: PropTypes.func,
-  intl: intlShape.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 ManageSources.defaultProps = {
@@ -490,7 +490,7 @@ ManageSourcesModal.propTypes = {
   addSource: PropTypes.func,
   clearError: PropTypes.func,
   close: PropTypes.func,
-  intl: intlShape.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 ManageSourcesModal.defaultProps = {

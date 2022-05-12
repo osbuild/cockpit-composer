@@ -1,5 +1,5 @@
 import React from "react";
-import { defineMessages, FormattedMessage, intlShape, injectIntl } from "react-intl";
+import { defineMessages, FormattedMessage, injectIntl } from "react-intl";
 import PropTypes from "prop-types";
 import { Filter, Toolbar } from "patternfly-react";
 
@@ -84,7 +84,7 @@ ToolbarLayout.propTypes = {
   filterRemoveValue: PropTypes.func,
   filterClearValues: PropTypes.func,
   children: PropTypes.node,
-  intl: intlShape.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 ToolbarLayout.defaultProps = {
