@@ -1,5 +1,5 @@
 import React from "react";
-import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
+import { FormattedMessage, defineMessages, injectIntl } from "react-intl";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Button, Checkbox, Form, FormGroup, Modal, ModalVariant, TextInput, TextArea } from "@patternfly/react-core";
@@ -392,7 +392,7 @@ UserAccount.propTypes = {
   blueprintID: PropTypes.string,
   users: PropTypes.arrayOf(PropTypes.object),
   setBlueprintUsers: PropTypes.func,
-  intl: intlShape.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 UserAccount.defaultProps = {

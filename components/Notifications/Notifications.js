@@ -1,5 +1,5 @@
 import React from "react";
-import { defineMessages, FormattedMessage, injectIntl, intlShape } from "react-intl";
+import { defineMessages, FormattedMessage, injectIntl } from "react-intl";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Alert, AlertActionCloseButton, AlertGroup } from "@patternfly/react-core";
@@ -169,7 +169,7 @@ class Notifications extends React.PureComponent {
 Notifications.propTypes = {
   alerts: PropTypes.arrayOf(PropTypes.object),
   alertDelete: PropTypes.func,
-  intl: intlShape.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 Notifications.defaultProps = {

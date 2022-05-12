@@ -1,5 +1,5 @@
 import React from "react";
-import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
+import { FormattedMessage, defineMessages, injectIntl } from "react-intl";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
@@ -398,7 +398,7 @@ ListItemImages.propTypes = {
   setModalDeleteImageState: PropTypes.func,
   setModalDeleteImageVisible: PropTypes.func,
   downloadUrl: PropTypes.string,
-  intl: intlShape.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 ListItemImages.defaultProps = {
