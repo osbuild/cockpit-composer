@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
+import { FormattedMessage, defineMessages, injectIntl } from "react-intl";
 import { Spinner } from "patternfly-react";
 
 const messages = defineMessages({
@@ -130,7 +130,7 @@ SourcesListItem.propTypes = {
   fetching: PropTypes.string,
   edit: PropTypes.func,
   remove: PropTypes.func,
-  intl: intlShape.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 SourcesListItem.defaultProps = {

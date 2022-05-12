@@ -1,5 +1,5 @@
 import React from "react";
-import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
+import { FormattedMessage, defineMessages, injectIntl } from "react-intl";
 import PropTypes from "prop-types";
 import history from "../../core/history";
 import Link from "../../components/Link/Link";
@@ -86,7 +86,7 @@ ErrorPage.propTypes = {
   error: PropTypes.shape({
     status: PropTypes.number,
   }),
-  intl: intlShape.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 ErrorPage.defaultProps = {

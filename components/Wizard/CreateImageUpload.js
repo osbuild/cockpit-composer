@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Wizard, WizardContextConsumer, WizardFooter } from "@patternfly/react-core";
-import { defineMessages, FormattedMessage, injectIntl, intlShape } from "react-intl";
+import { defineMessages, FormattedMessage, injectIntl } from "react-intl";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { v4 as uuid } from "uuid";
@@ -623,7 +623,7 @@ CreateImageUpload.propTypes = {
     version: PropTypes.string,
     workspacePendingChanges: PropTypes.arrayOf(PropTypes.object),
   }),
-  intl: intlShape.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 CreateImageUpload.defaultProps = {
@@ -650,7 +650,7 @@ CreateImageUploadModal.propTypes = {
   imageTypes: PropTypes.arrayOf(PropTypes.object),
   fetchingComposeTypes: PropTypes.func,
   setBlueprint: PropTypes.func,
-  intl: intlShape.isRequired,
+  intl: PropTypes.object.isRequired,
   startCompose: PropTypes.func,
   close: PropTypes.func.isRequired,
   isOpen: PropTypes.bool,
