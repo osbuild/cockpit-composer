@@ -1,5 +1,5 @@
 import React from "react";
-import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
+import { FormattedMessage, defineMessages, injectIntl } from "react-intl";
 import PropTypes from "prop-types";
 import { Tabs, Tab } from "patternfly-react";
 import { Tooltip, TooltipPosition } from "@patternfly/react-core";
@@ -370,7 +370,7 @@ ComponentDetailsView.propTypes = {
   setSelectedInput: PropTypes.func,
   setSelectedInputParent: PropTypes.func,
   clearSelectedInput: PropTypes.func,
-  intl: intlShape.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 ComponentDetailsView.defaultProps = {

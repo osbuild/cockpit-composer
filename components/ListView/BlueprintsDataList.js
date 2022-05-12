@@ -1,5 +1,5 @@
 import React from "react";
-import { defineMessages, injectIntl, intlShape, FormattedMessage } from "react-intl";
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
 import { DataList, DataListItem, DataListItemRow, DataListCell, DataListItemCells } from "@patternfly/react-core";
 import { PficonTemplateIcon } from "@patternfly/react-icons";
@@ -83,7 +83,7 @@ BlueprintsDataList.propTypes = {
     setNotifications: PropTypes.func,
   }),
   ariaLabel: PropTypes.string,
-  intl: intlShape.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 BlueprintsDataList.defaultProps = {

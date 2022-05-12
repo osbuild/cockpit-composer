@@ -1,5 +1,5 @@
 import React from "react";
-import { defineMessages, injectIntl, intlShape, FormattedMessage } from "react-intl";
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
 import {
   Split,
@@ -84,7 +84,7 @@ class ComponentSummaryList extends React.Component {
 ComponentSummaryList.propTypes = {
   listItems: PropTypes.arrayOf(PropTypes.object),
   parent: PropTypes.string,
-  intl: intlShape.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 ComponentSummaryList.defaultProps = {

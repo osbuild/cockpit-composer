@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
+import { FormattedMessage, defineMessages, injectIntl } from "react-intl";
 import cockpit from "cockpit";
 import { Alert, Button, OverlayTrigger, Tooltip } from "patternfly-react";
 import { EmptyStateSecondaryActions, EmptyStatePrimary } from "@patternfly/react-core";
@@ -139,7 +139,7 @@ class EmptyStateInactive extends React.Component {
 
 EmptyStateInactive.propTypes = {
   fetchingBlueprints: PropTypes.func,
-  intl: intlShape.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 EmptyStateInactive.defaultProps = {

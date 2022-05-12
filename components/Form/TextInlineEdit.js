@@ -1,5 +1,5 @@
 import React from "react";
-import { defineMessages, injectIntl, intlShape } from "react-intl";
+import { defineMessages, injectIntl } from "react-intl";
 import PropTypes from "prop-types";
 
 const messages = defineMessages({
@@ -164,7 +164,7 @@ TextInlineEdit.propTypes = {
   value: PropTypes.string,
   helpblock: PropTypes.string,
   helpblockNoValue: PropTypes.string,
-  intl: intlShape.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 TextInlineEdit.defaultProps = {
