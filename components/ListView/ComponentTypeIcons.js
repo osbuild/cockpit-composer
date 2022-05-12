@@ -1,5 +1,5 @@
 import React from "react";
-import { defineMessages, injectIntl, intlShape } from "react-intl";
+import { defineMessages, injectIntl } from "react-intl";
 import PropTypes from "prop-types";
 import { Tooltip, TooltipPosition } from "@patternfly/react-core";
 
@@ -54,7 +54,7 @@ ComponentTypeIcons.propTypes = {
   compDetails: PropTypes.bool,
   componentInBlueprint: PropTypes.bool,
   isSelected: PropTypes.bool,
-  intl: intlShape.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 ComponentTypeIcons.defaultProps = {

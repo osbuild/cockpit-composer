@@ -1,5 +1,5 @@
 import React from "react";
-import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
+import { FormattedMessage, defineMessages, injectIntl } from "react-intl";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Button, OverlayTrigger, Popover, Icon, Alert } from "patternfly-react";
@@ -314,7 +314,7 @@ PendingChanges.propTypes = {
   handleHideModal: PropTypes.func,
   setBlueprintComment: PropTypes.func,
   handleCommit: PropTypes.func,
-  intl: intlShape.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 PendingChanges.defaultProps = {

@@ -1,5 +1,5 @@
 import React from "react";
-import { defineMessages, injectIntl, intlShape, FormattedMessage } from "react-intl";
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
 import { DataList, Alert } from "@patternfly/react-core";
 import { Tabs, Tab } from "patternfly-react";
@@ -146,7 +146,7 @@ BlueprintContents.propTypes = {
   dependencies: PropTypes.arrayOf(PropTypes.object),
   handleComponentDetails: PropTypes.func,
   handleRemoveComponent: PropTypes.func,
-  intl: intlShape.isRequired,
+  intl: PropTypes.object.isRequired,
   noEditComponent: PropTypes.bool,
   filterClearValues: PropTypes.func,
   filterValues: PropTypes.arrayOf(PropTypes.object),
