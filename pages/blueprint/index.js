@@ -3,7 +3,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 
 import React from "react";
-import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
+import { FormattedMessage, defineMessages, injectIntl } from "react-intl";
 import cockpit from "cockpit"; // eslint-disable-line import/no-unresolved
 import PropTypes from "prop-types";
 import { Tab, Tabs } from "patternfly-react";
@@ -705,7 +705,7 @@ BlueprintPage.propTypes = {
     url: PropTypes.string,
   }),
   blueprintContentsFetching: PropTypes.bool,
-  intl: intlShape.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 BlueprintPage.defaultProps = {

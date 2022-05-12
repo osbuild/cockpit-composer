@@ -81,6 +81,17 @@ module.exports = {
           options: babelConfig,
         },
       },
+      {
+        include: [
+          path.join(__dirname, "node_modules/react-intl"),
+          path.join(__dirname, "node_modules/intl-messageformat"),
+          path.join(__dirname, "node_modules/intl-messageformat-parser"),
+        ],
+        use: {
+          loader: "babel-loader",
+          options: babelConfig,
+        },
+      },
       // add type: "javascript/auto" when transforming JSON via loader to JS
       {
         include: [path.resolve(__dirname, "./routes.json")],

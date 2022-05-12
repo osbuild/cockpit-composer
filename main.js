@@ -9,8 +9,7 @@ import "./lib/patternfly/patternfly-cockpit.scss";
 
 import React from "react";
 import ReactDOM from "react-dom";
-import { addLocaleData, IntlProvider } from "react-intl";
-import enLocaleData from "react-intl/locale-data/en";
+import { IntlProvider } from "react-intl";
 import FastClick from "fastclick";
 import { Provider } from "react-redux";
 import "@patternfly/patternfly/patternfly-addons.css";
@@ -26,14 +25,6 @@ import history from "./core/history";
 
 // Intialize any necessary locale data, and load translated messages
 const translations = require("./build/translations.json");
-
-const languages = [...new Set(Object.keys(translations).map((lang) => lang.split("_")[0]))];
-for (const lang of languages) {
-  const localData = require(`react-intl/locale-data/${lang}`); // eslint-disable-line import/no-dynamic-require
-  addLocaleData(localData);
-}
-// still need english
-addLocaleData(enLocaleData);
 
 const routes = require("./routes.json");
 // Loaded with utils/routes-loader.js

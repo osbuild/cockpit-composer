@@ -1,5 +1,5 @@
 import React from "react";
-import { FormattedMessage, defineMessages, injectIntl, intlShape } from "react-intl";
+import { FormattedMessage, defineMessages, injectIntl } from "react-intl";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Pagination, PaginationVariant, TextInput } from "@patternfly/react-core";
@@ -770,7 +770,7 @@ EditBlueprintPage.propTypes = {
     url: PropTypes.string,
   }),
   blueprintContentsFetching: PropTypes.bool,
-  intl: intlShape.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 EditBlueprintPage.defaultProps = {

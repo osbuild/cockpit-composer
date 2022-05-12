@@ -1,5 +1,5 @@
 import React from "react";
-import { defineMessages, injectIntl, intlShape, FormattedMessage } from "react-intl";
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
 import {
   DataListItem,
@@ -198,7 +198,7 @@ ComponentsDataListItem.propTypes = {
   handleRemoveComponent: PropTypes.func,
   noEditComponent: PropTypes.bool,
   fetchDetails: PropTypes.func,
-  intl: intlShape.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 ComponentsDataListItem.defaultProps = {
