@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal } from "patternfly-react";
+import { Button, Modal, ModalVariant } from "@patternfly/react-core";
 import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -10,48 +10,6 @@ class CreateBlueprint extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showModal: false,
-    };
-    this.open = this.open.bind(this);
-    this.close = this.close.bind(this);
-  }
-
-  open() {
-    this.setState({ showModal: true });
-  }
-
-  close() {
-    this.setState({ showModal: false });
-  }
-
-  render() {
-    return (
-      <>
-        <button
-          className="btn btn-default"
-          id="cmpsr-btn-crt-blueprint"
-          type="button"
-          onClick={this.open}
-          disabled={this.props.disabled}
-        >
-          <FormattedMessage defaultMessage="Create blueprint" />
-        </button>
-        {this.state.showModal && (
-          <CreateBlueprintModal
-            blueprintNames={this.props.blueprintNames}
-            creatingBlueprint={this.props.creatingBlueprint}
-            close={this.close}
-          />
-        )}
-      </>
-    );
-  }
-}
-
-class CreateBlueprintModal extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
       checkErrors: true,
       errorNameEmpty: false,
       errorNameDuplicate: false,
@@ -59,12 +17,14 @@ class CreateBlueprintModal extends React.Component {
       errorNameInvalid: false,
       errorNameInvalidChar: [],
       errorInline: false,
+      isModalOpen: false,
       name: "",
       description: "",
       modules: [],
       packages: [],
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleModalToggle = this.handleModalToggle.bind(this);
   }
 
   handleChange(e, prop) {
@@ -95,7 +55,6 @@ class CreateBlueprintModal extends React.Component {
   }
 
   handleCreateBlueprint() {
-    this.props.close();
     const updatedBlueprint = {
       name: this.state.name,
       description: this.state.description,
@@ -104,6 +63,7 @@ class CreateBlueprintModal extends React.Component {
       id: this.state.name.replace(/\s/g, "-"),
     };
     this.props.creatingBlueprint(updatedBlueprint);
+    this.handleModalToggle();
     window.location.hash = history.createHref(`/edit/${this.state.name}`);
   }
 
@@ -129,6 +89,12 @@ class CreateBlueprintModal extends React.Component {
     }
   }
 
+  handleModalToggle = () => {
+    this.setState(({ isModalOpen }) => ({
+      isModalOpen: !isModalOpen,
+    }));
+  };
+
   dismissErrors() {
     this.setState({
       errorNameEmpty: false,
@@ -150,15 +116,45 @@ class CreateBlueprintModal extends React.Component {
   }
 
   render() {
+    const { isModalOpen } = this.state;
+
     return (
-      <Modal show onHide={this.props.close} id="cmpsr-modal-crt-blueprint">
-        <Modal.Header>
-          <Modal.CloseButton onClick={this.props.close} />
-          <Modal.Title>
-            <FormattedMessage defaultMessage="Create blueprint" />
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+      <>
+        <Button
+          variant="secondary"
+          disabled={this.props.disabled}
+          onClick={this.handleModalToggle}
+          id="cmpsr-btn-crt-blueprint"
+        >
+          <FormattedMessage defaultMessage="Create blueprint" />
+        </Button>
+        <Modal
+          variant={ModalVariant.medium}
+          title={<FormattedMessage defaultMessage="Create blueprint" />}
+          isOpen={isModalOpen}
+          onClose={this.handleModalToggle}
+          id="cmpsr-modal-crt-blueprint"
+          actions={[
+            <Button
+              key="cancel"
+              variant="danger"
+              onMouseEnter={() => this.setState({ checkErrors: false })}
+              onMouseLeave={() => this.setState({ checkErrors: true })}
+              onClick={this.handleModalToggle}
+            >
+              <FormattedMessage defaultMessage="Cancel" />
+            </Button>,
+            <Button
+              key="create"
+              variant="primary"
+              id="create-blueprint-modal-create-button"
+              disabled={this.nameContainsError()}
+              onClick={() => this.handleCreateBlueprint()}
+            >
+              <FormattedMessage defaultMessage="Create" />
+            </Button>,
+          ]}
+        >
           {this.state.errorInline &&
             ((this.state.errorNameEmpty && (
               <div className="alert alert-danger">
@@ -265,48 +261,20 @@ class CreateBlueprintModal extends React.Component {
               </div>
             </div>
           </form>
-        </Modal.Body>
-        <Modal.Footer>
-          <button
-            type="button"
-            className="btn btn-default"
-            onMouseEnter={() => this.setState({ checkErrors: false })}
-            onMouseLeave={() => this.setState({ checkErrors: true })}
-            onClick={this.props.close}
-          >
-            <FormattedMessage defaultMessage="Cancel" />
-          </button>
-          <button
-            id="create-blueprint-modal-create-button"
-            type="button"
-            className="btn btn-primary"
-            disabled={this.nameContainsError()}
-            onClick={() => this.handleCreateBlueprint()}
-          >
-            <FormattedMessage defaultMessage="Create" />
-          </button>
-        </Modal.Footer>
-      </Modal>
+        </Modal>
+      </>
     );
   }
 }
 
-CreateBlueprintModal.propTypes = {
-  close: PropTypes.func.isRequired,
+CreateBlueprint.propTypes = {
+  disabled: PropTypes.bool,
   blueprintNames: PropTypes.arrayOf(PropTypes.string).isRequired,
   creatingBlueprint: PropTypes.func.isRequired,
 };
 
-CreateBlueprint.propTypes = {
-  blueprintNames: PropTypes.arrayOf(PropTypes.string),
-  disabled: PropTypes.bool,
-  creatingBlueprint: PropTypes.func,
-};
-
 CreateBlueprint.defaultProps = {
-  blueprintNames: [],
   disabled: false,
-  creatingBlueprint() {},
 };
 
 const mapStateToProps = () => ({});
