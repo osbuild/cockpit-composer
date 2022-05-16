@@ -11,7 +11,6 @@ import ComponentInputs from "../../components/ListView/ComponentInputs";
 import ComponentDetailsView from "../../components/ListView/ComponentDetailsView";
 import CreateImageUpload from "../../components/Wizard/CreateImageUpload";
 import ExportBlueprint from "../../components/Modal/ExportBlueprint";
-import PendingChanges from "../../components/Modal/PendingChanges";
 import EmptyState from "../../components/EmptyState/EmptyState";
 import Loading from "../../components/Loading/Loading";
 import BlueprintToolbar from "../../components/Toolbar/BlueprintToolbar";
@@ -378,7 +377,6 @@ class EditBlueprintPage extends React.Component {
       dependencies,
       inputComponents,
       inputs,
-      modalActive,
       componentsSortKey,
       componentsSortValue,
       componentsFilters,
@@ -681,14 +679,6 @@ class EditBlueprintPage extends React.Component {
             <Loading />
           </div>
         )}
-        {modalActive === "modalPendingChanges" ? (
-          <PendingChanges
-            handleCommit={this.handleCommit}
-            blueprint={blueprint}
-            contents={dependencies}
-            handleHideModal={this.handleHideModal}
-          />
-        ) : null}
       </Layout>
     );
   }
@@ -726,7 +716,6 @@ EditBlueprintPage.propTypes = {
     totalInputs: PropTypes.number,
   }),
   inputComponents: PropTypes.arrayOf(PropTypes.object),
-  modalActive: PropTypes.string,
   selectedInput: PropTypes.shape({
     component: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     parent: PropTypes.arrayOf(PropTypes.object),
@@ -779,7 +768,6 @@ EditBlueprintPage.defaultProps = {
   blueprint: {},
   inputs: {},
   inputComponents: undefined,
-  modalActive: "",
   selectedInput: {},
   fetchingBlueprintContents() {},
   setBlueprint() {},
