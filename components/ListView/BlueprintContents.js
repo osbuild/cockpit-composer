@@ -1,8 +1,7 @@
 import React from "react";
 import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
-import { DataList, Alert } from "@patternfly/react-core";
-import { Tabs, Tab } from "patternfly-react";
+import { DataList, Alert, Tabs, Tab } from "@patternfly/react-core";
 import ComponentsDataListItem from "./ComponentsDataListItem";
 import DependencyListView from "./DependencyListView";
 import EmptyState from "../EmptyState/EmptyState";
@@ -58,7 +57,7 @@ const BlueprintContents = (props) => {
     <div>
       {(fetchingState === true && <Loading />) ||
         (components.length === 0 && filterValues.length === 0 && <div>{props.children}</div>) || (
-          <Tabs id="blueprint-tabs">
+          <Tabs id="blueprint-tabs" defaultActiveKey="selected-components">
             <Tab
               eventKey="selected-components"
               title={<LabelWithBadge title={formatMessage(messages.selectedTabTitle)} badge={components.length} />}
