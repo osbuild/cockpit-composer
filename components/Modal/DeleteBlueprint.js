@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal } from "patternfly-react";
+import { Button, Modal, ModalVariant } from "@patternfly/react-core";
 import { connect } from "react-redux";
 import { FormattedMessage, injectIntl } from "react-intl";
 import PropTypes from "prop-types";
@@ -10,62 +10,52 @@ class DeleteBlueprint extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showModal: false,
+      isModalOpen: false,
     };
-    this.open = this.open.bind(this);
-    this.close = this.close.bind(this);
+    this.handleModalToggle = this.handleModalToggle.bind(this);
   }
 
   handleDelete(event, blueprint) {
     this.props.deletingBlueprint(blueprint);
-    this.close();
+    this.handleModalToggle();
   }
 
-  open() {
-    this.setState({ showModal: true });
-  }
-
-  close() {
-    this.setState({ showModal: false });
-  }
+  handleModalToggle = () => {
+    this.setState(({ isModalOpen }) => ({
+      isModalOpen: !isModalOpen,
+    }));
+  };
 
   render() {
     return (
       <>
-        <a href="#" onClick={this.open}>
+        <Button component="a" variant="plain" onClick={this.handleModalToggle}>
           <FormattedMessage defaultMessage="Delete" />
-        </a>
-        <Modal show={this.state.showModal} onHide={this.close} id="cmpsr-modal-delete">
-          <Modal.Header>
-            <Modal.CloseButton onClick={this.close} />
-            <Modal.Title>
-              <FormattedMessage defaultMessage="Delete blueprint" />
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <p className="lead">
-              <FormattedMessage
-                defaultMessage="Are you sure you want to delete the blueprint {name}?"
-                values={{
-                  name: <strong>{this.props.blueprint.name}</strong>,
-                }}
-              />
-            </p>
-            <FormattedMessage defaultMessage="This action cannot be undone." tagName="p" />
-          </Modal.Body>
-          <Modal.Footer>
-            <button type="button" className="btn btn-default" onClick={this.close}>
+        </Button>
+        <Modal
+          id="cmpsr-modal-delete"
+          variant={ModalVariant.medium}
+          title={<FormattedMessage defaultMessage="Delete blueprint" />}
+          isOpen={this.state.isModalOpen}
+          onClose={this.handleModalToggle}
+          actions={[
+            <Button key="cancel" variant="secondary" onClick={this.handleModalToggle}>
               <FormattedMessage defaultMessage="Cancel" />
-            </button>
-            <button
-              type="button"
-              className="btn btn-danger"
-              data-dismiss="modal"
-              onClick={(e) => this.handleDelete(e, this.props.blueprint.id)}
-            >
+            </Button>,
+            <Button key="delete" variant="danger" onClick={(e) => this.handleDelete(e, this.props.blueprint.id)}>
               <FormattedMessage defaultMessage="Delete" />
-            </button>
-          </Modal.Footer>
+            </Button>,
+          ]}
+        >
+          <p className="lead">
+            <FormattedMessage
+              defaultMessage="Are you sure you want to delete the blueprint {name}?"
+              values={{
+                name: <strong>{this.props.blueprint.name}</strong>,
+              }}
+            />
+          </p>
+          <FormattedMessage defaultMessage="This action cannot be undone." tagName="p" />
         </Modal>
       </>
     );
