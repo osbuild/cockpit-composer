@@ -6,8 +6,7 @@ import React from "react";
 import { FormattedMessage, defineMessages, injectIntl } from "react-intl";
 import cockpit from "cockpit"; // eslint-disable-line import/no-unresolved
 import PropTypes from "prop-types";
-import { Tab, Tabs } from "patternfly-react";
-import { Button, Popover } from "@patternfly/react-core";
+import { Button, Popover, Tab, Tabs } from "@patternfly/react-core";
 import { OutlinedQuestionCircleIcon } from "@patternfly/react-icons";
 import { Table, TableHeader, TableBody, TableVariant } from "@patternfly/react-table";
 import { connect } from "react-redux";
@@ -302,7 +301,7 @@ class BlueprintPage extends React.Component {
       device = blueprint.customizations.installation_device;
     }
     const pathSuffix = cockpit.location.path[cockpit.location.path.length - 1];
-    const activeKey = ["customizations", "packages", "images"].includes(pathSuffix) ? pathSuffix : undefined;
+    const activeKey = ["customizations", "packages", "images"].includes(pathSuffix) ? pathSuffix : "customizations";
 
     const rows = users.map((user) => ({
       props: { "data-tr": user.name },
@@ -415,7 +414,7 @@ class BlueprintPage extends React.Component {
           </div>
         </header>
         <Tabs
-          activeKey={activeKey}
+          defaultActiveKey={activeKey}
           onSelect={(eventId) => cockpit.location.go(["blueprint", this.props.route.params.blueprint, eventId])}
           id="blueprint-tabs"
         >
