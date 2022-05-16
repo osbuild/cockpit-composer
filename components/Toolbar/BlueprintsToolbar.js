@@ -1,17 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import FilterInput from "./FilterInput";
 import ToolbarLayout from "./ToolbarLayout";
 import CreateBlueprint from "../Modal/CreateBlueprint";
 import ManageSources from "../Modal/ManageSources";
 
 const BlueprintsToolbar = (props) => (
-  <ToolbarLayout
-    filters={props.filters}
-    filterRemoveValue={props.filterRemoveValue}
-    filterClearValues={props.filterClearValues}
-  >
-    <FilterInput emptyState={props.emptyState} filters={props.filters} filterAddValue={props.filterAddValue} />
+  <ToolbarLayout>
     <div className="form-group">
       {(props.sortKey === "name" && props.sortValue === "DESC" && (
         <button
@@ -61,14 +55,6 @@ const BlueprintsToolbar = (props) => (
 
 BlueprintsToolbar.propTypes = {
   blueprintNames: PropTypes.arrayOf(PropTypes.string).isRequired,
-  filters: PropTypes.shape({
-    defaultFilterType: PropTypes.string,
-    filterTypes: PropTypes.arrayOf(PropTypes.object),
-    filterValues: PropTypes.arrayOf(PropTypes.object),
-  }),
-  filterRemoveValue: PropTypes.func,
-  filterAddValue: PropTypes.func,
-  filterClearValues: PropTypes.func,
   sortSetValue: PropTypes.func,
   errorState: PropTypes.bool,
   emptyState: PropTypes.bool,
@@ -82,10 +68,6 @@ BlueprintsToolbar.propTypes = {
 };
 
 BlueprintsToolbar.defaultProps = {
-  filters: {},
-  filterRemoveValue() {},
-  filterAddValue() {},
-  filterClearValues() {},
   sortSetValue() {},
   errorState: false,
   emptyState: false,
