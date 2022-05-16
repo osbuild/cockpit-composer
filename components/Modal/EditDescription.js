@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal } from "patternfly-react";
+import { Button, Modal, ModalVariant } from "@patternfly/react-core";
 import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -8,49 +8,11 @@ class EditDescription extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showModal: false,
-    };
-    this.open = this.open.bind(this);
-    this.close = this.close.bind(this);
-  }
-
-  open(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    this.setState({ showModal: true });
-  }
-
-  close() {
-    this.setState({ showModal: false });
-  }
-
-  render() {
-    return (
-      <>
-        <a href="#" onClick={this.open} className={this.props.descriptionAsLink ? "text-muted" : ""}>
-          {(this.props.descriptionAsLink && this.props.description) || (
-            <FormattedMessage defaultMessage="Edit description" />
-          )}
-        </a>
-        {this.state.showModal && (
-          <EditDescriptionModal
-            description={this.props.description}
-            handleEditDescription={this.props.handleEditDescription}
-            close={this.close}
-          />
-        )}
-      </>
-    );
-  }
-}
-
-class EditDescriptionModal extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
       description: "",
+      isModalOpen: false,
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleModalToggle = this.handleModalToggle.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -62,8 +24,14 @@ class EditDescriptionModal extends React.Component {
     this.setState({ [prop]: e.target.value });
   }
 
+  handleModalToggle = () => {
+    this.setState(({ isModalOpen }) => ({
+      isModalOpen: !isModalOpen,
+    }));
+  };
+
   handleSubmit(e) {
-    this.props.close();
+    this.handleModalToggle();
     this.props.handleEditDescription(this.state.description);
     e.preventDefault();
     e.stopPropagation();
@@ -71,14 +39,27 @@ class EditDescriptionModal extends React.Component {
 
   render() {
     return (
-      <Modal show onHide={this.props.close} id="cmpsr-modal-edit-description">
-        <Modal.Header>
-          <Modal.CloseButton onClick={this.props.close} />
-          <Modal.Title>
+      <>
+        <Button component="a" variant="plain" onClick={this.handleModalToggle}>
+          {(this.props.descriptionAsLink && this.props.description) || (
             <FormattedMessage defaultMessage="Edit description" />
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+          )}
+        </Button>
+        <Modal
+          id="cmpsr-modal-edit-description"
+          variant={ModalVariant.medium}
+          title={<FormattedMessage defaultMessage="Edit description" />}
+          isOpen={this.state.isModalOpen}
+          onClose={this.handleModalToggle}
+          actions={[
+            <Button key="cancel" variant="secondary" onClick={this.handleModalToggle}>
+              <FormattedMessage defaultMessage="Cancel" />
+            </Button>,
+            <Button key="save" variant="primary" onClick={this.handleSubmit}>
+              <FormattedMessage defaultMessage="Save" />
+            </Button>,
+          ]}
+        >
           <form className="form-horizontal" data-form="description" onSubmit={this.handleSubmit}>
             <div className="form-group">
               <label className="col-sm-3 control-label required-pf" htmlFor="textInput-modal-markup">
@@ -96,21 +77,8 @@ class EditDescriptionModal extends React.Component {
               </div>
             </div>
           </form>
-        </Modal.Body>
-        <Modal.Footer>
-          <button type="button" className="btn btn-default" onClick={this.props.close}>
-            <FormattedMessage defaultMessage="Cancel" />
-          </button>
-          <button
-            id="edit-description-modal-submit-button"
-            type="button"
-            className="btn btn-primary"
-            onClick={this.handleSubmit}
-          >
-            <FormattedMessage defaultMessage="Save" />
-          </button>
-        </Modal.Footer>
-      </Modal>
+        </Modal>
+      </>
     );
   }
 }
@@ -124,17 +92,6 @@ EditDescription.propTypes = {
 EditDescription.defaultProps = {
   description: "",
   descriptionAsLink: false,
-};
-
-EditDescriptionModal.propTypes = {
-  close: PropTypes.func.isRequired,
-  handleEditDescription: PropTypes.func,
-  description: PropTypes.string,
-};
-
-EditDescriptionModal.defaultProps = {
-  handleEditDescription() {},
-  description: "",
 };
 
 const mapStateToProps = () => ({});
