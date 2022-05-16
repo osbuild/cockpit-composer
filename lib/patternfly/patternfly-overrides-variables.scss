@@ -1,5 +1,5 @@
 /*
- * Keep in sync with https://github.com/cockpit-project/cockpit/tree/main/src/base1/patternfly-overrides-variables.scss
+ * Keep in sync with https://github.com/cockpit-project/cockpit/blob/main/pkg/lib/patternfly/patternfly-overrides-variables.scss
  */
 
 //
@@ -38,9 +38,6 @@ $text-color:            #151515;
 $navbar-pf-vertical-bg-color: $text-color;
 
 //** Global textual link color.
-//$link-color:            var(--pf-global--link--Color);
-//** Link hover color set via `darken()` function.
-//$link-hover-color:      var(--pf-global--link--Color--hover);
 $link-color: #06c;
 $link-hover-color: #004080;
 //** Link hover decoration.
