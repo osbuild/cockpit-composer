@@ -1,8 +1,7 @@
 import React from "react";
 import { FormattedMessage, defineMessages, injectIntl } from "react-intl";
 import PropTypes from "prop-types";
-import { Tabs, Tab } from "patternfly-react";
-import { Tooltip, TooltipPosition } from "@patternfly/react-core";
+import { Tabs, Tab, Tooltip, TooltipPosition } from "@patternfly/react-core";
 import { connect } from "react-redux";
 import ComponentTypeIcons from "./ComponentTypeIcons";
 import DependencyListView from "./DependencyListView";
@@ -276,7 +275,7 @@ class ComponentDetailsView extends React.Component {
           </div>
         )}
         <div>
-          <Tabs id="blueprint-tabs">
+          <Tabs id="blueprint-tabs" defaultActiveKey="details">
             <Tab eventKey="details" title={formatMessage(messages.details)}>
               <h4 className="cmpsr-title">{component.summary}</h4>
               <p>{component.description}</p>
