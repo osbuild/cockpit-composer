@@ -1,15 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import FilterInput from "./FilterInput";
 import ToolbarLayout from "./ToolbarLayout";
 
 const BlueprintToolbar = (props) => (
-  <ToolbarLayout
-    filters={props.filters}
-    filterRemoveValue={props.filterRemoveValue}
-    filterClearValues={props.filterClearValues}
-  >
-    <FilterInput emptyState={props.emptyState} filters={props.filters} filterAddValue={props.filterAddValue} />
+  <ToolbarLayout>
     <div className="form-group">
       {(props.componentsSortKey === "name" && props.componentsSortValue === "DESC" && (
         <button
@@ -78,14 +72,6 @@ const BlueprintToolbar = (props) => (
 );
 
 BlueprintToolbar.propTypes = {
-  filters: PropTypes.shape({
-    defaultFilterType: PropTypes.string,
-    filterTypes: PropTypes.arrayOf(PropTypes.object),
-    filterValues: PropTypes.arrayOf(PropTypes.object),
-  }),
-  filterAddValue: PropTypes.func,
-  filterRemoveValue: PropTypes.func,
-  filterClearValues: PropTypes.func,
   emptyState: PropTypes.bool,
   componentsSortKey: PropTypes.string,
   componentsSortSetValue: PropTypes.func,
@@ -100,10 +86,6 @@ BlueprintToolbar.propTypes = {
 };
 
 BlueprintToolbar.defaultProps = {
-  filters: {},
-  filterAddValue() {},
-  filterRemoveValue() {},
-  filterClearValues() {},
   emptyState: false,
   componentsSortKey: "",
   componentsSortSetValue() {},
