@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { FormattedMessage, defineMessages, injectIntl } from "react-intl";
-import { Spinner } from "patternfly-react";
+import { Spinner } from "@patternfly/react-core";
 
 const messages = defineMessages({
   edit: {
