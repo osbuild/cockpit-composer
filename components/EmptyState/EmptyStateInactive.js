@@ -2,8 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FormattedMessage, defineMessages, injectIntl } from "react-intl";
 import cockpit from "cockpit";
-import { Alert, Button, OverlayTrigger, Tooltip } from "patternfly-react";
-import { EmptyStateSecondaryActions, EmptyStatePrimary } from "@patternfly/react-core";
+import {
+  Alert,
+  Button,
+  OverlayTrigger,
+  Tooltip,
+  EmptyStateSecondaryActions,
+  EmptyStatePrimary,
+} from "@patternfly/react-core";
 import { ExclamationCircleIcon } from "@patternfly/react-icons";
 import EmptyState from "./EmptyState";
 
