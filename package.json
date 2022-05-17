@@ -6,11 +6,11 @@
     "npm": ">=5.0"
   },
   "dependencies": {
-    "@patternfly/patternfly": "4.171.1",
-    "@patternfly/react-core": "4.192.15",
-    "@patternfly/react-icons": "4.43.15",
-    "@patternfly/react-styles": "4.42.15",
-    "@patternfly/react-table": "4.61.15",
+    "@patternfly/patternfly": "4.194.4",
+    "@patternfly/react-core": "4.214.3",
+    "@patternfly/react-icons": "4.65.3",
+    "@patternfly/react-styles": "4.64.3",
+    "@patternfly/react-table": "4.83.3",
     "bootstrap": "3.4.1",
     "core-js": "3.21.1",
     "fastclick": "1.0.6",
