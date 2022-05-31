@@ -5,14 +5,14 @@
 # Julien Humbert <julroy67@gmail.com>, 2020, 2021, 2022.
 # Anonymous <noreply@weblate.org>, 2020.
 # Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>, 2020.
-# Alain Nussbaumer <alain.nussbaumer@alleluia.ch>, 2020.
+# Alain Nussbaumer <alain.nussbaumer@alleluia.ch>, 2020, 2022.
 # Sundeep Anand <suanand@redhat.com>, 2021.
 # Transtats <suanand@redhat.com>, 2022.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2022-03-29T18:19:31.691Z\n"
-"PO-Revision-Date: 2022-03-09 19:46+0000\n"
-"Last-Translator: Transtats <suanand@redhat.com>\n"
+"POT-Creation-Date: 2022-05-24T18:23:03.105Z\n"
+"PO-Revision-Date: 2022-05-02 19:18+0000\n"
+"Last-Translator: Alain Nussbaumer <alain.nussbaumer@alleluia.ch>\n"
 "Language-Team: French <https://translate.fedoraproject.org/projects/cockpit-"
 "composer/main/fr/>\n"
 "Language: fr\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1\n"
-"X-Generator: Weblate 4.11.2\n"
+"X-Generator: Weblate 4.12.1\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -1544,8 +1544,9 @@ msgstr "Aucun résultat correspondant au critère de filtrage"
 #. defaultMessage is:
 #. OCI bucket
 #: build/messages/components/Wizard/ReviewStep.json
+#, fuzzy
 msgid "OCI bucket"
-msgstr ""
+msgstr "Bucket OCI"
 
 #. [components.Wizard.compartment]
 #. defaultMessage is:
@@ -1559,7 +1560,7 @@ msgstr "Aide compartiment OCI"
 #. OCI region help
 #: build/messages/components/Wizard/OCIDestinationStep.json
 msgid "OCI region help"
-msgstr "Aide région OCI"
+msgstr "Aide sur la région OCI"
 
 #. [components.Wizard.tenancy]
 #. defaultMessage is:
@@ -1671,10 +1672,8 @@ msgstr "Clé privée"
 #. defaultMessage is:
 #. Private key filename
 #: build/messages/components/Wizard/ReviewStep.json
-#, fuzzy
-#| msgid "Private key"
 msgid "Private key filename"
-msgstr "Clé privée"
+msgstr "Fichier de la clé privée"
 
 #. [components.Wizard.processLength]
 #. defaultMessage is:
@@ -1922,11 +1921,11 @@ msgid ""
 "                        {bucketsPage} page in the OCI storage service in the "
 "OCI console."
 msgstr ""
-"Indiquez le nom de {bucket} sur lequel le fichier image sera téléchargé "
+"Indiquez le nom du {bucket} sur lequel le fichier image sera téléchargé "
 "avant d'être importé en tant qu'image personnalisée \n"
-"                        Le site {bucket} doit déjà exister dans la région où "
-"vous souhaitez importer votre image. Vous trouverez une liste de {buckets} "
-"sur la page\n"
+"                        Le {bucket} doit déjà exister dans la région où vous "
+"souhaitez importer votre image. Vous trouverez une liste de {buckets} sur la "
+"page\n"
 "                        {bucketsPage} du service de stockage de l'OCI dans "
 "la console de l'OCI."
 
@@ -2802,10 +2801,8 @@ msgstr "Type de téléchargement"
 #. defaultMessage is:
 #. User
 #: build/messages/components/Wizard/ReviewStep.json
-#, fuzzy
-#| msgid "Users"
 msgid "User"
-msgstr "Utilisateurs"
+msgstr "Utilisateur"
 
 #. [user-help]
 #. defaultMessage is:
@@ -3050,7 +3047,7 @@ msgstr "vers"
 #: build/messages/components/ListView/SourcesListItem.json
 #: build/messages/components/Modal/ManageSources.json
 msgid "yum repository"
-msgstr "yum repository"
+msgstr "Dépôt yum"
 
 #. [components.Notifications.4273735599]
 #. defaultMessage is:
@@ -3153,7 +3150,7 @@ msgstr "Création des images systèmes"
 
 #: public/manifest.json
 msgid "Image Builder"
-msgstr "Image Builder"
+msgstr "Constructeur d’image"
 
 #~ msgid "A password is defined for this account."
 #~ msgstr "Un mot de passe est exigé pour utiliser ce compte."
