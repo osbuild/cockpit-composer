@@ -25,6 +25,8 @@ function* startCompose(action) {
   const { blueprintName, composeType, imageSize, ostree, uploadSettings } = action.payload;
   try {
     const imageSizeBytes = imageSize * 1024 * 1024 * 1024;
+    console.log("in start compose");
+    console.log(action.payload);
     const response = yield call(
       composer.startCompose,
       blueprintName,
