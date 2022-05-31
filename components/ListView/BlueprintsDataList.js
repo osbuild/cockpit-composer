@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 import { DataList, DataListItem, DataListItemRow, DataListCell, DataListItemCells } from "@patternfly/react-core";
 import { PficonTemplateIcon } from "@patternfly/react-icons";
 import Link from "../Link/Link";
-import CreateImageUpload from "../Wizard/CreateImageUpload";
+// import CreateImageUpload from "../Wizard/CreateImageUpload";
+import CreateImageWizard from "../Wizard/CreateImageWizard";
 import DeleteBlueprint from "../Modal/DeleteBlueprint";
 import ExportBlueprint from "../Modal/ExportBlueprint";
 
@@ -46,7 +47,8 @@ class BlueprintsDataList extends React.PureComponent {
                 <Link to={`/edit/${blueprint.name}`} className="btn btn-default">
                   <FormattedMessage defaultMessage="Edit packages" />
                 </Link>
-                <CreateImageUpload blueprint={blueprint} layout={layout} />
+                {/* <CreateImageUpload blueprint={blueprint} layout={layout} /> */}
+                <CreateImageWizard blueprint={blueprint} />
                 <div className="dropdown pull-right dropdown-kebab-pf">
                   <button
                     className="btn btn-link dropdown-toggle"
