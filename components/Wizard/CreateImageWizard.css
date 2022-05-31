@@ -1,0 +1,5 @@
+.pf-c-popover[data-popper-reference-hidden="true"] {
+    font-weight: initial;
+    visibility: initial;
+    pointer-events: initial;
+}
