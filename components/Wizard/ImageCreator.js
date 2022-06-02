@@ -6,6 +6,7 @@ import { Spinner } from "@patternfly/react-core";
 import PropTypes from "prop-types";
 import BlueprintName from "./formComponents/BlueprintName";
 import ImageOutputSelect from "./formComponents/ImageOutputSelect";
+import Review from "./formComponents/Review";
 
 const ImageCreator = ({
   schema,
@@ -31,6 +32,10 @@ const ImageCreator = ({
         "image-output-select": {
           component: ImageOutputSelect,
           imageTypes: props.imageTypes,
+        },
+        review: {
+          component: Review,
+          blueprint: props.blueprint,
         },
       }}
       onCancel={onClose}
