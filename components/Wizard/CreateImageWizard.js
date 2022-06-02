@@ -6,7 +6,7 @@ import { setBlueprint } from "../../core/actions/blueprints";
 import { startCompose, fetchingComposeTypes } from "../../core/actions/composes";
 
 import ImageCreator from "./ImageCreator";
-import { imageOutput } from "./steps";
+import { imageOutput, details } from "./steps";
 import "./CreateImageWizard.css";
 
 const CreateImageWizard = (props) => {
@@ -50,7 +50,7 @@ const CreateImageWizard = (props) => {
                 inModal: true,
                 showTitles: true,
                 title: "Create image",
-                fields: [imageOutput],
+                fields: [imageOutput, details],
               },
             ],
           }}

@@ -2,6 +2,7 @@ export default {
   id: "wizard-image-output",
   title: "Image output",
   name: "image-output",
+  nextStep: "details",
   fields: [
     {
       component: "blueprint-name",
