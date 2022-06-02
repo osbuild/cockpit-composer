@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import componentTypes from "@data-driven-forms/react-form-renderer/component-types";
 import { Button } from "@patternfly/react-core";
-import { setBlueprint } from "../../core/actions/blueprints";
 import { startCompose, fetchingComposeTypes } from "../../core/actions/composes";
 
 import ImageCreator from "./ImageCreator";
-import { imageOutput, details } from "./steps";
+import { imageOutput, details, review } from "./steps";
 import "./CreateImageWizard.css";
 
 const CreateImageWizard = (props) => {
@@ -28,7 +27,13 @@ const CreateImageWizard = (props) => {
     console.log(formValues);
 
     // startCompose(props.blueprint.name, composeType, imageSize, ostree, upload);
-    props.startCompose(props.blueprint.name, formValues["image-output-type"], 0, undefined, undefined);
+    props.startCompose(
+      props.blueprint.name,
+      formValues["image-output-type"],
+      formValues["image-size"],
+      undefined,
+      undefined
+    );
     setIsWizardOpen(false);
   };
 
@@ -50,7 +55,10 @@ const CreateImageWizard = (props) => {
                 inModal: true,
                 showTitles: true,
                 title: "Create image",
-                fields: [imageOutput, details],
+                buttonLabels: {
+                  submit: "Create image",
+                },
+                fields: [imageOutput, details, review],
               },
             ],
           }}
