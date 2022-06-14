@@ -7,8 +7,8 @@
 # 김인수 <simmon@nplob.com>, 2022.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2022-03-29T18:19:31.691Z\n"
-"PO-Revision-Date: 2022-03-10 15:01+0000\n"
+"POT-Creation-Date: 2022-05-24T18:23:03.105Z\n"
+"PO-Revision-Date: 2022-05-25 08:18+0000\n"
 "Last-Translator: 김인수 <simmon@nplob.com>\n"
 "Language-Team: Korean <https://translate.fedoraproject.org/projects/cockpit-"
 "composer/main/ko/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
-"X-Generator: Weblate 4.11.2\n"
+"X-Generator: Weblate 4.12.2\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -2045,7 +2045,7 @@ msgstr "저장"
 #. Saving source
 #: build/messages/components/Modal/ManageSources.json
 msgid "Saving source"
-msgstr "소스 저장 중"
+msgstr "원천 저장 중"
 
 #. [components.Wizard.135579143]
 #. defaultMessage is:
@@ -2157,21 +2157,21 @@ msgstr "크기"
 #. Source actions
 #: build/messages/components/ListView/SourcesListItem.json
 msgid "Source actions"
-msgstr "소스 작업"
+msgstr "원천 작업"
 
 #. [components.Modal.sourcePath] - The path or url to the source repository
 #. defaultMessage is:
 #. Source path
 #: build/messages/components/Modal/ManageSources.json
 msgid "Source path"
-msgstr "소스 경로"
+msgstr "원천 경로"
 
 #. [components.Modal.3025955497] - Sources provide the contents from which components are selected
 #. defaultMessage is:
 #. Sources
 #: build/messages/components/Modal/ManageSources.json
 msgid "Sources"
-msgstr "소스"
+msgstr "원천"
 
 #. [components.Modal.infotip]
 #. defaultMessage is:
@@ -2183,9 +2183,9 @@ msgid ""
 "the source do not conflict with any other package sources, otherwise "
 "resolving dependencies and composing images will fail."
 msgstr ""
-"블루프린트 종속성을 해결하고 이미지를 조합하기 위한 소스입니다. 사용자 정의 "
-"소스를 추가할 때 소스의 꾸러미가 다른 꾸러미 소스와 충돌하지 않도록 합니다. "
-"그렇지 않으면 종속성을 해결하고 이미지를 구성할 때 오류가 발생합니다."
+"블루프린트 종속성을 해결하고 이미지를 조합하기 위한 원천입니다. 사용자 정의 "
+"원천을 추가 할 때 원천의 꾸러미가 다른 꾸러미 원천과 충돌하지 않도록 합니다. "
+"그렇지 않으면 종속성을 해결하고 이미지를 구성 할 때 오류가 발생합니다."
 
 #. [components.Modal.540971304]
 #. defaultMessage is:
@@ -2299,7 +2299,7 @@ msgstr "저장소 컨테이너 도움말"
 #. System source
 #: build/messages/components/ListView/SourcesListItem.json
 msgid "System source"
-msgstr "시스템 소스"
+msgstr "시스템 원천"
 
 #. [components.Modal.3495336243]
 #. defaultMessage is:
@@ -2504,14 +2504,14 @@ msgstr ""
 #. This source name already exists.
 #: build/messages/components/Modal/ManageSources.json
 msgid "This source name already exists."
-msgstr "이 소스 이름이 이미 존재합니다."
+msgstr "이 원천의 이름이 이미 존재합니다."
 
 #. [components.Modal.1932541555]
 #. defaultMessage is:
 #. This source path already exists.
 #: build/messages/components/Modal/ManageSources.json
 msgid "This source path already exists."
-msgstr "이 소스 경로가 이미 존재합니다."
+msgstr "이 원천의 경로가 이미 존재합니다."
 
 #. [components.Notifications.errorSubscription]
 #. defaultMessage is:
@@ -2631,7 +2631,7 @@ msgstr "업데이트"
 #. Update source
 #: build/messages/components/Modal/ManageSources.json
 msgid "Update source"
-msgstr "소스 업데이트"
+msgstr "원천 최신화"
 
 #. [components.Modal.562988552] - Identifies the change as a component that was updated
 #. defaultMessage is:
