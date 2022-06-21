@@ -16,26 +16,10 @@ NODE_MODULES_TEST=package-lock.json
 # one example file in dist/ from webpack to check if that already ran
 WEBPACK_TEST=public/dist/index.html
 
-WEBLATE_REPO=tmp/weblate-repo
-WEBLATE_REPO_URL=https://github.com/osbuild/cockpit-composer-weblate.git
-WEBLATE_REPO_BRANCH=main
-
 all: $(WEBPACK_TEST)
 
 $(WEBPACK_TEST): $(NODE_MODULES_TEST) $(shell find {core,components,data,pages,utils} -type f) package.json webpack.config.js $(patsubst %,dist/po.%.js,$(LINGUAS))
 	NODE_ENV=$(NODE_ENV) $(BUILD_RUN)
-
-$(WEBLATE_REPO):
-	git clone --depth=1 -b $(WEBLATE_REPO_BRANCH) $(WEBLATE_REPO_URL) $(WEBLATE_REPO)
-
-po-pull: $(WEBLATE_REPO)
-	cp $(WEBLATE_REPO)/*.po ./po/
-	NODE_ENV=$(NODE_ENV) npm run translations:po2json
-
-po-push: po/cockpit-composer.pot $(WEBLATE_REPO)
-	cp ./po/cockpit-composer.pot $(WEBLATE_REPO)
-	git -C $(WEBLATE_REPO) commit -m "Update source file" -- cockpit-composer.pot
-	git -C $(WEBLATE_REPO) push
 
 po/cockpit-composer.pot: $(WEBPACK_TEST)
 	NODE_ENV=$(NODE_ENV) npm run translations:extract
@@ -163,13 +147,6 @@ $(NODE_MODULES_TEST): package.json
 	# unset NODE_ENV, skips devDependencies otherwise
 	env -u NODE_ENV npm install
 	env -u NODE_ENV npm prune
-
-# The po-refresh bot expects these specific Makefile targets
-update-po:
-upload-pot: po-push
-download-po: po-pull
-clean-po:
-	rm po/*.po
 
 .PHONY: tag vm check debug-check flake8 devel-install
 
