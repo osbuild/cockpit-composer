@@ -6,7 +6,7 @@ import { HelpIcon } from "@patternfly/react-icons";
 export default {
   title: "Details",
   name: "details",
-  nextStep: "review",
+  nextStep: "packages",
   fields: [
     {
       component: "text-field-custom",

@@ -17,6 +17,7 @@ import {
   ociAuth,
   ociDest,
   details,
+  packages,
   review,
 } from "./steps";
 import "./CreateImageWizard.css";
@@ -126,6 +127,7 @@ const CreateImageWizard = (props) => {
                 buttonLabels: {
                   submit: "Create image",
                 },
+<<<<<<< HEAD
                 fields: [
                   imageOutput,
                   awsAuth,
@@ -140,6 +142,9 @@ const CreateImageWizard = (props) => {
                   review,
                 ],
                 crossroads: ["image-output-type", "image-upload"],
+=======
+                fields: [imageOutput, details, packages, review],
+>>>>>>> 6d25716f (Wizard: Add packages step)
               },
             ],
           }}
