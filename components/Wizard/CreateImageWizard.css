@@ -8,3 +8,7 @@
   padding-top: 0;
   padding-bottom: 0;
 }
+
+.pf-c-dual-list-selector__menu {
+  --pf-c-dual-list-selector__menu--MinHeight: 20.5rem;
+}

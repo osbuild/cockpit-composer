@@ -17,6 +17,7 @@ import {
   ociAuth,
   ociDest,
   details,
+  packages,
   review,
 } from "./steps";
 import "./CreateImageWizard.css";
@@ -137,6 +138,7 @@ const CreateImageWizard = (props) => {
                   vmwareAuth,
                   vmwareDest,
                   details,
+                  packages,
                   review,
                 ],
                 crossroads: ["image-output-type", "image-upload"],
