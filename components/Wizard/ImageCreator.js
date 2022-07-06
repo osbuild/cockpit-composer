@@ -6,6 +6,7 @@ import { Spinner } from "@patternfly/react-core";
 import PropTypes from "prop-types";
 import BlueprintName from "./formComponents/BlueprintName";
 import ImageOutputSelect from "./formComponents/ImageOutputSelect";
+import Packages from "./formComponents/Packages";
 import Review from "./formComponents/Review";
 import TextFieldCustom from "./formComponents/TextFieldCustom";
 import UploadFile from "./formComponents/UploadFile";
@@ -34,6 +35,9 @@ const ImageCreator = ({
         "image-output-select": {
           component: ImageOutputSelect,
           imageTypes: props.imageTypes,
+        },
+        "package-selector": {
+          component: Packages
         },
         review: {
           component: Review,
