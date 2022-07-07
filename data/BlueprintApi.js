@@ -5,7 +5,7 @@ class BlueprintApi {
     this.blueprint = undefined;
   }
 
-  handleCommitBlueprint(blueprint) {
+  async handleCommitBlueprint(blueprint) {
     return composer.newBlueprint(this.postedBlueprintData(blueprint)).catch((e) => {
       console.log(`Error committing blueprint: ${e}`);
     });
@@ -26,7 +26,7 @@ class BlueprintApi {
     return blueprintData;
   }
 
-  reloadBlueprintDetails(blueprint) {
+  async reloadBlueprintDetails(blueprint) {
     // retrieve blueprint details that were updated during save (i.e. version)
     // and reload details in UI
     return composer

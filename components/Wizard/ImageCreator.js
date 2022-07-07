@@ -37,7 +37,8 @@ const ImageCreator = ({
           imageTypes: props.imageTypes,
         },
         "package-selector": {
-          component: Packages
+          component: Packages,
+          blueprintName: props.blueprintName,
         },
         review: {
           component: Review,
