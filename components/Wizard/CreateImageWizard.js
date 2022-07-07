@@ -22,6 +22,9 @@ import {
 } from "./steps";
 import "./CreateImageWizard.css";
 
+import BlueprintApi from "../../data/BlueprintApi";
+import * as composer from "../../core/composer";
+
 const CreateImageWizard = (props) => {
   const [isWizardOpen, setIsWizardOpen] = useState(false);
 
@@ -38,7 +41,12 @@ const CreateImageWizard = (props) => {
     setIsWizardOpen(true);
   };
 
-  const handleSubmit = (formValues) => {
+  const handleSubmit = async (formValues) => {
+    const result = await composer.diffBlueprintToWorkspace(props.blueprint.id);
+    if (result.diff.length !== 0) {
+      await BlueprintApi.handleCommitBlueprint(props.blueprint);
+    }
+
     // startCompose(props.blueprint.name, composeType, imageSize, ostree, upload);
 
     let uploadSettings;
@@ -127,7 +135,6 @@ const CreateImageWizard = (props) => {
                 buttonLabels: {
                   submit: "Create image",
                 },
-<<<<<<< HEAD
                 fields: [
                   imageOutput,
                   awsAuth,
@@ -139,12 +146,10 @@ const CreateImageWizard = (props) => {
                   vmwareAuth,
                   vmwareDest,
                   details,
+                  packages,
                   review,
                 ],
                 crossroads: ["image-output-type", "image-upload"],
-=======
-                fields: [imageOutput, details, packages, review],
->>>>>>> 6d25716f (Wizard: Add packages step)
               },
             ],
           }}

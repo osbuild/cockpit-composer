@@ -3,6 +3,8 @@ import useFormApi from "@data-driven-forms/react-form-renderer/use-form-api";
 import useFieldApi from "@data-driven-forms/react-form-renderer/use-field-api";
 import PropTypes from "prop-types";
 import {
+  Bullseye,
+  Button,
   DualListSelector,
   DualListSelectorPane,
   DualListSelectorList,
@@ -10,10 +12,14 @@ import {
   DualListSelectorControlsWrapper,
   DualListSelectorControl,
   SearchInput,
+  Spinner,
   TextContent,
 } from "@patternfly/react-core";
 import { AngleDoubleLeftIcon, AngleLeftIcon, AngleDoubleRightIcon, AngleRightIcon } from "@patternfly/react-icons";
-// import api from "../../../api";
+import { connect } from "react-redux";
+import api from "../../../core/api";
+import * as composer from "../../../core/composer";
+import { updateBlueprintComponents } from "../../../core/actions/blueprints";
 
 // the fields isHidden and isSelected should not be included in the package list sent for image creation
 const removePackagesDisplayFields = (packages) =>
@@ -30,15 +36,39 @@ const Packages = ({ defaultArch, ...props }) => {
   const [filterChosen, setFilterChosen] = useState(undefined);
   const [packagesAvailable, setPackagesAvailable] = useState([]);
   const [packagesAvailableFound, setPackagesAvailableFound] = useState(true);
+  const [packagesAvailableLoading, setPackagesAvailableLoading] = useState(false);
   const [packagesChosen, setPackagesChosen] = useState([]);
   const [packagesChosenFound, setPackagesChosenFound] = useState(true);
+  const [packagesChosenLoading, setPackagesChosenLoading] = useState(false);
   const [focus, setFocus] = useState("");
+  const [totalPackagesAvailable, setTotalPackagesAvailable] = useState(undefined);
+  const [packagesAvailablePage, setPackagesAvailablePage] = useState(1);
+  const [packagesAvailablePerPage, setPackagesAvailablePerPage] = useState(100);
+  const [additionalPackagesAvailableLoading, setAdditionalPackagesAvailableLoading] = useState(false);
 
   // this effect only triggers on mount
   useEffect(() => {
-    const selectedPackages = getState()?.values?.["selected-packages"];
-    if (selectedPackages) {
-      setPackagesChosen(selectedPackages);
+    const fetchPackagesChosen = async () => {
+      setPackagesChosenLoading(true);
+      const result = await composer.depsolveBlueprint(props.blueprintName);
+      const blueprint = result.blueprints[0].blueprint;
+      const blueprintPackages = blueprint.packages.concat(blueprint.modules);
+      const packageNames = blueprintPackages.map((pkg) => pkg.name);
+      const packageInfo = await composer.getComponentInfo(packageNames);
+      const selectedPackages = packageInfo.map((pkg) => ({ name: pkg.name, summary: pkg.summary }));
+      if (selectedPackages) {
+        setPackagesChosenSorted(selectedPackages);
+        change(input.name, removePackagesDisplayFields(selectedPackages));
+      }
+      setPackagesChosenLoading(false);
+    };
+
+    const formPackages = getState()?.values?.["selected-packages"];
+
+    if (formPackages) {
+      setPackagesChosenSorted(formPackages);
+    } else {
+      fetchPackagesChosen();
     }
   }, []);
 
@@ -79,8 +109,27 @@ const Packages = ({ defaultArch, ...props }) => {
     };
   });
 
-  const setPackagesAvailableSorted = (packageList, filter = filterAvailable) => {
-    const sortResults = packageList.sort(searchResultsComparator(filter));
+  // This comparator should match the results from the composer API call
+  const alphabeticalComparator = useCallback(() => {
+    return (a, b) => {
+      a = a.name;
+      b = b.name;
+
+      // sort alphabetically
+      if (a < b) {
+        return -1;
+      }
+
+      if (b < a) {
+        return 1;
+      }
+
+      return 0;
+    };
+  });
+
+  const setPackagesAvailableSorted = (packageList) => {
+    const sortResults = packageList.sort(alphabeticalComparator(filterAvailable));
     setPackagesAvailable(sortResults);
   };
 
@@ -98,20 +147,32 @@ const Packages = ({ defaultArch, ...props }) => {
   };
 
   const getAllPackages = async () => {
-    // const args = [getState()?.values?.release, getState()?.values?.architecture || defaultArch, packagesSearchName];
-    // let { data, meta } = await api.getPackages(...args);
-    // if (data?.length === meta.count) {
-    //   return data;
-    // }
-    // if (data) {
-    //   ({ data } = await api.getPackages(...args, meta.count));
-    //   return data;
-    // }
+    setPackagesAvailableLoading(true);
+    const { packages, total } = await api.getPackages(
+      packagesSearchName,
+      packagesAvailablePage,
+      packagesAvailablePerPage
+    );
+    setTotalPackagesAvailable(total);
+    setPackagesAvailableLoading(false);
+    return packages;
+  };
+
+  const fetchMorePackagesAvailable = async () => {
+    const newPage = packagesAvailablePage + 1;
+    setAdditionalPackagesAvailableLoading(true);
+    const { packages, total } = await api.getPackages(packagesSearchName, newPage, packagesAvailablePerPage);
+    setTotalPackagesAvailable(total);
+    setAdditionalPackagesAvailableLoading(false);
+    setPackagesAvailableSorted([...packagesAvailable, ...packages], packagesSearchName);
+    setPackagesAvailablePage(newPage);
   };
 
   // call api to list available packages
   const handlePackagesAvailableSearch = async () => {
     setFilterAvailable(packagesSearchName);
+
+    setPackagesAvailablePage(1);
 
     const packageList = await getAllPackages();
     if (packageList) {
@@ -177,6 +238,15 @@ const Packages = ({ defaultArch, ...props }) => {
     setPackagesAvailableSorted(updatedPackagesAvailable);
     setPackagesAvailableFound(areFound(filterAvailable, updatedPackagesAvailable));
     setPackagesChosenFound(areFound(filterChosen, updatedPackagesChosen));
+    // TODO modules are discarded and packages are all converted to most current version,
+    // refactor to preserve existing version and modules
+    const packages = updatedPackagesChosen.map((pkg) => ({ name: pkg.name, version: "*" }));
+    const modules = [];
+    // Components should be removed from redux action parameters, it is unnecessary
+    const components = [];
+    // Concept of pending changes will eventually be removed, pass empty object for now
+    const pendingChange = {};
+    props.updateBlueprintComponents(props.blueprintName, components, packages, modules, pendingChange);
     // set the steps field to the current chosen packages list
     change(input.name, removePackagesDisplayFields(updatedPackagesChosen));
   };
@@ -274,6 +344,10 @@ const Packages = ({ defaultArch, ...props }) => {
     setFilterAvailable(undefined);
     setPackagesAvailable([]);
     setPackagesAvailableFound(true);
+    setTotalPackagesAvailable(undefined);
+    setPackagesAvailablePage(1);
+    setPackagesAvailablePerPage(100);
+    setAdditionalPackagesAvailableLoading(false);
   };
 
   const handleClearChosenSearch = () => {
@@ -307,7 +381,11 @@ const Packages = ({ defaultArch, ...props }) => {
         }
       >
         <DualListSelectorList data-testid="available-pkgs-list">
-          {!packagesAvailable.length ? (
+          {packagesAvailableLoading ? (
+            <Bullseye className="pf-u-mt-md">
+              <Spinner size="lg" />
+            </Bullseye>
+          ) : !packagesAvailable.length ? (
             <p className="pf-u-text-align-center pf-u-mt-md">
               {!packagesAvailableFound ? (
                 "No packages found"
@@ -320,20 +398,37 @@ const Packages = ({ defaultArch, ...props }) => {
               )}
             </p>
           ) : (
-            packagesAvailable.map((pack, index) => {
-              return !pack.isHidden ? (
-                <DualListSelectorListItem
-                  key={index}
-                  isSelected={pack.selected}
-                  onOptionSelect={(e) => onOptionSelect(e, index, false)}
-                >
-                  <TextContent key={`${pack.name}-${index}`}>
-                    <span className="pf-c-dual-list-selector__item-text">{pack.name}</span>
-                    <small>{pack.summary}</small>
-                  </TextContent>
+            <>
+              {packagesAvailable.map((pack, index) => {
+                return !pack.isHidden ? (
+                  <DualListSelectorListItem
+                    key={index}
+                    isSelected={pack.selected}
+                    onOptionSelect={(e) => onOptionSelect(e, index, false)}
+                  >
+                    <TextContent key={`${pack.name}-${index}`}>
+                      <span className="pf-c-dual-list-selector__item-text">{pack.name}</span>
+                      <small>{pack.summary}</small>
+                    </TextContent>
+                  </DualListSelectorListItem>
+                ) : null;
+              })}
+              {totalPackagesAvailable > packagesAvailablePage * packagesAvailablePerPage ? (
+                <DualListSelectorListItem onOptionSelect={() => ({})}>
+                  <Bullseye>
+                    <Button
+                      variant="tertiary"
+                      onClick={fetchMorePackagesAvailable}
+                      isLoading={additionalPackagesAvailableLoading}
+                    >
+                      {additionalPackagesAvailableLoading
+                        ? "Loading additional packages..."
+                        : "Load additional packages"}
+                    </Button>
+                  </Bullseye>
                 </DualListSelectorListItem>
-              ) : null;
-            })
+              ) : null}
+            </>
           )}
         </DualListSelectorList>
       </DualListSelectorPane>
@@ -388,7 +483,11 @@ const Packages = ({ defaultArch, ...props }) => {
         isChosen
       >
         <DualListSelectorList data-testid="chosen-pkgs-list">
-          {!packagesChosen.length ? (
+          {packagesChosenLoading ? (
+            <Bullseye className="pf-u-mt-md">
+              <Spinner size="lg" />
+            </Bullseye>
+          ) : !packagesChosen.length ? (
             <p className="pf-u-text-align-center pf-u-mt-md">No packages added</p>
           ) : !packagesChosenFound ? (
             <p className="pf-u-text-align-center pf-u-mt-md">No packages found</p>
@@ -416,6 +515,17 @@ const Packages = ({ defaultArch, ...props }) => {
 
 Packages.propTypes = {
   defaultArch: PropTypes.string,
+  updateBlueprintComponents: PropTypes.func,
 };
 
-export default Packages;
+Packages.defaultProps = {
+  updateBlueprintComponents() {},
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  updateBlueprintComponents: (blueprintId, components, packages, modules, pendingChange) => {
+    dispatch(updateBlueprintComponents(blueprintId, components, packages, modules, pendingChange));
+  },
+});
+
+export default connect(null, mapDispatchToProps)(Packages);

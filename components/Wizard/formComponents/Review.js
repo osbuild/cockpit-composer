@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import {
+  Spinner,
   Text,
   TextContent,
   TextList,
@@ -9,6 +10,7 @@ import {
   TextListItemVariants,
 } from "@patternfly/react-core";
 import useFormApi from "@data-driven-forms/react-form-renderer/use-form-api";
+import * as composer from "../../../core/composer";
 
 const AWSReview = (formValues) => (
   <>
@@ -95,6 +97,21 @@ const ociReview = (formValues) => (
 const Review = (props) => {
   const { getState } = useFormApi();
   const formValues = getState()?.values;
+  const [dependencies, setDependencies] = useState(undefined);
+  const [packages, setPackages] = useState(undefined);
+
+  useEffect(() => {
+    const fetchDependencies = async (blueprintName) => {
+      const result = await composer.depsolveBlueprint(blueprintName);
+      const numPackages =
+        result.blueprints[0].blueprint.packages.length - result.blueprints[0].blueprint.modules.length;
+      const numDependencies = result.blueprints[0].dependencies.length - numPackages;
+      setPackages(numPackages);
+      setDependencies(numDependencies);
+    };
+    fetchDependencies(props.blueprintName);
+  });
+
   return (
     <>
       <Text>
@@ -112,6 +129,14 @@ const Review = (props) => {
           {formValues?.["image-output-type"] === "vhd" && formValues?.["image-upload"] && AzureReview(formValues)}
           {formValues?.["image-output-type"] === "vmdk" && formValues?.["image-upload"] && VMWareReview(formValues)}
           {formValues?.["image-output-type"] === "oci" && formValues?.["image-upload"] && ociReview(formValues)}
+          <TextListItem component={TextListItemVariants.dt}>Packages</TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>
+            {packages || packages === 0 ? packages : <Spinner size="sm" />}
+          </TextListItem>
+          <TextListItem component={TextListItemVariants.dt}>Dependencies</TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>
+            {dependencies || dependencies === 0 ? dependencies : <Spinner size="sm" />}
+          </TextListItem>
         </TextList>
       </TextContent>
     </>
