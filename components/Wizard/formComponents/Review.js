@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import {
+  Spinner,
   Text,
   TextContent,
   TextList,
@@ -9,6 +10,8 @@ import {
   TextListItemVariants,
 } from "@patternfly/react-core";
 import useFormApi from "@data-driven-forms/react-form-renderer/use-form-api";
+import FormSpy from "@data-driven-forms/react-form-renderer/form-spy";
+import * as composer from "../../../core/composer";
 
 const AWSReview = (formValues) => (
   <>
@@ -94,7 +97,20 @@ const ociReview = (formValues) => (
 
 const Review = (props) => {
   const { getState } = useFormApi();
-  const formValues = getState()?.values;
+  const [formValues, setFormValues] = useState(getState()?.values);
+  const [dependencies, setDependencies] = useState(undefined);
+
+  useEffect(() => {
+    const fetchDependencies = async (blueprintName) => {
+      const result = await composer.depsolveBlueprint(blueprintName);
+      const numDependencies = result.blueprints[0].dependencies.length - formValues["selected-packages"].length;
+      setDependencies(numDependencies);
+    };
+    if (formValues["selected-packages"]) {
+      fetchDependencies(props.blueprintName);
+    }
+  });
+
   return (
     <>
       <Text>
@@ -112,6 +128,21 @@ const Review = (props) => {
           {formValues?.["image-output-type"] === "vhd" && formValues?.["image-upload"] && AzureReview(formValues)}
           {formValues?.["image-output-type"] === "vmdk" && formValues?.["image-upload"] && VMWareReview(formValues)}
           {formValues?.["image-output-type"] === "oci" && formValues?.["image-upload"] && ociReview(formValues)}
+          <TextListItem component={TextListItemVariants.dt}>Packages</TextListItem>
+          <FormSpy subscription={{ values: true }}>
+            {() => {
+              setFormValues(getState()?.values);
+              return (
+                <TextListItem component={TextListItemVariants.dd}>
+                  {formValues["selected-packages"] ? formValues["selected-packages"].length : <Spinner size="sm" />}
+                </TextListItem>
+              );
+            }}
+          </FormSpy>
+          <TextListItem component={TextListItemVariants.dt}>Dependencies</TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>
+            {dependencies || dependencies === 0 ? dependencies : <Spinner size="sm" />}
+          </TextListItem>
         </TextList>
       </TextContent>
     </>

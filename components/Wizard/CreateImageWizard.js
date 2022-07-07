@@ -22,6 +22,10 @@ import {
 } from "./steps";
 import "./CreateImageWizard.css";
 
+import BlueprintApi from "../../data/BlueprintApi";
+import * as composer from "../../core/composer";
+import { updateBlueprintComponents } from "../../core/actions/blueprints";
+
 const CreateImageWizard = (props) => {
   const [isWizardOpen, setIsWizardOpen] = useState(false);
 
@@ -38,7 +42,24 @@ const CreateImageWizard = (props) => {
     setIsWizardOpen(true);
   };
 
-  const handleSubmit = (formValues) => {
+  const updateBlueprintComponents = (packageList) => {
+    // All packages are converted to most current version
+    const packages = packageList.map((pkg) => ({ name: pkg, version: "*" }));
+    // Any modules in the blueprint should have already been added to package list
+    const modules = [];
+    // TODO components should be removed from redux action parameters, it is unnecessary
+    const components = [];
+    // TODO concept of pending changes will eventually be removed, pass empty object for now
+    const pendingChange = {};
+    props.updateBlueprintComponents(props.blueprintName, components, packages, modules, pendingChange);
+  };
+
+  const handleSubmit = async (formValues) => {
+    updateBlueprintComponents(formValues["selected-packages"]);
+    const depsolveResult = await composer.depsolveBlueprint(props.blueprintName);
+    const workspaceBlueprint = depsolveResult.blueprints[0].blueprint;
+    await BlueprintApi.handleCommitBlueprint(workspaceBlueprint);
+
     // startCompose(props.blueprint.name, composeType, imageSize, ostree, upload);
 
     let uploadSettings;
@@ -158,6 +179,11 @@ CreateImageWizard.propTypes = {
   fetchingComposeTypes: PropTypes.func,
   startCompose: PropTypes.func,
   blueprintName: PropTypes.string,
+  updateBlueprintComponents: PropTypes.func,
+};
+
+CreateImageWizard.defaultProps = {
+  updateBlueprintComponents() {},
 };
 
 const mapStateToProps = (state) => ({
@@ -170,6 +196,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   startCompose: (blueprintName, composeType, imageSize, ostree, upload) => {
     dispatch(startCompose(blueprintName, composeType, imageSize, ostree, upload));
+  },
+  updateBlueprintComponents: (blueprintId, components, packages, modules, pendingChange) => {
+    dispatch(updateBlueprintComponents(blueprintId, components, packages, modules, pendingChange));
   },
 });
 
