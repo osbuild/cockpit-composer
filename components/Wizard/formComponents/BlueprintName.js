@@ -7,6 +7,7 @@ const BlueprintName = (props) => {
   return (
     <FormGroup
       label="Blueprint"
+      isRequired
       labelIcon={
         <Popover
           bodyContent="This process can take a while. Images are built in the order they are started."

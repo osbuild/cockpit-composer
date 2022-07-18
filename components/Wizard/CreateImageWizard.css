@@ -3,3 +3,8 @@
   visibility: initial;
   pointer-events: initial;
 }
+
+.upload-checkbox-popover-button {
+  padding-top: 0;
+  padding-bottom: 0;
+}
