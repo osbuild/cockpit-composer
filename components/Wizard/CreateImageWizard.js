@@ -6,11 +6,12 @@ import { Button } from "@patternfly/react-core";
 import { startCompose, fetchingComposeTypes } from "../../core/actions/composes";
 
 import ImageCreator from "./ImageCreator";
-import { imageOutput, details, review } from "./steps";
+import { imageOutput, awsAuth, awsDest, details, review } from "./steps";
 import "./CreateImageWizard.css";
 
 const CreateImageWizard = (props) => {
   const [isWizardOpen, setIsWizardOpen] = useState(false);
+
   const handleClose = () => {
     setIsWizardOpen(false);
   };
@@ -25,15 +26,30 @@ const CreateImageWizard = (props) => {
   };
 
   const handleSubmit = (formValues) => {
-    console.log(formValues);
-
     // startCompose(props.blueprint.name, composeType, imageSize, ostree, upload);
+
+    let uploadSettings;
+    if (formValues["image-upload"]) {
+      if (formValues["image-output-type"] === "ami") {
+        uploadSettings = {
+          image_name: formValues["aws-image-name"],
+          provider: "aws",
+          settings: {
+            accessKeyID: formValues["aws-access-key"],
+            secretAccessKey: formValues["aws-secret-access-key"],
+            bucket: formValues["aws-s3-bucket"],
+            region: formValues["aws-region"],
+          },
+        };
+      }
+    }
+
     props.startCompose(
       props.blueprintName,
       formValues["image-output-type"],
       formValues["image-size"],
       undefined,
-      undefined
+      uploadSettings
     );
     setIsWizardOpen(false);
   };
@@ -59,7 +75,8 @@ const CreateImageWizard = (props) => {
                 buttonLabels: {
                   submit: "Create image",
                 },
-                fields: [imageOutput, details, review],
+                fields: [imageOutput, awsAuth, awsDest, details, review],
+                crossroads: ["image-output-type", "image-upload"],
               },
             ],
           }}
