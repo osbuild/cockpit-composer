@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 import BlueprintName from "./formComponents/BlueprintName";
 import ImageOutputSelect from "./formComponents/ImageOutputSelect";
 import Review from "./formComponents/Review";
+import TextFieldCustom from "./formComponents/TextFieldCustom";
 
 const ImageCreator = ({
   schema,
@@ -37,6 +38,7 @@ const ImageCreator = ({
           component: Review,
           blueprintName: props.blueprintName,
         },
+        "text-field-custom": TextFieldCustom,
       }}
       onCancel={onClose}
       {...props}
