@@ -6,33 +6,37 @@ import useFieldApi from "@data-driven-forms/react-form-renderer/use-field-api";
 
 const ImageOutputSelect = ({ label, isRequired, ...props }) => {
   const { change } = useFormApi();
-  const { input } = useFieldApi(props);
   const [outputType, setOutputType] = useState();
   const [isOpen, setIsOpen] = useState(false);
+  useFieldApi(props);
 
   const setOutput = (_, selection) => {
-    setOutputType(selection);
-    setIsOpen(false);
-    change(input.name, selection);
+    if (outputType !== selection) {
+      setOutputType(selection);
+      setIsOpen(false);
+      change("image-output-type", selection);
+    }
   };
 
   return (
-    <FormGroup isRequired={isRequired} label={label} data-testid="subscription-activation-key">
-      <Select
-        onToggle={() => setIsOpen(!isOpen)}
-        onSelect={setOutput}
-        isOpen={isOpen}
-        selections={outputType}
-        placeholderText="Select output type"
-        typeAheadAriaLabel="Select output type"
-      >
-        {props.imageTypes.map((outputType) => (
-          <SelectOption key={outputType.name} value={outputType.name}>
-            {outputType.label}
-          </SelectOption>
-        ))}
-      </Select>
-    </FormGroup>
+    <>
+      <FormGroup isRequired={isRequired} label={label} data-testid="subscription-activation-key">
+        <Select
+          onToggle={() => setIsOpen(!isOpen)}
+          onSelect={setOutput}
+          isOpen={isOpen}
+          selections={outputType}
+          placeholderText="Select output type"
+          typeAheadAriaLabel="Select output type"
+        >
+          {props.imageTypes.map((outputType) => (
+            <SelectOption key={outputType.name} value={outputType.name}>
+              {outputType.label}
+            </SelectOption>
+          ))}
+        </Select>
+      </FormGroup>
+    </>
   );
 };
 
