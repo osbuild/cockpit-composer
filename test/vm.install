@@ -14,10 +14,10 @@ fi
 
 # overriding osbuild-composer repo with nightly
 mkdir -p /etc/osbuild-composer/repositories
-cp /home/admin/files/rhel-86.json /etc/osbuild-composer/repositories/rhel-86.json
-cp /home/admin/files/rhel-90.json /etc/osbuild-composer/repositories/rhel-90.json
-ln -s /etc/osbuild-composer/repositories/rhel-90.json /etc/osbuild-composer/repositories/rhel-90-beta.json
-ln -s /etc/osbuild-composer/repositories/rhel-90.json /etc/osbuild-composer/repositories/rhel-90-ga.json
+cp /home/admin/files/rhel-87.json /etc/osbuild-composer/repositories/rhel-87.json
+cp /home/admin/files/rhel-91.json /etc/osbuild-composer/repositories/rhel-91.json
+ln -s /etc/osbuild-composer/repositories/rhel-91.json /etc/osbuild-composer/repositories/rhel-91-beta.json
+ln -s /etc/osbuild-composer/repositories/rhel-91.json /etc/osbuild-composer/repositories/rhel-91-ga.json
 
 # Allow cockpit port (9090) in INPUT chain
 # Do not reload firewall rule during image generation
