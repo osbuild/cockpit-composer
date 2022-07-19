@@ -7,7 +7,7 @@
 # Transtats <suanand@redhat.com>, 2022.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2022-05-24T18:23:03.105Z\n"
+"POT-Creation-Date: 2022-07-14T04:04:10.338Z\n"
 "PO-Revision-Date: 2022-04-13 13:17+0000\n"
 "Last-Translator: Ludek Janda <ljanda@redhat.com>\n"
 "Language-Team: Japanese <https://translate.fedoraproject.org/projects/"
