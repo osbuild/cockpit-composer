@@ -21,8 +21,8 @@ class TestImage(composerlib.ComposerCase):
         b.wait_visible("#main")
 
         # create image wizard (no upload support)
-        b.click("li[data-blueprint=httpd-server] #create-image-button")
-        b.wait_text("#create-image-upload-wizard #blueprint-name", "httpd-server")
+        b.click("li[data-blueprint=httpd-server] button:contains('Create image (new)')")
+        b.wait_visible("div[aria-labelledby='cockpit-composer-wizard'] p:contains('httpd-server')")
         # check ? (Process length help) button
         b.click("button[aria-label='Process length help']")
         b.wait_text(".pf-c-popover__body", "This process can take a while. "
@@ -30,55 +30,66 @@ class TestImage(composerlib.ComposerCase):
         b.click(".pf-c-popover__content button")
         b.wait_not_present(".pf-c-popover__body")
         # check non upload image action (Create only)
-        b.wait_js_cond('ph_select("#image-type option").length > 1')
-        b.set_val("#image-type", "qcow2")
-        b.wait_val("#image-type", "qcow2")
+        b.click("button[aria-label='Options menu']")
+        b.click("button:contains('QEMU Image (.qcow2)')")
+
+        # bug https://github.com/osbuild/cockpit-composer/issues/1441
         # check ? (image size help) button
-        b.click("button[aria-label='Image size help']")
-        b.wait_text(".pf-c-popover__body",
-                    "Set the size that you want the image to be when instantiated. The total "
-                    "package size and target destination of your image should be considered when "
-                    "setting the image size.")
-        b.click(".pf-c-popover__content button")
-        b.wait_not_present(".pf-c-popover__body")
+        # b.click("button[aria-label='Image size help']")
+        # b.wait_text(".pf-c-popover__body",
+        #             "Set the size that you want the image to be when instantiated. The total "
+        #             "package size and target destination of your image should be considered when "
+        #             "setting the image size.")
+        # b.click(".pf-c-popover__content button")
+        # b.wait_not_present(".pf-c-popover__body")
+
         # groups action done
-        b.wait_text("#continue-button", "Create")
+        # b.wait_text("#continue-button", "Create")
+        b.wait_visible("button:contains('Next')")
+        b.click("button:contains('Next')")
+        # bug https://github.com/osbuild/cockpit-composer/issues/1441
         # check ? (image size help) button
-        b.click("button[aria-label='Image size help']")
-        b.wait_text(".pf-c-popover__body",
-                    "Set the size that you want the image to be when instantiated. The total "
-                    "package size and target destination of your image should be considered when "
-                    "setting the image size.")
-        b.click(".pf-c-popover__content button")
-        b.wait_not_present(".pf-c-popover__body")
+        # b.click("button[aria-label='Image size help']")
+        # b.wait_text(".pf-c-popover__body",
+        #             "Set the size that you want the image to be when instantiated. The total "
+        #             "package size and target destination of your image should be considered when "
+        #             "setting the image size.")
+        # b.click(".pf-c-popover__content button")
+        # b.wait_not_present(".pf-c-popover__body")
+
+        # bug https://github.com/osbuild/cockpit-composer/issues/1442
         # default size = 2GB for qcow2 image
-        b.wait_val("#image-size-input", 2)
-        b.focus("#image-size-input")
-        # delete 2 and input 1
-        b.key_press("\b")
-        b.key_press("1")
-        # error if less than 2 GB
-        b.wait_attr("#create-image-upload-wizard button:contains('Create')", "disabled", "")
-        b.wait_attr_contains("#image-size-input-helper", "class", "pf-m-error")
-        # delete 1 and input 2001
-        b.key_press("\b")
-        b.key_press("2001")
-        # error if greater than 2000 GB
-        b.wait_in_text("#image-size-input-helper",
-                       "The size specified is large. We recommend that you check whether your "
-                       "target destination has any restrictions on image size.")
-        # delete 2001 and input 2
-        b.key_press("\b\b\b\b")
-        b.key_press("2")
+        # b.wait_val("#image-size-input", 2)
+        # b.focus("#image-size-input")
+        # # delete 2 and input 1
+        # b.focus("#image-size")
+        # b.key_press("\b")
+        # b.key_press("1")
+        # # error if less than 2 GB
+        # b.wait_attr("#create-image-upload-wizard button:contains('Create')", "disabled", "")
+        # b.wait_attr_contains("#image-size-input-helper", "class", "pf-m-error")
+        # # delete 1 and input 2001
+        # b.key_press("\b")
+        # b.key_press("2001")
+        # # error if greater than 2000 GB
+        # b.wait_in_text("#image-size-input-helper",
+        #                "The size specified is large. We recommend that you check whether your "
+        #                "target destination has any restrictions on image size.")
+        # # delete 2001 and input 2
+        # b.key_press("\b\b\b\b")
+        # b.key_press("2")
+
         # close wizard by clicking X button
+        b.focus("#image-size")
+        b.key_press("2")
         b.click(".pf-c-wizard__close")
         b.wait_not_present("#create-image-upload-wizard")
 
         # Test cancel button
-        b.click("li[data-blueprint=httpd-server] #create-image-button")
-        b.wait_text("#create-image-upload-wizard #blueprint-name", "httpd-server")
+        b.click("li[data-blueprint=httpd-server] button:contains('Create image (new)')")
+        b.wait_visible("div[aria-labelledby='cockpit-composer-wizard'] p:contains('httpd-server')")
         b.click("button:contains('Cancel')")
-        b.wait_not_present("#create-image-upload-wizard")
+        b.wait_not_present(".pf-c-wizard__header")
 
         # collect code coverage result
         self.check_coverage()
@@ -89,11 +100,12 @@ class TestImage(composerlib.ComposerCase):
         self.login_and_go("/composer", superuser=True)
         b.wait_visible("#main")
 
-        # create image wizard
-        b.click("li[data-blueprint=httpd-server] #create-image-button")
-        b.wait_js_cond('ph_select("#image-type option").length > 1')
-        b.set_val("#image-type", "ami")
-        b.wait_val("#image-type", "ami")
+        # create image wizard (no upload support)
+        b.click("li[data-blueprint=httpd-server] button:contains('Create image (new)')")
+        b.wait_visible("div[aria-labelledby='cockpit-composer-wizard'] p:contains('httpd-server')")
+        # check non upload image action (Create only)
+        b.click("button[aria-label='Options menu']")
+        b.click("button:contains('Amazon Web Services (.raw)')")
         # groups action done
         # still keep Create if upload image not selected
         b.wait_text("#continue-button", "Create")

@@ -60,7 +60,7 @@ class TestCustom(composerlib.ComposerCase):
 
         b.click("#openssh-server-name")
         with b.wait_timeout(300):
-            b.click("#blueprint-tabs-tab-customizations")
+            b.click("#pf-tab-customizations-blueprint-tabs")
         # set hostname to "openssh-server"
         b.click("button[aria-describedby=Hostname-help2]")
         b.set_input_text("input[aria-label=Hostname]", "hostname-openssh-server")
@@ -95,7 +95,7 @@ class TestCustom(composerlib.ComposerCase):
 
         b.click("#openssh-server-name")
         with b.wait_timeout(300):
-            b.click("#blueprint-tabs-tab-customizations")
+            b.click("#pf-tab-customizations-blueprint-tabs")
         # set device to "dev0"
         b.click("#input-device .form-control-pf-value")
         b.set_input_text("input[aria-label='Installation device']", "dev0")
@@ -125,7 +125,7 @@ class TestCustom(composerlib.ComposerCase):
 
         b.click("#openssh-server-name")
         with b.wait_timeout(300):
-            b.click("#blueprint-tabs-tab-customizations")
+            b.click("#pf-tab-customizations-blueprint-tabs")
 
         # add a new user
         b.click("button:contains('Create user account')")
