@@ -5,11 +5,7 @@ PACKAGE_NAME := $(shell awk '/"name":/ {gsub(/[",]/, "", $$2); print $$2}' packa
 TEST_OS ?= fedora-34
 export TEST_OS
 VM_IMAGE=$(CURDIR)/test/images/$(TEST_OS)
-ifneq (,$(wildcard ~/.config/codecov-token))
-BUILD_RUN = npm run build -- --with-coverage
-else
 BUILD_RUN = npm run build
-endif
 TARFILE=$(PACKAGE_NAME)-$(VERSION).tar.gz
 # stamp file to check if/when npm install ran
 NODE_MODULES_TEST=package-lock.json

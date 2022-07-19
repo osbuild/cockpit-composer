@@ -19,9 +19,6 @@ const output = {
   sourceMapFilename: "[file].map",
 };
 
-// add istanbul as babel plugin to enable code coverage
-process.argv.includes("--with-coverage") && babelConfig.plugins.push("istanbul");
-
 const plugins = [
   new CleanWebpackPlugin(["public/dist"]),
   // automatically load jquery instead of having to import or require them everywhere
