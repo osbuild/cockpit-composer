@@ -474,7 +474,9 @@ class TestImage(composerlib.ComposerCase):
         b.wait_not_present("#create-image-upload-wizard")
 
         # notification
-        b.wait_visible("#alertComposeQueued")
+        # On first load on fedora this notification can take a while to trigger
+        with b.wait_timeout(300):
+            b.wait_visible("#alertComposeQueued")
         b.click("#alertComposeQueued .pf-c-alert__action button")
         b.wait_not_present("#alertComposeQueued")
 
@@ -804,9 +806,10 @@ class TestImage(composerlib.ComposerCase):
         b.key_press("4")
         b.click("#continue-button")
         b.wait_not_present("#create-image-upload-wizard")
-
         # notification
-        b.wait_visible("#alertComposeQueued")
+        # On first load on fedora this notification can take a while to trigger
+        with b.wait_timeout(300):
+            b.wait_visible("#alertComposeQueued")
         b.click("#alertComposeQueued .pf-c-alert__action button")
         b.wait_not_present("#alertComposeQueued")
 
