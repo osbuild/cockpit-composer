@@ -28,7 +28,7 @@ const CreateImageWizard = (props) => {
 
     // startCompose(props.blueprint.name, composeType, imageSize, ostree, upload);
     props.startCompose(
-      props.blueprint.name,
+      props.blueprintName,
       formValues["image-output-type"],
       formValues["image-size"],
       undefined,
@@ -62,7 +62,7 @@ const CreateImageWizard = (props) => {
               },
             ],
           }}
-          blueprint={props.blueprint}
+          blueprintName={props.blueprintName}
           imageTypes={props.imageTypes}
         />
       )}
