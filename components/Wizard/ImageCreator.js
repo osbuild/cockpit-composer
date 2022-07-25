@@ -27,7 +27,7 @@ const ImageCreator = ({
         ...customComponentMapper,
         "blueprint-name": {
           component: BlueprintName,
-          blueprint: props.blueprint,
+          blueprintName: props.blueprintName,
         },
         "image-output-select": {
           component: ImageOutputSelect,
@@ -35,7 +35,7 @@ const ImageCreator = ({
         },
         review: {
           component: Review,
-          blueprint: props.blueprint,
+          blueprintName: props.blueprintName,
         },
       }}
       onCancel={onClose}

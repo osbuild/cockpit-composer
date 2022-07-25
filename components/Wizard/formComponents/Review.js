@@ -21,7 +21,7 @@ const Review = (props) => {
       <TextContent>
         <TextList component={TextListVariants.dl}>
           <TextListItem component={TextListItemVariants.dt}>Blueprint name</TextListItem>
-          <TextListItem component={TextListItemVariants.dd}>{props.blueprint.name}</TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>{props.blueprintName}</TextListItem>
           <TextListItem component={TextListItemVariants.dt}>Output type</TextListItem>
           <TextListItem component={TextListItemVariants.dd}>{getState()?.values?.["image-output-type"]}</TextListItem>
           <TextListItem component={TextListItemVariants.dt}>Image size</TextListItem>

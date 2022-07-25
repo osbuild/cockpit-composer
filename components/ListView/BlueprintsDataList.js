@@ -48,7 +48,7 @@ class BlueprintsDataList extends React.PureComponent {
                   <FormattedMessage defaultMessage="Edit packages" />
                 </Link>
                 {/* <CreateImageUpload blueprint={blueprint} layout={layout} /> */}
-                <CreateImageWizard blueprint={blueprint} />
+                <CreateImageWizard blueprintName={blueprint.name} />
                 <div className="dropdown pull-right dropdown-kebab-pf">
                   <button
                     className="btn btn-link dropdown-toggle"
