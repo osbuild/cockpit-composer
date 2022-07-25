@@ -17,7 +17,7 @@ const BlueprintName = (props) => {
         </Popover>
       }
     >
-      <Text>{props.blueprint.name}</Text>
+      <Text>{props.blueprintName}</Text>
     </FormGroup>
   );
 };
