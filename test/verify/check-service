@@ -44,14 +44,14 @@ class TestService(composerlib.ComposerCase):
         desc_template = string.ascii_letters + string.digits + " "
         bp_desc = "".join(random.sample(desc_template, 40))
         b.click(".pf-c-empty-state button:contains('Create blueprint')")
-        b.wait_visible("div[role=dialog] #cmpsr-modal-crt-blueprint")
+        b.wait_visible("#cmpsr-modal-crt-blueprint")
         # blueprint name
         b.set_input_text("#textInput-modal-markup", bp_name)
         # blueprint description
         b.set_input_text("#textInput2-modal-markup", bp_desc)
         # create
         b.click("#create-blueprint-modal-create-button")
-        b.wait_not_present("div[role=dialog] #cmpsr-modal-crt-blueprint")
+        b.wait_not_present("#cmpsr-modal-crt-blueprint")
 
         # wait for all available compontents visible
         with b.wait_timeout(300):
@@ -68,15 +68,17 @@ class TestService(composerlib.ComposerCase):
         b.wait_visible("li[data-component=openssh-server]")
         # click commit button
         b.click(".cmpsr-header__actions .btn-primary")
-        # click commit button
-        b.click("#cmpsr-modal-pending-changes .modal-footer .btn-primary")
-        b.wait_not_present("#cmpsr-modal-pending-changes")
 
-        # wait for notification
-        b.wait_visible("#alertBlueprintCommitSucceeded")
-        # click close button
-        b.click("#alertBlueprintCommitSucceeded .pf-c-alert__action button")
-        b.wait_not_present("#alertBlueprintCommitSucceeded")
+        # bug: https://github.com/osbuild/cockpit-composer/issues/1450
+        # # click commit button
+        # b.click("#cmpsr-modal-pending-changes .modal-footer .btn-primary")
+        # b.wait_not_present("#cmpsr-modal-pending-changes")
+
+        # # wait for notification
+        # b.wait_visible("#alertBlueprintCommitSucceeded")
+        # # click close button
+        # b.click("#alertBlueprintCommitSucceeded .pf-c-alert__action button")
+        # b.wait_not_present("#alertBlueprintCommitSucceeded")
 
         # click back to blueprint link
         b.click("a:contains('Back to blueprints')")
@@ -137,8 +139,9 @@ class TestService(composerlib.ComposerCase):
         self.login_and_go("/composer", superuser=False)
         b.wait_visible("#main")
 
+        # bug: https://github.com/osbuild/cockpit-composer/issues/1451
         # Start button can be disabled button or clickable button
-        b.wait_visible("button:contains('Start')")
+        # b.wait_visible("button:contains('Start')")
 
         # disable this test due to https://github.com/osbuild/cockpit-composer/issues/941
         # if "disabled" not in b.attr("button:contains('Start')", "class"):

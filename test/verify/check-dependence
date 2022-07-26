@@ -39,8 +39,8 @@ class TestDependence(composerlib.ComposerCase):
         b.wait_not_visible("#openssh-server-details")
 
         # dependencies tab
-        b.click("#blueprint-tabs-tab-dependencies")
-        b.wait_visible("#blueprint-tabs-pane-dependencies")
+        b.click("span:contains('Dependencies')")
+        b.wait_visible("#pf-tab-section-dependencies-blueprint-tabs")
 
         # collect code coverage result
         self.check_coverage()
@@ -73,7 +73,7 @@ class TestDependence(composerlib.ComposerCase):
         with b.wait_timeout(120):
             b.click("#tmux-input")
         b.wait_visible("#cmpsr-compon__version-select")
-        b.click("#blueprint-tabs-tab-dependencies")
+        b.click("span:contains('Dependencies')")
         # add tmux to blueprint
         b.click(".cmpsr-header__actions button:contains('Add')")
         b.wait_visible("a:contains('2 Pending Change')")
