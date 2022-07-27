@@ -32,4 +32,8 @@ const Review = (props) => {
   );
 };
 
+Review.propTypes = {
+  blueprintName: PropTypes.string,
+};
+
 export default Review;
