@@ -47,6 +47,8 @@ const ImageCreator = ({
 };
 
 ImageCreator.propTypes = {
+  blueprintName: PropTypes.string,
+  imageTypes: PropTypes.arrayOf(PropTypes.object),
   schema: PropTypes.object,
   onSubmit: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,

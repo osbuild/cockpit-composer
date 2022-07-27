@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { FormGroup, Text, Popover, Button } from "@patternfly/react-core";
 import { HelpIcon } from "@patternfly/react-icons";
 
@@ -20,6 +21,10 @@ const BlueprintName = (props) => {
       <Text>{props.blueprintName}</Text>
     </FormGroup>
   );
+};
+
+BlueprintName.propTypes = {
+  blueprintName: PropTypes.string,
 };
 
 export default BlueprintName;
