@@ -21,7 +21,7 @@ class BlueprintsDataList extends React.PureComponent {
   }
 
   render() {
-    const { blueprints, layout, ariaLabel } = this.props;
+    const { blueprints, ariaLabel } = this.props;
     const { formatMessage } = this.props.intl;
     return (
       <DataList aria-label={ariaLabel} className="cc-m-nowrap-on-lg">
@@ -47,7 +47,6 @@ class BlueprintsDataList extends React.PureComponent {
                 <Link to={`/edit/${blueprint.name}`} className="btn btn-default">
                   <FormattedMessage defaultMessage="Edit packages" />
                 </Link>
-                {/* <CreateImageUpload blueprint={blueprint} layout={layout} /> */}
                 <CreateImageWizard blueprintName={blueprint.name} />
                 <div className="dropdown pull-right dropdown-kebab-pf">
                   <button
@@ -81,16 +80,12 @@ class BlueprintsDataList extends React.PureComponent {
 
 BlueprintsDataList.propTypes = {
   blueprints: PropTypes.arrayOf(PropTypes.object),
-  layout: PropTypes.shape({
-    setNotifications: PropTypes.func,
-  }),
   ariaLabel: PropTypes.string,
   intl: PropTypes.object.isRequired,
 };
 
 BlueprintsDataList.defaultProps = {
   blueprints: [],
-  layout: {},
   ariaLabel: "",
 };
 

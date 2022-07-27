@@ -204,7 +204,8 @@
       "prefer-destructuring": "off",
       "no-unused-expressions": "off",
       "guard-for-in": "off",
-      "react/forbid-prop-types": "off"
+      "react/forbid-prop-types": "off",
+      "react/require-default-props": "off"
     },
     "env": {
       "browser": true,

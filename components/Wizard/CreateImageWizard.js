@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import componentTypes from "@data-driven-forms/react-form-renderer/component-types";
 import { Button } from "@patternfly/react-core";
@@ -68,6 +69,13 @@ const CreateImageWizard = (props) => {
       )}
     </>
   );
+};
+
+CreateImageWizard.propTypes = {
+  imageTypes: PropTypes.arrayOf(PropTypes.object),
+  fetchingComposeTypes: PropTypes.func,
+  startCompose: PropTypes.func,
+  blueprintName: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({
