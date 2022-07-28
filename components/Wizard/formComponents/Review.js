@@ -46,6 +46,28 @@ const AzureReview = (formValues) => (
   </>
 );
 
+const VMWareReview = (formValues) => (
+  <>
+    <h3>Upload to VMWare</h3>
+    <TextListItem component={TextListItemVariants.dt}>Username</TextListItem>
+    <TextListItem component={TextListItemVariants.dd}>{formValues?.["vmware-username"]}</TextListItem>
+    <TextListItem component={TextListItemVariants.dt}>Password</TextListItem>
+    <TextListItem component={TextListItemVariants.dd}>
+      {"*".repeat(formValues?.["vmware-password"].length)}
+    </TextListItem>
+    <TextListItem component={TextListItemVariants.dt}>Image name</TextListItem>
+    <TextListItem component={TextListItemVariants.dd}>{formValues?.["vmware-image-name"]}</TextListItem>
+    <TextListItem component={TextListItemVariants.dt}>Host</TextListItem>
+    <TextListItem component={TextListItemVariants.dd}>{formValues?.["vmware-host"]}</TextListItem>
+    <TextListItem component={TextListItemVariants.dt}>Cluster</TextListItem>
+    <TextListItem component={TextListItemVariants.dd}>{formValues?.["vmware-cluster"]}</TextListItem>
+    <TextListItem component={TextListItemVariants.dt}>Data center</TextListItem>
+    <TextListItem component={TextListItemVariants.dd}>{formValues?.["vmware-data-center"]}</TextListItem>
+    <TextListItem component={TextListItemVariants.dt}>Data store</TextListItem>
+    <TextListItem component={TextListItemVariants.dd}>{formValues?.["vmware-data-store"]}</TextListItem>
+  </>
+);
+
 const Review = (props) => {
   const { getState } = useFormApi();
   const formValues = getState()?.values;
@@ -64,6 +86,7 @@ const Review = (props) => {
           <TextListItem component={TextListItemVariants.dd}>{formValues?.["image-size"]}</TextListItem>
           {formValues?.["image-output-type"] === "ami" && formValues?.["image-upload"] && AWSReview(formValues)}
           {formValues?.["image-output-type"] === "vhd" && formValues?.["image-upload"] && AzureReview(formValues)}
+          {formValues?.["image-output-type"] === "vmdk" && formValues?.["image-upload"] && VMWareReview(formValues)}
         </TextList>
       </TextContent>
     </>

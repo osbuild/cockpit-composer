@@ -6,7 +6,7 @@ import { Button } from "@patternfly/react-core";
 import { startCompose, fetchingComposeTypes } from "../../core/actions/composes";
 
 import ImageCreator from "./ImageCreator";
-import { imageOutput, awsAuth, awsDest, azureAuth, azureDest, details, review } from "./steps";
+import { imageOutput, awsAuth, awsDest, azureAuth, azureDest, vmwareAuth, vmwareDest, details, review } from "./steps";
 import "./CreateImageWizard.css";
 
 const CreateImageWizard = (props) => {
@@ -51,6 +51,19 @@ const CreateImageWizard = (props) => {
             container: formValues["azure-storage-container"],
           },
         };
+      } else if (formValues["image-output-type"] === "vmdk") {
+        uploadSettings = {
+          image_name: formValues["vmware-image-name"],
+          provider: "vmware",
+          settings: {
+            username: formValues["vmware-username"],
+            password: formValues["vmware-password"],
+            host: formValues["vmware-host"],
+            cluster: formValues["vmware-cluster"],
+            dataCenter: formValues["vmware-data-center"],
+            dataStore: formValues["vmware-data-store"],
+          },
+        };
       }
     }
 
@@ -85,7 +98,7 @@ const CreateImageWizard = (props) => {
                 buttonLabels: {
                   submit: "Create image",
                 },
-                fields: [imageOutput, awsAuth, awsDest, azureAuth, azureDest, details, review],
+                fields: [imageOutput, awsAuth, awsDest, azureAuth, azureDest, vmwareAuth, vmwareDest, details, review],
                 crossroads: ["image-output-type", "image-upload"],
               },
             ],
