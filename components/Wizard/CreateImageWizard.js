@@ -6,7 +6,7 @@ import { Button } from "@patternfly/react-core";
 import { startCompose, fetchingComposeTypes } from "../../core/actions/composes";
 
 import ImageCreator from "./ImageCreator";
-import { imageOutput, awsAuth, awsDest, details, review } from "./steps";
+import { imageOutput, awsAuth, awsDest, azureAuth, azureDest, details, review } from "./steps";
 import "./CreateImageWizard.css";
 
 const CreateImageWizard = (props) => {
@@ -39,6 +39,16 @@ const CreateImageWizard = (props) => {
             secretAccessKey: formValues["aws-secret-access-key"],
             bucket: formValues["aws-s3-bucket"],
             region: formValues["aws-region"],
+          },
+        };
+      } else if (formValues["image-output-type"] === "vhd") {
+        uploadSettings = {
+          image_name: formValues["azure-image-name"],
+          provider: "azure",
+          settings: {
+            storageAccount: formValues["azure-storage-account"],
+            storageAccessKey: formValues["azure-storage-access-key"],
+            container: formValues["azure-storage-container"],
           },
         };
       }
@@ -75,7 +85,7 @@ const CreateImageWizard = (props) => {
                 buttonLabels: {
                   submit: "Create image",
                 },
-                fields: [imageOutput, awsAuth, awsDest, details, review],
+                fields: [imageOutput, awsAuth, awsDest, azureAuth, azureDest, details, review],
                 crossroads: ["image-output-type", "image-upload"],
               },
             ],
