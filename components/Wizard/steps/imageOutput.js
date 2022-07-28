@@ -47,5 +47,29 @@ export default {
         is: "ami",
       },
     },
+    {
+      name: "image-upload",
+      component: componentTypes.CHECKBOX,
+      label: (
+        <>
+          Upload to Azure
+          <Popover
+            bodyContent="
+                    Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete
+                    and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
+                    "
+            aria-label="Azure upload help"
+          >
+            <Button className="upload-checkbox-popover-button" variant="plain" aria-label="Azure upload help">
+              <OutlinedQuestionCircleIcon />
+            </Button>
+          </Popover>
+        </>
+      ),
+      condition: {
+        when: "image-output-type",
+        is: "vhd",
+      },
+    },
   ],
 };
