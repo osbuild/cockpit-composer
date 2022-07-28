@@ -3,5 +3,7 @@ export { default as awsAuth } from "./awsAuth";
 export { default as awsDest } from "./awsDest";
 export { default as azureAuth } from "./azureAuth";
 export { default as azureDest } from "./azureDest";
+export { default as vmwareAuth } from "./vmwareAuth";
+export { default as vmwareDest } from "./vmwareDest";
 export { default as details } from "./details";
 export { default as review } from "./review";
