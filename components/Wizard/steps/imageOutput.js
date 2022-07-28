@@ -71,5 +71,30 @@ export default {
         is: "vhd",
       },
     },
+    {
+      name: "image-upload",
+      component: componentTypes.CHECKBOX,
+      label: (
+        <>
+          Upload to VMWare
+          <Popover
+            bodyContent="
+              Image Builder can upload images you create to VMWare vSphere. 
+              When the image build is complete and the upload action is successful, 
+              the image file is available in the Cluster on the vSphere instance that you specified.
+            "
+            aria-label="VMWare upload help"
+          >
+            <Button className="upload-checkbox-popover-button" variant="plain" aria-label="VMWare upload help">
+              <OutlinedQuestionCircleIcon />
+            </Button>
+          </Popover>
+        </>
+      ),
+      condition: {
+        when: "image-output-type",
+        is: "vmdk",
+      },
+    },
   ],
 };

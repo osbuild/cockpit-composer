@@ -5,6 +5,8 @@ export default (props) => {
         return "aws-auth";
       case "vhd":
         return "azure-auth";
+      case "vmdk":
+        return "vmware-auth";
       default:
         return "details";
     }
