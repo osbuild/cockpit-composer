@@ -68,6 +68,30 @@ const VMWareReview = (formValues) => (
   </>
 );
 
+const ociReview = (formValues) => (
+  <>
+    <h3>Upload to OCI</h3>
+    <TextListItem component={TextListItemVariants.dt}>User OCID</TextListItem>
+    <TextListItem component={TextListItemVariants.dd}>{formValues?.["oci-user-ocid"]}</TextListItem>
+    <TextListItem component={TextListItemVariants.dt}>Private key filename</TextListItem>
+    <TextListItem component={TextListItemVariants.dd}>{formValues?.["oci-private-key-filename"]}</TextListItem>
+    <TextListItem component={TextListItemVariants.dt}>Fingerprint</TextListItem>
+    <TextListItem component={TextListItemVariants.dd}>{formValues?.["oci-fingerprint"]}</TextListItem>
+    <TextListItem component={TextListItemVariants.dt}>Image name</TextListItem>
+    <TextListItem component={TextListItemVariants.dd}>{formValues?.["oci-image-name"]}</TextListItem>
+    <TextListItem component={TextListItemVariants.dt}>OCI bucket</TextListItem>
+    <TextListItem component={TextListItemVariants.dd}>{formValues?.["oci-bucket"]}</TextListItem>
+    <TextListItem component={TextListItemVariants.dt}>Bucket namespace</TextListItem>
+    <TextListItem component={TextListItemVariants.dd}>{formValues?.["oci-bucket-namespace"]}</TextListItem>
+    <TextListItem component={TextListItemVariants.dt}>Bucket region</TextListItem>
+    <TextListItem component={TextListItemVariants.dd}>{formValues?.["oci-bucket-region"]}</TextListItem>
+    <TextListItem component={TextListItemVariants.dt}>Bucket compartment</TextListItem>
+    <TextListItem component={TextListItemVariants.dd}>{formValues?.["oci-bucket-compartment"]}</TextListItem>
+    <TextListItem component={TextListItemVariants.dt}>Bucket tenancy</TextListItem>
+    <TextListItem component={TextListItemVariants.dd}>{formValues?.["oci-bucket-tenancy"]}</TextListItem>
+  </>
+);
+
 const Review = (props) => {
   const { getState } = useFormApi();
   const formValues = getState()?.values;
@@ -87,6 +111,7 @@ const Review = (props) => {
           {formValues?.["image-output-type"] === "ami" && formValues?.["image-upload"] && AWSReview(formValues)}
           {formValues?.["image-output-type"] === "vhd" && formValues?.["image-upload"] && AzureReview(formValues)}
           {formValues?.["image-output-type"] === "vmdk" && formValues?.["image-upload"] && VMWareReview(formValues)}
+          {formValues?.["image-output-type"] === "oci" && formValues?.["image-upload"] && ociReview(formValues)}
         </TextList>
       </TextContent>
     </>
