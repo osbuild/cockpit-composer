@@ -96,5 +96,41 @@ export default {
         is: "vmdk",
       },
     },
+    {
+      name: "image-upload",
+      component: componentTypes.CHECKBOX,
+      label: (
+        <>
+          Upload to OCI
+          <Popover
+            bodyContent={
+              <div>
+                <p>
+                  Image Builder can upload images you create to an OCI bucket in OCI and register it as a custom image.
+                  When the image build is complete and the upload action is successful, the image should be available
+                  under custom images. Most of the values required to upload the image can be found in the OCI
+                  Management Console.
+                </p>
+                <br />
+                <p>
+                  This upload process requires that you have an Identity and Access Management (IAM) with attached
+                  policy to manage custom images to ensure that the image can be imported as a custom image from the
+                  bucket. For more details, refer to the OCI Required IAM Policy.
+                </p>
+              </div>
+            }
+            aria-label="OCI upload help"
+          >
+            <Button className="upload-checkbox-popover-button" variant="plain" aria-label="OCI upload help">
+              <OutlinedQuestionCircleIcon />
+            </Button>
+          </Popover>
+        </>
+      ),
+      condition: {
+        when: "image-output-type",
+        is: "oci",
+      },
+    },
   ],
 };
