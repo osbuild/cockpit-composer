@@ -6,7 +6,19 @@ import { Button } from "@patternfly/react-core";
 import { startCompose, fetchingComposeTypes } from "../../core/actions/composes";
 
 import ImageCreator from "./ImageCreator";
-import { imageOutput, awsAuth, awsDest, azureAuth, azureDest, vmwareAuth, vmwareDest, details, review } from "./steps";
+import {
+  imageOutput,
+  awsAuth,
+  awsDest,
+  azureAuth,
+  azureDest,
+  vmwareAuth,
+  vmwareDest,
+  ociAuth,
+  ociDest,
+  details,
+  review,
+} from "./steps";
 import "./CreateImageWizard.css";
 
 const CreateImageWizard = (props) => {
@@ -64,6 +76,22 @@ const CreateImageWizard = (props) => {
             dataStore: formValues["vmware-data-store"],
           },
         };
+      } else if (formValues["image-output-type"] === "oci") {
+        uploadSettings = {
+          image_name: formValues["oci-image-name"],
+          provider: "oci",
+          settings: {
+            user: formValues["oci-user-ocid"],
+            privateKey: formValues["oci-private-key"],
+            fingerprint: formValues["oci-fingerprint"],
+            filename: formValues["oci-private-key-filename"],
+            bucket: formValues["oci-bucket"],
+            namespace: formValues["oci-bucket-namespace"],
+            region: formValues["oci-bucket-region"],
+            compartment: formValues["oci-bucket-compartment"],
+            tenancy: formValues["oci-bucket-tenancy"],
+          },
+        };
       }
     }
 
@@ -98,7 +126,19 @@ const CreateImageWizard = (props) => {
                 buttonLabels: {
                   submit: "Create image",
                 },
-                fields: [imageOutput, awsAuth, awsDest, azureAuth, azureDest, vmwareAuth, vmwareDest, details, review],
+                fields: [
+                  imageOutput,
+                  awsAuth,
+                  awsDest,
+                  azureAuth,
+                  azureDest,
+                  ociAuth,
+                  ociDest,
+                  vmwareAuth,
+                  vmwareDest,
+                  details,
+                  review,
+                ],
                 crossroads: ["image-output-type", "image-upload"],
               },
             ],

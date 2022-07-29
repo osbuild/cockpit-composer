@@ -3,6 +3,8 @@ export default (props) => {
     switch (props["image-output-type"]) {
       case "ami":
         return "aws-auth";
+      case "oci":
+        return "oci-auth";
       case "vhd":
         return "azure-auth";
       case "vmdk":
