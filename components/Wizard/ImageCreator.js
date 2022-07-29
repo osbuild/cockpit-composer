@@ -8,6 +8,7 @@ import BlueprintName from "./formComponents/BlueprintName";
 import ImageOutputSelect from "./formComponents/ImageOutputSelect";
 import Review from "./formComponents/Review";
 import TextFieldCustom from "./formComponents/TextFieldCustom";
+import UploadFile from "./formComponents/UploadFile";
 
 const ImageCreator = ({
   schema,
@@ -39,6 +40,7 @@ const ImageCreator = ({
           blueprintName: props.blueprintName,
         },
         "text-field-custom": TextFieldCustom,
+        "upload-file": UploadFile,
       }}
       onCancel={onClose}
       {...props}
