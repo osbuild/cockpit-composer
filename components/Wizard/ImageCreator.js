@@ -25,6 +25,7 @@ const ImageCreator = ({
       schema={schema}
       FormTemplate={(props) => <Pf4FormTemplate {...props} showFormControls={false} />}
       onSubmit={(formValues) => onSubmit(formValues)}
+      validatorMapper={{ ...customValidatorMapper }}
       componentMapper={{
         ...componentMapper,
         ...customComponentMapper,

@@ -16,10 +16,14 @@ import {
   vmwareDest,
   ociAuth,
   ociDest,
+  ostreeSettings,
   details,
   packages,
   review,
 } from "./steps";
+
+import { ostreeValidator } from "./validators";
+
 import "./CreateImageWizard.css";
 
 import BlueprintApi from "../../data/BlueprintApi";
@@ -117,11 +121,28 @@ const CreateImageWizard = (props) => {
       }
     }
 
+    let ostreeSettings;
+    const ostreeImageTypes = [
+      "fedora-iot-commit",
+      "edge-commit",
+      "edge-container",
+      "edge-installer",
+      "edge-raw-image",
+      "edge-simplified-installer",
+    ];
+    if (ostreeImageTypes.includes(formValues["image-output-type"])) {
+      ostreeSettings = {
+        parent: formValues["ostree-parent-commit"],
+        ref: formValues["ostree-ref"],
+        url: formValues["ostree-repo-url"],
+      };
+    }
+
     props.startCompose(
       props.blueprintName,
       formValues["image-output-type"],
       formValues["image-size"],
-      undefined,
+      ostreeSettings,
       uploadSettings
     );
     setIsWizardOpen(false);
@@ -136,6 +157,7 @@ const CreateImageWizard = (props) => {
         <ImageCreator
           onClose={handleClose}
           onSubmit={(formValues) => handleSubmit(formValues)}
+          customValidatorMapper={{ ostreeValidator }}
           schema={{
             fields: [
               {
@@ -158,6 +180,7 @@ const CreateImageWizard = (props) => {
                   ociDest,
                   vmwareAuth,
                   vmwareDest,
+                  ostreeSettings,
                   details,
                   packages,
                   review,
