@@ -12,6 +12,18 @@ export default (props) => {
       default:
         return "details";
     }
+    // check if image type is an ostree-settings
+  } else if (
+    [
+      "fedora-iot-commit",
+      "edge-commit",
+      "edge-container",
+      "edge-installer",
+      "edge-raw-image",
+      "edge-simplified-installer",
+    ].includes(props["image-output-type"])
+  ) {
+    return "ostree-settings";
   } else {
     return "details";
   }
