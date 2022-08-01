@@ -34,10 +34,12 @@ export default {
       initialValue: 6,
       isRequired: true,
       autoFocus: true,
-      condition: {
-        when: "image-output-type",
-        is: "ami",
-      },
+      condition: [
+        {
+          when: "image-output-type",
+          is: "ami",
+        },
+      ],
       validate: [
         {
           type: validatorTypes.REQUIRED,
@@ -77,7 +79,17 @@ export default {
       isRequired: true,
       autoFocus: true,
       condition: {
-        not: [{ when: "image-output-type", is: "ami" }],
+        when: "image-output-type",
+        is: [
+          "ami",
+          "edge-simplified-installer",
+          "fedora-iot-commit",
+          "edge-commit",
+          "edge-container",
+          "edge-installer",
+          "image-installer",
+        ],
+        notMatch: true,
       },
       validate: [
         {
@@ -88,6 +100,50 @@ export default {
           includeThreshold: true,
           value: 2,
           message: "Minimum image size is 2GB",
+        },
+      ],
+    },
+    {
+      component: "text-field-custom",
+      name: "image-size",
+      className: "pf-u-w-50",
+      type: "number",
+      label: "Image size",
+      labelIcon: (
+        <Popover
+          bodyContent={
+            <>
+              Set the size that you want the image to be when instantiated. The total package size and target
+              destination of your image should be considered when setting the image size.
+            </>
+          }
+          aria-label="Image size help"
+        >
+          <Button variant="plain" aria-label="Image size help">
+            <HelpIcon />
+          </Button>
+        </Popover>
+      ),
+      helperText: "Minimum image size is 10GB",
+      initializeOnMount: true,
+      initialValue: 10,
+      isRequired: true,
+      autoFocus: true,
+      condition: [
+        {
+          when: "image-output-type",
+          is: "edge-simplified-installer",
+        },
+      ],
+      validate: [
+        {
+          type: validatorTypes.REQUIRED,
+        },
+        {
+          type: validatorTypes.MIN_NUMBER_VALUE,
+          includeThreshold: true,
+          value: 10,
+          message: "Minimum image size is 10GB",
         },
       ],
     },
