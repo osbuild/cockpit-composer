@@ -148,7 +148,7 @@ function* fetchComposeTypes() {
       "edge-installer": "RHEL for Edge Installer (.iso)",
       "edge-raw-image": "RHEL for Edge Raw Image (.raw.xz)",
       "image-installer": "RHEL Installer (.iso)",
-      "edge-simplified-installer": "RHEL for Edge Simplified Installer (.iso)",
+      // "edge-simplified-installer": "RHEL for Edge Simplified Installer (.iso)",
       vhd: "Microsoft Azure (.vhd)",
       vmdk: "VMWare VSphere (.vmdk)",
     };
