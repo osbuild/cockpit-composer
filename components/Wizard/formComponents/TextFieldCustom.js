@@ -1,14 +1,17 @@
 import React from "react";
-import { FormGroup, TextInput } from "@patternfly/react-core";
+import { TextInput } from "@patternfly/react-core";
 import PropTypes from "prop-types";
 
 import { useFieldApi } from "@data-driven-forms/react-form-renderer";
 import showError from "@data-driven-forms/pf4-component-mapper/show-error/show-error";
+import FormGroupCustom from "./FormGroupCustom";
 
 const TextFieldCustom = (props) => {
   const {
+    className,
     label,
     labelIcon,
+    hideLabel,
     isRequired,
     helperText,
     meta,
@@ -22,15 +25,19 @@ const TextFieldCustom = (props) => {
     ...rest
   } = useFieldApi(props);
   return (
-    <FormGroup
+    <FormGroupCustom
+      className={className}
       label={label}
       labelIcon={labelIcon}
+      hideLabel={hideLabel}
       isRequired={isRequired}
       helperText={helperText}
       description={description}
+      meta={meta}
+      validateOnMount={validateOnMount}
       id={id || input.name}
       {...showError(meta, validateOnMount)}
-      {...FormGroupProps}
+      FormGroupProps={FormGroupProps}
     >
       <TextInput
         {...input}
@@ -41,7 +48,7 @@ const TextFieldCustom = (props) => {
         isReadOnly={isReadOnly}
         isDisabled={isDisabled}
       />
-    </FormGroup>
+    </FormGroupCustom>
   );
 };
 
