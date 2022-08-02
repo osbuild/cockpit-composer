@@ -4,8 +4,8 @@
 # Ettore Atalan <atalanttore@googlemail.com>, 2021, 2022.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2022-05-24T18:23:03.105Z\n"
-"PO-Revision-Date: 2022-02-14 13:16+0000\n"
+"POT-Creation-Date: 2022-07-26T04:21:34.575Z\n"
+"PO-Revision-Date: 2022-07-26 14:19+0000\n"
 "Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German <https://translate.fedoraproject.org/projects/cockpit-"
 "composer/main/de/>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.13\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -53,7 +53,7 @@ msgstr "Ein Wert ist erforderlich."
 #. API private key's fingerprint
 #: build/messages/components/Wizard/OCIAuthStep.json
 msgid "API private key's fingerprint"
-msgstr ""
+msgstr "Fingerabdruck des privaten API-Schlüssels"
 
 #. [components.Wizard.aws]
 #. defaultMessage is:
@@ -428,19 +428,15 @@ msgstr ""
 #. Bucket compartment
 #: build/messages/components/Wizard/OCIDestinationStep.json
 #: build/messages/components/Wizard/ReviewStep.json
-#, fuzzy
-#| msgid "Blueprint Components"
 msgid "Bucket compartment"
-msgstr "Blueprint-Komponenten"
+msgstr ""
 
 #. [components.Wizard.bucket]
 #. defaultMessage is:
 #. Bucket help
 #: build/messages/components/Wizard/OCIDestinationStep.json
-#, fuzzy
-#| msgid "Azure help"
 msgid "Bucket help"
-msgstr "Azure-Hilfe"
+msgstr "Bucket-Hilfe"
 
 #. [components.Wizard.3386954132]
 #. defaultMessage is:
@@ -451,7 +447,7 @@ msgstr "Azure-Hilfe"
 #: build/messages/components/Wizard/OCIDestinationStep.json
 #: build/messages/components/Wizard/ReviewStep.json
 msgid "Bucket namespace"
-msgstr ""
+msgstr "Bucket-Namensraum"
 
 #. [components.Wizard.2790265886]
 #. defaultMessage is:
@@ -461,10 +457,8 @@ msgstr ""
 #. Bucket region
 #: build/messages/components/Wizard/OCIDestinationStep.json
 #: build/messages/components/Wizard/ReviewStep.json
-#, fuzzy
-#| msgid "AWS region"
 msgid "Bucket region"
-msgstr "AWS-Region"
+msgstr "Bucket-Region"
 
 #. [components.Wizard.1601119828]
 #. defaultMessage is:
@@ -908,7 +902,7 @@ msgstr "Herunterladen"
 #. Drag and drop a file or upload one
 #: build/messages/components/Wizard/OCIAuthStep.json
 msgid "Drag and drop a file or upload one"
-msgstr ""
+msgstr "Ziehen und Ablegen einer Datei oder Hochladen einer Datei"
 
 #. [components.Modal.2044423701]
 #. defaultMessage is:
@@ -1068,10 +1062,8 @@ msgstr "Nach Version filtern"
 #. Fingerprint
 #: build/messages/components/Wizard/OCIAuthStep.json
 #: build/messages/components/Wizard/ReviewStep.json
-#, fuzzy
-#| msgid "Blueprint"
 msgid "Fingerprint"
-msgstr "Blaupause"
+msgstr "Fingerabdruck"
 
 #. [components.Wizard.787186999]
 #. defaultMessage is:
@@ -1468,10 +1460,8 @@ msgstr "Name: {name}"
 #. defaultMessage is:
 #. Namespace help
 #: build/messages/components/Wizard/OCIDestinationStep.json
-#, fuzzy
-#| msgid "Image name help"
 msgid "Namespace help"
-msgstr "Hilfe zum Abbildnamen"
+msgstr "Namensraum-Hilfe"
 
 #. [components.Wizard.3673120330]
 #. defaultMessage is:
@@ -1658,14 +1648,14 @@ msgstr "Ausstehende Änderungen"
 #. Private key
 #: build/messages/components/Wizard/OCIAuthStep.json
 msgid "Private key"
-msgstr ""
+msgstr "Privater Schlüssel"
 
 #. [components.Wizard.3157862487]
 #. defaultMessage is:
 #. Private key filename
 #: build/messages/components/Wizard/ReviewStep.json
 msgid "Private key filename"
-msgstr ""
+msgstr "Dateiname des privaten Schlüssels"
 
 #. [components.Wizard.processLength]
 #. defaultMessage is:
@@ -2728,10 +2718,8 @@ msgstr "Zu Azure hochladen"
 #: build/messages/components/Wizard/CreateImageUpload.json
 #: build/messages/components/Wizard/ImageStep.json
 #: build/messages/components/Wizard/ReviewStep.json
-#, fuzzy
-#| msgid "Upload to AWS"
 msgid "Upload to OCI"
-msgstr "Zu AWS hochladen"
+msgstr "Zu OCI hochladen"
 
 #. [components.Wizard.3542348520]
 #. defaultMessage is:
@@ -2759,8 +2747,6 @@ msgstr ""
 #. defaultMessage is:
 #. User
 #: build/messages/components/Wizard/ReviewStep.json
-#, fuzzy
-#| msgid "Users"
 msgid "User"
 msgstr "Benutzer"
 
