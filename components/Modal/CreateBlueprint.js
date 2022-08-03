@@ -117,12 +117,11 @@ class CreateBlueprint extends React.Component {
 
   render() {
     const { isModalOpen } = this.state;
-
     return (
       <>
         <Button
           variant="secondary"
-          disabled={this.props.disabled}
+          isDisabled={this.props.disabled}
           onClick={this.handleModalToggle}
           id="cmpsr-btn-crt-blueprint"
         >
@@ -148,7 +147,7 @@ class CreateBlueprint extends React.Component {
               key="create"
               variant="primary"
               id="create-blueprint-modal-create-button"
-              disabled={this.nameContainsError()}
+              isDisabled={this.nameContainsError()}
               onClick={() => this.handleCreateBlueprint()}
             >
               <FormattedMessage defaultMessage="Create" />
