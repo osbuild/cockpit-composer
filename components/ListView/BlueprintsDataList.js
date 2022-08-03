@@ -1,5 +1,5 @@
 import React from "react";
-import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
+import { defineMessages, injectIntl } from "react-intl";
 import PropTypes from "prop-types";
 import { DataList, DataListItem, DataListItemRow, DataListCell, DataListItemCells } from "@patternfly/react-core";
 import { PficonTemplateIcon } from "@patternfly/react-icons";
@@ -44,9 +44,6 @@ class BlueprintsDataList extends React.PureComponent {
                 ]}
               />
               <div className="pf-c-data-list__item-action cc-m-nowrap">
-                <Link to={`/edit/${blueprint.name}`} className="btn btn-default">
-                  <FormattedMessage defaultMessage="Edit packages" />
-                </Link>
                 <CreateImageWizard blueprintName={blueprint.name} />
                 <div className="dropdown pull-right dropdown-kebab-pf">
                   <button

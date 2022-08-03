@@ -20,9 +20,5 @@
   {
     "path": "/blueprint/:blueprint/:subtab",
     "page": "./pages/blueprint"
-  },
-  {
-    "path": "/edit/:blueprint",
-    "page": "./pages/blueprintEdit"
   }
 ]
