@@ -83,7 +83,7 @@ const messages = defineMessages({
     defaultMessage: "Empty blueprint",
   },
   emptyBlueprintMessage: {
-    defaultMessage: "There are no components listed in the blueprint. Edit the blueprint to add components.",
+    defaultMessage: "There are no components listed in the blueprint.",
   },
   imagesTitle: {
     defaultMessage: "Images",
@@ -366,11 +366,6 @@ class BlueprintPage extends React.Component {
           <div className="cmpsr-header__actions">
             <ul className="list-inline">
               <li>
-                <Link to={`/edit/${this.props.route.params.blueprint}`} className="btn btn-default">
-                  <FormattedMessage defaultMessage="Edit packages" />
-                </Link>
-              </li>
-              <li>
                 <CreateImageUpload blueprint={blueprint} layout={this.layout} />
               </li>
               <li>
@@ -526,13 +521,7 @@ class BlueprintPage extends React.Component {
                       <EmptyState
                         title={formatMessage(messages.emptyBlueprintTitle)}
                         message={formatMessage(messages.emptyBlueprintMessage)}
-                      >
-                        <Link to={`/edit/${this.props.route.params.blueprint}`}>
-                          <button className="btn btn-default btn-primary" type="button">
-                            <FormattedMessage defaultMessage="Edit packages" />
-                          </button>
-                        </Link>
-                      </EmptyState>
+                      />
                     </BlueprintContents>
                   )}
                 </div>
