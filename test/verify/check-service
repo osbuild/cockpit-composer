@@ -3,9 +3,6 @@
 # checkpoint:
 # 1. osbuild-composer.socket can be started and enabled
 # 2. no blueprint by default and can add and delete blueprint
-import string
-import random
-
 import composerlib
 import testlib
 
@@ -39,46 +36,20 @@ class TestService(composerlib.ComposerCase):
         b.wait_text(".pf-c-empty-state__content .pf-c-title", "No blueprints")
 
         # create blueprint with random name and description
-        name_template = string.ascii_letters + string.digits + "-" + "_"
-        bp_name = "".join(random.sample(name_template, 20))
-        desc_template = string.ascii_letters + string.digits + " "
-        bp_desc = "".join(random.sample(desc_template, 40))
+        bp_name = "bp_name"
+        bp_desc = "bp_description"
         b.click(".pf-c-empty-state button:contains('Create blueprint')")
-        b.wait_visible("div[role=dialog] #cmpsr-modal-crt-blueprint")
+        b.wait_visible("#cmpsr-modal-crt-blueprint")
         # blueprint name
         b.set_input_text("#textInput-modal-markup", bp_name)
         # blueprint description
         b.set_input_text("#textInput2-modal-markup", bp_desc)
         # create
         b.click("#create-blueprint-modal-create-button")
-        b.wait_not_present("div[role=dialog] #cmpsr-modal-crt-blueprint")
+        b.wait_not_present("#cmpsr-modal-crt-blueprint")
 
-        # wait for all available compontents visible
-        with b.wait_timeout(300):
-            b.wait_visible("ul[data-list=inputs]")
-        # search for openssh-server pacakge
-        b.set_input_text("#cmpsr-blueprint-input-filter", "openssh-server", blur=False)
-        b.key_press("\r")
-        with b.wait_timeout(120):
-            b.wait_text("#openssh-server-input", "openssh-server")
-        # add it to blueprint
-        b.click("li[data-input=openssh-server] .fa-plus")
-        # wait for package added
-        b.wait_visible("#blueprint-tabs")
-        b.wait_visible("li[data-component=openssh-server]")
-        # click commit button
-        b.click(".cmpsr-header__actions .btn-primary")
-        # click commit button
-        b.click("#cmpsr-modal-pending-changes .modal-footer .btn-primary")
-        b.wait_not_present("#cmpsr-modal-pending-changes")
-
-        # wait for notification
-        b.wait_visible("#alertBlueprintCommitSucceeded")
-        # click close button
-        b.click("#alertBlueprintCommitSucceeded .pf-c-alert__action button")
-        b.wait_not_present("#alertBlueprintCommitSucceeded")
-
-        # click back to blueprint link
+        # wait for back to blueprint link and click
+        b.wait_visible("a:contains('Back to blueprints')")
         b.click("a:contains('Back to blueprints')")
 
         # new added blueprint should be there with correct name and description
