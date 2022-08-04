@@ -5,7 +5,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { FormattedMessage, defineMessages, injectIntl } from "react-intl";
-import { Alert, Spinner, Modal, ModalVariant, Title } from "@patternfly/react-core";
+import { Alert, Button, Spinner, Modal, ModalVariant, Title } from "@patternfly/react-core";
 import SourcesListItem from "../ListView/SourcesListItem";
 import EmptyState from "../EmptyState/EmptyState";
 import {
@@ -98,12 +98,12 @@ class ManageSources extends React.Component {
   render() {
     return (
       <>
-        <a href="#" onClick={!this.props.disabled ? this.open : undefined}>
+        <Button variant="secondary" onClick={this.open}>
           <FormattedMessage
             defaultMessage="Manage sources"
             description="User action for displaying the list of source repositories"
           />
-        </a>
+        </Button>
         {this.state.showModal && (
           <ManageSourcesModal
             manageSources={this.props.manageSources}
@@ -464,7 +464,6 @@ ManageSources.propTypes = {
     sources: PropTypes.objectOf(PropTypes.object),
     error: PropTypes.object,
   }),
-  disabled: PropTypes.bool,
   removeModalManageSourcesEntry: PropTypes.func,
   addModalManageSourcesEntry: PropTypes.func,
   modalManageSourcesFailure: PropTypes.func,
@@ -473,7 +472,6 @@ ManageSources.propTypes = {
 
 ManageSources.defaultProps = {
   manageSources: {},
-  disabled: false,
   removeModalManageSourcesEntry() {},
   addModalManageSourcesEntry() {},
   modalManageSourcesFailure() {},
