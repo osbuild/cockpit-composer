@@ -1,8 +1,8 @@
 import React from "react";
-import { FormattedMessage, defineMessages, injectIntl } from "react-intl";
+import { defineMessages, injectIntl } from "react-intl";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Button, EmptyStatePrimary } from "@patternfly/react-core";
+import { EmptyStatePrimary } from "@patternfly/react-core";
 import { ExclamationCircleIcon } from "@patternfly/react-icons";
 import Layout from "../../components/Layout/Layout";
 import BlueprintsDataList from "../../components/ListView/BlueprintsDataList";
@@ -126,13 +126,7 @@ class BlueprintsPage extends React.Component {
             <EmptyState
               title={formatMessage(messages.noResultsTitle)}
               message={formatMessage(messages.noResultsMessage)}
-            >
-              <EmptyStatePrimary>
-                <Button variant="link" type="button" onClick={blueprintsFilterClearValues}>
-                  <FormattedMessage defaultMessage="Clear all filters" />
-                </Button>
-              </EmptyStatePrimary>
-            </EmptyState>
+            />
           )}
       </Layout>
     );
