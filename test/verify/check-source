@@ -23,11 +23,7 @@ class TestSource(composerlib.ComposerCase):
         b.wait_visible("#main")
 
         # open manage sources dialog
-        drop_down_sel = ".toolbar-pf-action-right #dropdownKebab"
-        b.click(drop_down_sel)
-        b.wait_attr(drop_down_sel, "aria-expanded", "true")
-        b.click("a:contains('Manage sources')")
-        b.wait_attr(drop_down_sel, "aria-expanded", "false")
+        b.click("button:contains('Manage sources')")
         b.wait_visible("#cmpsr-modal-manage-sources")
 
         # check default loaded sources
@@ -61,10 +57,7 @@ class TestSource(composerlib.ComposerCase):
         b.click("button:contains('Update source')")
 
         # go to manage source
-        b.click(drop_down_sel)
-        b.wait_attr(drop_down_sel, "aria-expanded", "true")
-        b.click("a:contains('Manage sources')")
-        b.wait_attr(drop_down_sel, "aria-expanded", "false")
+        b.click("button:contains('Manage sources')")
         b.wait_visible("#cmpsr-modal-manage-sources")
 
         # duplicated source can't be added
