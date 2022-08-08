@@ -16,7 +16,7 @@ import BlueprintContents from "../../components/ListView/BlueprintContents";
 import ComponentDetailsView from "../../components/ListView/ComponentDetailsView";
 import UserAccount from "../../components/Modal/UserAccount";
 import EditDescription from "../../components/Modal/EditDescription";
-import CreateImageUpload from "../../components/Wizard/CreateImageUpload";
+import CreateImageWizard from "../../components/Wizard/CreateImageWizard";
 import ExportBlueprint from "../../components/Modal/ExportBlueprint";
 import StopBuild from "../../components/Modal/StopBuild";
 import DeleteImage from "../../components/Modal/DeleteImage";
@@ -366,7 +366,7 @@ class BlueprintPage extends React.Component {
           <div className="cmpsr-header__actions">
             <ul className="list-inline">
               <li>
-                <CreateImageUpload blueprint={blueprint} layout={this.layout} />
+                <CreateImageWizard blueprintName={blueprint.name} />
               </li>
               <li>
                 <div className="dropdown dropdown-kebab-pf">
@@ -552,7 +552,7 @@ class BlueprintPage extends React.Component {
                   title={formatMessage(messages.noImagesTitle)}
                   message={formatMessage(messages.noImagesMessage)}
                 >
-                  <CreateImageUpload blueprint={blueprint} layout={this.layout} />
+                  <CreateImageWizard blueprintName={blueprint.name} />
                 </EmptyState>
               )) || (
                 <ImagesDataList ariaLabel={formatMessage(messages.imagesTitle)}>
