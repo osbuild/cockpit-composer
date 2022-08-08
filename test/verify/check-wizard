@@ -244,8 +244,113 @@ class TestWizard(composerlib.ComposerCase):
         # collect code coverage result
         self.check_coverage()
 
+    # TODO: verify popover text after string translation
+    def testAzureStep(self):
+        b = self.browser
+        self.login_and_go("/composer", superuser=True)
+        b.wait_visible("#main")
+
+        # create image wizard (no upload support)
+        b.click("li[data-blueprint=httpd-server] button[aria-label='Create image']")
+        b.wait_in_text(".pf-c-wizard__main", "httpd-server")
+        time.sleep(1)
+        # select AWS
+        b.select_PF4("#image-output-select-toggle", "Microsoft Azure (.vhd)")
+        # Upload image
+        b.wait_visible("label:contains('Upload to Azure')")
+        b.click("#image-upload")
+
+        b.click("button[aria-label='Azure upload help']")
+        # b.wait_in_text(".pf-c-popover__body",
+        #                " Image Builder can upload images you create to a Blob container in "
+        #                "Microsoft Azure. When the image build is complete and the upload action "
+        #                "is successful, the image file is available in the Storage account and Blob "
+        #                "container that you specified. ")
+        b.click(".pf-c-popover__content button[aria-label='Close']")
+        b.wait_not_present(".pf-c-popover__body")
+
+        # Auth page
+        b.click("button:contains('Next')")
+
+        b.wait_text("h1", "Authentication")
+
+        b.wait_visible("label:contains('Storage account')")
+        b.click("button[aria-label='Storage account help']")
+        # b.wait_text(".pf-c-popover__body",
+        #             "Provide the name of a storage account. You can find storage accounts on the "
+        #             "Storage accounts page in the Azure portal.")
+        b.click(".pf-c-popover__content button[aria-label='Close']")
+        b.wait_not_present(".pf-c-popover__body")
+        b.focus("input[id='azure-storage-account']")
+        b.key_press("never")
+
+        b.wait_visible("label:contains('Storage access key')")
+        b.click("button[aria-label='Storage access key help']")
+        # b.wait_text(".pf-c-popover__body",
+        #             " Provide the access key for the desired storage account. You can find the "
+        #             "access key on the Access keys  page of the storage account. You can find "
+        #             "storage accounts on the Storage accounts page in the Azure portal. ")
+        b.click(".pf-c-popover__content button[aria-label='Close']")
+        b.wait_not_present(".pf-c-popover__body")
+        b.focus("input[id='azure-storage-access-key']")
+        b.key_press("gunna")
+
+        # Destination page
+        b.click("button:contains('Next')")
+
+        b.wait_text("h1", "Destination")
+        b.wait_visible("label:contains('Image name')")
+        b.click("button[aria-label='Image name help']")
+        # b.wait_text(".pf-c-popover__body",
+        #             "Provide a file name to be used for the image file that will be uploaded.")
+        b.click(".pf-c-popover__content button")
+        b.wait_not_present(".pf-c-popover__body")
+        b.focus("input[id='azure-image-name']")
+        b.key_press("give")
+
+        b.wait_visible("label:contains('Storage container')")
+        b.click("button[aria-label='Storage container help']")
+        # b.wait_text(".pf-c-popover__body",
+        #             " Provide the Blob container to which the image file will be uploaded. You can "
+        #             "find containers under the Blob service  section of a storage account. You can "
+        #             "find storage accounts on the Storage accounts page in the Azure portal. ")
+        b.click(".pf-c-popover__content button[aria-label='Close']")
+        b.wait_not_present(".pf-c-popover__body")
+        b.focus("input[id='azure-storage-container']")
+        b.key_press("you-up")
+
+        b.click("button:contains('Next')")
+        # skip packages and details steps
+        b.click("button:contains('Next')")
+        b.click("button:contains('Next')")
+
+        # Verify Azure Review page
+        b.wait_text("h1", "Review")
+
+        b.wait_in_text("#review-list", "Blueprint name")
+        b.wait_in_text("#review-list", "httpd-server")
+        b.wait_in_text("#review-list", "Output type")
+        b.wait_in_text("#review-list", "vhd")
+        b.wait_in_text("#review-list", "Image size")
+        b.wait_in_text("#review-list", "2")
+        with b.wait_timeout(120):
+            b.wait_in_text("#review-list", "Packages")
+            b.wait_in_text("#review-list", "3")
+
+        b.wait_in_text("#review-list", "Storage account")
+        b.wait_in_text("#review-list", "never")
+        # key value is hidden
+        b.wait_in_text("#review-list", "Storage access key")
+        b.wait_in_text("#review-list", "*****")
+        b.wait_in_text("#review-list", "Image name")
+        b.wait_in_text("#review-list", "give")
+        b.wait_in_text("#review-list", "Storage container")
+        b.wait_in_text("#review-list", "you-up")
+
+        # Close wizard
         b.click("button:contains('Cancel')")
         b.wait_not_present("#create-image-wizard")
+
         # collect code coverage result
         self.check_coverage()
 
