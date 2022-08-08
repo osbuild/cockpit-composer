@@ -52,7 +52,6 @@ const Packages = ({ defaultArch, ...props }) => {
           input.name,
           selectedPackages.map((pkg) => pkg.name)
         );
-        console.log("selectedPackages: ", selectedPackages);
         setPackagesChosenSorted(selectedPackages);
       }
       setPackagesChosenLoading(false);
@@ -390,12 +389,13 @@ const Packages = ({ defaultArch, ...props }) => {
               {packagesAvailable.map((pack, index) => {
                 return !pack.isHidden ? (
                   <DualListSelectorListItem
+                    data-testid={pack.name}
                     key={pack.name}
                     isSelected={pack.selected}
                     onOptionSelect={(e) => onOptionSelect(e, index, false)}
                   >
                     <TextContent>
-                      <span className="pf-c-dual-list-selector__item-text">{pack.name}</span>
+                      <span>{pack.name}</span>
                       <small>{pack.summary}</small>
                     </TextContent>
                   </DualListSelectorListItem>
@@ -483,6 +483,7 @@ const Packages = ({ defaultArch, ...props }) => {
             packagesChosen.map((pack, index) => {
               return !pack.isHidden ? (
                 <DualListSelectorListItem
+                  data-testid={pack.name}
                   key={pack.name}
                   isSelected={pack.selected}
                   onOptionSelect={(e) => onOptionSelect(e, index, true)}
