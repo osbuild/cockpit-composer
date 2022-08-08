@@ -35,16 +35,14 @@ const AzureReview = (formValues) => (
   <>
     <h3>Upload to Azure</h3>
     <TextListItem component={TextListItemVariants.dt}>Storage account</TextListItem>
-    <TextListItem component={TextListItemVariants.dd}>
-      {"*".repeat(formValues?.["azure-storage-account"].length)}
-    </TextListItem>
+    <TextListItem component={TextListItemVariants.dd}>{formValues?.["azure-storage-account"]}</TextListItem>
     <TextListItem component={TextListItemVariants.dt}>Storage access key</TextListItem>
     <TextListItem component={TextListItemVariants.dd}>
       {"*".repeat(formValues?.["azure-storage-access-key"].length)}
     </TextListItem>
     <TextListItem component={TextListItemVariants.dt}>Image name</TextListItem>
     <TextListItem component={TextListItemVariants.dd}>{formValues?.["azure-image-name"]}</TextListItem>
-    <TextListItem component={TextListItemVariants.dt}>Storage account</TextListItem>
+    <TextListItem component={TextListItemVariants.dt}>Storage container</TextListItem>
     <TextListItem component={TextListItemVariants.dd}>{formValues?.["azure-storage-container"]}</TextListItem>
   </>
 );
