@@ -128,6 +128,7 @@ class CreateBlueprint extends React.Component {
           <FormattedMessage defaultMessage="Create blueprint" />
         </Button>
         <Modal
+          position="top"
           variant={ModalVariant.medium}
           title={<FormattedMessage defaultMessage="Create blueprint" />}
           isOpen={isModalOpen}
