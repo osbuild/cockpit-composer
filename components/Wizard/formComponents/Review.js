@@ -117,7 +117,7 @@ const Review = (props) => {
         Review the information and click &quot;Create image&quot; to create the image using the following criteria.
       </Text>
       <TextContent>
-        <TextList component={TextListVariants.dl}>
+        <TextList component={TextListVariants.dl} id="review-list">
           <TextListItem component={TextListItemVariants.dt}>Blueprint name</TextListItem>
           <TextListItem component={TextListItemVariants.dd}>{props.blueprintName}</TextListItem>
           <TextListItem component={TextListItemVariants.dt}>Output type</TextListItem>

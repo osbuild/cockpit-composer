@@ -155,7 +155,13 @@ class ListItemImages extends React.Component {
               </a>
             </li>
             <li key="delete">
-              <a href="#" role="button" onClick={(e) => this.handleShowModalDeleteImage(e)} data-delete>
+              <a
+                href="#"
+                role="button"
+                onClick={(e) => this.handleShowModalDeleteImage(e)}
+                data-delete
+                data-testid="delete-image"
+              >
                 <FormattedMessage defaultMessage="Delete" />
               </a>
             </li>
@@ -313,7 +319,7 @@ class ListItemImages extends React.Component {
                     {this.props.blueprint}-{listItem.version}-{listItem.compose_type}
                   </strong>
                 </div>
-                <div className="pf-l-flex__item">
+                <div className="pf-l-flex__item" data-testid="image-type">
                   <span>{formatMessage(messages.imageType)} </span>
                   <strong data-image-type={listItem.compose_type}>
                     {imageTypes.length > 0 ? imageTypes.find((type) => type.name === listItem.compose_type).label : ""}
@@ -323,12 +329,14 @@ class ListItemImages extends React.Component {
                   <span>{formatMessage(messages.imageCreated)}</span> <strong>{formattedTime}</strong>
                 </div>
                 {listItem.queue_status === "FINISHED" && (
-                  <div className="pf-l-flex__item">
+                  <div className="pf-l-flex__item" data-testid="image-size">
                     <span>{formatMessage(messages.imageSize)}</span> <strong>{size} GB</strong>
                   </div>
                 )}
               </DataListCell>,
-              <DataListCell key="status">{composeStatus()}</DataListCell>,
+              <DataListCell key="status" data-testid="image-status">
+                {composeStatus()}
+              </DataListCell>,
             ]}
           />
           <div
