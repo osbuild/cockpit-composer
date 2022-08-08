@@ -151,7 +151,7 @@ const CreateImageWizard = (props) => {
   return (
     <>
       <Button variant="secondary" onClick={handleOpen}>
-        Create image (new)
+        Create image
       </Button>
       {isWizardOpen && (
         <ImageCreator
