@@ -150,7 +150,7 @@ const CreateImageWizard = (props) => {
 
   return (
     <>
-      <Button variant="secondary" onClick={handleOpen}>
+      <Button variant="secondary" onClick={handleOpen} aria-label="Create image">
         Create image
       </Button>
       {isWizardOpen && (
@@ -162,7 +162,8 @@ const CreateImageWizard = (props) => {
             fields: [
               {
                 component: componentTypes.WIZARD,
-                name: "cockpit-composer-wizard",
+                name: "create-image-wizard",
+                id: "create-image-wizard",
                 isDynamic: true,
                 inModal: true,
                 showTitles: true,

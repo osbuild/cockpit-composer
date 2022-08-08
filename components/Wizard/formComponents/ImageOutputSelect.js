@@ -28,6 +28,7 @@ const ImageOutputSelect = ({ label, isRequired, ...props }) => {
           selections={outputType}
           placeholderText="Select output type"
           typeAheadAriaLabel="Select output type"
+          toggleId="image-output-select-toggle"
         >
           {props.imageTypes.map((outputType) => (
             <SelectOption key={outputType.name} value={outputType.name}>

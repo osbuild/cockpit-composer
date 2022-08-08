@@ -1,0 +1,121 @@
+#!/usr/bin/python3
+
+import composerlib
+import testlib
+import time
+
+
+@testlib.nondestructive
+class TestWizard(composerlib.ComposerCase):
+
+    def testQCOW2Customized(self):
+        b = self.browser
+
+        self.login_and_go("/composer", superuser=True)
+        b.wait_visible("#main")
+
+        # create image wizard (no upload support)
+        b.click("li[data-blueprint=httpd-server] button[aria-label='Create image']")
+        b.wait_in_text(".pf-c-wizard__main", "httpd-server")
+        # check ? (Process length help) button
+        time.sleep(1)
+        b.wait_text("h1", "Image output")
+        b.click("button[aria-label='Process length help']")
+        b.wait_text(".pf-c-popover__body", "This process can take a while. "
+                    "Images are built in the order they are started.")
+        b.click(".pf-c-popover__content button")
+        b.wait_not_present(".pf-c-popover__body")
+        # check non upload image action (Create only)
+        b.select_PF4("#image-output-select-toggle", "QEMU Image (.qcow2)")
+        # go to details page
+        b.click("button:contains('Next')")
+        b.wait_text("h1", "Details")
+        # check ? (image size help) button
+        b.click("button[aria-label='Image size help']")
+        b.wait_text(".pf-c-popover__body",
+                    "Set the size that you want the image to be when instantiated. The total "
+                    "package size and target destination of your image should be considered when "
+                    "setting the image size.")
+        b.click(".pf-c-popover__content button")
+        b.wait_not_present(".pf-c-popover__body")
+        # default size = 2GB for qcow2 image
+        b.wait_val("#image-size", 2)
+        b.focus("#image-size")
+        # delete 2 and input 1
+        b.key_press("\b")
+        b.key_press("1")
+        # error if less than 2 GB
+        b.wait_attr("button:contains('Next')", "disabled", "")
+        # delete 1 and input 2
+        b.key_press("\b")
+        b.key_press("2")
+
+        # go to packages page
+        b.click("button:contains('Next')")
+        b.wait_text("h1", "Packages")
+        # select openssh-server
+        b.focus("div[data-testid='search-available-pkgs-input'] input")
+        b.key_press("openssh-server")
+        b.click("button[aria-label='Search button for available packages']")
+        with b.wait_timeout(120):
+            b.click("li[data-testid='openssh-server']")
+            b.click("button[aria-label='Add selected']")
+            b.click("li[data-testid='httpd']")
+            b.click("button[aria-label='Remove selected']")
+
+        # # go to review page
+        b.click("button:contains('Next')")
+        b.wait_text("h1", "Review")
+
+        b.wait_in_text("#review-list", "Blueprint name")
+        b.wait_in_text("#review-list", "httpd-server")
+        b.wait_in_text("#review-list", "Output type")
+        b.wait_in_text("#review-list", "qcow2")
+        b.wait_in_text("#review-list", "Image size")
+        b.wait_in_text("#review-list", "2")
+        b.wait_in_text("#review-list", "Packages")
+        b.wait_in_text("#review-list", "3")
+
+        # Create image
+        b.click(".pf-c-wizard__footer button:contains('Create image')")
+
+        b.wait_not_present("#create-image-wizard")
+        # notification
+        # On first load on fedora this notification can take a while to trigger
+        with b.wait_timeout(300):
+            b.wait_visible("#alertComposeQueued")
+        b.click("#alertComposeQueued .pf-c-alert__action button")
+        b.wait_not_present("#alertComposeQueued")
+
+        # got to images tab
+        b.click("#httpd-server-name")
+        with b.wait_timeout(300):
+            b.click("#pf-tab-images-blueprint-tabs")
+            b.wait_visible("ul[data-list=images]")
+        b.wait_in_text("div[data-testid='image-type']", "QEMU Image (.qcow2)")
+        # image building needs more time
+        with b.wait_timeout(1800):
+            b.wait_in_text("div[data-testid='image-status']", "Image build complete")
+        # image size should be 2GB
+        b.wait_in_text("div[data-testid='image-size']", "2 GB")
+
+        # check for logs
+        b.is_present("button:contains('Logs')")
+
+        # download image
+        b.click("button[aria-label='Actions']")
+        b.click("a:contains('Download')")
+
+        # delete image
+        b.click("button[aria-label='Actions']")
+        b.click("a[data-testid='delete-image']")
+        b.wait_visible("#cmpsr-modal-delete")
+        b.click("#cmpsr-modal-delete button:contains('Delete image')")
+        b.wait_text("h2", "No images")
+
+        # collect code coverage result
+        self.check_coverage()
+
+
+if __name__ == '__main__':
+    testlib.test_main()
