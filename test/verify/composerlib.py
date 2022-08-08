@@ -35,13 +35,13 @@ class ComposerCase(testlib.MachineCase):
         self.machine.write("/etc/cockpit/cockpit.conf", "[Session]\nIdleTimeout=0\n")
 
         # re-start osbuild-composer.socket
-        self.machine.execute(script="""#!/bin/sh
+        self.machine.execute("""
         systemctl stop --quiet osbuild-composer.socket osbuild-composer.service osbuild-local-worker.socket
         systemctl start osbuild-composer.socket
         """)
 
         # push pre-defined blueprint
-        self.machine.execute(script="""#!/bin/sh
+        self.machine.execute("""
         systemctl start osbuild-composer.socket
         for toml_file in /home/admin/files/*.toml; do
             composer-cli blueprints push $toml_file
