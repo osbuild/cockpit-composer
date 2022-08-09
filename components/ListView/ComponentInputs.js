@@ -10,6 +10,7 @@ import {
   Tooltip,
   TooltipPosition,
 } from "@patternfly/react-core";
+import { MinusIcon, PlusIcon } from "@patternfly/react-icons";
 import ComponentTypeIcons from "./ComponentTypeIcons";
 
 const messages = defineMessages({
@@ -79,7 +80,7 @@ class ComponentInputs extends React.Component {
                       className="btn btn-link"
                       onClick={(e) => this.props.handleRemoveComponent(e, component.name)}
                     >
-                      <span className="fa fa-minus" />
+                      <MinusIcon />
                     </a>
                   </Tooltip>
                 )) || (
@@ -97,7 +98,7 @@ class ComponentInputs extends React.Component {
                       className="btn btn-link"
                       onClick={(e) => this.props.handleAddComponent(e, component, "*")}
                     >
-                      <span className="fa fa-plus" />
+                      <PlusIcon />
                     </a>
                   </Tooltip>
                 )}
