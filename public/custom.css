@@ -341,11 +341,6 @@ h1.cmpsr-title__item {
   flex-basis: 55%;
 }
 
-.cc-c-data-list__item-status .pficon-in-progress {
-  -webkit-animation: 1s infinite linear rotate;
-          animation: 1s infinite linear rotate;
-}
-
 @-webkit-keyframes rotate {
   from {
      -webkit-transform: rotate(0deg);
@@ -751,4 +746,14 @@ body {
 
 .pf-icon svg {
   vertical-align: -0.125em;
+}
+
+.error-icon {
+  color: var(--pf-global--danger-color--100);
+}
+.success-icon {
+  color: var(--pf-global--success-color--100);
+}
+.pending-icon {
+  color: var(--pf-global--info-color--100);
 }

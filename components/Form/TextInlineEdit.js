@@ -1,6 +1,7 @@
 import React from "react";
 import { defineMessages, injectIntl } from "react-intl";
 import PropTypes from "prop-types";
+import { PencilAltIcon } from "@patternfly/react-icons";
 
 const messages = defineMessages({
   save: {
@@ -138,7 +139,7 @@ class TextInlineEdit extends React.Component {
               <button type="button" className="form-control-pf-value" {...buttonAttributes}>
                 <span className="sr-only">{this.props.buttonLabel}: </span>
                 {this.props.value !== "" && <span>{this.props.value}</span>}
-                <i className="pficon pficon-edit" aria-hidden="true" />
+                <PencilAltIcon />
               </button>
             </div>
             {this.props.helpblockNoValue && this.props.value === "" && (
