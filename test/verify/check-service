@@ -111,13 +111,12 @@ class TestService(composerlib.ComposerCase):
         # Start button can be disabled button or clickable button
         b.wait_visible("button:contains('Start')")
 
-        # disable this test due to https://github.com/osbuild/cockpit-composer/issues/941
-        # if "disabled" not in b.attr("button:contains('Start')", "class"):
-        #     b.click("button:contains('Start')")
-        #     # error message
-        #     b.wait_in_text(".cmpsr-alert-blank-slate", "Not permitted to perform this action.")
-        #     # Start button still there
-        #     b.wait_visible("button:contains('Start')")
+        if "disabled" not in b.attr("button:contains('Start')", "class"):
+            b.click("button:contains('Start')")
+            # error message
+            b.wait_in_text(".cmpsr-alert-blank-slate", "Not permitted to perform this action.")
+            # Start button still there
+            b.wait_visible("button:contains('Start')")
         # We expect multiple permission denied journal messages from the api calls
         self.allow_journal_messages(".*: couldn't connect: Could not connect: Permission denied")
         # collect code coverage result
