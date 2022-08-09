@@ -1,8 +1,8 @@
 # Temuri Doghonadze <temuri.doghonadze@gmail.com>, 2022.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2022-05-24T18:23:03.105Z\n"
-"PO-Revision-Date: 2022-04-13 13:17+0000\n"
+"POT-Creation-Date: 2022-08-09T03:57:25.301Z\n"
+"PO-Revision-Date: 2022-08-09 06:19+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.fedoraproject.org/projects/"
 "cockpit-composer/main/ka/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1\n"
-"X-Generator: Weblate 4.11.2\n"
+"X-Generator: Weblate 4.13\n"
 
 #. [components.Modal.parenthetical] - Describes the sort order of the pending changes
 #. defaultMessage is:
@@ -404,6 +404,8 @@ msgid ""
 "Browse or search for components, then add them to the blueprint. Or leave "
 "the blueprint empty to create a minimal image."
 msgstr ""
+"დაათვალიერეთ ან მოძებნეთ კომპონენტები, შემდეგ დაამატეთ ისინი გეგმაში. ან "
+"დატოვეთ გეგმა ცარიელი, რომ შექმნათ მინიმალური გამოსახულება."
 
 #. [components.Wizard.992376537]
 #. defaultMessage is:
@@ -421,7 +423,7 @@ msgstr "პროექტის შემადგენელი ნაწი�
 #. Bucket help
 #: build/messages/components/Wizard/OCIDestinationStep.json
 msgid "Bucket help"
-msgstr ""
+msgstr "ბაკეტის დახმარება"
 
 #. [components.Wizard.3386954132]
 #. defaultMessage is:
@@ -432,7 +434,7 @@ msgstr ""
 #: build/messages/components/Wizard/OCIDestinationStep.json
 #: build/messages/components/Wizard/ReviewStep.json
 msgid "Bucket namespace"
-msgstr ""
+msgstr "ბაკეტის სახელების სივრცე"
 
 #. [components.Wizard.2790265886]
 #. defaultMessage is:
@@ -443,7 +445,7 @@ msgstr ""
 #: build/messages/components/Wizard/OCIDestinationStep.json
 #: build/messages/components/Wizard/ReviewStep.json
 msgid "Bucket region"
-msgstr ""
+msgstr "ბაკეტის რეგიონი"
 
 #. [components.Wizard.1601119828]
 #. defaultMessage is:
@@ -454,7 +456,7 @@ msgstr ""
 #: build/messages/components/Wizard/OCIDestinationStep.json
 #: build/messages/components/Wizard/ReviewStep.json
 msgid "Bucket tenancy"
-msgstr ""
+msgstr "ბაკეტის ქირავნობა"
 
 #. [components.Form.cancel]
 #. defaultMessage is:
@@ -510,6 +512,8 @@ msgid ""
 "Changes made in a previous session are not listed in the order they were "
 "made. If you choose to undo these changes, they are undone as a group."
 msgstr ""
+"წინა სესიაში შეტანილი ცვლილებები მათი განხორციელების თანამიმდევრობით არაა "
+"ჩამოთვლილი. თუ აირჩევთ გააუქმოთ ისინი, გაუქმება ჯგუფურად ხდება."
 
 #. [components.Modal.92001050]
 #. defaultMessage is:
@@ -1491,7 +1495,7 @@ msgstr "ფილტრი უშედეგოა"
 #. OCI bucket
 #: build/messages/components/Wizard/ReviewStep.json
 msgid "OCI bucket"
-msgstr ""
+msgstr "OCI ბაკეტი"
 
 #. [components.Wizard.compartment]
 #. defaultMessage is:
