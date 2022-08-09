@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 
+import os
+import time
 import composerlib
 import testlib
-import time
 
 
 @testlib.nondestructive
@@ -482,6 +483,88 @@ class TestWizard(composerlib.ComposerCase):
 
         # collect code coverage result
         self.check_coverage()
+
+    # initially only test edge-commit/fedra-iot-commit so as to verify all fields
+    # this image type contains all currently supported ostree settings
+    # TODO: verify popover text after string translation
+    def testOSTreeStep(self):
+        b = self.browser
+
+        self.login_and_go("/composer", superuser=True)
+        b.wait_visible("#main")
+
+        # create image wizard (no upload support)
+        b.click("li[data-blueprint=httpd-server] button[aria-label='Create image']")
+        b.wait_in_text(".pf-c-wizard__main", "httpd-server")
+        time.sleep(1)
+        # select ostee image type depending on distro
+        distro = os.environ.get("TEST_OS").split('-')[0]
+        if (distro == "fedora"):
+            image_type_label = "Fedora IoT Commit (.tar)"
+            image_type = "fedora-iot-commit"
+        else:
+            image_type_label = "RHEL for Edge Commit (.tar)"
+            image_type = "edge-commit"
+
+        b.select_PF4("#image-output-select-toggle", image_type_label)
+
+        b.click("button:contains('Next')")
+        # OSTree settings page
+        b.wait_text("h1", "OSTree settings")
+
+        b.wait_visible("label:contains('Repository URL')")
+        b.click("button[aria-label='Repository URL help']")
+        # b.wait_text(".pf-c-popover__body",
+        #             "Provide the URL of the upstream repository. This repository is where the parent OSTree commit will be pulled from.")
+        b.click(".pf-c-popover__content button[aria-label='Close']")
+        b.wait_not_present(".pf-c-popover__body")
+        b.focus("input[id='ostree-repo-url']")
+        b.key_press("127.0. 0.1")
+
+        b.wait_visible("label:contains('Parent commit')")
+        b.click("button[aria-label='Parent commit help']")
+        # b.wait_text(".pf-c-popover__body",
+        #             "Provide the name of the branch for the content. If the ref does not already exist it will be created.")        b.click(".pf-c-popover__content button[aria-label='Close']")
+        b.click(".pf-c-popover__content button[aria-label='Close']")
+        b.wait_not_present(".pf-c-popover__body")
+        b.set_input_text("input[id='ostree-parent-commit']", "asdf1234")
+        # only url or commit can be specified
+        b.wait_attr("button:contains('Next')", "disabled", "")
+        b.set_input_text("input[id='ostree-parent-commit']", "")
+
+        b.wait_visible("label:contains('Ref')")
+        b.click("button[aria-label='Ref help']")
+        # b.wait_text(".pf-c-popover__body",
+        #             Provide the name of the branch for the content. If the ref does not already exist it will be created.")
+        b.click(".pf-c-popover__content button[aria-label='Close']")
+        b.wait_not_present(".pf-c-popover__body")
+        b.focus("input[id='ostree-ref']")
+        b.key_press("my/ref")
+        b.wait_text("#ostree-ref-helper",
+                    "Valid characters for ref are letters from a to z, the digits from 0 to 9, "
+                    "the hyphen (-), the underscore (_), the period (.), and the forward slash (/). "
+                    "A ref must start with a letter, a number, or an underscore. Slashes must also be "
+                    "followed by a letter or number.")
+
+        b.click("button:contains('Next')")
+        # skip details and packages step
+        b.click("button:contains('Next')")
+        b.click("button:contains('Next')")
+
+        # Verify AWS Review page
+        b.wait_text("h1", "Review")
+
+        b.wait_in_text("#review-list", "Blueprint name")
+        b.wait_in_text("#review-list", "httpd-server")
+        b.wait_in_text("#review-list", "Output type")
+        b.wait_in_text("#review-list", image_type)
+
+        # Close wizard
+        b.click("button:contains('Cancel')")
+        b.wait_not_present("#create-image-wizard")
+        # collect code coverage result
+        self.check_coverage()
+
 
 if __name__ == '__main__':
     testlib.test_main()
