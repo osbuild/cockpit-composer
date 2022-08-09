@@ -1,7 +1,7 @@
 import React from "react";
 import { defineMessages, injectIntl } from "react-intl";
 import PropTypes from "prop-types";
-import { PencilAltIcon } from "@patternfly/react-icons";
+import { CheckIcon, PencilAltIcon, TimesIcon } from "@patternfly/react-icons";
 
 const messages = defineMessages({
   save: {
@@ -101,7 +101,7 @@ class TextInlineEdit extends React.Component {
                   disabled
                   aria-label={formatMessage(messages.save)}
                 >
-                  <span className="fa fa-check" aria-hidden="true" />
+                  <CheckIcon />
                 </button>
               )) || (
                 <button
@@ -110,7 +110,7 @@ class TextInlineEdit extends React.Component {
                   aria-label={formatMessage(messages.save)}
                   onClick={() => this.handleEdit("commit")}
                 >
-                  <span className="fa fa-check" aria-hidden="true" />
+                  <CheckIcon />
                 </button>
               )}
               <button
@@ -119,7 +119,7 @@ class TextInlineEdit extends React.Component {
                 aria-label={formatMessage(messages.cancel)}
                 onClick={() => this.handleEdit("cancel")}
               >
-                <span className="fa fa-times" aria-hidden="true" />
+                <TimesIcon />
               </button>
             </div>
             {this.props.helpblock && (
