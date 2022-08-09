@@ -74,6 +74,7 @@ import {
 } from "../../core/selectors";
 
 import "./index.css";
+import DropdownKebab from "../../components/Dropdown/DropdownKebab";
 
 const messages = defineMessages({
   blueprint: {
@@ -303,6 +304,23 @@ class BlueprintPage extends React.Component {
     const pathSuffix = cockpit.location.path[cockpit.location.path.length - 1];
     const activeKey = ["customizations", "packages", "images"].includes(pathSuffix) ? pathSuffix : "customizations";
 
+    const blueprintDropdownItems = [
+      <li key="edit">
+        <EditDescription description={blueprint.description} handleEditDescription={this.handleEditDescription} />
+      </li>,
+      <li key="export">
+        <ExportBlueprint blueprint={blueprint} />
+      </li>,
+    ];
+
+    const userDropdownItems = (user) => [
+      <li key="delete-user">
+        <Button variant="plain" onClick={(e) => this.handleDeleteUser(user.name, e)}>
+          {formatMessage(messages.userDelete)}
+        </Button>
+      </li>,
+    ];
+
     const rows = users.map((user) => ({
       props: { "data-tr": user.name },
       cells: [
@@ -323,27 +341,7 @@ class BlueprintPage extends React.Component {
           title: (
             <div>
               <UserAccount edit users={users} user={user} blueprintID={blueprint.id} />
-              <div className="dropdown btn-group dropdown-kebab-pf">
-                <button
-                  aria-label={`${formatMessage(messages.userKebab)} ${user.name}`}
-                  className="btn btn-link dropdown-toggle"
-                  type="button"
-                  data-btn="more"
-                  id="dropdownKebab"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <span className="fa fa-ellipsis-v" />
-                </button>
-                <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
-                  <li>
-                    <a href="#" onClick={(e) => this.handleDeleteUser(user.name, e)}>
-                      {formatMessage(messages.userDelete)}
-                    </a>
-                  </li>
-                </ul>
-              </div>
+              <DropdownKebab dropdownItems={userDropdownItems(user)} />
             </div>
           ),
         },
@@ -369,29 +367,7 @@ class BlueprintPage extends React.Component {
                 <CreateImageWizard blueprintName={blueprint.name} />
               </li>
               <li>
-                <div className="dropdown dropdown-kebab-pf">
-                  <button
-                    className="btn btn-link dropdown-toggle"
-                    type="button"
-                    id="dropdownKebab"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    <span className="fa fa-ellipsis-v" />
-                  </button>
-                  <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
-                    <li>
-                      <EditDescription
-                        description={blueprint.description}
-                        handleEditDescription={this.handleEditDescription}
-                      />
-                    </li>
-                    <li>
-                      <ExportBlueprint blueprint={blueprint} />
-                    </li>
-                  </ul>
-                </div>
+                <DropdownKebab dropdownItems={blueprintDropdownItems} />
               </li>
             </ul>
           </div>
