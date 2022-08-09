@@ -1,7 +1,7 @@
 import React from "react";
 import { FormattedMessage, defineMessages, injectIntl } from "react-intl";
 import PropTypes from "prop-types";
-import { Tabs, Tab, Tooltip, TooltipPosition } from "@patternfly/react-core";
+import { Breadcrumb, BreadcrumbItem, Tabs, Tab, Tooltip, TooltipPosition } from "@patternfly/react-core";
 import { connect } from "react-redux";
 import ComponentTypeIcons from "./ComponentTypeIcons";
 import DependencyListView from "./DependencyListView";
@@ -148,8 +148,8 @@ class ComponentDetailsView extends React.Component {
       <div className="cmpsr-panel__body cmpsr-panel__body--main">
         <div className="cmpsr-header">
           {(componentParent.length > 0 && (
-            <ol className="breadcrumb">
-              <li>
+            <Breadcrumb>
+              <BreadcrumbItem>
                 <a href="#" onClick={(e) => this.handleCloseDetails(e)}>
                   <FormattedMessage
                     defaultMessage="Back to {blueprint}"
@@ -158,19 +158,19 @@ class ComponentDetailsView extends React.Component {
                     }}
                   />
                 </a>
-              </li>
+              </BreadcrumbItem>
               {componentParent.map((parent, i) => (
-                <li key={parent.name}>
+                <BreadcrumbItem key={parent.name}>
                   <a href="#" onClick={(e) => this.handleParentComponent(e, parent, i)}>
                     {parent.name}
                   </a>
-                </li>
+                </BreadcrumbItem>
               ))}
               <li />
-            </ol>
+            </Breadcrumb>
           )) || (
-            <ol className="breadcrumb">
-              <li>
+            <Breadcrumb>
+              <BreadcrumbItem>
                 <a href="#" onClick={(e) => this.handleCloseDetails(e)}>
                   <FormattedMessage
                     defaultMessage="Back to {blueprint}"
@@ -179,8 +179,8 @@ class ComponentDetailsView extends React.Component {
                     }}
                   />
                 </a>
-              </li>
-            </ol>
+              </BreadcrumbItem>
+            </Breadcrumb>
           )}
           <div className="cmpsr-header__actions">
             <ul className="list-inline">

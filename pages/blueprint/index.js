@@ -6,7 +6,7 @@ import React from "react";
 import { FormattedMessage, defineMessages, injectIntl } from "react-intl";
 import cockpit from "cockpit"; // eslint-disable-line import/no-unresolved
 import PropTypes from "prop-types";
-import { Button, Popover, Tab, Tabs } from "@patternfly/react-core";
+import { Breadcrumb, BreadcrumbItem, Button, Popover, Tab, Tabs } from "@patternfly/react-core";
 import { OutlinedQuestionCircleIcon } from "@patternfly/react-icons";
 import { Table, TableHeader, TableBody, TableVariant } from "@patternfly/react-table";
 import { connect } from "react-redux";
@@ -351,16 +351,16 @@ class BlueprintPage extends React.Component {
     return (
       <Layout className="container-fluid" ref={(c) => (this.layout = c)}>
         <header className="cmpsr-header">
-          <ol className="breadcrumb">
-            <li>
+          <Breadcrumb>
+            <BreadcrumbItem>
               <Link to="/blueprints">
                 <FormattedMessage defaultMessage="Back to blueprints" />
               </Link>
-            </li>
-            <li className="active">
+            </BreadcrumbItem>
+            <BreadcrumbItem isActive>
               <strong>{this.props.route.params.blueprint}</strong>
-            </li>
-          </ol>
+            </BreadcrumbItem>
+          </Breadcrumb>
           <div className="cmpsr-header__actions">
             <ul className="list-inline">
               <li>
