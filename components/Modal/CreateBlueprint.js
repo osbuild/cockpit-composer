@@ -3,6 +3,7 @@ import { Button, Modal, ModalVariant } from "@patternfly/react-core";
 import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { ExclamationCircleIcon } from "@patternfly/react-icons";
 import { creatingBlueprint } from "../../core/actions/blueprints";
 import history from "../../core/history";
 
@@ -158,14 +159,14 @@ class CreateBlueprint extends React.Component {
           {this.state.errorInline &&
             ((this.state.errorNameEmpty && (
               <div className="alert alert-danger">
-                <span className="pficon pficon-error-circle-o" />
+                <ExclamationCircleIcon />
                 <strong>
                   <FormattedMessage defaultMessage="Required information is missing." />
                 </strong>
               </div>
             )) || (
               <div className="alert alert-danger">
-                <span className="pficon pficon-error-circle-o" />
+                <ExclamationCircleIcon />
                 <strong>
                   <FormattedMessage defaultMessage="Specify a new blueprint name." />
                 </strong>
