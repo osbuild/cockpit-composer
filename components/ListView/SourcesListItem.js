@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FormattedMessage, defineMessages, injectIntl } from "react-intl";
 import { Button, Spinner } from "@patternfly/react-core";
+import { PencilAltIcon, RepositoryIcon } from "@patternfly/react-icons";
 import DropdownKebab from "../Dropdown/DropdownKebab";
 
 const messages = defineMessages({
@@ -55,7 +56,7 @@ class SourcesListItem extends React.Component {
         <div className="list-pf-container">
           <div className="list-pf-content list-pf-content-flex">
             <div className="list-pf-left">
-              <span className="pficon pficon-repository list-pf-icon-small" aria-hidden="true" />
+              <RepositoryIcon />
             </div>
             <div className="list-pf-content-wrapper">
               <div className="list-pf-main-content">
@@ -81,7 +82,7 @@ class SourcesListItem extends React.Component {
                     ref={this.editButton}
                     onClick={() => this.props.edit(source.name)}
                   >
-                    <span aria-hidden="true" className="pficon pficon-edit" />
+                    <PencilAltIcon />
                   </button>
                   <DropdownKebab dropdownItems={dropdownItems} />
                 </div>

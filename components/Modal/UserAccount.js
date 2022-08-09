@@ -3,6 +3,7 @@ import { FormattedMessage, defineMessages, injectIntl } from "react-intl";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Button, Checkbox, Form, FormGroup, Modal, ModalVariant, TextInput, TextArea } from "@patternfly/react-core";
+import { PencilAltIcon } from "@patternfly/react-icons";
 import { setBlueprintUsers } from "../../core/actions/blueprints";
 import "./UserAccount.css";
 
@@ -252,7 +253,7 @@ class UserAccount extends React.Component {
       <>
         {this.props.edit ? (
           <Button id="button-edit-user" variant="primary" onClick={this.handleModalOpen}>
-            <span className="pficon pficon-edit" />
+            <PencilAltIcon />
           </Button>
         ) : (
           <Button variant="primary" onClick={this.handleModalOpen}>

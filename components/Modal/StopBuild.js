@@ -4,6 +4,7 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { TimesIcon } from "@patternfly/react-icons";
 import { cancellingCompose } from "../../core/actions/composes";
 
 class StopBuild extends React.Component {
@@ -38,7 +39,7 @@ class StopBuild extends React.Component {
           <div className="modal-content">
             <div className="modal-header">
               <button type="button" className="close" data-dismiss="modal">
-                <span className="pficon pficon-close" />
+                <TimesIcon />
               </button>
               <h4 className="modal-title" id="myModalLabel">
                 <FormattedMessage defaultMessage="Stop build" />

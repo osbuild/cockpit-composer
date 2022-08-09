@@ -3,6 +3,7 @@ import { FormattedMessage, defineMessages, injectIntl } from "react-intl";
 import PropTypes from "prop-types";
 import { Breadcrumb, BreadcrumbItem, Tabs, Tab, Tooltip, TooltipPosition } from "@patternfly/react-core";
 import { connect } from "react-redux";
+import { TimesIcon } from "@patternfly/react-icons";
 import ComponentTypeIcons from "./ComponentTypeIcons";
 import DependencyListView from "./DependencyListView";
 import LabelWithBadge from "./LabelWithBadge";
@@ -228,7 +229,7 @@ class ComponentDetailsView extends React.Component {
               <li>
                 <Tooltip position={TooltipPosition.bottom} content={formatMessage(messages.hideDetails)}>
                   <button type="button" className="close" onClick={(e) => this.handleCloseDetails(e)}>
-                    <span className="pficon pficon-close" />
+                    <TimesIcon />
                   </button>
                 </Tooltip>
               </li>
