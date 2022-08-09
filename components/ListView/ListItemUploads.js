@@ -1,8 +1,21 @@
 import React from "react";
 import { defineMessages, injectIntl } from "react-intl";
 import PropTypes from "prop-types";
-import { Button, DataListItem, DataListItemRow, DataListCell, DataListItemCells } from "@patternfly/react-core";
-import { CaretDownIcon, ServiceIcon } from "@patternfly/react-icons";
+import {
+  Button,
+  DataListItem,
+  DataListItemRow,
+  DataListCell,
+  DataListItemCells,
+  Spinner,
+} from "@patternfly/react-core";
+import {
+  CaretDownIcon,
+  CheckCircleIcon,
+  ExclamationCircleIcon,
+  PendingIcon,
+  ServiceIcon,
+} from "@patternfly/react-icons";
 
 const messages = defineMessages({
   imageName: {
@@ -70,7 +83,7 @@ class ListItemUploads extends React.PureComponent {
           return (
             <div className="cc-c-status">
               <div className="cc-c-status__icon">
-                <span className="pficon pficon-pending" aria-hidden="true" />
+                <PendingIcon className="pending-icon" />
               </div>
               {formatMessage(messages.uploadStatusWaiting)}
             </div>
@@ -79,7 +92,7 @@ class ListItemUploads extends React.PureComponent {
           return (
             <div className="cc-c-status">
               <div className="cc-c-status__icon">
-                <div className="spinner spinner-xs" />
+                <Spinner isSVG size="md" aria-label="Running status spinner" />
               </div>
               {formatMessage(messages.uploadStatusRunning)}
             </div>
@@ -88,7 +101,7 @@ class ListItemUploads extends React.PureComponent {
           return (
             <div className="cc-c-status">
               <div className="cc-c-status__icon">
-                <span className="pficon pficon-ok" aria-hidden="true" />
+                <CheckCircleIcon className="success-icon" />
               </div>
               {formatMessage(messages.uploadStatusFinished)}
             </div>
@@ -97,7 +110,7 @@ class ListItemUploads extends React.PureComponent {
           return (
             <div className="cc-c-status">
               <div className="cc-c-status__icon">
-                <span className="pficon pficon-error-circle-o" aria-hidden="true" />
+                <ExclamationCircleIcon className="error-icon" />
               </div>
               {formatMessage(messages.uploadStatusFailed)}
             </div>

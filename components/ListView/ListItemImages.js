@@ -10,8 +10,9 @@ import {
   DataListToggle,
   DataListContent,
   DataListItemCells,
+  Spinner,
 } from "@patternfly/react-core";
-import { BuilderImageIcon } from "@patternfly/react-icons";
+import { BuilderImageIcon, CheckCircleIcon, ExclamationCircleIcon, PendingIcon } from "@patternfly/react-icons";
 import { deletingCompose, cancellingCompose } from "../../core/actions/composes";
 import {
   setModalStopBuildVisible,
@@ -232,7 +233,7 @@ class ListItemImages extends React.Component {
           return (
             <div className="cc-c-status">
               <div className="cc-c-status__icon">
-                <span className="pficon pficon-pending" aria-hidden="true" />
+                <PendingIcon className="pending-icon" />
               </div>
               {formatMessage(messages.imageStatusWaiting)}
             </div>
@@ -241,7 +242,7 @@ class ListItemImages extends React.Component {
           return (
             <div className="cc-c-status">
               <div className="cc-c-status__icon">
-                <div className="spinner spinner-xs" />
+                <Spinner isSVG size="md" aria-label="Running status spinner" />
               </div>
               {formatMessage(messages.imageStatusRunning)}
             </div>
@@ -250,7 +251,7 @@ class ListItemImages extends React.Component {
           return (
             <div className="cc-c-status">
               <div className="cc-c-status__icon">
-                <span className="pficon pficon-ok" aria-hidden="true" />
+                <CheckCircleIcon className="success-icon" />
               </div>
               <span data-status>{formatMessage(messages.imageStatusFinished)}</span>
             </div>
@@ -259,7 +260,7 @@ class ListItemImages extends React.Component {
           return (
             <div className="cc-c-status">
               <div className="cc-c-status__icon">
-                <span className="pficon pficon-error-circle-o" aria-hidden="true" />
+                <ExclamationCircleIcon className="error-icon" />
               </div>
               {formatMessage(messages.imageStatusFailed)}
             </div>
