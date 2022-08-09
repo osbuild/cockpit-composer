@@ -7,7 +7,7 @@ import { FormattedMessage, defineMessages, injectIntl } from "react-intl";
 import cockpit from "cockpit"; // eslint-disable-line import/no-unresolved
 import PropTypes from "prop-types";
 import { Breadcrumb, BreadcrumbItem, Button, Popover, Tab, Tabs } from "@patternfly/react-core";
-import { OutlinedQuestionCircleIcon } from "@patternfly/react-icons";
+import { CheckIcon, OutlinedQuestionCircleIcon } from "@patternfly/react-icons";
 import { Table, TableHeader, TableBody, TableVariant } from "@patternfly/react-table";
 import { connect } from "react-redux";
 import Link from "../../components/Link/Link";
@@ -326,12 +326,12 @@ class BlueprintPage extends React.Component {
       cells: [
         user.description,
         user.name,
-        { title: user.groups !== undefined && user.groups.includes("wheel") && <span className="fa fa-check" /> },
-        { title: user.password && <span className="fa fa-check" /> },
+        { title: user.groups !== undefined && user.groups.includes("wheel") && <CheckIcon /> },
+        { title: user.password && <CheckIcon /> },
         {
           title: user.key !== undefined && (
             <span>
-              <span className="fa fa-check" />
+              <CheckIcon />
               {` `}
               {user.key.split(" ")[2] || ""}
             </span>
