@@ -23,6 +23,7 @@ import Logs from "../Logs/Logs";
 import * as composer from "../../core/composer";
 import ImagesDataList from "./ImagesDataList";
 import ListItemUploads from "./ListItemUploads";
+import DropdownKebab from "../Dropdown/DropdownKebab";
 
 const messages = defineMessages({
   imageType: {
@@ -147,53 +148,45 @@ class ListItemImages extends React.Component {
     let actions;
     switch (listItem.queue_status) {
       case "FINISHED":
-        actions = (
-          <>
-            <li>
-              <a href={this.props.downloadUrl} role="button" data-download>
-                <FormattedMessage defaultMessage="Download" />
-              </a>
-            </li>
-            <li key="delete">
-              <a href="#" role="button" onClick={(e) => this.handleShowModalDeleteImage(e)} data-delete>
-                <FormattedMessage defaultMessage="Delete" />
-              </a>
-            </li>
-          </>
-        );
+        actions = [
+          <li key="download">
+            <Button variant="plain" component="a" href={this.props.downloadUrl} data-download>
+              <FormattedMessage defaultMessage="Download" />
+            </Button>
+          </li>,
+          <li key="delete">
+            <Button variant="plain" onClick={(e) => this.handleShowModalDeleteImage(e)} data-delete>
+              <FormattedMessage defaultMessage="Delete" />
+            </Button>
+          </li>,
+        ];
         break;
       case "RUNNING":
-        actions = (
-          <>
-            <li>
-              <a href="#" role="button" onClick={(e) => this.handleShowModalStop(e)}>
-                <FormattedMessage defaultMessage="Stop" />
-              </a>
-            </li>
-          </>
-        );
+        actions = [
+          <li key="stop">
+            <Button variant="plain" onClick={(e) => this.handleShowModalStop(e)}>
+              <FormattedMessage defaultMessage="Stop" />
+            </Button>
+          </li>,
+        ];
         break;
       case "WAITING":
         actions = (
-          <>
-            <li>
-              <a href="#" role="button" onClick={(e) => this.handleCancel(e)}>
-                <FormattedMessage defaultMessage="Stop" />
-              </a>
-            </li>
-          </>
+          <li key="stop">
+            <Button variant="plain" onClick={(e) => this.handleCancel(e)}>
+              <FormattedMessage defaultMessage="Stop" />
+            </Button>
+          </li>
         );
         break;
       case "FAILED":
-        actions = (
-          <>
-            <li>
-              <a href="#" role="button" onClick={(e) => this.handleDelete(e)}>
-                <FormattedMessage defaultMessage="Remove" />
-              </a>
-            </li>
-          </>
-        );
+        actions = [
+          <li key="remove">
+            <Button variant="plain" onClick={(e) => this.handleDelete(e)}>
+              <FormattedMessage defaultMessage="Remove" />
+            </Button>
+          </li>,
+        ];
         break;
       default:
         actions = undefined;
@@ -335,22 +328,7 @@ class ListItemImages extends React.Component {
             className={`pf-c-data-list__item-action ${actions === undefined ? "cc-u-not-visible" : ""}`}
             aria-hidden={actions === undefined}
           >
-            <div className="dropdown pull-right dropdown-kebab-pf">
-              <button
-                aria-label={formatMessage(messages.imageActions)}
-                className="btn btn-link dropdown-toggle"
-                type="button"
-                id={`${listItem.id}-actions`}
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <span className="fa fa-ellipsis-v" />
-              </button>
-              <ul className="dropdown-menu dropdown-menu-right" aria-labelledby={`${listItem.id}-actions`}>
-                {actions}
-              </ul>
-            </div>
+            <DropdownKebab dropdownItems={actions} />
           </div>
           {logsButton}
         </DataListItemRow>

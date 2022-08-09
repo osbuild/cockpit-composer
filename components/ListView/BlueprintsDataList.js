@@ -1,5 +1,5 @@
 import React from "react";
-import { defineMessages, injectIntl } from "react-intl";
+import { injectIntl } from "react-intl";
 import PropTypes from "prop-types";
 import { DataList, DataListItem, DataListItemRow, DataListCell, DataListItemCells } from "@patternfly/react-core";
 import { PficonTemplateIcon } from "@patternfly/react-icons";
@@ -7,12 +7,7 @@ import Link from "../Link/Link";
 import CreateImageWizard from "../Wizard/CreateImageWizard";
 import DeleteBlueprint from "../Modal/DeleteBlueprint";
 import ExportBlueprint from "../Modal/ExportBlueprint";
-
-const messages = defineMessages({
-  actions: {
-    defaultMessage: "actions",
-  },
-});
+import DropdownKebab from "../Dropdown/DropdownKebab";
 
 class BlueprintsDataList extends React.PureComponent {
   constructor() {
@@ -21,7 +16,16 @@ class BlueprintsDataList extends React.PureComponent {
 
   render() {
     const { blueprints, ariaLabel } = this.props;
-    const { formatMessage } = this.props.intl;
+
+    const dropdownItems = (blueprint) => [
+      <li key="export">
+        <ExportBlueprint blueprint={blueprint} />
+      </li>,
+      <li key="delete">
+        <DeleteBlueprint blueprint={blueprint} />
+      </li>,
+    ];
+
     return (
       <DataList aria-label={ariaLabel} className="cc-m-nowrap-on-lg">
         {blueprints.map((blueprint) => (
@@ -44,27 +48,7 @@ class BlueprintsDataList extends React.PureComponent {
               />
               <div className="pf-c-data-list__item-action cc-m-nowrap">
                 <CreateImageWizard blueprintName={blueprint.name} />
-                <div className="dropdown pull-right dropdown-kebab-pf">
-                  <button
-                    className="btn btn-link dropdown-toggle"
-                    type="button"
-                    id={`${blueprint.name}-kebab`}
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="true"
-                    aria-label={`${blueprint.name} ${formatMessage(messages.actions)}`}
-                  >
-                    <span className="fa fa-ellipsis-v" />
-                  </button>
-                  <ul className="dropdown-menu dropdown-menu-right" aria-labelledby={`${blueprint.name}-kebab`}>
-                    <li>
-                      <ExportBlueprint blueprint={blueprint} />
-                    </li>
-                    <li>
-                      <DeleteBlueprint blueprint={blueprint} />
-                    </li>
-                  </ul>
-                </div>
+                <DropdownKebab dropdownItems={dropdownItems(blueprint)} />
               </div>
             </DataListItemRow>
           </DataListItem>
@@ -77,7 +61,6 @@ class BlueprintsDataList extends React.PureComponent {
 BlueprintsDataList.propTypes = {
   blueprints: PropTypes.arrayOf(PropTypes.object),
   ariaLabel: PropTypes.string,
-  intl: PropTypes.object.isRequired,
 };
 
 BlueprintsDataList.defaultProps = {
