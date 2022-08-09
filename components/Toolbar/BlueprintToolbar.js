@@ -1,102 +1,113 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-import ToolbarLayout from "./ToolbarLayout";
+import {
+  Select,
+  SelectOption,
+  SelectVariant,
+  Toolbar,
+  ToolbarItem,
+  ToolbarContent,
+  ToolbarGroup,
+  Button,
+  SearchInput,
+} from "@patternfly/react-core";
+import { SortAlphaDownIcon, SortAlphaDownAltIcon } from "@patternfly/react-icons";
 
-const BlueprintToolbar = (props) => (
-  <ToolbarLayout>
-    <div className="form-group">
-      {(props.componentsSortKey === "name" && props.componentsSortValue === "DESC" && (
-        <button
-          className="btn btn-link"
-          type="button"
-          disabled={props.emptyState}
-          onClick={() => {
-            props.componentsSortSetValue("ASC");
-            props.dependenciesSortSetValue("ASC");
-          }}
+const BlueprintToolbar = (props) => {
+  const [inputValue, setInputValue] = useState("");
+  const [selectedFilter, setSelectedFilter] = useState("Name");
+  const [isFilterSelectOpen, setIsFilterSelectOpen] = useState(false);
+
+  const onFilterSelectToggle = (isOpen) => {
+    setIsFilterSelectOpen(isOpen);
+  };
+
+  const onSelectFilter = (_, selected) => {
+    setSelectedFilter(selected);
+    setIsFilterSelectOpen(false);
+  };
+
+  const onInputChange = (newValue) => {
+    setInputValue(newValue);
+
+    const filter = {
+      // the filter key is saved as labelled with a capital letter
+      key: selectedFilter.toLowerCase(),
+      value: newValue,
+    };
+    props.filterAddValue(filter);
+  };
+
+  // TODO: translate
+  const filterOptions = [
+    <SelectOption key="name" value="Name" />,
+    <SelectOption key="version" value="Version" />,
+    <SelectOption key="release" value="Release" />,
+  ];
+
+  const toolbarItems = (
+    <ToolbarGroup variant="filter-group" alignment={{ default: "alignLeft" }}>
+      <ToolbarItem>
+        <Select
+          variant={SelectVariant.single}
+          aria-label="Select Input"
+          onToggle={onFilterSelectToggle}
+          onSelect={onSelectFilter}
+          selections={selectedFilter}
+          isOpen={isFilterSelectOpen}
         >
-          <span className="fa fa-sort-alpha-asc" />
-        </button>
-      )) ||
-        (props.componentsSortKey === "name" && props.componentsSortValue === "ASC" && (
-          <button
-            className="btn btn-link"
-            type="button"
-            disabled={props.emptyState}
+          {filterOptions}
+        </Select>
+      </ToolbarItem>
+      <ToolbarItem variant="search-filter">
+        <SearchInput
+          aria-label="blueprints search input"
+          onChange={onInputChange}
+          value={inputValue}
+          onClear={() => onInputChange("")}
+        />
+      </ToolbarItem>
+      <ToolbarItem variant="icon-button-group">
+        {(props.componentsSortValue === "DESC" && (
+          <Button
+            variant="plain"
+            aria-label="sort ascending"
             onClick={() => {
-              props.componentsSortSetValue("DESC");
-              props.dependenciesSortSetValue("DESC");
+              props.componentsSortSetValue("ASC");
+              props.dependenciesSortSetValue("ASC");
             }}
           >
-            <span className="fa fa-sort-alpha-desc" />
-          </button>
-        ))}
-    </div>
-    {props.showUndoRedo && props.undo !== undefined && (
-      <div className="form-group">
-        {(props.pastLength > 0 && (
-          <button
-            className="btn btn-link"
-            type="button"
-            onClick={() => {
-              props.undo();
-            }}
-            data-button="undo"
-          >
-            <span className="fa fa-undo" aria-hidden="true" />
-          </button>
-        )) || (
-          <button className="btn btn-link disabled" type="button" data-button="undo">
-            <span className="fa fa-undo" aria-hidden="true" />
-          </button>
-        )}
-        {(props.futureLength > 0 && (
-          <button
-            className="btn btn-link"
-            type="button"
-            onClick={() => {
-              props.redo(props.blueprintId, false);
-            }}
-            data-button="redo"
-          >
-            <span className="fa fa-repeat" aria-hidden="true" />
-          </button>
-        )) || (
-          <button className="btn btn-link disabled" type="button" data-button="redo">
-            <span className="fa fa-repeat" aria-hidden="true" />
-          </button>
-        )}
-      </div>
-    )}
-  </ToolbarLayout>
-);
+            <SortAlphaDownIcon />
+          </Button>
+        )) ||
+          (props.componentsSortValue === "ASC" && (
+            <Button
+              variant="plain"
+              aria-label="sort descending"
+              onClick={() => {
+                props.componentsSortSetValue("DESC");
+                props.dependenciesSortSetValue("DESC");
+              }}
+            >
+              <SortAlphaDownAltIcon />
+            </Button>
+          ))}
+      </ToolbarItem>
+    </ToolbarGroup>
+  );
+
+  return (
+    <Toolbar>
+      <ToolbarContent>{toolbarItems}</ToolbarContent>
+    </Toolbar>
+  );
+};
 
 BlueprintToolbar.propTypes = {
-  emptyState: PropTypes.bool,
-  componentsSortKey: PropTypes.string,
+  filterAddValue: PropTypes.func,
   componentsSortSetValue: PropTypes.func,
   componentsSortValue: PropTypes.string,
   dependenciesSortSetValue: PropTypes.func,
-  undo: PropTypes.func,
-  pastLength: PropTypes.number,
-  futureLength: PropTypes.number,
-  redo: PropTypes.func,
-  blueprintId: PropTypes.string,
-  showUndoRedo: PropTypes.bool,
-};
-
-BlueprintToolbar.defaultProps = {
-  emptyState: false,
-  componentsSortKey: "",
-  componentsSortSetValue() {},
-  componentsSortValue: "",
-  dependenciesSortSetValue() {},
-  undo() {},
-  pastLength: 0,
-  futureLength: 0,
-  redo() {},
-  blueprintId: "",
-  showUndoRedo: false,
 };
 
 export default BlueprintToolbar;
