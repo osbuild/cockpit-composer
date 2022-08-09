@@ -34,8 +34,6 @@ const messages = defineMessages({
   },
 });
 
-const permission = cockpit.permission({ admin: true });
-
 class EmptyStateInactive extends React.Component {
   constructor(props) {
     super(props);
@@ -45,22 +43,8 @@ class EmptyStateInactive extends React.Component {
       allowed: true,
       user: "",
     };
-    this.onPermissionChanged = this.onPermissionChanged.bind(this);
     this.startService = this.startService.bind(this);
     this.goToServicePage = this.goToServicePage.bind(this);
-  }
-
-  componentDidMount() {
-    permission.addEventListener("changed", this.onPermissionChanged);
-  }
-
-  componentWillUnmount() {
-    permission.removeEventListener("changed", this.onPermissionChanged);
-  }
-
-  onPermissionChanged() {
-    this.setState({ allowed: permission.allowed !== false });
-    this.setState({ user: permission.user.name });
   }
 
   startService(e) {
