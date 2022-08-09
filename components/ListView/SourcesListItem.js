@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { FormattedMessage, defineMessages, injectIntl } from "react-intl";
-import { Spinner } from "@patternfly/react-core";
+import { Button, Spinner } from "@patternfly/react-core";
+import DropdownKebab from "../Dropdown/DropdownKebab";
 
 const messages = defineMessages({
   edit: {
@@ -40,6 +41,15 @@ class SourcesListItem extends React.Component {
     const { source, key } = this.props;
     const type = source.type.substring("yum-".length);
     const { formatMessage } = this.props.intl;
+
+    const dropdownItems = [
+      <li key="remove">
+        <Button variant="plain" onClick={() => this.props.remove(source.name)}>
+          {formatMessage(messages.remove)}
+        </Button>
+      </li>,
+    ];
+
     return (
       <div className="list-pf-item" key={key} data-source={source.name}>
         <div className="list-pf-container">
@@ -73,26 +83,7 @@ class SourcesListItem extends React.Component {
                   >
                     <span aria-hidden="true" className="pficon pficon-edit" />
                   </button>
-                  <div className="dropdown btn-group dropdown-kebab-pf">
-                    <button
-                      aria-label={`${formatMessage(messages.kebab)} ${source.name}`}
-                      className="btn btn-link dropdown-toggle"
-                      type="button"
-                      id="dropdownKebab"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-                      <span className="fa fa-ellipsis-v" />
-                    </button>
-                    <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
-                      <li>
-                        <a href="#" onClick={() => this.props.remove(source.name)}>
-                          {formatMessage(messages.remove)}
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
+                  <DropdownKebab dropdownItems={dropdownItems} />
                 </div>
               ) : (
                 <div className="list-pf-actions">

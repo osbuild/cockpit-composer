@@ -44,7 +44,7 @@ class ComponentsDataListItem extends React.Component {
   }
 
   render() {
-    const { listItem, noEditComponent, handleComponentDetails, handleRemoveComponent } = this.props;
+    const { listItem, handleComponentDetails } = this.props;
     const { expanded } = this.state;
     const { formatMessage } = this.props.intl;
     return (
@@ -96,37 +96,6 @@ class ComponentsDataListItem extends React.Component {
               </DataListCell>,
             ]}
           />
-          {noEditComponent !== true && (
-            <div className="pf-c-data-list__item-action">
-              <div className="dropdown pull-right dropdown-kebab-pf">
-                <button
-                  className="btn btn-link dropdown-toggle"
-                  type="button"
-                  id={`${listItem.name}-kebab`}
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="true"
-                  aria-label={`${listItem.name} ${formatMessage(messages.actions)}`}
-                >
-                  <span className="fa fa-ellipsis-v" />
-                </button>
-                <ul className="dropdown-menu dropdown-menu-right" aria-labelledby={`${listItem.name}-kebab`}>
-                  <li>
-                    <a href="#" onClick={(e) => handleComponentDetails(e, listItem)}>
-                      <FormattedMessage defaultMessage="View" />
-                    </a>
-                  </li>
-                  {listItem.inBlueprint && listItem.userSelected && (
-                    <li>
-                      <a href="#" onClick={(e) => handleRemoveComponent(e, listItem.name)}>
-                        <FormattedMessage defaultMessage="Remove" />
-                      </a>
-                    </li>
-                  )}
-                </ul>
-              </div>
-            </div>
-          )}
         </DataListItemRow>
         <DataListContent
           aria-label={`${listItem.name}
@@ -195,8 +164,6 @@ ComponentsDataListItem.propTypes = {
     versionSelected: PropTypes.string,
   }),
   handleComponentDetails: PropTypes.func,
-  handleRemoveComponent: PropTypes.func,
-  noEditComponent: PropTypes.bool,
   fetchDetails: PropTypes.func,
   intl: PropTypes.object.isRequired,
 };
@@ -205,8 +172,6 @@ ComponentsDataListItem.defaultProps = {
   listItem: {},
   componentDetailsParent: {},
   handleComponentDetails() {},
-  handleRemoveComponent() {},
-  noEditComponent: false,
   fetchDetails() {},
 };
 

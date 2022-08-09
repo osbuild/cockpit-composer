@@ -141,18 +141,6 @@ class ListItemUploads extends React.PureComponent {
               <DataListCell key="status">{uploadStatus()}</DataListCell>,
             ]}
           />
-          <div className="pf-c-data-list__item-action cc-u-not-visible" aria-hidden="true">
-            <div className="dropdown pull-right dropdown-kebab-pf">
-              <button
-                aria-label={formatMessage(messages.uploadActions)}
-                className="btn btn-link dropdown-toggle"
-                type="button"
-                id={`${upload.uuid}-actions`}
-              >
-                <span className="fa fa-ellipsis-v" />
-              </button>
-            </div>
-          </div>
           <div aria-hidden="true" className="pf-c-data-list__item-action cc-u-not-visible">
             {logsButton}
           </div>
