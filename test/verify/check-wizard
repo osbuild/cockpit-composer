@@ -7,6 +7,8 @@ import testlib
 
 
 @testlib.nondestructive
+@testlib.timeout(2400)
+@testlib.no_retry_when_changed
 class TestWizard(composerlib.ComposerCase):
 
     def testQCOW2Customized(self):
@@ -58,7 +60,7 @@ class TestWizard(composerlib.ComposerCase):
         b.focus("div[data-testid='search-available-pkgs-input'] input")
         b.key_press("openssh-server")
         b.click("button[aria-label='Search button for available packages']")
-        with b.wait_timeout(120):
+        with b.wait_timeout(180):
             b.click("li[data-testid='openssh-server']")
             b.click("button[aria-label='Add selected']")
             b.click("li[data-testid='httpd']")
@@ -223,7 +225,7 @@ class TestWizard(composerlib.ComposerCase):
         b.wait_in_text("#review-list", "ami")
         b.wait_in_text("#review-list", "Image size")
         b.wait_in_text("#review-list", "6")
-        with b.wait_timeout(120):
+        with b.wait_timeout(180):
             b.wait_in_text("#review-list", "Packages")
             b.wait_in_text("#review-list", "3")
 
@@ -334,7 +336,7 @@ class TestWizard(composerlib.ComposerCase):
         b.wait_in_text("#review-list", "vhd")
         b.wait_in_text("#review-list", "Image size")
         b.wait_in_text("#review-list", "2")
-        with b.wait_timeout(120):
+        with b.wait_timeout(180):
             b.wait_in_text("#review-list", "Packages")
             b.wait_in_text("#review-list", "3")
 
@@ -457,7 +459,7 @@ class TestWizard(composerlib.ComposerCase):
         b.wait_in_text("#review-list", "vmdk")
         b.wait_in_text("#review-list", "Image size")
         b.wait_in_text("#review-list", "2")
-        with b.wait_timeout(120):
+        with b.wait_timeout(180):
             b.wait_in_text("#review-list", "Packages")
             b.wait_in_text("#review-list", "3")
 
