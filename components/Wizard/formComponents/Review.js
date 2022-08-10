@@ -99,13 +99,24 @@ const Review = (props) => {
   const [dependencies, setDependencies] = useState(undefined);
 
   useEffect(() => {
-    const fetchDependencies = async (blueprintName) => {
-      const result = await composer.depsolveBlueprint(blueprintName);
-      const numDependencies = result.blueprints[0].dependencies.length - formValues["selected-packages"].length;
-      setDependencies(numDependencies);
+    const fetchDependencies = async (packages) => {
+      if (packages?.length) {
+        const result = await composer.getComponentDependencies(packages);
+        // Build a Set() because Packages may share dependencies
+        const dependencies = new Set(
+          result.reduce((deps, pkg) => {
+            const pkgDependencies = pkg.dependencies.map((dep) => dep.name);
+            return [...deps, ...pkgDependencies];
+          }, [])
+        );
+        setDependencies(dependencies.size);
+      } else {
+        setDependencies(0);
+      }
     };
+
     if (formValues["selected-packages"]) {
-      fetchDependencies(props.blueprintName);
+      fetchDependencies(formValues["selected-packages"]);
     }
   });
 
