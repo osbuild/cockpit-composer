@@ -126,17 +126,16 @@ const Review = (props) => {
           {formValues?.["image-output-type"] === "vhd" && formValues?.["image-upload"] && AzureReview(formValues)}
           {formValues?.["image-output-type"] === "vmdk" && formValues?.["image-upload"] && VMWareReview(formValues)}
           {formValues?.["image-output-type"] === "oci" && formValues?.["image-upload"] && ociReview(formValues)}
-          <TextListItem component={TextListItemVariants.dt}>Packages</TextListItem>
-          <FormSpy subscription={{ values: true }}>
-            {() => {
+          <FormSpy
+            subscription={{ values: true }}
+            onChange={() => {
               setFormValues(getState()?.values);
-              return (
-                <TextListItem component={TextListItemVariants.dd}>
-                  {formValues["selected-packages"] ? formValues["selected-packages"].length : <Spinner size="sm" />}
-                </TextListItem>
-              );
             }}
-          </FormSpy>
+          />
+          <TextListItem component={TextListItemVariants.dt}>Packages</TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>
+            {formValues["selected-packages"] ? formValues["selected-packages"].length : <Spinner size="sm" />}
+          </TextListItem>
           <TextListItem component={TextListItemVariants.dt}>Dependencies</TextListItem>
           <TextListItem component={TextListItemVariants.dd}>
             {dependencies || dependencies === 0 ? dependencies : <Spinner size="sm" />}
