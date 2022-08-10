@@ -20,7 +20,7 @@ import api from "../../../core/api";
 import * as composer from "../../../core/composer";
 
 const Packages = ({ defaultArch, ...props }) => {
-  const { change } = useFormApi();
+  const { change, getState } = useFormApi();
   const { input } = useFieldApi(props);
   const [packagesSearchName, setPackagesSearchName] = useState(undefined);
   const [filterAvailable, setFilterAvailable] = useState(undefined);
@@ -39,13 +39,13 @@ const Packages = ({ defaultArch, ...props }) => {
 
   // this effect only triggers on mount
   useEffect(() => {
-    const fetchPackagesChosen = async () => {
+    const fetchPackagesChosenFromBlueprint = async () => {
       setPackagesChosenLoading(true);
       const result = await composer.depsolveBlueprint(props.blueprintName);
       const blueprint = result.blueprints[0].blueprint;
       const blueprintPackages = blueprint.packages.concat(blueprint.modules);
       const packageNames = blueprintPackages.map((pkg) => pkg.name);
-      if (packageNames.length !== 0) {
+      if (packageNames?.length) {
         const packageInfo = await composer.getComponentInfo(packageNames);
         const selectedPackages = packageInfo.map((pkg) => ({ name: pkg.name, summary: pkg.summary }));
         change(
@@ -59,7 +59,25 @@ const Packages = ({ defaultArch, ...props }) => {
       setPackagesChosenLoading(false);
     };
 
-    fetchPackagesChosen();
+    const fetchPackagesChosenFromFormState = async (packages) => {
+      if (packages?.length) {
+        setPackagesChosenLoading(true);
+        const packageInfo = await composer.getComponentInfo(packages);
+        const selectedPackages = packageInfo.map((pkg) => ({ name: pkg.name, summary: pkg.summary }));
+        setPackagesChosenSorted(selectedPackages);
+        setPackagesChosenLoading(false);
+      }
+    };
+
+    const packages = getState()?.values["selected-packages"];
+
+    if (packages) {
+      // Non-initial visit to Packages step, package list is stored in form state
+      fetchPackagesChosenFromFormState(packages);
+    } else {
+      // Initial visit to Packages step, fetch packages from the blueprint and store in form state
+      fetchPackagesChosenFromBlueprint();
+    }
   }, []);
 
   const searchResultsComparator = useCallback((searchTerm) => {
