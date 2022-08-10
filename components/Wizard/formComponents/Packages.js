@@ -53,6 +53,8 @@ const Packages = ({ defaultArch, ...props }) => {
           selectedPackages.map((pkg) => pkg.name)
         );
         setPackagesChosenSorted(selectedPackages);
+      } else {
+        change(input.name, []);
       }
       setPackagesChosenLoading(false);
     };
