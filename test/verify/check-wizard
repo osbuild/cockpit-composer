@@ -106,12 +106,11 @@ class TestWizard(composerlib.ComposerCase):
         b.is_present("button:contains('Logs')")
 
         # download image
-        b.click("button[aria-label='Actions']")
+        b.click(".pf-c-data-list__item-row button[aria-label='Actions']")
         b.click("a:contains('Download')")
 
         # delete image
-        b.click("button[aria-label='Actions']")
-        b.click("a[data-testid='delete-image']")
+        b.click("button[data-testid='delete-image']")
         b.wait_visible("#cmpsr-modal-delete")
         b.click("#cmpsr-modal-delete button:contains('Delete image')")
         b.wait_text("h2", "No images")

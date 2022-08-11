@@ -18,6 +18,49 @@ class TestBlueprint(composerlib.ComposerCase):
         self.login_and_go("/composer", superuser=True)
         b.wait_visible("#main")
 
+        bp_name = "bp_name"
+        bp_desc = "bp_description"
+        b.click("#cmpsr-btn-crt-blueprint")
+        b.wait_visible("#cmpsr-modal-crt-blueprint")
+        # blueprint name
+        b.set_input_text("#textInput-modal-markup", bp_name)
+        # blueprint description
+        b.set_input_text("#textInput2-modal-markup", bp_desc)
+        # create
+        b.click("#create-blueprint-modal-create-button")
+        b.wait_not_present("#cmpsr-modal-crt-blueprint")
+
+        # wait for back to blueprint link and click
+        b.wait_visible("a:contains('Back to blueprints')")
+        b.click("a:contains('Back to blueprints')")
+
+        # new added blueprint should be there with correct name and description
+        b.wait_visible("li[data-blueprint={}]".format(bp_name))
+        b.wait_text("#{}-name".format(bp_name), bp_name)
+        b.wait_text("li[data-blueprint={}] div[data-description]".format(bp_name), bp_desc)
+
+        # delete blueprint, cancel first
+        dropdown = "div[rowid={}-name] .pf-c-dropdown ".format(bp_name)
+        b.click(dropdown + ".pf-c-dropdown__toggle")
+        b.click(dropdown + ".pf-c-dropdown__menu a:contains('Delete')")
+        b.click("#cmpsr-modal-delete button:contains('Cancel')")
+        b.wait_not_present("#cmpsr-modal-delete")
+        # delete here
+        b.click(dropdown + ".pf-c-dropdown__toggle")
+        b.click(dropdown + ".pf-c-dropdown__menu a:contains('Delete')")
+        b.click("#cmpsr-modal-delete button:contains('Delete')")
+        b.wait_not_present("#cmpsr-modal-delete")
+        b.wait_not_present("li[data-blueprint={}]".format(bp_name))
+
+        # collect code coverage result
+        self.check_coverage()
+
+    def testCreateValidation(self):
+        b = self.browser
+
+        self.login_and_go("/composer", superuser=True)
+        b.wait_visible("#main")
+
         # create blueprint
         b.click("#cmpsr-btn-crt-blueprint")
         b.wait_visible("#cmpsr-modal-crt-blueprint")
@@ -134,16 +177,13 @@ class TestBlueprint(composerlib.ComposerCase):
         b.wait_visible("#main")
 
         # export package list
-        actions_drop_down_sel = "#openssh-server-kebab"
-        b.click(actions_drop_down_sel)
-        b.wait_attr(actions_drop_down_sel, "aria-expanded", "true")
-        b.click("li[data-blueprint=openssh-server] a:contains('Export')")
+        dropdown = "div[rowid='openssh-server-name'] .pf-c-dropdown "
+        b.click(dropdown + ".pf-c-dropdown__toggle")
+        b.click(dropdown + ".pf-c-dropdown__menu a:contains('Export')")
         b.wait_visible("#cmpsr-modal-export")
         with b.wait_timeout(300):
             b.wait_in_text("#textInput2-modal-markup", "openssh-server")
         b.click("#cmpsr-modal-export button:contains('Copy')")
-        b.click("#cmpsr-modal-export button:contains('Close')")
-        b.wait_not_present("#cmpsr-modal-export")
 
         # collect code coverage result
         self.check_coverage()

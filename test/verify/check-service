@@ -35,47 +35,6 @@ class TestService(composerlib.ComposerCase):
         b.wait_in_text("#main", "No blueprints")
         b.wait_text(".pf-c-empty-state__content .pf-c-title", "No blueprints")
 
-        # create blueprint with random name and description
-        bp_name = "bp_name"
-        bp_desc = "bp_description"
-        b.click(".pf-c-empty-state button:contains('Create blueprint')")
-        b.wait_visible("#cmpsr-modal-crt-blueprint")
-        # blueprint name
-        b.set_input_text("#textInput-modal-markup", bp_name)
-        # blueprint description
-        b.set_input_text("#textInput2-modal-markup", bp_desc)
-        # create
-        b.click("#create-blueprint-modal-create-button")
-        b.wait_not_present("#cmpsr-modal-crt-blueprint")
-
-        # wait for back to blueprint link and click
-        b.wait_visible("a:contains('Back to blueprints')")
-        b.click("a:contains('Back to blueprints')")
-
-        # new added blueprint should be there with correct name and description
-        b.wait_visible("li[data-blueprint={}]".format(bp_name))
-        b.wait_text("#{}-name".format(bp_name), bp_name)
-        b.wait_text("div[data-description]", bp_desc)
-
-        # delete blueprint, cancel first
-        b.click("#{}-kebab".format(bp_name))
-        b.wait_attr("#{}-kebab".format(bp_name), "aria-expanded", "true")
-        b.click("ul[aria-labelledby={}-kebab] a:contains('Delete')".format(bp_name))
-        b.wait_attr("#{}-kebab".format(bp_name), "aria-expanded", "false")
-        b.click("#cmpsr-modal-delete button:contains('Cancel')")
-        b.wait_not_present("#cmpsr-modal-delete")
-        # delete here
-        b.click("#{}-kebab".format(bp_name))
-        b.wait_attr("#{}-kebab".format(bp_name), "aria-expanded", "true")
-        b.click("ul[aria-labelledby={}-kebab] a:contains('Delete')".format(bp_name))
-        b.wait_attr("#{}-kebab".format(bp_name), "aria-expanded", "false")
-        b.click("#cmpsr-modal-delete button:contains('Delete')")
-        b.wait_not_present("#cmpsr-modal-delete")
-        b.wait_not_present("li[data-blueprint={}]".format(bp_name))
-        # no blueprint here
-        b.wait_in_text("#main", "No blueprints")
-
-        # collect code coverage result
         self.check_coverage()
 
     def testNoEnable(self):

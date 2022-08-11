@@ -67,10 +67,9 @@ class TestSource(composerlib.ComposerCase):
         b.click("button:contains('Cancel')")
 
         # delete added source
-        delete_drop_down_sel = "button[aria-label='Source actions {}']".format(source_name)
+        delete_drop_down_sel = "div[data-source={}] .pf-c-dropdown__toggle".format(source_name)
         b.click(delete_drop_down_sel)
-        b.wait_attr(delete_drop_down_sel, "aria-expanded", "true")
-        b.click("a:contains('Remove source')")
+        b.click("button:contains('Remove source')")
         b.wait_not_present("div[data-source={}]".format(source_name))
 
         # close manage source dialog
