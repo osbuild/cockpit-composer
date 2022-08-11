@@ -33,7 +33,7 @@ class TestCustom(composerlib.ComposerCase):
         b.wait_visible("a:contains('ssh server image')")
 
         # update description
-        actions_drop_down_sel = ".cmpsr-header__actions #dropdownKebab"
+        actions_drop_down_sel = ".pf-c-dropdown__toggle"
         b.click(actions_drop_down_sel)
         b.wait_attr(actions_drop_down_sel, "aria-expanded", "true")
         b.click("a:contains('Edit description')")
@@ -146,9 +146,9 @@ class TestCustom(composerlib.ComposerCase):
         b.wait_not_present("#user-account-modal")
         b.wait_text("tr td[data-label='Full name']", "user name")
         b.wait_text("tr td[data-label='User name']", "username")
-        b.wait_visible("tr td[data-label='Server administrator'] .fa-check")
-        b.wait_visible("tr td[data-label='Password'] .fa-check")
-        b.wait_visible("tr td[data-label='SSH key'] .fa-check")
+        b.wait_visible("tr td[data-label='Server administrator'] svg[data-testid='checkmark']")
+        b.wait_visible("tr td[data-label='Password'] svg[data-testid='checkmark']")
+        b.wait_visible("tr td[data-label='SSH key'] svg[data-testid='checkmark']")
 
         # update password
         b.click("table:contains('username') #button-edit-user")
@@ -157,7 +157,7 @@ class TestCustom(composerlib.ComposerCase):
         b.set_input_text("#user-account-password-confirm", "c456rty$%^RTY")
         b.click("#user-account-modal button:contains('Update')")
         b.wait_not_present("#user-account-modal")
-        b.wait_visible("tr td[data-label=Password] .fa-check")
+        b.wait_visible("tr td[data-label=Password] svg[data-testid='checkmark']")
 
         # remove password
         b.click("table:contains('username') #button-edit-user")
@@ -167,7 +167,7 @@ class TestCustom(composerlib.ComposerCase):
         b.click("#user-account-modal button:contains('Update')")
         b.wait_not_present("#user-account-modal")
         b.wait_visible("table[aria-label='Users List']")
-        b.wait_not_present("tr td[data-label='Password'] .fa-check")
+        b.wait_not_present("tr td[data-label='Password'] svg[data-testid='checkmark']")
 
         # duplicated user
         b.click("button:contains('Create user account')")
@@ -188,10 +188,9 @@ class TestCustom(composerlib.ComposerCase):
         b.wait_not_present("#user-account-modal")
 
         # delete user
-        delete_drop_down_sel = "button[aria-label='User account actions username']"
+        delete_drop_down_sel = "table[aria-label='Users List'] .pf-c-dropdown__toggle"
         b.click(delete_drop_down_sel)
-        b.wait_attr(delete_drop_down_sel, "aria-expanded", "true")
-        b.click("a:contains('Delete user account')")
+        b.click("button:contains('Delete user account')")
         b.wait_not_present("table[aria-label='Users List']")
 
         # collect code coverage result
