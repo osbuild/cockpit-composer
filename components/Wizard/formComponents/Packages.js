@@ -43,7 +43,7 @@ const Packages = ({ defaultArch, ...props }) => {
       setPackagesChosenLoading(true);
       const result = await composer.depsolveBlueprint(props.blueprintName);
       const blueprint = result.blueprints[0].blueprint;
-      const blueprintPackages = blueprint.packages.concat(blueprint.modules);
+      const blueprintPackages = blueprint.packages;
       const packageNames = blueprintPackages.map((pkg) => pkg.name);
       if (packageNames?.length) {
         const packageInfo = await composer.getComponentInfo(packageNames);
