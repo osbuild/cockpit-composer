@@ -326,12 +326,12 @@ class BlueprintPage extends React.Component {
       cells: [
         user.description,
         user.name,
-        { title: user.groups !== undefined && user.groups.includes("wheel") && <CheckIcon /> },
-        { title: user.password && <CheckIcon /> },
+        { title: user.groups !== undefined && user.groups.includes("wheel") && <CheckIcon data-testid="checkmark" /> },
+        { title: user.password && <CheckIcon data-testid="checkmark" /> },
         {
           title: user.key !== undefined && (
             <span>
-              <CheckIcon />
+              <CheckIcon data-testid="checkmark" />
               {` `}
               {user.key.split(" ")[2] || ""}
             </span>
