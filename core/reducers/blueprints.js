@@ -51,7 +51,7 @@ const blueprintList = (state = [], action) => {
   switch (action.type) {
     case CREATING_BLUEPRINT_SUCCEEDED:
       return [
-        ...state.filter((blueprint) => blueprint.present.id !== action.payload.blueprint.id),
+        ...state.filter((blueprint) => blueprint.name !== action.payload.blueprint.name),
         {
           past: [],
           present: { ...action.payload.blueprint, localPendingChanges: [], workspacePendingChanges: [] },
@@ -62,9 +62,9 @@ const blueprintList = (state = [], action) => {
     // the blueprint contains component data or is not found in the state
     case FETCHING_BLUEPRINTS_SUCCEEDED:
       return action.payload.blueprint.components !== undefined ||
-        !state.some((blueprint) => blueprint.present.id === action.payload.blueprint.id)
+        !state.some((blueprint) => blueprint.name === action.payload.blueprint.name)
         ? [
-            ...state.filter((blueprint) => blueprint.present.id !== action.payload.blueprint.id),
+            ...state.filter((blueprint) => blueprint.name !== action.payload.blueprint.name),
             {
               past: [],
               present: { ...action.payload.blueprint, localPendingChanges: [], workspacePendingChanges: [] },
@@ -84,7 +84,7 @@ const blueprintList = (state = [], action) => {
     case BLUEPRINT_CONTENTS_FAILURE:
       return [
         ...state.map((blueprint) => {
-          if (blueprint.present.id === action.payload.blueprintId) {
+          if (blueprint.name === action.payload.blueprintName) {
             return {
               ...blueprint,
               present: { ...blueprint.present, errorState: action.payload.error },
@@ -96,7 +96,7 @@ const blueprintList = (state = [], action) => {
     case UPDATE_BLUEPRINT_COMPONENTS:
       return [
         ...state.map((blueprint) => {
-          if (blueprint.present.id === action.payload.blueprintId) {
+          if (blueprint.name === action.payload.blueprintName) {
             return {
               ...blueprint,
               past: blueprint.past.concat([blueprint.present]),
@@ -117,7 +117,7 @@ const blueprintList = (state = [], action) => {
     case RELOADING_BLUEPRINT_CONTENTS_SUCCEEDED:
       return [
         ...state.map((blueprint) => {
-          if (blueprint.present.id === action.payload.blueprint.id) {
+          if (blueprint.name === action.payload.blueprint.name) {
             return {
               ...blueprint,
               present: {
@@ -135,7 +135,7 @@ const blueprintList = (state = [], action) => {
     case SET_BLUEPRINT:
       return [
         ...state.map((blueprint) => {
-          if (blueprint.present.id === action.payload.blueprint.id) {
+          if (blueprint.name === action.payload.blueprint.name) {
             return {
               ...blueprint,
               past: [],
@@ -149,7 +149,7 @@ const blueprintList = (state = [], action) => {
     case SET_BLUEPRINT_USERS:
       return [
         ...state.map((blueprint) => {
-          if (blueprint.present.id === action.payload.blueprintId) {
+          if (blueprint.name === action.payload.blueprintName) {
             return {
               ...blueprint,
               present: {
@@ -164,7 +164,7 @@ const blueprintList = (state = [], action) => {
     case SET_BLUEPRINT_USERS_SUCCEEDED:
       return [
         ...state.map((blueprint) => {
-          if (blueprint.present.id === action.payload.blueprint.id) {
+          if (blueprint.name === action.payload.blueprint.name) {
             return {
               ...blueprint,
               past: blueprint.past.map((pastBlueprint) => {
@@ -203,7 +203,7 @@ const blueprintList = (state = [], action) => {
     case SET_BLUEPRINT_HOSTNAME:
       return [
         ...state.map((blueprint) => {
-          if (blueprint.present.id === action.payload.blueprint.id) {
+          if (blueprint.name === action.payload.blueprint.name) {
             return {
               ...blueprint,
               present: {
@@ -218,7 +218,7 @@ const blueprintList = (state = [], action) => {
     case SET_BLUEPRINT_HOSTNAME_SUCCEEDED:
       return [
         ...state.map((blueprint) => {
-          if (blueprint.present.id === action.payload.blueprint.id) {
+          if (blueprint.name === action.payload.blueprint.name) {
             return {
               ...blueprint,
               past: blueprint.past.map((pastBlueprint) => {
@@ -257,7 +257,7 @@ const blueprintList = (state = [], action) => {
     case SET_BLUEPRINT_DESCRIPTION:
       return [
         ...state.map((blueprint) => {
-          if (blueprint.present.id === action.payload.blueprint.id) {
+          if (blueprint.name === action.payload.blueprint.name) {
             return {
               ...blueprint,
               present: { ...blueprint.present, description: action.payload.description },
@@ -269,7 +269,7 @@ const blueprintList = (state = [], action) => {
     case SET_BLUEPRINT_DESCRIPTION_SUCCEEDED:
       return [
         ...state.map((blueprint) => {
-          if (blueprint.present.id === action.payload.blueprint.id) {
+          if (blueprint.name === action.payload.blueprint.name) {
             return {
               ...blueprint,
               past: blueprint.past.map((pastBlueprint) => {
@@ -297,11 +297,11 @@ const blueprintList = (state = [], action) => {
         }),
       ];
     case DELETING_BLUEPRINT_SUCCEEDED:
-      return state.filter((blueprint) => blueprint.name !== action.payload.blueprint.id);
+      return state.filter((blueprint) => blueprint.name !== action.payload.blueprintName);
     case SET_COMP_DEPS:
       return [
         ...state.map((blueprint) => {
-          if (blueprint.present.id === action.payload.blueprintId) {
+          if (blueprint.name === action.payload.blueprintName) {
             return {
               ...blueprint,
               present: {

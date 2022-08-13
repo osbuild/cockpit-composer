@@ -14,12 +14,12 @@ const getFutureLength = (blueprint) => {
 
 export const makeGetFutureLength = () => createSelector([getFutureLength], (futureLength) => futureLength);
 
-const getBlueprintById = (state, blueprintId) => {
-  const blueprintById = state.blueprints.blueprintList.find((blueprint) => blueprint.present.id === blueprintId);
-  return blueprintById;
+const getBlueprintByName = (state, blueprintName) => {
+  const blueprintByName = state.blueprints.blueprintList.find((blueprint) => blueprint.name === blueprintName);
+  return blueprintByName;
 };
 
-export const makeGetBlueprintById = () => createSelector([getBlueprintById], (blueprint) => blueprint);
+export const makeGetBlueprintByName = () => createSelector([getBlueprintByName], (blueprint) => blueprint);
 
 const getSortedSelectedComponents = (state, blueprint) => {
   const { components } = blueprint;

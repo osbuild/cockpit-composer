@@ -42,7 +42,7 @@ class DeleteBlueprint extends React.Component {
             <Button key="cancel" variant="secondary" onClick={this.handleModalToggle}>
               <FormattedMessage defaultMessage="Cancel" />
             </Button>,
-            <Button key="delete" variant="danger" onClick={(e) => this.handleDelete(e, this.props.blueprint.id)}>
+            <Button key="delete" variant="danger" onClick={(e) => this.handleDelete(e, this.props.blueprint.name)}>
               <FormattedMessage defaultMessage="Delete" />
             </Button>,
           ]}

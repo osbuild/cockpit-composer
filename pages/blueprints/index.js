@@ -82,7 +82,7 @@ class BlueprintsPage extends React.Component {
     return (
       <Layout className="container-fluid" ref={(c) => (this.layout = c)}>
         <BlueprintsToolbar
-          blueprintNames={blueprints.map((blueprint) => blueprint.present.id)}
+          blueprintNames={blueprints.map((blueprint) => blueprint.name)}
           emptyState={!blueprints && !blueprintFilters.filterValues}
           errorState={blueprintsError !== null}
           filters={blueprintFilters}
@@ -110,7 +110,7 @@ class BlueprintsPage extends React.Component {
             ))) ||
           (blueprints.length > 0 && (
             <BlueprintsDataList
-              blueprints={blueprints.map((blueprint) => blueprint.present)}
+              blueprints={blueprints}
               setNotifications={this.setNotifications}
               layout={this.layout}
               ariaLabel={formatMessage(messages.blueprintsTitle)}
@@ -119,7 +119,7 @@ class BlueprintsPage extends React.Component {
           (blueprintFilters.filterValues.length === 0 && (
             <EmptyState title={formatMessage(messages.emptyTitle)} message={formatMessage(messages.emptyMessage)}>
               <EmptyStatePrimary>
-                <CreateBlueprint blueprintNames={blueprints.map((blueprint) => blueprint.present.id)} />
+                <CreateBlueprint blueprintNames={blueprints.map((blueprint) => blueprint.name)} />
               </EmptyStatePrimary>
             </EmptyState>
           )) || (

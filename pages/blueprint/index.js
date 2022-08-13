@@ -65,7 +65,7 @@ import {
   componentsFilterClearValues,
 } from "../../core/actions/filter";
 import {
-  makeGetBlueprintById,
+  makeGetBlueprintByName,
   makeGetSortedSelectedComponents,
   makeGetSortedDependencies,
   makeGetFilteredComponents,
@@ -194,11 +194,11 @@ class BlueprintPage extends React.Component {
   }
 
   handleComponentListItem(component) {
-    this.props.fetchingCompDeps(component, this.props.blueprint.id);
+    this.props.fetchingCompDeps(component, this.props.blueprint.name);
   }
 
   handleDepListItem(component) {
-    this.props.fetchingDepDetails(component, this.props.blueprint.id);
+    this.props.fetchingDepDetails(component, this.props.blueprint.name);
   }
 
   handleEditDescription(value) {
@@ -240,7 +240,7 @@ class BlueprintPage extends React.Component {
 
   handleDeleteUser(userName, e) {
     const users = this.props.blueprint.customizations.user.filter((user) => user.name !== userName);
-    this.props.setBlueprintUsers(this.props.blueprint.id, users);
+    this.props.setBlueprintUsers(this.props.blueprint.name, users);
     e.preventDefault();
     e.stopPropagation();
   }
@@ -340,7 +340,7 @@ class BlueprintPage extends React.Component {
         {
           title: (
             <div>
-              <UserAccount edit users={users} user={user} blueprintID={blueprint.id} />
+              <UserAccount edit users={users} user={user} blueprintName={blueprint.name} />
               <DropdownKebab dropdownItems={userDropdownItems(user)} />
             </div>
           ),
@@ -456,7 +456,7 @@ class BlueprintPage extends React.Component {
                           </Table>
                         </div>
                       )}
-                      <UserAccount edit={false} blueprintID={blueprint.id} users={users} />
+                      <UserAccount edit={false} blueprintName={blueprint.name} users={users} />
                     </div>
                   </div>
                 </div>
@@ -719,15 +719,15 @@ BlueprintPage.defaultProps = {
 };
 
 const makeMapStateToProps = () => {
-  const getBlueprintById = makeGetBlueprintById();
+  const getBlueprintByName = makeGetBlueprintByName();
   const getSortedSelectedComponents = makeGetSortedSelectedComponents();
   const getSortedDependencies = makeGetSortedDependencies();
   const getFilteredComponents = makeGetFilteredComponents();
   const getSelectedDeps = makeGetSelectedDeps();
   const getBlueprintComposes = makeGetBlueprintComposes();
   const mapStateToProps = (state, props) => {
-    if (getBlueprintById(state, props.route.params.blueprint.replace(/\s/g, "-")) !== undefined) {
-      const fetchedBlueprint = getBlueprintById(state, props.route.params.blueprint.replace(/\s/g, "-"));
+    if (getBlueprintByName(state, props.route.params.blueprint.replace(/\s/g, "-")) !== undefined) {
+      const fetchedBlueprint = getBlueprintByName(state, props.route.params.blueprint.replace(/\s/g, "-"));
       return {
         blueprint: fetchedBlueprint.present,
         selectedComponents: getFilteredComponents(state, getSortedSelectedComponents(state, fetchedBlueprint.present)),
@@ -775,8 +775,8 @@ const makeMapStateToProps = () => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchingBlueprintContents: (blueprintId) => {
-    dispatch(fetchingBlueprintContents(blueprintId));
+  fetchingBlueprintContents: (blueprintName) => {
+    dispatch(fetchingBlueprintContents(blueprintName));
   },
   fetchingComposes: () => {
     dispatch(fetchingComposes());
@@ -802,8 +802,8 @@ const mapDispatchToProps = (dispatch) => ({
   setEditHostnameInvalid: (invalid) => {
     dispatch(setEditHostnameInvalid(invalid));
   },
-  setBlueprintUsers: (blueprintId, users) => {
-    dispatch(setBlueprintUsers(blueprintId, users));
+  setBlueprintUsers: (blueprintName, users) => {
+    dispatch(setBlueprintUsers(blueprintName, users));
   },
   setSelectedInput: (selectedInput) => {
     dispatch(setSelectedInput(selectedInput));
@@ -850,11 +850,11 @@ const mapDispatchToProps = (dispatch) => ({
   componentsFilterClearValues: (value) => {
     dispatch(componentsFilterClearValues(value));
   },
-  fetchingCompDeps: (component, blueprintId) => {
-    dispatch(fetchingCompDeps(component, blueprintId));
+  fetchingCompDeps: (component, blueprintName) => {
+    dispatch(fetchingCompDeps(component, blueprintName));
   },
-  fetchingDepDetails: (component, blueprintId) => {
-    dispatch(fetchingDepDetails(component, blueprintId));
+  fetchingDepDetails: (component, blueprintName) => {
+    dispatch(fetchingDepDetails(component, blueprintName));
   },
 });
 
