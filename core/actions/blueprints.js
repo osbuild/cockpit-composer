@@ -37,19 +37,18 @@ export const fetchingBlueprintsSucceeded = (blueprint, pendingChanges) => ({
 });
 
 export const FETCHING_BLUEPRINT_CONTENTS = "FETCHING_BLUEPRINT_CONTENTS";
-export const fetchingBlueprintContents = (blueprintId) => ({
+export const fetchingBlueprintContents = (blueprintName) => ({
   type: FETCHING_BLUEPRINT_CONTENTS,
   payload: {
-    blueprintId,
+    blueprintName,
   },
 });
 
 export const FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED = "FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED";
-export const fetchingBlueprintContentsSucceeded = (blueprint, pastBlueprint) => ({
+export const fetchingBlueprintContentsSucceeded = (blueprint) => ({
   type: FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED,
   payload: {
     blueprint,
-    pastBlueprint,
   },
 });
 
@@ -70,10 +69,10 @@ export const setBlueprint = (blueprint) => ({
 });
 
 export const SET_BLUEPRINT_USERS = "SET_BLUEPRINT_USERS";
-export const setBlueprintUsers = (blueprintId, users) => ({
+export const setBlueprintUsers = (blueprintName, users) => ({
   type: SET_BLUEPRINT_USERS,
   payload: {
-    blueprintId,
+    blueprintName,
     users,
   },
 });
@@ -130,10 +129,10 @@ export const setBlueprintDescriptionSucceeded = (blueprint) => ({
 });
 
 export const UPDATE_BLUEPRINT_COMPONENTS = "UPDATE_BLUEPRINT_COMPONENTS";
-export const updateBlueprintComponents = (blueprintId, components, packages, modules, pendingChange) => ({
+export const updateBlueprintComponents = (blueprintName, components, packages, modules, pendingChange) => ({
   type: UPDATE_BLUEPRINT_COMPONENTS,
   payload: {
-    blueprintId,
+    blueprintName,
     components,
     packages,
     modules,
@@ -142,18 +141,18 @@ export const updateBlueprintComponents = (blueprintId, components, packages, mod
 });
 
 export const DELETING_BLUEPRINT = "DELETING_BLUEPRINT";
-export const deletingBlueprint = (blueprintId) => ({
+export const deletingBlueprint = (blueprintName) => ({
   type: DELETING_BLUEPRINT,
   payload: {
-    blueprintId,
+    blueprintName,
   },
 });
 
 export const DELETING_BLUEPRINT_SUCCEEDED = "DELETING_BLUEPRINT_SUCCEEDED";
-export const deletingBlueprintSucceeded = (blueprintId) => ({
+export const deletingBlueprintSucceeded = (blueprintName) => ({
   type: DELETING_BLUEPRINT_SUCCEEDED,
   payload: {
-    blueprintId,
+    blueprintName,
   },
 });
 
@@ -166,63 +165,63 @@ export const blueprintsFailure = (error) => ({
 });
 
 export const BLUEPRINT_CONTENTS_FAILURE = "BLUEPRINT_CONTENTS_FAILURE";
-export const blueprintContentsFailure = (error, blueprintId) => ({
+export const blueprintContentsFailure = (error, blueprintName) => ({
   type: BLUEPRINT_CONTENTS_FAILURE,
   payload: {
     error,
-    blueprintId,
+    blueprintName,
   },
 });
 
 export const UNDO = "UNDO";
-export const undo = (blueprintId, reload) => ({
+export const undo = (blueprintName, reload) => ({
   type: UNDO,
   payload: {
-    blueprintId,
+    blueprintName,
     reload,
   },
 });
 
 export const REDO = "REDO";
-export const redo = (blueprintId, reload) => ({
+export const redo = (blueprintName, reload) => ({
   type: REDO,
   payload: {
-    blueprintId,
+    blueprintName,
     reload,
   },
 });
 
 export const DELETE_HISTORY = "DELETE_HISTORY";
-export const deleteHistory = (blueprintId, reload) => ({
+export const deleteHistory = (blueprintName, reload) => ({
   type: DELETE_HISTORY,
   payload: {
-    blueprintId,
+    blueprintName,
     reload,
   },
 });
 
 export const DELETE_WORKSPACE = "DELETE_WORKSPACE";
-export const deleteWorkspace = (blueprintId) => ({
+export const deleteWorkspace = (blueprintName) => ({
   type: DELETE_WORKSPACE,
   payload: {
-    blueprintId,
+    blueprintName,
   },
 });
 
 export const FETCHING_COMP_DEPS = "FETCHING_COMP_DEPS";
-export const fetchingCompDeps = (component, blueprintId) => ({
+export const fetchingCompDeps = (component, blueprintName) => ({
   type: FETCHING_COMP_DEPS,
   payload: {
     component,
-    blueprintId,
+    blueprintName,
   },
 });
 
 export const SET_COMP_DEPS = "SET_COMP_DEPS";
-export const setCompDeps = (component, blueprintId) => ({
+export const setCompDeps = (component, blueprintName) => ({
   type: SET_COMP_DEPS,
   payload: {
     component,
-    blueprintId,
+    blueprintName,
   },
 });

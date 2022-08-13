@@ -134,7 +134,7 @@ export function getBlueprintInfo(blueprintName) {
     if (blueprintdata.blueprints.length > 0) {
       const blueprint = blueprintdata.blueprints[0];
       blueprint.changed = blueprintdata.changes[0].changed;
-      blueprint.id = blueprintName;
+      blueprint.name = blueprintName;
       return blueprint;
     }
   });
