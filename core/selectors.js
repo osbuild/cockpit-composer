@@ -83,8 +83,8 @@ const getSortedBlueprints = (state) => {
   const { key } = state.sort.blueprints;
   const { value } = state.sort.blueprints;
   sortedBlueprints.sort((a, b) => {
-    if (a.present[key] > b.present[key]) return value === "DESC" ? 1 : -1;
-    if (b.present[key] > a.present[key]) return value === "DESC" ? -1 : 1;
+    if (a[key] > b[key]) return value === "DESC" ? 1 : -1;
+    if (b[key] > a[key]) return value === "DESC" ? -1 : 1;
     return 0;
   });
   return sortedBlueprints;
@@ -99,7 +99,7 @@ const getFilteredBlueprints = (state, blueprints) => {
     filteredBlueprints = blueprints.filter((blueprint) => {
       return (
         filters.filter((filter) => {
-          return !blueprint.present[filter.key].includes(filter.value);
+          return !blueprint[filter.key].includes(filter.value);
         }).length === 0
       );
     });
