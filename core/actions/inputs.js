@@ -44,11 +44,11 @@ export const fetchingInputDeps = (component) => ({
   },
 });
 export const FETCHING_DEP_DETAILS = "FETCHING_DEP_DETAILS";
-export const fetchingDepDetails = (component, blueprintId) => ({
+export const fetchingDepDetails = (component, blueprintName) => ({
   type: FETCHING_DEP_DETAILS,
   payload: {
     component,
-    blueprintId,
+    blueprintName,
   },
 });
 

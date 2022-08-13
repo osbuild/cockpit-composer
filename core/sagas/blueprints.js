@@ -23,7 +23,7 @@ import {
   FETCHING_COMP_DEPS,
   setCompDeps,
 } from "../actions/blueprints";
-import { makeGetBlueprintById, makeGetSelectedDeps } from "../selectors";
+import { makeGetBlueprintByName, makeGetSelectedDeps } from "../selectors";
 
 function* fetchBlueprintsFromName(blueprintName) {
   const response = yield call(composer.getBlueprintInfo, blueprintName);
@@ -44,8 +44,8 @@ function* fetchBlueprints() {
 
 function* fetchBlueprintContents(action) {
   try {
-    const { blueprintId } = action.payload;
-    const response = yield call(composer.depsolveBlueprint, blueprintId);
+    const { blueprintName } = action.payload;
+    const response = yield call(composer.depsolveBlueprint, blueprintName);
     const blueprintData = response.blueprints[0];
     let components = [];
     if (blueprintData.blueprint.packages.length > 0 || blueprintData.blueprint.modules.length > 0) {
@@ -54,15 +54,13 @@ function* fetchBlueprintContents(action) {
     const blueprint = {
       ...blueprintData.blueprint,
       components,
-      id: blueprintId,
-      localPendingChanges: [],
-      workspacePendingChanges,
+      name: blueprintName,
       errorState: response.errors[0],
     };
     yield put(fetchingBlueprintContentsSucceeded(blueprint));
   } catch (error) {
     console.log("Error in fetchBlueprintContentsSaga", error);
-    yield put(blueprintContentsFailure(error, action.payload.blueprintId));
+    yield put(blueprintContentsFailure(error, action.payload.blueprintName));
   }
 }
 
@@ -118,16 +116,16 @@ function* getBlueprintHistory(blueprintName) {
 
 function* setBlueprintUsers(action) {
   try {
-    const { blueprintId, users } = action.payload;
+    const { blueprintName, users } = action.payload;
     // commit the oldest blueprint with the updated users
-    const blueprintHistory = yield call(getBlueprintHistory, blueprintId);
+    const blueprintHistory = yield call(getBlueprintHistory, blueprintName);
     const blueprintToPost = BlueprintApi.postedBlueprintData({
       ...blueprintHistory[0],
       customizations: { ...blueprintHistory[0].customizations, user: users },
     });
     yield call(composer.newBlueprint, blueprintToPost);
     // get updated blueprint info (i.e. version)
-    const response = yield call(composer.getBlueprintInfo, blueprintId);
+    const response = yield call(composer.getBlueprintInfo, blueprintName);
     yield put(setBlueprintUsersSucceeded(response));
   } catch (error) {
     console.log("Error in setBlueprintHostname", error);
@@ -168,7 +166,7 @@ function* setBlueprintHostname(action) {
   try {
     const { blueprint, hostname } = action.payload;
     // commit the oldest blueprint with the updated hostname
-    const blueprintHistory = yield call(getBlueprintHistory, blueprint.id);
+    const blueprintHistory = yield call(getBlueprintHistory, blueprint.name);
     const blueprintToPost = BlueprintApi.postedBlueprintData({
       ...blueprintHistory[0],
       customizations: { ...blueprintHistory[0].customizations, hostname },
@@ -187,7 +185,7 @@ function* setBlueprintDescription(action) {
   try {
     const { blueprint, description } = action.payload;
     // commit the oldest blueprint with the updated hostname
-    const blueprintHistory = yield call(getBlueprintHistory, blueprint.id);
+    const blueprintHistory = yield call(getBlueprintHistory, blueprint.name);
     const blueprintToPost = BlueprintApi.postedBlueprintData({ ...blueprintHistory[0], description });
     yield call(composer.newBlueprint, blueprintToPost);
     // get updated blueprint info (i.e. version)
@@ -202,8 +200,8 @@ function* setBlueprintDescription(action) {
 
 function* deleteBlueprint(action) {
   try {
-    const { blueprintId } = action.payload;
-    const response = yield call(composer.deleteBlueprint, blueprintId);
+    const { blueprintName } = action.payload;
+    const response = yield call(composer.deleteBlueprint, blueprintName);
     yield put(deletingBlueprintSucceeded(response));
   } catch (error) {
     console.log("errorDeleteBlueprintsSaga", error);
@@ -224,7 +222,7 @@ function* createBlueprint(action) {
 
 function* fetchCompDeps(action) {
   try {
-    const { component, blueprintId } = action.payload;
+    const { component, blueprintName } = action.payload;
     const response = yield call(composer.getComponentDependencies, component.name);
     let responseIndex;
     if (response[0].builds) {
@@ -244,8 +242,8 @@ function* fetchCompDeps(action) {
       delete depData.arch;
       return depData;
     });
-    const getBlueprintById = makeGetBlueprintById();
-    const blueprint = yield select(getBlueprintById, blueprintId);
+    const getBlueprintByName = makeGetBlueprintByName();
+    const blueprint = yield select(getBlueprintByName, blueprintName);
     const { components } = blueprint.present;
     const getSelectedDeps = makeGetSelectedDeps();
     const selectedDeps = yield select(getSelectedDeps, updatedDeps, components);
@@ -253,7 +251,7 @@ function* fetchCompDeps(action) {
       name: component.name,
       dependencies: selectedDeps,
     };
-    yield put(setCompDeps(updatedComp, blueprintId));
+    yield put(setCompDeps(updatedComp, blueprintName));
   } catch (error) {
     console.log("Error in fetchInputDeps", error);
   }

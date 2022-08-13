@@ -184,7 +184,7 @@ class UserAccount extends React.Component {
       key: this.state.sshKey ? this.state.sshKey : undefined,
     };
     const users = this.props.users.concat(user);
-    this.props.setBlueprintUsers(this.props.blueprintID, users);
+    this.props.setBlueprintUsers(this.props.blueprintName, users);
     this.handleModalClose();
   }
 
@@ -200,7 +200,7 @@ class UserAccount extends React.Component {
       if (user.name === this.state.usernameOld) return userUpdated;
       return user;
     });
-    this.props.setBlueprintUsers(this.props.blueprintID, users);
+    this.props.setBlueprintUsers(this.props.blueprintName, users);
     this.handleModalClose();
   }
 
@@ -390,7 +390,7 @@ class UserAccount extends React.Component {
 UserAccount.propTypes = {
   user: PropTypes.object,
   edit: PropTypes.bool,
-  blueprintID: PropTypes.string,
+  blueprintName: PropTypes.string,
   users: PropTypes.arrayOf(PropTypes.object),
   setBlueprintUsers: PropTypes.func,
   intl: PropTypes.object.isRequired,
@@ -399,7 +399,7 @@ UserAccount.propTypes = {
 UserAccount.defaultProps = {
   user: {},
   edit: false,
-  blueprintID: "",
+  blueprintName: "",
   users: [],
   setBlueprintUsers() {},
 };

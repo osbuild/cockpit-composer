@@ -11,7 +11,7 @@ import {
   setSelectedInputDeps,
   setDepDetails,
 } from "../actions/inputs";
-import { makeGetBlueprintById, makeGetSelectedDeps } from "../selectors";
+import { makeGetBlueprintByName, makeGetSelectedDeps } from "../selectors";
 
 function flattenInputs(response) {
   // duplicate inputs exist when more than one build is available
@@ -175,7 +175,7 @@ function* fetchInputDeps(action) {
 // get additional details to display in expanded section
 function* fetchDepDetails(action) {
   try {
-    const { component, blueprintId } = action.payload;
+    const { component, blueprintName } = action.payload;
     const response = yield call(composer.getComponentDependencies, component.name);
     const deps = response[0].dependencies.filter((item) => item.name !== component.name);
     const updatedDeps = deps.map((dep) => {
@@ -184,8 +184,8 @@ function* fetchDepDetails(action) {
       delete depData.arch;
       return depData;
     });
-    const getBlueprintById = makeGetBlueprintById();
-    const blueprint = yield select(getBlueprintById, blueprintId);
+    const getBlueprintByName = makeGetBlueprintByName();
+    const blueprint = yield select(getBlueprintByName, blueprintName);
     const { components } = blueprint.present;
 
     const getSelectedDeps = makeGetSelectedDeps();
