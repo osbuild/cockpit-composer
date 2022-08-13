@@ -11,7 +11,7 @@ import EmptyState from "../../components/EmptyState/EmptyState";
 import EmptyStateInactive from "../../components/EmptyState/EmptyStateInactive";
 import Loading from "../../components/Loading/Loading";
 import BlueprintsToolbar from "../../components/Toolbar/BlueprintsToolbar";
-import { fetchingBlueprints } from "../../core/actions/blueprints";
+import { fetchingBlueprints, blueprintsGetAll } from "../../core/actions/blueprints";
 import { fetchingModalManageSourcesContents } from "../../core/actions/modals";
 import { blueprintsSortSetKey, blueprintsSortSetValue } from "../../core/actions/sort";
 import {
@@ -53,9 +53,8 @@ class BlueprintsPage extends React.Component {
   componentDidMount() {
     const { formatMessage } = this.props.intl;
     document.title = formatMessage(messages.blueprintsTitle);
-
     if (this.props.blueprintsLoading === true) {
-      this.props.fetchingBlueprints();
+      this.props.blueprintsGetAll();
       this.props.fetchingModalManageSourcesContents();
     }
   }
@@ -79,6 +78,7 @@ class BlueprintsPage extends React.Component {
       blueprintsLoading,
     } = this.props;
     const { formatMessage } = this.props.intl;
+
     return (
       <Layout className="container-fluid" ref={(c) => (this.layout = c)}>
         <BlueprintsToolbar
@@ -161,6 +161,7 @@ BlueprintsPage.propTypes = {
   }),
   blueprintsLoading: PropTypes.bool,
   intl: PropTypes.object.isRequired,
+  blueprintsGetAll: PropTypes.func,
 };
 
 BlueprintsPage.defaultProps = {
@@ -209,6 +210,7 @@ const makeMapStateToProps = () => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
+  blueprintsGetAll: () => dispatch(blueprintsGetAll()),
   fetchingBlueprints: () => {
     dispatch(fetchingBlueprints());
   },

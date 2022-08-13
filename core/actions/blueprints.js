@@ -1,3 +1,40 @@
+import * as composer from "../composer";
+
+export const blueprintsUpdate = (blueprint) => async (dispatch) => {
+  await composer.newBlueprint(blueprint);
+  dispatch(blueprintsUpdated(blueprint));
+};
+
+export const BLUEPRINTS_UPDATED = "BLUEPRINTS_UPDATED";
+export const blueprintsUpdated = (blueprint) => ({
+  type: BLUEPRINTS_UPDATED,
+  payload: {
+    blueprint,
+  },
+});
+
+export const blueprintsGetAll = () => async (dispatch) => {
+  const bpNames = await composer.getBlueprintsNames();
+  const blueprints = await composer.getBlueprintsInfo(bpNames);
+  blueprints.forEach((bp) => dispatch(blueprintsAdded(bp)));
+  dispatch(blueprintsFetched());
+};
+
+export const BLUEPRINTS_ADDED = "BLUEPRINTS_ADDED";
+export const blueprintsAdded = (blueprint) => ({
+  type: BLUEPRINTS_ADDED,
+  payload: {
+    blueprint,
+  },
+});
+
+export const BLUEPRINTS_FETCHED = "BLUEPRINTS_FETCHED";
+export const blueprintsFetched = () => ({
+  type: BLUEPRINTS_FETCHED,
+});
+
+// Above are useful for unified and should be kept post-cleanup
+
 export const CREATING_BLUEPRINT = "CREATING_BLUEPRINT";
 export const creatingBlueprint = (blueprint) => ({
   type: CREATING_BLUEPRINT,
