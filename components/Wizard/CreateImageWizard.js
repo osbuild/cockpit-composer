@@ -139,7 +139,7 @@ const CreateImageWizard = (props) => {
     }
 
     props.startCompose(
-      props.blueprintName,
+      formValues["blueprint-name"],
       formValues["image-output-type"],
       formValues["image-size"],
       ostreeSettings,
@@ -150,7 +150,7 @@ const CreateImageWizard = (props) => {
 
   return (
     <>
-      <Button variant="secondary" onClick={handleOpen} aria-label="Create image">
+      <Button variant="secondary" onClick={handleOpen} isDisabled={!props.blueprint?.name} aria-label="Create image">
         Create image
       </Button>
       {isWizardOpen && (
@@ -190,7 +190,7 @@ const CreateImageWizard = (props) => {
               },
             ],
           }}
-          blueprintName={props.blueprintName}
+          blueprint={props.blueprint}
           imageTypes={props.imageTypes}
         />
       )}
@@ -202,7 +202,7 @@ CreateImageWizard.propTypes = {
   imageTypes: PropTypes.arrayOf(PropTypes.object),
   fetchingComposeTypes: PropTypes.func,
   startCompose: PropTypes.func,
-  blueprintName: PropTypes.string,
+  blueprint: PropTypes.object,
   updateBlueprintComponents: PropTypes.func,
 };
 

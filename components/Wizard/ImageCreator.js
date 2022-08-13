@@ -31,7 +31,7 @@ const ImageCreator = ({
         ...customComponentMapper,
         "blueprint-name": {
           component: BlueprintName,
-          blueprintName: props.blueprintName,
+          blueprintName: props.blueprint.name,
         },
         "image-output-select": {
           component: ImageOutputSelect,
@@ -39,11 +39,11 @@ const ImageCreator = ({
         },
         "package-selector": {
           component: Packages,
-          blueprintName: props.blueprintName,
+          blueprintName: props.blueprint.name,
         },
         review: {
           component: Review,
-          blueprintName: props.blueprintName,
+          blueprintName: props.blueprint.name,
         },
         "text-field-custom": TextFieldCustom,
         "upload-file": UploadFile,
@@ -57,7 +57,6 @@ const ImageCreator = ({
 };
 
 ImageCreator.propTypes = {
-  blueprintName: PropTypes.string,
   imageTypes: PropTypes.arrayOf(PropTypes.object),
   schema: PropTypes.object,
   onSubmit: PropTypes.func.isRequired,
@@ -76,6 +75,7 @@ ImageCreator.propTypes = {
   defaultArch: PropTypes.string,
   className: PropTypes.string,
   initialValues: PropTypes.object,
+  blueprint: PropTypes.object,
 };
 
 export default ImageCreator;

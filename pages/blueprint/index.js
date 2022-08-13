@@ -364,7 +364,7 @@ class BlueprintPage extends React.Component {
           <div className="cmpsr-header__actions">
             <ul className="list-inline">
               <li>
-                <CreateImageWizard blueprintName={blueprint.name} />
+                <CreateImageWizard blueprint={blueprint} />
               </li>
               <li>
                 <DropdownKebab dropdownItems={blueprintDropdownItems} />
@@ -528,7 +528,7 @@ class BlueprintPage extends React.Component {
                   title={formatMessage(messages.noImagesTitle)}
                   message={formatMessage(messages.noImagesMessage)}
                 >
-                  <CreateImageWizard blueprintName={blueprint.name} />
+                  <CreateImageWizard blueprint={blueprint} />
                 </EmptyState>
               )) || (
                 <ImagesDataList ariaLabel={formatMessage(messages.imagesTitle)}>
