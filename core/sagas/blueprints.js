@@ -7,10 +7,8 @@ import {
   fetchingBlueprintNamesSucceeded,
   FETCHING_BLUEPRINT_CONTENTS,
   fetchingBlueprintContentsSucceeded,
-  reloadingBlueprintContentsSucceeded,
   CREATING_BLUEPRINT,
   creatingBlueprintSucceeded,
-  UPDATE_BLUEPRINT_COMPONENTS,
   SET_BLUEPRINT_USERS,
   setBlueprintUsersSucceeded,
   SET_BLUEPRINT_DEVICE,
@@ -20,9 +18,6 @@ import {
   setBlueprintDescriptionSucceeded,
   DELETING_BLUEPRINT,
   deletingBlueprintSucceeded,
-  DELETE_HISTORY,
-  UNDO,
-  REDO,
   blueprintsFailure,
   blueprintContentsFailure,
   FETCHING_COMP_DEPS,
@@ -56,18 +51,6 @@ function* fetchBlueprintContents(action) {
     if (blueprintData.blueprint.packages.length > 0 || blueprintData.blueprint.modules.length > 0) {
       components = yield call(generateComponents, blueprintData);
     }
-    const workspaceChanges = yield call(composer.diffBlueprintToWorkspace, blueprintId);
-    let pastComponents;
-    let workspacePendingChanges = [];
-    if (workspaceChanges.diff.length > 0) {
-      workspacePendingChanges = workspaceChanges.diff.map((change) => {
-        return {
-          componentOld: change.old === null ? null : change.old.Package ? change.old.Package : change.old.Module,
-          componentNew: change.new === null ? null : change.new.Package ? change.new.Package : change.new.Module,
-        };
-      });
-      pastComponents = generatePastComponents(workspaceChanges, blueprintData.blueprint.packages);
-    }
     const blueprint = {
       ...blueprintData.blueprint,
       components,
@@ -76,38 +59,11 @@ function* fetchBlueprintContents(action) {
       workspacePendingChanges,
       errorState: response.errors[0],
     };
-    const pastBlueprint = pastComponents
-      ? [{ ...blueprint, ...pastComponents, workspacePendingChanges: [], errorState: {} }]
-      : [];
-    yield put(fetchingBlueprintContentsSucceeded(blueprint, pastBlueprint, response.errors[0]));
+    yield put(fetchingBlueprintContentsSucceeded(blueprint));
   } catch (error) {
     console.log("Error in fetchBlueprintContentsSaga", error);
     yield put(blueprintContentsFailure(error, action.payload.blueprintId));
   }
-}
-
-function generatePastComponents(workspaceChanges, packages) {
-  const updatedPackages = workspaceChanges.diff
-    .filter((change) => change.old !== null)
-    .map((change) => (change.old.Package ? change.old.Package : change.old.Module));
-  const originalPackages = packages.filter((originalPackage) => {
-    const addedPackage = workspaceChanges.diff.find(
-      (change) => change.old === null && change.new.Package.name === originalPackage.name
-    );
-    if (addedPackage === undefined) {
-      return true;
-    }
-  });
-  const blueprintPackages = updatedPackages.concat(originalPackages);
-  const blueprintComponents = blueprintPackages.map((component) => {
-    const componentData = { ...component, inBlueprint: true, userSelected: true };
-    return componentData;
-  });
-  const blueprint = {
-    components: blueprintComponents,
-    packages: blueprintPackages,
-  };
-  return blueprint;
 }
 
 function* generateComponents(blueprintData) {
@@ -153,32 +109,9 @@ function flattenComponents(components) {
   return flattened;
 }
 
-function* reloadBlueprintContents(blueprintId) {
-  // after updating components or deleting the workspace changes,
-  // get the latest depsolved blueprint components
-  try {
-    const response = yield call(composer.depsolveBlueprint, blueprintId);
-    const blueprintData = response.blueprints[0];
-    let components = [];
-    if (blueprintData.blueprint.packages.length > 0 || blueprintData.blueprint.modules.length > 0) {
-      components = yield call(generateComponents, blueprintData);
-    }
-    const blueprint = {
-      ...blueprintData.blueprint,
-      components,
-      id: blueprintId,
-      errorState: response.errors[0],
-    };
-    yield put(reloadingBlueprintContentsSucceeded(blueprint, response.errors[0]));
-  } catch (error) {
-    console.log("Error in fetchBlueprintContentsSaga", error);
-    yield put(blueprintContentsFailure(error, blueprintId));
-  }
-}
-
-function* getBlueprintHistory(blueprintId) {
-  const getBlueprintById = makeGetBlueprintById();
-  const blueprintHistory = yield select(getBlueprintById, blueprintId);
+function* getBlueprintHistory(blueprintName) {
+  const getBlueprintByName = makeGetBlueprintByName();
+  const blueprintHistory = yield select(getBlueprintByName, blueprintName);
   const oldestBlueprint = blueprintHistory.past[0] ? blueprintHistory.past[0] : blueprintHistory.present;
   return [oldestBlueprint, blueprintHistory.present];
 }
@@ -196,15 +129,6 @@ function* setBlueprintUsers(action) {
     // get updated blueprint info (i.e. version)
     const response = yield call(composer.getBlueprintInfo, blueprintId);
     yield put(setBlueprintUsersSucceeded(response));
-    // post present blueprint object to workspace
-    if (response.changed === true) {
-      const workspace = {
-        ...blueprintHistory[1],
-        version: response.version,
-        customizations: { ...blueprintHistory[1].customizations, user: users },
-      };
-      yield call(composer.commitToWorkspace, workspace);
-    }
   } catch (error) {
     console.log("Error in setBlueprintHostname", error);
     yield put(blueprintsFailure(error));
@@ -253,15 +177,6 @@ function* setBlueprintHostname(action) {
     // get updated blueprint info (i.e. version)
     const response = yield call(composer.getBlueprintInfo, blueprint.name);
     yield put(setBlueprintHostnameSucceeded(response));
-    // post present blueprint object to workspace
-    if (response.changed === true) {
-      const workspace = {
-        ...blueprintHistory[1],
-        version: response.version,
-        customizations: { ...blueprintHistory[1].customizations, hostname },
-      };
-      yield call(composer.commitToWorkspace, workspace);
-    }
   } catch (error) {
     console.log("Error in setBlueprintHostname", error);
     yield put(blueprintsFailure(error));
@@ -279,10 +194,6 @@ function* setBlueprintDescription(action) {
     const response = yield call(composer.getBlueprintInfo, blueprint.name);
     yield put(setBlueprintDescriptionSucceeded(response));
     // post present blueprint object to workspace
-    if (response.changed === true) {
-      const workspace = { ...blueprintHistory[1], version: response.version, description };
-      yield call(composer.commitToWorkspace, workspace);
-    }
   } catch (error) {
     console.log("Error in setBlueprintDescription", error);
     yield put(blueprintsFailure(error));
@@ -308,45 +219,6 @@ function* createBlueprint(action) {
   } catch (error) {
     console.log("errorCreateBlueprintSaga", error);
     yield put(blueprintsFailure(error));
-  }
-}
-
-function* commitToWorkspace(action) {
-  try {
-    const { blueprintId, reload } = action.payload;
-    const getBlueprintById = makeGetBlueprintById();
-    const blueprint = yield select(getBlueprintById, blueprintId);
-    const blueprintData = {
-      name: blueprint.present.name,
-      description: blueprint.present.description,
-      modules: blueprint.present.modules,
-      packages: blueprint.present.packages,
-      version: blueprint.present.version,
-      groups: blueprint.present.groups,
-    };
-    if (blueprint.present.customizations !== undefined) {
-      blueprintData.customizations = blueprint.present.customizations;
-    }
-    yield call(composer.commitToWorkspace, blueprintData);
-    if (reload !== false) {
-      yield call(reloadBlueprintContents, blueprintId);
-    }
-  } catch (error) {
-    console.log("commitToWorkspaceError", error);
-    yield put(blueprintsFailure(error));
-  }
-}
-
-function* deleteWorkspace(action) {
-  try {
-    const { blueprintId, reload } = action.payload;
-    yield call(composer.deleteWorkspace, blueprintId);
-    if (reload !== false) {
-      yield call(reloadBlueprintContents, blueprintId);
-    }
-  } catch (error) {
-    console.log("deleteWorkspaceError", error);
-    yield put(blueprintsFailure("failed delete workspace"));
   }
 }
 
@@ -395,10 +267,6 @@ export default function* () {
   yield takeEvery(SET_BLUEPRINT_HOSTNAME, setBlueprintHostname);
   yield takeEvery(SET_BLUEPRINT_DESCRIPTION, setBlueprintDescription);
   yield takeEvery(DELETING_BLUEPRINT, deleteBlueprint);
-  yield takeEvery(UPDATE_BLUEPRINT_COMPONENTS, commitToWorkspace);
-  yield takeEvery(UNDO, commitToWorkspace);
-  yield takeEvery(REDO, commitToWorkspace);
-  yield takeEvery(DELETE_HISTORY, deleteWorkspace);
   yield takeEvery(FETCHING_BLUEPRINTS, fetchBlueprints);
   yield takeEvery(FETCHING_COMP_DEPS, fetchCompDeps);
 }

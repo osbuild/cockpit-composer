@@ -148,18 +148,6 @@ export function deleteBlueprint(blueprint) {
   return _delete(`/api/v0/blueprints/delete/${encodeURIComponent(blueprint)}`).then(() => blueprint);
 }
 
-export function deleteWorkspace(blueprintId) {
-  return _delete(`/api/v0/blueprints/workspace/${encodeURIComponent(blueprintId)}`);
-}
-
-export function commitToWorkspace(blueprint) {
-  return post("/api/v0/blueprints/workspace", blueprint);
-}
-
-export function diffBlueprintToWorkspace(blueprintId) {
-  return get(`/api/v0/blueprints/diff/${encodeURIComponent(blueprintId)}/NEWEST/WORKSPACE`);
-}
-
 export function getSourceInfo(sourceName) {
   return get(`/api/v0/projects/source/info/${encodeURIComponent(sourceName)}`);
 }
