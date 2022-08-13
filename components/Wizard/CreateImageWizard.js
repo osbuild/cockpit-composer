@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import componentTypes from "@data-driven-forms/react-form-renderer/component-types";
+import { connect, useDispatch } from "react-redux";
 import { Button } from "@patternfly/react-core";
+import componentTypes from "@data-driven-forms/react-form-renderer/component-types";
 import { startCompose, fetchingComposeTypes } from "../../core/actions/composes";
-
-import ImageCreator from "./ImageCreator";
+import { blueprintsUpdate } from "../../core/actions/blueprints";
 import {
   imageOutput,
   awsAuth,
@@ -21,16 +20,12 @@ import {
   packages,
   review,
 } from "./steps";
-
+import MemoizedImageCreator from "./ImageCreator";
 import { ostreeValidator } from "./validators";
-
 import "./CreateImageWizard.css";
 
-import BlueprintApi from "../../data/BlueprintApi";
-import * as composer from "../../core/composer";
-import { updateBlueprintComponents } from "../../core/actions/blueprints";
-
 const CreateImageWizard = (props) => {
+  const dispatch = useDispatch();
   const [isWizardOpen, setIsWizardOpen] = useState(false);
 
   const handleClose = () => {
@@ -46,25 +41,17 @@ const CreateImageWizard = (props) => {
     setIsWizardOpen(true);
   };
 
-  const updateBlueprintComponents = (packageList) => {
-    // All packages are converted to most current version
-    const packages = packageList.map((pkg) => ({ name: pkg, version: "*" }));
-    // Any modules in the blueprint should have already been added to package list
-    const modules = [];
-    // TODO components should be removed from redux action parameters, it is unnecessary
-    const components = [];
-    // TODO concept of pending changes will eventually be removed, pass empty object for now
-    const pendingChange = {};
-    props.updateBlueprintComponents(props.blueprint.name, components, packages, modules, pendingChange);
+  const handleSaveBlueprint = (formProps) => {
+    const { formValues, setIsSaving, setHasSaved } = formProps;
+    setIsSaving(true);
+    const blueprintData = stateToBlueprint(formValues);
+    dispatch(blueprintsUpdate(blueprintData));
+    setIsSaving(false);
+    setHasSaved(true);
   };
 
-  const handleSubmit = async (formValues) => {
-    updateBlueprintComponents(formValues["selected-packages"]);
-    const depsolveResult = await composer.depsolveBlueprint(props.blueprint.name);
-    const workspaceBlueprint = depsolveResult.blueprints[0].blueprint;
-    await BlueprintApi.handleCommitBlueprint(workspaceBlueprint);
-
-    // startCompose(props.blueprint.name, composeType, imageSize, ostree, upload);
+  const handleBuildImage = async (formProps) => {
+    const { formValues } = formProps;
 
     let uploadSettings;
     if (formValues["image-upload"]) {
@@ -148,15 +135,53 @@ const CreateImageWizard = (props) => {
     setIsWizardOpen(false);
   };
 
+  const handleSubmit = (action, formProps) => {
+    if (action === "build") {
+      handleBuildImage(formProps);
+    } else if (action === "save") {
+      handleSaveBlueprint(formProps);
+    }
+  };
+
+  const blueprintToState = (blueprint) => {
+    const formState = {};
+    formState["blueprint-name"] = blueprint.name;
+    formState["blueprint-description"] = blueprint.description;
+    formState["blueprint-groups"] = blueprint.groups;
+    formState["blueprint-customizations"] = blueprint.customizations;
+    formState["selected-packages"] = blueprint.packages.map((pkg) => pkg.name);
+
+    return formState;
+  };
+
+  const stateToBlueprint = (formValues) => {
+    const formattedPacks = formValues?.["selected-packages"]?.map((pkg) => ({ name: pkg, version: "*" }));
+    const blueprintData = {
+      name: formValues?.["blueprint-name"],
+      description: formValues?.["blueprint-description"],
+      modules: [],
+      packages: formattedPacks,
+      groups: formValues?.["blueprint-groups"],
+      customizations: formValues?.["blueprint-customizations"],
+    };
+
+    return blueprintData;
+  };
+
   return (
     <>
-      <Button variant="secondary" onClick={handleOpen} isDisabled={!props.blueprint?.name} aria-label="Create image">
+      <Button
+        variant="secondary"
+        onClick={handleOpen}
+        isDisabled={!props.blueprint?.name || !props.imageTypes?.length}
+        aria-label="Create image"
+      >
         Create image
       </Button>
       {isWizardOpen && (
-        <ImageCreator
+        <MemoizedImageCreator
           onClose={handleClose}
-          onSubmit={(formValues) => handleSubmit(formValues)}
+          onSubmit={(action, formValues) => handleSubmit(action, formValues)}
           customValidatorMapper={{ ostreeValidator }}
           schema={{
             fields: [
@@ -190,6 +215,7 @@ const CreateImageWizard = (props) => {
               },
             ],
           }}
+          initialValues={blueprintToState(props.blueprint)}
           blueprint={props.blueprint}
           imageTypes={props.imageTypes}
         />
@@ -203,11 +229,6 @@ CreateImageWizard.propTypes = {
   fetchingComposeTypes: PropTypes.func,
   startCompose: PropTypes.func,
   blueprint: PropTypes.object,
-  updateBlueprintComponents: PropTypes.func,
-};
-
-CreateImageWizard.defaultProps = {
-  updateBlueprintComponents() {},
 };
 
 const mapStateToProps = (state) => ({
@@ -220,9 +241,6 @@ const mapDispatchToProps = (dispatch) => ({
   },
   startCompose: (blueprintName, composeType, imageSize, ostree, upload) => {
     dispatch(startCompose(blueprintName, composeType, imageSize, ostree, upload));
-  },
-  updateBlueprintComponents: (blueprintId, components, packages, modules, pendingChange) => {
-    dispatch(updateBlueprintComponents(blueprintId, components, packages, modules, pendingChange));
   },
 });
 
