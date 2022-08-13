@@ -79,10 +79,10 @@ export const makeGetFilteredComponents = () =>
   createSelector([getFilteredComponents], (filteredComponents) => filteredComponents);
 
 const getSortedBlueprints = (state) => {
-  const sortedBlueprints = state.blueprints.blueprintList;
+  const blueprints = state.blueprints.blueprintList;
   const { key } = state.sort.blueprints;
   const { value } = state.sort.blueprints;
-  sortedBlueprints.sort((a, b) => {
+  const sortedBlueprints = [...blueprints].sort((a, b) => {
     if (a[key] > b[key]) return value === "DESC" ? 1 : -1;
     if (b[key] > a[key]) return value === "DESC" ? -1 : 1;
     return 0;
