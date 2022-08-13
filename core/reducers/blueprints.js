@@ -1,8 +1,5 @@
 import { combineReducers } from "redux";
 import {
-  UNDO,
-  REDO,
-  DELETE_HISTORY,
   CREATING_BLUEPRINT_SUCCEEDED,
   FETCHING_BLUEPRINTS,
   FETCHING_BLUEPRINTS_SUCCEEDED,
@@ -16,7 +13,6 @@ import {
   SET_BLUEPRINT_HOSTNAME_SUCCEEDED,
   SET_BLUEPRINT_DESCRIPTION,
   SET_BLUEPRINT_DESCRIPTION_SUCCEEDED,
-  SET_BLUEPRINT_COMMENT,
   DELETING_BLUEPRINT_SUCCEEDED,
   BLUEPRINTS_FAILURE,
   BLUEPRINT_CONTENTS_FAILURE,
@@ -146,15 +142,6 @@ const blueprintList = (state = [], action) => {
               present: { ...action.payload.blueprint, localPendingChanges: [], workspacePendingChanges: [] },
               future: [],
             };
-          }
-          return blueprint;
-        }),
-      ];
-    case SET_BLUEPRINT_COMMENT:
-      return [
-        ...state.map((blueprint) => {
-          if (blueprint.present.id === action.payload.blueprint.id) {
-            return { ...blueprint, present: { ...blueprint.present, comment: action.payload.comment } };
           }
           return blueprint;
         }),
@@ -310,43 +297,7 @@ const blueprintList = (state = [], action) => {
         }),
       ];
     case DELETING_BLUEPRINT_SUCCEEDED:
-      return state.filter((blueprint) => blueprint.present.id !== action.payload.blueprintId);
-    case UNDO:
-      return [
-        ...state.map((blueprint) => {
-          if (blueprint.present.id === action.payload.blueprintId) {
-            return {
-              ...blueprint,
-              future: blueprint.future.concat([blueprint.present]),
-              present: blueprint.past.pop(),
-            };
-          }
-          return blueprint;
-        }),
-      ];
-    case REDO:
-      return [
-        ...state.map((blueprint) => {
-          if (blueprint.present.id === action.payload.blueprintId) {
-            return { ...blueprint, past: blueprint.past.concat([blueprint.present]), present: blueprint.future.pop() };
-          }
-          return blueprint;
-        }),
-      ];
-    case DELETE_HISTORY:
-      return [
-        ...state.map((blueprint) => {
-          if (blueprint.present.id === action.payload.blueprintId) {
-            return {
-              ...blueprint,
-              present: { ...blueprint.past.shift(), localPendingChanges: [], workspacePendingChanges: [] },
-              past: [],
-              future: blueprint.future.concat([blueprint.present]).concat(blueprint.past.reverse()),
-            };
-          }
-          return blueprint;
-        }),
-      ];
+      return state.filter((blueprint) => blueprint.name !== action.payload.blueprint.id);
     case SET_COMP_DEPS:
       return [
         ...state.map((blueprint) => {

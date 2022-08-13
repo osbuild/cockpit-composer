@@ -39,7 +39,6 @@ const BlueprintContents = (props) => {
     filterClearValues,
     filterValues,
     errorState,
-    fetchingState,
     fetchDetails,
     pastLength,
     undo,
@@ -55,7 +54,7 @@ const BlueprintContents = (props) => {
 
   return (
     <div>
-      {(fetchingState === true && <Loading />) ||
+      {(components === undefined && <Loading />) ||
         (components.length === 0 && filterValues.length === 0 && <div>{props.children}</div>) || (
           <Tabs id="blueprint-tabs" defaultActiveKey="selected-components">
             <Tab
@@ -155,7 +154,6 @@ BlueprintContents.propTypes = {
     problem: PropTypes.string,
     url: PropTypes.string,
   }),
-  fetchingState: PropTypes.bool,
   fetchDetails: PropTypes.func,
   children: PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.element)]),
   pastLength: PropTypes.number,
@@ -171,7 +169,6 @@ BlueprintContents.defaultProps = {
   filterClearValues() {},
   filterValues: [],
   errorState: {},
-  fetchingState: true,
   fetchDetails() {},
   children: React.createElement("div"),
   pastLength: 0,

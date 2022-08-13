@@ -69,15 +69,6 @@ export const setBlueprint = (blueprint) => ({
   },
 });
 
-export const SET_BLUEPRINT_COMMENT = "SET_BLUEPRINT_COMMENT";
-export const setBlueprintComment = (blueprint, comment) => ({
-  type: SET_BLUEPRINT_COMMENT,
-  payload: {
-    blueprint,
-    comment,
-  },
-});
-
 export const SET_BLUEPRINT_USERS = "SET_BLUEPRINT_USERS";
 export const setBlueprintUsers = (blueprintId, users) => ({
   type: SET_BLUEPRINT_USERS,
