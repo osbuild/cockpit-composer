@@ -79,6 +79,8 @@ class TestWizard(composerlib.ComposerCase):
         b.wait_in_text("#review-list", "Packages")
         b.wait_in_text("#review-list", "3")
 
+        # save image
+        b.click(".pf-c-wizard__footer button:contains('Save blueprint')")
         # Create image
         b.click(".pf-c-wizard__footer button:contains('Create image')")
 

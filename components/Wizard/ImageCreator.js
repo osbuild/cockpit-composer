@@ -22,9 +22,10 @@ const ImageCreator = ({
 }) => {
   return schema ? (
     <FormRenderer
+      initialValues={props.initialValues}
       schema={schema}
       FormTemplate={(props) => <Pf4FormTemplate {...props} showFormControls={false} />}
-      onSubmit={(formValues) => onSubmit(formValues)}
+      onSubmit={(action, formProps) => onSubmit(action, formProps)}
       validatorMapper={{ ...customValidatorMapper }}
       componentMapper={{
         ...componentMapper,
@@ -78,4 +79,11 @@ ImageCreator.propTypes = {
   blueprint: PropTypes.object,
 };
 
-export default ImageCreator;
+// eslint-disable-next-line no-unused-vars
+const equality = (prevProps, nextProps) => {
+  return true;
+};
+
+const MemoizedImageCreator = React.memo(ImageCreator, equality);
+
+export default MemoizedImageCreator;
