@@ -47,7 +47,7 @@ class BlueprintsDataList extends React.PureComponent {
                 ]}
               />
               <div className="pf-c-data-list__item-action cc-m-nowrap">
-                <CreateImageWizard blueprintName={blueprint.name} />
+                <CreateImageWizard blueprint={blueprint} />
                 <DropdownKebab dropdownItems={dropdownItems(blueprint)} />
               </div>
             </DataListItemRow>
