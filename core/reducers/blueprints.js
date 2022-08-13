@@ -88,27 +88,13 @@ const blueprintList = (state = [], action) => {
           })
         : [...state, action.payload.blueprint];
     case CREATING_BLUEPRINT_SUCCEEDED:
-      return [
-        ...state.filter((blueprint) => blueprint.name !== action.payload.blueprint.name),
-        {
-          past: [],
-          present: { ...action.payload.blueprint, localPendingChanges: [], workspacePendingChanges: [] },
-          future: [],
-        },
-      ];
+      return [...state, action.payload.blueprint];
     // The following reducers filter the blueprint out of the state and add the new version if
     // the blueprint contains component data or is not found in the state
     case FETCHING_BLUEPRINTS_SUCCEEDED:
       return action.payload.blueprint.components !== undefined ||
         !state.some((blueprint) => blueprint.name === action.payload.blueprint.name)
-        ? [
-            ...state.filter((blueprint) => blueprint.name !== action.payload.blueprint.name),
-            {
-              past: [],
-              present: { ...action.payload.blueprint, localPendingChanges: [], workspacePendingChanges: [] },
-              future: [],
-            },
-          ]
+        ? [...state.filter((blueprint) => blueprint.name !== action.payload.blueprint.name), action.payload.blueprint]
         : state;
     case BLUEPRINT_CONTENTS_FAILURE:
       return [
@@ -116,7 +102,7 @@ const blueprintList = (state = [], action) => {
           if (blueprint.name === action.payload.blueprintName) {
             return {
               ...blueprint,
-              present: { ...blueprint.present, errorState: action.payload.error },
+              errorState: action.payload.error,
             };
           }
           return blueprint;
@@ -128,16 +114,11 @@ const blueprintList = (state = [], action) => {
           if (blueprint.name === action.payload.blueprintName) {
             return {
               ...blueprint,
-              past: blueprint.past.concat([blueprint.present]),
-              present: {
-                ...blueprint.present,
-                components: action.payload.components,
-                packages: action.payload.packages,
-                modules: action.payload.modules,
-                localPendingChanges: action.payload.pendingChange,
-                errorState: {},
-              },
-              future: [],
+              components: action.payload.components,
+              packages: action.payload.packages,
+              modules: action.payload.modules,
+              localPendingChanges: action.payload.pendingChange,
+              errorState: {},
             };
           }
           return blueprint;
@@ -149,13 +130,10 @@ const blueprintList = (state = [], action) => {
           if (blueprint.name === action.payload.blueprint.name) {
             return {
               ...blueprint,
-              present: {
-                ...blueprint.present,
-                components: action.payload.blueprint.components,
-                packages: action.payload.blueprint.packages,
-                modules: action.payload.blueprint.modules,
-                errorState: action.payload.blueprint.errorState,
-              },
+              components: action.payload.blueprint.components,
+              packages: action.payload.blueprint.packages,
+              modules: action.payload.blueprint.modules,
+              errorState: action.payload.blueprint.errorState,
             };
           }
           return blueprint;
@@ -165,12 +143,7 @@ const blueprintList = (state = [], action) => {
       return [
         ...state.map((blueprint) => {
           if (blueprint.name === action.payload.blueprint.name) {
-            return {
-              ...blueprint,
-              past: [],
-              present: { ...action.payload.blueprint, localPendingChanges: [], workspacePendingChanges: [] },
-              future: [],
-            };
+            return action.payload.blueprint;
           }
           return blueprint;
         }),
@@ -181,10 +154,7 @@ const blueprintList = (state = [], action) => {
           if (blueprint.name === action.payload.blueprintName) {
             return {
               ...blueprint,
-              present: {
-                ...blueprint.present,
-                customizations: { ...blueprint.present.customizations, user: action.payload.users },
-              },
+              customizations: { ...blueprint.customizations, user: action.payload.users },
             };
           }
           return blueprint;
@@ -235,10 +205,7 @@ const blueprintList = (state = [], action) => {
           if (blueprint.name === action.payload.blueprint.name) {
             return {
               ...blueprint,
-              present: {
-                ...blueprint.present,
-                customizations: { ...blueprint.present.customizations, hostname: action.payload.hostname },
-              },
+              customizations: { ...blueprint.customizations, hostname: action.payload.hostname },
             };
           }
           return blueprint;
@@ -250,34 +217,10 @@ const blueprintList = (state = [], action) => {
           if (blueprint.name === action.payload.blueprint.name) {
             return {
               ...blueprint,
-              past: blueprint.past.map((pastBlueprint) => {
-                return {
-                  ...pastBlueprint,
-                  version: action.payload.blueprint.version,
-                  customizations: {
-                    ...pastBlueprint.customizations,
-                    hostname: action.payload.blueprint.customizations.hostname,
-                  },
-                };
-              }),
-              present: {
-                ...blueprint.present,
-                version: action.payload.blueprint.version,
-                customizations: {
-                  ...blueprint.present.customizations,
-                  hostname: action.payload.blueprint.customizations.hostname,
-                },
+              customizations: {
+                ...blueprint.customizations,
+                hostname: action.payload.blueprint.customizations.hostname,
               },
-              future: blueprint.future.map((futureBlueprint) => {
-                return {
-                  ...futureBlueprint,
-                  version: action.payload.blueprint.version,
-                  customizations: {
-                    ...futureBlueprint.customizations,
-                    hostname: action.payload.blueprint.customizations.hostname,
-                  },
-                };
-              }),
             };
           }
           return blueprint;
@@ -289,7 +232,7 @@ const blueprintList = (state = [], action) => {
           if (blueprint.name === action.payload.blueprint.name) {
             return {
               ...blueprint,
-              present: { ...blueprint.present, description: action.payload.description },
+              description: action.payload.description,
             };
           }
           return blueprint;
@@ -333,17 +276,14 @@ const blueprintList = (state = [], action) => {
           if (blueprint.name === action.payload.blueprintName) {
             return {
               ...blueprint,
-              present: {
-                ...blueprint.present,
-                components: [
-                  ...blueprint.present.components.map((component) => {
-                    if (component.name === action.payload.component.name) {
-                      return { ...component, dependencies: action.payload.component.dependencies };
-                    }
-                    return component;
-                  }),
-                ],
-              },
+              components: [
+                ...blueprint.components.map((component) => {
+                  if (component.name === action.payload.component.name) {
+                    return { ...component, dependencies: action.payload.component.dependencies };
+                  }
+                  return component;
+                }),
+              ],
             };
           }
           return blueprint;

@@ -729,10 +729,10 @@ const makeMapStateToProps = () => {
     if (getBlueprintByName(state, props.route.params.blueprint.replace(/\s/g, "-")) !== undefined) {
       const fetchedBlueprint = getBlueprintByName(state, props.route.params.blueprint.replace(/\s/g, "-"));
       return {
-        blueprint: fetchedBlueprint.present,
-        selectedComponents: getFilteredComponents(state, getSortedSelectedComponents(state, fetchedBlueprint.present)),
-        dependencies: getFilteredComponents(state, getSortedDependencies(state, fetchedBlueprint.present)),
-        composeList: getBlueprintComposes(state, fetchedBlueprint.present),
+        blueprint: fetchedBlueprint,
+        selectedComponents: getFilteredComponents(state, getSortedSelectedComponents(state, fetchedBlueprint)),
+        dependencies: getFilteredComponents(state, getSortedDependencies(state, fetchedBlueprint)),
+        composeList: getBlueprintComposes(state, fetchedBlueprint),
         composesLoading: state.composes.fetchingComposes,
         imageTypes: state.composes.composeTypes,
         blueprintPage: state.blueprintPage,
@@ -740,7 +740,7 @@ const makeMapStateToProps = () => {
         selectedInputDeps: getSelectedDeps(
           state,
           state.inputs.selectedInput.component.dependencies,
-          fetchedBlueprint.present.components
+          fetchedBlueprint.components
         ),
         userAccount: state.modals.userAccount,
         stopBuild: state.modals.stopBuild,
@@ -750,7 +750,7 @@ const makeMapStateToProps = () => {
         componentsFilters: state.filter.components,
         blueprintContentsError: fetchedBlueprint.errorState,
         blueprintContentsFetching: !!(
-          fetchedBlueprint.present.components === undefined && fetchedBlueprint.errorState === undefined
+          fetchedBlueprint.components === undefined && fetchedBlueprint.errorState === undefined
         ),
       };
     }

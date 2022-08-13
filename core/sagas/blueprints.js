@@ -1,5 +1,4 @@
 import { call, put, takeEvery, select } from "redux-saga/effects";
-import BlueprintApi from "../../data/BlueprintApi";
 import * as composer from "../composer";
 import {
   FETCHING_BLUEPRINTS,
@@ -28,6 +27,7 @@ import { makeGetBlueprintByName, makeGetSelectedDeps } from "../selectors";
 function* fetchBlueprintsFromName(blueprintName) {
   const response = yield call(composer.getBlueprintInfo, blueprintName);
   yield put(fetchingBlueprintsSucceeded(response));
+  return response;
 }
 
 // need to test what happens when there are no blueprints
@@ -107,22 +107,15 @@ function flattenComponents(components) {
   return flattened;
 }
 
-function* getBlueprintHistory(blueprintName) {
-  const getBlueprintByName = makeGetBlueprintByName();
-  const blueprintHistory = yield select(getBlueprintByName, blueprintName);
-  const oldestBlueprint = blueprintHistory.past[0] ? blueprintHistory.past[0] : blueprintHistory.present;
-  return [oldestBlueprint, blueprintHistory.present];
-}
-
 function* setBlueprintUsers(action) {
   try {
     const { blueprintName, users } = action.payload;
     // commit the oldest blueprint with the updated users
-    const blueprintHistory = yield call(getBlueprintHistory, blueprintName);
-    const blueprintToPost = BlueprintApi.postedBlueprintData({
-      ...blueprintHistory[0],
-      customizations: { ...blueprintHistory[0].customizations, user: users },
-    });
+    const blueprint = yield call(fetchBlueprintsFromName, blueprintName);
+    const blueprintToPost = {
+      ...blueprint,
+      customizations: { ...blueprint.customizations, user: users },
+    };
     yield call(composer.newBlueprint, blueprintToPost);
     // get updated blueprint info (i.e. version)
     const response = yield call(composer.getBlueprintInfo, blueprintName);
@@ -166,11 +159,11 @@ function* setBlueprintHostname(action) {
   try {
     const { blueprint, hostname } = action.payload;
     // commit the oldest blueprint with the updated hostname
-    const blueprintHistory = yield call(getBlueprintHistory, blueprint.name);
-    const blueprintToPost = BlueprintApi.postedBlueprintData({
-      ...blueprintHistory[0],
-      customizations: { ...blueprintHistory[0].customizations, hostname },
-    });
+    const blueprintToPost = createWeldrBlueprint(blueprint);
+    blueprintToPost.customizations = {
+      ...blueprintToPost.customizations,
+      hostname,
+    };
     yield call(composer.newBlueprint, blueprintToPost);
     // get updated blueprint info (i.e. version)
     const response = yield call(composer.getBlueprintInfo, blueprint.name);
@@ -185,8 +178,8 @@ function* setBlueprintDescription(action) {
   try {
     const { blueprint, description } = action.payload;
     // commit the oldest blueprint with the updated hostname
-    const blueprintHistory = yield call(getBlueprintHistory, blueprint.name);
-    const blueprintToPost = BlueprintApi.postedBlueprintData({ ...blueprintHistory[0], description });
+    const blueprintToPost = createWeldrBlueprint(blueprint);
+    blueprintToPost.description = description;
     yield call(composer.newBlueprint, blueprintToPost);
     // get updated blueprint info (i.e. version)
     const response = yield call(composer.getBlueprintInfo, blueprint.name);
@@ -244,7 +237,7 @@ function* fetchCompDeps(action) {
     });
     const getBlueprintByName = makeGetBlueprintByName();
     const blueprint = yield select(getBlueprintByName, blueprintName);
-    const { components } = blueprint.present;
+    const { components } = blueprint;
     const getSelectedDeps = makeGetSelectedDeps();
     const selectedDeps = yield select(getSelectedDeps, updatedDeps, components);
     const updatedComp = {
