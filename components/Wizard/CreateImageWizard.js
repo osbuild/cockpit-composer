@@ -55,12 +55,12 @@ const CreateImageWizard = (props) => {
     const components = [];
     // TODO concept of pending changes will eventually be removed, pass empty object for now
     const pendingChange = {};
-    props.updateBlueprintComponents(props.blueprintName, components, packages, modules, pendingChange);
+    props.updateBlueprintComponents(props.blueprint.name, components, packages, modules, pendingChange);
   };
 
   const handleSubmit = async (formValues) => {
     updateBlueprintComponents(formValues["selected-packages"]);
-    const depsolveResult = await composer.depsolveBlueprint(props.blueprintName);
+    const depsolveResult = await composer.depsolveBlueprint(props.blueprint.name);
     const workspaceBlueprint = depsolveResult.blueprints[0].blueprint;
     await BlueprintApi.handleCommitBlueprint(workspaceBlueprint);
 
@@ -139,7 +139,7 @@ const CreateImageWizard = (props) => {
     }
 
     props.startCompose(
-      props.blueprintName,
+      formValues["blueprint-name"],
       formValues["image-output-type"],
       formValues["image-size"],
       ostreeSettings,
@@ -150,7 +150,7 @@ const CreateImageWizard = (props) => {
 
   return (
     <>
-      <Button variant="secondary" onClick={handleOpen} aria-label="Create image">
+      <Button variant="secondary" onClick={handleOpen} isDisabled={!props.blueprint?.name} aria-label="Create image">
         Create image
       </Button>
       {isWizardOpen && (
@@ -190,7 +190,7 @@ const CreateImageWizard = (props) => {
               },
             ],
           }}
-          blueprintName={props.blueprintName}
+          blueprint={props.blueprint}
           imageTypes={props.imageTypes}
         />
       )}
@@ -202,7 +202,7 @@ CreateImageWizard.propTypes = {
   imageTypes: PropTypes.arrayOf(PropTypes.object),
   fetchingComposeTypes: PropTypes.func,
   startCompose: PropTypes.func,
-  blueprintName: PropTypes.string,
+  blueprint: PropTypes.object,
   updateBlueprintComponents: PropTypes.func,
 };
 
