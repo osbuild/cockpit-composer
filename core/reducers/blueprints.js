@@ -18,16 +18,24 @@ import {
   BLUEPRINT_CONTENTS_FAILURE,
   RELOADING_BLUEPRINT_CONTENTS_SUCCEEDED,
   SET_COMP_DEPS,
+  BLUEPRINTS_UPDATED,
+  BLUEPRINTS_ADDED,
+  BLUEPRINTS_FETCHED,
 } from "../actions/blueprints";
+
+import { MODAL_MANAGE_SOURCES_FAILURE } from "../actions/modals";
 
 const fetchingBlueprints = (state = false, action) => {
   switch (action.type) {
+    case BLUEPRINTS_FETCHED:
+      return false;
     case FETCHING_BLUEPRINTS:
       return true;
     case FETCHING_BLUEPRINT_NAMES_SUCCEEDED:
       // if 1 or more blueprints, fetching is true because we're still waiting on the contents)
       return action.payload.blueprints.length > 0;
     case FETCHING_BLUEPRINTS_SUCCEEDED:
+    case MODAL_MANAGE_SOURCES_FAILURE:
     case BLUEPRINTS_FAILURE:
       return false;
     default:
@@ -40,6 +48,7 @@ const errorState = (state = null, action) => {
     case FETCHING_BLUEPRINTS:
     case FETCHING_BLUEPRINTS_SUCCEEDED:
       return null;
+    case MODAL_MANAGE_SOURCES_FAILURE:
     case BLUEPRINTS_FAILURE:
       return action.payload.error;
     default:
@@ -49,6 +58,35 @@ const errorState = (state = null, action) => {
 
 const blueprintList = (state = [], action) => {
   switch (action.type) {
+    case BLUEPRINTS_ADDED:
+      // this logic can be removed once FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED is unneeded
+      return state.some((blueprint) => blueprint.name === action.payload.blueprint.name)
+        ? state
+        : [...state, action.payload.blueprint];
+    case BLUEPRINTS_UPDATED:
+      return state.map((blueprint) => {
+        if (blueprint.name === action.payload.blueprint.name) {
+          return {
+            ...blueprint,
+            ...action.payload.blueprint,
+          };
+        }
+        return blueprint;
+      });
+    // Above are useful for unified and should be kept post-cleanup
+    // below is a temp workaround until sagas are removed
+    case FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED:
+      return state.some((blueprint) => blueprint.name === action.payload.blueprint.name)
+        ? state.map((blueprint) => {
+            if (blueprint.name === action.payload.blueprint.name) {
+              return {
+                ...blueprint,
+                ...action.payload.blueprint,
+              };
+            }
+            return blueprint;
+          })
+        : [...state, action.payload.blueprint];
     case CREATING_BLUEPRINT_SUCCEEDED:
       return [
         ...state.filter((blueprint) => blueprint.name !== action.payload.blueprint.name),
@@ -72,15 +110,6 @@ const blueprintList = (state = [], action) => {
             },
           ]
         : state;
-    case FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED:
-      return [
-        ...state.filter((blueprint) => blueprint.present.id !== action.payload.blueprint.id),
-        {
-          past: action.payload.pastBlueprint,
-          present: action.payload.blueprint,
-          future: [],
-        },
-      ];
     case BLUEPRINT_CONTENTS_FAILURE:
       return [
         ...state.map((blueprint) => {

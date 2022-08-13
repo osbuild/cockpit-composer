@@ -94,6 +94,16 @@ function _delete(path, options) {
   });
 }
 
+export const getBlueprintsInfo = (blueprintNames) => {
+  return get(`/api/v0/blueprints/info/${encodeURIComponent(blueprintNames)}`).then((response) => response.blueprints);
+};
+
+export const getBlueprintsNames = () => {
+  return get("/api/v0/blueprints/list").then((response) => response.blueprints);
+};
+
+// Above are useful for unified and should be kept post-cleanup
+
 /*
  * Wrappers for composer API calls
  */
