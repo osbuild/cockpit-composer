@@ -4,9 +4,10 @@ import { Popover, Button } from "@patternfly/react-core";
 import { HelpIcon } from "@patternfly/react-icons";
 
 export default {
-  title: "Customizations",
-  name: "customizations",
-  nextStep: "packages",
+  title: "Details",
+  name: "details",
+  substepOf: "Customizations",
+  nextStep: "users",
   fields: [
     {
       component: "text-field-custom",

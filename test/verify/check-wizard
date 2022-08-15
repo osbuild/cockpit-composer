@@ -51,9 +51,12 @@ class TestWizard(composerlib.ComposerCase):
         b.key_press("\b")
         b.key_press("2")
 
-        # go to customizations page
+        # go to details page
         b.click("button:contains('Next')")
-        b.wait_text("h1", "Customizations")
+        b.wait_text("h1", "Details")
+        # go to users page
+        b.click("button:contains('Next')")
+        b.wait_text("h1", "Users")
         # go to packages page
         b.click("button:contains('Next')")
         b.wait_text("h1", "Packages")
@@ -218,6 +221,7 @@ class TestWizard(composerlib.ComposerCase):
         # skip packages and customizations steps
         b.click("button:contains('Next')")
         b.click("button:contains('Next')")
+        b.click("button:contains('Next')")
 
         # Verify AWS Review page
         b.wait_text("h1", "Review")
@@ -327,6 +331,7 @@ class TestWizard(composerlib.ComposerCase):
 
         b.click("button:contains('Next')")
         # skip packages and customizations steps
+        b.click("button:contains('Next')")
         b.click("button:contains('Next')")
         b.click("button:contains('Next')")
 
@@ -452,6 +457,7 @@ class TestWizard(composerlib.ComposerCase):
         # skip packages and customizations steps
         b.click("button:contains('Next')")
         b.click("button:contains('Next')")
+        b.click("button:contains('Next')")
 
         # Verify Azure Review page
         b.wait_text("h1", "Review")
@@ -552,7 +558,8 @@ class TestWizard(composerlib.ComposerCase):
                     "followed by a letter or number.")
 
         b.click("button:contains('Next')")
-        # skip customizations and packages step
+        # skip customizations and packages steps
+        b.click("button:contains('Next')")
         b.click("button:contains('Next')")
         b.click("button:contains('Next')")
 
@@ -592,11 +599,12 @@ class TestWizard(composerlib.ComposerCase):
         b.click("button:contains('Next')")
         b.click("button:contains('Next')")
 
-        b.wait_text("h1", "Customizations")
+        b.wait_text("h1", "Details")
         b.focus("input[id='customizations-hostname']")
         b.key_press("myhost")
 
-        # go to next page and skip packages
+        # skip user and packages
+        b.click("button:contains('Next')")
         b.click("button:contains('Next')")
         b.click("button:contains('Next')")
 
@@ -607,6 +615,43 @@ class TestWizard(composerlib.ComposerCase):
 
         b.wait_visible("#input-hostname")
         b.wait_in_text("#input-hostname", "myhost")
+        # collect code coverage result
+        self.check_coverage()
+
+    def testCustomizationsUser(self):
+        b = self.browser
+
+        self.login_and_go("/composer", superuser=True)
+        b.wait_visible("#main")
+
+        b.click("li[data-blueprint=httpd-server] button[aria-label='Create image']")
+        b.wait_in_text(".pf-c-wizard__main", "httpd-server")
+        time.sleep(1)
+        b.select_PF4("#image-output-select-toggle", "QEMU Image (.qcow2)")
+
+        # go to next page and skip details step
+        b.click("button:contains('Next')")
+        b.click("button:contains('Next')")
+
+        b.wait_text("h1", "Users")
+
+        b.click("button:contains('Add user')")
+        b.focus("input[id='customizations-users[0].username']")
+        b.key_press("admin")
+        b.focus("input[id='customizations-users[0].password']")
+        b.key_press("foobar")
+        b.focus("textarea[id='customizations-users[0].ssh-key']")
+        b.key_press("ssh-rsa key")
+        b.click("input[id='customizations-users[0].is-admin']")
+        # go to next page and skip packages
+        b.click("button:contains('Next')")
+        b.wait_text("h1", "Packages")
+        b.click("button:contains('Next')")
+
+        b.wait_text("h1", "Review")
+        b.click("button:contains('Save blueprint')")
+        b.click(".pf-c-wizard__close")
+
         # collect code coverage result
         self.check_coverage()
 

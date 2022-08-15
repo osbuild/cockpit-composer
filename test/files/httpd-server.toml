@@ -15,13 +15,3 @@ version = "*"
 [[packages]]
 name = "vim-enhanced"
 version = "*"
-
-[customizations]
-hostname = "httpd-server"
-
-[[customizations.user]]
-name = "admin"
-description = "admin user"
-password = "$6$qqLkRJflUcp4v0O4$/EcYIngFndR2Z0.uJh.wo59JzUZm1u7W/XQTFhdEKKy.cEXuD5C/19/TR4LuKuUMATQRbrzXb1Ac.9LE0ri6t."
-key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDUOtNJdBEXyKxBB898rdT54ULjMGuO6v4jLXmRsdRhR5Id/lKNc9hsdioPWUePgYlqML2iSV72vKQoVhkyYkpcsjr3zvBny9+5xej3+TBLoEMAm2hmllKPmxYJDU8jQJ7wJuRrOVOnk0iSNF+FcY/yaQ0owSF02Nphx47j2KWc0IjGGlt4fl0fmHJuZBA2afN/4IYIIsEWZziDewVtaEjWV3InMRLllfdqGMllhFR+ed2hQz9PN2QcapmEvUR4UCy/mJXrke5htyFyHi8ECfyMMyYeHwbWLFQIve4CWix9qtksvKjcetnxT+WWrutdr3c9cfIj/c0v/Zg/c4zETxtp cockpit-test"
-groups = ["wheel"]

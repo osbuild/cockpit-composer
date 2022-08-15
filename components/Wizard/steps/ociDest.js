@@ -7,7 +7,7 @@ export default {
   title: "Destination",
   name: "oci-dest",
   substepOf: "Upload to OCI",
-  nextStep: "customizations",
+  nextStep: "details",
   fields: [
     {
       component: "text-field-custom",
