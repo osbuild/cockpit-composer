@@ -113,6 +113,7 @@ class TestWizard(composerlib.ComposerCase):
         b.click("button[data-testid='delete-image']")
         b.wait_visible("#cmpsr-modal-delete")
         b.click("#cmpsr-modal-delete button:contains('Delete image')")
+        time.sleep(1)
         b.wait_text("h2", "No images")
 
         # collect code coverage result
