@@ -384,6 +384,7 @@ const Packages = ({ defaultArch, ...props }) => {
             onSearch={handlePackagesAvailableSearch}
             resetButtonLabel="Clear available packages search"
             onClear={handleClearAvailableSearch}
+            isDisabled={packagesChosenLoading}
           />
         }
       >
