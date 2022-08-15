@@ -14,7 +14,6 @@ import Link from "../../components/Link/Link";
 import Layout from "../../components/Layout/Layout";
 import BlueprintContents from "../../components/ListView/BlueprintContents";
 import ComponentDetailsView from "../../components/ListView/ComponentDetailsView";
-import UserAccount from "../../components/Modal/UserAccount";
 import EditDescription from "../../components/Modal/EditDescription";
 import CreateImageWizard from "../../components/Wizard/CreateImageWizard";
 import ExportBlueprint from "../../components/Modal/ExportBlueprint";
@@ -293,18 +292,9 @@ class BlueprintPage extends React.Component {
       </li>,
     ];
 
-    const userDropdownItems = (user) => [
-      <li key="delete-user">
-        <Button variant="plain" onClick={(e) => this.handleDeleteUser(user.name, e)}>
-          {formatMessage(messages.userDelete)}
-        </Button>
-      </li>,
-    ];
-
     const rows = users.map((user) => ({
       props: { "data-tr": user.name },
       cells: [
-        user.description,
         user.name,
         { title: user.groups !== undefined && user.groups.includes("wheel") && <CheckIcon data-testid="checkmark" /> },
         { title: user.password && <CheckIcon data-testid="checkmark" /> },
@@ -315,14 +305,6 @@ class BlueprintPage extends React.Component {
               {` `}
               {user.key.split(" ")[2] || ""}
             </span>
-          ),
-        },
-        {
-          title: (
-            <div>
-              <UserAccount edit users={users} user={user} blueprintName={blueprint.name} />
-              <DropdownKebab dropdownItems={userDropdownItems(user)} />
-            </div>
           ),
         },
       ],
@@ -395,7 +377,7 @@ class BlueprintPage extends React.Component {
                           <Table
                             variant={TableVariant.compact}
                             aria-label="Users List"
-                            cells={["Full name", "User name", "Server administrator", "Password", "SSH key", "Actions"]}
+                            cells={["User name", "Server administrator", "Password", "SSH key"]}
                             rows={rows}
                           >
                             <TableHeader />
@@ -403,7 +385,6 @@ class BlueprintPage extends React.Component {
                           </Table>
                         </div>
                       )}
-                      <UserAccount edit={false} blueprintName={blueprint.name} users={users} />
                     </div>
                   </div>
                 </div>

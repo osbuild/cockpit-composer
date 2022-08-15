@@ -8,6 +8,7 @@ export { default as ociDest } from "./ociDest";
 export { default as vmwareAuth } from "./vmwareAuth";
 export { default as vmwareDest } from "./vmwareDest";
 export { default as ostreeSettings } from "./ostreeSettings";
-export { default as customizations } from "./customizations";
+export { default as details } from "./details";
 export { default as packages } from "./packages";
 export { default as review } from "./review";
+export { default as users } from "./users";

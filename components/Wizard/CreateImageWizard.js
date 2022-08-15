@@ -17,9 +17,10 @@ import {
   ociAuth,
   ociDest,
   ostreeSettings,
-  customizations,
+  details,
   packages,
   review,
+  users,
 } from "./steps";
 import MemoizedImageCreator from "./ImageCreator";
 import { hostnameValidator, ostreeValidator } from "./validators";
@@ -160,6 +161,18 @@ const CreateImageWizard = (props) => {
     if (blueprint.customizations) {
       formState["customizations-hostname"] = blueprint.customizations.hostname;
       formState["customizations-install-device"] = blueprint.customizations.installation_device;
+      formState["customizations-users"] = [];
+      if (blueprint.customizations.user?.length) {
+        blueprint.customizations.user.forEach((user) => {
+          const formUser = {
+            username: user.name,
+            password: user.password,
+            "is-admin": user.groups?.includes("wheel"),
+            "ssh-key": user.key,
+          };
+          formState["customizations-users"].push(formUser);
+        });
+      }
     }
     formState["selected-packages"] = blueprint.packages.map((pkg) => pkg.name);
 
@@ -171,6 +184,18 @@ const CreateImageWizard = (props) => {
     const customizations = {};
     customizations.hostname = formValues?.["customizations-hostname"];
     customizations.installation_device = formValues?.["customizations-install-device"];
+    customizations.user = [];
+    if (formValues["customizations-users"]?.length) {
+      formValues["customizations-users"].forEach((formUser) => {
+        const bpUser = {
+          name: formUser.username,
+          password: formUser.password,
+          groups: formUser["is-admin"] ? ["wheel"] : [],
+          key: formUser["ssh-key"],
+        };
+        customizations.user.push(bpUser);
+      });
+    }
 
     const blueprintData = {
       name: formValues?.["blueprint-name"],
@@ -223,7 +248,8 @@ const CreateImageWizard = (props) => {
                   vmwareAuth,
                   vmwareDest,
                   ostreeSettings,
-                  customizations,
+                  details,
+                  users,
                   packages,
                   review,
                 ],

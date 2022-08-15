@@ -6,7 +6,7 @@ import { HelpIcon } from "@patternfly/react-icons";
 export default {
   title: "OSTree settings",
   name: "ostree-settings",
-  nextStep: "customizations",
+  nextStep: "details",
   fields: [
     {
       component: "text-field-custom",

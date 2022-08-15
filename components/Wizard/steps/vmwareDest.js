@@ -7,7 +7,7 @@ export default {
   title: "Destination",
   name: "vmware-dest",
   substepOf: "Upload to VMWare",
-  nextStep: "customizations",
+  nextStep: "details",
   fields: [
     {
       component: "text-field-custom",
