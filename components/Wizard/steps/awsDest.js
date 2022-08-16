@@ -7,7 +7,7 @@ export default {
   title: "Destination",
   name: "aws-dest",
   substepOf: "Upload to AWS",
-  nextStep: "details",
+  nextStep: "customizations",
   fields: [
     {
       component: "text-field-custom",

@@ -10,7 +10,7 @@ export default (props) => {
       case "vmdk":
         return "vmware-auth";
       default:
-        return "details";
+        return "customizations";
     }
     // check if image type is an ostree-settings
   } else if (
@@ -25,6 +25,6 @@ export default (props) => {
   ) {
     return "ostree-settings";
   } else {
-    return "details";
+    return "customizations";
   }
 };

@@ -30,9 +30,6 @@ class TestWizard(composerlib.ComposerCase):
         b.wait_not_present(".pf-c-popover__body")
         # check non upload image action (Create only)
         b.select_PF4("#image-output-select-toggle", "QEMU Image (.qcow2)")
-        # go to details page
-        b.click("button:contains('Next')")
-        b.wait_text("h1", "Details")
         # check ? (image size help) button
         b.click("button[aria-label='Image size help']")
         b.wait_text(".pf-c-popover__body",
@@ -53,6 +50,9 @@ class TestWizard(composerlib.ComposerCase):
         b.key_press("\b")
         b.key_press("2")
 
+        # go to customizations page
+        b.click("button:contains('Next')")
+        b.wait_text("h1", "Customizations")
         # go to packages page
         b.click("button:contains('Next')")
         b.wait_text("h1", "Packages")
@@ -214,7 +214,7 @@ class TestWizard(composerlib.ComposerCase):
         b.key_press("up")
 
         b.click("button:contains('Next')")
-        # skip packages and details steps
+        # skip packages and customizations steps
         b.click("button:contains('Next')")
         b.click("button:contains('Next')")
 
@@ -325,7 +325,7 @@ class TestWizard(composerlib.ComposerCase):
         b.key_press("you-up")
 
         b.click("button:contains('Next')")
-        # skip packages and details steps
+        # skip packages and customizations steps
         b.click("button:contains('Next')")
         b.click("button:contains('Next')")
 
@@ -448,7 +448,7 @@ class TestWizard(composerlib.ComposerCase):
         b.key_press("let-you-down")
 
         b.click("button:contains('Next')")
-        # skip packages and details steps
+        # skip packages and customizations steps
         b.click("button:contains('Next')")
         b.click("button:contains('Next')")
 
@@ -551,7 +551,7 @@ class TestWizard(composerlib.ComposerCase):
                     "followed by a letter or number.")
 
         b.click("button:contains('Next')")
-        # skip details and packages step
+        # skip customizations and packages step
         b.click("button:contains('Next')")
         b.click("button:contains('Next')")
 

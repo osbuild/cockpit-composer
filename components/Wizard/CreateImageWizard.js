@@ -16,7 +16,7 @@ import {
   ociAuth,
   ociDest,
   ostreeSettings,
-  details,
+  customizations,
   packages,
   review,
 } from "./steps";
@@ -207,7 +207,7 @@ const CreateImageWizard = (props) => {
                   vmwareAuth,
                   vmwareDest,
                   ostreeSettings,
-                  details,
+                  customizations,
                   packages,
                   review,
                 ],
