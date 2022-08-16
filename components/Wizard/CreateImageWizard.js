@@ -150,6 +150,7 @@ const CreateImageWizard = (props) => {
     formState["blueprint-groups"] = blueprint.groups;
     if (blueprint.customizations) {
       formState["customizations-hostname"] = blueprint.customizations.hostname;
+      formState["customizations-install-device"] = blueprint.customizations.installation_device;
     }
     formState["selected-packages"] = blueprint.packages.map((pkg) => pkg.name);
 
@@ -159,9 +160,8 @@ const CreateImageWizard = (props) => {
   const stateToBlueprint = (formValues) => {
     const formattedPacks = formValues?.["selected-packages"]?.map((pkg) => ({ name: pkg, version: "*" }));
     const customizations = {};
-    if (formValues?.["customizations-hostname"]) {
-      customizations.hostname = formValues["customizations-hostname"];
-    }
+    customizations.hostname = formValues?.["customizations-hostname"];
+    customizations.installation_device = formValues?.["customizations-install-device"];
 
     const blueprintData = {
       name: formValues?.["blueprint-name"],

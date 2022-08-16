@@ -52,36 +52,6 @@ class TestCustom(composerlib.ComposerCase):
         # collect code coverage result
         self.check_coverage()
 
-    def testDevice(self):
-        b = self.browser
-
-        self.login_and_go("/composer")
-        b.wait_visible("#main")
-
-        b.click("#openssh-server-name")
-        with b.wait_timeout(300):
-            b.click("#pf-tab-customizations-blueprint-tabs")
-        # set device to "dev0"
-        b.click("#input-device .form-control-pf-value")
-        b.set_input_text("input[aria-label='Installation device']", "dev0")
-        b.click("#input-device .form-control-pf-save")
-        b.wait_visible("span:contains(dev0)")
-
-        # update device to "dev1"
-        b.click("#input-device .form-control-pf-value")
-        b.set_input_text("input[aria-label='Installation device']", "dev1")
-        b.click("#input-device .form-control-pf-save")
-        b.wait_visible("span:contains(dev1)")
-
-        # clicking x button will not update
-        b.click("#input-device .form-control-pf-value")
-        b.set_input_text("input[aria-label='Installation device']", "")
-        b.click("#input-device .form-control-pf-cancel")
-        b.wait_visible("span:contains(dev1)")
-
-        # collect code coverage result
-        self.check_coverage()
-
     def testUserAccount(self):
         b = self.browser
 

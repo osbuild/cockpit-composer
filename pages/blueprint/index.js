@@ -152,7 +152,6 @@ class BlueprintPage extends React.Component {
     super();
     this.state = {
       device: "",
-      editDeviceVisible: false,
     };
     this.handleComponentDetails = this.handleComponentDetails.bind(this);
     this.handleComponentListItem = this.handleComponentListItem.bind(this);
@@ -162,7 +161,6 @@ class BlueprintPage extends React.Component {
     this.handleEditDescription = this.handleEditDescription.bind(this);
     this.handleEditHostname = this.handleEditHostname.bind(this);
     this.handleEditHostnameValue = this.handleEditHostnameValue.bind(this);
-    this.handleEditDeviceVisible = this.handleEditDeviceVisible.bind(this);
     this.handleDeleteUser = this.handleDeleteUser.bind(this);
     this.downloadUrl = this.downloadUrl.bind(this);
   }
@@ -218,24 +216,6 @@ class BlueprintPage extends React.Component {
     const validElements = value.split(".").every((element) => element.length < 63);
     const invalid = !!(!validCharacters || !validElements || value.startsWith("-") || value.endsWith("."));
     this.props.setEditHostnameInvalid(invalid);
-  }
-
-  handleEditDeviceVisible(action, value) {
-    if (action === "commit") {
-      this.setState({
-        device: value,
-        editDeviceVisible: false,
-      });
-      this.props.setBlueprintDevice(this.props.blueprint, value);
-    } else if (action === "cancel") {
-      this.setState({
-        editDeviceVisible: false,
-      });
-    } else {
-      this.setState({
-        editDeviceVisible: true,
-      });
-    }
   }
 
   handleDeleteUser(userName, e) {
@@ -401,26 +381,9 @@ class BlueprintPage extends React.Component {
                   </div>
                   <div className="form-group" id="input-device">
                     <label className="col-sm-2 control-label pf-u-text-align-left">
-                      <FormattedMessage defaultMessage="Installation Device" />
-                      <Popover
-                        id="popover-installation-device"
-                        bodyContent={formatMessage(messages.devicePopover)}
-                        aria-label={formatMessage(messages.devicePopoverLabel)}
-                      >
-                        <Button variant="plain" aria-label={formatMessage(messages.devicePopoverLabel)}>
-                          <OutlinedQuestionCircleIcon />
-                        </Button>
-                      </Popover>
+                      <FormattedMessage defaultMessage="Installation device" />
                     </label>
-                    <TextInlineEdit
-                      className="col-sm-10"
-                      editVisible={this.state.editDeviceVisible}
-                      handleEdit={this.handleEditDeviceVisible}
-                      buttonLabel={formatMessage(messages.deviceButtonLabel)}
-                      inputLabel={formatMessage(messages.deviceInputLabel)}
-                      helpblock={formatMessage(messages.deviceHelp)}
-                      value={device}
-                    />
+                    <div>{device}</div>
                   </div>
                   <div className="form-group user-list">
                     <label className="col-sm-2 control-label pf-u-text-align-left">

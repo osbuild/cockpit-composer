@@ -101,6 +101,12 @@ const customizations = (formValues) => (
         <TextListItem component={TextListItemVariants.dd}>{formValues?.["customizations-hostname"]}</TextListItem>
       </>
     )}
+    {formValues?.["customizations-install-device"] && (
+      <>
+        <TextListItem component={TextListItemVariants.dt}>Installation device</TextListItem>
+        <TextListItem component={TextListItemVariants.dd}>{formValues?.["customizations-install-device"]}</TextListItem>
+      </>
+    )}
   </>
 );
 
