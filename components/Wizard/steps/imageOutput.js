@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Popover } from "@patternfly/react-core";
 import { OutlinedQuestionCircleIcon } from "@patternfly/react-icons";
 
-import { componentTypes } from "@data-driven-forms/react-form-renderer";
+import { componentTypes, validatorTypes } from "@data-driven-forms/react-form-renderer";
 import nextStepMapper from "./imageOutputStepMapper";
 
 export default {
@@ -19,6 +19,11 @@ export default {
       component: "image-output-select",
       name: "image-output-type",
       label: "Type",
+      validate: [
+        {
+          type: validatorTypes.REQUIRED,
+        },
+      ],
     },
     {
       name: "image-upload",
