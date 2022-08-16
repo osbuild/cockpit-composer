@@ -19,7 +19,7 @@ class TestSource(composerlib.ComposerCase):
         source_url = "https://mirrors.fedoraproject.org/mirrorlist?repo=fedora-30&arch=x86_64"
         source_name = "fedora-30-mirrorlist"
 
-        self.login_and_go("/composer", superuser=True)
+        self.login_and_go("/composer")
         b.wait_visible("#main")
 
         # open manage sources dialog

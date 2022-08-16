@@ -26,7 +26,7 @@ class TestService(composerlib.ComposerCase):
     def testBasic(self):
         b = self.browser
 
-        self.login_and_go("/composer", superuser=True)
+        self.login_and_go("/composer")
         b.wait_visible("#main")
 
         # start and enable osbuild-composer from UI
@@ -41,7 +41,7 @@ class TestService(composerlib.ComposerCase):
         b = self.browser
         m = self.machine
 
-        self.login_and_go("/composer", superuser=True)
+        self.login_and_go("/composer")
         b.wait_visible("#main")
 
         # do not enable osbuild-composer
