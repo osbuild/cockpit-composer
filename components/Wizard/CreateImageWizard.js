@@ -21,7 +21,7 @@ import {
   review,
 } from "./steps";
 import MemoizedImageCreator from "./ImageCreator";
-import { ostreeValidator } from "./validators";
+import { hostnameValidator, ostreeValidator } from "./validators";
 import "./CreateImageWizard.css";
 
 const CreateImageWizard = (props) => {
@@ -148,7 +148,9 @@ const CreateImageWizard = (props) => {
     formState["blueprint-name"] = blueprint.name;
     formState["blueprint-description"] = blueprint.description;
     formState["blueprint-groups"] = blueprint.groups;
-    formState["blueprint-customizations"] = blueprint.customizations;
+    if (blueprint.customizations) {
+      formState["customizations-hostname"] = blueprint.customizations.hostname;
+    }
     formState["selected-packages"] = blueprint.packages.map((pkg) => pkg.name);
 
     return formState;
@@ -156,13 +158,18 @@ const CreateImageWizard = (props) => {
 
   const stateToBlueprint = (formValues) => {
     const formattedPacks = formValues?.["selected-packages"]?.map((pkg) => ({ name: pkg, version: "*" }));
+    const customizations = {};
+    if (formValues?.["customizations-hostname"]) {
+      customizations.hostname = formValues["customizations-hostname"];
+    }
+
     const blueprintData = {
       name: formValues?.["blueprint-name"],
       description: formValues?.["blueprint-description"],
       modules: [],
       packages: formattedPacks,
       groups: formValues?.["blueprint-groups"],
-      customizations: formValues?.["blueprint-customizations"],
+      customizations,
     };
 
     return blueprintData;
@@ -182,7 +189,7 @@ const CreateImageWizard = (props) => {
         <MemoizedImageCreator
           onClose={handleClose}
           onSubmit={(action, formValues) => handleSubmit(action, formValues)}
-          customValidatorMapper={{ ostreeValidator }}
+          customValidatorMapper={{ hostnameValidator, ostreeValidator }}
           schema={{
             fields: [
               {

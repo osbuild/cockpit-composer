@@ -9,7 +9,7 @@ export default {
       className: "pf-u-w-75",
       type: "text",
       label: "Hostname",
-      helperText: "If no hostname is provided, the hostname will be determined by the OS",
+      helperText: "If no hostname is provided, the hostname will be determined by the OS.",
       validate: [
         {
           type: "hostnameValidator",

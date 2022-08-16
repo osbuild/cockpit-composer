@@ -52,41 +52,6 @@ class TestCustom(composerlib.ComposerCase):
         # collect code coverage result
         self.check_coverage()
 
-    def testHostname(self):
-        b = self.browser
-
-        self.login_and_go("/composer")
-        b.wait_visible("#main")
-
-        b.click("#openssh-server-name")
-        with b.wait_timeout(300):
-            b.click("#pf-tab-customizations-blueprint-tabs")
-        # set hostname to "openssh-server"
-        b.click("button[aria-describedby=Hostname-help2]")
-        b.set_input_text("input[aria-label=Hostname]", "hostname-openssh-server")
-        b.click("#input-hostname .form-control-pf-save")
-        b.wait_visible("span:contains(hostname-openssh-server)")
-
-        # update hostname
-        b.click("#input-hostname .form-control-pf-value")
-        b.set_input_text("input[aria-label=Hostname]", "update-openssh-server")
-        b.click("#input-hostname .form-control-pf-save")
-        b.wait_visible("span:contains(update-openssh-server)")
-
-        # clicking x button will not update
-        b.click("#input-hostname .form-control-pf-value")
-        b.set_input_text("input[aria-label=Hostname]", "no-update-openssh-server")
-        b.click("#input-hostname .form-control-pf-cancel")
-        b.wait_visible("span:contains(update-openssh-server)")
-
-        # invalid character, save button is disabled
-        b.click("#input-hostname .form-control-pf-value")
-        b.set_input_text("input[aria-label=Hostname]", "?")
-        b.wait_attr("#input-hostname .form-control-pf-save", "disabled", "")
-
-        # collect code coverage result
-        self.check_coverage()
-
     def testDevice(self):
         b = self.browser
 

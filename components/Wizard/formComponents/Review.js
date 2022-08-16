@@ -93,6 +93,17 @@ const ociReview = (formValues) => (
   </>
 );
 
+const customizations = (formValues) => (
+  <>
+    {formValues?.["customizations-hostname"] && (
+      <>
+        <TextListItem component={TextListItemVariants.dt}>Hostname</TextListItem>
+        <TextListItem component={TextListItemVariants.dd}>{formValues?.["customizations-hostname"]}</TextListItem>
+      </>
+    )}
+  </>
+);
+
 const Review = (props) => {
   const { getState } = useFormApi();
   const [formValues, setFormValues] = useState(getState()?.values);
@@ -151,6 +162,7 @@ const Review = (props) => {
           <TextListItem component={TextListItemVariants.dd}>
             {dependencies || dependencies === 0 ? dependencies : <Spinner size="sm" />}
           </TextListItem>
+          {customizations(formValues)}
         </TextList>
       </TextContent>
     </>
