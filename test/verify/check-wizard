@@ -2,6 +2,7 @@
 
 import os
 import time
+# import unittest
 import composerlib
 import testlib
 
@@ -589,6 +590,7 @@ class TestWizard(composerlib.ComposerCase):
 
         # go to next page and skip ostree settings
         b.click("button:contains('Next')")
+        b.click("button:contains('Next')")
 
         b.wait_text("h1", "Customizations")
         b.focus("input[id='customizations-hostname']")
@@ -607,6 +609,42 @@ class TestWizard(composerlib.ComposerCase):
         b.wait_in_text("#input-hostname", "myhost")
         # collect code coverage result
         self.check_coverage()
+
+    # RHEL for Edge Simplified Installer (.iso) is currently not supported but this test is for the field
+    # @unittest.skipIf(os.environ.get("TEST_OS").split('-')[0] != "rhel", "Does not support RHEL for Edge Installer options")
+    # def testCustomizationsInstallerDevice(self):
+    #     b = self.browser
+
+    #     self.login_and_go("/composer", superuser=True)
+    #     b.wait_visible("#main")
+
+    #     b.click("li[data-blueprint=httpd-server] button[aria-label='Create image']")
+    #     b.wait_in_text(".pf-c-wizard__main", "httpd-server")
+    #     time.sleep(1)
+    #     # select RHEL Installer
+    #     b.select_PF4("#image-output-select-toggle", "RHEL for Edge Simplified Installer (.iso)")
+
+    #     # skip ostree settings
+    #     b.click("button:contains('Next')")
+
+    #     b.wait_text("h1", "Customizations")
+    #     b.focus("#customizations-install-device")
+    #     b.key_press("/dev/test")
+
+    #     # go to next page and then skip packages
+    #     b.click("button:contains('Next')")
+    #     b.click("button:contains('Next')")
+
+    #     b.click("button:contains('Save blueprint')")
+    #     b.click(".pf-c-wizard__close")
+
+    #     b.click("li[data-blueprint=httpd-server] a[href='#/blueprint/httpd-server']")
+
+    #     b.wait_visible("#input-install-device")
+    #     b.wait_in_text("#input-install-device", "/dev/test")
+    #     # collect code coverage result
+    #     self.check_coverage()
+
 
 if __name__ == '__main__':
     testlib.test_main()
