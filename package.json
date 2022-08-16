@@ -6,7 +6,7 @@
     "npm": ">=5.0"
   },
   "dependencies": {
-    "@data-driven-forms/pf4-component-mapper": "3.16.10",
+    "@data-driven-forms/pf4-component-mapper": "3.16.11",
     "@data-driven-forms/react-form-renderer": "3.16.10",
     "@patternfly/patternfly": "4.185.1",
     "@patternfly/react-core": "4.198.19",
