@@ -14,7 +14,7 @@ class TestWizard(composerlib.ComposerCase):
     def testQCOW2Customized(self):
         b = self.browser
 
-        self.login_and_go("/composer", superuser=True)
+        self.login_and_go("/composer")
         b.wait_visible("#main")
 
         # create image wizard (no upload support)
@@ -123,7 +123,7 @@ class TestWizard(composerlib.ComposerCase):
     def testAWSStep(self):
         b = self.browser
 
-        self.login_and_go("/composer", superuser=True)
+        self.login_and_go("/composer")
         b.wait_visible("#main")
 
         # create image wizard (no upload support)
@@ -250,7 +250,7 @@ class TestWizard(composerlib.ComposerCase):
     # TODO: verify popover text after string translation
     def testAzureStep(self):
         b = self.browser
-        self.login_and_go("/composer", superuser=True)
+        self.login_and_go("/composer")
         b.wait_visible("#main")
 
         # create image wizard (no upload support)
@@ -361,7 +361,7 @@ class TestWizard(composerlib.ComposerCase):
     def testVMWareStep(self):
         b = self.browser
 
-        self.login_and_go("/composer", superuser=True)
+        self.login_and_go("/composer")
         b.wait_visible("#main")
 
         # create image wizard (no upload support)
@@ -492,7 +492,7 @@ class TestWizard(composerlib.ComposerCase):
     def testOSTreeStep(self):
         b = self.browser
 
-        self.login_and_go("/composer", superuser=True)
+        self.login_and_go("/composer")
         b.wait_visible("#main")
 
         # create image wizard (no upload support)
