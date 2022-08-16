@@ -1,8 +1,12 @@
 import * as composer from "../composer";
 
 export const blueprintsUpdate = (blueprint) => async (dispatch) => {
-  await composer.newBlueprint(blueprint);
-  dispatch(blueprintsUpdated(blueprint));
+  try {
+    await composer.newBlueprint(blueprint);
+    dispatch(blueprintsUpdated(blueprint));
+  } catch (error) {
+    dispatch(blueprintsFailure(error));
+  }
 };
 
 export const BLUEPRINTS_UPDATED = "BLUEPRINTS_UPDATED";
@@ -14,10 +18,14 @@ export const blueprintsUpdated = (blueprint) => ({
 });
 
 export const blueprintsGetAll = () => async (dispatch) => {
-  const bpNames = await composer.getBlueprintsNames();
-  const blueprints = await composer.getBlueprintsInfo(bpNames);
-  blueprints.forEach((bp) => dispatch(blueprintsAdded(bp)));
-  dispatch(blueprintsFetched());
+  try {
+    const bpNames = await composer.getBlueprintsNames();
+    const blueprints = await composer.getBlueprintsInfo(bpNames);
+    blueprints.forEach((bp) => dispatch(blueprintsAdded(bp)));
+    dispatch(blueprintsFetched());
+  } catch (error) {
+    dispatch(blueprintsFailure(error));
+  }
 };
 
 export const BLUEPRINTS_ADDED = "BLUEPRINTS_ADDED";

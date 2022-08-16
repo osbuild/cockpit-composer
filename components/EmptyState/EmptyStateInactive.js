@@ -85,14 +85,10 @@ class EmptyStateInactive extends React.Component {
           </Tooltip>
         }
       >
-        <Button bsStyle="primary" bsSize="large" className="disabled cmpsr-has-tooltip">
-          {formatMessage(messages.errorInactivePrimary)}
-        </Button>
+        <Button className="disabled cmpsr-has-tooltip">{formatMessage(messages.errorInactivePrimary)}</Button>
       </OverlayTrigger>
     ) : (
-      <Button bsStyle="primary" bsSize="large" onClick={this.startService}>
-        {formatMessage(messages.errorInactivePrimary)}
-      </Button>
+      <Button onClick={this.startService}>{formatMessage(messages.errorInactivePrimary)}</Button>
     );
     return (
       <>
