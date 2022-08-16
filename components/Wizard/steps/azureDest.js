@@ -7,7 +7,7 @@ export default {
   title: "Destination",
   name: "azure-dest",
   substepOf: "Upload to Azure",
-  nextStep: "details",
+  nextStep: "customizations",
   fields: [
     {
       component: "text-field-custom",

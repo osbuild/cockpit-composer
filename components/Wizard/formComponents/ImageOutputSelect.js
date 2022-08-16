@@ -22,6 +22,7 @@ const ImageOutputSelect = ({ label, isRequired, ...props }) => {
     <>
       <FormGroup isRequired={isRequired} label={label} data-testid="subscription-activation-key">
         <Select
+          className="pf-u-w-50"
           onToggle={() => setIsOpen(!isOpen)}
           onSelect={setOutput}
           isOpen={isOpen}
