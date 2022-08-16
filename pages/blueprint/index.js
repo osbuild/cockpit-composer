@@ -393,27 +393,11 @@ class BlueprintPage extends React.Component {
             <div className="tab-container row">
               <div className="form-customizations col-sm-12 pf-u-ml-md">
                 <div className="form-horizontal">
-                  <div
-                    id="input-hostname"
-                    className={`form-group ${editHostnameInvalid ? "has-error" : ""}`}
-                    data-form="hostname"
-                    onSubmit={() => this.handleEditHostname("commit")}
-                  >
+                  <div className="form-group" id="input-hostname">
                     <label className="col-sm-2 control-label pf-u-text-align-left">
                       {formatMessage(messages.hostnameInputLabel)}
                     </label>
-                    <TextInlineEdit
-                      className="col-sm-10"
-                      editVisible={editHostnameVisible}
-                      handleEdit={this.handleEditHostname}
-                      validateValue={this.handleEditHostnameValue}
-                      buttonLabel={formatMessage(messages.hostnameButtonLabel)}
-                      inputLabel={formatMessage(messages.hostnameInputLabel)}
-                      value={hostname}
-                      invalid={editHostnameInvalid}
-                      helpblock={formatMessage(messages.hostnameHelp)}
-                      helpblockNoValue={formatMessage(messages.hostnameHelpEmpty)}
-                    />
+                    <div>{hostname}</div>
                   </div>
                   <div className="form-group" id="input-device">
                     <label className="col-sm-2 control-label pf-u-text-align-left">
