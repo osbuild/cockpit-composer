@@ -5,8 +5,9 @@ import useFormApi from "@data-driven-forms/react-form-renderer/use-form-api";
 import useFieldApi from "@data-driven-forms/react-form-renderer/use-field-api";
 
 const ImageOutputSelect = ({ label, isRequired, ...props }) => {
-  const { change } = useFormApi();
-  const [outputType, setOutputType] = useState();
+  const { change, getState } = useFormApi();
+  const formValues = getState()?.values;
+  const [outputType, setOutputType] = useState(formValues?.["image-output-type"]);
   const [isOpen, setIsOpen] = useState(false);
   useFieldApi(props);
 
