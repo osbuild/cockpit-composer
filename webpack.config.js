@@ -57,7 +57,7 @@ module.exports = {
   plugins,
   output,
   devtool,
-  externals: { cockpit: "cockpit", jQuery: "jquery" },
+  externals: { cockpit: "cockpit" },
   // disable noisy warnings about exceeding the recommended size limit
   performance: {
     maxEntrypointSize: 20000000,

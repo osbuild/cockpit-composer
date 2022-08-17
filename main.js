@@ -2,8 +2,6 @@ import "core-js/stable";
 // redux-saga uses generators, use regenerator-runtime/runtime to transform generators
 import "regenerator-runtime/runtime";
 
-import "whatwg-fetch";
-
 // Contains PF3 stylesheets and base for PF4
 import "./lib/patternfly/patternfly-cockpit.scss";
 
