@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { connect, useDispatch } from "react-redux";
 import { Button } from "@patternfly/react-core";
+import { FormattedMessage, defineMessages, useIntl } from "react-intl";
 import componentTypes from "@data-driven-forms/react-form-renderer/component-types";
 import { startCompose, fetchingComposeTypes } from "../../core/actions/composes";
 import { blueprintsUpdate } from "../../core/actions/blueprints";
@@ -49,6 +50,15 @@ const CreateImageWizard = (props) => {
     setIsSaving(false);
     setHasSaved(true);
   };
+
+  const intl = useIntl();
+
+  const messages = defineMessages({
+    createImage: {
+      id: "wizard.create.image",
+      defaultMessage: "Create image",
+    },
+  });
 
   const handleBuildImage = async (formProps) => {
     const { formValues } = formProps;
@@ -181,9 +191,9 @@ const CreateImageWizard = (props) => {
         variant="secondary"
         onClick={handleOpen}
         isDisabled={!props.blueprint?.name || !props.imageTypes?.length}
-        aria-label="Create image"
+        aria-label={intl.formatMessage(messages.createImage)}
       >
-        Create image
+        <FormattedMessage id="wizard.createImage.button" defaultMessage="Create image" />
       </Button>
       {isWizardOpen && (
         <MemoizedImageCreator
@@ -199,9 +209,9 @@ const CreateImageWizard = (props) => {
                 isDynamic: true,
                 inModal: true,
                 showTitles: true,
-                title: "Create image",
+                title: intl.formatMessage(messages.createImage),
                 buttonLabels: {
-                  submit: "Create image",
+                  submit: intl.formatMessage(messages.createImage),
                 },
                 fields: [
                   imageOutput,
