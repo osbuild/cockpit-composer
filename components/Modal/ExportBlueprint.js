@@ -18,6 +18,12 @@ class ExportBlueprint extends React.Component {
     this.props.fetchingBlueprintContents(this.props.blueprint.name);
   }
 
+  handleModalToggle = () => {
+    this.setState(({ isModalOpen }) => ({
+      isModalOpen: !isModalOpen,
+    }));
+  };
+
   handleCopy() {
     this.blueprint_contents_text.select();
     document.execCommand("copy");
@@ -28,12 +34,6 @@ class ExportBlueprint extends React.Component {
       this.handleCopy();
     }
   }
-
-  handleModalToggle = () => {
-    this.setState(({ isModalOpen }) => ({
-      isModalOpen: !isModalOpen,
-    }));
-  };
 
   render() {
     return (

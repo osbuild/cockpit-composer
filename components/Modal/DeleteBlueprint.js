@@ -15,16 +15,16 @@ class DeleteBlueprint extends React.Component {
     this.handleModalToggle = this.handleModalToggle.bind(this);
   }
 
-  handleDelete(event, blueprint) {
-    this.props.deletingBlueprint(blueprint);
-    this.handleModalToggle();
-  }
-
   handleModalToggle = () => {
     this.setState(({ isModalOpen }) => ({
       isModalOpen: !isModalOpen,
     }));
   };
+
+  handleDelete(event, blueprint) {
+    this.props.deletingBlueprint(blueprint);
+    this.handleModalToggle();
+  }
 
   render() {
     return (

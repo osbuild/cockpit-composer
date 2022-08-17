@@ -68,6 +68,29 @@ class ComponentDetailsView extends React.Component {
     }
   }
 
+  setBuildIndex() {
+    // if component is not in the blueprint, then default to the first option ("*")
+    // if component is in the blueprint, then set selectedBuildIndex to the object with the current selected version
+    const { component, selectedComponents } = this.props;
+    let index = this.state.selectedBuildIndex;
+    if (component.builds !== undefined && index === undefined) {
+      if (component.userSelected === true) {
+        const selectedVersion = selectedComponents.find((selected) => selected.name === component.name).version;
+        const selectedBuild = component.builds.filter((obj) => obj.version === selectedVersion)[0];
+        index = component.builds.indexOf(selectedBuild);
+        if (index === -1) {
+          index = 0;
+        }
+        this.setState({ selectedBuildIndex: index });
+        this.setState({ savedVersion: selectedVersion });
+        this.handleSelectedBuildDeps(index);
+      } else {
+        this.setState({ selectedBuildIndex: 0 });
+        this.handleSelectedBuildDeps(0);
+      }
+    }
+  }
+
   handleVersionSelect(event) {
     this.setState({ selectedBuildIndex: event.target.value });
     this.handleSelectedBuildDeps(event.target.value);
@@ -106,29 +129,6 @@ class ComponentDetailsView extends React.Component {
     this.props.clearSelectedInput();
     event.preventDefault();
     event.stopPropagation();
-  }
-
-  setBuildIndex() {
-    // if component is not in the blueprint, then default to the first option ("*")
-    // if component is in the blueprint, then set selectedBuildIndex to the object with the current selected version
-    const { component, selectedComponents } = this.props;
-    let index = this.state.selectedBuildIndex;
-    if (component.builds !== undefined && index === undefined) {
-      if (component.userSelected === true) {
-        const selectedVersion = selectedComponents.find((selected) => selected.name === component.name).version;
-        const selectedBuild = component.builds.filter((obj) => obj.version === selectedVersion)[0];
-        index = component.builds.indexOf(selectedBuild);
-        if (index === -1) {
-          index = 0;
-        }
-        this.setState({ selectedBuildIndex: index });
-        this.setState({ savedVersion: selectedVersion });
-        this.handleSelectedBuildDeps(index);
-      } else {
-        this.setState({ selectedBuildIndex: 0 });
-        this.handleSelectedBuildDeps(0);
-      }
-    }
   }
 
   render() {

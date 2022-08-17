@@ -20,15 +20,15 @@ class EditDescription extends React.Component {
     this.setState({ description: this.props.description });
   }
 
-  handleChange(e, prop) {
-    this.setState({ [prop]: e.target.value });
-  }
-
   handleModalToggle = () => {
     this.setState(({ isModalOpen }) => ({
       isModalOpen: !isModalOpen,
     }));
   };
+
+  handleChange(e, prop) {
+    this.setState({ [prop]: e.target.value });
+  }
 
   handleSubmit(e) {
     this.handleModalToggle();

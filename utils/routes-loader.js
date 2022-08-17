@@ -8,6 +8,8 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
+/* eslint-disable no-unused-vars */
+
 const toRegExp = require("path-to-regexp");
 
 function escape(text) {

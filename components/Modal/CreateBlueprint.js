@@ -28,6 +28,12 @@ class CreateBlueprint extends React.Component {
     this.handleModalToggle = this.handleModalToggle.bind(this);
   }
 
+  handleModalToggle = () => {
+    this.setState(({ isModalOpen }) => ({
+      isModalOpen: !isModalOpen,
+    }));
+  };
+
   handleChange(e, prop) {
     this.setState({ [prop]: e.target.value });
     if (prop === "name") {
@@ -89,12 +95,6 @@ class CreateBlueprint extends React.Component {
       }
     }
   }
-
-  handleModalToggle = () => {
-    this.setState(({ isModalOpen }) => ({
-      isModalOpen: !isModalOpen,
-    }));
-  };
 
   dismissErrors() {
     this.setState({
