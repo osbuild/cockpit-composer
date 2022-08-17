@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { FormGroup, Select, SelectOption } from "@patternfly/react-core";
 import useFormApi from "@data-driven-forms/react-form-renderer/use-form-api";
 import useFieldApi from "@data-driven-forms/react-form-renderer/use-field-api";
+import { defineMessages, useIntl } from "react-intl";
 
 const ImageOutputSelect = ({ label, isRequired, ...props }) => {
   const { change, getState } = useFormApi();
@@ -19,6 +20,15 @@ const ImageOutputSelect = ({ label, isRequired, ...props }) => {
     }
   };
 
+  const intl = useIntl();
+
+  const messages = defineMessages({
+    outputType: {
+      id: "imageoutput.select.type",
+      defaultMessage: "Select output type",
+    },
+  });
+
   return (
     <>
       <FormGroup isRequired={isRequired} label={label} data-testid="subscription-activation-key">
@@ -28,8 +38,8 @@ const ImageOutputSelect = ({ label, isRequired, ...props }) => {
           onSelect={setOutput}
           isOpen={isOpen}
           selections={outputType}
-          placeholderText="Select output type"
-          typeAheadAriaLabel="Select output type"
+          placeholderText={intl.formatMessage(messages.outputType)}
+          typeAheadAriaLabel={intl.formatMessage(messages.outputType)}
           toggleId="image-output-select-toggle"
         >
           {props.imageTypes.map((outputType) => (
