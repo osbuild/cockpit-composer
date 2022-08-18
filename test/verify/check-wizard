@@ -142,7 +142,7 @@ class TestWizard(composerlib.ComposerCase):
         b.wait_visible("label:contains('Upload to AWS')")
         b.click("#image-upload")
 
-        b.click("button[aria-label='AWS upload help']")
+        b.click("button[aria-label='Upload to AWS help']")
         # b.wait_in_text(".pf-c-popover__body",
         #                " Image Builder can upload images you create to an S3 bucket in AWS and "
         #                "then import them into EC2. When the image build is complete and the upload"
@@ -270,7 +270,7 @@ class TestWizard(composerlib.ComposerCase):
         b.wait_visible("label:contains('Upload to Azure')")
         b.click("#image-upload")
 
-        b.click("button[aria-label='Azure upload help']")
+        b.click("button[aria-label='Upload to Azure help']")
         # b.wait_in_text(".pf-c-popover__body",
         #                " Image Builder can upload images you create to a Blob container in "
         #                "Microsoft Azure. When the image build is complete and the upload action "
@@ -382,7 +382,7 @@ class TestWizard(composerlib.ComposerCase):
         b.wait_visible("label:contains('Upload to VMWare')")
         b.click("#image-upload")
 
-        b.click("button[aria-label='VMWare upload help']")
+        b.click("button[aria-label='Upload to VMWare help']")
         # b.wait_in_text(".pf-c-popover__body",
         #                " Image Builder can upload images you create to VMWare vSphere. "
         #                "When the image build is complete and the upload action is successful, "
