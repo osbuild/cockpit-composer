@@ -238,7 +238,7 @@ const CreateImageWizard = (props) => {
                   submit: intl.formatMessage(messages.createImage),
                 },
                 fields: [
-                  imageOutput,
+                  imageOutput(),
                   awsAuth,
                   awsDest,
                   azureAuth,
