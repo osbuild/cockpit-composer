@@ -1,7 +1,6 @@
 import React from "react";
 import { FormGroup as Pf4FormGroup, TextContent, Text } from "@patternfly/react-core";
 import PropTypes from "prop-types";
-import { FormattedMessage } from "react-intl";
 
 const showError = ({ error, touched, warning, submitError }, validateOnMount) => {
   if ((touched || validateOnMount) && error) {
@@ -46,9 +45,7 @@ const FormGroupCustom = ({
   >
     {description && (
       <TextContent>
-        <Text component="small">
-          <FormattedMessage id="formgroup.text" defaultMessage={description} />
-        </Text>
+        <Text component="small">{description}</Text>
       </TextContent>
     )}
     {children}

@@ -5,7 +5,15 @@ import useFormApi from "@data-driven-forms/react-form-renderer/use-form-api";
 import useFieldApi from "@data-driven-forms/react-form-renderer/use-field-api";
 import { defineMessages, useIntl } from "react-intl";
 
+const messages = defineMessages({
+  outputType: {
+    id: "wizard.imageOutput.selectType",
+    defaultMessage: "Select output type",
+  },
+});
+
 const ImageOutputSelect = ({ label, isRequired, ...props }) => {
+  const intl = useIntl();
   const { change, getState } = useFormApi();
   const formValues = getState()?.values;
   const [outputType, setOutputType] = useState(formValues?.["image-output-type"]);
@@ -19,15 +27,6 @@ const ImageOutputSelect = ({ label, isRequired, ...props }) => {
       change("image-output-type", selection);
     }
   };
-
-  const intl = useIntl();
-
-  const messages = defineMessages({
-    outputType: {
-      id: "imageoutput.select.type",
-      defaultMessage: "Select output type",
-    },
-  });
 
   return (
     <>

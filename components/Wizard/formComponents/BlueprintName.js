@@ -4,22 +4,23 @@ import { FormGroup, Text, Popover, Button } from "@patternfly/react-core";
 import { HelpIcon } from "@patternfly/react-icons";
 import { defineMessages, useIntl } from "react-intl";
 
+const messages = defineMessages({
+  blueprint: {
+    id: "wizard.blueprintName.name",
+    defaultMessage: "blueprint",
+  },
+  popoverBody: {
+    id: "wizard.blueprintName.popover.content",
+    defaultMessage: "This process can take a while. Images are built in the order they are started.",
+  },
+  popoverAria: {
+    id: "wizard.blueprintName.popover.aria",
+    defaultMessage: "Process length help",
+  },
+});
+
 const BlueprintName = (props) => {
   const intl = useIntl();
-  const messages = defineMessages({
-    blueprint: {
-      id: "blueprint.name",
-      defaultMessage: "blueprint",
-    },
-    popoverBody: {
-      id: "blueprint.popover.content",
-      defaultMessage: "This process can take a while. Images are built in the order they are started.",
-    },
-    popoverAria: {
-      id: "blueprint.popover.aria",
-      defaultMessage: "Process length help",
-    },
-  });
 
   return (
     <FormGroup

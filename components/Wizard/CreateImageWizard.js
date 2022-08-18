@@ -25,7 +25,15 @@ import MemoizedImageCreator from "./ImageCreator";
 import { hostnameValidator, ostreeValidator } from "./validators";
 import "./CreateImageWizard.css";
 
+const messages = defineMessages({
+  createImage: {
+    id: "wizard.createImage",
+    defaultMessage: "Create image",
+  },
+});
+
 const CreateImageWizard = (props) => {
+  const intl = useIntl();
   const dispatch = useDispatch();
   const [isWizardOpen, setIsWizardOpen] = useState(false);
 
@@ -50,15 +58,6 @@ const CreateImageWizard = (props) => {
     setIsSaving(false);
     setHasSaved(true);
   };
-
-  const intl = useIntl();
-
-  const messages = defineMessages({
-    createImage: {
-      id: "wizard.create.image",
-      defaultMessage: "Create image",
-    },
-  });
 
   const handleBuildImage = async (formProps) => {
     const { formValues } = formProps;
@@ -193,7 +192,7 @@ const CreateImageWizard = (props) => {
         isDisabled={!props.blueprint?.name || !props.imageTypes?.length}
         aria-label={intl.formatMessage(messages.createImage)}
       >
-        <FormattedMessage id="wizard.createImage.button" defaultMessage="Create image" />
+        <FormattedMessage id="wizard.createImage" defaultMessage="Create image" />
       </Button>
       {isWizardOpen && (
         <MemoizedImageCreator
