@@ -239,8 +239,8 @@ const CreateImageWizard = (props) => {
                 },
                 fields: [
                   imageOutput(),
-                  awsAuth,
-                  awsDest,
+                  awsAuth(),
+                  awsDest(),
                   azureAuth,
                   azureDest,
                   ociAuth,
