@@ -16,12 +16,81 @@ import {
   TextContent,
 } from "@patternfly/react-core";
 import { AngleDoubleLeftIcon, AngleLeftIcon, AngleDoubleRightIcon, AngleRightIcon } from "@patternfly/react-icons";
+import { FormattedMessage, defineMessages, useIntl } from "react-intl";
 import api from "../../../core/api";
 import * as composer from "../../../core/composer";
+
+const messages = defineMessages({
+  availablePackages: {
+    id: "wizard.packages.availablePackages",
+    defaultMessage: "Available packages",
+  },
+  chosenPackages: {
+    id: "wizard.packages.chosenPackages",
+    defaultMessage: "Chosen packages",
+  },
+  searchPackages: {
+    id: "wizard.packages.searchPackages",
+    defaultMessage: "Search for a package",
+  },
+  noPackagesAdded: {
+    id: "wizard.packages.noPackagesAdded",
+    defaultMessage: "No packages added",
+  },
+  availablePackagesSearch: {
+    id: "wizard.packages.availablePackagesSearch",
+    defaultMessage: "Search button for available packages",
+  },
+  clearAvailablePackagesSearch: {
+    id: "wizard.packages.clearAvailablePackagesSearch",
+    defaultMessage: "Clear available packages search",
+  },
+  noPackagesFound: {
+    id: "wizard.packages.noPackagesFound",
+    defaultMessage: "No packages found",
+  },
+  searchAbove: {
+    id: "wizard.packages.searchAbove",
+    defaultMessage: "Search above to add additional{br}packages to your image",
+  },
+  loadingAdditionalPackages: {
+    id: "wizard.packages.loadingAdditionalPackages",
+    defaultMessage: "Loading additional packages...",
+  },
+  loadAdditionalPackages: {
+    id: "wizard.packages.loadAdditionalPackages",
+    defaultMessage: "Load additional packages",
+  },
+  selectorControls: {
+    id: "wizard.packages.selectorControls",
+    defaultMessage: "Selector controls",
+  },
+  addSelected: {
+    id: "wizard.packages.addSelected",
+    defaultMessage: "Add selected",
+  },
+  addAll: {
+    id: "wizard.packages.addAll",
+    defaultMessage: "Add all",
+  },
+  removeAll: {
+    id: "wizard.packages.removeAll",
+    defaultMessage: "Remove all",
+  },
+  removeSelected: {
+    id: "wizard.packages.removeSelected",
+    defaultMessage: "Remove selected",
+  },
+  clearChosenPackagesSearch: {
+    id: "wizard.packages.clearChosenPackagesSearch",
+    defaultMessage: "Clear chosen packages search",
+  },
+});
 
 const Packages = ({ defaultArch, ...props }) => {
   const { change, getState } = useFormApi();
   const { input } = useFieldApi(props);
+  const intl = useIntl();
   const [packagesSearchName, setPackagesSearchName] = useState(undefined);
   const [filterAvailable, setFilterAvailable] = useState(undefined);
   const [filterChosen, setFilterChosen] = useState(undefined);
@@ -370,19 +439,19 @@ const Packages = ({ defaultArch, ...props }) => {
   return (
     <DualListSelector>
       <DualListSelectorPane
-        title="Available packages"
+        title={intl.formatMessage(messages.availablePackages)}
         searchInput={
           <SearchInput
-            placeholder="Search for a package"
+            placeholder={intl.formatMessage(messages.searchPackages)}
             data-testid="search-available-pkgs-input"
             value={packagesSearchName}
             ref={firstInputElement}
             onFocus={() => setFocus("available")}
             onBlur={() => setFocus("")}
             onChange={(val) => setPackagesSearchName(val)}
-            submitSearchButtonLabel="Search button for available packages"
+            submitSearchButtonLabel={intl.formatMessage(messages.availablePackagesSearch)}
             onSearch={handlePackagesAvailableSearch}
-            resetButtonLabel="Clear available packages search"
+            resetButtonLabel={intl.formatMessage(messages.clearAvailablePackagesSearch)}
             onClear={handleClearAvailableSearch}
           />
         }
@@ -395,13 +464,9 @@ const Packages = ({ defaultArch, ...props }) => {
           ) : !packagesAvailable.length ? (
             <p className="pf-u-text-align-center pf-u-mt-md">
               {!packagesAvailableFound ? (
-                "No packages found"
+                intl.formatMessage(messages.noPackagesFound)
               ) : (
-                <>
-                  Search above to add additional
-                  <br />
-                  packages to your image
-                </>
+                <FormattedMessage {...messages.searchAbove} values={{ br: <br /> }} />
               )}
             </p>
           ) : (
@@ -430,8 +495,8 @@ const Packages = ({ defaultArch, ...props }) => {
                       isLoading={additionalPackagesAvailableLoading}
                     >
                       {additionalPackagesAvailableLoading
-                        ? "Loading additional packages..."
-                        : "Load additional packages"}
+                        ? intl.formatMessage(messages.loadingAdditionalPackages)
+                        : intl.formatMessage(messages.loadAdditionalPackages)}
                     </Button>
                   </Bullseye>
                 </DualListSelectorListItem>
@@ -440,51 +505,51 @@ const Packages = ({ defaultArch, ...props }) => {
           )}
         </DualListSelectorList>
       </DualListSelectorPane>
-      <DualListSelectorControlsWrapper aria-label="Selector controls">
+      <DualListSelectorControlsWrapper aria-label={intl.formatMessage(messages.selectorControls)}>
         <DualListSelectorControl
           isDisabled={!packagesAvailable.some((option) => option.selected)}
           onClick={() => moveSelectedToChosen()}
-          aria-label="Add selected"
-          tooltipContent="Add selected"
+          aria-label={intl.formatMessage(messages.addSelected)}
+          tooltipContent={intl.formatMessage(messages.addSelected)}
         >
           <AngleRightIcon />
         </DualListSelectorControl>
         <DualListSelectorControl
           isDisabled={!packagesAvailable.length}
           onClick={() => moveAllToChosen()}
-          aria-label="Add all"
-          tooltipContent="Add all"
+          aria-label={intl.formatMessage(messages.addAll)}
+          tooltipContent={intl.formatMessage(messages.addAll)}
         >
           <AngleDoubleRightIcon />
         </DualListSelectorControl>
         <DualListSelectorControl
           isDisabled={!packagesChosen.length || !packagesChosenFound}
           onClick={() => moveAllToAvailable()}
-          aria-label="Remove all"
-          tooltipContent="Remove all"
+          aria-label={intl.formatMessage(messages.removeAll)}
+          tooltipContent={intl.formatMessage(messages.removeAll)}
         >
           <AngleDoubleLeftIcon />
         </DualListSelectorControl>
         <DualListSelectorControl
           onClick={() => moveSelectedToAvailable()}
           isDisabled={!packagesChosen.some((option) => option.selected) || !packagesChosenFound}
-          aria-label="Remove selected"
-          tooltipContent="Remove selected"
+          aria-label={intl.formatMessage(messages.removeSelected)}
+          tooltipContent={intl.formatMessage(messages.removeSelected)}
         >
           <AngleLeftIcon />
         </DualListSelectorControl>
       </DualListSelectorControlsWrapper>
       <DualListSelectorPane
-        title="Chosen packages"
+        title={intl.formatMessage(messages.chosenPackages)}
         searchInput={
           <SearchInput
-            placeholder="Search for a package"
+            placeholder={intl.formatMessage(messages.searchPackages)}
             data-testid="search-chosen-pkgs-input"
             value={filterChosen}
             onFocus={() => setFocus("chosen")}
             onBlur={() => setFocus("")}
             onChange={(val) => handlePackagesChosenSearch(val)}
-            resetButtonLabel="Clear chosen packages search"
+            resetButtonLabel={intl.formatMessage(messages.clearChosenPackagesSearch)}
             onClear={handleClearChosenSearch}
           />
         }
