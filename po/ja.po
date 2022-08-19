@@ -7,7 +7,7 @@
 # Transtats <suanand@redhat.com>, 2022.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2022-08-09T03:57:25.301Z\n"
+"POT-Creation-Date: 2022-08-19T18:31:19.371Z\n"
 "PO-Revision-Date: 2022-04-13 13:17+0000\n"
 "Last-Translator: Ludek Janda <ljanda@redhat.com>\n"
 "Language-Team: Japanese <https://translate.fedoraproject.org/projects/"
@@ -19,13 +19,6 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0\n"
 "X-Generator: Weblate 4.11.2\n"
 
-#. [components.Modal.parenthetical] - Describes the sort order of the pending changes
-#. defaultMessage is:
-#. (most recent first)
-#: build/messages/components/Modal/PendingChanges.json
-msgid "(most recent first)"
-msgstr "(最新順)"
-
 #. [components.Modal.4177685254]
 #. defaultMessage is:
 #. A blueprint name is required.
@@ -33,80 +26,36 @@ msgstr "(最新順)"
 msgid "A blueprint name is required."
 msgstr "ブループリント名が必要です。"
 
-#. [components.Wizard.warningEmptyBlueprintDesc]
-#. defaultMessage is:
-#. A minimal image will be created with only the packages needed to support the selected image type.
-#: build/messages/components/Wizard/ImageStep.json
-msgid ""
-"A minimal image will be created with only the packages needed to support the "
-"selected image type."
-msgstr ""
-"選択したイメージタイプの対応に必要なパッケージのみが含まれた最小のイメージが"
-"作成されます。"
-
-#. [components.Wizard.warningSizeEmpty]
-#. defaultMessage is:
-#. A value is required.
-#: build/messages/components/Wizard/ReviewStep.json
-msgid "A value is required."
-msgstr "値が必要です。"
-
-#. [fingerprint-help]
-#. defaultMessage is:
-#. API private key's fingerprint
-#: build/messages/components/Wizard/OCIAuthStep.json
-msgid "API private key's fingerprint"
-msgstr "API プライベートキーのフィンガープリント"
-
-#. [components.Wizard.aws]
-#. defaultMessage is:
-#. AWS help
-#: build/messages/components/Wizard/ReviewStep.json
-msgid "AWS help"
-msgstr "AWS ヘルプ"
-
-#. [components.Wizard.4193750875]
+#. [wizard.review.awsRegion]
 #. defaultMessage is:
 #. AWS region
-#. [components.Wizard.4193750875]
+#. [wizard.aws.region.label]
 #. defaultMessage is:
 #. AWS region
-#: build/messages/components/Wizard/AWSDestinationStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/awsDest.json
 msgid "AWS region"
 msgstr "AWS リージョン"
 
-#. [components.Wizard.region]
-#. defaultMessage is:
-#. AWS region help
-#: build/messages/components/Wizard/AWSDestinationStep.json
-msgid "AWS region help"
-msgstr "AWS リージョンのヘルプ"
-
-#. [components.Wizard.1635272069]
+#. [wizard.review.accessKeyID]
 #. defaultMessage is:
 #. Access key ID
-#. [components.Wizard.1635272069]
+#. [wizard.aws.accessKey.label]
 #. defaultMessage is:
 #. Access key ID
-#: build/messages/components/Wizard/AWSAuthStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/awsAuth.json
 msgid "Access key ID"
 msgstr "アクセスキー ID"
 
-#. [access-key-id-help]
+#. [wizard.aws.accessKey.popoverAria]
 #. defaultMessage is:
-#. Access key ID help
-#: build/messages/components/Wizard/AWSAuthStep.json
-msgid "Access key ID help"
+#. Access key help
+#: build/messages/components/Wizard/steps/awsAuth.json
+#, fuzzy
+#| msgid "Access key ID help"
+msgid "Access key help"
 msgstr "キー ID ヘルプへのアクセス"
-
-#. [components.Wizard.accessKeys]
-#. defaultMessage is:
-#. Access keys
-#: build/messages/components/Wizard/AzureAuthStep.json
-msgid "Access keys"
-msgstr "アクセスキー"
 
 #. [components.ListView.imageActions] - A label for the menu that displays the actions available
 #. defaultMessage is:
@@ -119,13 +68,6 @@ msgstr "アクセスキー"
 msgid "Actions"
 msgstr "動作"
 
-#. [components.Toolbar.2872798476]
-#. defaultMessage is:
-#. Active filters
-#: build/messages/components/Toolbar/ToolbarLayout.json
-msgid "Active filters"
-msgstr "アクティブフィルター"
-
 #. [components.ListView.3099331554]
 #. defaultMessage is:
 #. Add
@@ -133,12 +75,12 @@ msgstr "アクティブフィルター"
 msgid "Add"
 msgstr "追加する"
 
-#. [pages.blueprintEdit.addComponentTitle]
+#. [wizard.packages.addAll]
 #. defaultMessage is:
-#. Add blueprint components
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Add blueprint components"
-msgstr "ブループリントコンポーネントの追加"
+#. Add all
+#: build/messages/components/Wizard/formComponents/Packages.json
+msgid "Add all"
+msgstr ""
 
 #. [components.ListView.addComponent]
 #. defaultMessage is:
@@ -146,6 +88,24 @@ msgstr "ブループリントコンポーネントの追加"
 #: build/messages/components/ListView/ComponentInputs.json
 msgid "Add latest version"
 msgstr "最新バージョンの追加"
+
+#. [wizard.packages.info]
+#. defaultMessage is:
+#. Add optional additional packages to your image by searching available packages.
+#: build/messages/components/Wizard/steps/packages.json
+msgid ""
+"Add optional additional packages to your image by searching available "
+"packages."
+msgstr ""
+
+#. [wizard.packages.addSelected]
+#. defaultMessage is:
+#. Add selected
+#: build/messages/components/Wizard/formComponents/Packages.json
+#, fuzzy
+#| msgid "Add source"
+msgid "Add selected"
+msgstr "ソースの追加"
 
 #. [components.Modal.add]
 #. defaultMessage is:
@@ -160,47 +120,25 @@ msgstr "最新バージョンの追加"
 msgid "Add source"
 msgstr "ソースの追加"
 
-#. [components.Modal.1362724042] - Identifies the change as a component that was added
+#. [wizard.customizations.buttons.add]
 #. defaultMessage is:
-#. Added
-#: build/messages/components/Modal/PendingChanges.json
-msgid "Added"
-msgstr "追加済み"
+#. Add user
+#: build/messages/components/Wizard/steps/users.json
+#, fuzzy
+#| msgid "Add source"
+msgid "Add user"
+msgstr "ソースの追加"
 
-#. [components.Wizard.1175512155]
+#. [wizard.review.amazonS3Bucket]
 #. defaultMessage is:
-#. All fields are required.
-#. [components.Wizard.1175512155]
+#. Amazon S3 bucket
+#. [wizard.aws.bucket.label]
 #. defaultMessage is:
-#. All fields are required.
-#. [components.Wizard.1175512155]
-#. defaultMessage is:
-#. All fields are required.
-#. [components.Wizard.1175512155]
-#. defaultMessage is:
-#. All fields are required.
-#. [components.Wizard.1175512155]
-#. defaultMessage is:
-#. All fields are required.
-#. [components.Wizard.1175512155]
-#. defaultMessage is:
-#. All fields are required.
-#. [components.Wizard.1175512155]
-#. defaultMessage is:
-#. All fields are required.
-#. [components.Wizard.1175512155]
-#. defaultMessage is:
-#. All fields are required.
-#: build/messages/components/Wizard/AWSAuthStep.json
-#: build/messages/components/Wizard/AWSDestinationStep.json
-#: build/messages/components/Wizard/AzureAuthStep.json
-#: build/messages/components/Wizard/AzureDestinationStep.json
-#: build/messages/components/Wizard/OCIAuthStep.json
-#: build/messages/components/Wizard/OCIDestinationStep.json
-#: build/messages/components/Wizard/VMWareAuthStep.json
-#: build/messages/components/Wizard/VMWareDestinationStep.json
-msgid "All fields are required."
-msgstr "全てのフィールドが必須です。"
+#. Amazon S3 bucket
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/awsDest.json
+msgid "Amazon S3 bucket"
+msgstr ""
 
 #. [components.ListView.emptyStateErrorTitle]
 #. defaultMessage is:
@@ -242,6 +180,15 @@ msgstr "ブループリントのコンテンツの取得中にエラーが発生
 msgid "An error occurred while trying to get sources."
 msgstr "ソースの取得中にエラーが発生しました。"
 
+#. [wizard.review.createImageTooltip]
+#. defaultMessage is:
+#. An image can only be created after saving the blueprint
+#: build/messages/components/Wizard/formComponents/SubmitButtonsCustom.json
+#, fuzzy
+#| msgid "No images have been created from this blueprint."
+msgid "An image can only be created after saving the blueprint"
+msgstr "このブループリントからイメージは作成されていません。"
+
 #. [components.ListView.3998303130]
 #. defaultMessage is:
 #. Apply change
@@ -270,10 +217,22 @@ msgstr "{blueprintName} のイメージを削除してもよろしいですか?"
 msgid "Are you sure you want to stop the build process for {blueprintName}?"
 msgstr "{blueprintName} のビルドプロセスを終了してもよろしいですか?"
 
-#. [components.Wizard.160751819]
+#. [wizard.aws.authTitle]
 #. defaultMessage is:
 #. Authentication
-#: build/messages/components/Wizard/CreateImageUpload.json
+#. [wizard.azure.authTitle]
+#. defaultMessage is:
+#. Authentication
+#. [wizard.oci.authTitle]
+#. defaultMessage is:
+#. Authentication
+#. [wizard.vmware.authTitle]
+#. defaultMessage is:
+#. Authentication
+#: build/messages/components/Wizard/steps/awsAuth.json
+#: build/messages/components/Wizard/steps/azureAuth.json
+#: build/messages/components/Wizard/steps/ociAuth.json
+#: build/messages/components/Wizard/steps/vmwareAuth.json
 msgid "Authentication"
 msgstr "認証"
 
@@ -284,35 +243,19 @@ msgstr "認証"
 msgid "Automatically start osbuild-composer on boot"
 msgstr "起動時に osbuild-composer を自動開始"
 
-#. [pages.blueprintEdit.listTitleAvailableComps]
+#. [wizard.packages.availablePackages]
 #. defaultMessage is:
-#. Available components
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Available components"
+#. Available packages
+#: build/messages/components/Wizard/formComponents/Packages.json
+#, fuzzy
+#| msgid "Available components"
+msgid "Available packages"
 msgstr "利用可能なコンポーネント"
-
-#. [components.Wizard.azure]
-#. defaultMessage is:
-#. Azure help
-#: build/messages/components/Wizard/ReviewStep.json
-msgid "Azure help"
-msgstr "Azure ヘルプ"
-
-#. [components.Wizard.1347475195]
-#. defaultMessage is:
-#. Back
-#: build/messages/components/Wizard/CreateImageUpload.json
-msgid "Back"
-msgstr "戻る"
 
 #. [pages.blueprint.2057444273]
 #. defaultMessage is:
 #. Back to blueprints
-#. [pages.blueprintEdit.2057444273]
-#. defaultMessage is:
-#. Back to blueprints
 #: build/messages/pages/blueprint/index.json
-#: build/messages/pages/blueprintEdit/index.json
 msgid "Back to blueprints"
 msgstr "ブループリントに戻る"
 
@@ -323,42 +266,34 @@ msgstr "ブループリントに戻る"
 msgid "Back to {blueprint}"
 msgstr "{blueprint} に戻る"
 
-#. [components.Wizard.blobService]
-#. defaultMessage is:
-#. Blob service
-#: build/messages/components/Wizard/AzureDestinationStep.json
-msgid "Blob service"
-msgstr "ブロブサービス"
-
 #. [components.Modal.1281198655]
-#. defaultMessage is:
-#. Blueprint
-#. [components.Modal.blueprint]
-#. defaultMessage is:
-#. Blueprint
-#. [components.Wizard.1281198655]
 #. defaultMessage is:
 #. Blueprint
 #. [pages.blueprint.blueprint]
 #. defaultMessage is:
 #. Blueprint
-#. [pages.blueprintEdit.blueprintTitle]
-#. defaultMessage is:
-#. Blueprint
 #: build/messages/components/Modal/ExportBlueprint.json
-#: build/messages/components/Modal/PendingChanges.json
-#: build/messages/components/Wizard/ImageStep.json
 #: build/messages/pages/blueprint/index.json
-#: build/messages/pages/blueprintEdit/index.json
 msgid "Blueprint"
 msgstr "ブループリント"
 
-#. [pages.blueprintEdit.966788260]
+#. [toolbar.blueprint.filter.aria]
 #. defaultMessage is:
-#. Blueprint components
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Blueprint components"
-msgstr "ブループリントコンポーネント"
+#. Blueprint filter select
+#: build/messages/components/Toolbar/BlueprintToolbar.json
+#, fuzzy
+#| msgid "Blueprints"
+msgid "Blueprint filter select"
+msgstr "ブループリント"
+
+#. [wizard.review.blueprintName]
+#. defaultMessage is:
+#. Blueprint name
+#: build/messages/components/Wizard/formComponents/Review.json
+#, fuzzy
+#| msgid "Blueprint"
+msgid "Blueprint name"
+msgstr "ブループリント"
 
 #. [components.Modal.2544705954]
 #. defaultMessage is:
@@ -401,6 +336,15 @@ msgid "Blueprint names cannot contain the characters: {invalidChar}"
 msgstr ""
 "ブループリント名には、以下の文字を含めることはできません: {invalidChar}"
 
+#. [toolbar.blueprint.search.aria]
+#. defaultMessage is:
+#. Blueprint search input
+#: build/messages/components/Toolbar/BlueprintToolbar.json
+#, fuzzy
+#| msgid "Blueprints"
+msgid "Blueprint search input"
+msgstr "ブループリント"
+
 #. [pages.blueprints.blueprintsTitle]
 #. defaultMessage is:
 #. Blueprints
@@ -408,66 +352,93 @@ msgstr ""
 msgid "Blueprints"
 msgstr "ブループリント"
 
-#. [pages.blueprintEdit.addComponentMessageOne]
+#. [toolbar.blueprints.search.aria]
 #. defaultMessage is:
-#. Browse or search for components, then add them to the blueprint. Or leave the blueprint empty to create a minimal image.
-#: build/messages/pages/blueprintEdit/index.json
-msgid ""
-"Browse or search for components, then add them to the blueprint. Or leave "
-"the blueprint empty to create a minimal image."
-msgstr ""
-"コンポーネントを閲覧または検索した後、ブループリントに追加します。または、最"
-"小限のイメージを作成するためにブループリントは空にします。"
+#. Blueprints search input
+#: build/messages/components/Toolbar/BlueprintsToolbar.json
+#, fuzzy
+#| msgid "Blueprints"
+msgid "Blueprints search input"
+msgstr "ブループリント"
 
-#. [components.Wizard.992376537]
+#. [wizard.review.bucketCompartment]
 #. defaultMessage is:
 #. Bucket compartment
-#. [components.Wizard.992376537]
+#. [wizard.oci.bucketCompartment.label]
 #. defaultMessage is:
 #. Bucket compartment
-#: build/messages/components/Wizard/OCIDestinationStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/ociDest.json
 msgid "Bucket compartment"
 msgstr "バケットコンパートメント"
 
-#. [components.Wizard.bucket]
+#. [wizard.oci.compartment.popoverAria]
 #. defaultMessage is:
-#. Bucket help
-#: build/messages/components/Wizard/OCIDestinationStep.json
-msgid "Bucket help"
-msgstr "バケットのヘルプ"
+#. Bucket compartment help
+#: build/messages/components/Wizard/steps/ociDest.json
+#, fuzzy
+#| msgid "Bucket compartment"
+msgid "Bucket compartment help"
+msgstr "バケットコンパートメント"
 
-#. [components.Wizard.3386954132]
+#. [wizard.review.bucketNamespace]
 #. defaultMessage is:
 #. Bucket namespace
-#. [components.Wizard.3386954132]
+#. [wizard.oci.bucketNamespace.label]
 #. defaultMessage is:
 #. Bucket namespace
-#: build/messages/components/Wizard/OCIDestinationStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/ociDest.json
 msgid "Bucket namespace"
 msgstr "バケット namespace"
 
-#. [components.Wizard.2790265886]
+#. [wizard.oci.namespace.popoverAria]
+#. defaultMessage is:
+#. Bucket namespace help
+#: build/messages/components/Wizard/steps/ociDest.json
+#, fuzzy
+#| msgid "Bucket namespace"
+msgid "Bucket namespace help"
+msgstr "バケット namespace"
+
+#. [wizard.review.bucketRegion]
 #. defaultMessage is:
 #. Bucket region
-#. [components.Wizard.2790265886]
+#. [wizard.oci.bucketRegion.label]
 #. defaultMessage is:
 #. Bucket region
-#: build/messages/components/Wizard/OCIDestinationStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/ociDest.json
 msgid "Bucket region"
 msgstr "バケットリージョン"
 
-#. [components.Wizard.1601119828]
+#. [wizard.oci.region.popoverAria]
+#. defaultMessage is:
+#. Bucket region help
+#: build/messages/components/Wizard/steps/ociDest.json
+#, fuzzy
+#| msgid "Bucket region"
+msgid "Bucket region help"
+msgstr "バケットリージョン"
+
+#. [wizard.review.bucketTenancy]
 #. defaultMessage is:
 #. Bucket tenancy
-#. [components.Wizard.1601119828]
+#. [wizard.oci.bucketTenancy.label]
 #. defaultMessage is:
 #. Bucket tenancy
-#: build/messages/components/Wizard/OCIDestinationStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/ociDest.json
 msgid "Bucket tenancy"
+msgstr "バケットテナンシー"
+
+#. [wizard.oci.tenancy.popoverAria]
+#. defaultMessage is:
+#. Bucket tenancy help
+#: build/messages/components/Wizard/steps/ociDest.json
+#, fuzzy
+#| msgid "Bucket tenancy"
+msgid "Bucket tenancy help"
 msgstr "バケットテナンシー"
 
 #. [components.Form.cancel]
@@ -494,9 +465,6 @@ msgstr "バケットテナンシー"
 #. [components.Modal.3528672691]
 #. defaultMessage is:
 #. Cancel
-#. [components.Wizard.3528672691]
-#. defaultMessage is:
-#. Cancel
 #: build/messages/components/Form/TextInlineEdit.json
 #: build/messages/components/Modal/CreateBlueprint.json
 #: build/messages/components/Modal/DeleteBlueprint.json
@@ -505,34 +473,8 @@ msgstr "バケットテナンシー"
 #: build/messages/components/Modal/ManageSources.json
 #: build/messages/components/Modal/StopBuild.json
 #: build/messages/components/Modal/UserAccount.json
-#: build/messages/components/Wizard/CreateImageUpload.json
 msgid "Cancel"
 msgstr "取り消し"
-
-#. [components.Modal.683130131]
-#. defaultMessage is:
-#. Changes made in a previous session
-#: build/messages/components/Modal/PendingChanges.json
-msgid "Changes made in a previous session"
-msgstr "前回のセッションでの変更点"
-
-#. [components.Modal.previousSessionInfotip]
-#. defaultMessage is:
-#. Changes made in a previous session are not listed in the order they were made. If you choose to undo these changes, they are undone as a group.
-#: build/messages/components/Modal/PendingChanges.json
-msgid ""
-"Changes made in a previous session are not listed in the order they were "
-"made. If you choose to undo these changes, they are undone as a group."
-msgstr ""
-"前回のセッションでの変更点は、変更順に表示されていません。これらの変更点を元"
-"に戻す場合は、グループとして戻します。"
-
-#. [components.Modal.92001050]
-#. defaultMessage is:
-#. Changes pending commit
-#: build/messages/components/Modal/PendingChanges.json
-msgid "Changes pending commit"
-msgstr "変更のコミットを保留中"
 
 #. [components.Modal.check_gpg]
 #. defaultMessage is:
@@ -548,24 +490,35 @@ msgstr "GPG 鍵の確認"
 msgid "Check SSL certificate"
 msgstr "SSL 証明書の確認"
 
+#. [wizard.packages.chosenPackages]
+#. defaultMessage is:
+#. Chosen packages
+#: build/messages/components/Wizard/formComponents/Packages.json
+#, fuzzy
+#| msgid "Edit packages"
+msgid "Chosen packages"
+msgstr "パッケージの編集"
+
 #. [components.ListView.1634835134]
 #. defaultMessage is:
 #. Clear all filters
-#. [components.Toolbar.1634835134]
-#. defaultMessage is:
-#. Clear all filters
-#. [pages.blueprintEdit.1634835134]
-#. defaultMessage is:
-#. Clear all filters
-#. [pages.blueprints.1634835134]
-#. defaultMessage is:
-#. Clear all filters
 #: build/messages/components/ListView/BlueprintContents.json
-#: build/messages/components/Toolbar/ToolbarLayout.json
-#: build/messages/pages/blueprintEdit/index.json
-#: build/messages/pages/blueprints/index.json
 msgid "Clear all filters"
 msgstr "すべてのフィルターの消去"
+
+#. [wizard.packages.clearAvailablePackagesSearch]
+#. defaultMessage is:
+#. Clear available packages search
+#: build/messages/components/Wizard/formComponents/Packages.json
+msgid "Clear available packages search"
+msgstr ""
+
+#. [wizard.packages.clearChosenPackagesSearch]
+#. defaultMessage is:
+#. Clear chosen packages search
+#: build/messages/components/Wizard/formComponents/Packages.json
+msgid "Clear chosen packages search"
+msgstr ""
 
 #. [components.Modal.2324218928]
 #. defaultMessage is:
@@ -574,75 +527,35 @@ msgstr "すべてのフィルターの消去"
 #. defaultMessage is:
 #. Close
 #. [components.Modal.2324218928]
-#. defaultMessage is:
-#. Close
-#. [components.Modal.closeButtonLabel]
 #. defaultMessage is:
 #. Close
 #: build/messages/components/Modal/ExportBlueprint.json
 #: build/messages/components/Modal/ManageSources.json
-#: build/messages/components/Modal/PendingChanges.json
 msgid "Close"
 msgstr "閉じる"
 
-#. [components.Wizard.103343714]
+#. [wizard.review.cluster]
 #. defaultMessage is:
 #. Cluster
-#. [components.Wizard.103343714]
+#. [wizard.vmware.cluster.label]
 #. defaultMessage is:
 #. Cluster
-#: build/messages/components/Wizard/ReviewStep.json
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid "Cluster"
 msgstr "クラスター"
 
-#. [components.Wizard.cluster]
+#. [wizard.vmware.cluster.popoverAria]
 #. defaultMessage is:
 #. Cluster help
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid "Cluster help"
 msgstr "クラスターヘルプ"
-
-#. [components.Modal.2299254306]
-#. defaultMessage is:
-#. Comment
-#: build/messages/components/Modal/PendingChanges.json
-msgid "Comment"
-msgstr "コメント"
-
-#. [components.Modal.commitButtonLabel]
-#. defaultMessage is:
-#. Commit
-#. [pages.blueprintEdit.1951088698]
-#. defaultMessage is:
-#. Commit
-#: build/messages/components/Modal/PendingChanges.json
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Commit"
-msgstr "コミット"
-
-#. [components.Wizard.1126783419]
-#. defaultMessage is:
-#. Commit and create
-#: build/messages/components/Wizard/CreateImageUpload.json
-msgid "Commit and create"
-msgstr "コミットおよび作成"
-
-#. [components.Wizard.552112481]
-#. defaultMessage is:
-#. Commit and next
-#: build/messages/components/Wizard/CreateImageUpload.json
-msgid "Commit and next"
-msgstr "コミットして次へ"
 
 #. [pages.blueprint.3956908315]
 #. defaultMessage is:
 #. Component details
-#. [pages.blueprintEdit.3956908315]
-#. defaultMessage is:
-#. Component details
 #: build/messages/pages/blueprint/index.json
-#: build/messages/pages/blueprintEdit/index.json
 msgid "Component details"
 msgstr "コンポーネントの詳細"
 
@@ -680,12 +593,8 @@ msgstr "コピー"
 #. [components.Modal.4120989039]
 #. defaultMessage is:
 #. Create
-#. [components.Wizard.4120989039]
-#. defaultMessage is:
-#. Create
 #: build/messages/components/Modal/CreateBlueprint.json
 #: build/messages/components/Modal/UserAccount.json
-#: build/messages/components/Wizard/CreateImageUpload.json
 msgid "Create"
 msgstr "作成"
 
@@ -700,13 +609,6 @@ msgstr ""
 "作成するイメージに含むコンテンツを定義するためにブループリントを作成します。"
 "イメージは、様々な出力フォーマットで作成可能です。"
 
-#. [components.Wizard.1723482220]
-#. defaultMessage is:
-#. Create and upload image
-#: build/messages/components/Wizard/ReviewStep.json
-msgid "Create and upload image"
-msgstr "イメージの作成とアップロード"
-
 #. [components.Modal.994816806]
 #. defaultMessage is:
 #. Create blueprint
@@ -714,13 +616,10 @@ msgstr "イメージの作成とアップロード"
 msgid "Create blueprint"
 msgstr "ブループリントの作成"
 
-#. [components.Wizard.title]
+#. [wizard.createImage]
 #. defaultMessage is:
 #. Create image
-#. [components.Wizard.2020427956]
-#. defaultMessage is:
-#. Create image
-#: build/messages/components/Wizard/CreateImageUpload.json
+#: build/messages/components/Wizard/CreateImageWizard.json
 msgid "Create image"
 msgstr "イメージの作成"
 
@@ -738,52 +637,73 @@ msgstr "ユーザーアカウントの作成"
 msgid "Created"
 msgstr "作成済み"
 
+#. [wizard.review.creatingImage]
+#. defaultMessage is:
+#. Creating image
+#: build/messages/components/Wizard/formComponents/SubmitButtonsCustom.json
+#, fuzzy
+#| msgid "Create image"
+msgid "Creating image"
+msgstr "イメージの作成"
+
+#. [wizard.customizations.title]
+#. defaultMessage is:
+#. Customizations
+#. [wizard.customizations.title]
+#. defaultMessage is:
+#. Customizations
 #. [pages.blueprint.customizationsTitle]
 #. defaultMessage is:
 #. Customizations
+#: build/messages/components/Wizard/steps/system.json
+#: build/messages/components/Wizard/steps/users.json
 #: build/messages/pages/blueprint/index.json
 msgid "Customizations"
 msgstr "カスタマイズ"
 
-#. [components.Wizard.2877310487]
-#. defaultMessage is:
-#. Data Center
-#: build/messages/components/Wizard/ReviewStep.json
-msgid "Data Center"
-msgstr "データセンター"
-
-#. [components.Wizard.3747912914]
-#. defaultMessage is:
-#. Data Store
-#: build/messages/components/Wizard/ReviewStep.json
-msgid "Data Store"
-msgstr "データストア"
-
-#. [components.Wizard.4278711264]
+#. [wizard.review.dataCenter]
 #. defaultMessage is:
 #. Data center
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
 msgid "Data center"
 msgstr "データセンター"
 
-#. [components.Wizard.3717439361]
+#. [wizard.review.dataStore]
 #. defaultMessage is:
 #. Data store
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
 msgid "Data store"
 msgstr "データストア"
 
-#. [components.Wizard.dataCenter]
+#. [wizard.vmware.dataCenter.label]
+#. defaultMessage is:
+#. Datacenter
+#: build/messages/components/Wizard/steps/vmwareDest.json
+#, fuzzy
+#| msgid "Data center"
+msgid "Datacenter"
+msgstr "データセンター"
+
+#. [wizard.vmware.dataCenter.popoverAria]
 #. defaultMessage is:
 #. Datacenter help
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid "Datacenter help"
 msgstr "データセンターのヘルプ"
 
-#. [components.Wizard.dataStore]
+#. [wizard.vmware.dataStore.label]
+#. defaultMessage is:
+#. Datastore
+#: build/messages/components/Wizard/steps/vmwareDest.json
+#, fuzzy
+#| msgid "Data store"
+msgid "Datastore"
+msgstr "データストア"
+
+#. [wizard.vmware.datastore.popoverAria]
 #. defaultMessage is:
 #. Datastore help
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid "Datastore help"
 msgstr "データストアのヘルプ"
 
@@ -831,9 +751,13 @@ msgstr "ユーザーアカウントの削除"
 #. [components.ListView.3727965333]
 #. defaultMessage is:
 #. Dependencies
+#. [wizard.review.dependencies]
+#. defaultMessage is:
+#. Dependencies
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ComponentSummaryList.json
+#: build/messages/components/Wizard/formComponents/Review.json
 msgid "Dependencies"
 msgstr "依存性"
 
@@ -852,10 +776,22 @@ msgstr "依存性"
 msgid "Description"
 msgstr "説明"
 
-#. [components.Wizard.2515932130]
+#. [wizard.aws.destTitle]
 #. defaultMessage is:
 #. Destination
-#: build/messages/components/Wizard/CreateImageUpload.json
+#. [wizard.azure.destTitle]
+#. defaultMessage is:
+#. Destination
+#. [wizard.oci.destTitle]
+#. defaultMessage is:
+#. Destination
+#. [wizard.vmware.destTitle]
+#. defaultMessage is:
+#. Destination
+#: build/messages/components/Wizard/steps/awsDest.json
+#: build/messages/components/Wizard/steps/azureDest.json
+#: build/messages/components/Wizard/steps/ociDest.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid "Destination"
 msgstr "ターゲット"
 
@@ -866,20 +802,6 @@ msgstr "ターゲット"
 msgid "Details"
 msgstr "詳細"
 
-#. [pages.blueprintEdit.1469729075]
-#. defaultMessage is:
-#. Discard changes
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Discard changes"
-msgstr "変更の破棄"
-
-#. [components.Wizard.labelTar]
-#. defaultMessage is:
-#. Disk Archive (.tar)
-#: build/messages/components/Wizard/ImageStep.json
-msgid "Disk Archive (.tar)"
-msgstr "ディスクアーカイブ (.tar)"
-
 #. [components.ListView.1982430146]
 #. defaultMessage is:
 #. Download
@@ -887,10 +809,10 @@ msgstr "ディスクアーカイブ (.tar)"
 msgid "Download"
 msgstr "ダウンロード"
 
-#. [filename-placeholder]
+#. [wizard.uploadFile.filenamePlaceholder]
 #. defaultMessage is:
 #. Drag and drop a file or upload one
-#: build/messages/components/Wizard/OCIAuthStep.json
+#: build/messages/components/Wizard/formComponents/UploadFile.json
 msgid "Drag and drop a file or upload one"
 msgstr ""
 "ファイルをドラッグアンドドロップするか、またはファイルをアップロードします"
@@ -920,21 +842,6 @@ msgstr "ホスト名の編集"
 msgid "Edit installation device"
 msgstr "インストールデバイスの編集"
 
-#. [components.ListView.1908303378]
-#. defaultMessage is:
-#. Edit packages
-#. [pages.blueprint.1908303378]
-#. defaultMessage is:
-#. Edit packages
-#. [pages.blueprintEdit.1908303378]
-#. defaultMessage is:
-#. Edit packages
-#: build/messages/components/ListView/BlueprintsDataList.json
-#: build/messages/pages/blueprint/index.json
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Edit packages"
-msgstr "パッケージの編集"
-
 #. [components.ListView.edit]
 #. defaultMessage is:
 #. Edit source
@@ -957,10 +864,10 @@ msgstr "ソースの編集"
 msgid "Edit user account"
 msgstr "ユーザーアカウントの編集"
 
-#. [components.Wizard.4173021643]
+#. [wizard.ostree.validationError]
 #. defaultMessage is:
 #. Either the parent commit or repository url can be specified. Not both.
-#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/validators/ostreeValidator.json
 msgid "Either the parent commit or repository url can be specified. Not both."
 msgstr ""
 "親コミットまたはリポジトリーのいずれかの URL を指定できます。両方は指定できま"
@@ -973,9 +880,13 @@ msgstr ""
 msgid "Empty blueprint"
 msgstr "ブループリントを空にします"
 
+#. [wizard.customizations.installDevice.helperText]
+#. defaultMessage is:
+#. Enter valid device node such as /dev/sda1
 #. [pages.blueprint.deviceHelp]
 #. defaultMessage is:
 #. Enter valid device node such as /dev/sda1
+#: build/messages/components/Wizard/steps/system.json
 #: build/messages/pages/blueprint/index.json
 msgid "Enter valid device node such as /dev/sda1"
 msgstr "/dev/sda1 などの有効なデバイスノードを入力します"
@@ -1008,58 +919,25 @@ msgstr "エクスポート形式"
 msgid "Export blueprint"
 msgstr "ブループリントのエクスポート"
 
-#. [pages.blueprintEdit.filterByLabel]
-#. defaultMessage is:
-#. Filter available components by name
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Filter available components by name"
-msgstr "利用可能なコンポーネントの名前での絞り込み"
-
-#. [components.Toolbar.filterNamePlaceholder]
-#. defaultMessage is:
-#. Filter by name
-#: build/messages/components/Toolbar/FilterInput.json
-msgid "Filter by name"
-msgstr "名前での絞り込み"
-
-#. [pages.blueprintEdit.filterByPlaceholder]
-#. defaultMessage is:
-#. Filter by name...
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Filter by name..."
-msgstr "名前での絞り込み..."
-
-#. [components.Toolbar.filterReleasePlaceholder]
-#. defaultMessage is:
-#. Filter by release
-#: build/messages/components/Toolbar/FilterInput.json
-msgid "Filter by release"
-msgstr "リリースでの絞り込み"
-
-#. [components.Toolbar.filterVersionPlaceholder]
-#. defaultMessage is:
-#. Filter by version
-#: build/messages/components/Toolbar/FilterInput.json
-msgid "Filter by version"
-msgstr "バージョンによる絞り込み"
-
-#. [components.Wizard.244381809]
+#. [wizard.review.fingerprint]
 #. defaultMessage is:
 #. Fingerprint
-#. [components.Wizard.244381809]
+#. [wizard.oci.fingerprint.label]
 #. defaultMessage is:
 #. Fingerprint
-#: build/messages/components/Wizard/OCIAuthStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/ociAuth.json
 msgid "Fingerprint"
 msgstr "フィンガープリント"
 
-#. [components.Wizard.787186999]
+#. [wizard.oci.fingerprint.popoverAria]
 #. defaultMessage is:
-#. Finish
-#: build/messages/components/Wizard/CreateImageUpload.json
-msgid "Finish"
-msgstr "終了"
+#. Fingerprint help
+#: build/messages/components/Wizard/steps/ociAuth.json
+#, fuzzy
+#| msgid "Fingerprint"
+msgid "Fingerprint help"
+msgstr "フィンガープリント"
 
 #. [components.Modal.labelName]
 #. defaultMessage is:
@@ -1086,56 +964,65 @@ msgstr "戻る"
 msgid "Hide details"
 msgstr "詳細非表示"
 
-#. [components.Wizard.644347739]
+#. [wizard.review.host]
 #. defaultMessage is:
 #. Host
-#. [components.Wizard.644347739]
+#. [wizard.vmware.host.label]
 #. defaultMessage is:
 #. Host
-#: build/messages/components/Wizard/ReviewStep.json
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid "Host"
 msgstr "ホスト"
 
-#. [components.Wizard.host]
+#. [wizard.vmware.host.popoverAria]
 #. defaultMessage is:
 #. Host help
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid "Host help"
 msgstr "ホストのヘルプ"
 
+#. [wizard.review.hostname]
+#. defaultMessage is:
+#. Hostname
+#. [wizard.customizations.hostname.label]
+#. defaultMessage is:
+#. Hostname
 #. [pages.blueprint.hostnameInputLabel]
 #. defaultMessage is:
 #. Hostname
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/system.json
 #: build/messages/pages/blueprint/index.json
 msgid "Hostname"
 msgstr "ホスト名"
 
+#. [wizard.customizations.hostname.helperText]
+#. defaultMessage is:
+#. If no hostname is provided, the hostname will be determined by the OS.
 #. [pages.blueprint.hostnameHelpEmpty]
 #. defaultMessage is:
 #. If no hostname is provided, the hostname will be determined by the OS.
+#: build/messages/components/Wizard/steps/system.json
 #: build/messages/pages/blueprint/index.json
 msgid "If no hostname is provided, the hostname will be determined by the OS."
 msgstr "ホスト名が提供されない場合は、OS がホスト名を決定します。"
 
-#. [components.Wizard.327045352]
+#. [wizard.imageOutput.uploadVMWare.popoverBody]
 #. defaultMessage is:
-#. Image Builder can upload images you create to VMWare vSphere.
-#.                       When the image build is complete and the upload action is successful,
-#.                       the image file is available in the Cluster on the vSphere instance that you specified.
-#. [components.Wizard.327045352]
-#. defaultMessage is:
-#. Image Builder can upload images you create to VMWare vSphere.
-#.                       When the image build is complete and the upload action is successful,
-#.                       the image file is available in the Cluster on the vSphere instance that you specified.
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#. Image Builder can upload images you create to VMWare vSphere. When the image build is complete and the upload action is successful, the image file is available in the Cluster on the vSphere instance that you specified.
+#: build/messages/components/Wizard/steps/imageOutput.json
+#, fuzzy
+#| msgid ""
+#| "Image Builder can upload images you create to VMWare vSphere.\n"
+#| "                      When the image build is complete and the upload "
+#| "action is successful,\n"
+#| "                      the image file is available in the Cluster on the "
+#| "vSphere instance that you specified."
 msgid ""
-"Image Builder can upload images you create to VMWare vSphere.\n"
-"                      When the image build is complete and the upload action "
-"is successful,\n"
-"                      the image file is available in the Cluster on the "
-"vSphere instance that you specified."
+"Image Builder can upload images you create to VMWare vSphere. When the image "
+"build is complete and the upload action is successful, the image file is "
+"available in the Cluster on the vSphere instance that you specified."
 msgstr ""
 "Image Builder は、作成したイメージを AWS の VMWare vSphere にアップロードでき"
 "ます。\n"
@@ -1144,46 +1031,76 @@ msgstr ""
 "                      イメージファイルが、指定した vSphere インスタンスのクラ"
 "スターで利用できるようになります。"
 
-#. [components.Wizard.3501375619]
+#. [wizard.imageOutput.uploadAzure.popoverBody]
 #. defaultMessage is:
-#. Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete
-#.                       and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
-#. [components.Wizard.3501375619]
-#. defaultMessage is:
-#. Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete
-#.                       and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#. Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
+#: build/messages/components/Wizard/steps/imageOutput.json
+#, fuzzy
+#| msgid ""
+#| "Image Builder can upload images you create to a Blob container in "
+#| "{azure}. When the image build is complete\n"
+#| "                      and the upload action is successful, the image file "
+#| "is available in the Storage account and Blob container that you specified."
 msgid ""
 "Image Builder can upload images you create to a Blob container in {azure}. "
-"When the image build is complete\n"
-"                      and the upload action is successful, the image file is "
-"available in the Storage account and Blob container that you specified."
+"When the image build is complete and the upload action is successful, the "
+"image file is available in the Storage account and Blob container that you "
+"specified."
 msgstr ""
 "Image Builder は、作成したイメージを AWS の {azure} にアップロードしてから、"
 "EC2 にインポートします。イメージのビルドが完了し\n"
 "                      アップロードアクションが成功すると、イメージファイルが"
 "指定したストレージアカウントとブロブコンテナーで利用できます。"
 
-#. [components.Wizard.1007547894]
+#. [wizard.imageOutput.uploadOCI.popoverBody]
 #. defaultMessage is:
-#. Image Builder can upload images you create to an {bucket} in AWS and then import them into EC2. When the image build is complete
-#.                         and the upload action is successful, the image file is available in the AMI section of EC2. Most of the values required to upload
-#.                         the image can be found in the {console}.
-#. [components.Wizard.1007547894]
-#. defaultMessage is:
-#. Image Builder can upload images you create to an {bucket} in AWS and then import them into EC2. When the image build is complete
-#.                         and the upload action is successful, the image file is available in the AMI section of EC2. Most of the values required to upload
-#.                         the image can be found in the {console}.
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#. Image Builder can upload images you create to an OCI bucket in OCI and register it as a custom image. When the image build is complete and the upload action is successful, the image should be available under custom images. Most of the values required to upload the image can be found in the {console}.{br}{br}This upload process requires that you have an Identity and Access Management (IAM) with attached policy to manage custom images to ensure that the image can be imported as a custom image from the bucket. For more details, refer to the {policy}.
+#: build/messages/components/Wizard/steps/imageOutput.json
+#, fuzzy
+#| msgid ""
+#| "Image Builder can upload images you create to an {bucket} in OCI and "
+#| "register it as a custom image. When the image build is complete\n"
+#| "                        and the upload action is successful, the image "
+#| "should be available under custom images.\n"
+#| "                        Most of the values required to upload the image "
+#| "can be found in the {console}."
 msgid ""
-"Image Builder can upload images you create to an {bucket} in AWS and then "
-"import them into EC2. When the image build is complete\n"
-"                        and the upload action is successful, the image file "
-"is available in the AMI section of EC2. Most of the values required to "
-"upload\n"
-"                        the image can be found in the {console}."
+"Image Builder can upload images you create to an OCI bucket in OCI and "
+"register it as a custom image. When the image build is complete and the "
+"upload action is successful, the image should be available under custom "
+"images. Most of the values required to upload the image can be found in the "
+"{console}.{br}{br}This upload process requires that you have an Identity and "
+"Access Management (IAM) with attached policy to manage custom images to "
+"ensure that the image can be imported as a custom image from the bucket. For "
+"more details, refer to the {policy}."
+msgstr ""
+"Image Builder は、OCI で {bucket} に作成したイメージをアップロードし、そのイ"
+"メージをカスタムイメージとして登録できます。イメージのビルドが完了し、\n"
+"                        アップロードアクションが正常に行われると、イメージは"
+"カスタムイメージで利用可能になります。\n"
+"                        イメージのアップロードに必要な値のほとんどは、"
+"{console} にあります。"
+
+#. [wizard.imageOutput.uploadAWS.popoverBody]
+#. defaultMessage is:
+#. Image Builder can upload images you create to an S3 bucket in AWS and then import them into EC2. When the image build is complete and the upload action is successful, the image file is available in the AMI section of EC2. Most of the values required to upload the image can be found in the {console}. {br}{br}This upload process requires that you have an Identity and Access Management (IAM) role named {vmimport} to ensure that the image can be imported from the S3 bucket into EC2. For more details, refer to the {role}.
+#: build/messages/components/Wizard/steps/imageOutput.json
+#, fuzzy
+#| msgid ""
+#| "Image Builder can upload images you create to an {bucket} in AWS and then "
+#| "import them into EC2. When the image build is complete\n"
+#| "                        and the upload action is successful, the image "
+#| "file is available in the AMI section of EC2. Most of the values required "
+#| "to upload\n"
+#| "                        the image can be found in the {console}."
+msgid ""
+"Image Builder can upload images you create to an S3 bucket in AWS and then "
+"import them into EC2. When the image build is complete and the upload action "
+"is successful, the image file is available in the AMI section of EC2. Most "
+"of the values required to upload the image can be found in the {console}. "
+"{br}{br}This upload process requires that you have an Identity and Access "
+"Management (IAM) role named {vmimport} to ensure that the image can be "
+"imported from the S3 bucket into EC2. For more details, refer to the {role}."
 msgstr ""
 "Image Builder は、作成したイメージを AWS の {bucket} にアップロードしてから、"
 "EC2 にインポートします。イメージのビルドが完了し\n"
@@ -1192,32 +1109,15 @@ msgstr ""
 "多くは、\n"
 "            {console} にあります。"
 
-#. [components.Wizard.3213107448]
+# auto translated by TM merge from project: Openshift Enterprise Installation & Configuration, version: 3.9-Outsourced, DocId: week_1_2
+#. [wizard.imageOutput.imageSize.label]
 #. defaultMessage is:
-#. Image Builder can upload images you create to an {bucket} in OCI and register it as a custom image. When the image build is complete
-#.                         and the upload action is successful, the image should be available under custom images.
-#.                         Most of the values required to upload the image can be found in the {console}.
-#. [components.Wizard.3213107448]
-#. defaultMessage is:
-#. Image Builder can upload images you create to an {bucket} in OCI and register it as a custom image. When the image build is complete
-#.                         and the upload action is successful, the image should be available under custom images.
-#.                         Most of the values required to upload the image can be found in the {console}.
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
-msgid ""
-"Image Builder can upload images you create to an {bucket} in OCI and "
-"register it as a custom image. When the image build is complete\n"
-"                        and the upload action is successful, the image "
-"should be available under custom images.\n"
-"                        Most of the values required to upload the image can "
-"be found in the {console}."
-msgstr ""
-"Image Builder は、OCI で {bucket} に作成したイメージをアップロードし、そのイ"
-"メージをカスタムイメージとして登録できます。イメージのビルドが完了し、\n"
-"                        アップロードアクションが正常に行われると、イメージは"
-"カスタムイメージで利用可能になります。\n"
-"                        イメージのアップロードに必要な値のほとんどは、"
-"{console} にあります。"
+#. Image Size
+#: build/messages/components/Wizard/steps/imageOutput.json
+#, fuzzy
+#| msgid "Image size"
+msgid "Image Size"
+msgstr "イメージサイズ"
 
 #. [components.ListView.imageStatusFinished] - Image build status when process is finished
 #. defaultMessage is:
@@ -1257,86 +1157,80 @@ msgstr "Image Building サービスはアクティブではありません"
 #. [components.ListView.imageName] - The name given by the user for an image
 #. defaultMessage is:
 #. Image name
-#. [components.Wizard.2794911472]
+#. [wizard.review.imageName]
 #. defaultMessage is:
 #. Image name
-#. [components.Wizard.2794911472]
+#. [wizard.aws.imageName.label]
 #. defaultMessage is:
 #. Image name
-#. [components.Wizard.2794911472]
+#. [wizard.azure.imageName.label]
 #. defaultMessage is:
 #. Image name
-#. [components.Wizard.2794911472]
+#. [wizard.oci.imageName.label]
 #. defaultMessage is:
 #. Image name
-#. [components.Wizard.2794911472]
+#. [wizard.vmware.imageName.label]
 #. defaultMessage is:
 #. Image name
 #: build/messages/components/ListView/ListItemUploads.json
-#: build/messages/components/Wizard/AWSDestinationStep.json
-#: build/messages/components/Wizard/AzureDestinationStep.json
-#: build/messages/components/Wizard/OCIDestinationStep.json
-#: build/messages/components/Wizard/ReviewStep.json
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/awsDest.json
+#: build/messages/components/Wizard/steps/azureDest.json
+#: build/messages/components/Wizard/steps/ociDest.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid "Image name"
 msgstr "イメージ名"
 
-#. [components.Wizard.imageName]
+#. [wizard.aws.imageName.popoverAria]
 #. defaultMessage is:
 #. Image name help
-#. [components.Wizard.imageName]
+#. [wizard.azure.imageName.popoverAria]
 #. defaultMessage is:
 #. Image name help
-#. [components.Wizard.imageName]
+#. [wizard.oci.imageName.popoverAria]
 #. defaultMessage is:
 #. Image name help
-#. [components.Wizard.imageName]
+#. [wizard.vmware.imageName.popoverAria]
 #. defaultMessage is:
 #. Image name help
-#: build/messages/components/Wizard/AWSDestinationStep.json
-#: build/messages/components/Wizard/AzureDestinationStep.json
-#: build/messages/components/Wizard/OCIDestinationStep.json
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/steps/awsDest.json
+#: build/messages/components/Wizard/steps/azureDest.json
+#: build/messages/components/Wizard/steps/ociDest.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid "Image name help"
 msgstr "イメージ名ヘルプ"
 
-#. [components.Wizard.1005710141]
+#. [wizard.imageOutput.title]
 #. defaultMessage is:
 #. Image output
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/steps/imageOutput.json
 msgid "Image output"
 msgstr "イメージ出力"
 
+#. [wizard.imageOutput.type]
+#. defaultMessage is:
+#. Image output type
+#: build/messages/components/Wizard/steps/imageOutput.json
+#, fuzzy
+#| msgid "Image output"
+msgid "Image output type"
+msgstr "イメージ出力"
+
 # auto translated by TM merge from project: Openshift Enterprise Installation & Configuration, version: 3.9-Outsourced, DocId: week_1_2
-#. [components.Wizard.1905943231]
+#. [wizard.review.imageSize]
 #. defaultMessage is:
 #. Image size
-#. [components.Wizard.1905943231]
-#. defaultMessage is:
-#. Image size
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
 msgid "Image size"
 msgstr "イメージサイズ"
 
 # auto translated by TM merge from project: Openshift Enterprise Installation & Configuration, version: 3.9-Outsourced, DocId: week_1_2
-#. [components.Wizard.imageSize]
+#. [wizard.imageOutput.imageSize.popoverAria]
 #. defaultMessage is:
 #. Image size help
-#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/steps/imageOutput.json
 msgid "Image size help"
 msgstr "イメージサイズのヘルプ"
-
-#. [components.Wizard.1813441558]
-#. defaultMessage is:
-#. Image type
-#. [components.Wizard.1813441558]
-#. defaultMessage is:
-#. Image type
-#: build/messages/components/Wizard/CreateImageUpload.json
-#: build/messages/components/Wizard/ReviewStep.json
-msgid "Image type"
-msgstr "イメージタイプ"
 
 #. [components.ListView.imageUploads] - A label for the section that lists the upload actions initiated by the user
 #. defaultMessage is:
@@ -1353,16 +1247,32 @@ msgstr "イメージのアップロード"
 msgid "Images"
 msgstr "イメージ"
 
-#. [pages.blueprint.3654599626]
+#. [wizard.customizations.installDevice.label]
 #. defaultMessage is:
 #. Installation Device
-#: build/messages/pages/blueprint/index.json
+#: build/messages/components/Wizard/steps/system.json
 msgid "Installation Device"
 msgstr "インストールデバイス"
 
+#. [wizard.customizations.installDevice.popoverAria]
+#. defaultMessage is:
+#. Installation Device help
+#: build/messages/components/Wizard/steps/system.json
+#, fuzzy
+#| msgid "Installation device help"
+msgid "Installation Device help"
+msgstr "インストールデバイスのヘルプ"
+
+#. [wizard.review.installationDevice]
+#. defaultMessage is:
+#. Installation device
 #. [pages.blueprint.deviceInputLabel]
 #. defaultMessage is:
 #. Installation device
+#. [pages.blueprint.3834724928]
+#. defaultMessage is:
+#. Installation device
+#: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/pages/blueprint/index.json
 msgid "Installation device"
 msgstr "インストールデバイス"
@@ -1374,12 +1284,14 @@ msgstr "インストールデバイス"
 msgid "Installation device help"
 msgstr "インストールデバイスのヘルプ"
 
-#. [components.Wizard.labelLiveIso]
+#. [wizard.packages.loadAdditionalPackages]
 #. defaultMessage is:
-#. Installer, suitable for USB and DVD (.iso)
-#: build/messages/components/Wizard/ImageStep.json
-msgid "Installer, suitable for USB and DVD (.iso)"
-msgstr "インストーラー (USB と DVD (.iso) に適切)"
+#. Load additional packages
+#: build/messages/components/Wizard/formComponents/Packages.json
+#, fuzzy
+#| msgid "Edit packages"
+msgid "Load additional packages"
+msgstr "パッケージの編集"
 
 #. [components.Loading.2617450248]
 #. defaultMessage is:
@@ -1387,6 +1299,13 @@ msgstr "インストーラー (USB と DVD (.iso) に適切)"
 #: build/messages/components/Loading/Loading.json
 msgid "Loading"
 msgstr "読み込み中"
+
+#. [wizard.packages.loadingAdditionalPackages]
+#. defaultMessage is:
+#. Loading additional packages...
+#: build/messages/components/Wizard/formComponents/Packages.json
+msgid "Loading additional packages..."
+msgstr ""
 
 #. [components.ListView.imageLogs] - Log content that gets generated as part of the image creation process
 #. defaultMessage is:
@@ -1413,31 +1332,22 @@ msgstr "ソースの管理"
 msgid "Message"
 msgstr "メッセージ"
 
-#. [components.Wizard.warningSizeSmall]
+#. [wizard.imageOutput.imageSize.inputHelp]
 #. defaultMessage is:
-#. Minimum size is {size} GB
-#: build/messages/components/Wizard/ImageStep.json
-msgid "Minimum size is {size} GB"
-msgstr "最小サイズは {size} GB です"
-
-#. [components.Wizard.warningSizeSmall]
-#. defaultMessage is:
-#. Minimum size is {size} GB.
-#: build/messages/components/Wizard/ReviewStep.json
-msgid "Minimum size is {size} GB."
+#. Minimum image size is {size}GB.
+#: build/messages/components/Wizard/steps/imageOutput.json
+#, fuzzy
+#| msgid "Minimum size is {size} GB."
+msgid "Minimum image size is {size}GB."
 msgstr "最小サイズは {size} GB です。"
 
 #. [components.ListView.emptyStateNoResultsMessage]
-#. defaultMessage is:
-#. Modify your filter criteria to get results.
-#. [pages.blueprintEdit.emptyStateNoResultsMessage]
 #. defaultMessage is:
 #. Modify your filter criteria to get results.
 #. [pages.blueprints.noResultsMessage]
 #. defaultMessage is:
 #. Modify your filter criteria to get results.
 #: build/messages/components/ListView/BlueprintContents.json
-#: build/messages/pages/blueprintEdit/index.json
 #: build/messages/pages/blueprints/index.json
 msgid "Modify your filter criteria to get results."
 msgstr "結果を取得するために絞り込みの基準を変更します。"
@@ -1448,39 +1358,14 @@ msgstr "結果を取得するために絞り込みの基準を変更します。
 #. [components.Modal.name] - Name of source
 #. defaultMessage is:
 #. Name
-#. [components.Toolbar.filterNameTitle]
-#. defaultMessage is:
-#. Name
-#. [components.Toolbar.filterNameTitle]
+#. [toolbar.blueprint.filter.name]
 #. defaultMessage is:
 #. Name
 #: build/messages/components/Modal/CreateBlueprint.json
 #: build/messages/components/Modal/ManageSources.json
-#: build/messages/components/Toolbar/FilterInput.json
-#: build/messages/components/Toolbar/ToolbarLayout.json
+#: build/messages/components/Toolbar/BlueprintToolbar.json
 msgid "Name"
 msgstr "名前"
-
-#. [pages.blueprintEdit.3059610115]
-#. defaultMessage is:
-#. Name: {name}
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Name: {name}"
-msgstr "名前: {name}"
-
-#. [components.Wizard.namespace]
-#. defaultMessage is:
-#. Namespace help
-#: build/messages/components/Wizard/OCIDestinationStep.json
-msgid "Namespace help"
-msgstr "namespace のヘルプ"
-
-#. [components.Wizard.3673120330]
-#. defaultMessage is:
-#. Next
-#: build/messages/components/Wizard/CreateImageUpload.json
-msgid "Next"
-msgstr "次へ"
 
 #. [pages.blueprints.emptyTitle]
 #. defaultMessage is:
@@ -1517,76 +1402,61 @@ msgstr "このブループリントからイメージは作成されていませ
 msgid "No log available"
 msgstr "利用できるログはありません"
 
-#. [components.ListView.emptyStateNoResultsTitle]
+#. [wizard.packages.noPackagesAdded]
 #. defaultMessage is:
-#. No results match the filter criteria
-#. [pages.blueprintEdit.emptyStateNoResultsTitle]
+#. No packages added
+#: build/messages/components/Wizard/formComponents/Packages.json
+#, fuzzy
+#| msgid "Edit packages"
+msgid "No packages added"
+msgstr "パッケージの編集"
+
+#. [wizard.packages.noPackagesFound]
+#. defaultMessage is:
+#. No packages found
+#: build/messages/components/Wizard/formComponents/Packages.json
+#, fuzzy
+#| msgid "Edit packages"
+msgid "No packages found"
+msgstr "パッケージの編集"
+
+#. [components.ListView.emptyStateNoResultsTitle]
 #. defaultMessage is:
 #. No results match the filter criteria
 #. [pages.blueprints.noResultsTitle]
 #. defaultMessage is:
 #. No results match the filter criteria
 #: build/messages/components/ListView/BlueprintContents.json
-#: build/messages/pages/blueprintEdit/index.json
 #: build/messages/pages/blueprints/index.json
 msgid "No results match the filter criteria"
 msgstr "絞り込みの基準と一致する結果がありません"
 
-#. [components.Wizard.1666805205]
+#. [wizard.review.ociBucket]
 #. defaultMessage is:
 #. OCI bucket
-#: build/messages/components/Wizard/ReviewStep.json
+#. [wizard.oci.bucket.label]
+#. defaultMessage is:
+#. OCI bucket
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/ociDest.json
 msgid "OCI bucket"
 msgstr ""
 
-#. [components.Wizard.compartment]
+#. [wizard.oci.bucket.popoverAria]
 #. defaultMessage is:
-#. OCI compartment help
-#: build/messages/components/Wizard/OCIDestinationStep.json
-msgid "OCI compartment help"
-msgstr "OCI コンパートメントヘルプ"
+#. OCI bucket help
+#: build/messages/components/Wizard/steps/ociDest.json
+#, fuzzy
+#| msgid "Bucket help"
+msgid "OCI bucket help"
+msgstr "バケットのヘルプ"
 
-#. [components.Wizard.region]
+#. [wizard.ostree.title]
 #. defaultMessage is:
-#. OCI region help
-#: build/messages/components/Wizard/OCIDestinationStep.json
-msgid "OCI region help"
-msgstr "OCI リージョンのヘルプ"
-
-#. [components.Wizard.tenancy]
-#. defaultMessage is:
-#. OCI tenancy help
-#: build/messages/components/Wizard/OCIDestinationStep.json
-msgid "OCI tenancy help"
-msgstr "OCI テナンシーのヘルプ"
-
-#. [components.Wizard.ostreeParent]
-#. defaultMessage is:
-#. OSTree parent help
-#: build/messages/components/Wizard/ImageStep.json
-msgid "OSTree parent help"
-msgstr "OSTree 親ヘルプ"
-
-#. [components.Wizard.ostreeRef]
-#. defaultMessage is:
-#. OSTree ref help
-#: build/messages/components/Wizard/ImageStep.json
-msgid "OSTree ref help"
-msgstr "OSTree ref ヘルプ"
-
-#. [components.Wizard.ostreeURL]
-#. defaultMessage is:
-#. OSTree repo url help
-#: build/messages/components/Wizard/ImageStep.json
-msgid "OSTree repo url help"
-msgstr "OSTree リポジトリー URL ヘルプ"
-
-#. [components.Modal.1475836573]
-#. defaultMessage is:
-#. Only changes to selected components are shown.
-#: build/messages/components/Modal/PendingChanges.json
-msgid "Only changes to selected components are shown."
-msgstr "選択されたコンポーネントへの変更点のみを表示します。"
+#. OSTree settings
+#: build/messages/components/Wizard/steps/ostreeSettings.json
+msgid "OSTree settings"
+msgstr ""
 
 #. [pages.error.oupsTitle]
 #. defaultMessage is:
@@ -1595,9 +1465,24 @@ msgstr "選択されたコンポーネントへの変更点のみを表示しま
 msgid "Oups, something went wrong"
 msgstr "問題が発生しました"
 
+#. [wizard.review.outputType]
+#. defaultMessage is:
+#. Output type
+#: build/messages/components/Wizard/formComponents/Review.json
+msgid "Output type"
+msgstr ""
+
+#. [wizard.review.packages]
+#. defaultMessage is:
+#. Packages
+#. [wizard.packages.title]
+#. defaultMessage is:
+#. Packages
 #. [pages.blueprint.packagesTitle]
 #. defaultMessage is:
 #. Packages
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/packages.json
 #: build/messages/pages/blueprint/index.json
 msgid "Packages"
 msgstr "パッケージ"
@@ -1612,25 +1497,38 @@ msgstr "パッケージ"
 msgid "Page not found"
 msgstr "ページが見つかりません"
 
-#. [components.Wizard.3070030782]
+#. [wizard.ostree.parentCommit.label]
 #. defaultMessage is:
 #. Parent commit
-#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/steps/ostreeSettings.json
 msgid "Parent commit"
+msgstr "親のコミット"
+
+#. [wizard.ostree.parentCommit.popoverAria]
+#. defaultMessage is:
+#. Parent commit help
+#: build/messages/components/Wizard/steps/ostreeSettings.json
+#, fuzzy
+#| msgid "Parent commit"
+msgid "Parent commit help"
 msgstr "親のコミット"
 
 #. [components.Modal.labelPassword]
 #. defaultMessage is:
 #. Password
-#. [components.Wizard.2237029987]
+#. [wizard.review.password]
 #. defaultMessage is:
 #. Password
-#. [components.Wizard.2237029987]
+#. [wizard.customizations.password.label]
+#. defaultMessage is:
+#. Password
+#. [wizard.vmware.password.label]
 #. defaultMessage is:
 #. Password
 #: build/messages/components/Modal/UserAccount.json
-#: build/messages/components/Wizard/ReviewStep.json
-#: build/messages/components/Wizard/VMWareAuthStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/users.json
+#: build/messages/components/Wizard/steps/vmwareAuth.json
 msgid "Password"
 msgstr "パスワード"
 
@@ -1641,84 +1539,88 @@ msgstr "パスワード"
 msgid "Paste the contents of your public SSH key file here."
 msgstr "公開 SSH 鍵ファイルの内容をここに貼り付けます。"
 
-#. [components.Modal.3226997558]
-#. defaultMessage is:
-#. Pending changes
-#: build/messages/components/Modal/PendingChanges.json
-msgid "Pending changes"
-msgstr "変更を保留中"
-
-#. [key-help]
+#. [wizard.oci.privateKey.label]
 #. defaultMessage is:
 #. Private key
-#. [components.Wizard.1443428038]
-#. defaultMessage is:
-#. Private key
-#: build/messages/components/Wizard/OCIAuthStep.json
+#: build/messages/components/Wizard/steps/ociAuth.json
 msgid "Private key"
 msgstr "秘密鍵"
 
-#. [components.Wizard.3157862487]
+#. [wizard.review.privateKey]
 #. defaultMessage is:
 #. Private key filename
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
 #, fuzzy
 #| msgid "Private key"
 msgid "Private key filename"
 msgstr "秘密鍵"
 
-#. [components.Wizard.processLength]
+#. [wizard.oci.privateKey.popoverAria]
+#. defaultMessage is:
+#. Private key help
+#: build/messages/components/Wizard/steps/ociAuth.json
+#, fuzzy
+#| msgid "Private key"
+msgid "Private key help"
+msgstr "秘密鍵"
+
+#. [wizard.blueprintName.popover.aria]
 #. defaultMessage is:
 #. Process length help
-#. [components.Wizard.processLength]
-#. defaultMessage is:
-#. Process length help
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/BlueprintName.json
 msgid "Process length help"
 msgstr "プロセス長ヘルプ"
 
-#. [components.Wizard.4277042358]
+#. [wizard.aws.imageName.popoverBody]
 #. defaultMessage is:
 #. Provide a file name to be used for the image file that will be uploaded.
-#. [components.Wizard.4277042358]
+#. [wizard.azure.imageName.popoverBody]
 #. defaultMessage is:
 #. Provide a file name to be used for the image file that will be uploaded.
-#. [components.Wizard.4277042358]
+#. [wizard.oci.imageName.popoverBody]
 #. defaultMessage is:
 #. Provide a file name to be used for the image file that will be uploaded.
-#. [components.Wizard.4277042358]
+#. [wizard.vmware.imageName.popoverBody]
 #. defaultMessage is:
 #. Provide a file name to be used for the image file that will be uploaded.
-#: build/messages/components/Wizard/AWSDestinationStep.json
-#: build/messages/components/Wizard/AzureDestinationStep.json
-#: build/messages/components/Wizard/OCIDestinationStep.json
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/steps/awsDest.json
+#: build/messages/components/Wizard/steps/azureDest.json
+#: build/messages/components/Wizard/steps/ociDest.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid ""
 "Provide a file name to be used for the image file that will be uploaded."
 msgstr "アップロードするイメージファイルに使用するファイル名を指定します。"
 
-#. [components.Wizard.2186792528]
+#. [wizard.aws.region.popoverBody]
 #. defaultMessage is:
-#. Provide the AWS Region where you want to import your image. This must be the same region where the {bucket} exists.
-#: build/messages/components/Wizard/AWSDestinationStep.json
+#. Provide the AWS Region where you want to import your image. This must be the same region where the S3 bucket exists.
+#: build/messages/components/Wizard/steps/awsDest.json
+#, fuzzy
+#| msgid ""
+#| "Provide the AWS Region where you want to import your image. This must be "
+#| "the same region where the {bucket} exists."
 msgid ""
 "Provide the AWS Region where you want to import your image. This must be the "
-"same region where the {bucket} exists."
+"same region where the S3 bucket exists."
 msgstr ""
 "イメージをインポートする AWS リージョンを指定します。これは、{bucket} が存在"
 "するリージョンと同じである必要があります。"
 
-#. [components.Wizard.517158149]
+#. [wizard.azure.storageContainer.popoverBody]
 #. defaultMessage is:
-#. Provide the Blob container to which the image file will be uploaded. You can find containers under the {blobService} 
-#.                     section of a storage account. You can find storage accounts on the {storageAccounts} page in the {azure} portal.
-#: build/messages/components/Wizard/AzureDestinationStep.json
+#. Provide the Blob container to which the image file will be uploaded. You can find containers under the <strong>Blob service</strong> section of a storage account. You can find storage accounts on the <strong>Storage accounts</strong> page in the Azure portal.
+#: build/messages/components/Wizard/steps/azureDest.json
+#, fuzzy
+#| msgid ""
+#| "Provide the Blob container to which the image file will be uploaded. You "
+#| "can find containers under the {blobService} \n"
+#| "                    section of a storage account. You can find storage "
+#| "accounts on the {storageAccounts} page in the {azure} portal."
 msgid ""
 "Provide the Blob container to which the image file will be uploaded. You can "
-"find containers under the {blobService} \n"
-"                    section of a storage account. You can find storage "
-"accounts on the {storageAccounts} page in the {azure} portal."
+"find containers under the <strong>Blob service</strong> section of a storage "
+"account. You can find storage accounts on the <strong>Storage accounts</"
+"strong> page in the Azure portal."
 msgstr ""
 "イメージファイルをアップロードする Blob コンテナーを指定します。コンテナは "
 "{blobService} \n"
@@ -1726,35 +1628,45 @@ msgstr ""
 "ウントは、{azure} ポータルの {storageAccounts} ページで見つけることができま"
 "す。"
 
-#. [components.Wizard.4044130958]
+#. [wizard.ostree.parentCommit.popoverBody]
 #. defaultMessage is:
-#. Provide the ID of the latest commit in the updates repository for which this commit provides an update.
-#.                     If no commit is specified it will be inferred from the parent repository.
-#: build/messages/components/Wizard/ImageStep.json
+#. Provide the ID of the latest commit in the updates repository for which this commit provides an update. If no commit is specified it will be inferred from the parent repository.
+#: build/messages/components/Wizard/steps/ostreeSettings.json
+#, fuzzy
+#| msgid ""
+#| "Provide the ID of the latest commit in the updates repository for which "
+#| "this commit provides an update.\n"
+#| "                    If no commit is specified it will be inferred from "
+#| "the parent repository."
 msgid ""
 "Provide the ID of the latest commit in the updates repository for which this "
-"commit provides an update.\n"
-"                    If no commit is specified it will be inferred from the "
-"parent repository."
+"commit provides an update. If no commit is specified it will be inferred "
+"from the parent repository."
 msgstr ""
 "このコミットが更新を提供する更新レポジトリの最新のコミットの ID を提供しま"
 "す。\n"
 "                    コミットが指定されていない場合は、親レポジトリーから推測"
 "されます。"
 
-#. [components.Wizard.1901372247]
+#. [wizard.aws.bucket.popoverBody]
 #. defaultMessage is:
-#. Provide the S3 {bucket} name to which the image file will be uploaded before being imported into EC2. 
-#.                         The {bucket} must already exist in the Region where you want to import your image. You can find a list of {buckets} on the
-#.                         {bucketsPage} page in the {amazon} S3 storage service in the AWS console.
-#: build/messages/components/Wizard/AWSDestinationStep.json
+#. Provide the S3 bucket name to which the image file will be uploaded before being imported into EC2. The bucket must already exist in the Region where you want to import your image. You can find a list of buckets on the <strong>S3 buckets</strong> page in the Amazon S3 storage service in the AWS console.
+#: build/messages/components/Wizard/steps/awsDest.json
+#, fuzzy
+#| msgid ""
+#| "Provide the S3 {bucket} name to which the image file will be uploaded "
+#| "before being imported into EC2. \n"
+#| "                        The {bucket} must already exist in the Region "
+#| "where you want to import your image. You can find a list of {buckets} on "
+#| "the\n"
+#| "                        {bucketsPage} page in the {amazon} S3 storage "
+#| "service in the AWS console."
 msgid ""
-"Provide the S3 {bucket} name to which the image file will be uploaded before "
-"being imported into EC2. \n"
-"                        The {bucket} must already exist in the Region where "
-"you want to import your image. You can find a list of {buckets} on the\n"
-"                        {bucketsPage} page in the {amazon} S3 storage "
-"service in the AWS console."
+"Provide the S3 bucket name to which the image file will be uploaded before "
+"being imported into EC2. The bucket must already exist in the Region where "
+"you want to import your image. You can find a list of buckets on the "
+"<strong>S3 buckets</strong> page in the Amazon S3 storage service in the AWS "
+"console."
 msgstr ""
 "EC2 にインポートされる前にアップロードされるイメージファイルに S3 {bucket} 名"
 "を指定します。\n"
@@ -1763,10 +1675,10 @@ msgstr ""
 "                          AWS コンソールの {bucketsPage} S3 ストレージページ"
 "の {amazon} ページにあります。"
 
-#. [components.Wizard.1170512263]
+#. [wizard.ostree.repoURL.popoverBody]
 #. defaultMessage is:
 #. Provide the URL of the upstream repository. This repository is where the parent OSTree commit will be pulled from.
-#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/steps/ostreeSettings.json
 msgid ""
 "Provide the URL of the upstream repository. This repository is where the "
 "parent OSTree commit will be pulled from."
@@ -1774,132 +1686,45 @@ msgstr ""
 "アップストリームのリポジトリーの URL を提供します。このリポジトリーは、親 "
 "OSTree コミットがプルされる場所です。"
 
-#. [components.Wizard.2706552502]
+#. [wizard.azure.storageAccessKey.popoverBody]
 #. defaultMessage is:
-#. Provide the access key for the desired storage account. You can find the access key on the {accessKeys} 
-#.                         page of the storage account. You can find storage accounts on the {storageAccounts} page in the {azure} portal.
-#: build/messages/components/Wizard/AzureAuthStep.json
+#. Provide the access key for the desired storage account. You can find the access key on the <strong>Access keys</strong> page of the storage account. You can find storage accounts on the <strong>Storage accounts</strong> page in the Azure portal.
+#: build/messages/components/Wizard/steps/azureAuth.json
+#, fuzzy
+#| msgid ""
+#| "Provide the access key for the desired storage account. You can find the "
+#| "access key on the {accessKeys} \n"
+#| "                        page of the storage account. You can find storage "
+#| "accounts on the {storageAccounts} page in the {azure} portal."
 msgid ""
 "Provide the access key for the desired storage account. You can find the "
-"access key on the {accessKeys} \n"
-"                        page of the storage account. You can find storage "
-"accounts on the {storageAccounts} page in the {azure} portal."
+"access key on the <strong>Access keys</strong> page of the storage account. "
+"You can find storage accounts on the <strong>Storage accounts</strong> page "
+"in the Azure portal."
 msgstr ""
 "目的のストレージアカウントのアクセスキーを提供します。アクセスキーはストレー"
 "ジアカウントの {accessKeys} \n"
 "                        ページで見つかります。ストレージアカウントは、"
 "{storageAccounts} ポータル内の {azure} ページで探すことができます。"
 
-#. [components.Wizard.2831983558]
+#. [wizard.oci.bucket.popoverBody]
 #. defaultMessage is:
-#. Provide the compartment of the {bucket} your uploading to. You can find the compartment in the bucket details.
-#: build/messages/components/Wizard/OCIDestinationStep.json
+#. Provide the bucket name to which the image file will be uploaded before being imported as a custom image. The bucket must already exist in the Region where you want to import your image. You can find a list of buckets on the <strong>OCI buckets</strong> page in the OCI storage service in the OCI console.
+#: build/messages/components/Wizard/steps/ociDest.json
+#, fuzzy
+#| msgid ""
+#| "Provide the {bucket} name to which the image file will be uploaded before "
+#| "being imported as a custom image. \n"
+#| "                        The {bucket} must already exist in the Region "
+#| "where you want to import your image. You can find a list of {buckets} on "
+#| "the\n"
+#| "                        {bucketsPage} page in the OCI storage service in "
+#| "the OCI console."
 msgid ""
-"Provide the compartment of the {bucket} your uploading to. You can find the "
-"compartment in the bucket details."
-msgstr ""
-"アップロード先の {bucket} のコンパートメントを指定します。コンパートメントは"
-"バケットの詳細で確認できます。"
-
-#. [components.Wizard.1434969769]
-#. defaultMessage is:
-#. Provide the name of a storage account. You can find storage accounts on the {storageAccounts} page in the {azure} portal.
-#: build/messages/components/Wizard/AzureAuthStep.json
-msgid ""
-"Provide the name of a storage account. You can find storage accounts on the "
-"{storageAccounts} page in the {azure} portal."
-msgstr ""
-"ストレージアカウントの名前を入力します。ストレージアカウントは、{azure} ポー"
-"タル内の {storageAccounts} ページで見つけることができます。"
-
-#. [components.Wizard.1891777230]
-#. defaultMessage is:
-#. Provide the name of the Cluster to which the image file will be uploaded.
-#: build/messages/components/Wizard/VMWareDestinationStep.json
-msgid ""
-"Provide the name of the Cluster to which the image file will be uploaded."
-msgstr "イメージファイルのアップロード先のクラスターの名前を指定します。"
-
-#. [components.Wizard.1217327836]
-#. defaultMessage is:
-#. Provide the name of the Datacenter to which the image file will be uploaded.
-#: build/messages/components/Wizard/VMWareDestinationStep.json
-msgid ""
-"Provide the name of the Datacenter to which the image file will be uploaded."
-msgstr "イメージファイルのアップロード先のデータセンターの名前を指定します。"
-
-#. [components.Wizard.4014474612]
-#. defaultMessage is:
-#. Provide the name of the Datastore to which the image file will be uploaded.
-#: build/messages/components/Wizard/VMWareDestinationStep.json
-msgid ""
-"Provide the name of the Datastore to which the image file will be uploaded."
-msgstr "イメージファイルのアップロード先のデータストアの名前を指定します。"
-
-#. [components.Wizard.1476874820]
-#. defaultMessage is:
-#. Provide the name of the branch for the content. If the ref does not already exist it will be created.
-#: build/messages/components/Wizard/ImageStep.json
-msgid ""
-"Provide the name of the branch for the content. If the ref does not already "
-"exist it will be created."
-msgstr "コンテンツのブランチ名を指定します。まだ存在しない場合は作成されます。"
-
-#. [components.Wizard.3701635592]
-#. defaultMessage is:
-#. Provide the namespace of the {bucket} your uploading to. You can find the namespace in the bucket details.
-#: build/messages/components/Wizard/OCIDestinationStep.json
-msgid ""
-"Provide the namespace of the {bucket} your uploading to. You can find the "
-"namespace in the bucket details."
-msgstr ""
-"アップロード先の {bucket} の namespace を指定します。namespace はバケットの詳"
-"細で確認できます。"
-
-#. [components.Wizard.3286165321]
-#. defaultMessage is:
-#. Provide the region of the {bucket} your uploading to. You can find the region in the bucket details.
-#: build/messages/components/Wizard/OCIDestinationStep.json
-msgid ""
-"Provide the region of the {bucket} your uploading to. You can find the "
-"region in the bucket details."
-msgstr ""
-"アップロード先の {bucket} のリージョンを指定します。リージョンはバケットの詳"
-"細で確認できます。"
-
-#. [components.Wizard.3854501928]
-#. defaultMessage is:
-#. Provide the tenancy of the {bucket} your uploading to. You can find the tenancy in the bucket details.
-#: build/messages/components/Wizard/OCIDestinationStep.json
-msgid ""
-"Provide the tenancy of the {bucket} your uploading to. You can find the "
-"tenancy in the bucket details."
-msgstr ""
-"アップロード先の {bucket} のテナンシーを指定します。テナンシーはバケットの詳"
-"細で確認できます。"
-
-#. [components.Wizard.3387354708]
-#. defaultMessage is:
-#. Provide the url of your {vmware} instance to which the image file will be uploaded.
-#: build/messages/components/Wizard/VMWareDestinationStep.json
-msgid ""
-"Provide the url of your {vmware} instance to which the image file will be "
-"uploaded."
-msgstr ""
-"イメージファイルをアップロードする {vmware} インスタンスの URL を指定します。"
-
-#. [components.Wizard.577410027]
-#. defaultMessage is:
-#. Provide the {bucket} name to which the image file will be uploaded before being imported as a custom image. 
-#.                         The {bucket} must already exist in the Region where you want to import your image. You can find a list of {buckets} on the
-#.                         {bucketsPage} page in the OCI storage service in the OCI console.
-#: build/messages/components/Wizard/OCIDestinationStep.json
-msgid ""
-"Provide the {bucket} name to which the image file will be uploaded before "
-"being imported as a custom image. \n"
-"                        The {bucket} must already exist in the Region where "
-"you want to import your image. You can find a list of {buckets} on the\n"
-"                        {bucketsPage} page in the OCI storage service in the "
+"Provide the bucket name to which the image file will be uploaded before "
+"being imported as a custom image. The bucket must already exist in the "
+"Region where you want to import your image. You can find a list of buckets "
+"on the <strong>OCI buckets</strong> page in the OCI storage service in the "
 "OCI console."
 msgstr ""
 "{bucket} 名を指定します。イメージファイルはここにアップロードされてから、カス"
@@ -1909,36 +1734,165 @@ msgstr ""
 "                          OCI コンソールの OCI ストレージサービスの "
 "{bucketsPage} ページにあります。"
 
-#. [components.Wizard.labelqcow]
+#. [wizard.oci.compartment.popoverBody]
 #. defaultMessage is:
-#. QEMU Image (.qcow2)
-#: build/messages/components/Wizard/ImageStep.json
-msgid "QEMU Image (.qcow2)"
-msgstr "QEMU イメージ(.qcow2)"
+#. Provide the compartment of the OCI bucket compartment your uploading to. You can find the compartment in the bucket details.
+#: build/messages/components/Wizard/steps/ociDest.json
+#, fuzzy
+#| msgid ""
+#| "Provide the compartment of the {bucket} your uploading to. You can find "
+#| "the compartment in the bucket details."
+msgid ""
+"Provide the compartment of the OCI bucket compartment your uploading to. You "
+"can find the compartment in the bucket details."
+msgstr ""
+"アップロード先の {bucket} のコンパートメントを指定します。コンパートメントは"
+"バケットの詳細で確認できます。"
 
-#. [components.Wizard.31026111]
+#. [wizard.azure.storageAccount.popoverBody]
+#. defaultMessage is:
+#. Provide the name of a storage account. You can find storage accounts on the <strong>Storage accounts</strong> page in the Azure portal.
+#: build/messages/components/Wizard/steps/azureAuth.json
+#, fuzzy
+#| msgid ""
+#| "Provide the name of a storage account. You can find storage accounts on "
+#| "the {storageAccounts} page in the {azure} portal."
+msgid ""
+"Provide the name of a storage account. You can find storage accounts on the "
+"<strong>Storage accounts</strong> page in the Azure portal."
+msgstr ""
+"ストレージアカウントの名前を入力します。ストレージアカウントは、{azure} ポー"
+"タル内の {storageAccounts} ページで見つけることができます。"
+
+#. [wizard.vmware.cluster.popoverBody]
+#. defaultMessage is:
+#. Provide the name of the Cluster to which the image file will be uploaded.
+#: build/messages/components/Wizard/steps/vmwareDest.json
+msgid ""
+"Provide the name of the Cluster to which the image file will be uploaded."
+msgstr "イメージファイルのアップロード先のクラスターの名前を指定します。"
+
+#. [wizard.vmware.dataCenter.popoverBody]
+#. defaultMessage is:
+#. Provide the name of the Datacenter to which the image file will be uploaded.
+#: build/messages/components/Wizard/steps/vmwareDest.json
+msgid ""
+"Provide the name of the Datacenter to which the image file will be uploaded."
+msgstr "イメージファイルのアップロード先のデータセンターの名前を指定します。"
+
+#. [wizard.vmware.datastore.popoverBody]
+#. defaultMessage is:
+#. Provide the name of the Datastore to which the image file will be uploaded.
+#: build/messages/components/Wizard/steps/vmwareDest.json
+msgid ""
+"Provide the name of the Datastore to which the image file will be uploaded."
+msgstr "イメージファイルのアップロード先のデータストアの名前を指定します。"
+
+#. [wizard.ostree.ref.popoverBody]
+#. defaultMessage is:
+#. Provide the name of the branch for the content. If the ref does not already exist it will be created.
+#: build/messages/components/Wizard/steps/ostreeSettings.json
+msgid ""
+"Provide the name of the branch for the content. If the ref does not already "
+"exist it will be created."
+msgstr "コンテンツのブランチ名を指定します。まだ存在しない場合は作成されます。"
+
+#. [wizard.oci.namespace.popoverBody]
+#. defaultMessage is:
+#. Provide the namespace of the OCI bucket your uploading to. You can find the namespace in the bucket details.
+#: build/messages/components/Wizard/steps/ociDest.json
+#, fuzzy
+#| msgid ""
+#| "Provide the namespace of the {bucket} your uploading to. You can find the "
+#| "namespace in the bucket details."
+msgid ""
+"Provide the namespace of the OCI bucket your uploading to. You can find the "
+"namespace in the bucket details."
+msgstr ""
+"アップロード先の {bucket} の namespace を指定します。namespace はバケットの詳"
+"細で確認できます。"
+
+#. [wizard.oci.region.popoverBody]
+#. defaultMessage is:
+#. Provide the region of the Bucket region your uploading to. You can find the region in the bucket details.
+#: build/messages/components/Wizard/steps/ociDest.json
+#, fuzzy
+#| msgid ""
+#| "Provide the region of the {bucket} your uploading to. You can find the "
+#| "region in the bucket details."
+msgid ""
+"Provide the region of the Bucket region your uploading to. You can find the "
+"region in the bucket details."
+msgstr ""
+"アップロード先の {bucket} のリージョンを指定します。リージョンはバケットの詳"
+"細で確認できます。"
+
+#. [wizard.oci.tenancy.popoverBody]
+#. defaultMessage is:
+#. Provide the tenancy of the OCI bucket your uploading to. You can find the tenancy in the bucket details.
+#: build/messages/components/Wizard/steps/ociDest.json
+#, fuzzy
+#| msgid ""
+#| "Provide the tenancy of the {bucket} your uploading to. You can find the "
+#| "tenancy in the bucket details."
+msgid ""
+"Provide the tenancy of the OCI bucket your uploading to. You can find the "
+"tenancy in the bucket details."
+msgstr ""
+"アップロード先の {bucket} のテナンシーを指定します。テナンシーはバケットの詳"
+"細で確認できます。"
+
+#. [wizard.vmware.host.popoverBody]
+#. defaultMessage is:
+#. Provide the url of your VMWare vSphere instance to which the image file will be uploaded.
+#: build/messages/components/Wizard/steps/vmwareDest.json
+#, fuzzy
+#| msgid ""
+#| "Provide the url of your {vmware} instance to which the image file will be "
+#| "uploaded."
+msgid ""
+"Provide the url of your VMWare vSphere instance to which the image file will "
+"be uploaded."
+msgstr ""
+"イメージファイルをアップロードする {vmware} インスタンスの URL を指定します。"
+
+#. [wizard.ostree.ref.label]
 #. defaultMessage is:
 #. Ref
-#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/steps/ostreeSettings.json
 msgid "Ref"
 msgstr "参照"
 
+#. [wizard.ostree.ref.popoverAria]
+#. defaultMessage is:
+#. Ref help
+#: build/messages/components/Wizard/steps/ostreeSettings.json
+#, fuzzy
+#| msgid "Azure help"
+msgid "Ref help"
+msgstr "Azure ヘルプ"
+
+#. [wizard.aws.region.popoverAria]
+#. defaultMessage is:
+#. Region help
+#: build/messages/components/Wizard/steps/awsDest.json
+#, fuzzy
+#| msgid "AWS region help"
+msgid "Region help"
+msgstr "AWS リージョンのヘルプ"
+
 #. [components.ListView.423140743]
 #. defaultMessage is:
 #. Release
 #. [components.ListView.423140743]
 #. defaultMessage is:
 #. Release
-#. [components.Toolbar.filterReleaseTitle]
-#. defaultMessage is:
-#. Release
-#. [components.Toolbar.filterReleaseTitle]
+#. [toolbar.blueprint.filter.release]
 #. defaultMessage is:
 #. Release
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ComponentsDataListItem.json
-#: build/messages/components/Toolbar/FilterInput.json
-#: build/messages/components/Toolbar/ToolbarLayout.json
+#: build/messages/components/Toolbar/BlueprintToolbar.json
 msgid "Release"
 msgstr "リリース"
 
@@ -1948,14 +1902,28 @@ msgstr "リリース"
 #. [components.ListView.2703758654]
 #. defaultMessage is:
 #. Remove
-#. [components.ListView.2703758654]
-#. defaultMessage is:
-#. Remove
 #: build/messages/components/ListView/ComponentDetailsView.json
-#: build/messages/components/ListView/ComponentsDataListItem.json
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Remove"
 msgstr "削除"
+
+#. [wizard.packages.removeAll]
+#. defaultMessage is:
+#. Remove all
+#: build/messages/components/Wizard/formComponents/Packages.json
+#, fuzzy
+#| msgid "Remove"
+msgid "Remove all"
+msgstr "削除"
+
+#. [wizard.customizations.buttons.removeAll]
+#. defaultMessage is:
+#. Remove all users
+#: build/messages/components/Wizard/steps/users.json
+#, fuzzy
+#| msgid "Remove password"
+msgid "Remove all users"
+msgstr "パスワードの削除"
 
 #. [components.ListView.removeComponent]
 #. defaultMessage is:
@@ -1971,6 +1939,15 @@ msgstr "ブループリントからコンポーネントを削除"
 msgid "Remove from blueprint"
 msgstr "ブループリントから削除"
 
+#. [wizard.packages.removeSelected]
+#. defaultMessage is:
+#. Remove selected
+#: build/messages/components/Wizard/formComponents/Packages.json
+#, fuzzy
+#| msgid "Remove source"
+msgid "Remove selected"
+msgstr "ソースの削除"
+
 #. [components.ListView.remove]
 #. defaultMessage is:
 #. Remove source
@@ -1978,12 +1955,14 @@ msgstr "ブループリントから削除"
 msgid "Remove source"
 msgstr "ソースの削除"
 
-#. [components.Modal.2291868453] - Identifies the change as a component that was removed
+#. [wizard.customizations.buttons.remove]
 #. defaultMessage is:
-#. Removed
-#: build/messages/components/Modal/PendingChanges.json
-msgid "Removed"
-msgstr "削除済み"
+#. Remove user
+#: build/messages/components/Wizard/steps/users.json
+#, fuzzy
+#| msgid "Remove source"
+msgid "Remove user"
+msgstr "ソースの削除"
 
 #. [components.ListView.2663433025]
 #. defaultMessage is:
@@ -1992,11 +1971,20 @@ msgstr "削除済み"
 msgid "Removing source"
 msgstr "ソースの削除中"
 
-#. [components.Wizard.2238384022]
+#. [wizard.ostree.repoURL.label]
 #. defaultMessage is:
 #. Repository URL
-#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/steps/ostreeSettings.json
 msgid "Repository URL"
+msgstr "リポジトリー URL"
+
+#. [wizard.ostree.repoURL.popoverAria]
+#. defaultMessage is:
+#. Repository URL help
+#: build/messages/components/Wizard/steps/ostreeSettings.json
+#, fuzzy
+#| msgid "Repository URL"
+msgid "Repository URL help"
 msgstr "リポジトリー URL"
 
 #. [components.Modal.128739785]
@@ -2006,20 +1994,24 @@ msgstr "リポジトリー URL"
 msgid "Required information is missing."
 msgstr "必須情報が見つかりません。"
 
-#. [components.Wizard.3835894881]
+#. [wizard.review.title]
 #. defaultMessage is:
 #. Review
-#: build/messages/components/Wizard/CreateImageUpload.json
+#: build/messages/components/Wizard/steps/review.json
 msgid "Review"
 msgstr "レビュー"
 
-#. [components.Wizard.review]
+#. [wizard.review.review]
 #. defaultMessage is:
-#. Review the information below and click Finish to create the image and complete the tasks that were selected.
-#: build/messages/components/Wizard/ReviewStep.json
+#. Review the information and click "Create image" to create the image using the following criteria.
+#: build/messages/components/Wizard/formComponents/Review.json
+#, fuzzy
+#| msgid ""
+#| "Review the information below and click Finish to create the image and "
+#| "complete the tasks that were selected."
 msgid ""
-"Review the information below and click Finish to create the image and "
-"complete the tasks that were selected."
+"Review the information and click \"Create image\" to create the image using "
+"the following criteria."
 msgstr ""
 "以下の情報を確認し、終了をクリックしてイメージを作成し、選択されたタスクを完"
 "了します。"
@@ -2031,17 +2023,23 @@ msgstr ""
 msgid "Role"
 msgstr "ロール"
 
-#. [components.Wizard.bucket]
+#. [wizard.aws.bucket.popoverAria]
 #. defaultMessage is:
-#. S3 Bucket help
-#: build/messages/components/Wizard/AWSDestinationStep.json
-msgid "S3 Bucket help"
+#. S3 bucket help
+#: build/messages/components/Wizard/steps/awsDest.json
+#, fuzzy
+#| msgid "S3 Bucket help"
+msgid "S3 bucket help"
 msgstr "S3 バケットのヘルプ"
 
 #. [components.Modal.labelSSHKey]
 #. defaultMessage is:
 #. SSH key
+#. [wizard.customizations.sshKey.label]
+#. defaultMessage is:
+#. SSH key
 #: build/messages/components/Modal/UserAccount.json
+#: build/messages/components/Wizard/steps/users.json
 msgid "SSH key"
 msgstr "SSH キー"
 
@@ -2056,6 +2054,15 @@ msgstr "SSH キー"
 msgid "Save"
 msgstr "保存"
 
+#. [wizard.review.saveBlueprint]
+#. defaultMessage is:
+#. Save blueprint
+#: build/messages/components/Wizard/formComponents/SubmitButtonsCustom.json
+#, fuzzy
+#| msgid "Create blueprint"
+msgid "Save blueprint"
+msgstr "ブループリントの作成"
+
 #. [components.Modal.1820273720]
 #. defaultMessage is:
 #. Saving source
@@ -2063,21 +2070,42 @@ msgstr "保存"
 msgid "Saving source"
 msgstr "ソースの保存"
 
-#. [components.Wizard.135579143]
+#. [wizard.packages.searchAbove]
+#. defaultMessage is:
+#. Search above to add additional{br}packages to your image
+#: build/messages/components/Wizard/formComponents/Packages.json
+msgid "Search above to add additional{br}packages to your image"
+msgstr ""
+
+#. [wizard.packages.availablePackagesSearch]
+#. defaultMessage is:
+#. Search button for available packages
+#: build/messages/components/Wizard/formComponents/Packages.json
+msgid "Search button for available packages"
+msgstr ""
+
+#. [wizard.packages.searchPackages]
+#. defaultMessage is:
+#. Search for a package
+#: build/messages/components/Wizard/formComponents/Packages.json
+msgid "Search for a package"
+msgstr ""
+
+#. [wizard.review.secretAccessKey]
 #. defaultMessage is:
 #. Secret access key
-#. [components.Wizard.135579143]
+#. [wizard.aws.secretAccessKey.label]
 #. defaultMessage is:
 #. Secret access key
-#: build/messages/components/Wizard/AWSAuthStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/awsAuth.json
 msgid "Secret access key"
 msgstr "シークレットアクセスキー"
 
-#. [secret-access-key-help]
+#. [wizard.aws.secretAccessKey.popoverAria]
 #. defaultMessage is:
 #. Secret access key help
-#: build/messages/components/Wizard/AWSAuthStep.json
+#: build/messages/components/Wizard/steps/awsAuth.json
 msgid "Secret access key help"
 msgstr "シークレットアクセスキーのヘルプ"
 
@@ -2088,22 +2116,20 @@ msgstr "シークレットアクセスキーのヘルプ"
 msgid "Security"
 msgstr "セキュリティー"
 
-#. [pages.blueprintEdit.1513086105]
-#. defaultMessage is:
-#. Select components
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Select components"
-msgstr "コンポーネントの選択"
-
 #. [components.Modal.selectOne]
 #. defaultMessage is:
 #. Select one
-#. [components.Wizard.selectOne]
-#. defaultMessage is:
-#. Select one
 #: build/messages/components/Modal/ManageSources.json
-#: build/messages/components/Wizard/ImageStep.json
 msgid "Select one"
+msgstr "1 つ選択"
+
+#. [wizard.imageOutput.selectType]
+#. defaultMessage is:
+#. Select output type
+#: build/messages/components/Wizard/formComponents/ImageOutputSelect.json
+#, fuzzy
+#| msgid "Select one"
+msgid "Select output type"
 msgstr "1 つ選択"
 
 #. [components.ListView.selectedTabTitle]
@@ -2112,6 +2138,24 @@ msgstr "1 つ選択"
 #: build/messages/components/ListView/BlueprintContents.json
 msgid "Selected components"
 msgstr "選択されたコンポーネント"
+
+#. [wizard.packages.selectedPackages]
+#. defaultMessage is:
+#. Selected packages
+#: build/messages/components/Wizard/steps/packages.json
+#, fuzzy
+#| msgid "Edit packages"
+msgid "Selected packages"
+msgstr "パッケージの編集"
+
+#. [wizard.packages.selectorControls]
+#. defaultMessage is:
+#. Selector controls
+#: build/messages/components/Wizard/formComponents/Packages.json
+#, fuzzy
+#| msgid "Select components"
+msgid "Selector controls"
+msgstr "コンポーネントの選択"
 
 #. [components.Modal.adminCheckbox]
 #. defaultMessage is:
@@ -2123,14 +2167,18 @@ msgstr "サーバー管理者チェックボックス"
 #. [components.Modal.labelAdmin]
 #. defaultMessage is:
 #. Server administrator
+#. [wizard.customizations.serverAdmin.label]
+#. defaultMessage is:
+#. Server administrator
 #: build/messages/components/Modal/UserAccount.json
+#: build/messages/components/Wizard/steps/users.json
 msgid "Server administrator"
 msgstr "サーバー管理者"
 
-#. [components.Wizard.imageSizePopover]
+#. [wizard.imageOutput.imageSize.popoverBody]
 #. defaultMessage is:
 #. Set the size that you want the image to be when instantiated. The total package size and target destination of your image should be considered when setting the image size.
-#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/steps/imageOutput.json
 msgid ""
 "Set the size that you want the image to be when instantiated. The total "
 "package size and target destination of your image should be considered when "
@@ -2167,6 +2215,32 @@ msgstr "簡易表示"
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Size"
 msgstr "サイズ"
+
+#. [toolbar.blueprints.sort.asc]
+#. defaultMessage is:
+#. Sort blueprints ascending
+#. [toolbar.blueprints.sort.asc]
+#. defaultMessage is:
+#. Sort blueprints ascending
+#: build/messages/components/Toolbar/BlueprintsToolbar.json
+#: build/messages/components/Toolbar/BlueprintToolbar.json
+#, fuzzy
+#| msgid "Export blueprint"
+msgid "Sort blueprints ascending"
+msgstr "ブループリントのエクスポート"
+
+#. [toolbar.blueprints.sort.desc]
+#. defaultMessage is:
+#. Sort blueprints descending
+#. [toolbar.blueprints.sort.desc]
+#. defaultMessage is:
+#. Sort blueprints descending
+#: build/messages/components/Toolbar/BlueprintsToolbar.json
+#: build/messages/components/Toolbar/BlueprintToolbar.json
+#, fuzzy
+#| msgid "Export blueprint"
+msgid "Sort blueprints descending"
+msgstr "ブループリントのエクスポート"
 
 #. [components.ListView.kebab]
 #. defaultMessage is:
@@ -2211,6 +2285,13 @@ msgstr ""
 msgid "Specify a new blueprint name."
 msgstr "新規ブループリント名を指定します。"
 
+#. [wizard.customizations.installDevice.popoverBody]
+#. defaultMessage is:
+#. Specify which device the image will be installed onto.
+#: build/messages/components/Wizard/steps/system.json
+msgid "Specify which device the image will be installed onto."
+msgstr ""
+
 #. [components.EmptyState.errorInactivePrimary]
 #. defaultMessage is:
 #. Start
@@ -2246,70 +2327,68 @@ msgstr "ビルドを終了"
 msgid "Stopping"
 msgstr "終了中"
 
-#. [components.Wizard.4127941395]
+#. [wizard.review.storageAccessKey]
 #. defaultMessage is:
 #. Storage access key
-#. [components.Wizard.4127941395]
+#. [wizard.azure.storageAccessKey.label]
 #. defaultMessage is:
 #. Storage access key
-#: build/messages/components/Wizard/AzureAuthStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/azureAuth.json
 msgid "Storage access key"
 msgstr "ストレージアクセスキー"
 
-#. [components.Wizard.storageAccessKey]
+#. [wizard.azure.storageAccessKey.popoverAria]
 #. defaultMessage is:
 #. Storage access key help
-#: build/messages/components/Wizard/AzureAuthStep.json
+#: build/messages/components/Wizard/steps/azureAuth.json
 msgid "Storage access key help"
 msgstr "ストレージアクセスキーヘルプ"
 
-#. [components.Wizard.1624497518]
+#. [wizard.review.storageAccount]
 #. defaultMessage is:
 #. Storage account
-#. [components.Wizard.1624497518]
+#. [wizard.azure.storageAccount.label]
 #. defaultMessage is:
 #. Storage account
-#: build/messages/components/Wizard/AzureAuthStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/azureAuth.json
 msgid "Storage account"
 msgstr "ストレージアカウント"
 
-#. [components.Wizard.storageAccount]
+#. [wizard.azure.storageAccount.popoverAria]
 #. defaultMessage is:
 #. Storage account help
-#: build/messages/components/Wizard/AzureAuthStep.json
+#: build/messages/components/Wizard/steps/azureAuth.json
 msgid "Storage account help"
 msgstr "ストレージアカウントヘルプ"
 
-#. [components.Wizard.storageAccounts]
-#. defaultMessage is:
-#. Storage accounts
-#. [components.Wizard.storageAccounts]
-#. defaultMessage is:
-#. Storage accounts
-#: build/messages/components/Wizard/AzureAuthStep.json
-#: build/messages/components/Wizard/AzureDestinationStep.json
-msgid "Storage accounts"
-msgstr "ストレージアカウント"
-
-#. [components.Wizard.1249927125]
+#. [wizard.review.storageContainer]
 #. defaultMessage is:
 #. Storage container
-#. [components.Wizard.1249927125]
+#. [wizard.azure.storageContainer.label]
 #. defaultMessage is:
 #. Storage container
-#: build/messages/components/Wizard/AzureDestinationStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/azureDest.json
 msgid "Storage container"
 msgstr "ストレージコンテナー"
 
-#. [components.Wizard.storageContainer]
+#. [wizard.azure.storageContainer.popoverAria]
 #. defaultMessage is:
 #. Storage container help
-#: build/messages/components/Wizard/AzureDestinationStep.json
+#: build/messages/components/Wizard/steps/azureDest.json
 msgid "Storage container help"
 msgstr "ストレージコンテナーヘルプ"
+
+#. [wizard.customizations.systemTitle]
+#. defaultMessage is:
+#. System
+#: build/messages/components/Wizard/steps/system.json
+#, fuzzy
+#| msgid "System source"
+msgid "System"
+msgstr "システムソース"
 
 #. [components.ListView.3639476303] - System sources are configured repositories that were found on the host machine
 #. defaultMessage is:
@@ -2365,17 +2444,6 @@ msgstr ""
 msgid "The name {name} already exists."
 msgstr "名前 {name} はすでに存在します。"
 
-#. [pages.blueprintEdit.addComponentMessageTwo]
-#. defaultMessage is:
-#. The packages needed to support the selected image type are automatically included when creating an image.
-#: build/messages/pages/blueprintEdit/index.json
-msgid ""
-"The packages needed to support the selected image type are automatically "
-"included when creating an image."
-msgstr ""
-"選択したイメージのタイプの対応に必要なパッケージは、イメージを作成する際に自"
-"動的に含まれています。"
-
 #. [pages.error.26562577]
 #. defaultMessage is:
 #. The page you're looking for does not exist or an another error occurred.
@@ -2390,21 +2458,6 @@ msgstr "お探しのページは削除されたか、別のエラーが発生し
 #: build/messages/components/EmptyState/EmptyStateInactive.json
 msgid "The service osbuild-composer was not started."
 msgstr "osbuild-composer サービスは開始しませんでした。"
-
-#. [components.Wizard.warningSizeLarge]
-#. defaultMessage is:
-#. The size specified is large. We recommend that you check whether your target destination has any restrictions on image size.
-#. [components.Wizard.warningSizeLarge]
-#. defaultMessage is:
-#. The size specified is large. We recommend that you check whether your target destination has any restrictions on image size.
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
-msgid ""
-"The size specified is large. We recommend that you check whether your target "
-"destination has any restrictions on image size."
-msgstr ""
-"サイズが少々大きく設定されています。ターゲットの宛先にイメージサイズの制限が"
-"あるかどうかを確認することをお勧めします。"
 
 #. [components.Modal.usernameValidChars]
 #. defaultMessage is:
@@ -2444,21 +2497,16 @@ msgstr "パスワードとして入力した値が一致しません。"
 
 #. [pages.blueprint.emptyBlueprintMessage]
 #. defaultMessage is:
-#. There are no components listed in the blueprint. Edit the blueprint to add components.
+#. There are no components listed in the blueprint.
 #: build/messages/pages/blueprint/index.json
-msgid ""
-"There are no components listed in the blueprint. Edit the blueprint to add "
-"components."
+#, fuzzy
+#| msgid ""
+#| "There are no components listed in the blueprint. Edit the blueprint to "
+#| "add components."
+msgid "There are no components listed in the blueprint."
 msgstr ""
 "ブループリントにリストされたコンポーネントはありません。ブループリントを編集"
 "して、コンポーネントを追加します。"
-
-#. [components.Wizard.warningReview]
-#. defaultMessage is:
-#. There are one or more fields that require your attention.
-#: build/messages/components/Wizard/ReviewStep.json
-msgid "There are one or more fields that require your attention."
-msgstr "注意が必要なフィールドが 1 つ以上あります。"
 
 #. [components.Modal.181468144]
 #. defaultMessage is:
@@ -2471,24 +2519,6 @@ msgstr "注意が必要なフィールドが 1 つ以上あります。"
 msgid "This action cannot be undone."
 msgstr "この動作は取り消せません。"
 
-#. [components.Wizard.warningUnsaved]
-#. defaultMessage is:
-#. This blueprint has changes that are not committed. These changes will be committed before the image is created.
-#: build/messages/components/Wizard/ImageStep.json
-msgid ""
-"This blueprint has changes that are not committed. These changes will be "
-"committed before the image is created."
-msgstr ""
-"このブループリントには、コミットされていない変更点があります。これらの変更点"
-"はイメージの作成前にコミットされます。"
-
-#. [empty-blueprint-alert]
-#. defaultMessage is:
-#. This blueprint is empty.
-#: build/messages/components/Wizard/ImageStep.json
-msgid "This blueprint is empty."
-msgstr "このブループリントは空です。"
-
 #. [components.ListView.noDepsMessage]
 #. defaultMessage is:
 #. This component has no dependencies.
@@ -2496,21 +2526,10 @@ msgstr "このブループリントは空です。"
 msgid "This component has no dependencies."
 msgstr "このコンポーネントには依存関係はありません。"
 
-#. [components.Wizard.requiredField]
-#. defaultMessage is:
-#. This is a required field
-#: build/messages/components/Wizard/ImageStep.json
-msgid "This is a required field"
-msgstr "これは必須フィールドです"
-
-#. [components.Wizard.infotip]
+#. [wizard.blueprintName.popover.content]
 #. defaultMessage is:
 #. This process can take a while. Images are built in the order they are started.
-#. [components.Wizard.infotip]
-#. defaultMessage is:
-#. This process can take a while. Images are built in the order they are started.
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/BlueprintName.json
 msgid ""
 "This process can take a while. Images are built in the order they are "
 "started."
@@ -2538,48 +2557,6 @@ msgstr "このソースパスはすでに存在します。"
 msgid "This system does not have any valid subscriptions."
 msgstr "このシステムには、有効なサブスクリプションがありません。"
 
-#. [components.Wizard.1727762289]
-#. defaultMessage is:
-#. This upload process requires that you have an {iam} role named {vmimport} to ensure that the image can
-#.                         be imported from the S3 {bucket} into EC2. For more details, refer to the {role}.
-#. [components.Wizard.1727762289]
-#. defaultMessage is:
-#. This upload process requires that you have an {iam} role named {vmimport} to ensure that the image can
-#.                         be imported from the S3 {bucket} into EC2. For more details, refer to the {role}.
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
-msgid ""
-"This upload process requires that you have an {iam} role named {vmimport} to "
-"ensure that the image can\n"
-"                        be imported from the S3 {bucket} into EC2. For more "
-"details, refer to the {role}."
-msgstr ""
-"このアップロードプロセスでは、{iam} ロールに {vmimport} という名前を付け"
-"て、\n"
-"                      イメージが S3 {bucket} から EC2 にインポートされるよう"
-"にします。詳細は、{role} を参照してください。"
-
-#. [components.Wizard.50730016]
-#. defaultMessage is:
-#. This upload process requires that you have an {iam} with attached policy to manage custom images
-#.                         to ensure that the image can be import as a custom image from the {bucket}. For more details, refer to the {policies}.
-#. [components.Wizard.50730016]
-#. defaultMessage is:
-#. This upload process requires that you have an {iam} with attached policy to manage custom images
-#.                         to ensure that the image can be import as a custom image from the {bucket}. For more details, refer to the {policies}.
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
-msgid ""
-"This upload process requires that you have an {iam} with attached policy to "
-"manage custom images\n"
-"                        to ensure that the image can be import as a custom "
-"image from the {bucket}. For more details, refer to the {policies}."
-msgstr ""
-"このアップロードプロセスでは、カスタムイメージを管理するポリシーがアタッチさ"
-"れた {iam} を持っている必要があります。\n"
-"                        これにより、イメージを {bucket} からカスタムイメージ"
-"として確実にインポートできます。詳細は、{policies} を参照してください。"
-
 #. [components.Modal.usernameDuplicate]
 #. defaultMessage is:
 #. This user name already exists.
@@ -2606,14 +2583,10 @@ msgstr "トラブルシュート"
 #. [components.Modal.type] - Type of source
 #. defaultMessage is:
 #. Type
-#. [components.Wizard.type]
-#. defaultMessage is:
-#. Type
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ComponentTypeIcons.json
 #: build/messages/components/ListView/ListItemImages.json
 #: build/messages/components/Modal/ManageSources.json
-#: build/messages/components/Wizard/ImageStep.json
 msgid "Type"
 msgstr "タイプ"
 
@@ -2652,13 +2625,6 @@ msgstr "更新"
 msgid "Update source"
 msgstr "ソースの更新"
 
-#. [components.Modal.562988552] - Identifies the change as a component that was updated
-#. defaultMessage is:
-#. Updated
-#: build/messages/components/Modal/PendingChanges.json
-msgid "Updated"
-msgstr "更新済み"
-
 #. [components.ListView.uploadStatusFinished] - Upload status when process is finished
 #. defaultMessage is:
 #. Upload complete
@@ -2672,24 +2638,6 @@ msgstr "アップロードが完了しました"
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload failed"
 msgstr "アップロードに失敗しました"
-
-#. [components.Wizard.3057159632]
-#. defaultMessage is:
-#. Upload image
-#: build/messages/components/Wizard/ImageStep.json
-msgid "Upload image"
-msgstr "イメージのアップロード"
-
-#. [components.Wizard.uploadImage]
-#. defaultMessage is:
-#. Upload image help
-#. [components.Wizard.uploadImage]
-#. defaultMessage is:
-#. Upload image help
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
-msgid "Upload image help"
-msgstr "画像ヘルプのアップロード"
 
 #. [components.ListView.uploadStatusRunning] - Upload status when process is in progress
 #. defaultMessage is:
@@ -2705,64 +2653,116 @@ msgstr "アップロード中"
 msgid "Upload pending"
 msgstr "アップロードを保留中"
 
-#. [components.Wizard.3235936248]
+#. [wizard.review.uploadToAWS]
 #. defaultMessage is:
 #. Upload to AWS
-#. [components.Wizard.uploadAWS]
+#. [wizard.aws.title]
 #. defaultMessage is:
 #. Upload to AWS
-#. [components.Wizard.3235936248]
+#. [wizard.aws.title]
 #. defaultMessage is:
 #. Upload to AWS
-#: build/messages/components/Wizard/CreateImageUpload.json
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#. [wizard.imageOutput.uploadAWS]
+#. defaultMessage is:
+#. Upload to AWS
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/awsAuth.json
+#: build/messages/components/Wizard/steps/awsDest.json
+#: build/messages/components/Wizard/steps/imageOutput.json
 msgid "Upload to AWS"
 msgstr "AWS にアップロード"
 
-#. [components.Wizard.2244258572]
+#. [wizard.imageOutput.uploadAWS.popoverAria]
+#. defaultMessage is:
+#. Upload to AWS help
+#: build/messages/components/Wizard/steps/imageOutput.json
+#, fuzzy
+#| msgid "Upload to AWS"
+msgid "Upload to AWS help"
+msgstr "AWS にアップロード"
+
+#. [wizard.review.uploadToAzure]
 #. defaultMessage is:
 #. Upload to Azure
-#. [components.Wizard.uploadAzure]
+#. [wizard.azure.title]
 #. defaultMessage is:
 #. Upload to Azure
-#. [components.Wizard.2244258572]
+#. [wizard.azure.title]
 #. defaultMessage is:
 #. Upload to Azure
-#: build/messages/components/Wizard/CreateImageUpload.json
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#. [wizard.imageOutput.uploadAzure]
+#. defaultMessage is:
+#. Upload to Azure
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/azureAuth.json
+#: build/messages/components/Wizard/steps/azureDest.json
+#: build/messages/components/Wizard/steps/imageOutput.json
 msgid "Upload to Azure"
 msgstr "Azure にアップロード"
 
-#. [components.Wizard.3418449520]
+#. [wizard.imageOutput.uploadAzure.popoverAria]
+#. defaultMessage is:
+#. Upload to Azure help
+#: build/messages/components/Wizard/steps/imageOutput.json
+#, fuzzy
+#| msgid "Upload to Azure"
+msgid "Upload to Azure help"
+msgstr "Azure にアップロード"
+
+#. [wizard.review.uploadToOCI]
 #. defaultMessage is:
 #. Upload to OCI
-#. [components.Wizard.uploadOCI]
+#. [wizard.imageOutput.uploadOCI]
 #. defaultMessage is:
 #. Upload to OCI
-#. [components.Wizard.3418449520]
+#. [wizard.oci.title]
 #. defaultMessage is:
 #. Upload to OCI
-#: build/messages/components/Wizard/CreateImageUpload.json
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#. [wizard.oci.title]
+#. defaultMessage is:
+#. Upload to OCI
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/imageOutput.json
+#: build/messages/components/Wizard/steps/ociAuth.json
+#: build/messages/components/Wizard/steps/ociDest.json
 msgid "Upload to OCI"
 msgstr "OCI へのアップロード"
 
-#. [components.Wizard.3542348520]
+#. [wizard.imageOutput.uploadOCI.popoverAria]
+#. defaultMessage is:
+#. Upload to OCI help
+#: build/messages/components/Wizard/steps/imageOutput.json
+#, fuzzy
+#| msgid "Upload to OCI"
+msgid "Upload to OCI help"
+msgstr "OCI へのアップロード"
+
+#. [wizard.review.uploadToVMWare]
 #. defaultMessage is:
 #. Upload to VMWare
-#. [components.Wizard.uploadVMWare]
+#. [wizard.imageOutput.uploadVMWare]
 #. defaultMessage is:
 #. Upload to VMWare
-#. [components.Wizard.3542348520]
+#. [wizard.vmware.title]
 #. defaultMessage is:
 #. Upload to VMWare
-#: build/messages/components/Wizard/CreateImageUpload.json
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#. [wizard.vmware.title]
+#. defaultMessage is:
+#. Upload to VMWare
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/imageOutput.json
+#: build/messages/components/Wizard/steps/vmwareAuth.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid "Upload to VMWare"
+msgstr "VMWare へのアップロード"
+
+#. [wizard.imageOutput.uploadVMWare.popoverAria]
+#. defaultMessage is:
+#. Upload to VMWare help
+#: build/messages/components/Wizard/steps/imageOutput.json
+#, fuzzy
+#| msgid "Upload to VMWare"
+msgid "Upload to VMWare help"
 msgstr "VMWare へのアップロード"
 
 #. [components.ListView.uploadType] - A label for the service to which an image was uploaded
@@ -2772,22 +2772,14 @@ msgstr "VMWare へのアップロード"
 msgid "Upload type"
 msgstr "アップロードタイプ"
 
-#. [components.Wizard.2419068661]
-#. defaultMessage is:
-#. User
-#: build/messages/components/Wizard/ReviewStep.json
-#, fuzzy
-#| msgid "Users"
-msgid "User"
-msgstr "ユーザー"
-
-#. [user-help]
+#. [wizard.review.userOCID]
 #. defaultMessage is:
 #. User OCID
-#. [components.Wizard.4135109133]
+#. [wizard.oci.userOCID.label]
 #. defaultMessage is:
 #. User OCID
-#: build/messages/components/Wizard/OCIAuthStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/ociAuth.json
 msgid "User OCID"
 msgstr "ユーザー OCID"
 
@@ -2805,30 +2797,55 @@ msgstr "ユーザーアカウントの動作"
 msgid "User name"
 msgstr "ユーザー名"
 
-#. [components.Wizard.2663586870]
+#. [wizard.oci.userOCID.popoverAria]
+#. defaultMessage is:
+#. User ocid help
+#: build/messages/components/Wizard/steps/ociAuth.json
+#, fuzzy
+#| msgid "Cluster help"
+msgid "User ocid help"
+msgstr "クラスターヘルプ"
+
+#. [wizard.review.username]
 #. defaultMessage is:
 #. Username
-#. [components.Wizard.2663586870]
+#. [wizard.customizations.username.label]
 #. defaultMessage is:
 #. Username
-#: build/messages/components/Wizard/ReviewStep.json
-#: build/messages/components/Wizard/VMWareAuthStep.json
+#. [wizard.vmware.username.label]
+#. defaultMessage is:
+#. Username
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/users.json
+#: build/messages/components/Wizard/steps/vmwareAuth.json
 msgid "Username"
 msgstr "ユーザー名"
 
+#. [wizard.customizations.usersTitle]
+#. defaultMessage is:
+#. Users
 #. [pages.blueprint.443046426]
 #. defaultMessage is:
 #. Users
+#: build/messages/components/Wizard/steps/users.json
 #: build/messages/pages/blueprint/index.json
 msgid "Users"
 msgstr "ユーザー"
 
-#. [components.Wizard.vmware]
+#. [wizard.customizations.hostname.validationError]
 #. defaultMessage is:
-#. VMWare help
-#: build/messages/components/Wizard/ReviewStep.json
-msgid "VMWare help"
-msgstr "VMware ヘルプ"
+#. Valid characters are letters from a to z, the digits from 0 to 9, and the hyphen (-). 
+#.                         A hostname may not start with a hyphen. Each element of the hostname must be from 1 to 63 characters long 
+#.                         and the entire hostname can be at most 253 characters long.
+#: build/messages/components/Wizard/validators/hostnameValidator.json
+msgid ""
+"Valid characters are letters from a to z, the digits from 0 to 9, and the "
+"hyphen (-). \n"
+"                        A hostname may not start with a hyphen. Each element "
+"of the hostname must be from 1 to 63 characters long \n"
+"                        and the entire hostname can be at most 253 "
+"characters long."
+msgstr ""
 
 #. [pages.blueprint.hostnameHelp]
 #. defaultMessage is:
@@ -2841,10 +2858,10 @@ msgstr ""
 "ホスト名に使用可能な文字は、a〜z の文字、0〜9 の数字、およびハイフン (-) で"
 "す。ハイフンで始まるホスト名は使用できません。"
 
-#. [components.Wizard.ostreeRefHelperText]
+#. [wizard.ostree.ref.helpText]
 #. defaultMessage is:
 #. Valid characters for ref are letters from a to z, the digits from 0 to 9, the hyphen (-), the underscore (_), the period (.), and the forward slash (/). A ref must start with a letter, a number, or an underscore. Slashes must also be followed by a letter or number.
-#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/steps/ostreeSettings.json
 msgid ""
 "Valid characters for ref are letters from a to z, the digits from 0 to 9, "
 "the hyphen (-), the underscore (_), the period (.), and the forward slash "
@@ -2862,73 +2879,85 @@ msgstr ""
 #. [components.ListView.602883748]
 #. defaultMessage is:
 #. Version
-#. [components.Toolbar.filterVersionTitle]
-#. defaultMessage is:
-#. Version
-#. [components.Toolbar.filterVersionTitle]
+#. [toolbar.blueprint.filter.version]
 #. defaultMessage is:
 #. Version
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ComponentsDataListItem.json
-#: build/messages/components/Toolbar/FilterInput.json
-#: build/messages/components/Toolbar/ToolbarLayout.json
+#: build/messages/components/Toolbar/BlueprintToolbar.json
 msgid "Version"
 msgstr "バージョン"
 
-#. [components.ListView.3097747573]
+#. [wizard.aws.accessKey.popoverBody]
 #. defaultMessage is:
-#. View
-#: build/messages/components/ListView/ComponentsDataListItem.json
-msgid "View"
-msgstr "表示"
-
-#. [components.Wizard.706264916]
-#. defaultMessage is:
-#. You can create and find existing Access key IDs on the {iam} page in the AWS console.
-#: build/messages/components/Wizard/AWSAuthStep.json
+#. You can create and find existing Access key IDs on the <strong>Identity and Access Management (IAM)</strong> page in the AWS console.
+#: build/messages/components/Wizard/steps/awsAuth.json
+#, fuzzy
+#| msgid ""
+#| "You can create and find existing Access key IDs on the {iam} page in the "
+#| "AWS console."
 msgid ""
-"You can create and find existing Access key IDs on the {iam} page in the AWS "
-"console."
+"You can create and find existing Access key IDs on the <strong>Identity and "
+"Access Management (IAM)</strong> page in the AWS console."
 msgstr ""
 "AWS コンソールの {iam} ページでは、アクセスキー ID の作成や既存の ID の検索を"
 "行うことができます。"
 
-#. [components.Wizard.844662623]
+#. [wizard.oci.userOCID.popoverBody]
 #. defaultMessage is:
-#. You can find your user OCID {iam} page in the OCI console.
-#: build/messages/components/Wizard/OCIAuthStep.json
-msgid "You can find your user OCID {iam} page in the OCI console."
+#. You can find your user OCID <strong>Identity and Access Management (IAM)</strong> page in the OCI console.
+#: build/messages/components/Wizard/steps/ociAuth.json
+#, fuzzy
+#| msgid "You can find your user OCID {iam} page in the OCI console."
+msgid ""
+"You can find your user OCID <strong>Identity and Access Management (IAM)</"
+"strong> page in the OCI console."
 msgstr "OCI コンソールでユーザー OCID {iam} ページを見つけることができます。"
 
-#. [components.Wizard.4206409720]
+#. [wizard.aws.secretAccessKey.popoverBody]
 #. defaultMessage is:
-#. You can view the Secret access key only when you create a new Access key ID on the {iam} page in the AWS console.
-#: build/messages/components/Wizard/AWSAuthStep.json
+#. You can view the Secret access key only when you create a new Access key ID on the <strong>Identity and Access Management (IAM)</strong> page in the AWS console.
+#: build/messages/components/Wizard/steps/awsAuth.json
+#, fuzzy
+#| msgid ""
+#| "You can view the Secret access key only when you create a new Access key "
+#| "ID on the {iam} page in the AWS console."
 msgid ""
 "You can view the Secret access key only when you create a new Access key ID "
-"on the {iam} page in the AWS console."
+"on the <strong>Identity and Access Management (IAM)</strong> page in the AWS "
+"console."
 msgstr ""
 "シークレットアクセスキーは、AWS コンソールの {iam} ページ上に新しいアクセス"
 "キー ID を作成するときにのみ表示できます。"
 
-#. [components.Wizard.285351067]
+#. [wizard.oci.fingerprint.popoverBody]
 #. defaultMessage is:
-#. You can view your deployed RSA keys fingerprint in the API Keys section on the {iam} page in the OCI console.
-#: build/messages/components/Wizard/OCIAuthStep.json
+#. You can view your deployed RSA keys fingerprint in the API Keys section on the <strong>Identity and Access Management (IAM)</strong> page in the OCI console.
+#: build/messages/components/Wizard/steps/ociAuth.json
+#, fuzzy
+#| msgid ""
+#| "You can view your deployed RSA keys fingerprint in the API Keys section "
+#| "on the {iam} page in the OCI console."
 msgid ""
 "You can view your deployed RSA keys fingerprint in the API Keys section on "
-"the {iam} page in the OCI console."
+"the <strong>Identity and Access Management (IAM)</strong> page in the OCI "
+"console."
 msgstr ""
 "OCI コンソールの {iam} ページの API Keys セクションで、デプロイされた RSA 鍵"
 "のフィンガープリントを表示できます。"
 
-#. [components.Wizard.182848243]
+#. [wizard.oci.privateKey.popoverBody]
 #. defaultMessage is:
-#. You can view your deployed RSA keys in the API Keys section on the {iam} page in the OCI console.
-#: build/messages/components/Wizard/OCIAuthStep.json
+#. You can view your deployed RSA keys in the API Keys section on the <strong>Identity and Access Management (IAM)</strong> page in the OCI console.
+#: build/messages/components/Wizard/steps/ociAuth.json
+#, fuzzy
+#| msgid ""
+#| "You can view your deployed RSA keys in the API Keys section on the {iam} "
+#| "page in the OCI console."
 msgid ""
-"You can view your deployed RSA keys in the API Keys section on the {iam} "
-"page in the OCI console."
+"You can view your deployed RSA keys in the API Keys section on the "
+"<strong>Identity and Access Management (IAM)</strong> page in the OCI "
+"console."
 msgstr ""
 "OCI コンソールの {iam} ページの API Keys セクションで、デプロイされた RSA 鍵"
 "を表示できます。"
@@ -2936,13 +2965,18 @@ msgstr ""
 #. [components.ListView.actions]
 #. defaultMessage is:
 #. actions
-#. [components.ListView.actions]
-#. defaultMessage is:
-#. actions
-#: build/messages/components/ListView/BlueprintsDataList.json
 #: build/messages/components/ListView/ComponentsDataListItem.json
 msgid "actions"
 msgstr "動作"
+
+#. [wizard.blueprintName.name]
+#. defaultMessage is:
+#. blueprint
+#: build/messages/components/Wizard/formComponents/BlueprintName.json
+#, fuzzy
+#| msgid "Blueprint"
+msgid "blueprint"
+msgstr "ブループリント"
 
 #. [components.ListView.details]
 #. defaultMessage is:
@@ -2950,13 +2984,6 @@ msgstr "動作"
 #: build/messages/components/ListView/ComponentsDataListItem.json
 msgid "details"
 msgstr "詳細"
-
-#. [components.Modal.2755325844]
-#. defaultMessage is:
-#. from
-#: build/messages/components/Modal/PendingChanges.json
-msgid "from"
-msgstr "(バージョン) から"
 
 #. [pages.error.2054225650]
 #. defaultMessage is:
@@ -2986,30 +3013,6 @@ msgstr "metalink"
 #: build/messages/components/Modal/ManageSources.json
 msgid "mirrorlist"
 msgstr "mirrorlist"
-
-#. [pages.blueprintEdit.paginationPerPage]
-#. defaultMessage is:
-#. per page
-#: build/messages/pages/blueprintEdit/index.json
-msgid "per page"
-msgstr "ページごと"
-
-#. [components.Wizard.2454328248]
-#. defaultMessage is:
-#. rhel/8/{arch}/edge is the default, where {arch} is determined by the host machine
-#: build/messages/components/Wizard/ImageStep.json
-msgid ""
-"rhel/8/{arch}/edge is the default, where {arch} is determined by the host "
-"machine"
-msgstr ""
-"rhel/8/{arch}/edge がデフォルトで、{arch} はホストマシンによって決定されます"
-
-#. [components.Modal.152217691]
-#. defaultMessage is:
-#. to
-#: build/messages/components/Modal/PendingChanges.json
-msgid "to"
-msgstr "(バージョン) へ"
 
 #. [components.ListView.baseurl]
 #. defaultMessage is:
@@ -3078,42 +3081,12 @@ msgstr "{blueprint} イメージの作成は {queue} です。"
 msgid "{count} total components"
 msgstr "{count} 総コンポーネント"
 
-#. [components.Modal.3908981070]
-#. defaultMessage is:
-#. {from} {oldVersion} {to} {newVersion}
-#: build/messages/components/Modal/PendingChanges.json
-msgid "{from} {oldVersion} {to} {newVersion}"
-msgstr "{from} {oldVersion} {to} {newVersion}"
-
 #. [pages.error.526995878]
 #. defaultMessage is:
 #. {goBack}, or head over to the {homePage} to choose a new direction.
 #: build/messages/pages/error/index.json
 msgid "{goBack}, or head over to the {homePage} to choose a new direction."
 msgstr "{goBack}、または {homePage} へ進み、新しいディレクションを選択します。"
-
-#. [components.Modal.3141775911]
-#. defaultMessage is:
-#. {heading} {parenthetical}
-#: build/messages/components/Modal/PendingChanges.json
-msgid "{heading} {parenthetical}"
-msgstr "{heading} {parenthetical}"
-
-#. [pages.blueprintEdit.4031669927]
-#. defaultMessage is:
-#. {pendingChanges, plural, one {# Pending Change} other {# Pending Changes}}
-#: build/messages/pages/blueprintEdit/index.json
-msgid ""
-"{pendingChanges, plural, one {# Pending Change} other {# Pending Changes}}"
-msgstr ""
-"{pendingChanges, plural, one {# Pending Change} その他 {# Pending Changes}}"
-
-#. [pages.blueprintEdit.3140434516]
-#. defaultMessage is:
-#. {selectComponents} in this list to add to the blueprint.
-#: build/messages/pages/blueprintEdit/index.json
-msgid "{selectComponents} in this list to add to the blueprint."
-msgstr "ブループリントに追加するため、このリストで {selectComponents} します。"
 
 #: public/manifest.json
 msgid "Creating system images"
@@ -3123,6 +3096,269 @@ msgstr "システムイメージの作成"
 msgid "Image Builder"
 msgstr "イメージビルダー"
 
+#~ msgid "(most recent first)"
+#~ msgstr "(最新順)"
+
+#~ msgid ""
+#~ "A minimal image will be created with only the packages needed to support "
+#~ "the selected image type."
+#~ msgstr ""
+#~ "選択したイメージタイプの対応に必要なパッケージのみが含まれた最小のイメージ"
+#~ "が作成されます。"
+
+#~ msgid "A value is required."
+#~ msgstr "値が必要です。"
+
+#~ msgid "API private key's fingerprint"
+#~ msgstr "API プライベートキーのフィンガープリント"
+
+#~ msgid "AWS help"
+#~ msgstr "AWS ヘルプ"
+
+#~ msgid "Access keys"
+#~ msgstr "アクセスキー"
+
+#~ msgid "Active filters"
+#~ msgstr "アクティブフィルター"
+
+#~ msgid "Add blueprint components"
+#~ msgstr "ブループリントコンポーネントの追加"
+
+#~ msgid "Added"
+#~ msgstr "追加済み"
+
+#~ msgid "All fields are required."
+#~ msgstr "全てのフィールドが必須です。"
+
+#~ msgid "Back"
+#~ msgstr "戻る"
+
+#~ msgid "Blob service"
+#~ msgstr "ブロブサービス"
+
+#~ msgid "Blueprint components"
+#~ msgstr "ブループリントコンポーネント"
+
+#~ msgid ""
+#~ "Browse or search for components, then add them to the blueprint. Or leave "
+#~ "the blueprint empty to create a minimal image."
+#~ msgstr ""
+#~ "コンポーネントを閲覧または検索した後、ブループリントに追加します。または、"
+#~ "最小限のイメージを作成するためにブループリントは空にします。"
+
+#~ msgid "Changes made in a previous session"
+#~ msgstr "前回のセッションでの変更点"
+
+#~ msgid ""
+#~ "Changes made in a previous session are not listed in the order they were "
+#~ "made. If you choose to undo these changes, they are undone as a group."
+#~ msgstr ""
+#~ "前回のセッションでの変更点は、変更順に表示されていません。これらの変更点を"
+#~ "元に戻す場合は、グループとして戻します。"
+
+#~ msgid "Changes pending commit"
+#~ msgstr "変更のコミットを保留中"
+
+#~ msgid "Comment"
+#~ msgstr "コメント"
+
+#~ msgid "Commit"
+#~ msgstr "コミット"
+
+#~ msgid "Commit and create"
+#~ msgstr "コミットおよび作成"
+
+#~ msgid "Commit and next"
+#~ msgstr "コミットして次へ"
+
+#~ msgid "Create and upload image"
+#~ msgstr "イメージの作成とアップロード"
+
+#~ msgid "Data Center"
+#~ msgstr "データセンター"
+
+#~ msgid "Data Store"
+#~ msgstr "データストア"
+
+#~ msgid "Discard changes"
+#~ msgstr "変更の破棄"
+
+#~ msgid "Disk Archive (.tar)"
+#~ msgstr "ディスクアーカイブ (.tar)"
+
+#~ msgid "Filter available components by name"
+#~ msgstr "利用可能なコンポーネントの名前での絞り込み"
+
+#~ msgid "Filter by name"
+#~ msgstr "名前での絞り込み"
+
+#~ msgid "Filter by name..."
+#~ msgstr "名前での絞り込み..."
+
+#~ msgid "Filter by release"
+#~ msgstr "リリースでの絞り込み"
+
+#~ msgid "Filter by version"
+#~ msgstr "バージョンによる絞り込み"
+
+#~ msgid "Finish"
+#~ msgstr "終了"
+
+#~ msgid "Image type"
+#~ msgstr "イメージタイプ"
+
+#~ msgid "Installer, suitable for USB and DVD (.iso)"
+#~ msgstr "インストーラー (USB と DVD (.iso) に適切)"
+
+#~ msgid "Minimum size is {size} GB"
+#~ msgstr "最小サイズは {size} GB です"
+
+#~ msgid "Name: {name}"
+#~ msgstr "名前: {name}"
+
+#~ msgid "Namespace help"
+#~ msgstr "namespace のヘルプ"
+
+#~ msgid "Next"
+#~ msgstr "次へ"
+
+#~ msgid "OCI compartment help"
+#~ msgstr "OCI コンパートメントヘルプ"
+
+#~ msgid "OCI region help"
+#~ msgstr "OCI リージョンのヘルプ"
+
+#~ msgid "OCI tenancy help"
+#~ msgstr "OCI テナンシーのヘルプ"
+
+#~ msgid "OSTree parent help"
+#~ msgstr "OSTree 親ヘルプ"
+
+#~ msgid "OSTree ref help"
+#~ msgstr "OSTree ref ヘルプ"
+
+#~ msgid "OSTree repo url help"
+#~ msgstr "OSTree リポジトリー URL ヘルプ"
+
+#~ msgid "Only changes to selected components are shown."
+#~ msgstr "選択されたコンポーネントへの変更点のみを表示します。"
+
+#~ msgid "Pending changes"
+#~ msgstr "変更を保留中"
+
+#~ msgid "QEMU Image (.qcow2)"
+#~ msgstr "QEMU イメージ(.qcow2)"
+
+#~ msgid "Removed"
+#~ msgstr "削除済み"
+
+#~ msgid "Storage accounts"
+#~ msgstr "ストレージアカウント"
+
+#~ msgid ""
+#~ "The packages needed to support the selected image type are automatically "
+#~ "included when creating an image."
+#~ msgstr ""
+#~ "選択したイメージのタイプの対応に必要なパッケージは、イメージを作成する際に"
+#~ "自動的に含まれています。"
+
+#~ msgid ""
+#~ "The size specified is large. We recommend that you check whether your "
+#~ "target destination has any restrictions on image size."
+#~ msgstr ""
+#~ "サイズが少々大きく設定されています。ターゲットの宛先にイメージサイズの制限"
+#~ "があるかどうかを確認することをお勧めします。"
+
+#~ msgid "There are one or more fields that require your attention."
+#~ msgstr "注意が必要なフィールドが 1 つ以上あります。"
+
+#~ msgid ""
+#~ "This blueprint has changes that are not committed. These changes will be "
+#~ "committed before the image is created."
+#~ msgstr ""
+#~ "このブループリントには、コミットされていない変更点があります。これらの変更"
+#~ "点はイメージの作成前にコミットされます。"
+
+#~ msgid "This blueprint is empty."
+#~ msgstr "このブループリントは空です。"
+
+#~ msgid "This is a required field"
+#~ msgstr "これは必須フィールドです"
+
+#~ msgid ""
+#~ "This upload process requires that you have an {iam} role named {vmimport} "
+#~ "to ensure that the image can\n"
+#~ "                        be imported from the S3 {bucket} into EC2. For "
+#~ "more details, refer to the {role}."
+#~ msgstr ""
+#~ "このアップロードプロセスでは、{iam} ロールに {vmimport} という名前を付け"
+#~ "て、\n"
+#~ "                      イメージが S3 {bucket} から EC2 にインポートされるよ"
+#~ "うにします。詳細は、{role} を参照してください。"
+
+#~ msgid ""
+#~ "This upload process requires that you have an {iam} with attached policy "
+#~ "to manage custom images\n"
+#~ "                        to ensure that the image can be import as a "
+#~ "custom image from the {bucket}. For more details, refer to the {policies}."
+#~ msgstr ""
+#~ "このアップロードプロセスでは、カスタムイメージを管理するポリシーがアタッチ"
+#~ "された {iam} を持っている必要があります。\n"
+#~ "                        これにより、イメージを {bucket} からカスタムイメー"
+#~ "ジとして確実にインポートできます。詳細は、{policies} を参照してください。"
+
+#~ msgid "Updated"
+#~ msgstr "更新済み"
+
+#~ msgid "Upload image"
+#~ msgstr "イメージのアップロード"
+
+#~ msgid "Upload image help"
+#~ msgstr "画像ヘルプのアップロード"
+
+#, fuzzy
+#~| msgid "Users"
+#~ msgid "User"
+#~ msgstr "ユーザー"
+
+#~ msgid "VMWare help"
+#~ msgstr "VMware ヘルプ"
+
+#~ msgid "View"
+#~ msgstr "表示"
+
+#~ msgid "from"
+#~ msgstr "(バージョン) から"
+
+#~ msgid "per page"
+#~ msgstr "ページごと"
+
+#~ msgid ""
+#~ "rhel/8/{arch}/edge is the default, where {arch} is determined by the host "
+#~ "machine"
+#~ msgstr ""
+#~ "rhel/8/{arch}/edge がデフォルトで、{arch} はホストマシンによって決定されま"
+#~ "す"
+
+#~ msgid "to"
+#~ msgstr "(バージョン) へ"
+
+#~ msgid "{from} {oldVersion} {to} {newVersion}"
+#~ msgstr "{from} {oldVersion} {to} {newVersion}"
+
+#~ msgid "{heading} {parenthetical}"
+#~ msgstr "{heading} {parenthetical}"
+
+#~ msgid ""
+#~ "{pendingChanges, plural, one {# Pending Change} other {# Pending Changes}}"
+#~ msgstr ""
+#~ "{pendingChanges, plural, one {# Pending Change} その他 {# Pending "
+#~ "Changes}}"
+
+#~ msgid "{selectComponents} in this list to add to the blueprint."
+#~ msgstr ""
+#~ "ブループリントに追加するため、このリストで {selectComponents} します。"
+
 #~ msgid "A password is defined for this account."
 #~ msgstr "このアカウント用にパスワードが定義されています。"
 
@@ -3131,9 +3367,6 @@ msgstr "イメージビルダー"
 
 #~ msgid "New password"
 #~ msgstr "新規パスワード"
-
-#~ msgid "Remove password"
-#~ msgstr "パスワードの削除"
 
 #~ msgid "Set new password"
 #~ msgstr "新規パスワードの設定"
