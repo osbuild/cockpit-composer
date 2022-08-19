@@ -435,8 +435,8 @@ class TestWizard(composerlib.ComposerCase):
         b.focus("input[id='vmware-cluster']")
         b.key_press("up")
 
-        b.wait_visible("label:contains('Data center')")
-        b.click("button[aria-label='Data center help']")
+        b.wait_visible("label:contains('Datacenter')")
+        b.click("button[aria-label='Datacenter help']")
         # b.wait_text(".pf-c-popover__body",
         #             "Provide the name of the Datacenter to which the image file will be uploaded.")
         b.click(".pf-c-popover__content button[aria-label='Close']")
@@ -444,8 +444,8 @@ class TestWizard(composerlib.ComposerCase):
         b.focus("input[id='vmware-data-center']")
         b.key_press("never-gunna")
 
-        b.wait_visible("label:contains('Data store')")
-        b.click("button[aria-label='Data store help']")
+        b.wait_visible("label:contains('Datastore')")
+        b.click("button[aria-label='Datastore help']")
         # b.wait_text(".pf-c-popover__body",
         #             "Provide the name of the Datastore to which the image file will be uploaded.")
         b.click(".pf-c-popover__content button[aria-label='Close']")
