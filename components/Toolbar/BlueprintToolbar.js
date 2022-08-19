@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { defineMessages, useIntl } from "react-intl";
 import PropTypes from "prop-types";
 import {
   Select,
@@ -13,7 +14,39 @@ import {
 } from "@patternfly/react-core";
 import { SortAlphaDownIcon, SortAlphaDownAltIcon } from "@patternfly/react-icons";
 
+const messages = defineMessages({
+  filterName: {
+    id: "toolbar.blueprint.filter.name",
+    defaultMessage: "Name",
+  },
+  filterVersion: {
+    id: "toolbar.blueprint.filter.version",
+    defaultMessage: "Version",
+  },
+  filterRelease: {
+    id: "toolbar.blueprint.filter.release",
+    defaultMessage: "Release",
+  },
+  searchAria: {
+    id: "toolbar.blueprint.search.aria",
+    defaultMessage: "Blueprint search input",
+  },
+  filterAria: {
+    id: "toolbar.blueprint.filter.aria",
+    defaultMessage: "Blueprint filter select",
+  },
+  sortAsc: {
+    id: "toolbar.blueprints.sort.asc",
+    defaultMessage: "Sort blueprints ascending",
+  },
+  sortDesc: {
+    id: "toolbar.blueprints.sort.desc",
+    defaultMessage: "Sort blueprints descending",
+  },
+});
+
 const BlueprintToolbar = (props) => {
+  const intl = useIntl();
   const [inputValue, setInputValue] = useState("");
   const [selectedFilter, setSelectedFilter] = useState("Name");
   const [isFilterSelectOpen, setIsFilterSelectOpen] = useState(false);
@@ -38,11 +71,10 @@ const BlueprintToolbar = (props) => {
     props.filterAddValue(filter);
   };
 
-  // TODO: translate
   const filterOptions = [
-    <SelectOption key="name" value="Name" />,
-    <SelectOption key="version" value="Version" />,
-    <SelectOption key="release" value="Release" />,
+    <SelectOption key="name" value={intl.formatMessage(messages.filterName)} />,
+    <SelectOption key="version" value={intl.formatMessage(messages.filterVersion)} />,
+    <SelectOption key="release" value={intl.formatMessage(messages.filterRelease)} />,
   ];
 
   const toolbarItems = (
@@ -50,7 +82,7 @@ const BlueprintToolbar = (props) => {
       <ToolbarItem>
         <Select
           variant={SelectVariant.single}
-          aria-label="Select Input"
+          aria-label={intl.formatMessage(messages.filterAria)}
           onToggle={onFilterSelectToggle}
           onSelect={onSelectFilter}
           selections={selectedFilter}
@@ -61,7 +93,7 @@ const BlueprintToolbar = (props) => {
       </ToolbarItem>
       <ToolbarItem variant="search-filter">
         <SearchInput
-          aria-label="blueprints search input"
+          aria-label={intl.formatMessage(messages.searchAria)}
           onChange={onInputChange}
           value={inputValue}
           onClear={() => onInputChange("")}
@@ -71,7 +103,7 @@ const BlueprintToolbar = (props) => {
         {(props.componentsSortValue === "DESC" && (
           <Button
             variant="plain"
-            aria-label="sort ascending"
+            aria-label={intl.formatMessage(messages.sortAsc)}
             onClick={() => {
               props.componentsSortSetValue("ASC");
               props.dependenciesSortSetValue("ASC");
@@ -83,7 +115,7 @@ const BlueprintToolbar = (props) => {
           (props.componentsSortValue === "ASC" && (
             <Button
               variant="plain"
-              aria-label="sort descending"
+              aria-label={intl.formatMessage(messages.sortDesc)}
               onClick={() => {
                 props.componentsSortSetValue("DESC");
                 props.dependenciesSortSetValue("DESC");
