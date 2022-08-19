@@ -1,7 +1,7 @@
 # Temuri Doghonadze <temuri.doghonadze@gmail.com>, 2022.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2022-08-09T03:57:25.301Z\n"
+"POT-Creation-Date: 2022-08-19T18:31:19.371Z\n"
 "PO-Revision-Date: 2022-08-09 06:19+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.fedoraproject.org/projects/"
@@ -13,13 +13,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1\n"
 "X-Generator: Weblate 4.13\n"
 
-#. [components.Modal.parenthetical] - Describes the sort order of the pending changes
-#. defaultMessage is:
-#. (most recent first)
-#: build/messages/components/Modal/PendingChanges.json
-msgid "(most recent first)"
-msgstr "(ახლახანს გამოყენებული სია)"
-
 #. [components.Modal.4177685254]
 #. defaultMessage is:
 #. A blueprint name is required.
@@ -27,80 +20,36 @@ msgstr "(ახლახანს გამოყენებული სია
 msgid "A blueprint name is required."
 msgstr "საჭიროა მონახაზის სახელი."
 
-#. [components.Wizard.warningEmptyBlueprintDesc]
-#. defaultMessage is:
-#. A minimal image will be created with only the packages needed to support the selected image type.
-#: build/messages/components/Wizard/ImageStep.json
-msgid ""
-"A minimal image will be created with only the packages needed to support the "
-"selected image type."
-msgstr ""
-"მინიმალური გამოსახულება შეიქმენა მხოლოდ იმ პაკეტებისგან, რომლებიც საჭიროა "
-"გამოსახულების არჩეული ტიპისთვის."
-
-#. [components.Wizard.warningSizeEmpty]
-#. defaultMessage is:
-#. A value is required.
-#: build/messages/components/Wizard/ReviewStep.json
-msgid "A value is required."
-msgstr "საჭიროა მნიშვნელობა."
-
-#. [fingerprint-help]
-#. defaultMessage is:
-#. API private key's fingerprint
-#: build/messages/components/Wizard/OCIAuthStep.json
-msgid "API private key's fingerprint"
-msgstr "API-ის პირადი გასაღების ანაბეჭდი"
-
-#. [components.Wizard.aws]
-#. defaultMessage is:
-#. AWS help
-#: build/messages/components/Wizard/ReviewStep.json
-msgid "AWS help"
-msgstr "AWS-ს დახმარება"
-
-#. [components.Wizard.4193750875]
+#. [wizard.review.awsRegion]
 #. defaultMessage is:
 #. AWS region
-#. [components.Wizard.4193750875]
+#. [wizard.aws.region.label]
 #. defaultMessage is:
 #. AWS region
-#: build/messages/components/Wizard/AWSDestinationStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/awsDest.json
 msgid "AWS region"
 msgstr "AWS-ის რეგიონი"
 
-#. [components.Wizard.region]
-#. defaultMessage is:
-#. AWS region help
-#: build/messages/components/Wizard/AWSDestinationStep.json
-msgid "AWS region help"
-msgstr "AWS-ის რეგიონის დახმარება"
-
-#. [components.Wizard.1635272069]
+#. [wizard.review.accessKeyID]
 #. defaultMessage is:
 #. Access key ID
-#. [components.Wizard.1635272069]
+#. [wizard.aws.accessKey.label]
 #. defaultMessage is:
 #. Access key ID
-#: build/messages/components/Wizard/AWSAuthStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/awsAuth.json
 msgid "Access key ID"
 msgstr "წვდომის გასაღების ID"
 
-#. [access-key-id-help]
+#. [wizard.aws.accessKey.popoverAria]
 #. defaultMessage is:
-#. Access key ID help
-#: build/messages/components/Wizard/AWSAuthStep.json
-msgid "Access key ID help"
+#. Access key help
+#: build/messages/components/Wizard/steps/awsAuth.json
+#, fuzzy
+#| msgid "Access key ID help"
+msgid "Access key help"
 msgstr "წვდომის გასაღების ID-ის დახმარება"
-
-#. [components.Wizard.accessKeys]
-#. defaultMessage is:
-#. Access keys
-#: build/messages/components/Wizard/AzureAuthStep.json
-msgid "Access keys"
-msgstr "წვდომის გასაღებები"
 
 #. [components.ListView.imageActions] - A label for the menu that displays the actions available
 #. defaultMessage is:
@@ -113,13 +62,6 @@ msgstr "წვდომის გასაღებები"
 msgid "Actions"
 msgstr "ქმედებები"
 
-#. [components.Toolbar.2872798476]
-#. defaultMessage is:
-#. Active filters
-#: build/messages/components/Toolbar/ToolbarLayout.json
-msgid "Active filters"
-msgstr "აქტიური ფილტრები"
-
 #. [components.ListView.3099331554]
 #. defaultMessage is:
 #. Add
@@ -127,12 +69,12 @@ msgstr "აქტიური ფილტრები"
 msgid "Add"
 msgstr "დამატება"
 
-#. [pages.blueprintEdit.addComponentTitle]
+#. [wizard.packages.addAll]
 #. defaultMessage is:
-#. Add blueprint components
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Add blueprint components"
-msgstr "მონახაზის კომპონენტების დამატება"
+#. Add all
+#: build/messages/components/Wizard/formComponents/Packages.json
+msgid "Add all"
+msgstr ""
 
 #. [components.ListView.addComponent]
 #. defaultMessage is:
@@ -140,6 +82,24 @@ msgstr "მონახაზის კომპონენტების დ�
 #: build/messages/components/ListView/ComponentInputs.json
 msgid "Add latest version"
 msgstr "ბოლო ვერსიის დამატება"
+
+#. [wizard.packages.info]
+#. defaultMessage is:
+#. Add optional additional packages to your image by searching available packages.
+#: build/messages/components/Wizard/steps/packages.json
+msgid ""
+"Add optional additional packages to your image by searching available "
+"packages."
+msgstr ""
+
+#. [wizard.packages.addSelected]
+#. defaultMessage is:
+#. Add selected
+#: build/messages/components/Wizard/formComponents/Packages.json
+#, fuzzy
+#| msgid "Add source"
+msgid "Add selected"
+msgstr "წყაროს დამატება"
 
 #. [components.Modal.add]
 #. defaultMessage is:
@@ -154,47 +114,25 @@ msgstr "ბოლო ვერსიის დამატება"
 msgid "Add source"
 msgstr "წყაროს დამატება"
 
-#. [components.Modal.1362724042] - Identifies the change as a component that was added
+#. [wizard.customizations.buttons.add]
 #. defaultMessage is:
-#. Added
-#: build/messages/components/Modal/PendingChanges.json
-msgid "Added"
-msgstr "დამატებულია"
+#. Add user
+#: build/messages/components/Wizard/steps/users.json
+#, fuzzy
+#| msgid "Add source"
+msgid "Add user"
+msgstr "წყაროს დამატება"
 
-#. [components.Wizard.1175512155]
+#. [wizard.review.amazonS3Bucket]
 #. defaultMessage is:
-#. All fields are required.
-#. [components.Wizard.1175512155]
+#. Amazon S3 bucket
+#. [wizard.aws.bucket.label]
 #. defaultMessage is:
-#. All fields are required.
-#. [components.Wizard.1175512155]
-#. defaultMessage is:
-#. All fields are required.
-#. [components.Wizard.1175512155]
-#. defaultMessage is:
-#. All fields are required.
-#. [components.Wizard.1175512155]
-#. defaultMessage is:
-#. All fields are required.
-#. [components.Wizard.1175512155]
-#. defaultMessage is:
-#. All fields are required.
-#. [components.Wizard.1175512155]
-#. defaultMessage is:
-#. All fields are required.
-#. [components.Wizard.1175512155]
-#. defaultMessage is:
-#. All fields are required.
-#: build/messages/components/Wizard/AWSAuthStep.json
-#: build/messages/components/Wizard/AWSDestinationStep.json
-#: build/messages/components/Wizard/AzureAuthStep.json
-#: build/messages/components/Wizard/AzureDestinationStep.json
-#: build/messages/components/Wizard/OCIAuthStep.json
-#: build/messages/components/Wizard/OCIDestinationStep.json
-#: build/messages/components/Wizard/VMWareAuthStep.json
-#: build/messages/components/Wizard/VMWareDestinationStep.json
-msgid "All fields are required."
-msgstr "ყველა ველი საჭიროა."
+#. Amazon S3 bucket
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/awsDest.json
+msgid "Amazon S3 bucket"
+msgstr ""
 
 #. [components.ListView.emptyStateErrorTitle]
 #. defaultMessage is:
@@ -234,6 +172,15 @@ msgstr "მონახაზის შიგთავსის მიღებ�
 msgid "An error occurred while trying to get sources."
 msgstr "წყაროს მიღების შეცდომა."
 
+#. [wizard.review.createImageTooltip]
+#. defaultMessage is:
+#. An image can only be created after saving the blueprint
+#: build/messages/components/Wizard/formComponents/SubmitButtonsCustom.json
+#, fuzzy
+#| msgid "No images have been created from this blueprint."
+msgid "An image can only be created after saving the blueprint"
+msgstr "ამ მონახაზიდან გამოსახულებები არ შექმნილა."
+
 #. [components.ListView.3998303130]
 #. defaultMessage is:
 #. Apply change
@@ -264,10 +211,22 @@ msgid "Are you sure you want to stop the build process for {blueprintName}?"
 msgstr ""
 "დარწმუნებული ბრძანდებით, რომ გნებავთ შეაჩეროთ {blueprintName}-ის აგება?"
 
-#. [components.Wizard.160751819]
+#. [wizard.aws.authTitle]
 #. defaultMessage is:
 #. Authentication
-#: build/messages/components/Wizard/CreateImageUpload.json
+#. [wizard.azure.authTitle]
+#. defaultMessage is:
+#. Authentication
+#. [wizard.oci.authTitle]
+#. defaultMessage is:
+#. Authentication
+#. [wizard.vmware.authTitle]
+#. defaultMessage is:
+#. Authentication
+#: build/messages/components/Wizard/steps/awsAuth.json
+#: build/messages/components/Wizard/steps/azureAuth.json
+#: build/messages/components/Wizard/steps/ociAuth.json
+#: build/messages/components/Wizard/steps/vmwareAuth.json
 msgid "Authentication"
 msgstr "ავთენტიკაცია"
 
@@ -278,35 +237,19 @@ msgstr "ავთენტიკაცია"
 msgid "Automatically start osbuild-composer on boot"
 msgstr "osbuilder-composer-ის გაშვება სისტემის ჩატვირთვის დროს"
 
-#. [pages.blueprintEdit.listTitleAvailableComps]
+#. [wizard.packages.availablePackages]
 #. defaultMessage is:
-#. Available components
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Available components"
+#. Available packages
+#: build/messages/components/Wizard/formComponents/Packages.json
+#, fuzzy
+#| msgid "Available components"
+msgid "Available packages"
 msgstr "ხელმისაწვდომი კომპონენტები"
-
-#. [components.Wizard.azure]
-#. defaultMessage is:
-#. Azure help
-#: build/messages/components/Wizard/ReviewStep.json
-msgid "Azure help"
-msgstr "Azure-ის დახმარება"
-
-#. [components.Wizard.1347475195]
-#. defaultMessage is:
-#. Back
-#: build/messages/components/Wizard/CreateImageUpload.json
-msgid "Back"
-msgstr "უკან"
 
 #. [pages.blueprint.2057444273]
 #. defaultMessage is:
 #. Back to blueprints
-#. [pages.blueprintEdit.2057444273]
-#. defaultMessage is:
-#. Back to blueprints
 #: build/messages/pages/blueprint/index.json
-#: build/messages/pages/blueprintEdit/index.json
 msgid "Back to blueprints"
 msgstr "მონახაზებზე დაბრუნება"
 
@@ -317,42 +260,34 @@ msgstr "მონახაზებზე დაბრუნება"
 msgid "Back to {blueprint}"
 msgstr "{blueprint}-ზე დაბრუნება"
 
-#. [components.Wizard.blobService]
-#. defaultMessage is:
-#. Blob service
-#: build/messages/components/Wizard/AzureDestinationStep.json
-msgid "Blob service"
-msgstr "Blob-ის სერვისი"
-
 #. [components.Modal.1281198655]
-#. defaultMessage is:
-#. Blueprint
-#. [components.Modal.blueprint]
-#. defaultMessage is:
-#. Blueprint
-#. [components.Wizard.1281198655]
 #. defaultMessage is:
 #. Blueprint
 #. [pages.blueprint.blueprint]
 #. defaultMessage is:
 #. Blueprint
-#. [pages.blueprintEdit.blueprintTitle]
-#. defaultMessage is:
-#. Blueprint
 #: build/messages/components/Modal/ExportBlueprint.json
-#: build/messages/components/Modal/PendingChanges.json
-#: build/messages/components/Wizard/ImageStep.json
 #: build/messages/pages/blueprint/index.json
-#: build/messages/pages/blueprintEdit/index.json
 msgid "Blueprint"
 msgstr "მონახაზი"
 
-#. [pages.blueprintEdit.966788260]
+#. [toolbar.blueprint.filter.aria]
 #. defaultMessage is:
-#. Blueprint components
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Blueprint components"
-msgstr "მონახაზის კომპონენტები"
+#. Blueprint filter select
+#: build/messages/components/Toolbar/BlueprintToolbar.json
+#, fuzzy
+#| msgid "Blueprints"
+msgid "Blueprint filter select"
+msgstr "მონახაზები"
+
+#. [wizard.review.blueprintName]
+#. defaultMessage is:
+#. Blueprint name
+#: build/messages/components/Wizard/formComponents/Review.json
+#, fuzzy
+#| msgid "Blueprint"
+msgid "Blueprint name"
+msgstr "მონახაზი"
 
 #. [components.Modal.2544705954]
 #. defaultMessage is:
@@ -389,6 +324,15 @@ msgstr "მონახაზის სახელი ამ სიმბოლ
 msgid "Blueprint names cannot contain the characters: {invalidChar}"
 msgstr "მონახაზის სახელი არ შეიძლება ამ სიმბოლოს შეიცავდეს: {invalidChar}"
 
+#. [toolbar.blueprint.search.aria]
+#. defaultMessage is:
+#. Blueprint search input
+#: build/messages/components/Toolbar/BlueprintToolbar.json
+#, fuzzy
+#| msgid "Blueprints"
+msgid "Blueprint search input"
+msgstr "მონახაზები"
+
 #. [pages.blueprints.blueprintsTitle]
 #. defaultMessage is:
 #. Blueprints
@@ -396,66 +340,93 @@ msgstr "მონახაზის სახელი არ შეიძლე
 msgid "Blueprints"
 msgstr "მონახაზები"
 
-#. [pages.blueprintEdit.addComponentMessageOne]
+#. [toolbar.blueprints.search.aria]
 #. defaultMessage is:
-#. Browse or search for components, then add them to the blueprint. Or leave the blueprint empty to create a minimal image.
-#: build/messages/pages/blueprintEdit/index.json
-msgid ""
-"Browse or search for components, then add them to the blueprint. Or leave "
-"the blueprint empty to create a minimal image."
-msgstr ""
-"დაათვალიერეთ ან მოძებნეთ კომპონენტები, შემდეგ დაამატეთ ისინი გეგმაში. ან "
-"დატოვეთ გეგმა ცარიელი, რომ შექმნათ მინიმალური გამოსახულება."
+#. Blueprints search input
+#: build/messages/components/Toolbar/BlueprintsToolbar.json
+#, fuzzy
+#| msgid "Blueprints"
+msgid "Blueprints search input"
+msgstr "მონახაზები"
 
-#. [components.Wizard.992376537]
+#. [wizard.review.bucketCompartment]
 #. defaultMessage is:
 #. Bucket compartment
-#. [components.Wizard.992376537]
+#. [wizard.oci.bucketCompartment.label]
 #. defaultMessage is:
 #. Bucket compartment
-#: build/messages/components/Wizard/OCIDestinationStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/ociDest.json
 msgid "Bucket compartment"
 msgstr "პროექტის შემადგენელი ნაწილები"
 
-#. [components.Wizard.bucket]
+#. [wizard.oci.compartment.popoverAria]
 #. defaultMessage is:
-#. Bucket help
-#: build/messages/components/Wizard/OCIDestinationStep.json
-msgid "Bucket help"
-msgstr "ბაკეტის დახმარება"
+#. Bucket compartment help
+#: build/messages/components/Wizard/steps/ociDest.json
+#, fuzzy
+#| msgid "Bucket compartment"
+msgid "Bucket compartment help"
+msgstr "პროექტის შემადგენელი ნაწილები"
 
-#. [components.Wizard.3386954132]
+#. [wizard.review.bucketNamespace]
 #. defaultMessage is:
 #. Bucket namespace
-#. [components.Wizard.3386954132]
+#. [wizard.oci.bucketNamespace.label]
 #. defaultMessage is:
 #. Bucket namespace
-#: build/messages/components/Wizard/OCIDestinationStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/ociDest.json
 msgid "Bucket namespace"
 msgstr "ბაკეტის სახელების სივრცე"
 
-#. [components.Wizard.2790265886]
+#. [wizard.oci.namespace.popoverAria]
+#. defaultMessage is:
+#. Bucket namespace help
+#: build/messages/components/Wizard/steps/ociDest.json
+#, fuzzy
+#| msgid "Bucket namespace"
+msgid "Bucket namespace help"
+msgstr "ბაკეტის სახელების სივრცე"
+
+#. [wizard.review.bucketRegion]
 #. defaultMessage is:
 #. Bucket region
-#. [components.Wizard.2790265886]
+#. [wizard.oci.bucketRegion.label]
 #. defaultMessage is:
 #. Bucket region
-#: build/messages/components/Wizard/OCIDestinationStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/ociDest.json
 msgid "Bucket region"
 msgstr "ბაკეტის რეგიონი"
 
-#. [components.Wizard.1601119828]
+#. [wizard.oci.region.popoverAria]
+#. defaultMessage is:
+#. Bucket region help
+#: build/messages/components/Wizard/steps/ociDest.json
+#, fuzzy
+#| msgid "Bucket region"
+msgid "Bucket region help"
+msgstr "ბაკეტის რეგიონი"
+
+#. [wizard.review.bucketTenancy]
 #. defaultMessage is:
 #. Bucket tenancy
-#. [components.Wizard.1601119828]
+#. [wizard.oci.bucketTenancy.label]
 #. defaultMessage is:
 #. Bucket tenancy
-#: build/messages/components/Wizard/OCIDestinationStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/ociDest.json
 msgid "Bucket tenancy"
+msgstr "ბაკეტის ქირავნობა"
+
+#. [wizard.oci.tenancy.popoverAria]
+#. defaultMessage is:
+#. Bucket tenancy help
+#: build/messages/components/Wizard/steps/ociDest.json
+#, fuzzy
+#| msgid "Bucket tenancy"
+msgid "Bucket tenancy help"
 msgstr "ბაკეტის ქირავნობა"
 
 #. [components.Form.cancel]
@@ -482,9 +453,6 @@ msgstr "ბაკეტის ქირავნობა"
 #. [components.Modal.3528672691]
 #. defaultMessage is:
 #. Cancel
-#. [components.Wizard.3528672691]
-#. defaultMessage is:
-#. Cancel
 #: build/messages/components/Form/TextInlineEdit.json
 #: build/messages/components/Modal/CreateBlueprint.json
 #: build/messages/components/Modal/DeleteBlueprint.json
@@ -493,34 +461,8 @@ msgstr "ბაკეტის ქირავნობა"
 #: build/messages/components/Modal/ManageSources.json
 #: build/messages/components/Modal/StopBuild.json
 #: build/messages/components/Modal/UserAccount.json
-#: build/messages/components/Wizard/CreateImageUpload.json
 msgid "Cancel"
 msgstr "გაუქმება"
-
-#. [components.Modal.683130131]
-#. defaultMessage is:
-#. Changes made in a previous session
-#: build/messages/components/Modal/PendingChanges.json
-msgid "Changes made in a previous session"
-msgstr "წინა სესიაში შეატანილი ცვლილებები"
-
-#. [components.Modal.previousSessionInfotip]
-#. defaultMessage is:
-#. Changes made in a previous session are not listed in the order they were made. If you choose to undo these changes, they are undone as a group.
-#: build/messages/components/Modal/PendingChanges.json
-msgid ""
-"Changes made in a previous session are not listed in the order they were "
-"made. If you choose to undo these changes, they are undone as a group."
-msgstr ""
-"წინა სესიაში შეტანილი ცვლილებები მათი განხორციელების თანამიმდევრობით არაა "
-"ჩამოთვლილი. თუ აირჩევთ გააუქმოთ ისინი, გაუქმება ჯგუფურად ხდება."
-
-#. [components.Modal.92001050]
-#. defaultMessage is:
-#. Changes pending commit
-#: build/messages/components/Modal/PendingChanges.json
-msgid "Changes pending commit"
-msgstr "გადასაცემი ცვლილებები"
 
 #. [components.Modal.check_gpg]
 #. defaultMessage is:
@@ -536,24 +478,35 @@ msgstr "შეამოწმეთ GPG-ის გასაღები"
 msgid "Check SSL certificate"
 msgstr "შეამოწმეთ SSL სერტიფიკატი"
 
+#. [wizard.packages.chosenPackages]
+#. defaultMessage is:
+#. Chosen packages
+#: build/messages/components/Wizard/formComponents/Packages.json
+#, fuzzy
+#| msgid "Edit packages"
+msgid "Chosen packages"
+msgstr "პაკეტების ჩასწორება"
+
 #. [components.ListView.1634835134]
 #. defaultMessage is:
 #. Clear all filters
-#. [components.Toolbar.1634835134]
-#. defaultMessage is:
-#. Clear all filters
-#. [pages.blueprintEdit.1634835134]
-#. defaultMessage is:
-#. Clear all filters
-#. [pages.blueprints.1634835134]
-#. defaultMessage is:
-#. Clear all filters
 #: build/messages/components/ListView/BlueprintContents.json
-#: build/messages/components/Toolbar/ToolbarLayout.json
-#: build/messages/pages/blueprintEdit/index.json
-#: build/messages/pages/blueprints/index.json
 msgid "Clear all filters"
 msgstr "ყველა ფილტრის გასუფთავება"
+
+#. [wizard.packages.clearAvailablePackagesSearch]
+#. defaultMessage is:
+#. Clear available packages search
+#: build/messages/components/Wizard/formComponents/Packages.json
+msgid "Clear available packages search"
+msgstr ""
+
+#. [wizard.packages.clearChosenPackagesSearch]
+#. defaultMessage is:
+#. Clear chosen packages search
+#: build/messages/components/Wizard/formComponents/Packages.json
+msgid "Clear chosen packages search"
+msgstr ""
 
 #. [components.Modal.2324218928]
 #. defaultMessage is:
@@ -562,75 +515,35 @@ msgstr "ყველა ფილტრის გასუფთავება"
 #. defaultMessage is:
 #. Close
 #. [components.Modal.2324218928]
-#. defaultMessage is:
-#. Close
-#. [components.Modal.closeButtonLabel]
 #. defaultMessage is:
 #. Close
 #: build/messages/components/Modal/ExportBlueprint.json
 #: build/messages/components/Modal/ManageSources.json
-#: build/messages/components/Modal/PendingChanges.json
 msgid "Close"
 msgstr "დახურვა"
 
-#. [components.Wizard.103343714]
+#. [wizard.review.cluster]
 #. defaultMessage is:
 #. Cluster
-#. [components.Wizard.103343714]
+#. [wizard.vmware.cluster.label]
 #. defaultMessage is:
 #. Cluster
-#: build/messages/components/Wizard/ReviewStep.json
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid "Cluster"
 msgstr "კლასტერი"
 
-#. [components.Wizard.cluster]
+#. [wizard.vmware.cluster.popoverAria]
 #. defaultMessage is:
 #. Cluster help
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid "Cluster help"
 msgstr "დახმარება კლატერის შესახებ"
-
-#. [components.Modal.2299254306]
-#. defaultMessage is:
-#. Comment
-#: build/messages/components/Modal/PendingChanges.json
-msgid "Comment"
-msgstr "კომენტარი"
-
-#. [components.Modal.commitButtonLabel]
-#. defaultMessage is:
-#. Commit
-#. [pages.blueprintEdit.1951088698]
-#. defaultMessage is:
-#. Commit
-#: build/messages/components/Modal/PendingChanges.json
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Commit"
-msgstr "გადაცემა"
-
-#. [components.Wizard.1126783419]
-#. defaultMessage is:
-#. Commit and create
-#: build/messages/components/Wizard/CreateImageUpload.json
-msgid "Commit and create"
-msgstr "გადაცემა და შექმნა"
-
-#. [components.Wizard.552112481]
-#. defaultMessage is:
-#. Commit and next
-#: build/messages/components/Wizard/CreateImageUpload.json
-msgid "Commit and next"
-msgstr "გადაცემა და შემდეგი"
 
 #. [pages.blueprint.3956908315]
 #. defaultMessage is:
 #. Component details
-#. [pages.blueprintEdit.3956908315]
-#. defaultMessage is:
-#. Component details
 #: build/messages/pages/blueprint/index.json
-#: build/messages/pages/blueprintEdit/index.json
 msgid "Component details"
 msgstr "კომპონენტის დეტალები"
 
@@ -668,12 +581,8 @@ msgstr "კოპირება"
 #. [components.Modal.4120989039]
 #. defaultMessage is:
 #. Create
-#. [components.Wizard.4120989039]
-#. defaultMessage is:
-#. Create
 #: build/messages/components/Modal/CreateBlueprint.json
 #: build/messages/components/Modal/UserAccount.json
-#: build/messages/components/Wizard/CreateImageUpload.json
 msgid "Create"
 msgstr "შექმნა"
 
@@ -686,13 +595,6 @@ msgid ""
 "images you create. Images can be produced in a variety of output formats."
 msgstr ""
 
-#. [components.Wizard.1723482220]
-#. defaultMessage is:
-#. Create and upload image
-#: build/messages/components/Wizard/ReviewStep.json
-msgid "Create and upload image"
-msgstr "გამოსახულების შექმნა და ატვირთვა"
-
 #. [components.Modal.994816806]
 #. defaultMessage is:
 #. Create blueprint
@@ -700,13 +602,10 @@ msgstr "გამოსახულების შექმნა და ატ
 msgid "Create blueprint"
 msgstr "მონახაზის შექმნა"
 
-#. [components.Wizard.title]
+#. [wizard.createImage]
 #. defaultMessage is:
 #. Create image
-#. [components.Wizard.2020427956]
-#. defaultMessage is:
-#. Create image
-#: build/messages/components/Wizard/CreateImageUpload.json
+#: build/messages/components/Wizard/CreateImageWizard.json
 msgid "Create image"
 msgstr "გამოსახულების შექმნა"
 
@@ -724,52 +623,73 @@ msgstr "მომხმარებლის ანგარიშის შე�
 msgid "Created"
 msgstr "შექმნილია"
 
+#. [wizard.review.creatingImage]
+#. defaultMessage is:
+#. Creating image
+#: build/messages/components/Wizard/formComponents/SubmitButtonsCustom.json
+#, fuzzy
+#| msgid "Create image"
+msgid "Creating image"
+msgstr "გამოსახულების შექმნა"
+
+#. [wizard.customizations.title]
+#. defaultMessage is:
+#. Customizations
+#. [wizard.customizations.title]
+#. defaultMessage is:
+#. Customizations
 #. [pages.blueprint.customizationsTitle]
 #. defaultMessage is:
 #. Customizations
+#: build/messages/components/Wizard/steps/system.json
+#: build/messages/components/Wizard/steps/users.json
 #: build/messages/pages/blueprint/index.json
 msgid "Customizations"
 msgstr "ხელით შეტანილი ცვლილებები"
 
-#. [components.Wizard.2877310487]
-#. defaultMessage is:
-#. Data Center
-#: build/messages/components/Wizard/ReviewStep.json
-msgid "Data Center"
-msgstr "მონაცემთა დამუშავების ცენტრი"
-
-#. [components.Wizard.3747912914]
-#. defaultMessage is:
-#. Data Store
-#: build/messages/components/Wizard/ReviewStep.json
-msgid "Data Store"
-msgstr "მონაცემების საცავი"
-
-#. [components.Wizard.4278711264]
+#. [wizard.review.dataCenter]
 #. defaultMessage is:
 #. Data center
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
 msgid "Data center"
 msgstr "მონაცემების დამუშავების ცენტრი"
 
-#. [components.Wizard.3717439361]
+#. [wizard.review.dataStore]
 #. defaultMessage is:
 #. Data store
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
 msgid "Data store"
 msgstr "მონაცემების საცავი"
 
-#. [components.Wizard.dataCenter]
+#. [wizard.vmware.dataCenter.label]
+#. defaultMessage is:
+#. Datacenter
+#: build/messages/components/Wizard/steps/vmwareDest.json
+#, fuzzy
+#| msgid "Data center"
+msgid "Datacenter"
+msgstr "მონაცემების დამუშავების ცენტრი"
+
+#. [wizard.vmware.dataCenter.popoverAria]
 #. defaultMessage is:
 #. Datacenter help
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid "Datacenter help"
 msgstr "დახმარება მონაცემთა დამუშავების ცენტრის შესახებ"
 
-#. [components.Wizard.dataStore]
+#. [wizard.vmware.dataStore.label]
+#. defaultMessage is:
+#. Datastore
+#: build/messages/components/Wizard/steps/vmwareDest.json
+#, fuzzy
+#| msgid "Data store"
+msgid "Datastore"
+msgstr "მონაცემების საცავი"
+
+#. [wizard.vmware.datastore.popoverAria]
 #. defaultMessage is:
 #. Datastore help
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid "Datastore help"
 msgstr "დახმარება მონაცემთა დამუშავების ცენტრის შესახებ"
 
@@ -817,9 +737,13 @@ msgstr "მომხმარებილის ანგარიშის წ�
 #. [components.ListView.3727965333]
 #. defaultMessage is:
 #. Dependencies
+#. [wizard.review.dependencies]
+#. defaultMessage is:
+#. Dependencies
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ComponentSummaryList.json
+#: build/messages/components/Wizard/formComponents/Review.json
 msgid "Dependencies"
 msgstr "დამოკიდებულებები"
 
@@ -838,10 +762,22 @@ msgstr "დამოკიდებულებები"
 msgid "Description"
 msgstr "აღწერა"
 
-#. [components.Wizard.2515932130]
+#. [wizard.aws.destTitle]
 #. defaultMessage is:
 #. Destination
-#: build/messages/components/Wizard/CreateImageUpload.json
+#. [wizard.azure.destTitle]
+#. defaultMessage is:
+#. Destination
+#. [wizard.oci.destTitle]
+#. defaultMessage is:
+#. Destination
+#. [wizard.vmware.destTitle]
+#. defaultMessage is:
+#. Destination
+#: build/messages/components/Wizard/steps/awsDest.json
+#: build/messages/components/Wizard/steps/azureDest.json
+#: build/messages/components/Wizard/steps/ociDest.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid "Destination"
 msgstr "დანიშნულება"
 
@@ -852,20 +788,6 @@ msgstr "დანიშნულება"
 msgid "Details"
 msgstr "დეტალები"
 
-#. [pages.blueprintEdit.1469729075]
-#. defaultMessage is:
-#. Discard changes
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Discard changes"
-msgstr "ცვლილებების მოცილება"
-
-#. [components.Wizard.labelTar]
-#. defaultMessage is:
-#. Disk Archive (.tar)
-#: build/messages/components/Wizard/ImageStep.json
-msgid "Disk Archive (.tar)"
-msgstr "დისკის არქივი (.tar)"
-
 #. [components.ListView.1982430146]
 #. defaultMessage is:
 #. Download
@@ -873,10 +795,10 @@ msgstr "დისკის არქივი (.tar)"
 msgid "Download"
 msgstr "გადმოწერა"
 
-#. [filename-placeholder]
+#. [wizard.uploadFile.filenamePlaceholder]
 #. defaultMessage is:
 #. Drag and drop a file or upload one
-#: build/messages/components/Wizard/OCIAuthStep.json
+#: build/messages/components/Wizard/formComponents/UploadFile.json
 msgid "Drag and drop a file or upload one"
 msgstr "გადმოათრიეთ და დააგდეთ ფაილი, ან ატვირთეთ"
 
@@ -905,21 +827,6 @@ msgstr "ჰოსტის სახელის ჩასწორება"
 msgid "Edit installation device"
 msgstr "დაყენების მოწყობილობის ჩასწორება"
 
-#. [components.ListView.1908303378]
-#. defaultMessage is:
-#. Edit packages
-#. [pages.blueprint.1908303378]
-#. defaultMessage is:
-#. Edit packages
-#. [pages.blueprintEdit.1908303378]
-#. defaultMessage is:
-#. Edit packages
-#: build/messages/components/ListView/BlueprintsDataList.json
-#: build/messages/pages/blueprint/index.json
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Edit packages"
-msgstr "პაკეტების ჩასწორება"
-
 #. [components.ListView.edit]
 #. defaultMessage is:
 #. Edit source
@@ -942,10 +849,10 @@ msgstr "წყაროს ჩასწორება"
 msgid "Edit user account"
 msgstr "მომხმარებლის ანგარიშის ჩასწორება"
 
-#. [components.Wizard.4173021643]
+#. [wizard.ostree.validationError]
 #. defaultMessage is:
 #. Either the parent commit or repository url can be specified. Not both.
-#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/validators/ostreeValidator.json
 msgid "Either the parent commit or repository url can be specified. Not both."
 msgstr ""
 
@@ -956,9 +863,13 @@ msgstr ""
 msgid "Empty blueprint"
 msgstr "ცარიელი მონახაზი"
 
+#. [wizard.customizations.installDevice.helperText]
+#. defaultMessage is:
+#. Enter valid device node such as /dev/sda1
 #. [pages.blueprint.deviceHelp]
 #. defaultMessage is:
 #. Enter valid device node such as /dev/sda1
+#: build/messages/components/Wizard/steps/system.json
 #: build/messages/pages/blueprint/index.json
 msgid "Enter valid device node such as /dev/sda1"
 msgstr "აირჩიეთ მოწყობილობის სწორი უჯრედი. მაგ /dev/sda1"
@@ -991,58 +902,25 @@ msgstr "გატანა, როგორც"
 msgid "Export blueprint"
 msgstr "მონახაზის გატანა"
 
-#. [pages.blueprintEdit.filterByLabel]
-#. defaultMessage is:
-#. Filter available components by name
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Filter available components by name"
-msgstr "კომპონენტების სახელით გაფილტვრა"
-
-#. [components.Toolbar.filterNamePlaceholder]
-#. defaultMessage is:
-#. Filter by name
-#: build/messages/components/Toolbar/FilterInput.json
-msgid "Filter by name"
-msgstr "სახელით გაფილტვრა"
-
-#. [pages.blueprintEdit.filterByPlaceholder]
-#. defaultMessage is:
-#. Filter by name...
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Filter by name..."
-msgstr "სახელით გაფილტვრა..."
-
-#. [components.Toolbar.filterReleasePlaceholder]
-#. defaultMessage is:
-#. Filter by release
-#: build/messages/components/Toolbar/FilterInput.json
-msgid "Filter by release"
-msgstr "რელიზით გაფილტვრა"
-
-#. [components.Toolbar.filterVersionPlaceholder]
-#. defaultMessage is:
-#. Filter by version
-#: build/messages/components/Toolbar/FilterInput.json
-msgid "Filter by version"
-msgstr "ვერსიით გაფილტვრა"
-
-#. [components.Wizard.244381809]
+#. [wizard.review.fingerprint]
 #. defaultMessage is:
 #. Fingerprint
-#. [components.Wizard.244381809]
+#. [wizard.oci.fingerprint.label]
 #. defaultMessage is:
 #. Fingerprint
-#: build/messages/components/Wizard/OCIAuthStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/ociAuth.json
 msgid "Fingerprint"
 msgstr "ანაბეჭდი"
 
-#. [components.Wizard.787186999]
+#. [wizard.oci.fingerprint.popoverAria]
 #. defaultMessage is:
-#. Finish
-#: build/messages/components/Wizard/CreateImageUpload.json
-msgid "Finish"
-msgstr "დასრულება"
+#. Fingerprint help
+#: build/messages/components/Wizard/steps/ociAuth.json
+#, fuzzy
+#| msgid "Fingerprint"
+msgid "Fingerprint help"
+msgstr "ანაბეჭდი"
 
 #. [components.Modal.labelName]
 #. defaultMessage is:
@@ -1069,116 +947,108 @@ msgstr "უკან გადასვლა"
 msgid "Hide details"
 msgstr "დეტალების დამალვა"
 
-#. [components.Wizard.644347739]
+#. [wizard.review.host]
 #. defaultMessage is:
 #. Host
-#. [components.Wizard.644347739]
+#. [wizard.vmware.host.label]
 #. defaultMessage is:
 #. Host
-#: build/messages/components/Wizard/ReviewStep.json
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid "Host"
 msgstr "ჰოსტი"
 
-#. [components.Wizard.host]
+#. [wizard.vmware.host.popoverAria]
 #. defaultMessage is:
 #. Host help
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid "Host help"
 msgstr "დახმარება ჰოსტის შესახებ"
 
+#. [wizard.review.hostname]
+#. defaultMessage is:
+#. Hostname
+#. [wizard.customizations.hostname.label]
+#. defaultMessage is:
+#. Hostname
 #. [pages.blueprint.hostnameInputLabel]
 #. defaultMessage is:
 #. Hostname
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/system.json
 #: build/messages/pages/blueprint/index.json
 msgid "Hostname"
 msgstr "ჰოსტის სახელი"
 
+#. [wizard.customizations.hostname.helperText]
+#. defaultMessage is:
+#. If no hostname is provided, the hostname will be determined by the OS.
 #. [pages.blueprint.hostnameHelpEmpty]
 #. defaultMessage is:
 #. If no hostname is provided, the hostname will be determined by the OS.
+#: build/messages/components/Wizard/steps/system.json
 #: build/messages/pages/blueprint/index.json
 msgid "If no hostname is provided, the hostname will be determined by the OS."
 msgstr "თუ ჰოსტის სახელი მითითებული არაა, ის ოს-ის მიერ გამისაზღვრება."
 
-#. [components.Wizard.327045352]
+#. [wizard.imageOutput.uploadVMWare.popoverBody]
 #. defaultMessage is:
-#. Image Builder can upload images you create to VMWare vSphere.
-#.                       When the image build is complete and the upload action is successful,
-#.                       the image file is available in the Cluster on the vSphere instance that you specified.
-#. [components.Wizard.327045352]
-#. defaultMessage is:
-#. Image Builder can upload images you create to VMWare vSphere.
-#.                       When the image build is complete and the upload action is successful,
-#.                       the image file is available in the Cluster on the vSphere instance that you specified.
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#. Image Builder can upload images you create to VMWare vSphere. When the image build is complete and the upload action is successful, the image file is available in the Cluster on the vSphere instance that you specified.
+#: build/messages/components/Wizard/steps/imageOutput.json
 msgid ""
-"Image Builder can upload images you create to VMWare vSphere.\n"
-"                      When the image build is complete and the upload action "
-"is successful,\n"
-"                      the image file is available in the Cluster on the "
-"vSphere instance that you specified."
+"Image Builder can upload images you create to VMWare vSphere. When the image "
+"build is complete and the upload action is successful, the image file is "
+"available in the Cluster on the vSphere instance that you specified."
 msgstr ""
 
-#. [components.Wizard.3501375619]
+#. [wizard.imageOutput.uploadAzure.popoverBody]
 #. defaultMessage is:
-#. Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete
-#.                       and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
-#. [components.Wizard.3501375619]
-#. defaultMessage is:
-#. Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete
-#.                       and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#. Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
+#: build/messages/components/Wizard/steps/imageOutput.json
 msgid ""
 "Image Builder can upload images you create to a Blob container in {azure}. "
-"When the image build is complete\n"
-"                      and the upload action is successful, the image file is "
-"available in the Storage account and Blob container that you specified."
+"When the image build is complete and the upload action is successful, the "
+"image file is available in the Storage account and Blob container that you "
+"specified."
 msgstr ""
 
-#. [components.Wizard.1007547894]
+#. [wizard.imageOutput.uploadOCI.popoverBody]
 #. defaultMessage is:
-#. Image Builder can upload images you create to an {bucket} in AWS and then import them into EC2. When the image build is complete
-#.                         and the upload action is successful, the image file is available in the AMI section of EC2. Most of the values required to upload
-#.                         the image can be found in the {console}.
-#. [components.Wizard.1007547894]
-#. defaultMessage is:
-#. Image Builder can upload images you create to an {bucket} in AWS and then import them into EC2. When the image build is complete
-#.                         and the upload action is successful, the image file is available in the AMI section of EC2. Most of the values required to upload
-#.                         the image can be found in the {console}.
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#. Image Builder can upload images you create to an OCI bucket in OCI and register it as a custom image. When the image build is complete and the upload action is successful, the image should be available under custom images. Most of the values required to upload the image can be found in the {console}.{br}{br}This upload process requires that you have an Identity and Access Management (IAM) with attached policy to manage custom images to ensure that the image can be imported as a custom image from the bucket. For more details, refer to the {policy}.
+#: build/messages/components/Wizard/steps/imageOutput.json
 msgid ""
-"Image Builder can upload images you create to an {bucket} in AWS and then "
-"import them into EC2. When the image build is complete\n"
-"                        and the upload action is successful, the image file "
-"is available in the AMI section of EC2. Most of the values required to "
-"upload\n"
-"                        the image can be found in the {console}."
+"Image Builder can upload images you create to an OCI bucket in OCI and "
+"register it as a custom image. When the image build is complete and the "
+"upload action is successful, the image should be available under custom "
+"images. Most of the values required to upload the image can be found in the "
+"{console}.{br}{br}This upload process requires that you have an Identity and "
+"Access Management (IAM) with attached policy to manage custom images to "
+"ensure that the image can be imported as a custom image from the bucket. For "
+"more details, refer to the {policy}."
 msgstr ""
 
-#. [components.Wizard.3213107448]
+#. [wizard.imageOutput.uploadAWS.popoverBody]
 #. defaultMessage is:
-#. Image Builder can upload images you create to an {bucket} in OCI and register it as a custom image. When the image build is complete
-#.                         and the upload action is successful, the image should be available under custom images.
-#.                         Most of the values required to upload the image can be found in the {console}.
-#. [components.Wizard.3213107448]
-#. defaultMessage is:
-#. Image Builder can upload images you create to an {bucket} in OCI and register it as a custom image. When the image build is complete
-#.                         and the upload action is successful, the image should be available under custom images.
-#.                         Most of the values required to upload the image can be found in the {console}.
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#. Image Builder can upload images you create to an S3 bucket in AWS and then import them into EC2. When the image build is complete and the upload action is successful, the image file is available in the AMI section of EC2. Most of the values required to upload the image can be found in the {console}. {br}{br}This upload process requires that you have an Identity and Access Management (IAM) role named {vmimport} to ensure that the image can be imported from the S3 bucket into EC2. For more details, refer to the {role}.
+#: build/messages/components/Wizard/steps/imageOutput.json
 msgid ""
-"Image Builder can upload images you create to an {bucket} in OCI and "
-"register it as a custom image. When the image build is complete\n"
-"                        and the upload action is successful, the image "
-"should be available under custom images.\n"
-"                        Most of the values required to upload the image can "
-"be found in the {console}."
+"Image Builder can upload images you create to an S3 bucket in AWS and then "
+"import them into EC2. When the image build is complete and the upload action "
+"is successful, the image file is available in the AMI section of EC2. Most "
+"of the values required to upload the image can be found in the {console}. "
+"{br}{br}This upload process requires that you have an Identity and Access "
+"Management (IAM) role named {vmimport} to ensure that the image can be "
+"imported from the S3 bucket into EC2. For more details, refer to the {role}."
 msgstr ""
+
+#. [wizard.imageOutput.imageSize.label]
+#. defaultMessage is:
+#. Image Size
+#: build/messages/components/Wizard/steps/imageOutput.json
+#, fuzzy
+#| msgid "Image size"
+msgid "Image Size"
+msgstr "გამოსახულების ზომა"
 
 #. [components.ListView.imageStatusFinished] - Image build status when process is finished
 #. defaultMessage is:
@@ -1218,84 +1088,78 @@ msgstr "გამოსახულებებს ამგების სე�
 #. [components.ListView.imageName] - The name given by the user for an image
 #. defaultMessage is:
 #. Image name
-#. [components.Wizard.2794911472]
+#. [wizard.review.imageName]
 #. defaultMessage is:
 #. Image name
-#. [components.Wizard.2794911472]
+#. [wizard.aws.imageName.label]
 #. defaultMessage is:
 #. Image name
-#. [components.Wizard.2794911472]
+#. [wizard.azure.imageName.label]
 #. defaultMessage is:
 #. Image name
-#. [components.Wizard.2794911472]
+#. [wizard.oci.imageName.label]
 #. defaultMessage is:
 #. Image name
-#. [components.Wizard.2794911472]
+#. [wizard.vmware.imageName.label]
 #. defaultMessage is:
 #. Image name
 #: build/messages/components/ListView/ListItemUploads.json
-#: build/messages/components/Wizard/AWSDestinationStep.json
-#: build/messages/components/Wizard/AzureDestinationStep.json
-#: build/messages/components/Wizard/OCIDestinationStep.json
-#: build/messages/components/Wizard/ReviewStep.json
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/awsDest.json
+#: build/messages/components/Wizard/steps/azureDest.json
+#: build/messages/components/Wizard/steps/ociDest.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid "Image name"
 msgstr "გამოსახულების სახელი"
 
-#. [components.Wizard.imageName]
+#. [wizard.aws.imageName.popoverAria]
 #. defaultMessage is:
 #. Image name help
-#. [components.Wizard.imageName]
+#. [wizard.azure.imageName.popoverAria]
 #. defaultMessage is:
 #. Image name help
-#. [components.Wizard.imageName]
+#. [wizard.oci.imageName.popoverAria]
 #. defaultMessage is:
 #. Image name help
-#. [components.Wizard.imageName]
+#. [wizard.vmware.imageName.popoverAria]
 #. defaultMessage is:
 #. Image name help
-#: build/messages/components/Wizard/AWSDestinationStep.json
-#: build/messages/components/Wizard/AzureDestinationStep.json
-#: build/messages/components/Wizard/OCIDestinationStep.json
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/steps/awsDest.json
+#: build/messages/components/Wizard/steps/azureDest.json
+#: build/messages/components/Wizard/steps/ociDest.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid "Image name help"
 msgstr "დახმარება გამოსახულების სახელის შესახებ"
 
-#. [components.Wizard.1005710141]
+#. [wizard.imageOutput.title]
 #. defaultMessage is:
 #. Image output
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/steps/imageOutput.json
 msgid "Image output"
 msgstr "გამოტანილი გამოსახულება"
 
-#. [components.Wizard.1905943231]
+#. [wizard.imageOutput.type]
+#. defaultMessage is:
+#. Image output type
+#: build/messages/components/Wizard/steps/imageOutput.json
+#, fuzzy
+#| msgid "Image output"
+msgid "Image output type"
+msgstr "გამოტანილი გამოსახულება"
+
+#. [wizard.review.imageSize]
 #. defaultMessage is:
 #. Image size
-#. [components.Wizard.1905943231]
-#. defaultMessage is:
-#. Image size
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
 msgid "Image size"
 msgstr "გამოსახულების ზომა"
 
-#. [components.Wizard.imageSize]
+#. [wizard.imageOutput.imageSize.popoverAria]
 #. defaultMessage is:
 #. Image size help
-#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/steps/imageOutput.json
 msgid "Image size help"
 msgstr "დახმარება გამოსახულების ზომის შესახებ"
-
-#. [components.Wizard.1813441558]
-#. defaultMessage is:
-#. Image type
-#. [components.Wizard.1813441558]
-#. defaultMessage is:
-#. Image type
-#: build/messages/components/Wizard/CreateImageUpload.json
-#: build/messages/components/Wizard/ReviewStep.json
-msgid "Image type"
-msgstr "გამოსახულების ტიპი"
 
 #. [components.ListView.imageUploads] - A label for the section that lists the upload actions initiated by the user
 #. defaultMessage is:
@@ -1311,16 +1175,32 @@ msgstr "გამოსახულებების ატვირთვა"
 msgid "Images"
 msgstr "გამოსახულებები"
 
-#. [pages.blueprint.3654599626]
+#. [wizard.customizations.installDevice.label]
 #. defaultMessage is:
 #. Installation Device
-#: build/messages/pages/blueprint/index.json
+#: build/messages/components/Wizard/steps/system.json
 msgid "Installation Device"
 msgstr "დაყენებს მოწყობილობა"
 
+#. [wizard.customizations.installDevice.popoverAria]
+#. defaultMessage is:
+#. Installation Device help
+#: build/messages/components/Wizard/steps/system.json
+#, fuzzy
+#| msgid "Installation device help"
+msgid "Installation Device help"
+msgstr "დახმარება დაყენების მოწყობილობის შესახებ"
+
+#. [wizard.review.installationDevice]
+#. defaultMessage is:
+#. Installation device
 #. [pages.blueprint.deviceInputLabel]
 #. defaultMessage is:
 #. Installation device
+#. [pages.blueprint.3834724928]
+#. defaultMessage is:
+#. Installation device
+#: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/pages/blueprint/index.json
 msgid "Installation device"
 msgstr "დაყენების მოწყობილობა"
@@ -1332,12 +1212,14 @@ msgstr "დაყენების მოწყობილობა"
 msgid "Installation device help"
 msgstr "დახმარება დაყენების მოწყობილობის შესახებ"
 
-#. [components.Wizard.labelLiveIso]
+#. [wizard.packages.loadAdditionalPackages]
 #. defaultMessage is:
-#. Installer, suitable for USB and DVD (.iso)
-#: build/messages/components/Wizard/ImageStep.json
-msgid "Installer, suitable for USB and DVD (.iso)"
-msgstr "ინსტალერი, თავსებადი USB/DVD(.iso)-სთან"
+#. Load additional packages
+#: build/messages/components/Wizard/formComponents/Packages.json
+#, fuzzy
+#| msgid "Edit packages"
+msgid "Load additional packages"
+msgstr "პაკეტების ჩასწორება"
 
 #. [components.Loading.2617450248]
 #. defaultMessage is:
@@ -1345,6 +1227,13 @@ msgstr "ინსტალერი, თავსებადი USB/DVD(.iso)-�
 #: build/messages/components/Loading/Loading.json
 msgid "Loading"
 msgstr "ჩატვირთვა"
+
+#. [wizard.packages.loadingAdditionalPackages]
+#. defaultMessage is:
+#. Loading additional packages...
+#: build/messages/components/Wizard/formComponents/Packages.json
+msgid "Loading additional packages..."
+msgstr ""
 
 #. [components.ListView.imageLogs] - Log content that gets generated as part of the image creation process
 #. defaultMessage is:
@@ -1371,31 +1260,22 @@ msgstr "წყაროების მართვა"
 msgid "Message"
 msgstr "შეტყობინება"
 
-#. [components.Wizard.warningSizeSmall]
+#. [wizard.imageOutput.imageSize.inputHelp]
 #. defaultMessage is:
-#. Minimum size is {size} GB
-#: build/messages/components/Wizard/ImageStep.json
-msgid "Minimum size is {size} GB"
-msgstr "მინიმალური ზომაა {size} GB"
-
-#. [components.Wizard.warningSizeSmall]
-#. defaultMessage is:
-#. Minimum size is {size} GB.
-#: build/messages/components/Wizard/ReviewStep.json
-msgid "Minimum size is {size} GB."
+#. Minimum image size is {size}GB.
+#: build/messages/components/Wizard/steps/imageOutput.json
+#, fuzzy
+#| msgid "Minimum size is {size} GB."
+msgid "Minimum image size is {size}GB."
 msgstr "მინიმალური ზომაა {size} გბ."
 
 #. [components.ListView.emptyStateNoResultsMessage]
-#. defaultMessage is:
-#. Modify your filter criteria to get results.
-#. [pages.blueprintEdit.emptyStateNoResultsMessage]
 #. defaultMessage is:
 #. Modify your filter criteria to get results.
 #. [pages.blueprints.noResultsMessage]
 #. defaultMessage is:
 #. Modify your filter criteria to get results.
 #: build/messages/components/ListView/BlueprintContents.json
-#: build/messages/pages/blueprintEdit/index.json
 #: build/messages/pages/blueprints/index.json
 msgid "Modify your filter criteria to get results."
 msgstr "შედეგების მისაღებად ჩაასწორეთ თქვენი ფილტრი."
@@ -1406,39 +1286,14 @@ msgstr "შედეგების მისაღებად ჩაასწ�
 #. [components.Modal.name] - Name of source
 #. defaultMessage is:
 #. Name
-#. [components.Toolbar.filterNameTitle]
-#. defaultMessage is:
-#. Name
-#. [components.Toolbar.filterNameTitle]
+#. [toolbar.blueprint.filter.name]
 #. defaultMessage is:
 #. Name
 #: build/messages/components/Modal/CreateBlueprint.json
 #: build/messages/components/Modal/ManageSources.json
-#: build/messages/components/Toolbar/FilterInput.json
-#: build/messages/components/Toolbar/ToolbarLayout.json
+#: build/messages/components/Toolbar/BlueprintToolbar.json
 msgid "Name"
 msgstr "სახელი"
-
-#. [pages.blueprintEdit.3059610115]
-#. defaultMessage is:
-#. Name: {name}
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Name: {name}"
-msgstr "სახელი: {name}"
-
-#. [components.Wizard.namespace]
-#. defaultMessage is:
-#. Namespace help
-#: build/messages/components/Wizard/OCIDestinationStep.json
-msgid "Namespace help"
-msgstr "დახმარება სახელების სივრცის შესახებ"
-
-#. [components.Wizard.3673120330]
-#. defaultMessage is:
-#. Next
-#: build/messages/components/Wizard/CreateImageUpload.json
-msgid "Next"
-msgstr "შემდეგი"
 
 #. [pages.blueprints.emptyTitle]
 #. defaultMessage is:
@@ -1475,76 +1330,61 @@ msgstr "ამ მონახაზიდან გამოსახულე�
 msgid "No log available"
 msgstr "ჟურნალი მიუწვდომელია"
 
-#. [components.ListView.emptyStateNoResultsTitle]
+#. [wizard.packages.noPackagesAdded]
 #. defaultMessage is:
-#. No results match the filter criteria
-#. [pages.blueprintEdit.emptyStateNoResultsTitle]
+#. No packages added
+#: build/messages/components/Wizard/formComponents/Packages.json
+#, fuzzy
+#| msgid "Edit packages"
+msgid "No packages added"
+msgstr "პაკეტების ჩასწორება"
+
+#. [wizard.packages.noPackagesFound]
+#. defaultMessage is:
+#. No packages found
+#: build/messages/components/Wizard/formComponents/Packages.json
+#, fuzzy
+#| msgid "Edit packages"
+msgid "No packages found"
+msgstr "პაკეტების ჩასწორება"
+
+#. [components.ListView.emptyStateNoResultsTitle]
 #. defaultMessage is:
 #. No results match the filter criteria
 #. [pages.blueprints.noResultsTitle]
 #. defaultMessage is:
 #. No results match the filter criteria
 #: build/messages/components/ListView/BlueprintContents.json
-#: build/messages/pages/blueprintEdit/index.json
 #: build/messages/pages/blueprints/index.json
 msgid "No results match the filter criteria"
 msgstr "ფილტრი უშედეგოა"
 
-#. [components.Wizard.1666805205]
+#. [wizard.review.ociBucket]
 #. defaultMessage is:
 #. OCI bucket
-#: build/messages/components/Wizard/ReviewStep.json
+#. [wizard.oci.bucket.label]
+#. defaultMessage is:
+#. OCI bucket
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/ociDest.json
 msgid "OCI bucket"
 msgstr "OCI ბაკეტი"
 
-#. [components.Wizard.compartment]
+#. [wizard.oci.bucket.popoverAria]
 #. defaultMessage is:
-#. OCI compartment help
-#: build/messages/components/Wizard/OCIDestinationStep.json
-msgid "OCI compartment help"
+#. OCI bucket help
+#: build/messages/components/Wizard/steps/ociDest.json
+#, fuzzy
+#| msgid "OCI bucket"
+msgid "OCI bucket help"
+msgstr "OCI ბაკეტი"
+
+#. [wizard.ostree.title]
+#. defaultMessage is:
+#. OSTree settings
+#: build/messages/components/Wizard/steps/ostreeSettings.json
+msgid "OSTree settings"
 msgstr ""
-
-#. [components.Wizard.region]
-#. defaultMessage is:
-#. OCI region help
-#: build/messages/components/Wizard/OCIDestinationStep.json
-msgid "OCI region help"
-msgstr "დახმარება OCI-ის რეგიონის შესახებ"
-
-#. [components.Wizard.tenancy]
-#. defaultMessage is:
-#. OCI tenancy help
-#: build/messages/components/Wizard/OCIDestinationStep.json
-msgid "OCI tenancy help"
-msgstr ""
-
-#. [components.Wizard.ostreeParent]
-#. defaultMessage is:
-#. OSTree parent help
-#: build/messages/components/Wizard/ImageStep.json
-msgid "OSTree parent help"
-msgstr ""
-
-#. [components.Wizard.ostreeRef]
-#. defaultMessage is:
-#. OSTree ref help
-#: build/messages/components/Wizard/ImageStep.json
-msgid "OSTree ref help"
-msgstr ""
-
-#. [components.Wizard.ostreeURL]
-#. defaultMessage is:
-#. OSTree repo url help
-#: build/messages/components/Wizard/ImageStep.json
-msgid "OSTree repo url help"
-msgstr "დახმარება OSTree repo url-ის შესახებ"
-
-#. [components.Modal.1475836573]
-#. defaultMessage is:
-#. Only changes to selected components are shown.
-#: build/messages/components/Modal/PendingChanges.json
-msgid "Only changes to selected components are shown."
-msgstr "ნაჩვენებია მხოლოდ არჩეული კომპონენტების ცვლილებები."
 
 #. [pages.error.oupsTitle]
 #. defaultMessage is:
@@ -1553,9 +1393,24 @@ msgstr "ნაჩვენებია მხოლოდ არჩეული 
 msgid "Oups, something went wrong"
 msgstr "რაღაც ცუდი მოხდა"
 
+#. [wizard.review.outputType]
+#. defaultMessage is:
+#. Output type
+#: build/messages/components/Wizard/formComponents/Review.json
+msgid "Output type"
+msgstr ""
+
+#. [wizard.review.packages]
+#. defaultMessage is:
+#. Packages
+#. [wizard.packages.title]
+#. defaultMessage is:
+#. Packages
 #. [pages.blueprint.packagesTitle]
 #. defaultMessage is:
 #. Packages
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/packages.json
 #: build/messages/pages/blueprint/index.json
 msgid "Packages"
 msgstr "პაკეტები"
@@ -1570,25 +1425,38 @@ msgstr "პაკეტები"
 msgid "Page not found"
 msgstr "გვერდი ნაპოვნი არაა"
 
-#. [components.Wizard.3070030782]
+#. [wizard.ostree.parentCommit.label]
 #. defaultMessage is:
 #. Parent commit
-#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/steps/ostreeSettings.json
 msgid "Parent commit"
+msgstr "მშობლის გადაცემა"
+
+#. [wizard.ostree.parentCommit.popoverAria]
+#. defaultMessage is:
+#. Parent commit help
+#: build/messages/components/Wizard/steps/ostreeSettings.json
+#, fuzzy
+#| msgid "Parent commit"
+msgid "Parent commit help"
 msgstr "მშობლის გადაცემა"
 
 #. [components.Modal.labelPassword]
 #. defaultMessage is:
 #. Password
-#. [components.Wizard.2237029987]
+#. [wizard.review.password]
 #. defaultMessage is:
 #. Password
-#. [components.Wizard.2237029987]
+#. [wizard.customizations.password.label]
+#. defaultMessage is:
+#. Password
+#. [wizard.vmware.password.label]
 #. defaultMessage is:
 #. Password
 #: build/messages/components/Modal/UserAccount.json
-#: build/messages/components/Wizard/ReviewStep.json
-#: build/messages/components/Wizard/VMWareAuthStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/users.json
+#: build/messages/components/Wizard/steps/vmwareAuth.json
 msgid "Password"
 msgstr "პაროლი"
 
@@ -1599,264 +1467,269 @@ msgstr "პაროლი"
 msgid "Paste the contents of your public SSH key file here."
 msgstr "ჩააკოპირეთ SSH-ის თქვენი საჯარო გასაღების შემცველობა."
 
-#. [components.Modal.3226997558]
-#. defaultMessage is:
-#. Pending changes
-#: build/messages/components/Modal/PendingChanges.json
-msgid "Pending changes"
-msgstr "დარჩენილი ცვლილებები"
-
-#. [key-help]
+#. [wizard.oci.privateKey.label]
 #. defaultMessage is:
 #. Private key
-#. [components.Wizard.1443428038]
-#. defaultMessage is:
-#. Private key
-#: build/messages/components/Wizard/OCIAuthStep.json
+#: build/messages/components/Wizard/steps/ociAuth.json
 msgid "Private key"
 msgstr "პირადი გასაღები"
 
-#. [components.Wizard.3157862487]
+#. [wizard.review.privateKey]
 #. defaultMessage is:
 #. Private key filename
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
 msgid "Private key filename"
 msgstr "პირადი გასაღების ფაილის სახელი"
 
-#. [components.Wizard.processLength]
+#. [wizard.oci.privateKey.popoverAria]
+#. defaultMessage is:
+#. Private key help
+#: build/messages/components/Wizard/steps/ociAuth.json
+#, fuzzy
+#| msgid "Private key"
+msgid "Private key help"
+msgstr "პირადი გასაღები"
+
+#. [wizard.blueprintName.popover.aria]
 #. defaultMessage is:
 #. Process length help
-#. [components.Wizard.processLength]
-#. defaultMessage is:
-#. Process length help
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/BlueprintName.json
 msgid "Process length help"
 msgstr "დახმარება პროცესის სიგრძის შესახებ"
 
-#. [components.Wizard.4277042358]
+#. [wizard.aws.imageName.popoverBody]
 #. defaultMessage is:
 #. Provide a file name to be used for the image file that will be uploaded.
-#. [components.Wizard.4277042358]
+#. [wizard.azure.imageName.popoverBody]
 #. defaultMessage is:
 #. Provide a file name to be used for the image file that will be uploaded.
-#. [components.Wizard.4277042358]
+#. [wizard.oci.imageName.popoverBody]
 #. defaultMessage is:
 #. Provide a file name to be used for the image file that will be uploaded.
-#. [components.Wizard.4277042358]
+#. [wizard.vmware.imageName.popoverBody]
 #. defaultMessage is:
 #. Provide a file name to be used for the image file that will be uploaded.
-#: build/messages/components/Wizard/AWSDestinationStep.json
-#: build/messages/components/Wizard/AzureDestinationStep.json
-#: build/messages/components/Wizard/OCIDestinationStep.json
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/steps/awsDest.json
+#: build/messages/components/Wizard/steps/azureDest.json
+#: build/messages/components/Wizard/steps/ociDest.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid ""
 "Provide a file name to be used for the image file that will be uploaded."
 msgstr "მიუთითეთ გამოსახულების ასატვირთი ფაილის სახელი."
 
-#. [components.Wizard.2186792528]
+#. [wizard.aws.region.popoverBody]
 #. defaultMessage is:
-#. Provide the AWS Region where you want to import your image. This must be the same region where the {bucket} exists.
-#: build/messages/components/Wizard/AWSDestinationStep.json
+#. Provide the AWS Region where you want to import your image. This must be the same region where the S3 bucket exists.
+#: build/messages/components/Wizard/steps/awsDest.json
+#, fuzzy
+#| msgid ""
+#| "Provide the AWS Region where you want to import your image. This must be "
+#| "the same region where the {bucket} exists."
 msgid ""
 "Provide the AWS Region where you want to import your image. This must be the "
-"same region where the {bucket} exists."
+"same region where the S3 bucket exists."
 msgstr ""
 "მიუთითეთ გამოსახულების ასატვირთი AWS-ის რეგიონი. უნდა ემთხვეოდეს იმას, სადაც "
 "{bucket}-ია მოთავსებული."
 
-#. [components.Wizard.517158149]
+#. [wizard.azure.storageContainer.popoverBody]
 #. defaultMessage is:
-#. Provide the Blob container to which the image file will be uploaded. You can find containers under the {blobService} 
-#.                     section of a storage account. You can find storage accounts on the {storageAccounts} page in the {azure} portal.
-#: build/messages/components/Wizard/AzureDestinationStep.json
+#. Provide the Blob container to which the image file will be uploaded. You can find containers under the <strong>Blob service</strong> section of a storage account. You can find storage accounts on the <strong>Storage accounts</strong> page in the Azure portal.
+#: build/messages/components/Wizard/steps/azureDest.json
 msgid ""
 "Provide the Blob container to which the image file will be uploaded. You can "
-"find containers under the {blobService} \n"
-"                    section of a storage account. You can find storage "
-"accounts on the {storageAccounts} page in the {azure} portal."
+"find containers under the <strong>Blob service</strong> section of a storage "
+"account. You can find storage accounts on the <strong>Storage accounts</"
+"strong> page in the Azure portal."
 msgstr ""
 
-#. [components.Wizard.4044130958]
+#. [wizard.ostree.parentCommit.popoverBody]
 #. defaultMessage is:
-#. Provide the ID of the latest commit in the updates repository for which this commit provides an update.
-#.                     If no commit is specified it will be inferred from the parent repository.
-#: build/messages/components/Wizard/ImageStep.json
+#. Provide the ID of the latest commit in the updates repository for which this commit provides an update. If no commit is specified it will be inferred from the parent repository.
+#: build/messages/components/Wizard/steps/ostreeSettings.json
 msgid ""
 "Provide the ID of the latest commit in the updates repository for which this "
-"commit provides an update.\n"
-"                    If no commit is specified it will be inferred from the "
-"parent repository."
+"commit provides an update. If no commit is specified it will be inferred "
+"from the parent repository."
 msgstr ""
 
-#. [components.Wizard.1901372247]
+#. [wizard.aws.bucket.popoverBody]
 #. defaultMessage is:
-#. Provide the S3 {bucket} name to which the image file will be uploaded before being imported into EC2. 
-#.                         The {bucket} must already exist in the Region where you want to import your image. You can find a list of {buckets} on the
-#.                         {bucketsPage} page in the {amazon} S3 storage service in the AWS console.
-#: build/messages/components/Wizard/AWSDestinationStep.json
+#. Provide the S3 bucket name to which the image file will be uploaded before being imported into EC2. The bucket must already exist in the Region where you want to import your image. You can find a list of buckets on the <strong>S3 buckets</strong> page in the Amazon S3 storage service in the AWS console.
+#: build/messages/components/Wizard/steps/awsDest.json
 msgid ""
-"Provide the S3 {bucket} name to which the image file will be uploaded before "
-"being imported into EC2. \n"
-"                        The {bucket} must already exist in the Region where "
-"you want to import your image. You can find a list of {buckets} on the\n"
-"                        {bucketsPage} page in the {amazon} S3 storage "
-"service in the AWS console."
+"Provide the S3 bucket name to which the image file will be uploaded before "
+"being imported into EC2. The bucket must already exist in the Region where "
+"you want to import your image. You can find a list of buckets on the "
+"<strong>S3 buckets</strong> page in the Amazon S3 storage service in the AWS "
+"console."
 msgstr ""
 
-#. [components.Wizard.1170512263]
+#. [wizard.ostree.repoURL.popoverBody]
 #. defaultMessage is:
 #. Provide the URL of the upstream repository. This repository is where the parent OSTree commit will be pulled from.
-#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/steps/ostreeSettings.json
 msgid ""
 "Provide the URL of the upstream repository. This repository is where the "
 "parent OSTree commit will be pulled from."
 msgstr ""
 
-#. [components.Wizard.2706552502]
+#. [wizard.azure.storageAccessKey.popoverBody]
 #. defaultMessage is:
-#. Provide the access key for the desired storage account. You can find the access key on the {accessKeys} 
-#.                         page of the storage account. You can find storage accounts on the {storageAccounts} page in the {azure} portal.
-#: build/messages/components/Wizard/AzureAuthStep.json
+#. Provide the access key for the desired storage account. You can find the access key on the <strong>Access keys</strong> page of the storage account. You can find storage accounts on the <strong>Storage accounts</strong> page in the Azure portal.
+#: build/messages/components/Wizard/steps/azureAuth.json
 msgid ""
 "Provide the access key for the desired storage account. You can find the "
-"access key on the {accessKeys} \n"
-"                        page of the storage account. You can find storage "
-"accounts on the {storageAccounts} page in the {azure} portal."
+"access key on the <strong>Access keys</strong> page of the storage account. "
+"You can find storage accounts on the <strong>Storage accounts</strong> page "
+"in the Azure portal."
 msgstr ""
 
-#. [components.Wizard.2831983558]
+#. [wizard.oci.bucket.popoverBody]
 #. defaultMessage is:
-#. Provide the compartment of the {bucket} your uploading to. You can find the compartment in the bucket details.
-#: build/messages/components/Wizard/OCIDestinationStep.json
+#. Provide the bucket name to which the image file will be uploaded before being imported as a custom image. The bucket must already exist in the Region where you want to import your image. You can find a list of buckets on the <strong>OCI buckets</strong> page in the OCI storage service in the OCI console.
+#: build/messages/components/Wizard/steps/ociDest.json
 msgid ""
-"Provide the compartment of the {bucket} your uploading to. You can find the "
-"compartment in the bucket details."
+"Provide the bucket name to which the image file will be uploaded before "
+"being imported as a custom image. The bucket must already exist in the "
+"Region where you want to import your image. You can find a list of buckets "
+"on the <strong>OCI buckets</strong> page in the OCI storage service in the "
+"OCI console."
 msgstr ""
 
-#. [components.Wizard.1434969769]
+#. [wizard.oci.compartment.popoverBody]
 #. defaultMessage is:
-#. Provide the name of a storage account. You can find storage accounts on the {storageAccounts} page in the {azure} portal.
-#: build/messages/components/Wizard/AzureAuthStep.json
+#. Provide the compartment of the OCI bucket compartment your uploading to. You can find the compartment in the bucket details.
+#: build/messages/components/Wizard/steps/ociDest.json
+msgid ""
+"Provide the compartment of the OCI bucket compartment your uploading to. You "
+"can find the compartment in the bucket details."
+msgstr ""
+
+#. [wizard.azure.storageAccount.popoverBody]
+#. defaultMessage is:
+#. Provide the name of a storage account. You can find storage accounts on the <strong>Storage accounts</strong> page in the Azure portal.
+#: build/messages/components/Wizard/steps/azureAuth.json
 msgid ""
 "Provide the name of a storage account. You can find storage accounts on the "
-"{storageAccounts} page in the {azure} portal."
+"<strong>Storage accounts</strong> page in the Azure portal."
 msgstr ""
 
-#. [components.Wizard.1891777230]
+#. [wizard.vmware.cluster.popoverBody]
 #. defaultMessage is:
 #. Provide the name of the Cluster to which the image file will be uploaded.
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid ""
 "Provide the name of the Cluster to which the image file will be uploaded."
 msgstr ""
 
-#. [components.Wizard.1217327836]
+#. [wizard.vmware.dataCenter.popoverBody]
 #. defaultMessage is:
 #. Provide the name of the Datacenter to which the image file will be uploaded.
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid ""
 "Provide the name of the Datacenter to which the image file will be uploaded."
 msgstr ""
 
-#. [components.Wizard.4014474612]
+#. [wizard.vmware.datastore.popoverBody]
 #. defaultMessage is:
 #. Provide the name of the Datastore to which the image file will be uploaded.
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid ""
 "Provide the name of the Datastore to which the image file will be uploaded."
 msgstr ""
 
-#. [components.Wizard.1476874820]
+#. [wizard.ostree.ref.popoverBody]
 #. defaultMessage is:
 #. Provide the name of the branch for the content. If the ref does not already exist it will be created.
-#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/steps/ostreeSettings.json
 msgid ""
 "Provide the name of the branch for the content. If the ref does not already "
 "exist it will be created."
 msgstr ""
 
-#. [components.Wizard.3701635592]
+#. [wizard.oci.namespace.popoverBody]
 #. defaultMessage is:
-#. Provide the namespace of the {bucket} your uploading to. You can find the namespace in the bucket details.
-#: build/messages/components/Wizard/OCIDestinationStep.json
+#. Provide the namespace of the OCI bucket your uploading to. You can find the namespace in the bucket details.
+#: build/messages/components/Wizard/steps/ociDest.json
 msgid ""
-"Provide the namespace of the {bucket} your uploading to. You can find the "
+"Provide the namespace of the OCI bucket your uploading to. You can find the "
 "namespace in the bucket details."
 msgstr ""
 
-#. [components.Wizard.3286165321]
+#. [wizard.oci.region.popoverBody]
 #. defaultMessage is:
-#. Provide the region of the {bucket} your uploading to. You can find the region in the bucket details.
-#: build/messages/components/Wizard/OCIDestinationStep.json
+#. Provide the region of the Bucket region your uploading to. You can find the region in the bucket details.
+#: build/messages/components/Wizard/steps/ociDest.json
+#, fuzzy
+#| msgid ""
+#| "Provide the AWS Region where you want to import your image. This must be "
+#| "the same region where the {bucket} exists."
 msgid ""
-"Provide the region of the {bucket} your uploading to. You can find the "
+"Provide the region of the Bucket region your uploading to. You can find the "
 "region in the bucket details."
 msgstr ""
+"მიუთითეთ გამოსახულების ასატვირთი AWS-ის რეგიონი. უნდა ემთხვეოდეს იმას, სადაც "
+"{bucket}-ია მოთავსებული."
 
-#. [components.Wizard.3854501928]
+#. [wizard.oci.tenancy.popoverBody]
 #. defaultMessage is:
-#. Provide the tenancy of the {bucket} your uploading to. You can find the tenancy in the bucket details.
-#: build/messages/components/Wizard/OCIDestinationStep.json
+#. Provide the tenancy of the OCI bucket your uploading to. You can find the tenancy in the bucket details.
+#: build/messages/components/Wizard/steps/ociDest.json
 msgid ""
-"Provide the tenancy of the {bucket} your uploading to. You can find the "
+"Provide the tenancy of the OCI bucket your uploading to. You can find the "
 "tenancy in the bucket details."
 msgstr ""
 
-#. [components.Wizard.3387354708]
+#. [wizard.vmware.host.popoverBody]
 #. defaultMessage is:
-#. Provide the url of your {vmware} instance to which the image file will be uploaded.
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#. Provide the url of your VMWare vSphere instance to which the image file will be uploaded.
+#: build/messages/components/Wizard/steps/vmwareDest.json
+#, fuzzy
+#| msgid ""
+#| "Provide a file name to be used for the image file that will be uploaded."
 msgid ""
-"Provide the url of your {vmware} instance to which the image file will be "
-"uploaded."
-msgstr ""
+"Provide the url of your VMWare vSphere instance to which the image file will "
+"be uploaded."
+msgstr "მიუთითეთ გამოსახულების ასატვირთი ფაილის სახელი."
 
-#. [components.Wizard.577410027]
-#. defaultMessage is:
-#. Provide the {bucket} name to which the image file will be uploaded before being imported as a custom image. 
-#.                         The {bucket} must already exist in the Region where you want to import your image. You can find a list of {buckets} on the
-#.                         {bucketsPage} page in the OCI storage service in the OCI console.
-#: build/messages/components/Wizard/OCIDestinationStep.json
-msgid ""
-"Provide the {bucket} name to which the image file will be uploaded before "
-"being imported as a custom image. \n"
-"                        The {bucket} must already exist in the Region where "
-"you want to import your image. You can find a list of {buckets} on the\n"
-"                        {bucketsPage} page in the OCI storage service in the "
-"OCI console."
-msgstr ""
-
-#. [components.Wizard.labelqcow]
-#. defaultMessage is:
-#. QEMU Image (.qcow2)
-#: build/messages/components/Wizard/ImageStep.json
-msgid "QEMU Image (.qcow2)"
-msgstr "QEMU გამოსახულება (.qcow2)"
-
-#. [components.Wizard.31026111]
+#. [wizard.ostree.ref.label]
 #. defaultMessage is:
 #. Ref
-#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/steps/ostreeSettings.json
 msgid "Ref"
 msgstr "ბმა"
 
+#. [wizard.ostree.ref.popoverAria]
+#. defaultMessage is:
+#. Ref help
+#: build/messages/components/Wizard/steps/ostreeSettings.json
+#, fuzzy
+#| msgid "Azure help"
+msgid "Ref help"
+msgstr "Azure-ის დახმარება"
+
+#. [wizard.aws.region.popoverAria]
+#. defaultMessage is:
+#. Region help
+#: build/messages/components/Wizard/steps/awsDest.json
+#, fuzzy
+#| msgid "AWS region help"
+msgid "Region help"
+msgstr "AWS-ის რეგიონის დახმარება"
+
 #. [components.ListView.423140743]
 #. defaultMessage is:
 #. Release
 #. [components.ListView.423140743]
 #. defaultMessage is:
 #. Release
-#. [components.Toolbar.filterReleaseTitle]
-#. defaultMessage is:
-#. Release
-#. [components.Toolbar.filterReleaseTitle]
+#. [toolbar.blueprint.filter.release]
 #. defaultMessage is:
 #. Release
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ComponentsDataListItem.json
-#: build/messages/components/Toolbar/FilterInput.json
-#: build/messages/components/Toolbar/ToolbarLayout.json
+#: build/messages/components/Toolbar/BlueprintToolbar.json
 msgid "Release"
 msgstr "რელიზი"
 
@@ -1866,14 +1739,28 @@ msgstr "რელიზი"
 #. [components.ListView.2703758654]
 #. defaultMessage is:
 #. Remove
-#. [components.ListView.2703758654]
-#. defaultMessage is:
-#. Remove
 #: build/messages/components/ListView/ComponentDetailsView.json
-#: build/messages/components/ListView/ComponentsDataListItem.json
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Remove"
 msgstr "წაშლა"
+
+#. [wizard.packages.removeAll]
+#. defaultMessage is:
+#. Remove all
+#: build/messages/components/Wizard/formComponents/Packages.json
+#, fuzzy
+#| msgid "Remove"
+msgid "Remove all"
+msgstr "წაშლა"
+
+#. [wizard.customizations.buttons.removeAll]
+#. defaultMessage is:
+#. Remove all users
+#: build/messages/components/Wizard/steps/users.json
+#, fuzzy
+#| msgid "Remove source"
+msgid "Remove all users"
+msgstr "წყაროს წაშლა"
 
 #. [components.ListView.removeComponent]
 #. defaultMessage is:
@@ -1889,6 +1776,15 @@ msgstr "კომპონენტის წაშლა მონახაზ�
 msgid "Remove from blueprint"
 msgstr "მონახაზიდან ამოღება"
 
+#. [wizard.packages.removeSelected]
+#. defaultMessage is:
+#. Remove selected
+#: build/messages/components/Wizard/formComponents/Packages.json
+#, fuzzy
+#| msgid "Remove source"
+msgid "Remove selected"
+msgstr "წყაროს წაშლა"
+
 #. [components.ListView.remove]
 #. defaultMessage is:
 #. Remove source
@@ -1896,12 +1792,14 @@ msgstr "მონახაზიდან ამოღება"
 msgid "Remove source"
 msgstr "წყაროს წაშლა"
 
-#. [components.Modal.2291868453] - Identifies the change as a component that was removed
+#. [wizard.customizations.buttons.remove]
 #. defaultMessage is:
-#. Removed
-#: build/messages/components/Modal/PendingChanges.json
-msgid "Removed"
-msgstr "წაშლილია"
+#. Remove user
+#: build/messages/components/Wizard/steps/users.json
+#, fuzzy
+#| msgid "Remove source"
+msgid "Remove user"
+msgstr "წყაროს წაშლა"
 
 #. [components.ListView.2663433025]
 #. defaultMessage is:
@@ -1910,11 +1808,20 @@ msgstr "წაშლილია"
 msgid "Removing source"
 msgstr "წყაროს წაშლა"
 
-#. [components.Wizard.2238384022]
+#. [wizard.ostree.repoURL.label]
 #. defaultMessage is:
 #. Repository URL
-#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/steps/ostreeSettings.json
 msgid "Repository URL"
+msgstr "რეპოზიტორიის URL"
+
+#. [wizard.ostree.repoURL.popoverAria]
+#. defaultMessage is:
+#. Repository URL help
+#: build/messages/components/Wizard/steps/ostreeSettings.json
+#, fuzzy
+#| msgid "Repository URL"
+msgid "Repository URL help"
 msgstr "რეპოზიტორიის URL"
 
 #. [components.Modal.128739785]
@@ -1924,20 +1831,20 @@ msgstr "რეპოზიტორიის URL"
 msgid "Required information is missing."
 msgstr "აუცილებელი ინფორმაცია ნაპოვნი არაა."
 
-#. [components.Wizard.3835894881]
+#. [wizard.review.title]
 #. defaultMessage is:
 #. Review
-#: build/messages/components/Wizard/CreateImageUpload.json
+#: build/messages/components/Wizard/steps/review.json
 msgid "Review"
 msgstr "გადახედვა"
 
-#. [components.Wizard.review]
+#. [wizard.review.review]
 #. defaultMessage is:
-#. Review the information below and click Finish to create the image and complete the tasks that were selected.
-#: build/messages/components/Wizard/ReviewStep.json
+#. Review the information and click "Create image" to create the image using the following criteria.
+#: build/messages/components/Wizard/formComponents/Review.json
 msgid ""
-"Review the information below and click Finish to create the image and "
-"complete the tasks that were selected."
+"Review the information and click \"Create image\" to create the image using "
+"the following criteria."
 msgstr ""
 
 #. [components.Modal.labelRole]
@@ -1947,17 +1854,23 @@ msgstr ""
 msgid "Role"
 msgstr "როლი"
 
-#. [components.Wizard.bucket]
+#. [wizard.aws.bucket.popoverAria]
 #. defaultMessage is:
-#. S3 Bucket help
-#: build/messages/components/Wizard/AWSDestinationStep.json
-msgid "S3 Bucket help"
+#. S3 bucket help
+#: build/messages/components/Wizard/steps/awsDest.json
+#, fuzzy
+#| msgid "S3 Bucket help"
+msgid "S3 bucket help"
 msgstr "დახმარება S3 Bucket-ის შესახებ"
 
 #. [components.Modal.labelSSHKey]
 #. defaultMessage is:
 #. SSH key
+#. [wizard.customizations.sshKey.label]
+#. defaultMessage is:
+#. SSH key
 #: build/messages/components/Modal/UserAccount.json
+#: build/messages/components/Wizard/steps/users.json
 msgid "SSH key"
 msgstr "SSH გასაღები"
 
@@ -1972,6 +1885,15 @@ msgstr "SSH გასაღები"
 msgid "Save"
 msgstr "შენახვა"
 
+#. [wizard.review.saveBlueprint]
+#. defaultMessage is:
+#. Save blueprint
+#: build/messages/components/Wizard/formComponents/SubmitButtonsCustom.json
+#, fuzzy
+#| msgid "Create blueprint"
+msgid "Save blueprint"
+msgstr "მონახაზის შექმნა"
+
 #. [components.Modal.1820273720]
 #. defaultMessage is:
 #. Saving source
@@ -1979,21 +1901,42 @@ msgstr "შენახვა"
 msgid "Saving source"
 msgstr "წყაროს შენახვა"
 
-#. [components.Wizard.135579143]
+#. [wizard.packages.searchAbove]
+#. defaultMessage is:
+#. Search above to add additional{br}packages to your image
+#: build/messages/components/Wizard/formComponents/Packages.json
+msgid "Search above to add additional{br}packages to your image"
+msgstr ""
+
+#. [wizard.packages.availablePackagesSearch]
+#. defaultMessage is:
+#. Search button for available packages
+#: build/messages/components/Wizard/formComponents/Packages.json
+msgid "Search button for available packages"
+msgstr ""
+
+#. [wizard.packages.searchPackages]
+#. defaultMessage is:
+#. Search for a package
+#: build/messages/components/Wizard/formComponents/Packages.json
+msgid "Search for a package"
+msgstr ""
+
+#. [wizard.review.secretAccessKey]
 #. defaultMessage is:
 #. Secret access key
-#. [components.Wizard.135579143]
+#. [wizard.aws.secretAccessKey.label]
 #. defaultMessage is:
 #. Secret access key
-#: build/messages/components/Wizard/AWSAuthStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/awsAuth.json
 msgid "Secret access key"
 msgstr "წვდომის საიდუმლო გასაღები"
 
-#. [secret-access-key-help]
+#. [wizard.aws.secretAccessKey.popoverAria]
 #. defaultMessage is:
 #. Secret access key help
-#: build/messages/components/Wizard/AWSAuthStep.json
+#: build/messages/components/Wizard/steps/awsAuth.json
 msgid "Secret access key help"
 msgstr "დახმარება საიდუმლო წვდომის გასაღების შესახებ"
 
@@ -2004,22 +1947,20 @@ msgstr "დახმარება საიდუმლო წვდომი�
 msgid "Security"
 msgstr "დაცვა"
 
-#. [pages.blueprintEdit.1513086105]
-#. defaultMessage is:
-#. Select components
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Select components"
-msgstr "აირჩიეთ კომპონენტები"
-
 #. [components.Modal.selectOne]
 #. defaultMessage is:
 #. Select one
-#. [components.Wizard.selectOne]
-#. defaultMessage is:
-#. Select one
 #: build/messages/components/Modal/ManageSources.json
-#: build/messages/components/Wizard/ImageStep.json
 msgid "Select one"
+msgstr "აირჩიეთ ერთი"
+
+#. [wizard.imageOutput.selectType]
+#. defaultMessage is:
+#. Select output type
+#: build/messages/components/Wizard/formComponents/ImageOutputSelect.json
+#, fuzzy
+#| msgid "Select one"
+msgid "Select output type"
 msgstr "აირჩიეთ ერთი"
 
 #. [components.ListView.selectedTabTitle]
@@ -2028,6 +1969,24 @@ msgstr "აირჩიეთ ერთი"
 #: build/messages/components/ListView/BlueprintContents.json
 msgid "Selected components"
 msgstr "არჩეული კომპონენტები"
+
+#. [wizard.packages.selectedPackages]
+#. defaultMessage is:
+#. Selected packages
+#: build/messages/components/Wizard/steps/packages.json
+#, fuzzy
+#| msgid "Edit packages"
+msgid "Selected packages"
+msgstr "პაკეტების ჩასწორება"
+
+#. [wizard.packages.selectorControls]
+#. defaultMessage is:
+#. Selector controls
+#: build/messages/components/Wizard/formComponents/Packages.json
+#, fuzzy
+#| msgid "Select components"
+msgid "Selector controls"
+msgstr "აირჩიეთ კომპონენტები"
 
 #. [components.Modal.adminCheckbox]
 #. defaultMessage is:
@@ -2039,14 +1998,18 @@ msgstr "სერვერის ადმინისტრატორი"
 #. [components.Modal.labelAdmin]
 #. defaultMessage is:
 #. Server administrator
+#. [wizard.customizations.serverAdmin.label]
+#. defaultMessage is:
+#. Server administrator
 #: build/messages/components/Modal/UserAccount.json
+#: build/messages/components/Wizard/steps/users.json
 msgid "Server administrator"
 msgstr "სერვერი ადმინისტრატორი"
 
-#. [components.Wizard.imageSizePopover]
+#. [wizard.imageOutput.imageSize.popoverBody]
 #. defaultMessage is:
 #. Set the size that you want the image to be when instantiated. The total package size and target destination of your image should be considered when setting the image size.
-#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/steps/imageOutput.json
 msgid ""
 "Set the size that you want the image to be when instantiated. The total "
 "package size and target destination of your image should be considered when "
@@ -2080,6 +2043,32 @@ msgstr "ნაკლების ჩვენება"
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Size"
 msgstr "ზომა"
+
+#. [toolbar.blueprints.sort.asc]
+#. defaultMessage is:
+#. Sort blueprints ascending
+#. [toolbar.blueprints.sort.asc]
+#. defaultMessage is:
+#. Sort blueprints ascending
+#: build/messages/components/Toolbar/BlueprintsToolbar.json
+#: build/messages/components/Toolbar/BlueprintToolbar.json
+#, fuzzy
+#| msgid "Export blueprint"
+msgid "Sort blueprints ascending"
+msgstr "მონახაზის გატანა"
+
+#. [toolbar.blueprints.sort.desc]
+#. defaultMessage is:
+#. Sort blueprints descending
+#. [toolbar.blueprints.sort.desc]
+#. defaultMessage is:
+#. Sort blueprints descending
+#: build/messages/components/Toolbar/BlueprintsToolbar.json
+#: build/messages/components/Toolbar/BlueprintToolbar.json
+#, fuzzy
+#| msgid "Export blueprint"
+msgid "Sort blueprints descending"
+msgstr "მონახაზის გატანა"
 
 #. [components.ListView.kebab]
 #. defaultMessage is:
@@ -2120,6 +2109,13 @@ msgstr ""
 msgid "Specify a new blueprint name."
 msgstr "მიუთითეთ ახალი მონახაზის სახელი."
 
+#. [wizard.customizations.installDevice.popoverBody]
+#. defaultMessage is:
+#. Specify which device the image will be installed onto.
+#: build/messages/components/Wizard/steps/system.json
+msgid "Specify which device the image will be installed onto."
+msgstr ""
+
 #. [components.EmptyState.errorInactivePrimary]
 #. defaultMessage is:
 #. Start
@@ -2155,70 +2151,68 @@ msgstr "აგების გაჩერება"
 msgid "Stopping"
 msgstr "გაჩერება"
 
-#. [components.Wizard.4127941395]
+#. [wizard.review.storageAccessKey]
 #. defaultMessage is:
 #. Storage access key
-#. [components.Wizard.4127941395]
+#. [wizard.azure.storageAccessKey.label]
 #. defaultMessage is:
 #. Storage access key
-#: build/messages/components/Wizard/AzureAuthStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/azureAuth.json
 msgid "Storage access key"
 msgstr "საცავის წვდომის გასაღები"
 
-#. [components.Wizard.storageAccessKey]
+#. [wizard.azure.storageAccessKey.popoverAria]
 #. defaultMessage is:
 #. Storage access key help
-#: build/messages/components/Wizard/AzureAuthStep.json
+#: build/messages/components/Wizard/steps/azureAuth.json
 msgid "Storage access key help"
 msgstr "დახმარება საცავთან წვდომის გასაღების შესახებ"
 
-#. [components.Wizard.1624497518]
+#. [wizard.review.storageAccount]
 #. defaultMessage is:
 #. Storage account
-#. [components.Wizard.1624497518]
+#. [wizard.azure.storageAccount.label]
 #. defaultMessage is:
 #. Storage account
-#: build/messages/components/Wizard/AzureAuthStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/azureAuth.json
 msgid "Storage account"
 msgstr "საცავის ანგარიში"
 
-#. [components.Wizard.storageAccount]
+#. [wizard.azure.storageAccount.popoverAria]
 #. defaultMessage is:
 #. Storage account help
-#: build/messages/components/Wizard/AzureAuthStep.json
+#: build/messages/components/Wizard/steps/azureAuth.json
 msgid "Storage account help"
 msgstr "დახმარება საცავის ანგარიშის შესახებ"
 
-#. [components.Wizard.storageAccounts]
-#. defaultMessage is:
-#. Storage accounts
-#. [components.Wizard.storageAccounts]
-#. defaultMessage is:
-#. Storage accounts
-#: build/messages/components/Wizard/AzureAuthStep.json
-#: build/messages/components/Wizard/AzureDestinationStep.json
-msgid "Storage accounts"
-msgstr "საცავის ანგარიშები"
-
-#. [components.Wizard.1249927125]
+#. [wizard.review.storageContainer]
 #. defaultMessage is:
 #. Storage container
-#. [components.Wizard.1249927125]
+#. [wizard.azure.storageContainer.label]
 #. defaultMessage is:
 #. Storage container
-#: build/messages/components/Wizard/AzureDestinationStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/azureDest.json
 msgid "Storage container"
 msgstr "საცავის კონტეინერი"
 
-#. [components.Wizard.storageContainer]
+#. [wizard.azure.storageContainer.popoverAria]
 #. defaultMessage is:
 #. Storage container help
-#: build/messages/components/Wizard/AzureDestinationStep.json
+#: build/messages/components/Wizard/steps/azureDest.json
 msgid "Storage container help"
 msgstr "დახმარება საცავის კონტეინერის შესახებ"
+
+#. [wizard.customizations.systemTitle]
+#. defaultMessage is:
+#. System
+#: build/messages/components/Wizard/steps/system.json
+#, fuzzy
+#| msgid "System source"
+msgid "System"
+msgstr "სისტემის წყარო"
 
 #. [components.ListView.3639476303] - System sources are configured repositories that were found on the host machine
 #. defaultMessage is:
@@ -2272,15 +2266,6 @@ msgstr ""
 msgid "The name {name} already exists."
 msgstr "სახელი უკვე არსებობს ({name})."
 
-#. [pages.blueprintEdit.addComponentMessageTwo]
-#. defaultMessage is:
-#. The packages needed to support the selected image type are automatically included when creating an image.
-#: build/messages/pages/blueprintEdit/index.json
-msgid ""
-"The packages needed to support the selected image type are automatically "
-"included when creating an image."
-msgstr ""
-
 #. [pages.error.26562577]
 #. defaultMessage is:
 #. The page you're looking for does not exist or an another error occurred.
@@ -2295,19 +2280,6 @@ msgstr ""
 #: build/messages/components/EmptyState/EmptyStateInactive.json
 msgid "The service osbuild-composer was not started."
 msgstr "სერვისი osbuild-composer-ი გაშვებული არაა."
-
-#. [components.Wizard.warningSizeLarge]
-#. defaultMessage is:
-#. The size specified is large. We recommend that you check whether your target destination has any restrictions on image size.
-#. [components.Wizard.warningSizeLarge]
-#. defaultMessage is:
-#. The size specified is large. We recommend that you check whether your target destination has any restrictions on image size.
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
-msgid ""
-"The size specified is large. We recommend that you check whether your target "
-"destination has any restrictions on image size."
-msgstr ""
 
 #. [components.Modal.usernameValidChars]
 #. defaultMessage is:
@@ -2347,18 +2319,9 @@ msgstr ""
 
 #. [pages.blueprint.emptyBlueprintMessage]
 #. defaultMessage is:
-#. There are no components listed in the blueprint. Edit the blueprint to add components.
+#. There are no components listed in the blueprint.
 #: build/messages/pages/blueprint/index.json
-msgid ""
-"There are no components listed in the blueprint. Edit the blueprint to add "
-"components."
-msgstr ""
-
-#. [components.Wizard.warningReview]
-#. defaultMessage is:
-#. There are one or more fields that require your attention.
-#: build/messages/components/Wizard/ReviewStep.json
-msgid "There are one or more fields that require your attention."
+msgid "There are no components listed in the blueprint."
 msgstr ""
 
 #. [components.Modal.181468144]
@@ -2372,22 +2335,6 @@ msgstr ""
 msgid "This action cannot be undone."
 msgstr "ქმედების დაბრუნება შეუძლებელია."
 
-#. [components.Wizard.warningUnsaved]
-#. defaultMessage is:
-#. This blueprint has changes that are not committed. These changes will be committed before the image is created.
-#: build/messages/components/Wizard/ImageStep.json
-msgid ""
-"This blueprint has changes that are not committed. These changes will be "
-"committed before the image is created."
-msgstr ""
-
-#. [empty-blueprint-alert]
-#. defaultMessage is:
-#. This blueprint is empty.
-#: build/messages/components/Wizard/ImageStep.json
-msgid "This blueprint is empty."
-msgstr "მონახაზი ცარიელია."
-
 #. [components.ListView.noDepsMessage]
 #. defaultMessage is:
 #. This component has no dependencies.
@@ -2395,21 +2342,10 @@ msgstr "მონახაზი ცარიელია."
 msgid "This component has no dependencies."
 msgstr "კომპონენტს დამოკიდებულებები არ გააჩნია."
 
-#. [components.Wizard.requiredField]
-#. defaultMessage is:
-#. This is a required field
-#: build/messages/components/Wizard/ImageStep.json
-msgid "This is a required field"
-msgstr "ველის შევსება აუცილებელია"
-
-#. [components.Wizard.infotip]
+#. [wizard.blueprintName.popover.content]
 #. defaultMessage is:
 #. This process can take a while. Images are built in the order they are started.
-#. [components.Wizard.infotip]
-#. defaultMessage is:
-#. This process can take a while. Images are built in the order they are started.
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/BlueprintName.json
 msgid ""
 "This process can take a while. Images are built in the order they are "
 "started."
@@ -2434,40 +2370,6 @@ msgstr "წყაროს ბილიკი უკვე არსებობ
 #. This system does not have any valid subscriptions.
 #: build/messages/components/Notifications/Notifications.json
 msgid "This system does not have any valid subscriptions."
-msgstr ""
-
-#. [components.Wizard.1727762289]
-#. defaultMessage is:
-#. This upload process requires that you have an {iam} role named {vmimport} to ensure that the image can
-#.                         be imported from the S3 {bucket} into EC2. For more details, refer to the {role}.
-#. [components.Wizard.1727762289]
-#. defaultMessage is:
-#. This upload process requires that you have an {iam} role named {vmimport} to ensure that the image can
-#.                         be imported from the S3 {bucket} into EC2. For more details, refer to the {role}.
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
-msgid ""
-"This upload process requires that you have an {iam} role named {vmimport} to "
-"ensure that the image can\n"
-"                        be imported from the S3 {bucket} into EC2. For more "
-"details, refer to the {role}."
-msgstr ""
-
-#. [components.Wizard.50730016]
-#. defaultMessage is:
-#. This upload process requires that you have an {iam} with attached policy to manage custom images
-#.                         to ensure that the image can be import as a custom image from the {bucket}. For more details, refer to the {policies}.
-#. [components.Wizard.50730016]
-#. defaultMessage is:
-#. This upload process requires that you have an {iam} with attached policy to manage custom images
-#.                         to ensure that the image can be import as a custom image from the {bucket}. For more details, refer to the {policies}.
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
-msgid ""
-"This upload process requires that you have an {iam} with attached policy to "
-"manage custom images\n"
-"                        to ensure that the image can be import as a custom "
-"image from the {bucket}. For more details, refer to the {policies}."
 msgstr ""
 
 #. [components.Modal.usernameDuplicate]
@@ -2496,14 +2398,10 @@ msgstr "პრობლემების პოვნა"
 #. [components.Modal.type] - Type of source
 #. defaultMessage is:
 #. Type
-#. [components.Wizard.type]
-#. defaultMessage is:
-#. Type
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ComponentTypeIcons.json
 #: build/messages/components/ListView/ListItemImages.json
 #: build/messages/components/Modal/ManageSources.json
-#: build/messages/components/Wizard/ImageStep.json
 msgid "Type"
 msgstr "ტიპი"
 
@@ -2542,13 +2440,6 @@ msgstr "განახლება"
 msgid "Update source"
 msgstr "წყაროს განახლება"
 
-#. [components.Modal.562988552] - Identifies the change as a component that was updated
-#. defaultMessage is:
-#. Updated
-#: build/messages/components/Modal/PendingChanges.json
-msgid "Updated"
-msgstr "განახლებულია"
-
 #. [components.ListView.uploadStatusFinished] - Upload status when process is finished
 #. defaultMessage is:
 #. Upload complete
@@ -2562,24 +2453,6 @@ msgstr "ატვირთვა დასრულებულია"
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload failed"
 msgstr "ატვირთვის შეცდომა"
-
-#. [components.Wizard.3057159632]
-#. defaultMessage is:
-#. Upload image
-#: build/messages/components/Wizard/ImageStep.json
-msgid "Upload image"
-msgstr "გამოსახულების ატვირთვა"
-
-#. [components.Wizard.uploadImage]
-#. defaultMessage is:
-#. Upload image help
-#. [components.Wizard.uploadImage]
-#. defaultMessage is:
-#. Upload image help
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
-msgid "Upload image help"
-msgstr "დახმარება გამოსახულების ატვირთვის შესახებ"
 
 #. [components.ListView.uploadStatusRunning] - Upload status when process is in progress
 #. defaultMessage is:
@@ -2595,64 +2468,116 @@ msgstr "მიმდინარეობს ატვირთვა"
 msgid "Upload pending"
 msgstr "ატვირთვის მოლოდინი"
 
-#. [components.Wizard.3235936248]
+#. [wizard.review.uploadToAWS]
 #. defaultMessage is:
 #. Upload to AWS
-#. [components.Wizard.uploadAWS]
+#. [wizard.aws.title]
 #. defaultMessage is:
 #. Upload to AWS
-#. [components.Wizard.3235936248]
+#. [wizard.aws.title]
 #. defaultMessage is:
 #. Upload to AWS
-#: build/messages/components/Wizard/CreateImageUpload.json
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#. [wizard.imageOutput.uploadAWS]
+#. defaultMessage is:
+#. Upload to AWS
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/awsAuth.json
+#: build/messages/components/Wizard/steps/awsDest.json
+#: build/messages/components/Wizard/steps/imageOutput.json
 msgid "Upload to AWS"
 msgstr "AWS-ზე ატვირთვა"
 
-#. [components.Wizard.2244258572]
+#. [wizard.imageOutput.uploadAWS.popoverAria]
+#. defaultMessage is:
+#. Upload to AWS help
+#: build/messages/components/Wizard/steps/imageOutput.json
+#, fuzzy
+#| msgid "Upload to AWS"
+msgid "Upload to AWS help"
+msgstr "AWS-ზე ატვირთვა"
+
+#. [wizard.review.uploadToAzure]
 #. defaultMessage is:
 #. Upload to Azure
-#. [components.Wizard.uploadAzure]
+#. [wizard.azure.title]
 #. defaultMessage is:
 #. Upload to Azure
-#. [components.Wizard.2244258572]
+#. [wizard.azure.title]
 #. defaultMessage is:
 #. Upload to Azure
-#: build/messages/components/Wizard/CreateImageUpload.json
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#. [wizard.imageOutput.uploadAzure]
+#. defaultMessage is:
+#. Upload to Azure
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/azureAuth.json
+#: build/messages/components/Wizard/steps/azureDest.json
+#: build/messages/components/Wizard/steps/imageOutput.json
 msgid "Upload to Azure"
 msgstr "Azure-ზე ატვირთვა"
 
-#. [components.Wizard.3418449520]
+#. [wizard.imageOutput.uploadAzure.popoverAria]
+#. defaultMessage is:
+#. Upload to Azure help
+#: build/messages/components/Wizard/steps/imageOutput.json
+#, fuzzy
+#| msgid "Upload to Azure"
+msgid "Upload to Azure help"
+msgstr "Azure-ზე ატვირთვა"
+
+#. [wizard.review.uploadToOCI]
 #. defaultMessage is:
 #. Upload to OCI
-#. [components.Wizard.uploadOCI]
+#. [wizard.imageOutput.uploadOCI]
 #. defaultMessage is:
 #. Upload to OCI
-#. [components.Wizard.3418449520]
+#. [wizard.oci.title]
 #. defaultMessage is:
 #. Upload to OCI
-#: build/messages/components/Wizard/CreateImageUpload.json
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#. [wizard.oci.title]
+#. defaultMessage is:
+#. Upload to OCI
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/imageOutput.json
+#: build/messages/components/Wizard/steps/ociAuth.json
+#: build/messages/components/Wizard/steps/ociDest.json
 msgid "Upload to OCI"
 msgstr "OCI-ზე ატვირთვა"
 
-#. [components.Wizard.3542348520]
+#. [wizard.imageOutput.uploadOCI.popoverAria]
+#. defaultMessage is:
+#. Upload to OCI help
+#: build/messages/components/Wizard/steps/imageOutput.json
+#, fuzzy
+#| msgid "Upload to OCI"
+msgid "Upload to OCI help"
+msgstr "OCI-ზე ატვირთვა"
+
+#. [wizard.review.uploadToVMWare]
 #. defaultMessage is:
 #. Upload to VMWare
-#. [components.Wizard.uploadVMWare]
+#. [wizard.imageOutput.uploadVMWare]
 #. defaultMessage is:
 #. Upload to VMWare
-#. [components.Wizard.3542348520]
+#. [wizard.vmware.title]
 #. defaultMessage is:
 #. Upload to VMWare
-#: build/messages/components/Wizard/CreateImageUpload.json
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#. [wizard.vmware.title]
+#. defaultMessage is:
+#. Upload to VMWare
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/imageOutput.json
+#: build/messages/components/Wizard/steps/vmwareAuth.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid "Upload to VMWare"
+msgstr "VMWare-ზე ატვირთვა"
+
+#. [wizard.imageOutput.uploadVMWare.popoverAria]
+#. defaultMessage is:
+#. Upload to VMWare help
+#: build/messages/components/Wizard/steps/imageOutput.json
+#, fuzzy
+#| msgid "Upload to VMWare"
+msgid "Upload to VMWare help"
 msgstr "VMWare-ზე ატვირთვა"
 
 #. [components.ListView.uploadType] - A label for the service to which an image was uploaded
@@ -2662,20 +2587,14 @@ msgstr "VMWare-ზე ატვირთვა"
 msgid "Upload type"
 msgstr "ატვირთვის ტიპი"
 
-#. [components.Wizard.2419068661]
-#. defaultMessage is:
-#. User
-#: build/messages/components/Wizard/ReviewStep.json
-msgid "User"
-msgstr "მომხმარებელი"
-
-#. [user-help]
+#. [wizard.review.userOCID]
 #. defaultMessage is:
 #. User OCID
-#. [components.Wizard.4135109133]
+#. [wizard.oci.userOCID.label]
 #. defaultMessage is:
 #. User OCID
-#: build/messages/components/Wizard/OCIAuthStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/ociAuth.json
 msgid "User OCID"
 msgstr "მომხმარებლის OCID"
 
@@ -2693,30 +2612,55 @@ msgstr "ქმედებები მომხმარებლების �
 msgid "User name"
 msgstr "მომხმარებლის სახელი"
 
-#. [components.Wizard.2663586870]
+#. [wizard.oci.userOCID.popoverAria]
+#. defaultMessage is:
+#. User ocid help
+#: build/messages/components/Wizard/steps/ociAuth.json
+#, fuzzy
+#| msgid "Cluster help"
+msgid "User ocid help"
+msgstr "დახმარება კლატერის შესახებ"
+
+#. [wizard.review.username]
 #. defaultMessage is:
 #. Username
-#. [components.Wizard.2663586870]
+#. [wizard.customizations.username.label]
 #. defaultMessage is:
 #. Username
-#: build/messages/components/Wizard/ReviewStep.json
-#: build/messages/components/Wizard/VMWareAuthStep.json
+#. [wizard.vmware.username.label]
+#. defaultMessage is:
+#. Username
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/users.json
+#: build/messages/components/Wizard/steps/vmwareAuth.json
 msgid "Username"
 msgstr "მომხმარებელი"
 
+#. [wizard.customizations.usersTitle]
+#. defaultMessage is:
+#. Users
 #. [pages.blueprint.443046426]
 #. defaultMessage is:
 #. Users
+#: build/messages/components/Wizard/steps/users.json
 #: build/messages/pages/blueprint/index.json
 msgid "Users"
 msgstr "მომხმარებლები"
 
-#. [components.Wizard.vmware]
+#. [wizard.customizations.hostname.validationError]
 #. defaultMessage is:
-#. VMWare help
-#: build/messages/components/Wizard/ReviewStep.json
-msgid "VMWare help"
-msgstr "დახმარება VMWARE-ის შესახებ"
+#. Valid characters are letters from a to z, the digits from 0 to 9, and the hyphen (-). 
+#.                         A hostname may not start with a hyphen. Each element of the hostname must be from 1 to 63 characters long 
+#.                         and the entire hostname can be at most 253 characters long.
+#: build/messages/components/Wizard/validators/hostnameValidator.json
+msgid ""
+"Valid characters are letters from a to z, the digits from 0 to 9, and the "
+"hyphen (-). \n"
+"                        A hostname may not start with a hyphen. Each element "
+"of the hostname must be from 1 to 63 characters long \n"
+"                        and the entire hostname can be at most 253 "
+"characters long."
+msgstr ""
 
 #. [pages.blueprint.hostnameHelp]
 #. defaultMessage is:
@@ -2727,10 +2671,10 @@ msgid ""
 "9, and the hyphen (-). A hostname may not start with a hyphen."
 msgstr ""
 
-#. [components.Wizard.ostreeRefHelperText]
+#. [wizard.ostree.ref.helpText]
 #. defaultMessage is:
 #. Valid characters for ref are letters from a to z, the digits from 0 to 9, the hyphen (-), the underscore (_), the period (.), and the forward slash (/). A ref must start with a letter, a number, or an underscore. Slashes must also be followed by a letter or number.
-#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/steps/ostreeSettings.json
 msgid ""
 "Valid characters for ref are letters from a to z, the digits from 0 to 9, "
 "the hyphen (-), the underscore (_), the period (.), and the forward slash "
@@ -2744,79 +2688,78 @@ msgstr ""
 #. [components.ListView.602883748]
 #. defaultMessage is:
 #. Version
-#. [components.Toolbar.filterVersionTitle]
-#. defaultMessage is:
-#. Version
-#. [components.Toolbar.filterVersionTitle]
+#. [toolbar.blueprint.filter.version]
 #. defaultMessage is:
 #. Version
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ComponentsDataListItem.json
-#: build/messages/components/Toolbar/FilterInput.json
-#: build/messages/components/Toolbar/ToolbarLayout.json
+#: build/messages/components/Toolbar/BlueprintToolbar.json
 msgid "Version"
 msgstr "ვერსია"
 
-#. [components.ListView.3097747573]
+#. [wizard.aws.accessKey.popoverBody]
 #. defaultMessage is:
-#. View
-#: build/messages/components/ListView/ComponentsDataListItem.json
-msgid "View"
-msgstr "ხედი"
-
-#. [components.Wizard.706264916]
-#. defaultMessage is:
-#. You can create and find existing Access key IDs on the {iam} page in the AWS console.
-#: build/messages/components/Wizard/AWSAuthStep.json
+#. You can create and find existing Access key IDs on the <strong>Identity and Access Management (IAM)</strong> page in the AWS console.
+#: build/messages/components/Wizard/steps/awsAuth.json
 msgid ""
-"You can create and find existing Access key IDs on the {iam} page in the AWS "
+"You can create and find existing Access key IDs on the <strong>Identity and "
+"Access Management (IAM)</strong> page in the AWS console."
+msgstr ""
+
+#. [wizard.oci.userOCID.popoverBody]
+#. defaultMessage is:
+#. You can find your user OCID <strong>Identity and Access Management (IAM)</strong> page in the OCI console.
+#: build/messages/components/Wizard/steps/ociAuth.json
+msgid ""
+"You can find your user OCID <strong>Identity and Access Management (IAM)</"
+"strong> page in the OCI console."
+msgstr ""
+
+#. [wizard.aws.secretAccessKey.popoverBody]
+#. defaultMessage is:
+#. You can view the Secret access key only when you create a new Access key ID on the <strong>Identity and Access Management (IAM)</strong> page in the AWS console.
+#: build/messages/components/Wizard/steps/awsAuth.json
+msgid ""
+"You can view the Secret access key only when you create a new Access key ID "
+"on the <strong>Identity and Access Management (IAM)</strong> page in the AWS "
 "console."
 msgstr ""
 
-#. [components.Wizard.844662623]
+#. [wizard.oci.fingerprint.popoverBody]
 #. defaultMessage is:
-#. You can find your user OCID {iam} page in the OCI console.
-#: build/messages/components/Wizard/OCIAuthStep.json
-msgid "You can find your user OCID {iam} page in the OCI console."
-msgstr ""
-
-#. [components.Wizard.4206409720]
-#. defaultMessage is:
-#. You can view the Secret access key only when you create a new Access key ID on the {iam} page in the AWS console.
-#: build/messages/components/Wizard/AWSAuthStep.json
-msgid ""
-"You can view the Secret access key only when you create a new Access key ID "
-"on the {iam} page in the AWS console."
-msgstr ""
-
-#. [components.Wizard.285351067]
-#. defaultMessage is:
-#. You can view your deployed RSA keys fingerprint in the API Keys section on the {iam} page in the OCI console.
-#: build/messages/components/Wizard/OCIAuthStep.json
+#. You can view your deployed RSA keys fingerprint in the API Keys section on the <strong>Identity and Access Management (IAM)</strong> page in the OCI console.
+#: build/messages/components/Wizard/steps/ociAuth.json
 msgid ""
 "You can view your deployed RSA keys fingerprint in the API Keys section on "
-"the {iam} page in the OCI console."
+"the <strong>Identity and Access Management (IAM)</strong> page in the OCI "
+"console."
 msgstr ""
 
-#. [components.Wizard.182848243]
+#. [wizard.oci.privateKey.popoverBody]
 #. defaultMessage is:
-#. You can view your deployed RSA keys in the API Keys section on the {iam} page in the OCI console.
-#: build/messages/components/Wizard/OCIAuthStep.json
+#. You can view your deployed RSA keys in the API Keys section on the <strong>Identity and Access Management (IAM)</strong> page in the OCI console.
+#: build/messages/components/Wizard/steps/ociAuth.json
 msgid ""
-"You can view your deployed RSA keys in the API Keys section on the {iam} "
-"page in the OCI console."
+"You can view your deployed RSA keys in the API Keys section on the "
+"<strong>Identity and Access Management (IAM)</strong> page in the OCI "
+"console."
 msgstr ""
 
 #. [components.ListView.actions]
 #. defaultMessage is:
 #. actions
-#. [components.ListView.actions]
-#. defaultMessage is:
-#. actions
-#: build/messages/components/ListView/BlueprintsDataList.json
 #: build/messages/components/ListView/ComponentsDataListItem.json
 msgid "actions"
 msgstr "ქმედებები"
+
+#. [wizard.blueprintName.name]
+#. defaultMessage is:
+#. blueprint
+#: build/messages/components/Wizard/formComponents/BlueprintName.json
+#, fuzzy
+#| msgid "Blueprint"
+msgid "blueprint"
+msgstr "მონახაზი"
 
 #. [components.ListView.details]
 #. defaultMessage is:
@@ -2824,13 +2767,6 @@ msgstr "ქმედებები"
 #: build/messages/components/ListView/ComponentsDataListItem.json
 msgid "details"
 msgstr "დეტალები"
-
-#. [components.Modal.2755325844]
-#. defaultMessage is:
-#. from
-#: build/messages/components/Modal/PendingChanges.json
-msgid "from"
-msgstr "გამომგზავნი"
 
 #. [pages.error.2054225650]
 #. defaultMessage is:
@@ -2860,29 +2796,6 @@ msgstr "მეტაბმული"
 #: build/messages/components/Modal/ManageSources.json
 msgid "mirrorlist"
 msgstr "სარკეები"
-
-#. [pages.blueprintEdit.paginationPerPage]
-#. defaultMessage is:
-#. per page
-#: build/messages/pages/blueprintEdit/index.json
-msgid "per page"
-msgstr "გვერდზე"
-
-#. [components.Wizard.2454328248]
-#. defaultMessage is:
-#. rhel/8/{arch}/edge is the default, where {arch} is determined by the host machine
-#: build/messages/components/Wizard/ImageStep.json
-msgid ""
-"rhel/8/{arch}/edge is the default, where {arch} is determined by the host "
-"machine"
-msgstr ""
-
-#. [components.Modal.152217691]
-#. defaultMessage is:
-#. to
-#: build/messages/components/Modal/PendingChanges.json
-msgid "to"
-msgstr "მიმღები"
 
 #. [components.ListView.baseurl]
 #. defaultMessage is:
@@ -2951,40 +2864,11 @@ msgstr ""
 msgid "{count} total components"
 msgstr "კომპონენტების რაოდენობაა {count}"
 
-#. [components.Modal.3908981070]
-#. defaultMessage is:
-#. {from} {oldVersion} {to} {newVersion}
-#: build/messages/components/Modal/PendingChanges.json
-msgid "{from} {oldVersion} {to} {newVersion}"
-msgstr "{from} {oldVersion} {to} {newVersion}"
-
 #. [pages.error.526995878]
 #. defaultMessage is:
 #. {goBack}, or head over to the {homePage} to choose a new direction.
 #: build/messages/pages/error/index.json
 msgid "{goBack}, or head over to the {homePage} to choose a new direction."
-msgstr ""
-
-#. [components.Modal.3141775911]
-#. defaultMessage is:
-#. {heading} {parenthetical}
-#: build/messages/components/Modal/PendingChanges.json
-msgid "{heading} {parenthetical}"
-msgstr "{heading} {parenthetical}"
-
-#. [pages.blueprintEdit.4031669927]
-#. defaultMessage is:
-#. {pendingChanges, plural, one {# Pending Change} other {# Pending Changes}}
-#: build/messages/pages/blueprintEdit/index.json
-msgid ""
-"{pendingChanges, plural, one {# Pending Change} other {# Pending Changes}}"
-msgstr ""
-
-#. [pages.blueprintEdit.3140434516]
-#. defaultMessage is:
-#. {selectComponents} in this list to add to the blueprint.
-#: build/messages/pages/blueprintEdit/index.json
-msgid "{selectComponents} in this list to add to the blueprint."
 msgstr ""
 
 #: public/manifest.json
@@ -2994,3 +2878,192 @@ msgstr "სისტემის გამოსახულებების �
 #: public/manifest.json
 msgid "Image Builder"
 msgstr "გამოსახულების ამგები"
+
+#~ msgid "(most recent first)"
+#~ msgstr "(ახლახანს გამოყენებული სია)"
+
+#~ msgid ""
+#~ "A minimal image will be created with only the packages needed to support "
+#~ "the selected image type."
+#~ msgstr ""
+#~ "მინიმალური გამოსახულება შეიქმენა მხოლოდ იმ პაკეტებისგან, რომლებიც საჭიროა "
+#~ "გამოსახულების არჩეული ტიპისთვის."
+
+#~ msgid "A value is required."
+#~ msgstr "საჭიროა მნიშვნელობა."
+
+#~ msgid "API private key's fingerprint"
+#~ msgstr "API-ის პირადი გასაღების ანაბეჭდი"
+
+#~ msgid "AWS help"
+#~ msgstr "AWS-ს დახმარება"
+
+#~ msgid "Access keys"
+#~ msgstr "წვდომის გასაღებები"
+
+#~ msgid "Active filters"
+#~ msgstr "აქტიური ფილტრები"
+
+#~ msgid "Add blueprint components"
+#~ msgstr "მონახაზის კომპონენტების დამატება"
+
+#~ msgid "Added"
+#~ msgstr "დამატებულია"
+
+#~ msgid "All fields are required."
+#~ msgstr "ყველა ველი საჭიროა."
+
+#~ msgid "Back"
+#~ msgstr "უკან"
+
+#~ msgid "Blob service"
+#~ msgstr "Blob-ის სერვისი"
+
+#~ msgid "Blueprint components"
+#~ msgstr "მონახაზის კომპონენტები"
+
+#~ msgid ""
+#~ "Browse or search for components, then add them to the blueprint. Or leave "
+#~ "the blueprint empty to create a minimal image."
+#~ msgstr ""
+#~ "დაათვალიერეთ ან მოძებნეთ კომპონენტები, შემდეგ დაამატეთ ისინი გეგმაში. ან "
+#~ "დატოვეთ გეგმა ცარიელი, რომ შექმნათ მინიმალური გამოსახულება."
+
+#~ msgid "Bucket help"
+#~ msgstr "ბაკეტის დახმარება"
+
+#~ msgid "Changes made in a previous session"
+#~ msgstr "წინა სესიაში შეატანილი ცვლილებები"
+
+#~ msgid ""
+#~ "Changes made in a previous session are not listed in the order they were "
+#~ "made. If you choose to undo these changes, they are undone as a group."
+#~ msgstr ""
+#~ "წინა სესიაში შეტანილი ცვლილებები მათი განხორციელების თანამიმდევრობით არაა "
+#~ "ჩამოთვლილი. თუ აირჩევთ გააუქმოთ ისინი, გაუქმება ჯგუფურად ხდება."
+
+#~ msgid "Changes pending commit"
+#~ msgstr "გადასაცემი ცვლილებები"
+
+#~ msgid "Comment"
+#~ msgstr "კომენტარი"
+
+#~ msgid "Commit"
+#~ msgstr "გადაცემა"
+
+#~ msgid "Commit and create"
+#~ msgstr "გადაცემა და შექმნა"
+
+#~ msgid "Commit and next"
+#~ msgstr "გადაცემა და შემდეგი"
+
+#~ msgid "Create and upload image"
+#~ msgstr "გამოსახულების შექმნა და ატვირთვა"
+
+#~ msgid "Data Center"
+#~ msgstr "მონაცემთა დამუშავების ცენტრი"
+
+#~ msgid "Data Store"
+#~ msgstr "მონაცემების საცავი"
+
+#~ msgid "Discard changes"
+#~ msgstr "ცვლილებების მოცილება"
+
+#~ msgid "Disk Archive (.tar)"
+#~ msgstr "დისკის არქივი (.tar)"
+
+#~ msgid "Filter available components by name"
+#~ msgstr "კომპონენტების სახელით გაფილტვრა"
+
+#~ msgid "Filter by name"
+#~ msgstr "სახელით გაფილტვრა"
+
+#~ msgid "Filter by name..."
+#~ msgstr "სახელით გაფილტვრა..."
+
+#~ msgid "Filter by release"
+#~ msgstr "რელიზით გაფილტვრა"
+
+#~ msgid "Filter by version"
+#~ msgstr "ვერსიით გაფილტვრა"
+
+#~ msgid "Finish"
+#~ msgstr "დასრულება"
+
+#~ msgid "Image type"
+#~ msgstr "გამოსახულების ტიპი"
+
+#~ msgid "Installer, suitable for USB and DVD (.iso)"
+#~ msgstr "ინსტალერი, თავსებადი USB/DVD(.iso)-სთან"
+
+#~ msgid "Minimum size is {size} GB"
+#~ msgstr "მინიმალური ზომაა {size} GB"
+
+#~ msgid "Name: {name}"
+#~ msgstr "სახელი: {name}"
+
+#~ msgid "Namespace help"
+#~ msgstr "დახმარება სახელების სივრცის შესახებ"
+
+#~ msgid "Next"
+#~ msgstr "შემდეგი"
+
+#~ msgid "OCI region help"
+#~ msgstr "დახმარება OCI-ის რეგიონის შესახებ"
+
+#~ msgid "OSTree repo url help"
+#~ msgstr "დახმარება OSTree repo url-ის შესახებ"
+
+#~ msgid "Only changes to selected components are shown."
+#~ msgstr "ნაჩვენებია მხოლოდ არჩეული კომპონენტების ცვლილებები."
+
+#~ msgid "Pending changes"
+#~ msgstr "დარჩენილი ცვლილებები"
+
+#~ msgid "QEMU Image (.qcow2)"
+#~ msgstr "QEMU გამოსახულება (.qcow2)"
+
+#~ msgid "Removed"
+#~ msgstr "წაშლილია"
+
+#~ msgid "Storage accounts"
+#~ msgstr "საცავის ანგარიშები"
+
+#~ msgid "This blueprint is empty."
+#~ msgstr "მონახაზი ცარიელია."
+
+#~ msgid "This is a required field"
+#~ msgstr "ველის შევსება აუცილებელია"
+
+#~ msgid "Updated"
+#~ msgstr "განახლებულია"
+
+#~ msgid "Upload image"
+#~ msgstr "გამოსახულების ატვირთვა"
+
+#~ msgid "Upload image help"
+#~ msgstr "დახმარება გამოსახულების ატვირთვის შესახებ"
+
+#~ msgid "User"
+#~ msgstr "მომხმარებელი"
+
+#~ msgid "VMWare help"
+#~ msgstr "დახმარება VMWARE-ის შესახებ"
+
+#~ msgid "View"
+#~ msgstr "ხედი"
+
+#~ msgid "from"
+#~ msgstr "გამომგზავნი"
+
+#~ msgid "per page"
+#~ msgstr "გვერდზე"
+
+#~ msgid "to"
+#~ msgstr "მიმღები"
+
+#~ msgid "{from} {oldVersion} {to} {newVersion}"
+#~ msgstr "{from} {oldVersion} {to} {newVersion}"
+
+#~ msgid "{heading} {parenthetical}"
+#~ msgstr "{heading} {parenthetical}"

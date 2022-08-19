@@ -3,7 +3,7 @@
 # Burak Yavuz <hitowerdigit@hotmail.com>, 2020, 2021, 2022.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2022-08-09T03:57:25.301Z\n"
+"POT-Creation-Date: 2022-08-19T18:31:19.371Z\n"
 "PO-Revision-Date: 2022-03-09 20:10+0000\n"
 "Last-Translator: Burak Yavuz <hitowerdigit@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.fedoraproject.org/projects/cockpit-"
@@ -15,13 +15,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1\n"
 "X-Generator: Weblate 4.11.2\n"
 
-#. [components.Modal.parenthetical] - Describes the sort order of the pending changes
-#. defaultMessage is:
-#. (most recent first)
-#: build/messages/components/Modal/PendingChanges.json
-msgid "(most recent first)"
-msgstr "(en yeniler önce)"
-
 #. [components.Modal.4177685254]
 #. defaultMessage is:
 #. A blueprint name is required.
@@ -29,80 +22,36 @@ msgstr "(en yeniler önce)"
 msgid "A blueprint name is required."
 msgstr "Bir plan adı gerekli."
 
-#. [components.Wizard.warningEmptyBlueprintDesc]
-#. defaultMessage is:
-#. A minimal image will be created with only the packages needed to support the selected image type.
-#: build/messages/components/Wizard/ImageStep.json
-msgid ""
-"A minimal image will be created with only the packages needed to support the "
-"selected image type."
-msgstr ""
-"Sadece seçilen kalıp türünü desteklemek için gereken paketlerle asgari bir "
-"kalıp oluşturulacaktır."
-
-#. [components.Wizard.warningSizeEmpty]
-#. defaultMessage is:
-#. A value is required.
-#: build/messages/components/Wizard/ReviewStep.json
-msgid "A value is required."
-msgstr "Bir değer gerekli."
-
-#. [fingerprint-help]
-#. defaultMessage is:
-#. API private key's fingerprint
-#: build/messages/components/Wizard/OCIAuthStep.json
-msgid "API private key's fingerprint"
-msgstr "API özel anahtarının parmak izi"
-
-#. [components.Wizard.aws]
-#. defaultMessage is:
-#. AWS help
-#: build/messages/components/Wizard/ReviewStep.json
-msgid "AWS help"
-msgstr "AWS ile ilgili yardım"
-
-#. [components.Wizard.4193750875]
+#. [wizard.review.awsRegion]
 #. defaultMessage is:
 #. AWS region
-#. [components.Wizard.4193750875]
+#. [wizard.aws.region.label]
 #. defaultMessage is:
 #. AWS region
-#: build/messages/components/Wizard/AWSDestinationStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/awsDest.json
 msgid "AWS region"
 msgstr "AWS bölgesi"
 
-#. [components.Wizard.region]
-#. defaultMessage is:
-#. AWS region help
-#: build/messages/components/Wizard/AWSDestinationStep.json
-msgid "AWS region help"
-msgstr "AWS bölgesi ile ilgili yardım"
-
-#. [components.Wizard.1635272069]
+#. [wizard.review.accessKeyID]
 #. defaultMessage is:
 #. Access key ID
-#. [components.Wizard.1635272069]
+#. [wizard.aws.accessKey.label]
 #. defaultMessage is:
 #. Access key ID
-#: build/messages/components/Wizard/AWSAuthStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/awsAuth.json
 msgid "Access key ID"
 msgstr "Erişim anahtarı kimliği"
 
-#. [access-key-id-help]
+#. [wizard.aws.accessKey.popoverAria]
 #. defaultMessage is:
-#. Access key ID help
-#: build/messages/components/Wizard/AWSAuthStep.json
-msgid "Access key ID help"
+#. Access key help
+#: build/messages/components/Wizard/steps/awsAuth.json
+#, fuzzy
+#| msgid "Access key ID help"
+msgid "Access key help"
 msgstr "Erişim anahtarı kimliği ile ilgili yardım"
-
-#. [components.Wizard.accessKeys]
-#. defaultMessage is:
-#. Access keys
-#: build/messages/components/Wizard/AzureAuthStep.json
-msgid "Access keys"
-msgstr "Erişim anahtarları"
 
 #. [components.ListView.imageActions] - A label for the menu that displays the actions available
 #. defaultMessage is:
@@ -115,13 +64,6 @@ msgstr "Erişim anahtarları"
 msgid "Actions"
 msgstr "Eylemler"
 
-#. [components.Toolbar.2872798476]
-#. defaultMessage is:
-#. Active filters
-#: build/messages/components/Toolbar/ToolbarLayout.json
-msgid "Active filters"
-msgstr "Etkin süzgeçler"
-
 #. [components.ListView.3099331554]
 #. defaultMessage is:
 #. Add
@@ -129,12 +71,12 @@ msgstr "Etkin süzgeçler"
 msgid "Add"
 msgstr "Ekle"
 
-#. [pages.blueprintEdit.addComponentTitle]
+#. [wizard.packages.addAll]
 #. defaultMessage is:
-#. Add blueprint components
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Add blueprint components"
-msgstr "Plan bileşenlerini ekle"
+#. Add all
+#: build/messages/components/Wizard/formComponents/Packages.json
+msgid "Add all"
+msgstr ""
 
 #. [components.ListView.addComponent]
 #. defaultMessage is:
@@ -142,6 +84,24 @@ msgstr "Plan bileşenlerini ekle"
 #: build/messages/components/ListView/ComponentInputs.json
 msgid "Add latest version"
 msgstr "Son sürümü ekle"
+
+#. [wizard.packages.info]
+#. defaultMessage is:
+#. Add optional additional packages to your image by searching available packages.
+#: build/messages/components/Wizard/steps/packages.json
+msgid ""
+"Add optional additional packages to your image by searching available "
+"packages."
+msgstr ""
+
+#. [wizard.packages.addSelected]
+#. defaultMessage is:
+#. Add selected
+#: build/messages/components/Wizard/formComponents/Packages.json
+#, fuzzy
+#| msgid "Add source"
+msgid "Add selected"
+msgstr "Kaynak ekle"
 
 #. [components.Modal.add]
 #. defaultMessage is:
@@ -156,47 +116,25 @@ msgstr "Son sürümü ekle"
 msgid "Add source"
 msgstr "Kaynak ekle"
 
-#. [components.Modal.1362724042] - Identifies the change as a component that was added
+#. [wizard.customizations.buttons.add]
 #. defaultMessage is:
-#. Added
-#: build/messages/components/Modal/PendingChanges.json
-msgid "Added"
-msgstr "Eklendi"
+#. Add user
+#: build/messages/components/Wizard/steps/users.json
+#, fuzzy
+#| msgid "Add source"
+msgid "Add user"
+msgstr "Kaynak ekle"
 
-#. [components.Wizard.1175512155]
+#. [wizard.review.amazonS3Bucket]
 #. defaultMessage is:
-#. All fields are required.
-#. [components.Wizard.1175512155]
+#. Amazon S3 bucket
+#. [wizard.aws.bucket.label]
 #. defaultMessage is:
-#. All fields are required.
-#. [components.Wizard.1175512155]
-#. defaultMessage is:
-#. All fields are required.
-#. [components.Wizard.1175512155]
-#. defaultMessage is:
-#. All fields are required.
-#. [components.Wizard.1175512155]
-#. defaultMessage is:
-#. All fields are required.
-#. [components.Wizard.1175512155]
-#. defaultMessage is:
-#. All fields are required.
-#. [components.Wizard.1175512155]
-#. defaultMessage is:
-#. All fields are required.
-#. [components.Wizard.1175512155]
-#. defaultMessage is:
-#. All fields are required.
-#: build/messages/components/Wizard/AWSAuthStep.json
-#: build/messages/components/Wizard/AWSDestinationStep.json
-#: build/messages/components/Wizard/AzureAuthStep.json
-#: build/messages/components/Wizard/AzureDestinationStep.json
-#: build/messages/components/Wizard/OCIAuthStep.json
-#: build/messages/components/Wizard/OCIDestinationStep.json
-#: build/messages/components/Wizard/VMWareAuthStep.json
-#: build/messages/components/Wizard/VMWareDestinationStep.json
-msgid "All fields are required."
-msgstr "Tüm alanlar gereklidir."
+#. Amazon S3 bucket
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/awsDest.json
+msgid "Amazon S3 bucket"
+msgstr ""
 
 #. [components.ListView.emptyStateErrorTitle]
 #. defaultMessage is:
@@ -238,6 +176,15 @@ msgstr "Plan içeriği alınmaya çalışılırken bir hata oluştu."
 msgid "An error occurred while trying to get sources."
 msgstr "Kaynaklar alınmaya çalışılırken bir hata oluştu."
 
+#. [wizard.review.createImageTooltip]
+#. defaultMessage is:
+#. An image can only be created after saving the blueprint
+#: build/messages/components/Wizard/formComponents/SubmitButtonsCustom.json
+#, fuzzy
+#| msgid "No images have been created from this blueprint."
+msgid "An image can only be created after saving the blueprint"
+msgstr "Bu plandan hiç kalıp oluşturulmadı."
+
 #. [components.ListView.3998303130]
 #. defaultMessage is:
 #. Apply change
@@ -268,10 +215,22 @@ msgstr ""
 "{blueprintName} için oluşturma işlemini durdurmak istediğinizden emin "
 "misiniz?"
 
-#. [components.Wizard.160751819]
+#. [wizard.aws.authTitle]
 #. defaultMessage is:
 #. Authentication
-#: build/messages/components/Wizard/CreateImageUpload.json
+#. [wizard.azure.authTitle]
+#. defaultMessage is:
+#. Authentication
+#. [wizard.oci.authTitle]
+#. defaultMessage is:
+#. Authentication
+#. [wizard.vmware.authTitle]
+#. defaultMessage is:
+#. Authentication
+#: build/messages/components/Wizard/steps/awsAuth.json
+#: build/messages/components/Wizard/steps/azureAuth.json
+#: build/messages/components/Wizard/steps/ociAuth.json
+#: build/messages/components/Wizard/steps/vmwareAuth.json
 msgid "Authentication"
 msgstr "Kimlik doğrulama"
 
@@ -282,35 +241,19 @@ msgstr "Kimlik doğrulama"
 msgid "Automatically start osbuild-composer on boot"
 msgstr "osbuild-composer'ı başlangıçta otomatik olarak başlat"
 
-#. [pages.blueprintEdit.listTitleAvailableComps]
+#. [wizard.packages.availablePackages]
 #. defaultMessage is:
-#. Available components
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Available components"
+#. Available packages
+#: build/messages/components/Wizard/formComponents/Packages.json
+#, fuzzy
+#| msgid "Available components"
+msgid "Available packages"
 msgstr "Mevcut bileşenler"
-
-#. [components.Wizard.azure]
-#. defaultMessage is:
-#. Azure help
-#: build/messages/components/Wizard/ReviewStep.json
-msgid "Azure help"
-msgstr "Azure ile ilgili yardım"
-
-#. [components.Wizard.1347475195]
-#. defaultMessage is:
-#. Back
-#: build/messages/components/Wizard/CreateImageUpload.json
-msgid "Back"
-msgstr "Geri"
 
 #. [pages.blueprint.2057444273]
 #. defaultMessage is:
 #. Back to blueprints
-#. [pages.blueprintEdit.2057444273]
-#. defaultMessage is:
-#. Back to blueprints
 #: build/messages/pages/blueprint/index.json
-#: build/messages/pages/blueprintEdit/index.json
 msgid "Back to blueprints"
 msgstr "Planlara geri dön"
 
@@ -321,42 +264,34 @@ msgstr "Planlara geri dön"
 msgid "Back to {blueprint}"
 msgstr "{blueprint}'e geri dön"
 
-#. [components.Wizard.blobService]
-#. defaultMessage is:
-#. Blob service
-#: build/messages/components/Wizard/AzureDestinationStep.json
-msgid "Blob service"
-msgstr "Blob hizmeti"
-
 #. [components.Modal.1281198655]
-#. defaultMessage is:
-#. Blueprint
-#. [components.Modal.blueprint]
-#. defaultMessage is:
-#. Blueprint
-#. [components.Wizard.1281198655]
 #. defaultMessage is:
 #. Blueprint
 #. [pages.blueprint.blueprint]
 #. defaultMessage is:
 #. Blueprint
-#. [pages.blueprintEdit.blueprintTitle]
-#. defaultMessage is:
-#. Blueprint
 #: build/messages/components/Modal/ExportBlueprint.json
-#: build/messages/components/Modal/PendingChanges.json
-#: build/messages/components/Wizard/ImageStep.json
 #: build/messages/pages/blueprint/index.json
-#: build/messages/pages/blueprintEdit/index.json
 msgid "Blueprint"
 msgstr "Plan"
 
-#. [pages.blueprintEdit.966788260]
+#. [toolbar.blueprint.filter.aria]
 #. defaultMessage is:
-#. Blueprint components
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Blueprint components"
-msgstr "Plan bileşenleri"
+#. Blueprint filter select
+#: build/messages/components/Toolbar/BlueprintToolbar.json
+#, fuzzy
+#| msgid "Blueprints"
+msgid "Blueprint filter select"
+msgstr "Planlar"
+
+#. [wizard.review.blueprintName]
+#. defaultMessage is:
+#. Blueprint name
+#: build/messages/components/Wizard/formComponents/Review.json
+#, fuzzy
+#| msgid "Blueprint"
+msgid "Blueprint name"
+msgstr "Plan"
 
 #. [components.Modal.2544705954]
 #. defaultMessage is:
@@ -393,6 +328,15 @@ msgstr "Plan adları {invalidChar} karakterini içeremez"
 msgid "Blueprint names cannot contain the characters: {invalidChar}"
 msgstr "Plan adları {invalidChar} karakterlerini içeremez"
 
+#. [toolbar.blueprint.search.aria]
+#. defaultMessage is:
+#. Blueprint search input
+#: build/messages/components/Toolbar/BlueprintToolbar.json
+#, fuzzy
+#| msgid "Blueprints"
+msgid "Blueprint search input"
+msgstr "Planlar"
+
 #. [pages.blueprints.blueprintsTitle]
 #. defaultMessage is:
 #. Blueprints
@@ -400,66 +344,93 @@ msgstr "Plan adları {invalidChar} karakterlerini içeremez"
 msgid "Blueprints"
 msgstr "Planlar"
 
-#. [pages.blueprintEdit.addComponentMessageOne]
+#. [toolbar.blueprints.search.aria]
 #. defaultMessage is:
-#. Browse or search for components, then add them to the blueprint. Or leave the blueprint empty to create a minimal image.
-#: build/messages/pages/blueprintEdit/index.json
-msgid ""
-"Browse or search for components, then add them to the blueprint. Or leave "
-"the blueprint empty to create a minimal image."
-msgstr ""
-"Bileşenlere göz atın veya arayın, ardından bunları plana ekleyin. Veya "
-"asgari bir kalıp oluşturmak için planı boş bırakın."
+#. Blueprints search input
+#: build/messages/components/Toolbar/BlueprintsToolbar.json
+#, fuzzy
+#| msgid "Blueprints"
+msgid "Blueprints search input"
+msgstr "Planlar"
 
-#. [components.Wizard.992376537]
+#. [wizard.review.bucketCompartment]
 #. defaultMessage is:
 #. Bucket compartment
-#. [components.Wizard.992376537]
+#. [wizard.oci.bucketCompartment.label]
 #. defaultMessage is:
 #. Bucket compartment
-#: build/messages/components/Wizard/OCIDestinationStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/ociDest.json
 msgid "Bucket compartment"
 msgstr "Bucket bölmesi"
 
-#. [components.Wizard.bucket]
+#. [wizard.oci.compartment.popoverAria]
 #. defaultMessage is:
-#. Bucket help
-#: build/messages/components/Wizard/OCIDestinationStep.json
-msgid "Bucket help"
-msgstr "Bucket yardım"
+#. Bucket compartment help
+#: build/messages/components/Wizard/steps/ociDest.json
+#, fuzzy
+#| msgid "Bucket compartment"
+msgid "Bucket compartment help"
+msgstr "Bucket bölmesi"
 
-#. [components.Wizard.3386954132]
+#. [wizard.review.bucketNamespace]
 #. defaultMessage is:
 #. Bucket namespace
-#. [components.Wizard.3386954132]
+#. [wizard.oci.bucketNamespace.label]
 #. defaultMessage is:
 #. Bucket namespace
-#: build/messages/components/Wizard/OCIDestinationStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/ociDest.json
 msgid "Bucket namespace"
 msgstr "Bucket ad alanı"
 
-#. [components.Wizard.2790265886]
+#. [wizard.oci.namespace.popoverAria]
+#. defaultMessage is:
+#. Bucket namespace help
+#: build/messages/components/Wizard/steps/ociDest.json
+#, fuzzy
+#| msgid "Bucket namespace"
+msgid "Bucket namespace help"
+msgstr "Bucket ad alanı"
+
+#. [wizard.review.bucketRegion]
 #. defaultMessage is:
 #. Bucket region
-#. [components.Wizard.2790265886]
+#. [wizard.oci.bucketRegion.label]
 #. defaultMessage is:
 #. Bucket region
-#: build/messages/components/Wizard/OCIDestinationStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/ociDest.json
 msgid "Bucket region"
 msgstr "Bucket bölgesi"
 
-#. [components.Wizard.1601119828]
+#. [wizard.oci.region.popoverAria]
+#. defaultMessage is:
+#. Bucket region help
+#: build/messages/components/Wizard/steps/ociDest.json
+#, fuzzy
+#| msgid "Bucket region"
+msgid "Bucket region help"
+msgstr "Bucket bölgesi"
+
+#. [wizard.review.bucketTenancy]
 #. defaultMessage is:
 #. Bucket tenancy
-#. [components.Wizard.1601119828]
+#. [wizard.oci.bucketTenancy.label]
 #. defaultMessage is:
 #. Bucket tenancy
-#: build/messages/components/Wizard/OCIDestinationStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/ociDest.json
 msgid "Bucket tenancy"
+msgstr "Bucket kirası"
+
+#. [wizard.oci.tenancy.popoverAria]
+#. defaultMessage is:
+#. Bucket tenancy help
+#: build/messages/components/Wizard/steps/ociDest.json
+#, fuzzy
+#| msgid "Bucket tenancy"
+msgid "Bucket tenancy help"
 msgstr "Bucket kirası"
 
 #. [components.Form.cancel]
@@ -486,9 +457,6 @@ msgstr "Bucket kirası"
 #. [components.Modal.3528672691]
 #. defaultMessage is:
 #. Cancel
-#. [components.Wizard.3528672691]
-#. defaultMessage is:
-#. Cancel
 #: build/messages/components/Form/TextInlineEdit.json
 #: build/messages/components/Modal/CreateBlueprint.json
 #: build/messages/components/Modal/DeleteBlueprint.json
@@ -497,35 +465,8 @@ msgstr "Bucket kirası"
 #: build/messages/components/Modal/ManageSources.json
 #: build/messages/components/Modal/StopBuild.json
 #: build/messages/components/Modal/UserAccount.json
-#: build/messages/components/Wizard/CreateImageUpload.json
 msgid "Cancel"
 msgstr "İptal"
-
-#. [components.Modal.683130131]
-#. defaultMessage is:
-#. Changes made in a previous session
-#: build/messages/components/Modal/PendingChanges.json
-msgid "Changes made in a previous session"
-msgstr "Önceki bir oturumda yapılan değişiklikler"
-
-#. [components.Modal.previousSessionInfotip]
-#. defaultMessage is:
-#. Changes made in a previous session are not listed in the order they were made. If you choose to undo these changes, they are undone as a group.
-#: build/messages/components/Modal/PendingChanges.json
-msgid ""
-"Changes made in a previous session are not listed in the order they were "
-"made. If you choose to undo these changes, they are undone as a group."
-msgstr ""
-"Önceki bir oturumda yapılan değişiklikler yapıldıkları sıraya göre "
-"listelenmez. Bu değişiklikleri geri almayı seçerseniz, bunlar grup olarak "
-"geri alınır."
-
-#. [components.Modal.92001050]
-#. defaultMessage is:
-#. Changes pending commit
-#: build/messages/components/Modal/PendingChanges.json
-msgid "Changes pending commit"
-msgstr "Bekleyen işlemeyi değiştirir"
 
 #. [components.Modal.check_gpg]
 #. defaultMessage is:
@@ -541,24 +482,35 @@ msgstr "GPG anahtarını denetle"
 msgid "Check SSL certificate"
 msgstr "SSL sertifikasını denetle"
 
+#. [wizard.packages.chosenPackages]
+#. defaultMessage is:
+#. Chosen packages
+#: build/messages/components/Wizard/formComponents/Packages.json
+#, fuzzy
+#| msgid "Edit packages"
+msgid "Chosen packages"
+msgstr "Paketleri düzenle"
+
 #. [components.ListView.1634835134]
 #. defaultMessage is:
 #. Clear all filters
-#. [components.Toolbar.1634835134]
-#. defaultMessage is:
-#. Clear all filters
-#. [pages.blueprintEdit.1634835134]
-#. defaultMessage is:
-#. Clear all filters
-#. [pages.blueprints.1634835134]
-#. defaultMessage is:
-#. Clear all filters
 #: build/messages/components/ListView/BlueprintContents.json
-#: build/messages/components/Toolbar/ToolbarLayout.json
-#: build/messages/pages/blueprintEdit/index.json
-#: build/messages/pages/blueprints/index.json
 msgid "Clear all filters"
 msgstr "Tüm süzgeçleri temizle"
+
+#. [wizard.packages.clearAvailablePackagesSearch]
+#. defaultMessage is:
+#. Clear available packages search
+#: build/messages/components/Wizard/formComponents/Packages.json
+msgid "Clear available packages search"
+msgstr ""
+
+#. [wizard.packages.clearChosenPackagesSearch]
+#. defaultMessage is:
+#. Clear chosen packages search
+#: build/messages/components/Wizard/formComponents/Packages.json
+msgid "Clear chosen packages search"
+msgstr ""
 
 #. [components.Modal.2324218928]
 #. defaultMessage is:
@@ -567,75 +519,35 @@ msgstr "Tüm süzgeçleri temizle"
 #. defaultMessage is:
 #. Close
 #. [components.Modal.2324218928]
-#. defaultMessage is:
-#. Close
-#. [components.Modal.closeButtonLabel]
 #. defaultMessage is:
 #. Close
 #: build/messages/components/Modal/ExportBlueprint.json
 #: build/messages/components/Modal/ManageSources.json
-#: build/messages/components/Modal/PendingChanges.json
 msgid "Close"
 msgstr "Kapat"
 
-#. [components.Wizard.103343714]
+#. [wizard.review.cluster]
 #. defaultMessage is:
 #. Cluster
-#. [components.Wizard.103343714]
+#. [wizard.vmware.cluster.label]
 #. defaultMessage is:
 #. Cluster
-#: build/messages/components/Wizard/ReviewStep.json
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid "Cluster"
 msgstr "Kümeleme"
 
-#. [components.Wizard.cluster]
+#. [wizard.vmware.cluster.popoverAria]
 #. defaultMessage is:
 #. Cluster help
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid "Cluster help"
 msgstr "Kümeleme yardım"
-
-#. [components.Modal.2299254306]
-#. defaultMessage is:
-#. Comment
-#: build/messages/components/Modal/PendingChanges.json
-msgid "Comment"
-msgstr "Yorum"
-
-#. [components.Modal.commitButtonLabel]
-#. defaultMessage is:
-#. Commit
-#. [pages.blueprintEdit.1951088698]
-#. defaultMessage is:
-#. Commit
-#: build/messages/components/Modal/PendingChanges.json
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Commit"
-msgstr "İşle"
-
-#. [components.Wizard.1126783419]
-#. defaultMessage is:
-#. Commit and create
-#: build/messages/components/Wizard/CreateImageUpload.json
-msgid "Commit and create"
-msgstr "İşle ve oluştur"
-
-#. [components.Wizard.552112481]
-#. defaultMessage is:
-#. Commit and next
-#: build/messages/components/Wizard/CreateImageUpload.json
-msgid "Commit and next"
-msgstr "İşle ve ileri"
 
 #. [pages.blueprint.3956908315]
 #. defaultMessage is:
 #. Component details
-#. [pages.blueprintEdit.3956908315]
-#. defaultMessage is:
-#. Component details
 #: build/messages/pages/blueprint/index.json
-#: build/messages/pages/blueprintEdit/index.json
 msgid "Component details"
 msgstr "Bileşen ayrıntıları"
 
@@ -673,12 +585,8 @@ msgstr "Kopyala"
 #. [components.Modal.4120989039]
 #. defaultMessage is:
 #. Create
-#. [components.Wizard.4120989039]
-#. defaultMessage is:
-#. Create
 #: build/messages/components/Modal/CreateBlueprint.json
 #: build/messages/components/Modal/UserAccount.json
-#: build/messages/components/Wizard/CreateImageUpload.json
 msgid "Create"
 msgstr "Oluştur"
 
@@ -693,13 +601,6 @@ msgstr ""
 "Oluşturduğunuz kalıplara eklenecek içeriği tanımlamak için bir plan "
 "oluşturun. Kalıplar çeşitli çıkış biçimlerinde oluşturulabilir."
 
-#. [components.Wizard.1723482220]
-#. defaultMessage is:
-#. Create and upload image
-#: build/messages/components/Wizard/ReviewStep.json
-msgid "Create and upload image"
-msgstr "Kalıp oluştur ve karşıya yükle"
-
 #. [components.Modal.994816806]
 #. defaultMessage is:
 #. Create blueprint
@@ -707,13 +608,10 @@ msgstr "Kalıp oluştur ve karşıya yükle"
 msgid "Create blueprint"
 msgstr "Plan oluştur"
 
-#. [components.Wizard.title]
+#. [wizard.createImage]
 #. defaultMessage is:
 #. Create image
-#. [components.Wizard.2020427956]
-#. defaultMessage is:
-#. Create image
-#: build/messages/components/Wizard/CreateImageUpload.json
+#: build/messages/components/Wizard/CreateImageWizard.json
 msgid "Create image"
 msgstr "Kalıp oluştur"
 
@@ -731,52 +629,73 @@ msgstr "Kullanıcı hesabı oluştur"
 msgid "Created"
 msgstr "Oluşturuldu"
 
+#. [wizard.review.creatingImage]
+#. defaultMessage is:
+#. Creating image
+#: build/messages/components/Wizard/formComponents/SubmitButtonsCustom.json
+#, fuzzy
+#| msgid "Create image"
+msgid "Creating image"
+msgstr "Kalıp oluştur"
+
+#. [wizard.customizations.title]
+#. defaultMessage is:
+#. Customizations
+#. [wizard.customizations.title]
+#. defaultMessage is:
+#. Customizations
 #. [pages.blueprint.customizationsTitle]
 #. defaultMessage is:
 #. Customizations
+#: build/messages/components/Wizard/steps/system.json
+#: build/messages/components/Wizard/steps/users.json
 #: build/messages/pages/blueprint/index.json
 msgid "Customizations"
 msgstr "Özelleştirmeler"
 
-#. [components.Wizard.2877310487]
-#. defaultMessage is:
-#. Data Center
-#: build/messages/components/Wizard/ReviewStep.json
-msgid "Data Center"
-msgstr "Veri Merkezi"
-
-#. [components.Wizard.3747912914]
-#. defaultMessage is:
-#. Data Store
-#: build/messages/components/Wizard/ReviewStep.json
-msgid "Data Store"
-msgstr "Veri Deposu"
-
-#. [components.Wizard.4278711264]
+#. [wizard.review.dataCenter]
 #. defaultMessage is:
 #. Data center
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
 msgid "Data center"
 msgstr "Veri merkezi"
 
-#. [components.Wizard.3717439361]
+#. [wizard.review.dataStore]
 #. defaultMessage is:
 #. Data store
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
 msgid "Data store"
 msgstr "Veri deposu"
 
-#. [components.Wizard.dataCenter]
+#. [wizard.vmware.dataCenter.label]
+#. defaultMessage is:
+#. Datacenter
+#: build/messages/components/Wizard/steps/vmwareDest.json
+#, fuzzy
+#| msgid "Data center"
+msgid "Datacenter"
+msgstr "Veri merkezi"
+
+#. [wizard.vmware.dataCenter.popoverAria]
 #. defaultMessage is:
 #. Datacenter help
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid "Datacenter help"
 msgstr "Veri merkezi yardım"
 
-#. [components.Wizard.dataStore]
+#. [wizard.vmware.dataStore.label]
+#. defaultMessage is:
+#. Datastore
+#: build/messages/components/Wizard/steps/vmwareDest.json
+#, fuzzy
+#| msgid "Data store"
+msgid "Datastore"
+msgstr "Veri deposu"
+
+#. [wizard.vmware.datastore.popoverAria]
 #. defaultMessage is:
 #. Datastore help
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid "Datastore help"
 msgstr "Veri deposu yardım"
 
@@ -824,9 +743,13 @@ msgstr "Kullanıcı hesabını sil"
 #. [components.ListView.3727965333]
 #. defaultMessage is:
 #. Dependencies
+#. [wizard.review.dependencies]
+#. defaultMessage is:
+#. Dependencies
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ComponentSummaryList.json
+#: build/messages/components/Wizard/formComponents/Review.json
 msgid "Dependencies"
 msgstr "Bağımlılıklar"
 
@@ -845,10 +768,22 @@ msgstr "Bağımlılıklar"
 msgid "Description"
 msgstr "Açıklama"
 
-#. [components.Wizard.2515932130]
+#. [wizard.aws.destTitle]
 #. defaultMessage is:
 #. Destination
-#: build/messages/components/Wizard/CreateImageUpload.json
+#. [wizard.azure.destTitle]
+#. defaultMessage is:
+#. Destination
+#. [wizard.oci.destTitle]
+#. defaultMessage is:
+#. Destination
+#. [wizard.vmware.destTitle]
+#. defaultMessage is:
+#. Destination
+#: build/messages/components/Wizard/steps/awsDest.json
+#: build/messages/components/Wizard/steps/azureDest.json
+#: build/messages/components/Wizard/steps/ociDest.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid "Destination"
 msgstr "Hedef"
 
@@ -859,20 +794,6 @@ msgstr "Hedef"
 msgid "Details"
 msgstr "Ayrıntılar"
 
-#. [pages.blueprintEdit.1469729075]
-#. defaultMessage is:
-#. Discard changes
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Discard changes"
-msgstr "Değişiklikleri yoksay"
-
-#. [components.Wizard.labelTar]
-#. defaultMessage is:
-#. Disk Archive (.tar)
-#: build/messages/components/Wizard/ImageStep.json
-msgid "Disk Archive (.tar)"
-msgstr "Disk Arşivi (.tar)"
-
 #. [components.ListView.1982430146]
 #. defaultMessage is:
 #. Download
@@ -880,10 +801,10 @@ msgstr "Disk Arşivi (.tar)"
 msgid "Download"
 msgstr "İndir"
 
-#. [filename-placeholder]
+#. [wizard.uploadFile.filenamePlaceholder]
 #. defaultMessage is:
 #. Drag and drop a file or upload one
-#: build/messages/components/Wizard/OCIAuthStep.json
+#: build/messages/components/Wizard/formComponents/UploadFile.json
 msgid "Drag and drop a file or upload one"
 msgstr "Bir dosyayı sürükleyin ve bırakın veya birini yükleyin"
 
@@ -912,21 +833,6 @@ msgstr "Ana bilgisayar adını düzenle"
 msgid "Edit installation device"
 msgstr "Kurulum aygıtını düzenle"
 
-#. [components.ListView.1908303378]
-#. defaultMessage is:
-#. Edit packages
-#. [pages.blueprint.1908303378]
-#. defaultMessage is:
-#. Edit packages
-#. [pages.blueprintEdit.1908303378]
-#. defaultMessage is:
-#. Edit packages
-#: build/messages/components/ListView/BlueprintsDataList.json
-#: build/messages/pages/blueprint/index.json
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Edit packages"
-msgstr "Paketleri düzenle"
-
 #. [components.ListView.edit]
 #. defaultMessage is:
 #. Edit source
@@ -949,10 +855,10 @@ msgstr "Kaynağı düzenle"
 msgid "Edit user account"
 msgstr "Kullanıcı hesabını düzenle"
 
-#. [components.Wizard.4173021643]
+#. [wizard.ostree.validationError]
 #. defaultMessage is:
 #. Either the parent commit or repository url can be specified. Not both.
-#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/validators/ostreeValidator.json
 msgid "Either the parent commit or repository url can be specified. Not both."
 msgstr "Ya üst işleme ya da depo url'si belirtilebilir. İkiside değil."
 
@@ -963,9 +869,13 @@ msgstr "Ya üst işleme ya da depo url'si belirtilebilir. İkiside değil."
 msgid "Empty blueprint"
 msgstr "Boş plan"
 
+#. [wizard.customizations.installDevice.helperText]
+#. defaultMessage is:
+#. Enter valid device node such as /dev/sda1
 #. [pages.blueprint.deviceHelp]
 #. defaultMessage is:
 #. Enter valid device node such as /dev/sda1
+#: build/messages/components/Wizard/steps/system.json
 #: build/messages/pages/blueprint/index.json
 msgid "Enter valid device node such as /dev/sda1"
 msgstr "/dev/sda1 gibi geçerli aygıt düğümünü girin"
@@ -998,58 +908,25 @@ msgstr "Farklı dışa aktar"
 msgid "Export blueprint"
 msgstr "Planı dışa aktar"
 
-#. [pages.blueprintEdit.filterByLabel]
-#. defaultMessage is:
-#. Filter available components by name
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Filter available components by name"
-msgstr "Mevcut bileşenleri ada göre süz"
-
-#. [components.Toolbar.filterNamePlaceholder]
-#. defaultMessage is:
-#. Filter by name
-#: build/messages/components/Toolbar/FilterInput.json
-msgid "Filter by name"
-msgstr "Ada göre süz"
-
-#. [pages.blueprintEdit.filterByPlaceholder]
-#. defaultMessage is:
-#. Filter by name...
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Filter by name..."
-msgstr "Ada göre süz..."
-
-#. [components.Toolbar.filterReleasePlaceholder]
-#. defaultMessage is:
-#. Filter by release
-#: build/messages/components/Toolbar/FilterInput.json
-msgid "Filter by release"
-msgstr "Yayıma göre süz"
-
-#. [components.Toolbar.filterVersionPlaceholder]
-#. defaultMessage is:
-#. Filter by version
-#: build/messages/components/Toolbar/FilterInput.json
-msgid "Filter by version"
-msgstr "Sürüme göre süz"
-
-#. [components.Wizard.244381809]
+#. [wizard.review.fingerprint]
 #. defaultMessage is:
 #. Fingerprint
-#. [components.Wizard.244381809]
+#. [wizard.oci.fingerprint.label]
 #. defaultMessage is:
 #. Fingerprint
-#: build/messages/components/Wizard/OCIAuthStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/ociAuth.json
 msgid "Fingerprint"
 msgstr "Parmak izi"
 
-#. [components.Wizard.787186999]
+#. [wizard.oci.fingerprint.popoverAria]
 #. defaultMessage is:
-#. Finish
-#: build/messages/components/Wizard/CreateImageUpload.json
-msgid "Finish"
-msgstr "Bitir"
+#. Fingerprint help
+#: build/messages/components/Wizard/steps/ociAuth.json
+#, fuzzy
+#| msgid "Fingerprint"
+msgid "Fingerprint help"
+msgstr "Parmak izi"
 
 #. [components.Modal.labelName]
 #. defaultMessage is:
@@ -1076,58 +953,67 @@ msgstr "Geri git"
 msgid "Hide details"
 msgstr "Ayrıntıları gizle"
 
-#. [components.Wizard.644347739]
+#. [wizard.review.host]
 #. defaultMessage is:
 #. Host
-#. [components.Wizard.644347739]
+#. [wizard.vmware.host.label]
 #. defaultMessage is:
 #. Host
-#: build/messages/components/Wizard/ReviewStep.json
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid "Host"
 msgstr "Anamakine"
 
-#. [components.Wizard.host]
+#. [wizard.vmware.host.popoverAria]
 #. defaultMessage is:
 #. Host help
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid "Host help"
 msgstr "Anamakine yardım"
 
+#. [wizard.review.hostname]
+#. defaultMessage is:
+#. Hostname
+#. [wizard.customizations.hostname.label]
+#. defaultMessage is:
+#. Hostname
 #. [pages.blueprint.hostnameInputLabel]
 #. defaultMessage is:
 #. Hostname
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/system.json
 #: build/messages/pages/blueprint/index.json
 msgid "Hostname"
 msgstr "Ana bilgisayar adı"
 
+#. [wizard.customizations.hostname.helperText]
+#. defaultMessage is:
+#. If no hostname is provided, the hostname will be determined by the OS.
 #. [pages.blueprint.hostnameHelpEmpty]
 #. defaultMessage is:
 #. If no hostname is provided, the hostname will be determined by the OS.
+#: build/messages/components/Wizard/steps/system.json
 #: build/messages/pages/blueprint/index.json
 msgid "If no hostname is provided, the hostname will be determined by the OS."
 msgstr ""
 "Ana bilgisayar adı belirtilmezse, ana bilgisayar adı işletim sistemi "
 "tarafından belirlenecektir."
 
-#. [components.Wizard.327045352]
+#. [wizard.imageOutput.uploadVMWare.popoverBody]
 #. defaultMessage is:
-#. Image Builder can upload images you create to VMWare vSphere.
-#.                       When the image build is complete and the upload action is successful,
-#.                       the image file is available in the Cluster on the vSphere instance that you specified.
-#. [components.Wizard.327045352]
-#. defaultMessage is:
-#. Image Builder can upload images you create to VMWare vSphere.
-#.                       When the image build is complete and the upload action is successful,
-#.                       the image file is available in the Cluster on the vSphere instance that you specified.
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#. Image Builder can upload images you create to VMWare vSphere. When the image build is complete and the upload action is successful, the image file is available in the Cluster on the vSphere instance that you specified.
+#: build/messages/components/Wizard/steps/imageOutput.json
+#, fuzzy
+#| msgid ""
+#| "Image Builder can upload images you create to VMWare vSphere.\n"
+#| "                      When the image build is complete and the upload "
+#| "action is successful,\n"
+#| "                      the image file is available in the Cluster on the "
+#| "vSphere instance that you specified."
 msgid ""
-"Image Builder can upload images you create to VMWare vSphere.\n"
-"                      When the image build is complete and the upload action "
-"is successful,\n"
-"                      the image file is available in the Cluster on the "
-"vSphere instance that you specified."
+"Image Builder can upload images you create to VMWare vSphere. When the image "
+"build is complete and the upload action is successful, the image file is "
+"available in the Cluster on the vSphere instance that you specified."
 msgstr ""
 "Kalıp Oluşturucu, oluşturduğunuz kalıpları VMWare vSphere üzerine "
 "yükleyebilir.\n"
@@ -1136,46 +1022,77 @@ msgstr ""
 "                      kalıp dosyası belirttiğiniz vSphere örneğindeki "
 "Kümelemede kullanılabilir."
 
-#. [components.Wizard.3501375619]
+#. [wizard.imageOutput.uploadAzure.popoverBody]
 #. defaultMessage is:
-#. Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete
-#.                       and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
-#. [components.Wizard.3501375619]
-#. defaultMessage is:
-#. Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete
-#.                       and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#. Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
+#: build/messages/components/Wizard/steps/imageOutput.json
+#, fuzzy
+#| msgid ""
+#| "Image Builder can upload images you create to a Blob container in "
+#| "{azure}. When the image build is complete\n"
+#| "                      and the upload action is successful, the image file "
+#| "is available in the Storage account and Blob container that you specified."
 msgid ""
 "Image Builder can upload images you create to a Blob container in {azure}. "
-"When the image build is complete\n"
-"                      and the upload action is successful, the image file is "
-"available in the Storage account and Blob container that you specified."
+"When the image build is complete and the upload action is successful, the "
+"image file is available in the Storage account and Blob container that you "
+"specified."
 msgstr ""
 "Kalıp Oluşturucu, oluşturduğunuz kalıpları {azure} üzerinde bir Blob "
 "konteynerine yükleyebilir. Kalıp oluşturma işlemi tamamlandığında\n"
 "                      ve yükleme eylemi başarılı olduğunda, kalıp dosyası "
 "Depolama hesabında ve belirttiğiniz Blob konteynerinde kullanılabilir."
 
-#. [components.Wizard.1007547894]
+#. [wizard.imageOutput.uploadOCI.popoverBody]
 #. defaultMessage is:
-#. Image Builder can upload images you create to an {bucket} in AWS and then import them into EC2. When the image build is complete
-#.                         and the upload action is successful, the image file is available in the AMI section of EC2. Most of the values required to upload
-#.                         the image can be found in the {console}.
-#. [components.Wizard.1007547894]
-#. defaultMessage is:
-#. Image Builder can upload images you create to an {bucket} in AWS and then import them into EC2. When the image build is complete
-#.                         and the upload action is successful, the image file is available in the AMI section of EC2. Most of the values required to upload
-#.                         the image can be found in the {console}.
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#. Image Builder can upload images you create to an OCI bucket in OCI and register it as a custom image. When the image build is complete and the upload action is successful, the image should be available under custom images. Most of the values required to upload the image can be found in the {console}.{br}{br}This upload process requires that you have an Identity and Access Management (IAM) with attached policy to manage custom images to ensure that the image can be imported as a custom image from the bucket. For more details, refer to the {policy}.
+#: build/messages/components/Wizard/steps/imageOutput.json
+#, fuzzy
+#| msgid ""
+#| "Image Builder can upload images you create to an {bucket} in OCI and "
+#| "register it as a custom image. When the image build is complete\n"
+#| "                        and the upload action is successful, the image "
+#| "should be available under custom images.\n"
+#| "                        Most of the values required to upload the image "
+#| "can be found in the {console}."
 msgid ""
-"Image Builder can upload images you create to an {bucket} in AWS and then "
-"import them into EC2. When the image build is complete\n"
-"                        and the upload action is successful, the image file "
-"is available in the AMI section of EC2. Most of the values required to "
-"upload\n"
-"                        the image can be found in the {console}."
+"Image Builder can upload images you create to an OCI bucket in OCI and "
+"register it as a custom image. When the image build is complete and the "
+"upload action is successful, the image should be available under custom "
+"images. Most of the values required to upload the image can be found in the "
+"{console}.{br}{br}This upload process requires that you have an Identity and "
+"Access Management (IAM) with attached policy to manage custom images to "
+"ensure that the image can be imported as a custom image from the bucket. For "
+"more details, refer to the {policy}."
+msgstr ""
+"Kalıp Oluşturucu, oluşturduğunuz kalıpları OCI'deki bir {bucket} içine "
+"yükleyebilir ve bunu özel bir kalıp olarak kaydettirebilirsiniz. Kalıp "
+"oluşturma tamamlandığında\n"
+"                        ve yükleme eylemi başarılı olduğunda kalıp, özel "
+"kalıplar altında kullanılabilir olmalıdır.\n"
+"                         Kalıbı yüklemek için gereken değerlerin çoğu "
+"{console} içinde bulunabilir."
+
+#. [wizard.imageOutput.uploadAWS.popoverBody]
+#. defaultMessage is:
+#. Image Builder can upload images you create to an S3 bucket in AWS and then import them into EC2. When the image build is complete and the upload action is successful, the image file is available in the AMI section of EC2. Most of the values required to upload the image can be found in the {console}. {br}{br}This upload process requires that you have an Identity and Access Management (IAM) role named {vmimport} to ensure that the image can be imported from the S3 bucket into EC2. For more details, refer to the {role}.
+#: build/messages/components/Wizard/steps/imageOutput.json
+#, fuzzy
+#| msgid ""
+#| "Image Builder can upload images you create to an {bucket} in AWS and then "
+#| "import them into EC2. When the image build is complete\n"
+#| "                        and the upload action is successful, the image "
+#| "file is available in the AMI section of EC2. Most of the values required "
+#| "to upload\n"
+#| "                        the image can be found in the {console}."
+msgid ""
+"Image Builder can upload images you create to an S3 bucket in AWS and then "
+"import them into EC2. When the image build is complete and the upload action "
+"is successful, the image file is available in the AMI section of EC2. Most "
+"of the values required to upload the image can be found in the {console}. "
+"{br}{br}This upload process requires that you have an Identity and Access "
+"Management (IAM) role named {vmimport} to ensure that the image can be "
+"imported from the S3 bucket into EC2. For more details, refer to the {role}."
 msgstr ""
 "Kalıp Oluşturucu, oluşturduğunuz kalıpları AWS'deki bir {bucket} içine "
 "yükleyebilir ve ardından bunları EC2'ye aktarabilir. Kalıp oluşturma "
@@ -1185,33 +1102,14 @@ msgstr ""
 "değerlerin çoğu\n"
 "                        {console} içinde bulunabilir."
 
-#. [components.Wizard.3213107448]
+#. [wizard.imageOutput.imageSize.label]
 #. defaultMessage is:
-#. Image Builder can upload images you create to an {bucket} in OCI and register it as a custom image. When the image build is complete
-#.                         and the upload action is successful, the image should be available under custom images.
-#.                         Most of the values required to upload the image can be found in the {console}.
-#. [components.Wizard.3213107448]
-#. defaultMessage is:
-#. Image Builder can upload images you create to an {bucket} in OCI and register it as a custom image. When the image build is complete
-#.                         and the upload action is successful, the image should be available under custom images.
-#.                         Most of the values required to upload the image can be found in the {console}.
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
-msgid ""
-"Image Builder can upload images you create to an {bucket} in OCI and "
-"register it as a custom image. When the image build is complete\n"
-"                        and the upload action is successful, the image "
-"should be available under custom images.\n"
-"                        Most of the values required to upload the image can "
-"be found in the {console}."
-msgstr ""
-"Kalıp Oluşturucu, oluşturduğunuz kalıpları OCI'deki bir {bucket} içine "
-"yükleyebilir ve bunu özel bir kalıp olarak kaydettirebilirsiniz. Kalıp "
-"oluşturma tamamlandığında\n"
-"                        ve yükleme eylemi başarılı olduğunda kalıp, özel "
-"kalıplar altında kullanılabilir olmalıdır.\n"
-"                         Kalıbı yüklemek için gereken değerlerin çoğu "
-"{console} içinde bulunabilir."
+#. Image Size
+#: build/messages/components/Wizard/steps/imageOutput.json
+#, fuzzy
+#| msgid "Image size"
+msgid "Image Size"
+msgstr "Kalıp boyutu"
 
 #. [components.ListView.imageStatusFinished] - Image build status when process is finished
 #. defaultMessage is:
@@ -1251,84 +1149,78 @@ msgstr "Kalıp oluşturma hizmeti etkin değil"
 #. [components.ListView.imageName] - The name given by the user for an image
 #. defaultMessage is:
 #. Image name
-#. [components.Wizard.2794911472]
+#. [wizard.review.imageName]
 #. defaultMessage is:
 #. Image name
-#. [components.Wizard.2794911472]
+#. [wizard.aws.imageName.label]
 #. defaultMessage is:
 #. Image name
-#. [components.Wizard.2794911472]
+#. [wizard.azure.imageName.label]
 #. defaultMessage is:
 #. Image name
-#. [components.Wizard.2794911472]
+#. [wizard.oci.imageName.label]
 #. defaultMessage is:
 #. Image name
-#. [components.Wizard.2794911472]
+#. [wizard.vmware.imageName.label]
 #. defaultMessage is:
 #. Image name
 #: build/messages/components/ListView/ListItemUploads.json
-#: build/messages/components/Wizard/AWSDestinationStep.json
-#: build/messages/components/Wizard/AzureDestinationStep.json
-#: build/messages/components/Wizard/OCIDestinationStep.json
-#: build/messages/components/Wizard/ReviewStep.json
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/awsDest.json
+#: build/messages/components/Wizard/steps/azureDest.json
+#: build/messages/components/Wizard/steps/ociDest.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid "Image name"
 msgstr "Kalıp adı"
 
-#. [components.Wizard.imageName]
+#. [wizard.aws.imageName.popoverAria]
 #. defaultMessage is:
 #. Image name help
-#. [components.Wizard.imageName]
+#. [wizard.azure.imageName.popoverAria]
 #. defaultMessage is:
 #. Image name help
-#. [components.Wizard.imageName]
+#. [wizard.oci.imageName.popoverAria]
 #. defaultMessage is:
 #. Image name help
-#. [components.Wizard.imageName]
+#. [wizard.vmware.imageName.popoverAria]
 #. defaultMessage is:
 #. Image name help
-#: build/messages/components/Wizard/AWSDestinationStep.json
-#: build/messages/components/Wizard/AzureDestinationStep.json
-#: build/messages/components/Wizard/OCIDestinationStep.json
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/steps/awsDest.json
+#: build/messages/components/Wizard/steps/azureDest.json
+#: build/messages/components/Wizard/steps/ociDest.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid "Image name help"
 msgstr "Kalıp adı ile ilgili yardım"
 
-#. [components.Wizard.1005710141]
+#. [wizard.imageOutput.title]
 #. defaultMessage is:
 #. Image output
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/steps/imageOutput.json
 msgid "Image output"
 msgstr "Kalıp çıktısı"
 
-#. [components.Wizard.1905943231]
+#. [wizard.imageOutput.type]
+#. defaultMessage is:
+#. Image output type
+#: build/messages/components/Wizard/steps/imageOutput.json
+#, fuzzy
+#| msgid "Image output"
+msgid "Image output type"
+msgstr "Kalıp çıktısı"
+
+#. [wizard.review.imageSize]
 #. defaultMessage is:
 #. Image size
-#. [components.Wizard.1905943231]
-#. defaultMessage is:
-#. Image size
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
 msgid "Image size"
 msgstr "Kalıp boyutu"
 
-#. [components.Wizard.imageSize]
+#. [wizard.imageOutput.imageSize.popoverAria]
 #. defaultMessage is:
 #. Image size help
-#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/steps/imageOutput.json
 msgid "Image size help"
 msgstr "Kalıp boyutu ile ilgili yardım"
-
-#. [components.Wizard.1813441558]
-#. defaultMessage is:
-#. Image type
-#. [components.Wizard.1813441558]
-#. defaultMessage is:
-#. Image type
-#: build/messages/components/Wizard/CreateImageUpload.json
-#: build/messages/components/Wizard/ReviewStep.json
-msgid "Image type"
-msgstr "Kalıp türü"
 
 #. [components.ListView.imageUploads] - A label for the section that lists the upload actions initiated by the user
 #. defaultMessage is:
@@ -1344,16 +1236,32 @@ msgstr "Kalıp karşıya yüklemeleri"
 msgid "Images"
 msgstr "Kalıplar"
 
-#. [pages.blueprint.3654599626]
+#. [wizard.customizations.installDevice.label]
 #. defaultMessage is:
 #. Installation Device
-#: build/messages/pages/blueprint/index.json
+#: build/messages/components/Wizard/steps/system.json
 msgid "Installation Device"
 msgstr "Kurulum Aygıtı"
 
+#. [wizard.customizations.installDevice.popoverAria]
+#. defaultMessage is:
+#. Installation Device help
+#: build/messages/components/Wizard/steps/system.json
+#, fuzzy
+#| msgid "Installation device help"
+msgid "Installation Device help"
+msgstr "Kurulum aygıtı yardım"
+
+#. [wizard.review.installationDevice]
+#. defaultMessage is:
+#. Installation device
 #. [pages.blueprint.deviceInputLabel]
 #. defaultMessage is:
 #. Installation device
+#. [pages.blueprint.3834724928]
+#. defaultMessage is:
+#. Installation device
+#: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/pages/blueprint/index.json
 msgid "Installation device"
 msgstr "Kurulum aygıtı"
@@ -1365,12 +1273,14 @@ msgstr "Kurulum aygıtı"
 msgid "Installation device help"
 msgstr "Kurulum aygıtı yardım"
 
-#. [components.Wizard.labelLiveIso]
+#. [wizard.packages.loadAdditionalPackages]
 #. defaultMessage is:
-#. Installer, suitable for USB and DVD (.iso)
-#: build/messages/components/Wizard/ImageStep.json
-msgid "Installer, suitable for USB and DVD (.iso)"
-msgstr "Yükleyici, USB ve DVD için uygun (.iso)"
+#. Load additional packages
+#: build/messages/components/Wizard/formComponents/Packages.json
+#, fuzzy
+#| msgid "Edit packages"
+msgid "Load additional packages"
+msgstr "Paketleri düzenle"
 
 #. [components.Loading.2617450248]
 #. defaultMessage is:
@@ -1378,6 +1288,13 @@ msgstr "Yükleyici, USB ve DVD için uygun (.iso)"
 #: build/messages/components/Loading/Loading.json
 msgid "Loading"
 msgstr "Yükleniyor"
+
+#. [wizard.packages.loadingAdditionalPackages]
+#. defaultMessage is:
+#. Loading additional packages...
+#: build/messages/components/Wizard/formComponents/Packages.json
+msgid "Loading additional packages..."
+msgstr ""
 
 #. [components.ListView.imageLogs] - Log content that gets generated as part of the image creation process
 #. defaultMessage is:
@@ -1404,31 +1321,22 @@ msgstr "Kaynakları yönet"
 msgid "Message"
 msgstr "Mesaj"
 
-#. [components.Wizard.warningSizeSmall]
+#. [wizard.imageOutput.imageSize.inputHelp]
 #. defaultMessage is:
-#. Minimum size is {size} GB
-#: build/messages/components/Wizard/ImageStep.json
-msgid "Minimum size is {size} GB"
-msgstr "En az boyut {size} GB'tır"
-
-#. [components.Wizard.warningSizeSmall]
-#. defaultMessage is:
-#. Minimum size is {size} GB.
-#: build/messages/components/Wizard/ReviewStep.json
-msgid "Minimum size is {size} GB."
+#. Minimum image size is {size}GB.
+#: build/messages/components/Wizard/steps/imageOutput.json
+#, fuzzy
+#| msgid "Minimum size is {size} GB."
+msgid "Minimum image size is {size}GB."
 msgstr "Asgari boyut {size} GB'tır."
 
 #. [components.ListView.emptyStateNoResultsMessage]
-#. defaultMessage is:
-#. Modify your filter criteria to get results.
-#. [pages.blueprintEdit.emptyStateNoResultsMessage]
 #. defaultMessage is:
 #. Modify your filter criteria to get results.
 #. [pages.blueprints.noResultsMessage]
 #. defaultMessage is:
 #. Modify your filter criteria to get results.
 #: build/messages/components/ListView/BlueprintContents.json
-#: build/messages/pages/blueprintEdit/index.json
 #: build/messages/pages/blueprints/index.json
 msgid "Modify your filter criteria to get results."
 msgstr "Sonuç almak için filtreleme kriterlerinizi değiştirin."
@@ -1439,39 +1347,14 @@ msgstr "Sonuç almak için filtreleme kriterlerinizi değiştirin."
 #. [components.Modal.name] - Name of source
 #. defaultMessage is:
 #. Name
-#. [components.Toolbar.filterNameTitle]
-#. defaultMessage is:
-#. Name
-#. [components.Toolbar.filterNameTitle]
+#. [toolbar.blueprint.filter.name]
 #. defaultMessage is:
 #. Name
 #: build/messages/components/Modal/CreateBlueprint.json
 #: build/messages/components/Modal/ManageSources.json
-#: build/messages/components/Toolbar/FilterInput.json
-#: build/messages/components/Toolbar/ToolbarLayout.json
+#: build/messages/components/Toolbar/BlueprintToolbar.json
 msgid "Name"
 msgstr "Ad"
-
-#. [pages.blueprintEdit.3059610115]
-#. defaultMessage is:
-#. Name: {name}
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Name: {name}"
-msgstr "Ad: {name}"
-
-#. [components.Wizard.namespace]
-#. defaultMessage is:
-#. Namespace help
-#: build/messages/components/Wizard/OCIDestinationStep.json
-msgid "Namespace help"
-msgstr "Ad alanı yardımı"
-
-#. [components.Wizard.3673120330]
-#. defaultMessage is:
-#. Next
-#: build/messages/components/Wizard/CreateImageUpload.json
-msgid "Next"
-msgstr "İleri"
 
 #. [pages.blueprints.emptyTitle]
 #. defaultMessage is:
@@ -1508,76 +1391,61 @@ msgstr "Bu plandan hiç kalıp oluşturulmadı."
 msgid "No log available"
 msgstr "Kullanılabilir günlük kaydı yok"
 
-#. [components.ListView.emptyStateNoResultsTitle]
+#. [wizard.packages.noPackagesAdded]
 #. defaultMessage is:
-#. No results match the filter criteria
-#. [pages.blueprintEdit.emptyStateNoResultsTitle]
+#. No packages added
+#: build/messages/components/Wizard/formComponents/Packages.json
+#, fuzzy
+#| msgid "Edit packages"
+msgid "No packages added"
+msgstr "Paketleri düzenle"
+
+#. [wizard.packages.noPackagesFound]
+#. defaultMessage is:
+#. No packages found
+#: build/messages/components/Wizard/formComponents/Packages.json
+#, fuzzy
+#| msgid "Edit packages"
+msgid "No packages found"
+msgstr "Paketleri düzenle"
+
+#. [components.ListView.emptyStateNoResultsTitle]
 #. defaultMessage is:
 #. No results match the filter criteria
 #. [pages.blueprints.noResultsTitle]
 #. defaultMessage is:
 #. No results match the filter criteria
 #: build/messages/components/ListView/BlueprintContents.json
-#: build/messages/pages/blueprintEdit/index.json
 #: build/messages/pages/blueprints/index.json
 msgid "No results match the filter criteria"
 msgstr "Süzme ölçütüyle eşleşen sonuçlar yok"
 
-#. [components.Wizard.1666805205]
+#. [wizard.review.ociBucket]
 #. defaultMessage is:
 #. OCI bucket
-#: build/messages/components/Wizard/ReviewStep.json
+#. [wizard.oci.bucket.label]
+#. defaultMessage is:
+#. OCI bucket
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/ociDest.json
 msgid "OCI bucket"
 msgstr "OCI bucket"
 
-#. [components.Wizard.compartment]
+#. [wizard.oci.bucket.popoverAria]
 #. defaultMessage is:
-#. OCI compartment help
-#: build/messages/components/Wizard/OCIDestinationStep.json
-msgid "OCI compartment help"
-msgstr "OCI bölmesi yardımı"
+#. OCI bucket help
+#: build/messages/components/Wizard/steps/ociDest.json
+#, fuzzy
+#| msgid "OCI bucket"
+msgid "OCI bucket help"
+msgstr "OCI bucket"
 
-#. [components.Wizard.region]
+#. [wizard.ostree.title]
 #. defaultMessage is:
-#. OCI region help
-#: build/messages/components/Wizard/OCIDestinationStep.json
-msgid "OCI region help"
-msgstr "OCI bölgesi yardımı"
-
-#. [components.Wizard.tenancy]
-#. defaultMessage is:
-#. OCI tenancy help
-#: build/messages/components/Wizard/OCIDestinationStep.json
-msgid "OCI tenancy help"
-msgstr "OCI kirası yardımı"
-
-#. [components.Wizard.ostreeParent]
-#. defaultMessage is:
-#. OSTree parent help
-#: build/messages/components/Wizard/ImageStep.json
-msgid "OSTree parent help"
-msgstr "OSTree üst öğe yardımı"
-
-#. [components.Wizard.ostreeRef]
-#. defaultMessage is:
-#. OSTree ref help
-#: build/messages/components/Wizard/ImageStep.json
-msgid "OSTree ref help"
-msgstr "OSTree referans yardımı"
-
-#. [components.Wizard.ostreeURL]
-#. defaultMessage is:
-#. OSTree repo url help
-#: build/messages/components/Wizard/ImageStep.json
-msgid "OSTree repo url help"
-msgstr "OSTree depo url'si yardımı"
-
-#. [components.Modal.1475836573]
-#. defaultMessage is:
-#. Only changes to selected components are shown.
-#: build/messages/components/Modal/PendingChanges.json
-msgid "Only changes to selected components are shown."
-msgstr "Sadece seçilen bileşenlerde yapılan değişiklikler gösterilir."
+#. OSTree settings
+#: build/messages/components/Wizard/steps/ostreeSettings.json
+msgid "OSTree settings"
+msgstr ""
 
 #. [pages.error.oupsTitle]
 #. defaultMessage is:
@@ -1586,9 +1454,24 @@ msgstr "Sadece seçilen bileşenlerde yapılan değişiklikler gösterilir."
 msgid "Oups, something went wrong"
 msgstr "Tüh, bir şeyler ters gitti"
 
+#. [wizard.review.outputType]
+#. defaultMessage is:
+#. Output type
+#: build/messages/components/Wizard/formComponents/Review.json
+msgid "Output type"
+msgstr ""
+
+#. [wizard.review.packages]
+#. defaultMessage is:
+#. Packages
+#. [wizard.packages.title]
+#. defaultMessage is:
+#. Packages
 #. [pages.blueprint.packagesTitle]
 #. defaultMessage is:
 #. Packages
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/packages.json
 #: build/messages/pages/blueprint/index.json
 msgid "Packages"
 msgstr "Paketler"
@@ -1603,25 +1486,38 @@ msgstr "Paketler"
 msgid "Page not found"
 msgstr "Sayfa bulunamadı"
 
-#. [components.Wizard.3070030782]
+#. [wizard.ostree.parentCommit.label]
 #. defaultMessage is:
 #. Parent commit
-#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/steps/ostreeSettings.json
 msgid "Parent commit"
+msgstr "Üst işleme"
+
+#. [wizard.ostree.parentCommit.popoverAria]
+#. defaultMessage is:
+#. Parent commit help
+#: build/messages/components/Wizard/steps/ostreeSettings.json
+#, fuzzy
+#| msgid "Parent commit"
+msgid "Parent commit help"
 msgstr "Üst işleme"
 
 #. [components.Modal.labelPassword]
 #. defaultMessage is:
 #. Password
-#. [components.Wizard.2237029987]
+#. [wizard.review.password]
 #. defaultMessage is:
 #. Password
-#. [components.Wizard.2237029987]
+#. [wizard.customizations.password.label]
+#. defaultMessage is:
+#. Password
+#. [wizard.vmware.password.label]
 #. defaultMessage is:
 #. Password
 #: build/messages/components/Modal/UserAccount.json
-#: build/messages/components/Wizard/ReviewStep.json
-#: build/messages/components/Wizard/VMWareAuthStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/users.json
+#: build/messages/components/Wizard/steps/vmwareAuth.json
 msgid "Password"
 msgstr "Parola"
 
@@ -1632,118 +1528,132 @@ msgstr "Parola"
 msgid "Paste the contents of your public SSH key file here."
 msgstr "Genel SSH anahtar dosyanızın içeriğini buraya yapıştırın."
 
-#. [components.Modal.3226997558]
-#. defaultMessage is:
-#. Pending changes
-#: build/messages/components/Modal/PendingChanges.json
-msgid "Pending changes"
-msgstr "Bekleyen değişiklikler"
-
-#. [key-help]
+#. [wizard.oci.privateKey.label]
 #. defaultMessage is:
 #. Private key
-#. [components.Wizard.1443428038]
-#. defaultMessage is:
-#. Private key
-#: build/messages/components/Wizard/OCIAuthStep.json
+#: build/messages/components/Wizard/steps/ociAuth.json
 msgid "Private key"
 msgstr "Özel anahtar"
 
-#. [components.Wizard.3157862487]
+#. [wizard.review.privateKey]
 #. defaultMessage is:
 #. Private key filename
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
 msgid "Private key filename"
 msgstr "Özel anahtar dosya adı"
 
-#. [components.Wizard.processLength]
+#. [wizard.oci.privateKey.popoverAria]
+#. defaultMessage is:
+#. Private key help
+#: build/messages/components/Wizard/steps/ociAuth.json
+#, fuzzy
+#| msgid "Private key"
+msgid "Private key help"
+msgstr "Özel anahtar"
+
+#. [wizard.blueprintName.popover.aria]
 #. defaultMessage is:
 #. Process length help
-#. [components.Wizard.processLength]
-#. defaultMessage is:
-#. Process length help
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/BlueprintName.json
 msgid "Process length help"
 msgstr "İşlem uzunluğu ile ilgili yardım"
 
-#. [components.Wizard.4277042358]
+#. [wizard.aws.imageName.popoverBody]
 #. defaultMessage is:
 #. Provide a file name to be used for the image file that will be uploaded.
-#. [components.Wizard.4277042358]
+#. [wizard.azure.imageName.popoverBody]
 #. defaultMessage is:
 #. Provide a file name to be used for the image file that will be uploaded.
-#. [components.Wizard.4277042358]
+#. [wizard.oci.imageName.popoverBody]
 #. defaultMessage is:
 #. Provide a file name to be used for the image file that will be uploaded.
-#. [components.Wizard.4277042358]
+#. [wizard.vmware.imageName.popoverBody]
 #. defaultMessage is:
 #. Provide a file name to be used for the image file that will be uploaded.
-#: build/messages/components/Wizard/AWSDestinationStep.json
-#: build/messages/components/Wizard/AzureDestinationStep.json
-#: build/messages/components/Wizard/OCIDestinationStep.json
-#: build/messages/components/Wizard/VMWareDestinationStep.json
+#: build/messages/components/Wizard/steps/awsDest.json
+#: build/messages/components/Wizard/steps/azureDest.json
+#: build/messages/components/Wizard/steps/ociDest.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid ""
 "Provide a file name to be used for the image file that will be uploaded."
 msgstr ""
 "Karşıya yüklenecek kalıp dosyası için kullanılacak bir dosya adı girin."
 
-#. [components.Wizard.2186792528]
+#. [wizard.aws.region.popoverBody]
 #. defaultMessage is:
-#. Provide the AWS Region where you want to import your image. This must be the same region where the {bucket} exists.
-#: build/messages/components/Wizard/AWSDestinationStep.json
+#. Provide the AWS Region where you want to import your image. This must be the same region where the S3 bucket exists.
+#: build/messages/components/Wizard/steps/awsDest.json
+#, fuzzy
+#| msgid ""
+#| "Provide the AWS Region where you want to import your image. This must be "
+#| "the same region where the {bucket} exists."
 msgid ""
 "Provide the AWS Region where you want to import your image. This must be the "
-"same region where the {bucket} exists."
+"same region where the S3 bucket exists."
 msgstr ""
 "Kalıbınızı içe aktarmak istediğiniz AWS Bölgesini girin. Bu, {bucket} "
 "alanının bulunduğu aynı bölge olmak zorundadır."
 
-#. [components.Wizard.517158149]
+#. [wizard.azure.storageContainer.popoverBody]
 #. defaultMessage is:
-#. Provide the Blob container to which the image file will be uploaded. You can find containers under the {blobService} 
-#.                     section of a storage account. You can find storage accounts on the {storageAccounts} page in the {azure} portal.
-#: build/messages/components/Wizard/AzureDestinationStep.json
+#. Provide the Blob container to which the image file will be uploaded. You can find containers under the <strong>Blob service</strong> section of a storage account. You can find storage accounts on the <strong>Storage accounts</strong> page in the Azure portal.
+#: build/messages/components/Wizard/steps/azureDest.json
+#, fuzzy
+#| msgid ""
+#| "Provide the Blob container to which the image file will be uploaded. You "
+#| "can find containers under the {blobService} \n"
+#| "                    section of a storage account. You can find storage "
+#| "accounts on the {storageAccounts} page in the {azure} portal."
 msgid ""
 "Provide the Blob container to which the image file will be uploaded. You can "
-"find containers under the {blobService} \n"
-"                    section of a storage account. You can find storage "
-"accounts on the {storageAccounts} page in the {azure} portal."
+"find containers under the <strong>Blob service</strong> section of a storage "
+"account. You can find storage accounts on the <strong>Storage accounts</"
+"strong> page in the Azure portal."
 msgstr ""
 "Kalıp dosyasının yükleneceği Blob kapsayıcısını girin. Kapsayıcıları "
 "depolama hesabının {blobService} bölümünde \n"
 "                    bulabilirsiniz. Depolama hesaplarını {azure} "
 "portalındaki {storageAccounts} sayfasında bulabilirsiniz."
 
-#. [components.Wizard.4044130958]
+#. [wizard.ostree.parentCommit.popoverBody]
 #. defaultMessage is:
-#. Provide the ID of the latest commit in the updates repository for which this commit provides an update.
-#.                     If no commit is specified it will be inferred from the parent repository.
-#: build/messages/components/Wizard/ImageStep.json
+#. Provide the ID of the latest commit in the updates repository for which this commit provides an update. If no commit is specified it will be inferred from the parent repository.
+#: build/messages/components/Wizard/steps/ostreeSettings.json
+#, fuzzy
+#| msgid ""
+#| "Provide the ID of the latest commit in the updates repository for which "
+#| "this commit provides an update.\n"
+#| "                    If no commit is specified it will be inferred from "
+#| "the parent repository."
 msgid ""
 "Provide the ID of the latest commit in the updates repository for which this "
-"commit provides an update.\n"
-"                    If no commit is specified it will be inferred from the "
-"parent repository."
+"commit provides an update. If no commit is specified it will be inferred "
+"from the parent repository."
 msgstr ""
 "Bu işlemenin bir güncelleme sağladığı güncellemeler deposundaki en son "
 "işlemenin kimliğini girin.\n"
 "                    Eğer hiç bir işleme belirtilmezse, üst depodan "
 "çıkarılacaktır."
 
-#. [components.Wizard.1901372247]
+#. [wizard.aws.bucket.popoverBody]
 #. defaultMessage is:
-#. Provide the S3 {bucket} name to which the image file will be uploaded before being imported into EC2. 
-#.                         The {bucket} must already exist in the Region where you want to import your image. You can find a list of {buckets} on the
-#.                         {bucketsPage} page in the {amazon} S3 storage service in the AWS console.
-#: build/messages/components/Wizard/AWSDestinationStep.json
+#. Provide the S3 bucket name to which the image file will be uploaded before being imported into EC2. The bucket must already exist in the Region where you want to import your image. You can find a list of buckets on the <strong>S3 buckets</strong> page in the Amazon S3 storage service in the AWS console.
+#: build/messages/components/Wizard/steps/awsDest.json
+#, fuzzy
+#| msgid ""
+#| "Provide the S3 {bucket} name to which the image file will be uploaded "
+#| "before being imported into EC2. \n"
+#| "                        The {bucket} must already exist in the Region "
+#| "where you want to import your image. You can find a list of {buckets} on "
+#| "the\n"
+#| "                        {bucketsPage} page in the {amazon} S3 storage "
+#| "service in the AWS console."
 msgid ""
-"Provide the S3 {bucket} name to which the image file will be uploaded before "
-"being imported into EC2. \n"
-"                        The {bucket} must already exist in the Region where "
-"you want to import your image. You can find a list of {buckets} on the\n"
-"                        {bucketsPage} page in the {amazon} S3 storage "
-"service in the AWS console."
+"Provide the S3 bucket name to which the image file will be uploaded before "
+"being imported into EC2. The bucket must already exist in the Region where "
+"you want to import your image. You can find a list of buckets on the "
+"<strong>S3 buckets</strong> page in the Amazon S3 storage service in the AWS "
+"console."
 msgstr ""
 "EC2'ye aktarılmadan önce kalıp dosyasının yükleneceği S3 {bucket} adını "
 "girin.\n"
@@ -1753,10 +1663,10 @@ msgstr ""
 "                        {amazon} S3 depolama hizmetindeki {bucketsPage} "
 "sayfasında bulabilirsiniz."
 
-#. [components.Wizard.1170512263]
+#. [wizard.ostree.repoURL.popoverBody]
 #. defaultMessage is:
 #. Provide the URL of the upstream repository. This repository is where the parent OSTree commit will be pulled from.
-#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/steps/ostreeSettings.json
 msgid ""
 "Provide the URL of the upstream repository. This repository is where the "
 "parent OSTree commit will be pulled from."
@@ -1764,133 +1674,45 @@ msgstr ""
 "Yukarı akış deposunun URL'sini girin. Bu depo, üst OSTree işlemesinin "
 "çekileceği yerdir."
 
-#. [components.Wizard.2706552502]
+#. [wizard.azure.storageAccessKey.popoverBody]
 #. defaultMessage is:
-#. Provide the access key for the desired storage account. You can find the access key on the {accessKeys} 
-#.                         page of the storage account. You can find storage accounts on the {storageAccounts} page in the {azure} portal.
-#: build/messages/components/Wizard/AzureAuthStep.json
+#. Provide the access key for the desired storage account. You can find the access key on the <strong>Access keys</strong> page of the storage account. You can find storage accounts on the <strong>Storage accounts</strong> page in the Azure portal.
+#: build/messages/components/Wizard/steps/azureAuth.json
+#, fuzzy
+#| msgid ""
+#| "Provide the access key for the desired storage account. You can find the "
+#| "access key on the {accessKeys} \n"
+#| "                        page of the storage account. You can find storage "
+#| "accounts on the {storageAccounts} page in the {azure} portal."
 msgid ""
 "Provide the access key for the desired storage account. You can find the "
-"access key on the {accessKeys} \n"
-"                        page of the storage account. You can find storage "
-"accounts on the {storageAccounts} page in the {azure} portal."
+"access key on the <strong>Access keys</strong> page of the storage account. "
+"You can find storage accounts on the <strong>Storage accounts</strong> page "
+"in the Azure portal."
 msgstr ""
 "İstenen depolama hesabı için erişim anahtarını girin. Erişim anahtarını "
 "depolama hesabının {accessKeys} \n"
 "                        sayfasında bulabilirsiniz. Depolama hesaplarını "
 "{azure} portalındaki {storageAccounts} sayfasında bulabilirsiniz."
 
-#. [components.Wizard.2831983558]
+#. [wizard.oci.bucket.popoverBody]
 #. defaultMessage is:
-#. Provide the compartment of the {bucket} your uploading to. You can find the compartment in the bucket details.
-#: build/messages/components/Wizard/OCIDestinationStep.json
+#. Provide the bucket name to which the image file will be uploaded before being imported as a custom image. The bucket must already exist in the Region where you want to import your image. You can find a list of buckets on the <strong>OCI buckets</strong> page in the OCI storage service in the OCI console.
+#: build/messages/components/Wizard/steps/ociDest.json
+#, fuzzy
+#| msgid ""
+#| "Provide the {bucket} name to which the image file will be uploaded before "
+#| "being imported as a custom image. \n"
+#| "                        The {bucket} must already exist in the Region "
+#| "where you want to import your image. You can find a list of {buckets} on "
+#| "the\n"
+#| "                        {bucketsPage} page in the OCI storage service in "
+#| "the OCI console."
 msgid ""
-"Provide the compartment of the {bucket} your uploading to. You can find the "
-"compartment in the bucket details."
-msgstr ""
-"Yüklediğiniz {bucket} bölmesini girin. Bölmeyi bucket ayrıntılarında "
-"bulabilirsiniz."
-
-#. [components.Wizard.1434969769]
-#. defaultMessage is:
-#. Provide the name of a storage account. You can find storage accounts on the {storageAccounts} page in the {azure} portal.
-#: build/messages/components/Wizard/AzureAuthStep.json
-msgid ""
-"Provide the name of a storage account. You can find storage accounts on the "
-"{storageAccounts} page in the {azure} portal."
-msgstr ""
-"Depolama hesabının adını girin. Depolama hesaplarını {azure} portalındaki "
-"{storageAccounts} sayfasında bulabilirsiniz."
-
-#. [components.Wizard.1891777230]
-#. defaultMessage is:
-#. Provide the name of the Cluster to which the image file will be uploaded.
-#: build/messages/components/Wizard/VMWareDestinationStep.json
-msgid ""
-"Provide the name of the Cluster to which the image file will be uploaded."
-msgstr "Kalıp dosyasının yükleneceği Kümelemenin adını girin."
-
-#. [components.Wizard.1217327836]
-#. defaultMessage is:
-#. Provide the name of the Datacenter to which the image file will be uploaded.
-#: build/messages/components/Wizard/VMWareDestinationStep.json
-msgid ""
-"Provide the name of the Datacenter to which the image file will be uploaded."
-msgstr "Kalıp dosyasının yükleneceği Veri Merkezinin adını girin."
-
-#. [components.Wizard.4014474612]
-#. defaultMessage is:
-#. Provide the name of the Datastore to which the image file will be uploaded.
-#: build/messages/components/Wizard/VMWareDestinationStep.json
-msgid ""
-"Provide the name of the Datastore to which the image file will be uploaded."
-msgstr "Kalıp dosyasının yükleneceği Veri Deposunun adını girin."
-
-#. [components.Wizard.1476874820]
-#. defaultMessage is:
-#. Provide the name of the branch for the content. If the ref does not already exist it will be created.
-#: build/messages/components/Wizard/ImageStep.json
-msgid ""
-"Provide the name of the branch for the content. If the ref does not already "
-"exist it will be created."
-msgstr ""
-"İçerik için dalın adını girin. Referans zaten mevcut değilse "
-"oluşturulacaktır."
-
-#. [components.Wizard.3701635592]
-#. defaultMessage is:
-#. Provide the namespace of the {bucket} your uploading to. You can find the namespace in the bucket details.
-#: build/messages/components/Wizard/OCIDestinationStep.json
-msgid ""
-"Provide the namespace of the {bucket} your uploading to. You can find the "
-"namespace in the bucket details."
-msgstr ""
-"Yüklediğiniz {bucket} ad alanını girin. Ad alanını bucket ayrıntılarında "
-"bulabilirsiniz."
-
-#. [components.Wizard.3286165321]
-#. defaultMessage is:
-#. Provide the region of the {bucket} your uploading to. You can find the region in the bucket details.
-#: build/messages/components/Wizard/OCIDestinationStep.json
-msgid ""
-"Provide the region of the {bucket} your uploading to. You can find the "
-"region in the bucket details."
-msgstr ""
-"Yüklediğiniz {bucket} bölgesini girin. Bölgeyi bucket ayrıntılarında "
-"bulabilirsiniz."
-
-#. [components.Wizard.3854501928]
-#. defaultMessage is:
-#. Provide the tenancy of the {bucket} your uploading to. You can find the tenancy in the bucket details.
-#: build/messages/components/Wizard/OCIDestinationStep.json
-msgid ""
-"Provide the tenancy of the {bucket} your uploading to. You can find the "
-"tenancy in the bucket details."
-msgstr ""
-"Yüklediğiniz {bucket} kirasını girin. Kirayı bucket ayrıntılarında "
-"bulabilirsiniz."
-
-#. [components.Wizard.3387354708]
-#. defaultMessage is:
-#. Provide the url of your {vmware} instance to which the image file will be uploaded.
-#: build/messages/components/Wizard/VMWareDestinationStep.json
-msgid ""
-"Provide the url of your {vmware} instance to which the image file will be "
-"uploaded."
-msgstr "Kalıp dosyasının yükleneceği {vmware} örneğinizin url'sini girin."
-
-#. [components.Wizard.577410027]
-#. defaultMessage is:
-#. Provide the {bucket} name to which the image file will be uploaded before being imported as a custom image. 
-#.                         The {bucket} must already exist in the Region where you want to import your image. You can find a list of {buckets} on the
-#.                         {bucketsPage} page in the OCI storage service in the OCI console.
-#: build/messages/components/Wizard/OCIDestinationStep.json
-msgid ""
-"Provide the {bucket} name to which the image file will be uploaded before "
-"being imported as a custom image. \n"
-"                        The {bucket} must already exist in the Region where "
-"you want to import your image. You can find a list of {buckets} on the\n"
-"                        {bucketsPage} page in the OCI storage service in the "
+"Provide the bucket name to which the image file will be uploaded before "
+"being imported as a custom image. The bucket must already exist in the "
+"Region where you want to import your image. You can find a list of buckets "
+"on the <strong>OCI buckets</strong> page in the OCI storage service in the "
 "OCI console."
 msgstr ""
 "Özel bir kalıp olarak içe aktarılmadan önce kalıp dosyasının yükleneceği "
@@ -1901,36 +1723,166 @@ msgstr ""
 "                        OCI depolama hizmetindeki {bucketsPage} sayfasında "
 "bulabilirsiniz."
 
-#. [components.Wizard.labelqcow]
+#. [wizard.oci.compartment.popoverBody]
 #. defaultMessage is:
-#. QEMU Image (.qcow2)
-#: build/messages/components/Wizard/ImageStep.json
-msgid "QEMU Image (.qcow2)"
-msgstr "QEMU Kalıbı (.qcow2)"
+#. Provide the compartment of the OCI bucket compartment your uploading to. You can find the compartment in the bucket details.
+#: build/messages/components/Wizard/steps/ociDest.json
+#, fuzzy
+#| msgid ""
+#| "Provide the compartment of the {bucket} your uploading to. You can find "
+#| "the compartment in the bucket details."
+msgid ""
+"Provide the compartment of the OCI bucket compartment your uploading to. You "
+"can find the compartment in the bucket details."
+msgstr ""
+"Yüklediğiniz {bucket} bölmesini girin. Bölmeyi bucket ayrıntılarında "
+"bulabilirsiniz."
 
-#. [components.Wizard.31026111]
+#. [wizard.azure.storageAccount.popoverBody]
+#. defaultMessage is:
+#. Provide the name of a storage account. You can find storage accounts on the <strong>Storage accounts</strong> page in the Azure portal.
+#: build/messages/components/Wizard/steps/azureAuth.json
+#, fuzzy
+#| msgid ""
+#| "Provide the name of a storage account. You can find storage accounts on "
+#| "the {storageAccounts} page in the {azure} portal."
+msgid ""
+"Provide the name of a storage account. You can find storage accounts on the "
+"<strong>Storage accounts</strong> page in the Azure portal."
+msgstr ""
+"Depolama hesabının adını girin. Depolama hesaplarını {azure} portalındaki "
+"{storageAccounts} sayfasında bulabilirsiniz."
+
+#. [wizard.vmware.cluster.popoverBody]
+#. defaultMessage is:
+#. Provide the name of the Cluster to which the image file will be uploaded.
+#: build/messages/components/Wizard/steps/vmwareDest.json
+msgid ""
+"Provide the name of the Cluster to which the image file will be uploaded."
+msgstr "Kalıp dosyasının yükleneceği Kümelemenin adını girin."
+
+#. [wizard.vmware.dataCenter.popoverBody]
+#. defaultMessage is:
+#. Provide the name of the Datacenter to which the image file will be uploaded.
+#: build/messages/components/Wizard/steps/vmwareDest.json
+msgid ""
+"Provide the name of the Datacenter to which the image file will be uploaded."
+msgstr "Kalıp dosyasının yükleneceği Veri Merkezinin adını girin."
+
+#. [wizard.vmware.datastore.popoverBody]
+#. defaultMessage is:
+#. Provide the name of the Datastore to which the image file will be uploaded.
+#: build/messages/components/Wizard/steps/vmwareDest.json
+msgid ""
+"Provide the name of the Datastore to which the image file will be uploaded."
+msgstr "Kalıp dosyasının yükleneceği Veri Deposunun adını girin."
+
+#. [wizard.ostree.ref.popoverBody]
+#. defaultMessage is:
+#. Provide the name of the branch for the content. If the ref does not already exist it will be created.
+#: build/messages/components/Wizard/steps/ostreeSettings.json
+msgid ""
+"Provide the name of the branch for the content. If the ref does not already "
+"exist it will be created."
+msgstr ""
+"İçerik için dalın adını girin. Referans zaten mevcut değilse "
+"oluşturulacaktır."
+
+#. [wizard.oci.namespace.popoverBody]
+#. defaultMessage is:
+#. Provide the namespace of the OCI bucket your uploading to. You can find the namespace in the bucket details.
+#: build/messages/components/Wizard/steps/ociDest.json
+#, fuzzy
+#| msgid ""
+#| "Provide the namespace of the {bucket} your uploading to. You can find the "
+#| "namespace in the bucket details."
+msgid ""
+"Provide the namespace of the OCI bucket your uploading to. You can find the "
+"namespace in the bucket details."
+msgstr ""
+"Yüklediğiniz {bucket} ad alanını girin. Ad alanını bucket ayrıntılarında "
+"bulabilirsiniz."
+
+#. [wizard.oci.region.popoverBody]
+#. defaultMessage is:
+#. Provide the region of the Bucket region your uploading to. You can find the region in the bucket details.
+#: build/messages/components/Wizard/steps/ociDest.json
+#, fuzzy
+#| msgid ""
+#| "Provide the region of the {bucket} your uploading to. You can find the "
+#| "region in the bucket details."
+msgid ""
+"Provide the region of the Bucket region your uploading to. You can find the "
+"region in the bucket details."
+msgstr ""
+"Yüklediğiniz {bucket} bölgesini girin. Bölgeyi bucket ayrıntılarında "
+"bulabilirsiniz."
+
+#. [wizard.oci.tenancy.popoverBody]
+#. defaultMessage is:
+#. Provide the tenancy of the OCI bucket your uploading to. You can find the tenancy in the bucket details.
+#: build/messages/components/Wizard/steps/ociDest.json
+#, fuzzy
+#| msgid ""
+#| "Provide the tenancy of the {bucket} your uploading to. You can find the "
+#| "tenancy in the bucket details."
+msgid ""
+"Provide the tenancy of the OCI bucket your uploading to. You can find the "
+"tenancy in the bucket details."
+msgstr ""
+"Yüklediğiniz {bucket} kirasını girin. Kirayı bucket ayrıntılarında "
+"bulabilirsiniz."
+
+#. [wizard.vmware.host.popoverBody]
+#. defaultMessage is:
+#. Provide the url of your VMWare vSphere instance to which the image file will be uploaded.
+#: build/messages/components/Wizard/steps/vmwareDest.json
+#, fuzzy
+#| msgid ""
+#| "Provide the url of your {vmware} instance to which the image file will be "
+#| "uploaded."
+msgid ""
+"Provide the url of your VMWare vSphere instance to which the image file will "
+"be uploaded."
+msgstr "Kalıp dosyasının yükleneceği {vmware} örneğinizin url'sini girin."
+
+#. [wizard.ostree.ref.label]
 #. defaultMessage is:
 #. Ref
-#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/steps/ostreeSettings.json
 msgid "Ref"
 msgstr "Referans"
 
+#. [wizard.ostree.ref.popoverAria]
+#. defaultMessage is:
+#. Ref help
+#: build/messages/components/Wizard/steps/ostreeSettings.json
+#, fuzzy
+#| msgid "Azure help"
+msgid "Ref help"
+msgstr "Azure ile ilgili yardım"
+
+#. [wizard.aws.region.popoverAria]
+#. defaultMessage is:
+#. Region help
+#: build/messages/components/Wizard/steps/awsDest.json
+#, fuzzy
+#| msgid "AWS region help"
+msgid "Region help"
+msgstr "AWS bölgesi ile ilgili yardım"
+
 #. [components.ListView.423140743]
 #. defaultMessage is:
 #. Release
 #. [components.ListView.423140743]
 #. defaultMessage is:
 #. Release
-#. [components.Toolbar.filterReleaseTitle]
-#. defaultMessage is:
-#. Release
-#. [components.Toolbar.filterReleaseTitle]
+#. [toolbar.blueprint.filter.release]
 #. defaultMessage is:
 #. Release
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ComponentsDataListItem.json
-#: build/messages/components/Toolbar/FilterInput.json
-#: build/messages/components/Toolbar/ToolbarLayout.json
+#: build/messages/components/Toolbar/BlueprintToolbar.json
 msgid "Release"
 msgstr "Yayınla"
 
@@ -1940,14 +1892,28 @@ msgstr "Yayınla"
 #. [components.ListView.2703758654]
 #. defaultMessage is:
 #. Remove
-#. [components.ListView.2703758654]
-#. defaultMessage is:
-#. Remove
 #: build/messages/components/ListView/ComponentDetailsView.json
-#: build/messages/components/ListView/ComponentsDataListItem.json
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Remove"
 msgstr "Kaldır"
+
+#. [wizard.packages.removeAll]
+#. defaultMessage is:
+#. Remove all
+#: build/messages/components/Wizard/formComponents/Packages.json
+#, fuzzy
+#| msgid "Remove"
+msgid "Remove all"
+msgstr "Kaldır"
+
+#. [wizard.customizations.buttons.removeAll]
+#. defaultMessage is:
+#. Remove all users
+#: build/messages/components/Wizard/steps/users.json
+#, fuzzy
+#| msgid "Remove password"
+msgid "Remove all users"
+msgstr "Parolayı kaldır"
 
 #. [components.ListView.removeComponent]
 #. defaultMessage is:
@@ -1963,6 +1929,15 @@ msgstr "Bileşeni plandan kaldır"
 msgid "Remove from blueprint"
 msgstr "Plandan kaldır"
 
+#. [wizard.packages.removeSelected]
+#. defaultMessage is:
+#. Remove selected
+#: build/messages/components/Wizard/formComponents/Packages.json
+#, fuzzy
+#| msgid "Remove source"
+msgid "Remove selected"
+msgstr "Kaynağı kaldır"
+
 #. [components.ListView.remove]
 #. defaultMessage is:
 #. Remove source
@@ -1970,12 +1945,14 @@ msgstr "Plandan kaldır"
 msgid "Remove source"
 msgstr "Kaynağı kaldır"
 
-#. [components.Modal.2291868453] - Identifies the change as a component that was removed
+#. [wizard.customizations.buttons.remove]
 #. defaultMessage is:
-#. Removed
-#: build/messages/components/Modal/PendingChanges.json
-msgid "Removed"
-msgstr "Kaldırıldı"
+#. Remove user
+#: build/messages/components/Wizard/steps/users.json
+#, fuzzy
+#| msgid "Remove source"
+msgid "Remove user"
+msgstr "Kaynağı kaldır"
 
 #. [components.ListView.2663433025]
 #. defaultMessage is:
@@ -1984,11 +1961,20 @@ msgstr "Kaldırıldı"
 msgid "Removing source"
 msgstr "Kaynak kaldırılıyor"
 
-#. [components.Wizard.2238384022]
+#. [wizard.ostree.repoURL.label]
 #. defaultMessage is:
 #. Repository URL
-#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/steps/ostreeSettings.json
 msgid "Repository URL"
+msgstr "Depo URL'si"
+
+#. [wizard.ostree.repoURL.popoverAria]
+#. defaultMessage is:
+#. Repository URL help
+#: build/messages/components/Wizard/steps/ostreeSettings.json
+#, fuzzy
+#| msgid "Repository URL"
+msgid "Repository URL help"
 msgstr "Depo URL'si"
 
 #. [components.Modal.128739785]
@@ -1998,20 +1984,24 @@ msgstr "Depo URL'si"
 msgid "Required information is missing."
 msgstr "Gerekli bilgi eksik."
 
-#. [components.Wizard.3835894881]
+#. [wizard.review.title]
 #. defaultMessage is:
 #. Review
-#: build/messages/components/Wizard/CreateImageUpload.json
+#: build/messages/components/Wizard/steps/review.json
 msgid "Review"
 msgstr "Gözden Geçir"
 
-#. [components.Wizard.review]
+#. [wizard.review.review]
 #. defaultMessage is:
-#. Review the information below and click Finish to create the image and complete the tasks that were selected.
-#: build/messages/components/Wizard/ReviewStep.json
+#. Review the information and click "Create image" to create the image using the following criteria.
+#: build/messages/components/Wizard/formComponents/Review.json
+#, fuzzy
+#| msgid ""
+#| "Review the information below and click Finish to create the image and "
+#| "complete the tasks that were selected."
 msgid ""
-"Review the information below and click Finish to create the image and "
-"complete the tasks that were selected."
+"Review the information and click \"Create image\" to create the image using "
+"the following criteria."
 msgstr ""
 "Aşağıdaki bilgileri inceleyin ve kalıbı oluşturmak ve seçilen görevleri "
 "tamamlamak için Bitir düğmesine tıklayın."
@@ -2023,17 +2013,23 @@ msgstr ""
 msgid "Role"
 msgstr "Rol"
 
-#. [components.Wizard.bucket]
+#. [wizard.aws.bucket.popoverAria]
 #. defaultMessage is:
-#. S3 Bucket help
-#: build/messages/components/Wizard/AWSDestinationStep.json
-msgid "S3 Bucket help"
+#. S3 bucket help
+#: build/messages/components/Wizard/steps/awsDest.json
+#, fuzzy
+#| msgid "S3 Bucket help"
+msgid "S3 bucket help"
 msgstr "S3 Bucket yardımı"
 
 #. [components.Modal.labelSSHKey]
 #. defaultMessage is:
 #. SSH key
+#. [wizard.customizations.sshKey.label]
+#. defaultMessage is:
+#. SSH key
 #: build/messages/components/Modal/UserAccount.json
+#: build/messages/components/Wizard/steps/users.json
 msgid "SSH key"
 msgstr "SSH anahtarı"
 
@@ -2048,6 +2044,15 @@ msgstr "SSH anahtarı"
 msgid "Save"
 msgstr "Kaydet"
 
+#. [wizard.review.saveBlueprint]
+#. defaultMessage is:
+#. Save blueprint
+#: build/messages/components/Wizard/formComponents/SubmitButtonsCustom.json
+#, fuzzy
+#| msgid "Create blueprint"
+msgid "Save blueprint"
+msgstr "Plan oluştur"
+
 #. [components.Modal.1820273720]
 #. defaultMessage is:
 #. Saving source
@@ -2055,21 +2060,42 @@ msgstr "Kaydet"
 msgid "Saving source"
 msgstr "Kaynak kaydediliyor"
 
-#. [components.Wizard.135579143]
+#. [wizard.packages.searchAbove]
+#. defaultMessage is:
+#. Search above to add additional{br}packages to your image
+#: build/messages/components/Wizard/formComponents/Packages.json
+msgid "Search above to add additional{br}packages to your image"
+msgstr ""
+
+#. [wizard.packages.availablePackagesSearch]
+#. defaultMessage is:
+#. Search button for available packages
+#: build/messages/components/Wizard/formComponents/Packages.json
+msgid "Search button for available packages"
+msgstr ""
+
+#. [wizard.packages.searchPackages]
+#. defaultMessage is:
+#. Search for a package
+#: build/messages/components/Wizard/formComponents/Packages.json
+msgid "Search for a package"
+msgstr ""
+
+#. [wizard.review.secretAccessKey]
 #. defaultMessage is:
 #. Secret access key
-#. [components.Wizard.135579143]
+#. [wizard.aws.secretAccessKey.label]
 #. defaultMessage is:
 #. Secret access key
-#: build/messages/components/Wizard/AWSAuthStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/awsAuth.json
 msgid "Secret access key"
 msgstr "Gizli erişim anahtarı"
 
-#. [secret-access-key-help]
+#. [wizard.aws.secretAccessKey.popoverAria]
 #. defaultMessage is:
 #. Secret access key help
-#: build/messages/components/Wizard/AWSAuthStep.json
+#: build/messages/components/Wizard/steps/awsAuth.json
 msgid "Secret access key help"
 msgstr "Gizli erişim anahtarı ile ilgili yardım"
 
@@ -2080,22 +2106,20 @@ msgstr "Gizli erişim anahtarı ile ilgili yardım"
 msgid "Security"
 msgstr "Güvenlik"
 
-#. [pages.blueprintEdit.1513086105]
-#. defaultMessage is:
-#. Select components
-#: build/messages/pages/blueprintEdit/index.json
-msgid "Select components"
-msgstr "Bileşenleri seç"
-
 #. [components.Modal.selectOne]
 #. defaultMessage is:
 #. Select one
-#. [components.Wizard.selectOne]
-#. defaultMessage is:
-#. Select one
 #: build/messages/components/Modal/ManageSources.json
-#: build/messages/components/Wizard/ImageStep.json
 msgid "Select one"
+msgstr "Birini seç"
+
+#. [wizard.imageOutput.selectType]
+#. defaultMessage is:
+#. Select output type
+#: build/messages/components/Wizard/formComponents/ImageOutputSelect.json
+#, fuzzy
+#| msgid "Select one"
+msgid "Select output type"
 msgstr "Birini seç"
 
 #. [components.ListView.selectedTabTitle]
@@ -2104,6 +2128,24 @@ msgstr "Birini seç"
 #: build/messages/components/ListView/BlueprintContents.json
 msgid "Selected components"
 msgstr "Seçilen bileşenler"
+
+#. [wizard.packages.selectedPackages]
+#. defaultMessage is:
+#. Selected packages
+#: build/messages/components/Wizard/steps/packages.json
+#, fuzzy
+#| msgid "Edit packages"
+msgid "Selected packages"
+msgstr "Paketleri düzenle"
+
+#. [wizard.packages.selectorControls]
+#. defaultMessage is:
+#. Selector controls
+#: build/messages/components/Wizard/formComponents/Packages.json
+#, fuzzy
+#| msgid "Select components"
+msgid "Selector controls"
+msgstr "Bileşenleri seç"
 
 #. [components.Modal.adminCheckbox]
 #. defaultMessage is:
@@ -2115,14 +2157,18 @@ msgstr "Sunucu yöneticisi onay kutusu"
 #. [components.Modal.labelAdmin]
 #. defaultMessage is:
 #. Server administrator
+#. [wizard.customizations.serverAdmin.label]
+#. defaultMessage is:
+#. Server administrator
 #: build/messages/components/Modal/UserAccount.json
+#: build/messages/components/Wizard/steps/users.json
 msgid "Server administrator"
 msgstr "Sunucu yöneticisi"
 
-#. [components.Wizard.imageSizePopover]
+#. [wizard.imageOutput.imageSize.popoverBody]
 #. defaultMessage is:
 #. Set the size that you want the image to be when instantiated. The total package size and target destination of your image should be considered when setting the image size.
-#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/steps/imageOutput.json
 msgid ""
 "Set the size that you want the image to be when instantiated. The total "
 "package size and target destination of your image should be considered when "
@@ -2159,6 +2205,32 @@ msgstr "Daha az göster"
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Size"
 msgstr "Boyut"
+
+#. [toolbar.blueprints.sort.asc]
+#. defaultMessage is:
+#. Sort blueprints ascending
+#. [toolbar.blueprints.sort.asc]
+#. defaultMessage is:
+#. Sort blueprints ascending
+#: build/messages/components/Toolbar/BlueprintsToolbar.json
+#: build/messages/components/Toolbar/BlueprintToolbar.json
+#, fuzzy
+#| msgid "Export blueprint"
+msgid "Sort blueprints ascending"
+msgstr "Planı dışa aktar"
+
+#. [toolbar.blueprints.sort.desc]
+#. defaultMessage is:
+#. Sort blueprints descending
+#. [toolbar.blueprints.sort.desc]
+#. defaultMessage is:
+#. Sort blueprints descending
+#: build/messages/components/Toolbar/BlueprintsToolbar.json
+#: build/messages/components/Toolbar/BlueprintToolbar.json
+#, fuzzy
+#| msgid "Export blueprint"
+msgid "Sort blueprints descending"
+msgstr "Planı dışa aktar"
 
 #. [components.ListView.kebab]
 #. defaultMessage is:
@@ -2203,6 +2275,13 @@ msgstr ""
 msgid "Specify a new blueprint name."
 msgstr "Yeni bir plan adı belirtin."
 
+#. [wizard.customizations.installDevice.popoverBody]
+#. defaultMessage is:
+#. Specify which device the image will be installed onto.
+#: build/messages/components/Wizard/steps/system.json
+msgid "Specify which device the image will be installed onto."
+msgstr ""
+
 #. [components.EmptyState.errorInactivePrimary]
 #. defaultMessage is:
 #. Start
@@ -2238,70 +2317,68 @@ msgstr "Oluşturmayı durdur"
 msgid "Stopping"
 msgstr "Durduruluyor"
 
-#. [components.Wizard.4127941395]
+#. [wizard.review.storageAccessKey]
 #. defaultMessage is:
 #. Storage access key
-#. [components.Wizard.4127941395]
+#. [wizard.azure.storageAccessKey.label]
 #. defaultMessage is:
 #. Storage access key
-#: build/messages/components/Wizard/AzureAuthStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/azureAuth.json
 msgid "Storage access key"
 msgstr "Depolama erişim anahtarı"
 
-#. [components.Wizard.storageAccessKey]
+#. [wizard.azure.storageAccessKey.popoverAria]
 #. defaultMessage is:
 #. Storage access key help
-#: build/messages/components/Wizard/AzureAuthStep.json
+#: build/messages/components/Wizard/steps/azureAuth.json
 msgid "Storage access key help"
 msgstr "Depolama erişim anahtarı ile ilgili yardım"
 
-#. [components.Wizard.1624497518]
+#. [wizard.review.storageAccount]
 #. defaultMessage is:
 #. Storage account
-#. [components.Wizard.1624497518]
+#. [wizard.azure.storageAccount.label]
 #. defaultMessage is:
 #. Storage account
-#: build/messages/components/Wizard/AzureAuthStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/azureAuth.json
 msgid "Storage account"
 msgstr "Depolama hesabı"
 
-#. [components.Wizard.storageAccount]
+#. [wizard.azure.storageAccount.popoverAria]
 #. defaultMessage is:
 #. Storage account help
-#: build/messages/components/Wizard/AzureAuthStep.json
+#: build/messages/components/Wizard/steps/azureAuth.json
 msgid "Storage account help"
 msgstr "Depolama hesabı ile ilgili yardım"
 
-#. [components.Wizard.storageAccounts]
-#. defaultMessage is:
-#. Storage accounts
-#. [components.Wizard.storageAccounts]
-#. defaultMessage is:
-#. Storage accounts
-#: build/messages/components/Wizard/AzureAuthStep.json
-#: build/messages/components/Wizard/AzureDestinationStep.json
-msgid "Storage accounts"
-msgstr "Depolama hesapları"
-
-#. [components.Wizard.1249927125]
+#. [wizard.review.storageContainer]
 #. defaultMessage is:
 #. Storage container
-#. [components.Wizard.1249927125]
+#. [wizard.azure.storageContainer.label]
 #. defaultMessage is:
 #. Storage container
-#: build/messages/components/Wizard/AzureDestinationStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/azureDest.json
 msgid "Storage container"
 msgstr "Depolama konteyneri"
 
-#. [components.Wizard.storageContainer]
+#. [wizard.azure.storageContainer.popoverAria]
 #. defaultMessage is:
 #. Storage container help
-#: build/messages/components/Wizard/AzureDestinationStep.json
+#: build/messages/components/Wizard/steps/azureDest.json
 msgid "Storage container help"
 msgstr "Depolama konteyneri ile ilgili yardım"
+
+#. [wizard.customizations.systemTitle]
+#. defaultMessage is:
+#. System
+#: build/messages/components/Wizard/steps/system.json
+#, fuzzy
+#| msgid "System source"
+msgid "System"
+msgstr "Sistem kaynakları"
 
 #. [components.ListView.3639476303] - System sources are configured repositories that were found on the host machine
 #. defaultMessage is:
@@ -2357,17 +2434,6 @@ msgstr ""
 msgid "The name {name} already exists."
 msgstr "{name} ismi zaten mevcut."
 
-#. [pages.blueprintEdit.addComponentMessageTwo]
-#. defaultMessage is:
-#. The packages needed to support the selected image type are automatically included when creating an image.
-#: build/messages/pages/blueprintEdit/index.json
-msgid ""
-"The packages needed to support the selected image type are automatically "
-"included when creating an image."
-msgstr ""
-"Bir kalıp oluştururken, seçilen kalıp türünü desteklemek için gereken "
-"paketler otomatik olarak dahil edilir."
-
 #. [pages.error.26562577]
 #. defaultMessage is:
 #. The page you're looking for does not exist or an another error occurred.
@@ -2382,21 +2448,6 @@ msgstr "Aradığınız sayfa mevcut değil veya başka bir hata oluştu."
 #: build/messages/components/EmptyState/EmptyStateInactive.json
 msgid "The service osbuild-composer was not started."
 msgstr "osbuild-composer hizmeti başlatılmadı."
-
-#. [components.Wizard.warningSizeLarge]
-#. defaultMessage is:
-#. The size specified is large. We recommend that you check whether your target destination has any restrictions on image size.
-#. [components.Wizard.warningSizeLarge]
-#. defaultMessage is:
-#. The size specified is large. We recommend that you check whether your target destination has any restrictions on image size.
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
-msgid ""
-"The size specified is large. We recommend that you check whether your target "
-"destination has any restrictions on image size."
-msgstr ""
-"Belirtilen boyut büyük. Hedef konumunuzun kalıp boyutu üzerinde herhangi bir "
-"kısıtlamaya sahip olup olmadığını kontrol etmenizi öneririz."
 
 #. [components.Modal.usernameValidChars]
 #. defaultMessage is:
@@ -2436,20 +2487,15 @@ msgstr "Parola için girilen değerler eşleşmiyor."
 
 #. [pages.blueprint.emptyBlueprintMessage]
 #. defaultMessage is:
-#. There are no components listed in the blueprint. Edit the blueprint to add components.
+#. There are no components listed in the blueprint.
 #: build/messages/pages/blueprint/index.json
-msgid ""
-"There are no components listed in the blueprint. Edit the blueprint to add "
-"components."
+#, fuzzy
+#| msgid ""
+#| "There are no components listed in the blueprint. Edit the blueprint to "
+#| "add components."
+msgid "There are no components listed in the blueprint."
 msgstr ""
 "Planda listelenen hiçbir bileşen yok. Bileşen eklemek için planı düzenleyin."
-
-#. [components.Wizard.warningReview]
-#. defaultMessage is:
-#. There are one or more fields that require your attention.
-#: build/messages/components/Wizard/ReviewStep.json
-msgid "There are one or more fields that require your attention."
-msgstr "İlgilenmenizi gerektiren bir veya daha fazla alan var."
 
 #. [components.Modal.181468144]
 #. defaultMessage is:
@@ -2462,24 +2508,6 @@ msgstr "İlgilenmenizi gerektiren bir veya daha fazla alan var."
 msgid "This action cannot be undone."
 msgstr "Bu eylem geri alınamaz."
 
-#. [components.Wizard.warningUnsaved]
-#. defaultMessage is:
-#. This blueprint has changes that are not committed. These changes will be committed before the image is created.
-#: build/messages/components/Wizard/ImageStep.json
-msgid ""
-"This blueprint has changes that are not committed. These changes will be "
-"committed before the image is created."
-msgstr ""
-"Bu planda işlenmemiş değişiklikler var. Bu değişiklikler kalıp "
-"oluşturulmadan önce işlenecektir."
-
-#. [empty-blueprint-alert]
-#. defaultMessage is:
-#. This blueprint is empty.
-#: build/messages/components/Wizard/ImageStep.json
-msgid "This blueprint is empty."
-msgstr "Bu plan boş."
-
 #. [components.ListView.noDepsMessage]
 #. defaultMessage is:
 #. This component has no dependencies.
@@ -2487,21 +2515,10 @@ msgstr "Bu plan boş."
 msgid "This component has no dependencies."
 msgstr "Bu bileşenin hiçbir bağımlılığı yok."
 
-#. [components.Wizard.requiredField]
-#. defaultMessage is:
-#. This is a required field
-#: build/messages/components/Wizard/ImageStep.json
-msgid "This is a required field"
-msgstr "Bu gerekli bir alandır"
-
-#. [components.Wizard.infotip]
+#. [wizard.blueprintName.popover.content]
 #. defaultMessage is:
 #. This process can take a while. Images are built in the order they are started.
-#. [components.Wizard.infotip]
-#. defaultMessage is:
-#. This process can take a while. Images are built in the order they are started.
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#: build/messages/components/Wizard/formComponents/BlueprintName.json
 msgid ""
 "This process can take a while. Images are built in the order they are "
 "started."
@@ -2529,48 +2546,6 @@ msgstr "Bu kaynak konumu zaten mevcut."
 msgid "This system does not have any valid subscriptions."
 msgstr "Bu sistemin herhangi bir geçerli aboneliği yok."
 
-#. [components.Wizard.1727762289]
-#. defaultMessage is:
-#. This upload process requires that you have an {iam} role named {vmimport} to ensure that the image can
-#.                         be imported from the S3 {bucket} into EC2. For more details, refer to the {role}.
-#. [components.Wizard.1727762289]
-#. defaultMessage is:
-#. This upload process requires that you have an {iam} role named {vmimport} to ensure that the image can
-#.                         be imported from the S3 {bucket} into EC2. For more details, refer to the {role}.
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
-msgid ""
-"This upload process requires that you have an {iam} role named {vmimport} to "
-"ensure that the image can\n"
-"                        be imported from the S3 {bucket} into EC2. For more "
-"details, refer to the {role}."
-msgstr ""
-"Bu karşıya yükleme işlemi, kalıbın S3 {bucket} alanından EC2'ye "
-"aktarılabilmesini sağlamak için {vmimport}\n"
-"                        adında bir {iam} rolünüzün olmasını "
-"gerektirmektedir. Daha fazla ayrıntı için {role} bölümüne bakın."
-
-#. [components.Wizard.50730016]
-#. defaultMessage is:
-#. This upload process requires that you have an {iam} with attached policy to manage custom images
-#.                         to ensure that the image can be import as a custom image from the {bucket}. For more details, refer to the {policies}.
-#. [components.Wizard.50730016]
-#. defaultMessage is:
-#. This upload process requires that you have an {iam} with attached policy to manage custom images
-#.                         to ensure that the image can be import as a custom image from the {bucket}. For more details, refer to the {policies}.
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
-msgid ""
-"This upload process requires that you have an {iam} with attached policy to "
-"manage custom images\n"
-"                        to ensure that the image can be import as a custom "
-"image from the {bucket}. For more details, refer to the {policies}."
-msgstr ""
-"Bu yükleme işlemi, kalıbın {bucket} öğesinden gelen özel bir kalıp olarak "
-"içe aktarılabilmesini sağlamak amacıyla özel kalıpları yönetmek için\n"
-"                        ekli ilkeye sahip bir {iam} öğesine sahip olmanızı "
-"gerektirir. Daha fazla ayrıntı için {policies} ilkesine bakın."
-
 #. [components.Modal.usernameDuplicate]
 #. defaultMessage is:
 #. This user name already exists.
@@ -2597,14 +2572,10 @@ msgstr "Sorun giderme"
 #. [components.Modal.type] - Type of source
 #. defaultMessage is:
 #. Type
-#. [components.Wizard.type]
-#. defaultMessage is:
-#. Type
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ComponentTypeIcons.json
 #: build/messages/components/ListView/ListItemImages.json
 #: build/messages/components/Modal/ManageSources.json
-#: build/messages/components/Wizard/ImageStep.json
 msgid "Type"
 msgstr "Tür"
 
@@ -2643,13 +2614,6 @@ msgstr "Güncelle"
 msgid "Update source"
 msgstr "Kaynağı güncelle"
 
-#. [components.Modal.562988552] - Identifies the change as a component that was updated
-#. defaultMessage is:
-#. Updated
-#: build/messages/components/Modal/PendingChanges.json
-msgid "Updated"
-msgstr "Güncellendi"
-
 #. [components.ListView.uploadStatusFinished] - Upload status when process is finished
 #. defaultMessage is:
 #. Upload complete
@@ -2663,24 +2627,6 @@ msgstr "Karşıya yükleme tamamlandı"
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload failed"
 msgstr "Karşıya yükleme başarısız oldu"
-
-#. [components.Wizard.3057159632]
-#. defaultMessage is:
-#. Upload image
-#: build/messages/components/Wizard/ImageStep.json
-msgid "Upload image"
-msgstr "Kalıbı karşıya yükle"
-
-#. [components.Wizard.uploadImage]
-#. defaultMessage is:
-#. Upload image help
-#. [components.Wizard.uploadImage]
-#. defaultMessage is:
-#. Upload image help
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
-msgid "Upload image help"
-msgstr "Kalıbı karşıya yükleme ile ilgili yardım"
 
 #. [components.ListView.uploadStatusRunning] - Upload status when process is in progress
 #. defaultMessage is:
@@ -2696,64 +2642,116 @@ msgstr "Karşıya yükleme devam ediyor"
 msgid "Upload pending"
 msgstr "Karşıya yükleme beklemede"
 
-#. [components.Wizard.3235936248]
+#. [wizard.review.uploadToAWS]
 #. defaultMessage is:
 #. Upload to AWS
-#. [components.Wizard.uploadAWS]
+#. [wizard.aws.title]
 #. defaultMessage is:
 #. Upload to AWS
-#. [components.Wizard.3235936248]
+#. [wizard.aws.title]
 #. defaultMessage is:
 #. Upload to AWS
-#: build/messages/components/Wizard/CreateImageUpload.json
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#. [wizard.imageOutput.uploadAWS]
+#. defaultMessage is:
+#. Upload to AWS
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/awsAuth.json
+#: build/messages/components/Wizard/steps/awsDest.json
+#: build/messages/components/Wizard/steps/imageOutput.json
 msgid "Upload to AWS"
 msgstr "AWS'ye yükle"
 
-#. [components.Wizard.2244258572]
+#. [wizard.imageOutput.uploadAWS.popoverAria]
+#. defaultMessage is:
+#. Upload to AWS help
+#: build/messages/components/Wizard/steps/imageOutput.json
+#, fuzzy
+#| msgid "Upload to AWS"
+msgid "Upload to AWS help"
+msgstr "AWS'ye yükle"
+
+#. [wizard.review.uploadToAzure]
 #. defaultMessage is:
 #. Upload to Azure
-#. [components.Wizard.uploadAzure]
+#. [wizard.azure.title]
 #. defaultMessage is:
 #. Upload to Azure
-#. [components.Wizard.2244258572]
+#. [wizard.azure.title]
 #. defaultMessage is:
 #. Upload to Azure
-#: build/messages/components/Wizard/CreateImageUpload.json
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#. [wizard.imageOutput.uploadAzure]
+#. defaultMessage is:
+#. Upload to Azure
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/azureAuth.json
+#: build/messages/components/Wizard/steps/azureDest.json
+#: build/messages/components/Wizard/steps/imageOutput.json
 msgid "Upload to Azure"
 msgstr "Azure'a yükle"
 
-#. [components.Wizard.3418449520]
+#. [wizard.imageOutput.uploadAzure.popoverAria]
+#. defaultMessage is:
+#. Upload to Azure help
+#: build/messages/components/Wizard/steps/imageOutput.json
+#, fuzzy
+#| msgid "Upload to Azure"
+msgid "Upload to Azure help"
+msgstr "Azure'a yükle"
+
+#. [wizard.review.uploadToOCI]
 #. defaultMessage is:
 #. Upload to OCI
-#. [components.Wizard.uploadOCI]
+#. [wizard.imageOutput.uploadOCI]
 #. defaultMessage is:
 #. Upload to OCI
-#. [components.Wizard.3418449520]
+#. [wizard.oci.title]
 #. defaultMessage is:
 #. Upload to OCI
-#: build/messages/components/Wizard/CreateImageUpload.json
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#. [wizard.oci.title]
+#. defaultMessage is:
+#. Upload to OCI
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/imageOutput.json
+#: build/messages/components/Wizard/steps/ociAuth.json
+#: build/messages/components/Wizard/steps/ociDest.json
 msgid "Upload to OCI"
 msgstr "OCI'ye yükle"
 
-#. [components.Wizard.3542348520]
+#. [wizard.imageOutput.uploadOCI.popoverAria]
+#. defaultMessage is:
+#. Upload to OCI help
+#: build/messages/components/Wizard/steps/imageOutput.json
+#, fuzzy
+#| msgid "Upload to OCI"
+msgid "Upload to OCI help"
+msgstr "OCI'ye yükle"
+
+#. [wizard.review.uploadToVMWare]
 #. defaultMessage is:
 #. Upload to VMWare
-#. [components.Wizard.uploadVMWare]
+#. [wizard.imageOutput.uploadVMWare]
 #. defaultMessage is:
 #. Upload to VMWare
-#. [components.Wizard.3542348520]
+#. [wizard.vmware.title]
 #. defaultMessage is:
 #. Upload to VMWare
-#: build/messages/components/Wizard/CreateImageUpload.json
-#: build/messages/components/Wizard/ImageStep.json
-#: build/messages/components/Wizard/ReviewStep.json
+#. [wizard.vmware.title]
+#. defaultMessage is:
+#. Upload to VMWare
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/imageOutput.json
+#: build/messages/components/Wizard/steps/vmwareAuth.json
+#: build/messages/components/Wizard/steps/vmwareDest.json
 msgid "Upload to VMWare"
+msgstr "VMWare'e yükle"
+
+#. [wizard.imageOutput.uploadVMWare.popoverAria]
+#. defaultMessage is:
+#. Upload to VMWare help
+#: build/messages/components/Wizard/steps/imageOutput.json
+#, fuzzy
+#| msgid "Upload to VMWare"
+msgid "Upload to VMWare help"
 msgstr "VMWare'e yükle"
 
 #. [components.ListView.uploadType] - A label for the service to which an image was uploaded
@@ -2763,20 +2761,14 @@ msgstr "VMWare'e yükle"
 msgid "Upload type"
 msgstr "Karşıya yükleme türü"
 
-#. [components.Wizard.2419068661]
-#. defaultMessage is:
-#. User
-#: build/messages/components/Wizard/ReviewStep.json
-msgid "User"
-msgstr "Kullanıcı"
-
-#. [user-help]
+#. [wizard.review.userOCID]
 #. defaultMessage is:
 #. User OCID
-#. [components.Wizard.4135109133]
+#. [wizard.oci.userOCID.label]
 #. defaultMessage is:
 #. User OCID
-#: build/messages/components/Wizard/OCIAuthStep.json
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/ociAuth.json
 msgid "User OCID"
 msgstr "Kullanıcı OCID"
 
@@ -2794,30 +2786,55 @@ msgstr "Kullanıcı hesabı eylemleri"
 msgid "User name"
 msgstr "Kullanıcı adı"
 
-#. [components.Wizard.2663586870]
+#. [wizard.oci.userOCID.popoverAria]
+#. defaultMessage is:
+#. User ocid help
+#: build/messages/components/Wizard/steps/ociAuth.json
+#, fuzzy
+#| msgid "Cluster help"
+msgid "User ocid help"
+msgstr "Kümeleme yardım"
+
+#. [wizard.review.username]
 #. defaultMessage is:
 #. Username
-#. [components.Wizard.2663586870]
+#. [wizard.customizations.username.label]
 #. defaultMessage is:
 #. Username
-#: build/messages/components/Wizard/ReviewStep.json
-#: build/messages/components/Wizard/VMWareAuthStep.json
+#. [wizard.vmware.username.label]
+#. defaultMessage is:
+#. Username
+#: build/messages/components/Wizard/formComponents/Review.json
+#: build/messages/components/Wizard/steps/users.json
+#: build/messages/components/Wizard/steps/vmwareAuth.json
 msgid "Username"
 msgstr "Kullanıcı Adı"
 
+#. [wizard.customizations.usersTitle]
+#. defaultMessage is:
+#. Users
 #. [pages.blueprint.443046426]
 #. defaultMessage is:
 #. Users
+#: build/messages/components/Wizard/steps/users.json
 #: build/messages/pages/blueprint/index.json
 msgid "Users"
 msgstr "Kullanıcılar"
 
-#. [components.Wizard.vmware]
+#. [wizard.customizations.hostname.validationError]
 #. defaultMessage is:
-#. VMWare help
-#: build/messages/components/Wizard/ReviewStep.json
-msgid "VMWare help"
-msgstr "VMWare yardım"
+#. Valid characters are letters from a to z, the digits from 0 to 9, and the hyphen (-). 
+#.                         A hostname may not start with a hyphen. Each element of the hostname must be from 1 to 63 characters long 
+#.                         and the entire hostname can be at most 253 characters long.
+#: build/messages/components/Wizard/validators/hostnameValidator.json
+msgid ""
+"Valid characters are letters from a to z, the digits from 0 to 9, and the "
+"hyphen (-). \n"
+"                        A hostname may not start with a hyphen. Each element "
+"of the hostname must be from 1 to 63 characters long \n"
+"                        and the entire hostname can be at most 253 "
+"characters long."
+msgstr ""
 
 #. [pages.blueprint.hostnameHelp]
 #. defaultMessage is:
@@ -2830,10 +2847,10 @@ msgstr ""
 "Anamakine adı için geçerli karakterler a'dan z'ye harfler, 0'dan 9'a "
 "rakamlar ve kısa çizgidir (-). Anamakine adı kısa çizgi ile başlayamaz."
 
-#. [components.Wizard.ostreeRefHelperText]
+#. [wizard.ostree.ref.helpText]
 #. defaultMessage is:
 #. Valid characters for ref are letters from a to z, the digits from 0 to 9, the hyphen (-), the underscore (_), the period (.), and the forward slash (/). A ref must start with a letter, a number, or an underscore. Slashes must also be followed by a letter or number.
-#: build/messages/components/Wizard/ImageStep.json
+#: build/messages/components/Wizard/steps/ostreeSettings.json
 msgid ""
 "Valid characters for ref are letters from a to z, the digits from 0 to 9, "
 "the hyphen (-), the underscore (_), the period (.), and the forward slash "
@@ -2851,73 +2868,85 @@ msgstr ""
 #. [components.ListView.602883748]
 #. defaultMessage is:
 #. Version
-#. [components.Toolbar.filterVersionTitle]
-#. defaultMessage is:
-#. Version
-#. [components.Toolbar.filterVersionTitle]
+#. [toolbar.blueprint.filter.version]
 #. defaultMessage is:
 #. Version
 #: build/messages/components/ListView/ComponentDetailsView.json
 #: build/messages/components/ListView/ComponentsDataListItem.json
-#: build/messages/components/Toolbar/FilterInput.json
-#: build/messages/components/Toolbar/ToolbarLayout.json
+#: build/messages/components/Toolbar/BlueprintToolbar.json
 msgid "Version"
 msgstr "Sürüm"
 
-#. [components.ListView.3097747573]
+#. [wizard.aws.accessKey.popoverBody]
 #. defaultMessage is:
-#. View
-#: build/messages/components/ListView/ComponentsDataListItem.json
-msgid "View"
-msgstr "Görünüm"
-
-#. [components.Wizard.706264916]
-#. defaultMessage is:
-#. You can create and find existing Access key IDs on the {iam} page in the AWS console.
-#: build/messages/components/Wizard/AWSAuthStep.json
+#. You can create and find existing Access key IDs on the <strong>Identity and Access Management (IAM)</strong> page in the AWS console.
+#: build/messages/components/Wizard/steps/awsAuth.json
+#, fuzzy
+#| msgid ""
+#| "You can create and find existing Access key IDs on the {iam} page in the "
+#| "AWS console."
 msgid ""
-"You can create and find existing Access key IDs on the {iam} page in the AWS "
-"console."
+"You can create and find existing Access key IDs on the <strong>Identity and "
+"Access Management (IAM)</strong> page in the AWS console."
 msgstr ""
 "AWS konsolundaki {iam} sayfasında Erişim anahtarı kimlikleri oluşturabilir "
 "ve geçerli kimlikleri bulabilirsiniz."
 
-#. [components.Wizard.844662623]
+#. [wizard.oci.userOCID.popoverBody]
 #. defaultMessage is:
-#. You can find your user OCID {iam} page in the OCI console.
-#: build/messages/components/Wizard/OCIAuthStep.json
-msgid "You can find your user OCID {iam} page in the OCI console."
+#. You can find your user OCID <strong>Identity and Access Management (IAM)</strong> page in the OCI console.
+#: build/messages/components/Wizard/steps/ociAuth.json
+#, fuzzy
+#| msgid "You can find your user OCID {iam} page in the OCI console."
+msgid ""
+"You can find your user OCID <strong>Identity and Access Management (IAM)</"
+"strong> page in the OCI console."
 msgstr "Kullanıcı OCID {iam} sayfanızı OCI konsolunda bulabilirsiniz."
 
-#. [components.Wizard.4206409720]
+#. [wizard.aws.secretAccessKey.popoverBody]
 #. defaultMessage is:
-#. You can view the Secret access key only when you create a new Access key ID on the {iam} page in the AWS console.
-#: build/messages/components/Wizard/AWSAuthStep.json
+#. You can view the Secret access key only when you create a new Access key ID on the <strong>Identity and Access Management (IAM)</strong> page in the AWS console.
+#: build/messages/components/Wizard/steps/awsAuth.json
+#, fuzzy
+#| msgid ""
+#| "You can view the Secret access key only when you create a new Access key "
+#| "ID on the {iam} page in the AWS console."
 msgid ""
 "You can view the Secret access key only when you create a new Access key ID "
-"on the {iam} page in the AWS console."
+"on the <strong>Identity and Access Management (IAM)</strong> page in the AWS "
+"console."
 msgstr ""
 "Gizli erişim anahtarını sadece AWS konsolundaki {iam} sayfasında yeni bir "
 "Erişim anahtarı kimliği oluşturduğunuzda görüntüleyebilirsiniz."
 
-#. [components.Wizard.285351067]
+#. [wizard.oci.fingerprint.popoverBody]
 #. defaultMessage is:
-#. You can view your deployed RSA keys fingerprint in the API Keys section on the {iam} page in the OCI console.
-#: build/messages/components/Wizard/OCIAuthStep.json
+#. You can view your deployed RSA keys fingerprint in the API Keys section on the <strong>Identity and Access Management (IAM)</strong> page in the OCI console.
+#: build/messages/components/Wizard/steps/ociAuth.json
+#, fuzzy
+#| msgid ""
+#| "You can view your deployed RSA keys fingerprint in the API Keys section "
+#| "on the {iam} page in the OCI console."
 msgid ""
 "You can view your deployed RSA keys fingerprint in the API Keys section on "
-"the {iam} page in the OCI console."
+"the <strong>Identity and Access Management (IAM)</strong> page in the OCI "
+"console."
 msgstr ""
 "Dağıtılan RSA anahtarlarınızın parmak izini OCI konsolunda {iam} "
 "sayfasındaki API Anahtarları bölümünde görüntüleyebilirsiniz."
 
-#. [components.Wizard.182848243]
+#. [wizard.oci.privateKey.popoverBody]
 #. defaultMessage is:
-#. You can view your deployed RSA keys in the API Keys section on the {iam} page in the OCI console.
-#: build/messages/components/Wizard/OCIAuthStep.json
+#. You can view your deployed RSA keys in the API Keys section on the <strong>Identity and Access Management (IAM)</strong> page in the OCI console.
+#: build/messages/components/Wizard/steps/ociAuth.json
+#, fuzzy
+#| msgid ""
+#| "You can view your deployed RSA keys in the API Keys section on the {iam} "
+#| "page in the OCI console."
 msgid ""
-"You can view your deployed RSA keys in the API Keys section on the {iam} "
-"page in the OCI console."
+"You can view your deployed RSA keys in the API Keys section on the "
+"<strong>Identity and Access Management (IAM)</strong> page in the OCI "
+"console."
 msgstr ""
 "Dağıtılan RSA anahtarlarınızı OCI konsolunda {iam} sayfasındaki API "
 "Anahtarları bölümünde görüntüleyebilirsiniz."
@@ -2925,13 +2954,18 @@ msgstr ""
 #. [components.ListView.actions]
 #. defaultMessage is:
 #. actions
-#. [components.ListView.actions]
-#. defaultMessage is:
-#. actions
-#: build/messages/components/ListView/BlueprintsDataList.json
 #: build/messages/components/ListView/ComponentsDataListItem.json
 msgid "actions"
 msgstr "eylemler"
+
+#. [wizard.blueprintName.name]
+#. defaultMessage is:
+#. blueprint
+#: build/messages/components/Wizard/formComponents/BlueprintName.json
+#, fuzzy
+#| msgid "Blueprint"
+msgid "blueprint"
+msgstr "Plan"
 
 #. [components.ListView.details]
 #. defaultMessage is:
@@ -2939,13 +2973,6 @@ msgstr "eylemler"
 #: build/messages/components/ListView/ComponentsDataListItem.json
 msgid "details"
 msgstr "ayrıntılar"
-
-#. [components.Modal.2755325844]
-#. defaultMessage is:
-#. from
-#: build/messages/components/Modal/PendingChanges.json
-msgid "from"
-msgstr "nereden"
 
 #. [pages.error.2054225650]
 #. defaultMessage is:
@@ -2975,31 +3002,6 @@ msgstr "üst bağlantı"
 #: build/messages/components/Modal/ManageSources.json
 msgid "mirrorlist"
 msgstr "ayna listesi"
-
-#. [pages.blueprintEdit.paginationPerPage]
-#. defaultMessage is:
-#. per page
-#: build/messages/pages/blueprintEdit/index.json
-msgid "per page"
-msgstr "sayfa başına"
-
-#. [components.Wizard.2454328248]
-#. defaultMessage is:
-#. rhel/8/{arch}/edge is the default, where {arch} is determined by the host machine
-#: build/messages/components/Wizard/ImageStep.json
-msgid ""
-"rhel/8/{arch}/edge is the default, where {arch} is determined by the host "
-"machine"
-msgstr ""
-"rhel/8/{arch}/edge öntanımlı değerdir, {arch} değeri ana makine tarafından "
-"belirlenir"
-
-#. [components.Modal.152217691]
-#. defaultMessage is:
-#. to
-#: build/messages/components/Modal/PendingChanges.json
-msgid "to"
-msgstr "nereye"
 
 #. [components.ListView.baseurl]
 #. defaultMessage is:
@@ -3068,43 +3070,12 @@ msgstr "{blueprint} Kalıp oluşturma {queue}'dir."
 msgid "{count} total components"
 msgstr "{count} toplam bileşen"
 
-#. [components.Modal.3908981070]
-#. defaultMessage is:
-#. {from} {oldVersion} {to} {newVersion}
-#: build/messages/components/Modal/PendingChanges.json
-msgid "{from} {oldVersion} {to} {newVersion}"
-msgstr "{from}: {oldVersion}, {to}: {newVersion}"
-
 #. [pages.error.526995878]
 #. defaultMessage is:
 #. {goBack}, or head over to the {homePage} to choose a new direction.
 #: build/messages/pages/error/index.json
 msgid "{goBack}, or head over to the {homePage} to choose a new direction."
 msgstr "{goBack}, veya yeni bir yön seçmek için {homePage}'e git."
-
-#. [components.Modal.3141775911]
-#. defaultMessage is:
-#. {heading} {parenthetical}
-#: build/messages/components/Modal/PendingChanges.json
-msgid "{heading} {parenthetical}"
-msgstr "{heading} {parenthetical}"
-
-#. [pages.blueprintEdit.4031669927]
-#. defaultMessage is:
-#. {pendingChanges, plural, one {# Pending Change} other {# Pending Changes}}
-#: build/messages/pages/blueprintEdit/index.json
-msgid ""
-"{pendingChanges, plural, one {# Pending Change} other {# Pending Changes}}"
-msgstr ""
-"{pendingChanges, plural, one {# Bekleyen Değişiklik} other {# Bekleyen "
-"Değişiklik}}"
-
-#. [pages.blueprintEdit.3140434516]
-#. defaultMessage is:
-#. {selectComponents} in this list to add to the blueprint.
-#: build/messages/pages/blueprintEdit/index.json
-msgid "{selectComponents} in this list to add to the blueprint."
-msgstr "Plana eklemek için bu listeden {selectComponents}."
 
 #: public/manifest.json
 msgid "Creating system images"
@@ -3114,6 +3085,270 @@ msgstr "Sistem kalıpları oluşturma"
 msgid "Image Builder"
 msgstr "Kalıp Oluşturucu"
 
+#~ msgid "(most recent first)"
+#~ msgstr "(en yeniler önce)"
+
+#~ msgid ""
+#~ "A minimal image will be created with only the packages needed to support "
+#~ "the selected image type."
+#~ msgstr ""
+#~ "Sadece seçilen kalıp türünü desteklemek için gereken paketlerle asgari "
+#~ "bir kalıp oluşturulacaktır."
+
+#~ msgid "A value is required."
+#~ msgstr "Bir değer gerekli."
+
+#~ msgid "API private key's fingerprint"
+#~ msgstr "API özel anahtarının parmak izi"
+
+#~ msgid "AWS help"
+#~ msgstr "AWS ile ilgili yardım"
+
+#~ msgid "Access keys"
+#~ msgstr "Erişim anahtarları"
+
+#~ msgid "Active filters"
+#~ msgstr "Etkin süzgeçler"
+
+#~ msgid "Add blueprint components"
+#~ msgstr "Plan bileşenlerini ekle"
+
+#~ msgid "Added"
+#~ msgstr "Eklendi"
+
+#~ msgid "All fields are required."
+#~ msgstr "Tüm alanlar gereklidir."
+
+#~ msgid "Back"
+#~ msgstr "Geri"
+
+#~ msgid "Blob service"
+#~ msgstr "Blob hizmeti"
+
+#~ msgid "Blueprint components"
+#~ msgstr "Plan bileşenleri"
+
+#~ msgid ""
+#~ "Browse or search for components, then add them to the blueprint. Or leave "
+#~ "the blueprint empty to create a minimal image."
+#~ msgstr ""
+#~ "Bileşenlere göz atın veya arayın, ardından bunları plana ekleyin. Veya "
+#~ "asgari bir kalıp oluşturmak için planı boş bırakın."
+
+#~ msgid "Bucket help"
+#~ msgstr "Bucket yardım"
+
+#~ msgid "Changes made in a previous session"
+#~ msgstr "Önceki bir oturumda yapılan değişiklikler"
+
+#~ msgid ""
+#~ "Changes made in a previous session are not listed in the order they were "
+#~ "made. If you choose to undo these changes, they are undone as a group."
+#~ msgstr ""
+#~ "Önceki bir oturumda yapılan değişiklikler yapıldıkları sıraya göre "
+#~ "listelenmez. Bu değişiklikleri geri almayı seçerseniz, bunlar grup olarak "
+#~ "geri alınır."
+
+#~ msgid "Changes pending commit"
+#~ msgstr "Bekleyen işlemeyi değiştirir"
+
+#~ msgid "Comment"
+#~ msgstr "Yorum"
+
+#~ msgid "Commit"
+#~ msgstr "İşle"
+
+#~ msgid "Commit and create"
+#~ msgstr "İşle ve oluştur"
+
+#~ msgid "Commit and next"
+#~ msgstr "İşle ve ileri"
+
+#~ msgid "Create and upload image"
+#~ msgstr "Kalıp oluştur ve karşıya yükle"
+
+#~ msgid "Data Center"
+#~ msgstr "Veri Merkezi"
+
+#~ msgid "Data Store"
+#~ msgstr "Veri Deposu"
+
+#~ msgid "Discard changes"
+#~ msgstr "Değişiklikleri yoksay"
+
+#~ msgid "Disk Archive (.tar)"
+#~ msgstr "Disk Arşivi (.tar)"
+
+#~ msgid "Filter available components by name"
+#~ msgstr "Mevcut bileşenleri ada göre süz"
+
+#~ msgid "Filter by name"
+#~ msgstr "Ada göre süz"
+
+#~ msgid "Filter by name..."
+#~ msgstr "Ada göre süz..."
+
+#~ msgid "Filter by release"
+#~ msgstr "Yayıma göre süz"
+
+#~ msgid "Filter by version"
+#~ msgstr "Sürüme göre süz"
+
+#~ msgid "Finish"
+#~ msgstr "Bitir"
+
+#~ msgid "Image type"
+#~ msgstr "Kalıp türü"
+
+#~ msgid "Installer, suitable for USB and DVD (.iso)"
+#~ msgstr "Yükleyici, USB ve DVD için uygun (.iso)"
+
+#~ msgid "Minimum size is {size} GB"
+#~ msgstr "En az boyut {size} GB'tır"
+
+#~ msgid "Name: {name}"
+#~ msgstr "Ad: {name}"
+
+#~ msgid "Namespace help"
+#~ msgstr "Ad alanı yardımı"
+
+#~ msgid "Next"
+#~ msgstr "İleri"
+
+#~ msgid "OCI compartment help"
+#~ msgstr "OCI bölmesi yardımı"
+
+#~ msgid "OCI region help"
+#~ msgstr "OCI bölgesi yardımı"
+
+#~ msgid "OCI tenancy help"
+#~ msgstr "OCI kirası yardımı"
+
+#~ msgid "OSTree parent help"
+#~ msgstr "OSTree üst öğe yardımı"
+
+#~ msgid "OSTree ref help"
+#~ msgstr "OSTree referans yardımı"
+
+#~ msgid "OSTree repo url help"
+#~ msgstr "OSTree depo url'si yardımı"
+
+#~ msgid "Only changes to selected components are shown."
+#~ msgstr "Sadece seçilen bileşenlerde yapılan değişiklikler gösterilir."
+
+#~ msgid "Pending changes"
+#~ msgstr "Bekleyen değişiklikler"
+
+#~ msgid "QEMU Image (.qcow2)"
+#~ msgstr "QEMU Kalıbı (.qcow2)"
+
+#~ msgid "Removed"
+#~ msgstr "Kaldırıldı"
+
+#~ msgid "Storage accounts"
+#~ msgstr "Depolama hesapları"
+
+#~ msgid ""
+#~ "The packages needed to support the selected image type are automatically "
+#~ "included when creating an image."
+#~ msgstr ""
+#~ "Bir kalıp oluştururken, seçilen kalıp türünü desteklemek için gereken "
+#~ "paketler otomatik olarak dahil edilir."
+
+#~ msgid ""
+#~ "The size specified is large. We recommend that you check whether your "
+#~ "target destination has any restrictions on image size."
+#~ msgstr ""
+#~ "Belirtilen boyut büyük. Hedef konumunuzun kalıp boyutu üzerinde herhangi "
+#~ "bir kısıtlamaya sahip olup olmadığını kontrol etmenizi öneririz."
+
+#~ msgid "There are one or more fields that require your attention."
+#~ msgstr "İlgilenmenizi gerektiren bir veya daha fazla alan var."
+
+#~ msgid ""
+#~ "This blueprint has changes that are not committed. These changes will be "
+#~ "committed before the image is created."
+#~ msgstr ""
+#~ "Bu planda işlenmemiş değişiklikler var. Bu değişiklikler kalıp "
+#~ "oluşturulmadan önce işlenecektir."
+
+#~ msgid "This blueprint is empty."
+#~ msgstr "Bu plan boş."
+
+#~ msgid "This is a required field"
+#~ msgstr "Bu gerekli bir alandır"
+
+#~ msgid ""
+#~ "This upload process requires that you have an {iam} role named {vmimport} "
+#~ "to ensure that the image can\n"
+#~ "                        be imported from the S3 {bucket} into EC2. For "
+#~ "more details, refer to the {role}."
+#~ msgstr ""
+#~ "Bu karşıya yükleme işlemi, kalıbın S3 {bucket} alanından EC2'ye "
+#~ "aktarılabilmesini sağlamak için {vmimport}\n"
+#~ "                        adında bir {iam} rolünüzün olmasını "
+#~ "gerektirmektedir. Daha fazla ayrıntı için {role} bölümüne bakın."
+
+#~ msgid ""
+#~ "This upload process requires that you have an {iam} with attached policy "
+#~ "to manage custom images\n"
+#~ "                        to ensure that the image can be import as a "
+#~ "custom image from the {bucket}. For more details, refer to the {policies}."
+#~ msgstr ""
+#~ "Bu yükleme işlemi, kalıbın {bucket} öğesinden gelen özel bir kalıp olarak "
+#~ "içe aktarılabilmesini sağlamak amacıyla özel kalıpları yönetmek için\n"
+#~ "                        ekli ilkeye sahip bir {iam} öğesine sahip "
+#~ "olmanızı gerektirir. Daha fazla ayrıntı için {policies} ilkesine bakın."
+
+#~ msgid "Updated"
+#~ msgstr "Güncellendi"
+
+#~ msgid "Upload image"
+#~ msgstr "Kalıbı karşıya yükle"
+
+#~ msgid "Upload image help"
+#~ msgstr "Kalıbı karşıya yükleme ile ilgili yardım"
+
+#~ msgid "User"
+#~ msgstr "Kullanıcı"
+
+#~ msgid "VMWare help"
+#~ msgstr "VMWare yardım"
+
+#~ msgid "View"
+#~ msgstr "Görünüm"
+
+#~ msgid "from"
+#~ msgstr "nereden"
+
+#~ msgid "per page"
+#~ msgstr "sayfa başına"
+
+#~ msgid ""
+#~ "rhel/8/{arch}/edge is the default, where {arch} is determined by the host "
+#~ "machine"
+#~ msgstr ""
+#~ "rhel/8/{arch}/edge öntanımlı değerdir, {arch} değeri ana makine "
+#~ "tarafından belirlenir"
+
+#~ msgid "to"
+#~ msgstr "nereye"
+
+#~ msgid "{from} {oldVersion} {to} {newVersion}"
+#~ msgstr "{from}: {oldVersion}, {to}: {newVersion}"
+
+#~ msgid "{heading} {parenthetical}"
+#~ msgstr "{heading} {parenthetical}"
+
+#~ msgid ""
+#~ "{pendingChanges, plural, one {# Pending Change} other {# Pending Changes}}"
+#~ msgstr ""
+#~ "{pendingChanges, plural, one {# Bekleyen Değişiklik} other {# Bekleyen "
+#~ "Değişiklik}}"
+
+#~ msgid "{selectComponents} in this list to add to the blueprint."
+#~ msgstr "Plana eklemek için bu listeden {selectComponents}."
+
 #~ msgid "A password is defined for this account."
 #~ msgstr "Bu hesap için bir şifre tanımlı."
 
@@ -3122,9 +3357,6 @@ msgstr "Kalıp Oluşturucu"
 
 #~ msgid "New password"
 #~ msgstr "Yeni parola"
-
-#~ msgid "Remove password"
-#~ msgstr "Parolayı kaldır"
 
 #~ msgid "Set new password"
 #~ msgstr "Yeni parola ayarla"
