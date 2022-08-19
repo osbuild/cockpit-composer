@@ -4,6 +4,8 @@ import validatorTypes from "@data-driven-forms/react-form-renderer/validator-typ
 import { Popover, Button } from "@patternfly/react-core";
 import { HelpIcon } from "@patternfly/react-icons";
 
+import nextStepMapper from "./ostreeSettingsStepMapper";
+
 const messages = defineMessages({
   repoURLPopoverBody: {
     id: "wizard.ostree.repoURL.popoverBody",
@@ -45,7 +47,7 @@ const ostreeSettings = () => {
   return {
     title: <FormattedMessage id="wizard.ostree.title" defaultMessage="OSTree settings" />,
     name: "ostree-settings",
-    nextStep: "system",
+    nextStep: ({ values }) => nextStepMapper(values),
     fields: [
       {
         component: "text-field-custom",
@@ -64,29 +66,9 @@ const ostreeSettings = () => {
         ),
         condition: {
           when: "image-output-type",
-          is: [
-            "fedora-iot-commit",
-            "edge-commit",
-            "edge-container",
-            "edge-installer",
-            "edge-raw-image",
-            "edge-simplified-installer",
-          ],
+          is: ["fedora-iot-commit", "edge-commit", "edge-container", "edge-installer", "edge-simplified-installer"],
         },
         validate: [{ type: "ostreeValidator" }],
-        // eslint-disable-next-line no-unused-vars
-        resolveProps: (props, { meta, input }, formOptions) => {
-          if (formOptions.getState().values["image-output-type"] === "edge-raw-image") {
-            return {
-              isRequired: true,
-              validate: [
-                {
-                  type: validatorTypes.REQUIRED,
-                },
-              ],
-            };
-          }
-        },
       },
       {
         component: "text-field-custom",
@@ -105,9 +87,22 @@ const ostreeSettings = () => {
         ),
         condition: {
           when: "image-output-type",
-          is: ["fedora-iot-commit", "edge-commit", "edge-container"],
+          is: ["fedora-iot-commit", "edge-commit", "edge-container", "edge-raw-image"],
         },
         validate: [{ type: "ostreeValidator" }],
+        // eslint-disable-next-line no-unused-vars
+        resolveProps: (props, { meta, input }, formOptions) => {
+          if (formOptions.getState().values["image-output-type"] === "edge-raw-image") {
+            return {
+              isRequired: true,
+              validate: [
+                {
+                  type: validatorTypes.REQUIRED,
+                },
+              ],
+            };
+          }
+        },
       },
       {
         component: "text-field-custom",
