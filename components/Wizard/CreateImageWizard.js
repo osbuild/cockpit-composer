@@ -247,7 +247,7 @@ const CreateImageWizard = (props) => {
                   ociDest(),
                   vmwareAuth(),
                   vmwareDest(),
-                  ostreeSettings,
+                  ostreeSettings(),
                   system(),
                   users(),
                   packages(),
