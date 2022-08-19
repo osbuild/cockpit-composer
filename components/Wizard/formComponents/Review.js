@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import {
+  DescriptionList,
+  DescriptionListTerm,
+  DescriptionListGroup,
+  DescriptionListDescription,
   Spinner,
+  Tabs,
+  Tab,
+  TabTitleText,
   Text,
   TextContent,
   TextList,
@@ -9,7 +16,9 @@ import {
   TextListItem,
   TextListItemVariants,
 } from "@patternfly/react-core";
-import { FormattedMessage, defineMessages } from "react-intl";
+import { TableComposable, Thead, Tr, Th, Tbody, Td } from "@patternfly/react-table";
+import { CheckIcon } from "@patternfly/react-icons";
+import { FormattedMessage, defineMessages, useIntl } from "react-intl";
 import useFormApi from "@data-driven-forms/react-form-renderer/use-form-api";
 import FormSpy from "@data-driven-forms/react-form-renderer/form-spy";
 import * as composer from "../../../core/composer";
@@ -131,18 +140,6 @@ const messages = defineMessages({
     id: "wizard.review.installationDevice",
     defaultMessage: "Installation device",
   },
-  blueprintName: {
-    id: "wizard.review.blueprintName",
-    defaultMessage: "Blueprint name",
-  },
-  outputType: {
-    id: "wizard.review.outputType",
-    defaultMessage: "Output type",
-  },
-  imageSize: {
-    id: "wizard.review.imageSize",
-    defaultMessage: "Image size",
-  },
   packages: {
     id: "wizard.review.packages",
     defaultMessage: "Packages",
@@ -151,168 +148,235 @@ const messages = defineMessages({
     id: "wizard.review.dependencies",
     defaultMessage: "Dependencies",
   },
+  admin: {
+    id: "wizard.review.admin",
+    defaultMessage: "Administrator",
+  },
+  sshKey: {
+    id: "wizard.review.sshKey",
+    defaultMessage: "SSH key",
+  },
 });
 
 const AWSReview = (formValues) => (
   <>
     <h3>
-      <FormattedMessage {...messages.uploadToAWS} />
+      <strong>
+        <FormattedMessage {...messages.uploadToAWS} />
+      </strong>
     </h3>
-    <TextListItem component={TextListItemVariants.dt}>
-      <FormattedMessage {...messages.accessKeyID} />
-    </TextListItem>
-    <TextListItem component={TextListItemVariants.dd}>{"*".repeat(formValues?.["aws-access-key"].length)}</TextListItem>
-    <TextListItem component={TextListItemVariants.dt}>
-      <FormattedMessage {...messages.secretAccessKey} />
-    </TextListItem>
-    <TextListItem component={TextListItemVariants.dd}>
-      {"*".repeat(formValues?.["aws-secret-access-key"].length)}
-    </TextListItem>
-    <TextListItem component={TextListItemVariants.dt}>
-      <FormattedMessage {...messages.imageName} />
-    </TextListItem>
-    <TextListItem component={TextListItemVariants.dd}>{formValues?.["aws-image-name"]}</TextListItem>
-    <TextListItem component={TextListItemVariants.dt}>
-      <FormattedMessage {...messages.amazonS3Bucket} />
-    </TextListItem>
-    <TextListItem component={TextListItemVariants.dd}>{formValues?.["aws-s3-bucket"]}</TextListItem>
-    <TextListItem component={TextListItemVariants.dt}>
-      <FormattedMessage {...messages.awsRegion} />
-    </TextListItem>
-    <TextListItem component={TextListItemVariants.dd}>{formValues?.["aws-region"]}</TextListItem>
+    <DescriptionListGroup>
+      <DescriptionListTerm>
+        <FormattedMessage {...messages.accessKeyID} />
+      </DescriptionListTerm>
+      <DescriptionListDescription>{"*".repeat(formValues?.["aws-access-key"].length)}</DescriptionListDescription>
+      <DescriptionListTerm>
+        <FormattedMessage {...messages.secretAccessKey} />
+      </DescriptionListTerm>
+      <DescriptionListDescription>
+        {"*".repeat(formValues?.["aws-secret-access-key"].length)}
+      </DescriptionListDescription>
+      <DescriptionListTerm>
+        <FormattedMessage {...messages.imageName} />
+      </DescriptionListTerm>
+      <DescriptionListDescription>{formValues?.["aws-image-name"]}</DescriptionListDescription>
+      <DescriptionListTerm>
+        <FormattedMessage {...messages.amazonS3Bucket} />
+      </DescriptionListTerm>
+      <DescriptionListDescription>{formValues?.["aws-s3-bucket"]}</DescriptionListDescription>
+      <DescriptionListTerm>
+        <FormattedMessage {...messages.awsRegion} />
+      </DescriptionListTerm>
+      <DescriptionListDescription>{formValues?.["aws-region"]}</DescriptionListDescription>
+    </DescriptionListGroup>
   </>
 );
 
 const AzureReview = (formValues) => (
   <>
     <h3>
-      <FormattedMessage {...messages.uploadToAzure} />
+      <strong>
+        <FormattedMessage {...messages.uploadToAzure} />
+      </strong>
     </h3>
-    <TextListItem component={TextListItemVariants.dt}>
-      <FormattedMessage {...messages.storageAccount} />
-    </TextListItem>
-    <TextListItem component={TextListItemVariants.dd}>{formValues?.["azure-storage-account"]}</TextListItem>
-    <TextListItem component={TextListItemVariants.dt}>
-      <FormattedMessage {...messages.storageAccessKey} />
-    </TextListItem>
-    <TextListItem component={TextListItemVariants.dd}>
-      {"*".repeat(formValues?.["azure-storage-access-key"].length)}
-    </TextListItem>
-    <TextListItem component={TextListItemVariants.dt}>
-      <FormattedMessage {...messages.imageName} />
-    </TextListItem>
-    <TextListItem component={TextListItemVariants.dd}>{formValues?.["azure-image-name"]}</TextListItem>
-    <TextListItem component={TextListItemVariants.dt}>
-      <FormattedMessage {...messages.storageContainer} />
-    </TextListItem>
-    <TextListItem component={TextListItemVariants.dd}>{formValues?.["azure-storage-container"]}</TextListItem>
+    <DescriptionListGroup>
+      <DescriptionListTerm>
+        <FormattedMessage {...messages.storageAccount} />
+      </DescriptionListTerm>
+      <DescriptionListDescription>{formValues?.["azure-storage-account"]}</DescriptionListDescription>
+      <DescriptionListTerm>
+        <FormattedMessage {...messages.storageAccessKey} />
+      </DescriptionListTerm>
+      <DescriptionListDescription>
+        {"*".repeat(formValues?.["azure-storage-access-key"].length)}
+      </DescriptionListDescription>
+      <DescriptionListTerm>
+        <FormattedMessage {...messages.imageName} />
+      </DescriptionListTerm>
+      <DescriptionListDescription>{formValues?.["azure-image-name"]}</DescriptionListDescription>
+      <DescriptionListTerm>
+        <FormattedMessage {...messages.storageContainer} />
+      </DescriptionListTerm>
+      <DescriptionListDescription>{formValues?.["azure-storage-container"]}</DescriptionListDescription>
+    </DescriptionListGroup>
   </>
 );
 
 const VMWareReview = (formValues) => (
   <>
     <h3>
-      <FormattedMessage {...messages.uploadToVMWare} />
+      <strong>
+        <FormattedMessage {...messages.uploadToVMWare} />
+      </strong>
     </h3>
-    <TextListItem component={TextListItemVariants.dt}>
-      <FormattedMessage {...messages.username} />
-    </TextListItem>
-    <TextListItem component={TextListItemVariants.dd}>{formValues?.["vmware-username"]}</TextListItem>
-    <TextListItem component={TextListItemVariants.dt}>
-      <FormattedMessage {...messages.password} />
-    </TextListItem>
-    <TextListItem component={TextListItemVariants.dd}>
-      {"*".repeat(formValues?.["vmware-password"].length)}
-    </TextListItem>
-    <TextListItem component={TextListItemVariants.dt}>
-      <FormattedMessage {...messages.imageName} />
-    </TextListItem>
-    <TextListItem component={TextListItemVariants.dd}>{formValues?.["vmware-image-name"]}</TextListItem>
-    <TextListItem component={TextListItemVariants.dt}>
-      <FormattedMessage {...messages.host} />
-    </TextListItem>
-    <TextListItem component={TextListItemVariants.dd}>{formValues?.["vmware-host"]}</TextListItem>
-    <TextListItem component={TextListItemVariants.dt}>
-      <FormattedMessage {...messages.cluster} />
-    </TextListItem>
-    <TextListItem component={TextListItemVariants.dd}>{formValues?.["vmware-cluster"]}</TextListItem>
-    <TextListItem component={TextListItemVariants.dt}>
-      <FormattedMessage {...messages.dataCenter} />
-    </TextListItem>
-    <TextListItem component={TextListItemVariants.dd}>{formValues?.["vmware-data-center"]}</TextListItem>
-    <TextListItem component={TextListItemVariants.dt}>
-      <FormattedMessage {...messages.dataStore} />
-    </TextListItem>
-    <TextListItem component={TextListItemVariants.dd}>{formValues?.["vmware-data-store"]}</TextListItem>
+    <DescriptionListGroup>
+      <DescriptionListTerm>
+        <FormattedMessage {...messages.username} />
+      </DescriptionListTerm>
+      <DescriptionListDescription>{formValues?.["vmware-username"]}</DescriptionListDescription>
+      <DescriptionListTerm>
+        <FormattedMessage {...messages.password} />
+      </DescriptionListTerm>
+      <DescriptionListDescription>{"*".repeat(formValues?.["vmware-password"].length)}</DescriptionListDescription>
+      <DescriptionListTerm>
+        <FormattedMessage {...messages.imageName} />
+      </DescriptionListTerm>
+      <DescriptionListDescription>{formValues?.["vmware-image-name"]}</DescriptionListDescription>
+      <DescriptionListTerm>
+        <FormattedMessage {...messages.host} />
+      </DescriptionListTerm>
+      <DescriptionListDescription>{formValues?.["vmware-host"]}</DescriptionListDescription>
+      <DescriptionListTerm>
+        <FormattedMessage {...messages.cluster} />
+      </DescriptionListTerm>
+      <DescriptionListDescription>{formValues?.["vmware-cluster"]}</DescriptionListDescription>
+      <DescriptionListTerm>
+        <FormattedMessage {...messages.dataCenter} />
+      </DescriptionListTerm>
+      <DescriptionListDescription>{formValues?.["vmware-data-center"]}</DescriptionListDescription>
+      <DescriptionListTerm>
+        <FormattedMessage {...messages.dataStore} />
+      </DescriptionListTerm>
+      <DescriptionListDescription>{formValues?.["vmware-data-store"]}</DescriptionListDescription>
+    </DescriptionListGroup>
   </>
 );
 
 const ociReview = (formValues) => (
   <>
     <h3>
-      <FormattedMessage {...messages.uploadToOCI} />
+      <strong>
+        <FormattedMessage {...messages.uploadToOCI} />
+      </strong>
     </h3>
-    <TextListItem component={TextListItemVariants.dt}>
-      <FormattedMessage {...messages.userOCID} />
-    </TextListItem>
-    <TextListItem component={TextListItemVariants.dd}>{formValues?.["oci-user-ocid"]}</TextListItem>
-    <TextListItem component={TextListItemVariants.dt}>
-      <FormattedMessage {...messages.privateKey} />
-    </TextListItem>
-    <TextListItem component={TextListItemVariants.dd}>{formValues?.["oci-private-key-filename"]}</TextListItem>
-    <TextListItem component={TextListItemVariants.dt}>
-      <FormattedMessage {...messages.fingerprint} />
-    </TextListItem>
-    <TextListItem component={TextListItemVariants.dd}>{formValues?.["oci-fingerprint"]}</TextListItem>
-    <TextListItem component={TextListItemVariants.dt}>
-      <FormattedMessage {...messages.imageName} />
-    </TextListItem>
-    <TextListItem component={TextListItemVariants.dd}>{formValues?.["oci-image-name"]}</TextListItem>
-    <TextListItem component={TextListItemVariants.dt}>
-      <FormattedMessage {...messages.ociBucket} />
-    </TextListItem>
-    <TextListItem component={TextListItemVariants.dd}>{formValues?.["oci-bucket"]}</TextListItem>
-    <TextListItem component={TextListItemVariants.dt}>
-      <FormattedMessage {...messages.bucketNamespace} />
-    </TextListItem>
-    <TextListItem component={TextListItemVariants.dd}>{formValues?.["oci-bucket-namespace"]}</TextListItem>
-    <TextListItem component={TextListItemVariants.dt}>
-      <FormattedMessage {...messages.bucketRegion} />
-    </TextListItem>
-    <TextListItem component={TextListItemVariants.dd}>{formValues?.["oci-bucket-region"]}</TextListItem>
-    <TextListItem component={TextListItemVariants.dt}>
-      <FormattedMessage {...messages.bucketCompartment} />
-    </TextListItem>
-    <TextListItem component={TextListItemVariants.dd}>{formValues?.["oci-bucket-compartment"]}</TextListItem>
-    <TextListItem component={TextListItemVariants.dt}>
-      <FormattedMessage {...messages.bucketTenancy} />
-    </TextListItem>
-    <TextListItem component={TextListItemVariants.dd}>{formValues?.["oci-bucket-tenancy"]}</TextListItem>
+    <DescriptionListGroup>
+      <DescriptionListTerm>
+        <FormattedMessage {...messages.userOCID} />
+      </DescriptionListTerm>
+      <DescriptionListDescription>{formValues?.["oci-user-ocid"]}</DescriptionListDescription>
+      <DescriptionListTerm>
+        <FormattedMessage {...messages.privateKey} />
+      </DescriptionListTerm>
+      <DescriptionListDescription>{formValues?.["oci-private-key-filename"]}</DescriptionListDescription>
+      <DescriptionListTerm>
+        <FormattedMessage {...messages.fingerprint} />
+      </DescriptionListTerm>
+      <DescriptionListDescription>{formValues?.["oci-fingerprint"]}</DescriptionListDescription>
+      <DescriptionListTerm>
+        <FormattedMessage {...messages.imageName} />
+      </DescriptionListTerm>
+      <DescriptionListDescription>{formValues?.["oci-image-name"]}</DescriptionListDescription>
+      <DescriptionListTerm>
+        <FormattedMessage {...messages.ociBucket} />
+      </DescriptionListTerm>
+      <DescriptionListDescription>{formValues?.["oci-bucket"]}</DescriptionListDescription>
+      <DescriptionListTerm>
+        <FormattedMessage {...messages.bucketNamespace} />
+      </DescriptionListTerm>
+      <DescriptionListDescription>{formValues?.["oci-bucket-namespace"]}</DescriptionListDescription>
+      <DescriptionListTerm>
+        <FormattedMessage {...messages.bucketRegion} />
+      </DescriptionListTerm>
+      <DescriptionListDescription>{formValues?.["oci-bucket-region"]}</DescriptionListDescription>
+      <DescriptionListTerm>
+        <FormattedMessage {...messages.bucketCompartment} />
+      </DescriptionListTerm>
+      <DescriptionListDescription>{formValues?.["oci-bucket-compartment"]}</DescriptionListDescription>
+      <DescriptionListTerm>
+        <FormattedMessage {...messages.bucketTenancy} />
+      </DescriptionListTerm>
+      <DescriptionListDescription>{formValues?.["oci-bucket-regtenancyion"]}</DescriptionListDescription>
+    </DescriptionListGroup>
   </>
 );
 
-const customizations = (formValues) => (
-  <>
-    {formValues?.["customizations-hostname"] && (
-      <>
-        <TextListItem component={TextListItemVariants.dt}>
-          <FormattedMessage {...messages.hostname} />
-        </TextListItem>
-        <TextListItem component={TextListItemVariants.dd}>{formValues?.["customizations-hostname"]}</TextListItem>
-      </>
-    )}
-    {formValues?.["customizations-install-device"] && (
-      <>
-        <TextListItem component={TextListItemVariants.dt}>
-          <FormattedMessage {...messages.installationDevice} />
-        </TextListItem>
-        <TextListItem component={TextListItemVariants.dd}>{formValues?.["customizations-install-device"]}</TextListItem>
-      </>
-    )}
-  </>
+const customizations = (intl, formValues) => (
+  <TextContent>
+    <TextList component={TextListVariants.dl}>
+      {formValues?.["customizations-hostname"] && (
+        <>
+          <TextListItem component={TextListItemVariants.dt}>
+            <FormattedMessage {...messages.hostname} />
+          </TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>{formValues?.["customizations-hostname"]}</TextListItem>
+        </>
+      )}
+      {formValues?.["customizations-install-device"] && (
+        <>
+          <TextListItem component={TextListItemVariants.dt}>
+            <FormattedMessage {...messages.installationDevice} />
+          </TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>
+            {formValues?.["customizations-install-device"]}
+          </TextListItem>
+        </>
+      )}
+      {formValues?.["customizations-users"]?.length && (
+        <>
+          <TextListItem component={TextListItemVariants.dt}>
+            <strong>
+              <FormattedMessage id="customizations.user.title" defaultMessage="Users" />
+            </strong>
+          </TextListItem>
+          <TextListItem component={TextListItemVariants.dd} id="user-table">
+            <TableComposable variant="compact">
+              <Thead>
+                <Tr>
+                  <Th>
+                    <FormattedMessage {...messages.username} />
+                  </Th>
+                  <Th>
+                    <FormattedMessage {...messages.password} />
+                  </Th>
+                  <Th>
+                    <FormattedMessage {...messages.admin} />
+                  </Th>
+                  <Th>
+                    <FormattedMessage {...messages.sshKey} />
+                  </Th>
+                </Tr>
+              </Thead>
+              <Tbody>
+                {formValues?.["customizations-users"].map((user) => (
+                  <Tr key={user.username}>
+                    <Td dataLabel={intl.formatMessage(messages.username)}>{user.username}</Td>
+                    <Td dataLabel={intl.formatMessage(messages.password)}>{user.password && <CheckIcon />}</Td>
+                    <Td dataLabel={intl.formatMessage(messages.admin)}>{user["is-admin"] && <CheckIcon />}</Td>
+                    <Td dataLabel={intl.formatMessage(messages.sshKey)}>{user["ssh-key"] && <CheckIcon />}</Td>
+                  </Tr>
+                ))}
+              </Tbody>
+            </TableComposable>
+          </TextListItem>
+        </>
+      )}
+    </TextList>
+  </TextContent>
 );
 
 const Review = (props) => {
+  const intl = useIntl();
+  const [activeTabKey, setActiveTabKey] = useState(0);
   const { getState } = useFormApi();
   const [formValues, setFormValues] = useState(getState()?.values);
   const [dependencies, setDependencies] = useState(undefined);
@@ -339,51 +403,97 @@ const Review = (props) => {
     }
   });
 
+  const handleTabClick = (event, tabIndex) => {
+    setActiveTabKey(tabIndex);
+  };
+
   return (
-    <>
+    <div id="review-list">
       <Text>
         <FormattedMessage {...messages.review} />
       </Text>
-      <TextContent>
-        <TextList component={TextListVariants.dl} id="review-list">
-          <TextListItem component={TextListItemVariants.dt}>
-            <FormattedMessage {...messages.blueprintName} />
-          </TextListItem>
-          <TextListItem component={TextListItemVariants.dd}>{props.blueprintName}</TextListItem>
-          <TextListItem component={TextListItemVariants.dt}>
-            <FormattedMessage {...messages.outputType} />
-          </TextListItem>
-          <TextListItem component={TextListItemVariants.dd}>{formValues?.["image-output-type"]}</TextListItem>
-          <TextListItem component={TextListItemVariants.dt}>
-            <FormattedMessage {...messages.imageSize} />
-          </TextListItem>
-          <TextListItem component={TextListItemVariants.dd}>{formValues?.["image-size"]}</TextListItem>
-          {formValues?.["image-output-type"] === "ami" && formValues?.["image-upload"] && AWSReview(formValues)}
-          {formValues?.["image-output-type"] === "vhd" && formValues?.["image-upload"] && AzureReview(formValues)}
-          {formValues?.["image-output-type"] === "vmdk" && formValues?.["image-upload"] && VMWareReview(formValues)}
-          {formValues?.["image-output-type"] === "oci" && formValues?.["image-upload"] && ociReview(formValues)}
-          <FormSpy
-            subscription={{ values: true }}
-            onChange={() => {
-              setFormValues(getState()?.values);
-            }}
-          />
-          <TextListItem component={TextListItemVariants.dt}>
-            <FormattedMessage {...messages.packages} />
-          </TextListItem>
-          <TextListItem component={TextListItemVariants.dd}>
-            {formValues["selected-packages"] ? formValues["selected-packages"].length : <Spinner size="sm" />}
-          </TextListItem>
-          <TextListItem component={TextListItemVariants.dt}>
-            <FormattedMessage {...messages.dependencies} />
-          </TextListItem>
-          <TextListItem component={TextListItemVariants.dd}>
-            {dependencies || dependencies === 0 ? dependencies : <Spinner size="sm" />}
-          </TextListItem>
-          {customizations(formValues)}
-        </TextList>
-      </TextContent>
-    </>
+      <br />
+      <DescriptionList isCompact isHorizontal>
+        <DescriptionListGroup>
+          <DescriptionListTerm>
+            <FormattedMessage id="wizard.review.blueprintName" defaultMessage="Blueprint name" />
+          </DescriptionListTerm>
+          <DescriptionListDescription>{props.blueprintName}</DescriptionListDescription>
+        </DescriptionListGroup>
+      </DescriptionList>
+      <Tabs isFilled activeKey={activeTabKey} onSelect={handleTabClick} className="pf-u-my-md">
+        <Tab
+          eventKey={0}
+          title={
+            <TabTitleText>
+              <FormattedMessage id="wizard.review.target.title" defaultMessage="Image output" />
+            </TabTitleText>
+          }
+          data-testid="tab-target"
+          autoFocus
+        >
+          <DescriptionList isHorizontal>
+            <DescriptionListGroup>
+              <DescriptionListTerm>
+                <FormattedMessage id="wizard.review.outputType" defaultMessage="Output type" />
+              </DescriptionListTerm>
+              <DescriptionListDescription>{formValues?.["image-output-type"]}</DescriptionListDescription>
+              <DescriptionListTerm>
+                <FormattedMessage id="wizard.review.imageSize" defaultMessage="Image size" />
+              </DescriptionListTerm>
+              <DescriptionListDescription>{formValues?.["image-size"]}</DescriptionListDescription>
+            </DescriptionListGroup>
+            {formValues?.["image-output-type"] === "ami" && formValues?.["image-upload"] && AWSReview(formValues)}
+            {formValues?.["image-output-type"] === "vhd" && formValues?.["image-upload"] && AzureReview(formValues)}
+            {formValues?.["image-output-type"] === "vmdk" && formValues?.["image-upload"] && VMWareReview(formValues)}
+            {formValues?.["image-output-type"] === "oci" && formValues?.["image-upload"] && ociReview(formValues)}
+          </DescriptionList>
+        </Tab>
+        <Tab
+          eventKey={1}
+          title={
+            <TabTitleText>
+              <FormattedMessage id="wizard.review.packages.title" defaultMessage="Packages" />
+            </TabTitleText>
+          }
+          data-testid="tab-packages"
+        >
+          <TextContent>
+            <TextList component={TextListVariants.dl}>
+              <FormSpy
+                subscription={{ values: true }}
+                onChange={() => {
+                  setFormValues(getState()?.values);
+                }}
+              />
+              <TextListItem component={TextListItemVariants.dt}>
+                <FormattedMessage {...messages.packages} />
+              </TextListItem>
+              <TextListItem component={TextListItemVariants.dd}>
+                {formValues["selected-packages"] ? formValues["selected-packages"].length : <Spinner size="sm" />}
+              </TextListItem>
+              <TextListItem component={TextListItemVariants.dt}>
+                <FormattedMessage {...messages.dependencies} />
+              </TextListItem>
+              <TextListItem component={TextListItemVariants.dd}>
+                {dependencies || dependencies === 0 ? dependencies : <Spinner size="sm" />}
+              </TextListItem>
+            </TextList>
+          </TextContent>
+        </Tab>
+        <Tab
+          eventKey={2}
+          title={
+            <TabTitleText>
+              <FormattedMessage id="wizard.review.customizations.title" defaultMessage="Customizations" />
+            </TabTitleText>
+          }
+          data-testid="tab-custom"
+        >
+          {customizations(intl, formValues)}
+        </Tab>
+      </Tabs>
+    </div>
   );
 };
 
