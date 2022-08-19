@@ -116,6 +116,7 @@ class TestWizard(composerlib.ComposerCase):
         b.click("a:contains('Download')")
 
         # delete image
+        time.sleep(5)
         b.click("button[data-testid='delete-image']")
         b.wait_visible("#cmpsr-modal-delete")
         b.click("#cmpsr-modal-delete button:contains('Delete image')")
