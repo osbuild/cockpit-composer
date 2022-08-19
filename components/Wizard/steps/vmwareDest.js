@@ -57,7 +57,7 @@ const vmwareDest = () => {
     title: <FormattedMessage id="wizard.vmware.destTitle" defaultMessage="Destination" />,
     name: "vmware-dest",
     substepOf: intl.formatMessage(messages.vmwareStepsTitle),
-    nextStep: "details",
+    nextStep: "system",
     fields: [
       {
         component: "text-field-custom",

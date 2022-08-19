@@ -53,7 +53,7 @@ class TestWizard(composerlib.ComposerCase):
 
         # go to details page
         b.click("button:contains('Next')")
-        b.wait_text("h1", "Details")
+        b.wait_text("h1", "System")
         # go to users page
         b.click("button:contains('Next')")
         b.wait_text("h1", "Users")
@@ -599,7 +599,7 @@ class TestWizard(composerlib.ComposerCase):
         b.click("button:contains('Next')")
         b.click("button:contains('Next')")
 
-        b.wait_text("h1", "Details")
+        b.wait_text("h1", "System")
         b.focus("input[id='customizations-hostname']")
         b.key_press("myhost")
 

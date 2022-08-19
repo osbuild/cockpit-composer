@@ -46,7 +46,7 @@ const awsDest = () => {
     title: <FormattedMessage id="wizard.aws.destTitle" defaultMessage="Destination" />,
     name: "aws-dest",
     substepOf: intl.formatMessage(messages.awsStepsTitle),
-    nextStep: "details",
+    nextStep: "system",
     fields: [
       {
         component: "text-field-custom",
