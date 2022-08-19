@@ -1,10 +1,23 @@
 import React, { useContext, useState } from "react";
+import { useIntl, defineMessages, FormattedMessage } from "react-intl";
 import { Button, Tooltip } from "@patternfly/react-core";
 import { FormSpy } from "@data-driven-forms/react-form-renderer";
 import WizardContext from "@data-driven-forms/react-form-renderer/wizard-context";
 import PropTypes from "prop-types";
 
+const messages = defineMessages({
+  creatingImage: {
+    id: "wizard.review.creatingImage",
+    defaultMessage: "Creating image",
+  },
+  createImageTooltip: {
+    id: "wizard.review.createImageTooltip",
+    defaultMessage: "An image can only be created after saving the blueprint",
+  },
+});
+
 const SubmitButtonsCustom = ({ buttonLabels: { cancel, submit, back } }) => {
+  const intl = useIntl();
   const [isSaving, setIsSaving] = useState(false);
   const [hasSaved, setHasSaved] = useState(false);
   const { handlePrev, formOptions } = useContext(WizardContext);
@@ -25,9 +38,9 @@ const SubmitButtonsCustom = ({ buttonLabels: { cancel, submit, back } }) => {
               })
             }
           >
-            Save blueprint{" "}
+            <FormattedMessage id="wizard.review.saveBlueprint" defaultMessage="Save blueprint" />
           </Button>
-          <Tooltip content={<div>An image can only be created after saving the blueprint</div>}>
+          <Tooltip content={intl.formatMessage(messages.createImageTooltip)}>
             <Button
               variant="primary"
               type="button"
@@ -38,7 +51,7 @@ const SubmitButtonsCustom = ({ buttonLabels: { cancel, submit, back } }) => {
                 });
               }}
             >
-              {isSaving ? "Creating image" : submit}
+              {isSaving ? intl.formatMessage(messages.creatingImage) : submit}
             </Button>
           </Tooltip>
           <Button type="button" variant="secondary" onClick={handlePrev} isDisabled={isSaving}>
