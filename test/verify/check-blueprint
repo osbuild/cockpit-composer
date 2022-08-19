@@ -118,7 +118,7 @@ class TestBlueprint(composerlib.ComposerCase):
         b.wait_visible("#main")
 
         # filter "openssh-server" blueprint
-        b.focus("input[aria-label='blueprints search input']")
+        b.focus("input[aria-label='Blueprints search input']")
         b.key_press("openssh")
         b.key_press("\r")
         b.wait_visible("#openssh-server-name")
@@ -128,7 +128,7 @@ class TestBlueprint(composerlib.ComposerCase):
         b.wait_visible("#httpd-server-name")
 
         # filter "httpd" will show three matched blueprints
-        b.focus("input[aria-label='blueprints search input']")
+        b.focus("input[aria-label='Blueprints search input']")
         b.key_press("httpd")
         b.key_press("\r")
         b.wait_not_present("#openssh-server-name")
@@ -156,14 +156,14 @@ class TestBlueprint(composerlib.ComposerCase):
         ]
         # sort from Z-A
         b.wait_visible("ul[aria-label=Blueprints]")
-        b.click("button[aria-label='sort ascending']")
-        b.wait_visible("button[aria-label='sort descending']")
+        b.click("button[aria-label='Sort blueprints ascending']")
+        b.wait_visible("button[aria-label='Sort blueprints descending']")
         for i, v in enumerate(sorted(blueprint_list, reverse=True)):
             b.wait_text("ul[aria-label=Blueprints] li:nth-child({}) a strong".format(i + 1), v)
 
         # sort from A-Z
-        b.click("button[aria-label='sort descending']")
-        b.wait_visible("button[aria-label='sort ascending']")
+        b.click("button[aria-label='Sort blueprints descending']")
+        b.wait_visible("button[aria-label='Sort blueprints ascending']")
         for i, v in enumerate(sorted(blueprint_list)):
             b.wait_text("ul[aria-label=Blueprints] li:nth-child({}) a strong".format(i + 1), v)
 

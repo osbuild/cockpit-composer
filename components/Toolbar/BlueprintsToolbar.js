@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { defineMessages, useIntl } from "react-intl";
 import PropTypes from "prop-types";
 import { Toolbar, ToolbarItem, ToolbarContent, ToolbarGroup, Button, SearchInput } from "@patternfly/react-core";
 import { SortAlphaDownIcon, SortAlphaDownAltIcon } from "@patternfly/react-icons";
@@ -6,7 +7,23 @@ import { SortAlphaDownIcon, SortAlphaDownAltIcon } from "@patternfly/react-icons
 import CreateBlueprint from "../Modal/CreateBlueprint";
 import ManageSources from "../Modal/ManageSources";
 
+const messages = defineMessages({
+  searchAria: {
+    id: "toolbar.blueprints.search.aria",
+    defaultMessage: "Blueprints search input",
+  },
+  sortAsc: {
+    id: "toolbar.blueprints.sort.asc",
+    defaultMessage: "Sort blueprints ascending",
+  },
+  sortDesc: {
+    id: "toolbar.blueprints.sort.desc",
+    defaultMessage: "Sort blueprints descending",
+  },
+});
+
 const BlueprintsToolbar = (props) => {
+  const intl = useIntl();
   const [inputValue, setInputValue] = useState("");
 
   const onInputChange = (newValue) => {
@@ -24,7 +41,7 @@ const BlueprintsToolbar = (props) => {
       <ToolbarGroup alignment={{ default: "alignLeft" }}>
         <ToolbarItem variant="search-filter">
           <SearchInput
-            aria-label="blueprints search input"
+            aria-label="Blueprints search input"
             onChange={onInputChange}
             value={inputValue}
             onClear={() => onInputChange("")}
@@ -32,12 +49,20 @@ const BlueprintsToolbar = (props) => {
         </ToolbarItem>
         <ToolbarItem variant="icon-button-group">
           {(props.sortValue === "DESC" && (
-            <Button variant="plain" aria-label="sort ascending" onClick={() => props.sortSetValue("ASC")}>
+            <Button
+              variant="plain"
+              aria-label={intl.formatMessage(messages.sortAsc)}
+              onClick={() => props.sortSetValue("ASC")}
+            >
               <SortAlphaDownIcon />
             </Button>
           )) ||
             (props.sortValue === "ASC" && (
-              <Button variant="plain" aria-label="sort descending" onClick={() => props.sortSetValue("DESC")}>
+              <Button
+                variant="plain"
+                aria-label={intl.formatMessage(messages.sortDesc)}
+                onClick={() => props.sortSetValue("DESC")}
+              >
                 <SortAlphaDownAltIcon />
               </Button>
             ))}
