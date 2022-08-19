@@ -250,7 +250,7 @@ const CreateImageWizard = (props) => {
                   ostreeSettings,
                   system(),
                   users(),
-                  packages,
+                  packages(),
                   review,
                 ],
                 crossroads: ["image-output-type", "image-upload"],
