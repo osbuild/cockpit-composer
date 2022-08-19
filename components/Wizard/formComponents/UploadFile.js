@@ -1,10 +1,19 @@
 import React, { useState } from "react";
+import { useIntl, defineMessages } from "react-intl";
 import PropTypes from "prop-types";
 import { FormGroup, FileUpload } from "@patternfly/react-core";
 import useFormApi from "@data-driven-forms/react-form-renderer/use-form-api";
 import useFieldApi from "@data-driven-forms/react-form-renderer/use-field-api";
 
+const messages = defineMessages({
+  filenamePlaceholder: {
+    id: "wizard.uploadFile.filenamePlaceholder",
+    defaultMessage: "Drag and drop a file or upload one",
+  },
+});
+
 const UploadFile = ({ label, labelIcon, isRequired, ...props }) => {
+  const intl = useIntl();
   const { change } = useFormApi();
   useFieldApi(props);
 
@@ -33,7 +42,7 @@ const UploadFile = ({ label, labelIcon, isRequired, ...props }) => {
           type="text"
           filename={filename}
           hideDefaultPreview="true"
-          filenamePlaceholder="Drag and drop a file or upload one"
+          filenamePlaceholder={intl.formatMessage(messages.filenamePlaceholder)}
           onFileInputChange={handleFileInputChange}
           onDataChange={handleTextOrDataChange}
           onClearClick={handleClear}
