@@ -36,7 +36,7 @@ const azureDest = () => {
     title: <FormattedMessage id="wizard.azure.destTitle" defaultMessage="Destination" />,
     name: "azure-dest",
     substepOf: intl.formatMessage(messages.azureStepsTitle),
-    nextStep: "details",
+    nextStep: "system",
     fields: [
       {
         component: "text-field-custom",
