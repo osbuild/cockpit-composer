@@ -251,7 +251,7 @@ const CreateImageWizard = (props) => {
                   system(),
                   users(),
                   packages(),
-                  review,
+                  review(),
                 ],
                 crossroads: ["image-output-type", "image-upload"],
               },
