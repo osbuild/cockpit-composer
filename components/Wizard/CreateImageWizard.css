@@ -12,3 +12,13 @@
 .pf-c-dual-list-selector__menu {
   --pf-c-dual-list-selector__menu--MinHeight: 20.5rem;
 }
+
+#user-table table thead tr th {
+  padding-top: 0;
+  padding-left: 0;
+}
+
+#user-table table tr td {
+  padding-left: 0;
+}
+

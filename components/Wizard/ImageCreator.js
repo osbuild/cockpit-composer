@@ -45,6 +45,7 @@ const ImageCreator = ({
         review: {
           component: Review,
           blueprintName: props.blueprint.name,
+          imageTypes: props.imageTypes,
         },
         "text-field-custom": TextFieldCustom,
         "upload-file": UploadFile,
