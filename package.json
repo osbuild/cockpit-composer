@@ -56,7 +56,7 @@
     "jsel": "1.1.6",
     "jquery": "3.5.1",
     "mini-css-extract-plugin": "2.6.1",
-    "mkdirp": "0.5.1",
+    "mkdirp": "1.0.4",
     "path-to-regexp": "1.5.3",
     "po2json": "0.4.5",
     "prettier": "2.0.5",
