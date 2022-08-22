@@ -10,7 +10,7 @@
     "@data-driven-forms/react-form-renderer": "3.16.10",
     "@patternfly/patternfly": "4.185.1",
     "@patternfly/react-core": "4.198.19",
-    "@patternfly/react-icons": "4.65.1",
+    "@patternfly/react-icons": "4.82.8",
     "@patternfly/react-table": "4.71.16",
     "@redux-devtools/extension": "3.2.3",
     "bootstrap": "3.4.1",
