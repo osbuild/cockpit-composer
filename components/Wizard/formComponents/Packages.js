@@ -108,45 +108,17 @@ const Packages = ({ defaultArch, ...props }) => {
 
   // this effect only triggers on mount
   useEffect(() => {
-    const fetchPackagesChosenFromBlueprint = async () => {
+    const fetchPackagesChosen = async (packages) => {
       setPackagesChosenLoading(true);
-      const result = await composer.depsolveBlueprint(props.blueprintName);
-      const blueprint = result.blueprints[0].blueprint;
-      const blueprintPackages = blueprint.packages;
-      const packageNames = blueprintPackages.map((pkg) => pkg.name);
-      if (packageNames?.length) {
-        const packageInfo = await composer.getComponentInfo(packageNames);
-        const selectedPackages = packageInfo.map((pkg) => ({ name: pkg.name, summary: pkg.summary }));
-        change(
-          input.name,
-          selectedPackages.map((pkg) => pkg.name)
-        );
-        setPackagesChosenSorted(selectedPackages);
-      } else {
-        change(input.name, []);
-      }
+      const packageInfo = await composer.getComponentInfo(packages);
+      const selectedPackages = packageInfo.map((pkg) => ({ name: pkg.name, summary: pkg.summary }));
+      setPackagesChosenSorted(selectedPackages);
       setPackagesChosenLoading(false);
-    };
-
-    const fetchPackagesChosenFromFormState = async (packages) => {
-      if (packages?.length) {
-        setPackagesChosenLoading(true);
-        const packageInfo = await composer.getComponentInfo(packages);
-        const selectedPackages = packageInfo.map((pkg) => ({ name: pkg.name, summary: pkg.summary }));
-        setPackagesChosenSorted(selectedPackages);
-        setPackagesChosenLoading(false);
-      }
     };
 
     const packages = getState()?.values["selected-packages"];
 
-    if (packages) {
-      // Non-initial visit to Packages step, package list is stored in form state
-      fetchPackagesChosenFromFormState(packages);
-    } else {
-      // Initial visit to Packages step, fetch packages from the blueprint and store in form state
-      fetchPackagesChosenFromBlueprint();
-    }
+    packages?.length && fetchPackagesChosen(packages);
   }, []);
 
   const searchResultsComparator = useCallback((searchTerm) => {
@@ -217,9 +189,14 @@ const Packages = ({ defaultArch, ...props }) => {
 
   // filter the packages by name
   const filterPackagesAvailable = (packageList) => {
+    // Get the selected/chosen packages from the form state rather than packagesChosen
+    // because setPackagesChosen has an async function call, and therefore packagesChosen
+    // may not be ready yet.
+    const selectedPackages = getState()?.values["selected-packages"];
+
     return packageList.filter((availablePackage) => {
       // returns true if no packages in the available or chosen list have the same name
-      return !packagesChosen.some((chosenPackage) => availablePackage.name === chosenPackage.name);
+      return !selectedPackages.some((selectedPackage) => availablePackage.name === selectedPackage);
     });
   };
 
