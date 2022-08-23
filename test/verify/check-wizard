@@ -533,16 +533,13 @@ class TestWizard(composerlib.ComposerCase):
         b.focus("input[id='ostree-repo-url']")
         b.key_press("127.0. 0.1")
 
-        b.wait_visible("label:contains('Parent commit')")
-        b.click("button[aria-label='Parent commit help']")
+        b.wait_visible("label:contains('Parent')")
+        b.click("button[aria-label='Parent help']")
         # b.wait_text(".pf-c-popover__body",
         #             "Provide the name of the branch for the content. If the ref does not already exist it will be created.")        b.click(".pf-c-popover__content button[aria-label='Close']")
         b.click(".pf-c-popover__content button[aria-label='Close']")
         b.wait_not_present(".pf-c-popover__body")
         b.set_input_text("input[id='ostree-parent-commit']", "asdf1234")
-        # only url or commit can be specified
-        b.wait_attr("button:contains('Next')", "disabled", "")
-        b.set_input_text("input[id='ostree-parent-commit']", "")
 
         b.wait_visible("label:contains('Ref')")
         b.click("button[aria-label='Ref help']")

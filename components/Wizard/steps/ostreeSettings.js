@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import { useIntl, defineMessages, FormattedMessage } from "react-intl";
 import validatorTypes from "@data-driven-forms/react-form-renderer/validator-types";
@@ -19,17 +20,17 @@ const messages = defineMessages({
   parentCommitPopoverBody: {
     id: "wizard.ostree.parentCommit.popoverBody",
     defaultMessage:
-      "Provide the ID of the latest commit in the updates repository for which this commit provides an update. " +
-      "If no commit is specified it will be inferred from the parent repository.",
+      "Provide the commit id or ref of the parent in the repository for which this commit provides an update. " +
+      "If no parent is specified it will be inferred from the user-defined ref.",
   },
   parentCommitPopoverAria: {
     id: "wizard.ostree.parentCommit.popoverAria",
-    defaultMessage: "Parent commit help",
+    defaultMessage: "Parent help",
   },
   refPopoverBody: {
     id: "wizard.ostree.ref.popoverBody",
     defaultMessage:
-      "Provide the name of the branch for the content. If the ref does not already exist it will be created.",
+      "Provide the name of the branch for the content. If the ref does not already exist it will be created. If the ref is not specified, the default ref for the distro will be used.",
   },
   refPopoverAria: {
     id: "wizard.ostree.ref.popoverAria",
@@ -66,15 +67,38 @@ const ostreeSettings = () => {
         ),
         condition: {
           when: "image-output-type",
-          is: ["fedora-iot-commit", "edge-commit", "edge-container", "edge-installer", "edge-simplified-installer"],
+          is: [
+            "fedora-iot-commit",
+            "edge-commit",
+            "edge-container",
+            "edge-raw-image",
+            "edge-installer",
+            "edge-simplified-installer",
+          ],
         },
-        validate: [{ type: "ostreeValidator" }],
+        resolveProps: (props, { meta, input }, formOptions) => {
+          const imageType = formOptions.getState().values["image-output-type"];
+          if (
+            imageType === "edge-raw-image" ||
+            imageType === "edge-installer" ||
+            imageType === "edge-simplified-installer"
+          ) {
+            return {
+              isRequired: true,
+              validate: [
+                {
+                  type: validatorTypes.REQUIRED,
+                },
+              ],
+            };
+          }
+        },
       },
       {
         component: "text-field-custom",
         name: "ostree-parent-commit",
         className: "pf-u-w-75",
-        label: <FormattedMessage id="wizard.ostree.parentCommit.label" defaultMessage="Parent commit" />,
+        label: <FormattedMessage id="wizard.ostree.parentCommit.label" defaultMessage="Parent" />,
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.parentCommitPopoverBody)}
@@ -87,21 +111,7 @@ const ostreeSettings = () => {
         ),
         condition: {
           when: "image-output-type",
-          is: ["fedora-iot-commit", "edge-commit", "edge-container", "edge-raw-image"],
-        },
-        validate: [{ type: "ostreeValidator" }],
-        // eslint-disable-next-line no-unused-vars
-        resolveProps: (props, { meta, input }, formOptions) => {
-          if (formOptions.getState().values["image-output-type"] === "edge-raw-image") {
-            return {
-              isRequired: true,
-              validate: [
-                {
-                  type: validatorTypes.REQUIRED,
-                },
-              ],
-            };
-          }
+          is: ["fedora-iot-commit", "edge-commit", "edge-container"],
         },
       },
       {
