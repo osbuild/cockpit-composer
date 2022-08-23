@@ -1,7 +1,7 @@
 # Temuri Doghonadze <temuri.doghonadze@gmail.com>, 2022.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2022-08-19T18:31:19.371Z\n"
+"POT-Creation-Date: 2022-08-22T04:16:19.717Z\n"
 "PO-Revision-Date: 2022-08-09 06:19+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.fedoraproject.org/projects/"
@@ -122,6 +122,15 @@ msgstr "წყაროს დამატება"
 #| msgid "Add source"
 msgid "Add user"
 msgstr "წყაროს დამატება"
+
+#. [wizard.review.admin]
+#. defaultMessage is:
+#. Administrator
+#: build/messages/components/Wizard/formComponents/Review.json
+#, fuzzy
+#| msgid "Server administrator"
+msgid "Administrator"
+msgstr "სერვერი ადმინისტრატორი"
 
 #. [wizard.review.amazonS3Bucket]
 #. defaultMessage is:
@@ -632,6 +641,9 @@ msgstr "შექმნილია"
 msgid "Creating image"
 msgstr "გამოსახულების შექმნა"
 
+#. [wizard.review.customizations.title]
+#. defaultMessage is:
+#. Customizations
 #. [wizard.customizations.title]
 #. defaultMessage is:
 #. Customizations
@@ -641,6 +653,7 @@ msgstr "გამოსახულების შექმნა"
 #. [pages.blueprint.customizationsTitle]
 #. defaultMessage is:
 #. Customizations
+#: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/components/Wizard/steps/system.json
 #: build/messages/components/Wizard/steps/users.json
 #: build/messages/pages/blueprint/index.json
@@ -1131,9 +1144,13 @@ msgstr "გამოსახულების სახელი"
 msgid "Image name help"
 msgstr "დახმარება გამოსახულების სახელის შესახებ"
 
+#. [wizard.review.target.title]
+#. defaultMessage is:
+#. Image output
 #. [wizard.imageOutput.title]
 #. defaultMessage is:
 #. Image output
+#: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/components/Wizard/steps/imageOutput.json
 msgid "Image output"
 msgstr "გამოტანილი გამოსახულება"
@@ -1401,6 +1418,9 @@ msgid "Output type"
 msgstr ""
 
 #. [wizard.review.packages]
+#. defaultMessage is:
+#. Packages
+#. [wizard.review.packages.title]
 #. defaultMessage is:
 #. Packages
 #. [wizard.packages.title]
@@ -1866,10 +1886,14 @@ msgstr "დახმარება S3 Bucket-ის შესახებ"
 #. [components.Modal.labelSSHKey]
 #. defaultMessage is:
 #. SSH key
+#. [wizard.review.sshKey]
+#. defaultMessage is:
+#. SSH key
 #. [wizard.customizations.sshKey.label]
 #. defaultMessage is:
 #. SSH key
 #: build/messages/components/Modal/UserAccount.json
+#: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/components/Wizard/steps/users.json
 msgid "SSH key"
 msgstr "SSH გასაღები"
@@ -2636,12 +2660,16 @@ msgstr "დახმარება კლატერის შესახე�
 msgid "Username"
 msgstr "მომხმარებელი"
 
+#. [customizations.user.title]
+#. defaultMessage is:
+#. Users
 #. [wizard.customizations.usersTitle]
 #. defaultMessage is:
 #. Users
 #. [pages.blueprint.443046426]
 #. defaultMessage is:
 #. Users
+#: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/components/Wizard/steps/users.json
 #: build/messages/pages/blueprint/index.json
 msgid "Users"
