@@ -18,12 +18,26 @@ import {
   BLUEPRINT_CONTENTS_FAILURE,
   RELOADING_BLUEPRINT_CONTENTS_SUCCEEDED,
   SET_COMP_DEPS,
+  BLUEPRINTS_UPDATING,
   BLUEPRINTS_UPDATED,
   BLUEPRINTS_ADDED,
   BLUEPRINTS_FETCHED,
 } from "../actions/blueprints";
 
 import { MODAL_MANAGE_SOURCES_FAILURE } from "../actions/modals";
+
+const updating = (state = false, action) => {
+  switch (action.type) {
+    case BLUEPRINTS_UPDATING:
+      return true;
+    case BLUEPRINTS_UPDATED:
+      return false;
+    case BLUEPRINTS_FAILURE:
+      return false;
+    default:
+      return state;
+  }
+};
 
 const fetchingBlueprints = (state = false, action) => {
   switch (action.type) {
@@ -295,6 +309,7 @@ const blueprintList = (state = [], action) => {
 };
 
 const blueprints = combineReducers({
+  updating,
   fetchingBlueprints,
   errorState,
   blueprintList,
