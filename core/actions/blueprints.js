@@ -2,8 +2,17 @@ import * as composer from "../composer";
 
 export const blueprintsUpdate = (blueprint) => async (dispatch) => {
   try {
-    await composer.newBlueprint(blueprint);
-    dispatch(blueprintsUpdated(blueprint));
+    dispatch(blueprintsUpdating());
+    // TODO: Optimize
+    const depsolveResponse = await composer.depsolveBlueprint(blueprint.name);
+    const dependencies = depsolveResponse.blueprints[0].dependencies;
+    const blueprintComponents = await generateComponents(blueprint.packages, dependencies);
+    const storedBP = {
+      ...blueprint,
+      dependencies,
+      components: blueprintComponents,
+    };
+    dispatch(blueprintsUpdated(storedBP));
   } catch (error) {
     dispatch(blueprintsFailure(error));
   }
@@ -15,6 +24,11 @@ export const blueprintsUpdated = (blueprint) => ({
   payload: {
     blueprint,
   },
+});
+
+export const BLUEPRINTS_UPDATING = "BLUEPRINTS_UPDATING";
+export const blueprintsUpdating = () => ({
+  type: BLUEPRINTS_UPDATING,
 });
 
 export const blueprintsGetAll = () => async (dispatch) => {
@@ -44,6 +58,44 @@ export const blueprintsFetched = () => ({
 });
 
 // Above are useful for unified and should be kept post-cleanup
+// TODO: optimize
+const generateComponents = async (packages, dependencies) => {
+  const selectedComponentNames = packages.map((component) => component.name);
+  let componentNames = [];
+  let componentsRaw = [];
+  if (dependencies.length > 0) {
+    componentNames = dependencies.map((component) => component.name);
+    componentsRaw = flattenComponents(dependencies);
+  } else {
+    componentNames = selectedComponentNames;
+    componentsRaw = packages;
+  }
+  const componentInfo = await composer.getComponentInfo(componentNames);
+  const components = componentsRaw.map((component) => {
+    const info = componentInfo.find((item) => item.name === component.name);
+    const componentData = {
+      name: component.name,
+      description: info.description,
+      homepage: info.homepage,
+      summary: info.summary,
+      inBlueprint: true,
+      userSelected: selectedComponentNames.includes(component.name),
+      ui_type: "RPM",
+      version: component.version,
+      release: component.release ? component.release : "",
+    };
+    return componentData;
+  });
+  return components;
+};
+
+function flattenComponents(components) {
+  const previousComponents = {};
+  const flattened = components.filter((component) => {
+    return previousComponents.hasOwnProperty(component.name) ? false : (previousComponents[component.name] = true);
+  });
+  return flattened;
+}
 
 export const CREATING_BLUEPRINT = "CREATING_BLUEPRINT";
 export const creatingBlueprint = (blueprint) => ({

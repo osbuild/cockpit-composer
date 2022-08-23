@@ -86,7 +86,8 @@ class TestWizard(composerlib.ComposerCase):
         # save image
         b.click(".pf-c-wizard__footer button:contains('Save blueprint')")
         # Create image
-        b.click(".pf-c-wizard__footer button:contains('Create image')")
+        with b.wait_timeout(120):
+            b.click(".pf-c-wizard__footer button:contains('Create image')")
 
         b.wait_not_present("#create-image-wizard")
         # notification
@@ -607,7 +608,8 @@ class TestWizard(composerlib.ComposerCase):
         b.click("button:contains('Next')")
 
         b.click("button:contains('Save blueprint')")
-        b.click(".pf-c-wizard__close")
+        with b.wait_timeout(120):
+            b.click("button:contains('Cancel')")
 
         b.click("li[data-blueprint=httpd-server] a[href='#/blueprint/httpd-server']")
 
@@ -648,7 +650,8 @@ class TestWizard(composerlib.ComposerCase):
 
         b.wait_text("h1", "Review")
         b.click("button:contains('Save blueprint')")
-        b.click(".pf-c-wizard__close")
+        with b.wait_timeout(120):
+            b.click("button:contains('Cancel')")
 
         # collect code coverage result
         self.check_coverage()
