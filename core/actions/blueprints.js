@@ -4,6 +4,7 @@ export const blueprintsUpdate = (blueprint) => async (dispatch) => {
   try {
     dispatch(blueprintsUpdating());
     // TODO: Optimize
+    await composer.newBlueprint(blueprint);
     const depsolveResponse = await composer.depsolveBlueprint(blueprint.name);
     const dependencies = depsolveResponse.blueprints[0].dependencies;
     const blueprintComponents = await generateComponents(blueprint.packages, dependencies);
