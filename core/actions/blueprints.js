@@ -20,8 +20,10 @@ export const blueprintsUpdated = (blueprint) => ({
 export const blueprintsGetAll = () => async (dispatch) => {
   try {
     const bpNames = await composer.getBlueprintsNames();
-    const blueprints = await composer.getBlueprintsInfo(bpNames);
-    blueprints.forEach((bp) => dispatch(blueprintsAdded(bp)));
+    if (bpNames?.length) {
+      const blueprints = await composer.getBlueprintsInfo(bpNames);
+      blueprints.forEach((bp) => dispatch(blueprintsAdded(bp)));
+    }
     dispatch(blueprintsFetched());
   } catch (error) {
     dispatch(blueprintsFailure(error));
