@@ -7,7 +7,7 @@
 # Transtats <suanand@redhat.com>, 2022.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2022-08-19T18:31:19.371Z\n"
+"POT-Creation-Date: 2022-08-22T04:16:19.717Z\n"
 "PO-Revision-Date: 2022-04-13 13:17+0000\n"
 "Last-Translator: Ludek Janda <ljanda@redhat.com>\n"
 "Language-Team: Japanese <https://translate.fedoraproject.org/projects/"
@@ -128,6 +128,15 @@ msgstr "ソースの追加"
 #| msgid "Add source"
 msgid "Add user"
 msgstr "ソースの追加"
+
+#. [wizard.review.admin]
+#. defaultMessage is:
+#. Administrator
+#: build/messages/components/Wizard/formComponents/Review.json
+#, fuzzy
+#| msgid "Server administrator"
+msgid "Administrator"
+msgstr "サーバー管理者"
 
 #. [wizard.review.amazonS3Bucket]
 #. defaultMessage is:
@@ -646,6 +655,9 @@ msgstr "作成済み"
 msgid "Creating image"
 msgstr "イメージの作成"
 
+#. [wizard.review.customizations.title]
+#. defaultMessage is:
+#. Customizations
 #. [wizard.customizations.title]
 #. defaultMessage is:
 #. Customizations
@@ -655,6 +667,7 @@ msgstr "イメージの作成"
 #. [pages.blueprint.customizationsTitle]
 #. defaultMessage is:
 #. Customizations
+#: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/components/Wizard/steps/system.json
 #: build/messages/components/Wizard/steps/users.json
 #: build/messages/pages/blueprint/index.json
@@ -1200,9 +1213,13 @@ msgstr "イメージ名"
 msgid "Image name help"
 msgstr "イメージ名ヘルプ"
 
+#. [wizard.review.target.title]
+#. defaultMessage is:
+#. Image output
 #. [wizard.imageOutput.title]
 #. defaultMessage is:
 #. Image output
+#: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/components/Wizard/steps/imageOutput.json
 msgid "Image output"
 msgstr "イメージ出力"
@@ -1473,6 +1490,9 @@ msgid "Output type"
 msgstr ""
 
 #. [wizard.review.packages]
+#. defaultMessage is:
+#. Packages
+#. [wizard.review.packages.title]
 #. defaultMessage is:
 #. Packages
 #. [wizard.packages.title]
@@ -2035,10 +2055,14 @@ msgstr "S3 バケットのヘルプ"
 #. [components.Modal.labelSSHKey]
 #. defaultMessage is:
 #. SSH key
+#. [wizard.review.sshKey]
+#. defaultMessage is:
+#. SSH key
 #. [wizard.customizations.sshKey.label]
 #. defaultMessage is:
 #. SSH key
 #: build/messages/components/Modal/UserAccount.json
+#: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/components/Wizard/steps/users.json
 msgid "SSH key"
 msgstr "SSH キー"
@@ -2821,12 +2845,16 @@ msgstr "クラスターヘルプ"
 msgid "Username"
 msgstr "ユーザー名"
 
+#. [customizations.user.title]
+#. defaultMessage is:
+#. Users
 #. [wizard.customizations.usersTitle]
 #. defaultMessage is:
 #. Users
 #. [pages.blueprint.443046426]
 #. defaultMessage is:
 #. Users
+#: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/components/Wizard/steps/users.json
 #: build/messages/pages/blueprint/index.json
 msgid "Users"

@@ -2,7 +2,7 @@
 # Matej Marusak <mmarusak@redhat.com>, 2020.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2022-08-19T18:31:19.371Z\n"
+"POT-Creation-Date: 2022-08-22T04:16:19.717Z\n"
 "PO-Revision-Date: 2022-02-16 22:16+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://translate.fedoraproject.org/projects/cockpit-"
@@ -122,6 +122,15 @@ msgstr "Přidat zdroj"
 #| msgid "Add source"
 msgid "Add user"
 msgstr "Přidat zdroj"
+
+#. [wizard.review.admin]
+#. defaultMessage is:
+#. Administrator
+#: build/messages/components/Wizard/formComponents/Review.json
+#, fuzzy
+#| msgid "Server administrator"
+msgid "Administrator"
+msgstr "Správce serveru"
 
 #. [wizard.review.amazonS3Bucket]
 #. defaultMessage is:
@@ -640,6 +649,9 @@ msgstr "Vytvořeno"
 msgid "Creating image"
 msgstr "Vytvořit obraz"
 
+#. [wizard.review.customizations.title]
+#. defaultMessage is:
+#. Customizations
 #. [wizard.customizations.title]
 #. defaultMessage is:
 #. Customizations
@@ -649,6 +661,7 @@ msgstr "Vytvořit obraz"
 #. [pages.blueprint.customizationsTitle]
 #. defaultMessage is:
 #. Customizations
+#: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/components/Wizard/steps/system.json
 #: build/messages/components/Wizard/steps/users.json
 #: build/messages/pages/blueprint/index.json
@@ -1188,9 +1201,13 @@ msgstr "Název obrazu"
 msgid "Image name help"
 msgstr "Nápověda k názvu obrazu"
 
+#. [wizard.review.target.title]
+#. defaultMessage is:
+#. Image output
 #. [wizard.imageOutput.title]
 #. defaultMessage is:
 #. Image output
+#: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/components/Wizard/steps/imageOutput.json
 msgid "Image output"
 msgstr "Výstup obrazu"
@@ -1458,6 +1475,9 @@ msgid "Output type"
 msgstr ""
 
 #. [wizard.review.packages]
+#. defaultMessage is:
+#. Packages
+#. [wizard.review.packages.title]
 #. defaultMessage is:
 #. Packages
 #. [wizard.packages.title]
@@ -2021,10 +2041,14 @@ msgstr "Nápověda k S3 Bucket"
 #. [components.Modal.labelSSHKey]
 #. defaultMessage is:
 #. SSH key
+#. [wizard.review.sshKey]
+#. defaultMessage is:
+#. SSH key
 #. [wizard.customizations.sshKey.label]
 #. defaultMessage is:
 #. SSH key
 #: build/messages/components/Modal/UserAccount.json
+#: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/components/Wizard/steps/users.json
 msgid "SSH key"
 msgstr "SSH klíč"
@@ -2808,12 +2832,16 @@ msgstr "Nápověda ke clusteru"
 msgid "Username"
 msgstr "Uživatelské jméno"
 
+#. [customizations.user.title]
+#. defaultMessage is:
+#. Users
 #. [wizard.customizations.usersTitle]
 #. defaultMessage is:
 #. Users
 #. [pages.blueprint.443046426]
 #. defaultMessage is:
 #. Users
+#: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/components/Wizard/steps/users.json
 #: build/messages/pages/blueprint/index.json
 msgid "Users"

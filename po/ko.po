@@ -7,8 +7,8 @@
 # 김인수 <simmon@nplob.com>, 2022.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2022-08-19T18:31:19.371Z\n"
-"PO-Revision-Date: 2022-05-25 08:18+0000\n"
+"POT-Creation-Date: 2022-08-22T04:16:19.717Z\n"
+"PO-Revision-Date: 2022-08-22 06:52+0000\n"
 "Last-Translator: 김인수 <simmon@nplob.com>\n"
 "Language-Team: Korean <https://translate.fedoraproject.org/projects/cockpit-"
 "composer/main/ko/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
-"X-Generator: Weblate 4.12.2\n"
+"X-Generator: Weblate 4.13\n"
 
 #. [components.Modal.4177685254]
 #. defaultMessage is:
@@ -46,16 +46,14 @@ msgstr "AWS 리전"
 #: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/components/Wizard/steps/awsAuth.json
 msgid "Access key ID"
-msgstr "액세스 키 ID"
+msgstr "접근 키 ID"
 
 #. [wizard.aws.accessKey.popoverAria]
 #. defaultMessage is:
 #. Access key help
 #: build/messages/components/Wizard/steps/awsAuth.json
-#, fuzzy
-#| msgid "Access key ID help"
 msgid "Access key help"
-msgstr "액세스 키 ID 도움말"
+msgstr "접근 키 도움말"
 
 #. [components.ListView.imageActions] - A label for the menu that displays the actions available
 #. defaultMessage is:
@@ -80,7 +78,7 @@ msgstr "추가"
 #. Add all
 #: build/messages/components/Wizard/formComponents/Packages.json
 msgid "Add all"
-msgstr ""
+msgstr "모두 추가"
 
 #. [components.ListView.addComponent]
 #. defaultMessage is:
@@ -102,10 +100,8 @@ msgstr ""
 #. defaultMessage is:
 #. Add selected
 #: build/messages/components/Wizard/formComponents/Packages.json
-#, fuzzy
-#| msgid "Add source"
 msgid "Add selected"
-msgstr "소스 추가"
+msgstr "선택된 부분 추가"
 
 #. [components.Modal.add]
 #. defaultMessage is:
@@ -118,16 +114,23 @@ msgstr "소스 추가"
 #. Add source
 #: build/messages/components/Modal/ManageSources.json
 msgid "Add source"
-msgstr "소스 추가"
+msgstr "원천 추가"
 
 #. [wizard.customizations.buttons.add]
 #. defaultMessage is:
 #. Add user
 #: build/messages/components/Wizard/steps/users.json
-#, fuzzy
-#| msgid "Add source"
 msgid "Add user"
-msgstr "소스 추가"
+msgstr "사용자 추가"
+
+#. [wizard.review.admin]
+#. defaultMessage is:
+#. Administrator
+#: build/messages/components/Wizard/formComponents/Review.json
+#, fuzzy
+#| msgid "Server administrator"
+msgid "Administrator"
+msgstr "서버 관리자"
 
 #. [wizard.review.amazonS3Bucket]
 #. defaultMessage is:
@@ -138,7 +141,7 @@ msgstr "소스 추가"
 #: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/components/Wizard/steps/awsDest.json
 msgid "Amazon S3 bucket"
-msgstr ""
+msgstr "아마존 S3 버킷"
 
 #. [components.ListView.emptyStateErrorTitle]
 #. defaultMessage is:
@@ -184,10 +187,8 @@ msgstr "소스를 가져오는 도중 오류가 발생했습니다."
 #. defaultMessage is:
 #. An image can only be created after saving the blueprint
 #: build/messages/components/Wizard/formComponents/SubmitButtonsCustom.json
-#, fuzzy
-#| msgid "No images have been created from this blueprint."
 msgid "An image can only be created after saving the blueprint"
-msgstr "이 블루프린트에서 생성된 이미지가 없습니다."
+msgstr "이미지는 블루프린트 저장 후에만 생성됩니다"
 
 #. [components.ListView.3998303130]
 #. defaultMessage is:
@@ -247,10 +248,8 @@ msgstr "부팅시 osbuild-composer 자동 실행"
 #. defaultMessage is:
 #. Available packages
 #: build/messages/components/Wizard/formComponents/Packages.json
-#, fuzzy
-#| msgid "Available components"
 msgid "Available packages"
-msgstr "사용 가능한 구성 요소"
+msgstr "사용 가능한 꾸러미"
 
 #. [pages.blueprint.2057444273]
 #. defaultMessage is:
@@ -281,19 +280,15 @@ msgstr "블루프린트"
 #. defaultMessage is:
 #. Blueprint filter select
 #: build/messages/components/Toolbar/BlueprintToolbar.json
-#, fuzzy
-#| msgid "Blueprints"
 msgid "Blueprint filter select"
-msgstr "블루프린트"
+msgstr "블루프린트 필터 선택"
 
 #. [wizard.review.blueprintName]
 #. defaultMessage is:
 #. Blueprint name
 #: build/messages/components/Wizard/formComponents/Review.json
-#, fuzzy
-#| msgid "Blueprint"
 msgid "Blueprint name"
-msgstr "블루프린트"
+msgstr "블루프린트 이름"
 
 #. [components.Modal.2544705954]
 #. defaultMessage is:
@@ -644,6 +639,9 @@ msgstr "생성 일시"
 msgid "Creating image"
 msgstr "이미지 만들기"
 
+#. [wizard.review.customizations.title]
+#. defaultMessage is:
+#. Customizations
 #. [wizard.customizations.title]
 #. defaultMessage is:
 #. Customizations
@@ -653,6 +651,7 @@ msgstr "이미지 만들기"
 #. [pages.blueprint.customizationsTitle]
 #. defaultMessage is:
 #. Customizations
+#: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/components/Wizard/steps/system.json
 #: build/messages/components/Wizard/steps/users.json
 #: build/messages/pages/blueprint/index.json
@@ -1007,44 +1006,28 @@ msgstr "호스트이름이 지정되어 있지 않을 경우 OS가 호스트 이
 #. defaultMessage is:
 #. Image Builder can upload images you create to VMWare vSphere. When the image build is complete and the upload action is successful, the image file is available in the Cluster on the vSphere instance that you specified.
 #: build/messages/components/Wizard/steps/imageOutput.json
-#, fuzzy
-#| msgid ""
-#| "Image Builder can upload images you create to VMWare vSphere.\n"
-#| "                      When the image build is complete and the upload "
-#| "action is successful,\n"
-#| "                      the image file is available in the Cluster on the "
-#| "vSphere instance that you specified."
 msgid ""
 "Image Builder can upload images you create to VMWare vSphere. When the image "
 "build is complete and the upload action is successful, the image file is "
 "available in the Cluster on the vSphere instance that you specified."
 msgstr ""
-"Image Builder는 사용자가 생성한 이미지를 VMWare vSphere에 업로드할 수 있습니"
-"다.\n"
-"                      이미지 빌드가 완료되고 업로드 작업이 성공하면\n"
-"                      지정한 vSphere 인스턴스 클러스터에서 이미지 파일을 사용"
-"할 수 있습니다."
+"이미지 빌더는 사용자가 생성한 이미지를 VMWare vSphere에 적재 할 수 있습니다. "
+"이미지 빌드가 완료되고 적재 작업이 성공하면, 이미지 파일은 지정한 vSphere 인"
+"스턴스 클러스터에서 사용 할 수 있습니다."
 
 #. [wizard.imageOutput.uploadAzure.popoverBody]
 #. defaultMessage is:
 #. Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
 #: build/messages/components/Wizard/steps/imageOutput.json
-#, fuzzy
-#| msgid ""
-#| "Image Builder can upload images you create to a Blob container in "
-#| "{azure}. When the image build is complete\n"
-#| "                      and the upload action is successful, the image file "
-#| "is available in the Storage account and Blob container that you specified."
 msgid ""
 "Image Builder can upload images you create to a Blob container in {azure}. "
 "When the image build is complete and the upload action is successful, the "
 "image file is available in the Storage account and Blob container that you "
 "specified."
 msgstr ""
-"Image Builder는 사용자가 생성한 이미지를 {azure}의 Blob 컨테이너에 적재 할 "
-"수 있습니다. 이미지 빌드가 완료되고\n"
-"적재 작업이 성공하면 지정한 저장소 계정 및 Blob 컨테이너에서 이미지 파일을 사"
-"용할 수 있습니다."
+"이미지 빌더는 사용자가 생성한 이미지를 {azure}의 Blob 컨테이너에 적재 할 수 "
+"있습니다. 이미지 빌드가 완료되고 적재 작업이 성공하면, 이미지 파일은 지정한 "
+"저장소 계정 및 Blob 컨테이너에서 사용 할 수 있습니다."
 
 #. [wizard.imageOutput.uploadOCI.popoverBody]
 #. defaultMessage is:
@@ -1192,9 +1175,13 @@ msgstr "이미지 이름"
 msgid "Image name help"
 msgstr "이미지 이름 도움말"
 
+#. [wizard.review.target.title]
+#. defaultMessage is:
+#. Image output
 #. [wizard.imageOutput.title]
 #. defaultMessage is:
 #. Image output
+#: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/components/Wizard/steps/imageOutput.json
 msgid "Image output"
 msgstr "이미지 출력"
@@ -1462,6 +1449,9 @@ msgid "Output type"
 msgstr ""
 
 #. [wizard.review.packages]
+#. defaultMessage is:
+#. Packages
+#. [wizard.review.packages.title]
 #. defaultMessage is:
 #. Packages
 #. [wizard.packages.title]
@@ -2017,10 +2007,14 @@ msgstr "S3 버킷 도움말"
 #. [components.Modal.labelSSHKey]
 #. defaultMessage is:
 #. SSH key
+#. [wizard.review.sshKey]
+#. defaultMessage is:
+#. SSH key
 #. [wizard.customizations.sshKey.label]
 #. defaultMessage is:
 #. SSH key
 #: build/messages/components/Modal/UserAccount.json
+#: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/components/Wizard/steps/users.json
 msgid "SSH key"
 msgstr "SSH 키"
@@ -2801,12 +2795,16 @@ msgstr "클러스터 도움말"
 msgid "Username"
 msgstr "사용자 이름"
 
+#. [customizations.user.title]
+#. defaultMessage is:
+#. Users
 #. [wizard.customizations.usersTitle]
 #. defaultMessage is:
 #. Users
 #. [pages.blueprint.443046426]
 #. defaultMessage is:
 #. Users
+#: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/components/Wizard/steps/users.json
 #: build/messages/pages/blueprint/index.json
 msgid "Users"
