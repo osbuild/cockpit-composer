@@ -42,7 +42,8 @@ const messages = defineMessages({
   },
   review: {
     id: "wizard.review.review",
-    defaultMessage: 'Review the information and click "Create image" to create the image using the following criteria.',
+    defaultMessage:
+      'Review the information and click "Save blueprint" to save the customizations and then click "Create image" to create the image.',
   },
   accessKeyID: {
     id: "wizard.review.accessKeyID",
