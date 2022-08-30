@@ -2,8 +2,8 @@
 # David Shea <dshea@redhat.com>, 2019. #zanata
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2022-08-19T18:31:19.371Z\n"
-"PO-Revision-Date: 2022-03-09 20:10+0000\n"
+"POT-Creation-Date: 2022-08-27T04:13:24.569Z\n"
+"PO-Revision-Date: 2022-08-24 05:19+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "cockpit-composer/main/uk/>\n"
@@ -13,14 +13,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.11.2\n"
+"X-Generator: Weblate 4.13\n"
 
 #. [components.Modal.4177685254]
 #. defaultMessage is:
 #. A blueprint name is required.
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "A blueprint name is required."
-msgstr "Слід вказати назву проекту."
+msgstr "Слід вказати назву синьки."
 
 #. [wizard.review.awsRegion]
 #. defaultMessage is:
@@ -48,10 +48,8 @@ msgstr "Ід. ключа доступу"
 #. defaultMessage is:
 #. Access key help
 #: build/messages/components/Wizard/steps/awsAuth.json
-#, fuzzy
-#| msgid "Access key ID help"
 msgid "Access key help"
-msgstr "Довідка з ід. ключа доступу"
+msgstr "Довідка з ключа доступу"
 
 #. [components.ListView.imageActions] - A label for the menu that displays the actions available
 #. defaultMessage is:
@@ -76,7 +74,7 @@ msgstr "Додати"
 #. Add all
 #: build/messages/components/Wizard/formComponents/Packages.json
 msgid "Add all"
-msgstr ""
+msgstr "Додати усе"
 
 #. [components.ListView.addComponent]
 #. defaultMessage is:
@@ -93,15 +91,15 @@ msgid ""
 "Add optional additional packages to your image by searching available "
 "packages."
 msgstr ""
+"Додайте необов'язкові пакунки до вашого образу пошуком серед доступних "
+"пакунків."
 
 #. [wizard.packages.addSelected]
 #. defaultMessage is:
 #. Add selected
 #: build/messages/components/Wizard/formComponents/Packages.json
-#, fuzzy
-#| msgid "Add source"
 msgid "Add selected"
-msgstr "Додати джерело"
+msgstr "Додати позначені"
 
 #. [components.Modal.add]
 #. defaultMessage is:
@@ -120,10 +118,15 @@ msgstr "Додати джерело"
 #. defaultMessage is:
 #. Add user
 #: build/messages/components/Wizard/steps/users.json
-#, fuzzy
-#| msgid "Add source"
 msgid "Add user"
-msgstr "Додати джерело"
+msgstr "Додати користувача"
+
+#. [wizard.review.admin]
+#. defaultMessage is:
+#. Administrator
+#: build/messages/components/Wizard/formComponents/Review.json
+msgid "Administrator"
+msgstr "Адміністратор"
 
 #. [wizard.review.amazonS3Bucket]
 #. defaultMessage is:
@@ -134,7 +137,7 @@ msgstr "Додати джерело"
 #: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/components/Wizard/steps/awsDest.json
 msgid "Amazon S3 bucket"
-msgstr ""
+msgstr "Відро Amazon S3"
 
 #. [components.ListView.emptyStateErrorTitle]
 #. defaultMessage is:
@@ -167,7 +170,7 @@ msgstr ""
 #. An error occurred while trying to get blueprint contents.
 #: build/messages/components/ListView/BlueprintContents.json
 msgid "An error occurred while trying to get blueprint contents."
-msgstr "Під час спроби отримати вміст проекту сталася помилка."
+msgstr "Під час спроби отримати вміст синьки сталася помилка."
 
 #. [components.Modal.errorStateMessage]
 #. defaultMessage is:
@@ -180,10 +183,8 @@ msgstr "Під час спроби отримати початкові коди 
 #. defaultMessage is:
 #. An image can only be created after saving the blueprint
 #: build/messages/components/Wizard/formComponents/SubmitButtonsCustom.json
-#, fuzzy
-#| msgid "No images have been created from this blueprint."
 msgid "An image can only be created after saving the blueprint"
-msgstr "З цього проекту не було створено жодних образів."
+msgstr "Зображення може бути створено лише після збереження синьки"
 
 #. [components.ListView.3998303130]
 #. defaultMessage is:
@@ -197,7 +198,7 @@ msgstr "Застосувати зміни"
 #. Are you sure you want to delete the blueprint {name}?
 #: build/messages/components/Modal/DeleteBlueprint.json
 msgid "Are you sure you want to delete the blueprint {name}?"
-msgstr "Ви справді хочете вилучити проект {name}?"
+msgstr "Ви справді хочете вилучити синьку {name}?"
 
 #. [components.Modal.1346739796]
 #. defaultMessage is:
@@ -243,17 +244,15 @@ msgstr "Автоматично запускати osbuild-composer при зав
 #. defaultMessage is:
 #. Available packages
 #: build/messages/components/Wizard/formComponents/Packages.json
-#, fuzzy
-#| msgid "Available components"
 msgid "Available packages"
-msgstr "Доступні компоненти"
+msgstr "Доступні пакунки"
 
 #. [pages.blueprint.2057444273]
 #. defaultMessage is:
 #. Back to blueprints
 #: build/messages/pages/blueprint/index.json
 msgid "Back to blueprints"
-msgstr "Повернутися до проєктів"
+msgstr "Повернутися до синьок"
 
 #. [components.ListView.3448229549]
 #. defaultMessage is:
@@ -277,19 +276,15 @@ msgstr "Синька"
 #. defaultMessage is:
 #. Blueprint filter select
 #: build/messages/components/Toolbar/BlueprintToolbar.json
-#, fuzzy
-#| msgid "Blueprints"
 msgid "Blueprint filter select"
-msgstr "Проекти"
+msgstr "Вибір фільтрування синьки"
 
 #. [wizard.review.blueprintName]
 #. defaultMessage is:
 #. Blueprint name
 #: build/messages/components/Wizard/formComponents/Review.json
-#, fuzzy
-#| msgid "Blueprint"
 msgid "Blueprint name"
-msgstr "Синька"
+msgstr "Назва синьки"
 
 #. [components.Modal.2544705954]
 #. defaultMessage is:
@@ -330,26 +325,22 @@ msgstr "Назви blueprint не можуть містити символів {
 #. defaultMessage is:
 #. Blueprint search input
 #: build/messages/components/Toolbar/BlueprintToolbar.json
-#, fuzzy
-#| msgid "Blueprints"
 msgid "Blueprint search input"
-msgstr "Проекти"
+msgstr "Введення для пошуку синьки"
 
 #. [pages.blueprints.blueprintsTitle]
 #. defaultMessage is:
 #. Blueprints
 #: build/messages/pages/blueprints/index.json
 msgid "Blueprints"
-msgstr "Проекти"
+msgstr "Синьки"
 
 #. [toolbar.blueprints.search.aria]
 #. defaultMessage is:
 #. Blueprints search input
 #: build/messages/components/Toolbar/BlueprintsToolbar.json
-#, fuzzy
-#| msgid "Blueprints"
 msgid "Blueprints search input"
-msgstr "Проекти"
+msgstr "Введення для пошуку синьок"
 
 #. [wizard.review.bucketCompartment]
 #. defaultMessage is:
@@ -360,16 +351,14 @@ msgstr "Проекти"
 #: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/components/Wizard/steps/ociDest.json
 msgid "Bucket compartment"
-msgstr "Відсік корзин"
+msgstr "Відсік кошиків"
 
 #. [wizard.oci.compartment.popoverAria]
 #. defaultMessage is:
 #. Bucket compartment help
 #: build/messages/components/Wizard/steps/ociDest.json
-#, fuzzy
-#| msgid "Bucket compartment"
 msgid "Bucket compartment help"
-msgstr "Відсік корзин"
+msgstr "Довідка щодо відсіку кошиків"
 
 #. [wizard.review.bucketNamespace]
 #. defaultMessage is:
@@ -380,16 +369,14 @@ msgstr "Відсік корзин"
 #: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/components/Wizard/steps/ociDest.json
 msgid "Bucket namespace"
-msgstr "Простір назв корзини"
+msgstr "Простір назв кошика"
 
 #. [wizard.oci.namespace.popoverAria]
 #. defaultMessage is:
 #. Bucket namespace help
 #: build/messages/components/Wizard/steps/ociDest.json
-#, fuzzy
-#| msgid "Bucket namespace"
 msgid "Bucket namespace help"
-msgstr "Простір назв корзини"
+msgstr "Довідка щодо простору назв кошика"
 
 #. [wizard.review.bucketRegion]
 #. defaultMessage is:
@@ -400,16 +387,14 @@ msgstr "Простір назв корзини"
 #: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/components/Wizard/steps/ociDest.json
 msgid "Bucket region"
-msgstr "Регіон корзини"
+msgstr "Регіон кошика"
 
 #. [wizard.oci.region.popoverAria]
 #. defaultMessage is:
 #. Bucket region help
 #: build/messages/components/Wizard/steps/ociDest.json
-#, fuzzy
-#| msgid "Bucket region"
 msgid "Bucket region help"
-msgstr "Регіон корзини"
+msgstr "Довідка щодо регіону кошика"
 
 #. [wizard.review.bucketTenancy]
 #. defaultMessage is:
@@ -420,16 +405,14 @@ msgstr "Регіон корзини"
 #: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/components/Wizard/steps/ociDest.json
 msgid "Bucket tenancy"
-msgstr "Володіння корзини"
+msgstr "Володіння кошика"
 
 #. [wizard.oci.tenancy.popoverAria]
 #. defaultMessage is:
 #. Bucket tenancy help
 #: build/messages/components/Wizard/steps/ociDest.json
-#, fuzzy
-#| msgid "Bucket tenancy"
 msgid "Bucket tenancy help"
-msgstr "Володіння корзини"
+msgstr "Довідка щодо володіння кошика"
 
 #. [components.Form.cancel]
 #. defaultMessage is:
@@ -484,10 +467,8 @@ msgstr "Перевірити сертифікат SSL"
 #. defaultMessage is:
 #. Chosen packages
 #: build/messages/components/Wizard/formComponents/Packages.json
-#, fuzzy
-#| msgid "Edit packages"
 msgid "Chosen packages"
-msgstr "Редагувати пакунки"
+msgstr "Вибрані пакунки"
 
 #. [components.ListView.1634835134]
 #. defaultMessage is:
@@ -501,14 +482,14 @@ msgstr "Зняти усі фільтри"
 #. Clear available packages search
 #: build/messages/components/Wizard/formComponents/Packages.json
 msgid "Clear available packages search"
-msgstr ""
+msgstr "Спорожнити критерії пошуку доступних пакунків"
 
 #. [wizard.packages.clearChosenPackagesSearch]
 #. defaultMessage is:
 #. Clear chosen packages search
 #: build/messages/components/Wizard/formComponents/Packages.json
 msgid "Clear chosen packages search"
-msgstr ""
+msgstr "Спорожнити пошук вибраних пакунків"
 
 #. [components.Modal.2324218928]
 #. defaultMessage is:
@@ -596,7 +577,7 @@ msgid ""
 "Create a blueprint to define the contents that will be included in the "
 "images you create. Images can be produced in a variety of output formats."
 msgstr ""
-"Створити проект для визначення вмісту, який буде включено до створюваних "
+"Створити синьку для визначення вмісту, який буде включено до створюваних "
 "вами образів. Образи можна створювати у різноманітних форматах."
 
 #. [components.Modal.994816806]
@@ -604,7 +585,7 @@ msgstr ""
 #. Create blueprint
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "Create blueprint"
-msgstr "Створити проєкт"
+msgstr "Створити синьку"
 
 #. [wizard.createImage]
 #. defaultMessage is:
@@ -631,11 +612,12 @@ msgstr "Створено"
 #. defaultMessage is:
 #. Creating image
 #: build/messages/components/Wizard/formComponents/SubmitButtonsCustom.json
-#, fuzzy
-#| msgid "Create image"
 msgid "Creating image"
-msgstr "Створити образ"
+msgstr "Створення образу"
 
+#. [wizard.review.customizations.title]
+#. defaultMessage is:
+#. Customizations
 #. [wizard.customizations.title]
 #. defaultMessage is:
 #. Customizations
@@ -645,6 +627,7 @@ msgstr "Створити образ"
 #. [pages.blueprint.customizationsTitle]
 #. defaultMessage is:
 #. Customizations
+#: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/components/Wizard/steps/system.json
 #: build/messages/components/Wizard/steps/users.json
 #: build/messages/pages/blueprint/index.json
@@ -669,8 +652,6 @@ msgstr "Сховище даних"
 #. defaultMessage is:
 #. Datacenter
 #: build/messages/components/Wizard/steps/vmwareDest.json
-#, fuzzy
-#| msgid "Data center"
 msgid "Datacenter"
 msgstr "Дата-центр"
 
@@ -685,8 +666,6 @@ msgstr "Довідка з дата-центру"
 #. defaultMessage is:
 #. Datastore
 #: build/messages/components/Wizard/steps/vmwareDest.json
-#, fuzzy
-#| msgid "Data store"
 msgid "Datastore"
 msgstr "Сховище даних"
 
@@ -713,7 +692,7 @@ msgstr "Вилучити"
 #. Delete blueprint
 #: build/messages/components/Modal/DeleteBlueprint.json
 msgid "Delete blueprint"
-msgstr "Вилучити проєкт"
+msgstr "Вилучити синьку"
 
 #. [components.Modal.942133001]
 #. defaultMessage is:
@@ -867,7 +846,7 @@ msgstr ""
 #. Empty blueprint
 #: build/messages/pages/blueprint/index.json
 msgid "Empty blueprint"
-msgstr "Порожній проєкт"
+msgstr "Порожня синька"
 
 #. [wizard.customizations.installDevice.helperText]
 #. defaultMessage is:
@@ -906,7 +885,7 @@ msgstr "Експортувати як"
 #. Export blueprint
 #: build/messages/components/Modal/ExportBlueprint.json
 msgid "Export blueprint"
-msgstr "Експортувати проєкт"
+msgstr "Експортувати синьку"
 
 #. [wizard.review.fingerprint]
 #. defaultMessage is:
@@ -923,10 +902,8 @@ msgstr "Відбиток"
 #. defaultMessage is:
 #. Fingerprint help
 #: build/messages/components/Wizard/steps/ociAuth.json
-#, fuzzy
-#| msgid "Fingerprint"
 msgid "Fingerprint help"
-msgstr "Відбиток"
+msgstr "Довідка щодо відбитка"
 
 #. [components.Modal.labelName]
 #. defaultMessage is:
@@ -1003,34 +980,20 @@ msgstr ""
 #. defaultMessage is:
 #. Image Builder can upload images you create to VMWare vSphere. When the image build is complete and the upload action is successful, the image file is available in the Cluster on the vSphere instance that you specified.
 #: build/messages/components/Wizard/steps/imageOutput.json
-#, fuzzy
-#| msgid ""
-#| "Image Builder can upload images you create to VMWare vSphere.\n"
-#| "                      When the image build is complete and the upload "
-#| "action is successful,\n"
-#| "                      the image file is available in the Cluster on the "
-#| "vSphere instance that you specified."
 msgid ""
 "Image Builder can upload images you create to VMWare vSphere. When the image "
 "build is complete and the upload action is successful, the image file is "
 "available in the Cluster on the vSphere instance that you specified."
 msgstr ""
-"Image Builder може вивантажувати створені вами образи до vSphere VMWare.\n"
-"                        Коли збирання образу буде завершено, а дія з "
-"вивантаження буде успішною,\n"
-"                        файл образу стане доступним у кластері у екземплярі "
-"vSphere, який було вказано вами."
+"Image Builder може вивантажувати створені вами образи до vSphere VMWare. "
+"Коли збирання образу буде завершено, а дія з вивантаження буде успішною, "
+"файл образу стане доступним у кластері у екземплярі vSphere, який було "
+"вказано вами."
 
 #. [wizard.imageOutput.uploadAzure.popoverBody]
 #. defaultMessage is:
 #. Image Builder can upload images you create to a Blob container in {azure}. When the image build is complete and the upload action is successful, the image file is available in the Storage account and Blob container that you specified.
 #: build/messages/components/Wizard/steps/imageOutput.json
-#, fuzzy
-#| msgid ""
-#| "Image Builder can upload images you create to a Blob container in "
-#| "{azure}. When the image build is complete\n"
-#| "                      and the upload action is successful, the image file "
-#| "is available in the Storage account and Blob container that you specified."
 msgid ""
 "Image Builder can upload images you create to a Blob container in {azure}. "
 "When the image build is complete and the upload action is successful, the "
@@ -1038,23 +1001,14 @@ msgid ""
 "specified."
 msgstr ""
 "Image Builder може вивантажувати створені вами образи до бінарного "
-"контейнера в {azure}. Коли збирання образу буде завершено,\n"
-"                        а дія з вивантаження буде успішною, файл образу "
-"стане доступним на обліковому записі сховища та у вказаному вами бінарному "
-"контейнері."
+"контейнера в {azure}. Коли збирання образу буде завершено, а дія з "
+"вивантаження буде успішною, файл образу стане доступним на обліковому записі "
+"сховища та у вказаному вами бінарному контейнері."
 
 #. [wizard.imageOutput.uploadOCI.popoverBody]
 #. defaultMessage is:
 #. Image Builder can upload images you create to an OCI bucket in OCI and register it as a custom image. When the image build is complete and the upload action is successful, the image should be available under custom images. Most of the values required to upload the image can be found in the {console}.{br}{br}This upload process requires that you have an Identity and Access Management (IAM) with attached policy to manage custom images to ensure that the image can be imported as a custom image from the bucket. For more details, refer to the {policy}.
 #: build/messages/components/Wizard/steps/imageOutput.json
-#, fuzzy
-#| msgid ""
-#| "Image Builder can upload images you create to an {bucket} in OCI and "
-#| "register it as a custom image. When the image build is complete\n"
-#| "                        and the upload action is successful, the image "
-#| "should be available under custom images.\n"
-#| "                        Most of the values required to upload the image "
-#| "can be found in the {console}."
 msgid ""
 "Image Builder can upload images you create to an OCI bucket in OCI and "
 "register it as a custom image. When the image build is complete and the "
@@ -1066,24 +1020,19 @@ msgid ""
 "more details, refer to the {policy}."
 msgstr ""
 "Image Builder може вивантажувати створені вами образи до {bucket} в OCI і "
-"реєструвати їх як нетипові образи. Коли збирання образу буде завершено,\n"
-"                             а дія з вивантаження буде успішною, образ стане "
-"доступним у розділі нетипових образів. Доступ до більшості значень, "
-"потрібних для\n"
-"                             вивантаження образу, можна знайти у {console}."
+"реєструвати їх як нетипові образи. Коли збирання образу буде завершено, а "
+"дія з вивантаження буде успішною, образ стане доступним у розділі нетипових "
+"образів. Доступ до більшості значень, потрібних для вивантаження образу, "
+"можна знайти у {console}.{br}{br}Для виконання процедури вивантаження "
+"потрібно, що у вас було керування профілями та доступом (IAM) із пов'язаними "
+"правилами для керування нетиповими образами, щоб забезпечити можливість "
+"імпортування образу як нетипового з кошика. Щоб дізнатися більше, зверніться "
+"до розділу {policy}."
 
 #. [wizard.imageOutput.uploadAWS.popoverBody]
 #. defaultMessage is:
 #. Image Builder can upload images you create to an S3 bucket in AWS and then import them into EC2. When the image build is complete and the upload action is successful, the image file is available in the AMI section of EC2. Most of the values required to upload the image can be found in the {console}. {br}{br}This upload process requires that you have an Identity and Access Management (IAM) role named {vmimport} to ensure that the image can be imported from the S3 bucket into EC2. For more details, refer to the {role}.
 #: build/messages/components/Wizard/steps/imageOutput.json
-#, fuzzy
-#| msgid ""
-#| "Image Builder can upload images you create to an {bucket} in AWS and then "
-#| "import them into EC2. When the image build is complete\n"
-#| "                        and the upload action is successful, the image "
-#| "file is available in the AMI section of EC2. Most of the values required "
-#| "to upload\n"
-#| "                        the image can be found in the {console}."
 msgid ""
 "Image Builder can upload images you create to an S3 bucket in AWS and then "
 "import them into EC2. When the image build is complete and the upload action "
@@ -1093,19 +1042,19 @@ msgid ""
 "Management (IAM) role named {vmimport} to ensure that the image can be "
 "imported from the S3 bucket into EC2. For more details, refer to the {role}."
 msgstr ""
-"Image Builder може вивантажувати створені вами образи до {bucket} в AWS, а "
-"потім імпортувати їх до EC2. Коли збирання образу буде завершено,\n"
-"                             а дія з вивантаження буде успішною, файл образу "
-"стане доступним у розділі AMI EC2. Доступ до більшості значень, потрібних "
-"для\n"
-"                             вивантаження образу, можна знайти у {console}."
+"Image Builder може вивантажувати створені вами образи до кошика S3 в AWS, а "
+"потім імпортувати їх до EC2. Коли збирання образу буде завершено, а дія з "
+"вивантаження буде успішною, файл образу стане доступним у розділі AMI EC2. "
+"Доступ до більшості значень, потрібних для вивантаження образу, можна знайти "
+"у {console}.{br}{br}Для виконання процедури вивантаження вам потрібна роль "
+"керування профілями і доступом (IAM) із назвою {vmimport} для забезпечення "
+"можливості імпортування образу з кошика S3 до EC2. Щоб дізнатися більше, "
+"зверніться до опису {role}."
 
 #. [wizard.imageOutput.imageSize.label]
 #. defaultMessage is:
 #. Image Size
 #: build/messages/components/Wizard/steps/imageOutput.json
-#, fuzzy
-#| msgid "Image size"
 msgid "Image Size"
 msgstr "Розмір образу"
 
@@ -1190,9 +1139,13 @@ msgstr "Назва образу"
 msgid "Image name help"
 msgstr "Довідка з назви образу"
 
+#. [wizard.review.target.title]
+#. defaultMessage is:
+#. Image output
 #. [wizard.imageOutput.title]
 #. defaultMessage is:
 #. Image output
+#: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/components/Wizard/steps/imageOutput.json
 msgid "Image output"
 msgstr "Виведення образу"
@@ -1201,10 +1154,8 @@ msgstr "Виведення образу"
 #. defaultMessage is:
 #. Image output type
 #: build/messages/components/Wizard/steps/imageOutput.json
-#, fuzzy
-#| msgid "Image output"
 msgid "Image output type"
-msgstr "Виведення образу"
+msgstr "Тип виведення образу"
 
 #. [wizard.review.imageSize]
 #. defaultMessage is:
@@ -1245,8 +1196,6 @@ msgstr "Пристрій для встановлення"
 #. defaultMessage is:
 #. Installation Device help
 #: build/messages/components/Wizard/steps/system.json
-#, fuzzy
-#| msgid "Installation device help"
 msgid "Installation Device help"
 msgstr "Довідка щодо пристрою для встановлення"
 
@@ -1275,10 +1224,8 @@ msgstr "Довідка щодо пристрою для встановлення
 #. defaultMessage is:
 #. Load additional packages
 #: build/messages/components/Wizard/formComponents/Packages.json
-#, fuzzy
-#| msgid "Edit packages"
 msgid "Load additional packages"
-msgstr "Редагувати пакунки"
+msgstr "Завантажити додаткові пакунки"
 
 #. [components.Loading.2617450248]
 #. defaultMessage is:
@@ -1292,7 +1239,7 @@ msgstr "Завантаження"
 #. Loading additional packages...
 #: build/messages/components/Wizard/formComponents/Packages.json
 msgid "Loading additional packages..."
-msgstr ""
+msgstr "Завантаження додаткових пакунків…"
 
 #. [components.ListView.imageLogs] - Log content that gets generated as part of the image creation process
 #. defaultMessage is:
@@ -1323,10 +1270,8 @@ msgstr "Повідомлення"
 #. defaultMessage is:
 #. Minimum image size is {size}GB.
 #: build/messages/components/Wizard/steps/imageOutput.json
-#, fuzzy
-#| msgid "Minimum size is {size} GB."
 msgid "Minimum image size is {size}GB."
-msgstr "Мінімальним розміром є {size} ГБ."
+msgstr "Мінімальним розміром образу є {size} ГБ."
 
 #. [components.ListView.emptyStateNoResultsMessage]
 #. defaultMessage is:
@@ -1359,7 +1304,7 @@ msgstr "Назва"
 #. No blueprints
 #: build/messages/pages/blueprints/index.json
 msgid "No blueprints"
-msgstr "Немає проєктів"
+msgstr "Немає синьок"
 
 #. [components.ListView.noDepsTitle]
 #. defaultMessage is:
@@ -1380,7 +1325,7 @@ msgstr "Немає образів"
 #. No images have been created from this blueprint.
 #: build/messages/pages/blueprint/index.json
 msgid "No images have been created from this blueprint."
-msgstr "З цього проекту не було створено жодних образів."
+msgstr "З цієї синьки не було створено жодних образів."
 
 #. [components.ListView.1893974769]
 #. defaultMessage is:
@@ -1393,19 +1338,15 @@ msgstr "Немає доступних журналів"
 #. defaultMessage is:
 #. No packages added
 #: build/messages/components/Wizard/formComponents/Packages.json
-#, fuzzy
-#| msgid "Edit packages"
 msgid "No packages added"
-msgstr "Редагувати пакунки"
+msgstr "Не додано жодних пакунків"
 
 #. [wizard.packages.noPackagesFound]
 #. defaultMessage is:
 #. No packages found
 #: build/messages/components/Wizard/formComponents/Packages.json
-#, fuzzy
-#| msgid "Edit packages"
 msgid "No packages found"
-msgstr "Редагувати пакунки"
+msgstr "Не знайдено жодного пакунка"
 
 #. [components.ListView.emptyStateNoResultsTitle]
 #. defaultMessage is:
@@ -1433,17 +1374,15 @@ msgstr "Кошик OCI"
 #. defaultMessage is:
 #. OCI bucket help
 #: build/messages/components/Wizard/steps/ociDest.json
-#, fuzzy
-#| msgid "OCI bucket"
 msgid "OCI bucket help"
-msgstr "Кошик OCI"
+msgstr "Довідка з кошика OCI"
 
 #. [wizard.ostree.title]
 #. defaultMessage is:
 #. OSTree settings
 #: build/messages/components/Wizard/steps/ostreeSettings.json
 msgid "OSTree settings"
-msgstr ""
+msgstr "Параметри OSTree"
 
 #. [pages.error.oupsTitle]
 #. defaultMessage is:
@@ -1457,9 +1396,12 @@ msgstr "Оце тобі… Маємо якісь проблеми"
 #. Output type
 #: build/messages/components/Wizard/formComponents/Review.json
 msgid "Output type"
-msgstr ""
+msgstr "Тип виведення"
 
 #. [wizard.review.packages]
+#. defaultMessage is:
+#. Packages
+#. [wizard.review.packages.title]
 #. defaultMessage is:
 #. Packages
 #. [wizard.packages.title]
@@ -1486,19 +1428,21 @@ msgstr "Сторінку не знайдено"
 
 #. [wizard.ostree.parentCommit.label]
 #. defaultMessage is:
-#. Parent commit
+#. Parent
 #: build/messages/components/Wizard/steps/ostreeSettings.json
-msgid "Parent commit"
+#, fuzzy
+#| msgid "Parent commit"
+msgid "Parent"
 msgstr "Батьківський внесок"
 
 #. [wizard.ostree.parentCommit.popoverAria]
 #. defaultMessage is:
-#. Parent commit help
+#. Parent help
 #: build/messages/components/Wizard/steps/ostreeSettings.json
 #, fuzzy
-#| msgid "Parent commit"
-msgid "Parent commit help"
-msgstr "Батьківський внесок"
+#| msgid "Parent commit help"
+msgid "Parent help"
+msgstr "Довідка з батьківського внеску"
 
 #. [components.Modal.labelPassword]
 #. defaultMessage is:
@@ -1544,10 +1488,8 @@ msgstr "Назва файла закритого ключа"
 #. defaultMessage is:
 #. Private key help
 #: build/messages/components/Wizard/steps/ociAuth.json
-#, fuzzy
-#| msgid "Private key"
 msgid "Private key help"
-msgstr "Закритий ключ"
+msgstr "Довідка з закритих ключів"
 
 #. [wizard.blueprintName.popover.aria]
 #. defaultMessage is:
@@ -1582,27 +1524,17 @@ msgstr ""
 #. defaultMessage is:
 #. Provide the AWS Region where you want to import your image. This must be the same region where the S3 bucket exists.
 #: build/messages/components/Wizard/steps/awsDest.json
-#, fuzzy
-#| msgid ""
-#| "Provide the AWS Region where you want to import your image. This must be "
-#| "the same region where the {bucket} exists."
 msgid ""
 "Provide the AWS Region where you want to import your image. This must be the "
 "same region where the S3 bucket exists."
 msgstr ""
 "Вкажіть регіон AWS, до якого ви хочете імпортувати ваш образ. Це має бути "
-"той самий регіон, у якому існує {bucket}."
+"той самий регіон, у якому існує кошик S3."
 
 #. [wizard.azure.storageContainer.popoverBody]
 #. defaultMessage is:
 #. Provide the Blob container to which the image file will be uploaded. You can find containers under the <strong>Blob service</strong> section of a storage account. You can find storage accounts on the <strong>Storage accounts</strong> page in the Azure portal.
 #: build/messages/components/Wizard/steps/azureDest.json
-#, fuzzy
-#| msgid ""
-#| "Provide the Blob container to which the image file will be uploaded. You "
-#| "can find containers under the {blobService} \n"
-#| "                    section of a storage account. You can find storage "
-#| "accounts on the {storageAccounts} page in the {azure} portal."
 msgid ""
 "Provide the Blob container to which the image file will be uploaded. You can "
 "find containers under the <strong>Blob service</strong> section of a storage "
@@ -1610,43 +1542,14 @@ msgid ""
 "strong> page in the Azure portal."
 msgstr ""
 "Вкажіть бінарний контейнер, до якого буде вивантажено образ. Записи "
-"контейнерів можна знайти у розділі {blobService} \n"
-"                    облікового запису у сховищі. Ви можете знайти облікові "
-"записи у сховищі на сторінці {storageAccounts} порталу {azure}."
-
-#. [wizard.ostree.parentCommit.popoverBody]
-#. defaultMessage is:
-#. Provide the ID of the latest commit in the updates repository for which this commit provides an update. If no commit is specified it will be inferred from the parent repository.
-#: build/messages/components/Wizard/steps/ostreeSettings.json
-#, fuzzy
-#| msgid ""
-#| "Provide the ID of the latest commit in the updates repository for which "
-#| "this commit provides an update.\n"
-#| "                    If no commit is specified it will be inferred from "
-#| "the parent repository."
-msgid ""
-"Provide the ID of the latest commit in the updates repository for which this "
-"commit provides an update. If no commit is specified it will be inferred "
-"from the parent repository."
-msgstr ""
-"Надайте ідентифікатор останнього внеску у сховищі оновлень, для якого цей "
-"внесок надає оновлення.\n"
-"                        Якщо не вказано внеску, його буде успадковано з "
-"батьківського сховища."
+"контейнерів можна знайти у розділі <strong>Blob service</strong> облікового "
+"запису у сховищі. Ви можете знайти облікові записи у сховищі на сторінці "
+"<strong>Storage accounts</strong> порталу {azure}."
 
 #. [wizard.aws.bucket.popoverBody]
 #. defaultMessage is:
 #. Provide the S3 bucket name to which the image file will be uploaded before being imported into EC2. The bucket must already exist in the Region where you want to import your image. You can find a list of buckets on the <strong>S3 buckets</strong> page in the Amazon S3 storage service in the AWS console.
 #: build/messages/components/Wizard/steps/awsDest.json
-#, fuzzy
-#| msgid ""
-#| "Provide the S3 {bucket} name to which the image file will be uploaded "
-#| "before being imported into EC2. \n"
-#| "                        The {bucket} must already exist in the Region "
-#| "where you want to import your image. You can find a list of {buckets} on "
-#| "the\n"
-#| "                        {bucketsPage} page in the {amazon} S3 storage "
-#| "service in the AWS console."
 msgid ""
 "Provide the S3 bucket name to which the image file will be uploaded before "
 "being imported into EC2. The bucket must already exist in the Region where "
@@ -1655,11 +1558,9 @@ msgid ""
 "console."
 msgstr ""
 "Вкажіть назву {bucket} S3, до якої буде вивантажено файл образу перед "
-"імпортуванням до EC2. \n"
-"                             {bucket} має існувати у регіоні, куди ви хочете "
-"імпортувати ваш образ. Список {buckets} можна знайти\n"
-"                             на сторінці {bucketsPage} у службі зберігання "
-"даних S3 {amazon} у консолі AWS."
+"імпортуванням до EC2. Кошик має існувати у регіоні, куди ви хочете "
+"імпортувати ваш образ. Список {buckets} можна знайти на сторінці <strong>S3 "
+"buckets</strong> у службі зберігання даних S3 Amazon у консолі AWS."
 
 #. [wizard.ostree.repoURL.popoverBody]
 #. defaultMessage is:
@@ -1676,12 +1577,6 @@ msgstr ""
 #. defaultMessage is:
 #. Provide the access key for the desired storage account. You can find the access key on the <strong>Access keys</strong> page of the storage account. You can find storage accounts on the <strong>Storage accounts</strong> page in the Azure portal.
 #: build/messages/components/Wizard/steps/azureAuth.json
-#, fuzzy
-#| msgid ""
-#| "Provide the access key for the desired storage account. You can find the "
-#| "access key on the {accessKeys} \n"
-#| "                        page of the storage account. You can find storage "
-#| "accounts on the {storageAccounts} page in the {azure} portal."
 msgid ""
 "Provide the access key for the desired storage account. You can find the "
 "access key on the <strong>Access keys</strong> page of the storage account. "
@@ -1689,23 +1584,14 @@ msgid ""
 "in the Azure portal."
 msgstr ""
 "Надайте ключ доступу до бажаного облікового запису сховища. Ключ доступу "
-"можна знайти на сторінці {accessKeys} \n"
-"                        облікового запису у сховищі. Список облікових "
-"записів у сховищі наведено на сторінці {storageAccounts} порталу {azure}."
+"можна знайти на сторінці <strong>Access keys</strong> облікового запису у "
+"сховищі. Список облікових записів у сховищі наведено на сторінці "
+"<strong>Storage accounts</strong> порталу Azure."
 
 #. [wizard.oci.bucket.popoverBody]
 #. defaultMessage is:
 #. Provide the bucket name to which the image file will be uploaded before being imported as a custom image. The bucket must already exist in the Region where you want to import your image. You can find a list of buckets on the <strong>OCI buckets</strong> page in the OCI storage service in the OCI console.
 #: build/messages/components/Wizard/steps/ociDest.json
-#, fuzzy
-#| msgid ""
-#| "Provide the {bucket} name to which the image file will be uploaded before "
-#| "being imported as a custom image. \n"
-#| "                        The {bucket} must already exist in the Region "
-#| "where you want to import your image. You can find a list of {buckets} on "
-#| "the\n"
-#| "                        {bucketsPage} page in the OCI storage service in "
-#| "the OCI console."
 msgid ""
 "Provide the bucket name to which the image file will be uploaded before "
 "being imported as a custom image. The bucket must already exist in the "
@@ -1713,42 +1599,51 @@ msgid ""
 "on the <strong>OCI buckets</strong> page in the OCI storage service in the "
 "OCI console."
 msgstr ""
-"Вкажіть назву {bucket}, до якої буде вивантажено файл образу перед "
-"імпортуванням у форматі нетипового образу. \n"
-"                             {bucket} має існувати у регіоні, куди ви хочете "
-"імпортувати ваш образ. Список {buckets} можна знайти\n"
-"                             на сторінці {bucketsPage} у службі зберігання "
-"даних OCI у консолі OCI."
+"Вкажіть назву кошика, до якого буде вивантажено файл образу перед "
+"імпортуванням у форматі нетипового образу. Кошик має існувати у регіоні, "
+"куди ви хочете імпортувати ваш образ. Список кошиків можна знайти на "
+"сторінці <strong>OCI buckets</strong> у службі зберігання даних OCI у "
+"консолі OCI."
+
+#. [wizard.ostree.parentCommit.popoverBody]
+#. defaultMessage is:
+#. Provide the commit id or ref of the parent in the repository for which this commit provides an update. If no parent is specified it will be inferred from the user-defined ref.
+#: build/messages/components/Wizard/steps/ostreeSettings.json
+#, fuzzy
+#| msgid ""
+#| "Provide the ID of the latest commit in the updates repository for which "
+#| "this commit provides an update. If no commit is specified it will be "
+#| "inferred from the parent repository."
+msgid ""
+"Provide the commit id or ref of the parent in the repository for which this "
+"commit provides an update. If no parent is specified it will be inferred "
+"from the user-defined ref."
+msgstr ""
+"Надайте ідентифікатор останнього внеску у сховищі оновлень, для якого цей "
+"внесок надає оновлення. Якщо не вказано внеску, його буде успадковано з "
+"батьківського сховища."
 
 #. [wizard.oci.compartment.popoverBody]
 #. defaultMessage is:
 #. Provide the compartment of the OCI bucket compartment your uploading to. You can find the compartment in the bucket details.
 #: build/messages/components/Wizard/steps/ociDest.json
-#, fuzzy
-#| msgid ""
-#| "Provide the compartment of the {bucket} your uploading to. You can find "
-#| "the compartment in the bucket details."
 msgid ""
 "Provide the compartment of the OCI bucket compartment your uploading to. You "
 "can find the compartment in the bucket details."
 msgstr ""
-"Вкажіть відсік {bucket}, до якого відбувається вивантаження. Ви можете "
-"визначити відсік за даними з подробиць щодо корзини."
+"Вкажіть відсік кошика OCI, до якого відбувається вивантаження. Ви можете "
+"визначити відсік за даними з подробиць щодо кошика."
 
 #. [wizard.azure.storageAccount.popoverBody]
 #. defaultMessage is:
 #. Provide the name of a storage account. You can find storage accounts on the <strong>Storage accounts</strong> page in the Azure portal.
 #: build/messages/components/Wizard/steps/azureAuth.json
-#, fuzzy
-#| msgid ""
-#| "Provide the name of a storage account. You can find storage accounts on "
-#| "the {storageAccounts} page in the {azure} portal."
 msgid ""
 "Provide the name of a storage account. You can find storage accounts on the "
 "<strong>Storage accounts</strong> page in the Azure portal."
 msgstr ""
 "Надайте назву облікового запису у сховищі. Список облікових записів наведено "
-"на сторінці {storageAccounts} порталу {azure}."
+"на сторінці <strong>Storage accounts</strong> порталу {azure}."
 
 #. [wizard.vmware.cluster.popoverBody]
 #. defaultMessage is:
@@ -1776,11 +1671,16 @@ msgstr "Вкажіть назву сховища даних, до якого б�
 
 #. [wizard.ostree.ref.popoverBody]
 #. defaultMessage is:
-#. Provide the name of the branch for the content. If the ref does not already exist it will be created.
+#. Provide the name of the branch for the content. If the ref does not already exist it will be created. If the ref is not specified, the default ref for the distro will be used.
 #: build/messages/components/Wizard/steps/ostreeSettings.json
+#, fuzzy
+#| msgid ""
+#| "Provide the name of the branch for the content. If the ref does not "
+#| "already exist it will be created."
 msgid ""
 "Provide the name of the branch for the content. If the ref does not already "
-"exist it will be created."
+"exist it will be created. If the ref is not specified, the default ref for "
+"the distro will be used."
 msgstr ""
 "Надайте назву гілки для даних. Якщо посилання на гілку ще не існує, його "
 "буде створено."
@@ -1789,61 +1689,45 @@ msgstr ""
 #. defaultMessage is:
 #. Provide the namespace of the OCI bucket your uploading to. You can find the namespace in the bucket details.
 #: build/messages/components/Wizard/steps/ociDest.json
-#, fuzzy
-#| msgid ""
-#| "Provide the namespace of the {bucket} your uploading to. You can find the "
-#| "namespace in the bucket details."
 msgid ""
 "Provide the namespace of the OCI bucket your uploading to. You can find the "
 "namespace in the bucket details."
 msgstr ""
-"Вкажіть простір назв {bucket}, до якого відбуватиметься вивантаження. Ви "
-"можете визначити простір назв за даними подробиць щодо корзини."
+"Вкажіть простір назв кошика OCI, до якого відбуватиметься вивантаження. Ви "
+"можете визначити простір назв за даними подробиць щодо кошика."
 
 #. [wizard.oci.region.popoverBody]
 #. defaultMessage is:
 #. Provide the region of the Bucket region your uploading to. You can find the region in the bucket details.
 #: build/messages/components/Wizard/steps/ociDest.json
-#, fuzzy
-#| msgid ""
-#| "Provide the region of the {bucket} your uploading to. You can find the "
-#| "region in the bucket details."
 msgid ""
 "Provide the region of the Bucket region your uploading to. You can find the "
 "region in the bucket details."
 msgstr ""
-"Вкажіть регіон {bucket}, до якого відбуватиметься вивантаження. Ви можете "
-"визначити регіон за даними подробиць щодо корзини."
+"Вкажіть регіон кошика, до якого відбуватиметься вивантаження. Ви можете "
+"визначити регіон за даними подробиць щодо кошика."
 
 #. [wizard.oci.tenancy.popoverBody]
 #. defaultMessage is:
 #. Provide the tenancy of the OCI bucket your uploading to. You can find the tenancy in the bucket details.
 #: build/messages/components/Wizard/steps/ociDest.json
-#, fuzzy
-#| msgid ""
-#| "Provide the tenancy of the {bucket} your uploading to. You can find the "
-#| "tenancy in the bucket details."
 msgid ""
 "Provide the tenancy of the OCI bucket your uploading to. You can find the "
 "tenancy in the bucket details."
 msgstr ""
-"Вкажіть належність {bucket}, до якої відбуватиметься вивантаження. Ви можете "
-"визначити належність за даними подробиць щодо корзини."
+"Вкажіть належність кошика OCI, до якого відбуватиметься вивантаження. Ви "
+"можете визначити належність за даними подробиць щодо кошика."
 
 #. [wizard.vmware.host.popoverBody]
 #. defaultMessage is:
 #. Provide the url of your VMWare vSphere instance to which the image file will be uploaded.
 #: build/messages/components/Wizard/steps/vmwareDest.json
-#, fuzzy
-#| msgid ""
-#| "Provide the url of your {vmware} instance to which the image file will be "
-#| "uploaded."
 msgid ""
 "Provide the url of your VMWare vSphere instance to which the image file will "
 "be uploaded."
 msgstr ""
-"Вкажіть адресу вашого екземпляра {vmware}, до якого буде вивантажено файл "
-"образу."
+"Вкажіть адресу вашого екземпляра VMWare vSphere, до якого буде вивантажено "
+"файл образу."
 
 #. [wizard.ostree.ref.label]
 #. defaultMessage is:
@@ -1856,19 +1740,15 @@ msgstr "Посилання"
 #. defaultMessage is:
 #. Ref help
 #: build/messages/components/Wizard/steps/ostreeSettings.json
-#, fuzzy
-#| msgid "Azure help"
 msgid "Ref help"
-msgstr "Довідка з Azure"
+msgstr "Довідка з Ref"
 
 #. [wizard.aws.region.popoverAria]
 #. defaultMessage is:
 #. Region help
 #: build/messages/components/Wizard/steps/awsDest.json
-#, fuzzy
-#| msgid "AWS region help"
 msgid "Region help"
-msgstr "Довідка з регіонів AWS"
+msgstr "Довідка з регіонів"
 
 #. [components.ListView.423140743]
 #. defaultMessage is:
@@ -1900,42 +1780,36 @@ msgstr "Вилучити"
 #. defaultMessage is:
 #. Remove all
 #: build/messages/components/Wizard/formComponents/Packages.json
-#, fuzzy
-#| msgid "Remove"
 msgid "Remove all"
-msgstr "Вилучити"
+msgstr "Вилучити усе"
 
 #. [wizard.customizations.buttons.removeAll]
 #. defaultMessage is:
 #. Remove all users
 #: build/messages/components/Wizard/steps/users.json
-#, fuzzy
-#| msgid "Remove password"
 msgid "Remove all users"
-msgstr "Вилучити пароль"
+msgstr "Вилучити усіх користувачів"
 
 #. [components.ListView.removeComponent]
 #. defaultMessage is:
 #. Remove component from blueprint
 #: build/messages/components/ListView/ComponentInputs.json
 msgid "Remove component from blueprint"
-msgstr "Вилучити компонент з проєкту"
+msgstr "Вилучити компонент з синьки"
 
 #. [components.ListView.removeFromBlueprint]
 #. defaultMessage is:
 #. Remove from blueprint
 #: build/messages/components/ListView/ComponentDetailsView.json
 msgid "Remove from blueprint"
-msgstr "Вилучити з проєкту"
+msgstr "Вилучити з синьки"
 
 #. [wizard.packages.removeSelected]
 #. defaultMessage is:
 #. Remove selected
 #: build/messages/components/Wizard/formComponents/Packages.json
-#, fuzzy
-#| msgid "Remove source"
 msgid "Remove selected"
-msgstr "Вилучити джерело"
+msgstr "Вилучити позначене"
 
 #. [components.ListView.remove]
 #. defaultMessage is:
@@ -1948,10 +1822,8 @@ msgstr "Вилучити джерело"
 #. defaultMessage is:
 #. Remove user
 #: build/messages/components/Wizard/steps/users.json
-#, fuzzy
-#| msgid "Remove source"
 msgid "Remove user"
-msgstr "Вилучити джерело"
+msgstr "Вилучити користувача"
 
 #. [components.ListView.2663433025]
 #. defaultMessage is:
@@ -1971,10 +1843,8 @@ msgstr "Адреса сховища"
 #. defaultMessage is:
 #. Repository URL help
 #: build/messages/components/Wizard/steps/ostreeSettings.json
-#, fuzzy
-#| msgid "Repository URL"
 msgid "Repository URL help"
-msgstr "Адреса сховища"
+msgstr "Довідка з адреси сховища"
 
 #. [components.Modal.128739785]
 #. defaultMessage is:
@@ -1992,18 +1862,18 @@ msgstr "Перегляд"
 
 #. [wizard.review.review]
 #. defaultMessage is:
-#. Review the information and click "Create image" to create the image using the following criteria.
+#. Review the information and click "Save blueprint" to save the customizations and then click "Create image" to create the image.
 #: build/messages/components/Wizard/formComponents/Review.json
 #, fuzzy
 #| msgid ""
-#| "Review the information below and click Finish to create the image and "
-#| "complete the tasks that were selected."
+#| "Review the information and click \"Create image\" to create the image "
+#| "using the following criteria."
 msgid ""
-"Review the information and click \"Create image\" to create the image using "
-"the following criteria."
+"Review the information and click \"Save blueprint\" to save the "
+"customizations and then click \"Create image\" to create the image."
 msgstr ""
-"Перегляньте наведені нижче відомості і натисніть кнопку «Завершити», щоб "
-"створити образ і завершити вибрані завдання."
+"Перегляньте наведені відомості і натисніть кнопку «Створити образ», щоб "
+"створити образ з використанням вказаних нижче критеріїв."
 
 #. [components.Modal.labelRole]
 #. defaultMessage is:
@@ -2016,18 +1886,20 @@ msgstr "Роль"
 #. defaultMessage is:
 #. S3 bucket help
 #: build/messages/components/Wizard/steps/awsDest.json
-#, fuzzy
-#| msgid "S3 Bucket help"
 msgid "S3 bucket help"
-msgstr "Довідка з корзини S3"
+msgstr "Довідка з кошика S3"
 
 #. [components.Modal.labelSSHKey]
+#. defaultMessage is:
+#. SSH key
+#. [wizard.review.sshKey]
 #. defaultMessage is:
 #. SSH key
 #. [wizard.customizations.sshKey.label]
 #. defaultMessage is:
 #. SSH key
 #: build/messages/components/Modal/UserAccount.json
+#: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/components/Wizard/steps/users.json
 msgid "SSH key"
 msgstr "ключ ssh"
@@ -2047,10 +1919,8 @@ msgstr "Зберегти"
 #. defaultMessage is:
 #. Save blueprint
 #: build/messages/components/Wizard/formComponents/SubmitButtonsCustom.json
-#, fuzzy
-#| msgid "Create blueprint"
 msgid "Save blueprint"
-msgstr "Створити проєкт"
+msgstr "Зберегти синьку"
 
 #. [components.Modal.1820273720]
 #. defaultMessage is:
@@ -2064,21 +1934,21 @@ msgstr "Зберігаємо джерело"
 #. Search above to add additional{br}packages to your image
 #: build/messages/components/Wizard/formComponents/Packages.json
 msgid "Search above to add additional{br}packages to your image"
-msgstr ""
+msgstr "Пошукайте вище, щоб додати додаткові{br}пакунки до вашого образу"
 
 #. [wizard.packages.availablePackagesSearch]
 #. defaultMessage is:
 #. Search button for available packages
 #: build/messages/components/Wizard/formComponents/Packages.json
 msgid "Search button for available packages"
-msgstr ""
+msgstr "Кнопка пошуку доступних пакунків"
 
 #. [wizard.packages.searchPackages]
 #. defaultMessage is:
 #. Search for a package
 #: build/messages/components/Wizard/formComponents/Packages.json
 msgid "Search for a package"
-msgstr ""
+msgstr "Шукати пакунок"
 
 #. [wizard.review.secretAccessKey]
 #. defaultMessage is:
@@ -2116,10 +1986,8 @@ msgstr "Виберіть один"
 #. defaultMessage is:
 #. Select output type
 #: build/messages/components/Wizard/formComponents/ImageOutputSelect.json
-#, fuzzy
-#| msgid "Select one"
 msgid "Select output type"
-msgstr "Виберіть один"
+msgstr "Виберіть тип виведення"
 
 #. [components.ListView.selectedTabTitle]
 #. defaultMessage is:
@@ -2132,19 +2000,15 @@ msgstr "Вибрані компоненти"
 #. defaultMessage is:
 #. Selected packages
 #: build/messages/components/Wizard/steps/packages.json
-#, fuzzy
-#| msgid "Edit packages"
 msgid "Selected packages"
-msgstr "Редагувати пакунки"
+msgstr "Вибрані пакунки"
 
 #. [wizard.packages.selectorControls]
 #. defaultMessage is:
 #. Selector controls
 #: build/messages/components/Wizard/formComponents/Packages.json
-#, fuzzy
-#| msgid "Select components"
 msgid "Selector controls"
-msgstr "Виберіть компоненти"
+msgstr "Керування вибором"
 
 #. [components.Modal.adminCheckbox]
 #. defaultMessage is:
@@ -2213,10 +2077,8 @@ msgstr "Розмір"
 #. Sort blueprints ascending
 #: build/messages/components/Toolbar/BlueprintsToolbar.json
 #: build/messages/components/Toolbar/BlueprintToolbar.json
-#, fuzzy
-#| msgid "Export blueprint"
 msgid "Sort blueprints ascending"
-msgstr "Експортувати проєкт"
+msgstr "Упорядкувати синьки за зростанням"
 
 #. [toolbar.blueprints.sort.desc]
 #. defaultMessage is:
@@ -2226,10 +2088,8 @@ msgstr "Експортувати проєкт"
 #. Sort blueprints descending
 #: build/messages/components/Toolbar/BlueprintsToolbar.json
 #: build/messages/components/Toolbar/BlueprintToolbar.json
-#, fuzzy
-#| msgid "Export blueprint"
 msgid "Sort blueprints descending"
-msgstr "Експортувати проєкт"
+msgstr "Упорядкувати синьки за спаданням"
 
 #. [components.ListView.kebab]
 #. defaultMessage is:
@@ -2273,14 +2133,14 @@ msgstr ""
 #. Specify a new blueprint name.
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "Specify a new blueprint name."
-msgstr "Вкажіть назву нового проекту."
+msgstr "Вкажіть назву нової синьки."
 
 #. [wizard.customizations.installDevice.popoverBody]
 #. defaultMessage is:
 #. Specify which device the image will be installed onto.
 #: build/messages/components/Wizard/steps/system.json
 msgid "Specify which device the image will be installed onto."
-msgstr ""
+msgstr "Вкажіть, на який пристрій буде встановлено образ."
 
 #. [components.EmptyState.errorInactivePrimary]
 #. defaultMessage is:
@@ -2375,10 +2235,8 @@ msgstr "Довідка з контейнера сховища"
 #. defaultMessage is:
 #. System
 #: build/messages/components/Wizard/steps/system.json
-#, fuzzy
-#| msgid "System source"
 msgid "System"
-msgstr "Джерело системи"
+msgstr "Система"
 
 #. [components.ListView.3639476303] - System sources are configured repositories that were found on the host machine
 #. defaultMessage is:
@@ -2489,14 +2347,8 @@ msgstr "Вказані для паролів записи не збігають�
 #. defaultMessage is:
 #. There are no components listed in the blueprint.
 #: build/messages/pages/blueprint/index.json
-#, fuzzy
-#| msgid ""
-#| "There are no components listed in the blueprint. Edit the blueprint to "
-#| "add components."
 msgid "There are no components listed in the blueprint."
-msgstr ""
-"У списку проекту немає компонентів. Змініть проект і додайте до нього "
-"компоненти."
+msgstr "У синьці немає компонентів."
 
 #. [components.Modal.181468144]
 #. defaultMessage is:
@@ -2667,10 +2519,8 @@ msgstr "Вивантажити на AWS"
 #. defaultMessage is:
 #. Upload to AWS help
 #: build/messages/components/Wizard/steps/imageOutput.json
-#, fuzzy
-#| msgid "Upload to AWS"
 msgid "Upload to AWS help"
-msgstr "Вивантажити на AWS"
+msgstr "Довідка з вивантаження на AWS"
 
 #. [wizard.review.uploadToAzure]
 #. defaultMessage is:
@@ -2695,10 +2545,8 @@ msgstr "Вивантажити на Azure"
 #. defaultMessage is:
 #. Upload to Azure help
 #: build/messages/components/Wizard/steps/imageOutput.json
-#, fuzzy
-#| msgid "Upload to Azure"
 msgid "Upload to Azure help"
-msgstr "Вивантажити на Azure"
+msgstr "Довідка з вивантаження на Azure"
 
 #. [wizard.review.uploadToOCI]
 #. defaultMessage is:
@@ -2723,10 +2571,8 @@ msgstr "Вивантажити на OCI"
 #. defaultMessage is:
 #. Upload to OCI help
 #: build/messages/components/Wizard/steps/imageOutput.json
-#, fuzzy
-#| msgid "Upload to OCI"
 msgid "Upload to OCI help"
-msgstr "Вивантажити на OCI"
+msgstr "Довідка з вивантаження на OCI"
 
 #. [wizard.review.uploadToVMWare]
 #. defaultMessage is:
@@ -2751,10 +2597,8 @@ msgstr "Вивантажити до VMWare"
 #. defaultMessage is:
 #. Upload to VMWare help
 #: build/messages/components/Wizard/steps/imageOutput.json
-#, fuzzy
-#| msgid "Upload to VMWare"
 msgid "Upload to VMWare help"
-msgstr "Вивантажити до VMWare"
+msgstr "Довідка з вивантаження на VMWare"
 
 #. [components.ListView.uploadType] - A label for the service to which an image was uploaded
 #. defaultMessage is:
@@ -2792,10 +2636,8 @@ msgstr "Ім'я користувача"
 #. defaultMessage is:
 #. User ocid help
 #: build/messages/components/Wizard/steps/ociAuth.json
-#, fuzzy
-#| msgid "Cluster help"
 msgid "User ocid help"
-msgstr "Довідка з кластерів"
+msgstr "Довідка з OCID користувача"
 
 #. [wizard.review.username]
 #. defaultMessage is:
@@ -2812,12 +2654,16 @@ msgstr "Довідка з кластерів"
 msgid "Username"
 msgstr "Користувач"
 
+#. [customizations.user.title]
+#. defaultMessage is:
+#. Users
 #. [wizard.customizations.usersTitle]
 #. defaultMessage is:
 #. Users
 #. [pages.blueprint.443046426]
 #. defaultMessage is:
 #. Users
+#: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/components/Wizard/steps/users.json
 #: build/messages/pages/blueprint/index.json
 msgid "Users"
@@ -2837,6 +2683,11 @@ msgid ""
 "                        and the entire hostname can be at most 253 "
 "characters long."
 msgstr ""
+"Коректними символами є літери від a до z, цифри від 0 до 9 та дефіс (-). \n"
+"                        Назва вузла не може починатися з дефіса. Кожен "
+"елемент назви вузла має містити від 1 до 63, \n"
+"                        а уся назва вузла не може бути довшою за 253 "
+"символів."
 
 #. [pages.blueprint.hostnameHelp]
 #. defaultMessage is:
@@ -2883,76 +2734,62 @@ msgstr "Версія"
 #. defaultMessage is:
 #. You can create and find existing Access key IDs on the <strong>Identity and Access Management (IAM)</strong> page in the AWS console.
 #: build/messages/components/Wizard/steps/awsAuth.json
-#, fuzzy
-#| msgid ""
-#| "You can create and find existing Access key IDs on the {iam} page in the "
-#| "AWS console."
 msgid ""
 "You can create and find existing Access key IDs on the <strong>Identity and "
 "Access Management (IAM)</strong> page in the AWS console."
 msgstr ""
 "Ви можете створити і знайти наявні ідентифікатори ключів доступу на сторінці "
-"{iam} у консолі AWS."
+"<strong>Identity and Access Management (IAM)</strong> у консолі AWS."
 
 #. [wizard.oci.userOCID.popoverBody]
 #. defaultMessage is:
 #. You can find your user OCID <strong>Identity and Access Management (IAM)</strong> page in the OCI console.
 #: build/messages/components/Wizard/steps/ociAuth.json
-#, fuzzy
-#| msgid "You can find your user OCID {iam} page in the OCI console."
 msgid ""
 "You can find your user OCID <strong>Identity and Access Management (IAM)</"
 "strong> page in the OCI console."
 msgstr ""
-"Ви можете визначити OCID вашого користувача на сторінці {iam} у консолі OCI."
+"Ви можете визначити OCID вашого користувача на сторінці <strong>Identity and "
+"Access Management (IAM)</strong> у консолі OCI."
 
 #. [wizard.aws.secretAccessKey.popoverBody]
 #. defaultMessage is:
 #. You can view the Secret access key only when you create a new Access key ID on the <strong>Identity and Access Management (IAM)</strong> page in the AWS console.
 #: build/messages/components/Wizard/steps/awsAuth.json
-#, fuzzy
-#| msgid ""
-#| "You can view the Secret access key only when you create a new Access key "
-#| "ID on the {iam} page in the AWS console."
 msgid ""
 "You can view the Secret access key only when you create a new Access key ID "
 "on the <strong>Identity and Access Management (IAM)</strong> page in the AWS "
 "console."
 msgstr ""
 "Ви можете переглянути секретний ключ доступу лише після створення нового "
-"ідентифікатора ключа доступу на сторінці {iam} у консолі AWS."
+"ідентифікатора ключа доступу на сторінці <strong>Identity and Access "
+"Management (IAM)</strong> у консолі AWS."
 
 #. [wizard.oci.fingerprint.popoverBody]
 #. defaultMessage is:
 #. You can view your deployed RSA keys fingerprint in the API Keys section on the <strong>Identity and Access Management (IAM)</strong> page in the OCI console.
 #: build/messages/components/Wizard/steps/ociAuth.json
-#, fuzzy
-#| msgid ""
-#| "You can view your deployed RSA keys fingerprint in the API Keys section "
-#| "on the {iam} page in the OCI console."
 msgid ""
 "You can view your deployed RSA keys fingerprint in the API Keys section on "
 "the <strong>Identity and Access Management (IAM)</strong> page in the OCI "
 "console."
 msgstr ""
 "Ви можете переглянути ваш розгорнутий відбиток ключів RSA у розділі ключів "
-"до програмного інтерфейсу на сторінці {iam} у консолі OCI."
+"до програмного інтерфейсу на сторінці <strong>Identity and Access Management "
+"(IAM)</strong> у консолі OCI."
 
 #. [wizard.oci.privateKey.popoverBody]
 #. defaultMessage is:
 #. You can view your deployed RSA keys in the API Keys section on the <strong>Identity and Access Management (IAM)</strong> page in the OCI console.
 #: build/messages/components/Wizard/steps/ociAuth.json
-#, fuzzy
-#| msgid ""
-#| "You can view your deployed RSA keys in the API Keys section on the {iam} "
-#| "page in the OCI console."
 msgid ""
 "You can view your deployed RSA keys in the API Keys section on the "
 "<strong>Identity and Access Management (IAM)</strong> page in the OCI "
 "console."
 msgstr ""
 "Ви можете переглянути ваші розгорнуті ключі RSA у розділі ключів до "
-"програмного інтерфейсу на сторінці {iam} у консолі OCI."
+"програмного інтерфейсу на сторінці <strong>Identity and Access Management "
+"(IAM)</strong> у консолі OCI."
 
 #. [components.ListView.actions]
 #. defaultMessage is:
@@ -2965,10 +2802,8 @@ msgstr "дії"
 #. defaultMessage is:
 #. blueprint
 #: build/messages/components/Wizard/formComponents/BlueprintName.json
-#, fuzzy
-#| msgid "Blueprint"
 msgid "blueprint"
-msgstr "Синька"
+msgstr "синька"
 
 #. [components.ListView.details]
 #. defaultMessage is:
@@ -3022,7 +2857,7 @@ msgstr "сховище yum"
 #. {blueprint} Blueprint changes are committed.
 #: build/messages/components/Notifications/Notifications.json
 msgid "{blueprint} Blueprint changes are committed."
-msgstr "Зміни до проекту {blueprint} надіслано."
+msgstr "Зміни до синьки {blueprint} надіслано."
 
 #. [components.Notifications.477516828]
 #. defaultMessage is:
@@ -3036,7 +2871,7 @@ msgstr "Спроба надіслати {blueprint} завершилася не�
 #. {blueprint} Committing blueprint.
 #: build/messages/components/Notifications/Notifications.json
 msgid "{blueprint} Committing blueprint."
-msgstr "Надсилаємо проект {blueprint}."
+msgstr "Надсилаємо синьку {blueprint}."
 
 #. [components.Notifications.3947958753]
 #. defaultMessage is:
