@@ -1,7 +1,7 @@
 # Temuri Doghonadze <temuri.doghonadze@gmail.com>, 2022.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2022-08-19T18:31:19.371Z\n"
+"POT-Creation-Date: 2022-09-05T18:37:46.587Z\n"
 "PO-Revision-Date: 2022-08-09 06:19+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.fedoraproject.org/projects/"
@@ -122,6 +122,15 @@ msgstr "წყაროს დამატება"
 #| msgid "Add source"
 msgid "Add user"
 msgstr "წყაროს დამატება"
+
+#. [wizard.review.admin]
+#. defaultMessage is:
+#. Administrator
+#: build/messages/components/Wizard/formComponents/Review.json
+#, fuzzy
+#| msgid "Server administrator"
+msgid "Administrator"
+msgstr "სერვერი ადმინისტრატორი"
 
 #. [wizard.review.amazonS3Bucket]
 #. defaultMessage is:
@@ -632,6 +641,9 @@ msgstr "შექმნილია"
 msgid "Creating image"
 msgstr "გამოსახულების შექმნა"
 
+#. [wizard.review.customizations.title]
+#. defaultMessage is:
+#. Customizations
 #. [wizard.customizations.title]
 #. defaultMessage is:
 #. Customizations
@@ -641,6 +653,7 @@ msgstr "გამოსახულების შექმნა"
 #. [pages.blueprint.customizationsTitle]
 #. defaultMessage is:
 #. Customizations
+#: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/components/Wizard/steps/system.json
 #: build/messages/components/Wizard/steps/users.json
 #: build/messages/pages/blueprint/index.json
@@ -1131,9 +1144,13 @@ msgstr "გამოსახულების სახელი"
 msgid "Image name help"
 msgstr "დახმარება გამოსახულების სახელის შესახებ"
 
+#. [wizard.review.target.title]
+#. defaultMessage is:
+#. Image output
 #. [wizard.imageOutput.title]
 #. defaultMessage is:
 #. Image output
+#: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/components/Wizard/steps/imageOutput.json
 msgid "Image output"
 msgstr "გამოტანილი გამოსახულება"
@@ -1403,6 +1420,9 @@ msgstr ""
 #. [wizard.review.packages]
 #. defaultMessage is:
 #. Packages
+#. [wizard.review.packages.title]
+#. defaultMessage is:
+#. Packages
 #. [wizard.packages.title]
 #. defaultMessage is:
 #. Packages
@@ -1427,18 +1447,20 @@ msgstr "გვერდი ნაპოვნი არაა"
 
 #. [wizard.ostree.parentCommit.label]
 #. defaultMessage is:
-#. Parent commit
+#. Parent
 #: build/messages/components/Wizard/steps/ostreeSettings.json
-msgid "Parent commit"
+#, fuzzy
+#| msgid "Parent commit"
+msgid "Parent"
 msgstr "მშობლის გადაცემა"
 
 #. [wizard.ostree.parentCommit.popoverAria]
 #. defaultMessage is:
-#. Parent commit help
+#. Parent help
 #: build/messages/components/Wizard/steps/ostreeSettings.json
 #, fuzzy
 #| msgid "Parent commit"
-msgid "Parent commit help"
+msgid "Parent help"
 msgstr "მშობლის გადაცემა"
 
 #. [components.Modal.labelPassword]
@@ -1543,16 +1565,6 @@ msgid ""
 "strong> page in the Azure portal."
 msgstr ""
 
-#. [wizard.ostree.parentCommit.popoverBody]
-#. defaultMessage is:
-#. Provide the ID of the latest commit in the updates repository for which this commit provides an update. If no commit is specified it will be inferred from the parent repository.
-#: build/messages/components/Wizard/steps/ostreeSettings.json
-msgid ""
-"Provide the ID of the latest commit in the updates repository for which this "
-"commit provides an update. If no commit is specified it will be inferred "
-"from the parent repository."
-msgstr ""
-
 #. [wizard.aws.bucket.popoverBody]
 #. defaultMessage is:
 #. Provide the S3 bucket name to which the image file will be uploaded before being imported into EC2. The bucket must already exist in the Region where you want to import your image. You can find a list of buckets on the <strong>S3 buckets</strong> page in the Amazon S3 storage service in the AWS console.
@@ -1595,6 +1607,16 @@ msgid ""
 "Region where you want to import your image. You can find a list of buckets "
 "on the <strong>OCI buckets</strong> page in the OCI storage service in the "
 "OCI console."
+msgstr ""
+
+#. [wizard.ostree.parentCommit.popoverBody]
+#. defaultMessage is:
+#. Provide the commit id or ref of the parent in the repository for which this commit provides an update. If no parent is specified it will be inferred from the user-defined ref.
+#: build/messages/components/Wizard/steps/ostreeSettings.json
+msgid ""
+"Provide the commit id or ref of the parent in the repository for which this "
+"commit provides an update. If no parent is specified it will be inferred "
+"from the user-defined ref."
 msgstr ""
 
 #. [wizard.oci.compartment.popoverBody]
@@ -1641,11 +1663,12 @@ msgstr ""
 
 #. [wizard.ostree.ref.popoverBody]
 #. defaultMessage is:
-#. Provide the name of the branch for the content. If the ref does not already exist it will be created.
+#. Provide the name of the branch for the content. If the ref does not already exist it will be created. If the ref is not specified, the default ref for the distro will be used.
 #: build/messages/components/Wizard/steps/ostreeSettings.json
 msgid ""
 "Provide the name of the branch for the content. If the ref does not already "
-"exist it will be created."
+"exist it will be created. If the ref is not specified, the default ref for "
+"the distro will be used."
 msgstr ""
 
 #. [wizard.oci.namespace.popoverBody]
@@ -1840,11 +1863,11 @@ msgstr "გადახედვა"
 
 #. [wizard.review.review]
 #. defaultMessage is:
-#. Review the information and click "Create image" to create the image using the following criteria.
+#. Review the information and click "Save blueprint" to save the customizations and then click "Create image" to create the image.
 #: build/messages/components/Wizard/formComponents/Review.json
 msgid ""
-"Review the information and click \"Create image\" to create the image using "
-"the following criteria."
+"Review the information and click \"Save blueprint\" to save the "
+"customizations and then click \"Create image\" to create the image."
 msgstr ""
 
 #. [components.Modal.labelRole]
@@ -1866,10 +1889,14 @@ msgstr "დახმარება S3 Bucket-ის შესახებ"
 #. [components.Modal.labelSSHKey]
 #. defaultMessage is:
 #. SSH key
+#. [wizard.review.sshKey]
+#. defaultMessage is:
+#. SSH key
 #. [wizard.customizations.sshKey.label]
 #. defaultMessage is:
 #. SSH key
 #: build/messages/components/Modal/UserAccount.json
+#: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/components/Wizard/steps/users.json
 msgid "SSH key"
 msgstr "SSH გასაღები"
@@ -2636,12 +2663,16 @@ msgstr "დახმარება კლატერის შესახე�
 msgid "Username"
 msgstr "მომხმარებელი"
 
+#. [customizations.user.title]
+#. defaultMessage is:
+#. Users
 #. [wizard.customizations.usersTitle]
 #. defaultMessage is:
 #. Users
 #. [pages.blueprint.443046426]
 #. defaultMessage is:
 #. Users
+#: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/components/Wizard/steps/users.json
 #: build/messages/pages/blueprint/index.json
 msgid "Users"
