@@ -10,7 +10,7 @@
 # Transtats <suanand@redhat.com>, 2022.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2022-08-19T18:31:19.371Z\n"
+"POT-Creation-Date: 2022-09-05T18:37:46.587Z\n"
 "PO-Revision-Date: 2022-05-02 19:18+0000\n"
 "Last-Translator: Alain Nussbaumer <alain.nussbaumer@alleluia.ch>\n"
 "Language-Team: French <https://translate.fedoraproject.org/projects/cockpit-"
@@ -131,6 +131,15 @@ msgstr "Ajouter une source"
 #| msgid "Add source"
 msgid "Add user"
 msgstr "Ajouter une source"
+
+#. [wizard.review.admin]
+#. defaultMessage is:
+#. Administrator
+#: build/messages/components/Wizard/formComponents/Review.json
+#, fuzzy
+#| msgid "Server administrator"
+msgid "Administrator"
+msgstr "Administrateur de serveur"
 
 #. [wizard.review.amazonS3Bucket]
 #. defaultMessage is:
@@ -653,6 +662,9 @@ msgstr "Créé"
 msgid "Creating image"
 msgstr "Créer une image"
 
+#. [wizard.review.customizations.title]
+#. defaultMessage is:
+#. Customizations
 #. [wizard.customizations.title]
 #. defaultMessage is:
 #. Customizations
@@ -662,6 +674,7 @@ msgstr "Créer une image"
 #. [pages.blueprint.customizationsTitle]
 #. defaultMessage is:
 #. Customizations
+#: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/components/Wizard/steps/system.json
 #: build/messages/components/Wizard/steps/users.json
 #: build/messages/pages/blueprint/index.json
@@ -1208,9 +1221,13 @@ msgstr "Nom de l’image"
 msgid "Image name help"
 msgstr "Aide sur le nom de l’image"
 
+#. [wizard.review.target.title]
+#. defaultMessage is:
+#. Image output
 #. [wizard.imageOutput.title]
 #. defaultMessage is:
 #. Image output
+#: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/components/Wizard/steps/imageOutput.json
 msgid "Image output"
 msgstr "Sortie de l’image"
@@ -1480,6 +1497,9 @@ msgstr ""
 #. [wizard.review.packages]
 #. defaultMessage is:
 #. Packages
+#. [wizard.review.packages.title]
+#. defaultMessage is:
+#. Packages
 #. [wizard.packages.title]
 #. defaultMessage is:
 #. Packages
@@ -1504,18 +1524,20 @@ msgstr "Page non trouvée"
 
 #. [wizard.ostree.parentCommit.label]
 #. defaultMessage is:
-#. Parent commit
+#. Parent
 #: build/messages/components/Wizard/steps/ostreeSettings.json
-msgid "Parent commit"
+#, fuzzy
+#| msgid "Parent commit"
+msgid "Parent"
 msgstr "Commit parent"
 
 #. [wizard.ostree.parentCommit.popoverAria]
 #. defaultMessage is:
-#. Parent commit help
+#. Parent help
 #: build/messages/components/Wizard/steps/ostreeSettings.json
 #, fuzzy
 #| msgid "Parent commit"
-msgid "Parent commit help"
+msgid "Parent help"
 msgstr "Commit parent"
 
 #. [components.Modal.labelPassword]
@@ -1633,26 +1655,6 @@ msgstr ""
 "trouver des comptes de stockage sur la page {storageAccounts} du portail "
 "{azure}."
 
-#. [wizard.ostree.parentCommit.popoverBody]
-#. defaultMessage is:
-#. Provide the ID of the latest commit in the updates repository for which this commit provides an update. If no commit is specified it will be inferred from the parent repository.
-#: build/messages/components/Wizard/steps/ostreeSettings.json
-#, fuzzy
-#| msgid ""
-#| "Provide the ID of the latest commit in the updates repository for which "
-#| "this commit provides an update.\n"
-#| "                    If no commit is specified it will be inferred from "
-#| "the parent repository."
-msgid ""
-"Provide the ID of the latest commit in the updates repository for which this "
-"commit provides an update. If no commit is specified it will be inferred "
-"from the parent repository."
-msgstr ""
-"Fournir l'ID du dernier commit dans le référentiel des mises à jour pour "
-"lequel ce commit fournit une mise à jour.\n"
-"                    Si aucun commit n'est spécifié, il sera déduit du "
-"référentiel parent."
-
 #. [wizard.aws.bucket.popoverBody]
 #. defaultMessage is:
 #. Provide the S3 bucket name to which the image file will be uploaded before being imported into EC2. The bucket must already exist in the Region where you want to import your image. You can find a list of buckets on the <strong>S3 buckets</strong> page in the Amazon S3 storage service in the AWS console.
@@ -1742,6 +1744,26 @@ msgstr ""
 "                        {bucketsPage} du service de stockage de l'OCI dans "
 "la console de l'OCI."
 
+#. [wizard.ostree.parentCommit.popoverBody]
+#. defaultMessage is:
+#. Provide the commit id or ref of the parent in the repository for which this commit provides an update. If no parent is specified it will be inferred from the user-defined ref.
+#: build/messages/components/Wizard/steps/ostreeSettings.json
+#, fuzzy
+#| msgid ""
+#| "Provide the ID of the latest commit in the updates repository for which "
+#| "this commit provides an update.\n"
+#| "                    If no commit is specified it will be inferred from "
+#| "the parent repository."
+msgid ""
+"Provide the commit id or ref of the parent in the repository for which this "
+"commit provides an update. If no parent is specified it will be inferred "
+"from the user-defined ref."
+msgstr ""
+"Fournir l'ID du dernier commit dans le référentiel des mises à jour pour "
+"lequel ce commit fournit une mise à jour.\n"
+"                    Si aucun commit n'est spécifié, il sera déduit du "
+"référentiel parent."
+
 #. [wizard.oci.compartment.popoverBody]
 #. defaultMessage is:
 #. Provide the compartment of the OCI bucket compartment your uploading to. You can find the compartment in the bucket details.
@@ -1802,11 +1824,16 @@ msgstr ""
 
 #. [wizard.ostree.ref.popoverBody]
 #. defaultMessage is:
-#. Provide the name of the branch for the content. If the ref does not already exist it will be created.
+#. Provide the name of the branch for the content. If the ref does not already exist it will be created. If the ref is not specified, the default ref for the distro will be used.
 #: build/messages/components/Wizard/steps/ostreeSettings.json
+#, fuzzy
+#| msgid ""
+#| "Provide the name of the branch for the content. If the ref does not "
+#| "already exist it will be created."
 msgid ""
 "Provide the name of the branch for the content. If the ref does not already "
-"exist it will be created."
+"exist it will be created. If the ref is not specified, the default ref for "
+"the distro will be used."
 msgstr ""
 "Indiquez le nom de la branche pour le contenu. Si la référence n'existe pas "
 "déjà, elle sera créée."
@@ -2018,15 +2045,15 @@ msgstr "Revue"
 
 #. [wizard.review.review]
 #. defaultMessage is:
-#. Review the information and click "Create image" to create the image using the following criteria.
+#. Review the information and click "Save blueprint" to save the customizations and then click "Create image" to create the image.
 #: build/messages/components/Wizard/formComponents/Review.json
 #, fuzzy
 #| msgid ""
 #| "Review the information below and click Finish to create the image and "
 #| "complete the tasks that were selected."
 msgid ""
-"Review the information and click \"Create image\" to create the image using "
-"the following criteria."
+"Review the information and click \"Save blueprint\" to save the "
+"customizations and then click \"Create image\" to create the image."
 msgstr ""
 "Passez en revue les informations ci-dessous et cliquez sur Terminer pour "
 "créer l'image et accomplir les tâches qui ont été sélectionnées."
@@ -2050,10 +2077,14 @@ msgstr "Aide sur S3 Bucket"
 #. [components.Modal.labelSSHKey]
 #. defaultMessage is:
 #. SSH key
+#. [wizard.review.sshKey]
+#. defaultMessage is:
+#. SSH key
 #. [wizard.customizations.sshKey.label]
 #. defaultMessage is:
 #. SSH key
 #: build/messages/components/Modal/UserAccount.json
+#: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/components/Wizard/steps/users.json
 msgid "SSH key"
 msgstr "Clé SSH"
@@ -2840,12 +2871,16 @@ msgstr "Aide Clusters"
 msgid "Username"
 msgstr "Nom d’utilisateur"
 
+#. [customizations.user.title]
+#. defaultMessage is:
+#. Users
 #. [wizard.customizations.usersTitle]
 #. defaultMessage is:
 #. Users
 #. [pages.blueprint.443046426]
 #. defaultMessage is:
 #. Users
+#: build/messages/components/Wizard/formComponents/Review.json
 #: build/messages/components/Wizard/steps/users.json
 #: build/messages/pages/blueprint/index.json
 msgid "Users"
