@@ -1,8 +1,8 @@
 # Temuri Doghonadze <temuri.doghonadze@gmail.com>, 2022.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2022-09-05T18:37:46.587Z\n"
-"PO-Revision-Date: 2022-08-09 06:19+0000\n"
+"POT-Creation-Date: 2022-09-16T04:44:43.826Z\n"
+"PO-Revision-Date: 2022-09-16 19:19+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.fedoraproject.org/projects/"
 "cockpit-composer/main/ka/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1\n"
-"X-Generator: Weblate 4.13\n"
+"X-Generator: Weblate 4.14\n"
 
 #. [components.Modal.4177685254]
 #. defaultMessage is:
@@ -46,10 +46,8 @@ msgstr "წვდომის გასაღების ID"
 #. defaultMessage is:
 #. Access key help
 #: build/messages/components/Wizard/steps/awsAuth.json
-#, fuzzy
-#| msgid "Access key ID help"
 msgid "Access key help"
-msgstr "წვდომის გასაღების ID-ის დახმარება"
+msgstr "წვდომის გასაღების დახმარება"
 
 #. [components.ListView.imageActions] - A label for the menu that displays the actions available
 #. defaultMessage is:
@@ -96,10 +94,8 @@ msgstr ""
 #. defaultMessage is:
 #. Add selected
 #: build/messages/components/Wizard/formComponents/Packages.json
-#, fuzzy
-#| msgid "Add source"
 msgid "Add selected"
-msgstr "წყაროს დამატება"
+msgstr "მონიშნულის დამატება"
 
 #. [components.Modal.add]
 #. defaultMessage is:
@@ -118,19 +114,15 @@ msgstr "წყაროს დამატება"
 #. defaultMessage is:
 #. Add user
 #: build/messages/components/Wizard/steps/users.json
-#, fuzzy
-#| msgid "Add source"
 msgid "Add user"
-msgstr "წყაროს დამატება"
+msgstr "მომხმარებლის დამატება"
 
 #. [wizard.review.admin]
 #. defaultMessage is:
 #. Administrator
 #: build/messages/components/Wizard/formComponents/Review.json
-#, fuzzy
-#| msgid "Server administrator"
 msgid "Administrator"
-msgstr "სერვერი ადმინისტრატორი"
+msgstr "ადმინისტრატორი"
 
 #. [wizard.review.amazonS3Bucket]
 #. defaultMessage is:
@@ -185,10 +177,8 @@ msgstr "წყაროს მიღების შეცდომა."
 #. defaultMessage is:
 #. An image can only be created after saving the blueprint
 #: build/messages/components/Wizard/formComponents/SubmitButtonsCustom.json
-#, fuzzy
-#| msgid "No images have been created from this blueprint."
 msgid "An image can only be created after saving the blueprint"
-msgstr "ამ მონახაზიდან გამოსახულებები არ შექმნილა."
+msgstr "გამოსახულების შექმნა მხოლოდ მონახაზის შენახვის შემდეგაა შესაძლებელი"
 
 #. [components.ListView.3998303130]
 #. defaultMessage is:
@@ -250,10 +240,8 @@ msgstr "osbuilder-composer-ის გაშვება სისტემის
 #. defaultMessage is:
 #. Available packages
 #: build/messages/components/Wizard/formComponents/Packages.json
-#, fuzzy
-#| msgid "Available components"
 msgid "Available packages"
-msgstr "ხელმისაწვდომი კომპონენტები"
+msgstr "ხელმისაწვდომი პაკეტები"
 
 #. [pages.blueprint.2057444273]
 #. defaultMessage is:
@@ -284,19 +272,15 @@ msgstr "მონახაზი"
 #. defaultMessage is:
 #. Blueprint filter select
 #: build/messages/components/Toolbar/BlueprintToolbar.json
-#, fuzzy
-#| msgid "Blueprints"
 msgid "Blueprint filter select"
-msgstr "მონახაზები"
+msgstr "მონახაზის ფილტრის არჩევა"
 
 #. [wizard.review.blueprintName]
 #. defaultMessage is:
 #. Blueprint name
 #: build/messages/components/Wizard/formComponents/Review.json
-#, fuzzy
-#| msgid "Blueprint"
 msgid "Blueprint name"
-msgstr "მონახაზი"
+msgstr "მონახაზის სახელი"
 
 #. [components.Modal.2544705954]
 #. defaultMessage is:
@@ -337,10 +321,8 @@ msgstr "მონახაზის სახელი არ შეიძლე
 #. defaultMessage is:
 #. Blueprint search input
 #: build/messages/components/Toolbar/BlueprintToolbar.json
-#, fuzzy
-#| msgid "Blueprints"
 msgid "Blueprint search input"
-msgstr "მონახაზები"
+msgstr "მონახაზის ძებნის შეყვანა"
 
 #. [pages.blueprints.blueprintsTitle]
 #. defaultMessage is:
@@ -353,10 +335,8 @@ msgstr "მონახაზები"
 #. defaultMessage is:
 #. Blueprints search input
 #: build/messages/components/Toolbar/BlueprintsToolbar.json
-#, fuzzy
-#| msgid "Blueprints"
 msgid "Blueprints search input"
-msgstr "მონახაზები"
+msgstr "მონახაზის ძებნის შეყვანა"
 
 #. [wizard.review.bucketCompartment]
 #. defaultMessage is:
@@ -373,10 +353,8 @@ msgstr "პროექტის შემადგენელი ნაწი�
 #. defaultMessage is:
 #. Bucket compartment help
 #: build/messages/components/Wizard/steps/ociDest.json
-#, fuzzy
-#| msgid "Bucket compartment"
 msgid "Bucket compartment help"
-msgstr "პროექტის შემადგენელი ნაწილები"
+msgstr "პროექტის შემადგენელი ნაწილების დახმარება"
 
 #. [wizard.review.bucketNamespace]
 #. defaultMessage is:
@@ -393,10 +371,8 @@ msgstr "ბაკეტის სახელების სივრცე"
 #. defaultMessage is:
 #. Bucket namespace help
 #: build/messages/components/Wizard/steps/ociDest.json
-#, fuzzy
-#| msgid "Bucket namespace"
 msgid "Bucket namespace help"
-msgstr "ბაკეტის სახელების სივრცე"
+msgstr "ბაკეტის სახელების სივრცის დახმარება"
 
 #. [wizard.review.bucketRegion]
 #. defaultMessage is:
@@ -413,10 +389,8 @@ msgstr "ბაკეტის რეგიონი"
 #. defaultMessage is:
 #. Bucket region help
 #: build/messages/components/Wizard/steps/ociDest.json
-#, fuzzy
-#| msgid "Bucket region"
 msgid "Bucket region help"
-msgstr "ბაკეტის რეგიონი"
+msgstr "ბაკეტის რეგიონის დახმარება"
 
 #. [wizard.review.bucketTenancy]
 #. defaultMessage is:
@@ -433,10 +407,8 @@ msgstr "ბაკეტის ქირავნობა"
 #. defaultMessage is:
 #. Bucket tenancy help
 #: build/messages/components/Wizard/steps/ociDest.json
-#, fuzzy
-#| msgid "Bucket tenancy"
 msgid "Bucket tenancy help"
-msgstr "ბაკეტის ქირავნობა"
+msgstr "ბაკეტის ქირაობის დახმარება"
 
 #. [components.Form.cancel]
 #. defaultMessage is:
@@ -491,10 +463,8 @@ msgstr "შეამოწმეთ SSL სერტიფიკატი"
 #. defaultMessage is:
 #. Chosen packages
 #: build/messages/components/Wizard/formComponents/Packages.json
-#, fuzzy
-#| msgid "Edit packages"
 msgid "Chosen packages"
-msgstr "პაკეტების ჩასწორება"
+msgstr "არჩეული პაკეტები"
 
 #. [components.ListView.1634835134]
 #. defaultMessage is:
@@ -636,8 +606,6 @@ msgstr "შექმნილია"
 #. defaultMessage is:
 #. Creating image
 #: build/messages/components/Wizard/formComponents/SubmitButtonsCustom.json
-#, fuzzy
-#| msgid "Create image"
 msgid "Creating image"
 msgstr "გამოსახულების შექმნა"
 
@@ -678,8 +646,6 @@ msgstr "მონაცემების საცავი"
 #. defaultMessage is:
 #. Datacenter
 #: build/messages/components/Wizard/steps/vmwareDest.json
-#, fuzzy
-#| msgid "Data center"
 msgid "Datacenter"
 msgstr "მონაცემების დამუშავების ცენტრი"
 
@@ -694,10 +660,8 @@ msgstr "დახმარება მონაცემთა დამუშ�
 #. defaultMessage is:
 #. Datastore
 #: build/messages/components/Wizard/steps/vmwareDest.json
-#, fuzzy
-#| msgid "Data store"
 msgid "Datastore"
-msgstr "მონაცემების საცავი"
+msgstr "საცავი"
 
 #. [wizard.vmware.datastore.popoverAria]
 #. defaultMessage is:
@@ -930,10 +894,8 @@ msgstr "ანაბეჭდი"
 #. defaultMessage is:
 #. Fingerprint help
 #: build/messages/components/Wizard/steps/ociAuth.json
-#, fuzzy
-#| msgid "Fingerprint"
 msgid "Fingerprint help"
-msgstr "ანაბეჭდი"
+msgstr "ანაბეჭდის დახმარება"
 
 #. [components.Modal.labelName]
 #. defaultMessage is:
@@ -1058,8 +1020,6 @@ msgstr ""
 #. defaultMessage is:
 #. Image Size
 #: build/messages/components/Wizard/steps/imageOutput.json
-#, fuzzy
-#| msgid "Image size"
 msgid "Image Size"
 msgstr "გამოსახულების ზომა"
 
@@ -1159,10 +1119,8 @@ msgstr "გამოტანილი გამოსახულება"
 #. defaultMessage is:
 #. Image output type
 #: build/messages/components/Wizard/steps/imageOutput.json
-#, fuzzy
-#| msgid "Image output"
 msgid "Image output type"
-msgstr "გამოტანილი გამოსახულება"
+msgstr "გამოტანილი გამოსახულების დახმარება"
 
 #. [wizard.review.imageSize]
 #. defaultMessage is:
@@ -1203,8 +1161,6 @@ msgstr "დაყენებს მოწყობილობა"
 #. defaultMessage is:
 #. Installation Device help
 #: build/messages/components/Wizard/steps/system.json
-#, fuzzy
-#| msgid "Installation device help"
 msgid "Installation Device help"
 msgstr "დახმარება დაყენების მოწყობილობის შესახებ"
 
@@ -1233,10 +1189,8 @@ msgstr "დახმარება დაყენების მოწყო�
 #. defaultMessage is:
 #. Load additional packages
 #: build/messages/components/Wizard/formComponents/Packages.json
-#, fuzzy
-#| msgid "Edit packages"
 msgid "Load additional packages"
-msgstr "პაკეტების ჩასწორება"
+msgstr "დამატებითი პაკეტების ჩატვირთვა"
 
 #. [components.Loading.2617450248]
 #. defaultMessage is:
@@ -1281,10 +1235,8 @@ msgstr "შეტყობინება"
 #. defaultMessage is:
 #. Minimum image size is {size}GB.
 #: build/messages/components/Wizard/steps/imageOutput.json
-#, fuzzy
-#| msgid "Minimum size is {size} GB."
 msgid "Minimum image size is {size}GB."
-msgstr "მინიმალური ზომაა {size} გბ."
+msgstr "ასლის მინიმალური ზომაა {size} გბ."
 
 #. [components.ListView.emptyStateNoResultsMessage]
 #. defaultMessage is:
@@ -1351,19 +1303,15 @@ msgstr "ჟურნალი მიუწვდომელია"
 #. defaultMessage is:
 #. No packages added
 #: build/messages/components/Wizard/formComponents/Packages.json
-#, fuzzy
-#| msgid "Edit packages"
 msgid "No packages added"
-msgstr "პაკეტების ჩასწორება"
+msgstr "პაკეტი არ დამატებულა"
 
 #. [wizard.packages.noPackagesFound]
 #. defaultMessage is:
 #. No packages found
 #: build/messages/components/Wizard/formComponents/Packages.json
-#, fuzzy
-#| msgid "Edit packages"
 msgid "No packages found"
-msgstr "პაკეტების ჩასწორება"
+msgstr "პაკეტების გარეშე"
 
 #. [components.ListView.emptyStateNoResultsTitle]
 #. defaultMessage is:
@@ -1391,10 +1339,8 @@ msgstr "OCI ბაკეტი"
 #. defaultMessage is:
 #. OCI bucket help
 #: build/messages/components/Wizard/steps/ociDest.json
-#, fuzzy
-#| msgid "OCI bucket"
 msgid "OCI bucket help"
-msgstr "OCI ბაკეტი"
+msgstr "OCI ბაკეტის დახმარება"
 
 #. [wizard.ostree.title]
 #. defaultMessage is:
@@ -1449,19 +1395,15 @@ msgstr "გვერდი ნაპოვნი არაა"
 #. defaultMessage is:
 #. Parent
 #: build/messages/components/Wizard/steps/ostreeSettings.json
-#, fuzzy
-#| msgid "Parent commit"
 msgid "Parent"
-msgstr "მშობლის გადაცემა"
+msgstr "მშობელი"
 
 #. [wizard.ostree.parentCommit.popoverAria]
 #. defaultMessage is:
 #. Parent help
 #: build/messages/components/Wizard/steps/ostreeSettings.json
-#, fuzzy
-#| msgid "Parent commit"
 msgid "Parent help"
-msgstr "მშობლის გადაცემა"
+msgstr "მშობლის დახმარება"
 
 #. [components.Modal.labelPassword]
 #. defaultMessage is:
@@ -1507,10 +1449,8 @@ msgstr "პირადი გასაღების ფაილის სა
 #. defaultMessage is:
 #. Private key help
 #: build/messages/components/Wizard/steps/ociAuth.json
-#, fuzzy
-#| msgid "Private key"
 msgid "Private key help"
-msgstr "პირადი გასაღები"
+msgstr "პირადი გასაღების დახმარება"
 
 #. [wizard.blueprintName.popover.aria]
 #. defaultMessage is:
@@ -1543,16 +1483,12 @@ msgstr "მიუთითეთ გამოსახულების ას�
 #. defaultMessage is:
 #. Provide the AWS Region where you want to import your image. This must be the same region where the S3 bucket exists.
 #: build/messages/components/Wizard/steps/awsDest.json
-#, fuzzy
-#| msgid ""
-#| "Provide the AWS Region where you want to import your image. This must be "
-#| "the same region where the {bucket} exists."
 msgid ""
 "Provide the AWS Region where you want to import your image. This must be the "
 "same region where the S3 bucket exists."
 msgstr ""
 "მიუთითეთ გამოსახულების ასატვირთი AWS-ის რეგიონი. უნდა ემთხვეოდეს იმას, სადაც "
-"{bucket}-ია მოთავსებული."
+"S3 bucket-ია მოთავსებული."
 
 #. [wizard.azure.storageContainer.popoverBody]
 #. defaultMessage is:
@@ -1684,16 +1620,12 @@ msgstr ""
 #. defaultMessage is:
 #. Provide the region of the Bucket region your uploading to. You can find the region in the bucket details.
 #: build/messages/components/Wizard/steps/ociDest.json
-#, fuzzy
-#| msgid ""
-#| "Provide the AWS Region where you want to import your image. This must be "
-#| "the same region where the {bucket} exists."
 msgid ""
 "Provide the region of the Bucket region your uploading to. You can find the "
 "region in the bucket details."
 msgstr ""
-"მიუთითეთ გამოსახულების ასატვირთი AWS-ის რეგიონი. უნდა ემთხვეოდეს იმას, სადაც "
-"{bucket}-ია მოთავსებული."
+"მიუთითეთ ბაკეტის რეგიონი, სადაც ატვირთვას აპირებთ. რეგიონის პოვნა ბაკეტის "
+"დეტალებში შეგიძლიათ."
 
 #. [wizard.oci.tenancy.popoverBody]
 #. defaultMessage is:
@@ -1708,13 +1640,12 @@ msgstr ""
 #. defaultMessage is:
 #. Provide the url of your VMWare vSphere instance to which the image file will be uploaded.
 #: build/messages/components/Wizard/steps/vmwareDest.json
-#, fuzzy
-#| msgid ""
-#| "Provide a file name to be used for the image file that will be uploaded."
 msgid ""
 "Provide the url of your VMWare vSphere instance to which the image file will "
 "be uploaded."
-msgstr "მიუთითეთ გამოსახულების ასატვირთი ფაილის სახელი."
+msgstr ""
+"მიუთიეთ VMWare vSphere-ის იმ გაშვებული ასლის URL, სადაც თქვენი ასლის ფაილი "
+"აიტვირთება."
 
 #. [wizard.ostree.ref.label]
 #. defaultMessage is:
@@ -1727,19 +1658,15 @@ msgstr "ბმა"
 #. defaultMessage is:
 #. Ref help
 #: build/messages/components/Wizard/steps/ostreeSettings.json
-#, fuzzy
-#| msgid "Azure help"
 msgid "Ref help"
-msgstr "Azure-ის დახმარება"
+msgstr "მიბმის დახმარება"
 
 #. [wizard.aws.region.popoverAria]
 #. defaultMessage is:
 #. Region help
 #: build/messages/components/Wizard/steps/awsDest.json
-#, fuzzy
-#| msgid "AWS region help"
 msgid "Region help"
-msgstr "AWS-ის რეგიონის დახმარება"
+msgstr "რეგიონის დახმარება"
 
 #. [components.ListView.423140743]
 #. defaultMessage is:
@@ -1771,19 +1698,15 @@ msgstr "წაშლა"
 #. defaultMessage is:
 #. Remove all
 #: build/messages/components/Wizard/formComponents/Packages.json
-#, fuzzy
-#| msgid "Remove"
 msgid "Remove all"
-msgstr "წაშლა"
+msgstr "ყველაფრის წაშლა"
 
 #. [wizard.customizations.buttons.removeAll]
 #. defaultMessage is:
 #. Remove all users
 #: build/messages/components/Wizard/steps/users.json
-#, fuzzy
-#| msgid "Remove source"
 msgid "Remove all users"
-msgstr "წყაროს წაშლა"
+msgstr "ყველა მომხმარებლის წაშლა"
 
 #. [components.ListView.removeComponent]
 #. defaultMessage is:
@@ -1803,10 +1726,8 @@ msgstr "მონახაზიდან ამოღება"
 #. defaultMessage is:
 #. Remove selected
 #: build/messages/components/Wizard/formComponents/Packages.json
-#, fuzzy
-#| msgid "Remove source"
 msgid "Remove selected"
-msgstr "წყაროს წაშლა"
+msgstr "მონიშნულის წაშლა"
 
 #. [components.ListView.remove]
 #. defaultMessage is:
@@ -1819,10 +1740,8 @@ msgstr "წყაროს წაშლა"
 #. defaultMessage is:
 #. Remove user
 #: build/messages/components/Wizard/steps/users.json
-#, fuzzy
-#| msgid "Remove source"
 msgid "Remove user"
-msgstr "წყაროს წაშლა"
+msgstr "მომხმარებლის წაშლა"
 
 #. [components.ListView.2663433025]
 #. defaultMessage is:
@@ -1842,10 +1761,8 @@ msgstr "რეპოზიტორიის URL"
 #. defaultMessage is:
 #. Repository URL help
 #: build/messages/components/Wizard/steps/ostreeSettings.json
-#, fuzzy
-#| msgid "Repository URL"
 msgid "Repository URL help"
-msgstr "რეპოზიტორიის URL"
+msgstr "რეპოზიტორიის URL-ის დახმარება"
 
 #. [components.Modal.128739785]
 #. defaultMessage is:
@@ -1881,8 +1798,6 @@ msgstr "როლი"
 #. defaultMessage is:
 #. S3 bucket help
 #: build/messages/components/Wizard/steps/awsDest.json
-#, fuzzy
-#| msgid "S3 Bucket help"
 msgid "S3 bucket help"
 msgstr "დახმარება S3 Bucket-ის შესახებ"
 
@@ -1916,10 +1831,8 @@ msgstr "შენახვა"
 #. defaultMessage is:
 #. Save blueprint
 #: build/messages/components/Wizard/formComponents/SubmitButtonsCustom.json
-#, fuzzy
-#| msgid "Create blueprint"
 msgid "Save blueprint"
-msgstr "მონახაზის შექმნა"
+msgstr "მონახაზის შენახვა"
 
 #. [components.Modal.1820273720]
 #. defaultMessage is:
@@ -1985,10 +1898,8 @@ msgstr "აირჩიეთ ერთი"
 #. defaultMessage is:
 #. Select output type
 #: build/messages/components/Wizard/formComponents/ImageOutputSelect.json
-#, fuzzy
-#| msgid "Select one"
 msgid "Select output type"
-msgstr "აირჩიეთ ერთი"
+msgstr "აირჩიეთ გამოტანის ტიპი"
 
 #. [components.ListView.selectedTabTitle]
 #. defaultMessage is:
@@ -2001,19 +1912,15 @@ msgstr "არჩეული კომპონენტები"
 #. defaultMessage is:
 #. Selected packages
 #: build/messages/components/Wizard/steps/packages.json
-#, fuzzy
-#| msgid "Edit packages"
 msgid "Selected packages"
-msgstr "პაკეტების ჩასწორება"
+msgstr "არჩეული პაკეტები"
 
 #. [wizard.packages.selectorControls]
 #. defaultMessage is:
 #. Selector controls
 #: build/messages/components/Wizard/formComponents/Packages.json
-#, fuzzy
-#| msgid "Select components"
 msgid "Selector controls"
-msgstr "აირჩიეთ კომპონენტები"
+msgstr "ამრჩევის კონტროლები"
 
 #. [components.Modal.adminCheckbox]
 #. defaultMessage is:
@@ -2079,10 +1986,8 @@ msgstr "ზომა"
 #. Sort blueprints ascending
 #: build/messages/components/Toolbar/BlueprintsToolbar.json
 #: build/messages/components/Toolbar/BlueprintToolbar.json
-#, fuzzy
-#| msgid "Export blueprint"
 msgid "Sort blueprints ascending"
-msgstr "მონახაზის გატანა"
+msgstr "მონახაზების აღმავლობით დალაგება"
 
 #. [toolbar.blueprints.sort.desc]
 #. defaultMessage is:
@@ -2092,10 +1997,8 @@ msgstr "მონახაზის გატანა"
 #. Sort blueprints descending
 #: build/messages/components/Toolbar/BlueprintsToolbar.json
 #: build/messages/components/Toolbar/BlueprintToolbar.json
-#, fuzzy
-#| msgid "Export blueprint"
 msgid "Sort blueprints descending"
-msgstr "მონახაზის გატანა"
+msgstr "მონახაზების დაღმავლობით დალაგება"
 
 #. [components.ListView.kebab]
 #. defaultMessage is:
@@ -2236,10 +2139,8 @@ msgstr "დახმარება საცავის კონტეინ�
 #. defaultMessage is:
 #. System
 #: build/messages/components/Wizard/steps/system.json
-#, fuzzy
-#| msgid "System source"
 msgid "System"
-msgstr "სისტემის წყარო"
+msgstr "სისტემა"
 
 #. [components.ListView.3639476303] - System sources are configured repositories that were found on the host machine
 #. defaultMessage is:
@@ -2518,10 +2419,8 @@ msgstr "AWS-ზე ატვირთვა"
 #. defaultMessage is:
 #. Upload to AWS help
 #: build/messages/components/Wizard/steps/imageOutput.json
-#, fuzzy
-#| msgid "Upload to AWS"
 msgid "Upload to AWS help"
-msgstr "AWS-ზე ატვირთვა"
+msgstr "AWS-ზე ატვირთვის დახმარება"
 
 #. [wizard.review.uploadToAzure]
 #. defaultMessage is:
@@ -2546,10 +2445,8 @@ msgstr "Azure-ზე ატვირთვა"
 #. defaultMessage is:
 #. Upload to Azure help
 #: build/messages/components/Wizard/steps/imageOutput.json
-#, fuzzy
-#| msgid "Upload to Azure"
 msgid "Upload to Azure help"
-msgstr "Azure-ზე ატვირთვა"
+msgstr "Azure-ზე ატვირთვის დახმარება"
 
 #. [wizard.review.uploadToOCI]
 #. defaultMessage is:
@@ -2574,10 +2471,8 @@ msgstr "OCI-ზე ატვირთვა"
 #. defaultMessage is:
 #. Upload to OCI help
 #: build/messages/components/Wizard/steps/imageOutput.json
-#, fuzzy
-#| msgid "Upload to OCI"
 msgid "Upload to OCI help"
-msgstr "OCI-ზე ატვირთვა"
+msgstr "OCI-ზე ატვირთვის დახმარება"
 
 #. [wizard.review.uploadToVMWare]
 #. defaultMessage is:
@@ -2602,10 +2497,8 @@ msgstr "VMWare-ზე ატვირთვა"
 #. defaultMessage is:
 #. Upload to VMWare help
 #: build/messages/components/Wizard/steps/imageOutput.json
-#, fuzzy
-#| msgid "Upload to VMWare"
 msgid "Upload to VMWare help"
-msgstr "VMWare-ზე ატვირთვა"
+msgstr "VMWare-ზე ატვირთვის დახმარება"
 
 #. [components.ListView.uploadType] - A label for the service to which an image was uploaded
 #. defaultMessage is:
@@ -2643,10 +2536,8 @@ msgstr "მომხმარებლის სახელი"
 #. defaultMessage is:
 #. User ocid help
 #: build/messages/components/Wizard/steps/ociAuth.json
-#, fuzzy
-#| msgid "Cluster help"
 msgid "User ocid help"
-msgstr "დახმარება კლატერის შესახებ"
+msgstr "მომხმარებლის ocid-ის დახმარება"
 
 #. [wizard.review.username]
 #. defaultMessage is:
@@ -2787,8 +2678,6 @@ msgstr "ქმედებები"
 #. defaultMessage is:
 #. blueprint
 #: build/messages/components/Wizard/formComponents/BlueprintName.json
-#, fuzzy
-#| msgid "Blueprint"
 msgid "blueprint"
 msgstr "მონახაზი"
 
