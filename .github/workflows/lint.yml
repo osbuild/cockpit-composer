@@ -1,14 +1,14 @@
-name: eslint-stylelint
+name: lint
 
 on: [pull_request]
 
 jobs:
-  eslint-stylelint:
+  lint:
     runs-on: ubuntu-20.04
     strategy:
       fail-fast: false
       matrix:
-        tests: ["eslint", "stylelint"]
+        tests: ["lint"]
 
     steps:
       - uses: actions/checkout@v2

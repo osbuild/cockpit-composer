@@ -80,11 +80,8 @@ tag:
 	@git log --no-merges --pretty="format:- %s (%ae)" $(VERSION).. |sed -e 's/@.*)/)/' > clog.tmp
 	git tag -s -e -F clog.tmp $(NEWTAG); rm -f clog.tmp
 
-eslint:
-	npm run eslint
-
-stylelint:
-	npm run stylelint
+lint:
+	npm run lint
 
 buildrpm_image:
 	sudo docker build -f Dockerfile.buildrpm --cache-from welder/buildrpm:latest -t welder/buildrpm:latest .
