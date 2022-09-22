@@ -48,8 +48,11 @@ class Password extends React.Component {
   handleWarnings(input) {
     setTimeout(() => {
       if (
-        (this.state.passwordOne !== this.state.passwordTwo && this.state.passwordTwo !== "") ||
-        (input === "two" && this.state.passwordOne !== "" && this.state.passwordTwo === "")
+        (this.state.passwordOne !== this.state.passwordTwo &&
+          this.state.passwordTwo !== "") ||
+        (input === "two" &&
+          this.state.passwordOne !== "" &&
+          this.state.passwordTwo === "")
       ) {
         this.setState({ displayWarningMatch: true });
       } else {
@@ -63,7 +66,10 @@ class Password extends React.Component {
     return (
       <div>
         <div className={`form-group ${passwordOneInvalid ? "has-error" : ""}`}>
-          <label className="col-sm-3 control-label" htmlFor="textInput1-modal-password">
+          <label
+            className="col-sm-3 control-label"
+            htmlFor="textInput1-modal-password"
+          >
             {this.props.labelOne}
           </label>
           <div className="col-sm-9">
@@ -79,8 +85,15 @@ class Password extends React.Component {
             />
           </div>
         </div>
-        <div className={`form-group ${this.state.displayWarningMatch ? "has-error" : ""}`}>
-          <label className="col-sm-3 control-label" htmlFor="textInput2-modal-password">
+        <div
+          className={`form-group ${
+            this.state.displayWarningMatch ? "has-error" : ""
+          }`}
+        >
+          <label
+            className="col-sm-3 control-label"
+            htmlFor="textInput2-modal-password"
+          >
             {this.props.labelTwo}
           </label>
           <div className="col-sm-9">

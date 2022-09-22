@@ -6,7 +6,13 @@ import composes from "./composes";
 import uploads from "./uploads";
 
 function* rootSaga() {
-  yield all([fork(blueprints), fork(modals), fork(inputs), fork(composes), fork(uploads)]);
+  yield all([
+    fork(blueprints),
+    fork(modals),
+    fork(inputs),
+    fork(composes),
+    fork(uploads),
+  ]);
 }
 
 export default rootSaga;

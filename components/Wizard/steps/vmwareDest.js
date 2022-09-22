@@ -11,7 +11,8 @@ const messages = defineMessages({
   },
   imageNamePopoverBody: {
     id: "wizard.vmware.imageName.popoverBody",
-    defaultMessage: "Provide a file name to be used for the image file that will be uploaded.",
+    defaultMessage:
+      "Provide a file name to be used for the image file that will be uploaded.",
   },
   imageNamePopoverAria: {
     id: "wizard.vmware.imageName.popoverAria",
@@ -19,7 +20,8 @@ const messages = defineMessages({
   },
   hostPopoverBody: {
     id: "wizard.vmware.host.popoverBody",
-    defaultMessage: "Provide the url of your VMWare vSphere instance to which the image file will be uploaded.",
+    defaultMessage:
+      "Provide the url of your VMWare vSphere instance to which the image file will be uploaded.",
   },
   hostPopoverAria: {
     id: "wizard.vmware.host.popoverAria",
@@ -27,7 +29,8 @@ const messages = defineMessages({
   },
   clusterPopoverBody: {
     id: "wizard.vmware.cluster.popoverBody",
-    defaultMessage: "Provide the name of the Cluster to which the image file will be uploaded.",
+    defaultMessage:
+      "Provide the name of the Cluster to which the image file will be uploaded.",
   },
   clusterPopoverAria: {
     id: "wizard.vmware.cluster.popoverAria",
@@ -35,7 +38,8 @@ const messages = defineMessages({
   },
   dataCenterPopoverBody: {
     id: "wizard.vmware.dataCenter.popoverBody",
-    defaultMessage: "Provide the name of the Datacenter to which the image file will be uploaded.",
+    defaultMessage:
+      "Provide the name of the Datacenter to which the image file will be uploaded.",
   },
   dataCenterPopoverAria: {
     id: "wizard.vmware.dataCenter.popoverAria",
@@ -43,7 +47,8 @@ const messages = defineMessages({
   },
   datastorePopoverBody: {
     id: "wizard.vmware.datastore.popoverBody",
-    defaultMessage: "Provide the name of the Datastore to which the image file will be uploaded.",
+    defaultMessage:
+      "Provide the name of the Datastore to which the image file will be uploaded.",
   },
   datastorePopoverAria: {
     id: "wizard.vmware.datastore.popoverAria",
@@ -54,7 +59,12 @@ const messages = defineMessages({
 const vmwareDest = () => {
   const intl = useIntl();
   return {
-    title: <FormattedMessage id="wizard.vmware.destTitle" defaultMessage="Destination" />,
+    title: (
+      <FormattedMessage
+        id="wizard.vmware.destTitle"
+        defaultMessage="Destination"
+      />
+    ),
     name: "vmware-dest",
     substepOf: intl.formatMessage(messages.vmwareStepsTitle),
     nextStep: "system",
@@ -64,13 +74,21 @@ const vmwareDest = () => {
         name: "vmware-image-name",
         className: "pf-u-w-50",
         type: "text",
-        label: <FormattedMessage id="wizard.vmware.imageName.label" defaultMessage="Image name" />,
+        label: (
+          <FormattedMessage
+            id="wizard.vmware.imageName.label"
+            defaultMessage="Image name"
+          />
+        ),
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.imageNamePopoverBody)}
             aria-label={intl.formatMessage(messages.imageNamePopoverAria)}
           >
-            <Button variant="plain" aria-label={intl.formatMessage(messages.imageNamePopoverAria)}>
+            <Button
+              variant="plain"
+              aria-label={intl.formatMessage(messages.imageNamePopoverAria)}
+            >
               <HelpIcon />
             </Button>
           </Popover>
@@ -88,13 +106,21 @@ const vmwareDest = () => {
         name: "vmware-host",
         className: "pf-u-w-50",
         type: "text",
-        label: <FormattedMessage id="wizard.vmware.host.label" defaultMessage="Host" />,
+        label: (
+          <FormattedMessage
+            id="wizard.vmware.host.label"
+            defaultMessage="Host"
+          />
+        ),
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.hostPopoverBody)}
             aria-label={intl.formatMessage(messages.hostPopoverAria)}
           >
-            <Button variant="plain" aria-label={intl.formatMessage(messages.hostPopoverAria)}>
+            <Button
+              variant="plain"
+              aria-label={intl.formatMessage(messages.hostPopoverAria)}
+            >
               <HelpIcon />
             </Button>
           </Popover>
@@ -111,13 +137,21 @@ const vmwareDest = () => {
         name: "vmware-cluster",
         className: "pf-u-w-50",
         type: "text",
-        label: <FormattedMessage id="wizard.vmware.cluster.label" defaultMessage="Cluster" />,
+        label: (
+          <FormattedMessage
+            id="wizard.vmware.cluster.label"
+            defaultMessage="Cluster"
+          />
+        ),
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.clusterPopoverBody)}
             aria-label={intl.formatMessage(messages.clusterPopoverAria)}
           >
-            <Button variant="plain" aria-label={intl.formatMessage(messages.clusterPopoverAria)}>
+            <Button
+              variant="plain"
+              aria-label={intl.formatMessage(messages.clusterPopoverAria)}
+            >
               <HelpIcon />
             </Button>
           </Popover>
@@ -134,13 +168,21 @@ const vmwareDest = () => {
         name: "vmware-data-center",
         className: "pf-u-w-50",
         type: "text",
-        label: <FormattedMessage id="wizard.vmware.dataCenter.label" defaultMessage="Datacenter" />,
+        label: (
+          <FormattedMessage
+            id="wizard.vmware.dataCenter.label"
+            defaultMessage="Datacenter"
+          />
+        ),
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.dataCenterPopoverBody)}
             aria-label={intl.formatMessage(messages.dataCenterPopoverAria)}
           >
-            <Button variant="plain" aria-label={intl.formatMessage(messages.dataCenterPopoverAria)}>
+            <Button
+              variant="plain"
+              aria-label={intl.formatMessage(messages.dataCenterPopoverAria)}
+            >
               <HelpIcon />
             </Button>
           </Popover>
@@ -157,13 +199,21 @@ const vmwareDest = () => {
         name: "vmware-data-store",
         className: "pf-u-w-50",
         type: "text",
-        label: <FormattedMessage id="wizard.vmware.dataStore.label" defaultMessage="Datastore" />,
+        label: (
+          <FormattedMessage
+            id="wizard.vmware.dataStore.label"
+            defaultMessage="Datastore"
+          />
+        ),
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.datastorePopoverBody)}
             aria-label={intl.formatMessage(messages.datastorePopoverAria)}
           >
-            <Button variant="plain" aria-label={intl.formatMessage(messages.datastorePopoverAria)}>
+            <Button
+              variant="plain"
+              aria-label={intl.formatMessage(messages.datastorePopoverAria)}
+            >
               <HelpIcon />
             </Button>
           </Popover>

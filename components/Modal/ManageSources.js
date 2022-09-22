@@ -1,11 +1,16 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable react/no-did-update-set-state */
-
+/* eslint-disable no-prototype-builtins */
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { FormattedMessage, defineMessages, injectIntl } from "react-intl";
-import { Alert, Button, Spinner, Modal, ModalVariant, Title } from "@patternfly/react-core";
+import {
+  Alert,
+  Button,
+  Spinner,
+  Modal,
+  ModalVariant,
+  Title,
+} from "@patternfly/react-core";
 import SourcesListItem from "../ListView/SourcesListItem";
 import EmptyState from "../EmptyState/EmptyState";
 import {
@@ -203,8 +208,12 @@ class ManageSourcesModal extends React.Component {
   }
 
   handleValidateUrl(url) {
-    const sourceUrls = Object.values(this.props.manageSources.sources).map((source) => source.url);
-    this.setState({ warningDuplicateUrl: !sourceUrls.every((sourceUrl) => sourceUrl !== url) });
+    const sourceUrls = Object.values(this.props.manageSources.sources).map(
+      (source) => source.url
+    );
+    this.setState({
+      warningDuplicateUrl: !sourceUrls.every((sourceUrl) => sourceUrl !== url),
+    });
   }
 
   handleEditSource(name) {
@@ -235,8 +244,12 @@ class ManageSourcesModal extends React.Component {
   render() {
     const { formatMessage } = this.props.intl;
     const { manageSources } = this.props;
-    const systemSources = Object.values(manageSources.sources).filter((source) => source.system === true);
-    const customSources = Object.values(manageSources.sources).filter((source) => source.system !== true);
+    const systemSources = Object.values(manageSources.sources).filter(
+      (source) => source.system === true
+    );
+    const customSources = Object.values(manageSources.sources).filter(
+      (source) => source.system !== true
+    );
     const disabledSubmit =
       this.state.name === "" ||
       this.state.url === "" ||
@@ -251,7 +264,10 @@ class ManageSourcesModal extends React.Component {
             <FormattedMessage defaultMessage="An error occurred when saving the source. Check that the path is valid and try again." />
           </Alert>
         )}
-        <form id="cmpsr-form-add-source" className="form-horizontal form-horizontal-pf-align-left">
+        <form
+          id="cmpsr-form-add-source"
+          className="form-horizontal form-horizontal-pf-align-left"
+        >
           <p className="fields-status-pf">
             <FormattedMessage
               defaultMessage="The fields marked with {val} are required."
@@ -260,8 +276,15 @@ class ManageSourcesModal extends React.Component {
               }}
             />
           </p>
-          <div className={`form-group ${this.state.warningDuplicateName ? "has-error" : ""}`}>
-            <label className="col-sm-2 control-label required-pf" htmlFor="textInput1-modal-source">
+          <div
+            className={`form-group ${
+              this.state.warningDuplicateName ? "has-error" : ""
+            }`}
+          >
+            <label
+              className="col-sm-2 control-label required-pf"
+              htmlFor="textInput1-modal-source"
+            >
               {formatMessage(messages.name)}
             </label>
             <div className="col-sm-10">
@@ -284,8 +307,15 @@ class ManageSourcesModal extends React.Component {
               )}
             </div>
           </div>
-          <div className={`form-group ${this.state.warningDuplicateUrl ? "has-error" : ""}`}>
-            <label className="col-sm-2 control-label required-pf" htmlFor="textInput2-modal-source">
+          <div
+            className={`form-group ${
+              this.state.warningDuplicateUrl ? "has-error" : ""
+            }`}
+          >
+            <label
+              className="col-sm-2 control-label required-pf"
+              htmlFor="textInput2-modal-source"
+            >
               {formatMessage(messages.sourcePath)}
             </label>
             <div className="col-sm-10">
@@ -307,7 +337,10 @@ class ManageSourcesModal extends React.Component {
             </div>
           </div>
           <div className="form-group">
-            <label className="col-sm-2 control-label required-pf" htmlFor="textInput3-modal-source">
+            <label
+              className="col-sm-2 control-label required-pf"
+              htmlFor="textInput3-modal-source"
+            >
               {formatMessage(messages.type)}
             </label>
             <div className="col-sm-10">
@@ -321,17 +354,29 @@ class ManageSourcesModal extends React.Component {
                 <option value="" disabled hidden>
                   {formatMessage(messages.selectOne)}
                 </option>
-                <option value="yum-baseurl">{formatMessage(messages.typeRepo)}</option>
-                <option value="yum-mirrorlist">{formatMessage(messages.typeMirrorlist)}</option>
-                <option value="yum-metalink">{formatMessage(messages.typeMetalink)}</option>
+                <option value="yum-baseurl">
+                  {formatMessage(messages.typeRepo)}
+                </option>
+                <option value="yum-mirrorlist">
+                  {formatMessage(messages.typeMirrorlist)}
+                </option>
+                <option value="yum-metalink">
+                  {formatMessage(messages.typeMetalink)}
+                </option>
               </select>
             </div>
           </div>
           <div className="form-group">
-            <label className="col-sm-2 control-label" id="checkboxGroup-modal-source">
+            <label
+              className="col-sm-2 control-label"
+              id="checkboxGroup-modal-source"
+            >
               {formatMessage(messages.security)}
             </label>
-            <fieldset className="col-sm-10 checkbox" aria-labelledby="checkboxGroup-modal-source">
+            <fieldset
+              className="col-sm-10 checkbox"
+              aria-labelledby="checkboxGroup-modal-source"
+            >
               <div>
                 <label htmlFor="checkboxInput4-modal-source">
                   <input
@@ -368,9 +413,9 @@ class ManageSourcesModal extends React.Component {
             description="Sources provide the contents from which components are selected"
           />
         )) ||
-          (this.state.editName === "" && <FormattedMessage defaultMessage="Add source" />) || (
-            <FormattedMessage defaultMessage="Edit source" />
-          )}
+          (this.state.editName === "" && (
+            <FormattedMessage defaultMessage="Add source" />
+          )) || <FormattedMessage defaultMessage="Edit source" />}
       </Title>
     );
 
@@ -415,7 +460,11 @@ class ManageSourcesModal extends React.Component {
       );
 
     const footer = !this.state.addEntry ? (
-      <button type="button" className="btn btn-default" onClick={this.props.close}>
+      <button
+        type="button"
+        className="btn btn-default"
+        onClick={this.props.close}
+      >
         <FormattedMessage defaultMessage="Close" />
       </button>
     ) : (
@@ -426,7 +475,11 @@ class ManageSourcesModal extends React.Component {
             <FormattedMessage defaultMessage="Saving source" />
           </div>
         )}
-        <button type="button" className="btn btn-default" onClick={(ev) => this.handleShowForm(ev, false)}>
+        <button
+          type="button"
+          className="btn btn-default"
+          onClick={(ev) => this.handleShowForm(ev, false)}
+        >
           {formatMessage(messages.cancel)}
         </button>
         <button
@@ -436,7 +489,8 @@ class ManageSourcesModal extends React.Component {
           disabled={disabledSubmit}
           onClick={(ev) => this.handleSubmitSource(ev)}
         >
-          {(this.state.editName === "" && formatMessage(messages.save)) || formatMessage(messages.update)}
+          {(this.state.editName === "" && formatMessage(messages.save)) ||
+            formatMessage(messages.update)}
         </button>
       </>
     );

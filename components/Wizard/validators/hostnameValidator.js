@@ -10,7 +10,9 @@ const hostnameValidator = () => (value) => {
   // https://man7.org/linux/man-pages/man7/hostname.7.html
   const regexHostname = /^[a-zA-Z0-9.][a-zA-Z0-9.-]{0,252}$/;
   const validHostname = regexHostname.test(value);
-  const validSplitLengths = value.split(".").every((element) => element.length > 0 && element.length < 64);
+  const validSplitLengths = value
+    .split(".")
+    .every((element) => element.length > 0 && element.length < 64);
   if (!validHostname || !validSplitLengths) {
     return (
       <FormattedMessage

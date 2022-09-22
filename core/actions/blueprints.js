@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 import * as composer from "../composer";
 
 export const blueprintsUpdate = (blueprint) => async (dispatch) => {
@@ -7,7 +8,10 @@ export const blueprintsUpdate = (blueprint) => async (dispatch) => {
     await composer.newBlueprint(blueprint);
     const depsolveResponse = await composer.depsolveBlueprint(blueprint.name);
     const dependencies = depsolveResponse.blueprints[0].dependencies;
-    const blueprintComponents = await generateComponents(blueprint.packages, dependencies);
+    const blueprintComponents = await generateComponents(
+      blueprint.packages,
+      dependencies
+    );
     const storedBP = {
       ...blueprint,
       dependencies,
@@ -93,7 +97,9 @@ const generateComponents = async (packages, dependencies) => {
 function flattenComponents(components) {
   const previousComponents = {};
   const flattened = components.filter((component) => {
-    return previousComponents.hasOwnProperty(component.name) ? false : (previousComponents[component.name] = true);
+    return previousComponents.hasOwnProperty(component.name)
+      ? false
+      : (previousComponents[component.name] = true);
   });
   return flattened;
 }
@@ -119,7 +125,8 @@ export const fetchingBlueprints = () => ({
   type: FETCHING_BLUEPRINTS,
 });
 
-export const FETCHING_BLUEPRINT_NAMES_SUCCEEDED = "FETCHING_BLUEPRINT_NAMES_SUCCEEDED";
+export const FETCHING_BLUEPRINT_NAMES_SUCCEEDED =
+  "FETCHING_BLUEPRINT_NAMES_SUCCEEDED";
 export const fetchingBlueprintNamesSucceeded = (blueprints) => ({
   type: FETCHING_BLUEPRINT_NAMES_SUCCEEDED,
   payload: {
@@ -144,7 +151,8 @@ export const fetchingBlueprintContents = (blueprintName) => ({
   },
 });
 
-export const FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED = "FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED";
+export const FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED =
+  "FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED";
 export const fetchingBlueprintContentsSucceeded = (blueprint) => ({
   type: FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED,
   payload: {
@@ -152,7 +160,8 @@ export const fetchingBlueprintContentsSucceeded = (blueprint) => ({
   },
 });
 
-export const RELOADING_BLUEPRINT_CONTENTS_SUCCEEDED = "RELOADING_BLUEPRINT_CONTENTS_SUCCEEDED";
+export const RELOADING_BLUEPRINT_CONTENTS_SUCCEEDED =
+  "RELOADING_BLUEPRINT_CONTENTS_SUCCEEDED";
 export const reloadingBlueprintContentsSucceeded = (blueprint) => ({
   type: RELOADING_BLUEPRINT_CONTENTS_SUCCEEDED,
   payload: {
@@ -203,7 +212,8 @@ export const setBlueprintHostname = (blueprint, hostname) => ({
   },
 });
 
-export const SET_BLUEPRINT_HOSTNAME_SUCCEEDED = "SET_BLUEPRINT_HOSTNAME_SUCCEEDED";
+export const SET_BLUEPRINT_HOSTNAME_SUCCEEDED =
+  "SET_BLUEPRINT_HOSTNAME_SUCCEEDED";
 export const setBlueprintHostnameSucceeded = (blueprint) => ({
   type: SET_BLUEPRINT_HOSTNAME_SUCCEEDED,
   payload: {
@@ -220,7 +230,8 @@ export const setBlueprintDescription = (blueprint, description) => ({
   },
 });
 
-export const SET_BLUEPRINT_DESCRIPTION_SUCCEEDED = "SET_BLUEPRINT_DESCRIPTION_SUCCEEDED";
+export const SET_BLUEPRINT_DESCRIPTION_SUCCEEDED =
+  "SET_BLUEPRINT_DESCRIPTION_SUCCEEDED";
 export const setBlueprintDescriptionSucceeded = (blueprint) => ({
   type: SET_BLUEPRINT_DESCRIPTION_SUCCEEDED,
   payload: {
@@ -229,7 +240,13 @@ export const setBlueprintDescriptionSucceeded = (blueprint) => ({
 });
 
 export const UPDATE_BLUEPRINT_COMPONENTS = "UPDATE_BLUEPRINT_COMPONENTS";
-export const updateBlueprintComponents = (blueprintName, components, packages, modules, pendingChange) => ({
+export const updateBlueprintComponents = (
+  blueprintName,
+  components,
+  packages,
+  modules,
+  pendingChange
+) => ({
   type: UPDATE_BLUEPRINT_COMPONENTS,
   payload: {
     blueprintName,

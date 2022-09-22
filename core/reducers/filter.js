@@ -21,14 +21,20 @@ const filtersWithRemovedFilter = (filters, filterValue) => {
 };
 
 const updateFilters = (state, filters, filterList) => {
-  return { ...state, [filterList]: { ...state[filterList], filterValues: filters } };
+  return {
+    ...state,
+    [filterList]: { ...state[filterList], filterValues: filters },
+  };
 };
 
 const handlers = {
   [COMPONENTS_FILTER_ADD_VALUE]: (state, action) => {
     return updateFilters(
       state,
-      filtersWithNewFilter(state.components.filterValues, action.payload.filter),
+      filtersWithNewFilter(
+        state.components.filterValues,
+        action.payload.filter
+      ),
       "components"
     );
   },
@@ -36,7 +42,10 @@ const handlers = {
   [COMPONENTS_FILTER_REMOVE_VALUE]: (state, action) => {
     return updateFilters(
       state,
-      filtersWithRemovedFilter(state.components.filterValues, action.payload.filter),
+      filtersWithRemovedFilter(
+        state.components.filterValues,
+        action.payload.filter
+      ),
       "components"
     );
   },
@@ -48,7 +57,10 @@ const handlers = {
   [BLUEPRINTS_FILTER_ADD_VALUE]: (state, action) => {
     return updateFilters(
       state,
-      filtersWithNewFilter(state.components.filterValues, action.payload.filter),
+      filtersWithNewFilter(
+        state.components.filterValues,
+        action.payload.filter
+      ),
       "blueprints"
     );
   },
@@ -56,7 +68,10 @@ const handlers = {
   [BLUEPRINTS_FILTER_REMOVE_VALUE]: (state, action) => {
     return updateFilters(
       state,
-      filtersWithRemovedFilter(state.components.filterValues, action.payload.filter),
+      filtersWithRemovedFilter(
+        state.components.filterValues,
+        action.payload.filter
+      ),
       "blueprints"
     );
   },

@@ -34,7 +34,12 @@ const messages = defineMessages({
 const awsAuth = () => {
   const intl = useIntl();
   return {
-    title: <FormattedMessage id="wizard.aws.authTitle" defaultMessage="Authentication" />,
+    title: (
+      <FormattedMessage
+        id="wizard.aws.authTitle"
+        defaultMessage="Authentication"
+      />
+    ),
     name: "aws-auth",
     substepOf: intl.formatMessage(messages.awsStepsTitle),
     nextStep: "aws-dest",
@@ -44,7 +49,12 @@ const awsAuth = () => {
         name: "aws-access-key",
         className: "pf-u-w-50",
         type: "password",
-        label: <FormattedMessage id="wizard.aws.accessKey.label" defaultMessage="Access key ID" />,
+        label: (
+          <FormattedMessage
+            id="wizard.aws.accessKey.label"
+            defaultMessage="Access key ID"
+          />
+        ),
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.accessKeyPopoverBody, {
@@ -52,7 +62,10 @@ const awsAuth = () => {
             })}
             aria-label={intl.formatMessage(messages.accessKeyPopoverAria)}
           >
-            <Button variant="plain" aria-label={intl.formatMessage(messages.accessKeyPopoverAria)}>
+            <Button
+              variant="plain"
+              aria-label={intl.formatMessage(messages.accessKeyPopoverAria)}
+            >
               <HelpIcon />
             </Button>
           </Popover>
@@ -70,15 +83,28 @@ const awsAuth = () => {
         name: "aws-secret-access-key",
         className: "pf-u-w-50",
         type: "password",
-        label: <FormattedMessage id="wizard.aws.secretAccessKey.label" defaultMessage="Secret access key" />,
+        label: (
+          <FormattedMessage
+            id="wizard.aws.secretAccessKey.label"
+            defaultMessage="Secret access key"
+          />
+        ),
         labelIcon: (
           <Popover
-            bodyContent={intl.formatMessage(messages.secretAccessKeyPopoverBody, {
-              strong: (str) => <strong>{str}</strong>,
-            })}
+            bodyContent={intl.formatMessage(
+              messages.secretAccessKeyPopoverBody,
+              {
+                strong: (str) => <strong>{str}</strong>,
+              }
+            )}
             aria-label={intl.formatMessage(messages.secretAccessKeyPopoverAria)}
           >
-            <Button variant="plain" aria-label={intl.formatMessage(messages.secretAccessKeyPopoverAria)}>
+            <Button
+              variant="plain"
+              aria-label={intl.formatMessage(
+                messages.secretAccessKeyPopoverAria
+              )}
+            >
               <HelpIcon />
             </Button>
           </Popover>

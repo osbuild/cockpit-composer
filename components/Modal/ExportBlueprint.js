@@ -48,17 +48,28 @@ class ExportBlueprint extends React.Component {
           isOpen={this.state.isModalOpen}
           onClose={this.handleModalToggle}
           actions={[
-            <Button key="close" variant="secondary" onClick={this.handleModalToggle}>
+            <Button
+              key="close"
+              variant="secondary"
+              onClick={this.handleModalToggle}
+            >
               <FormattedMessage defaultMessage="Close" />
             </Button>,
-            <Button key="copy" variant="primary" onClick={() => this.handleCopy()}>
+            <Button
+              key="copy"
+              variant="primary"
+              onClick={() => this.handleCopy()}
+            >
               <FormattedMessage defaultMessage="Copy" />
             </Button>,
           ]}
         >
           <form className="form-horizontal">
             <div className="form-group">
-              <label className="col-sm-3 control-label" htmlFor="blueprint-name">
+              <label
+                className="col-sm-3 control-label"
+                htmlFor="blueprint-name"
+              >
                 <FormattedMessage defaultMessage="Blueprint" />
               </label>
               <div className="col-sm-9">
@@ -68,7 +79,10 @@ class ExportBlueprint extends React.Component {
               </div>
             </div>
             <div className="form-group">
-              <label className="col-sm-3 control-label" htmlFor="textInput-modal-markup">
+              <label
+                className="col-sm-3 control-label"
+                htmlFor="textInput-modal-markup"
+              >
                 <FormattedMessage defaultMessage="Export as" />
               </label>
               <div className="col-sm-9">
@@ -78,7 +92,10 @@ class ExportBlueprint extends React.Component {
               </div>
             </div>
             <div className="form-group">
-              <label className="col-sm-3 control-label" htmlFor="textInput2-modal-markup">
+              <label
+                className="col-sm-3 control-label"
+                htmlFor="textInput2-modal-markup"
+              >
                 <FormattedMessage defaultMessage="Contents" />
               </label>
               {(this.props.blueprint.components && (
@@ -92,7 +109,9 @@ class ExportBlueprint extends React.Component {
                     className="form-control"
                     rows="10"
                     value={this.props.blueprint.components
-                      .map((comp) => `${comp.name}-${comp.version}-${comp.release}`)
+                      .map(
+                        (comp) => `${comp.name}-${comp.version}-${comp.release}`
+                      )
                       .join("\n")}
                     onKeyPress={(e) => this.handleEnterKey(e)}
                   />

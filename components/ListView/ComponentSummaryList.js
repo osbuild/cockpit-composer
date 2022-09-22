@@ -33,7 +33,9 @@ class ComponentSummaryList extends React.Component {
   }
 
   render() {
-    const listItems = this.state.showAll ? this.props.listItems : this.props.listItems.slice(0, 5);
+    const listItems = this.state.showAll
+      ? this.props.listItems
+      : this.props.listItems.slice(0, 5);
     const { formatMessage } = this.props.intl;
     return (
       <div className="cc-component-summary__deps pf-l-flex pf-m-column">
@@ -45,7 +47,11 @@ class ComponentSummaryList extends React.Component {
             <span className="badge">{this.props.listItems.length}</span>
           </SplitItem>
           <SplitItem>
-            <Button variant="link" isInline onClick={(e) => this.handleShowAll(e)}>
+            <Button
+              variant="link"
+              isInline
+              onClick={(e) => this.handleShowAll(e)}
+            >
               {this.state.showAll ? (
                 <FormattedMessage defaultMessage="Show less" />
               ) : (
@@ -54,9 +60,15 @@ class ComponentSummaryList extends React.Component {
             </Button>
           </SplitItem>
         </Split>
-        <DataList aria-label={formatMessage(messages.dependencies)} className="cc-m-compact">
+        <DataList
+          aria-label={formatMessage(messages.dependencies)}
+          className="cc-m-compact"
+        >
           {listItems.map((listItem) => (
-            <DataListItem key={listItem.name} aria-labelledby={`${this.props.parent}-${listItem.name}`}>
+            <DataListItem
+              key={listItem.name}
+              aria-labelledby={`${this.props.parent}-${listItem.name}`}
+            >
               <DataListItemRow>
                 <div className="cc-c-data-list__item-icon">
                   <ComponentTypeIcons
@@ -67,7 +79,10 @@ class ComponentSummaryList extends React.Component {
                 </div>
                 <DataListItemCells
                   dataListCells={[
-                    <DataListCell key="primary" id={`${this.props.parent}-${listItem.name}`}>
+                    <DataListCell
+                      key="primary"
+                      id={`${this.props.parent}-${listItem.name}`}
+                    >
                       {listItem.name}
                     </DataListCell>,
                   ]}

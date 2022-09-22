@@ -8,7 +8,8 @@ export function setModalActive(modalActive) {
   };
 }
 
-export const SET_MODAL_CREATE_BLUEPRINT_BLUEPRINT = "SET_MODAL_CREATE_BLUEPRINT_BLUEPRINT";
+export const SET_MODAL_CREATE_BLUEPRINT_BLUEPRINT =
+  "SET_MODAL_CREATE_BLUEPRINT_BLUEPRINT";
 export function setModalCreateBlueprintBlueprint(blueprint) {
   return {
     type: SET_MODAL_CREATE_BLUEPRINT_BLUEPRINT,
@@ -60,7 +61,8 @@ export function setModalDeleteImageVisible(visible) {
   };
 }
 
-export const APPEND_MODAL_PENDING_CHANGES_COMPONENT_UPDATES = "APPEND_MODAL_PENDING_CHANGES_COMPONENT_UPDATES";
+export const APPEND_MODAL_PENDING_CHANGES_COMPONENT_UPDATES =
+  "APPEND_MODAL_PENDING_CHANGES_COMPONENT_UPDATES";
 export function appendModalPendingChangesComponentUpdates(componentUpdate) {
   return {
     type: APPEND_MODAL_PENDING_CHANGES_COMPONENT_UPDATES,
@@ -90,7 +92,8 @@ export function setModalUserAccountVisible(visible) {
   };
 }
 
-export const SET_MODAL_MANAGE_SOURCES_CONTENTS = "SET_MODAL_MANAGE_SOURCES_CONTENTS";
+export const SET_MODAL_MANAGE_SOURCES_CONTENTS =
+  "SET_MODAL_MANAGE_SOURCES_CONTENTS";
 export function setModalManageSourcesContents(sources) {
   return {
     type: SET_MODAL_MANAGE_SOURCES_CONTENTS,
@@ -100,7 +103,8 @@ export function setModalManageSourcesContents(sources) {
   };
 }
 
-export const FETCHING_MODAL_MANAGE_SOURCES_CONTENTS = "FETCHING_MODAL_MANAGE_SOURCES_CONTENTS";
+export const FETCHING_MODAL_MANAGE_SOURCES_CONTENTS =
+  "FETCHING_MODAL_MANAGE_SOURCES_CONTENTS";
 export function fetchingModalManageSourcesContents() {
   return {
     type: FETCHING_MODAL_MANAGE_SOURCES_CONTENTS,
@@ -127,7 +131,8 @@ export function addModalManageSourcesEntry(source) {
   };
 }
 
-export const REMOVE_MODAL_MANAGE_SOURCES_ENTRY = "REMOVE_MODAL_MANAGE_SOURCES_ENTRY";
+export const REMOVE_MODAL_MANAGE_SOURCES_ENTRY =
+  "REMOVE_MODAL_MANAGE_SOURCES_ENTRY";
 export function removeModalManageSourcesEntry(sourceName) {
   return {
     type: REMOVE_MODAL_MANAGE_SOURCES_ENTRY,

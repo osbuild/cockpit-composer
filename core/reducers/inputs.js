@@ -59,8 +59,12 @@ const inputs = (state = [], action) => {
           set: true,
           // if same component, keep it and just add additional properties
           component:
-            state.selectedInput.component.name === action.payload.selectedInput.name
-              ? { ...state.selectedInput.component, ...action.payload.selectedInput }
+            state.selectedInput.component.name ===
+            action.payload.selectedInput.name
+              ? {
+                  ...state.selectedInput.component,
+                  ...action.payload.selectedInput,
+                }
               : { ...action.payload.selectedInput },
         },
       };
@@ -69,7 +73,10 @@ const inputs = (state = [], action) => {
         ...state,
         selectedInput: {
           ...state.selectedInput,
-          component: { ...state.selectedInput.component, dependencies: action.payload.dependencies },
+          component: {
+            ...state.selectedInput.component,
+            dependencies: action.payload.dependencies,
+          },
         },
       };
     case SET_DEP_DETAILS:
@@ -93,7 +100,10 @@ const inputs = (state = [], action) => {
     case SET_SELECTED_INPUT_PARENT:
       return {
         ...state,
-        selectedInput: { ...state.selectedInput, parent: action.payload.selectedInputParent },
+        selectedInput: {
+          ...state.selectedInput,
+          parent: action.payload.selectedInputParent,
+        },
       };
     case DELETE_FILTER:
       return {

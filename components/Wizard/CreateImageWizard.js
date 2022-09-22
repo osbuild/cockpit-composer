@@ -4,7 +4,10 @@ import { connect, useDispatch } from "react-redux";
 import { Button } from "@patternfly/react-core";
 import { FormattedMessage, defineMessages, useIntl } from "react-intl";
 import componentTypes from "@data-driven-forms/react-form-renderer/component-types";
-import { startCompose, fetchingComposeTypes } from "../../core/actions/composes";
+import {
+  startCompose,
+  fetchingComposeTypes,
+} from "../../core/actions/composes";
 import { blueprintsUpdate } from "../../core/actions/blueprints";
 import {
   imageOutput,
@@ -160,7 +163,8 @@ const CreateImageWizard = (props) => {
     formState["blueprint-groups"] = blueprint.groups;
     if (blueprint.customizations) {
       formState["customizations-hostname"] = blueprint.customizations.hostname;
-      formState["customizations-install-device"] = blueprint.customizations.installation_device;
+      formState["customizations-install-device"] =
+        blueprint.customizations.installation_device;
       formState["customizations-users"] = [];
       if (blueprint.customizations.user?.length) {
         blueprint.customizations.user.forEach((user) => {
@@ -180,10 +184,14 @@ const CreateImageWizard = (props) => {
   };
 
   const stateToBlueprint = (formValues) => {
-    const formattedPacks = formValues?.["selected-packages"]?.map((pkg) => ({ name: pkg, version: "*" }));
+    const formattedPacks = formValues?.["selected-packages"]?.map((pkg) => ({
+      name: pkg,
+      version: "*",
+    }));
     const customizations = {};
     customizations.hostname = formValues?.["customizations-hostname"];
-    customizations.installation_device = formValues?.["customizations-install-device"];
+    customizations.installation_device =
+      formValues?.["customizations-install-device"];
     customizations.user = [];
     if (formValues["customizations-users"]?.length) {
       formValues["customizations-users"].forEach((formUser) => {
@@ -217,7 +225,10 @@ const CreateImageWizard = (props) => {
         isDisabled={!props.blueprint?.name || !props.imageTypes?.length}
         aria-label={intl.formatMessage(messages.createImage)}
       >
-        <FormattedMessage id="wizard.createImage" defaultMessage="Create image" />
+        <FormattedMessage
+          id="wizard.createImage"
+          defaultMessage="Create image"
+        />
       </Button>
       {isWizardOpen && (
         <MemoizedImageCreator
@@ -282,7 +293,9 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchingComposeTypes());
   },
   startCompose: (blueprintName, composeType, imageSize, ostree, upload) => {
-    dispatch(startCompose(blueprintName, composeType, imageSize, ostree, upload));
+    dispatch(
+      startCompose(blueprintName, composeType, imageSize, ostree, upload)
+    );
   },
 });
 

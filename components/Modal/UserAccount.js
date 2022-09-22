@@ -2,7 +2,16 @@ import React from "react";
 import { FormattedMessage, defineMessages, injectIntl } from "react-intl";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Button, Checkbox, Form, FormGroup, Modal, ModalVariant, TextInput, TextArea } from "@patternfly/react-core";
+import {
+  Button,
+  Checkbox,
+  Form,
+  FormGroup,
+  Modal,
+  ModalVariant,
+  TextInput,
+  TextArea,
+} from "@patternfly/react-core";
 import { PencilAltIcon } from "@patternfly/react-icons";
 import { setBlueprintUsers } from "../../core/actions/blueprints";
 import "./UserAccount.css";
@@ -18,7 +27,8 @@ const messages = defineMessages({
     defaultMessage: "Paste the contents of your public SSH key file here. ",
   },
   usernameValidChars: {
-    defaultMessage: "The user name can only consist of letters from a-z, digits, dots, dashes and underscores.",
+    defaultMessage:
+      "The user name can only consist of letters from a-z, digits, dots, dashes and underscores.",
   },
   usernameEmpty: {
     defaultMessage: "The user name cannot be empty.",
@@ -93,7 +103,8 @@ class UserAccount extends React.Component {
         name: this.props.user.description,
         password: this.props.user.password,
         passwordConfirm: this.props.user.password,
-        isAdmin: this.props.user.groups && this.props.user.groups[0] === "wheel",
+        isAdmin:
+          this.props.user.groups && this.props.user.groups[0] === "wheel",
         sshKey: this.props.user.key ? this.props.user.key : "",
       });
     }
@@ -112,7 +123,8 @@ class UserAccount extends React.Component {
         name: this.props.user.description,
         password: this.props.user.password,
         passwordConfirm: this.props.user.password,
-        isAdmin: this.props.user.groups && this.props.user.groups[0] === "wheel",
+        isAdmin:
+          this.props.user.groups && this.props.user.groups[0] === "wheel",
         sshKey: this.props.user.key ? this.props.user.key : "",
       });
     } else {
@@ -155,7 +167,10 @@ class UserAccount extends React.Component {
       this.setState({ passwordValidated: "default" });
     } else if (password === this.state.passwordConfirm) {
       this.setState({ passwordValidated: "success" });
-    } else if (this.state.passwordConfirm && password !== this.state.passwordConfirm) {
+    } else if (
+      this.state.passwordConfirm &&
+      password !== this.state.passwordConfirm
+    ) {
       this.setState({ passwordValidated: "error" });
     }
   }
@@ -252,7 +267,11 @@ class UserAccount extends React.Component {
     return (
       <>
         {this.props.edit ? (
-          <Button id="button-edit-user" variant="primary" onClick={this.handleModalOpen}>
+          <Button
+            id="button-edit-user"
+            variant="primary"
+            onClick={this.handleModalOpen}
+          >
             <PencilAltIcon />
           </Button>
         ) : (
@@ -279,7 +298,10 @@ class UserAccount extends React.Component {
                 key="update"
                 variant="primary"
                 onClick={this.handleUpdateUser}
-                isDisabled={!this.state.username || this.state.password !== this.state.passwordConfirm}
+                isDisabled={
+                  !this.state.username ||
+                  this.state.password !== this.state.passwordConfirm
+                }
               >
                 <FormattedMessage defaultMessage="Update" />
               </Button>
@@ -288,7 +310,10 @@ class UserAccount extends React.Component {
                 key="create"
                 variant="primary"
                 onClick={this.handleCreateUser}
-                isDisabled={!this.state.username || this.state.password !== this.state.passwordConfirm}
+                isDisabled={
+                  !this.state.username ||
+                  this.state.password !== this.state.passwordConfirm
+                }
               >
                 <FormattedMessage defaultMessage="Create" />
               </Button>
@@ -305,8 +330,16 @@ class UserAccount extends React.Component {
                 val: <span className="required-pf">*</span>,
               }}
             />
-            <FormGroup label={formatMessage(messages.labelName)} fieldId="user-account-name">
-              <TextInput value={this.state.name} type="text" id="user-account-name" onChange={this.handleSetName} />
+            <FormGroup
+              label={formatMessage(messages.labelName)}
+              fieldId="user-account-name"
+            >
+              <TextInput
+                value={this.state.name}
+                type="text"
+                id="user-account-name"
+                onChange={this.handleSetName}
+              />
             </FormGroup>
             <FormGroup
               label={formatMessage(messages.labelUsername)}
@@ -314,9 +347,12 @@ class UserAccount extends React.Component {
               fieldId="user-account-username"
               helperText={formatMessage(messages.usernameValidChars)}
               helperTextInvalid={
-                (this.state.isUsernameValidChars && formatMessage(messages.usernameValidChars)) ||
-                (this.state.isUsernameEmpty && formatMessage(messages.usernameEmpty)) ||
-                (this.state.isUsernameDuplicate && formatMessage(messages.usernameDuplicate))
+                (this.state.isUsernameValidChars &&
+                  formatMessage(messages.usernameValidChars)) ||
+                (this.state.isUsernameEmpty &&
+                  formatMessage(messages.usernameEmpty)) ||
+                (this.state.isUsernameDuplicate &&
+                  formatMessage(messages.usernameDuplicate))
               }
               validated={this.state.usernameValidated}
             >
@@ -329,7 +365,10 @@ class UserAccount extends React.Component {
                 id="user-account-username"
               />
             </FormGroup>
-            <FormGroup label={formatMessage(messages.labelRole)} fieldId="user-account-role">
+            <FormGroup
+              label={formatMessage(messages.labelRole)}
+              fieldId="user-account-role"
+            >
               <Checkbox
                 className="admin-checkbox"
                 label={formatMessage(messages.labelAdmin)}

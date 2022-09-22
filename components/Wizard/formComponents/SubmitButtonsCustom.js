@@ -30,7 +30,13 @@ const SubmitButtonsCustom = ({ buttonLabels: { cancel, submit, back } }) => {
         <>
           <Button
             variant="primary"
-            isDisabled={!formOptions.valid || formOptions.getState().validating || isSaving || hasSaved || updating}
+            isDisabled={
+              !formOptions.valid ||
+              formOptions.getState().validating ||
+              isSaving ||
+              hasSaved ||
+              updating
+            }
             isLoading={isSaving || updating}
             onClick={() =>
               formOptions.onSubmit("save", {
@@ -40,14 +46,21 @@ const SubmitButtonsCustom = ({ buttonLabels: { cancel, submit, back } }) => {
               })
             }
           >
-            <FormattedMessage id="wizard.review.saveBlueprint" defaultMessage="Save blueprint" />
+            <FormattedMessage
+              id="wizard.review.saveBlueprint"
+              defaultMessage="Save blueprint"
+            />
           </Button>
           <Tooltip content={intl.formatMessage(messages.createImageTooltip)}>
             <Button
               variant="primary"
               type="button"
               isAriaDisabled={
-                !formOptions.valid || formOptions.getState().validating || isSaving || !hasSaved || updating
+                !formOptions.valid ||
+                formOptions.getState().validating ||
+                isSaving ||
+                !hasSaved ||
+                updating
               }
               onClick={() => {
                 formOptions.onSubmit("build", {
@@ -58,11 +71,21 @@ const SubmitButtonsCustom = ({ buttonLabels: { cancel, submit, back } }) => {
               {submit}
             </Button>
           </Tooltip>
-          <Button type="button" variant="secondary" onClick={handlePrev} isDisabled={isSaving || updating}>
+          <Button
+            type="button"
+            variant="secondary"
+            onClick={handlePrev}
+            isDisabled={isSaving || updating}
+          >
             {back}
           </Button>
           <div className="pf-c-wizard__footer-cancel">
-            <Button type="button" variant="link" onClick={formOptions.onCancel} isDisabled={isSaving || updating}>
+            <Button
+              type="button"
+              variant="link"
+              onClick={formOptions.onCancel}
+              isDisabled={isSaving || updating}
+            >
               {cancel}
             </Button>
           </div>

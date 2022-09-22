@@ -1,7 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Title, EmptyState as EmptyStatePF4, EmptyStateIcon, EmptyStateBody } from "@patternfly/react-core";
+import {
+  Title,
+  EmptyState as EmptyStatePF4,
+  EmptyStateIcon,
+  EmptyStateBody,
+} from "@patternfly/react-core";
 
 import "./EmptyState.css";
 
@@ -25,7 +30,10 @@ class EmptyState extends React.PureComponent {
 EmptyState.propTypes = {
   title: PropTypes.string.isRequired,
   message: PropTypes.string,
-  children: PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.element)]),
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.arrayOf(PropTypes.element),
+  ]),
   icon: PropTypes.elementType,
 };
 

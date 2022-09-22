@@ -12,8 +12,16 @@ import {
   DataListItemCells,
   Spinner,
 } from "@patternfly/react-core";
-import { BuilderImageIcon, CheckCircleIcon, ExclamationCircleIcon, PendingIcon } from "@patternfly/react-icons";
-import { deletingCompose, cancellingCompose } from "../../core/actions/composes";
+import {
+  BuilderImageIcon,
+  CheckCircleIcon,
+  ExclamationCircleIcon,
+  PendingIcon,
+} from "@patternfly/react-icons";
+import {
+  deletingCompose,
+  cancellingCompose,
+} from "../../core/actions/composes";
 import {
   setModalStopBuildVisible,
   setModalStopBuildState,
@@ -41,7 +49,8 @@ const messages = defineMessages({
   },
   imageUploads: {
     defaultMessage: "Image uploads",
-    description: "A label for the section that lists the upload actions initiated by the user",
+    description:
+      "A label for the section that lists the upload actions initiated by the user",
   },
   imageActions: {
     defaultMessage: "Actions",
@@ -49,7 +58,8 @@ const messages = defineMessages({
   },
   imageLogs: {
     defaultMessage: "Logs",
-    description: "Log content that gets generated as part of the image creation process",
+    description:
+      "Log content that gets generated as part of the image creation process",
   },
   imageStatusWaiting: {
     defaultMessage: "Image build pending",
@@ -80,7 +90,8 @@ class ListItemImages extends React.Component {
     this.handleDelete = this.handleDelete.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
     this.handleShowModalStop = this.handleShowModalStop.bind(this);
-    this.handleShowModalDeleteImage = this.handleShowModalDeleteImage.bind(this);
+    this.handleShowModalDeleteImage =
+      this.handleShowModalDeleteImage.bind(this);
     this.handleLogsShow = this.handleLogsShow.bind(this);
     this.handleUploadsShow = this.handleUploadsShow.bind(this);
   }
@@ -107,7 +118,10 @@ class ListItemImages extends React.Component {
   handleShowModalStop(e) {
     e.preventDefault();
     e.stopPropagation();
-    this.props.setModalStopBuildState(this.props.listItem.id, this.props.blueprint);
+    this.props.setModalStopBuildState(
+      this.props.listItem.id,
+      this.props.blueprint
+    );
     this.props.setModalStopBuildVisible(true);
   }
 
@@ -115,13 +129,19 @@ class ListItemImages extends React.Component {
   handleShowModalDeleteImage(e) {
     e.preventDefault();
     e.stopPropagation();
-    this.props.setModalDeleteImageState(this.props.listItem.id, this.props.blueprint);
+    this.props.setModalDeleteImageState(
+      this.props.listItem.id,
+      this.props.blueprint
+    );
     this.props.setModalDeleteImageVisible(true);
   }
 
   handleLogsShow() {
     this.setState({ uploadsExpanded: false });
-    this.setState((prevState) => ({ logsExpanded: !prevState.logsExpanded, fetchingLogs: !prevState.logsExpanded }));
+    this.setState((prevState) => ({
+      logsExpanded: !prevState.logsExpanded,
+      fetchingLogs: !prevState.logsExpanded,
+    }));
     composer.getComposeLog(this.props.listItem.id).then(
       (logs) => {
         this.setState({ logsContent: logs, fetchingLogs: false });
@@ -138,7 +158,9 @@ class ListItemImages extends React.Component {
   // consider removing
   handleUploadsShow() {
     this.setState({ logsExpanded: false });
-    this.setState((prevState) => ({ uploadsExpanded: !prevState.uploadsExpanded }));
+    this.setState((prevState) => ({
+      uploadsExpanded: !prevState.uploadsExpanded,
+    }));
   }
 
   render() {
@@ -151,7 +173,12 @@ class ListItemImages extends React.Component {
       case "FINISHED":
         actions = [
           <li key="download">
-            <Button variant="plain" component="a" href={this.props.downloadUrl} data-download>
+            <Button
+              variant="plain"
+              component="a"
+              href={this.props.downloadUrl}
+              data-download
+            >
               <FormattedMessage defaultMessage="Download" />
             </Button>
           </li>,
@@ -170,7 +197,10 @@ class ListItemImages extends React.Component {
       case "RUNNING":
         actions = [
           <li key="stop">
-            <Button variant="plain" onClick={(e) => this.handleShowModalStop(e)}>
+            <Button
+              variant="plain"
+              onClick={(e) => this.handleShowModalStop(e)}
+            >
               <FormattedMessage defaultMessage="Stop" />
             </Button>
           </li>,
@@ -198,9 +228,16 @@ class ListItemImages extends React.Component {
         actions = undefined;
         break;
     }
-    const logs = listItem.queue_status === "FAILED" || listItem.queue_status === "FINISHED";
+    const logs =
+      listItem.queue_status === "FAILED" ||
+      listItem.queue_status === "FINISHED";
     const logsButton = (
-      <div aria-hidden={!logs} className={`pf-c-data-list__item-action ${logs ? "" : "cc-u-not-visible"}`}>
+      <div
+        aria-hidden={!logs}
+        className={`pf-c-data-list__item-action ${
+          logs ? "" : "cc-u-not-visible"
+        }`}
+      >
         <Button
           variant={`${this.state.logsExpanded ? "primary" : "secondary"}`}
           aria-expanded={this.state.logsExpanded}
@@ -217,9 +254,9 @@ class ListItemImages extends React.Component {
         onClick={this.handleUploadsShow}
         isExpanded={this.state.uploadsExpanded}
         id="uploads-toggle"
-        aria-label={`${formatMessage(messages.imageUploads)} ${this.props.blueprint}-${listItem.version}-${
-          listItem.compose_type
-        }`}
+        aria-label={`${formatMessage(messages.imageUploads)} ${
+          this.props.blueprint
+        }-${listItem.version}-${listItem.compose_type}`}
         aria-controls={`${listItem.id}-uploads`}
         // ^ need to fix this attribute value
         aria-hidden={!uploads}
@@ -253,7 +290,9 @@ class ListItemImages extends React.Component {
               <div className="cc-c-status__icon">
                 <CheckCircleIcon className="success-icon" />
               </div>
-              <span data-status>{formatMessage(messages.imageStatusFinished)}</span>
+              <span data-status>
+                {formatMessage(messages.imageStatusFinished)}
+              </span>
             </div>
           );
         case "FAILED":
@@ -268,7 +307,9 @@ class ListItemImages extends React.Component {
         case "STOPPING":
           return (
             <div className="cc-c-status">
-              <em className="text-muted cc-m-full-width">{formatMessage(messages.imageStatusStopping)}</em>
+              <em className="text-muted cc-m-full-width">
+                {formatMessage(messages.imageStatusStopping)}
+              </em>
             </div>
           );
         default:
@@ -277,7 +318,12 @@ class ListItemImages extends React.Component {
     };
     let logsSection;
     if (this.state.logsExpanded) {
-      logsSection = <Logs logContent={this.state.logsContent} fetchingLog={this.state.fetchingLogs} />;
+      logsSection = (
+        <Logs
+          logContent={this.state.logsContent}
+          fetchingLog={this.state.fetchingLogs}
+        />
+      );
     }
     let uploadsSection;
     if (this.state.uploadsExpanded) {
@@ -306,24 +352,34 @@ class ListItemImages extends React.Component {
           <DataListItemCells
             className="cc-m-stacked cc-m-split-on-lg"
             dataListCells={[
-              <DataListCell key="primary" className="pf-l-flex pf-m-column pf-m-space-items-xs">
+              <DataListCell
+                key="primary"
+                className="pf-l-flex pf-m-column pf-m-space-items-xs"
+              >
                 <div className="pf-l-flex__item">
                   <strong id={`${listItem.id}-compose-name`} data-image-name>
-                    {this.props.blueprint}-{listItem.version}-{listItem.compose_type}
+                    {this.props.blueprint}-{listItem.version}-
+                    {listItem.compose_type}
                   </strong>
                 </div>
                 <div className="pf-l-flex__item" data-testid="image-type">
                   <span>{formatMessage(messages.imageType)} </span>
                   <strong data-image-type={listItem.compose_type}>
-                    {imageTypes.length > 0 ? imageTypes.find((type) => type.name === listItem.compose_type).label : ""}
+                    {imageTypes.length > 0
+                      ? imageTypes.find(
+                          (type) => type.name === listItem.compose_type
+                        ).label
+                      : ""}
                   </strong>
                 </div>
                 <div className="pf-l-flex__item">
-                  <span>{formatMessage(messages.imageCreated)}</span> <strong>{formattedTime}</strong>
+                  <span>{formatMessage(messages.imageCreated)}</span>{" "}
+                  <strong>{formattedTime}</strong>
                 </div>
                 {listItem.queue_status === "FINISHED" && (
                   <div className="pf-l-flex__item" data-testid="image-size">
-                    <span>{formatMessage(messages.imageSize)}</span> <strong>{size} GB</strong>
+                    <span>{formatMessage(messages.imageSize)}</span>{" "}
+                    <strong>{size} GB</strong>
                   </div>
                 )}
               </DataListCell>,
@@ -333,7 +389,9 @@ class ListItemImages extends React.Component {
             ]}
           />
           <div
-            className={`pf-c-data-list__item-action ${actions === undefined ? "cc-u-not-visible" : ""}`}
+            className={`pf-c-data-list__item-action ${
+              actions === undefined ? "cc-u-not-visible" : ""
+            }`}
             aria-hidden={actions === undefined}
           >
             <DropdownKebab dropdownItems={actions} />

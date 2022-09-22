@@ -23,7 +23,12 @@ const messages = defineMessages({
 const users = () => {
   const intl = useIntl();
   return {
-    title: <FormattedMessage id="wizard.customizations.usersTitle" defaultMessage="Users" />,
+    title: (
+      <FormattedMessage
+        id="wizard.customizations.usersTitle"
+        defaultMessage="Users"
+      />
+    ),
     name: "users",
     substepOf: intl.formatMessage(messages.customizationsStepsTitle),
     nextStep: "packages",
@@ -42,7 +47,12 @@ const users = () => {
             name: "username",
             className: "pf-u-w-50",
             type: "text",
-            label: <FormattedMessage id="wizard.customizations.username.label" defaultMessage="Username" />,
+            label: (
+              <FormattedMessage
+                id="wizard.customizations.username.label"
+                defaultMessage="Username"
+              />
+            ),
             isRequired: true,
             autoFocus: true,
             validate: [
@@ -56,14 +66,24 @@ const users = () => {
             name: "password",
             className: "pf-u-w-50",
             type: "password",
-            label: <FormattedMessage id="wizard.customizations.password.label" defaultMessage="Password" />,
+            label: (
+              <FormattedMessage
+                id="wizard.customizations.password.label"
+                defaultMessage="Password"
+              />
+            ),
           },
           {
             component: "textarea",
             name: "ssh-key",
             className: "pf-u-w-50 pf-u-h-25vh",
             type: "text",
-            label: <FormattedMessage id="wizard.customizations.sshKey.label" defaultMessage="SSH key" />,
+            label: (
+              <FormattedMessage
+                id="wizard.customizations.sshKey.label"
+                defaultMessage="SSH key"
+              />
+            ),
           },
           {
             component: "checkbox",
@@ -71,7 +91,10 @@ const users = () => {
             className: "pf-u-w-50",
             type: "text",
             label: (
-              <FormattedMessage id="wizard.customizations.serverAdmin.label" defaultMessage="Server administrator" />
+              <FormattedMessage
+                id="wizard.customizations.serverAdmin.label"
+                defaultMessage="Server administrator"
+              />
             ),
           },
         ],

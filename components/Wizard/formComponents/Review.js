@@ -16,7 +16,14 @@ import {
   TextListItem,
   TextListItemVariants,
 } from "@patternfly/react-core";
-import { TableComposable, Thead, Tr, Th, Tbody, Td } from "@patternfly/react-table";
+import {
+  TableComposable,
+  Thead,
+  Tr,
+  Th,
+  Tbody,
+  Td,
+} from "@patternfly/react-table";
 import { CheckIcon } from "@patternfly/react-icons";
 import { FormattedMessage, defineMessages, useIntl } from "react-intl";
 import useFormApi from "@data-driven-forms/react-form-renderer/use-form-api";
@@ -170,7 +177,9 @@ const AWSReview = (formValues) => (
       <DescriptionListTerm>
         <FormattedMessage {...messages.accessKeyID} />
       </DescriptionListTerm>
-      <DescriptionListDescription>{"*".repeat(formValues?.["aws-access-key"].length)}</DescriptionListDescription>
+      <DescriptionListDescription>
+        {"*".repeat(formValues?.["aws-access-key"].length)}
+      </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.secretAccessKey} />
       </DescriptionListTerm>
@@ -180,15 +189,21 @@ const AWSReview = (formValues) => (
       <DescriptionListTerm>
         <FormattedMessage {...messages.imageName} />
       </DescriptionListTerm>
-      <DescriptionListDescription>{formValues?.["aws-image-name"]}</DescriptionListDescription>
+      <DescriptionListDescription>
+        {formValues?.["aws-image-name"]}
+      </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.amazonS3Bucket} />
       </DescriptionListTerm>
-      <DescriptionListDescription>{formValues?.["aws-s3-bucket"]}</DescriptionListDescription>
+      <DescriptionListDescription>
+        {formValues?.["aws-s3-bucket"]}
+      </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.awsRegion} />
       </DescriptionListTerm>
-      <DescriptionListDescription>{formValues?.["aws-region"]}</DescriptionListDescription>
+      <DescriptionListDescription>
+        {formValues?.["aws-region"]}
+      </DescriptionListDescription>
     </DescriptionListGroup>
   </>
 );
@@ -204,7 +219,9 @@ const AzureReview = (formValues) => (
       <DescriptionListTerm>
         <FormattedMessage {...messages.storageAccount} />
       </DescriptionListTerm>
-      <DescriptionListDescription>{formValues?.["azure-storage-account"]}</DescriptionListDescription>
+      <DescriptionListDescription>
+        {formValues?.["azure-storage-account"]}
+      </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.storageAccessKey} />
       </DescriptionListTerm>
@@ -214,11 +231,15 @@ const AzureReview = (formValues) => (
       <DescriptionListTerm>
         <FormattedMessage {...messages.imageName} />
       </DescriptionListTerm>
-      <DescriptionListDescription>{formValues?.["azure-image-name"]}</DescriptionListDescription>
+      <DescriptionListDescription>
+        {formValues?.["azure-image-name"]}
+      </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.storageContainer} />
       </DescriptionListTerm>
-      <DescriptionListDescription>{formValues?.["azure-storage-container"]}</DescriptionListDescription>
+      <DescriptionListDescription>
+        {formValues?.["azure-storage-container"]}
+      </DescriptionListDescription>
     </DescriptionListGroup>
   </>
 );
@@ -234,31 +255,45 @@ const VMWareReview = (formValues) => (
       <DescriptionListTerm>
         <FormattedMessage {...messages.username} />
       </DescriptionListTerm>
-      <DescriptionListDescription>{formValues?.["vmware-username"]}</DescriptionListDescription>
+      <DescriptionListDescription>
+        {formValues?.["vmware-username"]}
+      </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.password} />
       </DescriptionListTerm>
-      <DescriptionListDescription>{"*".repeat(formValues?.["vmware-password"].length)}</DescriptionListDescription>
+      <DescriptionListDescription>
+        {"*".repeat(formValues?.["vmware-password"].length)}
+      </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.imageName} />
       </DescriptionListTerm>
-      <DescriptionListDescription>{formValues?.["vmware-image-name"]}</DescriptionListDescription>
+      <DescriptionListDescription>
+        {formValues?.["vmware-image-name"]}
+      </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.host} />
       </DescriptionListTerm>
-      <DescriptionListDescription>{formValues?.["vmware-host"]}</DescriptionListDescription>
+      <DescriptionListDescription>
+        {formValues?.["vmware-host"]}
+      </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.cluster} />
       </DescriptionListTerm>
-      <DescriptionListDescription>{formValues?.["vmware-cluster"]}</DescriptionListDescription>
+      <DescriptionListDescription>
+        {formValues?.["vmware-cluster"]}
+      </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.dataCenter} />
       </DescriptionListTerm>
-      <DescriptionListDescription>{formValues?.["vmware-data-center"]}</DescriptionListDescription>
+      <DescriptionListDescription>
+        {formValues?.["vmware-data-center"]}
+      </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.dataStore} />
       </DescriptionListTerm>
-      <DescriptionListDescription>{formValues?.["vmware-data-store"]}</DescriptionListDescription>
+      <DescriptionListDescription>
+        {formValues?.["vmware-data-store"]}
+      </DescriptionListDescription>
     </DescriptionListGroup>
   </>
 );
@@ -274,39 +309,57 @@ const ociReview = (formValues) => (
       <DescriptionListTerm>
         <FormattedMessage {...messages.userOCID} />
       </DescriptionListTerm>
-      <DescriptionListDescription>{formValues?.["oci-user-ocid"]}</DescriptionListDescription>
+      <DescriptionListDescription>
+        {formValues?.["oci-user-ocid"]}
+      </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.privateKey} />
       </DescriptionListTerm>
-      <DescriptionListDescription>{formValues?.["oci-private-key-filename"]}</DescriptionListDescription>
+      <DescriptionListDescription>
+        {formValues?.["oci-private-key-filename"]}
+      </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.fingerprint} />
       </DescriptionListTerm>
-      <DescriptionListDescription>{formValues?.["oci-fingerprint"]}</DescriptionListDescription>
+      <DescriptionListDescription>
+        {formValues?.["oci-fingerprint"]}
+      </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.imageName} />
       </DescriptionListTerm>
-      <DescriptionListDescription>{formValues?.["oci-image-name"]}</DescriptionListDescription>
+      <DescriptionListDescription>
+        {formValues?.["oci-image-name"]}
+      </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.ociBucket} />
       </DescriptionListTerm>
-      <DescriptionListDescription>{formValues?.["oci-bucket"]}</DescriptionListDescription>
+      <DescriptionListDescription>
+        {formValues?.["oci-bucket"]}
+      </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.bucketNamespace} />
       </DescriptionListTerm>
-      <DescriptionListDescription>{formValues?.["oci-bucket-namespace"]}</DescriptionListDescription>
+      <DescriptionListDescription>
+        {formValues?.["oci-bucket-namespace"]}
+      </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.bucketRegion} />
       </DescriptionListTerm>
-      <DescriptionListDescription>{formValues?.["oci-bucket-region"]}</DescriptionListDescription>
+      <DescriptionListDescription>
+        {formValues?.["oci-bucket-region"]}
+      </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.bucketCompartment} />
       </DescriptionListTerm>
-      <DescriptionListDescription>{formValues?.["oci-bucket-compartment"]}</DescriptionListDescription>
+      <DescriptionListDescription>
+        {formValues?.["oci-bucket-compartment"]}
+      </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.bucketTenancy} />
       </DescriptionListTerm>
-      <DescriptionListDescription>{formValues?.["oci-bucket-regtenancyion"]}</DescriptionListDescription>
+      <DescriptionListDescription>
+        {formValues?.["oci-bucket-regtenancyion"]}
+      </DescriptionListDescription>
     </DescriptionListGroup>
   </>
 );
@@ -319,7 +372,9 @@ const customizations = (intl, formValues) => (
           <TextListItem component={TextListItemVariants.dt}>
             <FormattedMessage {...messages.hostname} />
           </TextListItem>
-          <TextListItem component={TextListItemVariants.dd}>{formValues?.["customizations-hostname"]}</TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>
+            {formValues?.["customizations-hostname"]}
+          </TextListItem>
         </>
       )}
       {formValues?.["customizations-install-device"] && (
@@ -336,7 +391,10 @@ const customizations = (intl, formValues) => (
         <>
           <TextListItem component={TextListItemVariants.dt}>
             <strong>
-              <FormattedMessage id="customizations.user.title" defaultMessage="Users" />
+              <FormattedMessage
+                id="customizations.user.title"
+                defaultMessage="Users"
+              />
             </strong>
           </TextListItem>
           <TextListItem component={TextListItemVariants.dd} id="user-table">
@@ -360,10 +418,18 @@ const customizations = (intl, formValues) => (
               <Tbody>
                 {formValues?.["customizations-users"].map((user) => (
                   <Tr key={user.username}>
-                    <Td dataLabel={intl.formatMessage(messages.username)}>{user.username}</Td>
-                    <Td dataLabel={intl.formatMessage(messages.password)}>{user.password && <CheckIcon />}</Td>
-                    <Td dataLabel={intl.formatMessage(messages.admin)}>{user["is-admin"] && <CheckIcon />}</Td>
-                    <Td dataLabel={intl.formatMessage(messages.sshKey)}>{user["ssh-key"] && <CheckIcon />}</Td>
+                    <Td dataLabel={intl.formatMessage(messages.username)}>
+                      {user.username}
+                    </Td>
+                    <Td dataLabel={intl.formatMessage(messages.password)}>
+                      {user.password && <CheckIcon />}
+                    </Td>
+                    <Td dataLabel={intl.formatMessage(messages.admin)}>
+                      {user["is-admin"] && <CheckIcon />}
+                    </Td>
+                    <Td dataLabel={intl.formatMessage(messages.sshKey)}>
+                      {user["ssh-key"] && <CheckIcon />}
+                    </Td>
                   </Tr>
                 ))}
               </Tbody>
@@ -417,17 +483,30 @@ const Review = (props) => {
       <DescriptionList isCompact isHorizontal>
         <DescriptionListGroup>
           <DescriptionListTerm>
-            <FormattedMessage id="wizard.review.blueprintName" defaultMessage="Blueprint name" />
+            <FormattedMessage
+              id="wizard.review.blueprintName"
+              defaultMessage="Blueprint name"
+            />
           </DescriptionListTerm>
-          <DescriptionListDescription>{props.blueprintName}</DescriptionListDescription>
+          <DescriptionListDescription>
+            {props.blueprintName}
+          </DescriptionListDescription>
         </DescriptionListGroup>
       </DescriptionList>
-      <Tabs isFilled activeKey={activeTabKey} onSelect={handleTabClick} className="pf-u-my-md">
+      <Tabs
+        isFilled
+        activeKey={activeTabKey}
+        onSelect={handleTabClick}
+        className="pf-u-my-md"
+      >
         <Tab
           eventKey={0}
           title={
             <TabTitleText>
-              <FormattedMessage id="wizard.review.target.title" defaultMessage="Image output" />
+              <FormattedMessage
+                id="wizard.review.target.title"
+                defaultMessage="Image output"
+              />
             </TabTitleText>
           }
           data-testid="tab-target"
@@ -436,25 +515,46 @@ const Review = (props) => {
           <DescriptionList isHorizontal>
             <DescriptionListGroup>
               <DescriptionListTerm>
-                <FormattedMessage id="wizard.review.outputType" defaultMessage="Output type" />
+                <FormattedMessage
+                  id="wizard.review.outputType"
+                  defaultMessage="Output type"
+                />
               </DescriptionListTerm>
-              <DescriptionListDescription>{formValues?.["image-output-type"]}</DescriptionListDescription>
+              <DescriptionListDescription>
+                {formValues?.["image-output-type"]}
+              </DescriptionListDescription>
               <DescriptionListTerm>
-                <FormattedMessage id="wizard.review.imageSize" defaultMessage="Image size" />
+                <FormattedMessage
+                  id="wizard.review.imageSize"
+                  defaultMessage="Image size"
+                />
               </DescriptionListTerm>
-              <DescriptionListDescription>{formValues?.["image-size"]}</DescriptionListDescription>
+              <DescriptionListDescription>
+                {formValues?.["image-size"]}
+              </DescriptionListDescription>
             </DescriptionListGroup>
-            {formValues?.["image-output-type"] === "ami" && formValues?.["image-upload"] && AWSReview(formValues)}
-            {formValues?.["image-output-type"] === "vhd" && formValues?.["image-upload"] && AzureReview(formValues)}
-            {formValues?.["image-output-type"] === "vmdk" && formValues?.["image-upload"] && VMWareReview(formValues)}
-            {formValues?.["image-output-type"] === "oci" && formValues?.["image-upload"] && ociReview(formValues)}
+            {formValues?.["image-output-type"] === "ami" &&
+              formValues?.["image-upload"] &&
+              AWSReview(formValues)}
+            {formValues?.["image-output-type"] === "vhd" &&
+              formValues?.["image-upload"] &&
+              AzureReview(formValues)}
+            {formValues?.["image-output-type"] === "vmdk" &&
+              formValues?.["image-upload"] &&
+              VMWareReview(formValues)}
+            {formValues?.["image-output-type"] === "oci" &&
+              formValues?.["image-upload"] &&
+              ociReview(formValues)}
           </DescriptionList>
         </Tab>
         <Tab
           eventKey={1}
           title={
             <TabTitleText>
-              <FormattedMessage id="wizard.review.packages.title" defaultMessage="Packages" />
+              <FormattedMessage
+                id="wizard.review.packages.title"
+                defaultMessage="Packages"
+              />
             </TabTitleText>
           }
           data-testid="tab-packages"
@@ -471,13 +571,21 @@ const Review = (props) => {
                 <FormattedMessage {...messages.packages} />
               </TextListItem>
               <TextListItem component={TextListItemVariants.dd}>
-                {formValues["selected-packages"] ? formValues["selected-packages"].length : <Spinner size="sm" />}
+                {formValues["selected-packages"] ? (
+                  formValues["selected-packages"].length
+                ) : (
+                  <Spinner size="sm" />
+                )}
               </TextListItem>
               <TextListItem component={TextListItemVariants.dt}>
                 <FormattedMessage {...messages.dependencies} />
               </TextListItem>
               <TextListItem component={TextListItemVariants.dd}>
-                {dependencies || dependencies === 0 ? dependencies : <Spinner size="sm" />}
+                {dependencies || dependencies === 0 ? (
+                  dependencies
+                ) : (
+                  <Spinner size="sm" />
+                )}
               </TextListItem>
             </TextList>
           </TextContent>
@@ -486,7 +594,10 @@ const Review = (props) => {
           eventKey={2}
           title={
             <TabTitleText>
-              <FormattedMessage id="wizard.review.customizations.title" defaultMessage="Customizations" />
+              <FormattedMessage
+                id="wizard.review.customizations.title"
+                defaultMessage="Customizations"
+              />
             </TabTitleText>
           }
           data-testid="tab-custom"

@@ -1,10 +1,17 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import { Button, Popover } from "@patternfly/react-core";
-import { ExternalLinkSquareAltIcon, HelpIcon, OutlinedQuestionCircleIcon } from "@patternfly/react-icons";
+import {
+  ExternalLinkSquareAltIcon,
+  HelpIcon,
+  OutlinedQuestionCircleIcon,
+} from "@patternfly/react-icons";
 import { useIntl, defineMessages, FormattedMessage } from "react-intl";
 
-import { componentTypes, validatorTypes } from "@data-driven-forms/react-form-renderer";
+import {
+  componentTypes,
+  validatorTypes,
+} from "@data-driven-forms/react-form-renderer";
 import nextStepMapper from "./imageOutputStepMapper";
 
 const messages = defineMessages({
@@ -113,7 +120,10 @@ const imageOutput = () => {
         component: componentTypes.CHECKBOX,
         label: (
           <>
-            <FormattedMessage id="wizard.imageOutput.uploadAWS" defaultMessage="Upload to AWS" />
+            <FormattedMessage
+              id="wizard.imageOutput.uploadAWS"
+              defaultMessage="Upload to AWS"
+            />
             <Popover
               bodyContent={intl.formatMessage(messages.awsPopoverBody, {
                 console: (
@@ -167,7 +177,10 @@ const imageOutput = () => {
         component: componentTypes.CHECKBOX,
         label: (
           <>
-            <FormattedMessage id="wizard.imageOutput.uploadAzure" defaultMessage="Upload to Azure" />
+            <FormattedMessage
+              id="wizard.imageOutput.uploadAzure"
+              defaultMessage="Upload to Azure"
+            />
             <Popover
               bodyContent={intl.formatMessage(messages.azurePopoverBody, {
                 azure: (
@@ -206,7 +219,10 @@ const imageOutput = () => {
         component: componentTypes.CHECKBOX,
         label: (
           <>
-            <FormattedMessage id="wizard.imageOutput.uploadVMWare" defaultMessage="Upload to VMWare" />
+            <FormattedMessage
+              id="wizard.imageOutput.uploadVMWare"
+              defaultMessage="Upload to VMWare"
+            />
             <Popover
               bodyContent={intl.formatMessage(messages.vmwarePopoverBody)}
               aria-label={intl.formatMessage(messages.vmwarePopoverAria)}
@@ -231,7 +247,10 @@ const imageOutput = () => {
         component: componentTypes.CHECKBOX,
         label: (
           <>
-            <FormattedMessage id="wizard.imageOutput.uploadOCI" defaultMessage="Upload to OCI" />
+            <FormattedMessage
+              id="wizard.imageOutput.uploadOCI"
+              defaultMessage="Upload to OCI"
+            />
             <Popover
               bodyContent={intl.formatMessage(messages.ociPopoverBody, {
                 console: (
@@ -291,19 +310,31 @@ const imageOutput = () => {
             bodyContent={intl.formatMessage(messages.imageSizePopoverBody)}
             aria-label={intl.formatMessage(messages.imageSizePopoverAria)}
           >
-            <Button variant="plain" aria-label={intl.formatMessage(messages.imageSizePopoverAria)}>
+            <Button
+              variant="plain"
+              aria-label={intl.formatMessage(messages.imageSizePopoverAria)}
+            >
               <HelpIcon />
             </Button>
           </Popover>
         ),
-        helperText: intl.formatMessage(messages.imageSizeInputHelp, { size: "2" }),
+        helperText: intl.formatMessage(messages.imageSizeInputHelp, {
+          size: "2",
+        }),
         initializeOnMount: true,
         initialValue: 2,
         isRequired: true,
         autoFocus: true,
         condition: {
           when: "image-output-type",
-          is: ["", "fedora-iot-commit", "edge-commit", "edge-container", "edge-installer", "image-installer"],
+          is: [
+            "",
+            "fedora-iot-commit",
+            "edge-commit",
+            "edge-container",
+            "edge-installer",
+            "image-installer",
+          ],
           notMatch: true,
         },
         validate: [
@@ -314,7 +345,9 @@ const imageOutput = () => {
             type: validatorTypes.MIN_NUMBER_VALUE,
             includeThreshold: true,
             value: 2,
-            message: intl.formatMessage(messages.imageSizeInputHelp, { size: "2" }),
+            message: intl.formatMessage(messages.imageSizeInputHelp, {
+              size: "2",
+            }),
           },
         ],
         resolveProps: (props, { meta, input }, formOptions) => {
@@ -322,7 +355,9 @@ const imageOutput = () => {
           if (imageType === "ami") {
             return {
               initialValue: 6,
-              helperText: intl.formatMessage(messages.imageSizeInputHelp, { size: "6" }),
+              helperText: intl.formatMessage(messages.imageSizeInputHelp, {
+                size: "6",
+              }),
               validate: [
                 {
                   type: validatorTypes.REQUIRED,
@@ -331,7 +366,9 @@ const imageOutput = () => {
                   type: validatorTypes.MIN_NUMBER_VALUE,
                   includeThreshold: true,
                   value: 6,
-                  message: intl.formatMessage(messages.imageSizeInputHelp, { size: "6" }),
+                  message: intl.formatMessage(messages.imageSizeInputHelp, {
+                    size: "6",
+                  }),
                 },
               ],
             };
@@ -339,7 +376,9 @@ const imageOutput = () => {
           if (imageType === "edge-simplified-installer") {
             return {
               initialValue: 10,
-              helperText: intl.formatMessage(messages.imageSizeInputHelp, { size: "10" }),
+              helperText: intl.formatMessage(messages.imageSizeInputHelp, {
+                size: "10",
+              }),
               validate: [
                 {
                   type: validatorTypes.REQUIRED,
@@ -348,7 +387,9 @@ const imageOutput = () => {
                   type: validatorTypes.MIN_NUMBER_VALUE,
                   includeThreshold: true,
                   value: 6,
-                  message: intl.formatMessage(messages.imageSizeInputHelp, { size: "10" }),
+                  message: intl.formatMessage(messages.imageSizeInputHelp, {
+                    size: "10",
+                  }),
                 },
               ],
             };

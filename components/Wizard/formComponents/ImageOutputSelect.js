@@ -16,7 +16,9 @@ const ImageOutputSelect = ({ label, isRequired, ...props }) => {
   const intl = useIntl();
   const { change, getState } = useFormApi();
   const formValues = getState()?.values;
-  const [outputType, setOutputType] = useState(formValues?.["image-output-type"]);
+  const [outputType, setOutputType] = useState(
+    formValues?.["image-output-type"]
+  );
   const [isOpen, setIsOpen] = useState(false);
   useFieldApi(props);
 
@@ -30,7 +32,11 @@ const ImageOutputSelect = ({ label, isRequired, ...props }) => {
 
   return (
     <>
-      <FormGroup isRequired={isRequired} label={label} data-testid="subscription-activation-key">
+      <FormGroup
+        isRequired={isRequired}
+        label={label}
+        data-testid="subscription-activation-key"
+      >
         <Select
           className="pf-u-w-50"
           onToggle={() => setIsOpen(!isOpen)}

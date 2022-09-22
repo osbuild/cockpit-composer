@@ -74,7 +74,9 @@ const blueprintList = (state = [], action) => {
   switch (action.type) {
     case BLUEPRINTS_ADDED:
       // this logic can be removed once FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED is unneeded
-      return state.some((blueprint) => blueprint.name === action.payload.blueprint.name)
+      return state.some(
+        (blueprint) => blueprint.name === action.payload.blueprint.name
+      )
         ? state
         : [...state, action.payload.blueprint];
     case BLUEPRINTS_UPDATED:
@@ -90,7 +92,9 @@ const blueprintList = (state = [], action) => {
     // Above are useful for unified and should be kept post-cleanup
     // below is a temp workaround until sagas are removed
     case FETCHING_BLUEPRINT_CONTENTS_SUCCEEDED:
-      return state.some((blueprint) => blueprint.name === action.payload.blueprint.name)
+      return state.some(
+        (blueprint) => blueprint.name === action.payload.blueprint.name
+      )
         ? state.map((blueprint) => {
             if (blueprint.name === action.payload.blueprint.name) {
               return {
@@ -107,8 +111,15 @@ const blueprintList = (state = [], action) => {
     // the blueprint contains component data or is not found in the state
     case FETCHING_BLUEPRINTS_SUCCEEDED:
       return action.payload.blueprint.components !== undefined ||
-        !state.some((blueprint) => blueprint.name === action.payload.blueprint.name)
-        ? [...state.filter((blueprint) => blueprint.name !== action.payload.blueprint.name), action.payload.blueprint]
+        !state.some(
+          (blueprint) => blueprint.name === action.payload.blueprint.name
+        )
+        ? [
+            ...state.filter(
+              (blueprint) => blueprint.name !== action.payload.blueprint.name
+            ),
+            action.payload.blueprint,
+          ]
         : state;
     case BLUEPRINT_CONTENTS_FAILURE:
       return [
@@ -168,7 +179,10 @@ const blueprintList = (state = [], action) => {
           if (blueprint.name === action.payload.blueprintName) {
             return {
               ...blueprint,
-              customizations: { ...blueprint.customizations, user: action.payload.users },
+              customizations: {
+                ...blueprint.customizations,
+                user: action.payload.users,
+              },
             };
           }
           return blueprint;
@@ -219,7 +233,10 @@ const blueprintList = (state = [], action) => {
           if (blueprint.name === action.payload.blueprint.name) {
             return {
               ...blueprint,
-              customizations: { ...blueprint.customizations, hostname: action.payload.hostname },
+              customizations: {
+                ...blueprint.customizations,
+                hostname: action.payload.hostname,
+              },
             };
           }
           return blueprint;
@@ -283,7 +300,9 @@ const blueprintList = (state = [], action) => {
         }),
       ];
     case DELETING_BLUEPRINT_SUCCEEDED:
-      return state.filter((blueprint) => blueprint.name !== action.payload.blueprintName);
+      return state.filter(
+        (blueprint) => blueprint.name !== action.payload.blueprintName
+      );
     case SET_COMP_DEPS:
       return [
         ...state.map((blueprint) => {
@@ -293,7 +312,10 @@ const blueprintList = (state = [], action) => {
               components: [
                 ...blueprint.components.map((component) => {
                   if (component.name === action.payload.component.name) {
-                    return { ...component, dependencies: action.payload.component.dependencies };
+                    return {
+                      ...component,
+                      dependencies: action.payload.component.dependencies,
+                    };
                   }
                   return component;
                 }),

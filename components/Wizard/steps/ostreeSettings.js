@@ -46,7 +46,12 @@ const messages = defineMessages({
 const ostreeSettings = () => {
   const intl = useIntl();
   return {
-    title: <FormattedMessage id="wizard.ostree.title" defaultMessage="OSTree settings" />,
+    title: (
+      <FormattedMessage
+        id="wizard.ostree.title"
+        defaultMessage="OSTree settings"
+      />
+    ),
     name: "ostree-settings",
     nextStep: ({ values }) => nextStepMapper(values),
     fields: [
@@ -54,13 +59,21 @@ const ostreeSettings = () => {
         component: "text-field-custom",
         name: "ostree-repo-url",
         className: "pf-u-w-75",
-        label: <FormattedMessage id="wizard.ostree.repoURL.label" defaultMessage="Repository URL" />,
+        label: (
+          <FormattedMessage
+            id="wizard.ostree.repoURL.label"
+            defaultMessage="Repository URL"
+          />
+        ),
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.repoURLPopoverBody)}
             aria-label={intl.formatMessage(messages.repoURLPopoverAria)}
           >
-            <Button variant="plain" aria-label={intl.formatMessage(messages.repoURLPopoverAria)}>
+            <Button
+              variant="plain"
+              aria-label={intl.formatMessage(messages.repoURLPopoverAria)}
+            >
               <HelpIcon />
             </Button>
           </Popover>
@@ -98,13 +111,21 @@ const ostreeSettings = () => {
         component: "text-field-custom",
         name: "ostree-parent-commit",
         className: "pf-u-w-75",
-        label: <FormattedMessage id="wizard.ostree.parentCommit.label" defaultMessage="Parent" />,
+        label: (
+          <FormattedMessage
+            id="wizard.ostree.parentCommit.label"
+            defaultMessage="Parent"
+          />
+        ),
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.parentCommitPopoverBody)}
             aria-label={intl.formatMessage(messages.parentCommitPopoverAria)}
           >
-            <Button variant="plain" aria-label={intl.formatMessage(messages.parentCommitPopoverAria)}>
+            <Button
+              variant="plain"
+              aria-label={intl.formatMessage(messages.parentCommitPopoverAria)}
+            >
               <HelpIcon />
             </Button>
           </Popover>
@@ -118,13 +139,18 @@ const ostreeSettings = () => {
         component: "text-field-custom",
         name: "ostree-ref",
         className: "pf-u-w-75",
-        label: <FormattedMessage id="wizard.ostree.ref.label" defaultMessage="Ref" />,
+        label: (
+          <FormattedMessage id="wizard.ostree.ref.label" defaultMessage="Ref" />
+        ),
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.refPopoverBody)}
             aria-label={intl.formatMessage(messages.refPopoverAria)}
           >
-            <Button variant="plain" aria-label={intl.formatMessage(messages.refPopoverAria)}>
+            <Button
+              variant="plain"
+              aria-label={intl.formatMessage(messages.refPopoverAria)}
+            >
               <HelpIcon />
             </Button>
           </Popover>

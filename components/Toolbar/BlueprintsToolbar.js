@@ -1,8 +1,18 @@
 import React, { useState } from "react";
 import { defineMessages, useIntl } from "react-intl";
 import PropTypes from "prop-types";
-import { Toolbar, ToolbarItem, ToolbarContent, ToolbarGroup, Button, SearchInput } from "@patternfly/react-core";
-import { SortAlphaDownIcon, SortAlphaDownAltIcon } from "@patternfly/react-icons";
+import {
+  Toolbar,
+  ToolbarItem,
+  ToolbarContent,
+  ToolbarGroup,
+  Button,
+  SearchInput,
+} from "@patternfly/react-core";
+import {
+  SortAlphaDownIcon,
+  SortAlphaDownAltIcon,
+} from "@patternfly/react-icons";
 
 import CreateBlueprint from "../Modal/CreateBlueprint";
 import ManageSources from "../Modal/ManageSources";
@@ -68,12 +78,21 @@ const BlueprintsToolbar = (props) => {
             ))}
         </ToolbarItem>
       </ToolbarGroup>
-      <ToolbarGroup variant="button-group" alignment={{ default: "alignRight" }}>
+      <ToolbarGroup
+        variant="button-group"
+        alignment={{ default: "alignRight" }}
+      >
         <ToolbarItem>
-          <CreateBlueprint blueprintNames={props.blueprintNames} disabled={props.errorState} />
+          <CreateBlueprint
+            blueprintNames={props.blueprintNames}
+            disabled={props.errorState}
+          />
         </ToolbarItem>
         <ToolbarItem>
-          <ManageSources manageSources={props.manageSources} disabled={props.errorState} />
+          <ManageSources
+            manageSources={props.manageSources}
+            disabled={props.errorState}
+          />
         </ToolbarItem>
       </ToolbarGroup>
     </>

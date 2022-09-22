@@ -11,7 +11,8 @@ const messages = defineMessages({
   },
   imageNamePopoverBody: {
     id: "wizard.oci.imageName.popoverBody",
-    defaultMessage: "Provide a file name to be used for the image file that will be uploaded.",
+    defaultMessage:
+      "Provide a file name to be used for the image file that will be uploaded.",
   },
   imageNamePopoverAria: {
     id: "wizard.oci.imageName.popoverAria",
@@ -69,7 +70,12 @@ const messages = defineMessages({
 const ociDest = () => {
   const intl = useIntl();
   return {
-    title: <FormattedMessage id="wizard.oci.destTitle" defaultMessage="Destination" />,
+    title: (
+      <FormattedMessage
+        id="wizard.oci.destTitle"
+        defaultMessage="Destination"
+      />
+    ),
     name: "oci-dest",
     substepOf: intl.formatMessage(messages.ociTitle),
     nextStep: "system",
@@ -79,13 +85,21 @@ const ociDest = () => {
         name: "oci-image-name",
         className: "pf-u-w-50",
         type: "text",
-        label: <FormattedMessage id="wizard.oci.imageName.label" defaultMessage="Image name" />,
+        label: (
+          <FormattedMessage
+            id="wizard.oci.imageName.label"
+            defaultMessage="Image name"
+          />
+        ),
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.imageNamePopoverBody)}
             aria-label={intl.formatMessage(messages.imageNamePopoverAria)}
           >
-            <Button variant="plain" aria-label={intl.formatMessage(messages.imageNamePopoverAria)}>
+            <Button
+              variant="plain"
+              aria-label={intl.formatMessage(messages.imageNamePopoverAria)}
+            >
               <HelpIcon />
             </Button>
           </Popover>
@@ -103,7 +117,12 @@ const ociDest = () => {
         name: "oci-bucket",
         className: "pf-u-w-50",
         type: "text",
-        label: <FormattedMessage id="wizard.oci.bucket.label" defaultMessage="OCI bucket" />,
+        label: (
+          <FormattedMessage
+            id="wizard.oci.bucket.label"
+            defaultMessage="OCI bucket"
+          />
+        ),
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.bucketPopoverBody, {
@@ -111,7 +130,10 @@ const ociDest = () => {
             })}
             aria-label={intl.formatMessage(messages.bucketPopoverAria)}
           >
-            <Button variant="plain" aria-label={intl.formatMessage(messages.bucketPopoverAria)}>
+            <Button
+              variant="plain"
+              aria-label={intl.formatMessage(messages.bucketPopoverAria)}
+            >
               <HelpIcon />
             </Button>
           </Popover>
@@ -128,13 +150,21 @@ const ociDest = () => {
         name: "oci-bucket-namespace",
         className: "pf-u-w-50",
         type: "text",
-        label: <FormattedMessage id="wizard.oci.bucketNamespace.label" defaultMessage="Bucket namespace" />,
+        label: (
+          <FormattedMessage
+            id="wizard.oci.bucketNamespace.label"
+            defaultMessage="Bucket namespace"
+          />
+        ),
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.namespacePopoverBody)}
             aria-label={intl.formatMessage(messages.namespacePopoverAria)}
           >
-            <Button variant="plain" aria-label={intl.formatMessage(messages.namespacePopoverAria)}>
+            <Button
+              variant="plain"
+              aria-label={intl.formatMessage(messages.namespacePopoverAria)}
+            >
               <HelpIcon />
             </Button>
           </Popover>
@@ -151,13 +181,21 @@ const ociDest = () => {
         name: "oci-bucket-region",
         className: "pf-u-w-50",
         type: "text",
-        label: <FormattedMessage id="wizard.oci.bucketRegion.label" defaultMessage="Bucket region" />,
+        label: (
+          <FormattedMessage
+            id="wizard.oci.bucketRegion.label"
+            defaultMessage="Bucket region"
+          />
+        ),
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.regionPopoverBody)}
             aria-label={intl.formatMessage(messages.regionPopoverAria)}
           >
-            <Button variant="plain" aria-label={intl.formatMessage(messages.regionPopoverAria)}>
+            <Button
+              variant="plain"
+              aria-label={intl.formatMessage(messages.regionPopoverAria)}
+            >
               <HelpIcon />
             </Button>
           </Popover>
@@ -174,13 +212,21 @@ const ociDest = () => {
         name: "oci-bucket-compartment",
         className: "pf-u-w-50",
         type: "text",
-        label: <FormattedMessage id="wizard.oci.bucketCompartment.label" defaultMessage="Bucket compartment" />,
+        label: (
+          <FormattedMessage
+            id="wizard.oci.bucketCompartment.label"
+            defaultMessage="Bucket compartment"
+          />
+        ),
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.compartmentPopoverBody)}
             aria-label={intl.formatMessage(messages.compartmentPopoverAria)}
           >
-            <Button variant="plain" aria-label={intl.formatMessage(messages.compartmentPopoverAria)}>
+            <Button
+              variant="plain"
+              aria-label={intl.formatMessage(messages.compartmentPopoverAria)}
+            >
               <HelpIcon />
             </Button>
           </Popover>
@@ -197,13 +243,21 @@ const ociDest = () => {
         name: "oci-bucket-tenancy",
         className: "pf-u-w-50",
         type: "text",
-        label: <FormattedMessage id="wizard.oci.bucketTenancy.label" defaultMessage="Bucket tenancy" />,
+        label: (
+          <FormattedMessage
+            id="wizard.oci.bucketTenancy.label"
+            defaultMessage="Bucket tenancy"
+          />
+        ),
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.tenancyPopoverBody)}
             aria-label={intl.formatMessage(messages.tenancyPopoverAria)}
           >
-            <Button variant="plain" aria-label={intl.formatMessage(messages.tenancyPopoverAria)}>
+            <Button
+              variant="plain"
+              aria-label={intl.formatMessage(messages.tenancyPopoverAria)}
+            >
               <HelpIcon />
             </Button>
           </Popover>

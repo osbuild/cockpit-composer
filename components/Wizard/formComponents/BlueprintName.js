@@ -11,7 +11,8 @@ const messages = defineMessages({
   },
   popoverBody: {
     id: "wizard.blueprintName.popover.content",
-    defaultMessage: "This process can take a while. Images are built in the order they are started.",
+    defaultMessage:
+      "This process can take a while. Images are built in the order they are started.",
   },
   popoverAria: {
     id: "wizard.blueprintName.popover.aria",
@@ -28,7 +29,10 @@ const BlueprintName = (props) => {
       isRequired
       labelIcon={
         <Popover bodyContent={intl.formatMessage(messages.popoverBody)}>
-          <Button variant="plain" aria-label={intl.formatMessage(messages.popoverAria)}>
+          <Button
+            variant="plain"
+            aria-label={intl.formatMessage(messages.popoverAria)}
+          >
             <HelpIcon />
           </Button>
         </Popover>

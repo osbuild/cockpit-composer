@@ -22,7 +22,8 @@ import {
 import { alertAdd } from "../actions/alerts";
 
 function* startCompose(action) {
-  const { blueprintName, composeType, imageSize, ostree, uploadSettings } = action.payload;
+  const { blueprintName, composeType, imageSize, ostree, uploadSettings } =
+    action.payload;
   try {
     const imageSizeBytes = imageSize * 1024 * 1024 * 1024;
     const response = yield call(
@@ -33,10 +34,16 @@ function* startCompose(action) {
       ostree,
       uploadSettings
     );
-    const statusResponse = yield call(composer.getComposeStatus, response.build_id);
+    const statusResponse = yield call(
+      composer.getComposeStatus,
+      response.build_id
+    );
     yield put(alertAdd(uuid(), "composeQueued", blueprintName));
     yield put(fetchingComposeSucceeded(statusResponse.uuids[0]));
-    if (statusResponse.uuids[0].queue_status === "WAITING" || statusResponse.uuids[0].queue_status === "RUNNING") {
+    if (
+      statusResponse.uuids[0].queue_status === "WAITING" ||
+      statusResponse.uuids[0].queue_status === "RUNNING"
+    ) {
       yield* pollComposeStatus(statusResponse.uuids[0]);
     }
   } catch (error) {
@@ -50,12 +57,17 @@ function* startCompose(action) {
 function* pollComposeStatus(compose) {
   try {
     let polledCompose = compose;
-    while (polledCompose.queue_status === "WAITING" || polledCompose.queue_status === "RUNNING") {
+    while (
+      polledCompose.queue_status === "WAITING" ||
+      polledCompose.queue_status === "RUNNING"
+    ) {
       const response = yield call(composer.getComposeStatus, polledCompose.id);
       polledCompose = response.uuids[0];
       if (polledCompose) {
         if (polledCompose.queue_status === "FINISHED") {
-          yield put(alertAdd(uuid(), "composeSucceeded", polledCompose.blueprint));
+          yield put(
+            alertAdd(uuid(), "composeSucceeded", polledCompose.blueprint)
+          );
         } else if (polledCompose.queue_status === "FAILED") {
           yield put(alertAdd(uuid(), "composeFailed", polledCompose.blueprint));
         }
@@ -79,7 +91,9 @@ function* fetchComposes() {
     const finished = yield call(composer.getFinishedComposes);
     const failed = yield call(composer.getFailedComposes);
     const composes = queue.concat(finished, failed);
-    yield all(composes.map((compose) => put(fetchingComposeSucceeded(compose))));
+    yield all(
+      composes.map((compose) => put(fetchingComposeSucceeded(compose)))
+    );
     if (queue.length >= 1) {
       yield all(queue.map((compose) => pollComposeStatus(compose)));
     }

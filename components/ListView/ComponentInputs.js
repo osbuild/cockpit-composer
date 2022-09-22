@@ -58,11 +58,21 @@ class ComponentInputs extends React.Component {
                       <Tooltip
                         position={TooltipPosition.top}
                         content={
-                          component.active ? formatMessage(messages.hideDetails) : formatMessage(messages.showDetails)
+                          component.active
+                            ? formatMessage(messages.hideDetails)
+                            : formatMessage(messages.showDetails)
                         }
                       >
-                        <a href="#" onClick={(e) => this.props.handleComponentDetails(e, component)}>
-                          <strong id={`${component.name}-input`} data-input-name>
+                        <a
+                          href="#"
+                          onClick={(e) =>
+                            this.props.handleComponentDetails(e, component)
+                          }
+                        >
+                          <strong
+                            id={`${component.name}-input`}
+                            data-input-name
+                          >
                             {component.name}
                           </strong>
                         </a>
@@ -73,17 +83,23 @@ class ComponentInputs extends React.Component {
                 ]}
               />
               <div className="pf-c-data-list__item-action">
-                {(component.inBlueprint === true && component.userSelected === true && (
-                  <Tooltip position={TooltipPosition.top} content={formatMessage(messages.removeComponent)}>
-                    <a
-                      href="#"
-                      className="btn btn-link"
-                      onClick={(e) => this.props.handleRemoveComponent(e, component.name)}
+                {(component.inBlueprint === true &&
+                  component.userSelected === true && (
+                    <Tooltip
+                      position={TooltipPosition.top}
+                      content={formatMessage(messages.removeComponent)}
                     >
-                      <MinusIcon />
-                    </a>
-                  </Tooltip>
-                )) || (
+                      <a
+                        href="#"
+                        className="btn btn-link"
+                        onClick={(e) =>
+                          this.props.handleRemoveComponent(e, component.name)
+                        }
+                      >
+                        <MinusIcon />
+                      </a>
+                    </Tooltip>
+                  )) || (
                   <Tooltip
                     position={TooltipPosition.top}
                     content={
@@ -96,7 +112,9 @@ class ComponentInputs extends React.Component {
                     <a
                       href="#"
                       className="btn btn-link"
-                      onClick={(e) => this.props.handleAddComponent(e, component, "*")}
+                      onClick={(e) =>
+                        this.props.handleAddComponent(e, component, "*")
+                      }
                     >
                       <PlusIcon />
                     </a>

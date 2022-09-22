@@ -24,7 +24,10 @@ const modalStopBuild = (state = [], action) => {
         },
       };
     case SET_MODAL_STOP_BUILD_VISIBLE:
-      return { ...state, stopBuild: { ...state.stopBuild, visible: action.payload.visible } };
+      return {
+        ...state,
+        stopBuild: { ...state.stopBuild, visible: action.payload.visible },
+      };
     default:
       return state;
   }
@@ -42,7 +45,10 @@ const modalDeleteImage = (state = [], action) => {
         },
       };
     case SET_MODAL_DELETE_IMAGE_VISIBLE:
-      return { ...state, deleteImage: { ...state.deleteImage, visible: action.payload.visible } };
+      return {
+        ...state,
+        deleteImage: { ...state.deleteImage, visible: action.payload.visible },
+      };
     default:
       return state;
   }
@@ -51,9 +57,15 @@ const modalDeleteImage = (state = [], action) => {
 const modalUserAccount = (state = [], action) => {
   switch (action.type) {
     case SET_MODAL_CREATE_USER_VISIBLE:
-      return { ...state, userAccount: { ...state.userAccount, visible: action.payload.visible } };
+      return {
+        ...state,
+        userAccount: { ...state.userAccount, visible: action.payload.visible },
+      };
     case SET_MODAL_CREATE_USER_DATA:
-      return { ...state, userAccount: { ...state.userAccount, ...action.payload.data } };
+      return {
+        ...state,
+        userAccount: { ...state.userAccount, ...action.payload.data },
+      };
     default:
       return state;
   }
@@ -72,13 +84,23 @@ const modalManageSources = (state = [], action) => {
         },
       };
     case ADD_MODAL_MANAGE_SOURCES_ENTRY:
-      return { ...state, manageSources: { ...state.manageSources, fetchingSources: true } };
+      return {
+        ...state,
+        manageSources: { ...state.manageSources, fetchingSources: true },
+      };
     case REMOVE_MODAL_MANAGE_SOURCES_ENTRY:
-      return { ...state, manageSources: { ...state.manageSources, fetchingSources: true } };
+      return {
+        ...state,
+        manageSources: { ...state.manageSources, fetchingSources: true },
+      };
     case MODAL_MANAGE_SOURCES_FAILURE:
       return {
         ...state,
-        manageSources: { ...state.manageSources, error: action.payload.error, fetchingSources: false },
+        manageSources: {
+          ...state.manageSources,
+          error: action.payload.error,
+          fetchingSources: false,
+        },
       };
     default:
       return state;

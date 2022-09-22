@@ -13,7 +13,10 @@ class Logs extends React.PureComponent {
           <Loading />
         </Bullseye>
       );
-    } else logSection = <pre className="pf-u-px-lg pf-u-py-md">{this.props.logContent}</pre>;
+    } else
+      logSection = (
+        <pre className="pf-u-px-lg pf-u-py-md">{this.props.logContent}</pre>
+      );
 
     return <>{logSection}</>;
   }
