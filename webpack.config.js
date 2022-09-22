@@ -4,7 +4,6 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const ESLintPlugin = require("eslint-webpack-plugin");
 const babelConfig = require("./babel.config");
 
 // absolute path disables recursive module resolution, so build a relative one
@@ -45,9 +44,6 @@ const plugins = [
   new MiniCssExtractPlugin({
     filename: "[name].css",
     chunkFilename: "[name].bundle.css",
-  }),
-  new ESLintPlugin({
-    files: ["components/**/*.js, core/**/*.js, pages/**/*.js, data/**/*.js"],
   }),
 ];
 
