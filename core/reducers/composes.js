@@ -26,7 +26,9 @@ const compose = (state = [], action) => {
         ...state,
         composeList: [
           ...state.composeList.map((compose) =>
-            compose.id === action.payload.compose.id ? action.payload.compose : compose
+            compose.id === action.payload.compose.id
+              ? action.payload.compose
+              : compose
           ),
         ],
       };
@@ -35,7 +37,10 @@ const compose = (state = [], action) => {
       return {
         ...state,
         fetchingComposes: false,
-        composeList: removeCompose(state.composeList, action.payload.compose.id).concat(action.payload.compose),
+        composeList: removeCompose(
+          state.composeList,
+          action.payload.compose.id
+        ).concat(action.payload.compose),
       };
     case FETCHING_QUEUE_SUCCEEDED:
       // Replace any existing queue with new queue
@@ -43,7 +48,11 @@ const compose = (state = [], action) => {
     case CLEAR_QUEUE:
       return { ...state, queue: [], queueFetched: false };
     case COMPOSES_FAILURE:
-      return { ...state, errorState: action.payload.error, fetchingComposes: false };
+      return {
+        ...state,
+        errorState: action.payload.error,
+        fetchingComposes: false,
+      };
     case DELETING_COMPOSE_SUCCEEDED:
       return {
         ...state,

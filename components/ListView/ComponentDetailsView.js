@@ -1,7 +1,14 @@
 import React from "react";
 import { FormattedMessage, defineMessages, injectIntl } from "react-intl";
 import PropTypes from "prop-types";
-import { Breadcrumb, BreadcrumbItem, Tabs, Tab, Tooltip, TooltipPosition } from "@patternfly/react-core";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  Tabs,
+  Tab,
+  Tooltip,
+  TooltipPosition,
+} from "@patternfly/react-core";
 import { connect } from "react-redux";
 import { TimesIcon } from "@patternfly/react-icons";
 import ComponentTypeIcons from "./ComponentTypeIcons";
@@ -9,7 +16,10 @@ import DependencyListView from "./DependencyListView";
 import LabelWithBadge from "./LabelWithBadge";
 import Loading from "../Loading/Loading";
 import EmptyState from "../EmptyState/EmptyState";
-import { fetchingInputDetails, fetchingInputDeps } from "../../core/actions/inputs";
+import {
+  fetchingInputDetails,
+  fetchingInputDeps,
+} from "../../core/actions/inputs";
 
 const messages = defineMessages({
   details: {
@@ -75,8 +85,12 @@ class ComponentDetailsView extends React.Component {
     let index = this.state.selectedBuildIndex;
     if (component.builds !== undefined && index === undefined) {
       if (component.userSelected === true) {
-        const selectedVersion = selectedComponents.find((selected) => selected.name === component.name).version;
-        const selectedBuild = component.builds.filter((obj) => obj.version === selectedVersion)[0];
+        const selectedVersion = selectedComponents.find(
+          (selected) => selected.name === component.name
+        ).version;
+        const selectedBuild = component.builds.filter(
+          (obj) => obj.version === selectedVersion
+        )[0];
         index = component.builds.indexOf(selectedBuild);
         if (index === -1) {
           index = 0;
@@ -119,7 +133,9 @@ class ComponentDetailsView extends React.Component {
   handleChildComponent(event, component) {
     // user clicks a list item in the dependencies tab
     this.props.setSelectedInput(component);
-    const updatedParents = this.props.componentParent.concat(this.props.component);
+    const updatedParents = this.props.componentParent.concat(
+      this.props.component
+    );
     this.props.setSelectedInputParent(updatedParents);
     event.preventDefault();
     event.stopPropagation();
@@ -162,7 +178,10 @@ class ComponentDetailsView extends React.Component {
               </BreadcrumbItem>
               {componentParent.map((parent, i) => (
                 <BreadcrumbItem key={parent.name}>
-                  <a href="#" onClick={(e) => this.handleParentComponent(e, parent, i)}>
+                  <a
+                    href="#"
+                    onClick={(e) => this.handleParentComponent(e, parent, i)}
+                  >
                     {parent.name}
                   </a>
                 </BreadcrumbItem>
@@ -186,12 +205,19 @@ class ComponentDetailsView extends React.Component {
           <div className="cmpsr-header__actions">
             <ul className="list-inline">
               {handleAddComponent !== undefined &&
-                ((component.inBlueprint && !component.userSelected) || !component.inBlueprint) && (
+                ((component.inBlueprint && !component.userSelected) ||
+                  !component.inBlueprint) && (
                   <li>
                     <button
                       className="btn btn-primary add"
                       type="button"
-                      onClick={(e) => handleAddComponent(e, component, component.builds[selectedBuildIndex].version)}
+                      onClick={(e) =>
+                        handleAddComponent(
+                          e,
+                          component,
+                          component.builds[selectedBuildIndex].version
+                        )
+                      }
                     >
                       <FormattedMessage defaultMessage="Add" />
                     </button>
@@ -202,33 +228,54 @@ class ComponentDetailsView extends React.Component {
                 component.userSelected &&
                 component.builds !== undefined &&
                 selectedBuildIndex !== undefined &&
-                component.builds[selectedBuildIndex].version !== this.state.savedVersion && (
+                component.builds[selectedBuildIndex].version !==
+                  this.state.savedVersion && (
                   <li>
                     <button
                       className="btn btn-primary"
                       type="button"
-                      onClick={(e) => handleUpdateComponent(e, component, component.builds[selectedBuildIndex].version)}
+                      onClick={(e) =>
+                        handleUpdateComponent(
+                          e,
+                          component,
+                          component.builds[selectedBuildIndex].version
+                        )
+                      }
                     >
                       <FormattedMessage defaultMessage="Apply change" />
                     </button>
                   </li>
                 )}
-              {handleRemoveComponent !== undefined && component.inBlueprint && component.userSelected && (
-                <li>
-                  <Tooltip position={TooltipPosition.bottom} content={formatMessage(messages.removeFromBlueprint)}>
-                    <button
-                      className="btn btn-default"
-                      type="button"
-                      onClick={(e) => handleRemoveComponent(e, component.name)}
+              {handleRemoveComponent !== undefined &&
+                component.inBlueprint &&
+                component.userSelected && (
+                  <li>
+                    <Tooltip
+                      position={TooltipPosition.bottom}
+                      content={formatMessage(messages.removeFromBlueprint)}
                     >
-                      <FormattedMessage defaultMessage="Remove" />
-                    </button>
-                  </Tooltip>
-                </li>
-              )}
+                      <button
+                        className="btn btn-default"
+                        type="button"
+                        onClick={(e) =>
+                          handleRemoveComponent(e, component.name)
+                        }
+                      >
+                        <FormattedMessage defaultMessage="Remove" />
+                      </button>
+                    </Tooltip>
+                  </li>
+                )}
               <li>
-                <Tooltip position={TooltipPosition.bottom} content={formatMessage(messages.hideDetails)}>
-                  <button type="button" className="close" onClick={(e) => this.handleCloseDetails(e)}>
+                <Tooltip
+                  position={TooltipPosition.bottom}
+                  content={formatMessage(messages.hideDetails)}
+                >
+                  <button
+                    type="button"
+                    className="close"
+                    onClick={(e) => this.handleCloseDetails(e)}
+                  >
                     <TimesIcon />
                   </button>
                 </Tooltip>
@@ -247,34 +294,40 @@ class ComponentDetailsView extends React.Component {
             </span>
           </h3>
         </div>
-        {handleUpdateComponent !== undefined && component.builds !== undefined && component.builds.length > 1 && (
-          <div className="cmpsr-component-details__form">
-            <h4>
-              <FormattedMessage defaultMessage="Component options" />
-            </h4>
-            <form className="form-horizontal">
-              <div className="form-group">
-                <label className="col-sm-3 col-md-2 control-label" htmlFor="cmpsr-compon__version-select">
-                  <FormattedMessage defaultMessage="Version" />
-                </label>
-                <div className="col-sm-8 col-md-9">
-                  <select
-                    id="cmpsr-compon__version-select"
-                    className="form-control"
-                    value={selectedBuildIndex}
-                    onChange={this.handleVersionSelect}
+        {handleUpdateComponent !== undefined &&
+          component.builds !== undefined &&
+          component.builds.length > 1 && (
+            <div className="cmpsr-component-details__form">
+              <h4>
+                <FormattedMessage defaultMessage="Component options" />
+              </h4>
+              <form className="form-horizontal">
+                <div className="form-group">
+                  <label
+                    className="col-sm-3 col-md-2 control-label"
+                    htmlFor="cmpsr-compon__version-select"
                   >
-                    {component.builds.map((build, i) => (
-                      <option key={build.version} value={i}>
-                        {build.version} {build.version === "*" && "(latest version)"}
-                      </option>
-                    ))}
-                  </select>
+                    <FormattedMessage defaultMessage="Version" />
+                  </label>
+                  <div className="col-sm-8 col-md-9">
+                    <select
+                      id="cmpsr-compon__version-select"
+                      className="form-control"
+                      value={selectedBuildIndex}
+                      onChange={this.handleVersionSelect}
+                    >
+                      {component.builds.map((build, i) => (
+                        <option key={build.version} value={i}>
+                          {build.version}{" "}
+                          {build.version === "*" && "(latest version)"}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
-              </div>
-            </form>
-          </div>
-        )}
+              </form>
+            </div>
+          )}
         <div>
           <Tabs id="blueprint-tabs" defaultActiveKey="details">
             <Tab eventKey="details" title={formatMessage(messages.details)}>
@@ -288,13 +341,19 @@ class ComponentDetailsView extends React.Component {
                 <dt>
                   <FormattedMessage defaultMessage="Version" />
                 </dt>
-                {((component.builds === undefined || selectedBuildIndex === undefined) && (
+                {((component.builds === undefined ||
+                  selectedBuildIndex === undefined) && (
                   <dd>{component.version}</dd>
-                )) || <dd>{component.builds[selectedBuildIndex].depsolveVersion}</dd>}
+                )) || (
+                  <dd>
+                    {component.builds[selectedBuildIndex].depsolveVersion}
+                  </dd>
+                )}
                 <dt>
                   <FormattedMessage defaultMessage="Release" />
                 </dt>
-                {((component.builds === undefined || selectedBuildIndex === undefined) && (
+                {((component.builds === undefined ||
+                  selectedBuildIndex === undefined) && (
                   <dd>{component.release}</dd>
                 )) || <dd>{component.builds[selectedBuildIndex].release}</dd>}
                 <dt>
@@ -302,7 +361,11 @@ class ComponentDetailsView extends React.Component {
                 </dt>
                 {(component.homepage !== null && (
                   <dd>
-                    <a target="_blank" rel="noopener noreferrer" href={component.homepage}>
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={component.homepage}
+                    >
                       {component.homepage}
                     </a>
                   </dd>
@@ -310,13 +373,21 @@ class ComponentDetailsView extends React.Component {
               </dl>
             </Tab>
             {(dependencies === undefined && (
-              <Tab eventKey="dependencies" title={formatMessage(messages.dependencies)}>
+              <Tab
+                eventKey="dependencies"
+                title={formatMessage(messages.dependencies)}
+              >
                 <Loading />
               </Tab>
             )) || (
               <Tab
                 eventKey="dependencies"
-                title={<LabelWithBadge title={formatMessage(messages.dependencies)} badge={dependencies.length} />}
+                title={
+                  <LabelWithBadge
+                    title={formatMessage(messages.dependencies)}
+                    badge={dependencies.length}
+                  />
+                }
               >
                 {(dependencies.length === 0 && (
                   <EmptyState
@@ -399,4 +470,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(null, mapDispatchToProps)(injectIntl(ComponentDetailsView));
+export default connect(
+  null,
+  mapDispatchToProps
+)(injectIntl(ComponentDetailsView));

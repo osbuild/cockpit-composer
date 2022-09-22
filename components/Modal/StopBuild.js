@@ -54,13 +54,25 @@ class StopBuild extends React.Component {
                   }}
                 />
               </p>
-              <FormattedMessage defaultMessage="The build process cannot resume after it stops." tagName="p" />
+              <FormattedMessage
+                defaultMessage="The build process cannot resume after it stops."
+                tagName="p"
+              />
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-default" data-dismiss="modal">
+              <button
+                type="button"
+                className="btn btn-default"
+                data-dismiss="modal"
+              >
                 <FormattedMessage defaultMessage="Cancel" />
               </button>
-              <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.handleCancel}>
+              <button
+                type="button"
+                className="btn btn-primary"
+                data-dismiss="modal"
+                onClick={this.handleCancel}
+              >
                 <FormattedMessage defaultMessage="Stop build" />
               </button>
             </div>

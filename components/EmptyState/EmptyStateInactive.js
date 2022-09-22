@@ -60,7 +60,10 @@ class EmptyStateInactive extends React.Component {
       .then(() => this.props.fetchingBlueprints())
       .catch((err) => {
         this.setState({ enableServiceFailure: err.message });
-        console.error("Failed to start osbuild-composer.socket:", JSON.stringify(err));
+        console.error(
+          "Failed to start osbuild-composer.socket:",
+          JSON.stringify(err)
+        );
       });
   }
 
@@ -85,29 +88,40 @@ class EmptyStateInactive extends React.Component {
           </Tooltip>
         }
       >
-        <Button className="disabled cmpsr-has-tooltip">{formatMessage(messages.errorInactivePrimary)}</Button>
+        <Button className="disabled cmpsr-has-tooltip">
+          {formatMessage(messages.errorInactivePrimary)}
+        </Button>
       </OverlayTrigger>
     ) : (
-      <Button onClick={this.startService}>{formatMessage(messages.errorInactivePrimary)}</Button>
+      <Button onClick={this.startService}>
+        {formatMessage(messages.errorInactivePrimary)}
+      </Button>
     );
     return (
       <>
         {this.state.enableServiceFailure !== "" && (
           <Alert className="cmpsr-alert-blank-slate">
-            <strong>{formatMessage(messages.alertTitleEnableServiceFailure)}</strong>
+            <strong>
+              {formatMessage(messages.alertTitleEnableServiceFailure)}
+            </strong>
             {` `}
             {formatMessage(messages.alertMessagePreface)}
             {`: `}
             {this.state.enableServiceFailure}
           </Alert>
         )}
-        <EmptyState title={formatMessage(messages.errorInactiveTitle)} icon={ExclamationCircleIcon}>
+        <EmptyState
+          title={formatMessage(messages.errorInactiveTitle)}
+          icon={ExclamationCircleIcon}
+        >
           <div className="checkbox">
             <label>
               <input
                 type="checkbox"
                 checked={this.state.enableService}
-                onChange={(e) => this.setState({ enableService: e.target.checked })}
+                onChange={(e) =>
+                  this.setState({ enableService: e.target.checked })
+                }
                 disabled={!allowed}
               />
               {formatMessage(messages.errorInactiveCheckbox)}
@@ -115,7 +129,9 @@ class EmptyStateInactive extends React.Component {
           </div>
           <EmptyStatePrimary>{startButton}</EmptyStatePrimary>
           <EmptyStateSecondaryActions>
-            <Button onClick={this.goToServicePage}>{formatMessage(messages.errorInactiveSecondary)}</Button>
+            <Button onClick={this.goToServicePage}>
+              {formatMessage(messages.errorInactiveSecondary)}
+            </Button>
           </EmptyStateSecondaryActions>
         </EmptyState>
       </>

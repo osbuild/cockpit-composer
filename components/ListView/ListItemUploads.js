@@ -36,7 +36,8 @@ const messages = defineMessages({
   },
   uploadLogs: {
     defaultMessage: "Logs",
-    description: "Log content that gets generated as part of the upload process",
+    description:
+      "Log content that gets generated as part of the upload process",
   },
   uploadStatusWaiting: {
     defaultMessage: "Upload pending",
@@ -68,7 +69,9 @@ class ListItemUploads extends React.PureComponent {
       azure: "Azure",
       vmware: "VMWare",
     };
-    return uploadTypeLabels[uploadType] !== undefined ? uploadTypeLabels[uploadType] : uploadType;
+    return uploadTypeLabels[uploadType] !== undefined
+      ? uploadTypeLabels[uploadType]
+      : uploadType;
   }
 
   render() {
@@ -76,7 +79,9 @@ class ListItemUploads extends React.PureComponent {
     const { formatMessage } = this.props.intl;
     const timestamp = new Date(upload.creation_time * 1000);
     const formattedTime = timestamp.toDateString();
-    const logsButton = <Button variant="secondary">{formatMessage(messages.uploadLogs)}</Button>;
+    const logsButton = (
+      <Button variant="secondary">{formatMessage(messages.uploadLogs)}</Button>
+    );
     const uploadStatus = () => {
       switch (upload.status) {
         case "WAITING":
@@ -136,25 +141,36 @@ class ListItemUploads extends React.PureComponent {
           <DataListItemCells
             className="cc-m-stacked cc-m-split-on-lg"
             dataListCells={[
-              <DataListCell key="primary" className="pf-l-flex pf-m-column pf-m-space-items-xs">
+              <DataListCell
+                key="primary"
+                className="pf-l-flex pf-m-column pf-m-space-items-xs"
+              >
                 {upload.image_name && upload.image_name !== "" && (
                   <div className="pf-l-flex__item">
                     <span>{formatMessage(messages.imageName)}</span>{" "}
-                    <strong id={`${upload.uuid}-name`}>{upload.image_name}</strong>
+                    <strong id={`${upload.uuid}-name`}>
+                      {upload.image_name}
+                    </strong>
                   </div>
                 )}
                 <div className="pf-l-flex__item">
                   <span>{formatMessage(messages.uploadType)}</span>{" "}
-                  <strong id={`${upload.uuid}-type`}>{this.uploadProviderToLabel(upload.provider_name)}</strong>
+                  <strong id={`${upload.uuid}-type`}>
+                    {this.uploadProviderToLabel(upload.provider_name)}
+                  </strong>
                 </div>
                 <div className="pf-l-flex__item">
-                  <span>{formatMessage(messages.timeStarted)}</span> <strong>{formattedTime}</strong>
+                  <span>{formatMessage(messages.timeStarted)}</span>{" "}
+                  <strong>{formattedTime}</strong>
                 </div>
               </DataListCell>,
               <DataListCell key="status">{uploadStatus()}</DataListCell>,
             ]}
           />
-          <div aria-hidden="true" className="pf-c-data-list__item-action cc-u-not-visible">
+          <div
+            aria-hidden="true"
+            className="pf-c-data-list__item-action cc-u-not-visible"
+          >
             {logsButton}
           </div>
         </DataListItemRow>

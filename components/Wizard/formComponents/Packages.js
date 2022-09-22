@@ -15,7 +15,12 @@ import {
   Spinner,
   TextContent,
 } from "@patternfly/react-core";
-import { AngleDoubleLeftIcon, AngleLeftIcon, AngleDoubleRightIcon, AngleRightIcon } from "@patternfly/react-icons";
+import {
+  AngleDoubleLeftIcon,
+  AngleLeftIcon,
+  AngleDoubleRightIcon,
+  AngleRightIcon,
+} from "@patternfly/react-icons";
 import { FormattedMessage, defineMessages, useIntl } from "react-intl";
 import api from "../../../core/api";
 import * as composer from "../../../core/composer";
@@ -87,7 +92,7 @@ const messages = defineMessages({
   },
 });
 
-const Packages = ({ defaultArch, ...props }) => {
+const Packages = ({ ...props }) => {
   const { change, getState } = useFormApi();
   const { input } = useFieldApi(props);
   const intl = useIntl();
@@ -96,22 +101,30 @@ const Packages = ({ defaultArch, ...props }) => {
   const [filterChosen, setFilterChosen] = useState(undefined);
   const [packagesAvailable, setPackagesAvailable] = useState([]);
   const [packagesAvailableFound, setPackagesAvailableFound] = useState(true);
-  const [packagesAvailableLoading, setPackagesAvailableLoading] = useState(false);
+  const [packagesAvailableLoading, setPackagesAvailableLoading] =
+    useState(false);
   const [packagesChosen, setPackagesChosen] = useState([]);
   const [packagesChosenFound, setPackagesChosenFound] = useState(true);
   const [packagesChosenLoading, setPackagesChosenLoading] = useState(false);
   const [focus, setFocus] = useState("");
-  const [totalPackagesAvailable, setTotalPackagesAvailable] = useState(undefined);
+  const [totalPackagesAvailable, setTotalPackagesAvailable] =
+    useState(undefined);
   const [packagesAvailablePage, setPackagesAvailablePage] = useState(1);
   const [packagesAvailablePerPage, setPackagesAvailablePerPage] = useState(100);
-  const [additionalPackagesAvailableLoading, setAdditionalPackagesAvailableLoading] = useState(false);
+  const [
+    additionalPackagesAvailableLoading,
+    setAdditionalPackagesAvailableLoading,
+  ] = useState(false);
 
   // this effect only triggers on mount
   useEffect(() => {
     const fetchPackagesChosen = async (packages) => {
       setPackagesChosenLoading(true);
       const packageInfo = await composer.getComponentInfo(packages);
-      const selectedPackages = packageInfo.map((pkg) => ({ name: pkg.name, summary: pkg.summary }));
+      const selectedPackages = packageInfo.map((pkg) => ({
+        name: pkg.name,
+        summary: pkg.summary,
+      }));
       setPackagesChosenSorted(selectedPackages);
       setPackagesChosenLoading(false);
     };
@@ -178,7 +191,9 @@ const Packages = ({ defaultArch, ...props }) => {
   });
 
   const setPackagesAvailableSorted = (packageList) => {
-    const sortResults = packageList.sort(alphabeticalComparator(filterAvailable));
+    const sortResults = packageList.sort(
+      alphabeticalComparator(filterAvailable)
+    );
     setPackagesAvailable(sortResults);
   };
 
@@ -196,7 +211,9 @@ const Packages = ({ defaultArch, ...props }) => {
 
     return packageList.filter((availablePackage) => {
       // returns true if no packages in the available or chosen list have the same name
-      return !selectedPackages.some((selectedPackage) => availablePackage.name === selectedPackage);
+      return !selectedPackages.some(
+        (selectedPackage) => availablePackage.name === selectedPackage
+      );
     });
   };
 
@@ -220,10 +237,17 @@ const Packages = ({ defaultArch, ...props }) => {
   const fetchMorePackagesAvailable = async () => {
     const newPage = packagesAvailablePage + 1;
     setAdditionalPackagesAvailableLoading(true);
-    const { packages, total } = await api.getPackages(packagesSearchName, newPage, packagesAvailablePerPage);
+    const { packages, total } = await api.getPackages(
+      packagesSearchName,
+      newPage,
+      packagesAvailablePerPage
+    );
     setTotalPackagesAvailable(total);
     setAdditionalPackagesAvailableLoading(false);
-    setPackagesAvailableSorted([...packagesAvailable, ...packages], packagesSearchName);
+    setPackagesAvailableSorted(
+      [...packagesAvailable, ...packages],
+      packagesSearchName
+    );
     setPackagesAvailablePage(newPage);
   };
 
@@ -295,7 +319,9 @@ const Packages = ({ defaultArch, ...props }) => {
   const updateState = (updatedPackagesAvailable, updatedPackagesChosen) => {
     setPackagesChosenSorted(updatedPackagesChosen);
     setPackagesAvailableSorted(updatedPackagesAvailable);
-    setPackagesAvailableFound(areFound(filterAvailable, updatedPackagesAvailable));
+    setPackagesAvailableFound(
+      areFound(filterAvailable, updatedPackagesAvailable)
+    );
     setPackagesChosenFound(areFound(filterChosen, updatedPackagesChosen));
     // set the steps field to the current chosen packages list
     change(
@@ -330,14 +356,19 @@ const Packages = ({ defaultArch, ...props }) => {
       if (pack.selected) {
         pack.selected = false;
         pack.isHidden = false;
-        pack.name.includes(filterAvailable) ? newPackagesAvailable.push(pack) : null;
+        pack.name.includes(filterAvailable)
+          ? newPackagesAvailable.push(pack)
+          : null;
         return false;
       }
 
       return true;
     });
 
-    const updatedPackagesAvailable = [...newPackagesAvailable, ...packagesAvailable];
+    const updatedPackagesAvailable = [
+      ...newPackagesAvailable,
+      ...packagesAvailable,
+    ];
 
     updateState(updatedPackagesAvailable, updatedPackagesChosen);
   };
@@ -358,18 +389,25 @@ const Packages = ({ defaultArch, ...props }) => {
   };
 
   const moveAllToAvailable = () => {
-    const updatedPackagesChosen = packagesChosen.filter((pack) => pack.isHidden);
+    const updatedPackagesChosen = packagesChosen.filter(
+      (pack) => pack.isHidden
+    );
 
     const newPackagesAvailable =
       filterAvailable === undefined
         ? []
         : packagesChosen
-            .filter((pack) => !pack.isHidden && pack.name.includes(filterAvailable))
+            .filter(
+              (pack) => !pack.isHidden && pack.name.includes(filterAvailable)
+            )
             .map((pack) => {
               return { ...pack, selected: false };
             });
 
-    const updatedPackagesAvailable = [...newPackagesAvailable, ...packagesAvailable];
+    const updatedPackagesAvailable = [
+      ...newPackagesAvailable,
+      ...packagesAvailable,
+    ];
 
     updateState(updatedPackagesAvailable, updatedPackagesChosen);
   };
@@ -426,9 +464,13 @@ const Packages = ({ defaultArch, ...props }) => {
             onFocus={() => setFocus("available")}
             onBlur={() => setFocus("")}
             onChange={(val) => setPackagesSearchName(val)}
-            submitSearchButtonLabel={intl.formatMessage(messages.availablePackagesSearch)}
+            submitSearchButtonLabel={intl.formatMessage(
+              messages.availablePackagesSearch
+            )}
             onSearch={handlePackagesAvailableSearch}
-            resetButtonLabel={intl.formatMessage(messages.clearAvailablePackagesSearch)}
+            resetButtonLabel={intl.formatMessage(
+              messages.clearAvailablePackagesSearch
+            )}
             onClear={handleClearAvailableSearch}
           />
         }
@@ -443,7 +485,10 @@ const Packages = ({ defaultArch, ...props }) => {
               {!packagesAvailableFound ? (
                 intl.formatMessage(messages.noPackagesFound)
               ) : (
-                <FormattedMessage {...messages.searchAbove} values={{ br: <br /> }} />
+                <FormattedMessage
+                  {...messages.searchAbove}
+                  values={{ br: <br /> }}
+                />
               )}
             </p>
           ) : (
@@ -463,7 +508,8 @@ const Packages = ({ defaultArch, ...props }) => {
                   </DualListSelectorListItem>
                 ) : null;
               })}
-              {totalPackagesAvailable > packagesAvailablePage * packagesAvailablePerPage ? (
+              {totalPackagesAvailable >
+              packagesAvailablePage * packagesAvailablePerPage ? (
                 <DualListSelectorListItem onOptionSelect={() => ({})}>
                   <Bullseye>
                     <Button
@@ -482,7 +528,9 @@ const Packages = ({ defaultArch, ...props }) => {
           )}
         </DualListSelectorList>
       </DualListSelectorPane>
-      <DualListSelectorControlsWrapper aria-label={intl.formatMessage(messages.selectorControls)}>
+      <DualListSelectorControlsWrapper
+        aria-label={intl.formatMessage(messages.selectorControls)}
+      >
         <DualListSelectorControl
           isDisabled={!packagesAvailable.some((option) => option.selected)}
           onClick={() => moveSelectedToChosen()}
@@ -509,7 +557,10 @@ const Packages = ({ defaultArch, ...props }) => {
         </DualListSelectorControl>
         <DualListSelectorControl
           onClick={() => moveSelectedToAvailable()}
-          isDisabled={!packagesChosen.some((option) => option.selected) || !packagesChosenFound}
+          isDisabled={
+            !packagesChosen.some((option) => option.selected) ||
+            !packagesChosenFound
+          }
           aria-label={intl.formatMessage(messages.removeSelected)}
           tooltipContent={intl.formatMessage(messages.removeSelected)}
         >
@@ -526,7 +577,9 @@ const Packages = ({ defaultArch, ...props }) => {
             onFocus={() => setFocus("chosen")}
             onBlur={() => setFocus("")}
             onChange={(val) => handlePackagesChosenSearch(val)}
-            resetButtonLabel={intl.formatMessage(messages.clearChosenPackagesSearch)}
+            resetButtonLabel={intl.formatMessage(
+              messages.clearChosenPackagesSearch
+            )}
             onClear={handleClearChosenSearch}
           />
         }
@@ -538,9 +591,13 @@ const Packages = ({ defaultArch, ...props }) => {
               <Spinner size="lg" />
             </Bullseye>
           ) : !packagesChosen.length ? (
-            <p className="pf-u-text-align-center pf-u-mt-md">No packages added</p>
+            <p className="pf-u-text-align-center pf-u-mt-md">
+              No packages added
+            </p>
           ) : !packagesChosenFound ? (
-            <p className="pf-u-text-align-center pf-u-mt-md">No packages found</p>
+            <p className="pf-u-text-align-center pf-u-mt-md">
+              No packages found
+            </p>
           ) : (
             packagesChosen.map((pack, index) => {
               return !pack.isHidden ? (
@@ -551,7 +608,9 @@ const Packages = ({ defaultArch, ...props }) => {
                   onOptionSelect={(e) => onOptionSelect(e, index, true)}
                 >
                   <TextContent>
-                    <span className="pf-c-dual-list-selector__item-text">{pack.name}</span>
+                    <span className="pf-c-dual-list-selector__item-text">
+                      {pack.name}
+                    </span>
                     <small>{pack.summary}</small>
                   </TextContent>
                 </DualListSelectorListItem>

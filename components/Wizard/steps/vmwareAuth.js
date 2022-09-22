@@ -12,7 +12,12 @@ const messages = defineMessages({
 const vmwareAuth = () => {
   const intl = useIntl();
   return {
-    title: <FormattedMessage id="wizard.vmware.authTitle" defaultMessage="Authentication" />,
+    title: (
+      <FormattedMessage
+        id="wizard.vmware.authTitle"
+        defaultMessage="Authentication"
+      />
+    ),
     name: "vmware-auth",
     substepOf: intl.formatMessage(messages.vmwareStepsTitle),
     nextStep: "vmware-dest",
@@ -22,7 +27,12 @@ const vmwareAuth = () => {
         name: "vmware-username",
         className: "pf-u-w-50",
         type: "text",
-        label: <FormattedMessage id="wizard.vmware.username.label" defaultMessage="Username" />,
+        label: (
+          <FormattedMessage
+            id="wizard.vmware.username.label"
+            defaultMessage="Username"
+          />
+        ),
         isRequired: true,
         autoFocus: true,
         validate: [
@@ -36,7 +46,12 @@ const vmwareAuth = () => {
         name: "vmware-password",
         className: "pf-u-w-50",
         type: "password",
-        label: <FormattedMessage id="wizard.vmware.password.label" defaultMessage="Password" />,
+        label: (
+          <FormattedMessage
+            id="wizard.vmware.password.label"
+            defaultMessage="Password"
+          />
+        ),
         isRequired: true,
         validate: [
           {

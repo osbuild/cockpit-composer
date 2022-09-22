@@ -9,7 +9,13 @@ export const fetchingInputs = (filter, selectedInputPage, pageSize) => ({
 });
 
 export const FETCHING_INPUTS_SUCCEEDED = "FETCHING_INPUTS_SUCCEEDED";
-export const fetchingInputsSucceeded = (filter, selectedInputPage, pageSize, inputs, total) => ({
+export const fetchingInputsSucceeded = (
+  filter,
+  selectedInputPage,
+  pageSize,
+  inputs,
+  total
+) => ({
   type: FETCHING_INPUTS_SUCCEEDED,
   payload: {
     filter,

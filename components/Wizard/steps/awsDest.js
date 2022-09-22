@@ -12,7 +12,8 @@ const messages = defineMessages({
   },
   awsImageNamePopoverBody: {
     id: "wizard.aws.imageName.popoverBody",
-    defaultMessage: "Provide a file name to be used for the image file that will be uploaded.",
+    defaultMessage:
+      "Provide a file name to be used for the image file that will be uploaded.",
   },
   awsImageNamePopoverAria: {
     id: "wizard.aws.imageName.popoverAria",
@@ -43,7 +44,12 @@ const messages = defineMessages({
 const awsDest = () => {
   const intl = useIntl();
   return {
-    title: <FormattedMessage id="wizard.aws.destTitle" defaultMessage="Destination" />,
+    title: (
+      <FormattedMessage
+        id="wizard.aws.destTitle"
+        defaultMessage="Destination"
+      />
+    ),
     name: "aws-dest",
     substepOf: intl.formatMessage(messages.awsStepsTitle),
     nextStep: "system",
@@ -53,13 +59,21 @@ const awsDest = () => {
         name: "aws-image-name",
         className: "pf-u-w-50",
         type: "text",
-        label: <FormattedMessage id="wizard.aws.imageName.label" defaultMessage="Image name" />,
+        label: (
+          <FormattedMessage
+            id="wizard.aws.imageName.label"
+            defaultMessage="Image name"
+          />
+        ),
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.awsImageNamePopoverBody)}
             aria-label={intl.formatMessage(messages.awsImageNamePopoverAria)}
           >
-            <Button variant="plain" aria-label={intl.formatMessage(messages.awsImageNamePopoverAria)}>
+            <Button
+              variant="plain"
+              aria-label={intl.formatMessage(messages.awsImageNamePopoverAria)}
+            >
               <HelpIcon />
             </Button>
           </Popover>
@@ -77,7 +91,12 @@ const awsDest = () => {
         name: "aws-s3-bucket",
         className: "pf-u-w-50",
         type: "text",
-        label: <FormattedMessage id="wizard.aws.bucket.label" defaultMessage="Amazon S3 bucket" />,
+        label: (
+          <FormattedMessage
+            id="wizard.aws.bucket.label"
+            defaultMessage="Amazon S3 bucket"
+          />
+        ),
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.awsBucketPopoverBody, {
@@ -85,7 +104,10 @@ const awsDest = () => {
             })}
             aria-label={intl.formatMessage(messages.awsBucketPopoverAria)}
           >
-            <Button variant="plain" aria-label={intl.formatMessage(messages.awsBucketPopoverAria)}>
+            <Button
+              variant="plain"
+              aria-label={intl.formatMessage(messages.awsBucketPopoverAria)}
+            >
               <HelpIcon />
             </Button>
           </Popover>
@@ -103,13 +125,21 @@ const awsDest = () => {
         name: "aws-region",
         className: "pf-u-w-50",
         type: "text",
-        label: <FormattedMessage id="wizard.aws.region.label" defaultMessage="AWS region" />,
+        label: (
+          <FormattedMessage
+            id="wizard.aws.region.label"
+            defaultMessage="AWS region"
+          />
+        ),
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.awsRegionPopoverBody)}
             aria-label={intl.formatMessage(messages.awsRegionPopoverAria)}
           >
-            <Button variant="plain" aria-label={intl.formatMessage(messages.awsRegionPopoverAria)}>
+            <Button
+              variant="plain"
+              aria-label={intl.formatMessage(messages.awsRegionPopoverAria)}
+            >
               <HelpIcon />
             </Button>
           </Popover>

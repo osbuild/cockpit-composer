@@ -39,10 +39,18 @@ class DeleteBlueprint extends React.Component {
           isOpen={this.state.isModalOpen}
           onClose={this.handleModalToggle}
           actions={[
-            <Button key="cancel" variant="secondary" onClick={this.handleModalToggle}>
+            <Button
+              key="cancel"
+              variant="secondary"
+              onClick={this.handleModalToggle}
+            >
               <FormattedMessage defaultMessage="Cancel" />
             </Button>,
-            <Button key="delete" variant="danger" onClick={(e) => this.handleDelete(e, this.props.blueprint.name)}>
+            <Button
+              key="delete"
+              variant="danger"
+              onClick={(e) => this.handleDelete(e, this.props.blueprint.name)}
+            >
               <FormattedMessage defaultMessage="Delete" />
             </Button>,
           ]}
@@ -55,7 +63,10 @@ class DeleteBlueprint extends React.Component {
               }}
             />
           </p>
-          <FormattedMessage defaultMessage="This action cannot be undone." tagName="p" />
+          <FormattedMessage
+            defaultMessage="This action cannot be undone."
+            tagName="p"
+          />
         </Modal>
       </>
     );
@@ -85,4 +96,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(makeMapStateToProps, mapDispatchToProps)(injectIntl(DeleteBlueprint));
+export default connect(
+  makeMapStateToProps,
+  mapDispatchToProps
+)(injectIntl(DeleteBlueprint));

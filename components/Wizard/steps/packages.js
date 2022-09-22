@@ -5,7 +5,9 @@ import componentTypes from "@data-driven-forms/react-form-renderer/component-typ
 const packages = () => {
   return {
     name: "packages",
-    title: <FormattedMessage id="wizard.packages.title" defaultMessage="Packages" />,
+    title: (
+      <FormattedMessage id="wizard.packages.title" defaultMessage="Packages" />
+    ),
     nextStep: "review",
     fields: [
       {
@@ -21,7 +23,12 @@ const packages = () => {
       {
         component: "package-selector",
         name: "selected-packages",
-        label: <FormattedMessage id="wizard.packages.selectedPackages" defaultMessage="Selected packages" />,
+        label: (
+          <FormattedMessage
+            id="wizard.packages.selectedPackages"
+            defaultMessage="Selected packages"
+          />
+        ),
       },
     ],
   };

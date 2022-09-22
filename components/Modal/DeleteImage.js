@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
@@ -52,13 +53,25 @@ class DeleteImage extends React.Component {
                   }}
                 />
               </p>
-              <FormattedMessage defaultMessage="This action cannot be undone." tagName="p" />
+              <FormattedMessage
+                defaultMessage="This action cannot be undone."
+                tagName="p"
+              />
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-default" data-dismiss="modal">
+              <button
+                type="button"
+                className="btn btn-default"
+                data-dismiss="modal"
+              >
                 <FormattedMessage defaultMessage="Cancel" />
               </button>
-              <button type="button" className="btn btn-danger" data-dismiss="modal" onClick={this.handleDelete}>
+              <button
+                type="button"
+                className="btn btn-danger"
+                data-dismiss="modal"
+                onClick={this.handleDelete}
+              >
                 <FormattedMessage defaultMessage="Delete image" />
               </button>
             </div>

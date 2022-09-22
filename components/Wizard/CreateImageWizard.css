@@ -1,4 +1,4 @@
-.pf-c-popover[data-popper-reference-hidden='true'] {
+.pf-c-popover[data-popper-reference-hidden="true"] {
   font-weight: initial;
   visibility: initial;
   pointer-events: initial;
@@ -21,4 +21,3 @@
 #user-table table tr td {
   padding-left: 0;
 }
-

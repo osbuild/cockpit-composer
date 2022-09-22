@@ -5,28 +5,35 @@ const getPastLength = (blueprint) => {
   return pastLength;
 };
 
-export const makeGetPastLength = () => createSelector([getPastLength], (pastLength) => pastLength);
+export const makeGetPastLength = () =>
+  createSelector([getPastLength], (pastLength) => pastLength);
 
 const getFutureLength = (blueprint) => {
   const futureLength = blueprint.future.length;
   return futureLength;
 };
 
-export const makeGetFutureLength = () => createSelector([getFutureLength], (futureLength) => futureLength);
+export const makeGetFutureLength = () =>
+  createSelector([getFutureLength], (futureLength) => futureLength);
 
 const getBlueprintByName = (state, blueprintName) => {
-  const blueprintByName = state.blueprints.blueprintList.find((blueprint) => blueprint.name === blueprintName);
+  const blueprintByName = state.blueprints.blueprintList.find(
+    (blueprint) => blueprint.name === blueprintName
+  );
   return blueprintByName;
 };
 
-export const makeGetBlueprintByName = () => createSelector([getBlueprintByName], (blueprint) => blueprint);
+export const makeGetBlueprintByName = () =>
+  createSelector([getBlueprintByName], (blueprint) => blueprint);
 
 const getSortedSelectedComponents = (state, blueprint) => {
   const { components } = blueprint;
   if (components === undefined) {
     return [];
   }
-  const sortedSelectedComponents = components.filter((component) => component.userSelected === true);
+  const sortedSelectedComponents = components.filter(
+    (component) => component.userSelected === true
+  );
   const { key } = state.sort.components;
   const { value } = state.sort.components;
   sortedSelectedComponents.sort((a, b) => {
@@ -38,14 +45,19 @@ const getSortedSelectedComponents = (state, blueprint) => {
 };
 
 export const makeGetSortedSelectedComponents = () =>
-  createSelector([getSortedSelectedComponents], (selectedComponents) => selectedComponents);
+  createSelector(
+    [getSortedSelectedComponents],
+    (selectedComponents) => selectedComponents
+  );
 
 const getSortedDependencies = (state, blueprint) => {
   const dependencies = blueprint.components;
   if (dependencies === undefined) {
     return [];
   }
-  const sortedDependencies = dependencies.filter((dependency) => dependency.userSelected !== true);
+  const sortedDependencies = dependencies.filter(
+    (dependency) => dependency.userSelected !== true
+  );
   const { key } = state.sort.dependencies;
   const { value } = state.sort.dependencies;
   sortedDependencies.sort((a, b) => {
@@ -56,7 +68,8 @@ const getSortedDependencies = (state, blueprint) => {
   return sortedDependencies;
 };
 
-export const makeGetSortedDependencies = () => createSelector([getSortedDependencies], (dependencies) => dependencies);
+export const makeGetSortedDependencies = () =>
+  createSelector([getSortedDependencies], (dependencies) => dependencies);
 
 const getFilteredComponents = (state, components) => {
   let filteredComponents = [];
@@ -76,7 +89,10 @@ const getFilteredComponents = (state, components) => {
 };
 
 export const makeGetFilteredComponents = () =>
-  createSelector([getFilteredComponents], (filteredComponents) => filteredComponents);
+  createSelector(
+    [getFilteredComponents],
+    (filteredComponents) => filteredComponents
+  );
 
 const getSortedBlueprints = (state) => {
   const blueprints = state.blueprints.blueprintList;
@@ -90,7 +106,8 @@ const getSortedBlueprints = (state) => {
   return sortedBlueprints;
 };
 
-export const makeGetSortedBlueprints = () => createSelector([getSortedBlueprints], (blueprints) => blueprints);
+export const makeGetSortedBlueprints = () =>
+  createSelector([getSortedBlueprints], (blueprints) => blueprints);
 
 const getFilteredBlueprints = (state, blueprints) => {
   let filteredBlueprints = [];
@@ -110,10 +127,15 @@ const getFilteredBlueprints = (state, blueprints) => {
 };
 
 export const makeGetFilteredBlueprints = () =>
-  createSelector([getFilteredBlueprints], (filteredBlueprints) => filteredBlueprints);
+  createSelector(
+    [getFilteredBlueprints],
+    (filteredBlueprints) => filteredBlueprints
+  );
 
 const getBlueprintComposes = (state, blueprint) => {
-  const composes = state.composes.composeList.filter((compose) => compose.blueprint === blueprint.name);
+  const composes = state.composes.composeList.filter(
+    (compose) => compose.blueprint === blueprint.name
+  );
   composes.sort((a, b) => {
     return a.timestamp < b.timestamp ? 1 : -1;
   });
@@ -121,17 +143,25 @@ const getBlueprintComposes = (state, blueprint) => {
   return composes;
 };
 
-export const makeGetBlueprintComposes = () => createSelector([getBlueprintComposes], (composes) => composes);
+export const makeGetBlueprintComposes = () =>
+  createSelector([getBlueprintComposes], (composes) => composes);
 
 const getSelectedInputs = (state, components) => {
   const { inputComponents } = state.inputs;
   const selectedComponent = state.inputs.selectedInput.component;
-  if (components !== undefined && inputComponents !== undefined && inputComponents.length > 0) {
+  if (
+    components !== undefined &&
+    inputComponents !== undefined &&
+    inputComponents.length > 0
+  ) {
     inputComponents.forEach((input) => {
       input.inBlueprint = false; // eslint-disable-line no-param-reassign
       input.userSelected = false; // eslint-disable-line no-param-reassign
       input.active = false; // eslint-disable-line no-param-reassign
-      if (selectedComponent.name !== undefined && input.name === selectedComponent.name) {
+      if (
+        selectedComponent.name !== undefined &&
+        input.name === selectedComponent.name
+      ) {
         input.active = true; // eslint-disable-line no-param-reassign
       }
       if (components.length > 0) {
@@ -147,10 +177,15 @@ const getSelectedInputs = (state, components) => {
   return inputComponents;
 };
 
-export const makeGetSelectedInputs = () => createSelector([getSelectedInputs], (inputComponents) => inputComponents);
+export const makeGetSelectedInputs = () =>
+  createSelector([getSelectedInputs], (inputComponents) => inputComponents);
 
 const getSelectedDeps = (state, dependencies, components) => {
-  if (components !== undefined && dependencies !== undefined && dependencies.length > 0) {
+  if (
+    components !== undefined &&
+    dependencies !== undefined &&
+    dependencies.length > 0
+  ) {
     dependencies.forEach((dep) => {
       dep.inBlueprint = false; // eslint-disable-line no-param-reassign
       dep.userSelected = false; // eslint-disable-line no-param-reassign
@@ -167,4 +202,5 @@ const getSelectedDeps = (state, dependencies, components) => {
   return dependencies;
 };
 
-export const makeGetSelectedDeps = () => createSelector([getSelectedDeps], (dependencies) => dependencies);
+export const makeGetSelectedDeps = () =>
+  createSelector([getSelectedDeps], (dependencies) => dependencies);

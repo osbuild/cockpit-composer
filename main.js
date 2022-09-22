@@ -37,7 +37,9 @@ if (userLanguage in translations) {
 
 let localeLang = "en";
 if (userLanguage) {
-  localeLang = userLanguage.includes("_") ? userLanguage.replace("_", "-") : userLanguage;
+  localeLang = userLanguage.includes("_")
+    ? userLanguage.replace("_", "-")
+    : userLanguage;
 }
 
 function renderComponent(component) {
@@ -61,7 +63,9 @@ function render(location) {
   router
     .resolve(routes, location)
     .then(renderComponent)
-    .catch((error) => router.resolve(routes, { ...location, error }).then(renderComponent));
+    .catch((error) =>
+      router.resolve(routes, { ...location, error }).then(renderComponent)
+    );
 }
 
 // Handle client-side navigation by using HTML5 History API

@@ -2,7 +2,11 @@ import React from "react";
 import { defineMessages, FormattedMessage, injectIntl } from "react-intl";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { Alert, AlertActionCloseButton, AlertGroup } from "@patternfly/react-core";
+import {
+  Alert,
+  AlertActionCloseButton,
+  AlertGroup,
+} from "@patternfly/react-core";
 import "./Notifications.css";
 import { alertDelete } from "../../core/actions/alerts";
 
@@ -35,11 +39,19 @@ class Notifications extends React.PureComponent {
                       defaultMessage="{blueprint} Image creation has been added to the {queue}."
                       values={{
                         blueprint: <strong>{alert.blueprintName}:</strong>,
-                        queue: <a href={`#blueprint/${alert.blueprintName}/images`}>queue</a>,
+                        queue: (
+                          <a href={`#blueprint/${alert.blueprintName}/images`}>
+                            queue
+                          </a>
+                        ),
                       }}
                     />
                   }
-                  actionClose={<AlertActionCloseButton onClose={() => this.props.alertDelete(alert.id)} />}
+                  actionClose={
+                    <AlertActionCloseButton
+                      onClose={() => this.props.alertDelete(alert.id)}
+                    />
+                  }
                 />
               );
             }
@@ -54,11 +66,19 @@ class Notifications extends React.PureComponent {
                       defaultMessage="{blueprint} Image creation has {queue}."
                       values={{
                         blueprint: <strong>{alert.blueprintName}:</strong>,
-                        queue: <a href={`#blueprint/${alert.blueprintName}/images`}>started</a>,
+                        queue: (
+                          <a href={`#blueprint/${alert.blueprintName}/images`}>
+                            started
+                          </a>
+                        ),
                       }}
                     />
                   }
-                  actionClose={<AlertActionCloseButton onClose={() => this.props.alertDelete(alert.id)} />}
+                  actionClose={
+                    <AlertActionCloseButton
+                      onClose={() => this.props.alertDelete(alert.id)}
+                    />
+                  }
                 />
               );
             }
@@ -73,11 +93,19 @@ class Notifications extends React.PureComponent {
                       defaultMessage="{blueprint} Image creation is {queue}."
                       values={{
                         blueprint: <strong>{alert.blueprintName}:</strong>,
-                        queue: <a href={`#blueprint/${alert.blueprintName}/images`}>complete</a>,
+                        queue: (
+                          <a href={`#blueprint/${alert.blueprintName}/images`}>
+                            complete
+                          </a>
+                        ),
                       }}
                     />
                   }
-                  actionClose={<AlertActionCloseButton onClose={() => this.props.alertDelete(alert.id)} />}
+                  actionClose={
+                    <AlertActionCloseButton
+                      onClose={() => this.props.alertDelete(alert.id)}
+                    />
+                  }
                 />
               );
             }
@@ -95,7 +123,11 @@ class Notifications extends React.PureComponent {
                       }}
                     />
                   }
-                  actionClose={<AlertActionCloseButton onClose={() => this.props.alertDelete(alert.id)} />}
+                  actionClose={
+                    <AlertActionCloseButton
+                      onClose={() => this.props.alertDelete(alert.id)}
+                    />
+                  }
                 >
                   {alert.error ===
                     "This system does not have any valid subscriptions. Subscribe it before specifying rhsm: true in sources." &&
@@ -117,7 +149,11 @@ class Notifications extends React.PureComponent {
                       }}
                     />
                   }
-                  actionClose={<AlertActionCloseButton onClose={() => this.props.alertDelete(alert.id)} />}
+                  actionClose={
+                    <AlertActionCloseButton
+                      onClose={() => this.props.alertDelete(alert.id)}
+                    />
+                  }
                 />
               );
             }
@@ -135,7 +171,11 @@ class Notifications extends React.PureComponent {
                       }}
                     />
                   }
-                  actionClose={<AlertActionCloseButton onClose={() => this.props.alertDelete(alert.id)} />}
+                  actionClose={
+                    <AlertActionCloseButton
+                      onClose={() => this.props.alertDelete(alert.id)}
+                    />
+                  }
                 />
               );
             }
@@ -153,7 +193,11 @@ class Notifications extends React.PureComponent {
                       }}
                     />
                   }
-                  actionClose={<AlertActionCloseButton onClose={() => this.props.alertDelete(alert.id)} />}
+                  actionClose={
+                    <AlertActionCloseButton
+                      onClose={() => this.props.alertDelete(alert.id)}
+                    />
+                  }
                 />
               );
             }
@@ -187,4 +231,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Notifications));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(injectIntl(Notifications));

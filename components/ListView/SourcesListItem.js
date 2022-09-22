@@ -60,23 +60,31 @@ class SourcesListItem extends React.Component {
             </div>
             <div className="list-pf-content-wrapper">
               <div className="list-pf-main-content">
-                <div className="list-pf-title text-overflow-pf">{source.name}</div>
+                <div className="list-pf-title text-overflow-pf">
+                  {source.name}
+                </div>
                 <div className="list-pf-description">
                   <FormattedMessage
                     defaultMessage="Type {sourceType}"
                     values={{
-                      sourceType: <strong>{formatMessage(messages[type])}</strong>,
+                      sourceType: (
+                        <strong>{formatMessage(messages[type])}</strong>
+                      ),
                     }}
                   />
                 </div>
               </div>
-              <div className="list-pf-additional-content text-muted">{source.url}</div>
+              <div className="list-pf-additional-content text-muted">
+                {source.url}
+              </div>
             </div>
             {this.props.edit ? (
               !this.props.fetching ? (
                 <div className="list-pf-actions">
                   <button
-                    aria-label={`${formatMessage(messages.edit)} ${source.name}`}
+                    aria-label={`${formatMessage(messages.edit)} ${
+                      source.name
+                    }`}
                     className="btn btn-default"
                     type="button"
                     ref={this.editButton}

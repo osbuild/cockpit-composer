@@ -22,7 +22,12 @@ const messages = defineMessages({
 const customizations = () => {
   const intl = useIntl();
   return {
-    title: <FormattedMessage id="wizard.customizations.systemTitle" defaultMessage="System" />,
+    title: (
+      <FormattedMessage
+        id="wizard.customizations.systemTitle"
+        defaultMessage="System"
+      />
+    ),
     name: "system",
     substepOf: intl.formatMessage(messages.customizationsStepsTitle),
     nextStep: "users",
@@ -32,7 +37,12 @@ const customizations = () => {
         name: "customizations-hostname",
         className: "pf-u-w-75",
         type: "text",
-        label: <FormattedMessage id="wizard.customizations.hostname.label" defaultMessage="Hostname" />,
+        label: (
+          <FormattedMessage
+            id="wizard.customizations.hostname.label"
+            defaultMessage="Hostname"
+          />
+        ),
         helperText: (
           <FormattedMessage
             id="wizard.customizations.hostname.helperText"
@@ -49,13 +59,21 @@ const customizations = () => {
         component: "text-field-custom",
         name: "customizations-install-device",
         className: "pf-u-w-75",
-        label: <FormattedMessage id="wizard.customizations.installDevice.label" defaultMessage="Installation Device" />,
+        label: (
+          <FormattedMessage
+            id="wizard.customizations.installDevice.label"
+            defaultMessage="Installation Device"
+          />
+        ),
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.installDevicePopoverBody)}
             aria-label={intl.formatMessage(messages.installDevicePopoverAria)}
           >
-            <Button variant="plain" aria-label={intl.formatMessage(messages.installDevicePopoverAria)}>
+            <Button
+              variant="plain"
+              aria-label={intl.formatMessage(messages.installDevicePopoverAria)}
+            >
               <HelpIcon />
             </Button>
           </Popover>

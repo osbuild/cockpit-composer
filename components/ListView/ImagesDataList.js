@@ -3,7 +3,11 @@ import PropTypes from "prop-types";
 import { DataList } from "@patternfly/react-core";
 
 const ImagesDataList = (props) => (
-  <DataList aria-label={props.ariaLabel} className="cc-c-tree-view" data-list="images">
+  <DataList
+    aria-label={props.ariaLabel}
+    className="cc-c-tree-view"
+    data-list="images"
+  >
     {props.children}
   </DataList>
 );

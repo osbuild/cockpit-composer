@@ -52,7 +52,11 @@ class EditDescription extends React.Component {
           isOpen={this.state.isModalOpen}
           onClose={this.handleModalToggle}
           actions={[
-            <Button key="cancel" variant="secondary" onClick={this.handleModalToggle}>
+            <Button
+              key="cancel"
+              variant="secondary"
+              onClick={this.handleModalToggle}
+            >
               <FormattedMessage defaultMessage="Cancel" />
             </Button>,
             <Button key="save" variant="primary" onClick={this.handleSubmit}>
@@ -60,9 +64,16 @@ class EditDescription extends React.Component {
             </Button>,
           ]}
         >
-          <form className="form-horizontal" data-form="description" onSubmit={this.handleSubmit}>
+          <form
+            className="form-horizontal"
+            data-form="description"
+            onSubmit={this.handleSubmit}
+          >
             <div className="form-group">
-              <label className="col-sm-3 control-label required-pf" htmlFor="textInput-modal-markup">
+              <label
+                className="col-sm-3 control-label required-pf"
+                htmlFor="textInput-modal-markup"
+              >
                 <FormattedMessage defaultMessage="Description" />
               </label>
               <div className="col-sm-9">

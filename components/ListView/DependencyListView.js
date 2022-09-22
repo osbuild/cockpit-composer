@@ -14,7 +14,11 @@ const DependencyListView = (props) => {
     componentDetailsParent,
   } = props;
   return (
-    <DataList data-list="dependencies" aria-label={ariaLabel} className="cc-m-nowrap-on-xl">
+    <DataList
+      data-list="dependencies"
+      aria-label={ariaLabel}
+      className="cc-m-nowrap-on-xl"
+    >
       {listItems.map((listItem) => (
         <ComponentsDataListItem
           listItem={listItem}

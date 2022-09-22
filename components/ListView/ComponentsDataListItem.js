@@ -29,7 +29,10 @@ class ComponentsDataListItem extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.expanded === true && this.props.listItem.dependencies === undefined) {
+    if (
+      prevState.expanded === true &&
+      this.props.listItem.dependencies === undefined
+    ) {
       this.props.fetchDetails(this.props.listItem);
     }
   }
@@ -38,7 +41,10 @@ class ComponentsDataListItem extends React.Component {
     // the user clicked a list item in the blueprint contents area to expand or collapse
     const expandState = !this.state.expanded;
     this.setState((prevState) => ({ expanded: !prevState.expanded }));
-    if (expandState === true && this.props.listItem.dependencies === undefined) {
+    if (
+      expandState === true &&
+      this.props.listItem.dependencies === undefined
+    ) {
       this.props.fetchDetails(this.props.listItem);
     }
   }
@@ -74,7 +80,10 @@ class ComponentsDataListItem extends React.Component {
             dataListCells={[
               <DataListCell key="primary" className="cc-component__name">
                 <div>
-                  <a href="#" onClick={(e) => handleComponentDetails(e, listItem)}>
+                  <a
+                    href="#"
+                    onClick={(e) => handleComponentDetails(e, listItem)}
+                  >
                     <strong id={listItem.name} data-component-name>
                       {listItem.name}
                     </strong>
@@ -86,13 +95,15 @@ class ComponentsDataListItem extends React.Component {
                 key="secondary"
                 className="cc-component__version pf-u-display-flex-on-xl pf-u-flex-direction-column"
               >
-                <FormattedMessage defaultMessage="Version" /> <strong>{listItem.version}</strong>
+                <FormattedMessage defaultMessage="Version" />{" "}
+                <strong>{listItem.version}</strong>
               </DataListCell>,
               <DataListCell
                 key="tertiary"
                 className="cc-component__release pf-u-display-flex-on-xl pf-u-flex-direction-column"
               >
-                <FormattedMessage defaultMessage="Release" /> <strong>{listItem.release}</strong>
+                <FormattedMessage defaultMessage="Release" />{" "}
+                <strong>{listItem.release}</strong>
               </DataListCell>,
             ]}
           />
@@ -110,15 +121,23 @@ class ComponentsDataListItem extends React.Component {
                   <dt>
                     <FormattedMessage defaultMessage="Version" />
                   </dt>
-                  <dd>{listItem.version ? listItem.version : <span>&nbsp;</span>}</dd>
+                  <dd>
+                    {listItem.version ? listItem.version : <span>&nbsp;</span>}
+                  </dd>
                   <dt>
                     <FormattedMessage defaultMessage="Release" />
                   </dt>
-                  <dd>{listItem.release ? listItem.release : <span>&nbsp;</span>}</dd>
+                  <dd>
+                    {listItem.release ? listItem.release : <span>&nbsp;</span>}
+                  </dd>
                   <dt>URL</dt>
                   {(listItem.homepage != null && (
                     <dd>
-                      <a target="_blank" rel="noopener noreferrer" href={listItem.homepage}>
+                      <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href={listItem.homepage}
+                      >
                         {listItem.homepage}
                       </a>
                     </dd>
@@ -127,7 +146,9 @@ class ComponentsDataListItem extends React.Component {
               </div>
             </div>
             <div className="pf-m-flex-1">
-              {listItem.dependencies && <ComponentSummaryList listItems={listItem.dependencies} />}
+              {listItem.dependencies && (
+                <ComponentSummaryList listItems={listItem.dependencies} />
+              )}
             </div>
           </div>
         </DataListContent>

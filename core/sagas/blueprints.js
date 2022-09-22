@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 import { call, put, takeEvery, select } from "redux-saga/effects";
 import * as composer from "../composer";
 import {
@@ -35,7 +36,9 @@ function* fetchBlueprints() {
   try {
     const blueprintNames = yield call(composer.listBlueprints);
     yield put(fetchingBlueprintNamesSucceeded(blueprintNames));
-    yield* blueprintNames.map((blueprintName) => fetchBlueprintsFromName(blueprintName));
+    yield* blueprintNames.map((blueprintName) =>
+      fetchBlueprintsFromName(blueprintName)
+    );
   } catch (error) {
     console.log("errorloadBlueprintsSaga", error);
     yield put(blueprintsFailure(error));
@@ -48,7 +51,10 @@ function* fetchBlueprintContents(action) {
     const response = yield call(composer.depsolveBlueprint, blueprintName);
     const blueprintData = response.blueprints[0];
     let components = [];
-    if (blueprintData.blueprint.packages.length > 0 || blueprintData.blueprint.modules.length > 0) {
+    if (
+      blueprintData.blueprint.packages.length > 0 ||
+      blueprintData.blueprint.modules.length > 0
+    ) {
       components = yield call(generateComponents, blueprintData);
     }
     const blueprint = {
@@ -66,18 +72,26 @@ function* fetchBlueprintContents(action) {
 
 function* generateComponents(blueprintData) {
   // List of selected components
-  const packageNames = blueprintData.blueprint.packages.map((component) => component.name);
-  const moduleNames = blueprintData.blueprint.modules.map((component) => component.name);
+  const packageNames = blueprintData.blueprint.packages.map(
+    (component) => component.name
+  );
+  const moduleNames = blueprintData.blueprint.modules.map(
+    (component) => component.name
+  );
   const selectedComponentNames = packageNames.concat(moduleNames);
   // List of all components
   let componentNames = [];
   let componentsRaw = [];
   if (blueprintData.dependencies.length > 0) {
-    componentNames = blueprintData.dependencies.map((component) => component.name);
+    componentNames = blueprintData.dependencies.map(
+      (component) => component.name
+    );
     componentsRaw = flattenComponents(blueprintData.dependencies);
   } else {
     componentNames = selectedComponentNames;
-    componentsRaw = blueprintData.blueprint.packages.concat(blueprintData.blueprint.modules);
+    componentsRaw = blueprintData.blueprint.packages.concat(
+      blueprintData.blueprint.modules
+    );
   }
   // Get component info
   const componentInfo = yield call(composer.getComponentInfo, componentNames);
@@ -102,7 +116,9 @@ function* generateComponents(blueprintData) {
 function flattenComponents(components) {
   const previousComponents = {};
   const flattened = components.filter((component) => {
-    return previousComponents.hasOwnProperty(component.name) ? false : (previousComponents[component.name] = true);
+    return previousComponents.hasOwnProperty(component.name)
+      ? false
+      : (previousComponents[component.name] = true);
   });
   return flattened;
 }
@@ -216,16 +232,24 @@ function* createBlueprint(action) {
 function* fetchCompDeps(action) {
   try {
     const { component, blueprintName } = action.payload;
-    const response = yield call(composer.getComponentDependencies, component.name);
+    const response = yield call(
+      composer.getComponentDependencies,
+      component.name
+    );
     let responseIndex;
     if (response[0].builds) {
       responseIndex = response.findIndex((item) => {
-        return item.builds[0].release === component.release && item.builds[0].source.version === component.version;
+        return (
+          item.builds[0].release === component.release &&
+          item.builds[0].source.version === component.version
+        );
       });
     } else {
       responseIndex = 0;
     }
-    const deps = response[responseIndex].dependencies.filter((item) => item.name !== component.name);
+    const deps = response[responseIndex].dependencies.filter(
+      (item) => item.name !== component.name
+    );
     const updatedDeps = deps.map((dep) => {
       const depData = {
         ui_type: "RPM",

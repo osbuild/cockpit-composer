@@ -6,7 +6,9 @@ const review = () => {
   return {
     name: "review",
     component: "review",
-    title: <FormattedMessage id="wizard.review.title" defaultMessage="Review" />,
+    title: (
+      <FormattedMessage id="wizard.review.title" defaultMessage="Review" />
+    ),
     buttons: SubmitButtonsCustom,
     fields: [
       {

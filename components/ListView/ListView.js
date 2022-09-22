@@ -2,7 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const ListView = (props) => (
-  <div id={props.id} className={`list-pf cmpsr-list-pf ${props.stacked ? "list-pf-stacked" : ""} ${props.className}`}>
+  <div
+    id={props.id}
+    className={`list-pf cmpsr-list-pf ${
+      props.stacked ? "list-pf-stacked" : ""
+    } ${props.className}`}
+  >
     {props.children}
   </div>
 );

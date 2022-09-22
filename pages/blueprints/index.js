@@ -11,15 +11,24 @@ import EmptyState from "../../components/EmptyState/EmptyState";
 import EmptyStateInactive from "../../components/EmptyState/EmptyStateInactive";
 import Loading from "../../components/Loading/Loading";
 import BlueprintsToolbar from "../../components/Toolbar/BlueprintsToolbar";
-import { fetchingBlueprints, blueprintsGetAll } from "../../core/actions/blueprints";
+import {
+  fetchingBlueprints,
+  blueprintsGetAll,
+} from "../../core/actions/blueprints";
 import { fetchingModalManageSourcesContents } from "../../core/actions/modals";
-import { blueprintsSortSetKey, blueprintsSortSetValue } from "../../core/actions/sort";
+import {
+  blueprintsSortSetKey,
+  blueprintsSortSetValue,
+} from "../../core/actions/sort";
 import {
   blueprintsFilterAddValue,
   blueprintsFilterRemoveValue,
   blueprintsFilterClearValues,
 } from "../../core/actions/filter";
-import { makeGetSortedBlueprints, makeGetFilteredBlueprints } from "../../core/selectors";
+import {
+  makeGetSortedBlueprints,
+  makeGetFilteredBlueprints,
+} from "../../core/selectors";
 
 const messages = defineMessages({
   blueprintsTitle: {
@@ -96,11 +105,16 @@ class BlueprintsPage extends React.Component {
         />
         {(blueprintsLoading === true && <Loading />) ||
           (blueprintsError === undefined && (
-            <EmptyStateInactive fetchingBlueprints={this.props.fetchingBlueprints} />
+            <EmptyStateInactive
+              fetchingBlueprints={this.props.fetchingBlueprints}
+            />
           )) ||
           (blueprintsError !== null &&
-            (((blueprintsError.problem === "access-denied" || blueprintsError.message === "not-found") && (
-              <EmptyStateInactive fetchingBlueprints={this.props.fetchingBlueprints} />
+            (((blueprintsError.problem === "access-denied" ||
+              blueprintsError.message === "not-found") && (
+              <EmptyStateInactive
+                fetchingBlueprints={this.props.fetchingBlueprints}
+              />
             )) || (
               <EmptyState
                 title={formatMessage(messages.errorGenericTitle)}
@@ -117,9 +131,14 @@ class BlueprintsPage extends React.Component {
             />
           )) ||
           (blueprintFilters.filterValues.length === 0 && (
-            <EmptyState title={formatMessage(messages.emptyTitle)} message={formatMessage(messages.emptyMessage)}>
+            <EmptyState
+              title={formatMessage(messages.emptyTitle)}
+              message={formatMessage(messages.emptyMessage)}
+            >
               <EmptyStatePrimary>
-                <CreateBlueprint blueprintNames={blueprints.map((blueprint) => blueprint.name)} />
+                <CreateBlueprint
+                  blueprintNames={blueprints.map((blueprint) => blueprint.name)}
+                />
               </EmptyStatePrimary>
             </EmptyState>
           )) || (
@@ -234,4 +253,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(makeMapStateToProps, mapDispatchToProps)(injectIntl(BlueprintsPage));
+export default connect(
+  makeMapStateToProps,
+  mapDispatchToProps
+)(injectIntl(BlueprintsPage));

@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 import { call, put, takeEvery, takeLatest, select } from "redux-saga/effects";
 import * as composer from "../composer";
 import {
@@ -25,7 +26,10 @@ function flattenInputs(response) {
     if (previousInputs.hasOwnProperty(item.name)) {
       // update the previousInput object with this item"s version/release
       // to make the default version/release the latest
-      previousInputs[item.name] = Object.assign(previousInputs[item.name], build);
+      previousInputs[item.name] = Object.assign(
+        previousInputs[item.name],
+        build
+      );
       // and remove this item from the list
       return false;
     }
@@ -46,10 +50,17 @@ function* fetchInputs(action) {
     let filterValue = filter.value.replace(regex, ",");
     const regexStrip = /(^,+)|(,+$)/g;
     filterValue = filterValue.replace(regexStrip, "");
-    filterValue = wildcardsUsed ? filterValue : `*${filterValue}*`.replace(/,/g, "*,*");
+    filterValue = wildcardsUsed
+      ? filterValue
+      : `*${filterValue}*`.replace(/,/g, "*,*");
     // page is displayed in UI starting from 1 but api starts from 0
     const pageIndex = selectedInputPage - 1;
-    const response = yield call(composer.listModules, filterValue, pageIndex, pageSize);
+    const response = yield call(
+      composer.listModules,
+      filterValue,
+      pageIndex,
+      pageSize
+    );
     const { total } = response;
     const inputNames = response.modules.map((input) => input.name).join(",");
     const inputs = yield call(composer.getComponentInfo, inputNames);
@@ -60,7 +71,15 @@ function* fetchInputs(action) {
       };
       return inputData;
     });
-    yield put(fetchingInputsSucceeded(filter, selectedInputPage, pageSize, updatedInputs, total));
+    yield put(
+      fetchingInputsSucceeded(
+        filter,
+        selectedInputPage,
+        pageSize,
+        updatedInputs,
+        total
+      )
+    );
   } catch (error) {
     const { filter, pageSize } = action.payload;
     if (filter.value !== "") {
@@ -146,16 +165,24 @@ function* fetchInputDetails(action) {
 function* fetchInputDeps(action) {
   try {
     const { component } = action.payload;
-    const response = yield call(composer.getComponentDependencies, component.name);
+    const response = yield call(
+      composer.getComponentDependencies,
+      component.name
+    );
     let responseIndex;
     if (response[0].builds) {
       responseIndex = response.findIndex((item) => {
-        return item.builds[0].release === component.release && item.builds[0].source.version === component.version;
+        return (
+          item.builds[0].release === component.release &&
+          item.builds[0].source.version === component.version
+        );
       });
     } else {
       responseIndex = 0;
     }
-    const deps = response[responseIndex].dependencies.filter((item) => item.name !== component.name);
+    const deps = response[responseIndex].dependencies.filter(
+      (item) => item.name !== component.name
+    );
     const updatedDeps = deps.map((dep) => {
       const depData = {
         ui_type: "RPM",
@@ -176,8 +203,13 @@ function* fetchInputDeps(action) {
 function* fetchDepDetails(action) {
   try {
     const { component, blueprintName } = action.payload;
-    const response = yield call(composer.getComponentDependencies, component.name);
-    const deps = response[0].dependencies.filter((item) => item.name !== component.name);
+    const response = yield call(
+      composer.getComponentDependencies,
+      component.name
+    );
+    const deps = response[0].dependencies.filter(
+      (item) => item.name !== component.name
+    );
     const updatedDeps = deps.map((dep) => {
       const depData = { ui_type: "RPM", ...dep };
       delete depData.epoch;

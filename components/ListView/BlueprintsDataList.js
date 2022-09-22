@@ -1,7 +1,13 @@
 import React from "react";
 import { injectIntl } from "react-intl";
 import PropTypes from "prop-types";
-import { DataList, DataListItem, DataListItemRow, DataListCell, DataListItemCells } from "@patternfly/react-core";
+import {
+  DataList,
+  DataListItem,
+  DataListItemRow,
+  DataListCell,
+  DataListItemCells,
+} from "@patternfly/react-core";
 import { PficonTemplateIcon } from "@patternfly/react-icons";
 import Link from "../Link/Link";
 import CreateImageWizard from "../Wizard/CreateImageWizard";
@@ -29,7 +35,11 @@ class BlueprintsDataList extends React.PureComponent {
     return (
       <DataList aria-label={ariaLabel} className="cc-m-nowrap-on-lg">
         {blueprints.map((blueprint) => (
-          <DataListItem key={blueprint.name} data-blueprint={blueprint.name} aria-labelledby={`${blueprint.name}-name`}>
+          <DataListItem
+            key={blueprint.name}
+            data-blueprint={blueprint.name}
+            aria-labelledby={`${blueprint.name}-name`}
+          >
             <DataListItemRow>
               <div className="cc-c-data-list__item-icon">
                 <PficonTemplateIcon />
@@ -38,7 +48,9 @@ class BlueprintsDataList extends React.PureComponent {
                 dataListCells={[
                   <DataListCell key="primary" width={2}>
                     <Link to={`/blueprint/${blueprint.name}`}>
-                      <strong id={`${blueprint.name}-name`}>{blueprint.name}</strong>
+                      <strong id={`${blueprint.name}-name`}>
+                        {blueprint.name}
+                      </strong>
                     </Link>
                   </DataListCell>,
                   <DataListCell key="secondary" width={3} data-description>

@@ -1,14 +1,25 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unused-prop-types */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 
 import React from "react";
 import { FormattedMessage, defineMessages, injectIntl } from "react-intl";
-import cockpit from "cockpit"; // eslint-disable-line import/no-unresolved
+import cockpit from "cockpit";
 import PropTypes from "prop-types";
-import { Breadcrumb, BreadcrumbItem, Button, Popover, Tab, Tabs } from "@patternfly/react-core";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  Button,
+  Popover,
+  Tab,
+  Tabs,
+} from "@patternfly/react-core";
 import { CheckIcon, OutlinedQuestionCircleIcon } from "@patternfly/react-icons";
-import { Table, TableHeader, TableBody, TableVariant } from "@patternfly/react-table";
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableVariant,
+} from "@patternfly/react-table";
 import { connect } from "react-redux";
 import Link from "../../components/Link/Link";
 import Layout from "../../components/Layout/Layout";
@@ -40,7 +51,10 @@ import {
   setSelectedInputParent,
   fetchingDepDetails,
 } from "../../core/actions/inputs";
-import { fetchingComposes, fetchingComposeTypes } from "../../core/actions/composes";
+import {
+  fetchingComposes,
+  fetchingComposeTypes,
+} from "../../core/actions/composes";
 import {
   setModalStopBuildVisible,
   setModalStopBuildState,
@@ -117,7 +131,8 @@ const messages = defineMessages({
       "Valid characters for hostname are letters from a to z, the digits from 0 to 9, and the hyphen (-). A hostname may not start with a hyphen.",
   },
   hostnameHelpEmpty: {
-    defaultMessage: "If no hostname is provided, the hostname will be determined by the OS.",
+    defaultMessage:
+      "If no hostname is provided, the hostname will be determined by the OS.",
   },
   deviceHelp: {
     defaultMessage: "Enter valid device node such as /dev/sda1",
@@ -156,7 +171,8 @@ class BlueprintPage extends React.Component {
     this.handleComponentListItem = this.handleComponentListItem.bind(this);
     this.handleDepListItem = this.handleDepListItem.bind(this);
     this.handleHideModalStop = this.handleHideModalStop.bind(this);
-    this.handleHideModalDeleteImage = this.handleHideModalDeleteImage.bind(this);
+    this.handleHideModalDeleteImage =
+      this.handleHideModalDeleteImage.bind(this);
     this.handleEditDescription = this.handleEditDescription.bind(this);
     this.handleEditHostname = this.handleEditHostname.bind(this);
     this.handleEditHostnameValue = this.handleEditHostnameValue.bind(this);
@@ -169,7 +185,9 @@ class BlueprintPage extends React.Component {
     document.title = formatMessage(messages.blueprint);
 
     if (this.props.blueprint.components === undefined) {
-      this.props.fetchingBlueprintContents(this.props.route.params.blueprint.replace(/\s/g, "-"));
+      this.props.fetchingBlueprintContents(
+        this.props.route.params.blueprint.replace(/\s/g, "-")
+      );
     }
     if (this.props.composesLoading === true) {
       this.props.fetchingComposes();
@@ -211,14 +229,24 @@ class BlueprintPage extends React.Component {
   }
 
   handleEditHostnameValue(value) {
-    const validCharacters = value.length === 0 || /^(\d|\w|-|\.){0,252}$/.test(value);
-    const validElements = value.split(".").every((element) => element.length < 63);
-    const invalid = !!(!validCharacters || !validElements || value.startsWith("-") || value.endsWith("."));
+    const validCharacters =
+      value.length === 0 || /^(\d|\w|-|\.){0,252}$/.test(value);
+    const validElements = value
+      .split(".")
+      .every((element) => element.length < 63);
+    const invalid = !!(
+      !validCharacters ||
+      !validElements ||
+      value.startsWith("-") ||
+      value.endsWith(".")
+    );
     this.props.setEditHostnameInvalid(invalid);
   }
 
   handleDeleteUser(userName, e) {
-    const users = this.props.blueprint.customizations.user.filter((user) => user.name !== userName);
+    const users = this.props.blueprint.customizations.user.filter(
+      (user) => user.name !== userName
+    );
     this.props.setBlueprintUsers(this.props.blueprint.name, users);
     e.preventDefault();
     e.stopPropagation();
@@ -264,28 +292,46 @@ class BlueprintPage extends React.Component {
       setSelectedInputParent,
       clearSelectedInput,
     } = this.props;
-    const { editHostnameVisible, editHostnameInvalid } = this.props.blueprintPage;
+    const { editHostnameVisible, editHostnameInvalid } =
+      this.props.blueprintPage;
     const { formatMessage } = this.props.intl;
     let hostname = "";
-    if (blueprint.customizations !== undefined && blueprint.customizations.hostname !== undefined) {
+    if (
+      blueprint.customizations !== undefined &&
+      blueprint.customizations.hostname !== undefined
+    ) {
       hostname = blueprint.customizations.hostname;
     }
     let users = [];
-    if (blueprint.customizations !== undefined && blueprint.customizations.user !== undefined) {
+    if (
+      blueprint.customizations !== undefined &&
+      blueprint.customizations.user !== undefined
+    ) {
       users = blueprint.customizations.user;
     }
     // Setting the state values from our redux store is tedious.
     // This is a simple way to display the installation device if set in the blueprint customizations.
     let { device } = this.state;
-    if (!device && blueprint.customizations && blueprint.customizations.installation_device) {
+    if (
+      !device &&
+      blueprint.customizations &&
+      blueprint.customizations.installation_device
+    ) {
       device = blueprint.customizations.installation_device;
     }
     const pathSuffix = cockpit.location.path[cockpit.location.path.length - 1];
-    const activeKey = ["customizations", "packages", "images"].includes(pathSuffix) ? pathSuffix : "customizations";
+    const activeKey = ["customizations", "packages", "images"].includes(
+      pathSuffix
+    )
+      ? pathSuffix
+      : "customizations";
 
     const blueprintDropdownItems = [
       <li key="edit">
-        <EditDescription description={blueprint.description} handleEditDescription={this.handleEditDescription} />
+        <EditDescription
+          description={blueprint.description}
+          handleEditDescription={this.handleEditDescription}
+        />
       </li>,
       <li key="export">
         <ExportBlueprint blueprint={blueprint} />
@@ -296,7 +342,11 @@ class BlueprintPage extends React.Component {
       props: { "data-tr": user.name },
       cells: [
         user.name,
-        { title: user.groups !== undefined && user.groups.includes("wheel") && <CheckIcon data-testid="checkmark" /> },
+        {
+          title: user.groups !== undefined && user.groups.includes("wheel") && (
+            <CheckIcon data-testid="checkmark" />
+          ),
+        },
         { title: user.password && <CheckIcon data-testid="checkmark" /> },
         {
           title: user.key !== undefined && (
@@ -334,7 +384,9 @@ class BlueprintPage extends React.Component {
             </ul>
           </div>
           <div className="cmpsr-title">
-            <h1 className="cmpsr-title__item">{this.props.route.params.blueprint}</h1>
+            <h1 className="cmpsr-title__item">
+              {this.props.route.params.blueprint}
+            </h1>
             <p className="cmpsr-title__item">
               {blueprint.description && (
                 <EditDescription
@@ -348,10 +400,19 @@ class BlueprintPage extends React.Component {
         </header>
         <Tabs
           defaultActiveKey={activeKey}
-          onSelect={(eventId) => cockpit.location.go(["blueprint", this.props.route.params.blueprint, eventId])}
+          onSelect={(eventId) =>
+            cockpit.location.go([
+              "blueprint",
+              this.props.route.params.blueprint,
+              eventId,
+            ])
+          }
           id="blueprint-tabs"
         >
-          <Tab eventKey="customizations" title={formatMessage(messages.customizationsTitle)}>
+          <Tab
+            eventKey="customizations"
+            title={formatMessage(messages.customizationsTitle)}
+          >
             <div className="tab-container row">
               <div className="form-customizations col-sm-12 pf-u-ml-md">
                 <div className="form-horizontal">
@@ -377,7 +438,12 @@ class BlueprintPage extends React.Component {
                           <Table
                             variant={TableVariant.compact}
                             aria-label="Users List"
-                            cells={["User name", "Server administrator", "Password", "SSH key"]}
+                            cells={[
+                              "User name",
+                              "Server administrator",
+                              "Password",
+                              "SSH key",
+                            ]}
                             rows={rows}
                           >
                             <TableHeader />
@@ -391,13 +457,17 @@ class BlueprintPage extends React.Component {
               </div>
             </div>
           </Tab>
-          <Tab eventKey="packages" title={formatMessage(messages.packagesTitle)}>
+          <Tab
+            eventKey="packages"
+            title={formatMessage(messages.packagesTitle)}
+          >
             <div className="row">
               {(!selectedInput.set && (
                 <div className="col-sm-12">
                   <BlueprintToolbar
                     emptyState={
-                      (selectedComponents === undefined || selectedComponents.length === 0) &&
+                      (selectedComponents === undefined ||
+                        selectedComponents.length === 0) &&
                       componentsFilters.filterValues.length === 0
                     }
                     filters={componentsFilters}
@@ -407,10 +477,14 @@ class BlueprintPage extends React.Component {
                     componentsSortKey={this.props.componentsSortKey}
                     componentsSortValue={this.props.componentsSortValue}
                     componentsSortSetValue={this.props.componentsSortSetValue}
-                    dependenciesSortSetValue={this.props.dependenciesSortSetValue}
+                    dependenciesSortSetValue={
+                      this.props.dependenciesSortSetValue
+                    }
                     showUndoRedo={false}
                   />
-                  {(this.props.blueprint.components === undefined && <Loading />) || (
+                  {(this.props.blueprint.components === undefined && (
+                    <Loading />
+                  )) || (
                     <BlueprintContents
                       components={selectedComponents}
                       dependencies={dependencies}
@@ -654,12 +728,26 @@ const makeMapStateToProps = () => {
   const getSelectedDeps = makeGetSelectedDeps();
   const getBlueprintComposes = makeGetBlueprintComposes();
   const mapStateToProps = (state, props) => {
-    if (getBlueprintByName(state, props.route.params.blueprint.replace(/\s/g, "-")) !== undefined) {
-      const fetchedBlueprint = getBlueprintByName(state, props.route.params.blueprint.replace(/\s/g, "-"));
+    if (
+      getBlueprintByName(
+        state,
+        props.route.params.blueprint.replace(/\s/g, "-")
+      ) !== undefined
+    ) {
+      const fetchedBlueprint = getBlueprintByName(
+        state,
+        props.route.params.blueprint.replace(/\s/g, "-")
+      );
       return {
         blueprint: fetchedBlueprint,
-        selectedComponents: getFilteredComponents(state, getSortedSelectedComponents(state, fetchedBlueprint)),
-        dependencies: getFilteredComponents(state, getSortedDependencies(state, fetchedBlueprint)),
+        selectedComponents: getFilteredComponents(
+          state,
+          getSortedSelectedComponents(state, fetchedBlueprint)
+        ),
+        dependencies: getFilteredComponents(
+          state,
+          getSortedDependencies(state, fetchedBlueprint)
+        ),
         composeList: getBlueprintComposes(state, fetchedBlueprint),
         composesLoading: state.composes.fetchingComposes,
         imageTypes: state.composes.composeTypes,
@@ -678,7 +766,8 @@ const makeMapStateToProps = () => {
         componentsFilters: state.filter.components,
         blueprintContentsError: fetchedBlueprint.errorState,
         blueprintContentsFetching: !!(
-          fetchedBlueprint.components === undefined && fetchedBlueprint.errorState === undefined
+          fetchedBlueprint.components === undefined &&
+          fetchedBlueprint.errorState === undefined
         ),
       };
     }
@@ -786,4 +875,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(makeMapStateToProps, mapDispatchToProps)(injectIntl(BlueprintPage));
+export default connect(
+  makeMapStateToProps,
+  mapDispatchToProps
+)(injectIntl(BlueprintPage));

@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 import * as composer from "./composer";
 
 function flattenInputs(response) {
@@ -12,7 +13,10 @@ function flattenInputs(response) {
     if (previousInputs.hasOwnProperty(item.name)) {
       // update the previousInput object with this item"s version/release
       // to make the default version/release the latest
-      previousInputs[item.name] = Object.assign(previousInputs[item.name], build);
+      previousInputs[item.name] = Object.assign(
+        previousInputs[item.name],
+        build
+      );
       // and remove this item from the list
       return false;
     }
@@ -32,10 +36,16 @@ async function getPackages(filter, selectedInputPage, pageSize) {
     let filterValue = filter.replace(regex, ",");
     const regexStrip = /(^,+)|(,+$)/g;
     filterValue = filterValue.replace(regexStrip, "");
-    filterValue = wildcardsUsed ? filterValue : `*${filterValue}*`.replace(/,/g, "*,*");
+    filterValue = wildcardsUsed
+      ? filterValue
+      : `*${filterValue}*`.replace(/,/g, "*,*");
     // page is displayed in UI starting from 1 but api starts from 0
     const pageIndex = selectedInputPage - 1;
-    const response = await composer.listModules(filterValue, pageIndex, pageSize);
+    const response = await composer.listModules(
+      filterValue,
+      pageIndex,
+      pageSize
+    );
     const inputNames = response.modules.map((input) => input.name).join(",");
     const inputs = await composer.getComponentInfo(inputNames);
     const packages = flattenInputs(inputs).map((input) => {

@@ -44,7 +44,13 @@ function* removeModalManageSourcesEntry(action) {
 }
 
 export default function* () {
-  yield takeEvery(FETCHING_MODAL_MANAGE_SOURCES_CONTENTS, fetchModalManageSourcesContents);
+  yield takeEvery(
+    FETCHING_MODAL_MANAGE_SOURCES_CONTENTS,
+    fetchModalManageSourcesContents
+  );
   yield takeEvery(ADD_MODAL_MANAGE_SOURCES_ENTRY, addModalManageSourcesEntry);
-  yield takeEvery(REMOVE_MODAL_MANAGE_SOURCES_ENTRY, removeModalManageSourcesEntry);
+  yield takeEvery(
+    REMOVE_MODAL_MANAGE_SOURCES_ENTRY,
+    removeModalManageSourcesEntry
+  );
 }

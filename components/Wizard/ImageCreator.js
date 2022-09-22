@@ -17,14 +17,15 @@ const ImageCreator = ({
   onClose,
   customComponentMapper,
   customValidatorMapper,
-  className,
   ...props
 }) => {
   return schema ? (
     <FormRenderer
       initialValues={props.initialValues}
       schema={schema}
-      FormTemplate={(props) => <Pf4FormTemplate {...props} showFormControls={false} />}
+      FormTemplate={(props) => (
+        <Pf4FormTemplate {...props} showFormControls={false} />
+      )}
       onSubmit={(action, formProps) => onSubmit(action, formProps)}
       validatorMapper={{ ...customValidatorMapper }}
       componentMapper={{

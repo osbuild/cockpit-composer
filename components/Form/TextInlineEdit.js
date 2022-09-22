@@ -37,11 +37,19 @@ class TextInlineEdit extends React.Component {
   }
 
   setEditValue(prevProps) {
-    if (prevProps.editVisible === false && this.props.editVisible === true && this.textInput.current) {
+    if (
+      prevProps.editVisible === false &&
+      this.props.editVisible === true &&
+      this.textInput.current
+    ) {
       this.setState({ editValue: this.props.value });
       this.textInput.current.select();
     }
-    if (prevProps.editVisible === true && this.props.editVisible === false && this.textButton.current) {
+    if (
+      prevProps.editVisible === true &&
+      this.props.editVisible === false &&
+      this.textButton.current
+    ) {
       this.textButton.current.focus();
       this.setState({ editValue: this.props.value });
     }
@@ -59,7 +67,10 @@ class TextInlineEdit extends React.Component {
   }
 
   escFunction(event) {
-    if (event.keyCode === 27 && this.textInput.current === document.activeElement) {
+    if (
+      event.keyCode === 27 &&
+      this.textInput.current === document.activeElement
+    ) {
       this.props.validateValue(this.props.value);
       this.props.handleEdit("cancel");
     }
@@ -92,7 +103,11 @@ class TextInlineEdit extends React.Component {
             <div className="form-control-pf-editable form-control-pf-edit">
               <span className="form-control-pf-value" />
               <div className="form-control-pf-textbox">
-                <input type="text" className="form-control" {...inputAttributes} />
+                <input
+                  type="text"
+                  className="form-control"
+                  {...inputAttributes}
+                />
               </div>
               {(this.props.invalid && (
                 <button
@@ -128,7 +143,10 @@ class TextInlineEdit extends React.Component {
               </span>
             )}
             {this.props.helpblockNoValue && this.state.editValue === "" && (
-              <span className="help-block" id={`${this.props.inputLabel}-help2`}>
+              <span
+                className="help-block"
+                id={`${this.props.inputLabel}-help2`}
+              >
                 {this.props.helpblockNoValue}
               </span>
             )}
@@ -136,14 +154,21 @@ class TextInlineEdit extends React.Component {
         )) || (
           <div>
             <div className="form-control-pf-editable">
-              <button type="button" className="form-control-pf-value" {...buttonAttributes}>
+              <button
+                type="button"
+                className="form-control-pf-value"
+                {...buttonAttributes}
+              >
                 <span className="sr-only">{this.props.buttonLabel}: </span>
                 {this.props.value !== "" && <span>{this.props.value}</span>}
                 <PencilAltIcon />
               </button>
             </div>
             {this.props.helpblockNoValue && this.props.value === "" && (
-              <span className="help-block" id={`${this.props.inputLabel}-help2`}>
+              <span
+                className="help-block"
+                id={`${this.props.inputLabel}-help2`}
+              >
                 {this.props.helpblockNoValue}
               </span>
             )}

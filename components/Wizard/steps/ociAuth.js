@@ -41,7 +41,12 @@ const messages = defineMessages({
 const ociAuth = () => {
   const intl = useIntl();
   return {
-    title: <FormattedMessage id="wizard.oci.authTitle" defaultMessage="Authentication" />,
+    title: (
+      <FormattedMessage
+        id="wizard.oci.authTitle"
+        defaultMessage="Authentication"
+      />
+    ),
     name: "oci-auth",
     substepOf: intl.formatMessage(messages.ociTitle),
     nextStep: "oci-dest",
@@ -51,7 +56,12 @@ const ociAuth = () => {
         name: "oci-user-ocid",
         className: "pf-u-w-50",
         type: "text",
-        label: <FormattedMessage id="wizard.oci.userOCID.label" defaultMessage="User OCID" />,
+        label: (
+          <FormattedMessage
+            id="wizard.oci.userOCID.label"
+            defaultMessage="User OCID"
+          />
+        ),
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.userOCIDPopoverBody, {
@@ -59,7 +69,10 @@ const ociAuth = () => {
             })}
             aria-label={intl.formatMessage(messages.userOCIDPopoverAria)}
           >
-            <Button variant="plain" aria-label={intl.formatMessage(messages.userOCIDPopoverAria)}>
+            <Button
+              variant="plain"
+              aria-label={intl.formatMessage(messages.userOCIDPopoverAria)}
+            >
               <HelpIcon />
             </Button>
           </Popover>
@@ -75,7 +88,12 @@ const ociAuth = () => {
       {
         component: "upload-file",
         name: "oci-private-key",
-        label: <FormattedMessage id="wizard.oci.privateKey.label" defaultMessage="Private key" />,
+        label: (
+          <FormattedMessage
+            id="wizard.oci.privateKey.label"
+            defaultMessage="Private key"
+          />
+        ),
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.privateKeyPopoverBody, {
@@ -83,7 +101,10 @@ const ociAuth = () => {
             })}
             aria-label={intl.formatMessage(messages.privateKeyPopoverAria)}
           >
-            <Button variant="plain" aria-label={intl.formatMessage(messages.privateKeyPopoverAria)}>
+            <Button
+              variant="plain"
+              aria-label={intl.formatMessage(messages.privateKeyPopoverAria)}
+            >
               <HelpIcon />
             </Button>
           </Popover>
@@ -105,7 +126,12 @@ const ociAuth = () => {
         name: "oci-fingerprint",
         className: "pf-u-w-50",
         type: "text",
-        label: <FormattedMessage id="wizard.oci.fingerprint.label" defaultMessage="Fingerprint" />,
+        label: (
+          <FormattedMessage
+            id="wizard.oci.fingerprint.label"
+            defaultMessage="Fingerprint"
+          />
+        ),
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.fingerprintPopoverBody, {
@@ -113,7 +139,10 @@ const ociAuth = () => {
             })}
             aria-label={intl.formatMessage(messages.fingerprintPopoverAria)}
           >
-            <Button variant="plain" aria-label={intl.formatMessage(messages.fingerprintPopoverAria)}>
+            <Button
+              variant="plain"
+              aria-label={intl.formatMessage(messages.fingerprintPopoverAria)}
+            >
               <HelpIcon />
             </Button>
           </Popover>

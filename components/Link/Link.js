@@ -43,7 +43,11 @@ class Link extends React.Component {
     const propsWithoutTo = { ...this.props };
     delete propsWithoutTo.to;
     return (
-      <a href={history.createHref(to)} {...propsWithoutTo} onClick={this.handleClick}>
+      <a
+        href={history.createHref(to)}
+        {...propsWithoutTo}
+        onClick={this.handleClick}
+      >
         {children}
       </a>
     );
@@ -53,7 +57,8 @@ class Link extends React.Component {
 Link.propTypes = {
   to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   onClick: PropTypes.func,
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
+    .isRequired,
 };
 
 Link.defaultProps = {

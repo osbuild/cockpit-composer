@@ -80,7 +80,9 @@ class CreateBlueprint extends React.Component {
     } else {
       // Creates array of unique invalid chars in blueprint name
       const invalidCharsRegex = /[^a-zA-Z0-9._-\s]/g;
-      const nameInvalidChars = Array.from(new Set(blueprintName.match(invalidCharsRegex)));
+      const nameInvalidChars = Array.from(
+        new Set(blueprintName.match(invalidCharsRegex))
+      );
       const nameContainsSpace = /\s/.test(blueprintName);
 
       if (nameInvalidChars.length !== 0) {
@@ -181,8 +183,15 @@ class CreateBlueprint extends React.Component {
                 }}
               />
             </p>
-            <div className={`form-group ${this.nameContainsError() ? "has-error" : ""}`}>
-              <label className="col-sm-3 control-label required-pf" htmlFor="textInput-modal-markup">
+            <div
+              className={`form-group ${
+                this.nameContainsError() ? "has-error" : ""
+              }`}
+            >
+              <label
+                className="col-sm-3 control-label required-pf"
+                htmlFor="textInput-modal-markup"
+              >
                 <FormattedMessage defaultMessage="Name" />
               </label>
               <div className="col-sm-9">
@@ -197,7 +206,9 @@ class CreateBlueprint extends React.Component {
                   onKeyPress={(e) => this.handleEnterKey(e)}
                 />
                 <span className="help-block">
-                  {this.state.errorNameEmpty && <FormattedMessage defaultMessage="A blueprint name is required." />}
+                  {this.state.errorNameEmpty && (
+                    <FormattedMessage defaultMessage="A blueprint name is required." />
+                  )}
                   {this.state.errorNameDuplicate && (
                     <FormattedMessage
                       defaultMessage="The name {name} already exists."
@@ -206,9 +217,10 @@ class CreateBlueprint extends React.Component {
                       }}
                     />
                   )}
-                  {this.state.errorNameSpace && !this.state.errorNameInvalid && (
-                    <FormattedMessage defaultMessage="Blueprint names cannot contain spaces." />
-                  )}
+                  {this.state.errorNameSpace &&
+                    !this.state.errorNameInvalid && (
+                      <FormattedMessage defaultMessage="Blueprint names cannot contain spaces." />
+                    )}
                   {!this.state.errorNameSpace &&
                     this.state.errorNameInvalid &&
                     (this.state.errorNameInvalidChar.length === 1 ? (
@@ -222,7 +234,8 @@ class CreateBlueprint extends React.Component {
                       <FormattedMessage
                         defaultMessage="Blueprint names cannot contain the characters: {invalidChar}"
                         values={{
-                          invalidChar: this.state.errorNameInvalidChar.join(" "),
+                          invalidChar:
+                            this.state.errorNameInvalidChar.join(" "),
                         }}
                       />
                     ))}
@@ -239,7 +252,8 @@ class CreateBlueprint extends React.Component {
                       <FormattedMessage
                         defaultMessage="Blueprint names cannot contain spaces or the characters: {invalidChar}"
                         values={{
-                          invalidChar: this.state.errorNameInvalidChar.join(" "),
+                          invalidChar:
+                            this.state.errorNameInvalidChar.join(" "),
                         }}
                       />
                     ))}
@@ -247,7 +261,10 @@ class CreateBlueprint extends React.Component {
               </div>
             </div>
             <div className="form-group">
-              <label className="col-sm-3 control-label" htmlFor="textInput2-modal-markup">
+              <label
+                className="col-sm-3 control-label"
+                htmlFor="textInput2-modal-markup"
+              >
                 <FormattedMessage defaultMessage="Description" />
               </label>
               <div className="col-sm-9">

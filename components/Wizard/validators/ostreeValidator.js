@@ -7,7 +7,10 @@ const OSTreeValidator = () => (value, formValues) => {
     return undefined;
   }
 
-  if (formValues["ostree-repo-url"]?.length > 0 && formValues["ostree-parent-commit"]?.length > 0) {
+  if (
+    formValues["ostree-repo-url"]?.length > 0 &&
+    formValues["ostree-parent-commit"]?.length > 0
+  ) {
     return (
       <FormattedMessage
         id="wizard.ostree.validationError"

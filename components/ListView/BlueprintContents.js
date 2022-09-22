@@ -47,7 +47,11 @@ const BlueprintContents = (props) => {
   const { formatMessage } = props.intl;
   const alertAction =
     pastLength > 0 ? (
-      <button className="pf-c-button pf-m-link" type="button" onClick={() => undo()}>
+      <button
+        className="pf-c-button pf-m-link"
+        type="button"
+        onClick={() => undo()}
+      >
         <FormattedMessage defaultMessage="Undo last change" />
       </button>
     ) : null;
@@ -55,18 +59,29 @@ const BlueprintContents = (props) => {
   return (
     <div>
       {(components === undefined && <Loading />) ||
-        (components.length === 0 && filterValues.length === 0 && <div>{props.children}</div>) || (
+        (components.length === 0 && filterValues.length === 0 && (
+          <div>{props.children}</div>
+        )) || (
           <Tabs id="blueprint-tabs" defaultActiveKey="selected-components">
             <Tab
               eventKey="selected-components"
-              title={<LabelWithBadge title={formatMessage(messages.selectedTabTitle)} badge={components.length} />}
+              title={
+                <LabelWithBadge
+                  title={formatMessage(messages.selectedTabTitle)}
+                  badge={components.length}
+                />
+              }
             >
               {(components.length === 0 && (
                 <EmptyState
                   title={formatMessage(messages.emptyStateNoResultsTitle)}
                   message={formatMessage(messages.emptyStateNoResultsMessage)}
                 >
-                  <button className="btn btn-link btn-lg" type="button" onClick={() => filterClearValues([])}>
+                  <button
+                    className="btn btn-link btn-lg"
+                    type="button"
+                    onClick={() => filterClearValues([])}
+                  >
                     <FormattedMessage defaultMessage="Clear all filters" />
                   </button>
                 </EmptyState>
@@ -119,7 +134,11 @@ const BlueprintContents = (props) => {
                   title={formatMessage(messages.emptyStateNoResultsTitle)}
                   message={formatMessage(messages.emptyStateNoResultsMessage)}
                 >
-                  <button className="btn btn-link btn-lg" type="button" onClick={() => filterClearValues([])}>
+                  <button
+                    className="btn btn-link btn-lg"
+                    type="button"
+                    onClick={() => filterClearValues([])}
+                  >
                     <FormattedMessage defaultMessage="Clear all filters" />
                   </button>
                 </EmptyState>
@@ -155,7 +174,10 @@ BlueprintContents.propTypes = {
     url: PropTypes.string,
   }),
   fetchDetails: PropTypes.func,
-  children: PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.element)]),
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.arrayOf(PropTypes.element),
+  ]),
   pastLength: PropTypes.number,
   undo: PropTypes.func,
 };

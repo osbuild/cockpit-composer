@@ -14,7 +14,9 @@ const ComponentTypeIcons = (props) => {
   const { formatMessage } = props.intl;
   let type = "";
   let indicator = "";
-  const context = props.compDetails ? "pf-icon-small" : "list-pf-icon list-pf-icon-small";
+  const context = props.compDetails
+    ? "pf-icon-small"
+    : "list-pf-icon list-pf-icon-small";
   switch (props.componentType) {
     case "Module":
       type = "Module";

@@ -12,7 +12,10 @@ import {
   Button,
   SearchInput,
 } from "@patternfly/react-core";
-import { SortAlphaDownIcon, SortAlphaDownAltIcon } from "@patternfly/react-icons";
+import {
+  SortAlphaDownIcon,
+  SortAlphaDownAltIcon,
+} from "@patternfly/react-icons";
 
 const messages = defineMessages({
   filterName: {
@@ -73,8 +76,14 @@ const BlueprintToolbar = (props) => {
 
   const filterOptions = [
     <SelectOption key="name" value={intl.formatMessage(messages.filterName)} />,
-    <SelectOption key="version" value={intl.formatMessage(messages.filterVersion)} />,
-    <SelectOption key="release" value={intl.formatMessage(messages.filterRelease)} />,
+    <SelectOption
+      key="version"
+      value={intl.formatMessage(messages.filterVersion)}
+    />,
+    <SelectOption
+      key="release"
+      value={intl.formatMessage(messages.filterRelease)}
+    />,
   ];
 
   const toolbarItems = (

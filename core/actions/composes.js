@@ -1,5 +1,11 @@
 export const START_COMPOSE = "START_COMPOSE";
-export const startCompose = (blueprintName, composeType, imageSize, ostree, uploadSettings) => ({
+export const startCompose = (
+  blueprintName,
+  composeType,
+  imageSize,
+  ostree,
+  uploadSettings
+) => ({
   type: START_COMPOSE,
   payload: {
     blueprintName,
@@ -37,7 +43,8 @@ export const fetchingComposeSucceeded = (compose) => ({
   },
 });
 
-export const FETCHING_COMPOSE_STATUS_SUCCEEDED = "FETCHING_COMPOSE_STATUS_SUCCEEDED";
+export const FETCHING_COMPOSE_STATUS_SUCCEEDED =
+  "FETCHING_COMPOSE_STATUS_SUCCEEDED";
 export const fetchingComposeStatusSucceeded = (compose) => ({
   type: FETCHING_COMPOSE_STATUS_SUCCEEDED,
   payload: {
@@ -50,7 +57,8 @@ export const fetchingComposeTypes = () => ({
   type: FETCHING_COMPOSE_TYPES,
 });
 
-export const FETCHING_COMPOSE_TYPES_SUCCEEDED = "FETCHING_COMPOSE_TYPES_SUCCEEDED";
+export const FETCHING_COMPOSE_TYPES_SUCCEEDED =
+  "FETCHING_COMPOSE_TYPES_SUCCEEDED";
 export const fetchingComposeTypesSucceeded = (composeTypes) => ({
   type: FETCHING_COMPOSE_TYPES_SUCCEEDED,
   payload: {
