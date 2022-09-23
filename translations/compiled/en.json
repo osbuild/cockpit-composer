@@ -1,0 +1,2690 @@
+{
+  "+5tJmw": [
+    {
+      "type": 0,
+      "value": "Show details and more options"
+    }
+  ],
+  "+U6ozc": [
+    {
+      "type": 0,
+      "value": "Type"
+    }
+  ],
+  "+au4ys": [
+    {
+      "type": 0,
+      "value": "Image build in progress"
+    }
+  ],
+  "+rGIg+": [
+    {
+      "type": 0,
+      "value": "Selected components"
+    }
+  ],
+  "/f2U0m": [
+    {
+      "type": 1,
+      "value": "blueprint"
+    },
+    {
+      "type": 0,
+      "value": " Image creation is "
+    },
+    {
+      "type": 1,
+      "value": "queue"
+    },
+    {
+      "type": 0,
+      "value": "."
+    }
+  ],
+  "0RKB20": [
+    {
+      "type": 0,
+      "value": "Paste the contents of your public SSH key file here."
+    }
+  ],
+  "1EXxHp": [
+    {
+      "type": 0,
+      "value": "Back to "
+    },
+    {
+      "type": 1,
+      "value": "blueprint"
+    }
+  ],
+  "1JrFAf": [
+    {
+      "type": 1,
+      "value": "blueprint"
+    },
+    {
+      "type": 0,
+      "value": " Committing blueprint."
+    }
+  ],
+  "1XYBqQ": [
+    {
+      "type": 0,
+      "value": "Type"
+    }
+  ],
+  "1ZgrhW": [
+    {
+      "type": 0,
+      "value": "Role"
+    }
+  ],
+  "2/2yg+": [
+    {
+      "type": 0,
+      "value": "Add"
+    }
+  ],
+  "2oRJfL": [
+    {
+      "type": 0,
+      "value": "Are you sure you want to stop the build process for "
+    },
+    {
+      "type": 1,
+      "value": "blueprintName"
+    },
+    {
+      "type": 0,
+      "value": "?"
+    }
+  ],
+  "30d/i3": [
+    {
+      "type": 0,
+      "value": "Are you sure you want to delete the image for "
+    },
+    {
+      "type": 1,
+      "value": "blueprintName"
+    },
+    {
+      "type": 0,
+      "value": "?"
+    }
+  ],
+  "37P8mu": [
+    {
+      "type": 0,
+      "value": "The values entered for password do not match."
+    }
+  ],
+  "37Z5zj": [
+    {
+      "type": 0,
+      "value": "Dependencies"
+    }
+  ],
+  "3X47fT": [
+    {
+      "type": 0,
+      "value": "Customizations"
+    }
+  ],
+  "40p537": [
+    {
+      "type": 0,
+      "value": "An error occurred when saving the source. Check that the path is valid and try again."
+    }
+  ],
+  "47FYwb": [
+    {
+      "type": 0,
+      "value": "Cancel"
+    }
+  ],
+  "4l6vz1": [
+    {
+      "type": 0,
+      "value": "Copy"
+    }
+  ],
+  "4pttvV": [
+    {
+      "type": 0,
+      "value": "SSH key"
+    }
+  ],
+  "58AMgs": [
+    {
+      "type": 0,
+      "value": "Upload failed"
+    }
+  ],
+  "5mEfSx": [
+    {
+      "type": 0,
+      "value": "Type"
+    }
+  ],
+  "5q3qC0": [
+    {
+      "type": 0,
+      "value": "Download"
+    }
+  ],
+  "5sg7KC": [
+    {
+      "type": 0,
+      "value": "Password"
+    }
+  ],
+  "6+HPX4": [
+    {
+      "type": 1,
+      "value": "count"
+    },
+    {
+      "type": 0,
+      "value": " total components"
+    }
+  ],
+  "8HimVK": [
+    {
+      "type": 0,
+      "value": "Confirm password"
+    }
+  ],
+  "8JV1eg": [
+    {
+      "type": 0,
+      "value": "Source actions"
+    }
+  ],
+  "8vEZxT": [
+    {
+      "type": 0,
+      "value": "Add latest version"
+    }
+  ],
+  "8vp7hD": [
+    {
+      "type": 0,
+      "value": "Create user account"
+    }
+  ],
+  "97rY6L": [
+    {
+      "type": 0,
+      "value": "No images have been created from this blueprint."
+    }
+  ],
+  "9GzCxs": [
+    {
+      "type": 0,
+      "value": "Logs"
+    }
+  ],
+  "9zOqa2": [
+    {
+      "type": 0,
+      "value": "Export blueprint"
+    }
+  ],
+  "A+y/qn": [
+    {
+      "type": 0,
+      "value": "Type "
+    },
+    {
+      "type": 1,
+      "value": "sourceType"
+    }
+  ],
+  "AZSxPR": [
+    {
+      "type": 0,
+      "value": "Packages"
+    }
+  ],
+  "Aae1Ty": [
+    {
+      "type": 0,
+      "value": "There are no components listed in the blueprint."
+    }
+  ],
+  "Ac9kyC": [
+    {
+      "type": 0,
+      "value": "Size"
+    }
+  ],
+  "B+KgPL": [
+    {
+      "type": 0,
+      "value": "Image uploads"
+    }
+  ],
+  "BKTNN9": [
+    {
+      "type": 0,
+      "value": "mirrorlist"
+    }
+  ],
+  "BWpuKl": [
+    {
+      "type": 0,
+      "value": "Update"
+    }
+  ],
+  "Cjq7y/": [
+    {
+      "type": 1,
+      "value": "blueprint"
+    },
+    {
+      "type": 0,
+      "value": " Commit failed."
+    }
+  ],
+  "Cos0fs": [
+    {
+      "type": 0,
+      "value": "User account actions"
+    }
+  ],
+  "CvWvf+": [
+    {
+      "type": 0,
+      "value": "actions"
+    }
+  ],
+  "E6oPLr": [
+    {
+      "type": 0,
+      "value": "Image build pending"
+    }
+  ],
+  "E8zzIG": [
+    {
+      "type": 0,
+      "value": "Release"
+    }
+  ],
+  "EKnBOw": [
+    {
+      "type": 0,
+      "value": "Export as"
+    }
+  ],
+  "F/h91l": [
+    {
+      "type": 0,
+      "value": "Blueprint names cannot contain spaces or the characters: "
+    },
+    {
+      "type": 1,
+      "value": "invalidChar"
+    }
+  ],
+  "FLRtby": [
+    {
+      "type": 0,
+      "value": "Image build failed"
+    }
+  ],
+  "Fip4H8": [
+    {
+      "type": 0,
+      "value": "Images"
+    }
+  ],
+  "FnbFs1": [
+    {
+      "type": 0,
+      "value": "If no hostname is provided, the hostname will be determined by the OS."
+    }
+  ],
+  "G/yZLu": [
+    {
+      "type": 0,
+      "value": "Remove"
+    }
+  ],
+  "GIx47G": [
+    {
+      "type": 1,
+      "value": "goBack"
+    },
+    {
+      "type": 0,
+      "value": ", or head over to the&nbsp;"
+    },
+    {
+      "type": 1,
+      "value": "homePage"
+    },
+    {
+      "type": 0,
+      "value": " to choose a new direction."
+    }
+  ],
+  "Got+mi": [
+    {
+      "type": 0,
+      "value": "Remove component from blueprint"
+    }
+  ],
+  "HAlOn1": [
+    {
+      "type": 0,
+      "value": "Name"
+    }
+  ],
+  "I3b4hn": [
+    {
+      "type": 0,
+      "value": "Version"
+    }
+  ],
+  "IFGPaR": [
+    {
+      "type": 0,
+      "value": "metalink"
+    }
+  ],
+  "ISKH65": [
+    {
+      "type": 0,
+      "value": "No dependencies"
+    }
+  ],
+  "IZj6jp": [
+    {
+      "type": 0,
+      "value": "The installation device is used by the RHEL for Edge Simplified Installer. It specifies which device the image will be installed onto."
+    }
+  ],
+  "Ito++a": [
+    {
+      "type": 0,
+      "value": "Component details"
+    }
+  ],
+  "JDJoIZ": [
+    {
+      "type": 0,
+      "value": "This action cannot be undone."
+    }
+  ],
+  "JMac37": [
+    {
+      "type": 0,
+      "value": "Show all"
+    }
+  ],
+  "JS2thV": [
+    {
+      "type": 0,
+      "value": "An error occurred while trying to get sources."
+    }
+  ],
+  "JvAfJL": [
+    {
+      "type": 0,
+      "value": "Create blueprint"
+    }
+  ],
+  "K/cUVZ": [
+    {
+      "type": 0,
+      "value": "Started"
+    }
+  ],
+  "K3r6DQ": [
+    {
+      "type": 0,
+      "value": "Delete"
+    }
+  ],
+  "K5gJ4I": [
+    {
+      "type": 0,
+      "value": "Actions"
+    }
+  ],
+  "KN7zKn": [
+    {
+      "type": 0,
+      "value": "Error"
+    }
+  ],
+  "KVL+St": [
+    {
+      "type": 0,
+      "value": "An error occurred while trying to get blueprint contents."
+    }
+  ],
+  "Lv0zJu": [
+    {
+      "type": 0,
+      "value": "Details"
+    }
+  ],
+  "M+T+k5": [
+    {
+      "type": 0,
+      "value": "Server administrator"
+    }
+  ],
+  "MJhDhz": [
+    {
+      "type": 0,
+      "value": "Edit hostname"
+    }
+  ],
+  "MhK+00": [
+    {
+      "type": 0,
+      "value": "Valid characters for hostname are letters from a to z, the digits from 0 to 9, and the hyphen (-). A hostname may not start with a hyphen."
+    }
+  ],
+  "MyIJbr": [
+    {
+      "type": 0,
+      "value": "Contents"
+    }
+  ],
+  "N26JOi": [
+    {
+      "type": 1,
+      "value": "blueprint"
+    },
+    {
+      "type": 0,
+      "value": " Image creation has been added to the "
+    },
+    {
+      "type": 1,
+      "value": "queue"
+    },
+    {
+      "type": 0,
+      "value": "."
+    }
+  ],
+  "NHFedT": [
+    {
+      "type": 0,
+      "value": "The service osbuild-composer was not started."
+    }
+  ],
+  "NSDMOB": [
+    {
+      "type": 0,
+      "value": "Blueprint names cannot contain spaces or the character: "
+    },
+    {
+      "type": 1,
+      "value": "invalidChar"
+    }
+  ],
+  "P1obxx": [
+    {
+      "type": 0,
+      "value": "This source name already exists."
+    }
+  ],
+  "PANWvL": [
+    {
+      "type": 0,
+      "value": "The fields marked with "
+    },
+    {
+      "type": 1,
+      "value": "val"
+    },
+    {
+      "type": 0,
+      "value": " are required."
+    }
+  ],
+  "Py189G": [
+    {
+      "type": 0,
+      "value": "Security"
+    }
+  ],
+  "Q8Qw5B": [
+    {
+      "type": 0,
+      "value": "Description"
+    }
+  ],
+  "QRccCM": [
+    {
+      "type": 0,
+      "value": "Page not found"
+    }
+  ],
+  "Qtf9Pv": [
+    {
+      "type": 0,
+      "value": "Check GPG key"
+    }
+  ],
+  "RNMNBp": [
+    {
+      "type": 0,
+      "value": "A blueprint name is required."
+    }
+  ],
+  "SIfZl2": [
+    {
+      "type": 0,
+      "value": "Image build complete"
+    }
+  ],
+  "SVwJTM": [
+    {
+      "type": 0,
+      "value": "Export"
+    }
+  ],
+  "T7Ry38": [
+    {
+      "type": 0,
+      "value": "Message"
+    }
+  ],
+  "TPv12m": [
+    {
+      "type": 1,
+      "value": "blueprint"
+    },
+    {
+      "type": 0,
+      "value": " Image creation has "
+    },
+    {
+      "type": 1,
+      "value": "queue"
+    },
+    {
+      "type": 0,
+      "value": "."
+    }
+  ],
+  "U4wZ9a": [
+    {
+      "type": 0,
+      "value": "Server admin checkbox"
+    }
+  ],
+  "V7qFHp": [
+    {
+      "type": 0,
+      "value": "Remove from blueprint"
+    }
+  ],
+  "VJ1Ofk": [
+    {
+      "type": 0,
+      "value": "Specify a new blueprint name."
+    }
+  ],
+  "VcpIj8": [
+    {
+      "type": 0,
+      "value": "No blueprints"
+    }
+  ],
+  "VvNSPf": [
+    {
+      "type": 0,
+      "value": "Saving source"
+    }
+  ],
+  "VzWTJu": [
+    {
+      "type": 0,
+      "value": "Blueprints"
+    }
+  ],
+  "VzzYJk": [
+    {
+      "type": 0,
+      "value": "Create"
+    }
+  ],
+  "W42s+Y": [
+    {
+      "type": 0,
+      "value": "Are you sure you want to delete the blueprint "
+    },
+    {
+      "type": 1,
+      "value": "name"
+    },
+    {
+      "type": 0,
+      "value": "?"
+    }
+  ],
+  "WgnzEk": [
+    {
+      "type": 0,
+      "value": "The user "
+    },
+    {
+      "type": 1,
+      "value": "userName"
+    },
+    {
+      "type": 0,
+      "value": " is not permitted to start services."
+    }
+  ],
+  "X5Q310": [
+    {
+      "type": 0,
+      "value": "Hide details"
+    }
+  ],
+  "X7VzHG": [
+    {
+      "type": 0,
+      "value": "Enter valid device node such as /dev/sda1"
+    }
+  ],
+  "XVUE2S": [
+    {
+      "type": 0,
+      "value": "Upload complete"
+    }
+  ],
+  "Xnr7w+": [
+    {
+      "type": 0,
+      "value": "Delete user account"
+    }
+  ],
+  "XuXnjA": [
+    {
+      "type": 1,
+      "value": "blueprint"
+    },
+    {
+      "type": 0,
+      "value": " Blueprint changes are committed."
+    }
+  ],
+  "Y8ROGQ": [
+    {
+      "type": 0,
+      "value": "Blueprint names cannot contain the characters: "
+    },
+    {
+      "type": 1,
+      "value": "invalidChar"
+    }
+  ],
+  "YA7Jsl": [
+    {
+      "type": 0,
+      "value": "Sources are used for resolving blueprint dependencies and for composing images. When adding custom sources you must make sure that the packages in the source do not conflict with any other package sources, otherwise resolving dependencies and composing images will fail."
+    }
+  ],
+  "YDMrKK": [
+    {
+      "type": 0,
+      "value": "Users"
+    }
+  ],
+  "YcwpgZ": [
+    {
+      "type": 0,
+      "value": "Modify your filter criteria to get results."
+    }
+  ],
+  "aA8bDw": [
+    {
+      "type": 0,
+      "value": "Text"
+    }
+  ],
+  "aJxdzZ": [
+    {
+      "type": 0,
+      "value": "Select one"
+    }
+  ],
+  "bWjdfa": [
+    {
+      "type": 0,
+      "value": "URL"
+    }
+  ],
+  "bdBO1o": [
+    {
+      "type": 0,
+      "value": "details"
+    }
+  ],
+  "bio3a7": [
+    {
+      "type": 0,
+      "value": "Manage sources"
+    }
+  ],
+  "cBc0mu": [
+    {
+      "type": 0,
+      "value": "Installation device help"
+    }
+  ],
+  "cpW2uO": [
+    {
+      "type": 0,
+      "value": "Blueprint"
+    }
+  ],
+  "customizations.user.title": [
+    {
+      "type": 0,
+      "value": "Users"
+    }
+  ],
+  "dO/Asa": [
+    {
+      "type": 0,
+      "value": "Name"
+    }
+  ],
+  "ejDbk/": [
+    {
+      "type": 0,
+      "value": "Stopping"
+    }
+  ],
+  "ey4Emq": [
+    {
+      "type": 0,
+      "value": "Logs"
+    }
+  ],
+  "f3funQ": [
+    {
+      "type": 0,
+      "value": "Installation device"
+    }
+  ],
+  "fC003Y": [
+    {
+      "type": 0,
+      "value": "Component options"
+    }
+  ],
+  "fD/10F": [
+    {
+      "type": 0,
+      "value": "Image building service is not active"
+    }
+  ],
+  "fltwyt": [
+    {
+      "type": 0,
+      "value": "No log available"
+    }
+  ],
+  "futKXS": [
+    {
+      "type": 0,
+      "value": "Removing source"
+    }
+  ],
+  "griaXu": [
+    {
+      "type": 0,
+      "value": "This component has no dependencies."
+    }
+  ],
+  "hFrCaW": [
+    {
+      "type": 0,
+      "value": "Upload in progress"
+    }
+  ],
+  "i/jBY4": [
+    {
+      "type": 0,
+      "value": "The page you're looking for does not exist or an another error occurred."
+    }
+  ],
+  "i7KMlN": [
+    {
+      "type": 0,
+      "value": "Empty blueprint"
+    }
+  ],
+  "iFsDVR": [
+    {
+      "type": 0,
+      "value": "Loading"
+    }
+  ],
+  "iMmT22": [
+    {
+      "type": 0,
+      "value": "The user name can only consist of letters from a-z, digits, dots, dashes and underscores."
+    }
+  ],
+  "iYXTZF": [
+    {
+      "type": 0,
+      "value": "Blueprint names cannot contain spaces."
+    }
+  ],
+  "imoqgZ": [
+    {
+      "type": 0,
+      "value": "Blueprint names cannot contain the character: "
+    },
+    {
+      "type": 1,
+      "value": "invalidChar"
+    }
+  ],
+  "ip8ZAd": [
+    {
+      "type": 0,
+      "value": "Source path"
+    }
+  ],
+  "jKKg2o": [
+    {
+      "type": 0,
+      "value": "Clear all filters"
+    }
+  ],
+  "jvo0vs": [
+    {
+      "type": 0,
+      "value": "Save"
+    }
+  ],
+  "kBfhZh": [
+    {
+      "type": 0,
+      "value": "This source path already exists."
+    }
+  ],
+  "kUbXea": [
+    {
+      "type": 0,
+      "value": "Edit user account"
+    }
+  ],
+  "kbaA+5": [
+    {
+      "type": 0,
+      "value": "Check SSL certificate"
+    }
+  ],
+  "lQZbCb": [
+    {
+      "type": 0,
+      "value": "This user name already exists."
+    }
+  ],
+  "llmDU9": [
+    {
+      "type": 0,
+      "value": "yum repository"
+    }
+  ],
+  "mA1RDm": [
+    {
+      "type": 0,
+      "value": "Edit source"
+    }
+  ],
+  "mOFG3K": [
+    {
+      "type": 0,
+      "value": "Start"
+    }
+  ],
+  "mOvhC0": [
+    {
+      "type": 0,
+      "value": "No images"
+    }
+  ],
+  "mOvlDe": [
+    {
+      "type": 0,
+      "value": "Edit description"
+    }
+  ],
+  "nizegm": [
+    {
+      "type": 0,
+      "value": "home page"
+    }
+  ],
+  "o7nzDs": [
+    {
+      "type": 0,
+      "value": "User name"
+    }
+  ],
+  "oKNN04": [
+    {
+      "type": 0,
+      "value": "This system does not have any valid subscriptions."
+    }
+  ],
+  "orvpWh": [
+    {
+      "type": 0,
+      "value": "Go back"
+    }
+  ],
+  "ox304v": [
+    {
+      "type": 0,
+      "value": "An error occurred"
+    }
+  ],
+  "oypk76": [
+    {
+      "type": 0,
+      "value": "Remove source"
+    }
+  ],
+  "pWwsxm": [
+    {
+      "type": 0,
+      "value": "Delete image"
+    }
+  ],
+  "pel3Pk": [
+    {
+      "type": 0,
+      "value": "Sources"
+    }
+  ],
+  "q/uwLT": [
+    {
+      "type": 0,
+      "value": "Stop"
+    }
+  ],
+  "qE3pHt": [
+    {
+      "type": 0,
+      "value": "Oups, something went wrong"
+    }
+  ],
+  "qe8aJj": [
+    {
+      "type": 0,
+      "value": "Image name"
+    }
+  ],
+  "qrHpeh": [
+    {
+      "type": 0,
+      "value": "Create a blueprint to define the contents that will be included in the images you create. Images can be produced in a variety of output formats."
+    }
+  ],
+  "qyJtWy": [
+    {
+      "type": 0,
+      "value": "Show less"
+    }
+  ],
+  "rO0j0f": [
+    {
+      "type": 0,
+      "value": "Upload pending"
+    }
+  ],
+  "rbrahO": [
+    {
+      "type": 0,
+      "value": "Close"
+    }
+  ],
+  "rhDqUf": [
+    {
+      "type": 0,
+      "value": "The build process cannot resume after it stops."
+    }
+  ],
+  "rwqR5K": [
+    {
+      "type": 0,
+      "value": "Back to blueprints"
+    }
+  ],
+  "sDLgb+": [
+    {
+      "type": 0,
+      "value": "Update source"
+    }
+  ],
+  "sXuAh9": [
+    {
+      "type": 0,
+      "value": "Undo last change"
+    }
+  ],
+  "scq+Oe": [
+    {
+      "type": 0,
+      "value": "Edit installation device"
+    }
+  ],
+  "toolbar.blueprint.filter.aria": [
+    {
+      "type": 0,
+      "value": "Blueprint filter select"
+    }
+  ],
+  "toolbar.blueprint.filter.name": [
+    {
+      "type": 0,
+      "value": "Name"
+    }
+  ],
+  "toolbar.blueprint.filter.release": [
+    {
+      "type": 0,
+      "value": "Release"
+    }
+  ],
+  "toolbar.blueprint.filter.version": [
+    {
+      "type": 0,
+      "value": "Version"
+    }
+  ],
+  "toolbar.blueprint.search.aria": [
+    {
+      "type": 0,
+      "value": "Blueprint search input"
+    }
+  ],
+  "toolbar.blueprints.search.aria": [
+    {
+      "type": 0,
+      "value": "Blueprints search input"
+    }
+  ],
+  "toolbar.blueprints.sort.asc": [
+    {
+      "type": 0,
+      "value": "Sort blueprints ascending"
+    }
+  ],
+  "toolbar.blueprints.sort.desc": [
+    {
+      "type": 0,
+      "value": "Sort blueprints descending"
+    }
+  ],
+  "uA+F/o": [
+    {
+      "type": 0,
+      "value": "Troubleshoot"
+    }
+  ],
+  "uFMn+q": [
+    {
+      "type": 0,
+      "value": "System source"
+    }
+  ],
+  "uPDgth": [
+    {
+      "type": 0,
+      "value": "Hostname"
+    }
+  ],
+  "vr2saa": [
+    {
+      "type": 1,
+      "value": "blueprint"
+    },
+    {
+      "type": 0,
+      "value": " Image creation failed."
+    }
+  ],
+  "wV8yqy": [
+    {
+      "type": 0,
+      "value": "Stop build"
+    }
+  ],
+  "wWSLJz": [
+    {
+      "type": 0,
+      "value": "Apply change"
+    }
+  ],
+  "wizard.aws.accessKey.label": [
+    {
+      "type": 0,
+      "value": "Access key ID"
+    }
+  ],
+  "wizard.aws.accessKey.popoverAria": [
+    {
+      "type": 0,
+      "value": "Access key help"
+    }
+  ],
+  "wizard.aws.accessKey.popoverBody": [
+    {
+      "type": 0,
+      "value": "You can create and find existing Access key IDs on the "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "Identity and Access Management (IAM)"
+        }
+      ],
+      "type": 8,
+      "value": "strong"
+    },
+    {
+      "type": 0,
+      "value": " page in the AWS console."
+    }
+  ],
+  "wizard.aws.authTitle": [
+    {
+      "type": 0,
+      "value": "Authentication"
+    }
+  ],
+  "wizard.aws.bucket.label": [
+    {
+      "type": 0,
+      "value": "Amazon S3 bucket"
+    }
+  ],
+  "wizard.aws.bucket.popoverAria": [
+    {
+      "type": 0,
+      "value": "S3 bucket help"
+    }
+  ],
+  "wizard.aws.bucket.popoverBody": [
+    {
+      "type": 0,
+      "value": "Provide the S3 bucket name to which the image file will be uploaded before being imported into EC2. The bucket must already exist in the Region where you want to import your image. You can find a list of buckets on the "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "S3 buckets"
+        }
+      ],
+      "type": 8,
+      "value": "strong"
+    },
+    {
+      "type": 0,
+      "value": " page in the Amazon S3 storage service in the AWS console."
+    }
+  ],
+  "wizard.aws.destTitle": [
+    {
+      "type": 0,
+      "value": "Destination"
+    }
+  ],
+  "wizard.aws.imageName.label": [
+    {
+      "type": 0,
+      "value": "Image name"
+    }
+  ],
+  "wizard.aws.imageName.popoverAria": [
+    {
+      "type": 0,
+      "value": "Image name help"
+    }
+  ],
+  "wizard.aws.imageName.popoverBody": [
+    {
+      "type": 0,
+      "value": "Provide a file name to be used for the image file that will be uploaded."
+    }
+  ],
+  "wizard.aws.region.label": [
+    {
+      "type": 0,
+      "value": "AWS region"
+    }
+  ],
+  "wizard.aws.region.popoverAria": [
+    {
+      "type": 0,
+      "value": "Region help"
+    }
+  ],
+  "wizard.aws.region.popoverBody": [
+    {
+      "type": 0,
+      "value": "Provide the AWS Region where you want to import your image. This must be the same region where the S3 bucket exists."
+    }
+  ],
+  "wizard.aws.secretAccessKey.label": [
+    {
+      "type": 0,
+      "value": "Secret access key"
+    }
+  ],
+  "wizard.aws.secretAccessKey.popoverAria": [
+    {
+      "type": 0,
+      "value": "Secret access key help"
+    }
+  ],
+  "wizard.aws.secretAccessKey.popoverBody": [
+    {
+      "type": 0,
+      "value": "You can view the Secret access key only when you create a new Access key ID on the "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "Identity and Access Management (IAM)"
+        }
+      ],
+      "type": 8,
+      "value": "strong"
+    },
+    {
+      "type": 0,
+      "value": " page in the AWS console."
+    }
+  ],
+  "wizard.aws.title": [
+    {
+      "type": 0,
+      "value": "Upload to AWS"
+    }
+  ],
+  "wizard.azure.authTitle": [
+    {
+      "type": 0,
+      "value": "Authentication"
+    }
+  ],
+  "wizard.azure.destTitle": [
+    {
+      "type": 0,
+      "value": "Destination"
+    }
+  ],
+  "wizard.azure.imageName.label": [
+    {
+      "type": 0,
+      "value": "Image name"
+    }
+  ],
+  "wizard.azure.imageName.popoverAria": [
+    {
+      "type": 0,
+      "value": "Image name help"
+    }
+  ],
+  "wizard.azure.imageName.popoverBody": [
+    {
+      "type": 0,
+      "value": "Provide a file name to be used for the image file that will be uploaded."
+    }
+  ],
+  "wizard.azure.storageAccessKey.label": [
+    {
+      "type": 0,
+      "value": "Storage access key"
+    }
+  ],
+  "wizard.azure.storageAccessKey.popoverAria": [
+    {
+      "type": 0,
+      "value": "Storage access key help"
+    }
+  ],
+  "wizard.azure.storageAccessKey.popoverBody": [
+    {
+      "type": 0,
+      "value": "Provide the access key for the desired storage account. You can find the access key on the "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "Access keys"
+        }
+      ],
+      "type": 8,
+      "value": "strong"
+    },
+    {
+      "type": 0,
+      "value": " page of the storage account. You can find storage accounts on the "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "Storage accounts"
+        }
+      ],
+      "type": 8,
+      "value": "strong"
+    },
+    {
+      "type": 0,
+      "value": " page in the Azure portal."
+    }
+  ],
+  "wizard.azure.storageAccount.label": [
+    {
+      "type": 0,
+      "value": "Storage account"
+    }
+  ],
+  "wizard.azure.storageAccount.popoverAria": [
+    {
+      "type": 0,
+      "value": "Storage account help"
+    }
+  ],
+  "wizard.azure.storageAccount.popoverBody": [
+    {
+      "type": 0,
+      "value": "Provide the name of a storage account. You can find storage accounts on the "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "Storage accounts"
+        }
+      ],
+      "type": 8,
+      "value": "strong"
+    },
+    {
+      "type": 0,
+      "value": " page in the Azure portal."
+    }
+  ],
+  "wizard.azure.storageContainer.label": [
+    {
+      "type": 0,
+      "value": "Storage container"
+    }
+  ],
+  "wizard.azure.storageContainer.popoverAria": [
+    {
+      "type": 0,
+      "value": "Storage container help"
+    }
+  ],
+  "wizard.azure.storageContainer.popoverBody": [
+    {
+      "type": 0,
+      "value": "Provide the Blob container to which the image file will be uploaded. You can find containers under the "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "Blob service"
+        }
+      ],
+      "type": 8,
+      "value": "strong"
+    },
+    {
+      "type": 0,
+      "value": " section of a storage account. You can find storage accounts on the "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "Storage accounts"
+        }
+      ],
+      "type": 8,
+      "value": "strong"
+    },
+    {
+      "type": 0,
+      "value": " page in the Azure portal."
+    }
+  ],
+  "wizard.azure.title": [
+    {
+      "type": 0,
+      "value": "Upload to Azure"
+    }
+  ],
+  "wizard.blueprintName.name": [
+    {
+      "type": 0,
+      "value": "blueprint"
+    }
+  ],
+  "wizard.blueprintName.popover.aria": [
+    {
+      "type": 0,
+      "value": "Process length help"
+    }
+  ],
+  "wizard.blueprintName.popover.content": [
+    {
+      "type": 0,
+      "value": "This process can take a while. Images are built in the order they are started."
+    }
+  ],
+  "wizard.createImage": [
+    {
+      "type": 0,
+      "value": "Create image"
+    }
+  ],
+  "wizard.customizations.buttons.add": [
+    {
+      "type": 0,
+      "value": "Add user"
+    }
+  ],
+  "wizard.customizations.buttons.remove": [
+    {
+      "type": 0,
+      "value": "Remove user"
+    }
+  ],
+  "wizard.customizations.buttons.removeAll": [
+    {
+      "type": 0,
+      "value": "Remove all users"
+    }
+  ],
+  "wizard.customizations.hostname.helperText": [
+    {
+      "type": 0,
+      "value": "If no hostname is provided, the hostname will be determined by the OS."
+    }
+  ],
+  "wizard.customizations.hostname.label": [
+    {
+      "type": 0,
+      "value": "Hostname"
+    }
+  ],
+  "wizard.customizations.hostname.validationError": [
+    {
+      "type": 0,
+      "value": "Valid characters are letters from a to z, the digits from 0 to 9, and the hyphen (-). A hostname may not start with a hyphen. Each element of the hostname must be from 1 to 63 characters long and the entire hostname can be at most 253 characters long."
+    }
+  ],
+  "wizard.customizations.installDevice.helperText": [
+    {
+      "type": 0,
+      "value": "Enter valid device node such as /dev/sda1"
+    }
+  ],
+  "wizard.customizations.installDevice.label": [
+    {
+      "type": 0,
+      "value": "Installation Device"
+    }
+  ],
+  "wizard.customizations.installDevice.popoverAria": [
+    {
+      "type": 0,
+      "value": "Installation Device help"
+    }
+  ],
+  "wizard.customizations.installDevice.popoverBody": [
+    {
+      "type": 0,
+      "value": "Specify which device the image will be installed onto."
+    }
+  ],
+  "wizard.customizations.password.label": [
+    {
+      "type": 0,
+      "value": "Password"
+    }
+  ],
+  "wizard.customizations.serverAdmin.label": [
+    {
+      "type": 0,
+      "value": "Server administrator"
+    }
+  ],
+  "wizard.customizations.sshKey.label": [
+    {
+      "type": 0,
+      "value": "SSH key"
+    }
+  ],
+  "wizard.customizations.systemTitle": [
+    {
+      "type": 0,
+      "value": "System"
+    }
+  ],
+  "wizard.customizations.title": [
+    {
+      "type": 0,
+      "value": "Customizations"
+    }
+  ],
+  "wizard.customizations.username.label": [
+    {
+      "type": 0,
+      "value": "Username"
+    }
+  ],
+  "wizard.customizations.usersTitle": [
+    {
+      "type": 0,
+      "value": "Users"
+    }
+  ],
+  "wizard.imageOutput.imageSize.inputHelp": [
+    {
+      "type": 0,
+      "value": "Minimum image size is "
+    },
+    {
+      "type": 1,
+      "value": "size"
+    },
+    {
+      "type": 0,
+      "value": "GB."
+    }
+  ],
+  "wizard.imageOutput.imageSize.label": [
+    {
+      "type": 0,
+      "value": "Image Size"
+    }
+  ],
+  "wizard.imageOutput.imageSize.popoverAria": [
+    {
+      "type": 0,
+      "value": "Image size help"
+    }
+  ],
+  "wizard.imageOutput.imageSize.popoverBody": [
+    {
+      "type": 0,
+      "value": "Set the size that you want the image to be when instantiated. The total package size and target destination of your image should be considered when setting the image size."
+    }
+  ],
+  "wizard.imageOutput.selectType": [
+    {
+      "type": 0,
+      "value": "Select output type"
+    }
+  ],
+  "wizard.imageOutput.title": [
+    {
+      "type": 0,
+      "value": "Image output"
+    }
+  ],
+  "wizard.imageOutput.type": [
+    {
+      "type": 0,
+      "value": "Image output type"
+    }
+  ],
+  "wizard.imageOutput.uploadAWS": [
+    {
+      "type": 0,
+      "value": "Upload to AWS"
+    }
+  ],
+  "wizard.imageOutput.uploadAWS.popoverAria": [
+    {
+      "type": 0,
+      "value": "Upload to AWS help"
+    }
+  ],
+  "wizard.imageOutput.uploadAWS.popoverBody": [
+    {
+      "type": 0,
+      "value": "Image Builder can upload images you create to an S3 bucket in AWS and then import them into EC2. When the image build is complete and the upload action is successful, the image file is available in the AMI section of EC2. Most of the values required to upload the image can be found in the "
+    },
+    {
+      "type": 1,
+      "value": "console"
+    },
+    {
+      "type": 0,
+      "value": ". "
+    },
+    {
+      "type": 1,
+      "value": "br"
+    },
+    {
+      "type": 1,
+      "value": "br"
+    },
+    {
+      "type": 0,
+      "value": "This upload process requires that you have an Identity and Access Management (IAM) role named "
+    },
+    {
+      "type": 1,
+      "value": "vmimport"
+    },
+    {
+      "type": 0,
+      "value": " to ensure that the image can be imported from the S3 bucket into EC2. For more details, refer to the "
+    },
+    {
+      "type": 1,
+      "value": "role"
+    },
+    {
+      "type": 0,
+      "value": "."
+    }
+  ],
+  "wizard.imageOutput.uploadAzure": [
+    {
+      "type": 0,
+      "value": "Upload to Azure"
+    }
+  ],
+  "wizard.imageOutput.uploadAzure.popoverAria": [
+    {
+      "type": 0,
+      "value": "Upload to Azure help"
+    }
+  ],
+  "wizard.imageOutput.uploadAzure.popoverBody": [
+    {
+      "type": 0,
+      "value": "Image Builder can upload images you create to a Blob container in "
+    },
+    {
+      "type": 1,
+      "value": "azure"
+    },
+    {
+      "type": 0,
+      "value": ". When the image build is complete and the upload action is successful, the image file is available in the Storage account and Blob container that you specified."
+    }
+  ],
+  "wizard.imageOutput.uploadOCI": [
+    {
+      "type": 0,
+      "value": "Upload to OCI"
+    }
+  ],
+  "wizard.imageOutput.uploadOCI.popoverAria": [
+    {
+      "type": 0,
+      "value": "Upload to OCI help"
+    }
+  ],
+  "wizard.imageOutput.uploadOCI.popoverBody": [
+    {
+      "type": 0,
+      "value": "Image Builder can upload images you create to an OCI bucket in OCI and register it as a custom image. When the image build is complete and the upload action is successful, the image should be available under custom images. Most of the values required to upload the image can be found in the "
+    },
+    {
+      "type": 1,
+      "value": "console"
+    },
+    {
+      "type": 0,
+      "value": "."
+    },
+    {
+      "type": 1,
+      "value": "br"
+    },
+    {
+      "type": 1,
+      "value": "br"
+    },
+    {
+      "type": 0,
+      "value": "This upload process requires that you have an Identity and Access Management (IAM) with attached policy to manage custom images to ensure that the image can be imported as a custom image from the bucket. For more details, refer to the "
+    },
+    {
+      "type": 1,
+      "value": "policy"
+    },
+    {
+      "type": 0,
+      "value": "."
+    }
+  ],
+  "wizard.imageOutput.uploadVMWare": [
+    {
+      "type": 0,
+      "value": "Upload to VMWare"
+    }
+  ],
+  "wizard.imageOutput.uploadVMWare.popoverAria": [
+    {
+      "type": 0,
+      "value": "Upload to VMWare help"
+    }
+  ],
+  "wizard.imageOutput.uploadVMWare.popoverBody": [
+    {
+      "type": 0,
+      "value": "Image Builder can upload images you create to VMWare vSphere. When the image build is complete and the upload action is successful, the image file is available in the Cluster on the vSphere instance that you specified."
+    }
+  ],
+  "wizard.oci.authTitle": [
+    {
+      "type": 0,
+      "value": "Authentication"
+    }
+  ],
+  "wizard.oci.bucket.label": [
+    {
+      "type": 0,
+      "value": "OCI bucket"
+    }
+  ],
+  "wizard.oci.bucket.popoverAria": [
+    {
+      "type": 0,
+      "value": "OCI bucket help"
+    }
+  ],
+  "wizard.oci.bucket.popoverBody": [
+    {
+      "type": 0,
+      "value": "Provide the bucket name to which the image file will be uploaded before being imported as a custom image. The bucket must already exist in the Region where you want to import your image. You can find a list of buckets on the "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "OCI buckets"
+        }
+      ],
+      "type": 8,
+      "value": "strong"
+    },
+    {
+      "type": 0,
+      "value": " page in the OCI storage service in the OCI console."
+    }
+  ],
+  "wizard.oci.bucketCompartment.label": [
+    {
+      "type": 0,
+      "value": "Bucket compartment"
+    }
+  ],
+  "wizard.oci.bucketNamespace.label": [
+    {
+      "type": 0,
+      "value": "Bucket namespace"
+    }
+  ],
+  "wizard.oci.bucketRegion.label": [
+    {
+      "type": 0,
+      "value": "Bucket region"
+    }
+  ],
+  "wizard.oci.bucketTenancy.label": [
+    {
+      "type": 0,
+      "value": "Bucket tenancy"
+    }
+  ],
+  "wizard.oci.compartment.popoverAria": [
+    {
+      "type": 0,
+      "value": "Bucket compartment help"
+    }
+  ],
+  "wizard.oci.compartment.popoverBody": [
+    {
+      "type": 0,
+      "value": "Provide the compartment of the OCI bucket compartment your uploading to. You can find the compartment in the bucket details."
+    }
+  ],
+  "wizard.oci.destTitle": [
+    {
+      "type": 0,
+      "value": "Destination"
+    }
+  ],
+  "wizard.oci.fingerprint.label": [
+    {
+      "type": 0,
+      "value": "Fingerprint"
+    }
+  ],
+  "wizard.oci.fingerprint.popoverAria": [
+    {
+      "type": 0,
+      "value": "Fingerprint help"
+    }
+  ],
+  "wizard.oci.fingerprint.popoverBody": [
+    {
+      "type": 0,
+      "value": "You can view your deployed RSA keys fingerprint in the API Keys section on the "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "Identity and Access Management (IAM)"
+        }
+      ],
+      "type": 8,
+      "value": "strong"
+    },
+    {
+      "type": 0,
+      "value": " page in the OCI console."
+    }
+  ],
+  "wizard.oci.imageName.label": [
+    {
+      "type": 0,
+      "value": "Image name"
+    }
+  ],
+  "wizard.oci.imageName.popoverAria": [
+    {
+      "type": 0,
+      "value": "Image name help"
+    }
+  ],
+  "wizard.oci.imageName.popoverBody": [
+    {
+      "type": 0,
+      "value": "Provide a file name to be used for the image file that will be uploaded."
+    }
+  ],
+  "wizard.oci.namespace.popoverAria": [
+    {
+      "type": 0,
+      "value": "Bucket namespace help"
+    }
+  ],
+  "wizard.oci.namespace.popoverBody": [
+    {
+      "type": 0,
+      "value": "Provide the namespace of the OCI bucket your uploading to. You can find the namespace in the bucket details."
+    }
+  ],
+  "wizard.oci.privateKey.label": [
+    {
+      "type": 0,
+      "value": "Private key"
+    }
+  ],
+  "wizard.oci.privateKey.popoverAria": [
+    {
+      "type": 0,
+      "value": "Private key help"
+    }
+  ],
+  "wizard.oci.privateKey.popoverBody": [
+    {
+      "type": 0,
+      "value": "You can view your deployed RSA keys in the API Keys section on the "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "Identity and Access Management (IAM)"
+        }
+      ],
+      "type": 8,
+      "value": "strong"
+    },
+    {
+      "type": 0,
+      "value": " page in the OCI console."
+    }
+  ],
+  "wizard.oci.region.popoverAria": [
+    {
+      "type": 0,
+      "value": "Bucket region help"
+    }
+  ],
+  "wizard.oci.region.popoverBody": [
+    {
+      "type": 0,
+      "value": "Provide the region of the Bucket region your uploading to. You can find the region in the bucket details."
+    }
+  ],
+  "wizard.oci.tenancy.popoverAria": [
+    {
+      "type": 0,
+      "value": "Bucket tenancy help"
+    }
+  ],
+  "wizard.oci.tenancy.popoverBody": [
+    {
+      "type": 0,
+      "value": "Provide the tenancy of the OCI bucket your uploading to. You can find the tenancy in the bucket details."
+    }
+  ],
+  "wizard.oci.title": [
+    {
+      "type": 0,
+      "value": "Upload to OCI"
+    }
+  ],
+  "wizard.oci.userOCID.label": [
+    {
+      "type": 0,
+      "value": "User OCID"
+    }
+  ],
+  "wizard.oci.userOCID.popoverAria": [
+    {
+      "type": 0,
+      "value": "User ocid help"
+    }
+  ],
+  "wizard.oci.userOCID.popoverBody": [
+    {
+      "type": 0,
+      "value": "You can find your user OCID "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "Identity and Access Management (IAM)"
+        }
+      ],
+      "type": 8,
+      "value": "strong"
+    },
+    {
+      "type": 0,
+      "value": " page in the OCI console."
+    }
+  ],
+  "wizard.ostree.parentCommit.label": [
+    {
+      "type": 0,
+      "value": "Parent"
+    }
+  ],
+  "wizard.ostree.parentCommit.popoverAria": [
+    {
+      "type": 0,
+      "value": "Parent help"
+    }
+  ],
+  "wizard.ostree.parentCommit.popoverBody": [
+    {
+      "type": 0,
+      "value": "Provide the commit id or ref of the parent in the repository for which this commit provides an update. If no parent is specified it will be inferred from the user-defined ref."
+    }
+  ],
+  "wizard.ostree.ref.helpText": [
+    {
+      "type": 0,
+      "value": "Valid characters for ref are letters from a to z, the digits from 0 to 9, the hyphen (-), the underscore (_), the period (.), and the forward slash (/). A ref must start with a letter, a number, or an underscore. Slashes must also be followed by a letter or number."
+    }
+  ],
+  "wizard.ostree.ref.label": [
+    {
+      "type": 0,
+      "value": "Ref"
+    }
+  ],
+  "wizard.ostree.ref.popoverAria": [
+    {
+      "type": 0,
+      "value": "Ref help"
+    }
+  ],
+  "wizard.ostree.ref.popoverBody": [
+    {
+      "type": 0,
+      "value": "Provide the name of the branch for the content. If the ref does not already exist it will be created. If the ref is not specified, the default ref for the distro will be used."
+    }
+  ],
+  "wizard.ostree.repoURL.label": [
+    {
+      "type": 0,
+      "value": "Repository URL"
+    }
+  ],
+  "wizard.ostree.repoURL.popoverAria": [
+    {
+      "type": 0,
+      "value": "Repository URL help"
+    }
+  ],
+  "wizard.ostree.repoURL.popoverBody": [
+    {
+      "type": 0,
+      "value": "Provide the URL of the upstream repository. This repository is where the parent OSTree commit will be pulled from."
+    }
+  ],
+  "wizard.ostree.title": [
+    {
+      "type": 0,
+      "value": "OSTree settings"
+    }
+  ],
+  "wizard.ostree.validationError": [
+    {
+      "type": 0,
+      "value": "Either the parent commit or repository url can be specified. Not both."
+    }
+  ],
+  "wizard.packages.addAll": [
+    {
+      "type": 0,
+      "value": "Add all"
+    }
+  ],
+  "wizard.packages.addSelected": [
+    {
+      "type": 0,
+      "value": "Add selected"
+    }
+  ],
+  "wizard.packages.availablePackages": [
+    {
+      "type": 0,
+      "value": "Available packages"
+    }
+  ],
+  "wizard.packages.availablePackagesSearch": [
+    {
+      "type": 0,
+      "value": "Search button for available packages"
+    }
+  ],
+  "wizard.packages.chosenPackages": [
+    {
+      "type": 0,
+      "value": "Chosen packages"
+    }
+  ],
+  "wizard.packages.clearAvailablePackagesSearch": [
+    {
+      "type": 0,
+      "value": "Clear available packages search"
+    }
+  ],
+  "wizard.packages.clearChosenPackagesSearch": [
+    {
+      "type": 0,
+      "value": "Clear chosen packages search"
+    }
+  ],
+  "wizard.packages.info": [
+    {
+      "type": 0,
+      "value": "Add optional additional packages to your image by searching available packages."
+    }
+  ],
+  "wizard.packages.loadAdditionalPackages": [
+    {
+      "type": 0,
+      "value": "Load additional packages"
+    }
+  ],
+  "wizard.packages.loadingAdditionalPackages": [
+    {
+      "type": 0,
+      "value": "Loading additional packages..."
+    }
+  ],
+  "wizard.packages.noPackagesAdded": [
+    {
+      "type": 0,
+      "value": "No packages added"
+    }
+  ],
+  "wizard.packages.noPackagesFound": [
+    {
+      "type": 0,
+      "value": "No packages found"
+    }
+  ],
+  "wizard.packages.removeAll": [
+    {
+      "type": 0,
+      "value": "Remove all"
+    }
+  ],
+  "wizard.packages.removeSelected": [
+    {
+      "type": 0,
+      "value": "Remove selected"
+    }
+  ],
+  "wizard.packages.searchAbove": [
+    {
+      "type": 0,
+      "value": "Search above to add additional"
+    },
+    {
+      "type": 1,
+      "value": "br"
+    },
+    {
+      "type": 0,
+      "value": "packages to your image"
+    }
+  ],
+  "wizard.packages.searchPackages": [
+    {
+      "type": 0,
+      "value": "Search for a package"
+    }
+  ],
+  "wizard.packages.selectedPackages": [
+    {
+      "type": 0,
+      "value": "Selected packages"
+    }
+  ],
+  "wizard.packages.selectorControls": [
+    {
+      "type": 0,
+      "value": "Selector controls"
+    }
+  ],
+  "wizard.packages.title": [
+    {
+      "type": 0,
+      "value": "Packages"
+    }
+  ],
+  "wizard.review.accessKeyID": [
+    {
+      "type": 0,
+      "value": "Access key ID"
+    }
+  ],
+  "wizard.review.admin": [
+    {
+      "type": 0,
+      "value": "Administrator"
+    }
+  ],
+  "wizard.review.amazonS3Bucket": [
+    {
+      "type": 0,
+      "value": "Amazon S3 bucket"
+    }
+  ],
+  "wizard.review.awsRegion": [
+    {
+      "type": 0,
+      "value": "AWS region"
+    }
+  ],
+  "wizard.review.blueprintName": [
+    {
+      "type": 0,
+      "value": "Blueprint name"
+    }
+  ],
+  "wizard.review.bucketCompartment": [
+    {
+      "type": 0,
+      "value": "Bucket compartment"
+    }
+  ],
+  "wizard.review.bucketNamespace": [
+    {
+      "type": 0,
+      "value": "Bucket namespace"
+    }
+  ],
+  "wizard.review.bucketRegion": [
+    {
+      "type": 0,
+      "value": "Bucket region"
+    }
+  ],
+  "wizard.review.bucketTenancy": [
+    {
+      "type": 0,
+      "value": "Bucket tenancy"
+    }
+  ],
+  "wizard.review.cluster": [
+    {
+      "type": 0,
+      "value": "Cluster"
+    }
+  ],
+  "wizard.review.createImageTooltip": [
+    {
+      "type": 0,
+      "value": "An image can only be created after saving the blueprint"
+    }
+  ],
+  "wizard.review.creatingImage": [
+    {
+      "type": 0,
+      "value": "Creating image"
+    }
+  ],
+  "wizard.review.customizations.title": [
+    {
+      "type": 0,
+      "value": "Customizations"
+    }
+  ],
+  "wizard.review.dataCenter": [
+    {
+      "type": 0,
+      "value": "Data center"
+    }
+  ],
+  "wizard.review.dataStore": [
+    {
+      "type": 0,
+      "value": "Data store"
+    }
+  ],
+  "wizard.review.dependencies": [
+    {
+      "type": 0,
+      "value": "Dependencies"
+    }
+  ],
+  "wizard.review.fingerprint": [
+    {
+      "type": 0,
+      "value": "Fingerprint"
+    }
+  ],
+  "wizard.review.host": [
+    {
+      "type": 0,
+      "value": "Host"
+    }
+  ],
+  "wizard.review.hostname": [
+    {
+      "type": 0,
+      "value": "Hostname"
+    }
+  ],
+  "wizard.review.imageName": [
+    {
+      "type": 0,
+      "value": "Image name"
+    }
+  ],
+  "wizard.review.imageSize": [
+    {
+      "type": 0,
+      "value": "Image size"
+    }
+  ],
+  "wizard.review.installationDevice": [
+    {
+      "type": 0,
+      "value": "Installation device"
+    }
+  ],
+  "wizard.review.ociBucket": [
+    {
+      "type": 0,
+      "value": "OCI bucket"
+    }
+  ],
+  "wizard.review.outputType": [
+    {
+      "type": 0,
+      "value": "Output type"
+    }
+  ],
+  "wizard.review.packages": [
+    {
+      "type": 0,
+      "value": "Packages"
+    }
+  ],
+  "wizard.review.packages.title": [
+    {
+      "type": 0,
+      "value": "Packages"
+    }
+  ],
+  "wizard.review.password": [
+    {
+      "type": 0,
+      "value": "Password"
+    }
+  ],
+  "wizard.review.privateKey": [
+    {
+      "type": 0,
+      "value": "Private key filename"
+    }
+  ],
+  "wizard.review.review": [
+    {
+      "type": 0,
+      "value": "Review the information and click \"Save blueprint\" to save the customizations and then click \"Create image\" to create the image."
+    }
+  ],
+  "wizard.review.saveBlueprint": [
+    {
+      "type": 0,
+      "value": "Save blueprint"
+    }
+  ],
+  "wizard.review.secretAccessKey": [
+    {
+      "type": 0,
+      "value": "Secret access key"
+    }
+  ],
+  "wizard.review.sshKey": [
+    {
+      "type": 0,
+      "value": "SSH key"
+    }
+  ],
+  "wizard.review.storageAccessKey": [
+    {
+      "type": 0,
+      "value": "Storage access key"
+    }
+  ],
+  "wizard.review.storageAccount": [
+    {
+      "type": 0,
+      "value": "Storage account"
+    }
+  ],
+  "wizard.review.storageContainer": [
+    {
+      "type": 0,
+      "value": "Storage container"
+    }
+  ],
+  "wizard.review.target.title": [
+    {
+      "type": 0,
+      "value": "Image output"
+    }
+  ],
+  "wizard.review.title": [
+    {
+      "type": 0,
+      "value": "Review"
+    }
+  ],
+  "wizard.review.uploadToAWS": [
+    {
+      "type": 0,
+      "value": "Upload to AWS"
+    }
+  ],
+  "wizard.review.uploadToAzure": [
+    {
+      "type": 0,
+      "value": "Upload to Azure"
+    }
+  ],
+  "wizard.review.uploadToOCI": [
+    {
+      "type": 0,
+      "value": "Upload to OCI"
+    }
+  ],
+  "wizard.review.uploadToVMWare": [
+    {
+      "type": 0,
+      "value": "Upload to VMWare"
+    }
+  ],
+  "wizard.review.userOCID": [
+    {
+      "type": 0,
+      "value": "User OCID"
+    }
+  ],
+  "wizard.review.username": [
+    {
+      "type": 0,
+      "value": "Username"
+    }
+  ],
+  "wizard.uploadFile.filenamePlaceholder": [
+    {
+      "type": 0,
+      "value": "Drag and drop a file or upload one"
+    }
+  ],
+  "wizard.vmware.authTitle": [
+    {
+      "type": 0,
+      "value": "Authentication"
+    }
+  ],
+  "wizard.vmware.cluster.label": [
+    {
+      "type": 0,
+      "value": "Cluster"
+    }
+  ],
+  "wizard.vmware.cluster.popoverAria": [
+    {
+      "type": 0,
+      "value": "Cluster help"
+    }
+  ],
+  "wizard.vmware.cluster.popoverBody": [
+    {
+      "type": 0,
+      "value": "Provide the name of the Cluster to which the image file will be uploaded."
+    }
+  ],
+  "wizard.vmware.dataCenter.label": [
+    {
+      "type": 0,
+      "value": "Datacenter"
+    }
+  ],
+  "wizard.vmware.dataCenter.popoverAria": [
+    {
+      "type": 0,
+      "value": "Datacenter help"
+    }
+  ],
+  "wizard.vmware.dataCenter.popoverBody": [
+    {
+      "type": 0,
+      "value": "Provide the name of the Datacenter to which the image file will be uploaded."
+    }
+  ],
+  "wizard.vmware.dataStore.label": [
+    {
+      "type": 0,
+      "value": "Datastore"
+    }
+  ],
+  "wizard.vmware.datastore.popoverAria": [
+    {
+      "type": 0,
+      "value": "Datastore help"
+    }
+  ],
+  "wizard.vmware.datastore.popoverBody": [
+    {
+      "type": 0,
+      "value": "Provide the name of the Datastore to which the image file will be uploaded."
+    }
+  ],
+  "wizard.vmware.destTitle": [
+    {
+      "type": 0,
+      "value": "Destination"
+    }
+  ],
+  "wizard.vmware.host.label": [
+    {
+      "type": 0,
+      "value": "Host"
+    }
+  ],
+  "wizard.vmware.host.popoverAria": [
+    {
+      "type": 0,
+      "value": "Host help"
+    }
+  ],
+  "wizard.vmware.host.popoverBody": [
+    {
+      "type": 0,
+      "value": "Provide the url of your VMWare vSphere instance to which the image file will be uploaded."
+    }
+  ],
+  "wizard.vmware.imageName.label": [
+    {
+      "type": 0,
+      "value": "Image name"
+    }
+  ],
+  "wizard.vmware.imageName.popoverAria": [
+    {
+      "type": 0,
+      "value": "Image name help"
+    }
+  ],
+  "wizard.vmware.imageName.popoverBody": [
+    {
+      "type": 0,
+      "value": "Provide a file name to be used for the image file that will be uploaded."
+    }
+  ],
+  "wizard.vmware.password.label": [
+    {
+      "type": 0,
+      "value": "Password"
+    }
+  ],
+  "wizard.vmware.title": [
+    {
+      "type": 0,
+      "value": "Upload to VMWare"
+    }
+  ],
+  "wizard.vmware.username.label": [
+    {
+      "type": 0,
+      "value": "Username"
+    }
+  ],
+  "wnFuyu": [
+    {
+      "type": 0,
+      "value": "No results match the filter criteria"
+    }
+  ],
+  "xDOWuy": [
+    {
+      "type": 0,
+      "value": "Required information is missing."
+    }
+  ],
+  "yQ3Gm4": [
+    {
+      "type": 0,
+      "value": "Add source"
+    }
+  ],
+  "yk4PT9": [
+    {
+      "type": 0,
+      "value": "Full name"
+    }
+  ],
+  "yvCu2U": [
+    {
+      "type": 0,
+      "value": "The name "
+    },
+    {
+      "type": 1,
+      "value": "name"
+    },
+    {
+      "type": 0,
+      "value": " already exists."
+    }
+  ],
+  "zDP4eJ": [
+    {
+      "type": 0,
+      "value": "Automatically start osbuild-composer on boot"
+    }
+  ],
+  "zJK/W7": [
+    {
+      "type": 0,
+      "value": "Delete blueprint"
+    }
+  ],
+  "zZnZ6k": [
+    {
+      "type": 0,
+      "value": "Created"
+    }
+  ],
+  "zmGlbd": [
+    {
+      "type": 0,
+      "value": "Upload type"
+    }
+  ],
+  "zsGSBB": [
+    {
+      "type": 0,
+      "value": "The user name cannot be empty."
+    }
+  ]
+}

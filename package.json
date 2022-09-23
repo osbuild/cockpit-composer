@@ -32,20 +32,19 @@
     "uuid": "8.3.2"
   },
   "devDependencies": {
-    "@babel/cli": "7.2.3",
-    "@babel/core": "7.2.2",
-    "@babel/preset-env": "7.2.3",
-    "@babel/preset-react": "7.0.0",
-    "babel-loader": "8.0.5",
-    "babel-plugin-react-intl": "3.0.1",
-    "babel-plugin-react-intl-auto": "1.5.0",
+    "@babel/cli": "7.18.10",
+    "@babel/core": "7.19.1",
+    "@babel/preset-env": "7.19.1",
+    "@babel/preset-react": "7.18.6",
+    "@formatjs/cli": "^5.1.0",
+    "babel-loader": "^8.2.5",
+    "babel-plugin-formatjs": "10.3.28",
     "chrome-remote-interface": "0.31.2",
-    "clean-webpack-plugin": "1.0.0",
-    "copy-webpack-plugin": "4.6.0",
     "css-loader": "6.7.1",
     "eslint": "8.23.1",
     "eslint-config-prettier": "8.5.0",
-    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-formatjs": "4.3.1",
+    "eslint-plugin-prettier": "4.2.1",
     "eslint-plugin-react": "7.31.8",
     "html-webpack-plugin": "5.5.0",
     "jquery": "3.5.1",
@@ -60,7 +59,7 @@
     "sass-loader": "13.0.2",
     "sizzle": "2.3.5",
     "string-replace-loader": "3.1.0",
-    "webpack": "5.73.0",
+    "webpack": "5.74.0",
     "webpack-cli": "4.10.0"
   },
   "scripts": {
@@ -70,10 +69,9 @@
     "prettier:fix": "npm run prettier -- --write",
     "format": "npm run prettier:fix && npm run lint:fix",
     "clean": "node run clean",
-    "build": "npm run translations:po2json && webpack",
+    "build": "npm run translations:compile && webpack",
     "watch": "npm run build -- --watch",
-    "translations:extract": "babel 'components/**/*.js' 'core/**/*.js' 'pages/**/*.js' 'data/**/*.js' main.js >/dev/null",
-    "translations:json2pot": "mkdirp build/messages && rip json2pot 'build/messages/**/*.json' -o po/cockpit-composer.pot && node utils/add-title.js ./public/manifest.json po/cockpit-composer.pot",
-    "translations:po2json": "npm run translations:extract && rip po2json 'po/*.po' -m 'build/messages/**/*.json' -o build/translations.json"
+    "translations:compile": "formatjs compile-folder translations translations/compiled --ast --format simple",
+    "translations:extract": "formatjs extract 'components/**/*.js' 'pages/**/*.js' --out-file translations/en.json --id-interpolation-pattern '[sha512:contenthash:base64:6]' --format simple"
   }
 }

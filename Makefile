@@ -17,9 +17,9 @@ all: $(WEBPACK_TEST)
 $(WEBPACK_TEST): $(NODE_MODULES_TEST) $(shell find {core,components,data,pages,utils} -type f) package.json webpack.config.js $(patsubst %,dist/po.%.js,$(LINGUAS))
 	NODE_ENV=$(NODE_ENV) $(BUILD_RUN)
 
-po/cockpit-composer.pot: $(WEBPACK_TEST)
+translations: $(WEBPACK_TEST)
 	NODE_ENV=$(NODE_ENV) npm run translations:extract
-	NODE_ENV=$(NODE_ENV) npm run translations:json2pot
+	NODE_ENV=$(NODE_ENV) npm run translations:compose
 
 install: all
 	mkdir -p /usr/share/cockpit/composer

@@ -9,26 +9,30 @@ import "./lib/patternfly/patternfly-cockpit.scss";
 import "@patternfly/patternfly/patternfly-addons.css";
 import "@patternfly/patternfly/layouts/Flex/flex.css";
 import "@patternfly/patternfly/utilities/Display/display.css";
-import "./public/custom.css";
+import "./dist/custom.css";
 import "bootstrap";
 
 import store from "./core/store";
 
 import App from "./App";
 
-// Intialize any necessary locale data, and load translated messages
-const translations = require("./build/translations.json");
-const userLanguage = navigator.language;
-const localeLang = userLanguage.includes("_")
-  ? userLanguage.replace("_", "-")
-  : userLanguage;
+// use language without region code
+const userLocale = window.navigator.language.split("-")[0];
+let translations;
+try {
+  translations = require("./translations/compiled/" + userLocale + ".json");
+} catch (error) {
+  console.error(error);
+  translations = require("./translations/compiled/en.json");
+}
 
 ReactDOM.render(
   <Provider store={store}>
     <IntlProvider
-      defaultLocale="en-US"
-      locale={localeLang}
-      messages={translations[userLanguage]}
+      key={userLocale}
+      defaultLocale="en"
+      locale={userLocale}
+      messages={translations}
     >
       <BrowserRouter basename="/cockpit/@localhost/composer">
         <App />

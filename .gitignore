@@ -1,11 +1,7 @@
 build/
 node_modules
-public/index.html
-public/dist
-public/css
-public/fonts
-public/img
-public/po.*.js
+dist/main.js
+dist/main.css
 db.json
 core/build-version.json
 npm-debug.log
