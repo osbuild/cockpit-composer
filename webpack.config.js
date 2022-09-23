@@ -7,10 +7,15 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const babelConfig = require("./babel.config");
 
 // absolute path disables recursive module resolution, so build a relative one
-const nodedir = path.relative(process.cwd(), path.resolve(process.env.SRCDIR || __dirname, "node_modules"));
+const nodedir = path.relative(
+  process.cwd(),
+  path.resolve(process.env.SRCDIR || __dirname, "node_modules")
+);
 
 const [mode, devtool] =
-  process.env.NODE_ENV === "production" ? ["production", "source-map"] : ["development", "inline-source-map"];
+  process.env.NODE_ENV === "production"
+    ? ["production", "source-map"]
+    : ["development", "inline-source-map"];
 
 const output = {
   path: path.resolve(__dirname, "./public/dist"),
@@ -59,7 +64,14 @@ module.exports = {
     maxEntrypointSize: 20000000,
     maxAssetSize: 20000000,
   },
-  resolve: { alias: { "font-awesome": path.resolve(nodedir, "font-awesome-sass/assets/stylesheets") } },
+  resolve: {
+    alias: {
+      "font-awesome": path.resolve(
+        nodedir,
+        "font-awesome-sass/assets/stylesheets"
+      ),
+    },
+  },
   module: {
     rules: [
       {
@@ -71,6 +83,7 @@ module.exports = {
           path.resolve(__dirname, "./pages"),
           path.resolve(__dirname, "./data"),
           path.resolve(__dirname, "./main.js"),
+          path.resolve(__dirname, "./App.js"),
         ],
         use: {
           loader: "babel-loader",
@@ -124,20 +137,27 @@ module.exports = {
             options: {
               multiple: [
                 {
-                  search: /src:url[(]"patternfly-icons-fake-path\/glyphicons-halflings-regular[^}]*/g,
-                  replace: 'font-display:block; src:url("../base1/fonts/glyphicons.woff") format("woff");',
+                  search:
+                    /src:url[(]"patternfly-icons-fake-path\/glyphicons-halflings-regular[^}]*/g,
+                  replace:
+                    'font-display:block; src:url("../base1/fonts/glyphicons.woff") format("woff");',
                 },
                 {
-                  search: /src:url[(]"patternfly-fonts-fake-path\/PatternFlyIcons[^}]*/g,
-                  replace: 'src:url("../base1/fonts/patternfly.woff") format("woff");',
+                  search:
+                    /src:url[(]"patternfly-fonts-fake-path\/PatternFlyIcons[^}]*/g,
+                  replace:
+                    'src:url("../base1/fonts/patternfly.woff") format("woff");',
                 },
                 {
-                  search: /src:url[(]"patternfly-fonts-fake-path\/fontawesome[^}]*/,
-                  replace: 'font-display:block; src:url("../base1/fonts/fontawesome.woff?v=4.2.0") format("woff");',
+                  search:
+                    /src:url[(]"patternfly-fonts-fake-path\/fontawesome[^}]*/,
+                  replace:
+                    'font-display:block; src:url("../base1/fonts/fontawesome.woff?v=4.2.0") format("woff");',
                 },
                 {
                   search: /src:url\("patternfly-icons-fake-path\/pficon[^}]*/g,
-                  replace: 'src:url("../base1/fonts/patternfly.woff") format("woff");',
+                  replace:
+                    'src:url("../base1/fonts/patternfly.woff") format("woff");',
                 },
                 {
                   search: /@font-face[^}]*patternfly-fonts-fake-path[^}]*}/g,
@@ -152,9 +172,19 @@ module.exports = {
               sassOptions: {
                 includePaths: [
                   // Teach webpack to resolve these references in order to build PF3 scss
-                  path.resolve(nodedir, "font-awesome-sass", "assets", "stylesheets"),
+                  path.resolve(
+                    nodedir,
+                    "font-awesome-sass",
+                    "assets",
+                    "stylesheets"
+                  ),
                   path.resolve(nodedir, "patternfly", "dist", "sass"),
-                  path.resolve(nodedir, "bootstrap-sass", "assets", "stylesheets"),
+                  path.resolve(
+                    nodedir,
+                    "bootstrap-sass",
+                    "assets",
+                    "stylesheets"
+                  ),
                 ],
                 outputStyle: "compressed",
                 quietDeps: true,
