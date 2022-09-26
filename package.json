@@ -40,7 +40,7 @@
     "babel-plugin-react-intl-auto": "1.5.0",
     "chrome-remote-interface": "0.31.2",
     "clean-webpack-plugin": "1.0.0",
-    "copy-webpack-plugin": "4.6.0",
+    "copy-webpack-plugin": "11.0.0",
     "css-loader": "6.7.1",
     "eslint": "8.23.1",
     "eslint-config-prettier": "8.5.0",
