@@ -10,11 +10,11 @@ TARFILE=$(PACKAGE_NAME)-$(VERSION).tar.gz
 # stamp file to check if/when npm install ran
 NODE_MODULES_TEST=package-lock.json
 # one example file in dist/ from webpack to check if that already ran
-WEBPACK_TEST=public/dist/index.html
+WEBPACK_TEST=dist/index.html
 
 all: $(WEBPACK_TEST)
 
-$(WEBPACK_TEST): $(NODE_MODULES_TEST) $(shell find {core,components,data,pages,utils} -type f) package.json webpack.config.js $(patsubst %,dist/po.%.js,$(LINGUAS))
+$(WEBPACK_TEST): $(NODE_MODULES_TEST) $(shell find {core,components,pages} -type f) package.json webpack.config.js $(patsubst %,dist/po.%.js,$(LINGUAS))
 	NODE_ENV=$(NODE_ENV) $(BUILD_RUN)
 
 translations: $(WEBPACK_TEST)
@@ -30,7 +30,7 @@ install: all
 # this requires a built source tree and avoids having to install anything system-wide
 devel-install: $(WEBPACK_TEST)
 	mkdir -p ~/.local/share/cockpit
-	ln -s `pwd`/public/dist ~/.local/share/cockpit/composer
+	ln -s `pwd`/dist ~/.local/share/cockpit/composer
 
 
 dist-gzip: $(TARFILE)
@@ -44,10 +44,10 @@ $(TARFILE): $(WEBPACK_TEST) $(PACKAGE_NAME).spec
 	if type appstream-util >/dev/null 2>&1; then appstream-util validate-relax --nonet *.metainfo.xml; fi
 	mv node_modules node_modules.release
 	touch -r package.json $(NODE_MODULES_TEST)
-	touch public/dist/*
+	touch dist/*
 	tar czf $(PACKAGE_NAME)-$(VERSION).tar.gz --transform 's,^,$(PACKAGE_NAME)/,' \
 		--exclude $(PACKAGE_NAME).spec.in \
-		$$(git ls-files) package-lock.json $(PACKAGE_NAME).spec public/dist/
+		$$(git ls-files) package-lock.json $(PACKAGE_NAME).spec dist/
 	mv node_modules.release node_modules
 
 $(PACKAGE_NAME).spec: $(PACKAGE_NAME).spec.in
