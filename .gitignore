@@ -22,3 +22,4 @@ composer.covered
 test/common
 Test*FAIL*
 __pycache__
+translations/compiled
