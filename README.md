@@ -142,7 +142,6 @@ After every change to your sources, run `make` to update all the webpacks, and r
 │── babel.config.js             # babel configurations
 │── cockpit-composer.spec.in    # Cockpit-composer spec file
 │── Dockerfile.buildrpm         # Dockerfile for building RPM on Github Actions
-│── io.weldr.cockpit-composer.metainfo.xml         # Makes Composer appear on Cockpit's "Applications" page
 │── main.js                     # React application entry point
 │── Makefile                    # Makefile
 │── package.json                # The list of project dependencies and NPM scripts
