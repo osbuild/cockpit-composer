@@ -4,7 +4,7 @@
 # Ettore Atalan <atalanttore@googlemail.com>, 2021, 2022.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2022-09-05T18:37:46.587Z\n"
+"POT-Creation-Date: 2022-09-16T04:44:43.826Z\n"
 "PO-Revision-Date: 2022-07-26 14:19+0000\n"
 "Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German <https://translate.fedoraproject.org/projects/cockpit-"
