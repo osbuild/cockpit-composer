@@ -1,5 +1,4 @@
 import cockpit from "cockpit";
-import providerSettings from "../data/providers";
 
 const cockpitHttp = cockpit.http("/run/weldr/api.socket", { superuser: "try" });
 
@@ -229,8 +228,4 @@ export function getComposeLog(uuid) {
   return get(`/api/v1/compose/log/${encodeURIComponent(uuid)}`, {
     replyFormat: "raw",
   });
-}
-
-export function getUploadProviders() {
-  return providerSettings;
 }
