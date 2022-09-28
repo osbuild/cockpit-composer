@@ -91,7 +91,7 @@ Rules configuration can be found in the `package.json` file.
 It's easy to set up your local Linux machine for rapid development of Cockpit Composer's JavaScript code. After building, run this command from your top level Cockpit Composer checkout directory, and make sure to run it as the same user that you'll use to log into Cockpit Composer below.
 
     $ mkdir -p ~/.local/share/cockpit
-    $ ln -s $(pwd)/public/dist ~/.local/share/cockpit/composer
+    $ ln -s $(pwd)/dist ~/.local/share/cockpit/composer
 
 This will cause cockpit to read JavaScript and HTML files directly from the built package output directory instead of using the installed Cockpit UI files.
 
@@ -142,7 +142,6 @@ After every change to your sources, run `make` to update all the webpacks, and r
 │── babel.config.js             # babel configurations
 │── cockpit-composer.spec.in    # Cockpit-composer spec file
 │── Dockerfile.buildrpm         # Dockerfile for building RPM on Github Actions
-│── io.weldr.cockpit-composer.metainfo.xml         # Makes Composer appear on Cockpit's "Applications" page
 │── main.js                     # React application entry point
 │── Makefile                    # Makefile
 │── package.json                # The list of project dependencies and NPM scripts
