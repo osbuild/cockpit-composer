@@ -33,11 +33,9 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         include: [
-          path.resolve(__dirname, "./actions"),
           path.resolve(__dirname, "./components"),
           path.resolve(__dirname, "./core"),
           path.resolve(__dirname, "./pages"),
-          path.resolve(__dirname, "./data"),
           path.resolve(__dirname, "./main.js"),
           path.resolve(__dirname, "./App.js"),
         ],
