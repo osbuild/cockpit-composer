@@ -8,8 +8,8 @@ import {
   DataListCell,
   DataListItemCells,
 } from "@patternfly/react-core";
+import { Link } from "react-router-dom";
 import { PficonTemplateIcon } from "@patternfly/react-icons";
-import Link from "../Link/Link";
 import CreateImageWizard from "../Wizard/CreateImageWizard";
 import DeleteBlueprint from "../Modal/DeleteBlueprint";
 import ExportBlueprint from "../Modal/ExportBlueprint";
@@ -47,7 +47,7 @@ class BlueprintsDataList extends React.PureComponent {
               <DataListItemCells
                 dataListCells={[
                   <DataListCell key="primary" width={2}>
-                    <Link to={`/blueprint/${blueprint.name}`}>
+                    <Link to={blueprint.name}>
                       <strong id={`${blueprint.name}-name`}>
                         {blueprint.name}
                       </strong>
