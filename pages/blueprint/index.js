@@ -21,7 +21,7 @@ import {
   TableVariant,
 } from "@patternfly/react-table";
 import { connect } from "react-redux";
-import Link from "../../components/Link/Link";
+import { Link, useLocation } from "react-router-dom";
 import Layout from "../../components/Layout/Layout";
 import BlueprintContents from "../../components/ListView/BlueprintContents";
 import ComponentDetailsView from "../../components/ListView/ComponentDetailsView";
@@ -183,11 +183,8 @@ class BlueprintPage extends React.Component {
   componentDidMount() {
     const { formatMessage } = this.props.intl;
     document.title = formatMessage(messages.blueprint);
-
     if (this.props.blueprint.components === undefined) {
-      this.props.fetchingBlueprintContents(
-        this.props.route.params.blueprint.replace(/\s/g, "-")
-      );
+      this.props.fetchingBlueprintContents(this.props.blueprint.name);
     }
     if (this.props.composesLoading === true) {
       this.props.fetchingComposes();
@@ -365,12 +362,12 @@ class BlueprintPage extends React.Component {
         <header className="cmpsr-header">
           <Breadcrumb>
             <BreadcrumbItem>
-              <Link to="/blueprints">
+              <Link to="/">
                 <FormattedMessage defaultMessage="Back to blueprints" />
               </Link>
             </BreadcrumbItem>
             <BreadcrumbItem isActive>
-              <strong>{this.props.route.params.blueprint}</strong>
+              <strong>{blueprint.name}</strong>
             </BreadcrumbItem>
           </Breadcrumb>
           <div className="cmpsr-header__actions">
@@ -384,9 +381,7 @@ class BlueprintPage extends React.Component {
             </ul>
           </div>
           <div className="cmpsr-title">
-            <h1 className="cmpsr-title__item">
-              {this.props.route.params.blueprint}
-            </h1>
+            <h1 className="cmpsr-title__item">{blueprint.name}</h1>
             <p className="cmpsr-title__item">
               {blueprint.description && (
                 <EditDescription
@@ -401,11 +396,7 @@ class BlueprintPage extends React.Component {
         <Tabs
           defaultActiveKey={activeKey}
           onSelect={(eventId) =>
-            cockpit.location.go([
-              "blueprint",
-              this.props.route.params.blueprint,
-              eventId,
-            ])
+            cockpit.location.go(["blueprint", blueprint.name, eventId])
           }
           id="blueprint-tabs"
         >
@@ -509,7 +500,7 @@ class BlueprintPage extends React.Component {
                     <FormattedMessage defaultMessage="Component details" />
                   </h3>
                   <ComponentDetailsView
-                    blueprint={this.props.route.params.blueprint}
+                    blueprint={blueprint.name}
                     component={selectedInput.component}
                     dependencies={selectedInputDeps}
                     componentParent={selectedInput.parent}
@@ -536,7 +527,7 @@ class BlueprintPage extends React.Component {
                 <ImagesDataList ariaLabel={formatMessage(messages.imagesTitle)}>
                   {composeList.map((compose) => (
                     <ListItemImages
-                      blueprint={this.props.route.params.blueprint}
+                      blueprint={blueprint.name}
                       fetchingComposeTypes={this.props.fetchingComposeTypes}
                       imageTypes={this.props.imageTypes}
                       listItem={compose}
@@ -721,6 +712,7 @@ BlueprintPage.defaultProps = {
 };
 
 const makeMapStateToProps = () => {
+  const location = useLocation();
   const getBlueprintByName = makeGetBlueprintByName();
   const getSortedSelectedComponents = makeGetSortedSelectedComponents();
   const getSortedDependencies = makeGetSortedDependencies();
@@ -728,15 +720,10 @@ const makeMapStateToProps = () => {
   const getSelectedDeps = makeGetSelectedDeps();
   const getBlueprintComposes = makeGetBlueprintComposes();
   const mapStateToProps = (state, props) => {
-    if (
-      getBlueprintByName(
-        state,
-        props.route.params.blueprint.replace(/\s/g, "-")
-      ) !== undefined
-    ) {
+    if (getBlueprintByName(state, location.pathname.slice(1)) !== undefined) {
       const fetchedBlueprint = getBlueprintByName(
         state,
-        props.route.params.blueprint.replace(/\s/g, "-")
+        location.pathname.slice(1)
       );
       return {
         blueprint: fetchedBlueprint,

@@ -71,7 +71,7 @@ class CreateBlueprint extends React.Component {
     };
     this.props.creatingBlueprint(updatedBlueprint);
     this.handleModalToggle();
-    window.location.hash = history.createHref(`/blueprint/${this.state.name}`);
+    window.location.hash = history.createHref(`${this.state.name}`);
   }
 
   handleErrorNameInvalid(blueprintName) {
