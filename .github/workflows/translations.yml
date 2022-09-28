@@ -1,0 +1,23 @@
+name: Verify translations source file
+
+on: [pull_request]
+
+jobs:
+  verify-translations:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+      - name: Check source file has been generated
+        run: |
+          npm i
+          npm run translations:extract
+          if [ -n "$(git status --porcelain)" ]; then
+            echo
+            echo "Please include these changes in your branch: "
+            git status -vv
+            exit "1"
+          else
+            exit 
