@@ -32,7 +32,7 @@ import "./CreateImageWizard.css";
 const messages = defineMessages({
   createImage: {
     id: "wizard.createImage",
-    defaultMessage: "Create image",
+    defaultMessage: "Create image test",
   },
 });
 
