@@ -1,0 +1,23 @@
+name: Update translations source file (en.json)
+on:
+  schedule:
+    # Run this on Tuesday evening (UTC), so that it's ready for release on
+    # Wednesday, with some spare time
+    - cron: '0 18 * * 2'
+jobs:
+  update-dep:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+      - name: Extract translatable strings
+        run: |
+          make translations
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+            commit-message: Update translations source file
+            title: Update translations source file
+            branch: update-translations-source
