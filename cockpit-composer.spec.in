@@ -30,15 +30,11 @@ the cloud. It integrates into Cockpit as a frontend for osbuild.
 
 %install
 mkdir -p %{buildroot}/%{_datadir}/cockpit/composer
-cp -a public/dist/* %{buildroot}/%{_datadir}/cockpit/composer
-mkdir -p %{buildroot}/%{_datadir}/metainfo/
-appstream-util validate-relax --nonet io.weldr.cockpit-composer.metainfo.xml
-cp -a io.weldr.cockpit-composer.metainfo.xml %{buildroot}/%{_datadir}/metainfo/
+cp -a dist/* %{buildroot}/%{_datadir}/cockpit/composer
 
 %files
 %doc README.md
 %license LICENSE.txt
 %{_datadir}/cockpit/composer
-%{_datadir}/metainfo/*
 
 %changelog

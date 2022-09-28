@@ -14,7 +14,7 @@ WEBPACK_TEST=dist/index.html
 
 all: $(WEBPACK_TEST)
 
-$(WEBPACK_TEST): $(NODE_MODULES_TEST) $(shell find {core,components,data,pages,utils} -type f) package.json webpack.config.js $(patsubst %,dist/po.%.js,$(LINGUAS))
+$(WEBPACK_TEST): $(NODE_MODULES_TEST) $(shell find {core,components,pages} -type f) package.json webpack.config.js $(patsubst %,dist/po.%.js,$(LINGUAS))
 	NODE_ENV=$(NODE_ENV) $(BUILD_RUN)
 
 translations: $(WEBPACK_TEST)
@@ -24,8 +24,6 @@ translations: $(WEBPACK_TEST)
 install: all
 	mkdir -p /usr/share/cockpit/composer
 	cp -r public/* /usr/share/cockpit/composer
-	mkdir -p /usr/share/metainfo/
-	cp io.weldr.cockpit-composer.metainfo.xml /usr/share/metainfo/
 
 # this requires a built source tree and avoids having to install anything system-wide
 devel-install: $(WEBPACK_TEST)
@@ -41,7 +39,6 @@ dist-gzip: $(TARFILE)
 # node_modules/ can be reconstructed if necessary)
 $(TARFILE): NODE_ENV=production
 $(TARFILE): $(WEBPACK_TEST) $(PACKAGE_NAME).spec
-	if type appstream-util >/dev/null 2>&1; then appstream-util validate-relax --nonet *.metainfo.xml; fi
 	mv node_modules node_modules.release
 	touch -r package.json $(NODE_MODULES_TEST)
 	touch dist/*
