@@ -225,10 +225,7 @@ const CreateImageWizard = (props) => {
         isDisabled={!props.blueprint?.name || !props.imageTypes?.length}
         aria-label={intl.formatMessage(messages.createImage)}
       >
-        <FormattedMessage
-          id="wizard.createImage"
-          defaultMessage="Create image"
-        />
+        <FormattedMessage defaultMessage="Create image" />
       </Button>
       {isWizardOpen && (
         <MemoizedImageCreator

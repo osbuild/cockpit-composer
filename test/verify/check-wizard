@@ -64,7 +64,7 @@ class TestWizard(composerlib.ComposerCase):
         b.focus("div[data-testid='search-available-pkgs-input'] input")
         b.key_press("openssh-server")
         b.click("button[aria-label='Search button for available packages']")
-        with b.wait_timeout(180):
+        with b.wait_timeout(360):
             b.click("li[data-testid='openssh-server']")
             b.click("button[aria-label='Add selected']")
             b.click("li[data-testid='httpd']")
@@ -608,10 +608,10 @@ class TestWizard(composerlib.ComposerCase):
         b.click("button:contains('Next')")
 
         b.click("button:contains('Save blueprint')")
-        with b.wait_timeout(120):
+        with b.wait_timeout(360):
             b.click("button:contains('Cancel')")
 
-        b.click("li[data-blueprint=httpd-server] a[href='#/blueprint/httpd-server']")
+        b.click("li[data-blueprint=httpd-server] a[href='#/httpd-server']")
 
         b.wait_visible("#input-hostname")
         b.wait_in_text("#input-hostname", "myhost")
