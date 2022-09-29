@@ -2,7 +2,7 @@
 VERSION=$(shell $(CURDIR)/rpmversion.sh | cut -d - -f 1)
 RELEASE=$(shell $(CURDIR)/rpmversion.sh | cut -d - -f 2)
 PACKAGE_NAME := $(shell awk '/"name":/ {gsub(/[",]/, "", $$2); print $$2}' package.json)
-TEST_OS ?= fedora-34
+TEST_OS ?= fedora-36
 export TEST_OS
 VM_IMAGE=$(CURDIR)/test/images/$(TEST_OS)
 BUILD_RUN = npm run build
@@ -42,6 +42,7 @@ dist-gzip: $(TARFILE)
 $(TARFILE): NODE_ENV=production
 $(TARFILE): $(WEBPACK_TEST) $(PACKAGE_NAME).spec
 	if type appstream-util >/dev/null 2>&1; then appstream-util validate-relax --nonet *.metainfo.xml; fi
+	npm ci
 	mv node_modules node_modules.release
 	touch -r package.json $(NODE_MODULES_TEST)
 	touch public/dist/*
@@ -135,11 +136,7 @@ test/common:
 	git reset test/common
 
 $(NODE_MODULES_TEST): package.json
-	# if it exists already, npm install won't update it; force that so that we always get up-to-date packages
-	rm -f package-lock.json
-	# unset NODE_ENV, skips devDependencies otherwise
-	env -u NODE_ENV npm install
-	env -u NODE_ENV npm prune
+	npm ci
 
 .PHONY: tag vm check debug-check flake8 devel-install
 

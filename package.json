@@ -69,7 +69,7 @@
     "prettier:fix": "npm run prettier -- --write",
     "format": "npm run prettier:fix && npm run lint:fix",
     "clean": "node run clean",
-    "build": "npm run translations:po2json && webpack",
+    "build": "npm ci && npm run translations:po2json && webpack",
     "watch": "npm run build -- --watch",
     "translations:extract": "babel 'components/**/*.js' 'core/**/*.js' 'pages/**/*.js' 'data/**/*.js' main.js >/dev/null",
     "translations:json2pot": "mkdirp build/messages && rip json2pot 'build/messages/**/*.json' -o po/cockpit-composer.pot && node utils/add-title.js ./public/manifest.json po/cockpit-composer.pot",
