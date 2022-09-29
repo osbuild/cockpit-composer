@@ -12,12 +12,15 @@ if [ -n "$VG" ]; then
     lvextend -r -l +100%FREE $VG/root
 fi
 
-# overriding osbuild-composer repo with nightly
-mkdir -p /etc/osbuild-composer/repositories
-cp /home/admin/files/rhel-87.json /etc/osbuild-composer/repositories/rhel-87.json
-cp /home/admin/files/rhel-91.json /etc/osbuild-composer/repositories/rhel-91.json
-ln -s /etc/osbuild-composer/repositories/rhel-91.json /etc/osbuild-composer/repositories/rhel-91-beta.json
-ln -s /etc/osbuild-composer/repositories/rhel-91.json /etc/osbuild-composer/repositories/rhel-91-ga.json
+# Repositories in /etc/osbuild-composer/repositories are used only for on-premise
+# Copy rpmrepo snapshots for use in tests
+REPODIR=/etc/osbuild-composer/repositories
+sudo mkdir -p $REPODIR
+# Copy all repo overrides
+cp /home/admin/files/rhel-88.json /etc/osbuild-composer/repositories/rhel-88.json
+cp /home/admin/files/rhel-92.json /etc/osbuild-composer/repositories/rhel-92.json
+ln -s /etc/osbuild-composer/repositories/rhel-92.json /etc/osbuild-composer/repositories/rhel-92-beta.json
+ln -s /etc/osbuild-composer/repositories/rhel-92.json /etc/osbuild-composer/repositories/rhel-92-ga.json
 
 # Allow cockpit port (9090) in INPUT chain
 # Do not reload firewall rule during image generation
