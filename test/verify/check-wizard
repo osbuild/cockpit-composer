@@ -497,7 +497,7 @@ class TestWizard(composerlib.ComposerCase):
         # collect code coverage result
         self.check_coverage()
 
-    # initially only test edge-commit/fedra-iot-commit so as to verify all fields
+    # initially only test edge-commit/iot-commit so as to verify all fields
     # this image type contains all currently supported ostree settings
     # TODO: verify popover text after string translation
     def testOSTreeStep(self):
@@ -513,8 +513,8 @@ class TestWizard(composerlib.ComposerCase):
         # select ostee image type depending on distro
         distro = os.environ.get("TEST_OS").split('-')[0]
         if (distro == "fedora"):
-            image_type_label = "Fedora IoT Commit (.tar)"
-            image_type = "fedora-iot-commit"
+            image_type_label = "IoT Commit (.tar)"
+            image_type = "iot-commit"
         else:
             image_type_label = "RHEL for Edge Commit (.tar)"
             image_type = "edge-commit"
@@ -581,7 +581,7 @@ class TestWizard(composerlib.ComposerCase):
 
         distro = os.environ.get("TEST_OS").split('-')[0]
         if (distro == "fedora"):
-            image_type_label = "Fedora IoT Commit (.tar)"
+            image_type_label = "IoT Commit (.tar)"
         else:
             image_type_label = "RHEL for Edge Commit (.tar)"
 
