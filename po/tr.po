@@ -3,8 +3,8 @@
 # Burak Yavuz <hitowerdigit@hotmail.com>, 2020, 2021, 2022.
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2022-09-05T18:37:46.587Z\n"
-"PO-Revision-Date: 2022-08-26 04:19+0000\n"
+"POT-Creation-Date: 2022-09-29T04:34:48.763Z\n"
+"PO-Revision-Date: 2022-09-29 07:19+0000\n"
 "Last-Translator: Burak Yavuz <hitowerdigit@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.fedoraproject.org/projects/cockpit-"
 "composer/main/tr/>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1\n"
-"X-Generator: Weblate 4.13\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. [components.Modal.4177685254]
 #. defaultMessage is:
@@ -160,7 +160,7 @@ msgid ""
 "An error occurred when saving the source. Check that the path is valid and "
 "try again."
 msgstr ""
-"Kaynak kaydedilirken bir hata oluştu. Konumun geçerli olup olmadığını "
+"Kaynak kaydedilirken bir hata meydana geldi. Yolun geçerli olup olmadığını "
 "denetleyin ve tekrar deneyin."
 
 #. [components.ListView.emptyStateErrorMessage]
@@ -168,14 +168,14 @@ msgstr ""
 #. An error occurred while trying to get blueprint contents.
 #: build/messages/components/ListView/BlueprintContents.json
 msgid "An error occurred while trying to get blueprint contents."
-msgstr "Plan içeriği alınmaya çalışılırken bir hata oluştu."
+msgstr "Plan içerikleri alınmaya çalışılırken bir hata meydana geldi."
 
 #. [components.Modal.errorStateMessage]
 #. defaultMessage is:
 #. An error occurred while trying to get sources.
 #: build/messages/components/Modal/ManageSources.json
 msgid "An error occurred while trying to get sources."
-msgstr "Kaynaklar alınmaya çalışılırken bir hata oluştu."
+msgstr "Kaynaklar alınmaya çalışılırken bir hata meydana geldi."
 
 #. [wizard.review.createImageTooltip]
 #. defaultMessage is:
@@ -237,7 +237,7 @@ msgstr "Kimlik doğrulama"
 #. Automatically start osbuild-composer on boot
 #: build/messages/components/EmptyState/EmptyStateInactive.json
 msgid "Automatically start osbuild-composer on boot"
-msgstr "osbuild-composer'ı başlangıçta otomatik olarak başlat"
+msgstr "Önyüklemede osbuild-composer'ı otomatik olarak başlat"
 
 #. [wizard.packages.availablePackages]
 #. defaultMessage is:
@@ -258,7 +258,7 @@ msgstr "Planlara geri dön"
 #. Back to {blueprint}
 #: build/messages/components/ListView/ComponentDetailsView.json
 msgid "Back to {blueprint}"
-msgstr "{blueprint}'e geri dön"
+msgstr "{blueprint} planına geri dön"
 
 #. [components.Modal.1281198655]
 #. defaultMessage is:
@@ -304,7 +304,7 @@ msgstr "Plan adları boşluk veya {invalidChar} karakterlerini içeremez"
 #. Blueprint names cannot contain spaces.
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "Blueprint names cannot contain spaces."
-msgstr "Plan adları boşluk içeremez."
+msgstr "Plan adları boşluklar içeremez."
 
 #. [components.Modal.2781854456]
 #. defaultMessage is:
@@ -577,7 +577,7 @@ msgid ""
 "images you create. Images can be produced in a variety of output formats."
 msgstr ""
 "Oluşturduğunuz kalıplara eklenecek içeriği tanımlamak için bir plan "
-"oluşturun. Kalıplar çeşitli çıkış biçimlerinde oluşturulabilir."
+"oluşturun. Kalıplar çeşitli çıktı biçimlerinde oluşturulabilir."
 
 #. [components.Modal.994816806]
 #. defaultMessage is:
@@ -800,7 +800,7 @@ msgstr "Açıklamayı düzenle"
 #. Edit hostname
 #: build/messages/pages/blueprint/index.json
 msgid "Edit hostname"
-msgstr "Ana bilgisayar adını düzenle"
+msgstr "Anamakine adını düzenle"
 
 #. [pages.blueprint.deviceButtonLabel]
 #. defaultMessage is:
@@ -907,7 +907,7 @@ msgstr "Parmak izi yardımı"
 #. Full name
 #: build/messages/components/Modal/UserAccount.json
 msgid "Full name"
-msgstr "Tam isim"
+msgstr "Ad soyad"
 
 #. [pages.error.2333299345]
 #. defaultMessage is:
@@ -958,7 +958,7 @@ msgstr "Anamakine yardımı"
 #: build/messages/components/Wizard/steps/system.json
 #: build/messages/pages/blueprint/index.json
 msgid "Hostname"
-msgstr "Ana bilgisayar adı"
+msgstr "Anamakine adı"
 
 #. [wizard.customizations.hostname.helperText]
 #. defaultMessage is:
@@ -1166,7 +1166,7 @@ msgstr "Kalıp boyutu yardımı"
 #. Image uploads
 #: build/messages/components/ListView/ListItemImages.json
 msgid "Image uploads"
-msgstr "Kalıp karşıya yüklemeleri"
+msgstr "Kalıp yüklemeleri"
 
 #. [pages.blueprint.imagesTitle]
 #. defaultMessage is:
@@ -1254,7 +1254,7 @@ msgstr "Kaynakları yönet"
 #. Message
 #: build/messages/components/EmptyState/EmptyStateInactive.json
 msgid "Message"
-msgstr "Mesaj"
+msgstr "İleti"
 
 #. [wizard.imageOutput.imageSize.inputHelp]
 #. defaultMessage is:
@@ -1272,7 +1272,7 @@ msgstr "En az kalıp boyutu {size}GB'tır."
 #: build/messages/components/ListView/BlueprintContents.json
 #: build/messages/pages/blueprints/index.json
 msgid "Modify your filter criteria to get results."
-msgstr "Sonuç almak için filtreleme kriterlerinizi değiştirin."
+msgstr "Sonuçları almak için süzme ölçütlerinizi değiştirin."
 
 #. [components.Modal.636461959]
 #. defaultMessage is:
@@ -1322,7 +1322,7 @@ msgstr "Bu plandan hiç kalıp oluşturulmadı."
 #. No log available
 #: build/messages/components/ListView/ListItemImages.json
 msgid "No log available"
-msgstr "Kullanılabilir günlük kaydı yok"
+msgstr "Mevcut günlük yok"
 
 #. [wizard.packages.noPackagesAdded]
 #. defaultMessage is:
@@ -1454,7 +1454,7 @@ msgstr "Parola"
 #. Paste the contents of your public SSH key file here.
 #: build/messages/components/Modal/UserAccount.json
 msgid "Paste the contents of your public SSH key file here."
-msgstr "Genel SSH anahtar dosyanızın içeriğini buraya yapıştırın."
+msgstr "Ortak SSH anahtar dosyanızın içeriklerini buraya yapıştırın."
 
 #. [wizard.oci.privateKey.label]
 #. defaultMessage is:
@@ -1502,8 +1502,7 @@ msgstr "İşlem uzunluğu yardımı"
 #: build/messages/components/Wizard/steps/vmwareDest.json
 msgid ""
 "Provide a file name to be used for the image file that will be uploaded."
-msgstr ""
-"Karşıya yüklenecek kalıp dosyası için kullanılacak bir dosya adı girin."
+msgstr "Yüklenecek kalıp dosyası için kullanılacak bir dosya adı girin."
 
 #. [wizard.aws.region.popoverBody]
 #. defaultMessage is:
@@ -1738,7 +1737,7 @@ msgstr "Bölge yardımı"
 #: build/messages/components/ListView/ComponentsDataListItem.json
 #: build/messages/components/Toolbar/BlueprintToolbar.json
 msgid "Release"
-msgstr "Yayınla"
+msgstr "Yayımla"
 
 #. [components.ListView.2703758654]
 #. defaultMessage is:
@@ -1826,14 +1825,14 @@ msgstr "Depo URL'si yardımı"
 #. Required information is missing.
 #: build/messages/components/Modal/CreateBlueprint.json
 msgid "Required information is missing."
-msgstr "Gerekli bilgi eksik."
+msgstr "Gerekli bilgiler eksik."
 
 #. [wizard.review.title]
 #. defaultMessage is:
 #. Review
 #: build/messages/components/Wizard/steps/review.json
 msgid "Review"
-msgstr "Gözden Geçir"
+msgstr "Gözden geçir"
 
 #. [wizard.review.review]
 #. defaultMessage is:
@@ -1986,7 +1985,7 @@ msgstr "Seçici denetimleri"
 #. Server admin checkbox
 #: build/messages/components/Modal/UserAccount.json
 msgid "Server admin checkbox"
-msgstr "Sunucu yöneticisi onay kutusu"
+msgstr "Sunucu yönetici onay kutusu"
 
 #. [components.Modal.labelAdmin]
 #. defaultMessage is:
@@ -2024,7 +2023,7 @@ msgstr "Tümünü göster"
 #. Show details and more options
 #: build/messages/components/ListView/ComponentInputs.json
 msgid "Show details and more options"
-msgstr "Ayrıntıları ve diğer seçenekleri göster"
+msgstr "Ayrıntıları ve daha fazla seçeneği göster"
 
 #. [components.ListView.614182381]
 #. defaultMessage is:
@@ -2074,7 +2073,7 @@ msgstr "Kaynak eylemleri"
 #. Source path
 #: build/messages/components/Modal/ManageSources.json
 msgid "Source path"
-msgstr "Kaynak konumu"
+msgstr "Kaynak yolu"
 
 #. [components.Modal.3025955497] - Sources provide the contents from which components are selected
 #. defaultMessage is:
@@ -2213,7 +2212,7 @@ msgstr "Sistem"
 #. System source
 #: build/messages/components/ListView/SourcesListItem.json
 msgid "System source"
-msgstr "Sistem kaynakları"
+msgstr "Sistem kaynağı"
 
 #. [components.Modal.3495336243]
 #. defaultMessage is:
@@ -2268,7 +2267,7 @@ msgstr "{name} adı zaten mevcut."
 #: build/messages/pages/error/index.json
 msgid ""
 "The page you're looking for does not exist or an another error occurred."
-msgstr "Aradığınız sayfa mevcut değil veya başka bir hata oluştu."
+msgstr "Aradığınız sayfa mevcut değil veya başka bir hata meydana geldi."
 
 #. [components.EmptyState.alertTitleEnableServiceFailure]
 #. defaultMessage is:
@@ -2360,7 +2359,7 @@ msgstr "Bu kaynak adı zaten mevcut."
 #. This source path already exists.
 #: build/messages/components/Modal/ManageSources.json
 msgid "This source path already exists."
-msgstr "Bu kaynak konumu zaten mevcut."
+msgstr "Bu kaynak yolu zaten mevcut."
 
 #. [components.Notifications.errorSubscription]
 #. defaultMessage is:
@@ -2442,28 +2441,28 @@ msgstr "Kaynağı güncelle"
 #. Upload complete
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload complete"
-msgstr "Karşıya yükleme tamamlandı"
+msgstr "Yükleme tamamlandı"
 
 #. [components.ListView.uploadStatusFailed] - Upload status when process failed
 #. defaultMessage is:
 #. Upload failed
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload failed"
-msgstr "Karşıya yükleme başarısız oldu"
+msgstr "Yükleme başarısız oldu"
 
 #. [components.ListView.uploadStatusRunning] - Upload status when process is in progress
 #. defaultMessage is:
 #. Upload in progress
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload in progress"
-msgstr "Karşıya yükleme devam ediyor"
+msgstr "Yükleme devam ediyor"
 
 #. [components.ListView.uploadStatusWaiting] - Upload status when process is waiting
 #. defaultMessage is:
 #. Upload pending
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload pending"
-msgstr "Karşıya yükleme beklemede"
+msgstr "Yükleme beklemede"
 
 #. [wizard.review.uploadToAWS]
 #. defaultMessage is:
@@ -2574,7 +2573,7 @@ msgstr "VMWare'e yükleme yardımı"
 #. Upload type
 #: build/messages/components/ListView/ListItemUploads.json
 msgid "Upload type"
-msgstr "Karşıya yükleme türü"
+msgstr "Yükleme türü"
 
 #. [wizard.review.userOCID]
 #. defaultMessage is:
@@ -2809,7 +2808,7 @@ msgstr "üst bağlantı"
 #: build/messages/components/ListView/SourcesListItem.json
 #: build/messages/components/Modal/ManageSources.json
 msgid "mirrorlist"
-msgstr "ayna listesi"
+msgstr "yansıma listesi"
 
 #. [components.ListView.baseurl]
 #. defaultMessage is:
@@ -2855,7 +2854,7 @@ msgstr "{blueprint} Kalıp oluşturma başarısız oldu."
 #. {blueprint} Image creation has been added to the {queue}.
 #: build/messages/components/Notifications/Notifications.json
 msgid "{blueprint} Image creation has been added to the {queue}."
-msgstr "{blueprint} Kalıp oluşturma {queue}'ye eklendi."
+msgstr "{blueprint} Kalıp oluşturma {queue} kuyruğuna eklendi."
 
 #. [components.Notifications.45922374]
 #. defaultMessage is:
