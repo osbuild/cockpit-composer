@@ -143,7 +143,7 @@ function* fetchComposeTypes() {
     const imageTypeLabels = {
       alibaba: "Alibaba Cloud (.qcow2)",
       ami: "Amazon Web Services (.raw)",
-      "fedora-iot-commit": "Fedora IoT Commit (.tar)",
+      "iot-commit": "IoT Commit (.tar)",
       google: "Google Cloud Platform (.vhd)",
       "hyper-v": "Hyper-V (.vhd)",
       "live-iso": "Installer, suitable for USB and DVD (.iso)",

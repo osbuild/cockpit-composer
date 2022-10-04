@@ -81,7 +81,7 @@ const ostreeSettings = () => {
         condition: {
           when: "image-output-type",
           is: [
-            "fedora-iot-commit",
+            "iot-commit",
             "edge-commit",
             "edge-container",
             "edge-raw-image",
@@ -132,7 +132,7 @@ const ostreeSettings = () => {
         ),
         condition: {
           when: "image-output-type",
-          is: ["fedora-iot-commit", "edge-commit", "edge-container"],
+          is: ["iot-commit", "edge-commit", "edge-container"],
         },
       },
       {
@@ -159,7 +159,7 @@ const ostreeSettings = () => {
         condition: {
           when: "image-output-type",
           is: [
-            "fedora-iot-commit",
+            "iot-commit",
             "edge-commit",
             "edge-container",
             "edge-installer",

@@ -329,7 +329,7 @@ const imageOutput = () => {
           when: "image-output-type",
           is: [
             "",
-            "fedora-iot-commit",
+            "iot-commit",
             "edge-commit",
             "edge-container",
             "edge-installer",

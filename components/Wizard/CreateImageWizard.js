@@ -123,7 +123,7 @@ const CreateImageWizard = (props) => {
 
     let ostreeSettings;
     const ostreeImageTypes = [
-      "fedora-iot-commit",
+      "iot-commit",
       "edge-commit",
       "edge-container",
       "edge-installer",

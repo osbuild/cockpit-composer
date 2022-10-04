@@ -15,7 +15,7 @@ export default (props) => {
     // check if image type is an ostree-settings
   } else if (
     [
-      "fedora-iot-commit",
+      "iot-commit",
       "edge-commit",
       "edge-container",
       "edge-installer",
