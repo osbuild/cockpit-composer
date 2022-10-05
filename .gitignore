@@ -6,7 +6,6 @@ db.json
 core/build-version.json
 npm-debug.log
 cockpit-composer.spec
-package-lock.json
 /po/etag-cache.json
 /po/*.pot
 tmp/weblate-repo
