@@ -1,114 +1,68 @@
 # Extract the version from package.json
 VERSION=$(shell $(CURDIR)/rpmversion.sh | cut -d - -f 1)
 RELEASE=$(shell $(CURDIR)/rpmversion.sh | cut -d - -f 2)
-PACKAGE_NAME := $(shell awk '/"name":/ {gsub(/[",]/, "", $$2); print $$2}' package.json)
-TEST_OS ?= fedora-34
+TEST_OS ?= fedora-36
 export TEST_OS
 VM_IMAGE=$(CURDIR)/test/images/$(TEST_OS)
-BUILD_RUN = npm run build
-TARFILE=$(PACKAGE_NAME)-$(VERSION).tar.gz
-# stamp file to check if/when npm install ran
-NODE_MODULES_TEST=package-lock.json
-# one example file in dist/ from webpack to check if that already ran
-WEBPACK_TEST=dist/index.html
 
-all: $(WEBPACK_TEST)
+build:
+	npm ci
+	npm run build
 
-$(WEBPACK_TEST): $(NODE_MODULES_TEST) $(shell find {core,components,pages} -type f) package.json webpack.config.js $(patsubst %,dist/po.%.js,$(LINGUAS))
-	NODE_ENV=$(NODE_ENV) $(BUILD_RUN)
+spec:
+	sed -e 's|@VERSION@|$(VERSION)|' \
+	    -e 's|@RELEASE@|$(RELEASE)|' \
+	    < cockpit-composer.spec.in > cockpit-composer.spec
 
-translations: $(WEBPACK_TEST)
-	NODE_ENV=$(NODE_ENV) npm run translations:extract
-	NODE_ENV=$(NODE_ENV) npm run translations:compile
-
-install: all
-	mkdir -p /usr/share/cockpit/composer
-	cp -r public/* /usr/share/cockpit/composer
-
-# this requires a built source tree and avoids having to install anything system-wide
-devel-install: $(WEBPACK_TEST)
-	mkdir -p ~/.local/share/cockpit
-	ln -s `pwd`/dist ~/.local/share/cockpit/composer
-
-
-dist-gzip: $(TARFILE)
 
 # when building a distribution tarball, call webpack with a 'production' environment
 # we don't ship node_modules for license and compactness reasons; we ship a
 # pre-built dist/ (so it's not necessary) and ship packge-lock.json (so that
 # node_modules/ can be reconstructed if necessary)
-$(TARFILE): NODE_ENV=production
-$(TARFILE): $(WEBPACK_TEST) $(PACKAGE_NAME).spec
-	mv node_modules node_modules.release
-	touch -r package.json $(NODE_MODULES_TEST)
+dist-gzip: NODE_ENV=production
+dist-gzip: build spec
+	touch -r package.json package-lock.json
 	touch dist/*
-	tar czf $(PACKAGE_NAME)-$(VERSION).tar.gz --transform 's,^,$(PACKAGE_NAME)/,' \
-		--exclude $(PACKAGE_NAME).spec.in \
-		$$(git ls-files) package-lock.json $(PACKAGE_NAME).spec dist/
-	mv node_modules.release node_modules
+	tar czf cockpit-composer-$(VERSION).tar.gz --transform 's,^,cockpit-composer/,' \
+		--exclude cockpit-composer.spec.in \
+		$$(git ls-files) translations/compiled/* package-lock.json cockpit-composer.spec dist/
 
-$(PACKAGE_NAME).spec: $(PACKAGE_NAME).spec.in
-	sed -e 's|@VERSION@|$(VERSION)|' \
-	    -e 's|@RELEASE@|$(RELEASE)|' \
-	    < $(PACKAGE_NAME).spec.in > $(PACKAGE_NAME).spec
-
-srpm: dist-gzip $(PACKAGE_NAME).spec
-	/usr/bin/rpmbuild -bs \
+srpm: dist-gzip
+	rpmbuild -bs \
 	  --define "_sourcedir $(CURDIR)" \
 	  --define "_srcrpmdir $(CURDIR)" \
-	  $(PACKAGE_NAME).spec
+	  cockpit-composer.spec
 
-rpm: dist-gzip $(PACKAGE_NAME).spec
-	mkdir -p "`pwd`/output"
-	mkdir -p "`pwd`/rpmbuild"
-	/usr/bin/rpmbuild -bb \
-	  --define "_sourcedir `pwd`" \
-	  --define "_specdir `pwd`" \
-	  --define "_builddir `pwd`/rpmbuild" \
-	  --define "_srcrpmdir `pwd`" \
-	  --define "_rpmdir `pwd`/output" \
-	  --define "_buildrootdir `pwd`/build" \
-	  $(PACKAGE_NAME).spec
-	find `pwd`/output -name '*.rpm' -printf '%f\n' -exec mv {} . \;
-	rm -r "`pwd`/rpmbuild"
+rpm: dist-gzip
+	mkdir -p "$(CURDIR)/output"
+	mkdir -p "$(CURDIR)/rpmbuild"
+	rpmbuild -bb \
+	  --define "_sourcedir $(CURDIR)" \
+	  --define "_specdir $(CURDIR)" \
+	  --define "_builddir $(CURDIR)/rpmbuild" \
+	  --define "_srcrpmdir $(CURDIR)" \
+	  --define "_rpmdir $(CURDIR)/output" \
+	  cockpit-composer.spec
+	find $(CURDIR)/output -name '*.rpm' -printf '%f\n' -exec mv {} . \;
+	rm -r "$(CURDIR)/rpmbuild"
 
-tag:
-	@[ -n "$(NEWTAG)" ] || (echo "Run 'make NEWTAG=X.Y.Z tag' to tag a new release"; exit 1)
-	@git log --no-merges --pretty="format:- %s (%ae)" $(VERSION).. |sed -e 's/@.*)/)/' > clog.tmp
-	git tag -s -e -F clog.tmp $(NEWTAG); rm -f clog.tmp
-
-lint:
-	npm run lint
-
-buildrpm_image:
-	sudo docker build -f Dockerfile.buildrpm --cache-from welder/buildrpm:latest -t welder/buildrpm:latest .
-
-test_rpmbuild: buildrpm_image
-	sudo docker run --rm --name buildrpm -v `pwd`:/composer welder/buildrpm:latest make rpm srpm
-
-# build VMs
-$(VM_IMAGE): rpm bots
+vm: rpm bots
 	rm -f $(VM_IMAGE) $(VM_IMAGE).qcow2
 	bots/image-customize -v \
 		--resize 20G \
-		-i `pwd`/$(PACKAGE_NAME)-*.noarch.rpm \
+		-i `pwd`/cockpit-composer-*.noarch.rpm \
 		-i composer-cli \
 		-u $(CURDIR)/test/files:/home/admin \
 		-u $(CURDIR)/test/osbuild-mock.repo:/etc/yum.repos.d \
 		-s $(CURDIR)/test/vm.install \
 		$(TEST_OS)
 
-# convenience target for the above
-vm: $(VM_IMAGE)
-	echo $(VM_IMAGE)
-
 # run the CDP integration test
-check: $(VM_IMAGE) test/common machine
+check: vm test/common machine
 	test/common/run-tests --nondestructive-memory-mb 2048 --test-dir=test/verify --enable-network ${RUN_TESTS_OPTIONS}
 
-# run test with browser interactively
-debug-check:
-	TEST_SHOW_BROWSER=true $(MAKE) check
+lint:
+	npm run lint
 
 # run flake8 on files inside test/verify
 flake8:
@@ -130,15 +84,6 @@ test/common:
 	git fetch --depth=1 https://github.com/cockpit-project/cockpit.git 272
 	git checkout --force FETCH_HEAD -- test/common
 	git reset test/common
-
-$(NODE_MODULES_TEST): package.json
-	# if it exists already, npm install won't update it; force that so that we always get up-to-date packages
-	rm -f package-lock.json
-	# unset NODE_ENV, skips devDependencies otherwise
-	env -u NODE_ENV npm install
-	env -u NODE_ENV npm prune
-
-.PHONY: tag vm check debug-check flake8 devel-install
 
 #
 # Coverity
