@@ -3,16 +3,29 @@ name: rpm-build
 on: [pull_request]
 
 jobs:
-  rpm-build:
-    runs-on: ubuntu-20.04
+  build-rpm:
+    runs-on: ubuntu-latest
     container:
-      image: quay.io/fedora/fedora:33-x86_64
-
+      image: fedora:36
     steps:
-      - name: Install Dependencies
-        run: dnf install -y make cmake rpm-build which gnupg git tar xz rsync curl jq nodejs python gcc gcc-c++ libappstream-glib
+      - name: Install dependencies
+        run: |
+          dnf install -y make rpm-build jq git
 
-      - uses: actions/checkout@v2
+      - name: Clone repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
-      - name: Run rpm-build test
-        run: make rpm srpm
+      - name: Install npm
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+
+      # HACK: NPM doesn't like to run in the mounted $HOME volume
+      - name: Build release
+        run: |
+          mkdir -p /tmp/checkout
+          cp -r . /tmp/checkout
+          cd /tmp/checkout
+          make rpm srpm
