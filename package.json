@@ -6,13 +6,13 @@
     "npm": ">=5.0"
   },
   "dependencies": {
-    "@data-driven-forms/pf4-component-mapper": "3.16.10",
-    "@data-driven-forms/react-form-renderer": "3.16.10",
+    "@data-driven-forms/pf4-component-mapper": "3.18.11",
+    "@data-driven-forms/react-form-renderer": "3.18.11",
     "@patternfly/patternfly": "4.185.1",
     "@patternfly/react-core": "4.198.19",
     "@patternfly/react-icons": "4.65.1",
     "@patternfly/react-table": "4.71.16",
-    "@redux-devtools/extension": "3.2.3",
+    "@reduxjs/toolkit": "^1.8.6",
     "bootstrap": "3.4.1",
     "core-js": "3.21.1",
     "fastclick": "1.0.6",
@@ -22,13 +22,9 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-intl": "5.25.1",
-    "react-redux": "7.2.6",
+    "react-redux": "^8.0.4",
     "react-router-dom": "6.4.1",
-    "redux": "4.1.2",
-    "redux-saga": "0.15.6",
-    "redux-thunk": "2.4.1",
     "regenerator-runtime": "0.13.9",
-    "reselect": "3.0.1",
     "uuid": "8.3.2"
   },
   "devDependencies": {
@@ -63,13 +59,13 @@
     "webpack-cli": "4.10.0"
   },
   "scripts": {
-    "lint": "eslint components core pages main.js",
+    "lint": "eslint src",
     "lint:fix": "npm run lint --fix",
-    "prettier": "prettier components core pages main.js --check",
+    "prettier": "prettier src --check",
     "prettier:fix": "npm run prettier -- --write",
     "format": "npm run prettier:fix && npm run lint:fix",
+    "translations:extract": "formatjs extract 'src/**.js' --out-file translations/en.json --id-interpolation-pattern '[sha512:contenthash:base64:6]' --format simple",
     "translations:compile": "formatjs compile-folder translations translations/compiled --ast --format simple",
-    "translations:extract": "formatjs extract 'components/**/*.js' 'pages/**/*.js' --out-file translations/en.json --id-interpolation-pattern '[sha512:contenthash:base64:6]' --format simple",
     "build:dev": "webpack --config webpack.config.js",
     "build:prod": "npm run translations:extract && npm run translations:compile && npm run build:dev",
     "watch": "npm run build:dev -- --watch"

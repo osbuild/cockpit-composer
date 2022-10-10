@@ -1,0 +1,19 @@
+.error {
+  color: var(--pf-global--danger-color--100);
+}
+
+.success {
+  color: var(--pf-global--success-color--100);
+}
+
+.pending {
+  color: var(--pf-global--info-color--100);
+}
+
+.tabs {
+  background-color: var(--pf-global--BackgroundColor--100);
+}
+
+.details-tab {
+  background-color: var(--pf-global--BackgroundColor--100);
+}

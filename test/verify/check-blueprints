@@ -1,0 +1,104 @@
+#!/usr/bin/python3
+
+# checkpoint:
+# 1. create blueprint
+# 2. blueprint filter
+# 3. blueprint sort
+
+import composerlib
+import testlib
+
+
+@testlib.nondestructive
+class TestBlueprints(composerlib.ComposerCase):
+
+    def testCreateAndDelete(self):
+        b = self.browser
+
+        self.login_and_go("/composer")
+        b.wait_visible("#main")
+
+        b.click("button:contains('Create blueprint')")
+        b.wait_visible("#modal-create-blueprint")
+        # blueprint name
+        b.focus("input[id='name']")
+        b.key_press("testName")
+        # blueprint description
+        b.focus("input[id='description']")
+        b.key_press("testDescription")
+        # create
+        b.click("button[type='submit']")
+        b.wait_not_present("#modal-create-blueprint")
+
+        # wait for back to blueprint link and click
+        b.click("a:contains('Back to blueprints')")
+
+        # new added blueprint should be there with correct name
+        b.wait_visible("tr[data-testid='testName']")
+        b.wait_text("a:contains('testName')", "testName")
+
+        # delete blueprint, cancel first
+        b.click("tr[data-testid='testName'] button:contains('Delete blueprint')")
+        b.wait_visible("#modal-delete-blueprint")
+        b.click("#modal-delete-blueprint button:contains('Cancel')")
+        b.wait_not_present("#modal-delete-blueprint")
+
+        # delete here
+        b.click("tr[data-testid='testName'] button:contains('Delete blueprint')")
+        b.wait_visible("#modal-delete-blueprint")
+        b.click("#modal-delete-blueprint button:contains('Delete')")
+        b.wait_not_present("#modal-delete-blueprint")
+        b.wait_not_present("tr[data-testid='testName']")
+
+    def testFilter(self):
+        b = self.browser
+
+        self.login_and_go("/composer")
+        b.wait_visible("#main")
+
+        # filter "openssh-server" blueprint
+        b.focus("input[aria-label='Blueprints search input']")
+        b.key_press("openssh")
+        b.wait_visible("tr[data-testid='openssh-server']")
+        b.wait_not_present("tr[data-testid='httpd-server']")
+        # clear filter
+        b.click(".pf-c-search-input__clear button")
+        b.wait_visible("tr[data-testid='httpd-server']")
+
+        # filter "httpd" will show three matched blueprints
+        b.focus("input[aria-label='Blueprints search input']")
+        b.key_press("httpd")
+        b.wait_not_present("tr[data-testid='openssh-server']")
+        b.is_present("tr[data-testid='http-server']")
+        b.is_present("tr[data-testid='openssh-server-with-hostname']")
+        b.is_present("tr[data-testid='openssh-server-with-user']")
+        # clear filter
+        b.click(".pf-c-search-input__clear button")
+        b.is_present("tr[data-testid='openssh-server']")
+
+    def testSort(self):
+        b = self.browser
+
+        self.login_and_go("/composer")
+        b.wait_visible("#main")
+
+        blueprint_list = [
+            "httpd-server",
+            "httpd-server-with-hostname",
+            "httpd-server-with-user",
+            "openssh-server"
+        ]
+        # sort from Z-A
+        b.wait_visible("table[aria-label='Blueprints table'")
+        b.click("#button-sort-blueprints")
+        for i, v in enumerate(sorted(blueprint_list, reverse=True)):
+            b.wait_text("table[aria-label='Blueprints table'] tbody tr:nth-child({}) a".format(i + 1), v)
+
+        # sort from A-Z
+        b.click("#button-sort-blueprints")
+        for i, v in enumerate(sorted(blueprint_list)):
+            b.wait_text("table[aria-label='Blueprints table'] tbody tr:nth-child({}) a".format(i + 1), v)
+
+
+if __name__ == '__main__':
+    testlib.test_main()

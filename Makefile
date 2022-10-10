@@ -17,15 +17,15 @@ spec:
 
 # when building a distribution tarball, call webpack with a 'production' environment
 # we don't ship node_modules for license and compactness reasons; we ship a
-# pre-built dist/ (so it's not necessary) and ship packge-lock.json (so that
+# pre-built public/ (so it's not necessary) and ship packge-lock.json (so that
 # node_modules/ can be reconstructed if necessary)
 dist-gzip: NODE_ENV=production
 dist-gzip: build spec
 	touch -r package.json package-lock.json
-	touch dist/*
+	touch public/*
 	tar czf cockpit-composer-$(VERSION).tar.gz --transform 's,^,cockpit-composer/,' \
 		--exclude cockpit-composer.spec.in \
-		$$(git ls-files) translations/compiled/* package-lock.json cockpit-composer.spec dist/
+		$$(git ls-files) translations/compiled/* package-lock.json cockpit-composer.spec public/
 
 srpm: dist-gzip
 	rpmbuild -bs \
