@@ -7,7 +7,7 @@ VM_IMAGE=$(CURDIR)/test/images/$(TEST_OS)
 
 build:
 	npm ci
-	npm run build
+	npm run build:translations
 
 spec:
 	sed -e 's|@VERSION@|$(VERSION)|' \

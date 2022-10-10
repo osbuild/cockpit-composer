@@ -1,15 +1,14 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import BlueprintsPage from "./pages/blueprints";
-import BlueprintPage from "./pages/blueprint";
+import BlueprintDetails from "./pages/blueprintDetails";
 import ErrorPage from "./pages/error";
 
 const App = () => {
   return (
     <Routes>
-      <Route path="/index.html" element={<BlueprintsPage />} />
       <Route path="/" element={<BlueprintsPage />} />
-      <Route path="/:blueprint" element={<BlueprintPage />} />
+      <Route path="/:blueprint" element={<BlueprintDetails />} />
       <Route path="*" element={<ErrorPage />} />
     </Routes>
   );
