@@ -68,9 +68,10 @@
     "prettier": "prettier components core pages main.js --check",
     "prettier:fix": "npm run prettier -- --write",
     "format": "npm run prettier:fix && npm run lint:fix",
-    "build": "npm run translations && webpack",
     "translations:compile": "formatjs compile-folder translations translations/compiled --ast --format simple",
     "translations:extract": "formatjs extract 'components/**/*.js' 'pages/**/*.js' --out-file translations/en.json --id-interpolation-pattern '[sha512:contenthash:base64:6]' --format simple",
-    "translations": "npm run translations:extract && npm run translations:compile"
+    "build:dev": "webpack --config webpack.config.js",
+    "build:prod": "npm run translations:extract && npm run translations:compile && npm run build:dev",
+    "watch": "npm run build:dev -- --watch"
   }
 }
