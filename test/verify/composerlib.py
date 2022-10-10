@@ -41,11 +41,9 @@ class ComposerCase(testlib.MachineCase):
 
         # push pre-defined blueprint
         self.machine.execute("""
-        systemctl start osbuild-composer.socket
         for toml_file in /home/admin/files/*.toml; do
             composer-cli blueprints push $toml_file
         done
-        composer-cli blueprints list
         """)
 
         # delete all blueprints
@@ -57,22 +55,3 @@ class ComposerCase(testlib.MachineCase):
     def login_and_go(self, *args, **kwargs):
         with self.browser.wait_timeout(300):
             super().login_and_go(*args, **kwargs)
-
-    def check_coverage(self):
-        """ collect code coverage result and save to json file
-
-        Save coverage as json file and make file hash as file name
-        "coverage-<file hash result>.json", to avoid duplicate coverage result.
-        All json file will be saved to ".nyc_output/" folder.
-        """
-        coverage_data = self.browser.eval_js("window.__coverage__", no_trace=True)
-        str_coverage = json.dumps(coverage_data)
-        hash_str = hashlib.sha256(str_coverage.encode('utf-8')).hexdigest()
-
-        cov_out_dir = pathlib.Path(".nyc_output")
-        cov_out_dir.mkdir(exist_ok=True)
-
-        cov_out_file = cov_out_dir / "coverage-{}.json".format(hash_str)
-        # avoid duplecate result file
-        if not cov_out_file.is_file():
-            cov_out_file.write_text(str_coverage)
