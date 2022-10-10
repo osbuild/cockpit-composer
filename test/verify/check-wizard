@@ -86,7 +86,7 @@ class TestWizard(composerlib.ComposerCase):
         # save image
         b.click(".pf-c-wizard__footer button:contains('Save blueprint')")
         # Create image
-        with b.wait_timeout(120):
+        with b.wait_timeout(360):
             b.click(".pf-c-wizard__footer button:contains('Create image')")
 
         b.wait_not_present("#create-image-wizard")
@@ -119,10 +119,13 @@ class TestWizard(composerlib.ComposerCase):
         # delete image
         time.sleep(5)
         b.click("button[data-testid='delete-image']")
+        time.sleep(5)
         b.wait_visible("#cmpsr-modal-delete")
+        time.sleep(5)
         b.click("#cmpsr-modal-delete button:contains('Delete image')")
         time.sleep(5)
-        b.wait_text("h2", "No images")
+        with b.wait_timeout(300):
+            b.wait_text("h2", "No images")
 
         # collect code coverage result
         self.check_coverage()
@@ -650,7 +653,7 @@ class TestWizard(composerlib.ComposerCase):
 
         b.wait_text("h1", "Review")
         b.click("button:contains('Save blueprint')")
-        with b.wait_timeout(120):
+        with b.wait_timeout(360):
             b.click("button:contains('Cancel')")
 
         # collect code coverage result
