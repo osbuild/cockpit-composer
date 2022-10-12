@@ -14,7 +14,7 @@
     "@patternfly/react-table": "4.71.16",
     "@redux-devtools/extension": "3.2.3",
     "bootstrap": "3.4.1",
-    "core-js": "3.21.1",
+    "core-js": "3.25.5",
     "fastclick": "1.0.6",
     "history": "3.3.0",
     "patternfly": "3.59.5",
