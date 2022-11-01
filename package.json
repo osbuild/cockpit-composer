@@ -13,7 +13,7 @@
     "@patternfly/react-icons": "4.65.1",
     "@patternfly/react-table": "4.71.16",
     "@reduxjs/toolkit": "^1.8.6",
-    "bootstrap": "3.4.1",
+    "bootstrap": "5.2.2",
     "core-js": "3.21.1",
     "fastclick": "1.0.6",
     "history": "3.3.0",
