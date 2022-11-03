@@ -1,4 +1,4 @@
-name: rpm-build
+name: Check rpm builds
 
 on: [pull_request]
 
