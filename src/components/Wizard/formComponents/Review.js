@@ -377,13 +377,37 @@ const customizations = (intl, formValues) => (
           </TextListItem>
         </>
       )}
-      {formValues?.["customizations-install-device"] && (
+      {formValues["image-output-type"] === "edge-simplified-installer" && (
         <>
           <TextListItem component={TextListItemVariants.dt}>
-            <FormattedMessage {...messages.installationDevice} />
+            <FormattedMessage defaultMessage="Installation device" />
           </TextListItem>
           <TextListItem component={TextListItemVariants.dd}>
             {formValues?.["customizations-install-device"]}
+          </TextListItem>
+          <TextListItem component={TextListItemVariants.dt}>
+            <FormattedMessage defaultMessage="Manufacturing server URL" />
+          </TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>
+            {formValues?.["customizations-manufacturing-server-url"]}
+          </TextListItem>
+          <TextListItem component={TextListItemVariants.dt}>
+            <FormattedMessage defaultMessage="DIUN public key insecure" />
+          </TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>
+            {formValues?.["customizations-diun-public-key-insecure"]}
+          </TextListItem>
+          <TextListItem component={TextListItemVariants.dt}>
+            <FormattedMessage defaultMessage="DIUN public key hash" />
+          </TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>
+            {formValues?.["customizations-diun-public-key-hash"]}
+          </TextListItem>
+          <TextListItem component={TextListItemVariants.dt}>
+            <FormattedMessage defaultMessage="DIUN public key root certs" />
+          </TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>
+            {formValues?.["customizations-diun-public-key-root-certs"]}
           </TextListItem>
         </>
       )}

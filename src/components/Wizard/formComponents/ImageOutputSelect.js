@@ -4,6 +4,7 @@ import { FormGroup, Select, SelectOption } from "@patternfly/react-core";
 import useFormApi from "@data-driven-forms/react-form-renderer/use-form-api";
 import useFieldApi from "@data-driven-forms/react-form-renderer/use-field-api";
 import { defineMessages, useIntl } from "react-intl";
+import { ImageTypeLabels } from "../../../constants";
 
 const messages = defineMessages({
   outputType: {
@@ -30,30 +31,10 @@ const ImageOutputSelect = ({ label, isRequired, ...props }) => {
     }
   };
 
-  const imageTypeLabels = {
-    alibaba: "Alibaba Cloud (.qcow2)",
-    ami: "Amazon Web Services (.raw)",
-    "iot-commit": "IoT Commit (.tar)",
-    google: "Google Cloud Platform (.vhd)",
-    "hyper-v": "Hyper-V (.vhd)",
-    "live-iso": "Installer, suitable for USB and DVD (.iso)",
-    tar: "Disk Archive (.tar)",
-    openstack: "OpenStack (.qcow2)",
-    "partitioned-disk": "Disk Image (.img)",
-    oci: "Oracle Cloud Infrastructure (.qcow2)",
-    qcow2: "QEMU Image (.qcow2)",
-    "rhel-edge-commit": "RHEL for Edge Commit (.tar)",
-    "rhel-edge-container": "RHEL for Edge Container (.tar)",
-    "rhel-edge-installer": "RHEL for Edge Installer (.iso)",
-    "edge-commit": "RHEL for Edge Commit (.tar)",
-    "edge-container": "RHEL for Edge Container (.tar)",
-    "edge-installer": "RHEL for Edge Installer (.iso)",
-    "edge-raw-image": "RHEL for Edge Raw Image (.raw.xz)",
-    "image-installer": "RHEL Installer (.iso)",
-    // "edge-simplified-installer": "RHEL for Edge Simplified Installer (.iso)",
-    vhd: "Microsoft Azure (.vhd)",
-    vmdk: "VMWare VSphere (.vmdk)",
-  };
+  // only show output types that are declared in our constants
+  const supportedTypes = props.imageTypes.filter(
+    (outputType) => ImageTypeLabels[outputType]
+  );
 
   return (
     <>
@@ -72,9 +53,9 @@ const ImageOutputSelect = ({ label, isRequired, ...props }) => {
           typeAheadAriaLabel={intl.formatMessage(messages.outputType)}
           toggleId="image-output-select-toggle"
         >
-          {props.imageTypes.map((outputType) => (
+          {supportedTypes.map((outputType) => (
             <SelectOption key={outputType} value={outputType}>
-              {imageTypeLabels[outputType] || outputType}
+              {ImageTypeLabels[outputType]}
             </SelectOption>
           ))}
         </Select>
