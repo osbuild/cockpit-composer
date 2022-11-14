@@ -86,7 +86,7 @@ const ImageOutputSelect = ({ label, isRequired, ...props }) => {
 ImageOutputSelect.propTypes = {
   label: PropTypes.node,
   isRequired: PropTypes.bool,
-  imageTypes: PropTypes.arrayOf(PropTypes.object),
+  imageTypes: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default ImageOutputSelect;

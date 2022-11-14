@@ -60,7 +60,7 @@ const ImageCreator = ({
 };
 
 ImageCreator.propTypes = {
-  imageTypes: PropTypes.arrayOf(PropTypes.object),
+  imageTypes: PropTypes.arrayOf(PropTypes.string),
   schema: PropTypes.object,
   onSubmit: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
