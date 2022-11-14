@@ -1,5 +1,5 @@
 import React from "react";
-import { useIntl, defineMessages, FormattedMessage } from "react-intl";
+import { defineMessages, FormattedMessage } from "react-intl";
 import validatorTypes from "@data-driven-forms/react-form-renderer/validator-types";
 import { Popover, Button } from "@patternfly/react-core";
 import { HelpIcon } from "@patternfly/react-icons";
@@ -31,8 +31,7 @@ const messages = defineMessages({
   },
 });
 
-const azureDest = () => {
-  const intl = useIntl();
+const azureDest = (intl) => {
   return {
     title: (
       <FormattedMessage
