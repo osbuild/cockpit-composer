@@ -15,6 +15,7 @@ import {
   ociAuth,
   ociDest,
   ostreeSettings,
+  fdo,
   system,
   packages,
   review,
@@ -203,6 +204,17 @@ const CreateImageWizard = (props) => {
         customizations.user.push(bpUser);
       });
     }
+    if (formValues["image-output-type"] === "edge-simplified-installer") {
+      customizations.fdo = {
+        manufacturing_server_url:
+          formValues["customizations-manufacturing-server-url"],
+        diun_pub_key_insecure:
+          formValues["customizations-diun-pub-key-insecure"],
+        diun_pub_key_hash: formValues["customizations-diun-pub-key-hash"],
+        diun_pub_key_root_certs:
+          formValues["customizations-diun-pub-key-root-certs"],
+      };
+    }
 
     const blueprintData = {
       name: formValues?.["blueprint-name"],
@@ -255,6 +267,7 @@ const CreateImageWizard = (props) => {
                   vmwareAuth(intl),
                   vmwareDest(intl),
                   ostreeSettings(intl),
+                  fdo(intl),
                   system(intl),
                   users(intl),
                   packages(intl),

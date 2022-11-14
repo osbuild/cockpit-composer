@@ -1,9 +1,12 @@
 {
   "+U6ozc": "Type",
+  "+ubJEs": "Manufacturing server URL",
   "/f2U0m": "{blueprint} Image creation is {queue}.",
   "3Y9Iix": "Download image",
   "47FYwb": "Cancel",
   "4fUKUt": "Additional",
+  "7pIRny": "DIUN public key insecure",
+  "8lgG7e": "DIUN public key hash",
   "9llaed": "Download logs",
   "AZSxPR": "Packages",
   "DWC301": "Are you sure you want to delete the image?",
@@ -36,6 +39,7 @@
   "bWjdfa": "URL",
   "customizations.user.title": "Users",
   "eKEL/g": "Pending",
+  "f3funQ": "Installation device",
   "fhwTpA": "Sources",
   "iYXTZF": "Blueprint names cannot contain spaces.",
   "kPQ+0U": "A source with this name already exists.",
@@ -257,8 +261,10 @@
   "wizard.vmware.title": "Upload to VMWare",
   "wizard.vmware.username.label": "Username",
   "yQ3Gm4": "Add source",
+  "z5CyGb": "FIDO device onboarding",
   "zJK/W7": "Delete blueprint",
   "zPSw5j": "System sources cannot be edited",
   "zQvVDJ": "All",
+  "zVYibg": "DIUN public key root certs",
   "zxg4dq": "Metalink"
 }
