@@ -1,5 +1,5 @@
 import React from "react";
-import { useIntl, defineMessages, FormattedMessage } from "react-intl";
+import { defineMessages, FormattedMessage } from "react-intl";
 
 const messages = defineMessages({
   customizationsStepsTitle: {
@@ -20,8 +20,7 @@ const messages = defineMessages({
   },
 });
 
-const users = () => {
-  const intl = useIntl();
+const users = (intl) => {
   return {
     title: (
       <FormattedMessage

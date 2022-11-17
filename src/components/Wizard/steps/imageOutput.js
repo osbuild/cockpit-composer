@@ -6,7 +6,7 @@ import {
   HelpIcon,
   OutlinedQuestionCircleIcon,
 } from "@patternfly/react-icons";
-import { useIntl, defineMessages, FormattedMessage } from "react-intl";
+import { defineMessages, FormattedMessage } from "react-intl";
 
 import {
   componentTypes,
@@ -93,8 +93,7 @@ const messages = defineMessages({
   },
 });
 
-const imageOutput = () => {
-  const intl = useIntl();
+const imageOutput = (intl) => {
   return {
     id: "wizard-image-output",
     title: intl.formatMessage(messages.imageOutput),

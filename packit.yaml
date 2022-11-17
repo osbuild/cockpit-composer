@@ -35,21 +35,21 @@ jobs:
     metadata:
       dist_git_branches:
         - fedora-development
-        - fedora-35
         - fedora-36
+        - fedora-37
 
   - job: koji_build
     trigger: commit
     metadata:
       dist_git_branches:
         - fedora-development
-        - fedora-35
         - fedora-36
+        - fedora-37
 
   - job: bodhi_update
     trigger: commit
     metadata:
       dist_git_branches:
         # rawhide updates are created automatically
-        - fedora-35
         - fedora-36
+        - fedora-37

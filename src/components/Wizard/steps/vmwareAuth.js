@@ -1,5 +1,5 @@
 import React from "react";
-import { useIntl, defineMessages, FormattedMessage } from "react-intl";
+import { defineMessages, FormattedMessage } from "react-intl";
 import validatorTypes from "@data-driven-forms/react-form-renderer/validator-types";
 
 const messages = defineMessages({
@@ -9,8 +9,7 @@ const messages = defineMessages({
   },
 });
 
-const vmwareAuth = () => {
-  const intl = useIntl();
+const vmwareAuth = (intl) => {
   return {
     title: (
       <FormattedMessage
