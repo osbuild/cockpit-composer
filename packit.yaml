@@ -6,7 +6,7 @@ downstream_package_name: cockpit-composer
 copy_upstream_release_description: true
 
 actions:
-  post-upstream-clone: make cockpit-composer.spec
+  post-upstream-clone: make spec
   create-archive: make dist-gzip
 
 srpm_build_deps:
@@ -23,7 +23,7 @@ jobs:
       targets:
       - epel-8
     actions:
-      post-upstream-clone: make cockpit-composer.spec
+      post-upstream-clone: make spec
       # HACK: tarball for releases (copr_build, koji, etc.), copying spec's Source0; this
       # really should be the default, see https://github.com/packit/packit-service/issues/1505
       create-archive:
