@@ -5,9 +5,11 @@ import { useIntl } from "react-intl";
 import { TableComposable, Tr, Tbody, Td } from "@patternfly/react-table";
 import CreateImageWizard from "../Wizard/CreateImageWizard";
 import DeleteBlueprint from "../Modal/DeleteBlueprint";
+import ExportBlueprint from "../Modal/ExportBlueprint";
 
 const BlueprintTable = (props) => {
   const intl = useIntl();
+
   return (
     <TableComposable
       aria-label={intl.formatMessage({ defaultMessage: "Blueprints table" })}
@@ -20,6 +22,9 @@ const BlueprintTable = (props) => {
             </Td>
             <Td modifier="fitContent">
               <CreateImageWizard blueprint={blueprint} />
+            </Td>
+            <Td modifier="fitContent">
+              <ExportBlueprint blueprint={blueprint} />
             </Td>
             <Td modifier="fitContent">
               <DeleteBlueprint blueprint={blueprint} />
