@@ -111,6 +111,22 @@ export const getBlueprintsInfo = (blueprintNames) => {
   ).then((response) => response.blueprints);
 };
 
+export const getBlueprintJSON = async (blueprintName) => {
+  const response = await get(
+    `/api/v0/blueprints/info/${encodeURIComponent(blueprintName)}`
+  );
+  return response.blueprints[0];
+};
+
+export const getBlueprintTOML = async (blueprintName) => {
+  const path = `/api/v0/blueprints/info/${encodeURIComponent(
+    blueprintName
+  )}?format=toml`;
+
+  const toml = await get(path, { replyFormat: "raw" });
+  return toml;
+};
+
 export function depsolveBlueprint(blueprintName) {
   return get(
     `/api/v0/blueprints/depsolve/${encodeURIComponent(blueprintName)}`

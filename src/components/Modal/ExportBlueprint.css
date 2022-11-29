@@ -1,0 +1,11 @@
+.pf-c-code-block {
+    overflow: auto;
+}
+
+.codeblock-toolbar {
+    background-color: var(--pf-global--BackgroundColor--200);
+}
+
+.codeblock-toolbar .pf-c-button {
+    background-color: transparent;
+}
