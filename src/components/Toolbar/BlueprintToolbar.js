@@ -15,6 +15,7 @@ import {
 } from "@patternfly/react-icons";
 
 import CreateBlueprint from "../Modal/CreateBlueprint";
+import ImportBlueprint from "../Modal/ImportBlueprint";
 
 const BlueprintToolbar = (props) => {
   const intl = useIntl();
@@ -55,9 +56,11 @@ const BlueprintToolbar = (props) => {
           alignment={{ default: "alignRight" }}
         >
           <ToolbarItem>
+            <ImportBlueprint />
+          </ToolbarItem>
+          <ToolbarItem>
             <CreateBlueprint blueprintNames={props.blueprintNames} />
           </ToolbarItem>
-          <ToolbarItem></ToolbarItem>
         </ToolbarGroup>
       </ToolbarContent>
     </Toolbar>

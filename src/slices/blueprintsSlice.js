@@ -21,6 +21,14 @@ export const createBlueprint = createAsyncThunk(
   }
 );
 
+export const createBlueprintTOML = createAsyncThunk(
+  "blueprints/createTOML",
+  async (blueprint, { dispatch }) => {
+    await api.createBlueprintTOML(blueprint);
+    dispatch(fetchBlueprints());
+  }
+);
+
 export const updateBlueprint = createAsyncThunk(
   "blueprints/update",
   async (blueprint) => {
