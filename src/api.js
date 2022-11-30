@@ -83,6 +83,16 @@ function post(path, object, options) {
   });
 }
 
+function postTOML(path, object, options) {
+  return request({
+    ...options,
+    method: "POST",
+    path,
+    headers: { "Content-Type": "text/x-toml" },
+    body: object,
+  });
+}
+
 /*
  * Send a DELETE request to the composer API.
  */
@@ -101,6 +111,11 @@ function _delete(path, options) {
 export function createBlueprint(blueprint) {
   return post("/api/v0/blueprints/new", blueprint);
 }
+
+export const createBlueprintTOML = (blueprint) => {
+  return postTOML("/api/v0/blueprints/new", blueprint);
+};
+
 export const getBlueprintsNames = () => {
   return get("/api/v0/blueprints/list").then((response) => response.blueprints);
 };
