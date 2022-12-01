@@ -89,7 +89,7 @@ class TestBlueprints(composerlib.ComposerCase):
             "openssh-server"
         ]
         # sort from Z-A
-        b.wait_visible("table[aria-label='Blueprints table'")
+        b.wait_visible("table[aria-label='Blueprints table']")
         b.click("#button-sort-blueprints")
         for i, v in enumerate(sorted(blueprint_list, reverse=True)):
             b.wait_text("table[aria-label='Blueprints table'] tbody tr:nth-child({}) a".format(i + 1), v)
