@@ -31,7 +31,10 @@ export const ExportBlueprint = (props) => {
   const getCode = async () => {
     const jsonObject = await getBlueprintJSON(props.blueprint.name);
     const json = JSON.stringify(jsonObject, null, 2);
-    const toml = await getBlueprintTOML(props.blueprint.name);
+    const toml = await getBlueprintTOML(props.blueprint.name).catch(() => {
+      console.log("Error getting TOML");
+      return;
+    });
     setCodeTOML(toml);
     setCodeJSON(json);
   };
