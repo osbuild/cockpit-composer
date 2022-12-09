@@ -5,8 +5,6 @@ import validatorTypes from "@data-driven-forms/react-form-renderer/validator-typ
 import { Popover, Button } from "@patternfly/react-core";
 import { HelpIcon } from "@patternfly/react-icons";
 
-import nextStepMapper from "./ostreeSettingsStepMapper";
-
 const messages = defineMessages({
   repoURLPopoverBody: {
     id: "wizard.ostree.repoURL.popoverBody",
@@ -52,7 +50,7 @@ const ostreeSettings = (intl) => {
       />
     ),
     name: "ostree-settings",
-    nextStep: ({ values }) => nextStepMapper(values),
+    nextStep: "review",
     fields: [
       {
         component: "text-field-custom",

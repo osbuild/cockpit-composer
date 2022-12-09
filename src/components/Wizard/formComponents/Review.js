@@ -367,13 +367,13 @@ const ociReview = (formValues) => (
 const customizations = (intl, formValues) => (
   <TextContent>
     <TextList component={TextListVariants.dl}>
-      {formValues?.["customizations-hostname"] && (
+      {formValues?.["customizations.hostname"] && (
         <>
           <TextListItem component={TextListItemVariants.dt}>
             <FormattedMessage {...messages.hostname} />
           </TextListItem>
           <TextListItem component={TextListItemVariants.dd}>
-            {formValues?.["customizations-hostname"]}
+            {formValues?.["customizations.hostname"]}
           </TextListItem>
         </>
       )}
@@ -383,35 +383,35 @@ const customizations = (intl, formValues) => (
             <FormattedMessage defaultMessage="Installation device" />
           </TextListItem>
           <TextListItem component={TextListItemVariants.dd}>
-            {formValues?.["customizations-install-device"]}
+            {formValues?.["customizations.installation_device"]}
           </TextListItem>
           <TextListItem component={TextListItemVariants.dt}>
             <FormattedMessage defaultMessage="Manufacturing server URL" />
           </TextListItem>
           <TextListItem component={TextListItemVariants.dd}>
-            {formValues?.["customizations-manufacturing-server-url"]}
+            {formValues?.["customizations.fdo.manufacturing_server_url"]}
           </TextListItem>
           <TextListItem component={TextListItemVariants.dt}>
             <FormattedMessage defaultMessage="DIUN public key insecure" />
           </TextListItem>
           <TextListItem component={TextListItemVariants.dd}>
-            {formValues?.["customizations-diun-public-key-insecure"]}
+            {formValues?.["customizations.fdo.diun_public_key_insecure"]}
           </TextListItem>
           <TextListItem component={TextListItemVariants.dt}>
             <FormattedMessage defaultMessage="DIUN public key hash" />
           </TextListItem>
           <TextListItem component={TextListItemVariants.dd}>
-            {formValues?.["customizations-diun-public-key-hash"]}
+            {formValues?.["customizations.fdo.diun_public_key_hash"]}
           </TextListItem>
           <TextListItem component={TextListItemVariants.dt}>
             <FormattedMessage defaultMessage="DIUN public key root certs" />
           </TextListItem>
           <TextListItem component={TextListItemVariants.dd}>
-            {formValues?.["customizations-diun-public-key-root-certs"]}
+            {formValues?.["customizations.fdo.diun_public_key_root_certs"]}
           </TextListItem>
         </>
       )}
-      {formValues?.["customizations-users"]?.length && (
+      {formValues?.customizations?.user?.length && (
         <>
           <TextListItem component={TextListItemVariants.dt}>
             <strong>
@@ -440,19 +440,19 @@ const customizations = (intl, formValues) => (
                 </Tr>
               </Thead>
               <Tbody>
-                {formValues?.["customizations-users"].map((user) => (
-                  <Tr key={user.username}>
+                {formValues.customizations.user.map((user) => (
+                  <Tr key={user.name}>
                     <Td dataLabel={intl.formatMessage(messages.username)}>
-                      {user.username}
+                      {user?.name}
                     </Td>
                     <Td dataLabel={intl.formatMessage(messages.password)}>
-                      {user.password && <CheckIcon />}
+                      {user?.password && <CheckIcon />}
                     </Td>
                     <Td dataLabel={intl.formatMessage(messages.admin)}>
-                      {user["is-admin"] && <CheckIcon />}
+                      {user?.isAdmin && <CheckIcon />}
                     </Td>
                     <Td dataLabel={intl.formatMessage(messages.sshKey)}>
-                      {user["ssh-key"] && <CheckIcon />}
+                      {user?.key && <CheckIcon />}
                     </Td>
                   </Tr>
                 ))}
@@ -507,10 +507,7 @@ const Review = (props) => {
       <DescriptionList isCompact isHorizontal>
         <DescriptionListGroup>
           <DescriptionListTerm>
-            <FormattedMessage
-              id="wizard.review.blueprintName"
-              defaultMessage="Blueprint name"
-            />
+            <FormattedMessage defaultMessage="Blueprint name" />
           </DescriptionListTerm>
           <DescriptionListDescription>
             {props.blueprintName}
@@ -527,10 +524,7 @@ const Review = (props) => {
           eventKey={0}
           title={
             <TabTitleText>
-              <FormattedMessage
-                id="wizard.review.target.title"
-                defaultMessage="Image output"
-              />
+              <FormattedMessage defaultMessage="Image output" />
             </TabTitleText>
           }
           data-testid="tab-target"
@@ -539,10 +533,7 @@ const Review = (props) => {
           <DescriptionList isHorizontal>
             <DescriptionListGroup>
               <DescriptionListTerm>
-                <FormattedMessage
-                  id="wizard.review.outputType"
-                  defaultMessage="Output type"
-                />
+                <FormattedMessage defaultMessage="Output type" />
               </DescriptionListTerm>
               <DescriptionListDescription>
                 {formValues?.["image-output-type"]}
@@ -575,10 +566,7 @@ const Review = (props) => {
           eventKey={1}
           title={
             <TabTitleText>
-              <FormattedMessage
-                id="wizard.review.packages.title"
-                defaultMessage="Packages"
-              />
+              <FormattedMessage defaultMessage="Packages" />
             </TabTitleText>
           }
           data-testid="tab-packages"
@@ -618,10 +606,7 @@ const Review = (props) => {
           eventKey={2}
           title={
             <TabTitleText>
-              <FormattedMessage
-                id="wizard.review.customizations.title"
-                defaultMessage="Customizations"
-              />
+              <FormattedMessage defaultMessage="Customizations" />
             </TabTitleText>
           }
           data-testid="tab-custom"

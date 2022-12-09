@@ -11,6 +11,7 @@ import {
 } from "@patternfly/react-core";
 
 import CreateImageWizard from "../Wizard/CreateImageWizard";
+import BlueprintWizard from "../Wizard/BlueprintWizard";
 
 const BlueprintDetailsToolbar = (props) => {
   return (
@@ -31,6 +32,9 @@ const BlueprintDetailsToolbar = (props) => {
           variant="button-group"
           alignment={{ default: "alignRight" }}
         >
+          <ToolbarItem>
+            <BlueprintWizard isEdit blueprint={props.blueprint} />
+          </ToolbarItem>
           <ToolbarItem>
             <CreateImageWizard blueprint={props.blueprint} />
           </ToolbarItem>

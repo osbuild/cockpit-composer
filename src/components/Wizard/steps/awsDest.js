@@ -51,7 +51,7 @@ const awsDest = (intl) => {
     ),
     name: "aws-dest",
     substepOf: intl.formatMessage(messages.awsStepsTitle),
-    nextStep: "system",
+    nextStep: "review",
     fields: [
       {
         component: "text-field-custom",
@@ -112,7 +112,6 @@ const awsDest = (intl) => {
           </Popover>
         ),
         isRequired: true,
-        autoFocus: true,
         validate: [
           {
             type: validatorTypes.REQUIRED,
@@ -144,7 +143,6 @@ const awsDest = (intl) => {
           </Popover>
         ),
         isRequired: true,
-        autoFocus: true,
         validate: [
           {
             type: validatorTypes.REQUIRED,

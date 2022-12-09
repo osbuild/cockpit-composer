@@ -102,7 +102,7 @@ const imageOutput = (intl) => {
     fields: [
       {
         component: "blueprint-name",
-        name: "blueprint-name",
+        name: "blueprint.name",
       },
       {
         component: "image-output-select",

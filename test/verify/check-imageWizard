@@ -1,19 +1,16 @@
 #!/usr/bin/python3
 
-import os
 import time
-# import unittest
 import composerlib
 import testlib
+import os
 
 
 @testlib.nondestructive
-@testlib.timeout(2400)
 @testlib.no_retry_when_changed
-class TestWizard(composerlib.ComposerCase):
+class TestImageWizard(composerlib.ComposerCase):
 
-    # TODO: verify popover text after string translation
-    def testAWSStep(self):
+    def testAWSFields(self):
         b = self.browser
 
         self.login_and_go("/composer")
@@ -30,15 +27,6 @@ class TestWizard(composerlib.ComposerCase):
         b.click("#image-upload")
 
         b.click("button[aria-label='Upload to AWS help']")
-        # b.wait_in_text(".pf-c-popover__body",
-        #                " Image Builder can upload images you create to an S3 bucket in AWS and "
-        #                "then import them into EC2. When the image build is complete and the upload"
-        #                " action is successful, the image file is available in the AMI section of "
-        #                "EC2. Most of the values required to upload the image can be found in the "
-        #                "AWS Management Console.  This upload process requires that you have an "
-        #                "Identity and Access Management (IAM) role named vmimport to ensure that "
-        #                "the image can be imported from the S3 bucket into EC2. For more details, "
-        #                "refer to the AWS Required Service Role. ")
         b.click(".pf-c-popover__content button[aria-label='Close']")
         b.wait_not_present(".pf-c-popover__body")
 
@@ -49,9 +37,6 @@ class TestWizard(composerlib.ComposerCase):
 
         b.wait_visible("label:contains('Access key ID')")
         b.click("button[aria-label='Access key help']")
-        # b.wait_text(".pf-c-popover__body",
-        #             "You can create and find existing Access key IDs on the "
-        #             "Identity and Access Management (IAM) page in the AWS console.")
         b.click(".pf-c-popover__content button[aria-label='Close']")
         b.wait_not_present(".pf-c-popover__body")
         b.focus("input[id='aws-access-key']")
@@ -59,9 +44,6 @@ class TestWizard(composerlib.ComposerCase):
 
         b.wait_visible("label:contains('Secret access key')")
         b.click("button[aria-label='Secret access key help']")
-        # b.wait_text(".pf-c-popover__body",
-        #             "You can view the Secret access key only when you create a new Access key ID "
-        #             "on the Identity and Access Management (IAM) page in the AWS console.")
         b.click(".pf-c-popover__content button[aria-label='Close']")
         b.wait_not_present(".pf-c-popover__body")
         b.focus("input[id='aws-secret-access-key']")
@@ -73,8 +55,6 @@ class TestWizard(composerlib.ComposerCase):
         b.wait_text("h1", "Destination")
         b.wait_visible("label:contains('Image name')")
         b.click("button[aria-label='Image name help']")
-        # b.wait_text(".pf-c-popover__body",
-        #             "Provide a file name to be used for the image file that will be uploaded.")
         b.click(".pf-c-popover__content button")
         b.wait_not_present(".pf-c-popover__body")
         b.focus("input[id='aws-image-name']")
@@ -82,11 +62,6 @@ class TestWizard(composerlib.ComposerCase):
 
         b.wait_visible("label:contains('Amazon S3 bucket')")
         b.click("button[aria-label='S3 bucket help']")
-        # b.wait_text(".pf-c-popover__body",
-        #             " Provide the S3 bucket name to which the image file will be uploaded before "
-        #             "being imported into EC2.  The bucket must already exist in the Region where "
-        #             "you want to import your image. You can find a list of buckets on the S3 "
-        #             "buckets page in the Amazon S3 storage service in the AWS console. ")
         b.click(".pf-c-popover__content button[aria-label='Close']")
         b.wait_not_present(".pf-c-popover__body")
         b.focus("input[id='aws-s3-bucket']")
@@ -95,19 +70,11 @@ class TestWizard(composerlib.ComposerCase):
         b.wait_visible("label:contains('AWS region')")
         # check image name help button
         b.click("button[aria-label='Region help']")
-        # b.wait_text(".pf-c-popover__body",
-        #             "Provide the AWS Region where you want to import your image. "
-        #             "This must be the same region where the S3 bucket exists.")
         b.click(".pf-c-popover__content button[aria-label='Close']")
         b.wait_not_present(".pf-c-popover__body")
         # enter access key id value
         b.focus("input[id='aws-region']")
         b.key_press("up")
-
-        b.click("button:contains('Next')")
-        # skip packages and customizations steps
-        b.click("button:contains('Next')")
-        b.click("button:contains('Next')")
         b.click("button:contains('Next')")
 
         # Verify AWS Review page
@@ -139,8 +106,7 @@ class TestWizard(composerlib.ComposerCase):
         b.click("button:contains('Cancel')")
         b.wait_not_present("#create-image-wizard")
 
-    # TODO: verify popover text after string translation
-    def testAzureStep(self):
+    def testAzureFields(self):
         b = self.browser
         self.login_and_go("/composer")
         b.wait_visible("#main")
@@ -149,18 +115,13 @@ class TestWizard(composerlib.ComposerCase):
         b.click("tr[data-testid=httpd-server] button[aria-label='Create image']")
         b.wait_in_text(".pf-c-wizard__main", "httpd-server")
         time.sleep(1)
-        # select AWS
+        # select Azure
         b.select_PF4("#image-output-select-toggle", "Microsoft Azure (.vhd)")
         # Upload image
         b.wait_visible("label:contains('Upload to Azure')")
         b.click("#image-upload")
 
         b.click("button[aria-label='Upload to Azure help']")
-        # b.wait_in_text(".pf-c-popover__body",
-        #                " Image Builder can upload images you create to a Blob container in "
-        #                "Microsoft Azure. When the image build is complete and the upload action "
-        #                "is successful, the image file is available in the Storage account and Blob "
-        #                "container that you specified. ")
         b.click(".pf-c-popover__content button[aria-label='Close']")
         b.wait_not_present(".pf-c-popover__body")
 
@@ -171,9 +132,6 @@ class TestWizard(composerlib.ComposerCase):
 
         b.wait_visible("label:contains('Storage account')")
         b.click("button[aria-label='Storage account help']")
-        # b.wait_text(".pf-c-popover__body",
-        #             "Provide the name of a storage account. You can find storage accounts on the "
-        #             "Storage accounts page in the Azure portal.")
         b.click(".pf-c-popover__content button[aria-label='Close']")
         b.wait_not_present(".pf-c-popover__body")
         b.focus("input[id='azure-storage-account']")
@@ -181,10 +139,6 @@ class TestWizard(composerlib.ComposerCase):
 
         b.wait_visible("label:contains('Storage access key')")
         b.click("button[aria-label='Storage access key help']")
-        # b.wait_text(".pf-c-popover__body",
-        #             " Provide the access key for the desired storage account. You can find the "
-        #             "access key on the Access keys  page of the storage account. You can find "
-        #             "storage accounts on the Storage accounts page in the Azure portal. ")
         b.click(".pf-c-popover__content button[aria-label='Close']")
         b.wait_not_present(".pf-c-popover__body")
         b.focus("input[id='azure-storage-access-key']")
@@ -196,8 +150,6 @@ class TestWizard(composerlib.ComposerCase):
         b.wait_text("h1", "Destination")
         b.wait_visible("label:contains('Image name')")
         b.click("button[aria-label='Image name help']")
-        # b.wait_text(".pf-c-popover__body",
-        #             "Provide a file name to be used for the image file that will be uploaded.")
         b.click(".pf-c-popover__content button")
         b.wait_not_present(".pf-c-popover__body")
         b.focus("input[id='azure-image-name']")
@@ -205,19 +157,10 @@ class TestWizard(composerlib.ComposerCase):
 
         b.wait_visible("label:contains('Storage container')")
         b.click("button[aria-label='Storage container help']")
-        # b.wait_text(".pf-c-popover__body",
-        #             " Provide the Blob container to which the image file will be uploaded. You can "
-        #             "find containers under the Blob service  section of a storage account. You can "
-        #             "find storage accounts on the Storage accounts page in the Azure portal. ")
         b.click(".pf-c-popover__content button[aria-label='Close']")
         b.wait_not_present(".pf-c-popover__body")
         b.focus("input[id='azure-storage-container']")
         b.key_press("you-up")
-
-        b.click("button:contains('Next')")
-        # skip packages and customizations steps
-        b.click("button:contains('Next')")
-        b.click("button:contains('Next')")
         b.click("button:contains('Next')")
 
         # Verify Azure Review page
@@ -247,8 +190,7 @@ class TestWizard(composerlib.ComposerCase):
         b.click("button:contains('Cancel')")
         b.wait_not_present("#create-image-wizard")
 
-    # TODO: verify popover text after string translation
-    def testVMWareStep(self):
+    def testVMWareFields(self):
         b = self.browser
 
         self.login_and_go("/composer")
@@ -265,11 +207,6 @@ class TestWizard(composerlib.ComposerCase):
         b.click("#image-upload")
 
         b.click("button[aria-label='Upload to VMWare help']")
-        # b.wait_in_text(".pf-c-popover__body",
-        #                " Image Builder can upload images you create to VMWare vSphere. "
-        #                "When the image build is complete and the upload action is successful, "
-        #                "the image file is available in the Cluster on the vSphere "
-        #                "instance that you specified. ")
         b.click(".pf-c-popover__content button[aria-label='Close']")
         b.wait_not_present(".pf-c-popover__body")
 
@@ -292,8 +229,6 @@ class TestWizard(composerlib.ComposerCase):
         b.wait_text("h1", "Destination")
         b.wait_visible("label:contains('Image name')")
         b.click("button[aria-label='Image name help']")
-        # b.wait_text(".pf-c-popover__body",
-        #             "Provide a file name to be used for the image file that will be uploaded.")
         b.click(".pf-c-popover__content button")
         b.wait_not_present(".pf-c-popover__body")
         b.focus("input[id='vmware-image-name']")
@@ -301,8 +236,6 @@ class TestWizard(composerlib.ComposerCase):
 
         b.wait_visible("label:contains('Host')")
         b.click("button[aria-label='Host help']")
-        # b.wait_text(".pf-c-popover__body",
-        #             "Provide the url of your VMWare vSphere instance to which the image file will be uploaded.")
         b.click(".pf-c-popover__content button[aria-label='Close']")
         b.wait_not_present(".pf-c-popover__body")
         b.focus("input[id='vmware-host']")
@@ -310,8 +243,6 @@ class TestWizard(composerlib.ComposerCase):
 
         b.wait_visible("label:contains('Cluster')")
         b.click("button[aria-label='Cluster help']")
-        # b.wait_text(".pf-c-popover__body",
-        #             "Provide the name of the Cluster to which the image file will be uploaded.")
         b.click(".pf-c-popover__content button[aria-label='Close']")
         b.wait_not_present(".pf-c-popover__body")
         b.focus("input[id='vmware-cluster']")
@@ -319,8 +250,6 @@ class TestWizard(composerlib.ComposerCase):
 
         b.wait_visible("label:contains('Datacenter')")
         b.click("button[aria-label='Datacenter help']")
-        # b.wait_text(".pf-c-popover__body",
-        #             "Provide the name of the Datacenter to which the image file will be uploaded.")
         b.click(".pf-c-popover__content button[aria-label='Close']")
         b.wait_not_present(".pf-c-popover__body")
         b.focus("input[id='vmware-data-center']")
@@ -328,17 +257,10 @@ class TestWizard(composerlib.ComposerCase):
 
         b.wait_visible("label:contains('Datastore')")
         b.click("button[aria-label='Datastore help']")
-        # b.wait_text(".pf-c-popover__body",
-        #             "Provide the name of the Datastore to which the image file will be uploaded.")
         b.click(".pf-c-popover__content button[aria-label='Close']")
         b.wait_not_present(".pf-c-popover__body")
         b.focus("input[id='vmware-data-store']")
         b.key_press("let-you-down")
-
-        b.click("button:contains('Next')")
-        # skip packages and customizations steps
-        b.click("button:contains('Next')")
-        b.click("button:contains('Next')")
         b.click("button:contains('Next')")
 
         # Verify Azure Review page
@@ -374,9 +296,8 @@ class TestWizard(composerlib.ComposerCase):
         b.click("button:contains('Cancel')")
         b.wait_not_present("#create-image-wizard")
 
-    # initially only test edge-commit/iot-commit so as to verify all fields
-    # this image type contains all currently supported ostree settings
-    # TODO: verify popover text after string translation
+    # Test edge-commit/iot-commit so as to verify all fields
+    # This image type contains all currently supported ostree settings
     def testOSTreeStep(self):
         b = self.browser
 
@@ -404,8 +325,6 @@ class TestWizard(composerlib.ComposerCase):
 
         b.wait_visible("label:contains('Repository URL')")
         b.click("button[aria-label='Repository URL help']")
-        # b.wait_text(".pf-c-popover__body",
-        #             "Provide the URL of the upstream repository. This repository is where the parent OSTree commit will be pulled from.")
         b.click(".pf-c-popover__content button[aria-label='Close']")
         b.wait_not_present(".pf-c-popover__body")
         b.focus("input[id='ostree-repo-url']")
@@ -413,16 +332,12 @@ class TestWizard(composerlib.ComposerCase):
 
         b.wait_visible("label:contains('Parent')")
         b.click("button[aria-label='Parent help']")
-        # b.wait_text(".pf-c-popover__body",
-        #             "Provide the name of the branch for the content. If the ref does not already exist it will be created.")        b.click(".pf-c-popover__content button[aria-label='Close']")
         b.click(".pf-c-popover__content button[aria-label='Close']")
         b.wait_not_present(".pf-c-popover__body")
         b.set_input_text("input[id='ostree-parent-commit']", "asdf1234")
 
         b.wait_visible("label:contains('Ref')")
         b.click("button[aria-label='Ref help']")
-        # b.wait_text(".pf-c-popover__body",
-        #             Provide the name of the branch for the content. If the ref does not already exist it will be created.")
         b.click(".pf-c-popover__content button[aria-label='Close']")
         b.wait_not_present(".pf-c-popover__body")
         b.focus("input[id='ostree-ref']")
@@ -434,14 +349,8 @@ class TestWizard(composerlib.ComposerCase):
                     "followed by a letter or number.")
 
         b.click("button:contains('Next')")
-        # skip customizations and packages steps
-        b.click("button:contains('Next')")
-        b.click("button:contains('Next')")
-        b.click("button:contains('Next')")
-
         # Verify AWS Review page
         b.wait_text("h1", "Review")
-
         b.wait_in_text("#review-list", "Blueprint name")
         b.wait_in_text("#review-list", "httpd-server")
         b.wait_in_text("#review-list", "Output type")
@@ -451,75 +360,41 @@ class TestWizard(composerlib.ComposerCase):
         b.click("button:contains('Cancel')")
         b.wait_not_present("#create-image-wizard")
 
-    def testCustomizationsHostname(self):
-        b = self.browser
-
-        distro = os.environ.get("TEST_OS").split('-')[0]
-        if (distro == "fedora"):
-            image_type_label = "IoT Commit (.tar)"
-        else:
-            image_type_label = "RHEL for Edge Commit (.tar)"
-
-        self.login_and_go("/composer", superuser=True)
-        b.wait_visible("#main")
-
-        b.click("tr[data-testid=httpd-server] button[aria-label='Create image']")
-        b.wait_in_text(".pf-c-wizard__main", "httpd-server")
-        time.sleep(1)
-        # select RHEL Installer
-        b.select_PF4("#image-output-select-toggle", image_type_label)
-
-        # go to next page and skip ostree settings
-        b.click("button:contains('Next')")
-        b.click("button:contains('Next')")
-
-        b.wait_text("h1", "System")
-        b.focus("input[id='customizations-hostname']")
-        b.key_press("myhost")
-
-        # skip user and packages
-        b.click("button:contains('Next')")
-        b.click("button:contains('Next')")
-        b.click("button:contains('Next')")
-
-        b.click("button:contains('Save blueprint')")
-        with b.wait_timeout(360):
-            b.click("button:contains('Cancel')")
-
-    def testCustomizationsUser(self):
+    def testCreateQCOW2(self):
         b = self.browser
 
         self.login_and_go("/composer", superuser=True)
         b.wait_visible("#main")
 
-        b.click("tr[data-testid='httpd-server'] button[aria-label='Create image']")
-        b.wait_in_text(".pf-c-wizard__main", "httpd-server")
-        time.sleep(1)
+        # Create blueprint
+        b.click("button:contains('Create blueprint')")
+        b.wait_in_text(".pf-c-wizard__header", "Create blueprint")
+
+        b.set_input_text("input[id='blueprint.name']", "testName")
+        # skip to review page
+        b.click("button:contains('Next')")
+        b.click("button:contains('Next')")
+        b.click("button:contains('Next')")
+        b.click("button:contains('Next')")
+        b.click("button:contains('Next')")
+        b.click("footer button:contains('Create')")
+        # Create image
+        b.click("tr[data-testid='testName'] button[aria-label='Create image']")
+        b.wait_in_text(".pf-c-wizard__header", "Create image")
+        # select qcow2 image type and keep default size
         b.select_PF4("#image-output-select-toggle", "QEMU Image (.qcow2)")
-
-        # go to next page and skip details step
-        b.click("button:contains('Next')")
-        b.click("button:contains('Next')")
-
-        b.wait_text("h1", "Users")
-
-        b.click("button:contains('Add user')")
-        b.focus("input[id='customizations-users[0].username']")
-        b.key_press("admin")
-        b.focus("input[id='customizations-users[0].password']")
-        b.key_press("foobar")
-        b.focus("textarea[id='customizations-users[0].ssh-key']")
-        b.key_press("ssh-rsa key")
-        b.click("input[id='customizations-users[0].is-admin']")
-        # go to next page and skip packages
-        b.click("button:contains('Next')")
-        b.wait_text("h1", "Packages")
         b.click("button:contains('Next')")
 
         b.wait_text("h1", "Review")
-        b.click("button:contains('Save blueprint')")
-        with b.wait_timeout(360):
-            b.click("button:contains('Cancel')")
+        b.wait_in_text("#review-list", "Blueprint name")
+        b.wait_in_text("#review-list", "testName")
+        b.wait_in_text("#review-list", "Output type")
+        b.wait_in_text("#review-list", "qcow2")
+        b.wait_in_text("#review-list", "Image size")
+        b.wait_in_text("#review-list", "2")
+
+        # Create image
+        b.click("footer button:contains('Create')")
 
 
 if __name__ == '__main__':

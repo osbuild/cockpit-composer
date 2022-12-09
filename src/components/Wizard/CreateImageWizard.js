@@ -15,22 +15,19 @@ import {
   ociAuth,
   ociDest,
   ostreeSettings,
-  fdo,
-  system,
-  packages,
   review,
-  users,
 } from "./steps";
 import MemoizedImageCreator from "./ImageCreator";
-import { hostnameValidator, ostreeValidator } from "./validators";
+import { ostreeValidator } from "./validators";
 import "./CreateImageWizard.css";
 import { selectAllImageTypes, createImage } from "../../slices/imagesSlice";
-import { updateBlueprint } from "../../slices/blueprintsSlice";
 
 const messages = defineMessages({
   createImage: {
-    id: "wizard.createImage",
     defaultMessage: "Create image",
+  },
+  createButton: {
+    defaultMessage: "Create",
   },
 });
 
@@ -52,17 +49,8 @@ const CreateImageWizard = (props) => {
     setIsWizardOpen(true);
   };
 
-  const handleSaveBlueprint = (formProps) => {
-    const { formValues, setIsSaving, setHasSaved } = formProps;
-    setIsSaving(true);
-    const blueprintData = stateToBlueprint(formValues);
-    dispatch(updateBlueprint(blueprintData));
-    setIsSaving(false);
-    setHasSaved(true);
-  };
-
-  const handleBuildImage = async (formProps) => {
-    const { formValues } = formProps;
+  const handleBuildImage = async (fields, formAPI) => {
+    const formValues = formAPI.getState().values;
 
     let uploadSettings;
     if (formValues["image-upload"]) {
@@ -136,96 +124,41 @@ const CreateImageWizard = (props) => {
       };
     }
 
-    const blueprintArgs = {
-      blueprintName: formValues["blueprint-name"],
+    const imageArgs = {
+      blueprintName: formValues.blueprint.name,
       type: formValues["image-output-type"],
       size: formValues["image-size"],
       ostree: ostreeSettings,
       upload: uploadSettings,
     };
 
-    dispatch(createImage(blueprintArgs));
+    dispatch(createImage(imageArgs));
     setIsWizardOpen(false);
   };
 
-  const handleSubmit = (action, formProps) => {
-    if (action === "build") {
-      handleBuildImage(formProps);
-    } else if (action === "save") {
-      handleSaveBlueprint(formProps);
-    }
-  };
-
   const blueprintToState = (blueprint) => {
-    const formState = {};
-    formState["blueprint-name"] = blueprint.name;
-    formState["blueprint-description"] = blueprint.description;
-    formState["blueprint-groups"] = blueprint.groups;
-    if (blueprint.customizations) {
-      formState["customizations-hostname"] = blueprint.customizations.hostname;
-      formState["customizations-install-device"] =
-        blueprint.customizations.installation_device;
-      formState["customizations-users"] = [];
-      if (blueprint.customizations.user?.length) {
-        blueprint.customizations.user.forEach((user) => {
-          const formUser = {
-            username: user.name,
-            password: user.password,
-            "is-admin": user.groups?.includes("wheel"),
-            "ssh-key": user.key,
-          };
-          formState["customizations-users"].push(formUser);
-        });
-      }
-    }
-    formState["selected-packages"] = blueprint.packages.map((pkg) => pkg.name);
-
-    return formState;
-  };
-
-  const stateToBlueprint = (formValues) => {
-    const formattedPacks = formValues?.["selected-packages"]?.map((pkg) => ({
-      name: pkg,
-      version: "*",
-    }));
-    const customizations = {};
-    customizations.hostname = formValues?.["customizations-hostname"];
-    customizations.installation_device =
-      formValues?.["customizations-install-device"];
-    customizations.user = [];
-    if (formValues["customizations-users"]?.length) {
-      formValues["customizations-users"].forEach((formUser) => {
-        const bpUser = {
-          name: formUser.username,
-          password: formUser.password,
-          groups: formUser["is-admin"] ? ["wheel"] : [],
-          key: formUser["ssh-key"],
+    const formState = {
+      blueprint: {},
+      customizations: {
+        user: [],
+      },
+    };
+    formState.blueprint = blueprint;
+    formState.customizations = {
+      ...blueprint.customizations,
+      user: blueprint.customizations?.user?.map((user) => {
+        return {
+          name: user?.name,
+          password: user?.password,
+          key: user?.key,
+          isAdmin: user?.groups?.includes("wheel"),
         };
-        customizations.user.push(bpUser);
-      });
-    }
-    if (formValues["image-output-type"] === "edge-simplified-installer") {
-      customizations.fdo = {
-        manufacturing_server_url:
-          formValues["customizations-manufacturing-server-url"],
-        diun_pub_key_insecure:
-          formValues["customizations-diun-pub-key-insecure"],
-        diun_pub_key_hash: formValues["customizations-diun-pub-key-hash"],
-        diun_pub_key_root_certs:
-          formValues["customizations-diun-pub-key-root-certs"],
-      };
-    }
-
-    const blueprintData = {
-      name: formValues?.["blueprint-name"],
-      description: formValues?.["blueprint-description"],
-      modules: [],
-      packages: formattedPacks,
-      groups: formValues?.["blueprint-groups"],
-      customizations,
+      }),
     };
 
-    return blueprintData;
+    formState["selected-packages"] = blueprint.packages?.map((pkg) => pkg.name);
+
+    return formState;
   };
 
   return (
@@ -241,8 +174,8 @@ const CreateImageWizard = (props) => {
       {isWizardOpen && (
         <MemoizedImageCreator
           onClose={handleClose}
-          onSubmit={(action, formValues) => handleSubmit(action, formValues)}
-          customValidatorMapper={{ hostnameValidator, ostreeValidator }}
+          onSubmit={(fields, formAPI) => handleBuildImage(fields, formAPI)}
+          customValidatorMapper={{ ostreeValidator }}
           schema={{
             fields: [
               {
@@ -254,7 +187,7 @@ const CreateImageWizard = (props) => {
                 showTitles: true,
                 title: intl.formatMessage(messages.createImage),
                 buttonLabels: {
-                  submit: intl.formatMessage(messages.createImage),
+                  submit: intl.formatMessage(messages.createButton),
                 },
                 fields: [
                   imageOutput(intl),
@@ -267,10 +200,6 @@ const CreateImageWizard = (props) => {
                   vmwareAuth(intl),
                   vmwareDest(intl),
                   ostreeSettings(intl),
-                  fdo(intl),
-                  system(intl),
-                  users(intl),
-                  packages(intl),
                   review(intl),
                 ],
                 crossroads: ["image-output-type", "image-upload"],
