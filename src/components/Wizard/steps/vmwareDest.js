@@ -66,7 +66,7 @@ const vmwareDest = (intl) => {
     ),
     name: "vmware-dest",
     substepOf: intl.formatMessage(messages.vmwareStepsTitle),
-    nextStep: "system",
+    nextStep: "review",
     fields: [
       {
         component: "text-field-custom",

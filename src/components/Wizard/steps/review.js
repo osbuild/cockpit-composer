@@ -1,6 +1,5 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
-import SubmitButtonsCustom from "../formComponents/SubmitButtonsCustom";
 
 const review = () => {
   return {
@@ -9,7 +8,6 @@ const review = () => {
     title: (
       <FormattedMessage id="wizard.review.title" defaultMessage="Review" />
     ),
-    buttons: SubmitButtonsCustom,
     fields: [
       {
         name: "review",

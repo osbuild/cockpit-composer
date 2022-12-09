@@ -210,9 +210,11 @@ const Packages = ({ ...props }) => {
 
     return packageList.filter((availablePackage) => {
       // returns true if no packages in the available or chosen list have the same name
-      return !selectedPackages.some(
-        (selectedPackage) => availablePackage.name === selectedPackage
-      );
+      return selectedPackages
+        ? !selectedPackages.some(
+            (selectedPackage) => availablePackage.name === selectedPackage
+          )
+        : true;
     });
   };
 

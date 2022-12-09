@@ -13,3 +13,4 @@ export { default as packages } from "./packages";
 export { default as review } from "./review";
 export { default as users } from "./users";
 export { default as fdo } from "./fdo";
+export { default as blueprintDetails } from "./blueprintDetails";

@@ -41,7 +41,7 @@ const azureDest = (intl) => {
     ),
     name: "azure-dest",
     substepOf: intl.formatMessage(messages.azureStepsTitle),
-    nextStep: "system",
+    nextStep: "review",
     fields: [
       {
         component: "text-field-custom",

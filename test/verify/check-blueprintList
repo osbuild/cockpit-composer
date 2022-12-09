@@ -7,49 +7,11 @@
 
 import composerlib
 import testlib
-import time
 
 
 @testlib.nondestructive
-class TestBlueprints(composerlib.ComposerCase):
-
-    def testCreateAndDelete(self):
-        b = self.browser
-
-        self.login_and_go("/composer")
-        b.wait_visible("#main")
-        time.sleep(5)
-
-        b.click("button:contains('Create blueprint')")
-        b.wait_visible("#modal-create-blueprint")
-        # blueprint name
-        b.focus("input[id='name']")
-        b.key_press("testName")
-        # blueprint description
-        b.focus("input[id='description']")
-        b.key_press("testDescription")
-        # create
-        b.click("button[type='submit']")
-        b.wait_not_present("#modal-create-blueprint")
-
-        # wait for back to blueprint link and click
-        b.click("a:contains('Back to blueprints')")
-
-        # new added blueprint should be there with correct name
-        b.wait_visible("tr[data-testid='testName']")
-        b.wait_text("a:contains('testName')", "testName")
-
-        # delete blueprint, cancel first
-        b.click("tr[data-testid='testName'] button:contains('Delete blueprint')")
-        b.wait_visible("#modal-delete-blueprint")
-        b.click("#modal-delete-blueprint button:contains('Cancel')")
-        b.wait_not_present("#modal-delete-blueprint")
-
-        # delete here
-        b.click("tr[data-testid='testName'] button:contains('Delete blueprint')")
-        b.wait_visible("#modal-delete-blueprint")
-        b.click("#modal-delete-blueprint button:contains('Delete')")
-        b.wait_not_present("#modal-delete-blueprint")
+@testlib.no_retry_when_changed
+class TestBlueprintList(composerlib.ComposerCase):
 
     def testFilter(self):
         b = self.browser

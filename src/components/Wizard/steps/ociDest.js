@@ -77,7 +77,7 @@ const ociDest = (intl) => {
     ),
     name: "oci-dest",
     substepOf: intl.formatMessage(messages.ociTitle),
-    nextStep: "system",
+    nextStep: "review",
     fields: [
       {
         component: "text-field-custom",

@@ -14,7 +14,7 @@ import {
   SortAlphaDownAltIcon,
 } from "@patternfly/react-icons";
 
-import CreateBlueprint from "../Modal/CreateBlueprint";
+import BlueprintWizard from "../Wizard/BlueprintWizard";
 import ImportBlueprint from "../Modal/ImportBlueprint";
 
 const BlueprintToolbar = (props) => {
@@ -59,7 +59,7 @@ const BlueprintToolbar = (props) => {
             <ImportBlueprint />
           </ToolbarItem>
           <ToolbarItem>
-            <CreateBlueprint blueprintNames={props.blueprintNames} />
+            <BlueprintWizard blueprintNames={props.blueprintNames} />
           </ToolbarItem>
         </ToolbarGroup>
       </ToolbarContent>
