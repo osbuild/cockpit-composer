@@ -25,7 +25,7 @@ class TestBlueprintList(composerlib.ComposerCase):
         b.wait_visible("tr[data-testid='openssh-server']")
         b.wait_not_present("tr[data-testid='httpd-server']")
         # clear filter
-        b.click(".pf-c-search-input__clear button")
+        b.click(".pf-c-text-input-group__utilities button")
         b.wait_visible("tr[data-testid='httpd-server']")
 
         # filter "httpd" will show three matched blueprints
@@ -36,7 +36,7 @@ class TestBlueprintList(composerlib.ComposerCase):
         b.is_present("tr[data-testid='openssh-server-with-hostname']")
         b.is_present("tr[data-testid='openssh-server-with-user']")
         # clear filter
-        b.click(".pf-c-search-input__clear button")
+        b.click(".pf-c-text-input-group__utilities button")
         b.is_present("tr[data-testid='openssh-server']")
 
     def testSort(self):
