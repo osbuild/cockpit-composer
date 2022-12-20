@@ -22,3 +22,7 @@ export const ImageTypeLabels = {
   vhd: "Microsoft Azure (.vhd)",
   vmdk: "VMWare VSphere (.vmdk)",
 };
+
+export const UNIT_KIB = 1024 ** 1;
+export const UNIT_MIB = 1024 ** 2;
+export const UNIT_GIB = 1024 ** 3;

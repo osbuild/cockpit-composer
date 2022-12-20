@@ -1,5 +1,6 @@
 import React from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
+import { validatorTypes } from "@data-driven-forms/react-form-renderer";
 
 const messages = defineMessages({
   blueprintDetailsStep: {
@@ -19,6 +20,8 @@ const blueprintDetails = (intl) => {
         name: "blueprint.name",
         className: "pf-u-w-75",
         label: <FormattedMessage defaultMessage="Name" />,
+        isRequired: true,
+        validate: [{ type: validatorTypes.REQUIRED }],
       },
       {
         component: "text-field-custom",

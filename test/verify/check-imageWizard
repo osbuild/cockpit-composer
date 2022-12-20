@@ -367,27 +367,16 @@ class TestImageWizard(composerlib.ComposerCase):
         b.wait_visible("#main")
 
         # Create blueprint
-        b.click("button:contains('Create blueprint')")
-        b.wait_in_text(".pf-c-wizard__header", "Create blueprint")
-
-        b.set_input_text("input[id='blueprint.name']", "testName")
-        # skip to review page
-        b.click("button:contains('Next')")
-        b.click("button:contains('Next')")
-        b.click("button:contains('Next')")
-        b.click("button:contains('Next')")
-        b.click("button:contains('Next')")
-        b.click("footer button:contains('Create')")
-        # Create image
-        b.click("tr[data-testid='testName'] button[aria-label='Create image']")
-        b.wait_in_text(".pf-c-wizard__header", "Create image")
+        b.click("tr[data-testid=httpd-server] button[aria-label='Create image']")
+        b.wait_in_text(".pf-c-wizard__main", "httpd-server")
+        time.sleep(1)
         # select qcow2 image type and keep default size
         b.select_PF4("#image-output-select-toggle", "QEMU Image (.qcow2)")
         b.click("button:contains('Next')")
 
         b.wait_text("h1", "Review")
         b.wait_in_text("#review-list", "Blueprint name")
-        b.wait_in_text("#review-list", "testName")
+        b.wait_in_text("#review-list", "httpd-server")
         b.wait_in_text("#review-list", "Output type")
         b.wait_in_text("#review-list", "qcow2")
         b.wait_in_text("#review-list", "Image size")
