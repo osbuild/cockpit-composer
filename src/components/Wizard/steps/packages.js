@@ -8,7 +8,7 @@ const packages = () => {
     title: (
       <FormattedMessage id="wizard.packages.title" defaultMessage="Packages" />
     ),
-    nextStep: "system",
+    nextStep: "kernel",
     fields: [
       {
         component: componentTypes.PLAIN_TEXT,

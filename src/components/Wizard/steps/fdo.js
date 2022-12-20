@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
 
@@ -12,8 +13,7 @@ const fdo = (intl) => {
   return {
     title: <FormattedMessage defaultMessage="FIDO device onboarding" />,
     name: "fdo",
-    substepOf: intl.formatMessage(messages.customizationsStepsTitle),
-    nextStep: "review",
+    nextStep: "openscap",
     fields: [
       {
         component: "text-field-custom",

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useIntl, defineMessages } from "react-intl";
 import PropTypes from "prop-types";
 import { FormGroup, FileUpload } from "@patternfly/react-core";
@@ -11,29 +11,26 @@ const messages = defineMessages({
   },
 });
 
-const UploadFile = ({ label, labelIcon, isRequired, ...props }) => {
+const UploadOCIFile = ({ label, labelIcon, isRequired, ...props }) => {
   const intl = useIntl();
   const { change } = useFormApi();
-  const { input } = useFieldApi(props);
+  useFieldApi(props);
 
-  const [value, setValue] = useState("");
   const [filename, setFilename] = useState("");
-
-  useEffect(() => {
-    change(input.name, value);
-  }, [value]);
 
   const handleFileInputChange = (event, file) => {
     setFilename(file.name);
+    change("oci-private-key-filename", file.name);
   };
 
   const handleTextOrDataChange = (val) => {
-    setValue(val);
+    change("oci-private-key", val);
   };
 
   const handleClear = () => {
     setFilename("");
-    setValue("");
+    change("oci-private-key-filename", "");
+    change("oci-private-key", "");
   };
 
   return (
@@ -42,12 +39,11 @@ const UploadFile = ({ label, labelIcon, isRequired, ...props }) => {
         <FileUpload
           className="pf-u-w-75"
           type="text"
-          value={value}
           filename={filename}
+          hideDefaultPreview="true"
           filenamePlaceholder={intl.formatMessage(messages.filenamePlaceholder)}
           onFileInputChange={handleFileInputChange}
           onDataChange={handleTextOrDataChange}
-          onTextChange={handleTextOrDataChange}
           onClearClick={handleClear}
         />
       </FormGroup>
@@ -55,11 +51,11 @@ const UploadFile = ({ label, labelIcon, isRequired, ...props }) => {
   );
 };
 
-UploadFile.propTypes = {
+UploadOCIFile.propTypes = {
   label: PropTypes.node,
   labelIcon: PropTypes.node,
   isRequired: PropTypes.bool,
   imageTypes: PropTypes.arrayOf(PropTypes.object),
 };
 
-export default UploadFile;
+export default UploadOCIFile;

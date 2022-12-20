@@ -7,12 +7,22 @@ import componentTypes from "@data-driven-forms/react-form-renderer/component-typ
 import {
   blueprintDetails,
   fdo,
-  system,
+  filesystem,
+  kernel,
   packages,
   review,
   users,
+  services,
+  firewall,
+  groups,
+  sshkeys,
+  timezone,
+  locale,
+  other,
+  ignition,
+  openscap,
 } from "./steps";
-import { hostnameValidator } from "./validators";
+import { hostnameValidator, filesystemValidator } from "./validators";
 import { selectAllImageTypes } from "../../slices/imagesSlice";
 import { updateBlueprint } from "../../slices/blueprintsSlice";
 
@@ -22,6 +32,11 @@ import { componentMapper } from "@data-driven-forms/pf4-component-mapper";
 import Packages from "./formComponents/Packages";
 import Review from "./formComponents/Review";
 import TextFieldCustom from "./formComponents/TextFieldCustom";
+import FileSystemConfigToggle from "./formComponents/FileSystemConfigToggle";
+import FileSystemConfiguration from "./formComponents/FileSystemConfiguration";
+import TextInputGroupWithChips from "./formComponents/TextInputGroupWithChips";
+import { UNIT_GIB } from "../../constants";
+import UploadFile from "./formComponents/UploadFile";
 
 const messages = defineMessages({
   editBlueprint: {
@@ -67,124 +82,78 @@ const BlueprintWizard = (props) => {
       blueprint: {},
       customizations: {
         user: [],
+        filesystem: [],
       },
+      "selected-packages": [],
+      "filesystem-toggle": "auto",
     };
     formState.blueprint = blueprint;
     formState.customizations = {
       ...blueprint.customizations,
-      user: blueprint.customizations?.user?.map((user) => {
-        return {
-          name: user?.name,
-          password: user?.password,
-          key: user?.key,
-          isAdmin: user?.groups.includes("wheel"),
-        };
-      }),
+      user: blueprint.customizations?.user?.map((user) => ({
+        name: user?.name,
+        password: user?.password,
+        key: user?.key,
+        isAdmin: user?.groups.includes("wheel"),
+      })),
     };
+    if (blueprint.customizations?.filesystem) {
+      formState.customizations.filesystem =
+        blueprint.customizations.filesystem.map((fs) => ({
+          mountpoint: fs?.mountpoint,
+          // default to using GBs
+          size: fs?.minsize / UNIT_GIB,
+          unit: UNIT_GIB,
+        }));
+      formState["filesystem-toggle"] = "manual";
+    }
 
-    formState["selected-packages"] = blueprint.packages.map((pkg) => pkg.name);
-
+    formState["selected-packages"] = blueprint.packages?.map(
+      (pkg) => pkg?.name
+    );
     return formState;
   };
 
   const stateToCustomizations = (customizations) => {
-    // "hostname": string,
-    const hostname = customizations.hostname;
+    // the form state of these matches the api state
+    const {
+      hostname,
+      kernel,
+      sshkey,
+      group,
+      timezone,
+      locale,
+      services,
+      installation_device,
+      fdo,
+      openscap,
+      firewall,
+      ignition,
+    } = customizations;
 
-    // "kernel": KernelCustomization,
-    const kernel = {
-      name: customizations.kernel?.name,
-      append: customizations.kernel?.append,
-    };
-
-    // "sshkey": []SSHKeyCustomization,
-    const sshkey = customizations.sshKeys?.map((formSSHKey) => {
-      return {
-        user: formSSHKey.user,
-        key: formSSHKey.key,
-      };
-    });
-
-    // "user": []UserCustomization,
-    // const user = customizations.users?.map((formUser) => {
-    //   return {
-    //     key: formUser.key,
-    //     name: formUser.name,
-    //     description: formUser.description,
-    //     password: formUser.password,
-    //     home: formUser.home,
-    //     shell: formUser.shell,
-    //     groups: formUser.groups,
-    //     uid: formUser.uid,
-    //     gid: formUser.gid,
-    //   };
-    // });
-    const user = customizations.user?.map((formUser) => {
+    // Parse the user field
+    const parseUser = (formUser) => {
       return {
         name: formUser.name,
         password: formUser.password,
-        groups: formUser["isAdmin"] ? ["wheel"] : [],
+        groups: formUser.isAdmin ? ["wheel"] : [],
         key: formUser.key,
       };
-    });
-
-    // "group": []GroupCustomization,
-    const group = customizations.groups?.map((formGroup) => {
-      return {
-        name: formGroup.name,
-        gid: formGroup.gid,
-      };
-    });
-
-    // "timezone": TimezoneCustomization,
-    const timezone = {
-      timezone: customizations.timezone?.timezone,
-      ntpservers: customizations.timezone?.ntpservers,
     };
+    const user = customizations.user ? customizations.user.map(parseUser) : [];
 
-    // "locale": LocalCustomizations,
-    const locale = {
-      languages: customizations.locale?.languages,
-      keyboard: customizations.locale?.keyboard,
-    };
-
-    // "services": ServicesCustomization,
-    const services = {
-      enabled: customizations.services?.enabled,
-      disabled: customizations.services?.disabled,
-    };
-
-    // "installation_device": string,
-    const installation_device = customizations.installation_device;
-
-    // "fdo": FDOCustomization,
-    const fdo = customizations.fdo;
-
-    // "openscap": OpenSCAPCustomization,
-    // const openscap = {
-    //   datastream: customizations.openscap?.datastream,
-    //   profile_id: customizations.openscap?.profileId,
-    // };
-    const openscap = customizations.openscap;
-
-    // "firewall": FirewallCustomization,
-    //   "ports": []string
-    //   "services": | FirewallServicesCustomization
-    //   "zones": []FirewallZoneCustomization
-    const firewall = {
-      ports: customizations.firewall?.ports,
-      services: customizations.firewall?.services,
-      zones: customizations.firewall?.zones,
-    };
-
-    // "filesystem": []FilesystemCustomization
-    const filesystem = customizations.filesystem?.map((formMount) => {
+    // Parse the filesystem field
+    const parseFilesystem = (formMount) => {
       return {
         mountpoint: formMount.mountpoint,
-        minsize: formMount.size,
+        minsize: formMount.size * formMount.unit,
       };
-    });
+    };
+    const filesystem = customizations.filesystem
+      ? customizations.filesystem.map(parseFilesystem)
+      : [];
 
+    // Combine the parsed fields with the rest of the customizations
     const customizationsParsed = {
       hostname,
       kernel,
@@ -199,6 +168,7 @@ const BlueprintWizard = (props) => {
       openscap,
       firewall,
       filesystem,
+      ignition,
     };
 
     return customizationsParsed;
@@ -218,7 +188,6 @@ const BlueprintWizard = (props) => {
       customizations,
       packages,
     };
-
     return blueprint;
   };
 
@@ -242,12 +211,16 @@ const BlueprintWizard = (props) => {
             <Pf4FormTemplate {...props} showFormControls={false} />
           )}
           onSubmit={(formValues) => handleSaveBlueprint(formValues)}
-          customValidatorMapper={{ hostnameValidator }}
+          validatorMapper={{ hostnameValidator, filesystemValidator }}
           componentMapper={{
             ...componentMapper,
             "package-selector": Packages,
             review: Review,
             "text-field-custom": TextFieldCustom,
+            "filesystem-toggle": FileSystemConfigToggle,
+            "filesystem-configuration": FileSystemConfiguration,
+            "text-input-group-with-chips": TextInputGroupWithChips,
+            "upload-file": UploadFile,
           }}
           onCancel={handleClose}
           schema={{
@@ -255,7 +228,6 @@ const BlueprintWizard = (props) => {
               {
                 component: componentTypes.WIZARD,
                 name: "blueprint-wizard",
-                isDynamic: true,
                 inModal: true,
                 showTitles: true,
                 title: props.isEdit
@@ -266,12 +238,27 @@ const BlueprintWizard = (props) => {
                     ? intl.formatMessage(messages.save)
                     : intl.formatMessage(messages.create),
                 },
+                onKeyDown: (event) => {
+                  if (event.key === "Enter") {
+                    event.preventDefault();
+                  }
+                },
                 fields: [
                   blueprintDetails(intl),
                   packages(intl),
-                  system(intl),
+                  kernel(intl),
+                  filesystem(intl),
+                  services(intl),
+                  firewall(intl),
                   users(intl),
+                  groups(intl),
+                  sshkeys(intl),
+                  timezone(intl),
+                  locale(intl),
+                  other(intl),
                   fdo(intl),
+                  openscap(intl),
+                  ignition(intl),
                   review(intl),
                 ],
               },

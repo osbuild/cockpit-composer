@@ -4,8 +4,8 @@ import { Popover, Button } from "@patternfly/react-core";
 import { HelpIcon } from "@patternfly/react-icons";
 
 const messages = defineMessages({
-  customizationsStepsTitle: {
-    defaultMessage: "Customizations",
+  personalStepsTitle: {
+    defaultMessage: "Personal",
   },
   installDevicePopoverBody: {
     defaultMessage: "Specify which device the image will be installed onto.",
@@ -15,12 +15,12 @@ const messages = defineMessages({
   },
 });
 
-const customizations = (intl) => {
+const other = (intl) => {
   return {
-    title: <FormattedMessage defaultMessage="System" />,
-    name: "system",
-    substepOf: intl.formatMessage(messages.customizationsStepsTitle),
-    nextStep: "users",
+    title: <FormattedMessage defaultMessage="Other" />,
+    name: "other",
+    substepOf: intl.formatMessage(messages.personalStepsTitle),
+    nextStep: "fdo",
     fields: [
       {
         component: "text-field-custom",
@@ -58,4 +58,4 @@ const customizations = (intl) => {
   };
 };
 
-export default customizations;
+export default other;

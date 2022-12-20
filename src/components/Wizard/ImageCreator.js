@@ -9,7 +9,7 @@ import ImageOutputSelect from "./formComponents/ImageOutputSelect";
 import Packages from "./formComponents/Packages";
 import Review from "./formComponents/Review";
 import TextFieldCustom from "./formComponents/TextFieldCustom";
-import UploadFile from "./formComponents/UploadFile";
+import UploadOCIFile from "./formComponents/UploadOCIFile";
 
 const ImageCreator = ({
   schema,
@@ -49,7 +49,7 @@ const ImageCreator = ({
           imageTypes: props.imageTypes,
         },
         "text-field-custom": TextFieldCustom,
-        "upload-file": UploadFile,
+        "upload-oci-file": UploadOCIFile,
       }}
       onCancel={onClose}
       {...props}

@@ -85,7 +85,7 @@ const ociAuth = (intl) => {
         ],
       },
       {
-        component: "upload-file",
+        component: "upload-oci-file",
         name: "oci-private-key",
         label: (
           <FormattedMessage
