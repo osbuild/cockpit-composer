@@ -13,7 +13,7 @@ import {
   TextContent,
 } from "@patternfly/react-core";
 
-import DetailsTab from "../components/Tab/DetailsTab";
+import SystemTab from "../components/Tab/SystemTab";
 import UsersTab from "../components/Tab/UsersTab";
 import SourcesTab from "../components/Tab/SourcesTab";
 import PackagesTab from "../components/Tab/PackagesTab";
@@ -60,7 +60,7 @@ const BlueprintDetails = () => {
     })
   );
 
-  const [activeTab, setActiveTab] = useState("details");
+  const [activeTab, setActiveTab] = useState("system");
 
   const handleTabClick = (event, tabName) => setActiveTab(tabName);
 
@@ -84,14 +84,14 @@ const BlueprintDetails = () => {
           className="tabs pf-u-px-lg"
         >
           <Tab
-            eventKey="details"
+            eventKey="system"
             title={
               <TabTitleText>
-                <FormattedMessage defaultMessage="Details" />
+                <FormattedMessage defaultMessage="System" />
               </TabTitleText>
             }
           >
-            <DetailsTab
+            <SystemTab
               blueprint={blueprint}
               images={images}
               setActiveTab={setActiveTab}
