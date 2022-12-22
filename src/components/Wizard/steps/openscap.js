@@ -3,8 +3,7 @@ import React from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
 
 const messages = defineMessages({
-  customizationsStepsTitle: {
-    id: "wizard.customizations.title",
+  customizationsStepTitle: {
     defaultMessage: "Customizations",
   },
 });
@@ -13,6 +12,7 @@ const openscap = (intl) => {
   return {
     title: <FormattedMessage defaultMessage="OpenSCAP" />,
     name: "openscap",
+    substepOf: intl.formatMessage(messages.customizationsStepTitle),
     nextStep: "ignition",
     fields: [
       {

@@ -7,8 +7,8 @@ import FileSystemConfigButtons from "../formComponents/FileSystemConfigButtons";
 import { FormattedMessage, defineMessages } from "react-intl";
 
 const messages = defineMessages({
-  systemStepsTitle: {
-    defaultMessage: "System",
+  customizationsStepTitle: {
+    defaultMessage: "Customizations",
   },
   filesystemToggleLabel: {
     defaultMessage: "File system configurations toggle",
@@ -22,7 +22,7 @@ const filesystem = (intl) => {
   return {
     title: <FormattedMessage defaultMessage="File system" />,
     name: "filesystem",
-    substepOf: intl.formatMessage(messages.systemStepsTitle),
+    substepOf: intl.formatMessage(messages.customizationsStepTitle),
     buttons: FileSystemConfigButtons,
     nextStep: "services",
     fields: [

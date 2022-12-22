@@ -2,8 +2,8 @@ import React from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
 
 const messages = defineMessages({
-  personalStepsTitle: {
-    defaultMessage: "Personal",
+  customizationsStepTitle: {
+    defaultMessage: "Customizations",
   },
   buttonsAdd: {
     defaultMessage: "Add user",
@@ -20,7 +20,7 @@ const users = (intl) => {
   return {
     title: <FormattedMessage defaultMessage="Users" />,
     name: "users",
-    substepOf: intl.formatMessage(messages.personalStepsTitle),
+    substepOf: intl.formatMessage(messages.customizationsStepTitle),
     nextStep: "groups",
     fields: [
       {

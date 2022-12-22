@@ -30,7 +30,7 @@ import {
 import { FormattedMessage } from "react-intl";
 import { UNIT_GIB, UNIT_MIB } from "../../constants";
 
-const SystemTab = ({ blueprint, setActiveTab }) => {
+const CustomizationsTab = ({ blueprint, setActiveTab }) => {
   const KernelCard = () => (
     <Card isFullHeight>
       <CardTitle>
@@ -498,10 +498,10 @@ const SystemTab = ({ blueprint, setActiveTab }) => {
   );
 };
 
-SystemTab.propTypes = {
+CustomizationsTab.propTypes = {
   blueprint: PropTypes.object,
   images: PropTypes.array,
   setActiveTab: PropTypes.func,
 };
 
-export default SystemTab;
+export default CustomizationsTab;

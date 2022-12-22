@@ -13,7 +13,7 @@ import {
   TextContent,
 } from "@patternfly/react-core";
 
-import SystemTab from "../components/Tab/SystemTab";
+import CustomizationsTab from "../components/Tab/CustomizationsTab";
 import UsersTab from "../components/Tab/UsersTab";
 import SourcesTab from "../components/Tab/SourcesTab";
 import PackagesTab from "../components/Tab/PackagesTab";
@@ -91,7 +91,7 @@ const BlueprintDetails = () => {
               </TabTitleText>
             }
           >
-            <SystemTab
+            <CustomizationsTab
               blueprint={blueprint}
               images={images}
               setActiveTab={setActiveTab}
