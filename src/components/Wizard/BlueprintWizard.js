@@ -160,16 +160,27 @@ const BlueprintWizard = (props) => {
       sshkey,
       user,
       group,
-      timezone,
-      locale,
-      services,
       installation_device,
-      fdo,
-      openscap,
       firewall,
       filesystem,
       ignition,
     };
+
+    if (openscap.length) {
+      customizationsParsed.openscap = openscap;
+    }
+    if (fdo.length) {
+      customizationsParsed.fdo = fdo;
+    }
+    if (timezone.length) {
+      customizationsParsed.timezone = timezone;
+    }
+    if (locale.length) {
+      customizationsParsed.locale = locale;
+    }
+    if (services.length) {
+      customizationsParsed.services = services;
+    }
 
     return customizationsParsed;
   };
