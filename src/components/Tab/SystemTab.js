@@ -31,67 +31,6 @@ import { FormattedMessage } from "react-intl";
 import { UNIT_GIB, UNIT_MIB } from "../../constants";
 
 const SystemTab = ({ blueprint, setActiveTab }) => {
-  const details = (
-    <Card isFullHeight>
-      <CardTitle>
-        <Title headingLevel="h4" size="xl">
-          <FormattedMessage defaultMessage="Blueprint" />
-        </Title>
-      </CardTitle>
-      <Divider />
-      <CardBody>
-        <DescriptionList isHorizontal isAutoFit>
-          <DescriptionListGroup>
-            <DescriptionListTerm>
-              <FormattedMessage defaultMessage="Name" />
-            </DescriptionListTerm>
-            <DescriptionListDescription>
-              {blueprint?.name}
-            </DescriptionListDescription>
-            <DescriptionListTerm>
-              <FormattedMessage defaultMessage="Description" />
-            </DescriptionListTerm>
-            <DescriptionListDescription>
-              {blueprint?.description}
-            </DescriptionListDescription>
-            <DescriptionListTerm>
-              <FormattedMessage defaultMessage="Version" />
-            </DescriptionListTerm>
-            <DescriptionListDescription>
-              {blueprint?.version}
-            </DescriptionListDescription>
-          </DescriptionListGroup>
-          <DescriptionListGroup>
-            <DescriptionListTerm>
-              <FormattedMessage defaultMessage="Packages" />
-            </DescriptionListTerm>
-            <DescriptionListDescription>
-              <Button
-                variant="link"
-                isInline
-                onClick={() => setActiveTab("packages")}
-              >
-                {blueprint?.packages?.length}
-              </Button>
-            </DescriptionListDescription>
-            <DescriptionListTerm>
-              <FormattedMessage defaultMessage="Dependencies" />
-            </DescriptionListTerm>
-            <DescriptionListDescription>
-              <Button
-                variant="link"
-                isInline
-                onClick={() => setActiveTab("packages")}
-              >
-                {blueprint?.dependencies?.length}
-              </Button>
-            </DescriptionListDescription>
-          </DescriptionListGroup>
-        </DescriptionList>
-      </CardBody>
-    </Card>
-  );
-
   const KernelCard = () => (
     <Card isFullHeight>
       <CardTitle>
@@ -183,7 +122,7 @@ const SystemTab = ({ blueprint, setActiveTab }) => {
               </DescriptionListTerm>
               <DescriptionListDescription>
                 <LabelGroup>
-                  {services.enabled?.map((service, index) => (
+                  {services?.enabled?.map((service, index) => (
                     <Label key={index} color="blue">
                       {service}
                     </Label>
@@ -197,7 +136,7 @@ const SystemTab = ({ blueprint, setActiveTab }) => {
               </DescriptionListTerm>
               <DescriptionListDescription>
                 <LabelGroup>
-                  {services.disabled?.map((service, index) => (
+                  {services?.disabled?.map((service, index) => (
                     <Label key={index} color="red">
                       {service}
                     </Label>
@@ -228,7 +167,7 @@ const SystemTab = ({ blueprint, setActiveTab }) => {
               </DescriptionListTerm>
               <DescriptionListDescription>
                 <LabelGroup>
-                  {firewall.services?.enabled?.map((service, index) => (
+                  {firewall?.services?.enabled?.map((service, index) => (
                     <Label key={index} color="blue">
                       {service}
                     </Label>
@@ -242,7 +181,7 @@ const SystemTab = ({ blueprint, setActiveTab }) => {
               </DescriptionListTerm>
               <DescriptionListDescription>
                 <LabelGroup>
-                  {firewall.services?.disabled?.map((service, index) => (
+                  {firewall?.services?.disabled?.map((service, index) => (
                     <Label key={index} color="red">
                       {service}
                     </Label>
@@ -256,7 +195,7 @@ const SystemTab = ({ blueprint, setActiveTab }) => {
               </DescriptionListTerm>
               <DescriptionListDescription>
                 <LabelGroup>
-                  {firewall.ports?.map((port, index) => (
+                  {firewall?.ports?.map((port, index) => (
                     <Label key={index}>{port}</Label>
                   ))}
                 </LabelGroup>
@@ -267,10 +206,10 @@ const SystemTab = ({ blueprint, setActiveTab }) => {
                 <FormattedMessage defaultMessage="Zones" />
               </DescriptionListTerm>
               <DescriptionListDescription>
-                {firewall.zones?.map((zone, index) => (
+                {firewall?.zones?.map((zone, index) => (
                   <React.Fragment key={index}>
                     <Label>{zone.name}</Label>
-                    {zone.sources.map((source, index) => (
+                    {zone?.sources.map((source, index) => (
                       <Label key={index}>{source}</Label>
                     ))}
                   </React.Fragment>
@@ -441,7 +380,7 @@ const SystemTab = ({ blueprint, setActiveTab }) => {
                 <FormattedMessage defaultMessage="DIUN Public Key Hash" />
               </DescriptionListTerm>
               <DescriptionListDescription>
-                {fdo.diun_pub_key_hash}
+                {fdo?.diun_pub_key_hash}
               </DescriptionListDescription>
             </DescriptionListGroup>
             <DescriptionListGroup>
@@ -449,7 +388,7 @@ const SystemTab = ({ blueprint, setActiveTab }) => {
                 <FormattedMessage defaultMessage="DIUN Public Key Insecure" />
               </DescriptionListTerm>
               <DescriptionListDescription>
-                {fdo.diun_pub_key_insecure}
+                {fdo?.diun_pub_key_insecure}
               </DescriptionListDescription>
             </DescriptionListGroup>
             <DescriptionListGroup>
@@ -457,7 +396,7 @@ const SystemTab = ({ blueprint, setActiveTab }) => {
                 <FormattedMessage defaultMessage="DIUN Public Key Root Certificates" />
               </DescriptionListTerm>
               <DescriptionListDescription>
-                {fdo.diun_pub_key_root_certs}
+                {fdo?.diun_pub_key_root_certs}
               </DescriptionListDescription>
             </DescriptionListGroup>
             <DescriptionListGroup>
@@ -465,7 +404,7 @@ const SystemTab = ({ blueprint, setActiveTab }) => {
                 <FormattedMessage defaultMessage="Manufacturing Server URL" />
               </DescriptionListTerm>
               <DescriptionListDescription>
-                {fdo.manufacturing_server_url}
+                {fdo?.manufacturing_server_url}
               </DescriptionListDescription>
             </DescriptionListGroup>
           </DescriptionList>
@@ -490,7 +429,7 @@ const SystemTab = ({ blueprint, setActiveTab }) => {
                 <FormattedMessage defaultMessage="Datastream" />
               </DescriptionListTerm>
               <DescriptionListDescription>
-                {openscap.datastream}
+                {openscap?.datastream}
               </DescriptionListDescription>
             </DescriptionListGroup>
             <DescriptionListGroup>
@@ -498,7 +437,7 @@ const SystemTab = ({ blueprint, setActiveTab }) => {
                 <FormattedMessage defaultMessage="Profile ID" />
               </DescriptionListTerm>
               <DescriptionListDescription>
-                {openscap.profile_id}
+                {openscap?.profile_id}
               </DescriptionListDescription>
             </DescriptionListGroup>
           </DescriptionList>
