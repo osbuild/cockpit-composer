@@ -13,6 +13,7 @@ const fdo = (intl) => {
   return {
     title: <FormattedMessage defaultMessage="FIDO device onboarding" />,
     name: "fdo",
+    substepOf: intl.formatMessage(messages.customizationsStepsTitle),
     nextStep: "openscap",
     fields: [
       {

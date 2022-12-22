@@ -2,8 +2,8 @@ import React from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
 
 const messages = defineMessages({
-  systemStepsTitle: {
-    defaultMessage: "System",
+  customizationsStepTitle: {
+    defaultMessage: "Customizations",
   },
 });
 
@@ -11,7 +11,7 @@ const services = (intl) => {
   return {
     title: <FormattedMessage defaultMessage="Services" />,
     name: "services",
-    substepOf: intl.formatMessage(messages.systemStepsTitle),
+    substepOf: intl.formatMessage(messages.customizationsStepTitle),
     nextStep: "firewall",
     fields: [
       {

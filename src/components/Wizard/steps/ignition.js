@@ -3,8 +3,7 @@ import React from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
 
 const messages = defineMessages({
-  customizationsStepsTitle: {
-    id: "wizard.customizations.title",
+  customizationsStepTitle: {
     defaultMessage: "Customizations",
   },
 });
@@ -13,6 +12,7 @@ const ignition = (intl) => {
   return {
     title: <FormattedMessage defaultMessage="Ignition" />,
     name: "ignition",
+    substepOf: intl.formatMessage(messages.customizationsStepTitle),
     nextStep: "review",
     fields: [
       {
