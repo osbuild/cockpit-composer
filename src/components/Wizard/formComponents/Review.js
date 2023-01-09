@@ -441,7 +441,7 @@ const customizations = (intl, formValues) => (
               </Thead>
               <Tbody>
                 {formValues.customizations.user.map((user) => (
-                  <Tr key={user.name}>
+                  <Tr key={user?.name}>
                     <Td dataLabel={intl.formatMessage(messages.username)}>
                       {user?.name}
                     </Td>
