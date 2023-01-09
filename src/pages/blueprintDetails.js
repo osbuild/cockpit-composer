@@ -140,7 +140,7 @@ const BlueprintDetails = () => {
               </TabTitleText>
             }
           >
-            <ImagesTab blueprintName={blueprint?.name} images={images} />
+            <ImagesTab blueprint={blueprint} images={images} />
           </Tab>
         </Tabs>
       </PageSection>
