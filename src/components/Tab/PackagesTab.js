@@ -67,7 +67,7 @@ const PackagesTab = (props) => {
         onPerPageSelect={onPerPageSelect}
         perPage={perPage}
         onSetPage={onSetPage}
-        itemCount={packagesList?.length}
+        itemCount={packagesList?.length ? packagesList.length : 0}
       />
       <PackagesTable
         packages={paginatedList}

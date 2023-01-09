@@ -186,11 +186,13 @@ const BlueprintWizard = (props) => {
   };
 
   const stateToBlueprint = (formValues) => {
-    const packages = formValues?.["selected-packages"]?.map((pkg) => ({
-      name: pkg,
-    }));
+    const packages = formValues?.["selected-packages"]?.length
+      ? formValues["selected-packages"].map((pkg) => ({
+          name: pkg,
+        }))
+      : [];
 
-    const customizations = formValues.customizations
+    const customizations = formValues?.customizations
       ? stateToCustomizations(formValues?.customizations)
       : undefined;
 

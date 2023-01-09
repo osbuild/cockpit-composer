@@ -208,8 +208,8 @@ const CustomizationsTab = ({ blueprint, setActiveTab }) => {
               <DescriptionListDescription>
                 {firewall?.zones?.map((zone, index) => (
                   <React.Fragment key={index}>
-                    <Label>{zone.name}</Label>
-                    {zone?.sources.map((source, index) => (
+                    <Label>{zone?.name}</Label>
+                    {zone?.sources?.map((source, index) => (
                       <Label key={index}>{source}</Label>
                     ))}
                   </React.Fragment>
