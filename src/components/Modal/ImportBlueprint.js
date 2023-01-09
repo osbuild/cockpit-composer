@@ -93,10 +93,11 @@ export const ImportBlueprint = () => {
           onReadFinished={handleFileReadFinished}
           onClearClick={handleClear}
           isLoading={isLoading}
-          isReadOnly
           browseButtonText={intl.formatMessage({
             defaultMessage: "Upload",
           })}
+          onTextChange={handleTextOrDataChange}
+          allowEditingUploadedText={true}
         />
       </Modal>
     </>
