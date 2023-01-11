@@ -4,7 +4,7 @@ import { FormGroup, Select, SelectOption } from "@patternfly/react-core";
 import useFormApi from "@data-driven-forms/react-form-renderer/use-form-api";
 import useFieldApi from "@data-driven-forms/react-form-renderer/use-field-api";
 import { defineMessages, useIntl } from "react-intl";
-import { ImageTypeLabels } from "../../../constants";
+import { ImageTypeLabels } from "../../constants";
 
 const messages = defineMessages({
   outputType: {

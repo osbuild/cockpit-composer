@@ -21,22 +21,22 @@ import {
   other,
   ignition,
   openscap,
-} from "./steps";
-import { hostnameValidator, filesystemValidator } from "./validators";
+} from "../../forms/steps";
+import { hostnameValidator, filesystemValidator } from "../../forms/validators";
 import { selectAllImageTypes } from "../../slices/imagesSlice";
 import { updateBlueprint } from "../../slices/blueprintsSlice";
 
 import FormRenderer from "@data-driven-forms/react-form-renderer/form-renderer";
 import Pf4FormTemplate from "@data-driven-forms/pf4-component-mapper/form-template";
 import { componentMapper } from "@data-driven-forms/pf4-component-mapper";
-import Packages from "./formComponents/Packages";
-import Review from "./formComponents/Review";
-import TextFieldCustom from "./formComponents/TextFieldCustom";
-import FileSystemConfigToggle from "./formComponents/FileSystemConfigToggle";
-import FileSystemConfiguration from "./formComponents/FileSystemConfiguration";
-import TextInputGroupWithChips from "./formComponents/TextInputGroupWithChips";
+import Packages from "../../forms/components/Packages";
+import Review from "../../forms/components/Review";
+import TextFieldCustom from "../../forms/components/TextFieldCustom";
+import FileSystemConfigToggle from "../../forms/components/FileSystemConfigToggle";
+import FileSystemConfiguration from "../../forms/components/FileSystemConfiguration";
+import TextInputGroupWithChips from "../../forms/components/TextInputGroupWithChips";
 import { UNIT_GIB } from "../../constants";
-import UploadFile from "./formComponents/UploadFile";
+import UploadFile from "../../forms/components/UploadFile";
 
 const messages = defineMessages({
   editBlueprint: {

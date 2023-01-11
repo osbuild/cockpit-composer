@@ -4,12 +4,12 @@ import Pf4FormTemplate from "@data-driven-forms/pf4-component-mapper/form-templa
 import { componentMapper } from "@data-driven-forms/pf4-component-mapper";
 import { Spinner } from "@patternfly/react-core";
 import PropTypes from "prop-types";
-import BlueprintName from "./formComponents/BlueprintName";
-import ImageOutputSelect from "./formComponents/ImageOutputSelect";
-import Packages from "./formComponents/Packages";
-import Review from "./formComponents/Review";
-import TextFieldCustom from "./formComponents/TextFieldCustom";
-import UploadOCIFile from "./formComponents/UploadOCIFile";
+import BlueprintName from "../../forms/components/BlueprintName";
+import ImageOutputSelect from "../../forms/components/ImageOutputSelect";
+import Packages from "../../forms/components/Packages";
+import Review from "../../forms/components/Review";
+import TextFieldCustom from "../../forms/components/TextFieldCustom";
+import UploadOCIFile from "../../forms/components/UploadOCIFile";
 
 const ImageCreator = ({
   schema,
