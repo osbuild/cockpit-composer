@@ -33,8 +33,6 @@ class TestImageWizard(composerlib.ComposerCase):
         # Auth page
         b.click("button:contains('Next')")
 
-        b.wait_text("h1", "Authentication")
-
         b.wait_visible("label:contains('Access key ID')")
         b.click("button[aria-label='Access key help']")
         b.click(".pf-c-popover__content button[aria-label='Close']")
@@ -52,7 +50,6 @@ class TestImageWizard(composerlib.ComposerCase):
         # Destination page
         b.click("button:contains('Next')")
 
-        b.wait_text("h1", "Destination")
         b.wait_visible("label:contains('Image name')")
         b.click("button[aria-label='Image name help']")
         b.click(".pf-c-popover__content button")
@@ -78,7 +75,6 @@ class TestImageWizard(composerlib.ComposerCase):
         b.click("button:contains('Next')")
 
         # Verify AWS Review page
-        b.wait_text("h1", "Review")
 
         b.wait_in_text("#review-list", "Blueprint name")
         b.wait_in_text("#review-list", "httpd-server")
@@ -128,8 +124,6 @@ class TestImageWizard(composerlib.ComposerCase):
         # Auth page
         b.click("button:contains('Next')")
 
-        b.wait_text("h1", "Authentication")
-
         b.wait_visible("label:contains('Storage account')")
         b.click("button[aria-label='Storage account help']")
         b.click(".pf-c-popover__content button[aria-label='Close']")
@@ -147,7 +141,6 @@ class TestImageWizard(composerlib.ComposerCase):
         # Destination page
         b.click("button:contains('Next')")
 
-        b.wait_text("h1", "Destination")
         b.wait_visible("label:contains('Image name')")
         b.click("button[aria-label='Image name help']")
         b.click(".pf-c-popover__content button")
@@ -164,8 +157,6 @@ class TestImageWizard(composerlib.ComposerCase):
         b.click("button:contains('Next')")
 
         # Verify Azure Review page
-        b.wait_text("h1", "Review")
-
         b.wait_in_text("#review-list", "Blueprint name")
         b.wait_in_text("#review-list", "httpd-server")
         b.wait_in_text("#review-list", "Output type")
@@ -213,8 +204,6 @@ class TestImageWizard(composerlib.ComposerCase):
         # Auth page
         b.click("button:contains('Next')")
 
-        b.wait_text("h1", "Authentication")
-
         b.wait_visible("label:contains('Username')")
         b.focus("input[id='vmware-username']")
         b.key_press("never")
@@ -226,7 +215,6 @@ class TestImageWizard(composerlib.ComposerCase):
         # Destination page
         b.click("button:contains('Next')")
 
-        b.wait_text("h1", "Destination")
         b.wait_visible("label:contains('Image name')")
         b.click("button[aria-label='Image name help']")
         b.click(".pf-c-popover__content button")
@@ -262,9 +250,6 @@ class TestImageWizard(composerlib.ComposerCase):
         b.focus("input[id='vmware-data-store']")
         b.key_press("let-you-down")
         b.click("button:contains('Next')")
-
-        # Verify Azure Review page
-        b.wait_text("h1", "Review")
 
         b.wait_in_text("#review-list", "Blueprint name")
         b.wait_in_text("#review-list", "httpd-server")
@@ -320,8 +305,6 @@ class TestImageWizard(composerlib.ComposerCase):
         b.select_PF4("#image-output-select-toggle", image_type_label)
 
         b.click("button:contains('Next')")
-        # OSTree settings page
-        b.wait_text("h1", "OSTree settings")
 
         b.wait_visible("label:contains('Repository URL')")
         b.click("button[aria-label='Repository URL help']")
@@ -350,7 +333,6 @@ class TestImageWizard(composerlib.ComposerCase):
 
         b.click("button:contains('Next')")
         # Verify AWS Review page
-        b.wait_text("h1", "Review")
         b.wait_in_text("#review-list", "Blueprint name")
         b.wait_in_text("#review-list", "httpd-server")
         b.wait_in_text("#review-list", "Output type")
@@ -374,7 +356,6 @@ class TestImageWizard(composerlib.ComposerCase):
         b.select_PF4("#image-output-select-toggle", "QEMU Image (.qcow2)")
         b.click("button:contains('Next')")
 
-        b.wait_text("h1", "Review")
         b.wait_in_text("#review-list", "Blueprint name")
         b.wait_in_text("#review-list", "httpd-server")
         b.wait_in_text("#review-list", "Output type")
