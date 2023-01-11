@@ -16,9 +16,9 @@ import {
   ociDest,
   ostreeSettings,
   review,
-} from "./steps";
+} from "../../forms/steps";
 import MemoizedImageCreator from "./ImageCreator";
-import { ostreeValidator } from "./validators";
+import { ostreeValidator } from "../../forms/validators";
 import "./CreateImageWizard.css";
 import { selectAllImageTypes, createImage } from "../../slices/imagesSlice";
 

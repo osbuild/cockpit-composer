@@ -32,7 +32,7 @@ import { v4 as uuidv4 } from "uuid";
 import MountPoint from "./MountPoint";
 import SizeUnit from "./SizeUnit";
 
-import { UNIT_GIB } from "../../../constants";
+import { UNIT_GIB } from "../../constants";
 import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 
 let initialRow = {

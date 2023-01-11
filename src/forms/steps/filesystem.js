@@ -3,7 +3,7 @@ import React from "react";
 import componentTypes from "@data-driven-forms/react-form-renderer/component-types";
 import validatorTypes from "@data-driven-forms/react-form-renderer/validator-types";
 
-import FileSystemConfigButtons from "../formComponents/FileSystemConfigButtons";
+import FileSystemConfigButtons from "../components/FileSystemConfigButtons";
 import { FormattedMessage, defineMessages } from "react-intl";
 
 const messages = defineMessages({

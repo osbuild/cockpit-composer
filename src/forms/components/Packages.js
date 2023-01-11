@@ -22,7 +22,7 @@ import {
   AngleRightIcon,
 } from "@patternfly/react-icons";
 import { FormattedMessage, defineMessages, useIntl } from "react-intl";
-import * as api from "../../../api";
+import * as api from "../../api";
 
 const messages = defineMessages({
   availablePackages: {

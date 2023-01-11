@@ -9,7 +9,7 @@ import {
 import PropTypes from "prop-types";
 import { defineMessages, useIntl } from "react-intl";
 
-import { UNIT_GIB, UNIT_KIB, UNIT_MIB } from "../../../constants";
+import { UNIT_GIB, UNIT_KIB, UNIT_MIB } from "../../constants";
 
 const messages = defineMessages({
   inputAriaLabel: {
