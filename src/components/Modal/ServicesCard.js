@@ -50,7 +50,7 @@ export const ServicesCard = ({ blueprint }) => {
     setIsModalOpen(false);
   };
 
-  const services = blueprint?.customizations?.services;
+  const services = blueprint?.customizations?.services || [];
 
   const ServicesCardEdit = () => {
     return (
