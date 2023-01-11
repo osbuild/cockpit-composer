@@ -119,12 +119,13 @@ const ImageRow = (props) => {
     <>
       <Tr key={image.id}>
         <Td dataLabel={columns[0].title}>{image.id}</Td>
-        <Td dataLabel={columns[1].title}>{image.compose_type}</Td>
-        <Td dataLabel={columns[2].title}>
+        <Td dataLabel={columns[1].title}>{image.blueprint}</Td>
+        <Td dataLabel={columns[2].title}>{image.compose_type}</Td>
+        <Td dataLabel={columns[3].title}>
           {formTimestampLabel(image.job_created)}
         </Td>
-        <Td dataLabel={columns[3].title}>{sizeLabel(image.image_size)}</Td>
-        <Td dataLabel={columns[4].title}>
+        <Td dataLabel={columns[4].title}>{sizeLabel(image.image_size)}</Td>
+        <Td dataLabel={columns[5].title}>
           <StatusLabel status={image.queue_status} />
         </Td>
         <Td modifier="fitContent">
@@ -171,6 +172,10 @@ const ImageTable = (props) => {
     {
       title: intl.formatMessage({ defaultMessage: "Image ID" }),
       fieldId: "id",
+    },
+    {
+      title: intl.formatMessage({ defaultMessage: "Blueprint" }),
+      fieldId: "blueprint",
     },
     {
       title: intl.formatMessage({ defaultMessage: "Type" }),

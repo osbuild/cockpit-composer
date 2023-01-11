@@ -15,7 +15,6 @@ import {
 
 import CustomizationsTab from "../components/Tab/CustomizationsTab";
 import UsersTab from "../components/Tab/UsersTab";
-import SourcesTab from "../components/Tab/SourcesTab";
 import PackagesTab from "../components/Tab/PackagesTab";
 import ImagesTab from "../components/Tab/ImagesTab";
 import BlueprintDetailsToolbar from "../components/Toolbar/BlueprintDetailsToolbar";
@@ -25,30 +24,20 @@ import {
   selectBlueprintByName,
   depsolveBlueprint,
 } from "../slices/blueprintsSlice";
-import {
-  fetchSources,
-  selectAllSources,
-  selectAllSourceNames,
-} from "../slices/sourcesSlice";
 import { selectImagesFilteredAndSorted } from "../slices/imagesSlice";
 
 import "./blueprintDetails.css";
 
 const BlueprintDetails = () => {
   const dispatch = useDispatch();
-  const getAllSources = () => useSelector(selectAllSources);
-  const getAllSourceNames = () => useSelector(selectAllSourceNames);
   const getBlueprintByName = (name) =>
     useSelector((state) => selectBlueprintByName(state, name));
   const blueprintName = useParams().blueprint;
 
   useEffect(() => {
     dispatch(depsolveBlueprint(blueprintName));
-    dispatch(fetchSources());
   }, []);
 
-  const sources = getAllSources();
-  const sourceNames = getAllSourceNames();
   const blueprint = getBlueprintByName(blueprintName);
   // images sorted by creation date on default
   const images = useSelector((state) =>
@@ -108,16 +97,6 @@ const BlueprintDetails = () => {
             <UsersTab users={blueprint?.customizations?.user} />
           </Tab>
           <Tab
-            eventKey="sources"
-            title={
-              <TabTitleText>
-                <FormattedMessage defaultMessage="Sources" />
-              </TabTitleText>
-            }
-          >
-            <SourcesTab sources={sources} sourceNames={sourceNames} />
-          </Tab>
-          <Tab
             eventKey="packages"
             title={
               <TabTitleText>
@@ -140,7 +119,7 @@ const BlueprintDetails = () => {
               </TabTitleText>
             }
           >
-            <ImagesTab blueprint={blueprint} images={images} />
+            <ImagesTab images={images} />
           </Tab>
         </Tabs>
       </PageSection>

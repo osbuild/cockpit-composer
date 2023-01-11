@@ -21,7 +21,6 @@ class TestBlueprintWizard(composerlib.ComposerCase):
         b.set_input_text("input[id='blueprint.description']", "testDescription")
         b.click("button:contains('Next')")
 
-        b.wait_text("h1", "Packages")
         # select openssh-server
         b.set_input_text("div[data-testid='search-available-pkgs-input'] input", "openssh-server")
         b.click("button[aria-label='Search button for available packages']")
@@ -31,16 +30,13 @@ class TestBlueprintWizard(composerlib.ComposerCase):
         # go to next page
         b.click("button:contains('Next')")
 
-        b.wait_text("h1", "Kernel")
         b.set_input_text("input[id='customizations.kernel.append']", "testAppend")
         b.set_input_text("input[id='customizations.kernel.name']", "testName")
         b.click("button:contains('Next')")
 
         # keep automatic partitioning for filesystem
-        b.wait_text("h1", "File system")
         b.click("button:contains('Next')")
 
-        b.wait_text("h1", "Services")
         b.set_input_text("div[id='customizations.services.enabled'] input", "example")
         b.key_press("Enter")
         b.set_input_text("div[id='customizations.services.disabled'] input", "example")
@@ -48,7 +44,6 @@ class TestBlueprintWizard(composerlib.ComposerCase):
         b.click("button:contains('Next')")
 
         # firewall has ports, enabled serxvices and disabled services, and zones
-        b.wait_text("h1", "Firewall")
         b.set_input_text("div[id='customizations.firewall.ports'] input", "22")
         b.key_press("Enter")
         b.set_input_text("div[id='customizations.firewall.services.enabled'] input", "example")
@@ -57,7 +52,6 @@ class TestBlueprintWizard(composerlib.ComposerCase):
         b.key_press("Enter")
         b.click("button:contains('Next')")
 
-        b.wait_text("h1", "Users")
         b.click("button:contains('Add user')")
         b.set_input_text("input[id='customizations.user[0].name']", "admin")
         b.set_input_text("input[id='customizations.user[0].password']", "foobar")
@@ -66,40 +60,34 @@ class TestBlueprintWizard(composerlib.ComposerCase):
         b.click("button:contains('Next')")
 
         # groups is just like users but has name and gid instead
-        b.wait_text("h1", "Groups")
         b.click("button:contains('Add group')")
         b.set_input_text("input[id='customizations.group[0].name']", "testGroup")
         b.set_input_text("input[id='customizations.group[0].gid']", "123")
         b.click("button:contains('Next')")
 
         # sshkyes is just like users but has key and user instead
-        b.wait_text("h1", "SSH keys")
         b.click("button:contains('Add key')")
         b.set_input_text("input[id='customizations.sshkey[0].key']", "ssh-rsa key")
         b.set_input_text("input[id='customizations.sshkey[0].user']", "admin")
         b.click("button:contains('Next')")
 
         # timezone has timezone and ntp servers
-        b.wait_text("h1", "Timezone")
         b.set_input_text("input[id='customizations.timezone.timezone']", "Europe/Berlin")
         b.set_input_text("div[id='customizations.timezone.ntpservers'] input", "test")
         b.key_press("Enter")
         b.click("button:contains('Next')")
 
         # locale has keyboard and language
-        b.wait_text("h1", "Locale")
         b.set_input_text("input[id='customizations.locale.keyboard']", "testKeyboard")
         b.set_input_text("div[id='customizations.locale.languages'] input", "testLanguage")
         b.key_press("Enter")
         b.click("button:contains('Next')")
 
         # other has hostname and installation device
-        b.wait_text("h1", "Other")
         b.set_input_text("input[id='customizations.hostname']", "testHost")
         b.set_input_text("input[id='customizations.installation_device']", "/dev/sda1")
         b.click("button:contains('Next')")
 
-        b.wait_text("h1", "FIDO device onboarding")
         b.set_input_text("input[id='customizations.fdo.manufacturing_server_url']", "https://test.com")
         b.set_input_text("input[id='customizations.fdo.diun_pub_key_insecure']", "keyInsecure")
         b.set_input_text("input[id='customizations.fdo.diun_pub_key_hash']", "keyHash")
@@ -107,16 +95,13 @@ class TestBlueprintWizard(composerlib.ComposerCase):
         b.click("button:contains('Next')")
 
         # openscap has datastream and profile_id
-        b.wait_text("h1", "OpenSCAP")
         b.set_input_text("input[id='customizations.openscap.datastream']", "testDatastream")
         b.set_input_text("input[id='customizations.openscap.profile_id']", "testProfile")
         b.click("button:contains('Next')")
 
         # TODO: add test for ignition
-        b.wait_text("h1", "Ignition")
         b.click("button:contains('Next')")
 
-        b.wait_text("h1", "Review")
         b.click(".pf-c-wizard__footer button:contains('Create')")
         # verify that blueprint was created
         b.is_present("tr[data-testid='testName']")

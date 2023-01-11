@@ -10,7 +10,9 @@ const ImagesTab = ({ images, blueprint }) => {
   return (
     <div className="pf-u-p-lg">
       {cloneImages.length === 0 && <ImagesEmpty blueprint={blueprint} />}
-      {cloneImages.length > 0 && <ImageTable images={cloneImages} />}
+      {cloneImages.length > 0 && (
+        <ImageTable blueprint={blueprint} images={cloneImages} />
+      )}
     </div>
   );
 };

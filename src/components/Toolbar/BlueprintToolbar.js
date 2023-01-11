@@ -14,9 +14,6 @@ import {
   SortAlphaDownAltIcon,
 } from "@patternfly/react-icons";
 
-import BlueprintWizard from "../Wizard/BlueprintWizard";
-import ImportBlueprint from "../Modal/ImportBlueprint";
-
 const BlueprintToolbar = (props) => {
   const intl = useIntl();
   const onInputChange = (newValue) => props.setFilterValue(newValue);
@@ -49,17 +46,6 @@ const BlueprintToolbar = (props) => {
                 <SortAlphaDownAltIcon />
               )}
             </Button>
-          </ToolbarItem>
-        </ToolbarGroup>
-        <ToolbarGroup
-          variant="button-group"
-          alignment={{ default: "alignRight" }}
-        >
-          <ToolbarItem>
-            <ImportBlueprint />
-          </ToolbarItem>
-          <ToolbarItem>
-            <BlueprintWizard blueprintNames={props.blueprintNames} />
           </ToolbarItem>
         </ToolbarGroup>
       </ToolbarContent>
