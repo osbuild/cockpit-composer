@@ -1,5 +1,6 @@
 import React from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
+import timezoneFields from "../schemas/timezone";
 
 const messages = defineMessages({
   customizationsStepTitle: {
@@ -13,21 +14,7 @@ const firewall = (intl) => {
     name: "timezone",
     substepOf: intl.formatMessage(messages.customizationsStepTitle),
     nextStep: "locale",
-    fields: [
-      {
-        component: "text-field-custom",
-        name: "customizations.timezone.timezone",
-        className: "pf-u-w-50",
-        type: "text",
-        label: <FormattedMessage defaultMessage="Timezone" />,
-      },
-      {
-        component: "text-input-group-with-chips",
-        name: "customizations.timezone.ntpservers",
-        label: <FormattedMessage defaultMessage="NTP servers" />,
-        className: "pf-u-w-75",
-      },
-    ],
+    ...timezoneFields,
   };
 };
 

@@ -1,20 +1,12 @@
 import React from "react";
 
-import componentTypes from "@data-driven-forms/react-form-renderer/component-types";
-import validatorTypes from "@data-driven-forms/react-form-renderer/validator-types";
-
 import FileSystemConfigButtons from "../components/FileSystemConfigButtons";
 import { FormattedMessage, defineMessages } from "react-intl";
+import filesystemFields from "../schemas/filesystem";
 
 const messages = defineMessages({
   customizationsStepTitle: {
     defaultMessage: "Customizations",
-  },
-  filesystemToggleLabel: {
-    defaultMessage: "File system configurations toggle",
-  },
-  filesystemConfigurationLabel: {
-    defaultMessage: "File system configurations",
   },
 });
 
@@ -25,36 +17,7 @@ const filesystem = (intl) => {
     substepOf: intl.formatMessage(messages.customizationsStepTitle),
     buttons: FileSystemConfigButtons,
     nextStep: "services",
-    fields: [
-      {
-        component: componentTypes.PLAIN_TEXT,
-        name: "filesystem-info",
-        label: (
-          <>
-            <FormattedMessage defaultMessage="Automatic partitioning is recommended for most installations." />
-            <FormattedMessage defaultMessage="Alternatively, you may manually configure the file system of your image by adding, removing, and editing partitions." />
-          </>
-        ),
-      },
-      {
-        component: "filesystem-toggle",
-        name: "filesystem-toggle",
-        label: intl.formatMessage(messages.filesystemToggleLabel),
-      },
-      {
-        component: "filesystem-configuration",
-        name: "customizations.filesystem",
-        label: intl.formatMessage(messages.filesystemConfigurationLabel),
-        validate: [
-          { type: validatorTypes.REQUIRED },
-          { type: "filesystemValidator" },
-        ],
-        condition: {
-          when: "filesystem-toggle",
-          is: "manual",
-        },
-      },
-    ],
+    ...filesystemFields(intl),
   };
 };
 
