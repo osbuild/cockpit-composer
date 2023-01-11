@@ -1,5 +1,6 @@
 import React from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
+import sshKeysFields from "../schemas/sshkeys";
 
 const messages = defineMessages({
   customizationsStepTitle: {
@@ -22,34 +23,7 @@ const groups = (intl) => {
     name: "sshkeys",
     substepOf: intl.formatMessage(messages.customizationsStepTitle),
     nextStep: "timezone",
-    fields: [
-      {
-        component: "field-array",
-        name: "customizations.sshkey",
-        buttonLabels: {
-          add: intl.formatMessage(messages.buttonsAdd),
-          remove: intl.formatMessage(messages.buttonsRemove),
-          removeAll: intl.formatMessage(messages.buttonsRemoveAll),
-        },
-        fields: [
-          {
-            component: "text-field-custom",
-            name: "key",
-            className: "pf-u-w-50",
-            type: "text",
-            label: <FormattedMessage defaultMessage="Key" />,
-            autoFocus: true,
-          },
-          {
-            component: "text-field-custom",
-            name: "user",
-            className: "pf-u-w-50",
-            type: "text",
-            label: <FormattedMessage defaultMessage="User" />,
-          },
-        ],
-      },
-    ],
+    ...sshKeysFields,
   };
 };
 

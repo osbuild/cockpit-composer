@@ -1,5 +1,6 @@
 import React from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
+import servicesFields from "../schemas/services";
 
 const messages = defineMessages({
   customizationsStepTitle: {
@@ -13,20 +14,7 @@ const services = (intl) => {
     name: "services",
     substepOf: intl.formatMessage(messages.customizationsStepTitle),
     nextStep: "firewall",
-    fields: [
-      {
-        component: "text-input-group-with-chips",
-        name: "customizations.services.enabled",
-        label: <FormattedMessage defaultMessage="Enabled services" />,
-        className: "pf-u-w-75",
-      },
-      {
-        component: "text-input-group-with-chips",
-        name: "customizations.services.disabled",
-        label: <FormattedMessage defaultMessage="Disabled services" />,
-        className: "pf-u-w-75",
-      },
-    ],
+    ...servicesFields,
   };
 };
 
