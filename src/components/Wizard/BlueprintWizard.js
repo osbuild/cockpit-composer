@@ -79,13 +79,15 @@ const BlueprintWizard = (props) => {
 
   return (
     <>
-      <Button variant="secondary" onClick={handleOpen}>
-        {props.isEdit ? (
+      {props.isEdit ? (
+        <Button variant="secondary" onClick={handleOpen}>
           <FormattedMessage defaultMessage="Edit blueprint" />
-        ) : (
+        </Button>
+      ) : (
+        <Button variant="plain" onClick={handleOpen}>
           <FormattedMessage defaultMessage="Create blueprint" />
-        )}
-      </Button>
+        </Button>
+      )}
       {isWizardOpen && (
         <FormRenderer
           initialValues={

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import {
+  Dropdown,
+  DropdownToggle,
   PageSection,
   Title,
   Tab,
@@ -38,6 +40,9 @@ const BlueprintList = () => {
   const sortBy = "name";
   const [isSortAscending, setIsSortAscending] = useState(true);
   const [activeTab, setActiveTab] = useState("system");
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const onDropdownToggle = (isOpen) => setIsDropdownOpen(isOpen);
+  const onDropdownSelect = () => setIsDropdownOpen(false);
 
   const blueprintNames = useSelector((state) => selectAllBlueprintNames(state));
   const blueprintsFilteredAndSorted = useSelector((state) =>
@@ -71,10 +76,25 @@ const BlueprintList = () => {
             <Title headingLevel="h1">image builder</Title>
           </FlexItem>
           <FlexItem align={{ default: "alignRight" }}>
-            <ImportBlueprint />
-          </FlexItem>
-          <FlexItem>
-            <BlueprintWizard blueprintNames={blueprintNames} />
+            <Dropdown
+              onSelect={onDropdownSelect}
+              toggle={
+                <DropdownToggle
+                  toggleVariant="secondary"
+                  onToggle={onDropdownToggle}
+                >
+                  <FormattedMessage defaultMessage="Create blueprint" />
+                </DropdownToggle>
+              }
+              isOpen={isDropdownOpen}
+              dropdownItems={[
+                <BlueprintWizard
+                  key="create"
+                  blueprintNames={blueprintNames}
+                />,
+                <ImportBlueprint key="import" />,
+              ]}
+            />
           </FlexItem>
         </Flex>
       </PageSection>

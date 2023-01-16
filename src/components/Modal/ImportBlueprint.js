@@ -61,7 +61,7 @@ export const ImportBlueprint = () => {
 
   return (
     <>
-      <Button variant="secondary" onClick={handleModalToggle}>
+      <Button variant="plain" onClick={handleModalToggle}>
         <FormattedMessage defaultMessage="Import blueprint" />
       </Button>
       <Modal
