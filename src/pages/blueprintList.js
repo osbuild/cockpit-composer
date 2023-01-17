@@ -29,6 +29,7 @@ import { selectAllImages } from "../slices/imagesSlice";
 import ImagesTab from "../components/Tab/ImagesTab";
 import BlueprintWizard from "../components/Wizard/BlueprintWizard";
 import ImportBlueprint from "../components/Modal/ImportBlueprint";
+import CreateImageWizard from "../components/Wizard/CreateImageWizard";
 
 const BlueprintList = () => {
   const dispatch = useDispatch();
@@ -75,6 +76,9 @@ const BlueprintList = () => {
           </FlexItem>
           <FlexItem>
             <BlueprintWizard blueprintNames={blueprintNames} />
+          </FlexItem>
+          <FlexItem>
+            <CreateImageWizard />
           </FlexItem>
         </Flex>
       </PageSection>

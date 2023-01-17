@@ -91,6 +91,9 @@ const messages = defineMessages({
     id: "wizard.imageOutput.imageSize.inputHelp",
     defaultMessage: "Minimum image size is {size}GB.",
   },
+  blueprintSelect: {
+    defaultMessage: "Select a blueprint",
+  },
 });
 
 const imageOutput = (intl) => {
@@ -101,8 +104,14 @@ const imageOutput = (intl) => {
     nextStep: ({ values }) => nextStepMapper(values),
     fields: [
       {
-        component: "blueprint-name",
-        name: "blueprint.name",
+        component: "blueprint-select",
+        name: "blueprintName",
+        label: intl.formatMessage(messages.blueprintSelect),
+      },
+      {
+        component: "blueprint-listener",
+        name: "listener",
+        hideField: true,
       },
       {
         component: "image-output-select",
