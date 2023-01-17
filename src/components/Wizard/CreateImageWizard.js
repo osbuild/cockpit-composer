@@ -21,6 +21,8 @@ import MemoizedImageCreator from "./ImageCreator";
 import { ostreeValidator } from "../../forms/validators";
 import "./CreateImageWizard.css";
 import { selectAllImageTypes, createImage } from "../../slices/imagesSlice";
+import { selectAllBlueprintNames } from "../../slices/blueprintsSlice";
+import { blueprintToFormState } from "../../helpers";
 
 const messages = defineMessages({
   createImage: {
@@ -35,6 +37,7 @@ const CreateImageWizard = (props) => {
   const intl = useIntl();
   const dispatch = useDispatch();
 
+  const blueprintNames = useSelector((state) => selectAllBlueprintNames(state));
   const getImageTypes = () =>
     useSelector((state) => selectAllImageTypes(state));
   const imageTypes = getImageTypes();
@@ -136,37 +139,12 @@ const CreateImageWizard = (props) => {
     setIsWizardOpen(false);
   };
 
-  const blueprintToState = (blueprint) => {
-    const formState = {
-      blueprint: {},
-      customizations: {
-        user: [],
-      },
-    };
-    formState.blueprint = blueprint;
-    formState.customizations = {
-      ...blueprint.customizations,
-      user: blueprint.customizations?.user?.map((user) => {
-        return {
-          name: user?.name,
-          password: user?.password,
-          key: user?.key,
-          isAdmin: user?.groups?.includes("wheel"),
-        };
-      }),
-    };
-
-    formState["selected-packages"] = blueprint.packages?.map((pkg) => pkg.name);
-
-    return formState;
-  };
-
   return (
     <>
       <Button
         variant="secondary"
         onClick={handleOpen}
-        isDisabled={!props.blueprint?.name || !imageTypes?.length}
+        isDisabled={!imageTypes?.length}
         aria-label={intl.formatMessage(messages.createImage)}
       >
         <FormattedMessage defaultMessage="Create image" />
@@ -206,8 +184,11 @@ const CreateImageWizard = (props) => {
               },
             ],
           }}
-          initialValues={blueprintToState(props.blueprint)}
+          initialValues={
+            props.blueprint ? blueprintToFormState(props.blueprint) : {}
+          }
           blueprint={props.blueprint}
+          blueprintNames={blueprintNames}
           imageTypes={imageTypes}
         />
       )}

@@ -625,7 +625,6 @@ const Packages = ({ ...props }) => {
 };
 
 Packages.propTypes = {
-  blueprintName: PropTypes.string,
   defaultArch: PropTypes.string,
 };
 

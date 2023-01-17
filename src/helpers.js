@@ -10,6 +10,7 @@ export const formTimestampLabel = (ts) => {
 };
 
 export const blueprintToFormState = (blueprint) => {
+  if (!blueprint) return {};
   const formState = {
     blueprint: {},
     customizations: {
@@ -20,6 +21,8 @@ export const blueprintToFormState = (blueprint) => {
     "filesystem-toggle": "auto",
   };
   formState.blueprint = blueprint;
+  // this helps with the blueprint select watcher
+  formState.blueprintName = blueprint.name;
   formState.customizations = {
     ...blueprint.customizations,
     user: blueprint.customizations?.user?.map((user) => ({

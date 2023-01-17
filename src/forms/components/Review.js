@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import {
   DescriptionList,
   DescriptionListTerm,
@@ -465,7 +464,7 @@ const customizations = (intl, formValues) => (
   </TextContent>
 );
 
-const Review = (props) => {
+const Review = () => {
   const intl = useIntl();
   const [activeTabKey, setActiveTabKey] = useState(0);
   const { getState } = useFormApi();
@@ -510,7 +509,7 @@ const Review = (props) => {
             <FormattedMessage defaultMessage="Blueprint name" />
           </DescriptionListTerm>
           <DescriptionListDescription>
-            {props.blueprintName}
+            {formValues?.blueprintName}
           </DescriptionListDescription>
         </DescriptionListGroup>
       </DescriptionList>
@@ -616,10 +615,6 @@ const Review = (props) => {
       </Tabs>
     </div>
   );
-};
-
-Review.propTypes = {
-  blueprintName: PropTypes.string,
 };
 
 export default Review;
