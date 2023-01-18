@@ -59,7 +59,6 @@ const formStateToCustomizations = (customizations) => {
     services,
     installation_device,
     fdo,
-    openscap,
     firewall,
     ignition,
   } = customizations;
@@ -85,6 +84,14 @@ const formStateToCustomizations = (customizations) => {
   const filesystem = customizations.filesystem
     ? customizations.filesystem.map(parseFilesystem)
     : [];
+
+  let openscap;
+  if (
+    customizations.openscap.datastream ||
+    customizations.openscap.profile_id
+  ) {
+    openscap = customizations.openscap;
+  }
 
   // Combine the parsed fields with the rest of the customizations
   const customizationsParsed = {
