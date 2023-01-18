@@ -58,27 +58,17 @@ const messages = defineMessages({
 
 const vmwareDest = (intl) => {
   return {
-    title: (
-      <FormattedMessage
-        id="wizard.vmware.destTitle"
-        defaultMessage="Destination"
-      />
-    ),
+    title: <FormattedMessage defaultMessage="Destination" />,
     name: "vmware-dest",
     substepOf: intl.formatMessage(messages.vmwareStepsTitle),
     nextStep: "review",
     fields: [
       {
         component: "text-field-custom",
-        name: "vmware-image-name",
+        name: "image.upload.image_name",
         className: "pf-u-w-50",
         type: "text",
-        label: (
-          <FormattedMessage
-            id="wizard.vmware.imageName.label"
-            defaultMessage="Image name"
-          />
-        ),
+        label: <FormattedMessage defaultMessage="Image name" />,
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.imageNamePopoverBody)}
@@ -102,15 +92,10 @@ const vmwareDest = (intl) => {
       },
       {
         component: "text-field-custom",
-        name: "vmware-host",
+        name: "image.upload.settings.host",
         className: "pf-u-w-50",
         type: "text",
-        label: (
-          <FormattedMessage
-            id="wizard.vmware.host.label"
-            defaultMessage="Host"
-          />
-        ),
+        label: <FormattedMessage defaultMessage="Host" />,
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.hostPopoverBody)}
@@ -133,15 +118,10 @@ const vmwareDest = (intl) => {
       },
       {
         component: "text-field-custom",
-        name: "vmware-cluster",
+        name: "image.upload.settings.cluster",
         className: "pf-u-w-50",
         type: "text",
-        label: (
-          <FormattedMessage
-            id="wizard.vmware.cluster.label"
-            defaultMessage="Cluster"
-          />
-        ),
+        label: <FormattedMessage defaultMessage="Cluster" />,
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.clusterPopoverBody)}
@@ -164,15 +144,10 @@ const vmwareDest = (intl) => {
       },
       {
         component: "text-field-custom",
-        name: "vmware-data-center",
+        name: "image.upload.settings.dataCenter",
         className: "pf-u-w-50",
         type: "text",
-        label: (
-          <FormattedMessage
-            id="wizard.vmware.dataCenter.label"
-            defaultMessage="Datacenter"
-          />
-        ),
+        label: <FormattedMessage defaultMessage="Datacenter" />,
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.dataCenterPopoverBody)}
@@ -195,15 +170,10 @@ const vmwareDest = (intl) => {
       },
       {
         component: "text-field-custom",
-        name: "vmware-data-store",
+        name: "image.upload.settings.dataStore",
         className: "pf-u-w-50",
         type: "text",
-        label: (
-          <FormattedMessage
-            id="wizard.vmware.dataStore.label"
-            defaultMessage="Datastore"
-          />
-        ),
+        label: <FormattedMessage defaultMessage="Datastore" />,
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.datastorePopoverBody)}

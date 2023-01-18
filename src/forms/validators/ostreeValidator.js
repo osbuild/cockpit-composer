@@ -8,14 +8,11 @@ const OSTreeValidator = () => (value, formValues) => {
   }
 
   if (
-    formValues["ostree-repo-url"]?.length > 0 &&
-    formValues["ostree-parent-commit"]?.length > 0
+    formValues["image.ostree.url"]?.length > 0 &&
+    formValues["image.ostree.parent"]?.length > 0
   ) {
     return (
-      <FormattedMessage
-        id="wizard.ostree.validationError"
-        defaultMessage="Either the parent commit or repository url can be specified. Not both."
-      />
+      <FormattedMessage defaultMessage="Either the parent commit or repository url can be specified. Not both." />
     );
   }
 };

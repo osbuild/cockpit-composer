@@ -46,15 +46,10 @@ const azureAuth = (intl) => {
     fields: [
       {
         component: "text-field-custom",
-        name: "azure-storage-account",
+        name: "image.upload.settings.storageAccount",
         className: "pf-u-w-50",
         type: "text",
-        label: (
-          <FormattedMessage
-            id="wizard.azure.storageAccount.label"
-            defaultMessage="Storage account"
-          />
-        ),
+        label: <FormattedMessage defaultMessage="Storage account" />,
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(
@@ -85,15 +80,10 @@ const azureAuth = (intl) => {
       },
       {
         component: "text-field-custom",
-        name: "azure-storage-access-key",
+        name: "image.upload.settings.storageAccessKey",
         className: "pf-u-w-50",
         type: "password",
-        label: (
-          <FormattedMessage
-            id="wizard.azure.storageAccessKey.label"
-            defaultMessage="Storage access key"
-          />
-        ),
+        label: <FormattedMessage defaultMessage="Storage access key" />,
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(

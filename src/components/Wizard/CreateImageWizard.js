@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@patternfly/react-core";
@@ -17,12 +17,24 @@ import {
   ostreeSettings,
   review,
 } from "../../forms/steps";
-import MemoizedImageCreator from "./ImageCreator";
 import { ostreeValidator } from "../../forms/validators";
 import "./CreateImageWizard.css";
 import { selectAllImageTypes, createImage } from "../../slices/imagesSlice";
-import { selectAllBlueprintNames } from "../../slices/blueprintsSlice";
+import {
+  selectAllBlueprintNames,
+  selectBlueprintByName,
+} from "../../slices/blueprintsSlice";
 import { blueprintToFormState } from "../../helpers";
+import FormRenderer from "@data-driven-forms/react-form-renderer/form-renderer";
+import Pf4FormTemplate from "@data-driven-forms/pf4-component-mapper/form-template";
+import { componentMapper } from "@data-driven-forms/pf4-component-mapper";
+import ImageOutputSelect from "../../forms/components/ImageOutputSelect";
+import Packages from "../../forms/components/Packages";
+import Review from "../../forms/components/Review";
+import TextFieldCustom from "../../forms/components/TextFieldCustom";
+import UploadOCIFile from "../../forms/components/UploadOCIFile";
+import BlueprintSelect from "../../forms/components/BlueprintSelect";
+import { FormSpy, useFormApi } from "@data-driven-forms/react-form-renderer";
 
 const messages = defineMessages({
   createImage: {
@@ -32,6 +44,29 @@ const messages = defineMessages({
     defaultMessage: "Create",
   },
 });
+
+const BlueprintListener = () => {
+  const { getState, change } = useFormApi();
+  const { blueprintName } = getState().values;
+  if (!blueprintName) return null;
+
+  const blueprint = useSelector((state) =>
+    selectBlueprintByName(state, blueprintName)
+  );
+  const blueprintForm = blueprintToFormState(blueprint);
+
+  useEffect(() => {
+    change("blueprint", blueprintForm);
+  }, [blueprintName]);
+
+  return null;
+};
+
+const BlueprintListenerWrapper = () => (
+  <FormSpy subscription={{ values: true }}>
+    {() => <BlueprintListener />}
+  </FormSpy>
+);
 
 const CreateImageWizard = (props) => {
   const intl = useIntl();
@@ -56,55 +91,55 @@ const CreateImageWizard = (props) => {
     const formValues = formAPI.getState().values;
 
     let uploadSettings;
-    if (formValues["image-upload"]) {
-      if (formValues["image-output-type"] === "ami") {
+    if (formValues?.image?.isUpload) {
+      if (formValues?.image?.type === "ami") {
         uploadSettings = {
-          image_name: formValues["aws-image-name"],
+          image_name: formValues.image.upload.image_name,
           provider: "aws",
           settings: {
-            accessKeyID: formValues["aws-access-key"],
-            secretAccessKey: formValues["aws-secret-access-key"],
-            bucket: formValues["aws-s3-bucket"],
-            region: formValues["aws-region"],
+            accessKeyID: formValues.image.upload.settings.accessKeyID,
+            secretAccessKey: formValues.image.upload.settings.secretAccessKey,
+            bucket: formValues.image.upload.settings.bucket,
+            region: formValues.image.upload.settings.region,
           },
         };
-      } else if (formValues["image-output-type"] === "vhd") {
+      } else if (formValues?.image?.type === "vhd") {
         uploadSettings = {
-          image_name: formValues["azure-image-name"],
+          image_name: formValues.image.upload.image_name,
           provider: "azure",
           settings: {
-            storageAccount: formValues["azure-storage-account"],
-            storageAccessKey: formValues["azure-storage-access-key"],
-            container: formValues["azure-storage-container"],
+            storageAccount: formValues.image.upload.settings.storageAccount,
+            storageAccessKey: formValues.image.upload.settings.storageAccessKey,
+            container: formValues.image.upload.settings.container,
           },
         };
-      } else if (formValues["image-output-type"] === "vmdk") {
+      } else if (formValues?.image?.type === "vmdk") {
         uploadSettings = {
-          image_name: formValues["vmware-image-name"],
+          image_name: formValues.image.upload.image_name,
           provider: "vmware",
           settings: {
-            username: formValues["vmware-username"],
-            password: formValues["vmware-password"],
-            host: formValues["vmware-host"],
-            cluster: formValues["vmware-cluster"],
-            dataCenter: formValues["vmware-data-center"],
-            dataStore: formValues["vmware-data-store"],
+            username: formValues.image.upload.settings.username,
+            password: formValues.image.upload.settings.password,
+            host: formValues.image.upload.settings.host,
+            cluster: formValues.image.upload.settings.cluster,
+            dataCenter: formValues.image.upload.settings.dataCenter,
+            dataStore: formValues.image.upload.settings.dataStore,
           },
         };
-      } else if (formValues["image-output-type"] === "oci") {
+      } else if (formValues?.image?.type === "oci") {
         uploadSettings = {
-          image_name: formValues["oci-image-name"],
+          image_name: formValues.image.upload.image_name,
           provider: "oci",
           settings: {
-            user: formValues["oci-user-ocid"],
-            privateKey: formValues["oci-private-key"],
-            fingerprint: formValues["oci-fingerprint"],
-            filename: formValues["oci-private-key-filename"],
-            bucket: formValues["oci-bucket"],
-            namespace: formValues["oci-bucket-namespace"],
-            region: formValues["oci-bucket-region"],
-            compartment: formValues["oci-bucket-compartment"],
-            tenancy: formValues["oci-bucket-tenancy"],
+            user: formValues.image.upload.settings.user,
+            privateKey: formValues.image.upload.settings.privateKey,
+            fingerprint: formValues.image.upload.settings.fingerprint,
+            filename: formValues.image.upload.settings.filename,
+            bucket: formValues.image.upload.settings.bucket,
+            namespace: formValues.image.upload.settings.namespace,
+            region: formValues.image.upload.settings.region,
+            compartment: formValues.image.upload.settings.compartment,
+            tenancy: formValues.image.upload.settings.tenancy,
           },
         };
       }
@@ -119,18 +154,18 @@ const CreateImageWizard = (props) => {
       "edge-raw-image",
       "edge-simplified-installer",
     ];
-    if (ostreeImageTypes.includes(formValues["image-output-type"])) {
+    if (ostreeImageTypes.includes(formValues?.image?.type)) {
       ostreeSettings = {
-        parent: formValues["ostree-parent-commit"],
-        ref: formValues["ostree-ref"],
-        url: formValues["ostree-repo-url"],
+        parent: formValues?.image?.ostree?.parent,
+        ref: formValues?.image?.ostree?.ref,
+        url: formValues?.image?.ostree?.url,
       };
     }
 
     const imageArgs = {
       blueprintName: formValues.blueprint.name,
-      type: formValues["image-output-type"],
-      size: formValues["image-size"],
+      type: formValues?.image?.type,
+      size: formValues?.image?.size,
       ostree: ostreeSettings,
       upload: uploadSettings,
     };
@@ -150,10 +185,10 @@ const CreateImageWizard = (props) => {
         <FormattedMessage defaultMessage="Create image" />
       </Button>
       {isWizardOpen && (
-        <MemoizedImageCreator
-          onClose={handleClose}
-          onSubmit={(fields, formAPI) => handleBuildImage(fields, formAPI)}
-          customValidatorMapper={{ ostreeValidator }}
+        <FormRenderer
+          initialValues={
+            props.blueprint ? blueprintToFormState(props.blueprint) : {}
+          }
           schema={{
             fields: [
               {
@@ -180,16 +215,37 @@ const CreateImageWizard = (props) => {
                   ostreeSettings(intl),
                   review(intl),
                 ],
-                crossroads: ["image-output-type", "image-upload"],
+                crossroads: ["image.isUpload", "image.type"],
               },
             ],
           }}
-          initialValues={
-            props.blueprint ? blueprintToFormState(props.blueprint) : {}
-          }
-          blueprint={props.blueprint}
-          blueprintNames={blueprintNames}
-          imageTypes={imageTypes}
+          FormTemplate={(props) => (
+            <Pf4FormTemplate {...props} showFormControls={false} />
+          )}
+          onSubmit={(fields, formAPI) => handleBuildImage(fields, formAPI)}
+          validatorMapper={{ ostreeValidator }}
+          componentMapper={{
+            ...componentMapper,
+            "image-output-select": {
+              component: ImageOutputSelect,
+              imageTypes: imageTypes,
+            },
+            "package-selector": {
+              component: Packages,
+            },
+            review: {
+              component: Review,
+              imageTypes: imageTypes,
+            },
+            "text-field-custom": TextFieldCustom,
+            "upload-oci-file": UploadOCIFile,
+            "blueprint-select": {
+              component: BlueprintSelect,
+              blueprintNames: blueprintNames,
+            },
+            "blueprint-listener": BlueprintListenerWrapper,
+          }}
+          onCancel={handleClose}
         />
       )}
     </>

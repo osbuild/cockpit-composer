@@ -20,17 +20,17 @@ const UploadOCIFile = ({ label, labelIcon, isRequired, ...props }) => {
 
   const handleFileInputChange = (event, file) => {
     setFilename(file.name);
-    change("oci-private-key-filename", file.name);
+    change("image.upload.settings.filename", file.name);
   };
 
   const handleTextOrDataChange = (val) => {
-    change("oci-private-key", val);
+    change("image.upload.settings.privateKey", val);
   };
 
   const handleClear = () => {
     setFilename("");
-    change("oci-private-key-filename", "");
-    change("oci-private-key", "");
+    change("image.upload.settings.filename", "");
+    change("image.upload.settings.privateKey", "");
   };
 
   return (

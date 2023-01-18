@@ -115,7 +115,7 @@ const imageOutput = (intl) => {
       },
       {
         component: "image-output-select",
-        name: "image-output-type",
+        name: "image.type",
         label: intl.formatMessage(messages.imageOutputType),
         validate: [
           {
@@ -124,7 +124,7 @@ const imageOutput = (intl) => {
         ],
       },
       {
-        name: "image-upload",
+        name: "image.isUpload",
         component: componentTypes.CHECKBOX,
         label: (
           <>
@@ -176,12 +176,12 @@ const imageOutput = (intl) => {
           </>
         ),
         condition: {
-          when: "image-output-type",
+          when: "image.type",
           is: "ami",
         },
       },
       {
-        name: "image-upload",
+        name: "image.isUpload",
         component: componentTypes.CHECKBOX,
         label: (
           <>
@@ -218,12 +218,12 @@ const imageOutput = (intl) => {
           </>
         ),
         condition: {
-          when: "image-output-type",
+          when: "image.type",
           is: "vhd",
         },
       },
       {
-        name: "image-upload",
+        name: "image.isUpload",
         component: componentTypes.CHECKBOX,
         label: (
           <>
@@ -246,12 +246,12 @@ const imageOutput = (intl) => {
           </>
         ),
         condition: {
-          when: "image-output-type",
+          when: "image.type",
           is: "vmdk",
         },
       },
       {
-        name: "image-upload",
+        name: "image.isUpload",
         component: componentTypes.CHECKBOX,
         label: (
           <>
@@ -303,13 +303,13 @@ const imageOutput = (intl) => {
           </>
         ),
         condition: {
-          when: "image-output-type",
+          when: "image.type",
           is: "oci",
         },
       },
       {
         component: "text-field-custom",
-        name: "image-size",
+        name: "image.size",
         className: "pf-u-w-50",
         type: "number",
         label: intl.formatMessage(messages.imageSizeLabel),
@@ -334,7 +334,7 @@ const imageOutput = (intl) => {
         isRequired: true,
         autoFocus: true,
         condition: {
-          when: "image-output-type",
+          when: "image.type",
           is: [
             "",
             "iot-commit",
@@ -359,7 +359,7 @@ const imageOutput = (intl) => {
           },
         ],
         resolveProps: (props, { meta, input }, formOptions) => {
-          const imageType = formOptions.getState().values["image-output-type"];
+          const imageType = formOptions.getState().values["image.type"];
           if (imageType === "ami") {
             return {
               initialValue: 6,

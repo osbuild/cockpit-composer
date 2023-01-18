@@ -4,34 +4,23 @@ import validatorTypes from "@data-driven-forms/react-form-renderer/validator-typ
 
 const messages = defineMessages({
   vmwareStepsTitle: {
-    id: "wizard.vmware.title",
     defaultMessage: "Upload to VMWare",
   },
 });
 
 const vmwareAuth = (intl) => {
   return {
-    title: (
-      <FormattedMessage
-        id="wizard.vmware.authTitle"
-        defaultMessage="Authentication"
-      />
-    ),
+    title: <FormattedMessage defaultMessage="Authentication" />,
     name: "vmware-auth",
     substepOf: intl.formatMessage(messages.vmwareStepsTitle),
     nextStep: "vmware-dest",
     fields: [
       {
         component: "text-field-custom",
-        name: "vmware-username",
+        name: "image.upload.settings.username",
         className: "pf-u-w-50",
         type: "text",
-        label: (
-          <FormattedMessage
-            id="wizard.vmware.username.label"
-            defaultMessage="Username"
-          />
-        ),
+        label: <FormattedMessage defaultMessage="Username" />,
         isRequired: true,
         autoFocus: true,
         validate: [
@@ -42,15 +31,10 @@ const vmwareAuth = (intl) => {
       },
       {
         component: "text-field-custom",
-        name: "vmware-password",
+        name: "image.upload.settings.password",
         className: "pf-u-w-50",
         type: "password",
-        label: (
-          <FormattedMessage
-            id="wizard.vmware.password.label"
-            defaultMessage="Password"
-          />
-        ),
+        label: <FormattedMessage defaultMessage="Password" />,
         isRequired: true,
         validate: [
           {
