@@ -7,7 +7,6 @@ import {
   CardFooter,
   ClipboardCopy,
   ClipboardCopyVariant,
-  Gallery,
   Title,
   DescriptionList,
   DescriptionListGroup,
@@ -16,18 +15,27 @@ import {
   Divider,
 } from "@patternfly/react-core";
 import { CheckCircleIcon, TimesCircleIcon } from "@patternfly/react-icons";
+import { FormattedMessage } from "react-intl";
 
-const UsersTab = (props) => {
-  const userCard = (user) => (
-    <Card key={user?.name}>
+const UserCard = ({ user }) => {
+  return (
+    <Card>
       <CardTitle>
         <Title headingLevel="h4" size="xl">
-          {user?.name}
+          <FormattedMessage defaultMessage="User" />
         </Title>
       </CardTitle>
       <Divider />
       <CardBody>
         <DescriptionList isCompact isHorizontal>
+          <DescriptionListGroup>
+            <DescriptionListTerm>
+              <FormattedMessage defaultMessage="Name" />
+            </DescriptionListTerm>
+            <DescriptionListDescription>
+              {user?.name}
+            </DescriptionListDescription>
+          </DescriptionListGroup>
           <DescriptionListGroup>
             <DescriptionListTerm>Admin</DescriptionListTerm>
             <DescriptionListDescription>
@@ -69,24 +77,10 @@ const UsersTab = (props) => {
       <CardFooter />
     </Card>
   );
-
-  return (
-    <Gallery
-      className="pf-u-p-lg"
-      hasGutter
-      maxWidths={{
-        md: "280px",
-        lg: "320px",
-        "2xl": "400px",
-      }}
-    >
-      {props.users?.map((user) => userCard(user))}
-    </Gallery>
-  );
 };
 
-UsersTab.propTypes = {
-  users: PropTypes.arrayOf(PropTypes.object),
+UserCard.propTypes = {
+  user: PropTypes.object,
 };
 
-export default UsersTab;
+export default UserCard;
