@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import {
   Title,
   EmptyState,
@@ -8,21 +7,17 @@ import {
 } from "@patternfly/react-core";
 import { CubesIcon } from "@patternfly/react-icons";
 import { FormattedMessage } from "react-intl";
-import CreateImageWizard from "../Wizard/CreateImageWizard";
+import BlueprintWizard from "../Wizard/BlueprintWizard";
 
-const ImagesEmpty = (props) => (
+const BlueprintsEmpty = () => (
   <EmptyState>
     <EmptyStateIcon icon={CubesIcon} />
     <Title headingLevel="h4" size="lg">
-      <FormattedMessage defaultMessage="No images" />
+      <FormattedMessage defaultMessage="No blueprints" />
     </Title>
     <EmptyStateBody />
-    <CreateImageWizard blueprint={props.blueprint} />
+    <BlueprintWizard />
   </EmptyState>
 );
 
-ImagesEmpty.propTypes = {
-  blueprint: PropTypes.object,
-};
-
-export default ImagesEmpty;
+export default BlueprintsEmpty;

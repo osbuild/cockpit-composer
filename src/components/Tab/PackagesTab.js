@@ -4,8 +4,9 @@ import { Pagination } from "@patternfly/react-core";
 
 import PackagesTable from "../Table/PackagesTable";
 import PackagesToolbar from "../Toolbar/PackagesToolbar";
+import PackagesEmpty from "../EmptyStates/PackagesEmpty";
 
-const PackagesTab = (props) => {
+const PackagesTab = ({ blueprint }) => {
   const [toggle, setToggle] = useState("additional");
   const [inputValue, setInputValue] = useState("");
   const [page, setPage] = React.useState(1);
@@ -44,7 +45,7 @@ const PackagesTab = (props) => {
   };
 
   const packagesList =
-    toggle === "additional" ? props.packages : props.dependencies;
+    toggle === "additional" ? blueprint.packages : blueprint.dependencies;
 
   const sortedAndFilteredPackages = sortAndFilterPackages(packagesList);
 
@@ -58,38 +59,44 @@ const PackagesTab = (props) => {
 
   return (
     <div className="pf-u-p-lg">
-      <PackagesToolbar
-        inputValue={inputValue}
-        onInputChange={setInputValue}
-        toggle={toggle}
-        onToggleClick={onToggleClick}
-        page={page}
-        onPerPageSelect={onPerPageSelect}
-        perPage={perPage}
-        onSetPage={onSetPage}
-        itemCount={packagesList?.length ? packagesList.length : 0}
-      />
-      <PackagesTable
-        packages={paginatedList}
-        setIsSortAscending={setIsSortAscending}
-        isSortAscending={isSortAscending}
-      />
-      <Pagination
-        itemCount={packagesList?.length}
-        perPage={perPage}
-        page={page}
-        onSetPage={onSetPage}
-        onPerPageSelect={onPerPageSelect}
-        variant="bottom"
-        isCompact
-      />
+      {blueprint.packages.length === 0 && (
+        <PackagesEmpty blueprint={blueprint} />
+      )}
+      {blueprint.packages.length > 0 && (
+        <>
+          <PackagesToolbar
+            inputValue={inputValue}
+            onInputChange={setInputValue}
+            toggle={toggle}
+            onToggleClick={onToggleClick}
+            page={page}
+            onPerPageSelect={onPerPageSelect}
+            perPage={perPage}
+            onSetPage={onSetPage}
+            itemCount={packagesList?.length ? packagesList.length : 0}
+          />
+          <PackagesTable
+            packages={paginatedList}
+            setIsSortAscending={setIsSortAscending}
+            isSortAscending={isSortAscending}
+          />
+          <Pagination
+            itemCount={packagesList?.length}
+            perPage={perPage}
+            page={page}
+            onSetPage={onSetPage}
+            onPerPageSelect={onPerPageSelect}
+            variant="bottom"
+            isCompact
+          />
+        </>
+      )}
     </div>
   );
 };
 
 PackagesTab.propTypes = {
-  packages: PropTypes.arrayOf(PropTypes.object),
-  dependencies: PropTypes.arrayOf(PropTypes.object),
+  blueprint: PropTypes.object,
 };
 
 export default PackagesTab;
