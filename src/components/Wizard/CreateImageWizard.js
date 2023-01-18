@@ -56,7 +56,7 @@ const BlueprintListener = () => {
   const blueprintForm = blueprintToFormState(blueprint);
 
   useEffect(() => {
-    change("blueprint", blueprintForm);
+    change("blueprint", blueprintForm?.blueprint);
   }, [blueprintName]);
 
   return null;
@@ -163,7 +163,7 @@ const CreateImageWizard = (props) => {
     }
 
     const imageArgs = {
-      blueprintName: formValues.blueprint.name,
+      blueprintName: formValues?.blueprintName,
       type: formValues?.image?.type,
       size: formValues?.image?.size,
       ostree: ostreeSettings,
