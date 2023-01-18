@@ -124,7 +124,14 @@ const ImageRow = (props) => {
         <Td dataLabel={columns[3].title}>
           {formTimestampLabel(image.job_created)}
         </Td>
-        <Td dataLabel={columns[4].title}>{sizeLabel(image.image_size)}</Td>
+        <Td dataLabel={columns[4].title}>
+          {image.queue_status === "FINISHED" ||
+          image.queue_status === "FAILED" ? (
+            sizeLabel(image.image_size)
+          ) : (
+            <InProgressIcon className="pending" />
+          )}
+        </Td>
         <Td dataLabel={columns[5].title}>
           <StatusLabel status={image.queue_status} />
         </Td>
@@ -137,7 +144,6 @@ const ImageRow = (props) => {
             <FormattedMessage defaultMessage="Download image" />
           </Button>
         </Td>
-
         <Td modifier="fitContent">
           <Button variant="secondary" onClick={() => downloadLogs()}>
             <FormattedMessage defaultMessage="Download logs" />
