@@ -30,6 +30,7 @@ import ImagesTab from "../components/Tab/ImagesTab";
 import BlueprintWizard from "../components/Wizard/BlueprintWizard";
 import ImportBlueprint from "../components/Modal/ImportBlueprint";
 import CreateImageWizard from "../components/Wizard/CreateImageWizard";
+import BlueprintsEmpty from "../components/EmptyStates/BlueprintsEmpty";
 
 const BlueprintList = () => {
   const dispatch = useDispatch();
@@ -98,14 +99,19 @@ const BlueprintList = () => {
             }
           >
             <div className="pf-u-p-lg">
-              <BlueprintListToolbar
-                isSortAscending={isSortAscending}
-                setIsSortAscending={setIsSortAscending}
-                filterValue={filterValue}
-                setFilterValue={setFilterValue}
-                blueprintNames={blueprintNames}
-              />
-              <BlueprintTable blueprints={blueprintsFilteredAndSorted} />
+              {blueprintNames.length === 0 && <BlueprintsEmpty />}
+              {blueprintNames.length > 0 && (
+                <>
+                  <BlueprintListToolbar
+                    isSortAscending={isSortAscending}
+                    setIsSortAscending={setIsSortAscending}
+                    filterValue={filterValue}
+                    setFilterValue={setFilterValue}
+                    blueprintNames={blueprintNames}
+                  />
+                  <BlueprintTable blueprints={blueprintsFilteredAndSorted} />
+                </>
+              )}
             </div>
           </Tab>
           <Tab

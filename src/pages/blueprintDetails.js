@@ -105,10 +105,7 @@ const BlueprintDetails = () => {
             }
           >
             {blueprint?.dependencies?.length && (
-              <PackagesTab
-                packages={blueprint?.packages}
-                dependencies={blueprint?.dependencies}
-              />
+              <PackagesTab blueprint={blueprint} />
             )}
           </Tab>
           <Tab
