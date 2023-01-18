@@ -11,6 +11,7 @@ import TimezoneCardModal from "../Modal/TimezoneCard";
 import LocaleCardModal from "../Modal/LocaleCard";
 import FDOCardModal from "../Modal/FDOCard";
 import OpenSCAPCardModal from "../Modal/OpenSCAPCard";
+import UserCard from "../Cards/UserCard";
 
 const CustomizationsTab = ({ blueprint }) => {
   return (
@@ -23,6 +24,11 @@ const CustomizationsTab = ({ blueprint }) => {
           <FlexItem>
             <FirewallCard blueprint={blueprint} />
           </FlexItem>
+          {blueprint?.customizations?.user?.map((u, i) => (
+            <FlexItem key={i}>
+              <UserCard user={u} />
+            </FlexItem>
+          ))}
         </Flex>
       </GridItem>
       <GridItem span={3}>

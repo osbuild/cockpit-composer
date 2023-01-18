@@ -14,7 +14,6 @@ import {
 } from "@patternfly/react-core";
 
 import CustomizationsTab from "../components/Tab/CustomizationsTab";
-import UsersTab from "../components/Tab/UsersTab";
 import PackagesTab from "../components/Tab/PackagesTab";
 import ImagesTab from "../components/Tab/ImagesTab";
 import BlueprintDetailsToolbar from "../components/Toolbar/BlueprintDetailsToolbar";
@@ -49,7 +48,7 @@ const BlueprintDetails = () => {
     })
   );
 
-  const [activeTab, setActiveTab] = useState("system");
+  const [activeTab, setActiveTab] = useState("customizations");
 
   const handleTabClick = (event, tabName) => setActiveTab(tabName);
 
@@ -73,10 +72,10 @@ const BlueprintDetails = () => {
           className="tabs pf-u-px-lg"
         >
           <Tab
-            eventKey="system"
+            eventKey="customizations"
             title={
               <TabTitleText>
-                <FormattedMessage defaultMessage="System" />
+                <FormattedMessage defaultMessage="Customizations" />
               </TabTitleText>
             }
           >
@@ -85,16 +84,6 @@ const BlueprintDetails = () => {
               images={images}
               setActiveTab={setActiveTab}
             />
-          </Tab>
-          <Tab
-            eventKey="users"
-            title={
-              <TabTitleText>
-                <FormattedMessage defaultMessage="Users" />
-              </TabTitleText>
-            }
-          >
-            <UsersTab users={blueprint?.customizations?.user} />
           </Tab>
           <Tab
             eventKey="packages"

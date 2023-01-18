@@ -29,7 +29,7 @@ export const blueprintToFormState = (blueprint) => {
       name: user?.name,
       password: user?.password,
       key: user?.key,
-      isAdmin: user?.groups.includes("wheel"),
+      isAdmin: user?.groups?.includes("wheel"),
     })),
   };
   if (blueprint.customizations?.filesystem) {
