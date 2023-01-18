@@ -109,16 +109,6 @@ const BlueprintList = () => {
             </div>
           </Tab>
           <Tab
-            eventKey="sources"
-            title={
-              <TabTitleText>
-                <FormattedMessage defaultMessage="Sources" />
-              </TabTitleText>
-            }
-          >
-            <SourcesTab sources={sources} sourceNames={sourceNames} />
-          </Tab>
-          <Tab
             eventKey="images"
             title={
               <TabTitleText>
@@ -127,6 +117,16 @@ const BlueprintList = () => {
             }
           >
             <ImagesTab images={images} />
+          </Tab>
+          <Tab
+            eventKey="sources"
+            title={
+              <TabTitleText>
+                <FormattedMessage defaultMessage="Sources" />
+              </TabTitleText>
+            }
+          >
+            <SourcesTab sources={sources} sourceNames={sourceNames} />
           </Tab>
         </Tabs>
       </PageSection>
