@@ -43,27 +43,17 @@ const messages = defineMessages({
 
 const awsDest = (intl) => {
   return {
-    title: (
-      <FormattedMessage
-        id="wizard.aws.destTitle"
-        defaultMessage="Destination"
-      />
-    ),
+    title: <FormattedMessage defaultMessage="Destination" />,
     name: "aws-dest",
     substepOf: intl.formatMessage(messages.awsStepsTitle),
     nextStep: "review",
     fields: [
       {
         component: "text-field-custom",
-        name: "aws-image-name",
+        name: "image.upload.image_name",
         className: "pf-u-w-50",
         type: "text",
-        label: (
-          <FormattedMessage
-            id="wizard.aws.imageName.label"
-            defaultMessage="Image name"
-          />
-        ),
+        label: <FormattedMessage defaultMessage="Image name" />,
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.awsImageNamePopoverBody)}
@@ -87,15 +77,10 @@ const awsDest = (intl) => {
       },
       {
         component: "text-field-custom",
-        name: "aws-s3-bucket",
+        name: "image.upload.settings.bucket",
         className: "pf-u-w-50",
         type: "text",
-        label: (
-          <FormattedMessage
-            id="wizard.aws.bucket.label"
-            defaultMessage="Amazon S3 bucket"
-          />
-        ),
+        label: <FormattedMessage defaultMessage="Amazon S3 bucket" />,
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.awsBucketPopoverBody, {
@@ -120,15 +105,10 @@ const awsDest = (intl) => {
       },
       {
         component: "text-field-custom",
-        name: "aws-region",
+        name: "image.upload.settings.region",
         className: "pf-u-w-50",
         type: "text",
-        label: (
-          <FormattedMessage
-            id="wizard.aws.region.label"
-            defaultMessage="AWS region"
-          />
-        ),
+        label: <FormattedMessage defaultMessage="AWS region" />,
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.awsRegionPopoverBody)}

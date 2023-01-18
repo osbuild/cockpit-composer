@@ -17,9 +17,7 @@ const ImageOutputSelect = ({ label, isRequired, ...props }) => {
   const intl = useIntl();
   const { change, getState } = useFormApi();
   const formValues = getState()?.values;
-  const [outputType, setOutputType] = useState(
-    formValues?.["image-output-type"]
-  );
+  const [outputType, setOutputType] = useState(formValues?.image?.type);
   const [isOpen, setIsOpen] = useState(false);
   useFieldApi(props);
 
@@ -27,7 +25,9 @@ const ImageOutputSelect = ({ label, isRequired, ...props }) => {
     if (outputType !== selection) {
       setOutputType(selection);
       setIsOpen(false);
-      change("image-output-type", selection);
+      // reset all image fields on type change
+      change("image", {});
+      change("image.type", selection);
     }
   };
 

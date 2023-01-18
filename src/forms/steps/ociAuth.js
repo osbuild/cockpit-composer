@@ -40,27 +40,17 @@ const messages = defineMessages({
 
 const ociAuth = (intl) => {
   return {
-    title: (
-      <FormattedMessage
-        id="wizard.oci.authTitle"
-        defaultMessage="Authentication"
-      />
-    ),
+    title: <FormattedMessage defaultMessage="Authentication" />,
     name: "oci-auth",
     substepOf: intl.formatMessage(messages.ociTitle),
     nextStep: "oci-dest",
     fields: [
       {
         component: "text-field-custom",
-        name: "oci-user-ocid",
+        name: "image.upload.settings.user",
         className: "pf-u-w-50",
         type: "text",
-        label: (
-          <FormattedMessage
-            id="wizard.oci.userOCID.label"
-            defaultMessage="User OCID"
-          />
-        ),
+        label: <FormattedMessage defaultMessage="User OCID" />,
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.userOCIDPopoverBody, {
@@ -86,13 +76,8 @@ const ociAuth = (intl) => {
       },
       {
         component: "upload-oci-file",
-        name: "oci-private-key",
-        label: (
-          <FormattedMessage
-            id="wizard.oci.privateKey.label"
-            defaultMessage="Private key"
-          />
-        ),
+        name: "image.upload.settings.privateKey",
+        label: <FormattedMessage defaultMessage="Private key" />,
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.privateKeyPopoverBody, {
@@ -117,20 +102,15 @@ const ociAuth = (intl) => {
       },
       {
         component: "text-field",
-        name: "oci-private-key-filename",
+        name: "image.upload.settings.filename",
         hideField: true,
       },
       {
         component: "text-field-custom",
-        name: "oci-fingerprint",
+        name: "image.upload.settings.fingerprint",
         className: "pf-u-w-50",
         type: "text",
-        label: (
-          <FormattedMessage
-            id="wizard.oci.fingerprint.label"
-            defaultMessage="Fingerprint"
-          />
-        ),
+        label: <FormattedMessage defaultMessage="Fingerprint" />,
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.fingerprintPopoverBody, {

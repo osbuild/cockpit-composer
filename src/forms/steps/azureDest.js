@@ -33,27 +33,17 @@ const messages = defineMessages({
 
 const azureDest = (intl) => {
   return {
-    title: (
-      <FormattedMessage
-        id="wizard.azure.destTitle"
-        defaultMessage="Destination"
-      />
-    ),
+    title: <FormattedMessage defaultMessage="Destination" />,
     name: "azure-dest",
     substepOf: intl.formatMessage(messages.azureStepsTitle),
     nextStep: "review",
     fields: [
       {
         component: "text-field-custom",
-        name: "azure-image-name",
+        name: "image.upload.image_name",
         className: "pf-u-w-50",
         type: "text",
-        label: (
-          <FormattedMessage
-            id="wizard.azure.imageName.label"
-            defaultMessage="Image name"
-          />
-        ),
+        label: <FormattedMessage defaultMessage="Image name" />,
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.imageNamePopoverBody)}
@@ -77,15 +67,10 @@ const azureDest = (intl) => {
       },
       {
         component: "text-field-custom",
-        name: "azure-storage-container",
+        name: "image.upload.settings.container",
         className: "pf-u-w-50",
         type: "text",
-        label: (
-          <FormattedMessage
-            id="wizard.azure.storageContainer.label"
-            defaultMessage="Storage container"
-          />
-        ),
+        label: <FormattedMessage defaultMessage="Storage container" />,
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(
@@ -94,7 +79,9 @@ const azureDest = (intl) => {
                 strong: (str) => <strong>{str}</strong>,
               }
             )}
-            aria-label="Storage container help"
+            aria-label={intl.formatMessage(
+              messages.storageContainerPopoverAria
+            )}
           >
             <Button
               variant="plain"

@@ -54,7 +54,7 @@ const ostreeSettings = (intl) => {
     fields: [
       {
         component: "text-field-custom",
-        name: "ostree-repo-url",
+        name: "image.ostree.url",
         className: "pf-u-w-75",
         label: (
           <FormattedMessage
@@ -76,7 +76,7 @@ const ostreeSettings = (intl) => {
           </Popover>
         ),
         condition: {
-          when: "image-output-type",
+          when: "image.type",
           is: [
             "iot-commit",
             "edge-commit",
@@ -87,7 +87,7 @@ const ostreeSettings = (intl) => {
           ],
         },
         resolveProps: (props, { meta, input }, formOptions) => {
-          const imageType = formOptions.getState().values["image-output-type"];
+          const imageType = formOptions.getState().values["image.type"];
           if (
             imageType === "edge-raw-image" ||
             imageType === "edge-installer" ||
@@ -106,7 +106,7 @@ const ostreeSettings = (intl) => {
       },
       {
         component: "text-field-custom",
-        name: "ostree-parent-commit",
+        name: "image.ostree.parent",
         className: "pf-u-w-75",
         label: (
           <FormattedMessage
@@ -128,13 +128,13 @@ const ostreeSettings = (intl) => {
           </Popover>
         ),
         condition: {
-          when: "image-output-type",
+          when: "image.type",
           is: ["iot-commit", "edge-commit", "edge-container"],
         },
       },
       {
         component: "text-field-custom",
-        name: "ostree-ref",
+        name: "image.ostree.ref",
         className: "pf-u-w-75",
         label: (
           <FormattedMessage id="wizard.ostree.ref.label" defaultMessage="Ref" />
@@ -154,7 +154,7 @@ const ostreeSettings = (intl) => {
         ),
         helperText: intl.formatMessage(messages.refHelpText),
         condition: {
-          when: "image-output-type",
+          when: "image.type",
           is: [
             "iot-commit",
             "edge-commit",

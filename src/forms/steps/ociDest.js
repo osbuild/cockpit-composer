@@ -69,27 +69,17 @@ const messages = defineMessages({
 
 const ociDest = (intl) => {
   return {
-    title: (
-      <FormattedMessage
-        id="wizard.oci.destTitle"
-        defaultMessage="Destination"
-      />
-    ),
+    title: <FormattedMessage defaultMessage="Destination" />,
     name: "oci-dest",
     substepOf: intl.formatMessage(messages.ociTitle),
     nextStep: "review",
     fields: [
       {
         component: "text-field-custom",
-        name: "oci-image-name",
+        name: "image.upload.image_name",
         className: "pf-u-w-50",
         type: "text",
-        label: (
-          <FormattedMessage
-            id="wizard.oci.imageName.label"
-            defaultMessage="Image name"
-          />
-        ),
+        label: <FormattedMessage defaultMessage="Image name" />,
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.imageNamePopoverBody)}
@@ -113,15 +103,10 @@ const ociDest = (intl) => {
       },
       {
         component: "text-field-custom",
-        name: "oci-bucket",
+        name: "image.upload.settings.bucket",
         className: "pf-u-w-50",
         type: "text",
-        label: (
-          <FormattedMessage
-            id="wizard.oci.bucket.label"
-            defaultMessage="OCI bucket"
-          />
-        ),
+        label: <FormattedMessage defaultMessage="OCI bucket" />,
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.bucketPopoverBody, {
@@ -146,15 +131,10 @@ const ociDest = (intl) => {
       },
       {
         component: "text-field-custom",
-        name: "oci-bucket-namespace",
+        name: "image.upload.settings.namespace",
         className: "pf-u-w-50",
         type: "text",
-        label: (
-          <FormattedMessage
-            id="wizard.oci.bucketNamespace.label"
-            defaultMessage="Bucket namespace"
-          />
-        ),
+        label: <FormattedMessage defaultMessage="Bucket namespace" />,
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.namespacePopoverBody)}
@@ -177,15 +157,10 @@ const ociDest = (intl) => {
       },
       {
         component: "text-field-custom",
-        name: "oci-bucket-region",
+        name: "image.upload.settings.region",
         className: "pf-u-w-50",
         type: "text",
-        label: (
-          <FormattedMessage
-            id="wizard.oci.bucketRegion.label"
-            defaultMessage="Bucket region"
-          />
-        ),
+        label: <FormattedMessage defaultMessage="Bucket region" />,
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.regionPopoverBody)}
@@ -208,15 +183,10 @@ const ociDest = (intl) => {
       },
       {
         component: "text-field-custom",
-        name: "oci-bucket-compartment",
+        name: "image.upload.settings.compartment",
         className: "pf-u-w-50",
         type: "text",
-        label: (
-          <FormattedMessage
-            id="wizard.oci.bucketCompartment.label"
-            defaultMessage="Bucket compartment"
-          />
-        ),
+        label: <FormattedMessage defaultMessage="Bucket compartment" />,
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.compartmentPopoverBody)}
@@ -239,15 +209,10 @@ const ociDest = (intl) => {
       },
       {
         component: "text-field-custom",
-        name: "oci-bucket-tenancy",
+        name: "image.upload.settings.tenancy",
         className: "pf-u-w-50",
         type: "text",
-        label: (
-          <FormattedMessage
-            id="wizard.oci.bucketTenancy.label"
-            defaultMessage="Bucket tenancy"
-          />
-        ),
+        label: <FormattedMessage defaultMessage="Bucket tenancy" />,
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.tenancyPopoverBody)}

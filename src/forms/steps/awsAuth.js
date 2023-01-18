@@ -33,27 +33,17 @@ const messages = defineMessages({
 
 const awsAuth = (intl) => {
   return {
-    title: (
-      <FormattedMessage
-        id="wizard.aws.authTitle"
-        defaultMessage="Authentication"
-      />
-    ),
+    title: <FormattedMessage defaultMessage="Authentication" />,
     name: "aws-auth",
     substepOf: intl.formatMessage(messages.awsStepsTitle),
     nextStep: "aws-dest",
     fields: [
       {
         component: "text-field-custom",
-        name: "aws-access-key",
+        name: "image.upload.settings.accessKeyID",
         className: "pf-u-w-50",
         type: "password",
-        label: (
-          <FormattedMessage
-            id="wizard.aws.accessKey.label"
-            defaultMessage="Access key ID"
-          />
-        ),
+        label: <FormattedMessage defaultMessage="Access key ID" />,
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(messages.accessKeyPopoverBody, {
@@ -79,15 +69,10 @@ const awsAuth = (intl) => {
       },
       {
         component: "text-field-custom",
-        name: "aws-secret-access-key",
+        name: "image.upload.settings.secretAccessKey",
         className: "pf-u-w-50",
         type: "password",
-        label: (
-          <FormattedMessage
-            id="wizard.aws.secretAccessKey.label"
-            defaultMessage="Secret access key"
-          />
-        ),
+        label: <FormattedMessage defaultMessage="Secret access key" />,
         labelIcon: (
           <Popover
             bodyContent={intl.formatMessage(

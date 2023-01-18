@@ -177,31 +177,31 @@ const AWSReview = (formValues) => (
         <FormattedMessage {...messages.accessKeyID} />
       </DescriptionListTerm>
       <DescriptionListDescription>
-        {"*".repeat(formValues?.["aws-access-key"].length)}
+        {"*".repeat(formValues.image.upload.settings.accessKeyID.length)}
       </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.secretAccessKey} />
       </DescriptionListTerm>
       <DescriptionListDescription>
-        {"*".repeat(formValues?.["aws-secret-access-key"].length)}
+        {"*".repeat(formValues.image.upload.settings.secretAccessKey.length)}
       </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.imageName} />
       </DescriptionListTerm>
       <DescriptionListDescription>
-        {formValues?.["aws-image-name"]}
+        {formValues.image.upload.image_name}
       </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.amazonS3Bucket} />
       </DescriptionListTerm>
       <DescriptionListDescription>
-        {formValues?.["aws-s3-bucket"]}
+        {formValues.image.upload.settings.bucket}
       </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.awsRegion} />
       </DescriptionListTerm>
       <DescriptionListDescription>
-        {formValues?.["aws-region"]}
+        {formValues.image.upload.settings.region}
       </DescriptionListDescription>
     </DescriptionListGroup>
   </>
@@ -219,25 +219,25 @@ const AzureReview = (formValues) => (
         <FormattedMessage {...messages.storageAccount} />
       </DescriptionListTerm>
       <DescriptionListDescription>
-        {formValues?.["azure-storage-account"]}
+        {formValues?.image.upload.settings.storageAccount}
       </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.storageAccessKey} />
       </DescriptionListTerm>
       <DescriptionListDescription>
-        {"*".repeat(formValues?.["azure-storage-access-key"].length)}
+        {"*".repeat(formValues?.image.upload.settings.storageAccessKey.length)}
       </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.imageName} />
       </DescriptionListTerm>
       <DescriptionListDescription>
-        {formValues?.["azure-image-name"]}
+        {formValues.image.upload.image_name}
       </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.storageContainer} />
       </DescriptionListTerm>
       <DescriptionListDescription>
-        {formValues?.["azure-storage-container"]}
+        {formValues?.image.upload.settings.container}
       </DescriptionListDescription>
     </DescriptionListGroup>
   </>
@@ -255,43 +255,43 @@ const VMWareReview = (formValues) => (
         <FormattedMessage {...messages.username} />
       </DescriptionListTerm>
       <DescriptionListDescription>
-        {formValues?.["vmware-username"]}
+        {formValues.image.upload.settings.username}
       </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.password} />
       </DescriptionListTerm>
       <DescriptionListDescription>
-        {"*".repeat(formValues?.["vmware-password"].length)}
+        {"*".repeat(formValues.image.upload.settings.password.length)}
       </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.imageName} />
       </DescriptionListTerm>
       <DescriptionListDescription>
-        {formValues?.["vmware-image-name"]}
+        {formValues.image.upload.image_name}
       </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.host} />
       </DescriptionListTerm>
       <DescriptionListDescription>
-        {formValues?.["vmware-host"]}
+        {formValues.image.upload.settings.host}
       </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.cluster} />
       </DescriptionListTerm>
       <DescriptionListDescription>
-        {formValues?.["vmware-cluster"]}
+        {formValues.image.upload.settings.cluster}
       </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.dataCenter} />
       </DescriptionListTerm>
       <DescriptionListDescription>
-        {formValues?.["vmware-data-center"]}
+        {formValues.image.upload.settings.dataCenter}
       </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.dataStore} />
       </DescriptionListTerm>
       <DescriptionListDescription>
-        {formValues?.["vmware-data-store"]}
+        {formValues.image.upload.settings.dataStore}
       </DescriptionListDescription>
     </DescriptionListGroup>
   </>
@@ -309,55 +309,55 @@ const ociReview = (formValues) => (
         <FormattedMessage {...messages.userOCID} />
       </DescriptionListTerm>
       <DescriptionListDescription>
-        {formValues?.["oci-user-ocid"]}
+        {formValues.image.upload.settings.user}
       </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.privateKey} />
       </DescriptionListTerm>
       <DescriptionListDescription>
-        {formValues?.["oci-private-key-filename"]}
+        {formValues.image.upload.settings.filename}
       </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.fingerprint} />
       </DescriptionListTerm>
       <DescriptionListDescription>
-        {formValues?.["oci-fingerprint"]}
+        {formValues.image.upload.settings.fingerprint}
       </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.imageName} />
       </DescriptionListTerm>
       <DescriptionListDescription>
-        {formValues?.["oci-image-name"]}
+        {formValues.image.upload.image_name}
       </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.ociBucket} />
       </DescriptionListTerm>
       <DescriptionListDescription>
-        {formValues?.["oci-bucket"]}
+        {formValues.image.upload.settings.bucket}
       </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.bucketNamespace} />
       </DescriptionListTerm>
       <DescriptionListDescription>
-        {formValues?.["oci-bucket-namespace"]}
+        {formValues.image.upload.settings.namespace}
       </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.bucketRegion} />
       </DescriptionListTerm>
       <DescriptionListDescription>
-        {formValues?.["oci-bucket-region"]}
+        {formValues.image.upload.settings.region}
       </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.bucketCompartment} />
       </DescriptionListTerm>
       <DescriptionListDescription>
-        {formValues?.["oci-bucket-compartment"]}
+        {formValues.image.upload.settings.compartment}
       </DescriptionListDescription>
       <DescriptionListTerm>
         <FormattedMessage {...messages.bucketTenancy} />
       </DescriptionListTerm>
       <DescriptionListDescription>
-        {formValues?.["oci-bucket-regtenancyion"]}
+        {formValues.image.upload.settings.tenancy}
       </DescriptionListDescription>
     </DescriptionListGroup>
   </>
@@ -535,29 +535,26 @@ const Review = () => {
                 <FormattedMessage defaultMessage="Output type" />
               </DescriptionListTerm>
               <DescriptionListDescription>
-                {formValues?.["image-output-type"]}
+                {formValues?.image?.type}
               </DescriptionListDescription>
               <DescriptionListTerm>
-                <FormattedMessage
-                  id="wizard.review.imageSize"
-                  defaultMessage="Image size"
-                />
+                <FormattedMessage defaultMessage="Image size" />
               </DescriptionListTerm>
               <DescriptionListDescription>
-                {formValues?.["image-size"]}
+                {formValues?.image?.size}
               </DescriptionListDescription>
             </DescriptionListGroup>
-            {formValues?.["image-output-type"] === "ami" &&
-              formValues?.["image-upload"] &&
+            {formValues?.image?.type === "ami" &&
+              formValues?.image?.isUpload &&
               AWSReview(formValues)}
-            {formValues?.["image-output-type"] === "vhd" &&
-              formValues?.["image-upload"] &&
+            {formValues?.image?.type === "vhd" &&
+              formValues?.image?.isUpload &&
               AzureReview(formValues)}
-            {formValues?.["image-output-type"] === "vmdk" &&
-              formValues?.["image-upload"] &&
+            {formValues?.image?.type === "vmdk" &&
+              formValues?.image?.isUpload &&
               VMWareReview(formValues)}
-            {formValues?.["image-output-type"] === "oci" &&
-              formValues?.["image-upload"] &&
+            {formValues?.image?.type === "oci" &&
+              formValues?.image?.isUpload &&
               ociReview(formValues)}
           </DescriptionList>
         </Tab>
