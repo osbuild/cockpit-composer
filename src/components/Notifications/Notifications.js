@@ -32,9 +32,7 @@ const Notifications = () => {
                     defaultMessage="{blueprint} Image creation has been added to the {queue}."
                     values={{
                       blueprint: <strong>{alert.blueprintName}:</strong>,
-                      queue: (
-                        <a href={`#blueprint/${alert.blueprintName}`}>queue</a>
-                      ),
+                      queue: <a href={`#/${alert.blueprintName}`}>queue</a>,
                     }}
                   />
                 }
