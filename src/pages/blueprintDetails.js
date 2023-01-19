@@ -105,7 +105,7 @@ const BlueprintDetails = () => {
               </TabTitleText>
             }
           >
-            <ImagesTab images={images} />
+            <ImagesTab images={images} blueprint={blueprint} />
           </Tab>
         </Tabs>
       </PageSection>
