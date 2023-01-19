@@ -87,8 +87,8 @@ const formStateToCustomizations = (customizations) => {
 
   let openscap;
   if (
-    customizations.openscap.datastream ||
-    customizations.openscap.profile_id
+    customizations?.openscap?.datastream ||
+    customizations?.openscap?.profile_id
   ) {
     openscap = customizations.openscap;
   }

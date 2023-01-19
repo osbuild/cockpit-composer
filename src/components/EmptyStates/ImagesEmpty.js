@@ -10,14 +10,14 @@ import { CubesIcon } from "@patternfly/react-icons";
 import { FormattedMessage } from "react-intl";
 import CreateImageWizard from "../Wizard/CreateImageWizard";
 
-const ImagesEmpty = (props) => (
+const ImagesEmpty = ({ blueprint }) => (
   <EmptyState>
     <EmptyStateIcon icon={CubesIcon} />
     <Title headingLevel="h4" size="lg">
       <FormattedMessage defaultMessage="No images" />
     </Title>
     <EmptyStateBody />
-    <CreateImageWizard blueprint={props.blueprint} />
+    <CreateImageWizard blueprint={blueprint} />
   </EmptyState>
 );
 

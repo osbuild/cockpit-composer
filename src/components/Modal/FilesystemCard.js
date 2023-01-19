@@ -37,7 +37,7 @@ import {
   Thead,
   Tr,
 } from "@patternfly/react-table";
-import { UNIT_GIB, UNIT_MIB } from "../../constants";
+import { UNIT_GIB } from "../../constants";
 import FileSystemConfigToggle from "../../forms/components/FileSystemConfigToggle";
 import FileSystemConfiguration from "../../forms/components/FileSystemConfiguration";
 
@@ -58,7 +58,6 @@ export const FilesystemCard = ({ blueprint }) => {
   };
 
   const filesystem = blueprint?.customizations?.filesystem || [];
-
   const FilesystemCardEdit = () => {
     return (
       <Card hasSelectableInput isSelectableRaised onClick={handleModalToggle}>
@@ -87,17 +86,12 @@ export const FilesystemCard = ({ blueprint }) => {
                 </Tr>
               </Thead>
               <Tbody>
-                {blueprint?.customizations?.filesystem?.map((item, index) => (
+                {filesystem?.map((item, index) => (
                   <Tr key={index}>
                     <Td className="pf-m-width-30">{item.mountpoint}</Td>
                     <Td className="pf-m-width-30">xfs</Td>
                     <Td className="pf-m-width-30">
-                      {item.size}{" "}
-                      {item.unit === UNIT_GIB
-                        ? "GiB"
-                        : item.unit === UNIT_MIB
-                        ? "MiB"
-                        : "KiB"}
+                      {item.minsize / UNIT_GIB} {"GiB"}
                     </Td>
                   </Tr>
                 ))}
