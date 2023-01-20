@@ -132,7 +132,7 @@ const CreateImageWizard = (props) => {
           provider: "oci",
           settings: {
             user: formValues.image.upload.settings.user,
-            privateKey: formValues.image.upload.settings.privateKey,
+            private_key: formValues.image.upload.settings.privateKey,
             fingerprint: formValues.image.upload.settings.fingerprint,
             filename: formValues.image.upload.settings.filename,
             bucket: formValues.image.upload.settings.bucket,
