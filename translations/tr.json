@@ -324,7 +324,7 @@
   "wizard.imageOutput.uploadOCI.popoverBody": "Kalıp Oluşturucu, oluşturduğunuz kalıpları OCI'deki bir {bucket} içine yükleyebilir ve bunu özel bir kalıp olarak kaydettirebilirsiniz. Kalıp oluşturma tamamlandığında ve yükleme eylemi başarılı olduğunda kalıp, özel kalıplar altında kullanılabilir olmalıdır. Kalıbı yüklemek için gereken değerlerin çoğu {console} içinde bulunabilir.",
   "wizard.imageOutput.uploadOCI.popoverAria": "OCI'ye yükleme yardımı",
   "wizard.imageOutput.imageSize.label": "Kalıp Boyutu",
-  "wizard.imageOutput.imageSize.popoverBody": "Bir örneği oluşturulduğunda kalıbın sahip olmasını istediğiniz boyutu belirleyin. Kalıp boyutu belirlenirken, toplam paket boyutu ve kalıbınızın hedef konumu dikkate alınmalıdır.",
+  "wizard.imageOutput.imageSize.popoverBody": "Bir örneği oluşturulduğunda kalıbın sahip olmasını istediğiniz boyutu ayarlayın. Kalıp boyutunu ayarlarken, toplam paket boyutu ve kalıbınızın hedef konumu dikkate alınmalıdır.",
   "wizard.imageOutput.imageSize.popoverAria": "Kalıp boyutu yardımı",
   "wizard.imageOutput.imageSize.inputHelp": "En az kalıp boyutu {size}GB'tır.",
   "wizard.oci.userOCID.popoverBody": "Kullanıcı OCID'nizi, OCI konsolundaki <strong>Kimlik ve Erişim Yönetimi (IAM)</strong> sayfasında bulabilirsiniz.",
@@ -572,5 +572,17 @@
   "/nwCxv": "Dosya sistemi yapılandırmaları",
   "/VnDMl": "Diğer",
   "/9I/o9": "Bölüm ekle",
-  "+YJ/Sw": "Ekle"
+  "+YJ/Sw": "Ekle",
+  "K+V+Km": "Grupları ekle",
+  "t6Il5m": "Dosya sistemi",
+  "oMlePE": "OpenSCAP ayarla",
+  "nRhUoV": "FDO ayarla",
+  "mOvhC0": "Kalıplar yok",
+  "eALudX": "Hizmetleri ekle",
+  "VC1pOq": "Yerel ayar ekle",
+  "Td0vSE": "SSH anahtarları ekle",
+  "PKqs4h": "Elle dosya sistemi ekle",
+  "BTj+ed": "Çekirdek ekle",
+  "4uIgDI": "Saat dilimi ayarla",
+  "/vBT2/": "Güvenlik duvarı ekle"
 }
