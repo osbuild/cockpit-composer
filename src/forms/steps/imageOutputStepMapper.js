@@ -9,6 +9,8 @@ export default (props) => {
         return "azure-auth";
       case "vmdk":
         return "vmware-auth";
+      case "gce":
+        return "gcp";
       default:
         return "review";
     }

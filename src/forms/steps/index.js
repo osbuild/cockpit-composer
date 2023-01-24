@@ -24,3 +24,4 @@ export { default as locale } from "./locale";
 export { default as other } from "./other";
 export { default as openscap } from "./openscap";
 export { default as ignition } from "./ignition";
+export { default as gcp } from "./gcp";
