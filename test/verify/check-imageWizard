@@ -3,6 +3,8 @@
 import time
 import composerlib
 import testlib
+import unittest
+import os
 
 
 @testlib.nondestructive
@@ -32,6 +34,30 @@ class TestImageWizard(composerlib.ComposerCase):
 
         # Create image
         b.click("footer button:contains('Create')")
+
+    @unittest.skipIf(os.environ.get("TEST_OS").split('-')[0] != "rhel", "Skipping test for non RHEL")
+    def testUploadGCPFields(self):
+        b = self.browser
+
+        self.login_and_go("/composer", superuser=True)
+        b.wait_visible("#main")
+
+        # Select create image from created blueprint
+        b.click("tr[data-testid=httpd-server] button[aria-label='Create image']")
+        b.wait_in_text(".pf-c-wizard__main", "httpd-server")
+        time.sleep(1)
+        # Google cloud platform image type and keep default size
+        b.select_PF4("#image-output-select-toggle", "Google Cloud Platform (.tar.gz)")
+        b.click("input[id='image.isUpload']")
+        b.click("button:contains('Next')")
+
+        b.set_input_text("input[id='image.upload.image_name']", "testImageName")
+        b.set_input_text("input[id='image.upload.settings.region']", "testStorageName")
+        b.set_input_text("input[id='image.upload.settings.bucket']", "testBucket")
+        b.wait_in_text(".pf-c-wizard__main-body", "Credentials")
+
+        # Cancel upload
+        b.click("footer button:contains('Cancel')")
 
 
 if __name__ == '__main__':

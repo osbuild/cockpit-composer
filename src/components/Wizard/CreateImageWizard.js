@@ -14,6 +14,7 @@ import {
   vmwareDest,
   ociAuth,
   ociDest,
+  gcp,
   ostreeSettings,
   review,
 } from "../../forms/steps";
@@ -33,6 +34,7 @@ import Packages from "../../forms/components/Packages";
 import Review from "../../forms/components/Review";
 import TextFieldCustom from "../../forms/components/TextFieldCustom";
 import UploadOCIFile from "../../forms/components/UploadOCIFile";
+import UploadFile from "../../forms/components/UploadFile";
 import BlueprintSelect from "../../forms/components/BlueprintSelect";
 import { FormSpy, useFormApi } from "@data-driven-forms/react-form-renderer";
 
@@ -142,6 +144,21 @@ const CreateImageWizard = (props) => {
             tenancy: formValues.image.upload.settings.tenancy,
           },
         };
+      } else if (formValues?.image?.type === "gce") {
+        // credentials are uploaded as a json file that should be
+        // base64 encoded before being sent to osbuild-composer
+        const credentialsEncoded = window.btoa(
+          formValues.image.upload.settings.credentials
+        );
+        uploadSettings = {
+          image_name: formValues.image.upload.image_name,
+          provider: "gcp",
+          settings: {
+            region: formValues.image.upload.settings.region,
+            bucket: formValues.image.upload.settings.bucket,
+            credentials: credentialsEncoded,
+          },
+        };
       }
     }
 
@@ -208,6 +225,7 @@ const CreateImageWizard = (props) => {
                   awsDest(intl),
                   azureAuth(intl),
                   azureDest(intl),
+                  gcp(intl),
                   ociAuth(intl),
                   ociDest(intl),
                   vmwareAuth(intl),
@@ -244,6 +262,7 @@ const CreateImageWizard = (props) => {
               blueprintNames: blueprintNames,
             },
             "blueprint-listener": BlueprintListenerWrapper,
+            "upload-file": UploadFile,
           }}
           onCancel={handleClose}
         />

@@ -225,6 +225,15 @@ const imageOutput = (intl) => {
       {
         name: "image.isUpload",
         component: componentTypes.CHECKBOX,
+        label: <FormattedMessage defaultMessage="Upload to GCP" />,
+        condition: {
+          when: "image.type",
+          is: "gce",
+        },
+      },
+      {
+        name: "image.isUpload",
+        component: componentTypes.CHECKBOX,
         label: (
           <>
             <FormattedMessage
