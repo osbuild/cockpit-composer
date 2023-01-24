@@ -51,7 +51,7 @@ export const FirewallCard = ({ blueprint }) => {
     setIsModalOpen(false);
   };
 
-  const firewall = blueprint?.customizations?.firewall;
+  const firewall = blueprint?.customizations?.firewall || {};
 
   const FirewallCardEdit = () => {
     return (
