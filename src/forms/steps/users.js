@@ -1,5 +1,6 @@
 import React from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
+import { validatorTypes } from "@data-driven-forms/react-form-renderer";
 
 const messages = defineMessages({
   customizationsStepTitle: {
@@ -13,6 +14,12 @@ const messages = defineMessages({
   },
   buttonsRemoveAll: {
     defaultMessage: "Remove all users",
+  },
+  inputUsername: {
+    defaultMessage:
+      "Please enter a valid username. Your username can begin with a lower \
+      case letter or an underscore, and can only contain lower case letters, \
+      digits, underscores, or dashes",
   },
 });
 
@@ -43,6 +50,11 @@ const users = (intl) => {
             validate: [
               {
                 type: "required",
+              },
+              {
+                type: validatorTypes.PATTERN,
+                pattern: "^[a-z_][a-z0-9_-]*$",
+                message: intl.formatMessage(messages.inputUsername),
               },
             ],
           },
