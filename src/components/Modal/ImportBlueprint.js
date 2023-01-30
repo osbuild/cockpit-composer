@@ -13,6 +13,8 @@ import {
   createBlueprintTOML,
 } from "../../slices/blueprintsSlice";
 
+import "./ImportBlueprint.css";
+
 export const ImportBlueprint = () => {
   const dispatch = useDispatch();
   const intl = useIntl();
