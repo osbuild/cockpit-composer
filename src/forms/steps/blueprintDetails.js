@@ -21,7 +21,10 @@ const blueprintDetails = (intl) => {
         className: "pf-u-w-75",
         label: <FormattedMessage defaultMessage="Name" />,
         isRequired: true,
-        validate: [{ type: validatorTypes.REQUIRED }],
+        validate: [
+          { type: validatorTypes.REQUIRED },
+          { type: "blueprintNameValidator" },
+        ],
       },
       {
         component: "text-field-custom",

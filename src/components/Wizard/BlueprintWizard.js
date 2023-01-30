@@ -22,9 +22,16 @@ import {
   ignition,
   openscap,
 } from "../../forms/steps";
-import { hostnameValidator, filesystemValidator } from "../../forms/validators";
+import {
+  hostnameValidator,
+  filesystemValidator,
+  blueprintNameValidator,
+} from "../../forms/validators";
 import { selectAllImageTypes } from "../../slices/imagesSlice";
-import { updateBlueprint } from "../../slices/blueprintsSlice";
+import {
+  selectAllBlueprintNames,
+  updateBlueprint,
+} from "../../slices/blueprintsSlice";
 
 import FormRenderer from "@data-driven-forms/react-form-renderer/form-renderer";
 import Pf4FormTemplate from "@data-driven-forms/pf4-component-mapper/form-template";
@@ -61,6 +68,10 @@ const BlueprintWizard = (props) => {
     useSelector((state) => selectAllImageTypes(state));
   const imageTypes = getImageTypes();
 
+  const getBlueprintNames = () =>
+    useSelector((state) => selectAllBlueprintNames(state));
+  const blueprintNames = getBlueprintNames();
+
   const [isWizardOpen, setIsWizardOpen] = useState(false);
 
   const handleClose = () => {
@@ -77,6 +88,12 @@ const BlueprintWizard = (props) => {
     handleClose();
   };
 
+  const initialValues = props.isEdit
+    ? blueprintToFormState(props.blueprint)
+    : {};
+  // Used for blueprint name validation
+  initialValues["blueprint-names"] = blueprintNames;
+
   return (
     <>
       <Button variant="secondary" onClick={handleOpen}>
@@ -88,16 +105,18 @@ const BlueprintWizard = (props) => {
       </Button>
       {isWizardOpen && (
         <FormRenderer
-          initialValues={
-            props.isEdit ? blueprintToFormState(props.blueprint) : undefined
-          }
+          initialValues={initialValues}
           blueprint={props.blueprint}
           imageTypes={imageTypes}
           FormTemplate={(props) => (
             <Pf4FormTemplate {...props} showFormControls={false} />
           )}
           onSubmit={(formValues) => handleSaveBlueprint(formValues)}
-          validatorMapper={{ hostnameValidator, filesystemValidator }}
+          validatorMapper={{
+            hostnameValidator,
+            filesystemValidator,
+            blueprintNameValidator,
+          }}
           componentMapper={{
             ...componentMapper,
             "package-selector": Packages,
