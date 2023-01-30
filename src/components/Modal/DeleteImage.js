@@ -43,7 +43,7 @@ export const DeleteImage = (props) => {
           </Button>,
         ]}
       >
-        <FormattedMessage defaultMessage="Are you sure you want to delete the image?" />
+        <FormattedMessage defaultMessage="Are you sure you want to delete the image?" />{" "}
         <FormattedMessage defaultMessage="This action cannot be undone." />
       </Modal>
     </>
