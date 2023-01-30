@@ -109,7 +109,10 @@ const BlueprintList = () => {
                     setFilterValue={setFilterValue}
                     blueprintNames={blueprintNames}
                   />
-                  <BlueprintTable blueprints={blueprintsFilteredAndSorted} />
+                  <BlueprintTable
+                    blueprints={blueprintsFilteredAndSorted}
+                    images={images}
+                  />
                 </>
               )}
             </div>
