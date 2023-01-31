@@ -170,9 +170,9 @@ ImageRow.propTypes = {
 const ImageTable = (props) => {
   const intl = useIntl();
   // start sorting by created date
-  const [activeSortIndex, setActiveSortIndex] = useState(null);
-  const [isSortAscending, setIsSortAscending] = useState(true);
-  const [sortBy, setSortBy] = useState("id");
+  const [activeSortIndex, setActiveSortIndex] = useState(3);
+  const [isSortAscending, setIsSortAscending] = useState(false);
+  const [sortBy, setSortBy] = useState("job_created");
 
   const columns = [
     {
