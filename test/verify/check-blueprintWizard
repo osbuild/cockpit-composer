@@ -67,7 +67,7 @@ class TestBlueprintWizard(composerlib.ComposerCase):
 
         # sshkyes is just like users but has key and user instead
         b.click("button:contains('Add key')")
-        b.set_input_text("input[id='customizations.sshkey[0].key']", "ssh-rsa key")
+        b.set_input_text("textarea[id='customizations.sshkey[0].key']", "ssh-rsa key")
         b.set_input_text("input[id='customizations.sshkey[0].user']", "admin")
         b.click("button:contains('Next')")
 
