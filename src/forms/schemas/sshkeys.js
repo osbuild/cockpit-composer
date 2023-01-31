@@ -13,12 +13,17 @@ const sshkeys = {
       },
       fields: [
         {
-          component: "text-field-custom",
+          component: "textarea",
           name: "key",
-          className: "pf-u-w-50",
+          className: "pf-u-w-50 pf-u-h-25vh",
           type: "text",
           label: <FormattedMessage defaultMessage="Key" />,
           autoFocus: true,
+          validate: [
+            {
+              type: "required",
+            },
+          ],
         },
         {
           component: "text-field-custom",
