@@ -54,6 +54,19 @@ export const deleteImage = createAsyncThunk(
   }
 );
 
+export const filterImagesByBlueprint = createAsyncThunk(
+  "images/filterByBlueprint",
+  async (args, { dispatch }) => {
+    const { blueprintName, images } = args;
+    images
+      .filter((image) => image.blueprint === blueprintName)
+      .forEach(async (image) => {
+        dispatch(deleteImage(image.id));
+        return image.id;
+      });
+  }
+);
+
 export const stopImageBuild = createAsyncThunk(
   "images/stopBuild",
   async (imageId, { dispatch }) => {

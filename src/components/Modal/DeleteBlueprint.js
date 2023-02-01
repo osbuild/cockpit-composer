@@ -1,14 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useIntl, FormattedMessage } from "react-intl";
 
 import { Modal, ModalVariant, Button } from "@patternfly/react-core";
 import { deleteBlueprint } from "../../slices/blueprintsSlice";
+import { selectAllImages } from "../../slices/imagesSlice";
 
 export const DeleteBlueprint = (props) => {
   const dispatch = useDispatch();
   const intl = useIntl();
+  const images = useSelector((state) => selectAllImages(state));
 
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
@@ -17,7 +19,11 @@ export const DeleteBlueprint = (props) => {
   };
 
   const handleSubmit = () => {
-    dispatch(deleteBlueprint(props.blueprint.name));
+    const args = {
+      blueprintName: props.blueprint.name,
+      images: images,
+    };
+    dispatch(deleteBlueprint(args));
     setIsModalOpen(false);
   };
 
@@ -43,7 +49,10 @@ export const DeleteBlueprint = (props) => {
           </Button>,
         ]}
       >
-        <p>Are you sure you want to delete the blueprint</p>
+        <p>
+          Are you sure you want to delete the blueprint and all associated
+          images?
+        </p>
         <p>This action cannot be undone.</p>
       </Modal>
     </>

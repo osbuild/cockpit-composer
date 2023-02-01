@@ -5,6 +5,7 @@ import {
   createSelector,
 } from "@reduxjs/toolkit";
 import * as api from "../api";
+import { filterImagesByBlueprint } from "./imagesSlice";
 
 export const blueprintsAdapter = createEntityAdapter({
   // the id for each blueprint is the blueprint name
@@ -63,8 +64,10 @@ export const depsolveBlueprint = createAsyncThunk(
 
 export const deleteBlueprint = createAsyncThunk(
   "blueprints/delete",
-  async (blueprintName) => {
+  async (args, { dispatch }) => {
+    const { blueprintName } = args;
     await api.deleteBlueprint(blueprintName);
+    dispatch(filterImagesByBlueprint(args));
     return blueprintName;
   }
 );
