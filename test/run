@@ -2,9 +2,8 @@
 # This is the expected entry point for Cockpit CI; will be called without
 # arguments but with an appropriate $TEST_OS, and optionally $TEST_SCENARIO
 
-if [ -n "${TEST_SCENARIO}" ]; then
-    export TEST_BROWSER="$TEST_SCENARIO"
-fi
+TEST_SCENARIO="${TEST_SCENARIO:-}"
+[ "${TEST_SCENARIO}" = "${TEST_SCENARIO##firefox}" ] || export TEST_BROWSER=firefox
 
 # overlays are too big for bot's 10GB /tmp tmpfs
 TEST_OVERLAY_DIR="$(pwd)/tmp/run"
