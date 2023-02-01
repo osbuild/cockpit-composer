@@ -25,7 +25,7 @@ const getLatestCreationDate = (images, blueprint) => {
   );
   if (imagesByBlueprint.length > 0) {
     const latestTimestamp = Math.max(
-      ...imagesByBlueprint.map((image) => image.job_finished)
+      ...imagesByBlueprint.map((image) => image.job_created)
     );
     return formTimestampLabel(latestTimestamp);
   } else {
