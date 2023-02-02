@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useIntl, FormattedMessage } from "react-intl";
 import { Button, Flex } from "@patternfly/react-core";
@@ -19,7 +19,6 @@ import {
 import cockpit from "cockpit";
 import DeleteImage from "../Modal/DeleteImage";
 import StopBuild from "../Modal/StopBuild";
-import { getImageLog } from "../../api";
 import { formTimestampLabel } from "../../helpers";
 
 const StatusLabel = (props) => {
@@ -71,22 +70,23 @@ const sizeLabel = (size) => {
   return sizeGB + " GB";
 };
 
-const ImageRow = (props) => {
-  const { image, columns } = props;
-  const [logs, setLogs] = useState("");
-
-  useEffect(() => {
-    getImageLog(image.id).then((data) => {
-      setLogs(data);
-    });
-  }, [image.queue_status]);
-
+const ImageRow = ({ image, columns }) => {
+  // downloading logs and images is done via cockpit
+  // cockpit is used to query the api and download the file to the users browser
   const downloadLogs = () => {
     const link = document.createElement("a");
-    link.setAttribute(
-      "href",
-      "data:text/plain;charset=utf-8," + encodeURIComponent(logs)
+    const query = window.btoa(
+      JSON.stringify({
+        payload: "http-stream2",
+        unix: "/run/weldr/api.socket",
+        method: "GET",
+        path: `/api/v1/compose/log/${image.id}`,
+        superuser: "try",
+      })
     );
+    const dowloadhref = `/cockpit/channel/${cockpit.transport.csrf_token}?${query}`;
+
+    link.setAttribute("href", dowloadhref);
     link.setAttribute("download", image.id + ".log");
 
     document.body.appendChild(link);
