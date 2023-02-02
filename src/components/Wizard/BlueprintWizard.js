@@ -82,8 +82,15 @@ const BlueprintWizard = (props) => {
     setIsWizardOpen(true);
   };
 
-  const handleSaveBlueprint = (formValues) => {
-    const blueprintData = formStateToBlueprint(formValues);
+  const handleSaveBlueprint = (formValues, formApi) => {
+    // this is necessary because swapping steps doesn't always update the formValues but calling getState() provides them
+    // the key check is necessary because the formvalues object can contain an undefined key value of {undefined: undefined}
+    // the reason it is a string "undefined" is because javascript
+    const formState =
+      Object.keys(formValues)[0] !== "undefined"
+        ? formValues
+        : formApi.getState().values;
+    const blueprintData = formStateToBlueprint(formState);
     dispatch(updateBlueprint(blueprintData));
     handleClose();
     window.location.href = `#/${blueprintData.name}`;
@@ -112,7 +119,9 @@ const BlueprintWizard = (props) => {
           FormTemplate={(props) => (
             <Pf4FormTemplate {...props} showFormControls={false} />
           )}
-          onSubmit={(formValues) => handleSaveBlueprint(formValues)}
+          onSubmit={(formValues, formApi) =>
+            handleSaveBlueprint(formValues, formApi)
+          }
           validatorMapper={{
             hostnameValidator,
             filesystemValidator,
@@ -167,6 +176,29 @@ const BlueprintWizard = (props) => {
                   ignition(intl),
                   review(intl),
                 ],
+                initialState: {
+                  activeStep: "blueprint-details",
+                  activeStepIndex: 0,
+                  prevSteps: [
+                    "blueprint-details",
+                    "packages",
+                    "kernel",
+                    "filesystem",
+                    "services",
+                    "firewall",
+                    "users",
+                    "groups",
+                    "sshkeys",
+                    "timezone",
+                    "locale",
+                    "other",
+                    "fdo",
+                    "openscap",
+                    "ignition",
+                    "review",
+                  ],
+                  maxStepIndex: 15,
+                },
               },
             ],
           }}
