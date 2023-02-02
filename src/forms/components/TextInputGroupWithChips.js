@@ -63,7 +63,7 @@ const TextInputGroupWithChips = ({ label, ...props }) => {
   };
 
   const handleTextInputKeyDown = (event) => {
-    if (event.key === "Enter") {
+    if (event.key === "Enter" || event.key === " " || event.key === ",") {
       event.preventDefault();
       handleEnter();
     }
