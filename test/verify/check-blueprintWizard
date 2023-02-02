@@ -106,6 +106,9 @@ class TestBlueprintWizard(composerlib.ComposerCase):
         # verify that blueprint was created
         b.is_present("tr[data-testid='testName']")
 
+        # navigate to blueprint list
+        b.click("a:contains('Back to blueprints')")
+
         # delete blueprint
         b.click("tr[data-testid='testName'] button:contains('Delete')")
         b.is_visible("div[id='modal-delete-blueprint']")
