@@ -50,32 +50,9 @@ export const SourceCardModal = (props) => {
     setIsModalOpen(!isModalOpen);
   };
 
-  const sourceToState = (source) => {
-    const { name, type, url, check_gpg, check_ssl } = source;
-    return {
-      name,
-      type,
-      url,
-      check_gpg,
-      check_ssl,
-    };
-  };
-
-  const stateToSource = (values) => {
-    const { name, type, url, check_gpg, check_ssl } = values;
-    return {
-      name,
-      type,
-      url,
-      check_gpg,
-      check_ssl,
-    };
-  };
-
-  const onSubmit = (values) => {
+  const onSubmit = (source) => {
     // delete existing source before creating new source
     if (props.isEditable) dispatch(deleteSource(props.source.name));
-    const source = stateToSource(values);
     dispatch(createSource(source));
     setIsModalOpen(false);
   };
@@ -180,6 +157,13 @@ export const SourceCardModal = (props) => {
         }),
         name: "check_gpg",
       },
+      {
+        component: "checkbox",
+        label: intl.formatMessage({
+          defaultMessage: "Use RHSM",
+        }),
+        name: "rhsm",
+      },
     ],
   };
 
@@ -251,6 +235,16 @@ export const SourceCardModal = (props) => {
                   )}
                 </DescriptionListDescription>
               </DescriptionListGroup>
+              <DescriptionListGroup>
+                <DescriptionListTerm>RHSM</DescriptionListTerm>
+                <DescriptionListDescription>
+                  {props.source?.rhsm ? (
+                    <CheckCircleIcon className="success" />
+                  ) : (
+                    <TimesCircleIcon className="error" />
+                  )}
+                </DescriptionListDescription>
+              </DescriptionListGroup>
             </DescriptionList>
           </CardBody>
           <CardFooter />
@@ -300,7 +294,7 @@ export const SourceCardModal = (props) => {
           validatorMapper={customValidatorMapper}
           onSubmit={onSubmit}
           onCancel={handleModalToggle}
-          initialValues={props.isEditable ? sourceToState(props.source) : {}}
+          initialValues={props.isEditable ? props.source : {}}
         />
       </Modal>
     </>
