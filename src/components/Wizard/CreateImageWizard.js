@@ -219,6 +219,11 @@ const CreateImageWizard = (props) => {
                 buttonLabels: {
                   submit: intl.formatMessage(messages.createButton),
                 },
+                onKeyDown: (event) => {
+                  if (event.key === "Enter") {
+                    event.preventDefault();
+                  }
+                },
                 fields: [
                   imageOutput(intl),
                   awsAuth(intl),
