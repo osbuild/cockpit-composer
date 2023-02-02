@@ -1,7 +1,6 @@
 import React from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
 import componentTypes from "@data-driven-forms/react-form-renderer/component-types";
-import validatorTypes from "@data-driven-forms/react-form-renderer/validator-types";
 
 const messages = defineMessages({
   filesystemToggleLabel: {
@@ -34,10 +33,7 @@ const filesystem = (intl) => {
         component: "filesystem-configuration",
         name: "customizations.filesystem",
         label: intl.formatMessage(messages.filesystemConfigurationLabel),
-        validate: [
-          { type: validatorTypes.REQUIRED },
-          { type: "filesystemValidator" },
-        ],
+        validate: [{ type: "filesystemValidator" }],
         condition: {
           when: "filesystem-toggle",
           is: "manual",
