@@ -97,9 +97,6 @@ const FileSystemConfiguration = ({ ...props }) => {
     setItemOrder(newOrder);
   }, []);
 
-  const showErrors = () =>
-    getState()?.values?.["filesystem-config-show-errors"];
-
   useEffect(() => {
     change(
       input.name,
@@ -268,33 +265,13 @@ const FileSystemConfiguration = ({ ...props }) => {
 
   return (
     <FormSpy>
-      {() => (
+      {({ errors }) => (
         <>
           <TextContent>
             <Text component={TextVariants.h3}>
               <FormattedMessage defaultMessage="Configure partitions" />
             </Text>
           </TextContent>
-          {rows.length > 1 &&
-            getState()?.errors?.customizations?.filesystem?.duplicates
-              ?.length !== 0 &&
-            showErrors() && (
-              <Alert
-                variant="danger"
-                isInline
-                title={intl.formatMessage(messages.duplicateError)}
-                data-testid="fsc-warning"
-              />
-            )}
-          {rows.length >= 1 &&
-            getState()?.errors?.customizations?.filesystem?.root === false &&
-            showErrors() && (
-              <Alert
-                variant="danger"
-                isInline
-                title={intl.formatMessage(messages.rootError)}
-              />
-            )}
           <TextContent>
             <FormattedMessage
               defaultMessage="
@@ -303,6 +280,13 @@ const FileSystemConfiguration = ({ ...props }) => {
               of the wizard."
             />
           </TextContent>
+          {errors?.customizations?.filesystem && (
+            <Alert
+              variant="danger"
+              isInline
+              title={errors.customizations.filesystem}
+            />
+          )}
           <TableComposable
             aria-label={intl.formatMessage(messages.tableLabel)}
             className={isDragging && styles.modifiers.dragOver}
@@ -370,21 +354,6 @@ const FileSystemConfiguration = ({ ...props }) => {
                       mountpoint={row.mountpoint}
                       onChange={(mp) => setMountpoint(row.id, mp)}
                     />
-                    {getState().errors?.customizations?.filesystem?.duplicates
-                      .length !== 0 &&
-                      getState().errors?.customizations?.filesystem?.duplicates.indexOf(
-                        row.mountpoint
-                      ) !== -1 &&
-                      showErrors() && (
-                        <Alert
-                          variant="danger"
-                          isInline
-                          isPlain
-                          title={intl.formatMessage(
-                            messages.duplicateErrorInline
-                          )}
-                        />
-                      )}
                   </Td>
                   <Td className="pf-m-width-20">{row.fstype}</Td>
                   <Td className="pf-m-width-30">

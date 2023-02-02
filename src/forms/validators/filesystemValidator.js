@@ -1,34 +1,34 @@
-// Copied from https://github.com/RedHatInsights/image-builder-frontend
+/* eslint-disable react/display-name */
+import React from "react";
+import { FormattedMessage } from "react-intl";
 
+// contains duplicate mp or no root (/) mp
 const filesystemValidator = () => (fsc) => {
   if (!fsc) {
     return undefined;
   }
+  const mountpoints = fsc.map((fs) => fs.mountpoint);
 
-  let mpFreqs = {};
-  for (const fs of fsc) {
-    const mp = fs.mountpoint;
-    if (mp in mpFreqs) {
-      mpFreqs[mp]++;
-    } else {
-      mpFreqs[mp] = 1;
-    }
+  if (!mountpoints.length) {
+    return (
+      <FormattedMessage defaultMessage="File system configuration is required." />
+    );
   }
 
-  let duplicates = [];
-  for (const [k, v] of Object.entries(mpFreqs)) {
-    if (v > 1) {
-      duplicates.push(k);
-    }
+  const uniqueMountpoints = new Set(mountpoints);
+  const hasDuplicates = mountpoints.length !== uniqueMountpoints.size;
+  if (hasDuplicates) {
+    return (
+      <FormattedMessage defaultMessage="File system configuration must not contain duplicate mount points." />
+    );
   }
 
-  let root = mpFreqs["/"] >= 1;
-  return duplicates.length === 0 && root
-    ? undefined
-    : {
-        duplicates: duplicates === [] ? undefined : duplicates,
-        root,
-      };
+  const hasRoot = mountpoints.includes("/");
+  if (!hasRoot) {
+    return (
+      <FormattedMessage defaultMessage="File system configuration must contain a root (/) partition." />
+    );
+  }
 };
 
 export default filesystemValidator;
