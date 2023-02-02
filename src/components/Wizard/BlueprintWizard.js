@@ -86,6 +86,7 @@ const BlueprintWizard = (props) => {
     const blueprintData = formStateToBlueprint(formValues);
     dispatch(updateBlueprint(blueprintData));
     handleClose();
+    window.location.href = `#/${blueprintData.name}`;
   };
 
   const initialValues = props.isEdit
