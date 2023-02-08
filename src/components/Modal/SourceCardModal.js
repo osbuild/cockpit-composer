@@ -212,7 +212,10 @@ export const SourceCardModal = (props) => {
               <DescriptionListGroup>
                 <DescriptionListTerm>URL</DescriptionListTerm>
                 <DescriptionListDescription>
-                  <ClipboardCopy variant={ClipboardCopyVariant.expansion}>
+                  <ClipboardCopy
+                    variant={ClipboardCopyVariant.expansion}
+                    onClick={(e) => e.stopPropagation()}
+                  >
                     {props.source?.url}
                   </ClipboardCopy>
                 </DescriptionListDescription>
