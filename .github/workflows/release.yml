@@ -32,6 +32,6 @@ jobs:
           cp cockpit-composer-*.tar.gz $orig
 
       - name: Publish GitHub release
-        uses: cockpit-project/action-release@62db9d9850a1adec300500d84035c4f523fd5290
+        uses: cockpit-project/action-release@88d994da62d1451c7073e26748c18413fcdf46e9
         with:
           filename: "cockpit-composer-${{ github.ref_name }}.tar.gz"
