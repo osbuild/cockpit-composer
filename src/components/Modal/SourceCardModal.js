@@ -65,6 +65,8 @@ export const SourceCardModal = (props) => {
 
   const customValidatorMapper = {
     custom: () => (value) => {
+      // no error if the name is unchanged
+      if (props.source?.name === value) return undefined;
       if (props.sourceNames.includes(value)) {
         return intl.formatMessage({
           defaultMessage: "A source with this name already exists.",
