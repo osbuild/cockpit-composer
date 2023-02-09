@@ -12,10 +12,11 @@ import LocaleCardModal from "../Modal/LocaleCard";
 import FDOCardModal from "../Modal/FDOCard";
 import OpenSCAPCardModal from "../Modal/OpenSCAPCard";
 import UserCard from "../Cards/UserCard";
+import "./CustomizationsTab.css";
 
 const CustomizationsTab = ({ blueprint }) => {
   return (
-    <Grid hasGutter className="pf-u-p-lg">
+    <Grid hasGutter className="pf-u-p-lg pf-u-max-width">
       <GridItem span={3}>
         <Flex direction={{ default: "column" }}>
           <FlexItem>
