@@ -34,6 +34,14 @@ import TextInputGroupWithChips from "../../forms/components/TextInputGroupWithCh
 import { blueprintToFormState, formStateToBlueprint } from "../../helpers";
 import { updateBlueprint } from "../../slices/blueprintsSlice";
 import TextFieldCustom from "../../forms/components/TextFieldCustom";
+import {
+  TableComposable,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
+} from "@patternfly/react-table";
 
 export const FirewallCard = ({ blueprint }) => {
   const dispatch = useDispatch();
@@ -113,14 +121,32 @@ export const FirewallCard = ({ blueprint }) => {
                   <FormattedMessage defaultMessage="Zones" />
                 </DescriptionListTerm>
                 <DescriptionListDescription>
-                  {firewall?.zones?.map((zone, index) => (
-                    <React.Fragment key={index}>
-                      <Label>{zone?.name}</Label>
-                      {zone?.sources?.map((source, index) => (
-                        <Label key={index}>{source}</Label>
+                  <TableComposable variant="compact">
+                    <Thead>
+                      <Tr>
+                        <Th>
+                          <FormattedMessage defaultMessage="Name" />
+                        </Th>
+                        <Th>
+                          <FormattedMessage defaultMessage="Sources" />
+                        </Th>
+                      </Tr>
+                    </Thead>
+                    <Tbody>
+                      {firewall?.zones?.map((zone, index) => (
+                        <Tr key={index}>
+                          <Td className="pf-m-width-30">{zone?.name}</Td>
+                          <Td className="pf-m-width-30">
+                            {zone?.sources.map((source) => (
+                              <Label key={source} isCompact color="gold">
+                                {source}
+                              </Label>
+                            ))}
+                          </Td>
+                        </Tr>
                       ))}
-                    </React.Fragment>
-                  ))}
+                    </Tbody>
+                  </TableComposable>
                 </DescriptionListDescription>
               </DescriptionListGroup>
             </DescriptionList>
