@@ -12,6 +12,7 @@ import LocaleCardModal from "../Modal/LocaleCard";
 import FDOCardModal from "../Modal/FDOCard";
 import OpenSCAPCardModal from "../Modal/OpenSCAPCard";
 import UserCard from "../Cards/UserCard";
+import IgnitionCardModal from "../Modal/ignitionCard";
 
 const CustomizationsTab = ({ blueprint }) => {
   return (
@@ -64,6 +65,9 @@ const CustomizationsTab = ({ blueprint }) => {
           </FlexItem>
           <FlexItem>
             <OpenSCAPCardModal blueprint={blueprint} />
+          </FlexItem>
+          <FlexItem>
+            <IgnitionCardModal blueprint={blueprint} />
           </FlexItem>
         </Flex>
       </GridItem>
