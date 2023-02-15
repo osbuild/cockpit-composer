@@ -64,7 +64,7 @@ export const KernelCardModal = ({ blueprint }) => {
         </CardHeader>
         <Divider />
         <CardBody>
-          {Object.keys(kernel).length ? (
+          {kernel?.name?.length || kernel?.append?.length ? (
             <DescriptionList isHorizontal isAutoFit>
               <DescriptionListGroup>
                 <DescriptionListTerm>
