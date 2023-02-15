@@ -615,5 +615,20 @@
   "EGl/pJ": "Amazon S3 bucket",
   "BzQPM+": "Hedef",
   "Bep/gA": "Özel anahtar",
-  "2cDSOG": "Plan seç"
+  "2cDSOG": "Plan seç",
+  "uRdfZs": "GCP'ye yükle",
+  "lX0x2F": "Kimlik bilgileri dosyası, GCP'den indirilen bir JSON dosyasıdır. Kimlik bilgileri, kalıbın yükleneceği GCP projesini belirlemek için kullanılır.",
+  "gQL2CA": "Bölge yardımı",
+  "f7FU1f": "Kalıp adı yardımı",
+  "ZvnTwM": "Kalıbın yükleneceği bucket adını girin. Bu bucket zaten mevcut olmak zorundadır.",
+  "XsPqPW": "Bucket'in bulunduğu bölgeyi belirtin. Bu bölge normal bir Google depolama bölgesi olabilir, ancak ikili veya çoklu bölge de olabilir.",
+  "Wz9Z1Z": "Kimlik bilgileri yardımı",
+  "VH3Xt/": "Bucket",
+  "UJn2FD": "Plan adlarında boşluk olamaz.",
+  "Sb1B69": "Depolama bölgesi",
+  "N9tOr0": "Bucket yardımı",
+  "HLZ9CC": "Kimlik bilgileri",
+  "9RX5kq": "Yüklenecek kalıp dosyası için kullanılacak bir dosya adı girin.",
+  "7Cs5oS": "Lütfen geçerli bir kullanıcı adı girin. Kullanıcı adınız küçük harf veya alt çizgi ile başlayabilir ve yalnızca küçük harf, rakam, alt çizgi veya kısa çizgi içerebilir",
+  "/Ktg9J": "GCP"
 }
