@@ -116,39 +116,41 @@ export const FirewallCard = ({ blueprint }) => {
                   </LabelGroup>
                 </DescriptionListDescription>
               </DescriptionListGroup>
-              <DescriptionListGroup>
-                <DescriptionListTerm>
-                  <FormattedMessage defaultMessage="Zones" />
-                </DescriptionListTerm>
-                <DescriptionListDescription>
-                  <TableComposable variant="compact">
-                    <Thead>
-                      <Tr>
-                        <Th>
-                          <FormattedMessage defaultMessage="Name" />
-                        </Th>
-                        <Th>
-                          <FormattedMessage defaultMessage="Sources" />
-                        </Th>
-                      </Tr>
-                    </Thead>
-                    <Tbody>
-                      {firewall?.zones?.map((zone, index) => (
-                        <Tr key={index}>
-                          <Td className="pf-m-width-30">{zone?.name}</Td>
-                          <Td className="pf-m-width-30">
-                            {zone?.sources.map((source) => (
-                              <Label key={source} isCompact color="gold">
-                                {source}
-                              </Label>
-                            ))}
-                          </Td>
+              {firewall?.zones?.length && (
+                <DescriptionListGroup>
+                  <DescriptionListTerm>
+                    <FormattedMessage defaultMessage="Zones" />
+                  </DescriptionListTerm>
+                  <DescriptionListDescription>
+                    <TableComposable variant="compact">
+                      <Thead>
+                        <Tr>
+                          <Th>
+                            <FormattedMessage defaultMessage="Name" />
+                          </Th>
+                          <Th>
+                            <FormattedMessage defaultMessage="Sources" />
+                          </Th>
                         </Tr>
-                      ))}
-                    </Tbody>
-                  </TableComposable>
-                </DescriptionListDescription>
-              </DescriptionListGroup>
+                      </Thead>
+                      <Tbody>
+                        {firewall.zones.map((zone, index) => (
+                          <Tr key={index}>
+                            <Td className="pf-m-width-30">{zone?.name}</Td>
+                            <Td className="pf-m-width-30">
+                              {zone?.sources?.map((source) => (
+                                <Label key={source} isCompact color="gold">
+                                  {source}
+                                </Label>
+                              ))}
+                            </Td>
+                          </Tr>
+                        ))}
+                      </Tbody>
+                    </TableComposable>
+                  </DescriptionListDescription>
+                </DescriptionListGroup>
+              )}
             </DescriptionList>
           ) : (
             <Bullseye>
