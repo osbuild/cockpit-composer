@@ -108,6 +108,10 @@ function _delete(path, options) {
 // Above was written for use with cockpit
 // Below is our api calls
 
+export const getAPIStatus = () => {
+  return get("/api/status");
+};
+
 export function createBlueprint(blueprint) {
   return post("/api/v0/blueprints/new", blueprint);
 }
