@@ -1,6 +1,7 @@
 {
   "+U6ozc": "Type",
   "+YJ/Sw": "Append",
+  "+kWShv": "Starting OSBuild Composer",
   "+ubJEs": "Manufacturing server URL",
   "/9I/o9": "Add partition",
   "/Ktg9J": "GCP",
@@ -118,6 +119,7 @@
   "Ucrl50": "Disabled services",
   "V52jNn": "Enabled",
   "VC1pOq": "Add locale",
+  "VDNvBb": "Start socket",
   "VH3Xt/": "Bucket",
   "VcpIj8": "No blueprints",
   "Vp6WM3": "Mount point",
@@ -191,6 +193,7 @@
   "pWwsxm": "Delete image",
   "pblYYn": "Image name",
   "q/uwLT": "Stop",
+  "q4qEK9": "OSBuild Composer is not started",
   "q5lNfF": "Alternatively, you may manually configure the file system of your image by adding, removing, and editing partitions.",
   "q96L4B": "DIUN Public Key Insecure",
   "r1lzNw": "Add ignition",
