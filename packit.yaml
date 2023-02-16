@@ -21,7 +21,11 @@ jobs:
       project: "cockpit-composer"
       preserve_project: True
       targets:
+      - centos-stream-8
+      - centos-stream-9
       - epel-8
+      - epel-9
+      - fedora-all
     actions:
       post-upstream-clone: make spec
       # HACK: tarball for releases (copr_build, koji, etc.), copying spec's Source0; this
