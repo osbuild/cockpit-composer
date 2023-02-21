@@ -72,7 +72,7 @@ const ociDest = (intl) => {
     title: <FormattedMessage defaultMessage="Destination" />,
     name: "oci-dest",
     substepOf: intl.formatMessage(messages.ociTitle),
-    nextStep: "review",
+    nextStep: "review-image",
     fields: [
       {
         component: "text-field-custom",

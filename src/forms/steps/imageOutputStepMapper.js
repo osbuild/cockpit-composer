@@ -12,7 +12,7 @@ export default (props) => {
       case "gce":
         return "gcp";
       default:
-        return "review";
+        return "review-image";
     }
     // check if image type is an ostree-settings
   } else if (
@@ -27,6 +27,6 @@ export default (props) => {
   ) {
     return "ostree-settings";
   } else {
-    return "review";
+    return "review-image";
   }
 };

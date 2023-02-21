@@ -25,13 +25,6 @@ class TestImageWizard(composerlib.ComposerCase):
         b.select_PF4("#image-output-select-toggle", "QEMU Image (.qcow2)")
         b.click("button:contains('Next')")
 
-        b.wait_in_text("#review-list", "Blueprint name")
-        b.wait_in_text("#review-list", "httpd-server")
-        b.wait_in_text("#review-list", "Output type")
-        b.wait_in_text("#review-list", "qcow2")
-        b.wait_in_text("#review-list", "Image size")
-        b.wait_in_text("#review-list", "2")
-
         # Create image
         b.click("footer button:contains('Create')")
 

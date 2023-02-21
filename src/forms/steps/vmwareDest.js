@@ -61,7 +61,7 @@ const vmwareDest = (intl) => {
     title: <FormattedMessage defaultMessage="Destination" />,
     name: "vmware-dest",
     substepOf: intl.formatMessage(messages.vmwareStepsTitle),
-    nextStep: "review",
+    nextStep: "review-image",
     fields: [
       {
         component: "text-field-custom",

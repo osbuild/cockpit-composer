@@ -46,7 +46,7 @@ const awsDest = (intl) => {
     title: <FormattedMessage defaultMessage="Destination" />,
     name: "aws-dest",
     substepOf: intl.formatMessage(messages.awsStepsTitle),
-    nextStep: "review",
+    nextStep: "review-image",
     fields: [
       {
         component: "text-field-custom",

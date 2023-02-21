@@ -39,7 +39,7 @@ const gcp = (intl) => {
   return {
     title: <FormattedMessage defaultMessage="GCP" />,
     name: "gcp",
-    nextStep: "review",
+    nextStep: "review-image",
     fields: [
       {
         component: "text-field-custom",
