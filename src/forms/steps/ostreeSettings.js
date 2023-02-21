@@ -50,7 +50,7 @@ const ostreeSettings = (intl) => {
       />
     ),
     name: "ostree-settings",
-    nextStep: "review",
+    nextStep: "review-image",
     fields: [
       {
         component: "text-field-custom",

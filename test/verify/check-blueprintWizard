@@ -102,7 +102,7 @@ class TestBlueprintWizard(composerlib.ComposerCase):
         # TODO: add test for ignition
         b.click("button:contains('Next')")
 
-        b.click(".pf-c-wizard__footer button:contains('Create')")
+        b.click(".pf-c-wizard__footer button:contains('Save')")
         # verify that blueprint was created
         b.is_present("tr[data-testid='testName']")
 

@@ -16,7 +16,7 @@ import {
   ociDest,
   gcp,
   ostreeSettings,
-  review,
+  reviewImage,
 } from "../../forms/steps";
 import { ostreeValidator } from "../../forms/validators";
 import "./CreateImageWizard.css";
@@ -31,7 +31,6 @@ import Pf4FormTemplate from "@data-driven-forms/pf4-component-mapper/form-templa
 import { componentMapper } from "@data-driven-forms/pf4-component-mapper";
 import ImageOutputSelect from "../../forms/components/ImageOutputSelect";
 import Packages from "../../forms/components/Packages";
-import Review from "../../forms/components/Review";
 import TextFieldCustom from "../../forms/components/TextFieldCustom";
 import UploadOCIFile from "../../forms/components/UploadOCIFile";
 import UploadFile from "../../forms/components/UploadFile";
@@ -236,7 +235,7 @@ const CreateImageWizard = (props) => {
                   vmwareAuth(intl),
                   vmwareDest(intl),
                   ostreeSettings(intl),
-                  review(intl),
+                  reviewImage(intl),
                 ],
                 crossroads: ["image.isUpload", "image.type"],
               },
@@ -255,10 +254,6 @@ const CreateImageWizard = (props) => {
             },
             "package-selector": {
               component: Packages,
-            },
-            review: {
-              component: Review,
-              imageTypes: imageTypes,
             },
             "text-field-custom": TextFieldCustom,
             "upload-oci-file": UploadOCIFile,

@@ -10,7 +10,6 @@ import {
   filesystem,
   kernel,
   packages,
-  review,
   users,
   services,
   firewall,
@@ -21,6 +20,7 @@ import {
   other,
   ignition,
   openscap,
+  reviewBlueprint,
 } from "../../forms/steps";
 import {
   hostnameValidator,
@@ -37,7 +37,6 @@ import FormRenderer from "@data-driven-forms/react-form-renderer/form-renderer";
 import Pf4FormTemplate from "@data-driven-forms/pf4-component-mapper/form-template";
 import { componentMapper } from "@data-driven-forms/pf4-component-mapper";
 import Packages from "../../forms/components/Packages";
-import Review from "../../forms/components/Review";
 import TextFieldCustom from "../../forms/components/TextFieldCustom";
 import FileSystemConfigToggle from "../../forms/components/FileSystemConfigToggle";
 import FileSystemConfiguration from "../../forms/components/FileSystemConfiguration";
@@ -54,9 +53,6 @@ const messages = defineMessages({
   },
   save: {
     defaultMessage: "Save",
-  },
-  create: {
-    defaultMessage: "Create",
   },
 });
 
@@ -130,7 +126,6 @@ const BlueprintWizard = (props) => {
           componentMapper={{
             ...componentMapper,
             "package-selector": Packages,
-            review: Review,
             "text-field-custom": TextFieldCustom,
             "filesystem-toggle": FileSystemConfigToggle,
             "filesystem-configuration": FileSystemConfiguration,
@@ -149,9 +144,7 @@ const BlueprintWizard = (props) => {
                   ? intl.formatMessage(messages.editBlueprint)
                   : intl.formatMessage(messages.createBlueprint),
                 buttonLabels: {
-                  submit: props.isEdit
-                    ? intl.formatMessage(messages.save)
-                    : intl.formatMessage(messages.create),
+                  submit: intl.formatMessage(messages.save),
                 },
                 onKeyDown: (event) => {
                   if (event.key === "Enter") {
@@ -174,7 +167,7 @@ const BlueprintWizard = (props) => {
                   fdo(intl),
                   openscap(intl),
                   ignition(intl),
-                  review(intl),
+                  reviewBlueprint(intl),
                 ],
                 initialState: {
                   activeStep: "blueprint-details",
@@ -195,7 +188,7 @@ const BlueprintWizard = (props) => {
                     "fdo",
                     "openscap",
                     "ignition",
-                    "review",
+                    "review-blueprint",
                   ],
                   maxStepIndex: 15,
                 },

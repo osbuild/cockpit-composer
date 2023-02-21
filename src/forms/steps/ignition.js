@@ -14,7 +14,7 @@ const ignition = (intl) => {
     title: <FormattedMessage defaultMessage="Ignition" />,
     name: "ignition",
     substepOf: intl.formatMessage(messages.customizationsStepTitle),
-    nextStep: "review",
+    nextStep: "review-blueprint",
     ...ignitionFields,
   };
 };
