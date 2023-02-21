@@ -97,6 +97,7 @@ const BlueprintWizard = (props) => {
     : {};
   // Used for blueprint name validation
   initialValues["blueprint-names"] = blueprintNames;
+  initialValues["isEdit"] = props.isEdit;
 
   return (
     <>
