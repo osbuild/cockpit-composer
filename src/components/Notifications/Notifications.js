@@ -10,8 +10,6 @@ import {
 } from "@patternfly/react-core";
 import { selectAllAlerts, removeAlert } from "../../slices/alertsSlice";
 
-import "./Notifications.css";
-
 const Notifications = () => {
   const dispatch = useDispatch();
   const getAlerts = () => useSelector(selectAllAlerts);
@@ -24,7 +22,6 @@ const Notifications = () => {
           case "composeQueued": {
             return (
               <Alert
-                id="alertComposeQueued"
                 key={alert.id}
                 variant="info"
                 title={
@@ -47,7 +44,6 @@ const Notifications = () => {
           case "composeStarted": {
             return (
               <Alert
-                id="alertComposeStarted"
                 key={alert.id}
                 variant="info"
                 title={
@@ -74,7 +70,6 @@ const Notifications = () => {
           case "composeSucceeded": {
             return (
               <Alert
-                id="alertComposeSucceeded"
                 key={alert.id}
                 variant="success"
                 title={
@@ -101,23 +96,20 @@ const Notifications = () => {
           case "composeFailed": {
             return (
               <Alert
-                id="alertComposeFailed"
+                isExpandable
                 key={alert.id}
                 variant="danger"
                 title={
-                  <FormattedMessage
-                    defaultMessage="{blueprint} Image creation failed."
-                    values={{
-                      blueprint: <strong>{alert.blueprintName}:</strong>,
-                    }}
-                  />
+                  <FormattedMessage defaultMessage="Image creation failed." />
                 }
                 actionClose={
                   <AlertActionCloseButton
                     onClose={() => dispatch(removeAlert(alert.id))}
                   />
                 }
-              ></Alert>
+              >
+                <p>{alert.error}</p>
+              </Alert>
             );
           }
           default:

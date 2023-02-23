@@ -30,19 +30,24 @@ export const fetchAllImages = createAsyncThunk("images/fetchAll", async () => {
 
 export const createImage = createAsyncThunk(
   "images/create",
-  async (args, { dispatch }) => {
+  async (args, { dispatch, rejectWithValue }) => {
     const { blueprintName, type, size, ostree, upload } = args;
     const sizeBytes = size * 1024 * 1024 * 1024;
-    const response = await api.createImage(
-      blueprintName,
-      type,
-      sizeBytes,
-      ostree,
-      upload
-    );
-    const imageId = response.build_id;
-    dispatch(fetchImage(imageId));
-    return blueprintName;
+    try {
+      const response = await api.createImage(
+        blueprintName,
+        type,
+        sizeBytes,
+        ostree,
+        upload
+      );
+      const imageId = response.build_id;
+      dispatch(fetchImage(imageId));
+      return blueprintName;
+    } catch (error) {
+      const msg = error?.body?.errors[0]?.msg;
+      return rejectWithValue(msg);
+    }
   }
 );
 

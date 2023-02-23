@@ -20,6 +20,13 @@ const alertsSlice = createSlice({
         blueprintName: action.payload,
       });
     });
+    builder.addCase("images/create/rejected", (state, action) => {
+      alertsAdapter.addOne(state, {
+        id: uuidv4(),
+        type: "composeFailed",
+        error: action.payload,
+      });
+    });
   },
 });
 
