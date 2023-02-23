@@ -630,5 +630,14 @@
   "HLZ9CC": "Kimlik bilgileri",
   "9RX5kq": "Yüklenecek kalıp dosyası için kullanılacak bir dosya adı girin.",
   "7Cs5oS": "Lütfen geçerli bir kullanıcı adı girin. Kullanıcı adınız küçük harf veya alt çizgi ile başlayabilir ve yalnızca küçük harf, rakam, alt çizgi veya kısa çizgi içerebilir",
-  "/Ktg9J": "GCP"
+  "/Ktg9J": "GCP",
+  "r1lzNw": "Ateşleme ekle",
+  "q4qEK9": "OSBuild Composer başlatılmadı",
+  "cND1N1": "RHSM'yi kullan",
+  "c2RWsI": "Dosya sistemi yapılandırması gerekli.",
+  "4B549n": "Dosya sistemi yapılandırması, kopya bağlama noktaları içermemek zorundadır.",
+  "ZD82Yk": "Dosya sistemi yapılandırması bir kök (/) bölümü içermek zorundadır.",
+  "VDNvBb": "Soketi başlat",
+  "9rkqQt": "Ateşleme URL'si",
+  "+kWShv": "OSBuild Composer başlatılıyor"
 }
