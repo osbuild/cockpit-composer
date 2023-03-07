@@ -14,5 +14,6 @@
     </p>
   </description>
   <extends>org.cockpit_project.cockpit</extends>
+  <url type="homepage">https://github.com/osbuild/cockpit-composer/</url>
   <launchable type="cockpit-manifest">composer</launchable>
 </component>
