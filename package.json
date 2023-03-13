@@ -37,7 +37,7 @@
     "eslint-plugin-react": "7.32.2",
     "mini-css-extract-plugin": "2.7.3",
     "prettier": "2.8.4",
-    "sass": "1.58.3",
+    "sass": "1.59.2",
     "sass-loader": "13.2.0",
     "sizzle": "2.3.10",
     "webpack": "5.74.0",
