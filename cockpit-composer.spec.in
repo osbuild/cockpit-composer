@@ -8,6 +8,7 @@ URL:            http://weldr.io/
 Source0:        https://github.com/osbuild/cockpit-composer/releases/download/%{version}/cockpit-composer-%{version}.tar.gz
 
 BuildArch:      noarch
+BuildRequires:  libappstream-glib
 
 Requires:       cockpit
 %if 0%{?fedora} >= 33 || 0%{?rhel} >= 8
@@ -31,6 +32,7 @@ the cloud. It integrates into Cockpit as a frontend for osbuild.
 mkdir -p %{buildroot}/%{_datadir}/cockpit/composer
 cp -a public/* %{buildroot}/%{_datadir}/cockpit/composer
 mkdir -p %{buildroot}/%{_datadir}/metainfo/
+appstream-util validate-relax --nonet public/io.weldr.cockpit-composer.metainfo.xml
 cp -a public/io.weldr.cockpit-composer.metainfo.xml %{buildroot}/%{_datadir}/metainfo/ 
 
 %files
