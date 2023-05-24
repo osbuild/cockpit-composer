@@ -118,7 +118,7 @@ export const FilesystemCard = ({ blueprint }) => {
       <Modal
         variant={ModalVariant.medium}
         title={intl.formatMessage({
-          defaultMessage: "Firewall",
+          defaultMessage: "Filesystem",
         })}
         isOpen={isModalOpen}
         onClose={handleModalToggle}
