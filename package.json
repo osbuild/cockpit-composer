@@ -1,5 +1,6 @@
 {
   "name": "cockpit-composer",
+  "type": "module",
   "private": true,
   "engines": {
     "node": ">=6",
