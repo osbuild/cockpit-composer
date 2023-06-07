@@ -19,16 +19,6 @@ import BlueprintDetails from "./pages/blueprintDetails";
 import BlueprintList from "./pages/blueprintList";
 import APIEmpty from "./components/EmptyStates/APIEmpty";
 
-// use language without region code
-const userLocale = window.navigator.language.split("-")[0];
-let translations;
-try {
-  translations = require("../translations/compiled/" + userLocale + ".json");
-} catch (error) {
-  console.error(error);
-  translations = require("../translations/compiled/en.json");
-}
-
 store.dispatch(fetchImageTypes());
 store.dispatch(fetchBlueprints());
 store.dispatch(fetchAllImages());
@@ -54,16 +44,31 @@ const Content = () => {
   return isAPIOn ? <Router /> : <APIEmpty />;
 };
 
-ReactDOM.render(
-  <Provider store={store}>
-    <IntlProvider
-      key={userLocale}
-      defaultLocale="en"
-      locale={userLocale}
-      messages={translations}
-    >
-      <Content />
-    </IntlProvider>
-  </Provider>,
-  document.getElementById("main")
-);
+const main = async () => {
+  // use language without region code
+  const userLocale = window.navigator.language.split("-")[0];
+  let translations;
+  try {
+    translations = (await import(`../translations/compiled/${userLocale}.json`))
+      .default;
+  } catch (error) {
+    console.error(error);
+    translations = (await import("../translations/compiled/en.json")).default;
+  }
+
+  ReactDOM.render(
+    <Provider store={store}>
+      <IntlProvider
+        key={userLocale}
+        defaultLocale="en"
+        locale={userLocale}
+        messages={translations}
+      >
+        <Content />
+      </IntlProvider>
+    </Provider>,
+    document.getElementById("main")
+  );
+};
+
+main();
