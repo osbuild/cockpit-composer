@@ -3,7 +3,7 @@ import { TextInput } from "@patternfly/react-core";
 import PropTypes from "prop-types";
 
 import { useFieldApi } from "@data-driven-forms/react-form-renderer";
-import showError from "@data-driven-forms/pf4-component-mapper/show-error/show-error";
+import showError from "@data-driven-forms/pf4-component-mapper/show-error";
 import FormGroupCustom from "./FormGroupCustom";
 
 const TextFieldCustom = (props) => {
