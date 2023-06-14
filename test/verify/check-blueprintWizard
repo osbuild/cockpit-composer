@@ -31,7 +31,7 @@ class TestBlueprintWizard(composerlib.ComposerCase):
         b.click("button:contains('Next')")
 
         b.set_input_text("input[id='customizations.kernel.append']", "testAppend")
-        b.set_input_text("input[id='customizations.kernel.name']", "testName")
+        b.set_input_text("input[id='customizations.kernel.name']", "4.18.0-425.3.1")
         b.click("button:contains('Next')")
 
         # keep automatic partitioning for filesystem
