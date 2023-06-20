@@ -28,7 +28,7 @@
     "@babel/preset-react": "7.22.3",
     "@formatjs/cli": "6.1.1",
     "babel-loader": "9.1.2",
-    "babel-plugin-formatjs": "10.5.1",
+    "babel-plugin-formatjs": "10.5.3",
     "chrome-remote-interface": "0.32.2",
     "css-loader": "6.7.3",
     "eslint": "8.43.0",
