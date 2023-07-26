@@ -7,7 +7,7 @@ import { HelpIcon } from "@patternfly/react-icons";
 const messages = defineMessages({
   vmwareStepsTitle: {
     id: "wizard.vmware.title",
-    defaultMessage: "Upload to VMWare",
+    defaultMessage: "Upload to VMware",
   },
   imageNamePopoverBody: {
     id: "wizard.vmware.imageName.popoverBody",
@@ -21,7 +21,7 @@ const messages = defineMessages({
   hostPopoverBody: {
     id: "wizard.vmware.host.popoverBody",
     defaultMessage:
-      "Provide the url of your VMWare vSphere instance to which the image file will be uploaded.",
+      "Provide the url of your VMware vSphere instance to which the image file will be uploaded.",
   },
   hostPopoverAria: {
     id: "wizard.vmware.host.popoverAria",

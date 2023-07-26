@@ -48,15 +48,15 @@ const messages = defineMessages({
     defaultMessage: "Upload to Azure help",
   },
   vmwarePopoverBody: {
-    id: "wizard.imageOutput.uploadVMWare.popoverBody",
+    id: "wizard.imageOutput.uploadVMware.popoverBody",
     defaultMessage:
-      "Image Builder can upload images you create to VMWare vSphere. " +
+      "Image Builder can upload images you create to VMware vSphere. " +
       "When the image build is complete and the upload action is successful, " +
       "the image file is available in the Cluster on the vSphere instance that you specified.",
   },
   vmwarePopoverAria: {
-    id: "wizard.imageOutput.uploadVMWare.popoverAria",
-    defaultMessage: "Upload to VMWare help",
+    id: "wizard.imageOutput.uploadVMware.popoverAria",
+    defaultMessage: "Upload to VMware help",
   },
   ociPopoverBody: {
     id: "wizard.imageOutput.uploadOCI.popoverBody",
@@ -237,8 +237,8 @@ const imageOutput = (intl) => {
         label: (
           <>
             <FormattedMessage
-              id="wizard.imageOutput.uploadVMWare"
-              defaultMessage="Upload to VMWare"
+              id="wizard.imageOutput.uploadVMware"
+              defaultMessage="Upload to VMware"
             />
             <Popover
               bodyContent={intl.formatMessage(messages.vmwarePopoverBody)}
