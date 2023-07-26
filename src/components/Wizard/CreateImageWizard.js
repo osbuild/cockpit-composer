@@ -114,7 +114,10 @@ const CreateImageWizard = (props) => {
             container: formValues.image.upload.settings.container,
           },
         };
-      } else if (formValues?.image?.type === "vmdk") {
+      } else if (
+        formValues?.image?.type === "vmdk" ||
+        formValues?.image?.type === "ova"
+      ) {
         uploadSettings = {
           image_name: formValues.image.upload.image_name,
           provider: "vmware",

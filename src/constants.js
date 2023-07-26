@@ -21,6 +21,7 @@ export const ImageTypeLabels = {
   "edge-simplified-installer": "RHEL for Edge Simplified Installer (.iso)",
   vhd: "Microsoft Azure (.vhd)",
   vmdk: "VMware VSphere (.vmdk)",
+  ova: "VMware VSphere (.ova)",
   gce: "Google Cloud Platform (.tar.gz)",
 };
 
