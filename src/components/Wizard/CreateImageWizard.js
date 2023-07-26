@@ -125,6 +125,7 @@ const CreateImageWizard = (props) => {
             cluster: formValues.image.upload.settings.cluster,
             dataCenter: formValues.image.upload.settings.dataCenter,
             dataStore: formValues.image.upload.settings.dataStore,
+            folder: formValues.image.upload.settings.folder,
           },
         };
       } else if (formValues?.image?.type === "oci") {

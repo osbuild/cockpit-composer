@@ -54,6 +54,15 @@ const messages = defineMessages({
     id: "wizard.vmware.datastore.popoverAria",
     defaultMessage: "Datastore help",
   },
+  folderPopoverBody: {
+    id: "wizard.vmware.folder.popoverBody",
+    defaultMessage:
+      "Provide the name of the folder to which the image file will be uploaded.",
+  },
+  folderPopoverAria: {
+    id: "wizard.vmware.folder.popoverAria",
+    defaultMessage: "Folder help",
+  },
 });
 
 const vmwareDest = (intl) => {
@@ -193,6 +202,26 @@ const vmwareDest = (intl) => {
             type: validatorTypes.REQUIRED,
           },
         ],
+      },
+      {
+        component: "text-field-custom",
+        name: "image.upload.settings.folder",
+        className: "pf-u-w-50",
+        type: "text",
+        label: <FormattedMessage defaultMessage="Folder" />,
+        labelIcon: (
+          <Popover
+            bodyContent={intl.formatMessage(messages.folderPopoverBody)}
+            aria-label={intl.formatMessage(messages.folderPopoverAria)}
+          >
+            <Button
+              variant="plain"
+              aria-label={intl.formatMessage(messages.folderPopoverAria)}
+            >
+              <HelpIcon />
+            </Button>
+          </Popover>
+        ),
       },
     ],
   };
