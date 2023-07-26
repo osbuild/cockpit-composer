@@ -4,7 +4,7 @@ import validatorTypes from "@data-driven-forms/react-form-renderer/validator-typ
 
 const messages = defineMessages({
   vmwareStepsTitle: {
-    defaultMessage: "Upload to VMWare",
+    defaultMessage: "Upload to VMware",
   },
 });
 
