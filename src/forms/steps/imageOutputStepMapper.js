@@ -8,6 +8,7 @@ export default (props) => {
       case "vhd":
         return "azure-auth";
       case "vmdk":
+      case "ova":
         return "vmware-auth";
       case "gce":
         return "gcp";

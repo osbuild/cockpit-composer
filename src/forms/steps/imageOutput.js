@@ -256,7 +256,7 @@ const imageOutput = (intl) => {
         ),
         condition: {
           when: "image.type",
-          is: "vmdk",
+          is: ["vmdk", "ova"],
         },
       },
       {
