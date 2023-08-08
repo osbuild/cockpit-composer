@@ -12,17 +12,24 @@ frontend for [osbuild](https://github.com/osbuild).
 
 Cockpit Composer can be installed on RHEL and Fedora systems using:
 
+```
     $ dnf install cockpit-composer
+```
 
 Make sure to install/enable [Cockpit](https://cockpit-project.org/) with:
 
+```
     $ systemctl enable --now cockpit.socket
+```
+
 ## Install from source code
 
 First download the code from Github:
 
+```
     $ git clone https://github.com/osbuild/cockpit-composer.git
     $ cd cockpit-composer/
+```
 
 
 ## Install on MacOS (using a VM)
@@ -57,6 +64,7 @@ but the following steps are focused on the open source VM host [UTM](https://git
 ## Development instructions
 
 It's easy to set up your local machine to develop on Cockpit Composer.
+
 ### Install the development dependencies
 
 On Fedora or Red Hat Enterprise Linux:
@@ -117,13 +125,17 @@ Any auto fixable errors can be corrected with:
 
 ### Build rpm
 
+```
     $ make rpm
+```
 
 ### Run integration test
 
 Run test without visually seeing what the browser is doing:
 
+```
     $ make check
+```
 
 To learn more about testing see our [testing docs](test).
 
