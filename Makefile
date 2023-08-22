@@ -1,7 +1,7 @@
 # Extract the version from package.json
 VERSION=$(shell $(CURDIR)/rpmversion.sh | cut -d - -f 1)
 RELEASE=$(shell $(CURDIR)/rpmversion.sh | cut -d - -f 2)
-TEST_OS ?= fedora-36
+TEST_OS ?= fedora-37
 export TEST_OS
 VM_IMAGE=$(CURDIR)/test/images/$(TEST_OS)
 
