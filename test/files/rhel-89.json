@@ -1,0 +1,26 @@
+{
+  "aarch64": [
+    {
+      "name": "baseos",
+      "baseurl": "http://download.devel.redhat.com/rhel-8/nightly/RHEL-8/latest-RHEL-8.9/compose/BaseOS/aarch64/os",
+      "gpgcheck": 0
+    },
+    {
+      "name": "appstream",
+      "baseurl": "http://download.devel.redhat.com/rhel-8/nightly/RHEL-8/latest-RHEL-8.9/compose/AppStream/aarch64/os",
+      "gpgcheck": 0
+    }
+  ],
+  "x86_64": [
+    {
+      "name": "baseos",
+      "baseurl": "http://download.devel.redhat.com/rhel-8/nightly/RHEL-8/latest-RHEL-8.9/compose/BaseOS/x86_64/os",
+      "gpgcheck": 0
+    },
+    {
+      "name": "appstream",
+      "baseurl": "http://download.devel.redhat.com/rhel-8/nightly/RHEL-8/latest-RHEL-8.9/compose/AppStream/x86_64/os",
+      "gpgcheck": 0
+    }
+  ]
+}
