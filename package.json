@@ -30,7 +30,7 @@
     "@formatjs/cli": "6.1.1",
     "babel-loader": "9.1.3",
     "babel-plugin-formatjs": "10.5.3",
-    "chrome-remote-interface": "0.32.2",
+    "chrome-remote-interface": "0.33.0",
     "css-loader": "6.7.3",
     "eslint": "8.43.0",
     "eslint-config-prettier": "8.8.0",
