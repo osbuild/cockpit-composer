@@ -84,6 +84,7 @@ export const ImportBlueprint = () => {
       >
         <FileUpload
           type="text"
+          className="import-blueprint-file-upload"
           value={blueprint}
           filename={filename}
           filenamePlaceholder={intl.formatMessage({
