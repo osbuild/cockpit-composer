@@ -10,7 +10,7 @@
     "@data-driven-forms/pf4-component-mapper": "3.20.9",
     "@data-driven-forms/react-form-renderer": "3.20.9",
     "@patternfly/patternfly": "4.224.2",
-    "@patternfly/react-core": "4.267.6",
+    "@patternfly/react-core": "4.277.0",
     "@patternfly/react-icons": "4.93.6",
     "@patternfly/react-table": "4.113.0",
     "@reduxjs/toolkit": "1.9.5",
