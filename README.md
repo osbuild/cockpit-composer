@@ -2,7 +2,7 @@
 
 [![codecov](https://codecov.io/gh/osbuild/cockpit-composer/branch/main/graph/badge.svg)](https://codecov.io/gh/osbuild/cockpit-composer)
 
-**The web interface for on-premise Image Builder!**
+**The web interface for on-premises Image Builder!**
 
 Image Builder generates custom images suitable for deploying systems or uploading to
 the cloud. It integrates into [Cockpit](https://cockpit-project.org/) as a
