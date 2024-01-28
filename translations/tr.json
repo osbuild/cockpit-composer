@@ -215,7 +215,7 @@
   "wizard.imageOutput.uploadAzure": "Azure'a yükle",
   "wizard.review.uploadToVMWare": "VMWare'e yükle",
   "wizard.imageOutput.uploadVMWare": "VMWare'e yükle",
-  "wizard.vmware.title": "VMWare'e yükle",
+  "wizard.vmware.title": "VMware'e yükle",
   "wizard.review.uploadToOCI": "OCI'ye yükle",
   "wizard.imageOutput.uploadOCI": "OCI'ye yükle",
   "wizard.oci.title": "OCI'ye yükle",
@@ -369,7 +369,7 @@
   "wizard.customizations.buttons.add": "Kullanıcı ekle",
   "wizard.customizations.buttons.remove": "Kullanıcıyı kaldır",
   "wizard.customizations.buttons.removeAll": "Tüm kullanıcıları kaldır",
-  "wizard.vmware.host.popoverBody": "Kalıp dosyasının yükleneceği VMWare vSphere örneğinizin URL'sini girin.",
+  "wizard.vmware.host.popoverBody": "Kalıp dosyasının yükleneceği VMware vSphere örneğinizin URL'sini girin.",
   "wizard.vmware.host.popoverAria": "Anamakine yardımı",
   "wizard.vmware.cluster.popoverBody": "Kalıp dosyasının yükleneceği Kümelemenin adını girin.",
   "wizard.vmware.cluster.popoverAria": "Kümeleme yardımı",
@@ -643,5 +643,12 @@
   "R+J5ox": "Gözden geçir",
   "JpUq88": "Lütfen tüm ayrıntıları gözden geçirin ve \"Oluştur\"a tıklayın.",
   "3i/upQ": "Lütfen tüm ayrıntıları gözden geçirin ve \"Kaydet\"e tıklayın.",
-  "jCoHMn": "Kalıp oluşturma başarısız oldu."
+  "jCoHMn": "Kalıp oluşturma başarısız oldu.",
+  "wizard.imageOutput.uploadVMware.popoverAria": "VMware yardıma yükle",
+  "9qjsS6": "VMware'e yükle",
+  "ukQpDs": "Klasör",
+  "wizard.imageOutput.uploadVMware": "VMware'e yükle",
+  "wizard.imageOutput.uploadVMware.popoverBody": "Kalıp Oluşturucu, oluşturduğunuz kalıpları VMware vSphere üzerine yükleyebilir. Kalıp oluşturma işlemi tamamlandığında ve yükleme eylemi başarılı olduğunda, kalıp dosyası belirttiğiniz vSphere örneğindeki Kümelemede kullanılabilir.",
+  "wizard.vmware.folder.popoverAria": "Klasör yardımı",
+  "wizard.vmware.folder.popoverBody": "Kalıp dosyasının yükleneceği klasörün adını girin."
 }
