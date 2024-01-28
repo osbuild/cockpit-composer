@@ -215,7 +215,7 @@
   "wizard.imageOutput.uploadAzure": "Azure에 업로드",
   "wizard.review.uploadToVMWare": "VMWare에 업로드",
   "wizard.imageOutput.uploadVMWare": "VMWare에 업로드",
-  "wizard.vmware.title": "VMWare에 업로드",
+  "wizard.vmware.title": "브이엠웨어에 올려주기",
   "wizard.review.uploadToOCI": "OCI에 업로드",
   "wizard.imageOutput.uploadOCI": "OCI에 업로드",
   "wizard.oci.title": "OCI에 업로드",
@@ -369,7 +369,7 @@
   "wizard.customizations.buttons.add": "사용자 추가",
   "wizard.customizations.buttons.remove": "사용자 제거",
   "wizard.customizations.buttons.removeAll": "모든 사용자 제거",
-  "wizard.vmware.host.popoverBody": "이미지 파일을 적재 할 자신의 VMWare vSphere 인스턴스의 url을 제공합니다.",
+  "wizard.vmware.host.popoverBody": "이미지 파일을 올려 줄 수 있는 자신의 VMWare vSphere 인스턴스의 url을 제공하세요.",
   "wizard.vmware.host.popoverAria": "호스트 도움말",
   "wizard.vmware.cluster.popoverBody": "이미지 파일을 업로드할 클러스터 이름을 제공합니다.",
   "wizard.vmware.cluster.popoverAria": "클러스터 도움말",
@@ -643,5 +643,12 @@
   "R+J5ox": "검토",
   "JpUq88": "모든 세부 정보를 검토하고 \"생성\"을 눌러주세요.",
   "3i/upQ": "모든 상세 부분을 검토하고 \"저장\"을 눌러주세요.",
-  "jCoHMn": "이미지 생성이 실패함."
+  "jCoHMn": "이미지 생성이 실패함.",
+  "ukQpDs": "폴더",
+  "wizard.imageOutput.uploadVMware.popoverAria": "브이엠웨어 도움말에 올려주기",
+  "wizard.imageOutput.uploadVMware.popoverBody": "이미지 빌더는 사용자가 생성한 이미지를 VMWare vSphere에 올려 줄 수 있습니다. 이미지 빌드가 완료되고 올려주기 작업이 성공하면, 이미지 파일은 지정한 vSphere 인스턴스의 클러스터에서 사용 할 수 있습니다.",
+  "wizard.vmware.folder.popoverBody": "이미지 파일을 올려 줄 수 있는 폴더의 이름을 제공하세요.",
+  "9qjsS6": "브이엠웨어에 올려주기",
+  "wizard.imageOutput.uploadVMware": "브이엠웨어에 올려주기",
+  "wizard.vmware.folder.popoverAria": "폴더 도움말"
 }

@@ -215,7 +215,7 @@
   "wizard.imageOutput.uploadAzure": "Télécharger vers Azure",
   "wizard.review.uploadToVMWare": "Télécharger vers VMWare",
   "wizard.imageOutput.uploadVMWare": "Télécharger vers VMWare",
-  "wizard.vmware.title": "Télécharger vers VMWare",
+  "wizard.vmware.title": "Envoyé vers VMWare",
   "wizard.review.uploadToOCI": "Télécharger vers OCI",
   "wizard.imageOutput.uploadOCI": "Télécharger vers OCI",
   "wizard.oci.title": "Télécharger vers OCI",
@@ -369,7 +369,7 @@
   "wizard.customizations.buttons.add": "",
   "wizard.customizations.buttons.remove": "",
   "wizard.customizations.buttons.removeAll": "",
-  "wizard.vmware.host.popoverBody": "Fournissez l'url de votre instance VMWare vSphere vers laquelle le fichier image sera téléchargé.",
+  "wizard.vmware.host.popoverBody": "Fournissez l'url de votre instance VMWare vSphere vers laquelle le fichier image sera envoyé.",
   "wizard.vmware.host.popoverAria": "Aide Hôte",
   "wizard.vmware.cluster.popoverBody": "Indiquez le nom du cluster dans lequel le fichier image sera téléchargé.",
   "wizard.vmware.cluster.popoverAria": "Aide Clusters",
@@ -635,5 +635,12 @@
   "z5CyGb": "Intégration des dispositifs FIDO",
   "yovKty": "Retirer toutes les clés",
   "yo1Mv6": "Supprimer la zone",
-  "ynCJUA": "Empreinte digitale"
+  "ynCJUA": "Empreinte digitale",
+  "ukQpDs": "Dossier",
+  "wizard.vmware.folder.popoverBody": "Indiquer le nom du dossier où sera envoyée l'image.",
+  "wizard.imageOutput.uploadVMware.popoverAria": "Envoi vers VMware aide",
+  "wizard.imageOutput.uploadVMware.popoverBody": "Image Builder peut télécharger les images que vous créez vers VMware vSphere. Lorsque la construction de l'image est terminée et que l'action de l'envoi est réussie, le fichier image est disponible dans le Cluster sur l'instance vSphere que vous avez spécifiée.",
+  "9qjsS6": "Envoi vers VMware",
+  "wizard.vmware.folder.popoverAria": "Dossier aide",
+  "wizard.imageOutput.uploadVMware": "Envoi vers VMware"
 }
