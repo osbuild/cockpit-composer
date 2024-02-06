@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 
+import { TextInput } from "@patternfly/react-core";
 import {
   Select,
   SelectOption,
   SelectVariant,
-  TextInput,
-} from "@patternfly/react-core";
+} from "@patternfly/react-core/deprecated";
 import PropTypes from "prop-types";
 import { defineMessages, useIntl } from "react-intl";
 
@@ -53,13 +53,13 @@ const SizeUnit = ({ ...props }) => {
         className="pf-u-w-50"
         type="text"
         value={size}
-        onChange={(v) => setSize(isNaN(parseInt(v)) ? 0 : parseInt(v))}
+        onChange={(_event, v) => setSize(isNaN(parseInt(v)) ? 0 : parseInt(v))}
         aria-label={intl.formatMessage(messages.inputAriaLabel)}
       />
       <Select
         className="pf-u-w-50"
         isOpen={isOpen}
-        onToggle={onToggle}
+        onToggle={(_event, isOpen) => onToggle(isOpen)}
         onSelect={onSelect}
         selections={
           unit === UNIT_KIB ? "KiB" : unit === UNIT_MIB ? "MiB" : "GiB"

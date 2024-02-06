@@ -30,7 +30,6 @@ const FormGroupCustom = ({
   label,
   labelIcon,
   isRequired,
-  helperText,
   meta,
   validateOnMount,
   description,
@@ -45,10 +44,10 @@ const FormGroupCustom = ({
     label={!hideLabel && label}
     labelIcon={!hideLabel && labelIcon}
     fieldId={id}
-    helperText={
-      ((meta.touched || validateOnMount) && meta.warning) || helperText
-    }
-    helperTextInvalid={meta.error || meta.submitError}
+    // helperText={
+    //   ((meta.touched || validateOnMount) && meta.warning) || helperText
+    // }
+    // helperTextInvalid={meta.error || meta.submitError}
     {...showError(meta, validateOnMount)}
     {...FormGroupProps}
   >

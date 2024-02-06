@@ -23,7 +23,7 @@ const BlueprintToolbar = (props) => {
   return (
     <Toolbar>
       <ToolbarContent>
-        <ToolbarGroup alignment={{ default: "alignLeft" }}>
+        <ToolbarGroup align={{ default: "alignLeft" }}>
           <ToolbarItem variant="search-filter">
             <SearchInput
               aria-label={intl.formatMessage({
