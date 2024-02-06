@@ -20,6 +20,7 @@ import {
   EmptyStateIcon,
   Title,
   Divider,
+  EmptyStateHeader,
 } from "@patternfly/react-core";
 import { PlusCircleIcon } from "@patternfly/react-icons";
 
@@ -29,14 +30,7 @@ import TextInputGroupWithChips from "../../forms/components/TextInputGroupWithCh
 import { blueprintToFormState, formStateToBlueprint } from "../../helpers";
 import { updateBlueprint } from "../../slices/blueprintsSlice";
 import TextFieldCustom from "../../forms/components/TextFieldCustom";
-import {
-  TableComposable,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-} from "@patternfly/react-table";
+import { Table, Tbody, Td, Th, Thead, Tr } from "@patternfly/react-table";
 import { UNIT_GIB } from "../../constants";
 import FileSystemConfigToggle from "../../forms/components/FileSystemConfigToggle";
 import FileSystemConfiguration from "../../forms/components/FileSystemConfiguration";
@@ -60,7 +54,12 @@ export const FilesystemCard = ({ blueprint }) => {
   const filesystem = blueprint?.customizations?.filesystem || [];
   const FilesystemCardEdit = () => {
     return (
-      <Card hasSelectableInput isSelectableRaised onClick={handleModalToggle}>
+      <Card
+        hasSelectableInput
+        isSelectable
+        onClick={handleModalToggle}
+        tabIndex={0}
+      >
         <CardHeader className="pf-u-pr-0">
           <CardTitle>
             <Title headingLevel="h4" size="xl">
@@ -71,7 +70,7 @@ export const FilesystemCard = ({ blueprint }) => {
         <Divider />
         <CardBody>
           {Object.keys(filesystem).length ? (
-            <TableComposable variant="compact">
+            <Table variant="compact">
               <Thead>
                 <Tr>
                   <Th>
@@ -96,14 +95,19 @@ export const FilesystemCard = ({ blueprint }) => {
                   </Tr>
                 ))}
               </Tbody>
-            </TableComposable>
+            </Table>
           ) : (
             <Bullseye>
               <EmptyState variant={EmptyStateVariant.xs}>
-                <EmptyStateIcon icon={PlusCircleIcon} />
-                <Title headingLevel="h2" size="md">
-                  <FormattedMessage defaultMessage="Add manual filesystem" />
-                </Title>
+                <EmptyStateHeader
+                  titleText={
+                    <>
+                      <FormattedMessage defaultMessage="Add manual filesystem" />
+                    </>
+                  }
+                  icon={<EmptyStateIcon icon={PlusCircleIcon} />}
+                  headingLevel="h2"
+                />
               </EmptyState>
             </Bullseye>
           )}

@@ -26,6 +26,7 @@ import {
   DescriptionListDescription,
   LabelGroup,
   Label,
+  EmptyStateHeader,
 } from "@patternfly/react-core";
 import { PlusCircleIcon } from "@patternfly/react-icons";
 
@@ -56,7 +57,12 @@ export const TimezoneCardModal = ({ blueprint }) => {
 
   const TimezoneCard = () => {
     return (
-      <Card hasSelectableInput isSelectableRaised onClick={handleModalToggle}>
+      <Card
+        hasSelectableInput
+        isSelectable
+        onClick={handleModalToggle}
+        tabIndex={0}
+      >
         <CardHeader className="pf-u-pr-0">
           <CardTitle>
             <Title headingLevel="h4" size="xl">
@@ -92,10 +98,15 @@ export const TimezoneCardModal = ({ blueprint }) => {
           ) : (
             <Bullseye>
               <EmptyState variant={EmptyStateVariant.xs}>
-                <EmptyStateIcon icon={PlusCircleIcon} />
-                <Title headingLevel="h2" size="md">
-                  <FormattedMessage defaultMessage="Set timezone" />
-                </Title>
+                <EmptyStateHeader
+                  titleText={
+                    <>
+                      <FormattedMessage defaultMessage="Set timezone" />
+                    </>
+                  }
+                  icon={<EmptyStateIcon icon={PlusCircleIcon} />}
+                  headingLevel="h2"
+                />
               </EmptyState>
             </Bullseye>
           )}

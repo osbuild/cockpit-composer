@@ -18,7 +18,7 @@ const BlueprintDetailsToolbar = (props) => {
     <Toolbar className="pf-u-pb-0">
       <ToolbarContent className="pf-u-px-0">
         <ToolbarGroup
-          alignment={{ default: "alignLeft" }}
+          align={{ default: "alignLeft" }}
           className="pf-u-align-self-baseline"
         >
           <Breadcrumb>
@@ -28,10 +28,7 @@ const BlueprintDetailsToolbar = (props) => {
             <BreadcrumbItem isActive>{props.blueprint?.name}</BreadcrumbItem>
           </Breadcrumb>
         </ToolbarGroup>
-        <ToolbarGroup
-          variant="button-group"
-          alignment={{ default: "alignRight" }}
-        >
+        <ToolbarGroup variant="button-group" align={{ default: "alignRight" }}>
           <ToolbarItem>
             <BlueprintWizard isEdit blueprint={props.blueprint} />
           </ToolbarItem>

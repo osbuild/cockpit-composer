@@ -20,6 +20,7 @@ import {
   EmptyStateIcon,
   Title,
   Divider,
+  EmptyStateHeader,
 } from "@patternfly/react-core";
 import { PlusCircleIcon } from "@patternfly/react-icons";
 
@@ -28,14 +29,7 @@ import TextInputGroupWithChips from "../../forms/components/TextInputGroupWithCh
 import { blueprintToFormState, formStateToBlueprint } from "../../helpers";
 import { updateBlueprint } from "../../slices/blueprintsSlice";
 import TextFieldCustom from "../../forms/components/TextFieldCustom";
-import {
-  TableComposable,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-} from "@patternfly/react-table";
+import { Table, Tbody, Td, Th, Thead, Tr } from "@patternfly/react-table";
 
 export const SSHKeysCardModal = ({ blueprint }) => {
   const dispatch = useDispatch();
@@ -57,7 +51,12 @@ export const SSHKeysCardModal = ({ blueprint }) => {
 
   const SSHKeysCard = () => {
     return (
-      <Card hasSelectableInput isSelectableRaised onClick={handleModalToggle}>
+      <Card
+        hasSelectableInput
+        isSelectable
+        onClick={handleModalToggle}
+        tabIndex={0}
+      >
         <CardHeader className="pf-u-pr-0">
           <CardTitle>
             <Title headingLevel="h4" size="xl">
@@ -68,7 +67,7 @@ export const SSHKeysCardModal = ({ blueprint }) => {
         <Divider />
         <CardBody>
           {Object.keys(sshkeys).length ? (
-            <TableComposable variant="compact">
+            <Table variant="compact">
               <Thead>
                 <Tr>
                   <Th>
@@ -87,14 +86,19 @@ export const SSHKeysCardModal = ({ blueprint }) => {
                   </Tr>
                 ))}
               </Tbody>
-            </TableComposable>
+            </Table>
           ) : (
             <Bullseye>
               <EmptyState variant={EmptyStateVariant.xs}>
-                <EmptyStateIcon icon={PlusCircleIcon} />
-                <Title headingLevel="h2" size="md">
-                  <FormattedMessage defaultMessage="Add ssh keys" />
-                </Title>
+                <EmptyStateHeader
+                  titleText={
+                    <>
+                      <FormattedMessage defaultMessage="Add ssh keys" />
+                    </>
+                  }
+                  icon={<EmptyStateIcon icon={PlusCircleIcon} />}
+                  headingLevel="h2"
+                />
               </EmptyState>
             </Bullseye>
           )}

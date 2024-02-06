@@ -46,8 +46,8 @@ const UploadFile = ({ label, labelIcon, isRequired, ...props }) => {
           filename={filename}
           filenamePlaceholder={intl.formatMessage(messages.filenamePlaceholder)}
           onFileInputChange={handleFileInputChange}
-          onDataChange={handleTextOrDataChange}
-          onTextChange={handleTextOrDataChange}
+          onDataChange={(_event, val) => handleTextOrDataChange(val)}
+          onTextChange={(_event, val) => handleTextOrDataChange(val)}
           onClearClick={handleClear}
         />
       </FormGroup>
