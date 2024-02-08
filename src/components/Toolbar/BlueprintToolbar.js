@@ -29,7 +29,7 @@ const BlueprintToolbar = (props) => {
               aria-label={intl.formatMessage({
                 defaultMessage: "Blueprints search input",
               })}
-              onChange={onInputChange}
+              onChange={(e, val) => onInputChange(val)}
               value={props.filterValue}
               onClear={() => onInputChange("")}
             />
