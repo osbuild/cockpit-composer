@@ -24,6 +24,36 @@ First download the code from Github:
     $ git clone https://github.com/osbuild/cockpit-composer.git
     $ cd cockpit-composer/
 
+
+## Install on MacOS (using a VM)
+
+Running cockpit-composer on MacOS requires running a Fedora/CentOS/RHEL VM.
+
+This installation focuses on a visual install. There are many tools to create a VM on Mac 
+but the following steps are focused on the open source VM host [UTM](https://github.com/utmapp/UTM). Other VM tools should work similarly.
+
+1. Create/download an installer `.iso`. Using hosted [Image Builder](https://console.redhat.com/insights/image-builder) is a great way to create this installer with cockpit-composer and dependencies already installed.
+
+2. Select `Create a New Virtual Machine`.
+
+3. Assuming the installer is for ARM/AArch64 `Virtualize` is the best selection. But UTM can also `Emulate` x86_64. Select whichever is best for your system.
+
+4. Select your installer as the `Boot ISO Image`.
+
+5. Edit the VM settings but the defaults should be fine.
+
+6. Make sure the VM's network is set to bridged so that you can access it from your host machine.
+
+7. Click through installer steps.
+
+8. If your image was not preinstalled with cockpit-composer follow the instructions in the **Install from official repositories** section.
+
+9. Inside the running VM get the IP address. The command `ip a` will show the network settings and will include the IP to access the VM.
+
+10. In a browser, on the host machine, navigate to port 9090 on the VM's IP address. i.e. `https://192.168.178.00:9090/`
+
+11. Login and access Image Builder in Cockpit.
+
 ## Development instructions
 
 It's easy to set up your local machine to develop on Cockpit Composer.
