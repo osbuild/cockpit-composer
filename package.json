@@ -33,7 +33,7 @@
     "chrome-remote-interface": "0.33.0",
     "css-loader": "6.10.0",
     "eslint": "8.48.0",
-    "eslint-config-prettier": "8.8.0",
+    "eslint-config-prettier": "9.1.0",
     "eslint-plugin-prettier": "4.2.1",
     "eslint-plugin-react": "7.33.2",
     "mini-css-extract-plugin": "2.7.6",
