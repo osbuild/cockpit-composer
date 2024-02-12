@@ -124,19 +124,19 @@ export const SourceCardModal = (props) => {
             label: intl.formatMessage({
               defaultMessage: "Yum repository",
             }),
-            value: "yum",
+            value: "yum-baseurl",
           },
           {
             label: intl.formatMessage({
               defaultMessage: "Mirrorlist",
             }),
-            value: "mirrorlist",
+            value: "yum-mirrorlist",
           },
           {
             label: intl.formatMessage({
               defaultMessage: "Metalink",
             }),
-            value: "metalink",
+            value: "yum-metalink",
           },
         ],
         validate: [
