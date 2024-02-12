@@ -197,18 +197,18 @@ export function deleteImage(image) {
 }
 
 export function createSource(source) {
-  return post("/api/v0/projects/source/new", source);
+  return post("/api/v1/projects/source/new", source);
 }
 
 export function getAllSources() {
-  return get("/api/v0/projects/source/info/*").then(
+  return get("/api/v1/projects/source/info/*").then(
     (response) => response.sources
   );
 }
 
 export function deleteSource(sourceName) {
   return _delete(
-    `/api/v0/projects/source/delete/${encodeURIComponent(sourceName)}`
+    `/api/v1/projects/source/delete/${encodeURIComponent(sourceName)}`
   );
 }
 

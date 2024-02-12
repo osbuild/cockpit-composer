@@ -86,6 +86,22 @@ export const SourceCardModal = (props) => {
       {
         component: "text-field",
         label: intl.formatMessage({
+          defaultMessage: "ID",
+        }),
+        isRequired: true,
+        name: "id",
+        validate: [
+          {
+            type: validatorTypes.REQUIRED,
+          },
+          {
+            type: "custom",
+          },
+        ],
+      },
+      {
+        component: "text-field",
+        label: intl.formatMessage({
           defaultMessage: "Name",
         }),
         isRequired: true,
@@ -189,7 +205,7 @@ export const SourceCardModal = (props) => {
           <CardHeader className="pf-u-pr-0">
             <CardTitle>
               <Title headingLevel="h4" size="xl">
-                {props.source?.name}
+                {props.source?.id}
               </Title>
             </CardTitle>
             {props.isEditable && (
@@ -203,6 +219,12 @@ export const SourceCardModal = (props) => {
           <Divider />
           <CardBody>
             <DescriptionList isCompact isHorizontal>
+              <DescriptionListGroup>
+                <DescriptionListTerm>Name</DescriptionListTerm>
+                <DescriptionListDescription>
+                  {props.source?.name}
+                </DescriptionListDescription>
+              </DescriptionListGroup>
               <DescriptionListGroup>
                 <DescriptionListTerm>Type</DescriptionListTerm>
                 <DescriptionListDescription>
