@@ -15,7 +15,7 @@ class TestBlueprintWizard(composerlib.ComposerCase):
         b.wait_visible("#main")
 
         b.click("button:contains('Create blueprint')")
-        b.wait_in_text(".pf-v5-c-wizard__header", "Create blueprint")
+        b.wait_in_text(".pf-v5-c-wizard__title", "Create blueprint")
 
         b.set_input_text("#blueprintName", "testName")
         b.set_input_text("#blueprintDescription", "testDescription")

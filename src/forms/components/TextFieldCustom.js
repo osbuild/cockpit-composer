@@ -18,7 +18,6 @@ const TextFieldCustom = (props) => {
     validateOnMount,
     description,
     input,
-    isDisabled,
     id,
     FormGroupProps,
     ...rest
@@ -44,8 +43,6 @@ const TextFieldCustom = (props) => {
         {...rest}
         id={id || input.name}
         isRequired={isRequired}
-        isDisabled={isDisabled}
-        readOnlyVariant="default"
       />
     </FormGroupCustom>
   );
@@ -54,11 +51,9 @@ const TextFieldCustom = (props) => {
 TextFieldCustom.propTypes = {
   label: PropTypes.node,
   validateOnMount: PropTypes.bool,
-  isReadOnly: PropTypes.bool,
   isRequired: PropTypes.bool,
   helperText: PropTypes.node,
   description: PropTypes.node,
-  isDisabled: PropTypes.bool,
   id: PropTypes.string,
   FormGroupProps: PropTypes.object,
 };
