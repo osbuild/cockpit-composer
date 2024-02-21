@@ -17,10 +17,10 @@ fi
 REPODIR=/etc/osbuild-composer/repositories
 sudo mkdir -p $REPODIR
 # Copy all repo overrides
-cp /home/admin/files/rhel-89.json /etc/osbuild-composer/repositories/rhel-89.json
-cp /home/admin/files/rhel-93.json /etc/osbuild-composer/repositories/rhel-93.json
-ln -s /etc/osbuild-composer/repositories/rhel-93.json /etc/osbuild-composer/repositories/rhel-93-beta.json
-ln -s /etc/osbuild-composer/repositories/rhel-93.json /etc/osbuild-composer/repositories/rhel-93-ga.json
+cp /home/admin/files/rhel-810.json /etc/osbuild-composer/repositories/rhel-810.json
+cp /home/admin/files/rhel-94.json /etc/osbuild-composer/repositories/rhel-94.json
+ln -s /etc/osbuild-composer/repositories/rhel-94.json /etc/osbuild-composer/repositories/rhel-94-beta.json
+ln -s /etc/osbuild-composer/repositories/rhel-94.json /etc/osbuild-composer/repositories/rhel-94-ga.json
 
 # Allow cockpit port (9090) in INPUT chain
 # Do not reload firewall rule during image generation
