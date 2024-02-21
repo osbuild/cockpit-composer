@@ -13,6 +13,7 @@ import FDOCardModal from "../Modal/FDOCard";
 import OpenSCAPCardModal from "../Modal/OpenSCAPCard";
 import UserCard from "../Cards/UserCard";
 import IgnitionCardModal from "../Modal/ignitionCard";
+import OtherCardModal from "../Modal/OtherCard";
 
 const CustomizationsTab = ({ blueprint }) => {
   return (
@@ -30,6 +31,9 @@ const CustomizationsTab = ({ blueprint }) => {
               <UserCard user={u} />
             </FlexItem>
           ))}
+          <FlexItem>
+            <OtherCardModal blueprint={blueprint} />
+          </FlexItem>
         </Flex>
       </GridItem>
       <GridItem span={3}>
