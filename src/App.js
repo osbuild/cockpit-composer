@@ -45,11 +45,19 @@ const Content = () => {
 };
 
 const main = async () => {
-  // use language without region code
-  const userLocale = window.navigator.language.split("-")[0];
+  // cockpit's language is stored in localStorage as `cockpit.lang`
+  // https://github.com/cockpit-project/cockpit/blob/bafd1067f7f8b9d16479c90bd77dcdda08f044ce/pkg/shell/shell-modals.jsx#L104C38-L104C50
+  const cockpitLocale = localStorage.getItem("cockpit.lang");
+  // browser default language
+  const userLocale = window.navigator.language;
+  // use cockpit's language if it's available
+  // otherwise use the browser's default language
+  const locale = cockpitLocale || userLocale;
+  // strip region code
+  const language = locale.split("-")[0];
   let translations;
   try {
-    translations = (await import(`../translations/compiled/${userLocale}.json`))
+    translations = (await import(`../translations/compiled/${language}.json`))
       .default;
   } catch (error) {
     console.error(error);
@@ -59,9 +67,9 @@ const main = async () => {
   ReactDOM.render(
     <Provider store={store}>
       <IntlProvider
-        key={userLocale}
+        key={language}
         defaultLocale="en"
-        locale={userLocale}
+        locale={language}
         messages={translations}
       >
         <Content />
