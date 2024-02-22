@@ -23,7 +23,7 @@
     "uuid": "9.0.1"
   },
   "devDependencies": {
-    "@babel/cli": "7.22.10",
+    "@babel/cli": "7.23.9",
     "@babel/core": "7.22.8",
     "@babel/preset-env": "7.23.9",
     "@babel/preset-react": "7.23.3",
