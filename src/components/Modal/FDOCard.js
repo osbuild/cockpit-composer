@@ -58,7 +58,7 @@ export const FDOCardModal = ({ blueprint }) => {
         <CardHeader className="pf-u-pr-0">
           <CardTitle>
             <Title headingLevel="h4" size="xl">
-              <FormattedMessage defaultMessage="FIDO Device Onboard" />
+              <FormattedMessage defaultMessage="FIDO device onboard" />
             </Title>
           </CardTitle>
         </CardHeader>

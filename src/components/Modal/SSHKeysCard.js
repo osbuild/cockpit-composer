@@ -61,7 +61,7 @@ export const SSHKeysCardModal = ({ blueprint }) => {
         <CardHeader className="pf-u-pr-0">
           <CardTitle>
             <Title headingLevel="h4" size="xl">
-              <FormattedMessage defaultMessage="SSH Keys" />
+              <FormattedMessage defaultMessage="SSH keys" />
             </Title>
           </CardTitle>
         </CardHeader>
