@@ -229,7 +229,6 @@ const Packages = ({ ...props }) => {
       setTotalPackagesAvailable(total);
       return packages;
     } catch (error) {
-    } finally {
       setPackagesAvailableLoading(false);
     }
   };
