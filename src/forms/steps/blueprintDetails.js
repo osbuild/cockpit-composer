@@ -17,7 +17,7 @@ const blueprintDetails = (intl) => {
     fields: [
       {
         component: "text-field-custom",
-        name: "blueprintName",
+        name: "blueprint.name",
         className: "pf-u-w-75",
         label: <FormattedMessage defaultMessage="Name" />,
         isRequired: true,
@@ -28,7 +28,7 @@ const blueprintDetails = (intl) => {
       },
       {
         component: "text-field-custom",
-        name: "blueprintDescription",
+        name: "blueprint.description",
         className: "pf-u-w-75",
         label: <FormattedMessage defaultMessage="Description" />,
       },

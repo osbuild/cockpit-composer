@@ -229,7 +229,6 @@ const Packages = ({ ...props }) => {
       setTotalPackagesAvailable(total);
       return packages;
     } catch (error) {
-      console.log("Failed to fetch packages", error);
     } finally {
       setPackagesAvailableLoading(false);
     }
@@ -464,7 +463,7 @@ const Packages = ({ ...props }) => {
             ref={firstInputElement}
             onFocus={() => setFocus("available")}
             onBlur={() => setFocus("")}
-            onChange={(val) => setPackagesSearchName(val)}
+            onChange={(e, val) => setPackagesSearchName(val)}
             submitSearchButtonLabel={intl.formatMessage(
               messages.availablePackagesSearch
             )}
