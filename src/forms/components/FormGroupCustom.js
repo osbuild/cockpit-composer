@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  FormGroup as Pf4FormGroup,
+  FormGroup as Pf5FormGroup,
   TextContent,
   Text,
 } from "@patternfly/react-core";
@@ -38,7 +38,7 @@ const FormGroupCustom = ({
   id,
   FormGroupProps,
 }) => (
-  <Pf4FormGroup
+  <Pf5FormGroup
     className={className}
     isRequired={isRequired}
     label={!hideLabel && label}
@@ -57,7 +57,7 @@ const FormGroupCustom = ({
       </TextContent>
     )}
     {children}
-  </Pf4FormGroup>
+  </Pf5FormGroup>
 );
 
 FormGroupCustom.propTypes = {
