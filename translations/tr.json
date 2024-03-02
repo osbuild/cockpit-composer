@@ -483,7 +483,7 @@
   "jvo0vs": "Kaydet",
   "e06NOl": "Plan adı",
   "c8HBO+": "Tüm kullanıcıları kaldır",
-  "YMk8tG": "/dev/sda1 gibi geçerli bir aygıt düğümü girin. Yalnızca basitleştirilmiş yükleyici kalıp türü için kullanılır.",
+  "YMk8tG": "/dev/sda1 gibi geçerli bir aygıt düğümü girin. Yalnızca basitleştirilmiş kurucu kalıp türü için kullanılır.",
   "TP/O/b": "Kullanıcıyı kaldır",
   "PmdwKQ": "Planı düzenle",
   "M+T+k5": "Sunucu yöneticisi",
@@ -496,7 +496,7 @@
   "5sg7KC": "Parola",
   "4pttvV": "SSH anahtarı",
   "3X47fT": "Özelleştirmeler",
-  "2hnml6": "Kalıbın hangi cihaza yükleneceğini belirtin.",
+  "2hnml6": "Kalıbın hangi aygıta kurulacağını belirtin.",
   "116vGu": "Kurulum Aygıtı yardımı",
   "+CwN9C": "Sistem",
   "yovKty": "Tüm anahtarları kaldır",
@@ -650,5 +650,6 @@
   "wizard.imageOutput.uploadVMware": "VMware'e yükle",
   "wizard.imageOutput.uploadVMware.popoverBody": "Kalıp Oluşturucu, oluşturduğunuz kalıpları VMware vSphere üzerine yükleyebilir. Kalıp oluşturma işlemi tamamlandığında ve yükleme eylemi başarılı olduğunda, kalıp dosyası belirttiğiniz vSphere örneğindeki Kümelemede kullanılabilir.",
   "wizard.vmware.folder.popoverAria": "Klasör yardımı",
-  "wizard.vmware.folder.popoverBody": "Kalıp dosyasının yükleneceği klasörün adını girin."
+  "wizard.vmware.folder.popoverBody": "Kalıp dosyasının yükleneceği klasörün adını girin.",
+  "jZy5Vb": "Yerleşik FIDO Aygıtı"
 }
