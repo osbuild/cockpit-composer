@@ -651,5 +651,8 @@
   "wizard.imageOutput.uploadVMware.popoverBody": "Kalıp Oluşturucu, oluşturduğunuz kalıpları VMware vSphere üzerine yükleyebilir. Kalıp oluşturma işlemi tamamlandığında ve yükleme eylemi başarılı olduğunda, kalıp dosyası belirttiğiniz vSphere örneğindeki Kümelemede kullanılabilir.",
   "wizard.vmware.folder.popoverAria": "Klasör yardımı",
   "wizard.vmware.folder.popoverBody": "Kalıp dosyasının yükleneceği klasörün adını girin.",
-  "jZy5Vb": "Yerleşik FIDO Aygıtı"
+  "jZy5Vb": "Yerleşik FIDO aygıtı",
+  "mA3vBw": "Diğer özelleştirmeler",
+  "qlcuNQ": "Kimlik",
+  "4brgj3": "Diğer özelleştirmeleri ekle"
 }

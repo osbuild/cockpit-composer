@@ -650,5 +650,9 @@
   "wizard.vmware.folder.popoverBody": "이미지 파일을 올려 줄 수 있는 폴더의 이름을 제공하세요.",
   "9qjsS6": "브이엠웨어에 올려주기",
   "wizard.imageOutput.uploadVMware": "브이엠웨어에 올려주기",
-  "wizard.vmware.folder.popoverAria": "폴더 도움말"
+  "wizard.vmware.folder.popoverAria": "폴더 도움말",
+  "4brgj3": "다른 사용자 정의 추가",
+  "mA3vBw": "다른 사용자 정의",
+  "qlcuNQ": "ID",
+  "jZy5Vb": "FIDO 장치 탑재"
 }
