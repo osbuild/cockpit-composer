@@ -17,8 +17,8 @@ class TestBlueprintWizard(composerlib.ComposerCase):
         b.click("button:contains('Create blueprint')")
         b.wait_in_text(".pf-v5-c-wizard__title", "Create blueprint")
 
-        b.set_input_text("#blueprint.name", "testName")
-        b.set_input_text("#blueprint.description", "testDescription")
+        b.set_input_text("#blueprintName", "testName")
+        b.set_input_text("#blueprintDescription", "testDescription")
         b.click("button:contains('Next')")
 
         # select openssh-server

@@ -126,7 +126,8 @@ export const formStateToBlueprint = (formValues) => {
     : undefined;
 
   const blueprint = {
-    ...formValues.blueprint,
+    name: formValues.blueprintName,
+    description: formValues.blueprintDescription,
     customizations,
     packages,
   };
