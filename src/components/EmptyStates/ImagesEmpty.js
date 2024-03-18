@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {
-  Title,
   EmptyState,
   EmptyStateIcon,
   EmptyStateBody,
+  EmptyStateHeader,
+  EmptyStateFooter,
 } from "@patternfly/react-core";
 import { CubesIcon } from "@patternfly/react-icons";
 import { FormattedMessage } from "react-intl";
@@ -12,12 +13,19 @@ import CreateImageWizard from "../Wizard/CreateImageWizard";
 
 const ImagesEmpty = ({ blueprint }) => (
   <EmptyState>
-    <EmptyStateIcon icon={CubesIcon} />
-    <Title headingLevel="h4" size="lg">
-      <FormattedMessage defaultMessage="No images" />
-    </Title>
+    <EmptyStateHeader
+      titleText={
+        <>
+          <FormattedMessage defaultMessage="No images" />
+        </>
+      }
+      icon={<EmptyStateIcon icon={CubesIcon} />}
+      headingLevel="h4"
+    />
     <EmptyStateBody />
-    <CreateImageWizard blueprint={blueprint} />
+    <EmptyStateFooter>
+      <CreateImageWizard blueprint={blueprint} />
+    </EmptyStateFooter>
   </EmptyState>
 );
 

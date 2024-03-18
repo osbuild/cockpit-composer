@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 
+import { TextInput } from "@patternfly/react-core";
 import {
   Select,
   SelectOption,
   SelectVariant,
-  TextInput,
-} from "@patternfly/react-core";
+} from "@patternfly/react-core/deprecated";
 import PropTypes from "prop-types";
 
 const MountPoint = ({ ...props }) => {
@@ -66,7 +66,7 @@ const MountPoint = ({ ...props }) => {
       <Select
         className="pf-u-w-50"
         isOpen={isOpen}
-        onToggle={onToggle}
+        onToggle={(_event, isOpen) => onToggle(isOpen)}
         onSelect={onSelect}
         selections={prefix}
         variant={SelectVariant.single}
@@ -80,7 +80,7 @@ const MountPoint = ({ ...props }) => {
           className="pf-u-w-50"
           type="text"
           value={suffix}
-          onChange={(v) => setSuffix(v)}
+          onChange={(_event, v) => setSuffix(v)}
         />
       )}
     </>

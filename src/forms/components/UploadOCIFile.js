@@ -43,7 +43,7 @@ const UploadOCIFile = ({ label, labelIcon, isRequired, ...props }) => {
           hideDefaultPreview="true"
           filenamePlaceholder={intl.formatMessage(messages.filenamePlaceholder)}
           onFileInputChange={handleFileInputChange}
-          onDataChange={handleTextOrDataChange}
+          onDataChange={(_event, val) => handleTextOrDataChange(val)}
           onClearClick={handleClear}
         />
       </FormGroup>

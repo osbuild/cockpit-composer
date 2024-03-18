@@ -19,14 +19,7 @@ import {
   PlusCircleIcon,
 } from "@patternfly/react-icons";
 import styles from "@patternfly/react-styles/css/components/Table/table";
-import {
-  TableComposable,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-} from "@patternfly/react-table";
+import { Table, Tbody, Td, Th, Thead, Tr } from "@patternfly/react-table";
 import { v4 as uuidv4 } from "uuid";
 
 import MountPoint from "./MountPoint";
@@ -287,7 +280,7 @@ const FileSystemConfiguration = ({ ...props }) => {
               title={errors.customizations.filesystem}
             />
           )}
-          <TableComposable
+          <Table
             aria-label={intl.formatMessage(messages.tableLabel)}
             className={isDragging && styles.modifiers.dragOver}
             variant="compact"
@@ -375,7 +368,7 @@ const FileSystemConfiguration = ({ ...props }) => {
                 </Tr>
               ))}
             </Tbody>
-          </TableComposable>
+          </Table>
           <TextContent>
             <Button
               data-testid="file-system-add-partition"

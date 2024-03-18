@@ -1,14 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useIntl } from "react-intl";
-import {
-  TableComposable,
-  Thead,
-  Tr,
-  Th,
-  Tbody,
-  Td,
-} from "@patternfly/react-table";
+import { Table, Thead, Tr, Th, Tbody, Td } from "@patternfly/react-table";
 
 const PackagesTable = (props) => {
   const intl = useIntl();
@@ -32,7 +25,7 @@ const PackagesTable = (props) => {
   });
 
   return (
-    <TableComposable variant="compact" aria-label="Packages table">
+    <Table variant="compact" aria-label="Packages table">
       <Thead>
         <Tr>
           <Th sort={sortByName()}>{columnNames.name}</Th>
@@ -49,7 +42,7 @@ const PackagesTable = (props) => {
           </Tr>
         ))}
       </Tbody>
-    </TableComposable>
+    </Table>
   );
 };
 

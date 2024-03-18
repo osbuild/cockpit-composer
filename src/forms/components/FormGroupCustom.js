@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  FormGroup as Pf4FormGroup,
+  FormGroup as Pf5FormGroup,
   TextContent,
   Text,
 } from "@patternfly/react-core";
@@ -30,7 +30,6 @@ const FormGroupCustom = ({
   label,
   labelIcon,
   isRequired,
-  helperText,
   meta,
   validateOnMount,
   description,
@@ -39,16 +38,16 @@ const FormGroupCustom = ({
   id,
   FormGroupProps,
 }) => (
-  <Pf4FormGroup
+  <Pf5FormGroup
     className={className}
     isRequired={isRequired}
     label={!hideLabel && label}
     labelIcon={!hideLabel && labelIcon}
     fieldId={id}
-    helperText={
-      ((meta.touched || validateOnMount) && meta.warning) || helperText
-    }
-    helperTextInvalid={meta.error || meta.submitError}
+    // helperText={
+    //   ((meta.touched || validateOnMount) && meta.warning) || helperText
+    // }
+    // helperTextInvalid={meta.error || meta.submitError}
     {...showError(meta, validateOnMount)}
     {...FormGroupProps}
   >
@@ -58,7 +57,7 @@ const FormGroupCustom = ({
       </TextContent>
     )}
     {children}
-  </Pf4FormGroup>
+  </Pf5FormGroup>
 );
 
 FormGroupCustom.propTypes = {
