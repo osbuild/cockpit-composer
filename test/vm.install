@@ -12,6 +12,9 @@ if [ -n "$VG" ]; then
     lvextend -r -l +100%FREE $VG/root
 fi
 
+# install standard node version
+sudo dnf module install -y nodejs:18/common
+
 # Repositories in /etc/osbuild-composer/repositories are used only for on-premise
 # Copy rpmrepo snapshots for use in tests
 REPODIR=/etc/osbuild-composer/repositories
