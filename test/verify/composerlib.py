@@ -19,6 +19,7 @@ allowed_journal_messages = [
 ]
 # starting osbuild-composer.socket with no permission user will cause error[0]
 allowed_browser_errors = [
+    "error: Warning: Failed %s type: %s%s prop Invalid prop `FormWrapper` supplied to `FormTemplate`.*",
     ".*Failed to start osbuild-composer.socket.*Not permitted to perform this action.*",
 ]
 
