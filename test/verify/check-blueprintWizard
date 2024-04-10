@@ -25,7 +25,7 @@ class TestBlueprintWizard(composerlib.ComposerCase):
         b.set_input_text("div[data-testid='search-available-pkgs-input'] input", "openssh-server")
         b.click("button[aria-label='Search button for available packages']")
         with b.wait_timeout(360):
-            b.click("li[data-testid='openssh-server']")
+            b.click("tr[data-testid='openssh-server']")
             b.click("button[aria-label='Add selected']")
         # go to next page
         b.click("button:contains('Next')")
