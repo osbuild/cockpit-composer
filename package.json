@@ -12,7 +12,7 @@
     "@patternfly/patternfly": "4.224.2",
     "@patternfly/react-core": "4.267.6",
     "@patternfly/react-icons": "4.93.6",
-    "@patternfly/react-table": "4.113.0",
+    "@patternfly/react-table": "5.3.1",
     "@reduxjs/toolkit": "1.9.5",
     "prop-types": "15.8.1",
     "react": "17.0.2",
