@@ -52,6 +52,23 @@ class TestImageWizard(composerlib.ComposerCase):
         # Cancel upload
         b.click("footer button:contains('Cancel')")
 
+    @unittest.skipIf(os.environ.get("TEST_OS").split('-')[0] != "rhel", "Skipping test for non RHEL")
+    def testEdgeImageFields(self):
+        b = self.browser
+
+        self.login_and_go("/composer", superuser=True)
+        b.wait_visible("#main")
+
+        # Select create image from created blueprint
+        b.click("tr[data-testid=httpd-server] button[aria-label='Create image']")
+        b.wait_in_text(".pf-c-wizard__main", "httpd-server")
+        time.sleep(1)
+        # Edge image type
+        b.select_PF4("#image-output-select-toggle", "RHEL for Edge Simplified Installer (.iso)")
+        b.click("button:contains('Next')")
+
+        b.click("footer button:contains('Create')")
+
 
 if __name__ == '__main__':
     testlib.test_main()
