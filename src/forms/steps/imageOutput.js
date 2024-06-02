@@ -341,7 +341,7 @@ const imageOutput = (intl) => {
         initializeOnMount: true,
         initialValue: 2,
         isRequired: true,
-        autoFocus: true,
+        autoFocus: false,
         condition: {
           when: "image.type",
           is: [

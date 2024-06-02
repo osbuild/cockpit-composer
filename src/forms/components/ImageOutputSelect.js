@@ -51,7 +51,7 @@ const ImageOutputSelect = ({ label, isRequired, ...props }) => {
           toggleId="image-output-select-toggle"
         >
           {supportedTypes.map((outputType) => (
-            <SelectOption key={outputType} value={outputType}>
+            <SelectOption key={outputType} value={outputType} id={outputType}>
               {ImageTypeLabels[outputType]}
             </SelectOption>
           ))}

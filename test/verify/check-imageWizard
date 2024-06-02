@@ -20,10 +20,12 @@ class TestImageWizard(composerlib.ComposerCase):
         # Create blueprint
         b.click("tr[data-testid=httpd-server] button[aria-label='Create image']")
         b.wait_in_text(".pf-v5-c-wizard__main", "httpd-server")
-        time.sleep(1)
+        time.sleep(10)
         # select qcow2 image type and keep default size
         b.click("#image-output-select-toggle")
-        b.click("button:contains('QEMU Image (.qcow2)'")
+        time.sleep(1)
+        b.click("#qcow2")
+        b.set_input_text(r"#image\.size", "2")
         b.click("button:contains('Next')")
 
         # Create image
