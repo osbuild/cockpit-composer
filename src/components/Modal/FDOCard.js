@@ -24,6 +24,7 @@ import {
   DescriptionListGroup,
   DescriptionListTerm,
   DescriptionListDescription,
+  EmptyStateHeader,
 } from "@patternfly/react-core";
 import { PlusCircleIcon } from "@patternfly/react-icons";
 
@@ -54,7 +55,12 @@ export const FDOCardModal = ({ blueprint }) => {
 
   const FDOCard = () => {
     return (
-      <Card hasSelectableInput isSelectableRaised onClick={handleModalToggle}>
+      <Card
+        hasSelectableInput
+        isSelectable
+        onClick={handleModalToggle}
+        tabIndex={0}
+      >
         <CardHeader className="pf-u-pr-0">
           <CardTitle>
             <Title headingLevel="h4" size="xl">
@@ -102,10 +108,15 @@ export const FDOCardModal = ({ blueprint }) => {
           ) : (
             <Bullseye>
               <EmptyState variant={EmptyStateVariant.xs}>
-                <EmptyStateIcon icon={PlusCircleIcon} />
-                <Title headingLevel="h2" size="md">
-                  <FormattedMessage defaultMessage="Set FDO" />
-                </Title>
+                <EmptyStateHeader
+                  titleText={
+                    <>
+                      <FormattedMessage defaultMessage="Set FDO" />
+                    </>
+                  }
+                  icon={<EmptyStateIcon icon={PlusCircleIcon} />}
+                  headingLevel="h2"
+                />
               </EmptyState>
             </Bullseye>
           )}

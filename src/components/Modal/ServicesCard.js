@@ -26,6 +26,7 @@ import {
   Divider,
   LabelGroup,
   Label,
+  EmptyStateHeader,
 } from "@patternfly/react-core";
 import { PlusCircleIcon } from "@patternfly/react-icons";
 
@@ -54,7 +55,12 @@ export const ServicesCard = ({ blueprint }) => {
 
   const ServicesCardEdit = () => {
     return (
-      <Card hasSelectableInput isSelectableRaised onClick={handleModalToggle}>
+      <Card
+        hasSelectableInput
+        isSelectable
+        onClick={handleModalToggle}
+        tabIndex={0}
+      >
         <CardHeader className="pf-u-pr-0">
           <CardTitle>
             <Title headingLevel="h4" size="xl">
@@ -98,10 +104,15 @@ export const ServicesCard = ({ blueprint }) => {
           ) : (
             <Bullseye>
               <EmptyState variant={EmptyStateVariant.xs}>
-                <EmptyStateIcon icon={PlusCircleIcon} />
-                <Title headingLevel="h2" size="md">
-                  <FormattedMessage defaultMessage="Add services" />
-                </Title>
+                <EmptyStateHeader
+                  titleText={
+                    <>
+                      <FormattedMessage defaultMessage="Add services" />
+                    </>
+                  }
+                  icon={<EmptyStateIcon icon={PlusCircleIcon} />}
+                  headingLevel="h2"
+                />
               </EmptyState>
             </Bullseye>
           )}

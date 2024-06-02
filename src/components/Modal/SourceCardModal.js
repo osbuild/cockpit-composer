@@ -15,7 +15,6 @@ import {
   Card,
   CardBody,
   CardHeader,
-  CardActions,
   CardTitle,
   CardFooter,
   ClipboardCopy,
@@ -31,6 +30,7 @@ import {
   DescriptionListDescription,
   Divider,
   Tooltip,
+  EmptyStateHeader,
 } from "@patternfly/react-core";
 import {
   CheckCircleIcon,
@@ -199,22 +199,31 @@ export const SourceCardModal = (props) => {
       >
         <Card
           hasSelectableInput
-          isSelectableRaised={props.isEditable}
+          isSelectable
           onClick={props.isEditable ? handleModalToggle : null}
+          tabIndex={0}
         >
-          <CardHeader className="pf-u-pr-0">
+          <CardHeader
+            {...(props.isEditable && {
+              actions: {
+                actions: (
+                  <>
+                    <Button variant="plain" onClick={onDelete}>
+                      <TimesCircleIcon />
+                    </Button>
+                  </>
+                ),
+                hasNoOffset: false,
+                className: undefined,
+              },
+            })}
+            className="pf-u-pr-0"
+          >
             <CardTitle>
               <Title headingLevel="h4" size="xl">
                 {props.source?.id}
               </Title>
             </CardTitle>
-            {props.isEditable && (
-              <CardActions>
-                <Button variant="plain" onClick={onDelete}>
-                  <TimesCircleIcon />
-                </Button>
-              </CardActions>
-            )}
           </CardHeader>
           <Divider />
           <CardBody>
@@ -285,15 +294,23 @@ export const SourceCardModal = (props) => {
       <Card
         isCompact
         hasSelectableInput
-        isSelectableRaised
+        isSelectable
         onClick={handleModalToggle}
+        tabIndex={0}
       >
         <Bullseye>
           <EmptyState variant={EmptyStateVariant.xs}>
-            <EmptyStateIcon icon={PlusCircleIcon} className="pending" />
-            <Title headingLevel="h2" size="md">
-              <FormattedMessage defaultMessage="Add source" />
-            </Title>
+            <EmptyStateHeader
+              titleText={
+                <>
+                  <FormattedMessage defaultMessage="Add source" />
+                </>
+              }
+              icon={
+                <EmptyStateIcon icon={PlusCircleIcon} className="pending" />
+              }
+              headingLevel="h2"
+            />
           </EmptyState>
         </Bullseye>
       </Card>

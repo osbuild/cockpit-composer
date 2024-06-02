@@ -91,7 +91,7 @@ export const ImportBlueprint = () => {
             defaultMessage: "Drag and drop a file or upload one",
           })}
           onFileInputChange={handleFileInputChange}
-          onDataChange={handleTextOrDataChange}
+          onDataChange={(_event, value) => handleTextOrDataChange(value)}
           onReadStarted={handleFileReadStarted}
           onReadFinished={handleFileReadFinished}
           onClearClick={handleClear}
@@ -99,7 +99,7 @@ export const ImportBlueprint = () => {
           browseButtonText={intl.formatMessage({
             defaultMessage: "Upload",
           })}
-          onTextChange={handleTextOrDataChange}
+          onTextChange={(_event, value) => handleTextOrDataChange(value)}
           allowEditingUploadedText={true}
         />
       </Modal>

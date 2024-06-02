@@ -39,13 +39,13 @@ const FileSystemConfigToggle = ({ ...props }) => {
     <>
       <ToggleGroup aria-label={intl.formatMessage(messages.toggleLabel)}>
         <ToggleGroupItem
-          onChange={onClick}
+          onChange={(evt, _) => onClick(_, evt)}
           text={intl.formatMessage(messages.auto)}
           buttonId="auto"
           isSelected={selected === "auto"}
         />
         <ToggleGroupItem
-          onChange={onClick}
+          onChange={(evt, _) => onClick(_, evt)}
           text={intl.formatMessage(messages.manual)}
           buttonId="manual"
           isSelected={selected === "manual"}

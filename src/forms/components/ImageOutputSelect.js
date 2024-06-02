@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { FormGroup, Select, SelectOption } from "@patternfly/react-core";
+import { FormGroup } from "@patternfly/react-core";
+import { Select, SelectOption } from "@patternfly/react-core/deprecated";
 import useFormApi from "@data-driven-forms/react-form-renderer/use-form-api";
 import useFieldApi from "@data-driven-forms/react-form-renderer/use-field-api";
 import { defineMessages, useIntl } from "react-intl";
@@ -50,7 +51,7 @@ const ImageOutputSelect = ({ label, isRequired, ...props }) => {
           toggleId="image-output-select-toggle"
         >
           {supportedTypes.map((outputType) => (
-            <SelectOption key={outputType} value={outputType}>
+            <SelectOption key={outputType} value={outputType} id={outputType}>
               {ImageTypeLabels[outputType]}
             </SelectOption>
           ))}

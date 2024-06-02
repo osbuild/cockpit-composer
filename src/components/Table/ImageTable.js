@@ -2,14 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useIntl, FormattedMessage } from "react-intl";
 import { Button, Flex } from "@patternfly/react-core";
-import {
-  TableComposable,
-  Thead,
-  Tr,
-  Th,
-  Tbody,
-  Td,
-} from "@patternfly/react-table";
+import { Table, Thead, Tr, Th, Tbody, Td } from "@patternfly/react-table";
 import {
   CheckCircleIcon,
   ExclamationCircleIcon,
@@ -227,7 +220,7 @@ const ImageTable = (props) => {
   });
 
   return (
-    <TableComposable variant="compact" aria-label="Images table">
+    <Table variant="compact" aria-label="Images table">
       <Thead>
         <Tr>
           {columns.map((column, columnIndex) => (
@@ -244,7 +237,7 @@ const ImageTable = (props) => {
           <ImageRow key={image.id} image={image} columns={columns} />
         ))}
       </Tbody>
-    </TableComposable>
+    </Table>
   );
 };
 

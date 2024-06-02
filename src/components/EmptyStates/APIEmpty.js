@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import {
-  Title,
   EmptyState,
   EmptyStateIcon,
   EmptyStateBody,
   Button,
   EmptyStateVariant,
   Spinner,
+  EmptyStateHeader,
+  EmptyStateFooter,
 } from "@patternfly/react-core";
 import { CubesIcon } from "@patternfly/react-icons";
 import { FormattedMessage } from "react-intl";
@@ -27,23 +28,35 @@ const APIEmpty = () => {
 
   const Content = () => (
     <EmptyState variant={EmptyStateVariant.xl}>
-      <EmptyStateIcon icon={CubesIcon} />
-      <Title headingLevel="h4" size="lg">
-        <FormattedMessage defaultMessage="OSBuild Composer is not started" />
-      </Title>
+      <EmptyStateHeader
+        titleText={
+          <>
+            <FormattedMessage defaultMessage="OSBuild Composer is not started" />
+          </>
+        }
+        icon={<EmptyStateIcon icon={CubesIcon} />}
+        headingLevel="h4"
+      />
       <EmptyStateBody />
-      <Button variant="primary" onClick={handleClick}>
-        <FormattedMessage defaultMessage="Start socket" />
-      </Button>
+      <EmptyStateFooter>
+        <Button variant="primary" onClick={handleClick}>
+          <FormattedMessage defaultMessage="Start socket" />
+        </Button>
+      </EmptyStateFooter>
     </EmptyState>
   );
 
   const Loading = () => (
     <EmptyState>
-      <EmptyStateIcon variant="container" component={Spinner} />
-      <Title size="lg" headingLevel="h4">
-        <FormattedMessage defaultMessage="Starting OSBuild Composer" />
-      </Title>
+      <EmptyStateHeader
+        titleText={
+          <>
+            <FormattedMessage defaultMessage="Starting OSBuild Composer" />
+          </>
+        }
+        icon={<EmptyStateIcon icon={Spinner} />}
+        headingLevel="h4"
+      />
     </EmptyState>
   );
 

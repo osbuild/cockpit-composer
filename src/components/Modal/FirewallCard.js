@@ -26,6 +26,7 @@ import {
   Divider,
   LabelGroup,
   Label,
+  EmptyStateHeader,
 } from "@patternfly/react-core";
 import { PlusCircleIcon } from "@patternfly/react-icons";
 
@@ -34,14 +35,7 @@ import TextInputGroupWithChips from "../../forms/components/TextInputGroupWithCh
 import { blueprintToFormState, formStateToBlueprint } from "../../helpers";
 import { updateBlueprint } from "../../slices/blueprintsSlice";
 import TextFieldCustom from "../../forms/components/TextFieldCustom";
-import {
-  TableComposable,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-} from "@patternfly/react-table";
+import { Table, Tbody, Td, Th, Thead, Tr } from "@patternfly/react-table";
 
 export const FirewallCard = ({ blueprint }) => {
   const dispatch = useDispatch();
@@ -63,7 +57,12 @@ export const FirewallCard = ({ blueprint }) => {
 
   const FirewallCardEdit = () => {
     return (
-      <Card hasSelectableInput isSelectableRaised onClick={handleModalToggle}>
+      <Card
+        hasSelectableInput
+        isSelectable
+        onClick={handleModalToggle}
+        tabIndex={0}
+      >
         <CardHeader className="pf-u-pr-0">
           <CardTitle>
             <Title headingLevel="h4" size="xl">
@@ -122,7 +121,7 @@ export const FirewallCard = ({ blueprint }) => {
                     <FormattedMessage defaultMessage="Zones" />
                   </DescriptionListTerm>
                   <DescriptionListDescription>
-                    <TableComposable variant="compact">
+                    <Table variant="compact">
                       <Thead>
                         <Tr>
                           <Th>
@@ -147,7 +146,7 @@ export const FirewallCard = ({ blueprint }) => {
                           </Tr>
                         ))}
                       </Tbody>
-                    </TableComposable>
+                    </Table>
                   </DescriptionListDescription>
                 </DescriptionListGroup>
               )}
@@ -155,10 +154,15 @@ export const FirewallCard = ({ blueprint }) => {
           ) : (
             <Bullseye>
               <EmptyState variant={EmptyStateVariant.xs}>
-                <EmptyStateIcon icon={PlusCircleIcon} />
-                <Title headingLevel="h2" size="md">
-                  <FormattedMessage defaultMessage="Add firewall" />
-                </Title>
+                <EmptyStateHeader
+                  titleText={
+                    <>
+                      <FormattedMessage defaultMessage="Add firewall" />
+                    </>
+                  }
+                  icon={<EmptyStateIcon icon={PlusCircleIcon} />}
+                  headingLevel="h2"
+                />
               </EmptyState>
             </Bullseye>
           )}

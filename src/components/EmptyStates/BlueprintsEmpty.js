@@ -1,9 +1,10 @@
 import React from "react";
 import {
-  Title,
   EmptyState,
   EmptyStateIcon,
   EmptyStateBody,
+  EmptyStateHeader,
+  EmptyStateFooter,
 } from "@patternfly/react-core";
 import { CubesIcon } from "@patternfly/react-icons";
 import { FormattedMessage } from "react-intl";
@@ -11,12 +12,19 @@ import BlueprintWizard from "../Wizard/BlueprintWizard";
 
 const BlueprintsEmpty = () => (
   <EmptyState>
-    <EmptyStateIcon icon={CubesIcon} />
-    <Title headingLevel="h4" size="lg">
-      <FormattedMessage defaultMessage="No blueprints" />
-    </Title>
+    <EmptyStateHeader
+      titleText={
+        <>
+          <FormattedMessage defaultMessage="No blueprints" />
+        </>
+      }
+      icon={<EmptyStateIcon icon={CubesIcon} />}
+      headingLevel="h4"
+    />
     <EmptyStateBody />
-    <BlueprintWizard />
+    <EmptyStateFooter>
+      <BlueprintWizard />
+    </EmptyStateFooter>
   </EmptyState>
 );
 

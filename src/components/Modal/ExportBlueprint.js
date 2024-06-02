@@ -7,9 +7,8 @@ import {
   Modal,
   ModalVariant,
   Button,
-  Select,
-  SelectOption,
 } from "@patternfly/react-core";
+import { Select, SelectOption } from "@patternfly/react-core/deprecated";
 import { CopyIcon, DownloadIcon } from "@patternfly/react-icons";
 
 import { getBlueprintTOML, getBlueprintJSON } from "../../api";
