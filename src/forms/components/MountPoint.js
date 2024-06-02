@@ -8,28 +8,16 @@ import {
 } from "@patternfly/react-core";
 import PropTypes from "prop-types";
 
+import { MountPointPrefixes } from "../../constants";
+
 const MountPoint = ({ ...props }) => {
-  // check '/' last!
-  const validPrefixes = [
-    "/app",
-    "/boot",
-    "/data",
-    "/home",
-    "/opt",
-    "/srv",
-    "/tmp",
-    "/usr",
-    "/usr/local",
-    "/var",
-    "/",
-  ];
   const [isOpen, setIsOpen] = useState(false);
   const [prefix, setPrefix] = useState("/");
   const [suffix, setSuffix] = useState("");
 
   // split
   useEffect(() => {
-    for (let p of validPrefixes) {
+    for (let p of MountPointPrefixes) {
       if (props.mountpoint.startsWith(p)) {
         setPrefix(p);
         setSuffix(props.mountpoint.substring(p.length));
@@ -71,7 +59,7 @@ const MountPoint = ({ ...props }) => {
         selections={prefix}
         variant={SelectVariant.single}
       >
-        {validPrefixes.map((pfx, index) => {
+        {MountPointPrefixes.map((pfx, index) => {
           return <SelectOption key={index} value={pfx} />;
         })}
       </Select>
