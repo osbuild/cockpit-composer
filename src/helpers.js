@@ -9,6 +9,23 @@ export const formTimestampLabel = (ts) => {
   return tsDisplay;
 };
 
+export const cleanEmptyFields = (obj) => {
+  const cleaned = Object.entries(obj).reduce((fields, [key, value]) => {
+    if (value === undefined || value === null || value === "") {
+      return fields;
+    }
+    if (typeof value === "object") {
+      const cleanedValue = cleanEmptyFields(value);
+      if (Object.keys(cleanedValue).length === 0) {
+        return fields;
+      }
+      return { ...fields, [key]: cleanedValue };
+    }
+    return { ...fields, [key]: value };
+  }, {});
+  return cleaned;
+};
+
 export const blueprintToFormState = (blueprint) => {
   if (!blueprint) return {};
   const formState = {
@@ -83,7 +100,7 @@ const formStateToCustomizations = (customizations) => {
   };
   const filesystem = customizations.filesystem
     ? customizations.filesystem.map(parseFilesystem)
-    : [];
+    : undefined;
 
   let openscap;
   if (
@@ -125,9 +142,11 @@ export const formStateToBlueprint = (formValues) => {
     ? formStateToCustomizations(formValues?.customizations)
     : undefined;
 
+  const cleanEmptyCustomizations = cleanEmptyFields(customizations);
+
   const blueprint = {
     ...formValues.blueprint,
-    customizations,
+    customizations: cleanEmptyCustomizations,
     packages,
   };
   return blueprint;
