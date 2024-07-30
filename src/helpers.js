@@ -49,19 +49,61 @@ export const blueprintToFormState = (blueprint) => {
 
 const formStateToCustomizations = (customizations) => {
   // the form state of these matches the api state
-  const {
-    hostname,
-    kernel,
-    sshkey,
-    group,
-    timezone,
-    locale,
-    services,
-    installation_device,
-    fdo,
-    firewall,
-    ignition,
-  } = customizations;
+  const { hostname, sshkey, group, installation_device } = customizations;
+
+  let fdo;
+  if (
+    customizations?.fdo?.diun_pub_key_hash ||
+    customizations?.fdo?.diun_pub_key_insecure ||
+    customizations?.fdo?.diun_pub_key_root_certs ||
+    customizations?.fdo?.manufacturing_server_url
+  ) {
+    fdo = customizations.fdo;
+  }
+
+  let firewall;
+  if (
+    customizations?.firewall?.ports?.length > 0 ||
+    customizations?.firewall?.zones ||
+    customizations?.firewall?.services?.enabled?.length > 0 ||
+    customizations?.firewall?.services?.disabled?.length > 0
+  ) {
+    firewall = customizations.firewall;
+  }
+
+  let ignition;
+  if (customizations?.ignition?.firstboot?.url) {
+    ignition = customizations.ignition;
+  }
+
+  let kernel;
+  if (customizations?.kernel?.name || customizations?.kernel?.append) {
+    kernel = customizations.kernel;
+  }
+
+  let locale;
+  if (
+    customizations?.locale?.keyboard ||
+    customizations?.locale?.languages?.length > 0
+  ) {
+    locale = customizations.locale;
+  }
+
+  let services;
+  if (
+    customizations?.services?.enabled?.length > 0 ||
+    customizations?.services?.disabled?.length > 0
+  ) {
+    services = customizations.services;
+  }
+
+  let timezone;
+  if (
+    customizations?.timezone?.timezone ||
+    customizations?.timezone?.ntpservers?.length > 0
+  ) {
+    locale = customizations.locale;
+  }
 
   // Parse the user field
   const parseUser = (formUser) => {
@@ -72,7 +114,9 @@ const formStateToCustomizations = (customizations) => {
       key: formUser.key,
     };
   };
-  const user = customizations.user ? customizations.user.map(parseUser) : [];
+  const user = customizations.user
+    ? customizations.user.map(parseUser)
+    : undefined;
 
   // Parse the filesystem field
   const parseFilesystem = (formMount) => {
@@ -83,7 +127,7 @@ const formStateToCustomizations = (customizations) => {
   };
   const filesystem = customizations.filesystem
     ? customizations.filesystem.map(parseFilesystem)
-    : [];
+    : undefined;
 
   let openscap;
   if (
@@ -111,7 +155,15 @@ const formStateToCustomizations = (customizations) => {
     services,
   };
 
-  return customizationsParsed;
+  // if a user steps through each component in the form without filling any
+  // of the steps out, there is a possibility that each form field is empty.
+  // if this is the case, we want to return an empty (or undefined) `customizationsParsed`
+  // object
+  const everythingUndefined = Object.keys(customizationsParsed).every(
+    (key) => customizationsParsed[key] === undefined
+  );
+
+  return everythingUndefined ? undefined : customizationsParsed;
 };
 
 export const formStateToBlueprint = (formValues) => {
