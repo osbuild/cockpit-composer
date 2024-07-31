@@ -84,6 +84,8 @@ const ostreeSettings = (intl) => {
             "edge-raw-image",
             "edge-installer",
             "edge-simplified-installer",
+            "edge-ami",
+            "edge-vsphere",
           ],
         },
         resolveProps: (props, { meta, input }, formOptions) => {
@@ -162,6 +164,8 @@ const ostreeSettings = (intl) => {
             "edge-installer",
             "edge-raw-image",
             "edge-simplified-installer",
+            "edge-ami",
+            "edge-vsphere",
           ],
         },
         validate: [

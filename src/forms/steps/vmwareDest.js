@@ -70,7 +70,12 @@ const vmwareDest = (intl) => {
     title: <FormattedMessage defaultMessage="Destination" />,
     name: "vmware-dest",
     substepOf: intl.formatMessage(messages.vmwareStepsTitle),
-    nextStep: "review-image",
+    nextStep: ({ values }) => {
+      if (values.image?.type === "edge-vsphere") {
+        return "ostree-settings";
+      }
+      return "review-image";
+    },
     fields: [
       {
         component: "text-field-custom",

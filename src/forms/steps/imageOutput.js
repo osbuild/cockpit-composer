@@ -177,7 +177,7 @@ const imageOutput = (intl) => {
         ),
         condition: {
           when: "image.type",
-          is: "ami",
+          is: ["ami", "edge-ami"],
         },
       },
       {
@@ -256,7 +256,7 @@ const imageOutput = (intl) => {
         ),
         condition: {
           when: "image.type",
-          is: ["vmdk", "ova"],
+          is: ["vmdk", "ova", "edge-vsphere"],
         },
       },
       {
@@ -351,6 +351,8 @@ const imageOutput = (intl) => {
             "edge-container",
             "edge-installer",
             "image-installer",
+            "edge-ami",
+            "edge-vsphere",
           ],
           notMatch: true,
         },
@@ -369,7 +371,7 @@ const imageOutput = (intl) => {
         ],
         resolveProps: (props, { meta, input }, formOptions) => {
           const imageType = formOptions.getState().values["image.type"];
-          if (imageType === "ami") {
+          if (imageType === "ami" || imageType === "edge-ami") {
             return {
               initialValue: 6,
               helperText: intl.formatMessage(messages.imageSizeInputHelp, {

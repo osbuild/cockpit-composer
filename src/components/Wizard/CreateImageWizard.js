@@ -93,7 +93,10 @@ const CreateImageWizard = (props) => {
 
     let uploadSettings;
     if (formValues?.image?.isUpload) {
-      if (formValues?.image?.type === "ami") {
+      if (
+        formValues?.image?.type === "ami" ||
+        formValues?.image.type === "edge-ami"
+      ) {
         uploadSettings = {
           image_name: formValues.image.upload.image_name,
           provider: "aws",
@@ -116,7 +119,8 @@ const CreateImageWizard = (props) => {
         };
       } else if (
         formValues?.image?.type === "vmdk" ||
-        formValues?.image?.type === "ova"
+        formValues?.image?.type === "ova" ||
+        formValues?.image?.type === "edge-vsphere"
       ) {
         uploadSettings = {
           image_name: formValues.image.upload.image_name,
@@ -173,6 +177,8 @@ const CreateImageWizard = (props) => {
       "edge-installer",
       "edge-raw-image",
       "edge-simplified-installer",
+      "edge-ami",
+      "edge-vsphere",
     ];
     if (ostreeImageTypes.includes(formValues?.image?.type)) {
       ostreeSettings = {
