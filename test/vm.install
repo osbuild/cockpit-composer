@@ -13,14 +13,12 @@ if [ -n "$VG" ]; then
 fi
 
 # Repositories in /etc/osbuild-composer/repositories are used only for on-premise
-# Copy rpmrepo snapshots for use in tests
 REPODIR=/etc/osbuild-composer/repositories
 sudo mkdir -p $REPODIR
-# Copy all repo overrides
-cp /home/admin/files/rhel-810.json /etc/osbuild-composer/repositories/rhel-810.json
-cp /home/admin/files/rhel-94.json /etc/osbuild-composer/repositories/rhel-94.json
-ln -s /etc/osbuild-composer/repositories/rhel-94.json /etc/osbuild-composer/repositories/rhel-94-beta.json
-ln -s /etc/osbuild-composer/repositories/rhel-94.json /etc/osbuild-composer/repositories/rhel-94-ga.json
+# Copy rhel nightly overrides
+cp /home/admin/files/rhel-95.json /etc/osbuild-composer/repositories/rhel-95.json
+ln -s /etc/osbuild-composer/repositories/rhel-95.json /etc/osbuild-composer/repositories/rhel-95-beta.json
+ln -s /etc/osbuild-composer/repositories/rhel-95.json /etc/osbuild-composer/repositories/rhel-95-ga.json
 
 # Allow cockpit port (9090) in INPUT chain
 # Do not reload firewall rule during image generation
