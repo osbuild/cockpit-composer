@@ -46,6 +46,11 @@ class ComposerCase(testlib.MachineCase):
         done
         """)
 
+        # depsolve one of the blueprints so the repo metadata is cached, this speeds up the tests
+        self.machine.execute("""
+        composer-cli blueprints depsolve httpd-server
+        """, timeout=900)
+
         # delete all blueprints
         self.addCleanup(self.machine.execute,
                         "for bp in $(composer-cli blueprints list); "
