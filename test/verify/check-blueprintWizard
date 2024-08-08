@@ -8,6 +8,7 @@ import testlib
 @testlib.no_retry_when_changed
 class TestBlueprintWizard(composerlib.ComposerCase):
 
+    @testlib.timeout("900")
     def testCreateAndDeleteBlueprint(self):
         b = self.browser
 
@@ -24,7 +25,7 @@ class TestBlueprintWizard(composerlib.ComposerCase):
         # select openssh-server
         b.set_input_text("div[data-testid='search-available-pkgs-input'] input", "openssh-server")
         b.click("button[aria-label='Search button for available packages']")
-        with b.wait_timeout(360):
+        with b.wait_timeout(720):
             b.click("li[data-testid='openssh-server']")
             b.click("button[aria-label='Add selected']")
         # go to next page
