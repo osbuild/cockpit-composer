@@ -28,7 +28,7 @@ class TestImageWizard(composerlib.ComposerCase):
         # Create image
         b.click("footer button:contains('Create')")
 
-    @unittest.skipIf(os.environ.get("TEST_OS").split('-')[0] != "rhel", "Skipping test for non RHEL")
+    @unittest.skipIf(os.environ.get("TEST_OS").split('-') != "rhel-95", "Only RHEL-9 supports GCP at this time")
     def testUploadGCPFields(self):
         b = self.browser
 
