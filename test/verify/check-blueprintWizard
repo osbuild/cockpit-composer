@@ -39,18 +39,18 @@ class TestBlueprintWizard(composerlib.ComposerCase):
         b.click("button:contains('Next')")
 
         b.set_input_text("div[id='customizations.services.enabled'] input", "example")
-        b.key_press("Enter")
+        b.input_text("Enter")
         b.set_input_text("div[id='customizations.services.disabled'] input", "example")
-        b.key_press("Enter")
+        b.input_text("Enter")
         b.click("button:contains('Next')")
 
         # firewall has ports, enabled serxvices and disabled services, and zones
         b.set_input_text("div[id='customizations.firewall.ports'] input", "22")
-        b.key_press("Enter")
+        b.input_text("Enter")
         b.set_input_text("div[id='customizations.firewall.services.enabled'] input", "example")
-        b.key_press("Enter")
+        b.input_text("Enter")
         b.set_input_text("div[id='customizations.firewall.services.disabled'] input", "example")
-        b.key_press("Enter")
+        b.input_text("Enter")
         b.click("button:contains('Next')")
 
         b.click("button:contains('Add user')")
@@ -75,13 +75,13 @@ class TestBlueprintWizard(composerlib.ComposerCase):
         # timezone has timezone and ntp servers
         b.set_input_text("input[id='customizations.timezone.timezone']", "Europe/Berlin")
         b.set_input_text("div[id='customizations.timezone.ntpservers'] input", "test")
-        b.key_press("Enter")
+        b.input_text("Enter")
         b.click("button:contains('Next')")
 
         # locale has keyboard and language
         b.set_input_text("input[id='customizations.locale.keyboard']", "testKeyboard")
         b.set_input_text("div[id='customizations.locale.languages'] input", "testLanguage")
-        b.key_press("Enter")
+        b.input_text("Enter")
         b.click("button:contains('Next')")
 
         # other has hostname and installation device

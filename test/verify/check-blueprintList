@@ -21,7 +21,7 @@ class TestBlueprintList(composerlib.ComposerCase):
 
         # filter "openssh-server" blueprint
         b.focus("input[aria-label='Blueprints search input']")
-        b.key_press("openssh")
+        b.input_text("openssh")
         b.wait_visible("tr[data-testid='openssh-server']")
         b.wait_not_present("tr[data-testid='httpd-server']")
         # clear filter
@@ -30,7 +30,7 @@ class TestBlueprintList(composerlib.ComposerCase):
 
         # filter "httpd" will show three matched blueprints
         b.focus("input[aria-label='Blueprints search input']")
-        b.key_press("httpd")
+        b.input_text("httpd")
         b.wait_not_present("tr[data-testid='openssh-server']")
         b.is_present("tr[data-testid='http-server']")
         b.is_present("tr[data-testid='openssh-server-with-hostname']")
