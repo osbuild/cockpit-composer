@@ -11,6 +11,17 @@ import os
 @testlib.no_retry_when_changed
 class TestImageWizard(composerlib.ComposerCase):
 
+    def _select_PF4(self, selector, value):
+        b = self.browser
+
+        b.click(f"{selector}:not([disabled]):not([aria-disabled=true])")
+        select_entry = f"{selector} + ul button:contains('{value}')"
+        b.click(select_entry)
+        if b.is_present(f"{selector}.pf-m-typeahead"):
+            b.wait_val(f"{selector} > div input[type=text]", value)
+        else:
+            b.wait_text(f"{selector} .pf-c-select__toggle-text", value)
+
     def testCreateQCOW2(self):
         b = self.browser
 
@@ -22,7 +33,7 @@ class TestImageWizard(composerlib.ComposerCase):
         b.wait_in_text(".pf-c-wizard__main", "httpd-server")
         time.sleep(1)
         # select qcow2 image type and keep default size
-        b.select_PF4("#image-output-select-toggle", "QEMU Image (.qcow2)")
+        self._select_PF4("#image-output-select-toggle", "QEMU Image (.qcow2)")
         b.click("button:contains('Next')")
 
         # Create image
@@ -40,7 +51,7 @@ class TestImageWizard(composerlib.ComposerCase):
         b.wait_in_text(".pf-c-wizard__main", "httpd-server")
         time.sleep(1)
         # Google cloud platform image type and keep default size
-        b.select_PF4("#image-output-select-toggle", "Google Cloud Platform (.tar.gz)")
+        self._select_PF4("#image-output-select-toggle", "Google Cloud Platform (.tar.gz)")
         b.click("input[id='image.isUpload']")
         b.click("button:contains('Next')")
 

@@ -17,9 +17,13 @@ allowed_journal_messages = [
     ".*Sorry, try again.*",
     ".*sudo: 3 incorrect password attempts.*",
 ]
-# starting osbuild-composer.socket with no permission user will cause error[0]
+
 allowed_browser_errors = [
+    # starting osbuild-composer.socket with no permission user will cause error[0]
     ".*Failed to start osbuild-composer.socket.*Not permitted to perform this action.*",
+    # DDF related
+    ".*Failed %s type: %s%s prop Invalid prop `FormWrapper` supplied to `FormTemplate`, expected one of type.*",
+    ".*Failed prop type: Invalid prop `FormWrapper` supplied to `FormTemplate`, expected one of type.*",
 ]
 
 
