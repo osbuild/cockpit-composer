@@ -32,7 +32,6 @@ class TestBlueprintWizard(composerlib.ComposerCase):
         b.click("button:contains('Next')")
 
         b.set_input_text("input[id='customizations.kernel.append']", "testAppend")
-        b.set_input_text("input[id='customizations.kernel.name']", "testName")
         b.click("button:contains('Next')")
 
         # keep automatic partitioning for filesystem
@@ -109,10 +108,14 @@ class TestBlueprintWizard(composerlib.ComposerCase):
 
         # navigate to blueprint list
         b.click("a:contains('Back to blueprints')")
+        b.wait_visible("tr[data-testid='testName']")
+
+        # make sure the blueprint exists and is valid
+        self.machine.execute("composer-cli blueprints depsolve testName")
 
         # delete blueprint
         b.click("tr[data-testid='testName'] button:contains('Delete')")
-        b.is_visible("div[id='modal-delete-blueprint']")
+        b.wait_visible("div[id='modal-delete-blueprint']")
         b.click("footer button:contains('Delete')")
         b.wait_not_present("tr[data-testid='testName']")
 
