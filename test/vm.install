@@ -16,15 +16,19 @@ fi
 REPODIR=/etc/osbuild-composer/repositories
 sudo mkdir -p $REPODIR
 # Copy rhel nightly overrides
-cp /home/admin/files/rhel-95.json /etc/osbuild-composer/repositories/rhel-95.json
-cp /home/admin/files/rhel-10.json /etc/osbuild-composer/repositories/rhel-10.json
-cp /home/admin/files/rhel-10.json /etc/osbuild-composer/repositories/rhel-10.0.json
+if [ -d /home/admin/files ]; then
+    cp /home/admin/files/rhel-95.json /etc/osbuild-composer/repositories/rhel-95.json
+    cp /home/admin/files/rhel-10.json /etc/osbuild-composer/repositories/rhel-10.0.json
+else
+    cp test/files/rhel-95.json /etc/osbuild-composer/repositories/rhel-95.json
+    cp test/files/rhel-10.json /etc/osbuild-composer/repositories/rhel-10.json
+fi
 ln -s /etc/osbuild-composer/repositories/rhel-95.json /etc/osbuild-composer/repositories/rhel-95-beta.json
 ln -s /etc/osbuild-composer/repositories/rhel-95.json /etc/osbuild-composer/repositories/rhel-95-ga.json
 
 # Allow cockpit port (9090) in INPUT chain
 # Do not reload firewall rule during image generation
-if type firewall-cmd >/dev/null 2>&1; then
+if type firewall-cmd >/dev/null 2>&1 && firewall-cmd --state > /dev/null 2>&1; then
     firewall-cmd --add-service=cockpit --permanent
 fi
 
