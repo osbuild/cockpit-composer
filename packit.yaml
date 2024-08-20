@@ -16,45 +16,40 @@ srpm_build_deps:
 jobs:
   - job: copr_build
     trigger: commit
-    metadata: &build_metadata
-      branch: main
-      owner: "@osbuild"
-      project: "cockpit-composer"
-      preserve_project: True
-      targets:
-      - centos-stream-8
+    branch: "^main$"
+    owner: "@osbuild"
+    project: "cockpit-composer-main"
+    preserve_project: True
+    targets: &build_targets
       - centos-stream-9
-      - epel-8
-      - epel-9
+      - centos-stream-10
       - fedora-all
-    actions: &build_actions
-      post-upstream-clone: make spec
-      # HACK: tarball for releases (copr_build, koji, etc.), copying spec's Source0; this
-      # really should be the default, see https://github.com/packit/packit-service/issues/1505
-      create-archive:
-        - sh -exc "curl -L -O https://github.com/osbuild/cockpit-composer/releases/download/${PACKIT_PROJECT_VERSION}/${PACKIT_PROJECT_NAME_VERSION}.tar.gz"
-        - sh -exc "ls ${PACKIT_PROJECT_NAME_VERSION}.tar.gz"
 
   - job: copr_build
     trigger: release
-    metadata: *build_metadata
-    actions: *build_actions
+    owner: "@osbuild"
+    project: "cockpit-composer"
+    preserve_project: True
+    targets: *build_targets
+    actions:
+      # same as the global one, but specifying actions: does not inherit
+      post-upstream-clone: make spec
+      create-archive:
+        - sh -exc "curl -L -O https://github.com/osbuild/cockpit-composer/releases/download/${PACKIT_PROJECT_VERSION}/${PACKIT_PROJECT_NAME_VERSION}.tar.xz"
+        - sh -exc "ls ${PACKIT_PROJECT_NAME_VERSION}.tar.xz"
 
   - job: propose_downstream
     trigger: release
-    metadata:
-      dist_git_branches:
-        - fedora-all
+    dist_git_branches:
+      - fedora-all
 
   - job: koji_build
     trigger: commit
-    metadata:
-      dist_git_branches:
-        - fedora-all
+    dist_git_branches:
+      - fedora-all
 
   - job: bodhi_update
     trigger: commit
-    metadata:
-      dist_git_branches:
-        # rawhide updates are created automatically
-        - fedora-branched
+    dist_git_branches:
+      # rawhide updates are created automatically
+      - fedora-branched
