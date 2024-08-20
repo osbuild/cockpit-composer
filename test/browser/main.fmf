@@ -1,0 +1,22 @@
+/main:
+  summary: Runs all tests
+  require:
+    - cockpit
+    - cockpit-composer
+    - composer-cli
+    - nodejs
+    - git
+    - curl
+    - createrepo_c
+    - dnf-automatic
+    - firewalld
+    - git
+    - libvirt-daemon-config-network
+    - libvirt-python3
+    - make
+    - npm
+    - python3
+    - targetcli
+    - tlog
+  test: ./browser.sh
+  duration: 1h
