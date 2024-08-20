@@ -71,7 +71,7 @@ vm: rpm bots $(VM_DEPENDS)
 		$(TEST_OS)
 
 # run the CDP integration test
-check: vm test/common machine
+check: vm test/common
 	test/common/run-tests --nondestructive-memory-mb 2048 --test-dir=test/verify --enable-network ${RUN_TESTS_OPTIONS}
 
 lint:
@@ -88,9 +88,6 @@ bots:
 	git clone --quiet --reference-if-able $${XDG_CACHE_HOME:-$$HOME/.cache}/cockpit-project/bots https://github.com/cockpit-project/bots.git
 	if [ -n "$$COCKPIT_BOTS_REF" ]; then git -C bots fetch --quiet --depth=1 origin "$$COCKPIT_BOTS_REF"; git -C bots checkout --quiet FETCH_HEAD; fi
 	@echo "checked out bots/ ref $$(git -C bots rev-parse HEAD)"
-
-machine: bots
-	rsync -avR --exclude="bots/machine/machine_core/__pycache__/" bots/machine/testvm.py bots/machine/identity bots/machine/cloud-init.iso bots/machine/machine_core bots/lib test
 
 # checkout Cockpit's test API; this has no API stability guarantee, so check out a stable tag
 test/common:
