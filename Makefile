@@ -26,6 +26,7 @@ dist-gzip: build spec
 	tar czf cockpit-composer-$(VERSION).tar.gz --transform 's,^,cockpit-composer/,' \
 		--exclude cockpit-composer.spec.in \
 		$$(git ls-files) translations/compiled/* package-lock.json cockpit-composer.spec public/
+	realpath cockpit-composer-${VERSION}.tar.gz
 
 srpm: dist-gzip
 	rpmbuild -bs \
