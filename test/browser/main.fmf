@@ -18,5 +18,6 @@
     - python3
     - targetcli
     - tlog
+    - podman
   test: ./browser.sh
   duration: 1h

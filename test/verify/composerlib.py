@@ -45,7 +45,7 @@ class ComposerCase(testlib.MachineCase):
 
         # push pre-defined blueprint
         self.machine.execute("""
-        for toml_file in /home/admin/files/*.toml; do
+        for toml_file in /etc/osbuild-composer/blueprints/*.toml; do
             composer-cli blueprints push $toml_file
         done
         """)
