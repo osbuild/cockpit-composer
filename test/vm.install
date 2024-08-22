@@ -22,7 +22,7 @@ if [ -d /home/admin/files ]; then
     cp /home/admin/files/*.toml /etc/osbuild-composer/blueprints/
 else
     cp test/files/rhel-95.json /etc/osbuild-composer/repositories/rhel-95.json
-    cp test/files/rhel-10.json /etc/osbuild-composer/repositories/rhel-10.json
+    cp test/files/rhel-10.json /etc/osbuild-composer/repositories/rhel-10.0.json
     cp test/files/*.toml /etc/osbuild-composer/blueprints/
 fi
 ln -s /etc/osbuild-composer/repositories/rhel-95.json /etc/osbuild-composer/repositories/rhel-95-beta.json
