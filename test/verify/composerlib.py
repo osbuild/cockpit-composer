@@ -50,6 +50,9 @@ class ComposerCase(testlib.MachineCase):
         done
         """)
 
+        # drop when osbuild/cockpit-composer#2048 is solved
+        if self.machine.image.startswith("fedora"):
+            self.machine.execute("dnf downgrade osbuild-depsolve-dnf")
         # depsolve one of the blueprints so the repo metadata is cached, this speeds up the tests
         self.machine.execute("""
         composer-cli blueprints depsolve httpd-server
