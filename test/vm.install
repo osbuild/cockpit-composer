@@ -18,10 +18,12 @@ sudo mkdir -p /etc/osbuild-composer/blueprints
 # Copy rhel nightly overrides
 if [ -d /home/admin/files ]; then
     cp /home/admin/files/rhel-95.json /etc/osbuild-composer/repositories/rhel-95.json
+    cp /home/admin/files/rhel-9.6.json /etc/osbuild-composer/repositories/rhel-9.6.json
     cp /home/admin/files/rhel-10.json /etc/osbuild-composer/repositories/rhel-10.0.json
     cp /home/admin/files/*.toml /etc/osbuild-composer/blueprints/
 else
     cp test/files/rhel-95.json /etc/osbuild-composer/repositories/rhel-95.json
+    cp test/files/rhel-9.6.json /etc/osbuild-composer/repositories/rhel-9.6.json
     cp test/files/rhel-10.json /etc/osbuild-composer/repositories/rhel-10.0.json
     cp test/files/*.toml /etc/osbuild-composer/blueprints/
 fi
