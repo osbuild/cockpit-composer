@@ -38,7 +38,7 @@
     "glob": "11.0.0",
     "mini-css-extract-plugin": "2.8.0",
     "prettier": "2.8.8",
-    "sass": "1.77.4",
+    "sass": "1.81.1",
     "sass-loader": "14.1.1",
     "sizzle": "2.3.10",
     "webpack": "5.90.3",
