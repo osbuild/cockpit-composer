@@ -91,7 +91,7 @@ bots:
 
 # checkout Cockpit's test API; this has no API stability guarantee, so check out a stable tag
 test/common:
-	git fetch --depth=1 https://github.com/cockpit-project/cockpit.git bfc4a81e06a66695892e99b90661e0af7c533975 # 327
+	git fetch --depth=1 https://github.com/cockpit-project/cockpit.git 53c4ae2a0153de83dd15e703fd12bfb0f114419c
 	git checkout --force FETCH_HEAD -- test/common
 	git reset test/common
 
