@@ -1,3 +1,6 @@
+> [!WARNING]
+> This project has been abandoned in favor of [cockpit-image-builder](https://github.com/osbuild/image-builder-frontend/tree/main/cockpit) starting from Fedora 42.
+
 # Cockpit Composer
 
 [![codecov](https://codecov.io/gh/osbuild/cockpit-composer/branch/main/graph/badge.svg)](https://codecov.io/gh/osbuild/cockpit-composer)
