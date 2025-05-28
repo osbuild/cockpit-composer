@@ -16,10 +16,14 @@ srpm_build_deps:
 jobs:
   - job: copr_build
     trigger: pull_request
-    targets: &build_targets
+    targets:
       - centos-stream-9
       - centos-stream-10
       - fedora-all
+      # needed for tests
+      - fedora-39-aarch64
+      - fedora-40-aarch64
+      - centos-stream-9-aarch64
 
   - job: tests
     trigger: pull_request
@@ -38,7 +42,10 @@ jobs:
     owner: "@osbuild"
     project: "cockpit-composer-main"
     preserve_project: True
-    targets: *build_targets
+    targets: &build_targets
+      - centos-stream-9
+      - centos-stream-10
+      - fedora-all
 
   - job: copr_build
     trigger: release
