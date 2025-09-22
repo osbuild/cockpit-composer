@@ -20,11 +20,8 @@ import BlueprintList from "./pages/blueprintList";
 import APIEmpty from "./components/EmptyStates/APIEmpty";
 
 store.dispatch(fetchImageTypes());
-// Fetch blueprints and images every 30 seconds in case of changes via the cli
 store.dispatch(fetchBlueprints());
-setInterval(() => store.dispatch(fetchBlueprints()), 1000 * 30);
 store.dispatch(fetchAllImages());
-setInterval(() => store.dispatch(fetchAllImages()), 1000 * 30);
 
 const Content = () => {
   const [isAPIOn, setIsAPIOn] = useState();
